@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — Test: koji smer da upišem?</title>
+<meta name="description" content="Test koji ti na osnovu interesovanja predlaže smer srednje škole ili fakulteta, plus slične opcije.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tamna:#010308; --srednja:#040A18; --srednja2:#071224;
+  --zlatna:#C8A020; --zlatna-svetla:#F0D060;
+  --krem:#F5F0D8; --krem-svetla:#FFFFF0; --krem-tamna:#EDE8C8; --muted:#9aa3b2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--tamna);color:var(--krem);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.12;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--zlatna);color:var(--tamna);}
+
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(620px 620px at 80% -10%, rgba(200,160,32,0.10), transparent 60%),radial-gradient(700px 700px at 5% 15%, rgba(7,18,36,0.9), transparent 65%);}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 24px;}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;background:rgba(1,3,8,0.6);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,160,32,0.12);}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;}
+.logo .mark{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));color:var(--tamna);font-size:.95rem;font-weight:700;}
+.logo b{color:var(--zlatna-svetla);}
+.back{font-size:.88rem;color:var(--krem-tamna);border:1px solid rgba(200,160,32,0.35);padding:8px 16px;border-radius:999px;transition:all .25s;}
+.back:hover{border-color:var(--zlatna);background:rgba(200,160,32,0.08);}
+
+.screen{padding:60px 0 90px;}
+.kicker{font-size:.76rem;letter-spacing:3px;text-transform:uppercase;color:var(--zlatna);margin-bottom:18px;}
+h1.big{font-size:clamp(2.4rem,6vw,3.8rem);letter-spacing:-.5px;margin-bottom:18px;}
+h1.big em{font-style:italic;color:var(--zlatna-svetla);font-weight:500;}
+.lead{color:var(--krem-tamna);font-size:1.1rem;max-width:560px;margin-bottom:40px;}
+
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));color:var(--tamna)!important;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:transform .25s,box-shadow .25s;box-shadow:0 6px 22px rgba(200,160,32,0.28);}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,160,32,0.42);}
+.btn.ghost{background:transparent;color:var(--krem)!important;border:1px solid rgba(200,160,32,0.45);box-shadow:none;}
+.btn.ghost:hover{border-color:var(--zlatna);background:rgba(200,160,32,0.08);}
+
+/* Mode choose */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px;}
+.mode{background:linear-gradient(165deg,var(--srednja2),var(--srednja));border:1px solid rgba(200,160,32,0.18);border-radius:18px;padding:30px 26px;cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s;text-align:left;}
+.mode:hover{transform:translateY(-5px);border-color:rgba(200,160,32,0.5);box-shadow:0 22px 46px rgba(0,0,0,0.45);}
+.mode h3{font-size:1.6rem;color:var(--krem-svetla);margin-bottom:8px;}
+.mode p{color:var(--krem-tamna);font-size:.95rem;}
+.note{font-size:.86rem;color:var(--muted);border-left:2px solid rgba(200,160,32,0.4);padding-left:14px;line-height:1.55;}
+
+/* Quiz */
+.progress-wrap{display:flex;align-items:center;gap:14px;margin-bottom:30px;}
+.progress{flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--zlatna),var(--zlatna-svetla));border-radius:99px;transition:width .4s ease;box-shadow:0 0 10px rgba(200,160,32,0.5);}
+.progress-num{font-size:.85rem;color:var(--muted);white-space:nowrap;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--krem-svetla);margin-bottom:30px;line-height:1.15;}
+.opts{display:flex;flex-direction:column;gap:13px;}
+.opt{background:linear-gradient(165deg,var(--srednja2),var(--srednja));border:1px solid rgba(200,160,32,0.16);border-radius:14px;padding:18px 20px;cursor:pointer;font-size:1.02rem;color:var(--krem);transition:transform .2s,border-color .2s,background .2s;display:flex;align-items:center;gap:14px;}
+.opt:hover{transform:translateX(5px);border-color:rgba(200,160,32,0.5);background:rgba(200,160,32,0.06);}
+.opt .bullet{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(200,160,32,0.5);flex:none;transition:all .2s;}
+.opt:hover .bullet{background:var(--zlatna);border-color:var(--zlatna);box-shadow:0 0 10px rgba(200,160,32,0.6);}
+.opt.sel{border-color:var(--zlatna);background:rgba(200,160,32,0.10);}
+.opt.sel .bullet{background:var(--zlatna);border-color:var(--zlatna);}
+.q-nav{margin-top:30px;display:flex;justify-content:space-between;align-items:center;}
+.link-btn{background:none;border:none;color:var(--krem-tamna);cursor:pointer;font-size:.92rem;padding:8px 4px;transition:color .2s;}
+.link-btn:hover{color:var(--zlatna-svetla);}
+.link-btn:disabled{opacity:.3;cursor:default;}
+
+/* Result */
+.result-head{text-align:center;margin-bottom:36px;}
+.result-head .kicker{margin-bottom:12px;}
+.primary{background:linear-gradient(165deg,var(--srednja2),var(--srednja));border:1px solid rgba(200,160,32,0.35);border-radius:20px;padding:34px 30px;margin-bottom:26px;position:relative;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,0.45);}
+.primary::before{content:"";position:absolute;inset:0;background:radial-gradient(360px 220px at 85% 0%,rgba(200,160,32,0.14),transparent 70%);}
+.primary>*{position:relative;}
+.primary .tag{font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--zlatna);}
+.primary h2{font-size:2.1rem;color:var(--krem-svetla);margin:8px 0 12px;}
+.primary .desc{color:var(--krem-tamna);font-size:1.02rem;margin-bottom:22px;}
+.schools{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.schools li{display:flex;gap:12px;align-items:flex-start;font-size:1rem;color:var(--krem);}
+.schools li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--zlatna);flex:none;margin-top:9px;box-shadow:0 0 8px rgba(200,160,32,0.6);}
+.sim-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--krem-svetla);margin:30px 0 16px;}
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sim .card{background:var(--srednja);border:1px solid rgba(200,160,32,0.16);border-radius:14px;padding:20px;}
+.sim .card h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--krem-svetla);margin-bottom:6px;}
+.sim .card p{color:var(--krem-tamna);font-size:.9rem;}
+.disclaimer{margin:34px 0;font-size:.9rem;color:var(--muted);background:rgba(255,255,255,0.03);border:1px solid rgba(200,160,32,0.12);border-radius:14px;padding:18px 20px;line-height:1.6;}
+.result-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+
+.hidden{display:none;}
+@media(max-width:620px){
+  .modes{grid-template-columns:1fr;}
+  .sim{grid-template-columns:1fr;}
+  .screen{padding:40px 0 70px;}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<nav>
+  <a href="index.html" class="logo"><span class="mark">M</span>Math<b>IA</b></a>
+  <a href="index.html" class="back">← Nazad na sajt</a>
+</nav>
+
+<!-- INTRO -->
+<div class="wrap screen" id="intro">
+  <div class="kicker">Test za izbor smera</div>
+  <h1 class="big">Koji smer je <em>pravi za tebe?</em></h1>
+  <p class="lead">Odgovori na 12 kratkih pitanja o tome šta voliš i u čemu si dobar/dobra. Na kraju dobijaš predlog glavnog smera i nekoliko sličnih opcija koje vredi da istražiš.</p>
+
+  <p style="color:var(--krem-tamna);margin-bottom:16px;">Za šta praviš izbor?</p>
+  <div class="modes">
+    <button class="mode" onclick="startQuiz('skola')">
+      <h3>Srednja škola</h3>
+      <p>Završavaš osnovnu i biraš srednju školu ili smer.</p>
+    </button>
+    <button class="mode" onclick="startQuiz('fakultet')">
+      <h3>Fakultet</h3>
+      <p>Završavaš srednju i biraš fakultet ili oblast studija.</p>
+    </button>
+  </div>
+
+  <p class="note">Ovaj test je okviran predlog na osnovu tvojih interesovanja — nije konačna odluka. Pre upisa istraži smerove i razgovaraj sa profesorima, pedagogom i ljudima iz struke.</p>
+</div>
+
+<!-- QUIZ -->
+<div class="wrap screen hidden" id="quiz">
+  <div class="progress-wrap">
+    <div class="progress"><span id="bar"></span></div>
+    <div class="progress-num" id="qnum">1 / 12</div>
+  </div>
+  <div class="q-text" id="qtext"></div>
+  <div class="opts" id="opts"></div>
+  <div class="q-nav">
+    <button class="link-btn" id="backBtn" onclick="goBack()">← Nazad</button>
+    <span class="progress-num" id="hint">Izaberi odgovor</span>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="wrap screen hidden" id="result">
+  <div class="result-head">
+    <div class="kicker">Tvoj rezultat</div>
+    <h1 class="big" id="resTitle">Predlog smera</h1>
+  </div>
+
+  <div class="primary">
+    <div class="tag" id="primTag">Tvoj glavni predlog</div>
+    <h2 id="primName"></h2>
+    <div class="desc" id="primDesc"></div>
+    <ul class="schools" id="primSchools"></ul>
+  </div>
+
+  <div class="sim-title">Slične opcije za razmatranje</div>
+  <div class="sim" id="simWrap"></div>
+
+  <div class="disclaimer">
+    Zapamti: ovo je polazna tačka, ne presuda. Najbolji izbor donosiš kad spojiš svoja interesovanja sa istraživanjem (planovi i programi, mogućnosti zaposlenja) i razgovorom sa onima koji rade u toj oblasti. Ako želiš, MathIA ti može pomoći da uvežbaš matematiku za prijemni iz izabranog smera.
+  </div>
+
+  <div class="result-actions">
+    <button class="btn" onclick="restart()">Uradi test ponovo</button>
+    <a href="index.html" class="btn ghost">Nazad na sajt</a>
+  </div>
+</div>
+
+<script>
+/* ===== Oblasti (smerovi) ===== */
+const FIELDS = {
+  TEH:  { name:"Tehnika, IT i inženjerstvo", desc:"Voliš da gradiš, programiraš i rešavaš konkretne tehničke probleme. Privlače te tehnologija, mašine i logika." },
+  PRIR: { name:"Prirodne nauke i matematika", desc:"Voliš da razumeš kako svet funkcioniše, da istražuješ i rešavaš zadatke. Privlače te matematika, fizika i preciznost." },
+  MED:  { name:"Medicina, biologija i zdravstvo", desc:"Voliš da pomažeš ljudima, zanima te ljudsko telo i živi svet. Strpljiv/a si i odgovoran/na." },
+  DRU:  { name:"Društvo, pravo i ekonomija", desc:"Privlače te ljudi, pravila, organizacija i biznis. Voliš debatu, dogovaranje i vođenje." },
+  HUM:  { name:"Jezici, humanistika i komunikacija", desc:"Voliš jezike, pisanje, čitanje i izražavanje. Dobro razumeš ljude i ideje." },
+  UMET: { name:"Umetnost, dizajn i kreativnost", desc:"Voliš da stvaraš i izražavaš se vizuelno ili kroz umetnost. Maštovit/a si i originalan/na." }
+};
+
+/* ===== Pitanja (zajednička), svaki odgovor nosi poene oblastima ===== */
+const QUESTIONS = [
+  { q:"Koji predmet ti je najzanimljiviji?", opts:[
+    {t:"Matematika i fizika", w:{PRIR:2,TEH:1}},
+    {t:"Biologija i hemija", w:{MED:2,PRIR:1}},
+    {t:"Istorija, jezici, književnost", w:{HUM:2,DRU:1}},
+    {t:"Likovno i muzičko", w:{UMET:2}} ]},
+  { q:"Kako najradije rešavaš problem?", opts:[
+    {t:"Logički, korak po korak, formulama", w:{PRIR:2,TEH:1}},
+    {t:"Pravim ili popravljam nešto konkretno", w:{TEH:2}},
+    {t:"Razgovorom i dogovorom sa ljudima", w:{DRU:2,HUM:1}},
+    {t:"Kreativno, smišljam nešto novo", w:{UMET:2}} ]},
+  { q:"Šta bi radije radio/la na projektu?", opts:[
+    {t:"Programirao/la aplikaciju ili sklopio/la uređaj", w:{TEH:2}},
+    {t:"Istraživao/la podatke i radio/la eksperimente", w:{PRIR:2,MED:1}},
+    {t:"Vodio/la tim i organizaciju", w:{DRU:2}},
+    {t:"Pisao/la tekst, dizajnirao/la ili crtao/la", w:{UMET:1,HUM:2}} ]},
+  { q:"Šta ti najviše ide od ruke?", opts:[
+    {t:"Brojevi i računanje", w:{PRIR:2,TEH:1}},
+    {t:"Pamćenje, pisanje i jezici", w:{HUM:2}},
+    {t:"Rad i komunikacija sa ljudima", w:{DRU:1,MED:1}},
+    {t:"Crtanje i osećaj za estetiku", w:{UMET:2}} ]},
+  { q:"Koja tema bi te najviše zaintrigirala?", opts:[
+    {t:"Kako rade roboti i kompjuteri", w:{TEH:2}},
+    {t:"Kako funkcioniše ljudsko telo", w:{MED:2}},
+    {t:"Svemir, priroda i zakoni nauke", w:{PRIR:2}},
+    {t:"Društvo, politika i ekonomija", w:{DRU:2}},
+    {t:"Film, muzika i umetnost", w:{UMET:2}} ]},
+  { q:"Šta bi najviše voleo/la u budućem poslu?", opts:[
+    {t:"Da rešavam tehničke izazove i gradim", w:{TEH:2}},
+    {t:"Da pomažem ljudima i brinem o zdravlju", w:{MED:2}},
+    {t:"Da otkrivam nove stvari kroz istraživanje", w:{PRIR:2}},
+    {t:"Da vodim, pregovaram i razvijam biznis", w:{DRU:2}},
+    {t:"Da stvaram — dizajn, tekst ili umetnost", w:{UMET:2,HUM:1}} ]},
+  { q:"Tvoj idealan radni dan izgleda kao:", opts:[
+    {t:"Za računarom — rešavam i pravim stvari", w:{TEH:2,PRIR:1}},
+    {t:"U laboratoriji ili sa pacijentima", w:{MED:2}},
+    {t:"Među ljudima — sastanci i dogovori", w:{DRU:2}},
+    {t:"Čitam, pišem, prevodim", w:{HUM:2}},
+    {t:"U ateljeu ili studiju", w:{UMET:2}} ]},
+  { q:"Šta te više privlači?", opts:[
+    {t:"Tačni odgovori i preciznost", w:{PRIR:2,TEH:1}},
+    {t:"Briga o drugima", w:{MED:2}},
+    {t:"Debata, argumenti i pravila", w:{DRU:2,HUM:1}},
+    {t:"Sloboda i izražavanje", w:{UMET:2}} ]},
+  { q:"Koji bi vannastavni klub izabrao/la?", opts:[
+    {t:"Robotika ili programiranje", w:{TEH:2}},
+    {t:"Hemija i biologija", w:{MED:1,PRIR:2}},
+    {t:"Debatni ili novinarski klub", w:{DRU:1,HUM:2}},
+    {t:"Dramski, likovni ili muzički", w:{UMET:2}} ]},
+  { q:"Šta ti je važnije u karijeri?", opts:[
+    {t:"Inovacije i tehnologija", w:{TEH:2}},
+    {t:"Da pomažem društvu i ljudima", w:{MED:1,DRU:1}},
+    {t:"Nauka, znanje i otkrića", w:{PRIR:2}},
+    {t:"Kreativnost i sloboda", w:{UMET:2}} ]},
+  { q:"Kako te najčešće opisuju drugi?", opts:[
+    {t:"Analitičan/na i logičan/na", w:{PRIR:2,TEH:1}},
+    {t:"Brižan/na i strpljiv/a", w:{MED:2}},
+    {t:"Komunikativan/na i ubedljiv/a", w:{DRU:2,HUM:1}},
+    {t:"Maštovit/a i originalan/na", w:{UMET:2}} ]},
+  { q:"Kako najlakše učiš nešto novo?", opts:[
+    {t:"Kroz zadatke i logiku", w:{PRIR:2,TEH:1}},
+    {t:"Kroz primere iz prirode i tela", w:{MED:2}},
+    {t:"Kroz priče, tekstove i razgovor", w:{HUM:2,DRU:1}},
+    {t:"Kroz projekte i vizuelno", w:{UMET:2,TEH:1}} ]}
+];
+
+/* ===== Preporuke po oblasti ===== */
+const RESULTS = {
+  fakultet:{
+    TEH:[
+      "FTN Novi Sad: Softverske i informacione tehnologije, Računarstvo i automatika, Elektrotehnika",
+      "Beograd: ETF, Mašinski i Građevinski fakultet, FON (informacioni sistemi)",
+      "RAF i Računarski fakultet, Matematički fakultet — Informatika (Beograd)"
+    ],
+    PRIR:[
+      "PMF Novi Sad: Matematika, Fizika ili Hemija",
+      "Beograd: Matematički fakultet, Fizički fakultet, Hemijski fakultet",
+      "PMF Niš ili Kragujevac — prirodno-matematičke nauke"
+    ],
+    MED:[
+      "Medicinski fakultet (Novi Sad, Beograd, Niš, Kragujevac) — opšta medicina",
+      "Stomatološki i Farmaceutski fakultet (Beograd, Novi Sad)",
+      "Biologija i biohemija (PMF), Veterinarski fakultet (Beograd)"
+    ],
+    DRU:[
+      "Pravni fakultet (Novi Sad, Beograd)",
+      "Ekonomski fakultet (Beograd, Novi Sad); FON — menadžment (Beograd)",
+      "FPN Beograd — politikologija, socijalna politika, žurnalistika"
+    ],
+    HUM:[
+      "Filozofski fakultet Novi Sad: psihologija, jezici, istorija",
+      "Beograd: Filološki fakultet (svetski jezici, književnost), Filozofski fakultet",
+      "Žurnalistika i komunikacije (FPN Beograd)"
+    ],
+    UMET:[
+      "Akademija umetnosti Novi Sad: likovne, dramske ili muzičke umetnosti",
+      "Beograd: FLU, Fakultet primenjenih umetnosti, FDU, Fakultet muzičke umetnosti",
+      "Arhitektura i Grafičko inženjerstvo i dizajn (FTN); Arhitektonski fakultet (Beograd)"
+    ]
+  },
+  skola:{
+    TEH:[
+      "Elektrotehnička škola — smer računarstvo, elektronika ili automatika",
+      "Mašinska ili tehnička škola — mehatronika, mašinstvo",
+      "Gimnazija — prirodno-matematički smer (ako planiraš tehnički fakultet)"
+    ],
+    PRIR:[
+      "Gimnazija — prirodno-matematički smer",
+      "Matematička gimnazija (Beograd) ili specijalizovana matematička odeljenja u drugim gradovima"
+    ],
+    MED:[
+      "Medicinska škola — medicinski tehničar, fizioterapeut, farmaceutski ili laboratorijski tehničar",
+      "Gimnazija — prirodno-matematički smer (za medicinski, stomatološki ili farmaceutski fakultet)"
+    ],
+    DRU:[
+      "Gimnazija — društveno-jezički smer",
+      "Ekonomska škola — ekonomski ili finansijski tehničar",
+      "Pravno-birotehnička škola — pravni tehničar"
+    ],
+    HUM:[
+      "Filološka gimnazija (Beograd, Novi Sad i drugi gradovi)",
+      "Gimnazija — društveno-jezički smer"
+    ],
+    UMET:[
+      "Umetnička škola — likovni ili muzički smer",
+      "Srednja škola za dizajn — grafički, modni ili industrijski dizajn",
+      "Tehnička škola — arhitektonski tehničar ili tehničar dizajna"
+    ]
+  }
+};
+
+/* ===== Stanje ===== */
+let mode = null;
+let current = 0;
+let answers = [];
+
+function startQuiz(m){
+  mode = m;
+  current = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  window.scrollTo(0,0);
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  document.getElementById('qtext').textContent = q.q;
+  document.getElementById('qnum').textContent = (current+1) + " / " + QUESTIONS.length;
+  document.getElementById('bar').style.width = (current / QUESTIONS.length * 100) + "%";
+  document.getElementById('backBtn').disabled = false;
+  const opts = document.getElementById('opts');
+  opts.innerHTML = "";
+  q.opts.forEach(function(o, i){
+    const b = document.createElement('button');
+    b.className = "opt" + (answers[current] === i ? " sel" : "");
+    b.innerHTML = '<span class="bullet"></span><span>' + o.t + '</span>';
+    b.onclick = function(){ choose(i); };
+    opts.appendChild(b);
+  });
+}
+
+function choose(i){
+  answers[current] = i;
+  if (current < QUESTIONS.length - 1){
+    current++;
+    setTimeout(renderQuestion, 180);
+  } else {
+    setTimeout(showResult, 180);
+  }
+}
+
+function goBack(){
+  if (current > 0){ current--; renderQuestion(); window.scrollTo(0,0); }
+  else {
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('intro').classList.remove('hidden');
+    window.scrollTo(0,0);
+  }
+}
+
+function showResult(){
+  // Saberi poene
+  const scores = {TEH:0,PRIR:0,MED:0,DRU:0,HUM:0,UMET:0};
+  answers.forEach(function(ans, qi){
+    if (ans === null) return;
+    const w = QUESTIONS[qi].opts[ans].w;
+    for (const k in w){ scores[k] += w[k]; }
+  });
+  const ranked = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; });
+  const primary = ranked[0];
+  const sim1 = ranked[1], sim2 = ranked[2];
+
+  document.getElementById('primName').textContent = FIELDS[primary].name;
+  document.getElementById('primDesc').textContent = FIELDS[primary].desc;
+  document.getElementById('resTitle').innerHTML = (mode === 'skola' ? "Srednja škola <em>za tebe</em>" : "Smer fakulteta <em>za tebe</em>");
+
+  const list = document.getElementById('primSchools');
+  list.innerHTML = "";
+  RESULTS[mode][primary].forEach(function(s){
+    const li = document.createElement('li'); li.textContent = s; list.appendChild(li);
+  });
+
+  const simWrap = document.getElementById('simWrap');
+  simWrap.innerHTML = "";
+  [sim1, sim2].forEach(function(f){
+    const ex = RESULTS[mode][f][0];
+    const c = document.createElement('div');
+    c.className = "card";
+    c.innerHTML = '<h4>' + FIELDS[f].name + '</h4><p>npr. ' + ex + '</p>';
+    simWrap.appendChild(c);
+  });
+
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+function restart(){
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('intro').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — AI tutor matematike</title>
+<meta name="description" content="MathIA — personalizovani AI tutor matematike. Vežbe za prijemni i srednju školu, objašnjenja korak po korak, učenje u svom ritmu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tamna:#010308;
+  --srednja:#040A18;
+  --srednja2:#071224;
+  --zlatna:#C8A020;
+  --zlatna-svetla:#F0D060;
+  --krem:#F5F0D8;
+  --krem-svetla:#FFFFF0;
+  --krem-tamna:#EDE8C8;
+  --muted:#9aa3b2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--tamna);
+  color:var(--krem);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--tamna);}
+::-webkit-scrollbar-thumb{background:rgba(200,160,32,0.35);border-radius:3px;}
+::selection{background:var(--zlatna);color:var(--tamna);}
+
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.1;}
+
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+/* ===== Background atmosphere ===== */
+.bg-glow{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(620px 620px at 78% -8%, rgba(200,160,32,0.10), transparent 60%),
+    radial-gradient(700px 700px at 8% 18%, rgba(7,18,36,0.9), transparent 65%);
+}
+.grain{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.content{position:relative;z-index:1;}
+
+/* ===== Nav ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;
+  background:rgba(1,3,8,0.55);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(200,160,32,0.12);
+  transition:background .4s ease;
+}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;letter-spacing:0;}
+.logo .mark{
+  width:34px;height:34px;border-radius:8px;flex:none;
+  display:grid;place-items:center;
+  background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));
+  color:var(--tamna);font-size:1.05rem;font-weight:700;
+  box-shadow:0 4px 18px rgba(200,160,32,0.35);
+}
+.logo .name{white-space:nowrap;letter-spacing:-0.5px;}
+.logo .name b{color:var(--zlatna-svetla);font-weight:700;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a:not(.btn):not(.lang-switch a){font-size:.92rem;color:var(--krem-tamna);letter-spacing:.3px;position:relative;transition:color .25s;}
+.nav-links>a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--zlatna);transition:width .3s;}
+.nav-links>a:not(.btn):hover{color:var(--krem-svetla);}
+.nav-links>a:not(.btn):hover::after{width:100%;}
+.btn{
+  display:inline-block;padding:11px 22px;border-radius:999px;
+  background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));
+  color:var(--tamna)!important;font-weight:600;font-size:.9rem;letter-spacing:.3px;
+  transition:transform .25s, box-shadow .25s;cursor:pointer;
+  box-shadow:0 6px 22px rgba(200,160,32,0.28);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,160,32,0.42);}
+.btn.ghost{background:transparent;color:var(--krem)!important;border:1px solid rgba(200,160,32,0.45);box-shadow:none;}
+.btn.ghost:hover{border-color:var(--zlatna);background:rgba(200,160,32,0.08);}
+.menu-toggle{display:none;background:none;border:none;color:var(--krem);font-size:1.6rem;cursor:pointer;}
+
+/* Language switch */
+.lang-switch{display:inline-flex;gap:2px;border:1px solid rgba(200,160,32,0.3);border-radius:999px;padding:3px;}
+.lang-switch a{font-size:.76rem;letter-spacing:.5px;padding:4px 11px;border-radius:999px;color:var(--krem-tamna);cursor:pointer;transition:all .25s;font-weight:500;}
+.lang-switch a.active{background:rgba(200,160,32,0.18);color:var(--zlatna-svetla);}
+.lang-switch a::after{display:none!important;}
+
+/* ===== Hero ===== */
+header.hero{position:relative;padding:190px 0 130px;}
+.eyebrow{
+  display:inline-flex;flex-direction:column;align-items:stretch;gap:14px;
+  margin-bottom:32px;opacity:0;animation:fadeUp .9s .1s forwards;
+}
+.eyebrow-line{
+  height:2px;width:100%;border-radius:2px;
+  background:linear-gradient(90deg, rgba(200,160,32,0.15), var(--zlatna) 28%, var(--zlatna-svetla) 50%, var(--zlatna) 72%, rgba(200,160,32,0.15));
+  animation:lineGlow 3.2s ease-in-out infinite;
+}
+.eyebrow-text{font-size:.8rem;letter-spacing:3.5px;text-transform:uppercase;color:var(--zlatna);}
+@keyframes lineGlow{
+  0%,100%{box-shadow:0 0 10px rgba(200,160,32,0.40), 0 0 3px rgba(240,208,96,0.55);}
+  50%{box-shadow:0 0 20px rgba(240,208,96,0.75), 0 0 7px rgba(240,208,96,0.9);}
+}
+.hero h1{
+  font-size:clamp(3rem,7.5vw,6.2rem);
+  letter-spacing:-1px;margin-bottom:26px;
+  opacity:0;animation:fadeUp 1s .25s forwards;
+}
+.hero h1 em{font-style:italic;color:var(--zlatna-svetla);font-weight:500;}
+.hero p.lead{
+  font-size:1.18rem;max-width:560px;color:var(--krem-tamna);font-weight:300;
+  margin-bottom:42px;
+  opacity:0;animation:fadeUp 1s .42s forwards;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 1s .58s forwards;}
+.hero-stats{
+  display:flex;gap:50px;margin-top:78px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 1s .75s forwards;
+}
+.stat .num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--krem-svetla);line-height:1;}
+.stat .lbl{font-size:.82rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+.float-card{
+  position:absolute;right:28px;top:185px;width:330px;
+  background:linear-gradient(165deg,rgba(7,18,36,0.92),rgba(4,10,24,0.92));
+  border:1px solid rgba(200,160,32,0.22);border-radius:18px;padding:26px;
+  box-shadow:0 30px 70px rgba(0,0,0,0.5);
+  opacity:0;animation:fadeUp 1.1s .9s forwards;
+}
+.float-card .q{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--krem-svetla);margin-bottom:14px;}
+.float-card .step{display:flex;gap:11px;align-items:flex-start;font-size:.92rem;color:var(--krem-tamna);margin-bottom:11px;}
+.float-card .step span{color:var(--zlatna);flex:none;font-weight:600;}
+.float-card .tag{display:inline-block;margin-top:6px;font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--zlatna);}
+
+/* ===== Sections ===== */
+section{padding:100px 0;position:relative;}
+.sec-head{margin-bottom:58px;max-width:640px;}
+.sec-head .kicker{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--zlatna);}
+.sec-head h2{font-size:clamp(2.2rem,4.5vw,3.4rem);margin:16px 0 18px;letter-spacing:-.5px;}
+.sec-head p{color:var(--krem-tamna);font-size:1.06rem;}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(200,160,32,0.3),transparent);border:none;}
+.test-cta{padding:36px 0 90px;}
+.test-card{background:linear-gradient(135deg,rgba(200,160,32,0.10),rgba(7,18,36,0.55));border:1px solid rgba(200,160,32,0.35);border-radius:24px;padding:54px 44px;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.4);}
+.test-card::before{content:"";position:absolute;inset:0;background:radial-gradient(520px 300px at 50% -25%,rgba(200,160,32,0.20),transparent 70%);pointer-events:none;}
+.test-card>*{position:relative;}
+.test-card .kicker{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--zlatna);}
+.test-card h2{font-size:clamp(2rem,4.5vw,3.2rem);margin:14px 0 16px;letter-spacing:-.5px;}
+.test-card h2 em{font-style:italic;color:var(--zlatna-svetla);font-weight:500;}
+.test-card p{color:var(--krem-tamna);font-size:1.08rem;max-width:600px;margin:0 auto 30px;}
+@media(max-width:620px){.test-card{padding:40px 24px;}}
+
+/* Vežbe */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.card{
+  background:linear-gradient(165deg,var(--srednja2),var(--srednja));
+  border:1px solid rgba(200,160,32,0.14);border-radius:18px;padding:34px 30px;
+  transition:transform .35s, border-color .35s, box-shadow .35s;
+  position:relative;overflow:hidden;
+}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(300px 200px at 80% 0%,rgba(200,160,32,0.10),transparent 70%);opacity:0;transition:opacity .4s;}
+.card:hover{transform:translateY(-6px);border-color:rgba(200,160,32,0.4);box-shadow:0 24px 50px rgba(0,0,0,0.45);}
+.card:hover::before{opacity:1;}
+.card .ico{color:var(--zlatna);width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:rgba(200,160,32,0.10);border:1px solid rgba(200,160,32,0.25);margin-bottom:22px;}
+.card .ico svg{width:28px;height:28px;}
+.card h3{font-size:1.7rem;color:var(--krem-svetla);margin-bottom:10px;}
+.card p{color:var(--krem-tamna);font-size:.98rem;margin-bottom:22px;}
+.card .arrow{font-size:.9rem;color:var(--zlatna);letter-spacing:.5px;display:inline-flex;gap:8px;transition:gap .3s;}
+.card:hover .arrow{gap:14px;}
+
+/* Tutor */
+.tutor{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;}
+.tutor .feat{display:flex;gap:16px;margin-bottom:24px;}
+.tutor .feat .dot{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(200,160,32,0.10);border:1px solid rgba(200,160,32,0.3);color:var(--zlatna);}
+.tutor .feat .dot svg{width:20px;height:20px;}
+.tutor .feat h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--krem-svetla);font-weight:600;margin-bottom:3px;}
+.tutor .feat p{color:var(--krem-tamna);font-size:.96rem;}
+
+.chat{
+  background:linear-gradient(165deg,var(--srednja2),var(--srednja));
+  border:1px solid rgba(200,160,32,0.18);border-radius:20px;padding:26px;
+  box-shadow:0 30px 70px rgba(0,0,0,0.5);
+}
+.chat .bar{display:flex;gap:7px;margin-bottom:22px;}
+.chat .bar i{width:11px;height:11px;border-radius:50%;display:block;}
+.chat .bar i:nth-child(1){background:#ff5f57;}
+.chat .bar i:nth-child(2){background:#febc2e;}
+.chat .bar i:nth-child(3){background:#28c840;}
+.bubble{max-width:84%;padding:13px 17px;border-radius:15px;margin-bottom:14px;font-size:.95rem;line-height:1.55;}
+.bubble.user{margin-left:auto;background:rgba(200,160,32,0.14);border:1px solid rgba(200,160,32,0.25);color:var(--krem-svetla);border-bottom-right-radius:4px;}
+.bubble.ai{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--krem-tamna);border-bottom-left-radius:4px;}
+
+/* Blog */
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;}
+.post{border:1px solid rgba(200,160,32,0.12);border-radius:16px;overflow:hidden;background:var(--srednja);transition:transform .35s,border-color .35s;}
+.post:hover{transform:translateY(-5px);border-color:rgba(200,160,32,0.35);}
+.post .thumb{height:140px;background:linear-gradient(135deg,var(--srednja2),#0b1830);position:relative;display:grid;place-items:center;}
+.post .thumb svg{width:46px;height:46px;color:rgba(240,208,96,0.55);}
+.post .body{padding:24px;}
+.post .meta{font-size:.76rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--zlatna);margin-bottom:11px;}
+.post h3{font-size:1.4rem;color:var(--krem-svetla);margin-bottom:9px;line-height:1.2;}
+.post p{color:var(--krem-tamna);font-size:.93rem;}
+
+/* CTA band */
+.cta-band{text-align:center;padding:110px 0;}
+.cta-band h2{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:20px;}
+.cta-band h2 em{font-style:italic;color:var(--zlatna-svetla);font-weight:500;}
+.cta-band p{color:var(--krem-tamna);font-size:1.12rem;max-width:520px;margin:0 auto 38px;}
+
+/* Footer */
+footer{border-top:1px solid rgba(200,160,32,0.14);padding:56px 0 40px;}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px;}
+.foot .logo{font-size:1.35rem;}
+.foot-links{display:flex;gap:28px;font-size:.9rem;color:var(--krem-tamna);flex-wrap:wrap;}
+.foot-links a:hover{color:var(--zlatna-svetla);}
+.socials{display:flex;gap:14px;}
+.socials a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(200,160,32,0.3);color:var(--krem-tamna);transition:all .3s;}
+.socials a:hover{border-color:var(--zlatna);color:var(--zlatna-svetla);transform:translateY(-3px);box-shadow:0 8px 20px rgba(200,160,32,0.25);}
+.socials svg{width:18px;height:18px;}
+.copy{margin-top:34px;font-size:.82rem;color:var(--muted);letter-spacing:.3px;}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s ease, transform .9s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+
+/* Responsive */
+@media(max-width:980px){
+  .float-card{display:none;}
+  .tutor{grid-template-columns:1fr;gap:42px;}
+}
+@media(max-width:760px){
+  .nav-links{
+    position:fixed;inset:0 0 0 auto;width:76%;max-width:320px;
+    flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;
+    background:rgba(1,3,8,0.97);backdrop-filter:blur(16px);padding:40px;
+    transform:translateX(100%);transition:transform .4s ease;
+    border-left:1px solid rgba(200,160,32,0.2);
+  }
+  .nav-links.open{transform:none;}
+  .menu-toggle{display:block;z-index:60;}
+  header.hero{padding:150px 0 90px;}
+  .hero-stats{gap:34px;}
+  section{padding:74px 0;}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="grain"></div>
+
+<div class="content">
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><span class="mark">M</span><span class="name">Math<b>IA</b></span></a>
+  <button class="menu-toggle" aria-label="Meni" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <div class="nav-links">
+    <a href="#vezbe" data-i18n="nav_practice">Vežbe</a>
+    <a href="#tutor" data-i18n="nav_tutor">AI Tutor</a>
+    <a href="#blog" data-i18n="nav_blog">Blog</a>
+    <a href="test.html" data-i18n="nav_test">Test</a>
+    <span class="lang-switch">
+      <a data-lang="sr" class="active">SR</a>
+      <a data-lang="en">EN</a>
+    </span>
+    <a href="#pocni" class="btn" data-i18n="nav_cta">Počni besplatno</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text" data-i18n="eyebrow">Tvoj lični AI tutor za matematiku</span>
+    </div>
+    <h1><span data-i18n="hero_h1a">Matematika koja</span><br><em data-i18n="hero_h1b">napokon ima smisla.</em></h1>
+    <p class="lead" data-i18n="hero_lead">MathIA te uči matematiku korak po korak — u tvom ritmu, tvojim jezikom. Vežbaj kroz zadatke, pitaj AI tutora bilo šta i napreduj sa sigurnošću.</p>
+    <div class="hero-actions">
+      <a href="#pocni" class="btn" data-i18n="hero_btn1">Započni učenje</a>
+      <a href="#tutor" class="btn ghost" data-i18n="hero_btn2">Vidi AI tutora</a>
+      <a href="test.html" class="btn ghost" data-i18n="hero_btn3">Otkrij svoj smer</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">24/7</div><div class="lbl" data-i18n="stat1">Uvek dostupan</div></div>
+      <div class="stat"><div class="num">100+</div><div class="lbl" data-i18n="stat2">Zadataka i vežbi</div></div>
+      <div class="stat"><div class="num">&#8734;</div><div class="lbl" data-i18n="stat3">Strpljenja</div></div>
+    </div>
+  </div>
+
+  <div class="float-card">
+    <div class="q" data-i18n="fc_q">Kako rešiti kvadratnu jednačinu?</div>
+    <div class="step"><span>1.</span><span data-i18n="fc_s1">Prepoznaj koeficijente a, b, c</span></div>
+    <div class="step"><span>2.</span><span data-i18n="fc_s2">Izračunaj diskriminantu D = b² − 4ac</span></div>
+    <div class="step"><span>3.</span><span data-i18n="fc_s3">Primeni formulu za rešenja</span></div>
+    <div class="tag" data-i18n="fc_tag">— objašnjeno za 3 koraka</div>
+  </div>
+</header>
+
+<!-- TEST CTA -->
+<section id="test-cta" class="test-cta">
+  <div class="wrap">
+    <div class="test-card reveal">
+      <div class="kicker" data-i18n="test_kicker">Test za izbor smera</div>
+      <h2><span data-i18n="test_h2a">Otkrij koji smer je</span> <em data-i18n="test_h2b">za tebe</em></h2>
+      <p data-i18n="test_p">Ne znaš koju srednju školu ili fakultet da upišeš? Odgovori na 12 kratkih pitanja i saznaj koji ti smer najviše odgovara — uz nekoliko sličnih opcija.</p>
+      <a href="test.html" class="btn" data-i18n="test_btn">Uradi test</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- VEŽBE -->
+<section id="vezbe">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker" data-i18n="sec1_kicker">Vežbe</div>
+      <h2 data-i18n="sec1_h2">Vežbaj tačno ono što ti treba</h2>
+      <p data-i18n="sec1_p">Bilo da se spremaš za prijemni ili savladavaš gradivo iz škole — vežbe su prilagođene tvom nivou, sa objašnjenjem svakog rešenja.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.92a1 1 0 0 0-.19-1.81L12.83 5.18a2 2 0 0 0-1.66 0L2.77 9.11a1 1 0 0 0 0 1.83l8.34 3.81a2 2 0 0 0 1.78 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></div>
+        <h3 data-i18n="c1_t">Prijemni ispit</h3>
+        <p data-i18n="c1_d">Zadaci sa prethodnih prijemnih ispita za FTN i druge tehničke fakultete — sa detaljnim rešenjima.</p>
+        <span class="arrow"><span data-i18n="c1_b">Započni</span><span class="arr">→</span></span>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></div>
+        <h3 data-i18n="c2_t">Srednja škola</h3>
+        <p data-i18n="c2_d">Gradivo iz srednje škole, od osnova do naprednih oblasti. Uči temu po temu, svojim tempom.</p>
+        <span class="arrow"><span data-i18n="c2_b">Započni</span><span class="arr">→</span></span>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+        <h3 data-i18n="c3_t">Brzi test</h3>
+        <p data-i18n="c3_d">Kratke provere od 5 pitanja za zagrevanje — savršene za svakodnevnu vežbu i proveru znanja.</p>
+        <span class="arrow"><span data-i18n="c3_b">Započni</span><span class="arr">→</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TUTOR -->
+<section id="tutor">
+  <div class="wrap tutor">
+    <div class="reveal">
+      <div class="sec-head" style="margin-bottom:38px;">
+        <div class="kicker" data-i18n="sec2_kicker">AI Tutor</div>
+        <h2 data-i18n="sec2_h2">Pitaj. Razumej. Napreduj.</h2>
+      </div>
+      <div class="feat">
+        <div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div><h4 data-i18n="f1_t">Objašnjenja korak po korak</h4><p data-i18n="f1_d">Ne samo rešenje — već zašto i kako, dok ti ne postane jasno.</p></div>
+      </div>
+      <div class="feat">
+        <div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 14.3 8.6 20 9l-4.3 3.8L17 19l-5-3-5 3 1.3-6.2L4 9l5.7-.4z"/></svg></div>
+        <div><h4 data-i18n="f2_t">Prilagođeno tebi</h4><p data-i18n="f2_d">Tutor pamti gde grešiš i fokusira se baš na to.</p></div>
+      </div>
+      <div class="feat">
+        <div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><h4 data-i18n="f3_t">Dostupan svaki čas</h4><p data-i18n="f3_d">Zapni u 11 uveče pred ispit? Tutor je tu.</p></div>
+      </div>
+    </div>
+
+    <div class="chat reveal">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="bubble user" data-i18n="chat_u1">Ne razumem kako da izvučem koren iz 144.</div>
+      <div class="bubble ai" data-i18n="chat_a1">Hajde polako. √144 pita: koji broj pomnožen sam sa sobom daje 144? Probaj: 12 × 12 = 144. Znači √144 = 12. Hoćeš da uvežbamo još par primera?</div>
+      <div class="bubble user" data-i18n="chat_u2">Da, daj mi jedan.</div>
+      <div class="bubble ai" data-i18n="chat_a2">Odlično. Koliko je √81? Razmisli koji broj na kvadrat daje 81.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker" data-i18n="sec3_kicker">Blog</div>
+      <h2 data-i18n="sec3_h2">Saveti, trikovi i priče o učenju</h2>
+      <p data-i18n="sec3_p">Kako učiti matematiku pametnije, a ne teže.</p>
+    </div>
+    <div class="posts">
+      <article class="post reveal">
+        <div class="thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.2 18 9 18 7.5a6 6 0 1 0-12 0c0 1.5.3 2.7 1.5 4 .8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div>
+        <div class="body">
+          <div class="meta" data-i18n="p1_m">Tehnike učenja</div>
+          <h3 data-i18n="p1_t">5 grešaka koje prave svi na prijemnom</h3>
+          <p data-i18n="p1_d">I kako da ih izbegneš sa par jednostavnih navika.</p>
+        </div>
+      </article>
+      <article class="post reveal">
+        <div class="thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4V20H21Z"/><path d="M5 16h4v4"/></svg></div>
+        <div class="body">
+          <div class="meta" data-i18n="p2_m">Trigonometrija</div>
+          <h3 data-i18n="p2_t">Trigonometrija bez bubanja</h3>
+          <p data-i18n="p2_d">Jedan crtež koji ti pamti sve vrednosti zauvek.</p>
+        </div>
+      </article>
+      <article class="post reveal">
+        <div class="thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.84z"/><path d="m22 12.5-9.17 4.16a2 2 0 0 1-1.66 0L2 12.5"/><path d="m22 17.5-9.17 4.16a2 2 0 0 1-1.66 0L2 17.5"/></svg></div>
+        <div class="body">
+          <div class="meta" data-i18n="p3_m">Osnove</div>
+          <h3 data-i18n="p3_t">Procenti u stvarnom životu</h3>
+          <p data-i18n="p3_d">Od popusta u prodavnici do kamate — matematika koju koristiš svaki dan.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="pocni" class="cta-band">
+  <div class="wrap reveal">
+    <h2><span data-i18n="cta_h2a">Spremna/spreman da</span> <em data-i18n="cta_h2b">zavoliš matematiku?</em></h2>
+    <p data-i18n="cta_p">Pridruži se i započni učenje već danas — bez stresa, u svom ritmu.</p>
+    <a href="#" class="btn" style="padding:15px 34px;font-size:1rem;" data-i18n="cta_btn">Počni besplatno</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a href="#" class="logo"><span class="mark">M</span><span class="name">Math<b>IA</b></span></a>
+      <div class="foot-links">
+        <a href="#vezbe" data-i18n="foot_l1">Vežbe</a>
+        <a href="#tutor" data-i18n="foot_l2">AI Tutor</a>
+        <a href="#blog" data-i18n="foot_l3">Blog</a>
+        <a href="mailto:kontakt@mathia.rs" data-i18n="foot_l4">Kontakt</a>
+      </div>
+      <div class="socials">
+        <a href="https://instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        <a href="https://www.facebook.com/share/1HrkZ27yFv/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      </div>
+    </div>
+    <div class="copy" data-i18n="foot_copy">© 2026 MathIA · mathia.rs · Matematika koja ima smisla.</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+/* ===== Prevodi (SR / EN) ===== */
+const I18N = {
+  sr: {
+    nav_practice:"Vežbe", nav_tutor:"AI Tutor", nav_blog:"Blog", nav_test:"Test", nav_cta:"Počni besplatno",
+    eyebrow:"Tvoj lični AI tutor za matematiku",
+    hero_h1a:"Matematika koja", hero_h1b:"napokon ima smisla.",
+    hero_lead:"MathIA te uči matematiku korak po korak — u tvom ritmu, tvojim jezikom. Vežbaj kroz zadatke, pitaj AI tutora bilo šta i napreduj sa sigurnošću.",
+    hero_btn1:"Započni učenje", hero_btn2:"Vidi AI tutora", hero_btn3:"Otkrij svoj smer",
+    test_kicker:"Test za izbor smera", test_h2a:"Otkrij koji smer je", test_h2b:"za tebe", test_p:"Ne znaš koju srednju školu ili fakultet da upišeš? Odgovori na 12 kratkih pitanja i saznaj koji ti smer najviše odgovara — uz nekoliko sličnih opcija.", test_btn:"Uradi test",
+    stat1:"Uvek dostupan", stat2:"Zadataka i vežbi", stat3:"Strpljenja",
+    fc_q:"Kako rešiti kvadratnu jednačinu?",
+    fc_s1:"Prepoznaj koeficijente a, b, c", fc_s2:"Izračunaj diskriminantu D = b² − 4ac", fc_s3:"Primeni formulu za rešenja",
+    fc_tag:"— objašnjeno za 3 koraka",
+    sec1_kicker:"Vežbe", sec1_h2:"Vežbaj tačno ono što ti treba",
+    sec1_p:"Bilo da se spremaš za prijemni ili savladavaš gradivo iz škole — vežbe su prilagođene tvom nivou, sa objašnjenjem svakog rešenja.",
+    c1_t:"Prijemni ispit", c1_d:"Zadaci sa prethodnih prijemnih ispita za FTN i druge tehničke fakultete — sa detaljnim rešenjima.", c1_b:"Započni",
+    c2_t:"Srednja škola", c2_d:"Gradivo iz srednje škole, od osnova do naprednih oblasti. Uči temu po temu, svojim tempom.", c2_b:"Započni",
+    c3_t:"Brzi test", c3_d:"Kratke provere od 5 pitanja za zagrevanje — savršene za svakodnevnu vežbu i proveru znanja.", c3_b:"Započni",
+    sec2_kicker:"AI Tutor", sec2_h2:"Pitaj. Razumej. Napreduj.",
+    f1_t:"Objašnjenja korak po korak", f1_d:"Ne samo rešenje — već zašto i kako, dok ti ne postane jasno.",
+    f2_t:"Prilagođeno tebi", f2_d:"Tutor pamti gde grešiš i fokusira se baš na to.",
+    f3_t:"Dostupan svaki čas", f3_d:"Zapni u 11 uveče pred ispit? Tutor je tu.",
+    chat_u1:"Ne razumem kako da izvučem koren iz 144.",
+    chat_a1:"Hajde polako. √144 pita: koji broj pomnožen sam sa sobom daje 144? Probaj: 12 × 12 = 144. Znači √144 = 12. Hoćeš da uvežbamo još par primera?",
+    chat_u2:"Da, daj mi jedan.",
+    chat_a2:"Odlično. Koliko je √81? Razmisli koji broj na kvadrat daje 81.",
+    sec3_kicker:"Blog", sec3_h2:"Saveti, trikovi i priče o učenju", sec3_p:"Kako učiti matematiku pametnije, a ne teže.",
+    p1_m:"Tehnike učenja", p1_t:"5 grešaka koje prave svi na prijemnom", p1_d:"I kako da ih izbegneš sa par jednostavnih navika.",
+    p2_m:"Trigonometrija", p2_t:"Trigonometrija bez bubanja", p2_d:"Jedan crtež koji ti pamti sve vrednosti zauvek.",
+    p3_m:"Osnove", p3_t:"Procenti u stvarnom životu", p3_d:"Od popusta u prodavnici do kamate — matematika koju koristiš svaki dan.",
+    cta_h2a:"Spremna/spreman da", cta_h2b:"zavoliš matematiku?",
+    cta_p:"Pridruži se i započni učenje već danas — bez stresa, u svom ritmu.", cta_btn:"Počni besplatno",
+    foot_l1:"Vežbe", foot_l2:"AI Tutor", foot_l3:"Blog", foot_l4:"Kontakt",
+    foot_copy:"© 2026 MathIA · mathia.rs · Matematika koja ima smisla."
+  },
+  en: {
+    nav_practice:"Practice", nav_tutor:"AI Tutor", nav_blog:"Blog", nav_test:"Test", nav_cta:"Start free",
+    eyebrow:"Your personal AI math tutor",
+    hero_h1a:"Math that finally", hero_h1b:"makes sense.",
+    hero_lead:"MathIA teaches you math step by step — at your pace, in your language. Practice with problems, ask the AI tutor anything, and progress with confidence.",
+    hero_btn1:"Start learning", hero_btn2:"Meet the AI tutor", hero_btn3:"Find your path",
+    test_kicker:"Find your direction", test_h2a:"Discover which path is", test_h2b:"right for you", test_p:"Not sure which high school or faculty to choose? Answer 12 quick questions and find the direction that fits you best — plus a few similar options.", test_btn:"Take the test",
+    stat1:"Always available", stat2:"Problems & exercises", stat3:"Patience",
+    fc_q:"How to solve a quadratic equation?",
+    fc_s1:"Identify the coefficients a, b, c", fc_s2:"Compute the discriminant D = b² − 4ac", fc_s3:"Apply the solution formula",
+    fc_tag:"— explained in 3 steps",
+    sec1_kicker:"Practice", sec1_h2:"Practice exactly what you need",
+    sec1_p:"Whether you're preparing for an entrance exam or mastering school material — exercises adapt to your level, with an explanation for every solution.",
+    c1_t:"Entrance exam", c1_d:"Problems from past FTN and technical-faculty entrance exams — with detailed solutions.", c1_b:"Start",
+    c2_t:"High school", c2_d:"High-school material, from basics to advanced topics. Learn topic by topic, at your own pace.", c2_b:"Start",
+    c3_t:"Quick test", c3_d:"Short 5-question check-ins for warm-up — perfect for daily practice and self-assessment.", c3_b:"Start",
+    sec2_kicker:"AI Tutor", sec2_h2:"Ask. Understand. Progress.",
+    f1_t:"Step-by-step explanations", f1_d:"Not just the answer — the why and how, until it clicks.",
+    f2_t:"Tailored to you", f2_d:"The tutor remembers where you struggle and focuses there.",
+    f3_t:"Available any time", f3_d:"Stuck at 11 pm before an exam? The tutor is there.",
+    chat_u1:"I don't get how to find the square root of 144.",
+    chat_a1:"Let's take it slow. √144 asks: which number times itself equals 144? Try: 12 × 12 = 144. So √144 = 12. Want to practice a few more?",
+    chat_u2:"Yes, give me one.",
+    chat_a2:"Great. What's √81? Think about which number squared gives 81.",
+    sec3_kicker:"Blog", sec3_h2:"Tips, tricks and learning stories", sec3_p:"How to study math smarter, not harder.",
+    p1_m:"Study techniques", p1_t:"5 mistakes everyone makes on the entrance exam", p1_d:"And how to avoid them with a few simple habits.",
+    p2_m:"Trigonometry", p2_t:"Trigonometry without rote memorizing", p2_d:"One drawing that helps you remember every value for good.",
+    p3_m:"Fundamentals", p3_t:"Percentages in real life", p3_d:"From store discounts to interest — math you use every day.",
+    cta_h2a:"Ready to", cta_h2b:"fall in love with math?",
+    cta_p:"Join and start learning today — no stress, at your own pace.", cta_btn:"Start free",
+    foot_l1:"Practice", foot_l2:"AI Tutor", foot_l3:"Blog", foot_l4:"Contact",
+    foot_copy:"© 2026 MathIA · mathia.rs · Math that makes sense."
+  }
+};
+
+let lang = 'sr';
+try { const s = localStorage.getItem('mathia_lang'); if (s && I18N[s]) lang = s; } catch(e){}
+
+function applyLang(l){
+  if(!I18N[l]) return;
+  lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if (I18N[l][k] !== undefined) el.textContent = I18N[l][k];
+  });
+  document.querySelectorAll('.lang-switch a').forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('data-lang') === l);
+  });
+  try { localStorage.setItem('mathia_lang', l); } catch(e){}
+}
+
+document.querySelectorAll('.lang-switch a').forEach(function(a){
+  a.addEventListener('click', function(){ applyLang(a.getAttribute('data-lang')); });
+});
+applyLang(lang);
+
+/* Reveal na skrol */
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+/* Zatvori mobilni meni na klik linka */
+document.querySelectorAll('.nav-links a:not(.lang-switch a)').forEach(function(a){
+  a.addEventListener('click', function(){ document.querySelector('.nav-links').classList.remove('open'); });
+});
+</script>
+</body>
+</html>
