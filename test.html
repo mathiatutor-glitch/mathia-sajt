@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — Test: koji smer da upišem?</title>
+<meta name="description" content="Test koji ti na osnovu interesovanja predlaže smer srednje škole ili fakulteta, plus slične opcije.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tamna:#010308; --srednja:#040A18; --srednja2:#071224;
+  --zlatna:#C8A020; --zlatna-svetla:#F0D060;
+  --krem:#F5F0D8; --krem-svetla:#FFFFF0; --krem-tamna:#EDE8C8; --muted:#9aa3b2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--tamna);color:var(--krem);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.12;}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--zlatna);color:var(--tamna);}
+
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(620px 620px at 80% -10%, rgba(200,160,32,0.10), transparent 60%),radial-gradient(700px 700px at 5% 15%, rgba(7,18,36,0.9), transparent 65%);}
+.wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 24px;}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;background:rgba(1,3,8,0.6);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,160,32,0.12);}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;}
+.logo .mark{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));color:var(--tamna);font-size:.95rem;font-weight:700;}
+.logo b{color:var(--zlatna-svetla);}
+.back{font-size:.88rem;color:var(--krem-tamna);border:1px solid rgba(200,160,32,0.35);padding:8px 16px;border-radius:999px;transition:all .25s;}
+.back:hover{border-color:var(--zlatna);background:rgba(200,160,32,0.08);}
+
+.screen{padding:60px 0 90px;}
+.kicker{font-size:.76rem;letter-spacing:3px;text-transform:uppercase;color:var(--zlatna);margin-bottom:18px;}
+h1.big{font-size:clamp(2.4rem,6vw,3.8rem);letter-spacing:-.5px;margin-bottom:18px;}
+h1.big em{font-style:italic;color:var(--zlatna-svetla);font-weight:500;}
+.lead{color:var(--krem-tamna);font-size:1.1rem;max-width:560px;margin-bottom:40px;}
+
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));color:var(--tamna)!important;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:transform .25s,box-shadow .25s;box-shadow:0 6px 22px rgba(200,160,32,0.28);}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,160,32,0.42);}
+.btn.ghost{background:transparent;color:var(--krem)!important;border:1px solid rgba(200,160,32,0.45);box-shadow:none;}
+.btn.ghost:hover{border-color:var(--zlatna);background:rgba(200,160,32,0.08);}
+
+/* Mode choose */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:34px;}
+.mode{background:linear-gradient(165deg,var(--srednja2),var(--srednja));border:1px solid rgba(200,160,32,0.18);border-radius:18px;padding:30px 26px;cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s;text-align:left;}
+.mode:hover{transform:translateY(-5px);border-color:rgba(200,160,32,0.5);box-shadow:0 22px 46px rgba(0,0,0,0.45);}
+.mode h3{font-size:1.6rem;color:var(--krem-svetla);margin-bottom:8px;}
+.mode p{color:var(--krem-tamna);font-size:.95rem;}
+.note{font-size:.86rem;color:var(--muted);border-left:2px solid rgba(200,160,32,0.4);padding-left:14px;line-height:1.55;}
+
+/* Quiz */
+.progress-wrap{display:flex;align-items:center;gap:14px;margin-bottom:30px;}
+.progress{flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
+.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--zlatna),var(--zlatna-svetla));border-radius:99px;transition:width .4s ease;box-shadow:0 0 10px rgba(200,160,32,0.5);}
+.progress-num{font-size:.85rem;color:var(--muted);white-space:nowrap;}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--krem-svetla);margin-bottom:30px;line-height:1.15;}
+.opts{display:flex;flex-direction:column;gap:13px;}
+.opt{background:linear-gradient(165deg,var(--srednja2),var(--srednja));border:1px solid rgba(200,160,32,0.16);border-radius:14px;padding:18px 20px;cursor:pointer;font-size:1.02rem;color:var(--krem);transition:transform .2s,border-color .2s,background .2s;display:flex;align-items:center;gap:14px;}
+.opt:hover{transform:translateX(5px);border-color:rgba(200,160,32,0.5);background:rgba(200,160,32,0.06);}
+.opt .bullet{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(200,160,32,0.5);flex:none;transition:all .2s;}
+.opt:hover .bullet{background:var(--zlatna);border-color:var(--zlatna);box-shadow:0 0 10px rgba(200,160,32,0.6);}
+.opt.sel{border-color:var(--zlatna);background:rgba(200,160,32,0.10);}
+.opt.sel .bullet{background:var(--zlatna);border-color:var(--zlatna);}
+.q-nav{margin-top:30px;display:flex;justify-content:space-between;align-items:center;}
+.link-btn{background:none;border:none;color:var(--krem-tamna);cursor:pointer;font-size:.92rem;padding:8px 4px;transition:color .2s;}
+.link-btn:hover{color:var(--zlatna-svetla);}
+.link-btn:disabled{opacity:.3;cursor:default;}
+
+/* Result */
+.result-head{text-align:center;margin-bottom:36px;}
+.result-head .kicker{margin-bottom:12px;}
+.primary{background:linear-gradient(165deg,var(--srednja2),var(--srednja));border:1px solid rgba(200,160,32,0.35);border-radius:20px;padding:34px 30px;margin-bottom:26px;position:relative;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,0.45);}
+.primary::before{content:"";position:absolute;inset:0;background:radial-gradient(360px 220px at 85% 0%,rgba(200,160,32,0.14),transparent 70%);}
+.primary>*{position:relative;}
+.primary .tag{font-size:.74rem;letter-spacing:2px;text-transform:uppercase;color:var(--zlatna);}
+.primary h2{font-size:2.1rem;color:var(--krem-svetla);margin:8px 0 12px;}
+.primary .desc{color:var(--krem-tamna);font-size:1.02rem;margin-bottom:22px;}
+.schools{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.schools li{display:flex;gap:12px;align-items:flex-start;font-size:1rem;color:var(--krem);}
+.schools li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--zlatna);flex:none;margin-top:9px;box-shadow:0 0 8px rgba(200,160,32,0.6);}
+.sim-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--krem-svetla);margin:30px 0 16px;}
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sim .card{background:var(--srednja);border:1px solid rgba(200,160,32,0.16);border-radius:14px;padding:20px;}
+.sim .card h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--krem-svetla);margin-bottom:6px;}
+.sim .card p{color:var(--krem-tamna);font-size:.9rem;}
+.disclaimer{margin:34px 0;font-size:.9rem;color:var(--muted);background:rgba(255,255,255,0.03);border:1px solid rgba(200,160,32,0.12);border-radius:14px;padding:18px 20px;line-height:1.6;}
+.result-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+
+.hidden{display:none;}
+@media(max-width:620px){
+  .modes{grid-template-columns:1fr;}
+  .sim{grid-template-columns:1fr;}
+  .screen{padding:40px 0 70px;}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<nav>
+  <a href="index.html" class="logo"><span class="mark">M</span>Math<b>IA</b></a>
+  <a href="index.html" class="back">← Nazad na sajt</a>
+</nav>
+
+<!-- INTRO -->
+<div class="wrap screen" id="intro">
+  <div class="kicker">Test za izbor smera</div>
+  <h1 class="big">Koji smer je <em>pravi za tebe?</em></h1>
+  <p class="lead">Odgovori na 12 kratkih pitanja o tome šta voliš i u čemu si dobar/dobra. Na kraju dobijaš predlog glavnog smera i nekoliko sličnih opcija koje vredi da istražiš.</p>
+
+  <p style="color:var(--krem-tamna);margin-bottom:16px;">Za šta praviš izbor?</p>
+  <div class="modes">
+    <button class="mode" onclick="startQuiz('skola')">
+      <h3>Srednja škola</h3>
+      <p>Završavaš osnovnu i biraš srednju školu ili smer.</p>
+    </button>
+    <button class="mode" onclick="startQuiz('fakultet')">
+      <h3>Fakultet</h3>
+      <p>Završavaš srednju i biraš fakultet ili oblast studija.</p>
+    </button>
+  </div>
+
+  <p class="note">Ovaj test je okviran predlog na osnovu tvojih interesovanja — nije konačna odluka. Pre upisa istraži smerove i razgovaraj sa profesorima, pedagogom i ljudima iz struke.</p>
+</div>
+
+<!-- QUIZ -->
+<div class="wrap screen hidden" id="quiz">
+  <div class="progress-wrap">
+    <div class="progress"><span id="bar"></span></div>
+    <div class="progress-num" id="qnum">1 / 12</div>
+  </div>
+  <div class="q-text" id="qtext"></div>
+  <div class="opts" id="opts"></div>
+  <div class="q-nav">
+    <button class="link-btn" id="backBtn" onclick="goBack()">← Nazad</button>
+    <span class="progress-num" id="hint">Izaberi odgovor</span>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="wrap screen hidden" id="result">
+  <div class="result-head">
+    <div class="kicker">Tvoj rezultat</div>
+    <h1 class="big" id="resTitle">Predlog smera</h1>
+  </div>
+
+  <div class="primary">
+    <div class="tag" id="primTag">Tvoj glavni predlog</div>
+    <h2 id="primName"></h2>
+    <div class="desc" id="primDesc"></div>
+    <ul class="schools" id="primSchools"></ul>
+  </div>
+
+  <div class="sim-title">Slične opcije za razmatranje</div>
+  <div class="sim" id="simWrap"></div>
+
+  <div class="disclaimer">
+    Zapamti: ovo je polazna tačka, ne presuda. Najbolji izbor donosiš kad spojiš svoja interesovanja sa istraživanjem (planovi i programi, mogućnosti zaposlenja) i razgovorom sa onima koji rade u toj oblasti. Ako želiš, MathIA ti može pomoći da uvežbaš matematiku za prijemni iz izabranog smera.
+  </div>
+
+  <div class="result-actions">
+    <button class="btn" onclick="restart()">Uradi test ponovo</button>
+    <a href="index.html" class="btn ghost">Nazad na sajt</a>
+  </div>
+</div>
+
+<script>
+/* ===== Oblasti (smerovi) ===== */
+const FIELDS = {
+  TEH:  { name:"Tehnika, IT i inženjerstvo", desc:"Voliš da gradiš, programiraš i rešavaš konkretne tehničke probleme. Privlače te tehnologija, mašine i logika." },
+  PRIR: { name:"Prirodne nauke i matematika", desc:"Voliš da razumeš kako svet funkcioniše, da istražuješ i rešavaš zadatke. Privlače te matematika, fizika i preciznost." },
+  MED:  { name:"Medicina, biologija i zdravstvo", desc:"Voliš da pomažeš ljudima, zanima te ljudsko telo i živi svet. Strpljiv/a si i odgovoran/na." },
+  DRU:  { name:"Društvo, pravo i ekonomija", desc:"Privlače te ljudi, pravila, organizacija i biznis. Voliš debatu, dogovaranje i vođenje." },
+  HUM:  { name:"Jezici, humanistika i komunikacija", desc:"Voliš jezike, pisanje, čitanje i izražavanje. Dobro razumeš ljude i ideje." },
+  UMET: { name:"Umetnost, dizajn i kreativnost", desc:"Voliš da stvaraš i izražavaš se vizuelno ili kroz umetnost. Maštovit/a si i originalan/na." }
+};
+
+/* ===== Pitanja (zajednička), svaki odgovor nosi poene oblastima ===== */
+const QUESTIONS = [
+  { q:"Koji predmet ti je najzanimljiviji?", opts:[
+    {t:"Matematika i fizika", w:{PRIR:2,TEH:1}},
+    {t:"Biologija i hemija", w:{MED:2,PRIR:1}},
+    {t:"Istorija, jezici, književnost", w:{HUM:2,DRU:1}},
+    {t:"Likovno i muzičko", w:{UMET:2}} ]},
+  { q:"Kako najradije rešavaš problem?", opts:[
+    {t:"Logički, korak po korak, formulama", w:{PRIR:2,TEH:1}},
+    {t:"Pravim ili popravljam nešto konkretno", w:{TEH:2}},
+    {t:"Razgovorom i dogovorom sa ljudima", w:{DRU:2,HUM:1}},
+    {t:"Kreativno, smišljam nešto novo", w:{UMET:2}} ]},
+  { q:"Šta bi radije radio/la na projektu?", opts:[
+    {t:"Programirao/la aplikaciju ili sklopio/la uređaj", w:{TEH:2}},
+    {t:"Istraživao/la podatke i radio/la eksperimente", w:{PRIR:2,MED:1}},
+    {t:"Vodio/la tim i organizaciju", w:{DRU:2}},
+    {t:"Pisao/la tekst, dizajnirao/la ili crtao/la", w:{UMET:1,HUM:2}} ]},
+  { q:"Šta ti najviše ide od ruke?", opts:[
+    {t:"Brojevi i računanje", w:{PRIR:2,TEH:1}},
+    {t:"Pamćenje, pisanje i jezici", w:{HUM:2}},
+    {t:"Rad i komunikacija sa ljudima", w:{DRU:1,MED:1}},
+    {t:"Crtanje i osećaj za estetiku", w:{UMET:2}} ]},
+  { q:"Koja tema bi te najviše zaintrigirala?", opts:[
+    {t:"Kako rade roboti i kompjuteri", w:{TEH:2}},
+    {t:"Kako funkcioniše ljudsko telo", w:{MED:2}},
+    {t:"Svemir, priroda i zakoni nauke", w:{PRIR:2}},
+    {t:"Društvo, politika i ekonomija", w:{DRU:2}},
+    {t:"Film, muzika i umetnost", w:{UMET:2}} ]},
+  { q:"Šta bi najviše voleo/la u budućem poslu?", opts:[
+    {t:"Da rešavam tehničke izazove i gradim", w:{TEH:2}},
+    {t:"Da pomažem ljudima i brinem o zdravlju", w:{MED:2}},
+    {t:"Da otkrivam nove stvari kroz istraživanje", w:{PRIR:2}},
+    {t:"Da vodim, pregovaram i razvijam biznis", w:{DRU:2}},
+    {t:"Da stvaram — dizajn, tekst ili umetnost", w:{UMET:2,HUM:1}} ]},
+  { q:"Tvoj idealan radni dan izgleda kao:", opts:[
+    {t:"Za računarom — rešavam i pravim stvari", w:{TEH:2,PRIR:1}},
+    {t:"U laboratoriji ili sa pacijentima", w:{MED:2}},
+    {t:"Među ljudima — sastanci i dogovori", w:{DRU:2}},
+    {t:"Čitam, pišem, prevodim", w:{HUM:2}},
+    {t:"U ateljeu ili studiju", w:{UMET:2}} ]},
+  { q:"Šta te više privlači?", opts:[
+    {t:"Tačni odgovori i preciznost", w:{PRIR:2,TEH:1}},
+    {t:"Briga o drugima", w:{MED:2}},
+    {t:"Debata, argumenti i pravila", w:{DRU:2,HUM:1}},
+    {t:"Sloboda i izražavanje", w:{UMET:2}} ]},
+  { q:"Koji bi vannastavni klub izabrao/la?", opts:[
+    {t:"Robotika ili programiranje", w:{TEH:2}},
+    {t:"Hemija i biologija", w:{MED:1,PRIR:2}},
+    {t:"Debatni ili novinarski klub", w:{DRU:1,HUM:2}},
+    {t:"Dramski, likovni ili muzički", w:{UMET:2}} ]},
+  { q:"Šta ti je važnije u karijeri?", opts:[
+    {t:"Inovacije i tehnologija", w:{TEH:2}},
+    {t:"Da pomažem društvu i ljudima", w:{MED:1,DRU:1}},
+    {t:"Nauka, znanje i otkrića", w:{PRIR:2}},
+    {t:"Kreativnost i sloboda", w:{UMET:2}} ]},
+  { q:"Kako te najčešće opisuju drugi?", opts:[
+    {t:"Analitičan/na i logičan/na", w:{PRIR:2,TEH:1}},
+    {t:"Brižan/na i strpljiv/a", w:{MED:2}},
+    {t:"Komunikativan/na i ubedljiv/a", w:{DRU:2,HUM:1}},
+    {t:"Maštovit/a i originalan/na", w:{UMET:2}} ]},
+  { q:"Kako najlakše učiš nešto novo?", opts:[
+    {t:"Kroz zadatke i logiku", w:{PRIR:2,TEH:1}},
+    {t:"Kroz primere iz prirode i tela", w:{MED:2}},
+    {t:"Kroz priče, tekstove i razgovor", w:{HUM:2,DRU:1}},
+    {t:"Kroz projekte i vizuelno", w:{UMET:2,TEH:1}} ]}
+];
+
+/* ===== Preporuke po oblasti ===== */
+const RESULTS = {
+  fakultet:{
+    TEH:[
+      "FTN Novi Sad: Softverske i informacione tehnologije, Računarstvo i automatika, Elektrotehnika",
+      "Beograd: ETF, Mašinski i Građevinski fakultet, FON (informacioni sistemi)",
+      "RAF i Računarski fakultet, Matematički fakultet — Informatika (Beograd)"
+    ],
+    PRIR:[
+      "PMF Novi Sad: Matematika, Fizika ili Hemija",
+      "Beograd: Matematički fakultet, Fizički fakultet, Hemijski fakultet",
+      "PMF Niš ili Kragujevac — prirodno-matematičke nauke"
+    ],
+    MED:[
+      "Medicinski fakultet (Novi Sad, Beograd, Niš, Kragujevac) — opšta medicina",
+      "Stomatološki i Farmaceutski fakultet (Beograd, Novi Sad)",
+      "Biologija i biohemija (PMF), Veterinarski fakultet (Beograd)"
+    ],
+    DRU:[
+      "Pravni fakultet (Novi Sad, Beograd)",
+      "Ekonomski fakultet (Beograd, Novi Sad); FON — menadžment (Beograd)",
+      "FPN Beograd — politikologija, socijalna politika, žurnalistika"
+    ],
+    HUM:[
+      "Filozofski fakultet Novi Sad: psihologija, jezici, istorija",
+      "Beograd: Filološki fakultet (svetski jezici, književnost), Filozofski fakultet",
+      "Žurnalistika i komunikacije (FPN Beograd)"
+    ],
+    UMET:[
+      "Akademija umetnosti Novi Sad: likovne, dramske ili muzičke umetnosti",
+      "Beograd: FLU, Fakultet primenjenih umetnosti, FDU, Fakultet muzičke umetnosti",
+      "Arhitektura i Grafičko inženjerstvo i dizajn (FTN); Arhitektonski fakultet (Beograd)"
+    ]
+  },
+  skola:{
+    TEH:[
+      "Elektrotehnička škola — smer računarstvo, elektronika ili automatika",
+      "Mašinska ili tehnička škola — mehatronika, mašinstvo",
+      "Gimnazija — prirodno-matematički smer (ako planiraš tehnički fakultet)"
+    ],
+    PRIR:[
+      "Gimnazija — prirodno-matematički smer",
+      "Matematička gimnazija (Beograd) ili specijalizovana matematička odeljenja u drugim gradovima"
+    ],
+    MED:[
+      "Medicinska škola — medicinski tehničar, fizioterapeut, farmaceutski ili laboratorijski tehničar",
+      "Gimnazija — prirodno-matematički smer (za medicinski, stomatološki ili farmaceutski fakultet)"
+    ],
+    DRU:[
+      "Gimnazija — društveno-jezički smer",
+      "Ekonomska škola — ekonomski ili finansijski tehničar",
+      "Pravno-birotehnička škola — pravni tehničar"
+    ],
+    HUM:[
+      "Filološka gimnazija (Beograd, Novi Sad i drugi gradovi)",
+      "Gimnazija — društveno-jezički smer"
+    ],
+    UMET:[
+      "Umetnička škola — likovni ili muzički smer",
+      "Srednja škola za dizajn — grafički, modni ili industrijski dizajn",
+      "Tehnička škola — arhitektonski tehničar ili tehničar dizajna"
+    ]
+  }
+};
+
+/* ===== Stanje ===== */
+let mode = null;
+let current = 0;
+let answers = [];
+
+function startQuiz(m){
+  mode = m;
+  current = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');
+  window.scrollTo(0,0);
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  document.getElementById('qtext').textContent = q.q;
+  document.getElementById('qnum').textContent = (current+1) + " / " + QUESTIONS.length;
+  document.getElementById('bar').style.width = (current / QUESTIONS.length * 100) + "%";
+  document.getElementById('backBtn').disabled = false;
+  const opts = document.getElementById('opts');
+  opts.innerHTML = "";
+  q.opts.forEach(function(o, i){
+    const b = document.createElement('button');
+    b.className = "opt" + (answers[current] === i ? " sel" : "");
+    b.innerHTML = '<span class="bullet"></span><span>' + o.t + '</span>';
+    b.onclick = function(){ choose(i); };
+    opts.appendChild(b);
+  });
+}
+
+function choose(i){
+  answers[current] = i;
+  if (current < QUESTIONS.length - 1){
+    current++;
+    setTimeout(renderQuestion, 180);
+  } else {
+    setTimeout(showResult, 180);
+  }
+}
+
+function goBack(){
+  if (current > 0){ current--; renderQuestion(); window.scrollTo(0,0); }
+  else {
+    document.getElementById('quiz').classList.add('hidden');
+    document.getElementById('intro').classList.remove('hidden');
+    window.scrollTo(0,0);
+  }
+}
+
+function showResult(){
+  // Saberi poene
+  const scores = {TEH:0,PRIR:0,MED:0,DRU:0,HUM:0,UMET:0};
+  answers.forEach(function(ans, qi){
+    if (ans === null) return;
+    const w = QUESTIONS[qi].opts[ans].w;
+    for (const k in w){ scores[k] += w[k]; }
+  });
+  const ranked = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; });
+  const primary = ranked[0];
+  const sim1 = ranked[1], sim2 = ranked[2];
+
+  document.getElementById('primName').textContent = FIELDS[primary].name;
+  document.getElementById('primDesc').textContent = FIELDS[primary].desc;
+  document.getElementById('resTitle').innerHTML = (mode === 'skola' ? "Srednja škola <em>za tebe</em>" : "Smer fakulteta <em>za tebe</em>");
+
+  const list = document.getElementById('primSchools');
+  list.innerHTML = "";
+  RESULTS[mode][primary].forEach(function(s){
+    const li = document.createElement('li'); li.textContent = s; list.appendChild(li);
+  });
+
+  const simWrap = document.getElementById('simWrap');
+  simWrap.innerHTML = "";
+  [sim1, sim2].forEach(function(f){
+    const ex = RESULTS[mode][f][0];
+    const c = document.createElement('div');
+    c.className = "card";
+    c.innerHTML = '<h4>' + FIELDS[f].name + '</h4><p>npr. ' + ex + '</p>';
+    simWrap.appendChild(c);
+  });
+
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+function restart(){
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('intro').classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
