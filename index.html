@@ -263,6 +263,7 @@ footer{border-top:1px solid rgba(200,160,32,0.14);padding:56px 0 40px;}
     <a href="#vezbe" data-i18n="nav_practice">Vežbe</a>
     <a href="#tutor" data-i18n="nav_tutor">AI Tutor</a>
     <a href="#blog" data-i18n="nav_blog">Blog</a>
+    <a href="test.html" data-i18n="nav_test">Test</a>
     <span class="lang-switch">
       <a data-lang="sr" class="active">SR</a>
       <a data-lang="en">EN</a>
@@ -283,6 +284,7 @@ footer{border-top:1px solid rgba(200,160,32,0.14);padding:56px 0 40px;}
     <div class="hero-actions">
       <a href="#pocni" class="btn" data-i18n="hero_btn1">Započni učenje</a>
       <a href="#tutor" class="btn ghost" data-i18n="hero_btn2">Vidi AI tutora</a>
+      <a href="test.html" class="btn ghost" data-i18n="hero_btn3">Koji smer da upišem?</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="num">24/7</div><div class="lbl" data-i18n="stat1">Uvek dostupan</div></div>
@@ -428,8 +430,8 @@ footer{border-top:1px solid rgba(200,160,32,0.14);padding:56px 0 40px;}
       </div>
       <div class="socials">
         <a href="https://instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="#" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
-        <a href="#" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+        <a href="https://www.facebook.com/share/1HrkZ27yFv/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
     <div class="copy" data-i18n="foot_copy">© 2026 MathIA · mathia.rs · Matematika koja ima smisla.</div>
@@ -442,11 +444,11 @@ footer{border-top:1px solid rgba(200,160,32,0.14);padding:56px 0 40px;}
 /* ===== Prevodi (SR / EN) ===== */
 const I18N = {
   sr: {
-    nav_practice:"Vežbe", nav_tutor:"AI Tutor", nav_blog:"Blog", nav_cta:"Počni besplatno",
+    nav_practice:"Vežbe", nav_tutor:"AI Tutor", nav_blog:"Blog", nav_test:"Test", nav_cta:"Počni besplatno",
     eyebrow:"Tvoj lični AI tutor za matematiku",
     hero_h1a:"Matematika koja", hero_h1b:"napokon ima smisla.",
     hero_lead:"MathIA te uči matematiku korak po korak — u tvom ritmu, tvojim jezikom. Vežbaj kroz zadatke, pitaj AI tutora bilo šta i napreduj sa sigurnošću.",
-    hero_btn1:"Započni učenje", hero_btn2:"Vidi AI tutora",
+    hero_btn1:"Započni učenje", hero_btn2:"Vidi AI tutora", hero_btn3:"Koji smer da upišem?",
     stat1:"Uvek dostupan", stat2:"Zadataka i vežbi", stat3:"Strpljenja",
     fc_q:"Kako rešiti kvadratnu jednačinu?",
     fc_s1:"Prepoznaj koeficijente a, b, c", fc_s2:"Izračunaj diskriminantu D = b² − 4ac", fc_s3:"Primeni formulu za rešenja",
@@ -474,11 +476,11 @@ const I18N = {
     foot_copy:"© 2026 MathIA · mathia.rs · Matematika koja ima smisla."
   },
   en: {
-    nav_practice:"Practice", nav_tutor:"AI Tutor", nav_blog:"Blog", nav_cta:"Start free",
+    nav_practice:"Practice", nav_tutor:"AI Tutor", nav_blog:"Blog", nav_test:"Test", nav_cta:"Start free",
     eyebrow:"Your personal AI math tutor",
     hero_h1a:"Math that finally", hero_h1b:"makes sense.",
     hero_lead:"MathIA teaches you math step by step — at your pace, in your language. Practice with problems, ask the AI tutor anything, and progress with confidence.",
-    hero_btn1:"Start learning", hero_btn2:"Meet the AI tutor",
+    hero_btn1:"Start learning", hero_btn2:"Meet the AI tutor", hero_btn3:"Which path fits me?",
     stat1:"Always available", stat2:"Problems & exercises", stat3:"Patience",
     fc_q:"How to solve a quadratic equation?",
     fc_s1:"Identify the coefficients a, b, c", fc_s2:"Compute the discriminant D = b² − 4ac", fc_s3:"Apply the solution formula",
