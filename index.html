@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — AI tutor matematike</title>
+<meta name="description" content="MathIA — personalizovani AI tutor matematike. Kvizovi za prijemni i srednju školu, objašnjenja korak po korak, učenje u svom ritmu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tamna:#010308;
+  --srednja:#040A18;
+  --srednja2:#071224;
+  --zlatna:#C8A020;
+  --zlatna-svetla:#F0D060;
+  --krem:#F5F0D8;
+  --krem-svetla:#FFFFF0;
+  --krem-tamna:#EDE8C8;
+  --muted:#9aa3b2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--tamna);
+  color:var(--krem);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--tamna);}
+::-webkit-scrollbar-thumb{background:rgba(200,160,32,0.35);border-radius:3px;}
+::selection{background:var(--zlatna);color:var(--tamna);}
+
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.1;}
+
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+/* ===== Background atmosphere ===== */
+.bg-glow{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(620px 620px at 78% -8%, rgba(200,160,32,0.10), transparent 60%),
+    radial-gradient(700px 700px at 8% 18%, rgba(7,18,36,0.9), transparent 65%);
+}
+.grain{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.content{position:relative;z-index:1;}
+
+/* ===== Nav ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 28px;
+  background:rgba(1,3,8,0.55);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(200,160,32,0.12);
+  transition:background .4s ease;
+}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;letter-spacing:.5px;}
+.logo .mark{
+  width:34px;height:34px;border-radius:8px;flex:none;
+  display:grid;place-items:center;
+  background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));
+  color:var(--tamna);font-size:1.05rem;font-weight:700;
+  box-shadow:0 4px 18px rgba(200,160,32,0.35);
+}
+.logo b{color:var(--zlatna-svetla);font-weight:700;}
+.nav-links{display:flex;align-items:center;gap:34px;}
+.nav-links a{font-size:.92rem;color:var(--krem-tamna);letter-spacing:.3px;position:relative;transition:color .25s;}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--zlatna);transition:width .3s;}
+.nav-links a:not(.btn):hover{color:var(--krem-svetla);}
+.nav-links a:not(.btn):hover::after{width:100%;}
+.btn{
+  display:inline-block;padding:11px 22px;border-radius:999px;
+  background:linear-gradient(150deg,var(--zlatna-svetla),var(--zlatna));
+  color:var(--tamna)!important;font-weight:600;font-size:.9rem;letter-spacing:.3px;
+  transition:transform .25s, box-shadow .25s;
+  box-shadow:0 6px 22px rgba(200,160,32,0.28);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(200,160,32,0.42);}
+.btn.ghost{background:transparent;color:var(--krem)!important;border:1px solid rgba(200,160,32,0.45);box-shadow:none;}
+.btn.ghost:hover{border-color:var(--zlatna);background:rgba(200,160,32,0.08);}
+.menu-toggle{display:none;background:none;border:none;color:var(--krem);font-size:1.6rem;cursor:pointer;}
+
+/* ===== Hero ===== */
+header.hero{position:relative;padding:190px 0 130px;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:.78rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--zlatna);margin-bottom:30px;
+  opacity:0;animation:fadeUp .9s .1s forwards;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--zlatna);}
+.hero h1{
+  font-size:clamp(3rem,7.5vw,6.2rem);
+  letter-spacing:-1px;margin-bottom:26px;
+  opacity:0;animation:fadeUp 1s .25s forwards;
+}
+.hero h1 em{font-style:italic;color:var(--zlatna-svetla);font-weight:500;}
+.hero p.lead{
+  font-size:1.18rem;max-width:560px;color:var(--krem-tamna);font-weight:300;
+  margin-bottom:42px;
+  opacity:0;animation:fadeUp 1s .42s forwards;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 1s .58s forwards;}
+.hero-stats{
+  display:flex;gap:50px;margin-top:78px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 1s .75s forwards;
+}
+.stat .num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--krem-svetla);line-height:1;}
+.stat .lbl{font-size:.82rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+.float-card{
+  position:absolute;right:28px;top:185px;width:330px;
+  background:linear-gradient(165deg,rgba(7,18,36,0.92),rgba(4,10,24,0.92));
+  border:1px solid rgba(200,160,32,0.22);border-radius:18px;padding:26px;
+  box-shadow:0 30px 70px rgba(0,0,0,0.5);
+  opacity:0;animation:fadeUp 1.1s .9s forwards;
+}
+.float-card .q{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--krem-svetla);margin-bottom:14px;}
+.float-card .step{display:flex;gap:11px;align-items:flex-start;font-size:.92rem;color:var(--krem-tamna);margin-bottom:11px;}
+.float-card .step span{color:var(--zlatna);flex:none;font-weight:600;}
+.float-card .tag{display:inline-block;margin-top:6px;font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--zlatna);}
+
+/* ===== Sections ===== */
+section{padding:100px 0;position:relative;}
+.sec-head{margin-bottom:58px;max-width:640px;}
+.sec-head .kicker{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--zlatna);}
+.sec-head h2{font-size:clamp(2.2rem,4.5vw,3.4rem);margin:16px 0 18px;letter-spacing:-.5px;}
+.sec-head p{color:var(--krem-tamna);font-size:1.06rem;}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(200,160,32,0.3),transparent);border:none;}
+
+/* Kvizovi */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.card{
+  background:linear-gradient(165deg,var(--srednja2),var(--srednja));
+  border:1px solid rgba(200,160,32,0.14);border-radius:18px;padding:34px 30px;
+  transition:transform .35s, border-color .35s, box-shadow .35s;
+  position:relative;overflow:hidden;
+}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(300px 200px at 80% 0%,rgba(200,160,32,0.10),transparent 70%);opacity:0;transition:opacity .4s;}
+.card:hover{transform:translateY(-6px);border-color:rgba(200,160,32,0.4);box-shadow:0 24px 50px rgba(0,0,0,0.45);}
+.card:hover::before{opacity:1;}
+.card .ico{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--zlatna);width:56px;height:56px;border-radius:12px;display:grid;place-items:center;background:rgba(200,160,32,0.10);border:1px solid rgba(200,160,32,0.25);margin-bottom:22px;}
+.card h3{font-size:1.7rem;color:var(--krem-svetla);margin-bottom:10px;}
+.card p{color:var(--krem-tamna);font-size:.98rem;margin-bottom:22px;}
+.card .arrow{font-size:.9rem;color:var(--zlatna);letter-spacing:.5px;transition:gap .3s;display:inline-flex;gap:8px;}
+.card:hover .arrow{gap:14px;}
+
+/* Tutor */
+.tutor{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;}
+.tutor .feat{display:flex;gap:16px;margin-bottom:24px;}
+.tutor .feat .dot{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(200,160,32,0.10);border:1px solid rgba(200,160,32,0.3);color:var(--zlatna);font-family:'Cormorant Garamond',serif;font-size:1.2rem;}
+.tutor .feat h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--krem-svetla);font-weight:600;margin-bottom:3px;}
+.tutor .feat p{color:var(--krem-tamna);font-size:.96rem;}
+
+.chat{
+  background:linear-gradient(165deg,var(--srednja2),var(--srednja));
+  border:1px solid rgba(200,160,32,0.18);border-radius:20px;padding:26px;
+  box-shadow:0 30px 70px rgba(0,0,0,0.5);
+}
+.chat .bar{display:flex;gap:7px;margin-bottom:22px;}
+.chat .bar i{width:11px;height:11px;border-radius:50%;display:block;}
+.chat .bar i:nth-child(1){background:#ff5f57;}
+.chat .bar i:nth-child(2){background:#febc2e;}
+.chat .bar i:nth-child(3){background:#28c840;}
+.bubble{max-width:82%;padding:13px 17px;border-radius:15px;margin-bottom:14px;font-size:.95rem;line-height:1.55;}
+.bubble.user{margin-left:auto;background:rgba(200,160,32,0.14);border:1px solid rgba(200,160,32,0.25);color:var(--krem-svetla);border-bottom-right-radius:4px;}
+.bubble.ai{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--krem-tamna);border-bottom-left-radius:4px;}
+.bubble.ai b{color:var(--zlatna-svetla);font-weight:600;}
+
+/* Blog */
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;}
+.post{border:1px solid rgba(200,160,32,0.12);border-radius:16px;overflow:hidden;background:var(--srednja);transition:transform .35s,border-color .35s;}
+.post:hover{transform:translateY(-5px);border-color:rgba(200,160,32,0.35);}
+.post .thumb{height:140px;background:linear-gradient(135deg,var(--srednja2),#0b1830);position:relative;display:grid;place-items:center;}
+.post .thumb span{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:rgba(200,160,32,0.5);}
+.post .body{padding:24px;}
+.post .meta{font-size:.76rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--zlatna);margin-bottom:11px;}
+.post h3{font-size:1.4rem;color:var(--krem-svetla);margin-bottom:9px;line-height:1.2;}
+.post p{color:var(--krem-tamna);font-size:.93rem;}
+
+/* CTA band */
+.cta-band{text-align:center;padding:110px 0;}
+.cta-band h2{font-size:clamp(2.4rem,5vw,4rem);margin-bottom:20px;}
+.cta-band h2 em{font-style:italic;color:var(--zlatna-svetla);font-weight:500;}
+.cta-band p{color:var(--krem-tamna);font-size:1.12rem;max-width:520px;margin:0 auto 38px;}
+
+/* Footer */
+footer{border-top:1px solid rgba(200,160,32,0.14);padding:56px 0 40px;}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+.foot .logo{font-size:1.35rem;}
+.foot-links{display:flex;gap:28px;font-size:.9rem;color:var(--krem-tamna);flex-wrap:wrap;}
+.foot-links a:hover{color:var(--zlatna-svetla);}
+.copy{margin-top:34px;font-size:.82rem;color:var(--muted);letter-spacing:.3px;}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s ease, transform .9s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+
+/* Responsive */
+@media(max-width:980px){
+  .float-card{display:none;}
+  .tutor{grid-template-columns:1fr;gap:42px;}
+}
+@media(max-width:760px){
+  .nav-links{
+    position:fixed;inset:0 0 0 auto;width:74%;max-width:320px;
+    flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;
+    background:rgba(1,3,8,0.97);backdrop-filter:blur(16px);padding:40px;
+    transform:translateX(100%);transition:transform .4s ease;
+    border-left:1px solid rgba(200,160,32,0.2);
+  }
+  .nav-links.open{transform:none;}
+  .menu-toggle{display:block;z-index:60;}
+  header.hero{padding:150px 0 90px;}
+  .hero-stats{gap:34px;}
+  section{padding:74px 0;}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="grain"></div>
+
+<div class="content">
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><span class="mark">M</span>Math<b>IA</b></a>
+  <button class="menu-toggle" aria-label="Meni" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+  <div class="nav-links">
+    <a href="#kvizovi">Kvizovi</a>
+    <a href="#tutor">AI Tutor</a>
+    <a href="#blog">Blog</a>
+    <a href="#pocni" class="btn">Počni besplatno</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Personalizovani AI tutor matematike</div>
+    <h1>Matematika koja<br><em>napokon ima smisla.</em></h1>
+    <p class="lead">MathIA te uči matematiku korak po korak — u tvom ritmu, tvojim jezikom. Vežbaj kroz kvizove, pitaj AI tutora bilo šta i napreduj sa sigurnošću.</p>
+    <div class="hero-actions">
+      <a href="#pocni" class="btn">Započni učenje</a>
+      <a href="#tutor" class="btn ghost">Vidi AI tutora</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">24/7</div><div class="lbl">Uvek dostupan</div></div>
+      <div class="stat"><div class="num">100+</div><div class="lbl">Zadataka i kvizova</div></div>
+      <div class="stat"><div class="num">∞</div><div class="lbl">Strpljenja</div></div>
+    </div>
+  </div>
+
+  <div class="float-card">
+    <div class="q">Kako rešiti<br>kvadratnu jednačinu?</div>
+    <div class="step"><span>1.</span> Prepoznaj koeficijente a, b, c</div>
+    <div class="step"><span>2.</span> Izračunaj diskriminantu D = b² − 4ac</div>
+    <div class="step"><span>3.</span> Primeni formulu za rešenja</div>
+    <div class="tag">— objašnjeno za 3 koraka</div>
+  </div>
+</header>
+
+<hr class="divider">
+
+<!-- KVIZOVI -->
+<section id="kvizovi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Kvizovi</div>
+      <h2>Vežbaj tačno ono što ti treba</h2>
+      <p>Bilo da se spremaš za prijemni ili savladavaš gradivo iz škole — kvizovi su prilagođeni tvom nivou, sa objašnjenjem svakog rešenja.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ico">∑</div>
+        <h3>Prijemni ispit</h3>
+        <p>Zadaci sa prethodnih prijemnih ispita za fakultete, grupisani po oblastima — sa detaljnim rešenjima.</p>
+        <span class="arrow">Reši kviz →</span>
+      </div>
+      <div class="card reveal">
+        <div class="ico">√</div>
+        <h3>Srednja škola</h3>
+        <p>Gradivo iz srednje škole, od osnova do naprednih oblasti. Uči temu po temu, svojim tempom.</p>
+        <span class="arrow">Reši kviz →</span>
+      </div>
+      <div class="card reveal">
+        <div class="ico">π</div>
+        <h3>Brzi test</h3>
+        <p>Kratki kvizovi od 5 pitanja za zagrevanje — savršeni za svakodnevnu vežbu i proveru znanja.</p>
+        <span class="arrow">Reši kviz →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TUTOR -->
+<section id="tutor">
+  <div class="wrap tutor">
+    <div class="reveal">
+      <div class="sec-head" style="margin-bottom:38px;">
+        <div class="kicker">AI Tutor</div>
+        <h2>Pitaj. Razumej. Napreduj.</h2>
+      </div>
+      <div class="feat">
+        <div class="dot">✓</div>
+        <div><h4>Objašnjenja korak po korak</h4><p>Ne samo rešenje — već zašto i kako, dok ti ne postane jasno.</p></div>
+      </div>
+      <div class="feat">
+        <div class="dot">✦</div>
+        <div><h4>Prilagođeno tebi</h4><p>Tutor pamti gde grešiš i fokusira se baš na to.</p></div>
+      </div>
+      <div class="feat">
+        <div class="dot">◷</div>
+        <div><h4>Dostupan svaki čas</h4><p>Zapni u 11 uveče pred ispit? Tutor je tu.</p></div>
+      </div>
+    </div>
+
+    <div class="chat reveal">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="bubble user">Ne razumem kako da izvučem koren iz 144.</div>
+      <div class="bubble ai">Hajde polako 👍 <b>√144</b> pitamo: koji broj pomnožen sam sa sobom daje 144?<br>Probaj: 12 × 12 = 144. Znači <b>√144 = 12</b>. Hoćeš da uvežbamo još par primera?</div>
+      <div class="bubble user">Da, daj mi jedan.</div>
+      <div class="bubble ai">Odlično. Koliko je <b>√81</b>? Razmisli koji broj na kvadrat daje 81 🙂</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Blog</div>
+      <h2>Saveti, trikovi i priče o učenju</h2>
+      <p>Kako učiti matematiku pametnije, a ne teže.</p>
+    </div>
+    <div class="posts">
+      <article class="post reveal">
+        <div class="thumb"><span>∫</span></div>
+        <div class="body">
+          <div class="meta">Tehnike učenja</div>
+          <h3>5 grešaka koje prave svi na prijemnom</h3>
+          <p>I kako da ih izbegneš sa par jednostavnih navika.</p>
+        </div>
+      </article>
+      <article class="post reveal">
+        <div class="thumb"><span>θ</span></div>
+        <div class="body">
+          <div class="meta">Trigonometrija</div>
+          <h3>Trigonometrija bez bubanja</h3>
+          <p>Jedan crtež koji ti pamti sve vrednosti zauvek.</p>
+        </div>
+      </article>
+      <article class="post reveal">
+        <div class="thumb"><span>%</span></div>
+        <div class="body">
+          <div class="meta">Osnove</div>
+          <h3>Procenti u stvarnom životu</h3>
+          <p>Od popusta u prodavnici do kamate — matematika koju koristiš svaki dan.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="pocni" class="cta-band">
+  <div class="wrap reveal">
+    <h2>Spremna/spreman da <em>zavoliš</em> matematiku?</h2>
+    <p>Pridruži se i započni učenje već danas — bez stresa, u svom ritmu.</p>
+    <a href="#" class="btn" style="padding:15px 34px;font-size:1rem;">Počni besplatno</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a href="#" class="logo"><span class="mark">M</span>Math<b>IA</b></a>
+      <div class="foot-links">
+        <a href="#kvizovi">Kvizovi</a>
+        <a href="#tutor">AI Tutor</a>
+        <a href="#blog">Blog</a>
+        <a href="mailto:kontakt@mathia.ai">Kontakt</a>
+      </div>
+    </div>
+    <div class="copy">© 2026 MathIA · mathia.ai · Matematika koja ima smisla.</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+// Reveal na skrol
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Zatvori mobilni meni na klik linka
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open'));
+});
+</script>
+</body>
+</html>
