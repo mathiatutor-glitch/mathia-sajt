@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — Koji fakultet je za tebe?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{ --navy1:#102540; --navy2:#0A1628; --navy3:#050A1A; --gold:#E7C76B; --gold-hi:#F8EAB6; --gold-lo:#C29A45; --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4; --line:#21344f; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Manrope',system-ui,sans-serif; color:var(--ink); min-height:100vh; background:radial-gradient(900px 500px at 50% -5%, var(--navy1) 0%, var(--navy2) 45%, var(--navy3) 100%); display:flex; justify-content:center; padding:32px 18px; }
+  .wrap{ width:100%; max-width:560px; }
+  .brand{ text-align:center; margin-bottom:8px; }
+  .wordmark{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:40px; letter-spacing:.05em; background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold); }
+  h1{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; text-align:center; margin:6px 0 4px; color:#f2f5fa;}
+  .sub{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:26px; }
+  .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:18px; padding:24px 22px;}
+  .progress{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--cyan); margin-bottom:14px; }
+  .q{ font-size:19px; font-weight:600; line-height:1.4; margin-bottom:18px; color:#f2f5fa; }
+  .opt{ display:block; width:100%; text-align:left; background:rgba(255,255,255,.02); color:var(--ink); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; font-size:15px; font-family:'Manrope',sans-serif; cursor:pointer; transition:all .15s ease; }
+  .opt:hover{ border-color:var(--cyan); background:rgba(52,198,224,.08); transform:translateY(-1px); }
+  .badge{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; color:var(--cyan); text-align:center; }
+  .result-name{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:29px; text-align:center; color:var(--gold); margin:6px 0 6px; line-height:1.15;}
+  .result-desc{ text-align:center; color:var(--ink); font-size:15px; line-height:1.6; margin-bottom:8px;}
+  .tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; border:1px solid var(--line); border-radius:100px; padding:5px 12px; color:var(--muted); margin:4px auto 0;}
+  .tag-wrap{ text-align:center; margin-bottom:20px;}
+  .alts-title{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--muted); margin:22px 0 10px; text-transform:uppercase;}
+  .alt{ border-top:1px solid var(--line); padding:13px 0; }
+  .alt b{ color:#f2f5fa; font-weight:600;} .alt span{ color:var(--muted); font-size:13.5px;}
+  .cta{ margin-top:22px; }
+  a.btn,button.btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; text-decoration:none; font-weight:600; font-size:16px; padding:15px 18px; border-radius:13px; border:none; cursor:pointer; transition:all .18s ease; font-family:'Manrope',sans-serif; margin-bottom:11px; }
+  .btn-primary{ background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo)); color:var(--navy3); box-shadow:0 8px 24px rgba(231,199,107,.2);}
+  .btn-primary:hover{ transform:translateY(-2px);}
+  .btn-ghost{ background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line);}
+  .btn-ghost:hover{ border-color:var(--cyan); color:#fff;}
+  .cta-note{ text-align:center; color:var(--muted); font-size:13px; margin:4px 0 0; line-height:1.5;}
+  .foot{ text-align:center; margin-top:20px; font-size:12px; color:#566b88; line-height:1.6;}
+  .foot a{ color:var(--muted);}
+  .lang{ position:fixed; top:18px; right:20px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; }
+  .lang a{ color:var(--muted); text-decoration:none; padding:2px 4px; transition:color .15s ease; }
+  .lang a.active{ color:var(--gold); } .lang a:hover{ color:var(--cyan); } .lang span{ color:#566b88; }
+</style>
+</head>
+<body>
+<nav class="lang">
+  <a href="vodic-fakultet.html" class="active">SR</a><span>·</span><a href="vodic-fakultet-en.html">EN</a>
+</nav>
+<div class="wrap">
+  <div class="brand"><span class="wordmark">MathIA</span></div>
+  <h1>Koji fakultet je za tebe?</h1>
+  <p class="sub">Odgovori na 8 kratkih pitanja — predložićemo ti oblast i fakultete u Novom Sadu i Beogradu.</p>
+  <div class="card" id="card"></div>
+  <p class="foot">Orijentacioni vodič, ne i zvanična preporuka. Zvanični uslovi upisa:
+     <a href="https://www.uns.ac.rs" target="_blank" rel="noopener">uns.ac.rs</a> i
+     <a href="https://www.bg.ac.rs" target="_blank" rel="noopener">bg.ac.rs</a></p>
+</div>
+
+<script>
+const VISIBOOK = "https://visibook.com/psatlura5dcepnnrr";
+
+/* Oblasti studija sa fakultetima u Novom Sadu i Beogradu. mat = prijemni najčešće uključuje matematiku/fiziku. */
+const OBLASTI = {
+  TEH:  {name:"Tehnika i inženjerstvo", tags:["TEH","MAT"], mat:true,  desc:"Mašinstvo, elektrotehnika, mehatronika. Novi Sad: FTN. Beograd: ETF, Mašinski, Građevinski fakultet."},
+  IT:   {name:"Računarstvo i softver", tags:["IT","MAT"], mat:true,  desc:"Programiranje, softver i veštačka inteligencija. Novi Sad: FTN (Računarstvo, Softversko inž.), PMF. Beograd: ETF, Matematički fakultet, RAF."},
+  MATF: {name:"Matematika i fizika", tags:["MAT","NAUKA"], mat:true,  desc:"Čista i primenjena matematika i fizika. Novi Sad: PMF. Beograd: Matematički i Fizički fakultet."},
+  PRIR: {name:"Biologija, hemija i nauke o životu", tags:["PRIRODA","NAUKA"], mat:false, desc:"Biologija, hemija, ekologija. Novi Sad: PMF, Tehnološki fakultet. Beograd: Biološki i Hemijski fakultet."},
+  MED:  {name:"Medicina i zdravstvo", tags:["MED","PRIRODA"], mat:false, desc:"Medicina, stomatologija, farmacija. Novi Sad: Medicinski fakultet. Beograd: Medicinski, Stomatološki, Farmaceutski fakultet."},
+  EKON: {name:"Ekonomija i biznis", tags:["EKON","ORG"], mat:false, desc:"Ekonomija, finansije, menadžment. Novi Sad: Ekonomski fakultet (Subotica/Novi Sad). Beograd: Ekonomski fakultet, FON."},
+  PRAVO:{name:"Pravo", tags:["PRAVO","DRUST"], mat:false, desc:"Pravo, pravosuđe i uprava. Novi Sad: Pravni fakultet. Beograd: Pravni fakultet."},
+  DRUST:{name:"Društvene nauke i psihologija", tags:["DRUST"], mat:false, desc:"Psihologija, sociologija, politikologija. Novi Sad: Filozofski fakultet. Beograd: Filozofski fakultet, FPN."},
+  JEZIK:{name:"Jezici i filologija", tags:["JEZIK","DRUST"], mat:false, desc:"Strani jezici, književnost i prevođenje. Novi Sad: Filozofski fakultet. Beograd: Filološki fakultet."},
+  UMETL:{name:"Likovna umetnost i dizajn", tags:["UMET","DIZ"], mat:false, desc:"Slikarstvo, dizajn, primenjene umetnosti. Novi Sad: Akademija umetnosti. Beograd: FLU, FPU."},
+  UMETS:{name:"Muzika, gluma i scena", tags:["UMET","SCENA"], mat:false, desc:"Muzika, gluma i dramske umetnosti. Novi Sad: Akademija umetnosti. Beograd: FMU (muzika), FDU (drama i film)."},
+  ARHG: {name:"Arhitektura i građevina", tags:["TEH","DIZ"], mat:true, desc:"Projektovanje zgrada, prostora i gradova. Novi Sad: FTN (Arhitektura, Građevinarstvo). Beograd: Arhitektonski i Građevinski fakultet."},
+  ORG:  {name:"Menadžment i organizacija", tags:["ORG","EKON"], mat:false, desc:"Organizacija, menadžment, informacioni sistemi. Novi Sad: FTN (Inženjerski menadžment). Beograd: FON."},
+  POLJ: {name:"Poljoprivreda i biotehnologija", tags:["PRIRODA","NAUKA"], mat:false, desc:"Poljoprivreda i prehrambena tehnologija. Novi Sad: Poljoprivredni i Tehnološki fakultet. Beograd: Poljoprivredni fakultet (Zemun)."},
+  SPORT:{name:"Sport i fizičko vaspitanje", tags:["SPORT"], mat:false, desc:"Sport, trenerstvo i fizičko vaspitanje. Novi Sad i Beograd: Fakultet sporta i fizičkog vaspitanja."},
+  SAOB: {name:"Saobraćaj i logistika", tags:["TEH","ORG"], mat:true, desc:"Saobraćaj, transport i logistika. Novi Sad: FTN (Saobraćaj). Beograd: Saobraćajni fakultet."},
+  MEDIJ:{name:"Mediji i komunikacije", tags:["DRUST","JEZIK"], mat:false, desc:"Novinarstvo, mediji i komunikacije. Novi Sad: Filozofski fakultet. Beograd: FPN (novinarstvo i komunikologija)."}
+};
+
+const QUESTIONS = [
+  {q:"Šta te najviše privlači?", o:[
+    {t:"Tehnika, mašine i kako stvari rade", s:{TEH:3, MAT:1}},
+    {t:"Računari, softver i tehnologija", s:{IT:3, MAT:1}},
+    {t:"Priroda, telo i zdravlje", s:{PRIRODA:2, MED:2}},
+    {t:"Ljudi, društvo i kako svet funkcioniše", s:{DRUST:3}},
+    {t:"Umetnost, dizajn i stvaranje", s:{UMET:2, DIZ:1}},
+    {t:"Novac, biznis i organizacija", s:{EKON:2, ORG:2}}
+  ]},
+  {q:"Omiljeni predmet u školi?", o:[
+    {t:"Matematika", s:{MAT:3, IT:1, TEH:1}},
+    {t:"Fizika", s:{TEH:2, MAT:1, NAUKA:1}},
+    {t:"Biologija ili hemija", s:{PRIRODA:2, MED:2, NAUKA:1}},
+    {t:"Maternji ili strani jezici", s:{JEZIK:3}},
+    {t:"Istorija ili sociologija", s:{DRUST:2, PRAVO:1}},
+    {t:"Likovno ili muzičko", s:{UMET:2, DIZ:1, SCENA:1}}
+  ]},
+  {q:"Posao iz snova?", o:[
+    {t:"Inženjer ili programer", s:{TEH:2, IT:2, MAT:1}},
+    {t:"Lekar ili istraživač u nauci", s:{MED:3, PRIRODA:1, NAUKA:1}},
+    {t:"Advokat, sudija ili u upravi", s:{PRAVO:3, DRUST:1}},
+    {t:"Preduzetnik ili menadžer", s:{EKON:2, ORG:2}},
+    {t:"Umetnik, dizajner ili muzičar", s:{UMET:2, DIZ:1, SCENA:1}},
+    {t:"Psiholog, profesor ili novinar", s:{DRUST:2, JEZIK:1}}
+  ]},
+  {q:"Koliko voliš matematiku?", o:[
+    {t:"Veoma — to mi ide", s:{MAT:2, TEH:1, IT:1}},
+    {t:"Solidno, snalazim se", s:{EKON:1, ORG:1, NAUKA:1}},
+    {t:"Više volim jezike i društvo", s:{JEZIK:1, DRUST:1}},
+    {t:"Više volim kreativan rad", s:{UMET:1, DIZ:1}}
+  ]},
+  {q:"Kako najradije radiš?", o:[
+    {t:"Rešavam probleme i logičke zadatke", s:{MAT:1, IT:2, TEH:1}},
+    {t:"Radim sa ljudima", s:{DRUST:2, MED:1, ORG:1}},
+    {t:"Praktično, rukama, u laboratoriji ili na terenu", s:{PRIRODA:1, TEH:1, MED:1}},
+    {t:"Kreativno i vizuelno", s:{UMET:2, DIZ:1}},
+    {t:"Organizujem i vodim", s:{ORG:2, EKON:1}}
+  ]},
+  {q:"Šta ti je važno u poslu?", o:[
+    {t:"Inovacije i tehnologija", s:{IT:1, TEH:1, MAT:1}},
+    {t:"Pomaganje ljudima", s:{MED:2, DRUST:1}},
+    {t:"Stabilnost i ugled", s:{PRAVO:2, EKON:1}},
+    {t:"Sloboda i kreativnost", s:{UMET:2, DIZ:1}},
+    {t:"Zarada i napredovanje", s:{EKON:2, ORG:1}}
+  ]},
+  {q:"Koja oblast budućnosti te privlači?", o:[
+    {t:"Veštačka inteligencija i IT", s:{IT:2, MAT:1}},
+    {t:"Medicina i biotehnologija", s:{MED:2, PRIRODA:1}},
+    {t:"Zelena energija i ekologija", s:{NAUKA:1, PRIRODA:1, TEH:1}},
+    {t:"Mediji, marketing i komunikacije", s:{DRUST:1, JEZIK:1, ORG:1}},
+    {t:"Dizajn, film i video-igre", s:{DIZ:2, UMET:1, IT:1}},
+    {t:"Sport i zdravlje", s:{SPORT:3}}
+  ]},
+  {q:"Koje okruženje ti najviše prija?", o:[
+    {t:"Laboratorija, radionica ili gradilište", s:{TEH:2, NAUKA:1}},
+    {t:"Bolnica ili ordinacija", s:{MED:3}},
+    {t:"Kancelarija, sud ili firma", s:{PRAVO:1, EKON:1, ORG:1}},
+    {t:"Studio, scena ili atelje", s:{UMET:1, DIZ:1, SCENA:1}},
+    {t:"Učionica, redakcija ili institut", s:{DRUST:1, JEZIK:1, NAUKA:1}},
+    {t:"Teren, sala ili priroda", s:{SPORT:2, PRIRODA:1}}
+  ]}
+];
+
+let step = 0, tagScores = {};
+const card = document.getElementById('card');
+
+function renderQuestion(){
+  const Q = QUESTIONS[step];
+  let html = '<div class="progress">PITANJE ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
+  html += '<div class="q">' + Q.q + '</div>';
+  Q.o.forEach(function(opt,i){ html += '<button class="opt" data-i="'+i+'">'+opt.t+'</button>'; });
+  card.innerHTML = html;
+  card.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click', function(){
+      const opt = Q.o[b.dataset.i];
+      for(const k in opt.s){ tagScores[k] = (tagScores[k]||0) + opt.s[k]; }
+      step++;
+      if(step < QUESTIONS.length){ renderQuestion(); } else { renderResult(); }
+    });
+  });
+}
+
+function renderResult(){
+  const keys = Object.keys(OBLASTI);
+  const ranked = keys.map(function(k,idx){
+    let s = 0; OBLASTI[k].tags.forEach(function(t){ s += (tagScores[t]||0); });
+    const v = s / OBLASTI[k].tags.length + s * 0.0001;
+    return {k:k, v:v, idx:idx};
+  }).sort(function(a,b){ return b.v - a.v || a.idx - b.idx; });
+
+  const top = OBLASTI[ranked[0].k], alt1 = OBLASTI[ranked[1].k], alt2 = OBLASTI[ranked[2].k], alt3 = OBLASTI[ranked[3].k];
+  const pill = top.mat ? "Prijemni najčešće uključuje matematiku/fiziku" : "Uslovi upisa se razlikuju po fakultetu";
+
+  let ctaBlock;
+  if(top.mat){
+    ctaBlock = '<div class="cta"><a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Zakaži čas — spremi prijemni →</a>' +
+      '<p class="cta-note">Za upis u ovu oblast prijemni najčešće uključuje matematiku ili fiziku. Spremaj se uz MathIA — privatno ili grupno, online ili uživo.</p></div>';
+  } else {
+    ctaBlock = '<div class="cta"><a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Zakaži čas →</a>' +
+      '<p class="cta-note">Uslovi upisa se razlikuju po fakultetu — proveri na sajtu. Ako ti zatreba matematika ili fizika, MathIA je tu.</p></div>';
+  }
+
+  card.innerHTML =
+    '<div class="badge">PREDLOG ZA TEBE</div>' +
+    '<div class="result-name">' + top.name + '</div>' +
+    '<div class="result-desc">' + top.desc + '</div>' +
+    '<div class="tag-wrap"><span class="tag">' + pill + '</span></div>' +
+    '<div class="alts-title">Alternative koje bi ti mogle leći</div>' +
+    '<div class="alt"><b>'+alt1.name+'</b><br><span>'+alt1.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt2.name+'</b><br><span>'+alt2.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt3.name+'</b><br><span>'+alt3.desc+'</span></div>' +
+    ctaBlock +
+    '<button class="btn btn-ghost" onclick="restart()">↺ Uradi ponovo</button>';
+}
+function restart(){ step=0; tagScores={}; renderQuestion(); }
+renderQuestion();
+</script>
+</body>
+</html>
