@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — Find Your Major at FTN</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{
+    --navy1:#102540; --navy2:#0A1628; --navy3:#050A1A;
+    --gold:#E7C76B; --gold-hi:#F8EAB6; --gold-lo:#C29A45;
+    --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4; --line:#21344f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Manrope',system-ui,sans-serif; color:var(--ink); min-height:100vh;
+    background:radial-gradient(900px 500px at 50% -5%, var(--navy1) 0%, var(--navy2) 45%, var(--navy3) 100%);
+    display:flex; justify-content:center; padding:32px 18px;
+  }
+  .wrap{ width:100%; max-width:560px; }
+  .brand{ text-align:center; margin-bottom:8px; }
+  .wordmark{
+    font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:40px; letter-spacing:.05em;
+    background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold);
+  }
+  h1{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; text-align:center; margin:6px 0 4px; color:#f2f5fa;}
+  .sub{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:26px; }
+  .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:18px; padding:24px 22px;}
+  .progress{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--cyan); margin-bottom:14px; }
+  .q{ font-size:19px; font-weight:600; line-height:1.4; margin-bottom:18px; color:#f2f5fa; }
+  .opt{
+    display:block; width:100%; text-align:left; background:rgba(255,255,255,.02); color:var(--ink);
+    border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px;
+    font-size:15px; font-family:'Manrope',sans-serif; cursor:pointer; transition:all .15s ease;
+  }
+  .opt:hover{ border-color:var(--cyan); background:rgba(52,198,224,.08); transform:translateY(-1px); }
+  .badge{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; color:var(--cyan); text-align:center; }
+  .result-name{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:29px; text-align:center; color:var(--gold); margin:6px 0 6px; line-height:1.15;}
+  .result-desc{ text-align:center; color:var(--ink); font-size:15px; line-height:1.6; margin-bottom:8px;}
+  .tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em;
+        border:1px solid var(--line); border-radius:100px; padding:5px 12px; color:var(--muted); margin:4px auto 0;}
+  .tag-wrap{ text-align:center; margin-bottom:20px;}
+  .alts-title{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--muted); margin:22px 0 10px; text-transform:uppercase;}
+  .alt{ border-top:1px solid var(--line); padding:13px 0; }
+  .alt b{ color:#f2f5fa; font-weight:600;} .alt span{ color:var(--muted); font-size:13.5px;}
+  .cta{ margin-top:22px; }
+  a.btn,button.btn{
+    display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    text-decoration:none; font-weight:600; font-size:16px; padding:15px 18px; border-radius:13px;
+    border:none; cursor:pointer; transition:all .18s ease; font-family:'Manrope',sans-serif; margin-bottom:11px;
+  }
+  .btn-primary{ background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo)); color:var(--navy3); box-shadow:0 8px 24px rgba(231,199,107,.2);}
+  .btn-primary:hover{ transform:translateY(-2px);}
+  .btn-ghost{ background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line);}
+  .btn-ghost:hover{ border-color:var(--cyan); color:#fff;}
+  .cta-note{ text-align:center; color:var(--muted); font-size:13px; margin:4px 0 0; line-height:1.5;}
+  .foot{ text-align:center; margin-top:20px; font-size:12px; color:#566b88; line-height:1.6;}
+  .foot a{ color:var(--muted);}
+  .lang{ position:fixed; top:18px; right:20px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; }
+  .lang a{ color:var(--muted); text-decoration:none; padding:2px 4px; transition:color .15s ease; }
+  .lang a.active{ color:var(--gold); }
+  .lang a:hover{ color:var(--cyan); }
+  .lang span{ color:#566b88; }
+</style>
+</head>
+<body>
+<nav class="lang">
+  <a href="kviz.html">SR</a><span>·</span><a href="quiz-en.html" class="active">EN</a>
+</nav>
+<div class="wrap">
+  <div class="brand"><span class="wordmark">MathIA</span></div>
+  <h1>Find your major at FTN</h1>
+  <p class="sub">Answer 8 short questions — we'll suggest a major and some alternatives.</p>
+  <div class="card" id="card"></div>
+  <p class="foot">An orientation guide, not an official recommendation. Official programs and admission requirements:
+     <a href="https://ftn.uns.ac.rs/studijski-programi/" target="_blank" rel="noopener">ftn.uns.ac.rs</a></p>
+</div>
+
+<script>
+const VISIBOOK = "https://visibook.com/psatlura5dcepnnrr";
+
+/* All FTN undergraduate study programs, with thematic tags and entrance-exam type */
+const SMEROVI = {
+  PM:  {name:"Production Engineering", tags:["MASH"], prijemni:"matematika", desc:"Manufacturing technologies, machine tools and production processes."},
+  MKM: {name:"Mechanization and Design Engineering", tags:["MASH"], prijemni:"matematika", desc:"Mechanical structures, transport systems and mechanization."},
+  EPT: {name:"Power and Process Engineering", tags:["MASH","ENERG"], prijemni:"matematika", desc:"Thermal and process engineering, energy systems."},
+  TMD: {name:"Technical Mechanics and Design", tags:["MASH","DIZ"], prijemni:"matematika", desc:"Engineering mechanics and the design of technical products."},
+  EET: {name:"Power, Electronics and Telecommunication Engineering", tags:["ELEK"], prijemni:"matematika", desc:"Power, electronics, telecommunications and measurement systems."},
+  PSI: {name:"Applied Software Engineering", tags:["SOFT","ELEK"], prijemni:"matematika", desc:"Software for electrical and technical systems."},
+  MR:  {name:"Measurement and Control Engineering", tags:["ELEK","AI"], prijemni:"matematika", desc:"Measurement technology, sensors and automatic control."},
+  RA:  {name:"Computing and Control Engineering", tags:["SOFT","AI"], prijemni:"matematika", desc:"Programming, artificial intelligence, robotics and control."},
+  SIIT:{name:"Software Engineering and Information Technologies", tags:["SOFT"], prijemni:"matematika", desc:"Software, web and mobile application development (Novi Sad and Loznica)."},
+  GRA: {name:"Civil Engineering", tags:["GRAD"], prijemni:"matematika", desc:"Design and construction of buildings, bridges and infrastructure (Novi Sad and Kragujevac)."},
+  ST:  {name:"Traffic and Transport Engineering", tags:["SAOB"], prijemni:"matematika", desc:"Road, transport and logistics systems."},
+  PST: {name:"Postal Traffic and Telecommunications", tags:["SAOB","ELEK"], prijemni:"matematika", desc:"Postal and telecommunication systems and networks."},
+  ARH: {name:"Architecture", tags:["DIZ","GRAD"], prijemni:"sklonosti", desc:"Design of buildings, spaces and cities."},
+  II:  {name:"Industrial Engineering", tags:["MENADZ","MASH"], prijemni:"matematika", desc:"Production optimization, quality and logistics."},
+  IM:  {name:"Engineering Management", tags:["MENADZ"], prijemni:"matematika", desc:"A blend of engineering, economics and management."},
+  IIS: {name:"Information Systems Engineering", tags:["MENADZ","SOFT"], prijemni:"matematika", desc:"Information systems in business and production."},
+  IZZS:{name:"Environmental Engineering", tags:["EKO"], prijemni:"sklonosti", desc:"Protection of water, air and soil; sustainability."},
+  IZNR:{name:"Occupational Safety Engineering", tags:["EKO"], prijemni:"sklonosti", desc:"Workplace health and safety, risk assessment."},
+  URK: {name:"Disaster Risk and Fire Safety Management", tags:["EKO"], prijemni:"sklonosti", desc:"Fire protection and emergency management."},
+  GEO: {name:"Geodesy and Geoinformatics", tags:["GRAD"], prijemni:"matematika", desc:"Surveying, maps, GIS and geoinformatics."},
+  GID: {name:"Graphic Engineering and Design", tags:["DIZ"], prijemni:"sklonosti", desc:"Design, print, multimedia and visual communications."},
+  MEH: {name:"Mechatronics", tags:["AI","MASH","ELEK"], prijemni:"matematika", desc:"A blend of mechanics, electronics and automation — robots and smart systems."},
+  ANI: {name:"Animation in Engineering", tags:["DIZ","SOFT"], prijemni:"matematika", desc:"Computer graphics, animation and visual effects."},
+  BIO: {name:"Biomedical Engineering", tags:["BIO","ELEK"], prijemni:"matematika", desc:"Technology in medicine — devices and biomedical systems."},
+  CET: {name:"Clean Energy Technologies", tags:["ENERG","EKO"], prijemni:"matematika", desc:"Renewable sources and sustainable energy technologies."},
+  SAT: {name:"Stage Architecture, Technology and Design", tags:["DIZ"], prijemni:"sklonosti", desc:"Design of stage space, theatre and film techniques."},
+  INF: {name:"Information Engineering", tags:["SOFT","MENADZ"], prijemni:"matematika", desc:"Engineering of information and communication technologies."}
+};
+
+const QUESTIONS = [
+  {q:"What interests you most?", o:[
+    {t:"Computers, software and apps", s:{SOFT:3, AI:1}},
+    {t:"Electricity, electronics and telecommunications", s:{ELEK:3}},
+    {t:"Machines, engines and mechanics", s:{MASH:3}},
+    {t:"Buildings, bridges and space", s:{GRAD:3}},
+    {t:"Design, art and visual creation", s:{DIZ:3}},
+    {t:"Nature, protection and safety", s:{EKO:3}}
+  ]},
+  {q:"Favorite subject in school?", o:[
+    {t:"Mathematics and computer science", s:{SOFT:2, AI:2}},
+    {t:"Physics", s:{ELEK:2, MASH:2}},
+    {t:"Art and technical drawing", s:{DIZ:2, GRAD:1}},
+    {t:"Biology and chemistry", s:{EKO:2, BIO:2}},
+    {t:"Geography", s:{GRAD:1, SAOB:1}}
+  ]},
+  {q:"Your dream job?", o:[
+    {t:"Building software and artificial intelligence", s:{SOFT:3, AI:2}},
+    {t:"Designing electronics and systems", s:{ELEK:3, AI:1}},
+    {t:"Engineering machines and devices", s:{MASH:3}},
+    {t:"Constructing buildings and infrastructure", s:{GRAD:3}},
+    {t:"Leading teams and organizing production", s:{MENADZ:3}},
+    {t:"Creating visual and digital content", s:{DIZ:3}},
+    {t:"Connecting technology and health", s:{BIO:3}}
+  ]},
+  {q:"How much do you like mathematics?", o:[
+    {t:"A lot — it's my strong suit", s:{SOFT:1, ELEK:1, MASH:1, GRAD:1, AI:1}},
+    {t:"It's fine, I manage", s:{MENADZ:1, MASH:1, SAOB:1}},
+    {t:"I prefer creative and hands-on work", s:{DIZ:2}}
+  ]},
+  {q:"How do you prefer to work?", o:[
+    {t:"On my own, solving problems", s:{SOFT:2, AI:1}},
+    {t:"In a team, coordinating and organizing", s:{MENADZ:2, SAOB:1}},
+    {t:"Hands-on, in a lab or workshop", s:{MASH:2, ELEK:1, BIO:1}},
+    {t:"Creatively, making something visual", s:{DIZ:2}}
+  ]},
+  {q:"Which field of the future attracts you most?", o:[
+    {t:"Artificial intelligence and software", s:{SOFT:2, AI:2}},
+    {t:"Energy and electronics", s:{ELEK:2, ENERG:1}},
+    {t:"Robotics and automation", s:{AI:2, MASH:1}},
+    {t:"Green and sustainable technologies", s:{ENERG:2, EKO:2}},
+    {t:"Design, animation and media", s:{DIZ:2}},
+    {t:"Traffic and logistics", s:{SAOB:3}}
+  ]},
+  {q:"What matters most to you in a future job?", o:[
+    {t:"Constant innovation and new technologies", s:{SOFT:1, AI:1, ELEK:1}},
+    {t:"Stability and a clear structure", s:{GRAD:1, MENADZ:1}},
+    {t:"Working with people and organizing", s:{MENADZ:2}},
+    {t:"Contributing to the community and environment", s:{EKO:2, BIO:1, ENERG:1}}
+  ]},
+  {q:"Which project would you most enjoy?", o:[
+    {t:"A mobile or web application", s:{SOFT:3}},
+    {t:"A smart device or a robot", s:{AI:2, ELEK:1, MASH:1}},
+    {t:"A bridge, building or road", s:{GRAD:2, SAOB:1}},
+    {t:"A system for a factory or logistics", s:{MENADZ:2, MASH:1}},
+    {t:"A visual identity or animation", s:{DIZ:3}},
+    {t:"A solution for a cleaner environment", s:{EKO:2, ENERG:1}}
+  ]}
+];
+
+let step = 0;
+let tagScores = {};
+const card = document.getElementById('card');
+
+function renderQuestion(){
+  const Q = QUESTIONS[step];
+  let html = '<div class="progress">QUESTION ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
+  html += '<div class="q">' + Q.q + '</div>';
+  Q.o.forEach(function(opt,i){ html += '<button class="opt" data-i="'+i+'">'+opt.t+'</button>'; });
+  card.innerHTML = html;
+  card.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click', function(){
+      const opt = Q.o[b.dataset.i];
+      for(const k in opt.s){ tagScores[k] = (tagScores[k]||0) + opt.s[k]; }
+      step++;
+      if(step < QUESTIONS.length){ renderQuestion(); } else { renderResult(); }
+    });
+  });
+}
+
+function renderResult(){
+  const keys = Object.keys(SMEROVI);
+  const ranked = keys.map(function(k,idx){
+    let s = 0;
+    SMEROVI[k].tags.forEach(function(t){ s += (tagScores[t]||0); });
+    const v = s / SMEROVI[k].tags.length + s * 0.0001; // average match, small sum as tiebreak
+    return {k:k, v:v, idx:idx};
+  }).sort(function(a,b){ return b.v - a.v || a.idx - b.idx; });
+
+  const top  = SMEROVI[ranked[0].k];
+  const alt1 = SMEROVI[ranked[1].k];
+  const alt2 = SMEROVI[ranked[2].k];
+  const alt3 = SMEROVI[ranked[3].k];
+
+  const prijemniLabel = top.prijemni === "matematika"
+      ? "Entrance exam: Mathematics" : "Entrance exam: Aptitude test";
+
+  let ctaBlock;
+  if(top.prijemni === "matematika"){
+    ctaBlock =
+      '<div class="cta">' +
+        '<a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Book a lesson — prep for the entrance exam →</a>' +
+        '<p class="cta-note">The entrance exam for this major is in mathematics (check the exact content on FTN\'s website). Prepare with MathIA — private or group, online or in person.</p>' +
+      '</div>';
+  } else {
+    ctaBlock =
+      '<div class="cta">' +
+        '<a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Book a lesson →</a>' +
+        '<p class="cta-note">This major has an aptitude test — check the requirements on FTN\'s website. If you also need mathematics, MathIA is here for you.</p>' +
+      '</div>';
+  }
+
+  card.innerHTML =
+    '<div class="badge">YOUR MAJOR</div>' +
+    '<div class="result-name">' + top.name + '</div>' +
+    '<div class="result-desc">' + top.desc + '</div>' +
+    '<div class="tag-wrap"><span class="tag">' + prijemniLabel + '</span></div>' +
+    '<div class="alts-title">Alternatives that might suit you</div>' +
+    '<div class="alt"><b>'+alt1.name+'</b><br><span>'+alt1.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt2.name+'</b><br><span>'+alt2.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt3.name+'</b><br><span>'+alt3.desc+'</span></div>' +
+    ctaBlock +
+    '<button class="btn btn-ghost" onclick="restart()">↺ Take the quiz again</button>';
+}
+
+function restart(){ step=0; tagScores={}; renderQuestion(); }
+renderQuestion();
+</script>
+</body>
+</html>
