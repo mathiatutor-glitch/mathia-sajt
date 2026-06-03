@@ -65,7 +65,7 @@
   .grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); }
   .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:16px; padding:22px 20px; display:flex; flex-direction:column; gap:9px; transition:all .18s ease; position:relative; }
   .card:hover{ transform:translateY(-3px); border-color:rgba(231,199,107,.45); box-shadow:0 14px 36px rgba(0,0,0,.28); }
-  .card h3{ font-family:'Manrope',sans-serif; font-weight:700; font-size:18px; color:#f2f5fa; line-height:1.3; padding-right:70px; }
+  .card h3{ font-family:'Manrope',sans-serif; font-weight:700; font-size:18px; color:#f2f5fa; line-height:1.3; }
   .card p{ color:var(--muted); font-size:14px; line-height:1.55; flex:1; }
   .card .act{ margin-top:6px; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.04em; text-decoration:none; display:inline-flex; align-items:center; gap:6px;}
   .card .act.go{ color:var(--cyan); } .card .act.go:hover{ color:#fff; }
@@ -73,7 +73,7 @@
   .years{ display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
   .years span{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.04em; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:3px 9px; }
 
-  .badge{ position:absolute; top:15px; right:15px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.16em; padding:4px 9px; border-radius:100px; text-transform:uppercase; }
+  .badge{ align-self:flex-start; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.16em; padding:4px 9px; border-radius:100px; text-transform:uppercase; }
   .badge-live{ color:var(--cyan); border:1px solid var(--cyan); background:rgba(52,198,224,.08); }
   .badge-next{ color:var(--gold-hi); border:1px solid rgba(231,199,107,.55); background:rgba(231,199,107,.08); }
   .badge-soon{ color:#7d93ad; border:1px solid var(--line); }
