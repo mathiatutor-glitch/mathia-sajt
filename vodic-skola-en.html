@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — Which high school is for you? (Novi Sad)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{ --navy1:#102540; --navy2:#0A1628; --navy3:#050A1A; --gold:#E7C76B; --gold-hi:#F8EAB6; --gold-lo:#C29A45; --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4; --line:#21344f; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Manrope',system-ui,sans-serif; color:var(--ink); min-height:100vh; background:radial-gradient(900px 500px at 50% -5%, var(--navy1) 0%, var(--navy2) 45%, var(--navy3) 100%); display:flex; justify-content:center; padding:32px 18px; }
+  .wrap{ width:100%; max-width:560px; }
+  .brand{ text-align:center; margin-bottom:8px; }
+  .wordmark{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:40px; letter-spacing:.05em; background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold); }
+  h1{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; text-align:center; margin:6px 0 4px; color:#f2f5fa;}
+  .sub{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:26px; }
+  .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:18px; padding:24px 22px;}
+  .progress{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--cyan); margin-bottom:14px; }
+  .q{ font-size:19px; font-weight:600; line-height:1.4; margin-bottom:18px; color:#f2f5fa; }
+  .opt{ display:block; width:100%; text-align:left; background:rgba(255,255,255,.02); color:var(--ink); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; font-size:15px; font-family:'Manrope',sans-serif; cursor:pointer; transition:all .15s ease; }
+  .opt:hover{ border-color:var(--cyan); background:rgba(52,198,224,.08); transform:translateY(-1px); }
+  .badge{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; color:var(--cyan); text-align:center; }
+  .result-name{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:27px; text-align:center; color:var(--gold); margin:6px 0 6px; line-height:1.15;}
+  .result-desc{ text-align:center; color:var(--ink); font-size:15px; line-height:1.6; margin-bottom:8px;}
+  .tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; border:1px solid var(--line); border-radius:100px; padding:5px 12px; color:var(--muted); margin:4px auto 0;}
+  .tag-wrap{ text-align:center; margin-bottom:20px;}
+  .alts-title{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--muted); margin:22px 0 10px; text-transform:uppercase;}
+  .alt{ border-top:1px solid var(--line); padding:13px 0; }
+  .alt b{ color:#f2f5fa; font-weight:600;} .alt span{ color:var(--muted); font-size:13.5px;}
+  .cta{ margin-top:22px; }
+  a.btn,button.btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; text-decoration:none; font-weight:600; font-size:16px; padding:15px 18px; border-radius:13px; border:none; cursor:pointer; transition:all .18s ease; font-family:'Manrope',sans-serif; margin-bottom:11px; }
+  .btn-primary{ background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo)); color:var(--navy3); box-shadow:0 8px 24px rgba(231,199,107,.2);}
+  .btn-primary:hover{ transform:translateY(-2px);}
+  .btn-ghost{ background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line);}
+  .btn-ghost:hover{ border-color:var(--cyan); color:#fff;}
+  .cta-note{ text-align:center; color:var(--muted); font-size:13px; margin:4px 0 0; line-height:1.5;}
+  .foot{ text-align:center; margin-top:20px; font-size:12px; color:#566b88; line-height:1.6;}
+  .foot a{ color:var(--muted);}
+  .lang{ position:fixed; top:18px; right:20px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; }
+  .lang a{ color:var(--muted); text-decoration:none; padding:2px 4px; transition:color .15s ease; }
+  .lang a.active{ color:var(--gold); } .lang a:hover{ color:var(--cyan); } .lang span{ color:#566b88; }
+</style>
+</head>
+<body>
+<nav class="lang">
+  <a href="vodic-skola.html">SR</a><span>·</span><a href="vodic-skola-en.html" class="active">EN</a>
+</nav>
+<div class="wrap">
+  <div class="brand"><span class="wordmark">MathIA</span></div>
+  <h1>Which high school is for you?</h1>
+  <p class="sub">For primary-school students in Novi Sad — answer 8 questions and we'll suggest a school and alternatives.</p>
+  <div class="card" id="card"></div>
+  <p class="foot">An orientation guide, not an official recommendation. Schools are examples — check exact enrollment and point thresholds at
+     <a href="https://mpn.gov.rs" target="_blank" rel="noopener">mpn.gov.rs</a> and the school's website.</p>
+</div>
+
+<script>
+const VISIBOOK = "https://visibook.com/psatlura5dcepnnrr";
+
+const SKOLE = {
+  GIM_PM: {name:"Gymnasium — science & maths track", tags:["MAT","NAUKA","IT"], tip:"gimnazija", desc:"For those who love mathematics and the sciences and plan to go to university. Novi Sad: „Jovan Jovanović Zmaj”, „Isidora Sekulić”, „Svetozar Marković”."},
+  GIM_DJ: {name:"Gymnasium — languages & humanities track", tags:["JEZIK","DRUST"], tip:"gimnazija", desc:"Languages, social sciences and humanities, as preparation for university. Novi Sad: „Jovan Jovanović Zmaj”, „Isidora Sekulić”, „Svetozar Marković”."},
+  GIM_OP: {name:"Gymnasium — general track", tags:["OPSTE","DRUST","NAUKA"], tip:"gimnazija", desc:"If you don't yet prefer one direction — broad education with all options open. Novi Sad: general gymnasiums."},
+  GIM_IT: {name:"Maths / IT gymnasium track", tags:["MAT","IT"], tip:"gimnazija", desc:"A specialized program for mathematics and computing. Novi Sad: specialized classes (e.g. „J. J. Zmaj”). In Belgrade: Mathematical and Computing gymnasiums."},
+  ETS:    {name:"Electrical engineering school", tags:["TEH","IT"], tip:"struka", desc:"Electronics, computers and automation — a profession with the option of university. Novi Sad: Electrical Engineering School „Mihajlo Pupin”."},
+  TEHM:   {name:"Technical / mechanical school", tags:["TEH","RUKE"], tip:"struka", desc:"Mechanical engineering, technology and hands-on skills. Novi Sad: technical and mechanical secondary schools."},
+  MED:    {name:"Medical secondary school", tags:["MED","PRIRODA"], tip:"struka", desc:"Healthcare and nursing — medical technician and related professions. Novi Sad: Medical School „7. april”."},
+  EKON:   {name:"Economics school", tags:["EKON","DRUST"], tip:"struka", desc:"Economics, finance and business. Novi Sad: Economics School „Svetozar Miletić”."},
+  DIZ:    {name:"Design & art school", tags:["UMET","DIZ"], tip:"talenat", desc:"Design, fine and applied arts. Novi Sad: School of Design „Bogdan Šuput”."},
+  MUZ:    {name:"Music school", tags:["UMET","SCENA"], tip:"talenat", desc:"Music and performing arts. Novi Sad: Music School „Isidor Bajić”."},
+  SPORT:  {name:"Sports gymnasium track", tags:["SPORT"], tip:"talenat", desc:"For top-level sport alongside regular school — sports classes. Novi Sad: gymnasiums with a sports track."},
+  POLJ:   {name:"Agriculture / food-tech school", tags:["PRIRODA","RUKE"], tip:"struka", desc:"Working with nature, food and biotechnology. Around Novi Sad: agriculture schools (e.g. Futog)."}
+};
+
+const QUESTIONS = [
+  {q:"What do you do best and enjoy at school?", o:[
+    {t:"Mathematics", s:{MAT:3, IT:1}},
+    {t:"Physics, chemistry, biology", s:{NAUKA:3, MED:1}},
+    {t:"Serbian and foreign languages", s:{JEZIK:3}},
+    {t:"History, geography, civics", s:{DRUST:3}},
+    {t:"Technical subjects and IT", s:{TEH:2, IT:2}},
+    {t:"Art and music", s:{UMET:3, DIZ:1}}
+  ]},
+  {q:"After high school, what's your plan?", o:[
+    {t:"I'll definitely go to university", s:{MAT:1, NAUKA:1, JEZIK:1, DRUST:1, OPSTE:1}},
+    {t:"I want a profession and a vocational diploma (university still possible)", s:{TEH:1, MED:1, EKON:1, RUKE:1}},
+    {t:"I'm not sure yet", s:{OPSTE:2}}
+  ]},
+  {q:"Which job appeals to you most?", o:[
+    {t:"Engineer, programmer or scientist", s:{MAT:1, IT:2, TEH:1, NAUKA:1}},
+    {t:"Doctor or working in healthcare", s:{MED:3, PRIRODA:1}},
+    {t:"Economist, business or banking", s:{EKON:3}},
+    {t:"Artist, designer or musician", s:{UMET:2, DIZ:1, SCENA:1}},
+    {t:"Lawyer, teacher or journalist", s:{DRUST:2, JEZIK:1}},
+    {t:"Athlete or coach", s:{SPORT:3}}
+  ]},
+  {q:"How do you prefer to learn and work?", o:[
+    {t:"Solving problems and logic tasks", s:{MAT:2, IT:1}},
+    {t:"Reading, writing, I like text", s:{JEZIK:1, DRUST:1}},
+    {t:"Hands-on, practical work", s:{RUKE:2, TEH:1}},
+    {t:"Drawing, creating, playing music", s:{UMET:2, DIZ:1, SCENA:1}},
+    {t:"Experiments and nature", s:{NAUKA:2, PRIRODA:1}}
+  ]},
+  {q:"Do you like mathematics?", o:[
+    {t:"Yes, a lot", s:{MAT:2, IT:1, TEH:1}},
+    {t:"It's okay", s:{OPSTE:1, EKON:1, NAUKA:1}},
+    {t:"Not really, I prefer other things", s:{JEZIK:1, UMET:1, DRUST:1}}
+  ]},
+  {q:"What matters most to you in high school?", o:[
+    {t:"That it prepares me well for university", s:{MAT:1, NAUKA:1, DRUST:1, OPSTE:1}},
+    {t:"That I get a profession right away", s:{TEH:1, MED:1, EKON:1, RUKE:1}},
+    {t:"That I develop a talent (art or sport)", s:{UMET:1, SPORT:1, DIZ:1}}
+  ]},
+  {q:"Which environment suits you best?", o:[
+    {t:"Computer and lab", s:{IT:2, MAT:1, NAUKA:1}},
+    {t:"Workshop and machines", s:{TEH:2, RUKE:1}},
+    {t:"Hospital and care", s:{MED:3}},
+    {t:"Atelier, stage or studio", s:{UMET:2, DIZ:1, SCENA:1}},
+    {t:"Office and numbers", s:{EKON:2}},
+    {t:"Field and gym", s:{SPORT:2, PRIRODA:1}}
+  ]},
+  {q:"What would you most like to make or do?", o:[
+    {t:"An app or a robot", s:{IT:2, MAT:1, TEH:1}},
+    {t:"Help sick people", s:{MED:2, PRIRODA:1}},
+    {t:"Run a small business", s:{EKON:2, DRUST:1}},
+    {t:"A drawing, design or music", s:{UMET:2, DIZ:1}},
+    {t:"Work with nature and food", s:{PRIRODA:2, RUKE:1}},
+    {t:"Write, speak, debate", s:{JEZIK:2, DRUST:1}}
+  ]}
+];
+
+let step = 0, tagScores = {};
+const card = document.getElementById('card');
+
+function renderQuestion(){
+  const Q = QUESTIONS[step];
+  let html = '<div class="progress">QUESTION ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
+  html += '<div class="q">' + Q.q + '</div>';
+  Q.o.forEach(function(opt,i){ html += '<button class="opt" data-i="'+i+'">'+opt.t+'</button>'; });
+  card.innerHTML = html;
+  card.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click', function(){
+      const opt = Q.o[b.dataset.i];
+      for(const k in opt.s){ tagScores[k] = (tagScores[k]||0) + opt.s[k]; }
+      step++;
+      if(step < QUESTIONS.length){ renderQuestion(); } else { renderResult(); }
+    });
+  });
+}
+
+function renderResult(){
+  const keys = Object.keys(SKOLE);
+  const ranked = keys.map(function(k,idx){
+    let s = 0; SKOLE[k].tags.forEach(function(t){ s += (tagScores[t]||0); });
+    const v = s / SKOLE[k].tags.length + s * 0.0001;
+    return {k:k, v:v, idx:idx};
+  }).sort(function(a,b){ return b.v - a.v || a.idx - b.idx; });
+
+  const top = SKOLE[ranked[0].k], alt1 = SKOLE[ranked[1].k], alt2 = SKOLE[ranked[2].k], alt3 = SKOLE[ranked[3].k];
+  let pill;
+  if(top.tip === "gimnazija") pill = "Gymnasium — prepares you for university";
+  else if(top.tip === "struka") pill = "Vocational school — a profession (university still possible)";
+  else pill = "Talent — art or sport alongside school";
+
+  const ctaBlock = '<div class="cta"><a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Book a lesson — prep for the mala matura →</a>' +
+    '<p class="cta-note">To enroll in any high school you take the mala matura (mathematics, Serbian and a combined test). Prepare with MathIA — private or group, online or in person.</p></div>';
+
+  card.innerHTML =
+    '<div class="badge">SUGGESTED FOR YOU</div>' +
+    '<div class="result-name">' + top.name + '</div>' +
+    '<div class="result-desc">' + top.desc + '</div>' +
+    '<div class="tag-wrap"><span class="tag">' + pill + '</span></div>' +
+    '<div class="alts-title">Alternatives that might suit you</div>' +
+    '<div class="alt"><b>'+alt1.name+'</b><br><span>'+alt1.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt2.name+'</b><br><span>'+alt2.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt3.name+'</b><br><span>'+alt3.desc+'</span></div>' +
+    ctaBlock +
+    '<button class="btn btn-ghost" onclick="restart()">↺ Start over</button>';
+}
+function restart(){ step=0; tagScores={}; renderQuestion(); }
+renderQuestion();
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — Koja srednja škola je za tebe? (Novi Sad)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  :root{ --navy1:#102540; --navy2:#0A1628; --navy3:#050A1A; --gold:#E7C76B; --gold-hi:#F8EAB6; --gold-lo:#C29A45; --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4; --line:#21344f; }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{ font-family:'Manrope',system-ui,sans-serif; color:var(--ink); min-height:100vh; background:radial-gradient(900px 500px at 50% -5%, var(--navy1) 0%, var(--navy2) 45%, var(--navy3) 100%); display:flex; justify-content:center; padding:32px 18px; }
+  .wrap{ width:100%; max-width:560px; }
+  .brand{ text-align:center; margin-bottom:8px; }
+  .wordmark{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:40px; letter-spacing:.05em; background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold); }
+  h1{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; text-align:center; margin:6px 0 4px; color:#f2f5fa;}
+  .sub{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:26px; }
+  .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:18px; padding:24px 22px;}
+  .progress{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--cyan); margin-bottom:14px; }
+  .q{ font-size:19px; font-weight:600; line-height:1.4; margin-bottom:18px; color:#f2f5fa; }
+  .opt{ display:block; width:100%; text-align:left; background:rgba(255,255,255,.02); color:var(--ink); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; font-size:15px; font-family:'Manrope',sans-serif; cursor:pointer; transition:all .15s ease; }
+  .opt:hover{ border-color:var(--cyan); background:rgba(52,198,224,.08); transform:translateY(-1px); }
+  .badge{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; color:var(--cyan); text-align:center; }
+  .result-name{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:27px; text-align:center; color:var(--gold); margin:6px 0 6px; line-height:1.15;}
+  .result-desc{ text-align:center; color:var(--ink); font-size:15px; line-height:1.6; margin-bottom:8px;}
+  .tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; border:1px solid var(--line); border-radius:100px; padding:5px 12px; color:var(--muted); margin:4px auto 0;}
+  .tag-wrap{ text-align:center; margin-bottom:20px;}
+  .alts-title{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--muted); margin:22px 0 10px; text-transform:uppercase;}
+  .alt{ border-top:1px solid var(--line); padding:13px 0; }
+  .alt b{ color:#f2f5fa; font-weight:600;} .alt span{ color:var(--muted); font-size:13.5px;}
+  .cta{ margin-top:22px; }
+  a.btn,button.btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; text-decoration:none; font-weight:600; font-size:16px; padding:15px 18px; border-radius:13px; border:none; cursor:pointer; transition:all .18s ease; font-family:'Manrope',sans-serif; margin-bottom:11px; }
+  .btn-primary{ background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo)); color:var(--navy3); box-shadow:0 8px 24px rgba(231,199,107,.2);}
+  .btn-primary:hover{ transform:translateY(-2px);}
+  .btn-ghost{ background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line);}
+  .btn-ghost:hover{ border-color:var(--cyan); color:#fff;}
+  .cta-note{ text-align:center; color:var(--muted); font-size:13px; margin:4px 0 0; line-height:1.5;}
+  .foot{ text-align:center; margin-top:20px; font-size:12px; color:#566b88; line-height:1.6;}
+  .foot a{ color:var(--muted);}
+  .lang{ position:fixed; top:18px; right:20px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; }
+  .lang a{ color:var(--muted); text-decoration:none; padding:2px 4px; transition:color .15s ease; }
+  .lang a.active{ color:var(--gold); } .lang a:hover{ color:var(--cyan); } .lang span{ color:#566b88; }
+</style>
+</head>
+<body>
+<nav class="lang">
+  <a href="vodic-skola.html" class="active">SR</a><span>·</span><a href="vodic-skola-en.html">EN</a>
+</nav>
+<div class="wrap">
+  <div class="brand"><span class="wordmark">MathIA</span></div>
+  <h1>Koja srednja škola je za tebe?</h1>
+  <p class="sub">Za osnovce u Novom Sadu — odgovori na 8 pitanja, predložićemo ti školu i alternative.</p>
+  <div class="card" id="card"></div>
+  <p class="foot">Orijentacioni vodič, ne i zvanična preporuka. Škole su primeri — proveri tačan upis i bodovne pragove na
+     <a href="https://mpn.gov.rs" target="_blank" rel="noopener">mpn.gov.rs</a> i sajtu škole.</p>
+</div>
+
+<script>
+const VISIBOOK = "https://visibook.com/psatlura5dcepnnrr";
+
+/* Tipovi srednjih škola u Novom Sadu. tip: gimnazija / struka / talenat */
+const SKOLE = {
+  GIM_PM: {name:"Gimnazija — prirodno-matematički smer", tags:["MAT","NAUKA","IT"], tip:"gimnazija", desc:"Za one koji vole matematiku i prirodne nauke i planiraju fakultet. Novi Sad: „Jovan Jovanović Zmaj”, „Isidora Sekulić”, „Svetozar Marković”."},
+  GIM_DJ: {name:"Gimnazija — društveno-jezički smer", tags:["JEZIK","DRUST"], tip:"gimnazija", desc:"Jezici, društvene nauke i humanistika, kao priprema za fakultet. Novi Sad: „Jovan Jovanović Zmaj”, „Isidora Sekulić”, „Svetozar Marković”."},
+  GIM_OP: {name:"Gimnazija — opšti smer", tags:["OPSTE","DRUST","NAUKA"], tip:"gimnazija", desc:"Ako ti se još ne sviđa jedan pravac — široko obrazovanje i sve opcije ostaju otvorene. Novi Sad: opšte gimnazije."},
+  GIM_IT: {name:"Matematičko / IT odeljenje gimnazije", tags:["MAT","IT"], tip:"gimnazija", desc:"Specijalizovan program za matematiku i računarstvo. Novi Sad: specijalizovana odeljenja (npr. „J. J. Zmaj”). U Beogradu: Matematička i Računarska gimnazija."},
+  ETS:    {name:"Elektrotehnička škola", tags:["TEH","IT"], tip:"struka", desc:"Elektronika, računari i automatika — struka uz mogućnost fakulteta. Novi Sad: Elektrotehnička škola „Mihajlo Pupin”."},
+  TEHM:   {name:"Tehnička / mašinska škola", tags:["TEH","RUKE"], tip:"struka", desc:"Mašinstvo, tehnika i praktične veštine. Novi Sad: tehničke i mašinske srednje škole."},
+  MED:    {name:"Medicinska škola", tags:["MED","PRIRODA"], tip:"struka", desc:"Zdravstvo i nega — medicinski tehničar i srodna zanimanja. Novi Sad: Medicinska škola „7. april”."},
+  EKON:   {name:"Ekonomska škola", tags:["EKON","DRUST"], tip:"struka", desc:"Ekonomija, finansije i poslovanje. Novi Sad: Ekonomska srednja škola „Svetozar Miletić”."},
+  DIZ:    {name:"Škola za dizajn i umetnost", tags:["UMET","DIZ"], tip:"talenat", desc:"Dizajn, likovno i primenjene umetnosti. Novi Sad: Škola za dizajn „Bogdan Šuput”."},
+  MUZ:    {name:"Muzička škola", tags:["UMET","SCENA"], tip:"talenat", desc:"Muzika i izvođačke umetnosti. Novi Sad: Muzička škola „Isidor Bajić”."},
+  SPORT:  {name:"Sportsko odeljenje gimnazije", tags:["SPORT"], tip:"talenat", desc:"Za vrhunski sport uz redovnu školu — sportska odeljenja. Novi Sad: gimnazije sa sportskim odeljenjem."},
+  POLJ:   {name:"Poljoprivredna / prehrambena škola", tags:["PRIRODA","RUKE"], tip:"struka", desc:"Rad sa prirodom, hranom i biotehnologijom. Okolina Novog Sada: poljoprivredne škole (npr. Futog)."}
+};
+
+const QUESTIONS = [
+  {q:"Šta ti najviše ide i voliš u školi?", o:[
+    {t:"Matematika", s:{MAT:3, IT:1}},
+    {t:"Fizika, hemija, biologija", s:{NAUKA:3, MED:1}},
+    {t:"Srpski i strani jezici", s:{JEZIK:3}},
+    {t:"Istorija, geografija, građansko", s:{DRUST:3}},
+    {t:"Tehničko i informatika", s:{TEH:2, IT:2}},
+    {t:"Likovno i muzičko", s:{UMET:3, DIZ:1}}
+  ]},
+  {q:"Posle srednje škole, šta planiraš?", o:[
+    {t:"Sigurno idem na fakultet", s:{MAT:1, NAUKA:1, JEZIK:1, DRUST:1, OPSTE:1}},
+    {t:"Želim zanimanje i diplomu struke (mogu i fakultet)", s:{TEH:1, MED:1, EKON:1, RUKE:1}},
+    {t:"Još nisam siguran/na", s:{OPSTE:2}}
+  ]},
+  {q:"Koji posao ti se najviše dopada?", o:[
+    {t:"Inženjer, programer ili naučnik", s:{MAT:1, IT:2, TEH:1, NAUKA:1}},
+    {t:"Lekar ili rad u zdravstvu", s:{MED:3, PRIRODA:1}},
+    {t:"Ekonomista, biznis ili banka", s:{EKON:3}},
+    {t:"Umetnik, dizajner ili muzičar", s:{UMET:2, DIZ:1, SCENA:1}},
+    {t:"Advokat, profesor ili novinar", s:{DRUST:2, JEZIK:1}},
+    {t:"Sportista ili trener", s:{SPORT:3}}
+  ]},
+  {q:"Kako najradije učiš i radiš?", o:[
+    {t:"Rešavam zadatke i logičke probleme", s:{MAT:2, IT:1}},
+    {t:"Čitam, pišem, volim tekst", s:{JEZIK:1, DRUST:1}},
+    {t:"Radim rukama, praktično", s:{RUKE:2, TEH:1}},
+    {t:"Crtam, stvaram, sviram", s:{UMET:2, DIZ:1, SCENA:1}},
+    {t:"Eksperimenti i priroda", s:{NAUKA:2, PRIRODA:1}}
+  ]},
+  {q:"Voliš li matematiku?", o:[
+    {t:"Da, mnogo", s:{MAT:2, IT:1, TEH:1}},
+    {t:"Osrednje", s:{OPSTE:1, EKON:1, NAUKA:1}},
+    {t:"Ne baš, više volim drugo", s:{JEZIK:1, UMET:1, DRUST:1}}
+  ]},
+  {q:"Šta ti je najvažnije u srednjoj školi?", o:[
+    {t:"Da me dobro spremi za fakultet", s:{MAT:1, NAUKA:1, DRUST:1, OPSTE:1}},
+    {t:"Da odmah dobijem zanimanje", s:{TEH:1, MED:1, EKON:1, RUKE:1}},
+    {t:"Da razvijam talenat (umetnost ili sport)", s:{UMET:1, SPORT:1, DIZ:1}}
+  ]},
+  {q:"Koje okruženje ti najviše prija?", o:[
+    {t:"Računar i laboratorija", s:{IT:2, MAT:1, NAUKA:1}},
+    {t:"Radionica i mašine", s:{TEH:2, RUKE:1}},
+    {t:"Bolnica i nega", s:{MED:3}},
+    {t:"Atelje, scena ili studio", s:{UMET:2, DIZ:1, SCENA:1}},
+    {t:"Kancelarija i brojevi", s:{EKON:2}},
+    {t:"Teren i sala", s:{SPORT:2, PRIRODA:1}}
+  ]},
+  {q:"Šta bi najradije pravio/la ili radio/la?", o:[
+    {t:"Aplikaciju ili robota", s:{IT:2, MAT:1, TEH:1}},
+    {t:"Pomagao/la bolesnima", s:{MED:2, PRIRODA:1}},
+    {t:"Vodio/la mali biznis", s:{EKON:2, DRUST:1}},
+    {t:"Crtež, dizajn ili muziku", s:{UMET:2, DIZ:1}},
+    {t:"Radio/la sa prirodom i hranom", s:{PRIRODA:2, RUKE:1}},
+    {t:"Pisao/la, govorio/la, debatovao/la", s:{JEZIK:2, DRUST:1}}
+  ]}
+];
+
+let step = 0, tagScores = {};
+const card = document.getElementById('card');
+
+function renderQuestion(){
+  const Q = QUESTIONS[step];
+  let html = '<div class="progress">PITANJE ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
+  html += '<div class="q">' + Q.q + '</div>';
+  Q.o.forEach(function(opt,i){ html += '<button class="opt" data-i="'+i+'">'+opt.t+'</button>'; });
+  card.innerHTML = html;
+  card.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click', function(){
+      const opt = Q.o[b.dataset.i];
+      for(const k in opt.s){ tagScores[k] = (tagScores[k]||0) + opt.s[k]; }
+      step++;
+      if(step < QUESTIONS.length){ renderQuestion(); } else { renderResult(); }
+    });
+  });
+}
+
+function renderResult(){
+  const keys = Object.keys(SKOLE);
+  const ranked = keys.map(function(k,idx){
+    let s = 0; SKOLE[k].tags.forEach(function(t){ s += (tagScores[t]||0); });
+    const v = s / SKOLE[k].tags.length + s * 0.0001;
+    return {k:k, v:v, idx:idx};
+  }).sort(function(a,b){ return b.v - a.v || a.idx - b.idx; });
+
+  const top = SKOLE[ranked[0].k], alt1 = SKOLE[ranked[1].k], alt2 = SKOLE[ranked[2].k], alt3 = SKOLE[ranked[3].k];
+  let pill;
+  if(top.tip === "gimnazija") pill = "Gimnazija — priprema za fakultet";
+  else if(top.tip === "struka") pill = "Stručna škola — zanimanje (i dalje fakultet)";
+  else pill = "Talenat — umetnost ili sport uz školu";
+
+  const ctaBlock = '<div class="cta"><a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Zakaži čas — spremi malu maturu →</a>' +
+    '<p class="cta-note">Za upis u svaku srednju školu polažeš malu maturu (matematika, srpski i kombinovani test). Spremaj se uz MathIA — privatno ili grupno, online ili uživo.</p></div>';
+
+  card.innerHTML =
+    '<div class="badge">PREDLOG ZA TEBE</div>' +
+    '<div class="result-name">' + top.name + '</div>' +
+    '<div class="result-desc">' + top.desc + '</div>' +
+    '<div class="tag-wrap"><span class="tag">' + pill + '</span></div>' +
+    '<div class="alts-title">Alternative koje bi ti mogle leći</div>' +
+    '<div class="alt"><b>'+alt1.name+'</b><br><span>'+alt1.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt2.name+'</b><br><span>'+alt2.desc+'</span></div>' +
+    '<div class="alt"><b>'+alt3.name+'</b><br><span>'+alt3.desc+'</span></div>' +
+    ctaBlock +
+    '<button class="btn btn-ghost" onclick="restart()">↺ Uradi ponovo</button>';
+}
+function restart(){ step=0; tagScores={}; renderQuestion(); }
+renderQuestion();
+</script>
+</body>
+</html>
