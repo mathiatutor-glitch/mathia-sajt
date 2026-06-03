@@ -3,100 +3,322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MathIA — Privatni profesor matematike</title>
+<title>MathIA — Privatni profesor matematike i platforma za učenje</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
   :root{
     --navy1:#102540; --navy2:#0A1628; --navy3:#050A1A;
     --gold:#E7C76B; --gold-hi:#F8EAB6; --gold-lo:#C29A45;
-    --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4;
+    --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4; --line:#21344f;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{
-    font-family:'Manrope',system-ui,sans-serif;
-    min-height:100vh; color:var(--ink);
-    background:radial-gradient(900px 500px at 50% -5%, var(--navy1) 0%, var(--navy2) 45%, var(--navy3) 100%);
-    display:flex; align-items:center; justify-content:center;
-    padding:40px 20px;
+    font-family:'Manrope',system-ui,sans-serif; color:var(--ink); min-height:100vh;
+    background:radial-gradient(1100px 600px at 50% -8%, var(--navy1) 0%, var(--navy2) 42%, var(--navy3) 100%);
+    background-attachment:fixed;
   }
-  .card{ width:100%; max-width:440px; text-align:center; }
+  .wrap{ width:100%; max-width:980px; margin:0 auto; padding:0 22px; }
 
-  .wordmark{
-    font-family:'Cormorant Garamond',Georgia,serif;
-    font-weight:600; font-size:64px; letter-spacing:.06em; line-height:1;
-    background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo));
-    -webkit-background-clip:text; background-clip:text;
-    -webkit-text-fill-color:transparent; color:var(--gold);
-    text-shadow:0 0 22px rgba(231,199,107,.16);
-  }
-  .tagline{
-    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.34em;
-    color:var(--cyan); margin-top:14px; white-space:nowrap;
-  }
-  .lede{ color:var(--muted); font-size:15px; line-height:1.6; margin:22px auto 34px; max-width:330px; }
-
-  .btns{ display:flex; flex-direction:column; gap:14px; }
-  a.btn{
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    text-decoration:none; font-weight:600; font-size:16px;
-    padding:16px 20px; border-radius:14px; transition:all .18s ease;
-  }
-  .btn-primary{
-    background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo));
-    color:var(--navy3); box-shadow:0 8px 26px rgba(231,199,107,.22);
-  }
-  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 34px rgba(231,199,107,.34); }
-  .btn-ghost{
-    background:rgba(255,255,255,.03); color:var(--ink);
-    border:1px solid #21344f;
-  }
-  .btn-ghost:hover{ border-color:var(--cyan); color:#fff; transform:translateY(-2px); }
-  .btn-quiz{
-    background:rgba(52,198,224,.08); color:#dff6fb; border:1px solid var(--cyan);
-  }
-  .btn-quiz:hover{ background:rgba(52,198,224,.16); transform:translateY(-2px); }
-
-  .note{ font-size:12.5px; color:var(--muted); margin-top:10px; }
-  .footer{
-    margin-top:38px; font-family:'JetBrains Mono',monospace;
-    font-size:11px; letter-spacing:.18em; color:#566b88; text-transform:uppercase;
-  }
-  .lang{ position:fixed; top:18px; right:20px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; }
+  .lang{ position:fixed; top:16px; right:18px; z-index:50; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em;
+         background:rgba(5,10,26,.6); backdrop-filter:blur(6px); padding:6px 10px; border-radius:100px; border:1px solid var(--line);}
   .lang a{ color:var(--muted); text-decoration:none; padding:2px 4px; transition:color .15s ease; }
   .lang a.active{ color:var(--gold); }
   .lang a:hover{ color:var(--cyan); }
   .lang span{ color:#566b88; }
+
+  /* hero */
+  .hero{ text-align:center; padding:80px 0 30px; }
+  .logo-mark{ display:block; margin:0 auto 16px; filter:drop-shadow(0 0 18px rgba(231,199,107,.25)); opacity:0; animation:rise .8s ease 0s forwards; }
+  .wordmark{
+    font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:70px; letter-spacing:.05em; line-height:1;
+    background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo));
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold);
+    text-shadow:0 0 26px rgba(231,199,107,.16); opacity:0; animation:rise .8s ease .08s forwards;
+  }
+  .tagline{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.34em; color:var(--cyan); margin-top:15px; white-space:nowrap;
+            opacity:0; animation:rise .8s ease .2s forwards;}
+  /* svetleća zlatna linija */
+  .goldline{ height:2px; width:210px; margin:24px auto 4px; border-radius:2px;
+    background:linear-gradient(90deg, transparent 0%, rgba(194,154,69,.4) 20%, var(--gold-hi) 50%, rgba(194,154,69,.4) 80%, transparent 100%);
+    background-size:200% 100%; box-shadow:0 0 16px rgba(231,199,107,.55);
+    animation:shimmer 3.6s ease-in-out infinite; opacity:0; animation:rise .8s ease .28s forwards, shimmer 3.6s ease-in-out .9s infinite; }
+  @keyframes shimmer{ 0%{background-position:150% 0;} 100%{background-position:-150% 0;} }
+  .lede{ color:var(--ink); font-size:18px; line-height:1.6; margin:22px auto 8px; max-width:560px; font-weight:500;
+         opacity:0; animation:rise .8s ease .34s forwards;}
+  .lede-sub{ color:var(--muted); font-size:15px; line-height:1.6; margin:0 auto 28px; max-width:520px;
+             opacity:0; animation:rise .8s ease .42s forwards;}
+  .hero-cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; opacity:0; animation:rise .8s ease .52s forwards;}
+  @keyframes rise{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+  .nav{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 64px; opacity:0; animation:rise .8s ease .62s forwards;}
+  .nav a{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+          color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:7px 13px; transition:all .15s ease;}
+  .nav a:hover{ border-color:var(--cyan); color:#fff; }
+
+  a.btn{ display:inline-flex; align-items:center; justify-content:center; gap:9px; text-decoration:none; font-weight:600;
+         font-size:15.5px; padding:14px 24px; border-radius:13px; transition:all .18s ease; cursor:pointer; }
+  .btn-primary{ background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo)); color:var(--navy3); box-shadow:0 8px 26px rgba(231,199,107,.22); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 34px rgba(231,199,107,.34); }
+  .btn-ghost{ background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--cyan); color:#fff; transform:translateY(-2px); }
+
+  section{ padding:44px 0; border-top:1px solid rgba(33,52,79,.5); }
+  .sec-kicker{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.26em; color:var(--cyan); text-transform:uppercase; margin-bottom:10px; }
+  .sec-title{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:34px; color:#f2f5fa; line-height:1.15; margin-bottom:8px; }
+  .sec-desc{ color:var(--muted); font-size:15.5px; line-height:1.6; max-width:580px; margin-bottom:24px; }
+
+  .grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); }
+  .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:16px; padding:22px 20px;
+         display:flex; flex-direction:column; gap:9px; transition:all .18s ease; position:relative; }
+  .card:hover{ transform:translateY(-3px); border-color:rgba(231,199,107,.45); box-shadow:0 14px 36px rgba(0,0,0,.28); }
+  .card h3{ font-family:'Manrope',sans-serif; font-weight:700; font-size:18px; color:#f2f5fa; line-height:1.3; }
+  .card p{ color:var(--muted); font-size:14px; line-height:1.55; flex:1; }
+  .card .act{ margin-top:6px; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.04em; text-decoration:none; display:inline-flex; align-items:center; gap:6px;}
+  .card .act.go{ color:var(--cyan); } .card .act.go:hover{ color:#fff; }
+  .card .act.soon{ color:var(--gold); } .card a.act:hover{ text-decoration:underline; }
+  .years{ display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
+  .years span{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.04em; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:3px 9px; }
+
+  .badge{ position:absolute; top:15px; right:15px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.16em; padding:4px 9px; border-radius:100px; text-transform:uppercase; }
+  .badge-live{ color:var(--cyan); border:1px solid var(--cyan); background:rgba(52,198,224,.08); }
+  .badge-next{ color:var(--gold-hi); border:1px solid rgba(231,199,107,.55); background:rgba(231,199,107,.08); }
+  .badge-soon{ color:#7d93ad; border:1px solid var(--line); }
+
+  /* subgroup */
+  .subgroup{ margin-top:26px; }
+  .sub-label{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:13px; display:flex; align-items:center; gap:10px;}
+  .sub-label::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg, rgba(231,199,107,.4), transparent); }
+
+  /* mini cards (fakultet) */
+  .minigrid{ display:grid; gap:11px; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); }
+  a.mini{ text-decoration:none; background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:13px; padding:15px 16px;
+          display:flex; align-items:center; justify-content:space-between; gap:10px; transition:all .16s ease; }
+  a.mini:hover{ transform:translateY(-2px); border-color:rgba(231,199,107,.45); }
+  a.mini b{ font-family:'Manrope',sans-serif; font-weight:600; font-size:14.5px; color:#eaf0f8; }
+  .mini .st{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.14em; text-transform:uppercase; padding:3px 8px; border-radius:100px; white-space:nowrap; }
+  .st-next{ color:var(--gold-hi); border:1px solid rgba(231,199,107,.5); }
+  .st-soon{ color:#7d93ad; border:1px solid var(--line); }
+
+  .feature{ background:linear-gradient(160deg, rgba(231,199,107,.07), rgba(52,198,224,.04)); border:1px solid rgba(231,199,107,.28); border-radius:18px; padding:30px 26px; text-align:center; }
+  .feature h3{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:27px; color:var(--gold); margin-bottom:8px; }
+  .feature p{ color:var(--ink); font-size:15px; line-height:1.6; max-width:540px; margin:0 auto 18px; }
+  .feature .pills{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:22px; }
+  .feature .pill{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:6px 12px; }
+
+  .book{ text-align:center; }
+  .book .note{ color:var(--muted); font-size:13.5px; margin-top:12px; }
+  .center-cta{ text-align:center; margin-top:26px; }
+
+  footer{ border-top:1px solid rgba(33,52,79,.5); padding:44px 0 60px; text-align:center; }
+  .social{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:22px; }
+  .social a{ font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.05em; color:var(--ink); text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:9px 16px; transition:all .15s ease; }
+  .social a:hover{ border-color:var(--cyan); color:#fff; transform:translateY(-2px); }
+  .foot-mark{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:26px; color:var(--gold); letter-spacing:.05em; }
+  .foot-line{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; color:#566b88; text-transform:uppercase; margin-top:8px; }
+
+  @media(max-width:560px){
+    .hero{ padding:66px 0 24px; } .wordmark{ font-size:54px; } .tagline{ font-size:10px; letter-spacing:.26em; }
+    .lede{ font-size:16.5px; } .sec-title{ font-size:28px; }
+  }
 </style>
 </head>
 <body>
   <nav class="lang">
     <a href="index.html" class="active">SR</a><span>·</span><a href="en.html">EN</a>
   </nav>
-  <main class="card">
-    <div class="wordmark">MathIA</div>
-    <div class="tagline">ARTIFICIAL INTELLIGENCE EDUCATION</div>
 
-    <p class="lede">Privatni profesor matematike — uvek uz tebe.<br>Privatni i grupni časovi, online ili uživo.</p>
-
-    <div class="btns">
-      <!-- GLAVNO DUGME: tvoj Visibook link -->
-      <a class="btn btn-primary" href="https://visibook.com/psatlura5dcepnnrr" target="_blank" rel="noopener">
-        Zakaži čas →
-      </a>
-
-      <!-- KVIZ: vodi na kviz.html (radi kad se oba fajla okače na sajt) -->
-      <a class="btn btn-quiz" href="kviz.html">Otkrij svoj smer na FTN-u →</a>
-
-      <a class="btn btn-ghost" href="https://www.facebook.com/share/18dx5g7XjZ/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
-      <a class="btn btn-ghost" href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn btn-ghost" href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener">YouTube</a>
-      <a class="btn btn-ghost" href="mailto:kontakt@mathia.rs">Pošalji email</a>
+  <header class="hero">
+    <div class="wrap">
+      <svg class="logo-mark" viewBox="0 0 800 800" width="94" height="94" aria-label="MathIA logo" role="img">
+        <defs>
+          <radialGradient id="bg" cx="50%" cy="40%" r="75%">
+            <stop offset="0%" stop-color="#13294a"/><stop offset="60%" stop-color="#0A1628"/><stop offset="100%" stop-color="#050A1A"/>
+          </radialGradient>
+          <linearGradient id="goldM" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#F8EAB6"/><stop offset="58%" stop-color="#E7C76B"/><stop offset="100%" stop-color="#C29A45"/>
+          </linearGradient>
+        </defs>
+        <circle cx="400" cy="400" r="396" fill="url(#bg)" stroke="rgba(231,199,107,.35)" stroke-width="4"/>
+        <text x="400" y="560" font-size="520" font-weight="600" text-anchor="middle" fill="url(#goldM)" style="font-family:'Cormorant Garamond',Georgia,serif">M</text>
+      </svg>
+      <div class="wordmark">MathIA</div>
+      <div class="tagline">ARTIFICIAL INTELLIGENCE EDUCATION</div>
+      <div class="goldline"></div>
+      <p class="lede">Tvoj privatni profesor matematike — i platforma za učenje, uvek uz tebe.</p>
+      <p class="lede-sub">Pripreme za prijemne ispite, kursevi i e-knjige, uz AI tutora koji objašnjava korak po korak. Privatni i grupni časovi — online ili uživo.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://visibook.com/psatlura5dcepnnrr" target="_blank" rel="noopener">Zakaži čas →</a>
+        <a class="btn btn-ghost" href="#vodic">Otkrij svoj put ↓</a>
+      </div>
     </div>
+  </header>
 
-    <p class="note">Izbor tipa časa (individualni/grupni, online/uživo) biraš u koraku zakazivanja.</p>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#vodic">Vodič</a>
+      <a href="#pripreme">Pripreme</a>
+      <a href="#eknjige">E-knjige</a>
+      <a href="#pretplata">Pretplata</a>
+      <a href="#casovi">Časovi</a>
+    </nav>
+  </div>
 
-    <div class="footer">mathia.rs</div>
-  </main>
+  <!-- VODIC ZA IZBOR -->
+  <section id="vodic">
+    <div class="wrap">
+      <div class="sec-kicker">Pronađi svoj put</div>
+      <h2 class="sec-title">Vodič za izbor</h2>
+      <p class="sec-desc">Kratki, besplatni vodiči koji ti daju konkretan odgovor sa alternativama — pre nego što doneseš veliku odluku.</p>
+      <div class="grid">
+        <div class="card">
+          <span class="badge badge-live">Dostupno</span>
+          <h3>Koji smer na FTN-u je za tebe?</h3>
+          <p>8 pitanja i dobijaš predlog smera + alternative, uz tip prijemnog ispita.</p>
+          <a class="act go" href="kviz.html">Započni →</a>
+        </div>
+        <div class="card">
+          <span class="badge badge-soon">Uskoro</span>
+          <h3>Koji fakultet je za tebe?</h3>
+          <p>Konkretan predlog fakulteta i smera, sa alternativama — za Novi Sad i Beograd.</p>
+          <a class="act soon" href="mailto:kontakt@mathia.rs?subject=Vodic%20fakultet%20-%20interesovanje">Prijavi interesovanje</a>
+        </div>
+        <div class="card">
+          <span class="badge badge-soon">Uskoro</span>
+          <h3>Koja srednja škola je za tebe?</h3>
+          <p>Za osnovce — konkretna škola sa alternativama, prema sklonostima. Novi Sad i Beograd.</p>
+          <a class="act soon" href="mailto:kontakt@mathia.rs?subject=Vodic%20srednja%20skola%20-%20interesovanje">Prijavi interesovanje</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIPREME I KURSEVI -->
+  <section id="pripreme">
+    <div class="wrap">
+      <div class="sec-kicker">Pripreme i kursevi</div>
+      <h2 class="sec-title">AI tutor koji rešava korak po korak</h2>
+      <p class="sec-desc">Svaki kurs vodi AI tutor obučen za tačno taj ispit ili predmet — objašnjava postupak, ne samo rešenje. Prva četiri su skoro gotova; ostalo stiže.</p>
+
+      <div class="subgroup">
+        <div class="sub-label">Prijemni ispiti</div>
+        <div class="grid">
+          <div class="card">
+            <span class="badge badge-next">Uskoro</span>
+            <h3>Prijemni iz matematike — FTN</h3>
+            <p>Priprema za prijemni iz matematike za FTN u Novom Sadu — zadaci, postupci i probni testovi.</p>
+            <a class="act soon" href="mailto:kontakt@mathia.rs?subject=Prijemni%20matematika%20FTN%20-%20interesovanje">Prijavi interesovanje</a>
+          </div>
+          <div class="card">
+            <span class="badge badge-next">Uskoro</span>
+            <h3>Prijemni — mala matura (matematika)</h3>
+            <p>Priprema za malu maturu iz matematike — sve oblasti, korak po korak.</p>
+            <a class="act soon" href="mailto:kontakt@mathia.rs?subject=Prijemni%20mala%20matura%20-%20interesovanje">Prijavi interesovanje</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="subgroup">
+        <div class="sub-label">Srednja škola</div>
+        <div class="grid">
+          <div class="card">
+            <span class="badge badge-soon">U pripremi</span>
+            <h3>Matematika — gimnazija</h3>
+            <p>Kompletno gradivo po godinama, usklađeno sa programom.</p>
+            <div class="years"><span>1. godina</span><span>2. godina</span><span>3. godina</span><span>4. godina</span></div>
+            <a class="act soon" href="mailto:kontakt@mathia.rs?subject=Matematika%20gimnazija%20-%20interesovanje">Prijavi interesovanje</a>
+          </div>
+          <div class="card">
+            <span class="badge badge-soon">U pripremi</span>
+            <h3>Fizika — gimnazija</h3>
+            <p>Kompletno gradivo po godinama, sa zadacima i objašnjenjima.</p>
+            <div class="years"><span>1. godina</span><span>2. godina</span><span>3. godina</span><span>4. godina</span></div>
+            <a class="act soon" href="mailto:kontakt@mathia.rs?subject=Fizika%20gimnazija%20-%20interesovanje">Prijavi interesovanje</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="subgroup">
+        <div class="sub-label">Fakultet</div>
+        <div class="minigrid">
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Matematicka%20analiza%201%20-%20interesovanje"><b>Matematička analiza 1</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Matematicka%20analiza%202%20-%20interesovanje"><b>Matematička analiza 2</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Algebra%20-%20interesovanje"><b>Algebra</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Mehanika%20-%20interesovanje"><b>Mehanika</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Fizika%20fakultet%20-%20interesovanje"><b>Fizika</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Osnove%20elektrotehnike%201%20-%20interesovanje"><b>Osnove elektrotehnike 1</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Osnove%20elektrotehnike%202%20-%20interesovanje"><b>Osnove elektrotehnike 2</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Uvod%20u%20elektroniku%20-%20interesovanje"><b>Uvod u elektroniku</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Elektricne%20komponente%20u%20instrumentaciji%20-%20interesovanje"><b>Električne komponente u instrumentaciji</b><span class="st st-soon">U pripremi</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Elektricna%20merenja%20-%20interesovanje"><b>Električna merenja</b><span class="st st-next">Uskoro</span></a>
+          <a class="mini" href="mailto:kontakt@mathia.rs?subject=Verovatnoca%20i%20statistika%20-%20interesovanje"><b>Verovatnoća i statistika</b><span class="st st-next">Uskoro</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- E-KNJIGE -->
+  <section id="eknjige">
+    <div class="wrap">
+      <div class="sec-kicker">Materijali</div>
+      <h2 class="sec-title">E-knjige i zbirke</h2>
+      <p class="sec-desc">Priručnici i zbirke zadataka za samostalno učenje — zasebno ili uz pretplatu na kurseve.</p>
+      <div class="grid">
+        <div class="card">
+          <span class="badge badge-soon">Uskoro</span>
+          <h3>Zbirke zadataka</h3>
+          <p>Rešeni zadaci sa prijemnih i probni testovi, po oblastima.</p>
+          <a class="act soon" href="mailto:kontakt@mathia.rs?subject=E-knjige%20zbirke%20-%20interesovanje">Najavi me</a>
+        </div>
+        <div class="card">
+          <span class="badge badge-soon">Uskoro</span>
+          <h3>Priručnici</h3>
+          <p>Sažeti vodiči kroz gradivo — teorija i formule na jednom mestu.</p>
+          <a class="act soon" href="mailto:kontakt@mathia.rs?subject=Prirucnici%20-%20interesovanje">Najavi me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRETPLATA -->
+  <section id="pretplata">
+    <div class="wrap">
+      <div class="feature">
+        <div class="sec-kicker" style="color:var(--gold)">Uskoro</div>
+        <h3>Pretplata — biraš koliko ti treba</h3>
+        <p>Pretplata po predmetu, ili paket više predmeta uz <b style="color:var(--gold-hi)">poseban popust</b>. E-knjige zasebno ili uključene u paket. Jedan nalog, sve na jednom mestu.</p>
+        <div class="pills">
+          <span class="pill">1 predmet</span>
+          <span class="pill">Paket predmeta — popust</span>
+          <span class="pill">Sve + e-knjige</span>
+        </div>
+        <a class="btn btn-primary" href="mailto:kontakt@mathia.rs?subject=Pretplata%20-%20najavi%20me">Najavi me kad krene</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASOVI -->
+  <section id="casovi">
+    <div class="wrap book">
+      <div class="sec-kicker">Časovi uživo</div>
+      <h2 class="sec-title">Privatni i grupni časovi</h2>
+      <p class="sec-desc" style="margin-left:auto;margin-right:auto;">Online ili uživo — tip časa biraš pri zakazivanju.</p>
+      <a class="btn btn-primary" href="https://visibook.com/psatlura5dcepnnrr" target="_blank" rel="noopener">Zakaži čas →</a>
+      <p class="note">Individualno ili u grupi · online ili uživo</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="social">
+        <a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.facebook.com/share/18dx5g7XjZ/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a>
+        <a href="mailto:kontakt@mathia.rs">kontakt@mathia.rs</a>
+      </div>
+      <div class="foot-mark">MathIA</div>
+      <div class="foot-line">mathia.rs</div>
+    </div>
+  </footer>
 </body>
 </html>
