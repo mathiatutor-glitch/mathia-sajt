@@ -47,7 +47,7 @@
   .hero-cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; opacity:0; animation:rise .8s ease .52s forwards;}
   @keyframes rise{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
 
-  .nav{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 64px; opacity:0; animation:rise .8s ease .62s forwards;}
+  .nav{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 28px; opacity:0; animation:rise .8s ease .62s forwards;}
   .nav a{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:7px 13px; transition:all .15s ease;}
   .nav a:hover{ border-color:var(--cyan); color:#fff; }
 
@@ -95,6 +95,14 @@
   .feature p{ color:var(--ink); font-size:15px; line-height:1.6; max-width:540px; margin:0 auto 18px; }
   .feature .pills{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:22px; }
   .feature .pill{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:6px 12px; }
+  .feature .pill-best{ color:var(--navy3); background:linear-gradient(180deg,var(--gold-hi),var(--gold-lo)); border:none; font-weight:700; }
+  .feature .offer-note{ color:var(--muted); font-size:13px; line-height:1.55; max-width:480px; margin:0 auto 18px; }
+
+  .props{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin:0 0 60px; opacity:0; animation:rise .8s ease .7s forwards; }
+  .prop{ border:1px solid var(--line); border-radius:14px; padding:18px; background:rgba(255,255,255,.025); }
+  .prop .pi{ display:block; width:26px; height:2px; background:linear-gradient(90deg,var(--gold-hi),var(--gold-lo)); border-radius:2px; margin-bottom:12px; box-shadow:0 0 10px rgba(231,199,107,.45); }
+  .prop b{ display:block; font-weight:700; font-size:15px; color:#f2f5fa; margin-bottom:4px; }
+  .prop i{ font-style:normal; color:var(--muted); font-size:13px; line-height:1.5; }
 
   .book{ text-align:center; }
   .book .note{ color:var(--muted); font-size:13.5px; margin-top:12px; }
@@ -151,6 +159,14 @@
       <a href="#subscription">Subscription</a>
       <a href="#lessons">Lessons</a>
     </nav>
+  </div>
+
+  <div class="wrap">
+    <div class="props">
+      <div class="prop"><span class="pi"></span><b>Step by step</b><i>The AI tutor explains the method, not just the final answer.</i></div>
+      <div class="prop"><span class="pi"></span><b>Always available</b><i>Learn at your own pace, whenever it suits you.</i></div>
+      <div class="prop"><span class="pi"></span><b>Led by a professor</b><i>Content created by a mathematics professor.</i></div>
+    </div>
   </div>
 
   <!-- GUIDE -->
@@ -273,15 +289,16 @@
   <section id="subscription">
     <div class="wrap">
       <div class="feature">
-        <div class="sec-kicker" style="color:var(--gold)">Soon</div>
-        <h3>Subscription — choose what you need</h3>
-        <p>Subscribe per subject, or bundle several subjects with a <b style="color:var(--gold-hi)">special discount</b>. E-books separately or included in a bundle. One account, everything in one place.</p>
+        <div class="sec-kicker" style="color:var(--gold)">Special offer for early members</div>
+        <h3>Subscription — start with one, get more</h3>
+        <p>Subscribe to one subject, or take a bundle of several with a <b style="color:var(--gold-hi)">special offer</b>. E-books separately or included in a bundle — one account, everything in one place.</p>
         <div class="pills">
           <span class="pill">1 subject</span>
-          <span class="pill">Bundle — discount</span>
+          <span class="pill pill-best">Bundle — best value</span>
           <span class="pill">Everything + e-books</span>
         </div>
-        <a class="btn btn-primary" href="mailto:kontakt@mathia.rs?subject=Subscription%20-%20notify%20me">Notify me at launch</a>
+        <p class="offer-note">Early subscribers get a special offer. Join the list and we'll let you know at launch.</p>
+        <a class="btn btn-primary" href="mailto:kontakt@mathia.rs?subject=Special%20offer%20-%20early%20list">Join the early list →</a>
       </div>
     </div>
   </section>

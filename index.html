@@ -51,7 +51,7 @@
   .hero-cta{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; opacity:0; animation:rise .8s ease .52s forwards;}
   @keyframes rise{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
 
-  .nav{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 64px; opacity:0; animation:rise .8s ease .62s forwards;}
+  .nav{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:6px 0 28px; opacity:0; animation:rise .8s ease .62s forwards;}
   .nav a{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
           color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:100px; padding:7px 13px; transition:all .15s ease;}
   .nav a:hover{ border-color:var(--cyan); color:#fff; }
@@ -105,6 +105,14 @@
   .feature p{ color:var(--ink); font-size:15px; line-height:1.6; max-width:540px; margin:0 auto 18px; }
   .feature .pills{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:22px; }
   .feature .pill{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:6px 12px; }
+  .feature .pill-best{ color:var(--navy3); background:linear-gradient(180deg,var(--gold-hi),var(--gold-lo)); border:none; font-weight:700; }
+  .feature .offer-note{ color:var(--muted); font-size:13px; line-height:1.55; max-width:480px; margin:0 auto 18px; }
+
+  .props{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin:0 0 60px; opacity:0; animation:rise .8s ease .7s forwards; }
+  .prop{ border:1px solid var(--line); border-radius:14px; padding:18px; background:rgba(255,255,255,.025); }
+  .prop .pi{ display:block; width:26px; height:2px; background:linear-gradient(90deg,var(--gold-hi),var(--gold-lo)); border-radius:2px; margin-bottom:12px; box-shadow:0 0 10px rgba(231,199,107,.45); }
+  .prop b{ display:block; font-weight:700; font-size:15px; color:#f2f5fa; margin-bottom:4px; }
+  .prop i{ font-style:normal; color:var(--muted); font-size:13px; line-height:1.5; }
 
   .book{ text-align:center; }
   .book .note{ color:var(--muted); font-size:13.5px; margin-top:12px; }
@@ -162,6 +170,14 @@
       <a href="#pretplata">Pretplata</a>
       <a href="#casovi">Časovi</a>
     </nav>
+  </div>
+
+  <div class="wrap">
+    <div class="props">
+      <div class="prop"><span class="pi"></span><b>Korak po korak</b><i>AI tutor objašnjava postupak, ne samo krajnje rešenje.</i></div>
+      <div class="prop"><span class="pi"></span><b>Uvek dostupno</b><i>Učiš svojim tempom, kad god ti odgovara.</i></div>
+      <div class="prop"><span class="pi"></span><b>Vodi profesor</b><i>Sadržaj kreira profesor matematike.</i></div>
+    </div>
   </div>
 
   <!-- VODIC ZA IZBOR -->
@@ -284,15 +300,16 @@
   <section id="pretplata">
     <div class="wrap">
       <div class="feature">
-        <div class="sec-kicker" style="color:var(--gold)">Uskoro</div>
-        <h3>Pretplata — biraš koliko ti treba</h3>
-        <p>Pretplata po predmetu, ili paket više predmeta uz <b style="color:var(--gold-hi)">poseban popust</b>. E-knjige zasebno ili uključene u paket. Jedan nalog, sve na jednom mestu.</p>
+        <div class="sec-kicker" style="color:var(--gold)">Specijalna ponuda za prve</div>
+        <h3>Pretplata — kreni sa jednim, dobij više</h3>
+        <p>Pretplati se na jedan predmet, ili uzmi paket više predmeta uz <b style="color:var(--gold-hi)">specijalnu ponudu</b>. E-knjige zasebno ili uključene u paket — jedan nalog, sve na jednom mestu.</p>
         <div class="pills">
           <span class="pill">1 predmet</span>
-          <span class="pill">Paket predmeta — popust</span>
+          <span class="pill pill-best">Paket — najbolja vrednost</span>
           <span class="pill">Sve + e-knjige</span>
         </div>
-        <a class="btn btn-primary" href="mailto:kontakt@mathia.rs?subject=Pretplata%20-%20najavi%20me">Najavi me kad krene</a>
+        <p class="offer-note">Prvi pretplatnici dobijaju specijalnu ponudu. Uđi na listu i javljamo ti čim krene.</p>
+        <a class="btn btn-primary" href="mailto:kontakt@mathia.rs?subject=Specijalna%20ponuda%20-%20lista%20prvih">Uđi na listu prvih →</a>
       </div>
     </div>
   </section>
