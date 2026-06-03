@@ -72,7 +72,7 @@
   .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:16px; padding:22px 20px;
          display:flex; flex-direction:column; gap:9px; transition:all .18s ease; position:relative; }
   .card:hover{ transform:translateY(-3px); border-color:rgba(231,199,107,.45); box-shadow:0 14px 36px rgba(0,0,0,.28); }
-  .card h3{ font-family:'Manrope',sans-serif; font-weight:700; font-size:18px; color:#f2f5fa; line-height:1.3; }
+  .card h3{ font-family:'Manrope',sans-serif; font-weight:700; font-size:18px; color:#f2f5fa; line-height:1.3; padding-right:70px; }
   .card p{ color:var(--muted); font-size:14px; line-height:1.55; flex:1; }
   .card .act{ margin-top:6px; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.04em; text-decoration:none; display:inline-flex; align-items:center; gap:6px;}
   .card .act.go{ color:var(--cyan); } .card .act.go:hover{ color:#fff; }
@@ -104,7 +104,9 @@
   .feature h3{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:27px; color:var(--gold); margin-bottom:8px; }
   .feature p{ color:var(--ink); font-size:15px; line-height:1.6; max-width:540px; margin:0 auto 18px; }
   .feature .pills{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:22px; }
-  .feature .pill{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:6px 12px; }
+  .feature .pill{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; color:var(--muted); border:1px solid var(--line); border-radius:100px; padding:6px 12px; text-decoration:none; cursor:pointer; transition:all .15s ease; }
+  .feature a.pill:hover{ border-color:var(--cyan); color:#fff; }
+  .feature a.pill-best:hover{ transform:translateY(-1px); color:var(--navy3); }
   .feature .pill-best{ color:var(--navy3); background:linear-gradient(180deg,var(--gold-hi),var(--gold-lo)); border:none; font-weight:700; }
   .feature .offer-note{ color:var(--muted); font-size:13px; line-height:1.55; max-width:480px; margin:0 auto 18px; }
 
@@ -304,9 +306,9 @@
         <h3>Pretplata — kreni sa jednim, dobij više</h3>
         <p>Pretplati se na jedan predmet, ili uzmi paket više predmeta uz <b style="color:var(--gold-hi)">specijalnu ponudu</b>. E-knjige zasebno ili uključene u paket — jedan nalog, sve na jednom mestu.</p>
         <div class="pills">
-          <span class="pill">1 predmet</span>
-          <span class="pill pill-best">Paket — najbolja vrednost</span>
-          <span class="pill">Sve + e-knjige</span>
+          <a class="pill" href="mailto:kontakt@mathia.rs?subject=Pretplata%20-%201%20predmet">1 predmet</a>
+          <a class="pill pill-best" href="mailto:kontakt@mathia.rs?subject=Pretplata%20-%20paket%20predmeta">Paket — najbolja vrednost</a>
+          <a class="pill" href="mailto:kontakt@mathia.rs?subject=Pretplata%20-%20sve%20i%20e-knjige">Sve + e-knjige</a>
         </div>
         <p class="offer-note">Prvi pretplatnici dobijaju specijalnu ponudu. Uđi na listu i javljamo ti čim krene.</p>
         <a class="btn btn-primary" href="mailto:kontakt@mathia.rs?subject=Specijalna%20ponuda%20-%20lista%20prvih">Uđi na listu prvih →</a>
