@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathIA — Test smera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c0d12;--ink2:#14151d;--gold:#d8b873;--gold-2:#f2dca2;
+    --cream:#f3ede0;--muted:#9a958a;--line:rgba(216,184,115,.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Jost',sans-serif;color:var(--cream);
+    background:radial-gradient(130% 90% at 50% 0%, #1d1e28 0%, var(--ink) 52%, #07080c 100%);
+    min-height:100%;display:flex;align-items:center;justify-content:center;
+    padding:30px 18px;overflow-x:hidden;
+  }
+  .stage{width:100%;max-width:560px;position:relative;z-index:2}
+  .bell{position:fixed;left:0;right:0;bottom:0;height:34vh;opacity:.5;pointer-events:none;z-index:0}
+  .mark{
+    font-family:'Playfair Display',serif;font-weight:700;letter-spacing:-.01em;line-height:1;
+    background:linear-gradient(160deg,var(--gold-2),var(--gold) 42%,#9c7e44 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .mark .ia{font-style:italic;font-weight:500}
+  .eyebrow{letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-size:12px;font-weight:400}
+  .center{text-align:center}
+  .rule{height:1px;border:none;width:60px;margin:18px auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .intro{display:flex;flex-direction:column;align-items:center;gap:8px;animation:rise .6s ease both}
+  .intro .mark{font-size:62px;margin:6px 0 2px}
+  .intro h1{font-family:'Playfair Display',serif;font-weight:500;font-size:30px;line-height:1.25;max-width:18ch}
+  .intro p{color:var(--muted);font-weight:300;max-width:30ch;line-height:1.6}
+  .meta{color:#7d796f;font-size:13px;letter-spacing:.06em;margin-top:2px}
+  .btn{
+    font-family:'Jost',sans-serif;cursor:pointer;border:none;border-radius:999px;
+    background:linear-gradient(160deg,var(--gold-2),var(--gold) 55%,#b8954f);
+    color:#1a150a;font-weight:500;letter-spacing:.04em;font-size:16px;
+    padding:15px 38px;margin-top:14px;transition:transform .15s ease, box-shadow .25s ease;
+    box-shadow:0 14px 34px -12px rgba(216,184,115,.6);
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(216,184,115,.75)}
+  .btn.ghost{background:none;border:1px solid var(--line);color:var(--gold-2);box-shadow:none;font-size:14px;padding:12px 26px}
+  .btn.ghost:hover{border-color:var(--gold);transform:translateY(-1px)}
+  .pbar{height:3px;background:rgba(255,255,255,.07);border-radius:9px;overflow:hidden;margin-bottom:8px}
+  .pfill{height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--gold),var(--gold-2));transition:width .4s cubic-bezier(.4,0,.2,1)}
+  .pnum{font-size:12px;letter-spacing:.16em;color:#7d796f;text-transform:uppercase;margin-bottom:20px;display:block}
+  .q{animation:rise .4s ease both}
+  .q h2{font-family:'Playfair Display',serif;font-weight:500;font-size:25px;line-height:1.3;margin-bottom:22px}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{
+    text-align:left;cursor:pointer;font-family:'Jost',sans-serif;font-size:16px;color:var(--cream);
+    background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-radius:14px;
+    padding:16px 18px;transition:all .16s ease;display:flex;align-items:center;gap:14px;line-height:1.35;
+  }
+  .opt .dot{flex:0 0 auto;width:9px;height:9px;border-radius:50%;border:1px solid var(--gold);transition:all .16s ease}
+  .opt:hover{border-color:var(--gold);background:rgba(216,184,115,.08);transform:translateX(3px)}
+  .opt:hover .dot{background:var(--gold);box-shadow:0 0 0 4px rgba(216,184,115,.18)}
+  .res{animation:rise .55s ease both}
+  .res .kicker{text-align:center;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;font-size:12px}
+  .res .smer{font-family:'Playfair Display',serif;font-weight:700;font-size:34px;line-height:1.15;text-align:center;
+    background:linear-gradient(160deg,var(--gold-2),var(--gold) 50%,#a17e42);-webkit-background-clip:text;background-clip:text;color:transparent;margin:8px 0 6px}
+  .res .tag{text-align:center;color:var(--cream);font-weight:300;font-style:italic;font-family:'Playfair Display',serif;font-size:18px;opacity:.9}
+  .note{background:rgba(216,184,115,.06);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:22px 0;line-height:1.6;min-height:64px;display:flex;align-items:center;justify-content:center;text-align:center}
+  .note.think{color:var(--gold-2);letter-spacing:.04em}
+  .think .dots span{animation:blink 1.2s infinite both;font-size:20px}
+  .think .dots span:nth-child(2){animation-delay:.2s}
+  .think .dots span:nth-child(3){animation-delay:.4s}
+  .block h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .block p{color:#d7d2c6;font-weight:300;line-height:1.6}
+  .block{margin-bottom:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+  .chip{font-size:13px;color:#bdb8ac;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px}
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .foot{text-align:center;color:#6f6b62;font-size:13px;letter-spacing:.06em;margin-top:26px}
+  .foot b{color:var(--gold-2);font-weight:400}
+  .hidden{display:none!important}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+  @media(max-width:480px){
+    .intro .mark{font-size:50px}.intro h1{font-size:25px}.res .smer{font-size:28px}.q h2{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<svg class="bell" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#d8b873" stop-opacity="0"/>
+    <stop offset=".5" stop-color="#f2dca2" stop-opacity=".75"/>
+    <stop offset="1" stop-color="#d8b873" stop-opacity="0"/>
+  </linearGradient></defs>
+  <path d="M0,38 C22,38 30,5 50,5 C70,5 78,38 100,38" stroke="url(#bg)" stroke-width=".5" fill="none"/>
+</svg>
+
+<div class="stage">
+
+  <section id="intro" class="intro center">
+    <div class="eyebrow">AI tutor</div>
+    <div class="mark">Math<span class="ia">IA</span></div>
+    <hr class="rule">
+    <h1>Ne znaš šta da upišeš?</h1>
+    <p>Odgovori na 6 kratkih pitanja i MathIA će ti predložiti smer koji ti najviše leži.</p>
+    <button class="btn" onclick="start()">Počni test</button>
+    <div class="meta">~1 minut · 6 pitanja · bez tačnih i netačnih odgovora</div>
+  </section>
+
+  <section id="quiz" class="hidden">
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <span class="pnum" id="pnum"></span>
+    <div class="q" id="qbox"></div>
+  </section>
+
+  <section id="result" class="hidden res">
+    <div class="kicker">MathIA preporučuje</div>
+    <div class="smer" id="smer"></div>
+    <div class="tag" id="smertag"></div>
+    <div class="note think" id="note"><span>MathIA razmišlja</span>&nbsp;<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
+    <div class="block"><h3>Zašto baš to</h3><p id="why"></p></div>
+    <div class="block"><h3>Kako MathIA pomaže</h3><p id="help"></p></div>
+    <div class="chips" id="chips"></div>
+    <div class="actions">
+      <button class="btn" onclick="restart()">Uradi ponovo</button>
+      <button class="btn ghost" onclick="shareResult(event)">Podeli sa drugom</button>
+    </div>
+    <div class="foot"><b>@mathia.ai</b> · mathia.rs · Lansiranje uskoro</div>
+  </section>
+
+</div>
+
+<script>
+/* =====================================================================
+   ANALITIKA — podesi ovde. Kviz sam šalje evente: quiz_start, quiz_answer,
+   quiz_complete (sa smerom), quiz_share. Radi sa Google Analytics (gtag),
+   Plausible, Google Tag Manager (dataLayer) — automatski, ako su na stranici.
+   Za sopstveni brojač/bazu, upiši URL u "endpoint".
+   ===================================================================== */
+const ANALYTICS = {
+  endpoint: "",   // npr. "https://tvoj-sajt.rs/api/track" ili Google Apps Script URL. Prazno = ne šalje nikuda.
+  debug: false    // true = ispisuje evente u konzolu (za proveru)
+};
+function track(event, props){
+  props = props || {};
+  try{
+    if(ANALYTICS.debug) console.log("[MathIA]", event, props);
+    if(typeof window.gtag === "function") window.gtag("event", event, props);
+    if(typeof window.plausible === "function") window.plausible(event, {props:props});
+    if(Array.isArray(window.dataLayer)) window.dataLayer.push(Object.assign({event:event}, props));
+    if(ANALYTICS.endpoint){
+      fetch(ANALYTICS.endpoint, {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({event:event, props:props, ts:Date.now(), page:location.href}),
+        keepalive:true
+      }).catch(function(){});
+    }
+  }catch(e){}
+}
+
+/* ---------------- DATA ---------------- */
+const CATS = {
+  RAC:{name:"Računarstvo i softverstvo",tag:"Praviš stvari koje rade.",
+    why:"Privlači te logika, gradnja i automatizacija — voliš da od ideje napraviš nešto što stvarno funkcioniše.",
+    help:"MathIA te vodi kroz matematiku za prijemni (ETF, FTN, RAF) i temelje koji ti trebaju za algoritme i programiranje."},
+  ELE:{name:"Elektrotehnika i elektronika",tag:"Spajaš fiziku i tehniku.",
+    why:"Uživaš kad razumeš kako uređaji rade iznutra — od kola i signala do energetike.",
+    help:"MathIA pokriva fiziku i matematiku za prijemni iz elektrotehnike i prati te kroz teže oblasti korak po korak."},
+  MAS:{name:"Mašinstvo i inženjering",tag:"Gradiš ono što se kreće.",
+    why:"Voliš konkretne, opipljive sisteme — mašine, konstrukcije, energiju i kako sve to drži zajedno.",
+    help:"MathIA ti učvršćuje matematiku i fiziku koje su kičma svakog inženjerskog prijemnog i prve godine."},
+  MAT:{name:"Matematika i primenjena matematika",tag:"Tražiš elegantno rešenje.",
+    why:"Uživaš u apstrakciji i onom trenutku kad teška ideja konačno „klikne“.",
+    help:"MathIA ti produbljuje gradivo i sprema te za prijemni na matematici i tehničkim fakultetima — bez rupa u znanju."},
+  FIZ:{name:"Fizika i prirodne nauke",tag:"Razumeš kako svet radi.",
+    why:"Vode te radoznalost i eksperiment — voliš da otkriješ zakon iza pojave.",
+    help:"MathIA objašnjava fiziku intuitivno i kroz zadatke, tačno onako kako traže prijemni i kolokvijumi."},
+  DAT:{name:"Analitika i nauka o podacima",tag:"Iz podataka vadiš priču.",
+    why:"Privlači te spoj matematike i stvarnog sveta — obrasci, verovatnoća i zaključci iz brojeva.",
+    help:"MathIA te jača u verovatnoći i statistici i postavlja matematičke temelje za rad sa podacima."}
+};
+const QUESTIONS = [
+  {q:"Koji predmet ti najbolje ide ili ti je najzanimljiviji?",
+   o:[["Matematika",{MAT:2,DAT:1}],["Fizika",{FIZ:2,ELE:1}],
+      ["Informatika / programiranje",{RAC:2,DAT:1}],["Tehničko, crtanje, konstrukcije",{MAS:2,ELE:1}]]},
+  {q:"Kad rešavaš problem, šta te najviše privuče?",
+   o:[["Elegantno, apstraktno rešenje",{MAT:2,FIZ:1}],["Da napravim nešto što stvarno radi",{MAS:2,ELE:1}],
+      ["Da napišem program koji to automatizuje",{RAC:2}],["Da iz podataka izvučem zaključak",{DAT:2,MAT:1}]]},
+  {q:"Šta bi najradije gradio ili gradila?",
+   o:[["Aplikaciju, sajt ili igru",{RAC:2}],["Robota, uređaj ili električno kolo",{ELE:2,MAS:1}],
+      ["Motor, most ili mašinu",{MAS:2}],["Model koji predviđa ponašanje sistema",{FIZ:1,MAT:1,DAT:1}]]},
+  {q:"Gde se vidiš za desetak godina?",
+   o:[["U IT firmi ili startapu",{RAC:2,DAT:1}],["U laboratoriji ili na istraživanju",{FIZ:2,MAT:1}],
+      ["U industriji, energetici ili proizvodnji",{ELE:2,MAS:1}],["U analitici, financijama ili osiguranju",{DAT:2,MAT:1}]]},
+  {q:"Šta ti je u učenju najlepši osećaj?",
+   o:[["Kad konačno „klikne“ teška teorema",{MAT:2,FIZ:1}],["Kad eksperiment potvrdi ideju",{FIZ:2}],
+      ["Kad kod proradi iz prve",{RAC:2}],["Kad grafikon otkrije skriveni obrazac",{DAT:2}]]},
+  {q:"Kakav ti je odnos sa matematikom?",
+   o:[["Uživam u njoj",{MAT:1,FIZ:1,DAT:1}],["Solidna mi je, ali hoću još bolje",{RAC:1,ELE:1}],
+      ["Mučim se, ali želim da je savladam",{MAS:1,ELE:1}],["Više volim primenu nego teoriju",{DAT:1,MAS:1}]]}
+];
+
+/* ---------------- STATE ---------------- */
+let idx=0, scores={}, chosen=[];
+const $=function(id){return document.getElementById(id);};
+
+function start(){ idx=0; scores={}; chosen=[]; Object.keys(CATS).forEach(function(k){scores[k]=0;});
+  track("quiz_start");
+  $("intro").classList.add("hidden"); $("result").classList.add("hidden"); $("quiz").classList.remove("hidden"); render(); }
+
+function render(){
+  const item=QUESTIONS[idx];
+  $("pfill").style.width=((idx)/QUESTIONS.length*100)+"%";
+  $("pnum").textContent="Pitanje "+(idx+1)+" / "+QUESTIONS.length;
+  let html='<h2>'+item.q+'</h2><div class="opts">';
+  item.o.forEach(function(opt,i){ html+='<button class="opt" onclick="pick('+i+')"><span class="dot"></span><span>'+opt[0]+'</span></button>'; });
+  html+='</div>';
+  const box=$("qbox"); box.classList.remove("q"); void box.offsetWidth; box.classList.add("q"); box.innerHTML=html;
+}
+
+function pick(i){
+  const opt=QUESTIONS[idx].o[i];
+  for(const k in opt[1]) scores[k]+=opt[1][k];
+  chosen.push(QUESTIONS[idx].q+" → "+opt[0]);
+  track("quiz_answer",{pitanje:idx+1, odgovor:opt[0]});
+  idx++;
+  if(idx<QUESTIONS.length){ render(); } else { finish(); }
+}
+
+function ranked(){ return Object.keys(CATS).sort(function(a,b){return scores[b]-scores[a];}); }
+
+function finish(){
+  $("pfill").style.width="100%";
+  const r=ranked(), top=r[0], c=CATS[top];
+  track("quiz_complete",{smer:c.name, smer_kod:top, drugi:CATS[r[1]].name});
+  $("quiz").classList.add("hidden");
+  $("smer").textContent=c.name;
+  $("smertag").textContent=c.tag;
+  $("why").textContent=c.why;
+  $("help").textContent=c.help;
+  $("chips").innerHTML='<span class="chip">Bliski su ti i: '+CATS[r[1]].name+' · '+CATS[r[2]].name+'</span>';
+  const note=$("note"); note.classList.add("think");
+  note.innerHTML='<span>MathIA razmišlja</span>&nbsp;<span class="dots"><span>.</span><span>.</span><span>.</span></span>';
+  $("result").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+  personalize(top);
+}
+
+function restart(){ start(); window.scrollTo({top:0,behavior:"smooth"}); }
+
+function shareResult(ev){
+  const top=ranked()[0];
+  track("quiz_share",{smer:CATS[top].name});
+  const url=location.href;
+  const msg="Uradi MathIA test smera i saznaj koji fakultet ti leži!";
+  if(navigator.share){ navigator.share({title:"MathIA — Test smera", text:msg, url:url}).catch(function(){}); }
+  else if(navigator.clipboard){
+    navigator.clipboard.writeText(msg+" "+url).then(function(){
+      const b=ev&&ev.target?ev.target.closest("button"):null;
+      if(b){ const o=b.textContent; b.textContent="Kopirano ✓"; setTimeout(function(){b.textContent=o;},1800); }
+    }).catch(function(){});
+  }
+}
+
+/* ---- personalizovana poruka: živi AI u Claude pregledu, uredan fallback drugde ---- */
+function fallbackNote(top){
+  return "Tvoji odgovori jasno vuku ka smeru: "+CATS[top].name+". Ako ti damo dobre temelje iz matematike i fizike, prijemni i prva godina postaju mnogo lakši — MathIA je tu da te provede kroz baš to.";
+}
+async function personalize(top){
+  const note=$("note");
+  const prompt="Ti si MathIA, topao i ohrabrujući AI tutor za matematiku i fiziku iz Srbije. "+
+    "Maturant je uradio test izbora smera. Preporučeni smer: "+CATS[top].name+". "+
+    "Njegovi odgovori:\n- "+chosen.join("\n- ")+"\n\n"+
+    "Napiši mu kratku, toplu poruku na srpskom (ekavica), 2 rečenice, u drugom licu jednine, bez markdowna i bez navodnika. "+
+    "Poveži njegove odgovore sa preporučenim smerom i nagovesti da mu MathIA može pomoći da stigne do tamo. Vrati samo tekst poruke.";
+  try{
+    const res=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,
+        messages:[{role:"user",content:prompt}]})
+    });
+    if(!res.ok) throw new Error("net");
+    const data=await res.json();
+    const text=(data.content||[]).filter(function(b){return b.type==="text";}).map(function(b){return b.text;}).join(" ").trim();
+    note.classList.remove("think");
+    note.textContent = text || fallbackNote(top);
+  }catch(e){
+    note.classList.remove("think");
+    note.textContent = fallbackNote(top);
+  }
+}
+</script>
+</body>
+</html>
