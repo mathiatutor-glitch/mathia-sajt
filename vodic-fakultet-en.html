@@ -3,197 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MathIA — Which university is for you?</title>
+<title>Which faculty is right for you? · MathIA</title>
+<meta name="description" content="A guide that gives a concrete faculty and major suggestion, with alternatives — for Novi Sad and Belgrade.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23201d24'/%3E%3Ctext x='50%25' y='54%25' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23cda44e' text-anchor='middle' dominant-baseline='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-  :root{ --navy1:#102540; --navy2:#0A1628; --navy3:#050A1A; --gold:#E7C76B; --gold-hi:#F8EAB6; --gold-lo:#C29A45; --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4; --line:#21344f; }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{ font-family:'Manrope',system-ui,sans-serif; color:var(--ink); min-height:100vh; background:radial-gradient(900px 500px at 50% -5%, var(--navy1) 0%, var(--navy2) 45%, var(--navy3) 100%); display:flex; justify-content:center; padding:32px 18px; }
-  .wrap{ width:100%; max-width:560px; }
-  .brand{ text-align:center; margin-bottom:8px; }
-  .wordmark{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:40px; letter-spacing:.05em; background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold); }
-  h1{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; text-align:center; margin:6px 0 4px; color:#f2f5fa;}
-  .sub{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:26px; }
-  .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:18px; padding:24px 22px;}
-  .progress{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--cyan); margin-bottom:14px; }
-  .q{ font-size:19px; font-weight:600; line-height:1.4; margin-bottom:18px; color:#f2f5fa; }
-  .opt{ display:block; width:100%; text-align:left; background:rgba(255,255,255,.02); color:var(--ink); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; font-size:15px; font-family:'Manrope',sans-serif; cursor:pointer; transition:all .15s ease; }
-  .opt:hover{ border-color:var(--cyan); background:rgba(52,198,224,.08); transform:translateY(-1px); }
-  .badge{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; color:var(--cyan); text-align:center; }
-  .result-name{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:29px; text-align:center; color:var(--gold); margin:6px 0 6px; line-height:1.15;}
-  .result-desc{ text-align:center; color:var(--ink); font-size:15px; line-height:1.6; margin-bottom:8px;}
-  .tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; border:1px solid var(--line); border-radius:100px; padding:5px 12px; color:var(--muted); margin:4px auto 0;}
-  .tag-wrap{ text-align:center; margin-bottom:20px;}
-  .alts-title{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--muted); margin:22px 0 10px; text-transform:uppercase;}
-  .alt{ border-top:1px solid var(--line); padding:13px 0; }
-  .alt b{ color:#f2f5fa; font-weight:600;} .alt span{ color:var(--muted); font-size:13.5px;}
-  .cta{ margin-top:22px; }
-  a.btn,button.btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; text-decoration:none; font-weight:600; font-size:16px; padding:15px 18px; border-radius:13px; border:none; cursor:pointer; transition:all .18s ease; font-family:'Manrope',sans-serif; margin-bottom:11px; }
-  .btn-primary{ background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo)); color:var(--navy3); box-shadow:0 8px 24px rgba(231,199,107,.2);}
-  .btn-primary:hover{ transform:translateY(-2px);}
-  .btn-ghost{ background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line);}
-  .btn-ghost:hover{ border-color:var(--cyan); color:#fff;}
-  .cta-note{ text-align:center; color:var(--muted); font-size:13px; margin:4px 0 0; line-height:1.5;}
-  .foot{ text-align:center; margin-top:20px; font-size:12px; color:#566b88; line-height:1.6;}
-  .foot a{ color:var(--muted);}
-  .lang{ position:fixed; top:18px; right:20px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; }
-  .lang a{ color:var(--muted); text-decoration:none; padding:2px 4px; transition:color .15s ease; }
-  .lang a.active{ color:var(--gold); } .lang a:hover{ color:var(--cyan); } .lang span{ color:#566b88; }
+  :root{--bg:#fbfaf7;--bg2:#f4efe6;--card:#fff;--ink:#1f1d22;--muted:#5c6479;--char:#201d24;--char2:#383440;
+    --gold:#a87d33;--gold-line:#cda44e;--gold-2:#e6cf95;--line:#ece5d7;--line2:#e3dccd;
+    --sh-sm:0 8px 22px -16px rgba(26,22,30,.3);--sh:0 26px 60px -30px rgba(26,22,30,.34)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:rgba(205,164,78,.28);color:var(--char)}
+  html{background:var(--bg)}
+  body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);background:radial-gradient(120% 80% at 50% -10%,#fff,var(--bg) 55%);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Fraunces',serif;color:var(--char);font-weight:600;letter-spacing:-.015em;line-height:1.12}
+  a{color:inherit;text-decoration:none}
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--gold),var(--gold-2));box-shadow:0 0 12px rgba(205,164,78,.5);transition:width .35s ease}
+  .top{max-width:760px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--char)}
+  .brand .badge{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:15px;background:linear-gradient(160deg,var(--char2),var(--char));box-shadow:0 0 0 3px rgba(205,164,78,.16)}
+  .brand .badge b{color:var(--gold-2)}
+  .back{font-size:14px;color:var(--muted);font-weight:500}.back:hover{color:var(--char)}
+  .wrap{max-width:680px;margin:0 auto;padding:12px 24px 40px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh);padding:38px 34px;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-line),var(--gold-2),#f9eccf,var(--gold-2),var(--gold-line));background-size:220% 100%;animation:bs 4.5s linear infinite}
+  @keyframes bs{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:inline-flex;gap:9px;align-items:center}
+  .card h1{font-size:clamp(26px,4.4vw,38px);margin:14px 0 0}
+  .lead{color:var(--muted);font-size:16.5px;font-weight:300;margin-top:14px}
+  .cta{display:inline-flex;align-items:center;gap:.5em;margin-top:26px;background:linear-gradient(160deg,var(--gold-2),var(--gold-line));color:#241a07;font-weight:600;font-size:16px;padding:14px 28px;border-radius:13px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 22px 50px -28px rgba(168,125,51,.5);transition:transform .16s,box-shadow .25s;position:relative;overflow:hidden}
+  .cta:hover{transform:translateY(-2px)}
+  .cta::after{content:"";position:absolute;top:0;left:-60%;width:42%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transition:left .55s}
+  .cta:hover::after{left:130%}
+  .disc{margin-top:18px;color:var(--muted);font-size:13px}
+  .qmeta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+  .lnk{background:none;border:none;color:var(--gold);font-family:inherit;font-weight:600;cursor:pointer;font-size:13.5px}
+  .qh{font-size:clamp(21px,3.4vw,27px);margin:16px 0 22px}
+  .opts{display:flex;flex-direction:column;gap:12px}
+  .opt{text-align:left;background:var(--bg);border:1px solid var(--line2);border-radius:14px;padding:16px 18px;font-family:inherit;font-size:15.5px;color:var(--ink);cursor:pointer;transition:transform .14s,border-color .18s,box-shadow .2s;font-weight:500}
+  .opt:hover{transform:translateY(-2px);border-color:var(--gold-line);box-shadow:var(--sh-sm)}
+  .exam{margin-top:16px;display:inline-block;background:rgba(205,164,78,.14);color:#5f4912;border-radius:10px;padding:8px 14px;font-size:13.5px;font-weight:600}
+  .alts{margin-top:26px;border-top:1px dashed var(--line2);padding-top:20px}
+  .alts h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--char);margin-bottom:12px}
+  .alt{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin-bottom:9px;font-size:14.5px}
+  .alt b{color:var(--char);font-weight:600}
+  .restart{display:block;margin-top:18px}
+  .ftr{max-width:680px;margin:0 auto;padding:18px 24px 40px;color:var(--muted);font-size:13px;text-align:center}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+  @media(max-width:560px){.card{padding:30px 22px}}
 </style>
 </head>
 <body>
-<nav class="lang">
-  <a href="vodic-fakultet.html">SR</a><span>·</span><a href="vodic-fakultet-en.html" class="active">EN</a>
-</nav>
-<div class="wrap">
-  <div class="brand"><span class="wordmark">MathIA</span></div>
-  <h1>Which university is for you?</h1>
-  <p class="sub">Answer 8 short questions — we'll suggest a field and faculties in Novi Sad and Belgrade.</p>
-  <div class="card" id="card"></div>
-  <p class="foot">An orientation guide, not an official recommendation. Official admission requirements:
-     <a href="https://www.uns.ac.rs" target="_blank" rel="noopener">uns.ac.rs</a> and
-     <a href="https://www.bg.ac.rs" target="_blank" rel="noopener">bg.ac.rs</a></p>
-</div>
-
+<div class="progress" id="prog"></div>
+<header class="top" id="top"></header>
+<main class="wrap"><div class="card" id="card"></div></main>
+<footer class="ftr" id="ftr"></footer>
 <script>
-const VISIBOOK = "https://visibook.com/psatlura5dcepnnrr";
-
-const OBLASTI = {
-  TEH:  {name:"Engineering & technology", tags:["TEH","MAT"], mat:true,  desc:"Mechanical, electrical and mechatronics engineering. Novi Sad: FTN. Belgrade: ETF, Faculty of Mechanical Engineering, Faculty of Civil Engineering."},
-  IT:   {name:"Computing & software", tags:["IT","MAT"], mat:true,  desc:"Programming, software and artificial intelligence. Novi Sad: FTN (Computing, Software Eng.), PMF. Belgrade: ETF, Faculty of Mathematics, RAF."},
-  MATF: {name:"Mathematics & physics", tags:["MAT","NAUKA"], mat:true,  desc:"Pure and applied mathematics and physics. Novi Sad: PMF (Faculty of Sciences). Belgrade: Faculty of Mathematics, Faculty of Physics."},
-  PRIR: {name:"Biology, chemistry & life sciences", tags:["PRIRODA","NAUKA"], mat:false, desc:"Biology, chemistry, ecology. Novi Sad: PMF, Faculty of Technology. Belgrade: Faculty of Biology, Faculty of Chemistry."},
-  MED:  {name:"Medicine & health", tags:["MED","PRIRODA"], mat:false, desc:"Medicine, dentistry, pharmacy. Novi Sad: Faculty of Medicine. Belgrade: Faculties of Medicine, Dentistry and Pharmacy."},
-  EKON: {name:"Economics & business", tags:["EKON","ORG"], mat:false, desc:"Economics, finance, management. Novi Sad: Faculty of Economics (Subotica/Novi Sad). Belgrade: Faculty of Economics, FON."},
-  PRAVO:{name:"Law", tags:["PRAVO","DRUST"], mat:false, desc:"Law, judiciary and administration. Novi Sad: Faculty of Law. Belgrade: Faculty of Law."},
-  DRUST:{name:"Social sciences & psychology", tags:["DRUST"], mat:false, desc:"Psychology, sociology, political science. Novi Sad: Faculty of Philosophy. Belgrade: Faculty of Philosophy, FPN."},
-  JEZIK:{name:"Languages & philology", tags:["JEZIK","DRUST"], mat:false, desc:"Foreign languages, literature and translation. Novi Sad: Faculty of Philosophy. Belgrade: Faculty of Philology."},
-  UMETL:{name:"Fine arts & design", tags:["UMET","DIZ"], mat:false, desc:"Painting, design, applied arts. Novi Sad: Academy of Arts. Belgrade: FLU, FPU."},
-  UMETS:{name:"Music, acting & stage", tags:["UMET","SCENA"], mat:false, desc:"Music, acting and dramatic arts. Novi Sad: Academy of Arts. Belgrade: FMU (music), FDU (drama & film)."},
-  ARHG: {name:"Architecture & civil engineering", tags:["TEH","DIZ"], mat:true, desc:"Designing buildings, spaces and cities. Novi Sad: FTN (Architecture, Civil Eng.). Belgrade: Faculty of Architecture, Faculty of Civil Engineering."},
-  ORG:  {name:"Management & organization", tags:["ORG","EKON"], mat:false, desc:"Organization, management, information systems. Novi Sad: FTN (Engineering Management). Belgrade: FON."},
-  POLJ: {name:"Agriculture & biotechnology", tags:["PRIRODA","NAUKA"], mat:false, desc:"Agriculture and food technology. Novi Sad: Faculty of Agriculture, Faculty of Technology. Belgrade: Faculty of Agriculture (Zemun)."},
-  SPORT:{name:"Sport & physical education", tags:["SPORT"], mat:false, desc:"Sport, coaching and physical education. Novi Sad and Belgrade: Faculty of Sport and Physical Education."},
-  SAOB: {name:"Transport & logistics", tags:["TEH","ORG"], mat:true, desc:"Traffic, transport and logistics. Novi Sad: FTN (Traffic). Belgrade: Faculty of Transport and Traffic Engineering."},
-  MEDIJ:{name:"Media & communications", tags:["DRUST","JEZIK"], mat:false, desc:"Journalism, media and communications. Novi Sad: Faculty of Philosophy. Belgrade: FPN (journalism & communication)."}
-};
-
-const QUESTIONS = [
-  {q:"What attracts you most?", o:[
-    {t:"Technology, machines and how things work", s:{TEH:3, MAT:1}},
-    {t:"Computers, software and technology", s:{IT:3, MAT:1}},
-    {t:"Nature, the body and health", s:{PRIRODA:2, MED:2}},
-    {t:"People, society and how the world works", s:{DRUST:3}},
-    {t:"Art, design and creating", s:{UMET:2, DIZ:1}},
-    {t:"Money, business and organization", s:{EKON:2, ORG:2}}
-  ]},
-  {q:"Favorite subject in school?", o:[
-    {t:"Mathematics", s:{MAT:3, IT:1, TEH:1}},
-    {t:"Physics", s:{TEH:2, MAT:1, NAUKA:1}},
-    {t:"Biology or chemistry", s:{PRIRODA:2, MED:2, NAUKA:1}},
-    {t:"Native or foreign languages", s:{JEZIK:3}},
-    {t:"History or sociology", s:{DRUST:2, PRAVO:1}},
-    {t:"Art or music", s:{UMET:2, DIZ:1, SCENA:1}}
-  ]},
-  {q:"Your dream job?", o:[
-    {t:"Engineer or programmer", s:{TEH:2, IT:2, MAT:1}},
-    {t:"Doctor or science researcher", s:{MED:3, PRIRODA:1, NAUKA:1}},
-    {t:"Lawyer, judge or in administration", s:{PRAVO:3, DRUST:1}},
-    {t:"Entrepreneur or manager", s:{EKON:2, ORG:2}},
-    {t:"Artist, designer or musician", s:{UMET:2, DIZ:1, SCENA:1}},
-    {t:"Psychologist, teacher or journalist", s:{DRUST:2, JEZIK:1}}
-  ]},
-  {q:"How much do you like mathematics?", o:[
-    {t:"A lot — it's my strong suit", s:{MAT:2, TEH:1, IT:1}},
-    {t:"It's fine, I manage", s:{EKON:1, ORG:1, NAUKA:1}},
-    {t:"I prefer languages and humanities", s:{JEZIK:1, DRUST:1}},
-    {t:"I prefer creative work", s:{UMET:1, DIZ:1}}
-  ]},
-  {q:"How do you prefer to work?", o:[
-    {t:"Solving problems and logical tasks", s:{MAT:1, IT:2, TEH:1}},
-    {t:"Working with people", s:{DRUST:2, MED:1, ORG:1}},
-    {t:"Hands-on, in a lab or in the field", s:{PRIRODA:1, TEH:1, MED:1}},
-    {t:"Creatively and visually", s:{UMET:2, DIZ:1}},
-    {t:"Organizing and leading", s:{ORG:2, EKON:1}}
-  ]},
-  {q:"What matters to you in a job?", o:[
-    {t:"Innovation and technology", s:{IT:1, TEH:1, MAT:1}},
-    {t:"Helping people", s:{MED:2, DRUST:1}},
-    {t:"Stability and prestige", s:{PRAVO:2, EKON:1}},
-    {t:"Freedom and creativity", s:{UMET:2, DIZ:1}},
-    {t:"Earnings and advancement", s:{EKON:2, ORG:1}}
-  ]},
-  {q:"Which field of the future attracts you?", o:[
-    {t:"Artificial intelligence and IT", s:{IT:2, MAT:1}},
-    {t:"Medicine and biotechnology", s:{MED:2, PRIRODA:1}},
-    {t:"Green energy and ecology", s:{NAUKA:1, PRIRODA:1, TEH:1}},
-    {t:"Media, marketing and communications", s:{DRUST:1, JEZIK:1, ORG:1}},
-    {t:"Design, film and video games", s:{DIZ:2, UMET:1, IT:1}},
-    {t:"Sport and health", s:{SPORT:3}}
-  ]},
-  {q:"Which environment suits you best?", o:[
-    {t:"Lab, workshop or construction site", s:{TEH:2, NAUKA:1}},
-    {t:"Hospital or clinic", s:{MED:3}},
-    {t:"Office, court or company", s:{PRAVO:1, EKON:1, ORG:1}},
-    {t:"Studio, stage or atelier", s:{UMET:1, DIZ:1, SCENA:1}},
-    {t:"Classroom, newsroom or institute", s:{DRUST:1, JEZIK:1, NAUKA:1}},
-    {t:"Field, gym or nature", s:{SPORT:2, PRIRODA:1}}
-  ]}
-];
-
-let step = 0, tagScores = {};
-const card = document.getElementById('card');
-
-function renderQuestion(){
-  const Q = QUESTIONS[step];
-  let html = '<div class="progress">QUESTION ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
-  html += '<div class="q">' + Q.q + '</div>';
-  Q.o.forEach(function(opt,i){ html += '<button class="opt" data-i="'+i+'">'+opt.t+'</button>'; });
-  card.innerHTML = html;
-  card.querySelectorAll('.opt').forEach(function(b){
-    b.addEventListener('click', function(){
-      const opt = Q.o[b.dataset.i];
-      for(const k in opt.s){ tagScores[k] = (tagScores[k]||0) + opt.s[k]; }
-      step++;
-      if(step < QUESTIONS.length){ renderQuestion(); } else { renderResult(); }
-    });
-  });
-}
-
-function renderResult(){
-  const keys = Object.keys(OBLASTI);
-  const ranked = keys.map(function(k,idx){
-    let s = 0; OBLASTI[k].tags.forEach(function(t){ s += (tagScores[t]||0); });
-    const v = s / OBLASTI[k].tags.length + s * 0.0001;
-    return {k:k, v:v, idx:idx};
-  }).sort(function(a,b){ return b.v - a.v || a.idx - b.idx; });
-
-  const top = OBLASTI[ranked[0].k], alt1 = OBLASTI[ranked[1].k], alt2 = OBLASTI[ranked[2].k], alt3 = OBLASTI[ranked[3].k];
-  const pill = top.mat ? "The entrance exam usually includes mathematics/physics" : "Admission requirements vary by faculty";
-
-  let ctaBlock;
-  if(top.mat){
-    ctaBlock = '<div class="cta"><a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Book a lesson — prep for the entrance exam →</a>' +
-      '<p class="cta-note">For this field the entrance exam usually includes mathematics or physics. Prepare with MathIA — private or group, online or in person.</p></div>';
-  } else {
-    ctaBlock = '<div class="cta"><a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Book a lesson →</a>' +
-      '<p class="cta-note">Admission requirements vary by faculty — check their website. If you need mathematics or physics, MathIA is here for you.</p></div>';
+const DATA={"ui": {"start": "Start the test", "back": "‹ Back", "q": "Question", "of": "of", "resultKicker": "Your result", "altTitle": "Great alternatives", "cta": "Book a lesson →", "restart": "Start over", "backSite": "‹ Back to site", "backHref": "en.html", "disc": "This guide narrows your options — it isn't the final decision."}, "meta": {"title": "Which faculty is right for you?", "badge": "Faculty guide", "subtitle": "A few questions and you get a faculty suggestion with alternatives — for Novi Sad and Belgrade.", "ctaHref": "https://visibook.com/psatlura5dcepnnrr"}, "outcomes": {"TEH": {"title": "Engineering & IT", "desc": "FTN, ETF, RAF or computing at the science faculty — software, engineering, IT. (Novi Sad / Belgrade)"}, "PRIR": {"title": "Natural Sciences", "desc": "Maths, physics, chemistry, biology — research and science."}, "MED": {"title": "Medicine & Biomedicine", "desc": "Medical school and biomedicine — working with people and health."}, "EKO": {"title": "Economics & Business", "desc": "Economics, management and entrepreneurship — markets and organization."}, "DRU": {"title": "Social Sciences & Humanities", "desc": "Law, psychology, languages, media — working with people and ideas."}, "UMD": {"title": "Art, Design & Architecture", "desc": "Art academy, design, architecture — creative professions."}}, "questions": [{"q": "What interests you most?", "options": [{"t": "Technology, computers, engineering", "s": {"TEH": 2}}, {"t": "How nature and numbers work", "s": {"PRIR": 2}}, {"t": "The human body and health", "s": {"MED": 2}}, {"t": "Money, markets, entrepreneurship", "s": {"EKO": 2}}]}, {"q": "Favourite subject?", "options": [{"t": "Maths / computer science", "s": {"TEH": 2, "PRIR": 1}}, {"t": "Physics / chemistry / biology", "s": {"PRIR": 2, "MED": 1}}, {"t": "Languages / history / psychology", "s": {"DRU": 2}}, {"t": "Art / design", "s": {"UMD": 2}}]}, {"q": "How would you like to work?", "options": [{"t": "Building systems and software", "s": {"TEH": 2}}, {"t": "Researching and discovering", "s": {"PRIR": 2, "MED": 1}}, {"t": "Helping people directly", "s": {"MED": 2, "DRU": 1}}, {"t": "Running a business or projects", "s": {"EKO": 2}}]}, {"q": "What matters to you at work?", "options": [{"t": "Innovation and logic", "s": {"TEH": 2}}, {"t": "Stability and science", "s": {"PRIR": 1, "MED": 1}}, {"t": "Contact with people", "s": {"DRU": 2, "MED": 1}}, {"t": "Earnings and opportunity", "s": {"EKO": 2}}]}, {"q": "Pick a task:", "options": [{"t": "Build an app or a machine", "s": {"TEH": 2}}, {"t": "Solve a complex scientific problem", "s": {"PRIR": 2}}, {"t": "Design a campaign or business plan", "s": {"EKO": 2, "DRU": 1}}, {"t": "Design a space or visual", "s": {"UMD": 2}}]}, {"q": "Where do you see yourself?", "options": [{"t": "IT or engineering", "s": {"TEH": 2}}, {"t": "Lab, research, clinic", "s": {"PRIR": 1, "MED": 2}}, {"t": "Company, bank, marketing", "s": {"EKO": 2}}, {"t": "Studio, atelier, office", "s": {"UMD": 2, "DRU": 1}}]}]};
+const $=s=>document.querySelector(s);
+let stage='intro',idx=0,scores={},hist=[];
+const N=DATA.questions.length;
+function prog(p){$('#prog').style.width=p+'%';}
+function head(){$('#top').innerHTML=`<a class="brand" href="${DATA.ui.backHref}"><span class="badge"><b>M</b></span>MathIA</a><a class="back" href="${DATA.ui.backHref}">${DATA.ui.backSite}</a>`;
+  $('#ftr').innerHTML=`MathIA · <a href="${DATA.ui.backHref}" style="color:var(--gold)">mathia.rs</a>`;}
+function render(){
+  const c=$('#card');
+  if(stage==='intro'){prog(0);
+    c.innerHTML=`<span class="kicker">◆ ${DATA.meta.badge}</span><h1>${DATA.meta.title}</h1><p class="lead">${DATA.meta.subtitle}</p><button class="cta" id="go">${DATA.ui.start}</button><p class="disc">${DATA.ui.disc}</p>`;
+    $('#go').onclick=()=>{stage='quiz';idx=0;scores={};hist=[];render();window.scrollTo({top:0,behavior:'smooth'});};
+  }else if(stage==='quiz'){const q=DATA.questions[idx];prog(Math.round(idx/N*100));
+    c.innerHTML=`<div class="qmeta"><span>${DATA.ui.q} ${idx+1} ${DATA.ui.of} ${N}</span>${idx>0?`<button class="lnk" id="bk">${DATA.ui.back}</button>`:''}</div><h2 class="qh">${q.q}</h2><div class="opts">${q.options.map((o,i)=>`<button class="opt" data-i="${i}">${o.t}</button>`).join('')}</div>`;
+    c.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const o=q.options[+b.dataset.i];hist.push(JSON.stringify(scores));for(const k in o.s){scores[k]=(scores[k]||0)+o.s[k];}idx++;if(idx>=N)stage='result';render();window.scrollTo({top:0,behavior:'smooth'});});
+    const bk=$('#bk');if(bk)bk.onclick=()=>{if(hist.length)scores=JSON.parse(hist.pop());idx=Math.max(0,idx-1);render();};
+  }else{prog(100);
+    const ranked=Object.keys(DATA.outcomes).sort((a,b)=>(scores[b]||0)-(scores[a]||0));
+    const o=DATA.outcomes[ranked[0]];const alts=ranked.slice(1,3);
+    c.innerHTML=`<span class="kicker">◆ ${DATA.ui.resultKicker}</span><h1>${o.title}</h1><p class="lead">${o.desc}</p>${o.exam?`<div class="exam">${o.exam}</div>`:''}<div class="alts"><h3>${DATA.ui.altTitle}</h3>${alts.map(k=>`<div class="alt"><b>${DATA.outcomes[k].title}</b></div>`).join('')}</div><a class="cta" href="${DATA.meta.ctaHref}" target="_blank" rel="noopener">${DATA.ui.cta}</a><button class="lnk restart" id="rs">${DATA.ui.restart}</button>`;
+    $('#rs').onclick=()=>{stage='intro';render();window.scrollTo({top:0,behavior:'smooth'});};
   }
-
-  card.innerHTML =
-    '<div class="badge">SUGGESTED FOR YOU</div>' +
-    '<div class="result-name">' + top.name + '</div>' +
-    '<div class="result-desc">' + top.desc + '</div>' +
-    '<div class="tag-wrap"><span class="tag">' + pill + '</span></div>' +
-    '<div class="alts-title">Alternatives that might suit you</div>' +
-    '<div class="alt"><b>'+alt1.name+'</b><br><span>'+alt1.desc+'</span></div>' +
-    '<div class="alt"><b>'+alt2.name+'</b><br><span>'+alt2.desc+'</span></div>' +
-    '<div class="alt"><b>'+alt3.name+'</b><br><span>'+alt3.desc+'</span></div>' +
-    ctaBlock +
-    '<button class="btn btn-ghost" onclick="restart()">↺ Start over</button>';
 }
-function restart(){ step=0; tagScores={}; renderQuestion(); }
-renderQuestion();
+head();render();
 </script>
 </body>
 </html>

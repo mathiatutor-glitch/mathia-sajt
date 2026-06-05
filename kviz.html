@@ -3,241 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MathIA — Otkrij svoj smer na FTN-u</title>
+<title>Koji smer na FTN-u je za tebe? · MathIA</title>
+<meta name="description" content="Kratak vodič: 8 pitanja i dobijaš predlog smera na FTN-u, alternative i tip prijemnog ispita.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23201d24'/%3E%3Ctext x='50%25' y='54%25' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23cda44e' text-anchor='middle' dominant-baseline='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-  :root{
-    --navy1:#102540; --navy2:#0A1628; --navy3:#050A1A;
-    --gold:#E7C76B; --gold-hi:#F8EAB6; --gold-lo:#C29A45;
-    --cyan:#34C6E0; --ink:#dfe7f2; --muted:#8fa9c4; --line:#21344f;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  body{
-    font-family:'Manrope',system-ui,sans-serif; color:var(--ink); min-height:100vh;
-    background:radial-gradient(900px 500px at 50% -5%, var(--navy1) 0%, var(--navy2) 45%, var(--navy3) 100%);
-    display:flex; justify-content:center; padding:32px 18px;
-  }
-  .wrap{ width:100%; max-width:560px; }
-  .brand{ text-align:center; margin-bottom:8px; }
-  .wordmark{
-    font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:40px; letter-spacing:.05em;
-    background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,var(--gold-lo));
-    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:var(--gold);
-  }
-  h1{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; text-align:center; margin:6px 0 4px; color:#f2f5fa;}
-  .sub{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:26px; }
-  .card{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:18px; padding:24px 22px;}
-  .progress{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--cyan); margin-bottom:14px; }
-  .q{ font-size:19px; font-weight:600; line-height:1.4; margin-bottom:18px; color:#f2f5fa; }
-  .opt{
-    display:block; width:100%; text-align:left; background:rgba(255,255,255,.02); color:var(--ink);
-    border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px;
-    font-size:15px; font-family:'Manrope',sans-serif; cursor:pointer; transition:all .15s ease;
-  }
-  .opt:hover{ border-color:var(--cyan); background:rgba(52,198,224,.08); transform:translateY(-1px); }
-  .badge{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.22em; color:var(--cyan); text-align:center; }
-  .result-name{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:29px; text-align:center; color:var(--gold); margin:6px 0 6px; line-height:1.15;}
-  .result-desc{ text-align:center; color:var(--ink); font-size:15px; line-height:1.6; margin-bottom:8px;}
-  .tag{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em;
-        border:1px solid var(--line); border-radius:100px; padding:5px 12px; color:var(--muted); margin:4px auto 0;}
-  .tag-wrap{ text-align:center; margin-bottom:20px;}
-  .alts-title{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--muted); margin:22px 0 10px; text-transform:uppercase;}
-  .alt{ border-top:1px solid var(--line); padding:13px 0; }
-  .alt b{ color:#f2f5fa; font-weight:600;} .alt span{ color:var(--muted); font-size:13.5px;}
-  .cta{ margin-top:22px; }
-  a.btn,button.btn{
-    display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
-    text-decoration:none; font-weight:600; font-size:16px; padding:15px 18px; border-radius:13px;
-    border:none; cursor:pointer; transition:all .18s ease; font-family:'Manrope',sans-serif; margin-bottom:11px;
-  }
-  .btn-primary{ background:linear-gradient(180deg,var(--gold-hi),var(--gold) 65%,var(--gold-lo)); color:var(--navy3); box-shadow:0 8px 24px rgba(231,199,107,.2);}
-  .btn-primary:hover{ transform:translateY(-2px);}
-  .btn-ghost{ background:rgba(255,255,255,.03); color:var(--ink); border:1px solid var(--line);}
-  .btn-ghost:hover{ border-color:var(--cyan); color:#fff;}
-  .cta-note{ text-align:center; color:var(--muted); font-size:13px; margin:4px 0 0; line-height:1.5;}
-  .foot{ text-align:center; margin-top:20px; font-size:12px; color:#566b88; line-height:1.6;}
-  .foot a{ color:var(--muted);}
-  .lang{ position:fixed; top:18px; right:20px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; }
-  .lang a{ color:var(--muted); text-decoration:none; padding:2px 4px; transition:color .15s ease; }
-  .lang a.active{ color:var(--gold); }
-  .lang a:hover{ color:var(--cyan); }
-  .lang span{ color:#566b88; }
+  :root{--bg:#fbfaf7;--bg2:#f4efe6;--card:#fff;--ink:#1f1d22;--muted:#5c6479;--char:#201d24;--char2:#383440;
+    --gold:#a87d33;--gold-line:#cda44e;--gold-2:#e6cf95;--line:#ece5d7;--line2:#e3dccd;
+    --sh-sm:0 8px 22px -16px rgba(26,22,30,.3);--sh:0 26px 60px -30px rgba(26,22,30,.34)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:rgba(205,164,78,.28);color:var(--char)}
+  html{background:var(--bg)}
+  body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);background:radial-gradient(120% 80% at 50% -10%,#fff,var(--bg) 55%);min-height:100vh;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Fraunces',serif;color:var(--char);font-weight:600;letter-spacing:-.015em;line-height:1.12}
+  a{color:inherit;text-decoration:none}
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;background:linear-gradient(90deg,var(--gold),var(--gold-2));box-shadow:0 0 12px rgba(205,164,78,.5);transition:width .35s ease}
+  .top{max-width:760px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:var(--char)}
+  .brand .badge{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:15px;background:linear-gradient(160deg,var(--char2),var(--char));box-shadow:0 0 0 3px rgba(205,164,78,.16)}
+  .brand .badge b{color:var(--gold-2)}
+  .back{font-size:14px;color:var(--muted);font-weight:500}.back:hover{color:var(--char)}
+  .wrap{max-width:680px;margin:0 auto;padding:12px 24px 40px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh);padding:38px 34px;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold-line),var(--gold-2),#f9eccf,var(--gold-2),var(--gold-line));background-size:220% 100%;animation:bs 4.5s linear infinite}
+  @keyframes bs{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:inline-flex;gap:9px;align-items:center}
+  .card h1{font-size:clamp(26px,4.4vw,38px);margin:14px 0 0}
+  .lead{color:var(--muted);font-size:16.5px;font-weight:300;margin-top:14px}
+  .cta{display:inline-flex;align-items:center;gap:.5em;margin-top:26px;background:linear-gradient(160deg,var(--gold-2),var(--gold-line));color:#241a07;font-weight:600;font-size:16px;padding:14px 28px;border-radius:13px;border:none;cursor:pointer;font-family:inherit;box-shadow:0 22px 50px -28px rgba(168,125,51,.5);transition:transform .16s,box-shadow .25s;position:relative;overflow:hidden}
+  .cta:hover{transform:translateY(-2px)}
+  .cta::after{content:"";position:absolute;top:0;left:-60%;width:42%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transition:left .55s}
+  .cta:hover::after{left:130%}
+  .disc{margin-top:18px;color:var(--muted);font-size:13px}
+  .qmeta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+  .lnk{background:none;border:none;color:var(--gold);font-family:inherit;font-weight:600;cursor:pointer;font-size:13.5px}
+  .qh{font-size:clamp(21px,3.4vw,27px);margin:16px 0 22px}
+  .opts{display:flex;flex-direction:column;gap:12px}
+  .opt{text-align:left;background:var(--bg);border:1px solid var(--line2);border-radius:14px;padding:16px 18px;font-family:inherit;font-size:15.5px;color:var(--ink);cursor:pointer;transition:transform .14s,border-color .18s,box-shadow .2s;font-weight:500}
+  .opt:hover{transform:translateY(-2px);border-color:var(--gold-line);box-shadow:var(--sh-sm)}
+  .exam{margin-top:16px;display:inline-block;background:rgba(205,164,78,.14);color:#5f4912;border-radius:10px;padding:8px 14px;font-size:13.5px;font-weight:600}
+  .alts{margin-top:26px;border-top:1px dashed var(--line2);padding-top:20px}
+  .alts h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--char);margin-bottom:12px}
+  .alt{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin-bottom:9px;font-size:14.5px}
+  .alt b{color:var(--char);font-weight:600}
+  .restart{display:block;margin-top:18px}
+  .ftr{max-width:680px;margin:0 auto;padding:18px 24px 40px;color:var(--muted);font-size:13px;text-align:center}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+  @media(max-width:560px){.card{padding:30px 22px}}
 </style>
 </head>
 <body>
-<nav class="lang">
-  <a href="kviz.html" class="active">SR</a><span>·</span><a href="quiz-en.html">EN</a>
-</nav>
-<div class="wrap">
-  <div class="brand"><span class="wordmark">MathIA</span></div>
-  <h1>Otkrij svoj smer na FTN-u</h1>
-  <p class="sub">Odgovori na 8 kratkih pitanja — predložićemo ti smer i alternative.</p>
-  <div class="card" id="card"></div>
-  <p class="foot">Orijentacioni vodič, ne i zvanična preporuka. Zvanični programi i uslovi upisa:
-     <a href="https://ftn.uns.ac.rs/studijski-programi/" target="_blank" rel="noopener">ftn.uns.ac.rs</a></p>
-</div>
-
+<div class="progress" id="prog"></div>
+<header class="top" id="top"></header>
+<main class="wrap"><div class="card" id="card"></div></main>
+<footer class="ftr" id="ftr"></footer>
 <script>
-const VISIBOOK = "https://visibook.com/psatlura5dcepnnrr";
-
-/* Svi smerovi osnovnih akademskih studija FTN-a, sa tematskim oznakama (tags) i tipom prijemnog */
-const SMEROVI = {
-  PM:  {name:"Proizvodno mašinstvo", tags:["MASH"], prijemni:"matematika", desc:"Tehnologije izrade, mašine alatke i proizvodni procesi."},
-  MKM: {name:"Mehanizacija i konstrukciono mašinstvo", tags:["MASH"], prijemni:"matematika", desc:"Mašinske konstrukcije, transportni sistemi i mehanizacija."},
-  EPT: {name:"Energetika i procesna tehnika", tags:["MASH","ENERG"], prijemni:"matematika", desc:"Toplotna i procesna tehnika, energetski sistemi."},
-  TMD: {name:"Tehnička mehanika i dizajn u tehnici", tags:["MASH","DIZ"], prijemni:"matematika", desc:"Inženjerska mehanika i dizajn tehničkih proizvoda."},
-  EET: {name:"Energetika, elektronika i telekomunikacije", tags:["ELEK"], prijemni:"matematika", desc:"Struja, elektronika, telekomunikacije i merno-informacioni sistemi."},
-  PSI: {name:"Primenjeno softversko inženjerstvo", tags:["SOFT","ELEK"], prijemni:"matematika", desc:"Softver za elektroenergetske i tehničke sisteme."},
-  MR:  {name:"Merenje i regulacija", tags:["ELEK","AI"], prijemni:"matematika", desc:"Merna tehnika, senzori i automatska regulacija."},
-  RA:  {name:"Računarstvo i automatika", tags:["SOFT","AI"], prijemni:"matematika", desc:"Programiranje, veštačka inteligencija, robotika i upravljanje."},
-  SIIT:{name:"Softversko inženjerstvo i informacione tehnologije", tags:["SOFT"], prijemni:"matematika", desc:"Razvoj softvera, veb i mobilnih aplikacija (Novi Sad i Loznica)."},
-  GRA: {name:"Građevinarstvo", tags:["GRAD"], prijemni:"matematika", desc:"Projektovanje i gradnja objekata, mostova i infrastrukture (Novi Sad i Kragujevac)."},
-  ST:  {name:"Saobraćaj i transport", tags:["SAOB"], prijemni:"matematika", desc:"Drumski, transportni i logistički sistemi."},
-  PST: {name:"Poštanski saobraćaj i telekomunikacije", tags:["SAOB","ELEK"], prijemni:"matematika", desc:"Poštanski i telekomunikacioni sistemi i mreže."},
-  ARH: {name:"Arhitektura", tags:["DIZ","GRAD"], prijemni:"sklonosti", desc:"Projektovanje zgrada, prostora i gradova."},
-  II:  {name:"Industrijsko inženjerstvo", tags:["MENADZ","MASH"], prijemni:"matematika", desc:"Optimizacija proizvodnje, kvalitet i logistika."},
-  IM:  {name:"Inženjerski menadžment", tags:["MENADZ"], prijemni:"matematika", desc:"Spoj inženjerstva, ekonomije i upravljanja."},
-  IIS: {name:"Inženjerstvo informacionih sistema", tags:["MENADZ","SOFT"], prijemni:"matematika", desc:"Informacioni sistemi u poslovanju i proizvodnji."},
-  IZZS:{name:"Inženjerstvo zaštite životne sredine", tags:["EKO"], prijemni:"sklonosti", desc:"Zaštita vode, vazduha i zemljišta, održivost."},
-  IZNR:{name:"Inženjerstvo zaštite na radu", tags:["EKO"], prijemni:"sklonosti", desc:"Bezbednost i zdravlje na radu, procena rizika."},
-  URK: {name:"Upravljanje rizikom od katastrofalnih događaja i požara", tags:["EKO"], prijemni:"sklonosti", desc:"Zaštita od požara i upravljanje vanrednim situacijama."},
-  GEO: {name:"Geodezija i geoinformatika", tags:["GRAD"], prijemni:"matematika", desc:"Merenja, mape, GIS i geoinformatika."},
-  GID: {name:"Grafičko inženjerstvo i dizajn", tags:["DIZ"], prijemni:"sklonosti", desc:"Dizajn, štampa, multimedija i vizuelne komunikacije."},
-  MEH: {name:"Mehatronika", tags:["AI","MASH","ELEK"], prijemni:"matematika", desc:"Spoj mašinstva, elektronike i automatike — roboti i pametni sistemi."},
-  ANI: {name:"Animacija u inženjerstvu", tags:["DIZ","SOFT"], prijemni:"matematika", desc:"Računarska grafika, animacija i vizuelni efekti."},
-  BIO: {name:"Biomedicinsko inženjerstvo", tags:["BIO","ELEK"], prijemni:"matematika", desc:"Tehnologija u medicini — uređaji i biomedicinski sistemi."},
-  CET: {name:"Čiste energetske tehnologije", tags:["ENERG","EKO"], prijemni:"matematika", desc:"Obnovljivi izvori i održive energetske tehnologije."},
-  SAT: {name:"Scenska arhitektura, tehnika i dizajn", tags:["DIZ"], prijemni:"sklonosti", desc:"Dizajn scenskog prostora, pozorišne i filmske tehnike."},
-  INF: {name:"Informacioni inženjering", tags:["SOFT","MENADZ"], prijemni:"matematika", desc:"Inženjering informacionih i komunikacionih tehnologija."}
-};
-
-const QUESTIONS = [
-  {q:"Šta te najviše zanima?", o:[
-    {t:"Računari, softver i aplikacije", s:{SOFT:3, AI:1}},
-    {t:"Struja, elektronika i telekomunikacije", s:{ELEK:3}},
-    {t:"Mašine, motori i mehanika", s:{MASH:3}},
-    {t:"Građevine, mostovi i prostor", s:{GRAD:3}},
-    {t:"Dizajn, umetnost i vizuelno stvaranje", s:{DIZ:3}},
-    {t:"Priroda, zaštita i bezbednost", s:{EKO:3}}
-  ]},
-  {q:"Omiljeni predmet u školi?", o:[
-    {t:"Matematika i informatika", s:{SOFT:2, AI:2}},
-    {t:"Fizika", s:{ELEK:2, MASH:2}},
-    {t:"Likovno i tehničko crtanje", s:{DIZ:2, GRAD:1}},
-    {t:"Biologija i hemija", s:{EKO:2, BIO:2}},
-    {t:"Geografija", s:{GRAD:1, SAOB:1}}
-  ]},
-  {q:"Posao iz snova?", o:[
-    {t:"Razvijam softver i veštačku inteligenciju", s:{SOFT:3, AI:2}},
-    {t:"Projektujem elektroniku i sisteme", s:{ELEK:3, AI:1}},
-    {t:"Konstruišem mašine i uređaje", s:{MASH:3}},
-    {t:"Gradim objekte i infrastrukturu", s:{GRAD:3}},
-    {t:"Vodim timove i organizujem proizvodnju", s:{MENADZ:3}},
-    {t:"Kreiram vizuelni i digitalni sadržaj", s:{DIZ:3}},
-    {t:"Spajam tehnologiju i zdravlje", s:{BIO:3}}
-  ]},
-  {q:"Koliko voliš matematiku?", o:[
-    {t:"Veoma — to mi je jača strana", s:{SOFT:1, ELEK:1, MASH:1, GRAD:1, AI:1}},
-    {t:"Solidno, snalazim se", s:{MENADZ:1, MASH:1, SAOB:1}},
-    {t:"Više volim kreativan i praktičan rad", s:{DIZ:2}}
-  ]},
-  {q:"Kako najradije radiš?", o:[
-    {t:"Sam/a, na rešavanju problema", s:{SOFT:2, AI:1}},
-    {t:"U timu, koordiniram i organizujem", s:{MENADZ:2, SAOB:1}},
-    {t:"Praktično, u laboratoriji ili radionici", s:{MASH:2, ELEK:1, BIO:1}},
-    {t:"Kreativno, stvaram nešto vizuelno", s:{DIZ:2}}
-  ]},
-  {q:"Koja oblast budućnosti te najviše privlači?", o:[
-    {t:"Veštačka inteligencija i softver", s:{SOFT:2, AI:2}},
-    {t:"Energetika i elektronika", s:{ELEK:2, ENERG:1}},
-    {t:"Robotika i automatizacija", s:{AI:2, MASH:1}},
-    {t:"Zelene i održive tehnologije", s:{ENERG:2, EKO:2}},
-    {t:"Dizajn, animacija i mediji", s:{DIZ:2}},
-    {t:"Saobraćaj i logistika", s:{SAOB:3}}
-  ]},
-  {q:"Šta ti je najvažnije u budućem poslu?", o:[
-    {t:"Stalne inovacije i nove tehnologije", s:{SOFT:1, AI:1, ELEK:1}},
-    {t:"Stabilnost i jasna struktura", s:{GRAD:1, MENADZ:1}},
-    {t:"Rad sa ljudima i organizacija", s:{MENADZ:2}},
-    {t:"Doprinos zajednici i okolini", s:{EKO:2, BIO:1, ENERG:1}}
-  ]},
-  {q:"Koji projekat bi najradije radio/la?", o:[
-    {t:"Mobilna ili veb aplikacija", s:{SOFT:3}},
-    {t:"Pametan uređaj ili robot", s:{AI:2, ELEK:1, MASH:1}},
-    {t:"Most, zgrada ili put", s:{GRAD:2, SAOB:1}},
-    {t:"Sistem za fabriku ili logistiku", s:{MENADZ:2, MASH:1}},
-    {t:"Vizuelni identitet ili animacija", s:{DIZ:3}},
-    {t:"Rešenje za čistiju okolinu", s:{EKO:2, ENERG:1}}
-  ]}
-];
-
-let step = 0;
-let tagScores = {};
-const card = document.getElementById('card');
-
-function renderQuestion(){
-  const Q = QUESTIONS[step];
-  let html = '<div class="progress">PITANJE ' + (step+1) + ' / ' + QUESTIONS.length + '</div>';
-  html += '<div class="q">' + Q.q + '</div>';
-  Q.o.forEach(function(opt,i){ html += '<button class="opt" data-i="'+i+'">'+opt.t+'</button>'; });
-  card.innerHTML = html;
-  card.querySelectorAll('.opt').forEach(function(b){
-    b.addEventListener('click', function(){
-      const opt = Q.o[b.dataset.i];
-      for(const k in opt.s){ tagScores[k] = (tagScores[k]||0) + opt.s[k]; }
-      step++;
-      if(step < QUESTIONS.length){ renderQuestion(); } else { renderResult(); }
-    });
-  });
-}
-
-function renderResult(){
-  const keys = Object.keys(SMEROVI);
-  const ranked = keys.map(function(k,idx){
-    let s = 0;
-    SMEROVI[k].tags.forEach(function(t){ s += (tagScores[t]||0); });
-    const v = s / SMEROVI[k].tags.length + s * 0.0001; // prosek poklapanja, mali zbir kao razrešilac nereših
-    return {k:k, v:v, idx:idx};
-  }).sort(function(a,b){ return b.v - a.v || a.idx - b.idx; });
-
-  const top  = SMEROVI[ranked[0].k];
-  const alt1 = SMEROVI[ranked[1].k];
-  const alt2 = SMEROVI[ranked[2].k];
-  const alt3 = SMEROVI[ranked[3].k];
-
-  const prijemniLabel = top.prijemni === "matematika"
-      ? "Prijemni: matematika" : "Prijemni: test sklonosti";
-
-  let ctaBlock;
-  if(top.prijemni === "matematika"){
-    ctaBlock =
-      '<div class="cta">' +
-        '<a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Zakaži čas — spremi prijemni →</a>' +
-        '<p class="cta-note">Prijemni za ovaj smer je iz matematike (proveri tačan sadržaj na FTN-u). Spremaj se uz MathIA — privatno ili grupno, online ili uživo.</p>' +
-      '</div>';
-  } else {
-    ctaBlock =
-      '<div class="cta">' +
-        '<a class="btn btn-primary" href="'+VISIBOOK+'" target="_blank" rel="noopener">Zakaži čas →</a>' +
-        '<p class="cta-note">Ovaj smer ima test sklonosti — proveri uslove na sajtu FTN-a. Ako ti zatreba i matematika, MathIA je tu.</p>' +
-      '</div>';
+const DATA={"ui": {"start": "Počni test", "back": "‹ Nazad", "q": "Pitanje", "of": "od", "resultKicker": "Tvoj rezultat", "altTitle": "Odlične alternative", "cta": "Zakaži čas →", "restart": "Uradi ponovo", "backSite": "‹ Nazad na sajt", "backHref": "index.html", "disc": "Vodič je orijentir koji ti sužava izbor — ne konačna odluka."}, "meta": {"title": "Koji smer na FTN-u je za tebe?", "badge": "FTN · vodič za smer", "subtitle": "8 kratkih pitanja i dobijaš predlog smera, alternative i tip prijemnog ispita.", "ctaHref": "https://visibook.com/psatlura5dcepnnrr"}, "outcomes": {"RA": {"title": "Računarstvo i automatika", "desc": "Programiranje, veštačka inteligencija i sistemi upravljanja — najtraženiji kadar.", "exam": "Prijemni: matematika"}, "EET": {"title": "Energetika, elektronika i telekomunikacije", "desc": "Od čipova i kola do energetskih i telekom mreža.", "exam": "Prijemni: matematika"}, "MEH": {"title": "Mašinstvo i mehatronika", "desc": "Mašine, robotika i mehatronika — konstruisanje i proizvodnja.", "exam": "Prijemni: matematika"}, "IIM": {"title": "Industrijsko inženjerstvo i menadžment", "desc": "Spoj tehnike, organizacije i menadžmenta — vođenje projekata.", "exam": "Prijemni: matematika"}, "GA": {"title": "Građevina i arhitektura", "desc": "Projektovanje objekata i prostora — konstrukcije i dizajn.", "exam": "Prijemni: matematika (arhitektura + test sklonosti)"}, "ZZS": {"title": "Inženjerstvo zaštite životne sredine", "desc": "Ekologija, energetska efikasnost i održivost.", "exam": "Prijemni: matematika"}}, "questions": [{"q": "Šta bi najradije radio/la ceo dan?", "options": [{"t": "Pisao/la kod i rešavao/la logičke probleme", "s": {"RA": 2, "IIM": 1}}, {"t": "Sklapao/la i popravljao/la uređaje ili mašine", "s": {"MEH": 2, "EET": 1}}, {"t": "Crtao/la i projektovao/la prostor i objekte", "s": {"GA": 2}}, {"t": "Organizovao/la ljude, planove i procese", "s": {"IIM": 2}}]}, {"q": "Koji predmet ti najbolje ide?", "options": [{"t": "Matematika i programiranje", "s": {"RA": 2, "EET": 1}}, {"t": "Fizika (struja, mehanika)", "s": {"EET": 2, "MEH": 1}}, {"t": "Tehničko, crtanje, geometrija", "s": {"GA": 2, "MEH": 1}}, {"t": "Biologija, hemija, ekologija", "s": {"ZZS": 2}}]}, {"q": "Posao iz snova?", "options": [{"t": "Razvoj softvera i veštačke inteligencije", "s": {"RA": 2}}, {"t": "Energetika, elektronika, telekomunikacije", "s": {"EET": 2}}, {"t": "Robotika, automobili, proizvodnja", "s": {"MEH": 2}}, {"t": "Vođenje projekata ili firme", "s": {"IIM": 2}}]}, {"q": "Šta ti je važnije?", "options": [{"t": "Da stalno učim nove tehnologije", "s": {"RA": 1, "EET": 1}}, {"t": "Da pravim nešto opipljivo", "s": {"MEH": 2, "GA": 1}}, {"t": "Da utičem na ljude i odluke", "s": {"IIM": 2}}, {"t": "Da doprinosim prirodi i društvu", "s": {"ZZS": 2}}]}, {"q": "Koji zadatak zvuči najzanimljivije?", "options": [{"t": "Aplikacija koja predviđa ili automatizuje", "s": {"RA": 2}}, {"t": "Dizajn električnog kola ili sistema", "s": {"EET": 2}}, {"t": "Konstrukcija mehanizma ili robota", "s": {"MEH": 2}}, {"t": "Plan proizvodnje i logistike", "s": {"IIM": 2}}]}, {"q": "Gde se vidiš?", "options": [{"t": "U IT firmi ili startapu", "s": {"RA": 2, "IIM": 1}}, {"t": "U industriji ili energetici", "s": {"EET": 2, "MEH": 1}}, {"t": "Na gradilištu ili u projektnom birou", "s": {"GA": 2}}, {"t": "U zaštiti životne sredine", "s": {"ZZS": 2}}]}, {"q": "Kako najradije rešavaš problem?", "options": [{"t": "Algoritmom, korak po korak", "s": {"RA": 2}}, {"t": "Eksperimentom i merenjem", "s": {"EET": 2, "MEH": 1}}, {"t": "Skicom i prostorno", "s": {"GA": 2}}, {"t": "Planom, rokovima i timom", "s": {"IIM": 2}}]}, {"q": "Šta te najviše pokreće?", "options": [{"t": "Inovacija i tehnologija", "s": {"RA": 1, "EET": 1}}, {"t": "Mašine i pokret", "s": {"MEH": 2}}, {"t": "Estetika i prostor", "s": {"GA": 2}}, {"t": "Održivost i budućnost", "s": {"ZZS": 2}}]}]};
+const $=s=>document.querySelector(s);
+let stage='intro',idx=0,scores={},hist=[];
+const N=DATA.questions.length;
+function prog(p){$('#prog').style.width=p+'%';}
+function head(){$('#top').innerHTML=`<a class="brand" href="${DATA.ui.backHref}"><span class="badge"><b>M</b></span>MathIA</a><a class="back" href="${DATA.ui.backHref}">${DATA.ui.backSite}</a>`;
+  $('#ftr').innerHTML=`MathIA · <a href="${DATA.ui.backHref}" style="color:var(--gold)">mathia.rs</a>`;}
+function render(){
+  const c=$('#card');
+  if(stage==='intro'){prog(0);
+    c.innerHTML=`<span class="kicker">◆ ${DATA.meta.badge}</span><h1>${DATA.meta.title}</h1><p class="lead">${DATA.meta.subtitle}</p><button class="cta" id="go">${DATA.ui.start}</button><p class="disc">${DATA.ui.disc}</p>`;
+    $('#go').onclick=()=>{stage='quiz';idx=0;scores={};hist=[];render();window.scrollTo({top:0,behavior:'smooth'});};
+  }else if(stage==='quiz'){const q=DATA.questions[idx];prog(Math.round(idx/N*100));
+    c.innerHTML=`<div class="qmeta"><span>${DATA.ui.q} ${idx+1} ${DATA.ui.of} ${N}</span>${idx>0?`<button class="lnk" id="bk">${DATA.ui.back}</button>`:''}</div><h2 class="qh">${q.q}</h2><div class="opts">${q.options.map((o,i)=>`<button class="opt" data-i="${i}">${o.t}</button>`).join('')}</div>`;
+    c.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const o=q.options[+b.dataset.i];hist.push(JSON.stringify(scores));for(const k in o.s){scores[k]=(scores[k]||0)+o.s[k];}idx++;if(idx>=N)stage='result';render();window.scrollTo({top:0,behavior:'smooth'});});
+    const bk=$('#bk');if(bk)bk.onclick=()=>{if(hist.length)scores=JSON.parse(hist.pop());idx=Math.max(0,idx-1);render();};
+  }else{prog(100);
+    const ranked=Object.keys(DATA.outcomes).sort((a,b)=>(scores[b]||0)-(scores[a]||0));
+    const o=DATA.outcomes[ranked[0]];const alts=ranked.slice(1,3);
+    c.innerHTML=`<span class="kicker">◆ ${DATA.ui.resultKicker}</span><h1>${o.title}</h1><p class="lead">${o.desc}</p>${o.exam?`<div class="exam">${o.exam}</div>`:''}<div class="alts"><h3>${DATA.ui.altTitle}</h3>${alts.map(k=>`<div class="alt"><b>${DATA.outcomes[k].title}</b></div>`).join('')}</div><a class="cta" href="${DATA.meta.ctaHref}" target="_blank" rel="noopener">${DATA.ui.cta}</a><button class="lnk restart" id="rs">${DATA.ui.restart}</button>`;
+    $('#rs').onclick=()=>{stage='intro';render();window.scrollTo({top:0,behavior:'smooth'});};
   }
-
-  card.innerHTML =
-    '<div class="badge">TVOJ SMER</div>' +
-    '<div class="result-name">' + top.name + '</div>' +
-    '<div class="result-desc">' + top.desc + '</div>' +
-    '<div class="tag-wrap"><span class="tag">' + prijemniLabel + '</span></div>' +
-    '<div class="alts-title">Alternative koje bi ti mogle leći</div>' +
-    '<div class="alt"><b>'+alt1.name+'</b><br><span>'+alt1.desc+'</span></div>' +
-    '<div class="alt"><b>'+alt2.name+'</b><br><span>'+alt2.desc+'</span></div>' +
-    '<div class="alt"><b>'+alt3.name+'</b><br><span>'+alt3.desc+'</span></div>' +
-    ctaBlock +
-    '<button class="btn btn-ghost" onclick="restart()">↺ Uradi ponovo</button>';
 }
-
-function restart(){ step=0; tagScores={}; renderQuestion(); }
-renderQuestion();
+head();render();
 </script>
 </body>
 </html>
