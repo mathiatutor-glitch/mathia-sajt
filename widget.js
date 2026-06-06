@@ -17,8 +17,8 @@
       sub: "profesorica", send: "Pošalji", ready: "Slika spremna", remove: "Ukloni",
       ph: { site: "Napiši pitanje...", ftn: "Napiši zadatak ili pošalji sliku..." },
       greet: {
-        site: "Ćao! 😊 Ja sam Zoi, tvoja virtuelna profesorica na MathIA platformi. Tu sam da ti pomognem — mogu da ti objasnim koje predmete pokrivamo, kako rade kursevi i e-knjige, i kako da se najbolje pripremiš za prijemni. Pitaj me šta god te zanima!",
-        ftn: "Zdravo! 😊 Ja sam Zoi, tvoja profesorica za pripremu FTN prijemnog iz matematike. Mogu da ti objasnim zadatke korak po korak, pomognem oko gradiva i dam ti zadatke za vežbu. Napiši zadatak ili pošalji 📷 sliku — krećemo zajedno!"
+        site: "Zdravo! Ja sam Zoi, tvoja profesorica na MathIA platformi. Tu sam da ti pomognem oko priprema, kurseva i izbora smera. Kako mogu da ti pomognem?",
+        ftn: "Zdravo! Ja sam Zoi, tvoja profesorica za pripremu FTN prijemnog iz matematike. Tu sam da ti objasnim zadatke korak po korak i pomognem oko gradiva. Kako mogu da ti pomognem? Napiši zadatak ili pošalji 📷 sliku."
       },
       quick: {
         site: [["Koje predmete pokrivate?", "Koje predmete pokrivate?"], ["Kako funkcioniše?", "Kako funkcioniše platforma?"], ["Priprema za prijemni?", "Šta je priprema za prijemni?"]],
@@ -30,8 +30,8 @@
       sub: "teacher", send: "Send", ready: "Image ready", remove: "Remove",
       ph: { site: "Ask a question...", ftn: "Type a problem or send a photo..." },
       greet: {
-        site: "Hi! 😊 I'm Zoi, your virtual teacher on the MathIA platform. I'm here to help — I can tell you which subjects we cover, how the courses and e-books work, and how to best prepare for your entrance exam. Ask me anything!",
-        ftn: "Hi! 😊 I'm Zoi, your teacher for FTN entrance-exam math prep. I can explain problems step by step, help with the material, and give you practice problems. Type a problem or send a 📷 photo — let's start together!"
+        site: "Hi! I'm Zoi, your teacher on the MathIA platform. I'm here to help with prep, courses, and choosing the right track. How can I help you?",
+        ftn: "Hi! I'm Zoi, your teacher for FTN entrance-exam math prep. I'm here to explain problems step by step and help with the material. How can I help? Type a problem or send a 📷 photo."
       },
       quick: {
         site: [["What subjects?", "What subjects do you cover?"], ["How does it work?", "How does the platform work?"], ["Exam prep?", "What is exam preparation?"]],
