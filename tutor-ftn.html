@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prijemni iz matematike za FTN — MathIA</title>
+<meta name="description" content="Tvoj AI tutor za prijemni iz matematike na FTN-u u Novom Sadu. Uči korak po korak, uz zadatke i probne testove. Probaj besplatno.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23201d24'/%3E%3Ctext x='50%25' y='54%25' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23cda44e' text-anchor='middle' dominant-baseline='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fbfaf7;--bg2:#f4efe6;--card:#fff;--ink:#1f1d22;--muted:#5c6479;--char:#201d24;--char2:#383440;
+    --gold:#a87d33;--gold-line:#cda44e;--gold-2:#e6cf95;--line:#ece5d7;--line2:#e3dccd;
+    --sh-sm:0 8px 22px -16px rgba(26,22,30,.3);--sh:0 26px 60px -30px rgba(26,22,30,.34)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  ::selection{background:rgba(205,164,78,.28);color:var(--char)}
+  html{background:var(--bg);scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(48% 42% at 15% -2%, rgba(205,164,78,.12), transparent 60%),
+      radial-gradient(54% 48% at 92% 6%, rgba(214,178,120,.11), transparent 62%),
+      radial-gradient(72% 60% at 50% 118%, rgba(32,29,36,.05), transparent 60%)}
+  h1,h2,h3{font-family:'Playfair Display',serif;color:var(--char);font-weight:600;letter-spacing:-.015em;line-height:1.12}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+  .langbar{background:var(--char);color:#cfc9be;font-size:13px;position:relative;z-index:1}
+  .langbar .wrap{display:flex;justify-content:flex-end;gap:14px;padding:8px 24px}
+  .langbar a{color:#9a948a;font-weight:600}.langbar a.on{color:var(--gold-2)}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-weight:700;font-size:21px;color:var(--char)}
+  .brand .badge{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:16px;background:linear-gradient(160deg,var(--char2),var(--char));box-shadow:0 0 0 3px rgba(205,164,78,.16)}
+  .brand .badge b{color:var(--gold-2)}
+  .back{font-size:14px;color:var(--muted);font-weight:500}.back:hover{color:var(--char)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:16px;padding:14px 26px;border-radius:13px;border:none;cursor:pointer;font-family:inherit;transition:transform .16s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:linear-gradient(160deg,var(--gold-2),var(--gold-line));color:#241a07;box-shadow:0 22px 50px -28px rgba(168,125,51,.5);position:relative;overflow:hidden}
+  .btn-gold::after{content:"";position:absolute;top:0;left:-60%;width:42%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transition:left .55s}
+  .btn-gold:hover::after{left:130%}
+  .btn-ghost{background:#fff;border:1px solid var(--line2);color:var(--char)}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:inline-flex;gap:9px;align-items:center}
+  /* hero */
+  .hero{padding:70px 0 50px}
+  .hero h1{font-size:clamp(34px,6vw,62px);margin:16px 0 0}
+  .hero p.lead{color:var(--muted);font-size:clamp(16px,2vw,19px);font-weight:300;margin-top:18px;max-width:640px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  .trust{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;color:var(--muted);font-size:14px;font-weight:500}
+  .trust span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-line)}
+  /* sections */
+  section{padding:54px 0;position:relative;z-index:1}
+  .sec-head h2{font-size:clamp(26px,3.6vw,40px);margin-top:12px}
+  .sec-head p{color:var(--muted);margin-top:12px;max-width:620px;font-weight:300}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px;box-shadow:var(--sh-sm)}
+  .step .n{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);background:rgba(205,164,78,.12);border:1px solid rgba(205,164,78,.3);margin-bottom:14px}
+  .step h3{font-size:20px}.step p{color:var(--muted);font-size:15px;margin-top:8px}
+  .cover{background:rgba(244,239,230,.6);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .areas{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .area{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:500;color:var(--char)}
+  /* sample */
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--sh-sm);margin-top:16px}
+  .qcard .q{font-size:18px;color:var(--char);font-weight:600}
+  .qcard .toggle{margin-top:14px;background:none;border:1px solid var(--gold-line);color:var(--gold);font-weight:600;border-radius:10px;padding:9px 16px;cursor:pointer;font-family:inherit;font-size:14px}
+  .qcard .sol{margin-top:14px;border-top:1px dashed var(--line2);padding-top:14px;color:var(--ink);font-size:15px;display:none}
+  .qcard.open .sol{display:block}
+  .qcard .sol b{color:var(--char)}
+  /* cta band */
+  .band{background:linear-gradient(160deg,#2b2730,var(--char));color:#fff;border-radius:22px;padding:46px 34px;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(205,164,78,.28)}
+  .band h2{color:#fff;font-size:clamp(24px,3.4vw,36px)}
+  .band p{color:#cfc9be;margin:14px auto 0;max-width:520px;font-weight:300}
+  .band .btn{margin-top:26px}
+  footer{background:var(--char);color:#9a948a;padding:30px 0;font-size:14px;position:relative;z-index:1}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--gold-2)}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="langbar"><div class="wrap"><a class="on" href="tutor-ftn.html">SR</a><a href="tutor-ftn-en.html">EN</a></div></div>
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><span class="badge"><b>M</b></span>MathIA</a>
+  <a class="back" href="index.html">‹ Nazad na sajt</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">◆ FTN · Prijemni · Matematika</span>
+  <h1>Spremi prijemni iz matematike za FTN — uz svog AI tutora.</h1>
+  <p class="lead">MathIA te vodi kroz svaku oblast sa zvanične FTN liste: objašnjava korak po korak, daje nagoveštaj pre rešenja i pravi probne testove u formatu pravog prijemnog. Dostupno 0–24, tvojim tempom.</p>
+  <div class="cta-row">
+    <!-- TODO: zameni href="#" pravim linkom ka MathIA Tutoru -->
+    <a class="btn btn-gold" href="#">Uđi besplatno →</a>
+    <a class="btn btn-ghost" href="#uzorak">Probaj besplatno ↓</a>
+  </div>
+  <div class="trust">
+    <span><span class="dot"></span> Korak po korak</span>
+    <span><span class="dot"></span> Hint pre rešenja</span>
+    <span><span class="dot"></span> Probni testovi</span>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">◆ Kako radi</span><h2>Tri jednostavna koraka</h2>
+  <p>Ne dobijaš samo gotov rezultat — učiš da samostalno rešavaš.</p></div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Reci gde si</h3><p>Izaberi oblast ili pošalji konkretan zadatak koji ti zadaje muku.</p></div>
+    <div class="step"><div class="n">2</div><h3>Rešavamo zajedno</h3><p>Dobijaš nagoveštaj, pa probaš sam/a. Pun postupak — korak po korak — kad zatražiš.</p></div>
+    <div class="step"><div class="n">3</div><h3>Probni test</h3><p>Uradi simulaciju prijemnog, pa ti tutor objasni svaku grešku i da sličan zadatak za vežbu.</p></div>
+  </div>
+</div></section>
+
+<section class="cover"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">◆ Šta pokriva</span><h2>Cela zvanična FTN lista</h2>
+  <p>Od osnova do naprednih oblasti — onoliko koliko ti smer traži.</p></div>
+  <div class="areas">
+    <span class="area">Brojevi i izrazi</span><span class="area">Stepenovanje i koreni</span>
+    <span class="area">Linearne</span><span class="area">Kvadratne</span>
+    <span class="area">Iracionalne</span><span class="area">Logaritmi i eksponenti</span>
+    <span class="area">Trigonometrija</span><span class="area">Nizovi i indukcija</span>
+    <span class="area">Kombinatorika</span><span class="area">Planimetrija</span>
+    <span class="area">Stereometrija</span><span class="area">Vektori</span>
+    <span class="area">Analitička geometrija</span><span class="area">Izvod i integral</span>
+  </div>
+</div></section>
+
+<section id="uzorak"><div class="wrap">
+  <div class="sec-head"><span class="eyebrow">◆ Besplatan uzorak</span><h2>Probaj tri zadatka odmah</h2>
+  <p>Klikni „Prikaži rešenje" da vidiš postupak — ovako izgleda rad sa tutorom.</p></div>
+
+  <div class="qcard">
+    <div class="q">1 · Reši: x² − 5x + 6 = 0</div>
+    <button class="toggle">Prikaži rešenje</button>
+    <div class="sol">Diskriminanta: D = (−5)² − 4·6 = 1. Zatim x = (5 ± 1)/2. <b>Rešenja: x = 3 i x = 2.</b> (Provera Vijetom: zbir 5, proizvod 6 ✓)</div>
+  </div>
+  <div class="qcard">
+    <div class="q">2 · Reši: √(x + 7) = x + 1</div>
+    <button class="toggle">Prikaži rešenje</button>
+    <div class="sol">Uslov: x ≥ −1. Kvadriraj: x + 7 = x² + 2x + 1 → x² + x − 6 = 0 → x = 2 ili x = −3. Odbaci −3. <b>Rešenje: x = 2.</b> (√9 = 3 = 2 + 1 ✓)</div>
+  </div>
+  <div class="qcard">
+    <div class="q">3 · Reši: log₂ x + log₂(x − 2) = 3</div>
+    <button class="toggle">Prikaži rešenje</button>
+    <div class="sol">Domen: x &gt; 2. log₂(x(x − 2)) = 3 → x² − 2x = 8 → x² − 2x − 8 = 0 → x = 4 ili x = −2. <b>Rešenje: x = 4.</b></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="band">
+    <h2>Spreman/na da počneš?</h2>
+    <p>Sve je besplatno tokom bete — bez kartice. Tvoj tutor te čeka.</p>
+    <!-- TODO: zameni href="#" pravim linkom ka MathIA Tutoru -->
+    <a class="btn btn-gold" href="#">Uđi besplatno →</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© <span id="y"></span> MathIA · <a href="index.html">mathia.rs</a></span>
+  <span>Pitanja? <a href="mailto:kontakt@mathia.rs">kontakt@mathia.rs</a></span>
+</div></footer>
+
+<script>
+  document.getElementById('y').textContent=new Date().getFullYear();
+  document.querySelectorAll('.qcard .toggle').forEach(function(b){
+    b.addEventListener('click',function(){
+      var c=b.closest('.qcard'); var open=c.classList.toggle('open');
+      b.textContent=open?'Sakrij rešenje':'Prikaži rešenje';
+    });
+  });
+</script>
+</body>
+</html>
