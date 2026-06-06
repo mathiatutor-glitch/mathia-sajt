@@ -1,0 +1,28 @@
+============================================================
+ZOI — LINIJA KOJU UBACUJEŠ U SVAKU STRANICU
+============================================================
+
+Zoi se pojavi SAMO na stranici koja ima ovu liniju.
+Zato je dodaješ u SVAKU .html stranu — tačno IZNAD </body>.
+
+------------------------------------------------------------
+1) ZA OBIČNE STRANICE (početna, vodiči, o nama, kviz...):
+------------------------------------------------------------
+
+<script src="https://project-y23je.vercel.app/widget.js" data-mode="site"></script>
+
+
+------------------------------------------------------------
+2) ZA STRANICU ZA PRIJEMNI / FTN (npr. tutor-ftn.html):
+------------------------------------------------------------
+(ista linija, samo data-mode="ftn" — tu Zoi prima i slike zadataka)
+
+<script src="https://project-y23je.vercel.app/widget.js" data-mode="ftn"></script>
+
+
+------------------------------------------------------------
+NAPOMENE
+------------------------------------------------------------
+- Ako želiš da Zoi krene na engleskom, dodaj: data-lang="en"
+  (korisnik svakako može da prebaci SR/EN dugmetom u Zoi prozoru)
+- Zameni "project-y23je.vercel.app" svojim Vercel linkom ako se promeni.
