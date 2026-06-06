@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MathIA — početna (primer)</title>
+<title>MathIA — priprema za prijemni (primer)</title>
 <style>
   body{font-family:system-ui,sans-serif;margin:0;color:#2C2620;background:#FBF6EE}
   .hero{max-width:760px;margin:0 auto;padding:64px 24px}
@@ -15,15 +15,15 @@
 </head>
 <body>
   <div class="hero">
-    <h1>MathIA</h1>
-    <p>Ovo je primer TVOJE postojeće početne stranice. Ostaje onakva kakva jeste — Zoi se samo „zalepi" u nju.
-    Klikni na okruglo dugme dole desno da otvoriš Zoi i pitaš nešto o platformi.</p>
-    <div class="note">Zoi je ovde ubačena <b>jednom linijom</b> (vidi izvor stranice): <br>
-    <code>&lt;script src="widget.js" data-mode="site"&gt;&lt;/script&gt;</code></div>
+    <h1>Priprema za prijemni — FTN</h1>
+    <p>Ovo je primer TVOJE stranice za pripremu. Ovde je Zoi u modu <b>za zadatke</b> — učenik može da napiše zadatak
+    ili da pošalje sliku zadatka, pa ga Zoi vodi korak po korak. Klikni dugme dole desno.</p>
+    <div class="note">Ista linija, samo <code>data-mode="ftn"</code>: <br>
+    <code>&lt;script src="widget.js" data-mode="ftn"&gt;&lt;/script&gt;</code></div>
   </div>
 
-  <!-- ZOI WIDGET (opšti mod za početnu) -->
-  <script src="widget.js" data-mode="site"
+  <!-- ZOI WIDGET (mod za zadatke / FTN prijemni) -->
+  <script src="widget.js" data-mode="ftn"
           data-avatar="https://i.postimg.cc/qBXWmBQf/Chat-GPT-Image-6-jun-2026-11-58-24.png"
           data-api="/api/chat"></script>
 </body>

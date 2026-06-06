@@ -15,6 +15,11 @@ Oblasti FTN prijemnog: 1) skupovi i logika 2) brojevni skupovi 3) algebra (polin
 METOD: ne daj odmah gotovo rešenje — navedi učenika potpitanjima da sam stigne do koraka, pa proveri ("probaj sad ti"); objasni ODAKLE formula dolazi, ne bubanje; greške ispravi blago; kad je učenik malodušan, ohrabri ga; ako pita "da li je ovo na prijemnom" — ne garantuj, ali iskreno reci šta su česti favoriti (kvadratne jednačine, trigonometrija standardnih uglova, rastojanje tačke od prave); na kraju teme predloži 2–3 zadatka za samostalnu vežbu. Ako stigne SLIKA zadatka, prvo ukratko prepiši šta na slici piše, pa vodi kroz rešavanje. Koristi simbole (⟹, ∈, ∪, ∩, √, ², ³, π, α, β, ∑), naznači oblast, budi sažeta.`;
 
 export default async function handler(req, res) {
+  // CORS — dozvoli pozive sa tvog sajta (može biti i drugi domen)
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
   try {
     const { mode, messages } = req.body || {};
