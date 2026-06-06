@@ -113,8 +113,14 @@
     try { speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(x); var vs = speechSynthesis.getVoices();
       var v;
       if (LANG === "en") { var fe = /(female|Samantha|Zira|Jenny|Aria|Joanna|Salli|Emma|Sonia)/i; v = vs.find(function (z) { return /^en/i.test(z.lang) && fe.test(z.name); }) || vs.find(function (z) { return /^en/i.test(z.lang); }); }
-      else { var fs = /(female|žensk|Zira|Helena|Sabina|Marica|Maja|Lana|Ana|Lucia|Petra)/i; v = vs.find(function (z) { return /^sr/i.test(z.lang) && fs.test(z.name); }) || vs.find(function (z) { return /^hr|^bs/i.test(z.lang) && fs.test(z.name); }) || vs.find(function (z) { return /^sr/i.test(z.lang); }) || vs.find(function (z) { return /^hr|^bs/i.test(z.lang); }); }
-      if (v) u.voice = v; u.lang = (v && v.lang) || (LANG === "en" ? "en-US" : "sr-RS"); u.rate = 0.95; u.pitch = 1.15; speechSynthesis.speak(u);
+      else {
+        // Prednost: glas "Lana" (hrvatski) — najprirodniji za naš jezik na Mac-u
+        v = vs.find(function (z) { return /lana/i.test(z.name); })
+          || vs.find(function (z) { return /^hr/i.test(z.lang); })
+          || vs.find(function (z) { return /^sr|^bs/i.test(z.lang); })
+          || vs.find(function (z) { var fs = /(female|žensk|Milena|Maja|Ana|Lucia|Petra)/i; return fs.test(z.name); });
+      }
+      if (v) u.voice = v; u.lang = (v && v.lang) || (LANG === "en" ? "en-US" : "hr-HR"); u.rate = 0.95; u.pitch = 1.12; speechSynthesis.speak(u);
     } catch (e) {}
   }
   if ("speechSynthesis" in window) speechSynthesis.getVoices();
