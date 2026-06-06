@@ -511,5 +511,10 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 </script>
+<!-- ZOI WIDGET -->
+<script src="https://project-y23je.vercel.app/widget.js"
+        data-mode="site" data-lang="en"
+        data-avatar="https://i.postimg.cc/qBXWmBQf/Chat-GPT-Image-6-jun-2026-11-58-24.png"
+        data-api="https://project-y23je.vercel.app/api/chat"></script>
 </body>
 </html>

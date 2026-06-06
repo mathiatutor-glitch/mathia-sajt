@@ -17,8 +17,8 @@
       sub: "profesorica", send: "Pošalji", ready: "Slika spremna", remove: "Ukloni",
       ph: { site: "Napiši pitanje...", ftn: "Napiši zadatak ili pošalji sliku..." },
       greet: {
-        site: "Ćao, ja sam Zoi! 😊 Pitaj me bilo šta o platformi — predmeti, kako funkcioniše, priprema za prijemni.",
-        ftn: "Zdravo! Ja sam Zoi, podrška za FTN prijemni. 📐 Napiši zadatak ili pošalji 📷 sliku, pa idemo korak po korak."
+        site: "Ćao! 😊 Ja sam Zoi, tvoja virtuelna profesorica na MathIA platformi. Tu sam da ti pomognem — mogu da ti objasnim koje predmete pokrivamo, kako rade kursevi i e-knjige, i kako da se najbolje pripremiš za prijemni. Pitaj me šta god te zanima!",
+        ftn: "Zdravo! 😊 Ja sam Zoi, tvoja profesorica za pripremu FTN prijemnog iz matematike. Mogu da ti objasnim zadatke korak po korak, pomognem oko gradiva i dam ti zadatke za vežbu. Napiši zadatak ili pošalji 📷 sliku — krećemo zajedno!"
       },
       quick: {
         site: [["Koje predmete pokrivate?", "Koje predmete pokrivate?"], ["Kako funkcioniše?", "Kako funkcioniše platforma?"], ["Priprema za prijemni?", "Šta je priprema za prijemni?"]],
@@ -30,8 +30,8 @@
       sub: "teacher", send: "Send", ready: "Image ready", remove: "Remove",
       ph: { site: "Ask a question...", ftn: "Type a problem or send a photo..." },
       greet: {
-        site: "Hi, I'm Zoi! 😊 Ask me anything about the platform — subjects, how it works, exam prep.",
-        ftn: "Hi! I'm Zoi, your support for FTN entrance-exam math. 📐 Type a problem or send a 📷 photo and we'll go step by step."
+        site: "Hi! 😊 I'm Zoi, your virtual teacher on the MathIA platform. I'm here to help — I can tell you which subjects we cover, how the courses and e-books work, and how to best prepare for your entrance exam. Ask me anything!",
+        ftn: "Hi! 😊 I'm Zoi, your teacher for FTN entrance-exam math prep. I can explain problems step by step, help with the material, and give you practice problems. Type a problem or send a 📷 photo — let's start together!"
       },
       quick: {
         site: [["What subjects?", "What subjects do you cover?"], ["How does it work?", "How does the platform work?"], ["Exam prep?", "What is exam preparation?"]],
