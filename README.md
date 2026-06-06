@@ -1,58 +1,59 @@
-# Zoi · MathIA (dvojezično SR/EN)
+# MathIA — FTN priprema za prijemni iz matematike + tutor „Zoi"
+# MathIA — FTN math entrance-exam prep + the "Zoi" tutor
 
-Zoi se ugrađuje u tvoje postojeće stranice kao dugme u uglu (chat). Govori **srpski i engleski** — ima dugme **SR/EN** u zaglavlju, a možeš zadati i početni jezik preko `data-lang`.
-
-- početna strana → opšta pitanja: `data-mode="site"`
-- strana za prijemni → zadaci + slika: `data-mode="ftn"`
-
-## Fajlovi
-- `widget.js` — widget (ubacuje se u stranice; Shadow DOM, ne kvari stil)
-- `api/chat.js` — backend koji **čuva tajni ključ** i Zoine promptove (SR i EN)
-- `index.html`, `prijemni.html` — primeri ugradnje
-- `package.json`, `.gitignore`
-
-> ⚠️ API ključ NIKAD ne ide u kod ni na GitHub — samo u Vercel kao tajna varijabla.
+🇷🇸 Srpski (ekavica) · 🇬🇧 English — both below.
 
 ---
 
-## Postavljanje
-1. **GitHub:** New repository → Add file → Upload files → ubaci sve + folder `api` (sa `chat.js`). Commit.
-2. **Vercel:** vercel.com (prijava preko GitHub-a) → Add New… → Project → izaberi repo → Import → Deploy.
-3. **Tajni ključ:** Vercel → Settings → Environment Variables → Name `ANTHROPIC_API_KEY`, Value = ključ sa console.anthropic.com → Save → **Deployments → Redeploy**.
-4. Otvori `/` i `/prijemni.html` na svom Vercel linku.
+## 🇷🇸 Srpski
 
-## Ugradnja u TVOJE stranice
-Pred kraj `</body>`:
-```html
-<!-- početna -->
-<script src="https://TVOJ.vercel.app/widget.js" data-mode="site" data-lang="sr"
-        data-avatar="https://i.postimg.cc/qBXWmBQf/Chat-GPT-Image-6-jun-2026-11-58-24.png"
-        data-api="https://TVOJ.vercel.app/api/chat"></script>
+Besplatna baza znanja za pripremu prijemnog ispita iz matematike na **Fakultetu tehničkih nauka (FTN), Novi Sad**, i konfiguracija AI-tutora **„Zoi" (Profesorica)**. Sav matematički sadržaj je proveren; struktura prijemnog i obim potvrđeni su sa zvaničnog FTN sajta.
+
+### Sadržaj repozitorijuma
 ```
-```html
-<!-- prijemni -->
-<script src="https://TVOJ.vercel.app/widget.js" data-mode="ftn" data-lang="sr"
-        data-avatar="https://i.postimg.cc/qBXWmBQf/Chat-GPT-Image-6-jun-2026-11-58-24.png"
-        data-api="https://TVOJ.vercel.app/api/chat"></script>
+sr/
+  00-master-pregled.md        — pregled celog projekta (interno)
+  01-gradivo-matematika.md    — KOMPLETNO gradivo (17 celina, formule + metode + provereni rezultati)
+  02-smerovi-i-nivoi.md       — smerovi, tipovi ispita, Grupa A/B, sklonosti/logika, literatura, linkovi
+  03-zoi-konfiguracija.md     — persona klona: natpis, uvod, izgovor (TTS), ton
+  04-struktura-po-godinama.md — mapa zadatak→oblast (2023–2025, potvrđeno)
+en/
+  01–04  — engleske verzije gornjih dokumenata
 ```
-(`data-lang="en"` ako želiš da krene na engleskom; korisnik svakako može da prebaci SR/EN u zaglavlju.)
+
+### Kako se koristi
+- **Učenik:** kreni od `02-smerovi-i-nivoi` (nađi svoj smer i grupu), pa uči iz `01-gradivo` ono što ulazi u tvoj obim; vežbaj na zvaničnim rešenim prijemnima (linkovi u gl. 8).
+- **Za klon „Zoi":** `03-zoi-konfiguracija` ide u personu/TTS; `01-gradivo` + `02-smerovi-i-nivoi` + `04-struktura` su baza znanja. Zoi prvo **pita za koji smer** se učenik sprema, pa kaže da li neka oblast uopšte dolazi na taj prijemni.
+
+### Ključno
+- **Grupa A (pun obim, 18 oblasti)** vs **Grupa B (smanjen, 13 oblasti — bez stereometrije, analitičke, limesa/izvoda, integrala).**
+- **„FTN" se izgovara „Fakultet tehničkih nauka" / „ef-te-en"**, nikad slovo po slovo.
+- Grupa A ima **ustaljenu strukturu od 10 zadataka** (po jedan iz svake oblasti) — potvrđeno 2023–2025.
 
 ---
 
-## „BAGUJE"? — brza dijagnostika
-Otvori Zoi, pošalji poruku i **pogledaj šta piše u oblačiću** (sad ispisuje tačan razlog):
+## 🇬🇧 English
 
-- **„Nedostaje ANTHROPIC_API_KEY…"** → nisi dodala ključ ili nije bilo Redeploy-a. Dodaj ga (korak 3) pa **Redeploy**.
-- **Poruka o „credit/billing"** → nemaš sredstava na Anthropic nalogu. Idi na console.anthropic.com → Billing → dodaj sredstva.
-- **HTTP 401 / authentication** → ključ je pogrešan/istekao. Napravi novi ključ i zameni ga u Vercel-u, pa Redeploy.
-- Posle **svake** izmene fajlova ili varijabli → **Redeploy** (Vercel ne primeni odmah dok ne redeployuješ).
+A free knowledge base for preparing the mathematics entrance exam at the **Faculty of Technical Sciences (FTN), Novi Sad**, plus the configuration of the **"Zoi" (Profesorica)** AI tutor. All math content is verified; the exam structure and scope are confirmed from the official FTN website. **The tutor speaks Serbian (ekavian)** — it serves Serbian-speaking applicants — so the welcome and pronunciation data are Serbian by design.
 
-## Šta menjaš
-- Tekst o sajtu / ponašanje → `api/chat.js` (`SITE_INFO`, `siteSystem`, `ftnSystem`) — SR i EN.
-- Slika → `data-avatar`.
-- Model/cena → `api/chat.js`, polje `model` (`claude-haiku-4-5-20251001` jeftinije, `claude-sonnet-4-6` kvalitetnije).
+### Repository layout
+```
+sr/  — Serbian originals (00 overview · 01 syllabus · 02 programs & levels · 03 Zoi config · 04 structure by year)
+en/  — English versions (01 syllabus · 02 programs & levels · 03 Zoi config · 04 structure by year)
+```
 
-## Napomene
-- AI se plaća po upotrebi (tvoj Anthropic nalog) — postavi limit dok testiraš.
-- Glas/mikrofon zavise od uređaja (najbolje Chrome); za vrhunski glas kasnije premium TTS (ElevenLabs).
-- MVP — pretplata/nalozi/baza su sledeći korak.
+### How to use
+- **Student:** start with `en/02-programs-and-levels` (find your program and group), study the in-scope topics from `en/01-math-syllabus`, and practice on the official solved exams (links in §8).
+- **For the "Zoi" clone:** `03` is the persona/TTS config; `01`, `02`, `04` are the knowledge base. Zoi first **asks which program** the student is preparing for, then says whether a topic is even on that exam.
+
+### Key facts
+- **Group A (full, 18 areas)** vs **Group B (reduced, 13 areas — no stereometry, analytic geometry, limits/derivatives, integrals).**
+- Group A has a **stable 10-problem structure** (one per area) — verified 2023–2025.
+
+---
+
+## Izvori / Sources
+Official: `ftn.uns.ac.rs` — `/nacin-polaganja`, `/oblasti-iz-matematike`, `/zbirka-zadataka-i-literatura`. Solved exams 2012–2025 linked inside `02`. Re-check yearly; the call for applications and scope may change.
+
+## Napomena / Note
+Matematički sadržaj sažima metode i autentičan pedagoški ton; **nije** doslovna kopija zvanične zbirke. Za potpuna rešenja koristi zvanične rešene prijemne (linkovi unutra). · The math content summarizes methods and the authentic teaching tone; it is **not** a verbatim copy of the official problem collection. Use the official solved exams (links inside) for full solutions.
