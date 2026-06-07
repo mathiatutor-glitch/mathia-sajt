@@ -17,12 +17,12 @@
       sub: "profesorica", send: "Pošalji", ready: "Slika spremna", remove: "Ukloni",
       ph: { site: "Napiši pitanje...", ftn: "Napiši zadatak ili pošalji sliku..." },
       greet: {
-        site: "Zdravo! Ja sam Zoi, tvoja profesorica na MathIA platformi. Tu sam da ti pomognem oko priprema, kurseva i izbora smera. Kako mogu da ti pomognem?",
-        ftn: "Zdravo! Ja sam Zoi, tvoja profesorica za pripremu FTN prijemnog iz matematike. Tu sam da ti objasnim zadatke korak po korak i pomognem oko gradiva. Kako mogu da ti pomognem? Napiši zadatak ili pošalji 📷 sliku."
+        site: "Zdravo! Ja sam Zoi, tvoja profesorica na MathIA platformi. Tu sam da ti pomognem oko priprema, kurseva i izbora smera. Kako mogu da ti pomognem? Slobodno mi piši na bilo kom jeziku.",
+        ftn: "Zdravo! Ja sam Zoi, tvoja profesorica za pripremu FTN prijemnog iz matematike. Tu sam da ti objasnim zadatke korak po korak i pomognem oko gradiva. Kako mogu da ti pomognem? Napiši zadatak ili pošalji 📷 sliku. Slobodno mi piši na bilo kom jeziku."
       },
       quick: {
-        site: [["Koje predmete pokrivate?", "Koje predmete pokrivate?"], ["Kako funkcioniše?", "Kako funkcioniše platforma?"], ["Priprema za prijemni?", "Šta je priprema za prijemni?"]],
-        ftn: [["Napiši zadatak", "__fill:Imam zadatak: "], ["📷 Slika", "__file"], ["Objasni pojam", "Objasni mi jedan pojam za FTN prijemni."]]
+        site: [["Koje predmete pokrivate?", "Koje predmete pokrivate?"], ["Kako funkcioniše?", "Kako funkcioniše platforma?"], ["Priprema za prijemni?", "Šta je priprema za prijemni?"], ["Drugi jezik?", "Na kojim jezicima mogu da pišem sa tobom?"]],
+        ftn: [["Napiši zadatak", "__fill:Imam zadatak: "], ["📷 Slika", "__file"], ["Objasni pojam", "Objasni mi jedan pojam za FTN prijemni."], ["Drugi jezik?", "Na kojim jezicima mogu da pišem sa tobom?"]]
       },
       net: "Veza je zapela. Pokušaj ponovo."
     },
@@ -30,12 +30,12 @@
       sub: "teacher", send: "Send", ready: "Image ready", remove: "Remove",
       ph: { site: "Ask a question...", ftn: "Type a problem or send a photo..." },
       greet: {
-        site: "Hi! I'm Zoi, your teacher on the MathIA platform. I'm here to help with prep, courses, and choosing the right track. How can I help you?",
-        ftn: "Hi! I'm Zoi, your teacher for FTN entrance-exam math prep. I'm here to explain problems step by step and help with the material. How can I help? Type a problem or send a 📷 photo."
+        site: "Hi! I'm Zoi, your teacher on the MathIA platform. I'm here to help with prep, courses, and choosing the right track. How can I help you? Feel free to write in any language.",
+        ftn: "Hi! I'm Zoi, your teacher for FTN entrance-exam math prep. I'm here to explain problems step by step and help with the material. How can I help? Type a problem or send a 📷 photo. Feel free to write in any language."
       },
       quick: {
-        site: [["What subjects?", "What subjects do you cover?"], ["How does it work?", "How does the platform work?"], ["Exam prep?", "What is exam preparation?"]],
-        ftn: [["Type a problem", "__fill:I have a problem: "], ["📷 Photo", "__file"], ["Explain a concept", "Explain one concept for the FTN entrance exam."]]
+        site: [["What subjects?", "What subjects do you cover?"], ["How does it work?", "How does the platform work?"], ["Exam prep?", "What is exam preparation?"], ["Other language?", "What languages can I chat with you in?"]],
+        ftn: [["Type a problem", "__fill:I have a problem: "], ["📷 Photo", "__file"], ["Explain a concept", "Explain one concept for the FTN entrance exam."], ["Other language?", "What languages can I chat with you in?"]]
       },
       net: "Connection failed. Please try again."
     }
