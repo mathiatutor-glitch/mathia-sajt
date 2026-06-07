@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iskra — Električna merenja · MathIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C0B0E;--bg2:#141218;--panel:rgba(255,255,255,0.025);
+    --ink:#F4EFE6;--muted:#A8A091;--gold:#D8B370;--gold-bright:#F3D89A;--spark:#FFE7A8;
+    --line:rgba(216,179,112,0.20);--avail:#8FE3B0;--avail-glow:rgba(143,227,176,0.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+    radial-gradient(1100px 700px at 72% -8%, rgba(216,179,112,0.10), transparent 60%),
+    radial-gradient(900px 600px at 8% 110%, rgba(143,227,176,0.05), transparent 55%),
+    linear-gradient(180deg,var(--bg) 0%, var(--bg2) 55%, var(--bg) 100%)}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;opacity:.035;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  header{display:flex;align-items:center;justify-content:space-between;padding:30px 28px;max-width:1080px;margin:0 auto}
+  .brand{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.55rem;letter-spacing:.16em;text-transform:uppercase}
+  .brand a{color:inherit;text-decoration:none}
+  .brand b{color:var(--gold);font-weight:600}
+  .brand small{display:block;font-family:'Outfit';font-weight:300;font-size:.52rem;letter-spacing:.42em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+  .nav-tag{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  .nav-tag a{color:var(--muted);text-decoration:none}.nav-tag a:hover{color:var(--gold)}
+
+  .hero{position:relative;text-align:center;padding:64px 0 40px}
+  .sine{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:160%;max-width:1500px;opacity:.5;z-index:-1;pointer-events:none}
+  .sine path{fill:none;stroke:var(--gold);stroke-width:1.1;opacity:.35;stroke-dasharray:6 10;animation:flow 9s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-320}}
+  .eyebrow{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
+  .badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--avail-glow);border-radius:100px;padding:7px 16px 7px 13px;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--avail);background:rgba(143,227,176,0.06);margin-bottom:30px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--avail);box-shadow:0 0 0 0 var(--avail-glow);animation:pulse 2.2s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 var(--avail-glow)}70%{box-shadow:0 0 0 10px rgba(143,227,176,0)}100%{box-shadow:0 0 0 0 rgba(143,227,176,0)}}
+  .wordmark{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(4.5rem,16vw,10rem);line-height:.9;letter-spacing:.02em;background:linear-gradient(180deg,var(--gold-bright),var(--gold) 55%,#9c7f49);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 60px rgba(255,231,168,0.12)}
+  .role{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,3.4vw,1.85rem);margin-top:6px}
+  .lede{max-width:560px;margin:22px auto 0;color:var(--muted);font-size:1.02rem}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .btn{font-family:'Outfit';font-weight:400;font-size:.95rem;letter-spacing:.04em;padding:15px 30px;border-radius:100px;text-decoration:none;cursor:pointer;border:none;transition:transform .25s,box-shadow .25s}
+  .btn-primary{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1408;font-weight:500;box-shadow:0 8px 34px rgba(216,179,112,0.28)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 44px rgba(216,179,112,0.42)}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:36px 0}
+
+  .chat-sec{padding:18px 0 30px}
+  .chat-head{text-align:center;margin-bottom:22px}
+  .chat-head .k{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.9rem;color:var(--gold-bright)}
+  .chat-head .s{color:var(--muted);font-size:.92rem}
+  .chat{max-width:760px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-height:440px}
+  .chat-top{display:flex;align-items:center;gap:11px;padding:15px 18px;border-bottom:1px solid var(--line);background:rgba(216,179,112,0.04)}
+  .ava{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--spark),var(--gold) 60%,#9c7f49);box-shadow:0 0 16px rgba(255,231,168,.35);flex:none}
+  .chat-top .nm{font-family:'Cormorant Garamond',serif;font-size:1.25rem;letter-spacing:.04em}
+  .chat-top .st{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--avail);display:flex;align-items:center;gap:6px}
+  .chat-top .st .dot{width:6px;height:6px}
+  .msgs{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px}
+  .msg{max-width:82%;padding:11px 15px;border-radius:14px;font-size:.95rem;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+  .msg.iskra{align-self:flex-start;background:rgba(216,179,112,0.08);border:1px solid var(--line);border-bottom-left-radius:4px}
+  .msg.user{align-self:flex-end;background:rgba(143,227,176,0.10);border:1px solid rgba(143,227,176,0.25);border-bottom-right-radius:4px}
+  .msg.iskra b,.msg.iskra strong{color:var(--gold-bright);font-weight:600}
+  .typing{align-self:flex-start;color:var(--muted);font-size:.9rem;font-style:italic}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 12px}
+  .chip{font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:6px 12px;cursor:pointer;background:transparent;transition:.2s}
+  .chip:hover{border-color:var(--gold);color:var(--ink)}
+  .composer{display:flex;gap:10px;padding:14px 16px;border-top:1px solid var(--line)}
+  .composer textarea{flex:1;resize:none;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:12px;color:var(--ink);font-family:'Outfit';font-size:.95rem;padding:12px 14px;outline:none;max-height:120px}
+  .composer textarea:focus{border-color:var(--gold)}
+  .send{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1408;border:none;border-radius:12px;padding:0 20px;font-weight:600;cursor:pointer;font-family:'Outfit';transition:.2s}
+  .send:hover{filter:brightness(1.05)}
+  .send:disabled{opacity:.5;cursor:not-allowed}
+  .note{max-width:760px;margin:14px auto 0;text-align:center;color:var(--muted);font-size:.76rem;opacity:.8}
+
+  footer{text-align:center;padding:48px 28px 56px;color:var(--muted);font-size:.82rem}
+  footer .fbrand{font-family:'Cormorant Garamond',serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-size:1.05rem;margin-bottom:8px}
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s,transform .8s}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand"><a href="predmeti.html">Math<b>IA</b><small>Privatni profesor</small></a></div>
+  <div class="nav-tag"><a href="predmeti.html">← Svi predmeti</a></div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <svg class="sine" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,100 C75,20 150,20 225,100 S375,180 450,100 S600,20 675,100 S825,180 900,100 S1050,20 1125,100 S1200,140 1200,100"/>
+    </svg>
+    <div class="eyebrow reveal">Fakultet tehničkih nauka</div>
+    <div class="badge reveal d1"><span class="dot"></span>Dostupno</div>
+    <h1 class="wordmark reveal d1">Iskra</h1>
+    <div class="role reveal d2">AI tutor za Električna merenja</div>
+    <p class="lede reveal d3">Postavi joj zadatak ili pitanje — vodi te korak po korak, njenim metodom:
+      sigurne granice greške, merna nesigurnost, klase tačnosti, instrumenti i ispravljači.</p>
+    <div class="cta-row reveal d4">
+      <a class="btn btn-primary" href="#cet">Pričaj sa Iskrom</a>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <section class="chat-sec" id="cet">
+    <div class="chat-head">
+      <div class="k">Pričaj sa Iskrom</div>
+      <div class="s">Uživo — Iskra odmah odgovara</div>
+    </div>
+    <div class="chat">
+      <div class="chat-top">
+        <div class="ava"></div>
+        <div>
+          <div class="nm">Iskra</div>
+          <div class="st"><span class="dot"></span>Dostupna</div>
+        </div>
+      </div>
+      <div class="msgs" id="msgs">
+        <div class="msg iskra">Zdravo! Ja sam Iskra, tvoja profesorka za Električna merenja. Pošalji mi zadatak ili pitanje — provešću te kroz postupak korak po korak. Recept je uvek isti, ne preskačemo nijedan korak.</div>
+      </div>
+      <div class="chips" id="chips">
+        <button class="chip">Objasni recept od 4 koraka za sigurne granice greške</button>
+        <button class="chip">Koja je razlika tipa A i tipa B nesigurnosti?</button>
+        <button class="chip">Kako se računa klasa tačnosti?</button>
+      </div>
+      <div class="composer">
+        <textarea id="inp" rows="1" placeholder="Napiši pitanje ili zadatak iz Električnih merenja…"></textarea>
+        <button class="send" id="send">Pošalji</button>
+      </div>
+    </div>
+    <div class="note">Čet radi kada je sajt postavljen na Vercel (koristi endpoint /api/iskra i isti API ključ kao Zoi).</div>
+  </section>
+</main>
+
+<footer>
+  <div class="fbrand">MathIA</div>
+  Iskra — AI tutor za predmet Električna merenja, Fakultet tehničkih nauka.<br>
+  Deo MathIA porodice privatnih AI profesora.
+</footer>
+
+<script>
+const msgsEl=document.getElementById('msgs');
+const inp=document.getElementById('inp');
+const sendBtn=document.getElementById('send');
+let history=[];
+let busy=false;
+
+function addMsg(text,who){
+  const d=document.createElement('div');
+  d.className='msg '+who;
+  d.innerHTML=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+  msgsEl.appendChild(d);
+  msgsEl.scrollTop=msgsEl.scrollHeight;
+  return d;
+}
+function setTyping(on){
+  let t=document.getElementById('typing');
+  if(on){ if(!t){t=document.createElement('div');t.id='typing';t.className='typing';t.textContent='Iskra piše…';msgsEl.appendChild(t);msgsEl.scrollTop=msgsEl.scrollHeight;} }
+  else if(t){t.remove();}
+}
+async function send(text){
+  if(busy||!text.trim())return;
+  busy=true;sendBtn.disabled=true;
+  addMsg(text,'user');
+  history.push({role:'user',content:text});
+  inp.value='';autoGrow();
+  setTyping(true);
+  try{
+    const res=await fetch("/api/iskra",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({messages:history})
+    });
+    const data=await res.json();
+    const reply=(data && data.reply) ? data.reply : "Izvini, nešto je zapelo. Probaj ponovo.";
+    setTyping(false);
+    addMsg(reply,'iskra');
+    history.push({role:'assistant',content:reply});
+  }catch(e){
+    setTyping(false);
+    addMsg("Veza je pukla — proveri internet pa probaj ponovo.",'iskra');
+  }
+  busy=false;sendBtn.disabled=false;inp.focus();
+}
+function autoGrow(){inp.style.height='auto';inp.style.height=Math.min(inp.scrollHeight,120)+'px';}
+inp.addEventListener('input',autoGrow);
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send(inp.value);}});
+sendBtn.addEventListener('click',()=>send(inp.value));
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>send(c.textContent)));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
