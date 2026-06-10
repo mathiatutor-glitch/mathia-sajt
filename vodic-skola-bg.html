@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Koji fakultet je za tebe? (Novi Sad) · MathIA</title>
-<meta name="description" content="Test za maturante iz Novog Sada: odgovori na 10 pitanja i dobij predlog fakulteta Univerziteta u Novom Sadu, sa glavnim izborom i 4 alternative." />
+<title>Koja srednja škola je za tebe? (Beograd) · MathIA</title>
+<meta name="description" content="Test za osnovce iz Beograda: odgovori na 9 pitanja i dobij predlog tipa srednje škole + konkretne škole u Beogradu, sa alternativama." />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
@@ -45,6 +45,7 @@
   .wmeta{font-size:13.5px;color:var(--muted);margin-top:3px}
   .schools{font-size:13.5px;color:var(--ink);margin-top:6px}
   .pill{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:99px;background:#eef4f2;color:var(--teal-d);margin-top:6px}
+  .pill.g{background:#f3eafc;color:#6b3fa0}
   .note{font-size:13.5px;color:var(--muted);background:var(--bg2);border-radius:12px;padding:13px 15px;margin-top:18px}
   .foot{margin-top:26px;font-size:12.5px;color:var(--muted);text-align:center}
 </style>
@@ -60,9 +61,9 @@
     <div class="kicker">Pronađi svoj put</div>
 
     <section id="intro">
-      <h1>Koji fakultet je za tebe?</h1>
-      <p class="lead">Za maturante koji razmišljaju o <b>Univerzitetu u Novom Sadu</b>. Odgovori na 10 pitanja i dobij predlog fakulteta — glavni izbor + 4 alternative.</p>
-      <p class="note">Test je orijentir. Konačnu odluku donosi prema sklonostima, uspehu i zvaničnim uslovima upisa (prijemni, kvote, bodovi).</p>
+      <h1>Koja srednja škola je za tebe?</h1>
+      <p class="lead">Za osnovce iz <b>Beograda</b>. Odgovori na 9 pitanja i dobij predlog tipa škole (gimnazija ili stručna) + konkretne škole u Beogradu, sa 4 alternative.</p>
+      <p class="note">Test je orijentir — pravu odluku donosiš sa roditeljima i razrednim starešinom, prema bodovima sa male mature i upisnim listama.</p>
       <div class="row"><button class="btn gold" onclick="start()">Započni test →</button></div>
     </section>
 
@@ -75,115 +76,107 @@
     </section>
 
     <section id="result" class="hidden">
-      <h1>Predlog fakulteta za tebe</h1>
-      <p class="lead">Na osnovu tvojih odgovora (1 = najbolji poklop):</p>
+      <h1>Predlog škola za tebe</h1>
+      <p class="lead">Na osnovu tvojih odgovora, ovo bi ti moglo najviše odgovarati (1 = najbolji poklop):</p>
       <div id="wishlist" style="margin-top:14px"></div>
       <div class="note" id="typeNote"></div>
       <div class="row">
-        <a class="btn teal" id="askZoi" href="prijemni-ftn.html">Pitaj Zoi o pripremi prijemnog →</a>
+        <a class="btn teal" id="askMila" href="mala-matura.html">Pitaj Milu o ovim školama →</a>
         <button class="btn ghost" onclick="restart()">Uradi ponovo</button>
       </div>
     </section>
   </div>
 
-  <p class="foot">© <span id="yr"></span> MathIA · Novi Sad</p>
+  <p class="foot">© <span id="yr"></span> MathIA</p>
 </div>
 
 <script>
 /* =======================================================================
-   ✏️  IZMENI NAZIVE FAKULTETA OVDE  (Univerzitet u Novom Sadu)
-   Svaka kategorija ima listu konkretnih fakulteta/smerova koji se
-   prikazuju u rezultatu. Slobodno dodaj/izbaci — menjaj tekst u navodnicima.
+   ✏️  IZMENI NAZIVE ŠKOLA OVDE  (proveri tačne nazive i smerove za Beograd)
+   Svaka kategorija ima listu konkretnih škola koje se prikazuju u rezultatu.
+   Slobodno dodaj/izbaci škole — samo menjaj tekst u navodnicima.
    ======================================================================= */
-const FAKS = {
-  ftn:       ["Fakultet tehničkih nauka (FTN) — inženjerstvo, IT, arhitektura","Za detaljan izbor smera uradi i poseban FTN test"],
-  pmf_nauka: ["Prirodno-matematički fakultet (PMF) — matematika, fizika, hemija, biologija, geografija"],
-  pmf_it:    ["PMF — informatika / računarske nauke","FTN — softversko inženjerstvo i informacione tehnologije"],
-  medicina:  ["Medicinski fakultet — medicina, stomatologija, farmacija, zdravstvena nega"],
-  ekonomija: ["Ekonomski fakultet u Subotici","FTN — inženjerski menadžment"],
-  pravo:     ["Pravni fakultet"],
-  drustvo:   ["Filozofski fakultet — psihologija, sociologija, pedagogija, istorija, jezici","Fakultet sporta i fizičkog vaspitanja"],
-  jezici:    ["Filozofski fakultet — jezici i književnost (anglistika, germanistika, romanistika…)"],
-  agro:      ["Poljoprivredni fakultet — agronomija, veterina, prehrambeno inženjerstvo","Tehnološki fakultet — prehrambena tehnologija, biotehnologija"],
-  tehnologija:["Tehnološki fakultet — hemijsko i prehrambeno inženjerstvo, farmaceutsko inženjerstvo"],
-  umetnost:  ["Akademija umetnosti — muzika, likovne i dramske umetnosti"],
-  sport:     ["Fakultet sporta i fizičkog vaspitanja"]
+const SCHOOLS = {
+  gim_pmt: ["Matematička gimnazija","Prva beogradska gimnazija","Treća beogradska gimnazija","Gimnazija „Sveti Sava“"],
+  gim_drustv: ["Filološka gimnazija","Druga beogradska gimnazija","Trinaesta beogradska gimnazija"],
+  gim_opsti: ["Peta beogradska gimnazija","Šesta beogradska gimnazija","Zemunska gimnazija","Deveta gimnazija „Mihailo Petrović Alas“"],
+  elektro_it: ["Elektrotehnička škola „Nikola Tesla“","Elektrotehnička škola „Rade Končar“","Računarska gimnazija (privatna)"],
+  masinska: ["Mašinska škola „Radoje Dakić“","Tehnička škola (proveri tačan naziv za tvoju opštinu)"],
+  medicinska: ["Medicinska škola „Beograd“","Zubotehnička škola","Farmaceutsko-fizioterapeutska škola"],
+  ekonomska: ["Prva ekonomska škola","Ekonomska škola „Nada Dimić“ (Zemun)","Beogradska poslovna škola (srednja)"],
+  umetnicka: ["Škola za dizajn","Muzička škola „Mokranjac“","Tehnoart Beograd (umetnički zanati)"],
+  saobracajna: ["Saobraćajno-tehnička škola","Železnička tehnička škola"],
+  gradjevinska: ["Građevinska tehnička škola „Branko Žeželj“","Geodetska tehnička škola"],
+  prirodno_hem: ["Hemijsko-prehrambena tehnološka škola","Poljoprivredno-hemijska škola (proveri naziv)"]
 };
 
-/* dimenzije sklonosti: mat, nauka, it, zdravlje, biznis, pravo, jezik, drustvo, priroda, umetnost, sport, ljudi */
+/* Kategorije: tip (gimnazija/stručna) + profil sklonosti
+   dimenzije: aka (ka fakultetu), zan (ka zanimanju/poslu),
+   nauka, it, jezik, ruke, umetnost, ljudi, zdravlje, priroda, gradj */
 const CATS = [
-  {key:"ftn",        name:"Fakultet tehničkih nauka (FTN)",        grupa:"Tehnika i IT",   desc:"Inženjerstvo, računarstvo, arhitektura, mehatronika, menadžment — najširi izbor tehničkih smerova.", w:{mat:3,it:2,nauka:1}},
-  {key:"pmf_nauka",  name:"PMF — prirodne nauke i matematika",     grupa:"Prirodne nauke", desc:"Matematika, fizika, hemija, biologija, geografija — za istraživače i buduće profesore.", w:{nauka:3,mat:2}},
-  {key:"pmf_it",     name:"Informatika / računarske nauke",        grupa:"Tehnika i IT",   desc:"Programiranje i računarske nauke (PMF ili FTN).", w:{it:3,mat:1}},
-  {key:"medicina",   name:"Medicinski fakultet",                   grupa:"Zdravstvo",      desc:"Medicina, stomatologija, farmacija, zdravstvena nega.", w:{zdravlje:3,nauka:1}},
-  {key:"ekonomija",  name:"Ekonomski fakultet / menadžment",       grupa:"Ekonomija",      desc:"Ekonomija, finansije, marketing, menadžment, poslovanje.", w:{biznis:3,ljudi:1}},
-  {key:"pravo",      name:"Pravni fakultet",                       grupa:"Pravo i društvo",desc:"Pravo, pravosuđe, javna uprava.", w:{pravo:3,drustvo:1}},
-  {key:"drustvo",    name:"Filozofski — društvene nauke",          grupa:"Pravo i društvo",desc:"Psihologija, sociologija, pedagogija, istorija.", w:{drustvo:3,ljudi:1}},
-  {key:"jezici",     name:"Filozofski — jezici i književnost",     grupa:"Jezici",         desc:"Strani jezici, prevođenje, književnost, lingvistika.", w:{jezik:3}},
-  {key:"agro",       name:"Poljoprivredni fakultet",               grupa:"Priroda i hrana",desc:"Agronomija, veterina, hortikultura, prehrambeno inženjerstvo.", w:{priroda:3,nauka:1}},
-  {key:"tehnologija",name:"Tehnološki fakultet",                   grupa:"Priroda i hrana",desc:"Hemijska, prehrambena i biotehnologija — nauka u praksi.", w:{nauka:2,priroda:2,mat:1}},
-  {key:"umetnost",   name:"Akademija umetnosti",                   grupa:"Umetnost",       desc:"Muzika, likovne i dramske umetnosti, dizajn.", w:{umetnost:3}},
-  {key:"sport",      name:"Fakultet sporta i fizičkog vaspitanja", grupa:"Sport",          desc:"Sport, trening, fizičko vaspitanje, kineziologija.", w:{sport:3,zdravlje:1}}
+  {key:"gim_pmt",   name:"Gimnazija — prirodno-matematički smer", tip:"gimnazija", desc:"Za buduće inženjere, lekare, prirodnjake — najjača priprema za fakultet.", w:{aka:3,nauka:3,it:1}},
+  {key:"gim_drustv",name:"Gimnazija — društveno-jezički smer",     tip:"gimnazija", desc:"Jezici, istorija, prava, novinarstvo, društvene nauke.", w:{aka:3,jezik:3,ljudi:1}},
+  {key:"gim_opsti", name:"Gimnazija — opšti tip",                  tip:"gimnazija", desc:"Ako još nisi siguran/sigurna — najšire obrazovanje i sve opcije otvorene.", w:{aka:3,nauka:1,jezik:1}},
+  {key:"elektro_it",name:"Elektrotehnička / računarska škola",     tip:"stručna",   desc:"Programiranje, računari, elektronika — i posao i osnova za fakultet.", w:{zan:2,it:3,ruke:1}},
+  {key:"masinska",  name:"Mašinska / tehnička škola",              tip:"stručna",   desc:"Mašine, motori, CNC, mehanika — praktičan rad i tražena zanimanja.", w:{zan:2,ruke:3,nauka:1}},
+  {key:"medicinska",name:"Medicinska škola",                       tip:"stručna",   desc:"Zdravstvo i nega — za one koji vole biologiju i rad sa ljudima.", w:{zan:2,zdravlje:3}},
+  {key:"ekonomska", name:"Ekonomsko-poslovna škola",               tip:"stručna",   desc:"Ekonomija, finansije, trgovina, preduzetništvo.", w:{zan:2,ljudi:3}},
+  {key:"umetnicka", name:"Umetnička škola / dizajn",               tip:"stručna",   desc:"Likovno, dizajn, muzika — za kreativne.", w:{zan:1,umetnost:3}},
+  {key:"saobracajna",name:"Saobraćajna škola",                     tip:"stručna",   desc:"Saobraćaj, logistika, transport.", w:{zan:2,ruke:2,ljudi:1}},
+  {key:"gradjevinska",name:"Građevinska / geodetska škola",        tip:"stručna",   desc:"Gradnja, projektovanje, geodezija — tehnika u praksi.", w:{zan:2,ruke:2,gradj:3}},
+  {key:"prirodno_hem",name:"Hemijsko-prehrambena škola",           tip:"stručna",   desc:"Hemija, biotehnologija, prehrana, zaštita životne sredine.", w:{zan:2,priroda:3,nauka:1}}
 ];
 
 const Q = [
-  {t:"Koji predmeti su ti najjači / najdraži?", o:[
-    {l:"Matematika i fizika", w:{mat:3}},
-    {l:"Biologija i hemija", w:{nauka:2,zdravlje:1}},
-    {l:"Jezici i književnost", w:{jezik:3}},
-    {l:"Istorija, sociologija, filozofija", w:{drustvo:3}}
+  {t:"Šta planiraš posle srednje škole?", o:[
+    {l:"Idem na fakultet", w:{aka:3}},
+    {l:"Želim da steknem zanimanje i brže počnem da radim", w:{zan:3}},
+    {l:"Još nisam siguran/sigurna", w:{aka:1,zan:1}}
   ]},
-  {t:"Šta bi najradije radio/la na poslu?", o:[
-    {l:"Pravim i projektujem (mašine, zgrade, softver)", w:{mat:2,it:2}},
-    {l:"Istražujem i analiziram", w:{nauka:3}},
-    {l:"Radim sa ljudima i pomažem im", w:{ljudi:3,zdravlje:1}},
-    {l:"Vodim posao, prodaju, projekte", w:{biznis:3}}
+  {t:"Koji predmeti su ti najdraži?", o:[
+    {l:"Matematika i fizika", w:{nauka:3}},
+    {l:"Jezici, istorija, geografija", w:{jezik:3}},
+    {l:"Biologija i hemija", w:{zdravlje:2,priroda:2}},
+    {l:"Informatika", w:{it:3}}
   ]},
-  {t:"Koliko voliš matematiku?", o:[
-    {l:"Obožavam je, hoću je svaki dan", w:{mat:3}},
-    {l:"Solidna mi je, korisna", w:{mat:1,biznis:1}},
-    {l:"Više volim reči nego brojeve", w:{jezik:2,drustvo:1}}
+  {t:"Kako najviše voliš da učiš?", o:[
+    {l:"Teorijski — volim da razumem „zašto“", w:{aka:2,nauka:1}},
+    {l:"Praktično — najbolje učim radeći rukama", w:{zan:2,ruke:2}},
+    {l:"Kroz kreativnost i izražavanje", w:{umetnost:2}}
   ]},
-  {t:"Tehnologija i računari?", o:[
-    {l:"Programiram / hoću da programiram", w:{it:3}},
-    {l:"Koristim ih, ali nije mi to glavna stvar", w:{mat:1}},
-    {l:"Nije moj svet", w:{drustvo:1,umetnost:1}}
+  {t:"Šta te najviše zanima da radiš?", o:[
+    {l:"Programiram, pravim aplikacije i igre", w:{it:3}},
+    {l:"Sklapam, popravljam, radim sa mašinama", w:{ruke:3}},
+    {l:"Pomažem ljudima, briga o zdravlju", w:{zdravlje:3}},
+    {l:"Crtam, dizajniram ili sviram", w:{umetnost:3}}
   ]},
-  {t:"Šta te najviše privlači?", o:[
-    {l:"Zdravlje i pomoć bolesnima", w:{zdravlje:3}},
-    {l:"Priroda, biljke, životinje, hrana", w:{priroda:3}},
-    {l:"Pravo, pravda, pravila", w:{pravo:3}},
-    {l:"Umetnost i kreativno izražavanje", w:{umetnost:3}}
+  {t:"Koja ti je tema najzanimljivija?", o:[
+    {l:"Priroda, biljke, životinje, ekologija", w:{priroda:3}},
+    {l:"Gradnja, zgrade, mostovi, mape", w:{gradj:3,ruke:1}},
+    {l:"Jezici, putovanja, kultura", w:{jezik:3}},
+    {l:"Novac, biznis, preduzetništvo", w:{ljudi:3}}
   ]},
-  {t:"Kako bi opisao/la sebe?", o:[
-    {l:"Logičan/na i precizan/na", w:{mat:2,nauka:1}},
-    {l:"Komunikativan/na, dobar s ljudima", w:{ljudi:2,biznis:1}},
-    {l:"Kreativan/na i maštovit/a", w:{umetnost:2,jezik:1}},
-    {l:"Energičan/na, volim pokret i sport", w:{sport:3}}
-  ]},
-  {t:"Koja tema bi te zaintrigirala na predavanju?", o:[
-    {l:"Kako radi veštačka inteligencija", w:{it:3,mat:1}},
-    {l:"Kako funkcioniše ljudsko telo", w:{zdravlje:3}},
-    {l:"Kako se vodi i finansira firma", w:{biznis:3}},
-    {l:"Kako jezik i kultura oblikuju društvo", w:{jezik:2,drustvo:2}}
+  {t:"Koliko ti je važno da brzo dobiješ zanimanje i posao?", o:[
+    {l:"Veoma — želim konkretnu struku", w:{zan:3}},
+    {l:"Nije presudno — prvo fakultet", w:{aka:3}},
+    {l:"Nešto između", w:{aka:1,zan:1}}
   ]},
   {t:"U slobodno vreme najradije…", o:[
-    {l:"…rešavam zadatke, kodiram, sklapam", w:{mat:2,it:2}},
-    {l:"…čitam, pišem, učim jezike", w:{jezik:3}},
-    {l:"…crtam, sviram, dizajniram", w:{umetnost:3}},
-    {l:"…sport, priroda, životinje", w:{sport:2,priroda:1}}
+    {l:"…kodiram, igram igrice, na računaru sam", w:{it:3}},
+    {l:"…crtam, sviram, pravim nešto kreativno", w:{umetnost:3}},
+    {l:"…sport, priroda, životinje", w:{priroda:2}},
+    {l:"…čitam, pišem, debatujem", w:{jezik:2,aka:1}}
   ]},
-  {t:"Šta ti je važnije u budućem poslu?", o:[
-    {l:"Da rešavam konkretne tehničke probleme", w:{mat:2,it:1}},
-    {l:"Da pomažem ljudima direktno", w:{zdravlje:2,ljudi:1}},
-    {l:"Da zarađujem i napredujem u biznisu", w:{biznis:3}},
-    {l:"Da stvaram nešto lepo i originalno", w:{umetnost:3}}
+  {t:"Kad radiš nešto rukama (alat, sklapanje, gradnja)…", o:[
+    {l:"…uživam, to mi najbolje ide", w:{ruke:3,zan:1}},
+    {l:"…može, ali više volim ekran i tastaturu", w:{it:2}},
+    {l:"…radije bih nešto kreativno ili sa ljudima", w:{umetnost:1,ljudi:1}}
   ]},
-  {t:"Koja grupa fakulteta ti „zvuči“ najbolje?", o:[
-    {l:"Tehnika, inženjerstvo, IT", w:{mat:2,it:2}},
-    {l:"Medicina i zdravstvo", w:{zdravlje:3}},
-    {l:"Ekonomija, pravo, društvo", w:{biznis:2,pravo:1,drustvo:1}},
-    {l:"Umetnost, jezici, sport", w:{umetnost:1,jezik:1,sport:1}}
+  {t:"Koja škola ti „zvuči“ najbolje?", o:[
+    {l:"Gimnazija", w:{aka:3}},
+    {l:"Tehnička / elektro / IT škola", w:{zan:2,it:1,ruke:1}},
+    {l:"Medicinska škola", w:{zdravlje:3}},
+    {l:"Umetnička / ekonomska škola", w:{umetnost:1,ljudi:1,zan:1}}
   ]}
 ];
 
@@ -214,17 +207,20 @@ function finish(){
   const list=ranked.slice(0,5);
   const box=$('#wishlist'); box.innerHTML='';
   list.forEach((r,idx)=>{
-    const faks=(FAKS[r.c.key]||[]).map(s=>'• '+s).join('<br>');
+    const schools=(SCHOOLS[r.c.key]||[]).map(s=>'• '+s).join('<br>');
     const div=document.createElement('div'); div.className='wish'+(idx===0?' main':'');
     div.innerHTML='<div class="rank">'+(idx+1)+'</div><div>'+
       '<div class="wname">'+r.c.name+'</div>'+
-      '<span class="pill">'+r.c.grupa+'</span>'+
+      '<span class="pill'+(r.c.tip==='gimnazija'?' g':'')+'">'+(r.c.tip==='gimnazija'?'Gimnazija':'Stručna škola')+'</span>'+
       '<div class="wmeta">'+r.c.desc+'</div>'+
-      (faks?'<div class="schools">'+faks+'</div>':'')+
+      (schools?'<div class="schools">'+schools+'</div>':'')+
       '</div>';
     box.appendChild(div);
   });
-  $('#typeNote').innerHTML='Saveti: proveri prijemni ispit i kvote na sajtu fakulteta. Ako je tvoj izbor FTN, uradi i poseban <b>FTN test</b> da nađeš tačan smer.';
+  const lean = (sc.aka||0) >= (sc.zan||0);
+  $('#typeNote').innerHTML = lean
+    ? 'Tvoji odgovori naginju ka <b>gimnaziji</b> (priprema za fakultet). Ako želiš i konkretno zanimanje ranije, pogledaj i stručne škole na listi.'
+    : 'Tvoji odgovori naginju ka <b>stručnoj školi</b> (konkretno zanimanje). Napomena: i posle stručne škole možeš na fakultet.';
   $('#bar').style.width='100%';
   $('#quiz').classList.add('hidden'); $('#result').classList.remove('hidden');
 }
