@@ -1,43 +1,32 @@
-# ZOI — UPUTSTVO (korak po korak)
+# UPUTSTVO — kako da uploaduješ (Batch 1)
 
-Ovaj paket ima SAMO dva fajla koja se bezbedno prebacuju:
-- `widget.js`  → sama Zoi (sad sa „Lana" glasom)
-- `api/chat.js` → „mozak" (backend sa ključem)
+Ovaj batch ide u repo **`mathia-sajt`** (ono što se objavljuje na `project-y23je.vercel.app`).
 
-⚠️ Namerno NEMA `index.html` ni druge stranice — da NE pregazi tvoje prave strane (to se desilo prošli put).
+## Fajlovi u ovom batch-u
+- `index.html` — naslovna (zameni postojeći `index.html`)
+- `kviz.html` — test izbora fakulteta/srednje (zameni postojeći `kviz.html`)
+- `predmet-analiza1.html` — primer strane predmeta (nov fajl)
+- `README.md` — mapa naziva i plan (zameni postojeći)
+- `UPUTSTVO.md` — ovo uputstvo (zameni postojeći)
 
-============================================================
-DEO 1 — Prebaci ova dva fajla na GitHub
-============================================================
-1. Otvori github.com → repo **mathia-sajt**.
-2. Klikni **Add file → Upload files**.
-3. Prevuci **widget.js** i ceo folder **api** (sa chat.js unutra).
-4. Kad pita „replace existing files?" → DA, zameni (overwrite).
-   (Bezbedno je — to nisu tvoje stranice, nego Zoi i backend.)
-5. Dole klikni **Commit changes**.
-6. Vercel sam objavi novu verziju za ~1 minut.
+## ⚠️ Važno — NE briši ništa još
+Da se sajt ne bi lomio dok ne uđu svi batchevi, **ništa ne brišemo sada**.
+Samo dodajemo/menjamo gornje fajlove. Kompletno čišćenje duplikata
+(`mathia_naslovna.html`, `mathia_kviz_*.html`, `test-sklonosti.html`…) radimo
+**na samom kraju**, jednim potezom, kad sve nove strane budu gore.
 
-============================================================
-DEO 2 — Vrati svoju PRAVU početnu stranu
-============================================================
-Moja demo strana je ranije zamenila tvoj pravi `index.html`.
-Vrati original ovako:
-- Ako si sajt pravila na **Glitch-u** → otvori projekat na glitch.com,
-  uzmi svoj originalni `index.html` i njega postavi na GitHub
-  (Add file → Upload files → index.html → Commit).
-- ILI na GitHub-u: klikni `index.html` → **History** → otvori stariju
-  (tvoju) verziju → kopiraj sadržaj → zameni trenutni → Commit.
+## Koraci (GitHub, preko pregledača)
+1. Otvori repo **`mathia-sajt`** → dugme **`Add file`** → **`Upload files`**.
+2. Prevuci svih 5 fajlova iz ovog batch-a u prozor.
+3. GitHub će za `index.html`, `kviz.html`, `README.md`, `UPUTSTVO.md` reći da
+   **zamenjuje** postojeće — to je u redu.
+4. Dole upiši poruku commita, npr. `Batch 1 - cisto jezgro` → **`Commit changes`**.
+5. **Vercel** sam pokreće deploy; za minut proveri `project-y23je.vercel.app`.
 
-(Ako ne ide — javi, napravićemo ti novu početnu.)
+## Šta da proveriš posle uploada
+- Naslovna: meni ima **Test**; sekcija „Pronađi fakultet i smer…" → dugmad **Beograd / Novi Sad**.
+- Klik na **Beograd** (fakultet) → otvara `kviz.html`, prođe 8 pitanja → rezultat **1 + 4**, sa „zašto", „čime ćeš se baviti", „gde se zapošljava".
+- U futeru svuda stoji napomena o opštem karakteru platforme.
+- „Analiza 1" na naslovnoj → otvara `predmet-analiza1.html` (dve ponude: Nina / Nina + skripte).
 
-============================================================
-DEO 3 — Dodaj Zoi na SVAKU stranicu
-============================================================
-Otvori `LINIJA-ZA-UBACIVANJE.txt` i tu liniju nalepi IZNAD `</body>`
-u svaku .html stranu:
-- obične strane → data-mode="site"
-- strana za prijemni (tutor-ftn.html) → data-mode="ftn"
-
-Posle svake izmene → Commit → sačekaj minut → na sajtu Cmd+Shift+R.
-
-Gotovo — Zoi je na svakoj strani gde si dodala liniju. 🎉
+Kad potvrdiš da Batch 1 radi, šaljem **Batch 2 (sve strane predmeta)**.

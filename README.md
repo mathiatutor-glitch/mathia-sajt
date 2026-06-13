@@ -1,59 +1,56 @@
-# MathIA — FTN priprema za prijemni iz matematike + tutor „Zoi"
-# MathIA — FTN math entrance-exam prep + the "Zoi" tutor
+# MathIA — sajt (mathia-sajt)
 
-🇷🇸 Srpski (ekavica) · 🇬🇧 English — both below.
+Tople, pametne **mentorke** i raskošni materijali za fakultet, srednju školu, prijemni i malu maturu.
+Brend: *slatko + skupo* (krem/zlatna, Playfair Display + Plus Jakarta Sans).
 
----
-
-## 🇷🇸 Srpski
-
-Besplatna baza znanja za pripremu prijemnog ispita iz matematike na **Fakultetu tehničkih nauka (FTN), Novi Sad**, i konfiguracija AI-tutora **„Zoi" (Profesorica)**. Sav matematički sadržaj je proveren; struktura prijemnog i obim potvrđeni su sa zvaničnog FTN sajta.
-
-### Sadržaj repozitorijuma
-```
-sr/
-  00-master-pregled.md        — pregled celog projekta (interno)
-  01-gradivo-matematika.md    — KOMPLETNO gradivo (17 celina, formule + metode + provereni rezultati)
-  02-smerovi-i-nivoi.md       — smerovi, tipovi ispita, Grupa A/B, sklonosti/logika, literatura, linkovi
-  03-zoi-konfiguracija.md     — persona klona: natpis, uvod, izgovor (TTS), ton
-  04-struktura-po-godinama.md — mapa zadatak→oblast (2023–2025, potvrđeno)
-en/
-  01–04  — engleske verzije gornjih dokumenata
-```
-
-### Kako se koristi
-- **Učenik:** kreni od `02-smerovi-i-nivoi` (nađi svoj smer i grupu), pa uči iz `01-gradivo` ono što ulazi u tvoj obim; vežbaj na zvaničnim rešenim prijemnima (linkovi u gl. 8).
-- **Za klon „Zoi":** `03-zoi-konfiguracija` ide u personu/TTS; `01-gradivo` + `02-smerovi-i-nivoi` + `04-struktura` su baza znanja. Zoi prvo **pita za koji smer** se učenik sprema, pa kaže da li neka oblast uopšte dolazi na taj prijemni.
-
-### Ključno
-- **Grupa A (pun obim, 18 oblasti)** vs **Grupa B (smanjen, 13 oblasti — bez stereometrije, analitičke, limesa/izvoda, integrala).**
-- **„FTN" se izgovara „Fakultet tehničkih nauka" / „ef-te-en"**, nikad slovo po slovo.
-- Grupa A ima **ustaljenu strukturu od 10 zadataka** (po jedan iz svake oblasti) — potvrđeno 2023–2025.
+> **Napomena:** MathIA je nezavisna obrazovna platforma opšteg karaktera. Sadržaj je informativan i nije
+> povezan ni sa jednom konkretnom obrazovnom ustanovom, niti je predstavlja.
 
 ---
 
-## 🇬🇧 English
+## ✅ Čisti set naziva (dogovoreno)
 
-A free knowledge base for preparing the mathematics entrance exam at the **Faculty of Technical Sciences (FTN), Novi Sad**, plus the configuration of the **"Zoi" (Profesorica)** AI tutor. All math content is verified; the exam structure and scope are confirmed from the official FTN website. **The tutor speaks Serbian (ekavian)** — it serves Serbian-speaking applicants — so the welcome and pronunciation data are Serbian by design.
+Prelazimo na kratke, jasne nazive. Stari `mathia_*` i duple strane spajamo u ove (čišćenje radimo **na kraju**, kad sve bude gore — da se sajt ne lomi usput).
 
-### Repository layout
-```
-sr/  — Serbian originals (00 overview · 01 syllabus · 02 programs & levels · 03 Zoi config · 04 structure by year)
-en/  — English versions (01 syllabus · 02 programs & levels · 03 Zoi config · 04 structure by year)
-```
+### Root strane
+| Nova (čista) | Zamenjuje / spaja | Status |
+|---|---|---|
+| `index.html` | `mathia_naslovna.html`, stari `index.html` | ✅ Batch 1 |
+| `kviz.html` | `mathia_kviz_fakultet.html`, `mathia_kviz_srednja.html`, `test-sklonosti.html`, stari `kviz.html` | ✅ Batch 1 (fakultet + srednja, 1 + 4) |
+| `predmet-analiza1.html` | primer/šablon strane predmeta | ✅ Batch 1 |
+| `predmet-*.html` (fakultetski) | `fakultet.html`, `mathia_fakultet.html`, `vodic-fakultet*.html` | ⏳ Batch 2 |
+| `srednja-matematika-1..4.html`, `srednja-fizika-1..4.html` | iste | ⏳ Batch 2 |
+| `prijemni.html` | `prijemni-ftn.html`, `tutor-ftn*.html` | ⏳ Batch 2 |
+| `mala-matura.html` | ista | ⏳ Batch 2 |
+| `mathia_ponuda.html` | ista (dve ponude: klon / klon + materijali) | ⏳ Batch 2 |
 
-### How to use
-- **Student:** start with `en/02-programs-and-levels` (find your program and group), study the in-scope topics from `en/01-math-syllabus`, and practice on the official solved exams (links in §8).
-- **For the "Zoi" clone:** `03` is the persona/TTS config; `01`, `02`, `04` are the knowledge base. Zoi first **asks which program** the student is preparing for, then says whether a topic is even on that exam.
+### Folderi
+| Folder | Sadržaj | Status |
+|---|---|---|
+| `api/` | `chat.js`, `widget.js`, `api_chat_KLONOVI.js`, persona po klonu (`iskra.js`, `mila.js`…), `tts.js` (isključen) | ⏳ Batch 3 |
+| `sr/`, `en/` | baze znanja `.md` + `MathIA_klonovi_SVI_promptovi.md` | ⏳ Batch 3 |
+| (root) PDF | `Oblast_*`, `MathIA_E-skripta_*`, `MathIA_Formule_*`, `MathIA_Izdanje_*`, `MathIA_Mala_matura_*`, `MathIA_Prijemni_*` | ⏳ Batch 4 |
 
-### Key facts
-- **Group A (full, 18 areas)** vs **Group B (reduced, 13 areas — no stereometry, analytic geometry, limits/derivatives, integrals).**
-- Group A has a **stable 10-problem structure** (one per area) — verified 2023–2025.
+### Jezici (10, bez bugarskog)
+Srpski, engleski, nemački, grčki, mađarski, španski, ruski, italijanski, slovenački, francuski.
+Mehanizam: **jedan set fajlova** + prevod preko `?lang=` (JS rečnik, padajući meni menja jezik) — ⏳ Batch 5.
+Ne pravimo 10× kopija stranica.
 
 ---
 
-## Izvori / Sources
-Official: `ftn.uns.ac.rs` — `/nacin-polaganja`, `/oblasti-iz-matematike`, `/zbirka-zadataka-i-literatura`. Solved exams 2012–2025 linked inside `02`. Re-check yearly; the call for applications and scope may change.
+## Klonovi (mentorke)
+- **Bez glasa** — samo **pišu i crtaju** (canvas), korak po korak, tačno.
+- MathIA (naslovna) = vodič/concierge; predmetne mentorke (Nina, Iskra, Lana, Vera, Lara, Iva, Zoi, Mila) = predaju.
+- Tačni odgovori + crtanje dolaze od živog modela preko **tvog Anthropic ključa** u widget aplikaciji; ovde su
+  front-end klona + **persona + sistem-promptovi + baze znanja** (Batch 3) koji ih čine tačnim i u stilu.
 
-## Napomena / Note
-Matematički sadržaj sažima metode i autentičan pedagoški ton; **nije** doslovna kopija zvanične zbirke. Za potpuna rešenja koristi zvanične rešene prijemne (linkovi unutra). · The math content summarizes methods and the authentic teaching tone; it is **not** a verbatim copy of the official problem collection. Use the official solved exams (links inside) for full solutions.
+## Pristup / ponude
+- Samo **dve ponude** (po predmetu): **klon** ili **klon + e-knjige/skripte/formule**.
+- Test izbora fakulteta/srednje = **besplatan**; **prvo pitanje klonu besplatno**, dalje uz pretplatu.
+
+## Batch plan
+1. **Jezgro** — `index.html`, `kviz.html`, `predmet-analiza1.html`, `README.md`, `UPUTSTVO.md` ✅
+2. **Predmeti** — svi fakultetski + srednja (mat 1–4, fiz 1–4), prijemni, mala matura, `mathia_ponuda.html`
+3. **Klonovi** — `api/`, `chat.js`, `widget.js`, persona, baze znanja (`sr/`, `en/`)
+4. **E-knjige / PDF** — sve oblasti, skripte, formule, izdanja
+5. **Jezici** — i18n mehanizam + prevodi (10 jezika)
