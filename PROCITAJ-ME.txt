@@ -42,3 +42,15 @@ VODENI ŽIG NA E-KNJIGE (skripte/formule):
      <script src="/zastita.js"></script>
   (Idealno: backend pre toga ubaci broj korisnika: <script>window.MATHIA_USER="+38160••••123";</script>)
 ========================================================
+
+------------------------------------------------------------
+BACKEND (novo) — vidi BACKEND-SETUP.md za podešavanje
+  lib/*.js                 pomoćni moduli (baza, sesija, telefon, SMS, korisnik)
+  api/auth/send-code.js    slanje SMS koda
+  api/auth/verify.js       provera koda + prijava (cookie)
+  api/me.js                status (probni period / pretplata)
+  api/subscribe.js         (test) pretplata
+  api/chat.js              ZAMENJEN: traži prijavu + broji probni period
+  middleware.js            zaštita materijala (samo prijavljeni)
+  widget.js, zastita.js    ZAMENJENI: traka poziva na prijavu; žig uzima broj sa /api/me
+  package.json             "type":"module" (ako već imaš, samo dodaj taj red)
