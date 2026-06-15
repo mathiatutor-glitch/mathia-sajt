@@ -150,7 +150,10 @@
     "#zoi-head .zoi-headfb{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.7);font-size:20px}" +
     ".zoi-fig{background:#fff;border:1px solid #E2D6BF;border-radius:12px;padding:8px;margin:6px 0;max-width:100%;overflow-x:auto}" +
     ".zoi-fig svg{max-width:100%;height:auto;display:block;margin:0 auto}" +
-    ".zoi-bub sup{font-size:.72em;vertical-align:super}.zoi-bub sub{font-size:.72em;vertical-align:sub}";
+    ".zoi-bub sup{font-size:.72em;vertical-align:super}.zoi-bub sub{font-size:.72em;vertical-align:sub}" +
+    ".zoi-bub .katex{max-width:100%}" +
+    ".zoi-bub .katex-display{margin:.45em 0;overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}" +
+    ".zoi-bub .katex-display>.katex{white-space:nowrap}";
 
   var style = document.createElement("style");
   style.textContent = css;
@@ -775,6 +778,26 @@
         };
         swap();
         if (window.MutationObserver) new MutationObserver(swap).observe(bubble, { childList: true, subtree: true, characterData: true });
+      }
+      // "Marina te vodi" (podnaslov) i demo potpis "Marina ✍️" -> ime profesorke.
+      // NE diramo sekciju osnivačice (data-i18n="founder_msg"), tamo Marina ostaje.
+      if (NAME !== "Marina") {
+        var relabel = function (el) {
+          if (!el) return;
+          var fix = function () {
+            (function walk(node) {
+              for (var p = 0; p < node.childNodes.length; p++) {
+                var c = node.childNodes[p];
+                if (c.nodeType === 3) { if (c.nodeValue.indexOf("Marina") > -1) c.nodeValue = c.nodeValue.replace(/Marina/g, NAME); }
+                else if (c.nodeType === 1) walk(c);
+              }
+            })(el);
+          };
+          fix();
+          if (window.MutationObserver) new MutationObserver(fix).observe(el, { childList: true, subtree: true, characterData: true });
+        };
+        relabel(document.querySelector('[data-i18n="subj_sub"]')); // hero podnaslov
+        relabel(document.querySelector(".bubble.a"));              // demo odgovor („kako izgleda čas")
       }
     } catch (e) {}
   }
