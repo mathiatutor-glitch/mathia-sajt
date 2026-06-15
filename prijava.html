@@ -47,7 +47,20 @@
   .hidden{display:none}
   .resend{margin-top:12px;text-align:center;font-size:.82rem;color:var(--muted)}
   .resend b{color:var(--goldD);cursor:pointer}
-</style>
+  /* onboarding */
+  #ob-track{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .ob-big{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;cursor:pointer;
+    border:1.5px solid var(--line);border-radius:14px;background:var(--cream);padding:15px 16px;font-family:inherit;text-align:left;transition:border-color .15s,transform .15s}
+  .ob-big:hover{border-color:var(--gold);transform:translateY(-1px)}
+  .ob-big b{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--navy)}
+  .ob-big small{color:var(--muted);font-size:.82rem}
+  #ob-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  .ob-card{cursor:pointer;border:1.5px solid var(--line);border-radius:16px;background:var(--paper);padding:12px 10px;text-align:center;transition:border-color .15s,transform .15s}
+  .ob-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .ob-card img{width:74px;height:74px;border-radius:50%;object-fit:cover;border:2px solid var(--gold2);background:var(--cream)}
+  .ob-card .nm{font-family:'Playfair Display',serif;font-weight:600;color:var(--navy);margin-top:7px}
+  .ob-card .sj{color:var(--muted);font-size:.78rem;line-height:1.3;margin-top:2px}
+
 </head>
 <body>
   <div class="brand">Math<b>IA</b><small>Privatni profesor</small></div>
@@ -84,6 +97,25 @@
       <span class="back" id="back" data-t="back">← Promeni broj</span>
     </div>
 
+    <!-- KORAK 3: onboarding (izbor cilja: uzrast -> profesorka) -->
+    <div id="step3" class="hidden">
+      <h1 data-t="obTitle">Šta učiš?</h1>
+      <p class="sub" data-t="obSub">Izaberi i upoznaćeš svoju profesorku.</p>
+
+      <!-- 3a: uzrast -->
+      <div id="ob-track">
+        <button class="ob-big" data-track="skola"><b data-t="trkSkola">Škola</b><small data-t="trkSkolaS">osnovna i srednja</small></button>
+        <button class="ob-big" data-track="prijemni"><b data-t="trkPrijemni">Prijemni</b><small data-t="trkPrijemniS">za fakultet</small></button>
+        <button class="ob-big" data-track="fakultet"><b data-t="trkFax">Fakultet</b><small data-t="trkFaxS">matematika, fizika, ETF</small></button>
+      </div>
+
+      <!-- 3b: profesorka -->
+      <div id="ob-teachers" class="hidden">
+        <div id="ob-cards"></div>
+        <span class="back" id="ob-back" data-t="obBack">← Nazad</span>
+      </div>
+    </div>
+
     <div class="msg" id="msg"></div>
     <div class="foot" data-t="foot">Tvoj broj koristimo samo za prijavu i bezbednost naloga. Nikada ga ne delimo.</div>
   </div>
@@ -113,7 +145,10 @@
         noCode:"Nema koda?",resend:"Pošalji ponovo",back:"← Promeni broj",
         foot:"Tvoj broj koristimo samo za prijavu i bezbednost naloga. Nikada ga ne delimo.",
         eInvalid:"Unesi ispravan broj telefona.",eCode:"Kod nije tačan. Probaj ponovo.",eNet:"Nešto je zapelo. Probaj ponovo.",
-        sent:"Kod je poslat!",welcome:"Dobrodošla! Otvaram MathIA…",sec:"sek"},
+        sent:"Kod je poslat!",welcome:"Dobrodošla! Otvaram MathIA…",sec:"sek",
+        obTitle:"Šta učiš?",obSub:"Izaberi i upoznaćeš svoju profesorku.",
+        trkSkola:"Škola",trkSkolaS:"osnovna i srednja",trkPrijemni:"Prijemni",trkPrijemniS:"za fakultet",
+        trkFax:"Fakultet",trkFaxS:"matematika, fizika, ETF",obBack:"← Nazad",obSaving:"Pripremam tvoj kutak…"},
     en:{h1:"Sign in with your phone",sub1:"No card needed. Your first <b>1 hour</b> or <b>15 questions</b> — whichever comes first — is completely free.",
         lblPhone:"Phone number",consent:'I agree that MathIA processes my phone number for sign-in, per the <a href="/privatnost.html" target="_blank">privacy policy</a>.',
         sendBtn:"Send code",trialNote:"<b>1 hour or 15 questions</b> free — starts only from your first question.",
@@ -122,7 +157,10 @@
         noCode:"No code?",resend:"Resend",back:"← Change number",
         foot:"We use your number only for sign-in and account security. We never share it.",
         eInvalid:"Please enter a valid phone number.",eCode:"The code is not correct. Try again.",eNet:"Something went wrong. Try again.",
-        sent:"Code sent!",welcome:"Welcome! Opening MathIA…",sec:"sec"}
+        sent:"Code sent!",welcome:"Welcome! Opening MathIA…",sec:"sec",
+        obTitle:"What are you studying?",obSub:"Pick one and meet your teacher.",
+        trkSkola:"School",trkSkolaS:"primary & high school",trkPrijemni:"Entrance exam",trkPrijemniS:"for university",
+        trkFax:"University",trkFaxS:"math, physics, EE",obBack:"← Back",obSaving:"Setting up your space…"}
   };
   var lang = (navigator.language||"sr").slice(0,2)==="en" ? "en":"sr";
   var $=function(id){return document.getElementById(id);};
@@ -194,13 +232,56 @@
     clearMsg(); var code=$("code").value; $("verify").disabled=true;
     var res=await post("/auth/verify",{phone:phone,code:code});
     if(res===null){ // DEMO
-      if(code===DEMO_CODE){ ok(T[lang].welcome); setTimeout(function(){ location.href="/index.html"; },800); }
+      if(code===DEMO_CODE){ ok(T[lang].welcome); showOnboarding(); }
       else { err(T[lang].eCode); $("verify").disabled=false; }
       return;
     }
-    if(res.ok){ ok(T[lang].welcome); setTimeout(function(){ location.href="/index.html"; },700); }
+    if(res.ok){ ok(T[lang].welcome); showOnboarding(); }
     else { err(res.error||T[lang].eCode); $("verify").disabled=false; }
   };
+  // ——— onboarding: izbor cilja (uzrast -> profesorka) ———
+  var TEACHERS = {
+    skola: [
+      { teacher:"Mila", mode:"mala-matura", sr:"Mala matura", en:"Grade-8 final" },
+      { teacher:"Lara", mode:"sr-mat-1",    sr:"Srednja matematika", en:"High-school math" },
+      { teacher:"Iva",  mode:"sr-fiz-1",    sr:"Srednja fizika", en:"High-school physics" }
+    ],
+    prijemni: [
+      { teacher:"Zoi",  mode:"prijemni-matematika", sr:"Prijemni iz matematike", en:"Math entrance exam" }
+    ],
+    fakultet: [
+      { teacher:"Nina",  mode:"fax-analiza1",    sr:"Matematika (analiza, algebra…)", en:"Math (calculus, algebra…)" },
+      { teacher:"Lana",  mode:"fax-verovatnoca", sr:"Verovatnoća i statistika", en:"Probability & statistics" },
+      { teacher:"Iskra", mode:"fax-elektronika", sr:"Elektrotehnika", en:"Electrical engineering" },
+      { teacher:"Vera",  mode:"fax-mehanika",    sr:"Fizika i mehanika", en:"Physics & mechanics" }
+    ]
+  };
+  function showOnboarding(){
+    clearMsg(); show($("step1"),false); show($("step2"),false); show($("step3"),true);
+    show($("ob-teachers"),false); var tr=$("ob-track"); if(tr) tr.style.display="";
+  }
+  function pickTrack(track){
+    if(track==="prijemni"){ saveGoal(track, TEACHERS.prijemni[0]); return; }
+    var list=TEACHERS[track]||[], box=$("ob-cards"); box.innerHTML="";
+    list.forEach(function(it){
+      var c=document.createElement("button"); c.type="button"; c.className="ob-card";
+      c.innerHTML='<img src="/avatari/'+it.teacher.toLowerCase()+'.png" alt="'+it.teacher+'"/>'+
+                  '<div class="nm">'+it.teacher+'</div><div class="sj">'+(lang==="en"?it.en:it.sr)+'</div>';
+      c.onclick=function(){ saveGoal(track, it); };
+      box.appendChild(c);
+    });
+    $("ob-track").style.display="none"; show($("ob-teachers"),true);
+  }
+  function saveGoal(track, it){
+    clearMsg(); ok(T[lang].obSaving);
+    var goal={ track:track, mode:it.mode, teacher:it.teacher, subject:(lang==="en"?it.en:it.sr) };
+    try{ localStorage.setItem("mathia_goal", JSON.stringify(goal)); }catch(e){}
+    post("/me",{goal:goal}).then(function(){ setTimeout(function(){ location.href="/index.html"; },500); });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("#ob-track .ob-big"),function(b){
+    b.onclick=function(){ pickTrack(b.getAttribute("data-track")); };
+  });
+  $("ob-back").onclick=function(){ show($("ob-teachers"),false); $("ob-track").style.display=""; };
 })();
 </script>
 </body>

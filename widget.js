@@ -11,9 +11,7 @@
 
   var script = document.currentScript;
   var API = (script && script.getAttribute("data-api")) || "/api/chat";
-  var AVATAR =
-    (script && script.getAttribute("data-avatar")) ||
-    "https://i.postimg.cc/qBXWmBQf/Chat-GPT-Image-6-jun-2026-11-58-24.png";
+  var AVATAR = (script && script.getAttribute("data-avatar")) || ""; // prazno => lokalni avatar po imenu profesorke (vidi niže)
   var LANG = (script && script.getAttribute("data-lang")) || "sr";
   var MODE = (script && script.getAttribute("data-mode")) || "matura"; // "matura" | "ftn"
   var NAME = (script && script.getAttribute("data-name")) || "Zoi"; // ime asistenta (npr. "Mila")
@@ -46,6 +44,13 @@
     "fax-mehanika": { name: "Vera", sub: { sr: "profesorica · Mehanika", en: "teacher · Mechanics" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Mehaniku. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for mechanics. Type a problem or send a photo — we'll go step by step." } }
   };
   if (!(script && script.getAttribute("data-name")) && SUBJECTS[RMODE] && SUBJECTS[RMODE].name) NAME = SUBJECTS[RMODE].name;
+
+  // Lokalni avatar prema profesorki — više se ne oslanja na spoljne linkove koji "nestanu".
+  if (!AVATAR) {
+    var _slug = String(NAME || "zoi").trim().toLowerCase()
+      .replace(/[čć]/g, "c").replace(/š/g, "s").replace(/ž/g, "z").replace(/đ/g, "dj");
+    AVATAR = "/avatari/" + _slug + ".png";
+  }
 
   var VOICE = (script && script.getAttribute("data-voice")) || ""; // ElevenLabs Voice ID za srpski (prazno = podrazumevano)
   var AVATAR_OK = true;
@@ -151,6 +156,44 @@
   style.textContent = css;
   document.head.appendChild(style);
 
+  // ——— KaTeX: lepo iscrtavanje matematike ($...$ inline, $$...$$ blok) ———
+  function katexRender(el) {
+    try {
+      if (el && window.renderMathInElement) {
+        window.renderMathInElement(el, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+          ],
+          throwOnError: false,
+          ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        });
+      }
+    } catch (e) {}
+  }
+  (function loadKatex() {
+    if (window.renderMathInElement || document.getElementById("zoi-katex-css")) return;
+    var V = "0.16.11", base = "https://cdn.jsdelivr.net/npm/katex@" + V + "/dist/";
+    var l = document.createElement("link");
+    l.id = "zoi-katex-css"; l.rel = "stylesheet"; l.href = base + "katex.min.css";
+    document.head.appendChild(l);
+    var s = document.createElement("script");
+    s.src = base + "katex.min.js"; s.defer = true;
+    s.onload = function () {
+      var a = document.createElement("script");
+      a.src = base + "contrib/auto-render.min.js"; a.defer = true;
+      a.onload = function () {
+        // iscrtaj sve već prikazane mehuriće (ako je odgovor stigao pre KaTeX-a)
+        var bubs = document.querySelectorAll("#zoi-msgs .zoi-bub");
+        for (var i = 0; i < bubs.length; i++) katexRender(bubs[i]);
+      };
+      document.head.appendChild(a);
+    };
+    document.head.appendChild(s);
+  })();
+
   // ——— DOM ———
   var btn = document.createElement("div");
   btn.id = "zoi-btn";
@@ -179,7 +222,6 @@
       '<div><div class="zoi-name">' + NAME + '</div><div class="zoi-sub" id="zoi-sub"></div></div>' +
       '<div class="zoi-sp"></div>' +
       '<select id="zoi-lang" title="Jezik">' + langOpts + "</select>" +
-      '<button class="zoi-ico" id="zoi-voice" title="Glas">🔊</button>' +
       '<button class="zoi-ico" id="zoi-x" title="Zatvori">✕</button>' +
     "</div>" +
     '<div id="zoi-msgs"></div>' +
@@ -313,21 +355,11 @@
       };
     }
     if (text) {
-      if (who === "zoi") { renderZoi(bub, text); }
+      if (who === "zoi") { renderZoi(bub, text); katexRender(bub); }
       else { bub.appendChild(document.createTextNode(text)); }
     }
     if (imgUrl) { var im = document.createElement("img"); im.src = imgUrl; bub.appendChild(im); }
-    if (who === "zoi" && text) {
-      lastZoiText = text;
-      var say = document.createElement("button");
-      say.className = "zoi-say"; say.type = "button"; say.textContent = "🔊";
-      say.title = "Pročitaj naglas / zaustavi";
-      say.onclick = function () {
-        if (curBtn === say) { stopSpeak(); }
-        else { primeAudio(); speakNow(text, say); }
-      };
-      row.appendChild(say);
-    }
+    if (who === "zoi" && text) { lastZoiText = text; }
     msgsEl.appendChild(row);
     msgsEl.scrollTop = msgsEl.scrollHeight;
     return bub;
@@ -700,12 +732,8 @@
     taEl.style.height = "auto"; taEl.style.height = Math.min(taEl.scrollHeight, 96) + "px";
   });
   langEl.onchange = function () { stopSpeak(); LANG = langEl.value; applyLang(); greet(); history = []; };
-  voiceBtn.onclick = function () {
-    voiceOn = !voiceOn;
-    voiceBtn.style.background = voiceOn ? "rgba(255,255,255,.45)" : "rgba(255,255,255,.18)";
-    if (voiceOn) { if (lastZoiText) speakNow(lastZoiText); }
-    else { stopSpeak(); }
-  };
+  // Čitanje naglas (TTS) je isključeno — dugme uklonjeno iz zaglavlja.
+  if (voiceBtn) voiceBtn.style.display = "none";
 
   // ——— start ———
   applyLang();
