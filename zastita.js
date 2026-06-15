@@ -97,7 +97,19 @@
     document.body.appendChild(c);
   }
 
-  function init() { deterrents(); guardWatermark(); copyrightNote(); }
+  function maskPhone(p){ var s=String(p||""); return s.length<7?s:s.slice(0,6)+"••••"+s.slice(-3); }
+  // ako je korisnik prijavljen, uzmi njegov (maskirani) broj sa /api/me za vodeni žig
+  function upgradeIdentity(){
+    if (window.MATHIA_USER) return;
+    try {
+      fetch("/api/me",{credentials:"include"})
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){ if (d && d.authenticated && d.phone){ window.MATHIA_USER = maskPhone(d.phone); buildWatermark(); } })
+        .catch(function(){});
+    } catch(e){}
+  }
+
+  function init() { deterrents(); guardWatermark(); copyrightNote(); upgradeIdentity(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();

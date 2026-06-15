@@ -1,9 +1,3 @@
 {
-  "name": "zoi-mathia",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Zoi - AI profesorica za platformu MathIA (frontend + serverless proxy)",
-  "engines": {
-    "node": ">=18"
-  }
+  "type": "module"
 }

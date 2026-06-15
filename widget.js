@@ -727,7 +727,9 @@
     min: EN ? "min" : "min",
     q: EN ? "questions" : "pitanja",
     over: EN ? "Free trial ended" : "Probni period je istekao",
-    sub: EN ? "Subscribe →" : "Pretplati se →"
+    sub: EN ? "Subscribe →" : "Pretplati se →",
+    hour: EN ? "hour" : "sat",
+    login: EN ? "Sign in →" : "Prijavi se →"
   };
   var state = null, bar = null, tick = null;
 
@@ -748,6 +750,11 @@
 
   function render() {
     var b = el(); if (!b || !state) return;
+    if (state.authenticated === false) {
+      b.style.display = "block";
+      b.innerHTML = "🎁 " + t.free + ": <b>1 " + t.hour + "</b> · <b>15 " + t.q + "</b> — <a href='/prijava.html' style='color:#9b7420;font-weight:800'>" + t.login + "</a>";
+      return;
+    }
     if (state.subscribed) { b.style.display = "none"; return; }
     b.style.display = "block";
     if (state.trial && state.trial.active) {
