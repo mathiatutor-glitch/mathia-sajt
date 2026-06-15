@@ -156,41 +156,30 @@
   style.textContent = css;
   document.head.appendChild(style);
 
-  // ——— KaTeX: lepo iscrtavanje matematike ($...$ inline, $$...$$ blok) ———
-  function katexRender(el) {
+  // ——— KaTeX: iscrtava se iz SIROVOG teksta (renderToString), pre fmt-a ———
+  function renderTex(tex, display) {
     try {
-      if (el && window.renderMathInElement) {
-        window.renderMathInElement(el, {
-          delimiters: [
-            { left: "$$", right: "$$", display: true },
-            { left: "$", right: "$", display: false },
-            { left: "\\(", right: "\\)", display: false },
-            { left: "\\[", right: "\\]", display: true }
-          ],
-          throwOnError: false,
-          ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
-        });
-      }
+      if (window.katex) return window.katex.renderToString(String(tex), { displayMode: !!display, throwOnError: false, output: "html" });
     } catch (e) {}
+    return null; // KaTeX još nije spreman ili greška -> ostaje placeholder
+  }
+  // prepiše sve preostale .zoi-tex placeholdere kad se KaTeX učita kasnije
+  function flushTex() {
+    var ph = document.querySelectorAll("#zoi-msgs .zoi-tex");
+    for (var i = 0; i < ph.length; i++) {
+      var el = ph[i], html = renderTex(el.getAttribute("data-tex"), el.getAttribute("data-disp") === "1");
+      if (html != null) { var tmp = document.createElement("span"); tmp.innerHTML = html; el.replaceWith(tmp.firstChild || tmp); }
+    }
   }
   (function loadKatex() {
-    if (window.renderMathInElement || document.getElementById("zoi-katex-css")) return;
+    if (window.katex || document.getElementById("zoi-katex-css")) return;
     var V = "0.16.11", base = "https://cdn.jsdelivr.net/npm/katex@" + V + "/dist/";
     var l = document.createElement("link");
     l.id = "zoi-katex-css"; l.rel = "stylesheet"; l.href = base + "katex.min.css";
     document.head.appendChild(l);
     var s = document.createElement("script");
     s.src = base + "katex.min.js"; s.defer = true;
-    s.onload = function () {
-      var a = document.createElement("script");
-      a.src = base + "contrib/auto-render.min.js"; a.defer = true;
-      a.onload = function () {
-        // iscrtaj sve već prikazane mehuriće (ako je odgovor stigao pre KaTeX-a)
-        var bubs = document.querySelectorAll("#zoi-msgs .zoi-bub");
-        for (var i = 0; i < bubs.length; i++) katexRender(bubs[i]);
-      };
-      document.head.appendChild(a);
-    };
+    s.onload = flushTex;   // iscrtaj sve što je stiglo pre KaTeX-a
     document.head.appendChild(s);
   })();
 
@@ -313,7 +302,25 @@
     svg = svg.replace(/(href|xlink:href)\s*=\s*"(?:\s*javascript:)[^"]*"/gi, "");
     return svg;
   }
-  function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=fmt(t); bub.appendChild(d); } }
+  // Razdvoji formule ($...$, $$...$$, \(..\), \[..\]) od teksta:
+  // formule -> KaTeX iz SIROVOG teksta; ostalo -> fmt (markdown). Tako fmt nikad ne kvari LaTeX.
+  function mathHtml(t) {
+    t = String(t);
+    var re = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^\$\n]+?)\$|\\\(([\s\S]+?)\\\)/g;
+    var out = "", last = 0, m;
+    while ((m = re.exec(t))) {
+      out += fmt(t.slice(last, m.index));
+      var display = (m[1] != null) || (m[2] != null);
+      var tex = (m[1] != null ? m[1] : m[2] != null ? m[2] : m[3] != null ? m[3] : m[4]) || "";
+      var html = renderTex(tex, display);
+      out += (html != null) ? html
+           : '<span class="zoi-tex" data-tex="' + esc(tex) + '" data-disp="' + (display ? 1 : 0) + '">' + esc(tex) + "</span>";
+      last = re.lastIndex;
+    }
+    out += fmt(t.slice(last));
+    return out;
+  }
+  function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=mathHtml(t); bub.appendChild(d); } }
   function addSvg(bub, svg){ var fig=document.createElement("div"); fig.className="zoi-fig"; fig.innerHTML=safeSvg(svg); var sv=fig.querySelector("svg"); if (sv){ sv.removeAttribute("width"); sv.removeAttribute("height"); bub.appendChild(fig); return true; } return false; }
   function renderZoi(bub, text){
     var str = String(text);
@@ -355,7 +362,7 @@
       };
     }
     if (text) {
-      if (who === "zoi") { renderZoi(bub, text); katexRender(bub); }
+      if (who === "zoi") { renderZoi(bub, text); }
       else { bub.appendChild(document.createTextNode(text)); }
     }
     if (imgUrl) { var im = document.createElement("img"); im.src = imgUrl; bub.appendChild(im); }
@@ -738,6 +745,41 @@
   // ——— start ———
   applyLang();
   greet();
+
+  // Uskladi UGRAĐENI "Pitaj Zoi" gumb na stranici (klonovi) sa pravom profesorkom.
+  // Tako se ime i slika vide tačno ODMAH, a ne tek kad se otvori čet.
+  function syncStaticLauncher() {
+    try {
+      var ask = (LANG === "en") ? "Ask " : "Pitaj ";
+      var avas = document.querySelectorAll(".mfab-ava, .mbubble-ava, .zchat-ava");
+      for (var i = 0; i < avas.length; i++) avas[i].style.backgroundImage = "url('" + AVATAR + "')";
+      var imgs = document.querySelectorAll(".mfab-ava img, .zchat-ava img, .mbubble img, .zchat-head img");
+      for (var j = 0; j < imgs.length; j++) imgs[j].src = AVATAR;
+      var nm = document.querySelector(".mfab-name");
+      if (nm) { nm.removeAttribute("data-i18n"); nm.textContent = ask + NAME; }
+      var eb = document.querySelector(".mbubble-eyebrow");
+      if (eb && /Zoi/.test(eb.innerHTML)) eb.innerHTML = eb.innerHTML.replace(/Zoi/g, NAME);
+      var zid = document.querySelector(".zchat-id b");
+      if (zid) zid.textContent = NAME;
+      // rotacione poruke u baloncětu (npr. "Ja sam Zoi") — menjamo "Zoi" u pravo ime
+      var bubble = document.querySelector(".mbubble");
+      if (bubble && NAME !== "Zoi") {
+        var swap = function () {
+          (function walk(node) {
+            for (var k = 0; k < node.childNodes.length; k++) {
+              var c = node.childNodes[k];
+              if (c.nodeType === 3) { if (c.nodeValue.indexOf("Zoi") > -1) c.nodeValue = c.nodeValue.replace(/Zoi/g, NAME); }
+              else if (c.nodeType === 1) walk(c);
+            }
+          })(bubble);
+        };
+        swap();
+        if (window.MutationObserver) new MutationObserver(swap).observe(bubble, { childList: true, subtree: true, characterData: true });
+      }
+    } catch (e) {}
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", syncStaticLauncher);
+  else syncStaticLauncher();
 })();
 
 /* ============================================================
