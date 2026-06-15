@@ -18,6 +18,17 @@ const OVER_MSG = {
   sr: "Tvoj besplatni probni period (1 sat ili 15 pitanja) je iskorišćen. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
   en: "Your free trial (1 hour or 15 questions) is used up. To keep going, choose a plan on the Pricing page (/index.html#cene)."
 };
+// Gost: koliko pitanja radi BEZ prijave pre nego što zamolimo za broj
+const GUEST_FREE = parseInt(process.env.GUEST_FREE || "3", 10);
+const GUEST_OVER_MSG = {
+  sr: "Baš mi je lepo što rešavamo zajedno. Da nastavimo, prijavi se brojem telefona — dobijaš još ceo sat i 15 pitanja, besplatno: /prijava.html",
+  en: "I really enjoyed working through this with you. To keep going, sign in with your phone number — you get another full hour and 15 questions, free: /prijava.html"
+};
+function readCookie(req, name) {
+  const h = (req.headers && req.headers.cookie) || "";
+  const m = h.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+  return m ? decodeURIComponent(m[1]) : null;
+}
 
 const SHARED = `
 Ti si topla, strpljiva i stručna AI profesorka na platformi MathIA. Učiš jednog po jednog učenika, korak po korak.
@@ -28,7 +39,7 @@ SAVRŠEN SRPSKI: piši besprekoran srpski sa kvačicama (č, ć, š, ž, đ) —
 
 BEZ EMODŽIJA: nikada ne koristi emodžije niti opisuj izgled rečima.
 
-MATEMATIČKI ZAPIS (LaTeX): SVU matematiku piši kao LaTeX. Kratke izraze u tekstu stavi između jednostrukih znakova dolara: $x^2$, $\\sqrt{x}$, $\\frac{a}{b}$, $\\pi$, $\\le$, $\\Rightarrow$, $a_n$, $x_1$. Veće formule i konačne rezultate stavi u zaseban blok između dvostrukih: $$\\int_0^1 f(x)\\,dx.$$ Aplikacija to lepo iscrtava. Običan tekst (objašnjenja) drži IZVAN znakova dolara — ne stavljaj cele rečenice u $...$. Ne piši formule rečima. „FTN" piši kao običan tekst.
+MATEMATIČKI ZAPIS (LaTeX): SVU matematiku piši kao LaTeX. Kratke izraze u tekstu stavi između jednostrukih znakova dolara: $x^2$, $\\sqrt{x}$, $\\frac{a}{b}$, $\\pi$, $\\le$, $\\Rightarrow$, $a_n$, $x_1$. Veće formule i konačne rezultate stavi u zaseban blok između dvostrukih: $$\\int_0^1 f(x)\\,dx.$$ Aplikacija to lepo iscrtava. VAŽNO: unutar znakova dolara sme da bude ISKLJUČIVO matematika (brojevi, promenljive, simboli, operacije) — nikada obične reči ni cele rečenice. Naslove koraka (npr. „Korak 3: jednačina eksponenata") i sva objašnjenja piši kao običan tekst, po želji podebljano sa **dve zvezdice**, ali IZVAN znakova dolara. Ne piši formule rečima. Ne koristi crtice (---) ni druge linije kao razdelnike — odvajaj korake samo praznim redom. „FTN" piši kao običan tekst.
 
 SRPSKI TERMINI (obavezno; nikada hrvatske ni anglicizovane): razlomak — „brojilac" (gore) i „imenilac" (dole), „skratiti/proširiti"; „zbir" (ne „zbroj"), „proizvod" (ne „umnožak"), „količnik" (ne „kvocijent"), „cifra", decimalni „zarez"; „jednačina" (ne „jednadžba"), „nejednačina", „nepoznata", „stepen/stepenovanje", „izložilac/eksponent", „koren" (ne „korijen"); „ugao" (ne „kut"), „trougao", „prečnik", „poluprečnik", „obim", „zapremina"; „izvod" (ne „derivacija"), „granična vrednost/limes", „verovatnoća", „procenat". Zahtev piši kao „izračunaj/odredi/nađi".
 
@@ -127,25 +138,34 @@ export default async function handler(req, res) {
 
     let progress = null;
 
-    // "site" (vodič na naslovnoj) je otvoren; svi ostali modovi traže prijavu + probni period
+    // "site" (vodič na naslovnoj) je otvoren; ostali modovi: gost dobija par pitanja, pa prijava
     if (rmode !== "site") {
       const phone = await getSessionPhone(req);
-      if (!phone) return res.status(200).json({ text: LOGIN_MSG[lang], reply: LOGIN_MSG[lang], mode: rmode });
 
-      const u = await getUser(phone);
+      if (!phone) {
+        // GOST: prvih GUEST_FREE pitanja rade bez prijave (broji se preko kolačića)
+        const used = parseInt(readCookie(req, "mg") || "0", 10) || 0;
+        if (used >= GUEST_FREE) {
+          return res.status(200).json({ text: GUEST_OVER_MSG[lang], reply: GUEST_OVER_MSG[lang], mode: rmode });
+        }
+        res.setHeader("Set-Cookie", "mg=" + (used + 1) + "; Path=/; Max-Age=86400; SameSite=Lax");
+        progress = { guest: { used: used + 1, left: Math.max(0, GUEST_FREE - (used + 1)), free: GUEST_FREE } };
+      } else {
+        const u = await getUser(phone);
 
-      if (!isSubscribed(u)) {
-        const tnow = computeTrial(u);
-        if (tnow.expired) return res.status(200).json({ text: OVER_MSG[lang], reply: OVER_MSG[lang], mode: rmode });
-        if (!u.trialStartedAt) u.trialStartedAt = Date.now();   // sat kreće od prvog pitanja
-        u.trialQuestions = (u.trialQuestions || 0) + 1;
+        if (!isSubscribed(u)) {
+          const tnow = computeTrial(u);
+          if (tnow.expired) return res.status(200).json({ text: OVER_MSG[lang], reply: OVER_MSG[lang], mode: rmode });
+          if (!u.trialStartedAt) u.trialStartedAt = Date.now();   // sat kreće od prvog pitanja
+          u.trialQuestions = (u.trialQuestions || 0) + 1;
+        }
+
+        // gejmifikacija: zvezdice + niz + bedževi (i za pretplaćene i za probne)
+        const gained = recordQuestion(u);
+        await saveUser(u);
+        progress = publicProfile(u);
+        progress.gained = gained;   // {gainedStars, firstToday, newBadges}
       }
-
-      // gejmifikacija: zvezdice + niz + bedževi (i za pretplaćene i za probne)
-      const gained = recordQuestion(u);
-      await saveUser(u);
-      progress = publicProfile(u);
-      progress.gained = gained;   // {gainedStars, firstToday, newBadges}
     }
 
     const system = buildSystem(mode);
