@@ -759,7 +759,10 @@
       var imgs = document.querySelectorAll(".mfab-ava img, .zchat-ava img, .mbubble img, .zchat-head img");
       for (var j = 0; j < imgs.length; j++) imgs[j].src = AVATAR;
       var nm = document.querySelector(".mfab-name");
-      if (nm) { nm.removeAttribute("data-i18n"); nm.textContent = ask + NAME; }
+      if (nm) {
+        nm.removeAttribute("data-i18n");
+        nm.textContent = (RMODE === "site") ? (LANG === "en" ? "Ask a teacher" : "Pitaj profesorku") : (ask + NAME);
+      }
       var eb = document.querySelector(".mbubble-eyebrow");
       if (eb && /Zoi/.test(eb.innerHTML)) eb.innerHTML = eb.innerHTML.replace(/Zoi/g, NAME);
       var zid = document.querySelector(".zchat-id b");
