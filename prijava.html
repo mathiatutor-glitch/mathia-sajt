@@ -61,9 +61,10 @@
       <p class="sub" data-t="sub1">Bez kartice. Prvi <b>1 sat</b> ili <b>15 pitanja</b> — šta pre istekne — potpuno je besplatno.</p>
       <label data-t="lblPhone">Broj telefona</label>
       <div class="field">
-        <span class="cc">+381</span>
-        <input id="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="6x xxx xxxx">
+        <span class="cc" id="cc">+381</span>
+        <input id="phone" type="tel" inputmode="text" autocomplete="tel" placeholder="6x xxx xxxx">
       </div>
+      <div class="hintIntl" data-t="hintIntl" style="font-size:.78rem;color:var(--muted);margin:7px 0 0 2px">Iz inostranstva? Unesi broj sa pozivnim, npr. +30 69…</div>
       <label class="consent">
         <input type="checkbox" id="consent">
         <span data-t="consent">Slažem se da MathIA obradi moj broj telefona radi prijave, u skladu sa <a href="/privatnost.html" target="_blank">politikom privatnosti</a>.</span>
@@ -107,6 +108,7 @@
     sr:{h1:"Prijavi se brojem telefona",sub1:"Bez kartice. Prvi <b>1 sat</b> ili <b>15 pitanja</b> — šta pre istekne — potpuno je besplatno.",
         lblPhone:"Broj telefona",consent:'Slažem se da MathIA obradi moj broj telefona radi prijave, u skladu sa <a href="/privatnost.html" target="_blank">politikom privatnosti</a>.',
         sendBtn:"Pošalji kod",trialNote:"<b>1 sat ili 15 pitanja</b> besplatno — počinje tek od tvog prvog pitanja.",
+        hintIntl:"Iz inostranstva? Unesi broj sa pozivnim, npr. +30 69…",
         h2:"Unesi kod iz SMS-a",sub2:"Poslali smo šestocifreni kod na",lblCode:"Kod iz SMS-a",verifyBtn:"Potvrdi i uđi",
         noCode:"Nema koda?",resend:"Pošalji ponovo",back:"← Promeni broj",
         foot:"Tvoj broj koristimo samo za prijavu i bezbednost naloga. Nikada ga ne delimo.",
@@ -115,6 +117,7 @@
     en:{h1:"Sign in with your phone",sub1:"No card needed. Your first <b>1 hour</b> or <b>15 questions</b> — whichever comes first — is completely free.",
         lblPhone:"Phone number",consent:'I agree that MathIA processes my phone number for sign-in, per the <a href="/privatnost.html" target="_blank">privacy policy</a>.',
         sendBtn:"Send code",trialNote:"<b>1 hour or 15 questions</b> free — starts only from your first question.",
+        hintIntl:"Outside Serbia? Enter your number with the country code, e.g. +30 69…",
         h2:"Enter the SMS code",sub2:"We sent a six-digit code to",lblCode:"SMS code",verifyBtn:"Confirm & enter",
         noCode:"No code?",resend:"Resend",back:"← Change number",
         foot:"We use your number only for sign-in and account security. We never share it.",
@@ -126,7 +129,7 @@
   function applyLang(){
     var d=T[lang];
     document.querySelectorAll("[data-t]").forEach(function(el){ if(d[el.getAttribute("data-t")]!=null) el.innerHTML=d[el.getAttribute("data-t")]; });
-    document.documentElement.lang=lang; document.title=lang==="sr"?"Prijava — MathIA":"Sign in — MathIA"; $("lang").textContent = lang==="sr"?"EN":"SR";
+    document.documentElement.lang=lang; $("lang").textContent = lang==="sr"?"EN":"SR";
   }
   $("lang").onclick=function(){ lang = lang==="sr"?"en":"sr"; applyLang(); };
   applyLang();
@@ -136,11 +139,28 @@
   function ok(t){ var m=$("msg"); m.className="msg ok"; m.textContent=t; }
   function clearMsg(){ $("msg").className="msg"; }
 
-  function normPhone(){ return "+381"+$("phone").value.replace(/\D/g,"").replace(/^0+/,""); }
-  function phoneValid(){ var n=$("phone").value.replace(/\D/g,"").replace(/^0+/,""); return n.length>=8 && n.length<=10; }
+  // mirror backenda (lib/phone.js): podrži i domaće (+381 podrazumevano) i strane (+pozivni / 00pozivni)
+  function isIntl(v){ return v.replace(/[^\d+]/g,"").charAt(0)==="+" || v.replace(/\D/g,"").indexOf("00")===0; }
+  function normPhone(){
+    var v=$("phone").value;
+    var intl=v.replace(/[^\d+]/g,"").charAt(0)==="+";
+    var d=v.replace(/\D/g,"");
+    if(d.indexOf("00")===0){ d=d.slice(2); intl=true; }
+    if(intl){ return "+"+d.replace(/^0+/,""); }
+    d=d.replace(/^0+/,"");
+    if(d.indexOf("381")===0) return "+"+d;
+    return "+381"+d;
+  }
+  function phoneValid(){ var n=normPhone().replace(/^\+/,""); return /^\d{8,15}$/.test(n); }
 
-  $("phone").addEventListener("input",function(){ $("send").disabled = !(phoneValid() && $("consent").checked); });
-  $("consent").addEventListener("change",function(){ $("send").disabled = !(phoneValid() && $("consent").checked); });
+  function syncUI(){
+    var v=$("phone").value;
+    $("cc").style.display = isIntl(v) ? "none" : "";   // sakrij +381 kad korisnik kuca strani pozivni
+    $("send").disabled = !(phoneValid() && $("consent").checked);
+  }
+
+  $("phone").addEventListener("input",syncUI);
+  $("consent").addEventListener("change",syncUI);
   $("code").addEventListener("input",function(){ this.value=this.value.replace(/\D/g,"").slice(0,6); $("verify").disabled = this.value.length!==6; });
 
   var phone="";
