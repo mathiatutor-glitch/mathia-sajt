@@ -4,6 +4,18 @@
 //  (NIKAD ga ne pisati ovde). Klijent (widget.js) šalje { mode, lang, messages }.
 //  Vraća { text, reply, mode } — "text" zbog postojećeg widgeta, "reply" za rezervu.
 // ============================================================
+import { getSessionPhone } from "../lib/auth.js";
+import { getUser, saveUser, isSubscribed, computeTrial } from "../lib/user.js";
+
+// Poruke kada nema prijave / kada je probni period istekao (umesto suvog koda greške)
+const LOGIN_MSG = {
+  sr: "Zdravo. Da započnemo čas, prijavi se brojem telefona na stranici Prijava (/prijava.html). Prvih 1 sat ili 15 pitanja je potpuno besplatno.",
+  en: "Hi. To start the lesson, please sign in with your phone number on the Sign-in page (/prijava.html). Your first hour or 15 questions are completely free."
+};
+const OVER_MSG = {
+  sr: "Tvoj besplatni probni period (1 sat ili 15 pitanja) je iskorišćen. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
+  en: "Your free trial (1 hour or 15 questions) is used up. To keep going, choose a plan on the Pricing page (/index.html#cene)."
+};
 
 const SHARED = `
 Ti si topla, strpljiva i stručna AI profesorka na platformi MathIA. Učiš jednog po jednog učenika, korak po korak.
@@ -105,6 +117,23 @@ export default async function handler(req, res) {
     const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
     const messages = Array.isArray(body.messages) ? body.messages : [];
     const mode = body.mode || null;
+    const lang = (body.lang === "en") ? "en" : "sr";
+    const rmode = resolveMode(mode);
+
+    // --- PRISTUP: "site" (vodič na naslovnoj) je otvoren; svi ostali modovi traže prijavu + probni period ---
+    if (rmode !== "site") {
+      const phone = await getSessionPhone(req);
+      if (!phone) return res.status(200).json({ text: LOGIN_MSG[lang], reply: LOGIN_MSG[lang], mode: rmode });
+      const u = await getUser(phone);
+      if (!isSubscribed(u)) {
+        const tnow = computeTrial(u);
+        if (tnow.expired) return res.status(200).json({ text: OVER_MSG[lang], reply: OVER_MSG[lang], mode: rmode });
+        if (!u.trialStartedAt) u.trialStartedAt = Date.now(); // sat kreće od prvog pitanja
+        u.trialQuestions = (u.trialQuestions || 0) + 1;
+        await saveUser(u);
+      }
+    }
+
     const system = buildSystem(mode);
 
     const r = await fetch("https://api.anthropic.com/v1/messages", {
