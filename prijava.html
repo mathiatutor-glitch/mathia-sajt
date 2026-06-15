@@ -71,7 +71,7 @@
     <!-- KORAK 1: telefon -->
     <div id="step1">
       <h1 data-t="h1">Prijavi se brojem telefona</h1>
-      <p class="sub" data-t="sub1">Bez kartice. Prvi <b>1 sat</b> ili <b>15 pitanja</b> — šta pre istekne — potpuno je besplatno.</p>
+      <p class="sub" data-t="sub1">Bez kartice. Prvih <b>15 minuta</b> je potpuno besplatno.</p>
       <label data-t="lblPhone">Broj telefona</label>
       <div class="field">
         <span class="cc" id="cc">+381</span>
@@ -83,7 +83,7 @@
         <span data-t="consent">Slažem se da MathIA obradi moj broj telefona radi prijave, u skladu sa <a href="/privatnost.html" target="_blank">politikom privatnosti</a>.</span>
       </label>
       <button class="btn" id="send" disabled data-t="sendBtn">Pošalji kod</button>
-      <div class="trial">🎁 <span data-t="trialNote"><b>1 sat ili 15 pitanja</b> besplatno — počinje tek od tvog prvog pitanja.</span></div>
+      <div class="trial">🎁 <span data-t="trialNote"><b>15 minuta</b> besplatno — počinje tek od tvog prvog pitanja.</span></div>
     </div>
 
     <!-- KORAK 2: kod -->
@@ -123,7 +123,7 @@
 <script>
 // ============================================================
 //  MathIA — ekran za prijavu (telefon + SMS kod)
-//  Probni model: 1 SAT ili 15 PITANJA, šta pre istekne (broji backend).
+//  Probni model: 15 MINUTA (broji backend) — počinje od prvog pitanja.
 //
 //  BACKEND ugovor (programer pravi ove rute — vidi SPEC):
 //   POST /api/auth/send-code   body {phone}            -> {ok:true}
@@ -137,9 +137,9 @@
   var API = "/api";
   var DEMO_CODE = "123456";           // samo za demo prikaz; ukloni kad backend proradi
   var T = {
-    sr:{h1:"Prijavi se brojem telefona",sub1:"Bez kartice. Prvi <b>1 sat</b> ili <b>15 pitanja</b> — šta pre istekne — potpuno je besplatno.",
+    sr:{h1:"Prijavi se brojem telefona",sub1:"Bez kartice. Prvih <b>15 minuta</b> je potpuno besplatno.",
         lblPhone:"Broj telefona",consent:'Slažem se da MathIA obradi moj broj telefona radi prijave, u skladu sa <a href="/privatnost.html" target="_blank">politikom privatnosti</a>.',
-        sendBtn:"Pošalji kod",trialNote:"<b>1 sat ili 15 pitanja</b> besplatno — počinje tek od tvog prvog pitanja.",
+        sendBtn:"Pošalji kod",trialNote:"<b>15 minuta</b> besplatno — počinje tek od tvog prvog pitanja.",
         hintIntl:"Iz inostranstva? Unesi broj sa pozivnim, npr. +30 69…",
         h2:"Unesi kod iz SMS-a",sub2:"Poslali smo šestocifreni kod na",lblCode:"Kod iz SMS-a",verifyBtn:"Potvrdi i uđi",
         noCode:"Nema koda?",resend:"Pošalji ponovo",back:"← Promeni broj",
@@ -149,9 +149,9 @@
         obTitle:"Šta učiš?",obSub:"Izaberi i upoznaćeš svoju profesorku.",
         trkSkola:"Škola",trkSkolaS:"osnovna i srednja",trkPrijemni:"Prijemni",trkPrijemniS:"za fakultet",
         trkFax:"Fakultet",trkFaxS:"matematika, fizika, ETF",obBack:"← Nazad",obSaving:"Pripremam tvoj kutak…"},
-    en:{h1:"Sign in with your phone",sub1:"No card needed. Your first <b>1 hour</b> or <b>15 questions</b> — whichever comes first — is completely free.",
+    en:{h1:"Sign in with your phone",sub1:"No card needed. Your first <b>15 minutes</b> are completely free.",
         lblPhone:"Phone number",consent:'I agree that MathIA processes my phone number for sign-in, per the <a href="/privatnost.html" target="_blank">privacy policy</a>.',
-        sendBtn:"Send code",trialNote:"<b>1 hour or 15 questions</b> free — starts only from your first question.",
+        sendBtn:"Send code",trialNote:"<b>15 minutes</b> free — starts only from your first question.",
         hintIntl:"Outside Serbia? Enter your number with the country code, e.g. +30 69…",
         h2:"Enter the SMS code",sub2:"We sent a six-digit code to",lblCode:"SMS code",verifyBtn:"Confirm & enter",
         noCode:"No code?",resend:"Resend",back:"← Change number",

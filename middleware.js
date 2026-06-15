@@ -29,8 +29,10 @@ export default async function middleware(req) {
   // 2) prijavljen -> proveri pristup (pretplata ili aktivan/nezapočet probni)
   try {
     const u = await kvGet("user:" + phone);
-    const t = computeTrial(u || { trialStartedAt: null, trialQuestions: 0 });
-    const hasAccess = t.subscribed || (t.trial && t.trial.active) || !u || !u.trialStartedAt;
+    const t = computeTrial(u || { trialStartedAt: null });
+    // Materijali (skripte/priručnici) su plaćeni sadržaj -> samo pretplatnici.
+    // Besplatnih 15 min je za čet sa profesorkom, ne za trajne materijale.
+    const hasAccess = t.subscribed;
     if (!hasAccess) {
       const to = new URL("/index.html", req.url);
       to.hash = "cene";

@@ -806,8 +806,8 @@
 })();
 
 /* ============================================================
-   MathIA — traka probnog perioda ("preostalo: X min · Y pitanja")
-   Nezavisan dodatak. Čita GET {api}/me -> {trial:{active,minutesLeft,questionsLeft}, subscribed}.
+   MathIA — traka probnog perioda ("Besplatno: X min")
+   Nezavisan dodatak. Čita GET {api}/me -> {ok, profile:{trial:{active,minutesLeft}, subscribed}}.
    Ako backend još ne postoji (404/greška) -> traka se ne prikazuje (bez greške).
    ============================================================ */
 (function () {
@@ -845,14 +845,14 @@
     var b = el(); if (!b || !state) return;
     if (state.authenticated === false) {
       b.style.display = "block";
-      b.innerHTML = "🎁 " + t.free + ": <b>1 " + t.hour + "</b> · <b>15 " + t.q + "</b> — <a href='/prijava.html' style='color:#9b7420;font-weight:800'>" + t.login + "</a>";
+      b.innerHTML = "🎁 " + t.free + ": <b>15 " + t.min + "</b> — <a href='/prijava.html' style='color:#9b7420;font-weight:800'>" + t.login + "</a>";
       return;
     }
     if (state.subscribed) { b.style.display = "none"; return; }
     b.style.display = "block";
     if (state.trial && state.trial.active) {
-      var m = Math.max(0, state.trial.minutesLeft|0), q = Math.max(0, state.trial.questionsLeft|0);
-      b.innerHTML = "🎁 " + t.free + ": <b>" + m + " " + t.min + "</b> · <b>" + q + " " + t.q + "</b>";
+      var m = Math.max(0, state.trial.minutesLeft | 0);
+      b.innerHTML = "🎁 " + t.free + ": <b>" + m + " " + t.min + "</b>";
     } else {
       b.innerHTML = "🔒 " + t.over + " — <a href='/index.html#cene' style='color:#9b7420;font-weight:800'>" + t.sub + "</a>";
     }
@@ -863,7 +863,9 @@
       var r = await fetch(ME, { credentials: "include" });
       if (!r.ok) throw 0;
       var d = await r.json();
-      if (d && (d.trial || d.subscribed != null)) { state = d; render(); }
+      if (d && d.ok === false) { state = { authenticated: false }; render(); return; }
+      var p = (d && d.profile) ? d.profile : d;   // podrži {profile:{...}} i ravan oblik
+      if (p && (p.trial || p.subscribed != null)) { state = p; render(); }
     } catch (e) { /* backend nije spreman -> bez trake */ }
   }
 
@@ -871,7 +873,9 @@
     if (tick) return;
     tick = setInterval(function () {
       if (state && state.trial && state.trial.active && state.trial.minutesLeft > 0) {
-        state.trial.minutesLeft -= 1; render();
+        state.trial.minutesLeft -= 1;
+        if (state.trial.minutesLeft <= 0) state.trial.active = false;
+        render();
       }
     }, 60000);
   }
