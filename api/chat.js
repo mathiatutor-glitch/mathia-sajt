@@ -9,26 +9,16 @@ import {
   getUser, saveUser, isSubscribed, computeTrial,
   recordQuestion, publicProfile,
 } from "../lib/user.js";
+import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 
 const LOGIN_MSG = {
-  sr: "Zdravo. Da započnemo čas, prijavi se brojem telefona na stranici Prijava (/prijava.html). Prvih 1 sat ili 15 pitanja je potpuno besplatno.",
-  en: "Hi. To start the lesson, please sign in with your phone number on the Sign-in page (/prijava.html). Your first hour or 15 questions are completely free."
+  sr: "Zdravo. Da započnemo čas, prijavi se brojem telefona na stranici Prijava (/prijava.html). Prvih 15 minuta je potpuno besplatno.",
+  en: "Hi. To start the lesson, please sign in with your phone number on the Sign-in page (/prijava.html). Your first 15 minutes are completely free."
 };
 const OVER_MSG = {
-  sr: "Tvoj besplatni probni period (1 sat ili 15 pitanja) je iskorišćen. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
-  en: "Your free trial (1 hour or 15 questions) is used up. To keep going, choose a plan on the Pricing page (/index.html#cene)."
+  sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
+  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#cene)."
 };
-// Gost: koliko pitanja radi BEZ prijave pre nego što zamolimo za broj
-const GUEST_FREE = parseInt(process.env.GUEST_FREE || "3", 10);
-const GUEST_OVER_MSG = {
-  sr: "Baš mi je lepo što rešavamo zajedno. Da nastavimo, prijavi se brojem telefona — dobijaš još ceo sat i 15 pitanja, besplatno: /prijava.html",
-  en: "I really enjoyed working through this with you. To keep going, sign in with your phone number — you get another full hour and 15 questions, free: /prijava.html"
-};
-function readCookie(req, name) {
-  const h = (req.headers && req.headers.cookie) || "";
-  const m = h.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
-  return m ? decodeURIComponent(m[1]) : null;
-}
 
 const SHARED = `
 Ti si topla, strpljiva i stručna AI profesorka na platformi MathIA. Učiš jednog po jednog učenika, korak po korak.
@@ -118,6 +108,25 @@ function buildSystem(mode) {
   return SHARED + "\n\n" + PICK;
 }
 
+// ——— ograničenje brzine (anti-spam; štiti od nepotrebnog troška na AI-u) ———
+const RL_MSG = {
+  sr: "Samo trenutak — stižu pitanja prebrzo. Sačekaj koji sekund pa probaj ponovo.",
+  en: "Just a moment — questions are coming in too fast. Wait a few seconds and try again."
+};
+function clientIp(req) {
+  const xf = (req.headers && (req.headers["x-forwarded-for"] || req.headers["x-real-ip"])) || "";
+  return String(xf).split(",")[0].trim() || "noip";
+}
+// true ako je prekoračen limit po minuti ILI po satu (klizni prozori u bazi)
+async function tooMany(id, perMin, perHour) {
+  if (!kvConfigured()) return false; // bez baze ne ograničavamo (da ne lomimo rad)
+  try {
+    if ((await kvIncrTtl("rlm:" + id, 60)) > perMin) return true;
+    if ((await kvIncrTtl("rlh:" + id, 3600)) > perHour) return true;
+  } catch (e) {}
+  return false;
+}
+
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -138,34 +147,37 @@ export default async function handler(req, res) {
 
     let progress = null;
 
-    // "site" (vodič na naslovnoj) je otvoren; ostali modovi: gost dobija par pitanja, pa prijava
+    // Anonimni vodič na naslovnoj ("site") je otvoren — ali ograničavamo po IP-u da ne bude zloupotrebe.
+    if (rmode === "site") {
+      if (await tooMany("site:" + clientIp(req), 8, 40)) {
+        return res.status(200).json({ text: RL_MSG[lang], reply: RL_MSG[lang], mode: rmode });
+      }
+    }
+
+    // "site" (vodič na naslovnoj) je otvoren svima; SVI ostali modovi traže prijavu telefonom.
     if (rmode !== "site") {
       const phone = await getSessionPhone(req);
+      if (!phone) return res.status(200).json({ text: LOGIN_MSG[lang], reply: LOGIN_MSG[lang], mode: rmode });
 
-      if (!phone) {
-        // GOST: prvih GUEST_FREE pitanja rade bez prijave (broji se preko kolačića)
-        const used = parseInt(readCookie(req, "mg") || "0", 10) || 0;
-        if (used >= GUEST_FREE) {
-          return res.status(200).json({ text: GUEST_OVER_MSG[lang], reply: GUEST_OVER_MSG[lang], mode: rmode });
-        }
-        res.setHeader("Set-Cookie", "mg=" + (used + 1) + "; Path=/; Max-Age=86400; SameSite=Lax");
-        progress = { guest: { used: used + 1, left: Math.max(0, GUEST_FREE - (used + 1)), free: GUEST_FREE } };
-      } else {
-        const u = await getUser(phone);
-
-        if (!isSubscribed(u)) {
-          const tnow = computeTrial(u);
-          if (tnow.expired) return res.status(200).json({ text: OVER_MSG[lang], reply: OVER_MSG[lang], mode: rmode });
-          if (!u.trialStartedAt) u.trialStartedAt = Date.now();   // sat kreće od prvog pitanja
-          u.trialQuestions = (u.trialQuestions || 0) + 1;
-        }
-
-        // gejmifikacija: zvezdice + niz + bedževi (i za pretplaćene i za probne)
-        const gained = recordQuestion(u);
-        await saveUser(u);
-        progress = publicProfile(u);
-        progress.gained = gained;   // {gainedStars, firstToday, newBadges}
+      // ograničenje po korisniku (velikodušno za stvarno učenje, ali staje botu/spamu)
+      if (await tooMany("u:" + phone, 20, 400)) {
+        return res.status(200).json({ text: RL_MSG[lang], reply: RL_MSG[lang], mode: rmode });
       }
+
+      const u = await getUser(phone);
+
+      if (!isSubscribed(u)) {
+        const tnow = computeTrial(u);
+        if (tnow.expired) return res.status(200).json({ text: OVER_MSG[lang], reply: OVER_MSG[lang], mode: rmode });
+        if (!u.trialStartedAt) u.trialStartedAt = Date.now();   // sat kreće od prvog pitanja
+        u.trialQuestions = (u.trialQuestions || 0) + 1;
+      }
+
+      // gejmifikacija: zvezdice + niz + bedževi (i za pretplaćene i za probne)
+      const gained = recordQuestion(u);
+      await saveUser(u);
+      progress = publicProfile(u);
+      progress.gained = gained;   // {gainedStars, firstToday, newBadges}
     }
 
     const system = buildSystem(mode);
