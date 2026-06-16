@@ -31,6 +31,21 @@
     "sr-fiz-2": { name: "Iva", sub: { sr: "profesorica · fizika 2. razred", en: "teacher · physics · grade 2" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 2. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-2 physics. Type a problem or send a photo — we'll go step by step." } },
     "sr-fiz-3": { name: "Iva", sub: { sr: "profesorica · fizika 3. razred", en: "teacher · physics · grade 3" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 3. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-3 physics. Type a problem or send a photo — we'll go step by step." } },
     "sr-fiz-4": { name: "Iva", sub: { sr: "profesorica · fizika 4. razred", en: "teacher · physics · grade 4" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 4. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-4 physics. Type a problem or send a photo — we'll go step by step." } },
+    "os-mat-5": { name: "Mila", sub: { sr: "profesorica · matematika 5. razred", en: "teacher · math · grade 5" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 5. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-5 math. Type a problem or send a photo — we'll go step by step." } },
+    "os-mat-6": { name: "Mila", sub: { sr: "profesorica · matematika 6. razred", en: "teacher · math · grade 6" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 6. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-6 math. Type a problem or send a photo — we'll go step by step." } },
+    "os-mat-7": { name: "Mila", sub: { sr: "profesorica · matematika 7. razred", en: "teacher · math · grade 7" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 7. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-7 math. Type a problem or send a photo — we'll go step by step." } },
+    "os-mat-8": { name: "Mila", sub: { sr: "profesorica · matematika 8. razred", en: "teacher · math · grade 8" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 8. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-8 math. Type a problem or send a photo — we'll go step by step." } },
+    "os-fiz-6": { name: "Iva", sub: { sr: "profesorica · fizika 6. razred", en: "teacher · physics · grade 6" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 6. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-6 physics. Type a problem or send a photo — we'll go step by step." } },
+    "os-fiz-7": { name: "Iva", sub: { sr: "profesorica · fizika 7. razred", en: "teacher · physics · grade 7" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 7. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-7 physics. Type a problem or send a photo — we'll go step by step." } },
+    "os-fiz-8": { name: "Iva", sub: { sr: "profesorica · fizika 8. razred", en: "teacher · physics · grade 8" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 8. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-8 physics. Type a problem or send a photo — we'll go step by step." } },
+    "prog-scratch": { name: "Ada", sub: { sr: "profesorica · Scratch", en: "teacher · Scratch" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica programiranja. Krećemo od Scratch blokova — napravićemo malu igru, korak po korak.", en: "Hi! I'm {name}, your coding teacher. We'll start with Scratch blocks and build a little game, step by step." } },
+    "prog-python": { name: "Ada", sub: { sr: "profesorica · Python", en: "teacher · Python" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Python. Pošalji kod ili pitanje — objašnjavam liniju po liniju.", en: "Hi! I'm {name}, your Python teacher. Send code or a question — I'll explain line by line." } },
+    "prog-cpp": { name: "Ada", sub: { sr: "profesorica · C / C++", en: "teacher · C / C++" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za C i C++. Pošalji zadatak ili kod — idemo korak po korak.", en: "Hi! I'm {name}, your C/C++ teacher. Send a task or code — we'll go step by step." } },
+    "prog-web": { name: "Ada", sub: { sr: "profesorica · veb (HTML/CSS/JS)", en: "teacher · web (HTML/CSS/JS)" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za veb. Napravićemo nešto što odmah vidiš u pregledaču.", en: "Hi! I'm {name}, your web teacher. We'll build something you can see in the browser right away." } },
+    "prog-java": { name: "Ada", sub: { sr: "profesorica · Java", en: "teacher · Java" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Javu. Pošalji kod ili zadatak — idemo korak po korak.", en: "Hi! I'm {name}, your Java teacher. Send code or a task — we'll go step by step." } },
+    "prog-sql": { name: "Ada", sub: { sr: "profesorica · SQL i baze", en: "teacher · SQL & databases" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za SQL. Reci šta tražiš iz baze — napišemo upit zajedno.", en: "Hi! I'm {name}, your SQL teacher. Tell me what you need from the database — we'll write the query together." } },
+    "prog-pascal": { name: "Ada", sub: { sr: "profesorica · Pascal", en: "teacher · Pascal" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Pascal. Pošalji zadatak ili kod — objašnjavam korak po korak.", en: "Hi! I'm {name}, your Pascal teacher. Send a task or code — I'll explain step by step." } },
+    "prog-csharp": { name: "Ada", sub: { sr: "profesorica · C#", en: "teacher · C#" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za C#. Pravimo aplikaciju ili igru — pošalji kod ili pitanje.", en: "Hi! I'm {name}, your C# teacher. Building an app or a game — send code or a question." } },
     "fax-analiza1": { name: "Nina", sub: { sr: "profesorica · Analiza 1", en: "teacher · Calculus 1" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Matematičku analizu 1. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 1. Type a problem or send a photo — we'll go step by step." } },
     "fax-analiza2": { name: "Nina", sub: { sr: "profesorica · Analiza 2", en: "teacher · Calculus 2" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Matematičku analizu 2. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 2. Type a problem or send a photo — we'll go step by step." } },
     "fax-kompleksna": { name: "Nina", sub: { sr: "profesorica · Kompleksna analiza", en: "teacher · Complex analysis" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Kompleksnu analizu. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for complex analysis. Type a problem or send a photo — we'll go step by step." } },
@@ -71,8 +86,8 @@
     fr: { sub: "professeure · examen final", hi: "Salut ! 😊 Je suis Zoi, ta prof de maths. Écris un exercice ou envoie une 📷 photo — on avance étape par étape.", ph: "Écris l’exercice ou la question…", send: "Envoyer", chips: ["Écris un exercice", "Envoyer une photo 📷", "Explique une notion"], voice: "Voix", thinking: "Zoi réfléchit…" },
   };
   var SPEAK = { sr: "sr-RS", en: "en-US", hu: "hu-HU", hr: "hr-HR", ro: "ro-RO", sk: "sk-SK", de: "de-DE", el: "el-GR", es: "es-ES", fr: "fr-FR" };
-  var ORDER = ["sr", "en"];
-  function t() { return T[LANG] || T.sr; }
+  var ORDER = ["sr", "en", "de", "ru", "es", "it", "sl", "el", "fr"];
+  function t() { return T[LANG] || (LANG === "sr" ? T.sr : T.en) || T.sr; }
 
   // dopune: 4. čip (zadatak za vežbu), prefiks za „objasni pojam", poruka za vežbu — po jeziku
   var EXTRA = {
@@ -844,6 +859,38 @@
     return bar;
   }
 
+  var BADGE_EMOJI = { first_step: "👣", curious_mind: "🧠", marathon: "🏅", comeback: "🌟" };
+  var BADGE_NAME = {
+    first_step:   { sr: "Prvi korak",   en: "First step" },
+    curious_mind: { sr: "Radoznali um", en: "Curious mind" },
+    marathon:     { sr: "Maraton",      en: "Marathon" },
+    comeback:     { sr: "Vratio se",    en: "Comeback" }
+  };
+  function badgeStr() {
+    if (!state || !state.badges || !state.badges.length) return "";
+    var out = "";
+    for (var i = 0; i < state.badges.length; i++) {
+      var b = state.badges[i], e = BADGE_EMOJI[b];
+      if (e) {
+        var nm = BADGE_NAME[b] ? BADGE_NAME[b][LANG === "en" ? "en" : "sr"] : b;
+        out += "<span title='" + nm + "' style='cursor:default'>" + e + "</span>";
+      }
+    }
+    return out;
+  }
+  function progStr() {
+    if (!state) return "";
+    var p = state.points | 0, s = state.streak | 0;
+    var out = "";
+    if (p || s) {
+      out = "⭐ " + p;
+      if (s > 0) out += " · 🔥 " + s + (LANG === "en" ? (s === 1 ? " day" : " days") : (s === 1 ? " dan" : " dana"));
+    }
+    var bg = badgeStr();
+    if (bg) out += (out ? " &nbsp; " : "") + bg;
+    return out;
+  }
+
   function render() {
     var b = el(); if (!b || !state) return;
     if (state.authenticated === false) {
@@ -851,11 +898,16 @@
       b.innerHTML = "🎁 " + t.free + ": <b>15 " + t.min + "</b> — <a href='/prijava.html' style='color:#9b7420;font-weight:800'>" + t.login + "</a>";
       return;
     }
-    if (state.subscribed) { b.style.display = "none"; return; }
+    var pr = progStr();
+    if (state.subscribed) {
+      // pretplatnik: nema odbrojavanja, ali pokaži napredak (motivacija)
+      if (pr) { b.style.display = "block"; b.innerHTML = pr; } else { b.style.display = "none"; }
+      return;
+    }
     b.style.display = "block";
     if (state.trial && state.trial.active) {
       var m = Math.max(0, state.trial.minutesLeft | 0);
-      b.innerHTML = "🎁 " + t.free + ": <b>" + m + " " + t.min + "</b>";
+      b.innerHTML = "🎁 " + t.free + ": <b>" + m + " " + t.min + "</b>" + (pr ? " &nbsp;·&nbsp; " + pr : "");
     } else {
       b.innerHTML = "🔒 " + t.over + " — <a href='/index.html#cene' style='color:#9b7420;font-weight:800'>" + t.sub + "</a>";
     }

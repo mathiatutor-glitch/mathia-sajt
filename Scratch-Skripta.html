@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skripta — Scratch · MathIA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#1f3357; --gold:#c59a3a; --cream:#fff8ef; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.68;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(180deg,#fffdf9,#fff8ef);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
+  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
+  .lead{color:var(--soft);max-width:600px;margin:.4em auto 0}
+  .toc{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:28px 0;box-shadow:0 4px 16px rgba(31,51,87,.05)}
+  .toc h2{font-family:'Playfair Display',serif;font-size:1.05rem;margin:.1em 0 .5em}
+  .toc ol{margin:0;padding-left:1.2em}.toc li{margin:.3em 0}
+  .toc a{color:var(--navy);text-decoration:none;border-bottom:1px dotted #cdbd92}.toc a:hover{color:var(--gold)}
+  .lesson{margin:34px 0;scroll-margin-top:14px}
+  .lesson-h{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line);padding-bottom:8px}
+  .lnum{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff8ef;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .lesson p{margin:.7em 0}
+  .stack{margin:14px 0;display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+  .blk{display:inline-block;color:#fff;font-weight:600;font-size:.92rem;padding:9px 15px;border-radius:7px;box-shadow:0 2px 0 rgba(0,0,0,.12);line-height:1.3}
+  .blk .val{background:rgba(255,255,255,.95);color:#222;border-radius:11px;padding:1px 9px;margin:0 2px;font-weight:700}
+  .blk .bool{background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.6);border-radius:11px;padding:1px 9px;margin:0 2px}
+  .b-event{background:#ffbf00}.b-event .val{color:#7a5b00}
+  .b-move{background:#4c97ff}
+  .b-look{background:#9966ff}
+  .b-sound{background:#cf63cf}
+  .b-control{background:#ffab19}
+  .b-sensing{background:#5cb1d6}
+  .b-op{background:#59c059}
+  .b-var{background:#ff8c1a}
+  .indent{margin-left:26px}
+  .ex{background:#fbf6ea;border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px;margin:14px 0}
+  .ex .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8a6d24;font-weight:700}
+  .tip{background:#eef3ee;border-left:3px solid #7fae84;border-radius:8px;padding:12px 16px;margin:14px 0;color:#2f4f33}
+  .tip .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#5a8a60;font-weight:700}
+  details.try{background:#fffdf9;border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin:14px 0}
+  details.try summary{cursor:pointer;font-weight:700;color:var(--navy);padding:10px 0;list-style:none}
+  details.try summary::-webkit-details-marker{display:none}
+  details.try summary::before{content:"\270e  ";color:var(--gold)}
+  details.try[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
+  .sol{color:var(--soft)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  .legend span{font-size:.8rem;color:#fff;padding:4px 10px;border-radius:6px;font-weight:600}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
+  .wm span{position:absolute;font-size:.8rem;color:#1f3357;transform:rotate(-30deg);white-space:nowrap}
+  main{position:relative;z-index:1}
+  .backtop{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wm" id="wm" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <div class="brand">✦ MathIA ✦</div>
+    <div class="eyebrow">skripta · programiranje</div>
+    <h1>Scratch — slažemo blokove i pravimo igru</h1>
+    <p class="lead">Programiranje bez kucanja — slažeš šarene blokove kao Lego kockice. Ada je uz tebe; kad zapneš, samo pitaj. 💛</p>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <nav class="toc">
+    <h2>Šta sve učimo</h2>
+    <ol>
+      <li><a href="#l1">Šta je Scratch (sprajt i scena)</a></li>
+      <li><a href="#l2">Prvi blokovi — pozdrav</a></li>
+      <li><a href="#l3">Kretanje lika</a></li>
+      <li><a href="#l4">Ponavljanje (petlje)</a></li>
+      <li><a href="#l5">Ako se nešto desi (uslovi)</a></li>
+      <li><a href="#l6">Prava mala igra</a></li>
+    </ol>
+  </nav>
+
+  <p>Blokovi su obojeni po vrsti — boja ti odmah kaže šta blok radi:</p>
+  <div class="legend">
+    <span class="b-event">Događaji</span><span class="b-move">Kretanje</span><span class="b-look">Izgled</span>
+    <span class="b-control">Kontrola</span><span class="b-sensing">Senzori</span><span class="b-op">Operatori</span><span class="b-var">Promenljive</span>
+  </div>
+
+  <section class="lesson" id="l1">
+    <div class="lesson-h"><span class="lnum">1</span> Šta je Scratch (sprajt i scena)</div>
+    <p>Scratch je mesto gde praviš animacije i igre tako što <b>slažeš blokove</b>. Dva važna pojma:</p>
+    <p>🐱 <b>Sprajt</b> je lik (mačak, lopta, ti) koji nešto radi.<br>🖼️ <b>Scena</b> je pozadina iza likova.</p>
+    <p>Blokovi se uklapaju jedan ispod drugog, kao puzle, i čine <b>skriptu</b> — niz uputstava koje sprajt izvršava odozgo nadole.</p>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Otvori <b>scratch.mit.edu</b> → „Create" (Napravi). Ne mora ništa da se instalira — radi u pregledaču. 🌟</p></div>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <section class="lesson" id="l2">
+    <div class="lesson-h"><span class="lnum">2</span> Prvi blokovi — pozdrav</div>
+    <p>Svaka skripta počinje <b>žutim blokom događaja</b> — on kaže <i>kada</i> da krene. Najčešći je zelena zastavica.</p>
+    <div class="stack">
+      <span class="blk b-event">kada je 🚩 kliknuto</span>
+      <span class="blk b-look">reci <span class="val">Zdravo!</span> na <span class="val">2</span> sek</span>
+    </div>
+    <p>Klikni na zelenu zastavicu iznad scene i mačak će reći „Zdravo!".</p>
+    <div class="ex">
+      <div class="tag">Rešen primer</div>
+      <div class="stack">
+        <span class="blk b-event">kada je 🚩 kliknuto</span>
+        <span class="blk b-look">reci <span class="val">Ja sam Ada!</span> na <span class="val">2</span> sek</span>
+        <span class="blk b-look">misli <span class="val">Hmm...</span> na <span class="val">2</span> sek</span>
+      </div>
+      <p>Blokovi se izvršavaju redom, odozgo nadole. ✔️</p>
+    </div>
+    <details class="try"><summary>Probaj sam: neka lik kaže tvoje ime.</summary>
+      <p class="sol">U bloku „reci" promeni tekst u svoje ime.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <section class="lesson" id="l3">
+    <div class="lesson-h"><span class="lnum">3</span> Kretanje lika</div>
+    <p><b>Plavi blokovi</b> pomeraju sprajt po sceni.</p>
+    <div class="stack">
+      <span class="blk b-event">kada je 🚩 kliknuto</span>
+      <span class="blk b-move">idi <span class="val">10</span> koraka</span>
+      <span class="blk b-move">okreni se ↻ <span class="val">15</span> stepeni</span>
+    </div>
+    <p>„Idi 10 koraka" pomera lika napred; „okreni se" ga zarotira.</p>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Scena je kao papir: <b>x</b> je levo‑desno, <b>y</b> je gore‑dole. Blok „idi na x: 0 y: 0" vraća lika na sredinu. 💡</p></div>
+    <details class="try"><summary>Probaj sam: napravi da lik napravi mali kvadrat.</summary>
+      <p class="sol">Četiri puta: „idi 50 koraka" pa „okreni se 90 stepeni". (Uskoro ćemo to skratiti petljom!)</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <section class="lesson" id="l4">
+    <div class="lesson-h"><span class="lnum">4</span> Ponavljanje (petlje)</div>
+    <p>Da se nešto ne bi pisalo više puta, koristimo <b>narandžaste blokove kontrole</b> koji obgrle druge blokove.</p>
+    <div class="stack">
+      <span class="blk b-event">kada je 🚩 kliknuto</span>
+      <span class="blk b-control">ponovi <span class="val">4</span> puta</span>
+      <span class="blk b-move indent">idi <span class="val">50</span> koraka</span>
+      <span class="blk b-move indent">okreni se ↻ <span class="val">90</span> stepeni</span>
+    </div>
+    <p>Ovo crta kvadrat! Blok „ponovi 4 puta" ponovi sve unutar sebe četiri puta. Postoji i blok <span class="blk b-control" style="font-size:.82rem;padding:5px 10px">zauvek</span> koji ponavlja bez kraja.</p>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Petlja = „uradi ovo više puta". Manje blokova, isti rezultat — i lakše se menja! 🌟</p></div>
+    <details class="try"><summary>Probaj sam: napravi trougao (3 strane).</summary>
+      <p class="sol">„ponovi 3 puta": idi 80 koraka, okreni se 120 stepeni.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <section class="lesson" id="l5">
+    <div class="lesson-h"><span class="lnum">5</span> Ako se nešto desi (uslovi)</div>
+    <p><b>Uslov</b> proverava nešto i radi blokove samo ako je tačno. Šestougaoni <b>senzor</b> ide u prazninu uslova.</p>
+    <div class="stack">
+      <span class="blk b-event">kada je 🚩 kliknuto</span>
+      <span class="blk b-control">zauvek</span>
+      <span class="blk b-control indent">ako &lt;<span class="bool">dodiruje ivicu?</span>&gt; onda</span>
+      <span class="blk b-sound indent" style="margin-left:52px">pusti zvuk <span class="val">pop</span></span>
+    </div>
+    <p>Dok god se igra vrti („zauvek"), ako lik dodirne ivicu — čuje se zvuk.</p>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Senzori (svetloplavi) odgovaraju na pitanje „da/ne": <i>dodiruje li?</i>, <i>je li taster pritisnut?</i> 💡</p></div>
+    <details class="try"><summary>Probaj sam: kad pritisneš razmaknicu, lik kaže „Skok!".</summary>
+      <p class="sol">„ako &lt;taster razmak pritisnut?&gt; onda" → „reci Skok! na 1 sek".</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <section class="lesson" id="l6">
+    <div class="lesson-h"><span class="lnum">6</span> Prava mala igra</div>
+    <p>Spojimo sve: lik sakuplja jabuku, a za svaku dobija <b>poen</b>. Poene pamtimo u <b>promenljivoj</b> (narandžasti blok) koju nazovemo „poeni".</p>
+    <p><b>Skripta za jabuku</b> (kad je sprajt dodirne):</p>
+    <div class="stack">
+      <span class="blk b-event">kada je 🚩 kliknuto</span>
+      <span class="blk b-var">postavi <span class="val">poeni</span> na <span class="val">0</span></span>
+      <span class="blk b-control">zauvek</span>
+      <span class="blk b-control indent">ako &lt;<span class="bool">dodiruje mačka?</span>&gt; onda</span>
+      <span class="blk b-var indent" style="margin-left:52px">promeni <span class="val">poeni</span> za <span class="val">1</span></span>
+      <span class="blk b-move indent" style="margin-left:52px">idi na slučajno mesto</span>
+    </div>
+    <p>Svaki put kad mačak dodirne jabuku, poeni se uvećaju za 1, a jabuka „pobegne" na novo mesto. To je igra! 🎉</p>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Promenljiva je kao kutijica sa imenom u kojoj čuvaš broj. „postavi" je upiše, „promeni za 1" doda jedan. 🌟</p></div>
+    <details class="try"><summary>Probaj sam: dodaj da igra kaže „Pobeda!" kad poeni dođu do 10.</summary>
+      <p class="sol">U „zauvek": „ako &lt;poeni = 10&gt; onda" → „reci Pobeda! na 2 sek" → „zaustavi sve".</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <p style="text-align:center;color:var(--soft);margin-top:30px">Kad savladaš Scratch, lako prelaziš na pisane jezike — Python te čeka kad budeš spreman/spremna! 💛</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>✦ MathIA · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
+    <p style="opacity:.7">Ova skripta je deo MathIA pretplate. Molimo te da je ne deliš — pravljena je s puno pažnje baš za tebe.</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var wm=document.getElementById("wm");
+    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
+    fetch("/api/me",{credentials:"include"}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"MathIA · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"MathIA · mathia.rs");});
+  });
+</script>
+</body>
+</html>
