@@ -1,16 +1,15 @@
 // ============================================================
-//  middleware.js — zaštita materijala (e-knjige / priručnici)
-//  Presreće sve adrese koje se završavaju na -Skripta.html ili -Formule.html.
-//  Ako korisnik NIJE prijavljen -> šalje ga na /prijava.html.
-//  Ako jeste, ali nema pristup (probni istekao i nije pretplaćen) -> /index.html#cene.
-//  Radi na Vercel-u i bez Next.js-a (Edge runtime).
+//  middleware.js — zaštita zaključanog sadržaja (Edge runtime, bez Next.js)
+//   -Skripta.html / -Formule.html  -> SAMO pretplatnici (plaćeni materijali)
+//   /kviz.html (test smerova)       -> pretplatnici ILI aktivan 15-min probni
+//  Ako nije prijavljen -> /prijava.html?next=...  ; ako nema pristup -> /index.html#cene
 // ============================================================
 import { verifyToken, COOKIE } from "./lib/auth.js";
-import { kvGet } from "./lib/kv.js";
+import { kvGet, kvSet } from "./lib/kv.js";
 import { computeTrial } from "./lib/user.js";
 
 export const config = {
-  matcher: ["/:f(.+)-Skripta.html", "/:f(.+)-Formule.html"],
+  matcher: ["/:f(.+)-Skripta.html", "/:f(.+)-Formule.html", "/kviz.html"],
 };
 
 export default async function middleware(req) {
@@ -19,29 +18,39 @@ export default async function middleware(req) {
   const m = cookie.match(new RegExp("(?:^|;\\s*)" + COOKIE + "=([^;]+)"));
   const phone = m ? await verifyToken(m[1]) : null;
 
-  // 1) nije prijavljen -> na prijavu (uz povratnu adresu)
+  // 1) nije prijavljen -> na prijavu (sa povratnom adresom)
   if (!phone) {
     const to = new URL("/prijava.html", req.url);
     to.searchParams.set("next", url.pathname);
     return Response.redirect(to.toString(), 302);
   }
 
-  // 2) prijavljen -> proveri pristup (pretplata ili aktivan/nezapočet probni)
+  const isKviz = url.pathname === "/kviz.html" || url.pathname.endsWith("/kviz.html");
+
+  // 2) prijavljen -> proveri pristup
   try {
     const u = await kvGet("user:" + phone);
     const t = computeTrial(u || { trialStartedAt: null });
-    // Materijali (skripte/priručnici) su plaćeni sadržaj -> samo pretplatnici.
-    // Besplatnih 15 min je za čet sa profesorkom, ne za trajne materijale.
-    const hasAccess = t.subscribed;
-    if (!hasAccess) {
-      const to = new URL("/index.html", req.url);
-      to.hash = "cene";
-      return Response.redirect(to.toString(), 302);
-    }
-  } catch (e) {
-    // ako baza zakaže, ne zaključavaj prijavljenog korisnika (degradacija na "samo prijava")
-  }
 
-  // pusti zahtev dalje ka materijalu (vodeni žig postavlja /zastita.js u samom fajlu)
+    if (t.subscribed) return undefined; // pretplatnik: pun pristup
+
+    if (isKviz) {
+      // Test smerova: dostupan tokom aktivnog 15-min probnog; po isteku -> Cene.
+      if (t.expired) {
+        const to = new URL("/index.html", req.url); to.hash = "cene";
+        return Response.redirect(to.toString(), 302);
+      }
+      // ako probni još nije pokrenut, pokreni ga (test troši isti 15-min probni kao i čet)
+      if (u && !u.trialStartedAt) { u.trialStartedAt = Date.now(); try { await kvSet("user:" + phone, u); } catch (e) {} }
+      else if (!u) { try { await kvSet("user:" + phone, { phone, createdAt: Date.now(), trialStartedAt: Date.now(), trialQuestions: 0 }); } catch (e) {} }
+      return undefined;
+    }
+
+    // Materijali (skripte/priručnici): samo pretplatnici
+    const to = new URL("/index.html", req.url); to.hash = "cene";
+    return Response.redirect(to.toString(), 302);
+  } catch (e) {
+    // baza zakaže -> ne zaključavaj prijavljenog (degradacija na "samo prijava")
+  }
   return undefined;
 }
