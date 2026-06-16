@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priručnik — C# · MathIA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#1f3357; --gold:#c59a3a; --cream:#fff8ef; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(180deg,#fffdf9,#fff8ef);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
+  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
+  .lead{color:var(--soft);max-width:600px;margin:.4em auto 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:28px 0}
+  .card{background:#fffdf9;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 4px 14px rgba(31,51,87,.05)}
+  .card h3{font-family:'Playfair Display',serif;font-size:1.08rem;margin:0 0 .4em;color:var(--navy)}
+  .card p{margin:.5em 0 0;font-size:.9rem;color:var(--soft)}
+  .code{background:#1e2733;color:#e9eef5;border-radius:10px;padding:11px 13px;margin:8px 0 0;overflow-x:auto;font-family:'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;font-size:.84rem;line-height:1.55;white-space:pre}
+  .code .c{color:#8aa0b3;font-style:italic}
+  .code .k{color:#e3b341;font-weight:600}
+  footer{border-top:1px solid var(--line);margin-top:24px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
+  .wm span{position:absolute;font-size:.8rem;color:#1f3357;transform:rotate(-30deg);white-space:nowrap}
+  main{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="wm" id="wm" aria-hidden="true"></div>
+<header>
+  <div class="wrap">
+    <div class="brand">✦ MathIA ✦</div>
+    <div class="eyebrow">priručnik · programiranje</div>
+    <h1>C# — brzi podsetnik</h1>
+    <p class="lead">Najvažnija sintaksa na jednom mestu — drži otvoreno pored zadatka. 💛</p>
+  </div>
+</header>
+<main class="wrap" id="top">
+  <div class="grid">
+
+    <div class="card"><h3>Kostur programa</h3>
+      <div class="code"><span class="k">using</span> System;
+<span class="k">class</span> Program {
+  <span class="k">static void</span> Main() {
+  }
+}</div>
+      <p>Kreće od Main.</p></div>
+
+    <div class="card"><h3>Ispis</h3>
+      <div class="code">Console.WriteLine("Zdravo");
+Console.Write(x);</div>
+      <p>WriteLine prelazi u novi red.</p></div>
+
+    <div class="card"><h3>Tipovi</h3>
+      <div class="code"><span class="k">int</span>     <span class="c">// ceo broj</span>
+<span class="k">double</span>  <span class="c">// decimalni</span>
+<span class="k">char</span>    <span class="c">// 'A'</span>
+<span class="k">string</span>  <span class="c">// "tekst"</span>
+<span class="k">bool</span>    <span class="c">// true/false</span></div>
+      <p>var = C# pogodi tip.</p></div>
+
+    <div class="card"><h3>Unos</h3>
+      <div class="code"><span class="k">int</span> n = <span class="k">int</span>.Parse(
+  Console.ReadLine());</div>
+      <p>ReadLine vraća tekst → Parse.</p></div>
+
+    <div class="card"><h3>Operatori</h3>
+      <div class="code">+  -  *  /  %
+7 / 2 = 3   <span class="c">// ceo deo</span>
+7 % 2 = 1   <span class="c">// ostatak</span></div>
+      <p>Za decimale koristi double.</p></div>
+
+    <div class="card"><h3>Poređenja</h3>
+      <div class="code">==  !=
+&lt;   &gt;   &lt;=  &gt;=
+&amp;&amp; (i)   || (ili)</div>
+      <p>== poredi, jedno = dodeljuje.</p></div>
+
+    <div class="card"><h3>if / else</h3>
+      <div class="code"><span class="k">if</span> (x &gt;= 5) {
+  Console.WriteLine("ok");
+} <span class="k">else</span> {
+  Console.WriteLine("ne");
+}</div>
+      <p>Uslov u zagradama ( ).</p></div>
+
+    <div class="card"><h3>for petlja</h3>
+      <div class="code"><span class="k">for</span> (<span class="k">int</span> i = 0; i &lt; 5; i++) {
+  Console.WriteLine(i);
+}</div>
+      <p>početak ; uslov ; korak</p></div>
+
+    <div class="card"><h3>while petlja</h3>
+      <div class="code"><span class="k">int</span> i = 0;
+<span class="k">while</span> (i &lt; 3) {
+  Console.WriteLine(i);
+  i++;
+}</div>
+      <p>Menjaj i da se ne vrti zauvek.</p></div>
+
+    <div class="card"><h3>Niz</h3>
+      <div class="code"><span class="k">int</span>[] a = {5, 4, 3};
+a[0];       <span class="c">// 5</span>
+a.Length;   <span class="c">// 3</span></div>
+      <p>Length, indeksi od 0.</p></div>
+
+    <div class="card"><h3>List</h3>
+      <div class="code">List&lt;<span class="k">int</span>&gt; v =
+  <span class="k">new</span> List&lt;<span class="k">int</span>&gt;();
+v.Add(5);
+v.Count;   <span class="c">// 1</span></div>
+      <p>Lista koja raste; .Count.</p></div>
+
+    <div class="card"><h3>Metoda</h3>
+      <div class="code"><span class="k">static int</span> Zbir(<span class="k">int</span> a, <span class="k">int</span> b) {
+  <span class="k">return</span> a + b;
+}</div>
+      <p>void = ne vraća ništa.</p></div>
+
+    <div class="card"><h3>Klasa (OOP)</h3>
+      <div class="code"><span class="k">class</span> Pas {
+  <span class="k">public string</span> ime;
+  <span class="k">public void</span> Laji() { }
+}
+Pas p = <span class="k">new</span> Pas();</div>
+      <p>Nacrt → objekat sa new.</p></div>
+
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <p>✦ MathIA · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
+    <p style="opacity:.7">Ovaj priručnik je deo MathIA pretplate. Molimo te da ga ne deliš — pravljen je baš za tebe.</p>
+  </div>
+</footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var wm=document.getElementById("wm");
+    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
+    fetch("/api/me",{credentials:"include"}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"MathIA · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"MathIA · mathia.rs");});
+  });
+</script>
+</body>
+</html>

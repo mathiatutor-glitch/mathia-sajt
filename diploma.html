@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moja diploma · MathIA</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/avatari/zoi.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{ --navy:#1f3357; --gold:#c59a3a; --goldD:#9b7420; --cream:#fff8ef; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#f0e9dc;color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6;padding:24px 14px}
+  .controls{max-width:720px;margin:0 auto 18px;text-align:center}
+  .controls input{font:inherit;font-size:1rem;padding:11px 14px;border:1px solid #d8cbb0;border-radius:12px;width:min(360px,90%);text-align:center}
+  .controls .btns{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .btn{font:inherit;font-weight:700;border:none;border-radius:999px;padding:11px 22px;cursor:pointer}
+  .btn.gold{background:linear-gradient(135deg,#e7c97f,#c59a3a);color:#3a2c08}
+  .btn.ghost{background:#fff;border:1px solid #d8cbb0;color:var(--navy)}
+  .hint{color:var(--soft);font-size:.85rem;margin-top:8px}
+
+  /* DIPLOMA */
+  .diploma{max-width:720px;margin:0 auto;background:
+      radial-gradient(circle at 20% 0%, #fffdf9, #fff8ef 60%);
+      border-radius:18px;padding:34px 30px 30px;position:relative;
+      box-shadow:0 18px 50px rgba(31,51,87,.18);
+      border:2px solid var(--gold)}
+  .diploma::after{content:"";position:absolute;inset:10px;border:1px solid #e3cd95;border-radius:12px;pointer-events:none}
+  .d-brand{text-align:center;font-size:.74rem;letter-spacing:.34em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .d-title{text-align:center;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;margin:.15em 0 0}
+  .d-sub{text-align:center;color:var(--soft);font-style:italic;margin:.1em 0 1.1em}
+  .d-name{text-align:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--navy);
+          border-bottom:2px dotted #d8c186;display:inline-block;padding:0 18px 4px;margin:0 auto}
+  .d-name-wrap{text-align:center;margin:.2em 0 1em}
+  .d-text{text-align:center;max-width:520px;margin:0 auto;color:#4a4636}
+  .d-stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:20px 0 8px}
+  .stat{background:#fffdf9;border:1px solid var(--line);border-radius:14px;padding:12px 18px;min-width:104px;text-align:center}
+  .stat .n{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--goldD)}
+  .stat .l{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+  .d-badges{text-align:center;font-size:1.5rem;margin:6px 0 0;min-height:1.6em}
+  .d-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px;gap:16px}
+  .d-seal{width:78px;height:78px;border-radius:50%;background:radial-gradient(circle at 40% 35%, #f0d99b, #c59a3a);
+          display:flex;align-items:center;justify-content:center;flex-direction:column;color:#3a2c08;
+          font-weight:700;box-shadow:0 3px 10px rgba(155,116,32,.4);flex:none}
+  .d-seal .m{font-family:'Playfair Display',serif;font-size:1.5rem;line-height:1}
+  .d-seal .t{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+  .d-sign{text-align:right;flex:1}
+  .d-sign .line{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--navy);border-top:1px solid #d8c186;padding-top:6px;display:inline-block}
+  .d-sign .role{font-size:.74rem;color:var(--soft)}
+  .d-date{text-align:center;color:var(--soft);font-size:.82rem;margin-top:14px}
+  @media(max-width:560px){ .d-title{font-size:1.7rem} .d-name{font-size:1.5rem} }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <input id="nameIn" type="text" placeholder="Upiši svoje ime ✍️" maxlength="32" aria-label="Tvoje ime">
+  <div class="btns">
+    <button class="btn gold" id="dl">Preuzmi diplomu ⬇</button>
+    <a class="btn ghost" href="index.html">← Početna</a>
+  </div>
+  <p class="hint">Upiši ime — diploma se odmah ažurira. Tvoj napredak se učitava automatski.</p>
+</div>
+
+<div class="diploma" id="diploma">
+  <div class="d-brand">✦ MathIA ✦</div>
+  <h1 class="d-title">Diploma o napretku</h1>
+  <p class="d-sub">priznanje za trud i savladano gradivo</p>
+
+  <p class="d-text">Ova diploma se svečano dodeljuje</p>
+  <div class="d-name-wrap"><span class="d-name" id="nameOut">__________</span></div>
+  <p class="d-text">za vredan rad, radoznalost i istrajnost u učenju uz MathIA profesorke. Samo tako nastavi — svaki zadatak te čini jačim! 💛</p>
+
+  <div class="d-stats">
+    <div class="stat"><div class="n" id="sPts">—</div><div class="l">poena</div></div>
+    <div class="stat"><div class="n" id="sStreak">—</div><div class="l">dana zaredom</div></div>
+    <div class="stat"><div class="n" id="sQ">—</div><div class="l">pitanja</div></div>
+  </div>
+  <div class="d-badges" id="badges" aria-label="bedževi"></div>
+
+  <div class="d-foot">
+    <div class="d-seal"><span class="m">M</span><span class="t">MathIA</span></div>
+    <div class="d-sign"><div class="line">Tvoje profesorke</div><div class="role">MathIA · mathia.rs</div></div>
+  </div>
+  <div class="d-date" id="dDate"></div>
+</div>
+
+<script>
+  var BADGE_EMOJI = { first_step:"👣", curious_mind:"🧠", marathon:"🏅", comeback:"🌟" };
+  var BADGE_NAME  = { first_step:"Prvi korak", curious_mind:"Radoznali um", marathon:"Maraton", comeback:"Vratio se" };
+
+  var nameIn=document.getElementById("nameIn"), nameOut=document.getElementById("nameOut");
+  function syncName(){ var v=(nameIn.value||"").trim(); nameOut.textContent = v || "__________"; }
+  nameIn.addEventListener("input", syncName);
+
+  // datum
+  try{
+    var d=new Date();
+    document.getElementById("dDate").textContent =
+      "Izdato " + d.toLocaleDateString("sr-RS",{day:"numeric",month:"long",year:"numeric"});
+  }catch(e){}
+
+  // napredak
+  function setStats(p){
+    if(!p) return;
+    if(typeof p.points==="number") document.getElementById("sPts").textContent=p.points;
+    if(typeof p.streak==="number") document.getElementById("sStreak").textContent=p.streak;
+    var q = (typeof p.questionsTotal==="number")?p.questionsTotal:null;
+    if(q!=null) document.getElementById("sQ").textContent=q;
+    var bel=document.getElementById("badges"), out="";
+    if(p.badges && p.badges.length){
+      for(var i=0;i<p.badges.length;i++){
+        var b=p.badges[i], e=BADGE_EMOJI[b];
+        if(e) out+="<span title='"+(BADGE_NAME[b]||b)+"'>"+e+"</span> ";
+      }
+    }
+    bel.innerHTML=out;
+  }
+  fetch("/api/me",{credentials:"include"})
+    .then(function(r){return r.json();})
+    .then(function(d){ setStats((d&&d.profile)?d.profile:d); })
+    .catch(function(){});
+
+  // preuzimanje kao slika
+  document.getElementById("dl").addEventListener("click", function(){
+    var node=document.getElementById("diploma");
+    if(!window.html2canvas){ alert("Sačuvaj ekran (screenshot) — preuzimanje nije dostupno."); return; }
+    html2canvas(node,{backgroundColor:null,scale:2}).then(function(canvas){
+      var a=document.createElement("a");
+      a.download="MathIA-diploma.png";
+      a.href=canvas.toDataURL("image/png");
+      a.click();
+    }).catch(function(){ alert("Sačuvaj ekran (screenshot) telefona."); });
+  });
+</script>
+</body>
+</html>
