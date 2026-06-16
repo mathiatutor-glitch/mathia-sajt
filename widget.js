@@ -12,11 +12,13 @@
   var script = document.currentScript;
   var API = (script && script.getAttribute("data-api")) || "/api/chat";
   var AVATAR = (script && script.getAttribute("data-avatar")) || ""; // prazno => lokalni avatar po imenu profesorke (vidi niže)
-  var LANG = (script && script.getAttribute("data-lang")) || "sr";
+  var LANG = (function(){ try { var _sl = localStorage.getItem("mathia_lang"); if (_sl) return _sl; } catch(e){} var _hl = (document.documentElement.getAttribute("lang") || "").slice(0,2); if (_hl) return _hl; return (script && script.getAttribute("data-lang")) || "sr"; })();
   var MODE = (script && script.getAttribute("data-mode")) || "matura"; // "matura" | "ftn"
   var NAME = (script && script.getAttribute("data-name")) || "Zoi"; // ime asistenta (npr. "Mila")
   var HI = (script && script.getAttribute("data-hi")) || ""; // pozdrav po stranici (opciono)
-  var SUB = (script && script.getAttribute("data-sub")) || ""; // podnaslov po stranici (opciono)
+  var SUB = (script && script.getAttribute("data-sub")) || "";
+  var HI_EN = (script && script.getAttribute("data-hi-en")) || "";
+  var SUB_EN = (script && script.getAttribute("data-sub-en")) || ""; // podnaslov po stranici (opciono)
   var ALIASES = { matura: "mala-matura", ftn: "prijemni-matematika", prijemni: "prijemni-matematika" };
   function resolveMode(m){ return m ? (ALIASES[m] || m) : m; }
   var RMODE = resolveMode(MODE);
@@ -119,8 +121,8 @@
     es: { sub: "profesora · acceso FTN", hi: "¡Hola! 😊 Soy Zoi, tu profesora de matemáticas para el examen de acceso a la FTN. Escribe un ejercicio o envía una 📷 foto — vamos paso a paso." },
     fr: { sub: "professeure · concours FTN", hi: "Salut ! 😊 Je suis Zoi, ta prof de maths pour le concours d’entrée à la FTN. Écris un exercice ou envoie une 📷 photo — on avance étape par étape." },
   };
-  function modeSub(x) { if (SUB) return SUB; var sj=SUBJECTS[RMODE]; if (sj && sj.sub) return sj.sub[LANG] || sj.sub.en || sj.sub.sr; return (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].sub : x.sub; }
-  function modeHi(x) { var s; if (HI) { s = HI; } else { var sj = SUBJECTS[RMODE]; if (sj && sj.hi) { s = sj.hi[LANG] || sj.hi.en || sj.hi.sr; } else { s = (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].hi : x.hi; } } return String(s).replace(/\{name\}/g, NAME).replace(/Zoi/g, NAME); }
+  function modeSub(x) { if (SUB && LANG === "sr") return SUB; if (SUB_EN && LANG !== "sr") return SUB_EN; var sj=SUBJECTS[RMODE]; if (sj && sj.sub) return sj.sub[LANG] || sj.sub.en || sj.sub.sr; return (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].sub : x.sub; }
+  function modeHi(x) { var s; if (HI && LANG === "sr") { s = HI; } else if (HI_EN && LANG !== "sr") { s = HI_EN; } else { var sj = SUBJECTS[RMODE]; if (sj && sj.hi) { s = sj.hi[LANG] || sj.hi.en || sj.hi.sr; } else { s = (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].hi : x.hi; } } return String(s).replace(/\{name\}/g, NAME).replace(/Zoi/g, NAME); }
 
   // ——— stilovi (sve scope-ovano sa zoi- prefiksom) ———
   var css =
