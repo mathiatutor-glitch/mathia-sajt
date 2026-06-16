@@ -434,7 +434,7 @@ function setLang(l){var d=I18N[l]||I18N.en,b=I18N.sr;
 })();
 </script>
 <div class="mfab">
-  <div class="mbubble"><button class="mbubble-voice" id="zoiVoice" aria-label="Hear Zoi (English)" title="Hear Zoi">🔊</button>
+  <div class="mbubble">
     <span class="mbubble-eyebrow"><span class="mdot"></span>✦ Zoi</span>
     <p class="mbubble-msg"><span id="mfabTxt"></span><i class="caret"></i></p>
     <span class="mbubble-offer" data-i18n-html="mclone_offer">Klikni i popričaj sa mnom 💛</span>
@@ -545,7 +545,7 @@ btn.addEventListener('click',function(){try{var raw=(window.__zoi||txt.textConte
 </script>
 
 <!-- MathIA AI klon -->
-<script src="/widget.js?v=3" data-api="/api/chat" data-mode="mala-matura" data-lang="sr" data-voice="sK1CZxinAv6CB3NL3fNq"></script>
+<script src="/widget.js?v=4" data-api="/api/chat" data-mode="mala-matura" data-lang="sr" data-voice="sK1CZxinAv6CB3NL3fNq"></script>
 <script>(function(){function op(){var p=document.getElementById("zoi-panel");if(p)p.classList.add("zoi-open");}document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest(".mfab-btn,.fab-btn");if(t){e.preventDefault();e.stopPropagation();op();}},true);})();</script>
 </body>
 </html>
