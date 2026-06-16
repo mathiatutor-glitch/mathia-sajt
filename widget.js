@@ -766,7 +766,12 @@
 
   // Uskladi UGRAĐENI "Pitaj Zoi" gumb na stranici (klonovi) sa pravom profesorkom.
   // Tako se ime i slika vide tačno ODMAH, a ne tek kad se otvori čet.
-  function syncStaticLauncher() {
+  function askName() {
+        // srpski/bliski: akuzativ (ime na -a -> -u, npr. Ada->Adu, Mila->Milu); strano Zoi ostaje; engleski bez promene
+        if (LANG === "en") return NAME;
+        return /a$/.test(NAME) ? NAME.slice(0, -1) + "u" : NAME;
+      }
+      function syncStaticLauncher() {
     try {
       var ask = (LANG === "en") ? "Ask " : "Pitaj ";
       var avas = document.querySelectorAll(".mfab-ava, .mbubble-ava, .zchat-ava");
@@ -776,7 +781,7 @@
       var nm = document.querySelector(".mfab-name");
       if (nm) {
         nm.removeAttribute("data-i18n");
-        nm.textContent = (RMODE === "site") ? (LANG === "en" ? "Ask a teacher" : "Pitaj profesorku") : (ask + NAME);
+        nm.textContent = (RMODE === "site") ? (LANG === "en" ? "Ask a teacher" : "Pitaj profesorku") : (ask + askName());
       }
       var eb = document.querySelector(".mbubble-eyebrow");
       if (eb && /Zoi/.test(eb.innerHTML)) eb.innerHTML = eb.innerHTML.replace(/Zoi/g, NAME);
