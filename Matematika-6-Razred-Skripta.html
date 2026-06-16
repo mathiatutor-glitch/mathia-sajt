@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skripta — Matematika 6. razred · MathIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<style>
+  :root{ --navy:#1f3357; --gold:#c59a3a; --cream:#fff8ef; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.68;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(180deg,#fffdf9,#fff8ef);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
+  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
+  .lead{color:var(--soft);max-width:580px;margin:.4em auto 0}
+  /* sadržaj */
+  .toc{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:28px 0;box-shadow:0 4px 16px rgba(31,51,87,.05)}
+  .toc h2{font-family:'Playfair Display',serif;font-size:1.05rem;margin:.1em 0 .5em}
+  .toc ol{margin:0;padding-left:1.2em}
+  .toc li{margin:.3em 0}
+  .toc a{color:var(--navy);text-decoration:none;border-bottom:1px dotted #cdbd92}
+  .toc a:hover{color:var(--gold)}
+  /* lekcija */
+  .lesson{margin:34px 0;scroll-margin-top:14px}
+  .lesson-h{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line);padding-bottom:8px}
+  .lnum{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff8ef;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans'}
+  .lesson p{margin:.7em 0}
+  .lesson h3{margin:1.1em 0 .2em;font-size:1.06rem}
+  .f{background:#fffdf9;border:1px dashed #dcceac;border-radius:12px;padding:10px 14px;margin:10px 0;overflow-x:auto}
+  .ex{background:#fbf6ea;border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px;margin:14px 0}
+  .ex .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8a6d24;font-weight:700}
+  .tip{background:#eef3ee;border-left:3px solid #7fae84;border-radius:8px;padding:12px 16px;margin:14px 0;color:#2f4f33}
+  .tip .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#5a8a60;font-weight:700}
+  details.try{background:#fffdf9;border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin:14px 0}
+  details.try summary{cursor:pointer;font-weight:700;color:var(--navy);padding:10px 0;list-style:none}
+  details.try summary::-webkit-details-marker{display:none}
+  details.try summary::before{content:"✎ ";color:var(--gold)}
+  details.try[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
+  .sol{color:var(--soft)}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
+  .wm span{position:absolute;font-size:.8rem;color:#1f3357;transform:rotate(-30deg);white-space:nowrap}
+  main{position:relative;z-index:1}
+  .backtop{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wm" id="wm" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <div class="brand">✦ MathIA ✦</div>
+    <div class="eyebrow">skripta · osnovna škola</div>
+    <h1>Matematika — 6. razred</h1>
+    <p class="lead">Cela godina, lekcija po lekcija — objašnjeno lagano i s puno primera. Mila je uz tebe na svakom koraku. Kad zapneš, samo otvori čet i pitaj. 💛</p>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <nav class="toc">
+    <h2>Šta sve učimo ove godine</h2>
+    <ol>
+      <li><a href="#l1">Celi brojevi</a></li>
+      <li><a href="#l2">Racionalni brojevi (razlomci)</a></li>
+      <li><a href="#l3">Procenat</a></li>
+      <li><a href="#l4">Trougao</a></li>
+      <li><a href="#l5">Četvorougao</a></li>
+      <li><a href="#l6">Površina trougla i četvorougla</a></li>
+    </ol>
+  </nav>
+
+  <section class="lesson" id="l1">
+    <div class="lesson-h"><span class="lnum">1</span> Celi brojevi</div>
+    <p>Celi brojevi su pozitivni i negativni brojevi i nula: …, −2, −1, 0, 1, 2, … Na brojevnoj pravoj negativni su levo od nule, pozitivni desno.</p>
+    <h3>Množenje i deljenje znakova</h3>
+    <p>Jednaki znaci daju plus, različiti daju minus.</p>
+    <div class="ex"><div class="tag">Rešen primer</div><p>Izračunaj (−3) · (−4) i (−12) : 4.</p><p>(−3)·(−4) = 12 (jednaki znaci → +); (−12):4 = −3 (različiti → −) ✔️</p></div>
+    <div class="tip"><div class="tag">Mila kaže</div><p>Dva minusa „se ponište" u množenju: (−)·(−) = (+). 🌸</p></div>
+    <details class="try"><summary>Probaj sam: koliko je (−5) · 2?</summary><p class="sol">Različiti znaci → minus: (−5)·2 = −10.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+  <section class="lesson" id="l2">
+    <div class="lesson-h"><span class="lnum">2</span> Racionalni brojevi (razlomci)</div>
+    <p>Racionalni brojevi su svi brojevi koji se mogu zapisati kao razlomak $\frac{a}{b}$ (pozitivni i negativni).</p>
+    <div class="f">$$\frac{a}{c}\pm\frac{b}{c}=\frac{a\pm b}{c}\qquad \frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{bd}$$</div>
+    <div class="ex"><div class="tag">Rešen primer</div><p>Izračunaj $\frac{2}{5}+\frac{1}{5}$.</p><p>Isti imenilac → saberemo brojioce: $\frac{2}{5}+\frac{1}{5}=\frac{3}{5}$. ✔️</p></div>
+    <details class="try"><summary>Probaj sam: koliko je $\frac{3}{4}\cdot\frac{2}{3}$?</summary><p class="sol">$\frac{3\cdot2}{4\cdot3}=\frac{6}{12}=\frac{1}{2}$.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+  <section class="lesson" id="l3">
+    <div class="lesson-h"><span class="lnum">3</span> Procenat</div>
+    <p>Procenat je deo od sto. 1% znači jedan od sto, tj. $\frac{1}{100}$.</p>
+    <div class="f">$$p\%\ \text{od}\ b=\frac{p}{100}\cdot b$$</div>
+    <div class="ex"><div class="tag">Rešen primer</div><p>Koliko je 20% od 50?</p><p>$\frac{20}{100}\cdot 50 = 0{,}2\cdot 50 = 10$. ✔️</p></div>
+    <div class="tip"><div class="tag">Mila kaže</div><p>Procente srećeš svuda — popusti u prodavnici, ocene, statistika. 🌸</p></div>
+    <details class="try"><summary>Probaj sam: koliko je 10% od 80?</summary><p class="sol">$\frac{10}{100}\cdot 80 = 8$.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+  <section class="lesson" id="l4">
+    <div class="lesson-h"><span class="lnum">4</span> Trougao</div>
+    <p>Trougao ima tri stranice i tri ugla. Zbir uglova u svakom trouglu je uvek 180°.</p>
+    <div class="f">$$\alpha+\beta+\gamma=180^\circ$$</div>
+    <div class="ex"><div class="tag">Rešen primer</div><p>Dva ugla trougla su 50° i 60°. Koliki je treći?</p><p>Treći = 180° − 50° − 60° = 70°. ✔️</p></div>
+    <details class="try"><summary>Probaj sam: jedan ugao pravouglog trougla je 90°, drugi 30°. Koliki je treći?</summary><p class="sol">180° − 90° − 30° = 60°.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+  <section class="lesson" id="l5">
+    <div class="lesson-h"><span class="lnum">5</span> Četvorougao</div>
+    <p>Četvorougao ima četiri stranice i četiri ugla. Zbir uglova je 360°. Vrste: kvadrat, pravougaonik, romb, paralelogram, trapez.</p>
+    <div class="f">$$\text{zbir uglova}=360^\circ$$</div>
+    <div class="ex"><div class="tag">Rešen primer</div><p>Tri ugla četvorougla su 90°, 90°, 100°. Koliki je četvrti?</p><p>360° − 90° − 90° − 100° = 80°. ✔️</p></div>
+    <details class="try"><summary>Probaj sam: koliki je svaki ugao u kvadratu?</summary><p class="sol">Sva četiri su jednaka: 360° : 4 = 90°.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+  <section class="lesson" id="l6">
+    <div class="lesson-h"><span class="lnum">6</span> Površina trougla i četvorougla</div>
+    <p>Površinu merimo u kvadratnim jedinicama (cm², m²).</p>
+    <div class="f">$$P_{\square}=a\cdot b\qquad P_{trougao}=\frac{a\cdot h_a}{2}\qquad P_{paralelogram}=a\cdot h$$</div>
+    <div class="ex"><div class="tag">Rešen primer</div><p>Trougao ima stranicu a = 8 cm i visinu h = 5 cm. Površina?</p><p>$P=\frac{8\cdot 5}{2}=\frac{40}{2}=20$ cm². ✔️</p></div>
+    <details class="try"><summary>Probaj sam: pravougaonik 6 cm × 4 cm — površina?</summary><p class="sol">$P=6\cdot4=24$ cm².</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>✦ MathIA · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
+    <p style="opacity:.7">Ova skripta je deo MathIA pretplate. Molimo te da je ne deliš — pravljena je s puno pažnje baš za tebe.</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+    }
+    var wm=document.getElementById("wm");
+    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
+    fetch("/api/me",{credentials:"include"}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"MathIA · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"MathIA · mathia.rs");});
+  });
+</script>
+</body>
+</html>
