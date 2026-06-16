@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skripta — Python · MathIA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#1f3357; --gold:#c59a3a; --cream:#fff8ef; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.68;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(180deg,#fffdf9,#fff8ef);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
+  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
+  .lead{color:var(--soft);max-width:600px;margin:.4em auto 0}
+  .toc{background:#fffdf9;border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:28px 0;box-shadow:0 4px 16px rgba(31,51,87,.05)}
+  .toc h2{font-family:'Playfair Display',serif;font-size:1.05rem;margin:.1em 0 .5em}
+  .toc ol{margin:0;padding-left:1.2em}
+  .toc li{margin:.3em 0}
+  .toc a{color:var(--navy);text-decoration:none;border-bottom:1px dotted #cdbd92}
+  .toc a:hover{color:var(--gold)}
+  .lesson{margin:34px 0;scroll-margin-top:14px}
+  .lesson-h{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line);padding-bottom:8px}
+  .lnum{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff8ef;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .lesson p{margin:.7em 0}
+  .lesson h3{margin:1.1em 0 .2em;font-size:1.06rem}
+  .code{background:#1e2733;color:#e9eef5;border-radius:12px;padding:14px 16px;margin:12px 0;overflow-x:auto;font-family:'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;font-size:.9rem;line-height:1.6;white-space:pre}
+  .code .c{color:#8aa0b3;font-style:italic}
+  .ex{background:#fbf6ea;border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px;margin:14px 0}
+  .ex .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8a6d24;font-weight:700}
+  .tip{background:#eef3ee;border-left:3px solid #7fae84;border-radius:8px;padding:12px 16px;margin:14px 0;color:#2f4f33}
+  .tip .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#5a8a60;font-weight:700}
+  details.try{background:#fffdf9;border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin:14px 0}
+  details.try summary{cursor:pointer;font-weight:700;color:var(--navy);padding:10px 0;list-style:none}
+  details.try summary::-webkit-details-marker{display:none}
+  details.try summary::before{content:"\270e  ";color:var(--gold)}
+  details.try[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
+  .sol{color:var(--soft)}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
+  .wm span{position:absolute;font-size:.8rem;color:#1f3357;transform:rotate(-30deg);white-space:nowrap}
+  main{position:relative;z-index:1}
+  .backtop{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wm" id="wm" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <div class="brand">✦ MathIA ✦</div>
+    <div class="eyebrow">skripta · programiranje</div>
+    <h1>Python — od prve linije koda</h1>
+    <p class="lead">Osnove Pythona, lekcija po lekcija — sa primerima koje možeš odmah da otkucaš i probaš. Ada je uz tebe; kad zapneš, otvori čet i pitaj. 💛</p>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <nav class="toc">
+    <h2>Šta sve učimo</h2>
+    <ol>
+      <li><a href="#l1">Promenljive i tipovi</a></li>
+      <li><a href="#l2">Ispis i unos (print, input)</a></li>
+      <li><a href="#l3">Uslovi (if / elif / else)</a></li>
+      <li><a href="#l4">Petlje (for, while)</a></li>
+      <li><a href="#l5">Liste i rečnici</a></li>
+      <li><a href="#l6">Funkcije</a></li>
+    </ol>
+  </nav>
+
+  <!-- L1 -->
+  <section class="lesson" id="l1">
+    <div class="lesson-h"><span class="lnum">1</span> Promenljive i tipovi</div>
+    <p>Promenljiva je kao kutija sa imenom u koju čuvamo neku vrednost. Vrednost upisujemo znakom <b>=</b>.</p>
+    <div class="code">ime = "Ana"
+godine = 12
+print(ime, "ima", godine, "godina")</div>
+    <h3>Najčešći tipovi podataka</h3>
+    <p>• <b>str</b> — tekst (u navodnicima): <code>"zdravo"</code><br>
+       • <b>int</b> — ceo broj: <code>12</code><br>
+       • <b>float</b> — decimalni broj: <code>3.14</code><br>
+       • <b>bool</b> — tačno/netačno: <code>True</code> / <code>False</code></p>
+    <div class="ex">
+      <div class="tag">Rešen primer</div>
+      <p>Šta ispisuje ovaj kod?</p>
+      <div class="code">a = 5
+b = 3
+print(a + b)</div>
+      <p>Sabira 5 i 3 i ispisuje <b>8</b>. ✔️</p>
+    </div>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Imenu promenljive daj jasno značenje: <code>broj_bodova</code> je bolje od <code>x</code> — kasnije ćeš lakše čitati svoj kod. 🌟</p></div>
+    <details class="try"><summary>Probaj sam: napravi promenljivu grad sa vrednošću "Novi Sad" i ispiši je.</summary>
+      <p class="sol"><code>grad = "Novi Sad"</code> pa <code>print(grad)</code> → ispisuje Novi Sad.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <!-- L2 -->
+  <section class="lesson" id="l2">
+    <div class="lesson-h"><span class="lnum">2</span> Ispis i unos</div>
+    <p><code>print()</code> ispisuje na ekran, a <code>input()</code> čeka da korisnik nešto otkuca i to vraća kao <b>tekst</b>.</p>
+    <div class="code">ime = input("Kako se zoveš? ")
+print("Zdravo,", ime)</div>
+    <h3>Pažnja: input uvek daje tekst</h3>
+    <p>Ako želiš da računaš sa unetim brojem, pretvori ga u broj sa <code>int()</code> ili <code>float()</code>.</p>
+    <div class="ex">
+      <div class="tag">Rešen primer</div>
+      <div class="code">godine = input("Koliko imaš godina? ")
+godine = int(godine)
+print("Dogodine imaš", godine + 1)</div>
+      <p>Bez <code>int()</code> bi <code>godine + 1</code> prijavilo grešku, jer se tekst i broj ne sabiraju. ✔️</p>
+    </div>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Kad ti kod „pukne" na <code>input</code>, prvo proveri da li si zaboravio da pretvoriš tekst u broj. To je najčešća greška početnika. 💡</p></div>
+    <details class="try"><summary>Probaj sam: pitaj korisnika dva broja i ispiši njihov zbir.</summary>
+      <p class="sol"><code>a = int(input("Prvi: "))</code>, <code>b = int(input("Drugi: "))</code>, pa <code>print(a + b)</code>.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <!-- L3 -->
+  <section class="lesson" id="l3">
+    <div class="lesson-h"><span class="lnum">3</span> Uslovi — if / elif / else</div>
+    <p>Uslovom kažemo programu da nešto uradi <b>samo ako</b> je nešto tačno. Obrati pažnju na dve tačke <code>:</code> i na <b>uvlačenje</b> (razmaci ispod).</p>
+    <div class="code">ocena = 4
+
+if ocena == 5:
+    print("Odlican!")
+elif ocena >= 2:
+    print("Prosao si")
+else:
+    print("Jos malo vezbe")</div>
+    <p>Najčešća poređenja: <code>==</code> (jednako), <code>!=</code> (različito), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>.</p>
+    <div class="ex">
+      <div class="tag">Rešen primer</div>
+      <div class="code">broj = 7
+if broj % 2 == 0:
+    print("paran")
+else:
+    print("neparan")</div>
+      <p><code>%</code> daje ostatak pri deljenju. 7 % 2 = 1, nije 0 → ispisuje <b>neparan</b>. ✔️</p>
+    </div>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Jedno <code>=</code> dodeljuje vrednost, a dva <code>==</code> porede. Lako se zameni — pazi! 🌟</p></div>
+    <details class="try"><summary>Probaj sam: ispiši "veliki" ako je broj veći od 100, inače "mali".</summary>
+      <p class="sol"><code>if broj &gt; 100:</code> → <code>print("veliki")</code>, <code>else:</code> → <code>print("mali")</code>.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <!-- L4 -->
+  <section class="lesson" id="l4">
+    <div class="lesson-h"><span class="lnum">4</span> Petlje — for i while</div>
+    <p>Petlja ponavlja kod. <code>for</code> koristimo kad znamo koliko puta, a <code>while</code> dok je nešto tačno.</p>
+    <div class="code"><span class="c"># ispisuje 0, 1, 2, 3, 4</span>
+for i in range(5):
+    print(i)</div>
+    <p><code>range(5)</code> daje brojeve od 0 do 4 (pet brojeva, počinje od nule).</p>
+    <div class="code">broj = 1
+while broj &lt;= 3:
+    print(broj)
+    broj = broj + 1</div>
+    <div class="ex">
+      <div class="tag">Rešen primer</div>
+      <div class="code"><span class="c"># zbir brojeva od 1 do 5</span>
+zbir = 0
+for i in range(1, 6):
+    zbir = zbir + i
+print(zbir)</div>
+      <p><code>range(1, 6)</code> daje 1,2,3,4,5. Zbir = 15. ✔️</p>
+    </div>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Ako se <code>while</code> nikad ne zaustavlja, verovatno si zaboravio da menjaš promenljivu unutar petlje. 😊</p></div>
+    <details class="try"><summary>Probaj sam: ispiši sve parne brojeve od 0 do 10.</summary>
+      <p class="sol"><code>for i in range(0, 11, 2):</code> → <code>print(i)</code>. Treći broj u range je korak (2).</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <!-- L5 -->
+  <section class="lesson" id="l5">
+    <div class="lesson-h"><span class="lnum">5</span> Liste i rečnici</div>
+    <p><b>Lista</b> čuva više vrednosti po redu. Prvom elementu pristupamo sa <code>[0]</code>.</p>
+    <div class="code">ocene = [5, 4, 5, 3]
+print(ocene[0])        <span class="c"># prva ocena: 5</span>
+ocene.append(5)        <span class="c"># dodaj na kraj</span>
+print(len(ocene))      <span class="c"># koliko ih ima: 5</span></div>
+    <p><b>Rečnik</b> čuva parove „ključ → vrednost":</p>
+    <div class="code">ucenik = {"ime": "Ana", "razred": 6}
+print(ucenik["ime"])   <span class="c"># Ana</span></div>
+    <div class="ex">
+      <div class="tag">Rešen primer</div>
+      <div class="code"><span class="c"># prosek ocena</span>
+ocene = [5, 4, 5, 2]
+print(sum(ocene) / len(ocene))</div>
+      <p><code>sum</code> sabere sve, <code>len</code> prebroji → 16 / 4 = <b>4.0</b>. ✔️</p>
+    </div>
+    <div class="tip"><div class="tag">Ada kaže</div><p>Brojanje u Pythonu počinje od <b>0</b>, pa je prvi element <code>[0]</code>, a ne <code>[1]</code>. 🌟</p></div>
+    <details class="try"><summary>Probaj sam: napravi listu tri omiljene boje i ispiši drugu po redu.</summary>
+      <p class="sol"><code>boje = ["plava", "zlatna", "krem"]</code> pa <code>print(boje[1])</code> → zlatna.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+  <!-- L6 -->
+  <section class="lesson" id="l6">
+    <div class="lesson-h"><span class="lnum">6</span> Funkcije</div>
+    <p>Funkcija je deo koda kome damo ime, pa ga pozivamo kad god treba. Pravimo je rečju <code>def</code>.</p>
+    <div class="code">def pozdrav(ime):
+    print("Zdravo,", ime)
+
+pozdrav("Mika")
+pozdrav("Ana")</div>
+    <h3>Funkcija može i da vrati rezultat</h3>
+    <div class="code">def zbir(a, b):
+    return a + b
+
+rezultat = zbir(3, 4)
+print(rezultat)        <span class="c"># 7</span></div>
+    <div class="ex">
+      <div class="tag">Rešen primer</div>
+      <div class="code">def povrsina_pravougaonika(a, b):
+    return a * b
+
+print(povrsina_pravougaonika(5, 3))</div>
+      <p>Funkcija vraća 5 · 3 = <b>15</b>. ✔️ Tako jednu računicu pišeš jednom, a koristiš mnogo puta.</p>
+    </div>
+    <div class="tip"><div class="tag">Ada kaže</div><p><code>return</code> vrati vrednost iz funkcije; <code>print</code> samo ispiše. To su dve različite stvari — često se mešaju. 💡</p></div>
+    <details class="try"><summary>Probaj sam: napiši funkciju koja vraća kvadrat broja.</summary>
+      <p class="sol"><code>def kvadrat(n):</code> → <code>return n * n</code>. Poziv: <code>print(kvadrat(6))</code> → 36.</p></details>
+    <a class="backtop" href="#top">↑ na vrh</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>✦ MathIA · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
+    <p style="opacity:.7">Ova skripta je deo MathIA pretplate. Molimo te da je ne deliš — pravljena je s puno pažnje baš za tebe.</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var wm=document.getElementById("wm");
+    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
+    fetch("/api/me",{credentials:"include"}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"MathIA · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"MathIA · mathia.rs");});
+  });
+</script>
+</body>
+</html>
