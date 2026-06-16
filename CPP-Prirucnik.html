@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priručnik — C i C++ · MathIA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#1f3357; --gold:#c59a3a; --cream:#fff8ef; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(180deg,#fffdf9,#fff8ef);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
+  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
+  .lead{color:var(--soft);max-width:600px;margin:.4em auto 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:28px 0}
+  .card{background:#fffdf9;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 4px 14px rgba(31,51,87,.05)}
+  .card h3{font-family:'Playfair Display',serif;font-size:1.08rem;margin:0 0 .4em;color:var(--navy)}
+  .card p{margin:.5em 0 0;font-size:.9rem;color:var(--soft)}
+  .code{background:#1e2733;color:#e9eef5;border-radius:10px;padding:11px 13px;margin:8px 0 0;overflow-x:auto;font-family:'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;font-size:.84rem;line-height:1.55;white-space:pre}
+  .code .c{color:#8aa0b3;font-style:italic}
+  footer{border-top:1px solid var(--line);margin-top:24px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
+  .wm span{position:absolute;font-size:.8rem;color:#1f3357;transform:rotate(-30deg);white-space:nowrap}
+  main{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="wm" id="wm" aria-hidden="true"></div>
+<header>
+  <div class="wrap">
+    <div class="brand">✦ MathIA ✦</div>
+    <div class="eyebrow">priručnik · programiranje</div>
+    <h1>C i C++ — brzi podsetnik</h1>
+    <p class="lead">Najvažnija sintaksa na jednom mestu — drži otvoreno pored zadatka ili na takmičenju. 💛</p>
+  </div>
+</header>
+<main class="wrap" id="top">
+  <div class="grid">
+
+    <div class="card"><h3>Kostur programa</h3>
+      <div class="code">#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    return 0;
+}</div>
+      <p>Sve počinje od main.</p></div>
+
+    <div class="card"><h3>Ispis</h3>
+      <div class="code">cout &lt;&lt; "Zdravo";
+cout &lt;&lt; x &lt;&lt; endl;</div>
+      <p>endl prelazi u novi red.</p></div>
+
+    <div class="card"><h3>Tipovi</h3>
+      <div class="code">int    <span class="c">// ceo broj</span>
+double <span class="c">// decimalni</span>
+char   <span class="c">// znak 'A'</span>
+string <span class="c">// tekst</span>
+bool   <span class="c">// true/false</span></div>
+      <p>string traži #include &lt;string&gt;.</p></div>
+
+    <div class="card"><h3>Unos</h3>
+      <div class="code">int a, b;
+cin &gt;&gt; a &gt;&gt; b;</div>
+      <p>cin čita sa tastature.</p></div>
+
+    <div class="card"><h3>Operatori</h3>
+      <div class="code">+  -  *  /  %
+7 / 2 = 3   <span class="c">// ceo deo</span>
+7 % 2 = 1   <span class="c">// ostatak</span>
+7.0 / 2 = 3.5</div>
+      <p>Za pravo deljenje koristi double.</p></div>
+
+    <div class="card"><h3>Poređenja</h3>
+      <div class="code">==  !=
+&lt;   &gt;
+&lt;=  &gt;=
+&amp;&amp; (i)   || (ili)</div>
+      <p>== poredi, jedno = dodeljuje.</p></div>
+
+    <div class="card"><h3>if / else</h3>
+      <div class="code">if (x &gt;= 5) {
+    cout &lt;&lt; "ok";
+} else {
+    cout &lt;&lt; "ne";
+}</div>
+      <p>Uslov ide u zagrade ( ).</p></div>
+
+    <div class="card"><h3>for petlja</h3>
+      <div class="code">for (int i = 0; i &lt; 5; i++) {
+    cout &lt;&lt; i;
+}</div>
+      <p>početak ; uslov ; korak</p></div>
+
+    <div class="card"><h3>while petlja</h3>
+      <div class="code">int i = 0;
+while (i &lt; 3) {
+    cout &lt;&lt; i;
+    i++;
+}</div>
+      <p>Menjaj i da se ne vrti zauvek.</p></div>
+
+    <div class="card"><h3>Niz</h3>
+      <div class="code">int a[3] = {5, 4, 3};
+a[0];   <span class="c">// 5</span></div>
+      <p>Indeksi od 0.</p></div>
+
+    <div class="card"><h3>Vector</h3>
+      <div class="code">#include &lt;vector&gt;
+vector&lt;int&gt; v = {5, 4};
+v.push_back(3);
+v.size();   <span class="c">// 3</span></div>
+      <p>Može da raste tokom rada.</p></div>
+
+    <div class="card"><h3>Funkcija</h3>
+      <div class="code">int zbir(int a, int b) {
+    return a + b;
+}
+<span class="c">// void = ne vraća ništa</span></div>
+      <p>Definiši iznad main.</p></div>
+
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    <p>✦ MathIA · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
+    <p style="opacity:.7">Ovaj priručnik je deo MathIA pretplate. Molimo te da ga ne deliš — pravljen je baš za tebe.</p>
+  </div>
+</footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var wm=document.getElementById("wm");
+    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
+    fetch("/api/me",{credentials:"include"}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"MathIA · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"MathIA · mathia.rs");});
+  });
+</script>
+</body>
+</html>
