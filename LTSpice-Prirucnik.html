@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Priručnik — LTSpice · MathIA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#1f3357; --gold:#c59a3a; --cream:#fff8ef; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(180deg,#fffdf9,#fff8ef);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
+  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
+  h1{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
+  .lead{color:var(--soft);max-width:600px;margin:.4em auto 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:28px 0}
+  .card{background:#fffdf9;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 4px 14px rgba(31,51,87,.05)}
+  .card h3{font-family:'Playfair Display',serif;font-size:1.08rem;margin:0 0 .4em;color:var(--navy)}
+  .card p{margin:.5em 0 0;font-size:.9rem;color:var(--soft)}
+  .code{background:#1e2733;color:#e9eef5;border-radius:10px;padding:11px 13px;margin:8px 0 0;overflow-x:auto;font-family:'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;font-size:.84rem;line-height:1.55;white-space:pre}
+  .code .c{color:#8aa0b3;font-style:italic}
+  footer{border-top:1px solid var(--line);margin-top:24px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
+  .wm span{position:absolute;font-size:.8rem;color:#1f3357;transform:rotate(-30deg);white-space:nowrap}
+  main{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="wm" id="wm" aria-hidden="true"></div>
+<header><div class="wrap"><div class="brand">✦ MathIA ✦</div><div class="eyebrow">priručnik · elektronika</div><h1>LTSpice — brzi podsetnik</h1><p class="lead">Najvažnije prečice, jedinice i direktive na jednom mestu. Drži otvoreno pored simulacije. 💛</p></div></header>
+<main class="wrap" id="top"><div class="grid"><div class="card"><h3>Prečice</h3><div class="code">R / C / L   <span class="c"> komponente </span>
+F2  <span class="c"> Component </span>
+F3  <span class="c"> Wire (žica) </span>
+F4  <span class="c"> Label </span>
+G   <span class="c"> Ground </span>
+Ctrl+R <span class="c"> rotacija </span>
+Run <span class="c"> pokreni </span></div><p>Crtaš kao šemu, pa pustiš Run.</p></div><div class="card"><h3>Jedinice</h3><div class="code">k = 1000
+m = mili (10⁻³)
+u = mikro
+n = nano
+p = piko
+Meg = mega</div><p>Pažnja: m ≠ Meg!</p></div><div class="card"><h3>Direktive</h3><div class="code">.tran 5m   <span class="c"> vreme </span>
+.ac dec 100 1 1Meg
+.dc V1 0 10 0.1
+.op   <span class="c"> radna tačka </span>
+.meas <span class="c"> merenje </span></div><p>Direktiva = SPICE naredba u šemi.</p></div><div class="card"><h3>Izvori</h3><div class="code">DC: vrednost
+SINE(off amp f)
+PULSE(lo hi td tr tf ton T)
+AC 1   <span class="c"> za .ac </span></div><p>Tip biraš desnim klikom.</p></div><div class="card"><h3>Omov i Kirhof</h3><div class="code">U = I · R
+P = U · I
+Σ struja u čvoru = 0
+Σ napona u petlji = 0</div><p>Temelj svakog kola.</p></div><div class="card"><h3>RC kolo</h3><div class="code">τ = R · C
+63% za 1τ, ~100% za 5τ
+f = 1 / (2π R C)</div><p>Punjenje i granična frekvencija.</p></div><div class="card"><h3>Sonde</h3><div class="code">klik žica → napon
+klik komponenta → struja
+desni klik signala → Cursor</div><p>Merenje na grafiku.</p></div><div class="card"><h3>Česte greške</h3><div class="code">• nema mase (GND)
+• m umesto Meg
+• izvor bez „AC 1"
+• prekratko .tran vreme</div><p></p></div></div></main>
+<footer>
+  <div class="wrap">
+    <p>✦ MathIA · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
+    <p style="opacity:.7">Ovaj priručnik je deo MathIA pretplate. Molimo te da ga ne deliš — pravljen je baš za tebe.</p>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var wm=document.getElementById("wm");
+    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
+    fetch("/api/me",{credentials:"include"}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"MathIA · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"MathIA · mathia.rs");});
+  });
+</script>
+</body>
+</html>
