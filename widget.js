@@ -34,6 +34,17 @@
     pt:["Que matérias?","Planos e preços","Escolher faculdade","Como começo?"]
   };
   var CTA_TX = {sr:"Pitaj ",en:"Ask ",de:"Frag ",fr:"Demande à ",es:"Pregunta a ",it:"Chiedi a ",ru:"Спроси ",pt:"Pergunta à "};
+  var SITE = {
+    sr:{sub:"tvoja profesorka", ph:"Napiši pitanje…", send:"Pošalji", hi:"Ćao! 🌸 Ja sam Marina, tvoja profesorka. Pomažem ti oko svega na Mathia platformi — predmeti i paketi, cene i plaćanje, izbor fakulteta i upis. Pitaj me bilo šta — prvih 15 minuta je na nas! ✨"},
+    en:{sub:"your teacher", ph:"Type your question…", send:"Send", hi:"Hi! 🌸 I'm Marina, your teacher. I'll help you with everything on the Mathia platform — subjects and plans, prices and payment, choosing a faculty and enrolment. Ask me anything — your first 15 minutes are on us! ✨"},
+    de:{sub:"deine Lehrerin", ph:"Schreib deine Frage…", send:"Senden", hi:"Hallo! 🌸 Ich bin Marina, deine Lehrerin. Ich helfe dir bei allem rund um die Mathia-Plattform — Fächer und Pakete, Preise und Zahlung, Studienwahl und Einschreibung. Frag mich alles — die ersten 15 Minuten gehen auf uns! ✨"},
+    fr:{sub:"ta professeure", ph:"Écris ta question…", send:"Envoyer", hi:"Salut ! 🌸 Je suis Marina, ta professeure. Je t'aide pour tout sur la plateforme Mathia — matières et forfaits, prix et paiement, choix de la faculté et inscription. Demande-moi ce que tu veux — les 15 premières minutes sont offertes ! ✨"},
+    es:{sub:"tu profesora", ph:"Escribe tu pregunta…", send:"Enviar", hi:"¡Hola! 🌸 Soy Marina, tu profesora. Te ayudo con todo en la plataforma Mathia — materias y planes, precios y pago, elección de facultad y matrícula. Pregúntame lo que quieras — ¡los primeros 15 minutos van por nuestra cuenta! ✨"},
+    it:{sub:"la tua insegnante", ph:"Scrivi la tua domanda…", send:"Invia", hi:"Ciao! 🌸 Sono Marina, la tua insegnante. Ti aiuto con tutto sulla piattaforma Mathia — materie e pacchetti, prezzi e pagamento, scelta della facoltà e iscrizione. Chiedimi qualsiasi cosa — i primi 15 minuti sono offerti! ✨"},
+    ru:{sub:"твоя преподавательница", ph:"Напишите вопрос…", send:"Отправить", hi:"Привет! 🌸 Я Марина, твоя преподавательница. Помогу со всем на платформе Mathia — предметы и пакеты, цены и оплата, выбор факультета и поступление. Спрашивай о чём угодно — первые 15 минут за наш счёт! ✨"},
+    pt:{sub:"a tua professora", ph:"Escreve a tua pergunta…", send:"Enviar", hi:"Olá! 🌸 Sou a Marina, a tua professora. Ajudo-te com tudo na plataforma Mathia — matérias e planos, preços e pagamento, escolha de faculdade e inscrição. Pergunta-me o que quiseres — os primeiros 15 minutos são por nossa conta! ✨"}
+  };
+  function ctaLabel(){ var nm=NAME; if((LANG==="sr"||LANG==="hr")&&/a$/.test(nm)) nm=nm.slice(0,-1)+"u"; return (CTA_TX[LANG]||CTA_TX.sr)+nm; }
   var SUBJECTS = {
     "prijemni-matematika": { name: "Zoi", sub: { sr: "profesorica · prijemni", en: "teacher · entrance exam" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za prijemni iz matematike. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for the math entrance exam. Type a problem or send a photo — we'll go step by step." } },
     "mala-matura": { name: "Mila", sub: { sr: "profesorica · mala matura", en: "teacher · grade-8 final" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za malu maturu iz matematike. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for the grade-8 math final. Type a problem or send a photo — we'll go step by step." } },
@@ -78,7 +89,7 @@
     fr: { sub: "professeure · examen final", hi: "Salut ! 😊 Je suis Zoi, ta prof de maths. Écris un exercice ou envoie une 📷 photo — on avance étape par étape.", ph: "Écris l’exercice ou la question…", send: "Envoyer", chips: ["Écris un exercice", "Envoyer une photo 📷", "Explique une notion"], voice: "Voix", thinking: "Zoi réfléchit…" },
   };
   var SPEAK = { sr: "sr-RS", en: "en-US", hu: "hu-HU", hr: "hr-HR", ro: "ro-RO", sk: "sk-SK", de: "de-DE", el: "el-GR", es: "es-ES", fr: "fr-FR" };
-  var ORDER = ["sr", "en"];
+  var ORDER = ["sr", "en", "de", "fr", "es", "it", "ru", "pt"];
   function t() { return T[LANG] || T.sr; }
 
   // dopune: 4. čip (zadatak za vežbu), prefiks za „objasni pojam", poruka za vežbu — po jeziku
@@ -111,8 +122,8 @@
     es: { sub: "profesora · acceso FTN", hi: "¡Hola! 😊 Soy Zoi, tu profesora de matemáticas para el examen de acceso a la FTN. Escribe un ejercicio o envía una 📷 foto — vamos paso a paso." },
     fr: { sub: "professeure · concours FTN", hi: "Salut ! 😊 Je suis Zoi, ta prof de maths pour le concours d’entrée à la FTN. Écris un exercice ou envoie une 📷 photo — on avance étape par étape." },
   };
-  function modeSub(x) { if (SUB) return SUB; var sj=SUBJECTS[RMODE]; if (sj && sj.sub) return sj.sub[LANG] || sj.sub.en || sj.sub.sr; return (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].sub : x.sub; }
-  function modeHi(x) { var s; if (HI) { s = HI; } else { var sj = SUBJECTS[RMODE]; if (sj && sj.hi) { s = sj.hi[LANG] || sj.hi.en || sj.hi.sr; } else { s = (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].hi : x.hi; } } return String(s).replace(/\{name\}/g, NAME).replace(/Zoi/g, NAME); }
+  function modeSub(x) { if (ISSITE) { var _ss=SITE[LANG]||SITE.en; return _ss.sub; } if (SUB) return SUB; var sj=SUBJECTS[RMODE]; if (sj && sj.sub) return sj.sub[LANG] || sj.sub.en || sj.sub.sr; return (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].sub : x.sub; }
+  function modeHi(x) { if (ISSITE) { var _sh=SITE[LANG]||SITE.en; return String(_sh.hi).replace(/\{name\}/g, NAME); } var s; if (HI) { s = HI; } else { var sj = SUBJECTS[RMODE]; if (sj && sj.hi) { s = sj.hi[LANG] || sj.hi.en || sj.hi.sr; } else { s = (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].hi : x.hi; } } return String(s).replace(/\{name\}/g, NAME).replace(/Zoi/g, NAME); }
 
   // ——— stilovi (sve scope-ovano sa zoi- prefiksom) ———
   var css =
@@ -214,8 +225,7 @@
   document.body.appendChild(panel);
   var cta = document.createElement("div");
   cta.id = "zoi-cta";
-  var _ctaNm = NAME; if ((LANG === "sr" || LANG === "hr") && /a$/.test(_ctaNm)) _ctaNm = _ctaNm.slice(0, -1) + "u";
-  cta.textContent = (CTA_TX[LANG] || CTA_TX.sr) + _ctaNm;
+  cta.textContent = ctaLabel();
   document.body.appendChild(cta);
   cta.onclick = function () { panel.classList.add("zoi-open"); cta.classList.add("zoi-hide"); var ta=panel.querySelector("#zoi-ta"); if(ta) ta.focus(); };
   if (ISSITE) { var _ph = panel.querySelector("#zoi-photo"); if (_ph) _ph.style.display = "none"; }
@@ -248,8 +258,9 @@
   function applyLang() {
     var x = t();
     subEl.textContent = modeSub(x);
-    taEl.placeholder = x.ph;
-    goEl.textContent = x.send;
+    if (ISSITE) { var _su = SITE[LANG] || SITE.en; taEl.placeholder = _su.ph; goEl.textContent = _su.send; }
+    else { taEl.placeholder = x.ph; goEl.textContent = x.send; }
+    if (typeof cta !== "undefined" && cta) cta.textContent = ctaLabel();
     chipsEl.innerHTML = "";
     if (ISSITE) {
       (SITE_CHIPS[LANG] || SITE_CHIPS.en).forEach(function (c) {
