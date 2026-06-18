@@ -14,7 +14,12 @@
   var AVATAR =
     (script && script.getAttribute("data-avatar")) ||
     "https://i.postimg.cc/qBXWmBQf/Chat-GPT-Image-6-jun-2026-11-58-24.png";
-  var LANG = (script && script.getAttribute("data-lang")) || "sr";
+  var LANG = (function () {
+    try { var s = localStorage.getItem("mathia_lang"); if (s) return String(s).toLowerCase(); } catch (e) {}
+    var hl = (document.documentElement.getAttribute("lang") || "").slice(0, 2).toLowerCase();
+    if (hl) return hl;
+    return (script && script.getAttribute("data-lang")) || "sr";
+  })();
   var MODE = (script && script.getAttribute("data-mode")) || "matura"; // "matura" | "ftn"
   var NAME = (script && script.getAttribute("data-name")) || "Zoi"; // ime asistenta (npr. "Mila")
   var HI = (script && script.getAttribute("data-hi")) || ""; // pozdrav po stranici (opciono)
@@ -744,6 +749,13 @@
     taEl.style.height = "auto"; taEl.style.height = Math.min(taEl.scrollHeight, 96) + "px";
   });
   langEl.onchange = function () { stopSpeak(); LANG = langEl.value; applyLang(); greet(); history = []; };
+  window.addEventListener("mathia:lang", function (e) {
+    var l = e && e.detail; if (!l) return; l = String(l).toLowerCase();
+    if (l === LANG) return;
+    LANG = l; stopSpeak();
+    try { if (langEl) langEl.value = l.toUpperCase(); } catch (_) {}
+    applyLang(); greet(); history = [];
+  });
   voiceBtn.onclick = function () {
     voiceOn = !voiceOn;
     voiceBtn.style.background = voiceOn ? "rgba(255,255,255,.45)" : "rgba(255,255,255,.18)";

@@ -434,7 +434,7 @@ var M=[
 ];
 var codes=['sr','en','de','fr','es','it','ru','pt'];
 M.forEach(function(o){var els=document.querySelectorAll(o.s);var e=els[o.i];if(e)o.__sr=e.innerHTML;});
-function setLang(l){M.forEach(function(o){var els=document.querySelectorAll(o.s);var e=els[o.i];if(!e)return;e.innerHTML=(l==='sr')?o.__sr:(o.t[l]||o.__sr);});document.documentElement.lang=l;try{localStorage.setItem('mathia_lang',l);}catch(e){}}
+function setLang(l){M.forEach(function(o){var els=document.querySelectorAll(o.s);var e=els[o.i];if(!e)return;e.innerHTML=(l==='sr')?o.__sr:(o.t[l]||o.__sr);});document.documentElement.lang=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}try{localStorage.setItem('mathia_lang',l);}catch(e){}}
 var sel=document.querySelector('.lang');
 if(sel){sel.addEventListener('change',function(){setLang(codes[sel.selectedIndex]);});}
 var saved='sr';try{saved=localStorage.getItem('mathia_lang')||'sr';}catch(e){}
