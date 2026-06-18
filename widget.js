@@ -214,7 +214,8 @@
   document.body.appendChild(panel);
   var cta = document.createElement("div");
   cta.id = "zoi-cta";
-  cta.textContent = (CTA_TX[LANG] || CTA_TX.sr) + NAME;
+  var _ctaNm = NAME; if ((LANG === "sr" || LANG === "hr") && /a$/.test(_ctaNm)) _ctaNm = _ctaNm.slice(0, -1) + "u";
+  cta.textContent = (CTA_TX[LANG] || CTA_TX.sr) + _ctaNm;
   document.body.appendChild(cta);
   cta.onclick = function () { panel.classList.add("zoi-open"); cta.classList.add("zoi-hide"); var ta=panel.querySelector("#zoi-ta"); if(ta) ta.focus(); };
   if (ISSITE) { var _ph = panel.querySelector("#zoi-photo"); if (_ph) _ph.style.display = "none"; }
