@@ -11,17 +11,29 @@
 
   var script = document.currentScript;
   var API = (script && script.getAttribute("data-api")) || "/api/chat";
-  var AVATAR = (script && script.getAttribute("data-avatar")) || ""; // prazno => lokalni avatar po imenu profesorke (vidi niže)
-  var LANG = (function(){ try { var _sl = localStorage.getItem("mathia_lang"); if (_sl) return _sl; } catch(e){} var _hl = (document.documentElement.getAttribute("lang") || "").slice(0,2); if (_hl) return _hl; return (script && script.getAttribute("data-lang")) || "sr"; })();
+  var AVATAR =
+    (script && script.getAttribute("data-avatar")) ||
+    "https://i.postimg.cc/qBXWmBQf/Chat-GPT-Image-6-jun-2026-11-58-24.png";
+  var LANG = (script && script.getAttribute("data-lang")) || "sr";
   var MODE = (script && script.getAttribute("data-mode")) || "matura"; // "matura" | "ftn"
   var NAME = (script && script.getAttribute("data-name")) || "Zoi"; // ime asistenta (npr. "Mila")
   var HI = (script && script.getAttribute("data-hi")) || ""; // pozdrav po stranici (opciono)
-  var SUB = (script && script.getAttribute("data-sub")) || "";
-  var HI_EN = (script && script.getAttribute("data-hi-en")) || "";
-  var SUB_EN = (script && script.getAttribute("data-sub-en")) || ""; // podnaslov po stranici (opciono)
+  var SUB = (script && script.getAttribute("data-sub")) || ""; // podnaslov po stranici (opciono)
   var ALIASES = { matura: "mala-matura", ftn: "prijemni-matematika", prijemni: "prijemni-matematika" };
   function resolveMode(m){ return m ? (ALIASES[m] || m) : m; }
   var RMODE = resolveMode(MODE);
+  var ISSITE = (MODE === "site" || RMODE === "site");
+  var SITE_CHIPS = {
+    sr:["Koji predmeti?","Cene i paketi","Izbor fakulteta","Kako počinjem?"],
+    en:["Which subjects?","Plans & prices","Choosing a faculty","How do I start?"],
+    de:["Welche Fächer?","Pakete & Preise","Studienwahl","Wie fange ich an?"],
+    fr:["Quelles matières ?","Forfaits & prix","Choix de la faculté","Comment commencer ?"],
+    es:["¿Qué materias?","Planes y precios","Elegir facultad","¿Cómo empiezo?"],
+    it:["Quali materie?","Piani e prezzi","Scelta facoltà","Come inizio?"],
+    ru:["Какие предметы?","Пакеты и цены","Выбор факультета","Как начать?"],
+    pt:["Que matérias?","Planos e preços","Escolher faculdade","Como começo?"]
+  };
+  var CTA_TX = {sr:"Pitaj ",en:"Ask ",de:"Frag ",fr:"Demande à ",es:"Pregunta a ",it:"Chiedi a ",ru:"Спроси ",pt:"Pergunta à "};
   var SUBJECTS = {
     "prijemni-matematika": { name: "Zoi", sub: { sr: "profesorica · prijemni", en: "teacher · entrance exam" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za prijemni iz matematike. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for the math entrance exam. Type a problem or send a photo — we'll go step by step." } },
     "mala-matura": { name: "Mila", sub: { sr: "profesorica · mala matura", en: "teacher · grade-8 final" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za malu maturu iz matematike. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for the grade-8 math final. Type a problem or send a photo — we'll go step by step." } },
@@ -33,30 +45,6 @@
     "sr-fiz-2": { name: "Iva", sub: { sr: "profesorica · fizika 2. razred", en: "teacher · physics · grade 2" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 2. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-2 physics. Type a problem or send a photo — we'll go step by step." } },
     "sr-fiz-3": { name: "Iva", sub: { sr: "profesorica · fizika 3. razred", en: "teacher · physics · grade 3" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 3. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-3 physics. Type a problem or send a photo — we'll go step by step." } },
     "sr-fiz-4": { name: "Iva", sub: { sr: "profesorica · fizika 4. razred", en: "teacher · physics · grade 4" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 4. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-4 physics. Type a problem or send a photo — we'll go step by step." } },
-    "os-mat-5": { name: "Mila", sub: { sr: "profesorica · matematika 5. razred", en: "teacher · math · grade 5" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 5. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-5 math. Type a problem or send a photo — we'll go step by step." } },
-    "os-mat-6": { name: "Mila", sub: { sr: "profesorica · matematika 6. razred", en: "teacher · math · grade 6" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 6. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-6 math. Type a problem or send a photo — we'll go step by step." } },
-    "os-mat-7": { name: "Mila", sub: { sr: "profesorica · matematika 7. razred", en: "teacher · math · grade 7" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 7. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-7 math. Type a problem or send a photo — we'll go step by step." } },
-    "os-mat-8": { name: "Mila", sub: { sr: "profesorica · matematika 8. razred", en: "teacher · math · grade 8" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 8. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-8 math. Type a problem or send a photo — we'll go step by step." } },
-    "os-fiz-6": { name: "Iva", sub: { sr: "profesorica · fizika 6. razred", en: "teacher · physics · grade 6" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 6. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-6 physics. Type a problem or send a photo — we'll go step by step." } },
-    "os-fiz-7": { name: "Iva", sub: { sr: "profesorica · fizika 7. razred", en: "teacher · physics · grade 7" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 7. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-7 physics. Type a problem or send a photo — we'll go step by step." } },
-    "os-fiz-8": { name: "Iva", sub: { sr: "profesorica · fizika 8. razred", en: "teacher · physics · grade 8" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 8. razreda osnovne. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-8 physics. Type a problem or send a photo — we'll go step by step." } },
-    "prog-scratch": { name: "Ada", sub: { sr: "profesorica · Scratch", en: "teacher · Scratch" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica programiranja. Krećemo od Scratch blokova — napravićemo malu igru, korak po korak.", en: "Hi! I'm {name}, your coding teacher. We'll start with Scratch blocks and build a little game, step by step." } },
-    "prog-python": { name: "Ada", sub: { sr: "profesorica · Python", en: "teacher · Python" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Python. Pošalji kod ili pitanje — objašnjavam liniju po liniju.", en: "Hi! I'm {name}, your Python teacher. Send code or a question — I'll explain line by line." } },
-    "prog-cpp": { name: "Ada", sub: { sr: "profesorica · C / C++", en: "teacher · C / C++" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za C i C++. Pošalji zadatak ili kod — idemo korak po korak.", en: "Hi! I'm {name}, your C/C++ teacher. Send a task or code — we'll go step by step." } },
-    "prog-web": { name: "Ada", sub: { sr: "profesorica · veb (HTML/CSS/JS)", en: "teacher · web (HTML/CSS/JS)" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za veb. Napravićemo nešto što odmah vidiš u pregledaču.", en: "Hi! I'm {name}, your web teacher. We'll build something you can see in the browser right away." } },
-    "prog-java": { name: "Ada", sub: { sr: "profesorica · Java", en: "teacher · Java" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Javu. Pošalji kod ili zadatak — idemo korak po korak.", en: "Hi! I'm {name}, your Java teacher. Send code or a task — we'll go step by step." } },
-    "prog-sql": { name: "Ada", sub: { sr: "profesorica · SQL i baze", en: "teacher · SQL & databases" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za SQL. Reci šta tražiš iz baze — napišemo upit zajedno.", en: "Hi! I'm {name}, your SQL teacher. Tell me what you need from the database — we'll write the query together." } },
-    "prog-pascal": { name: "Ada", sub: { sr: "profesorica · Pascal", en: "teacher · Pascal" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Pascal. Pošalji zadatak ili kod — objašnjavam korak po korak.", en: "Hi! I'm {name}, your Pascal teacher. Send a task or code — I'll explain step by step." } },
-    "prog-csharp": { name: "Ada", sub: { sr: "profesorica · C#", en: "teacher · C#" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za C#. Pravimo aplikaciju ili igru — pošalji kod ili pitanje.", en: "Hi! I'm {name}, your C# teacher. Building an app or a game — send code or a question." } },
-  "prog-matlab": { name: "Ada", sub: { sr: "profesorica · MATLAB", en: "teacher · MATLAB" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za MATLAB. Radimo sa matricama i graficima — pošalji kod ili pitanje.", en: "Hi! I'm {name}, your MATLAB teacher. Working with matrices and plots — send code or a question." } },
-  "prog-algoritmi": { name: "Ada", sub: { sr: "profesorica · algoritmi", en: "teacher · algorithms" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za algoritme i strukture podataka. Krećemo od ideje, pa kod — pošalji zadatak.", en: "Hi! I'm {name}, your algorithms & data structures teacher. Idea first, then code — send a problem." } },
-  "prog-js": { name: "Ada", sub: { sr: "profesorica · JavaScript", en: "teacher · JavaScript" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za napredni JavaScript. Funkcije, async, API — pošalji kod ili pitanje.", en: "Hi! I'm {name}, your advanced JavaScript teacher. Functions, async, APIs — send code or a question." } },
-  "prog-kotlin": { name: "Ada", sub: { sr: "profesorica · Kotlin", en: "teacher · Kotlin" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Kotlin. Pravimo aplikaciju ili učimo jezik — pošalji kod ili pitanje.", en: "Hi! I'm {name}, your Kotlin teacher. Building an app or learning the language — send code or a question." } },
-  "prog-r": { name: "Ada", sub: { sr: "profesorica · R", en: "teacher · R" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za R. Radimo sa podacima, statistikom i graficima — pošalji kod ili pitanje.", en: "Hi! I'm {name}, your R teacher. Working with data, stats and plots — send code or a question." } },
-  "prog-arduino": { name: "Ada", sub: { sr: "profesorica · Arduino", en: "teacher · Arduino" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Arduino. Spajamo kod i hardver — pošalji skeč ili opiši kolo.", en: "Hi! I'm {name}, your Arduino teacher. Bringing code and hardware together — send a sketch or describe your circuit." } },
-  "el-ltspice": { name: "Višnja", sub: { sr: "profesorica · LTSpice", en: "teacher · LTSpice" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za elektroniku. Crtamo i simuliramo kolo u LTSpice-u — pošalji šemu ili pitanje.", en: "Hi! I'm {name}, your electronics teacher. Let's draw and simulate a circuit in LTSpice — send a schematic or a question." } },
-  "el-kicad": { name: "Višnja", sub: { sr: "profesorica · KiCad", en: "teacher · KiCad" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za elektroniku. Pravimo šemu i štampanu ploču u KiCad-u — pošalji sliku ili pitanje.", en: "Hi! I'm {name}, your electronics teacher. Let's design a schematic and PCB in KiCad — send a screenshot or a question." } },
-  "el-cadence": { name: "Višnja", sub: { sr: "profesorica · Cadence", en: "teacher · Cadence" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za elektroniku. Radimo u Cadence/OrCAD okruženju — pošalji pitanje ili screenshot.", en: "Hi! I'm {name}, your electronics teacher. Working in Cadence/OrCAD — send a question or a screenshot." } },
     "fax-analiza1": { name: "Nina", sub: { sr: "profesorica · Analiza 1", en: "teacher · Calculus 1" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Matematičku analizu 1. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 1. Type a problem or send a photo — we'll go step by step." } },
     "fax-analiza2": { name: "Nina", sub: { sr: "profesorica · Analiza 2", en: "teacher · Calculus 2" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Matematičku analizu 2. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 2. Type a problem or send a photo — we'll go step by step." } },
     "fax-kompleksna": { name: "Nina", sub: { sr: "profesorica · Kompleksna analiza", en: "teacher · Complex analysis" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Kompleksnu analizu. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for complex analysis. Type a problem or send a photo — we'll go step by step." } },
@@ -71,28 +59,27 @@
   };
   if (!(script && script.getAttribute("data-name")) && SUBJECTS[RMODE] && SUBJECTS[RMODE].name) NAME = SUBJECTS[RMODE].name;
 
-  // Lokalni avatar prema profesorki — više se ne oslanja na spoljne linkove koji "nestanu".
-  if (!AVATAR) {
-    var _slug = String(NAME || "zoi").trim().toLowerCase()
-      .replace(/[čć]/g, "c").replace(/š/g, "s").replace(/ž/g, "z").replace(/đ/g, "dj");
-    AVATAR = "/avatari/" + _slug + ".png";
-  }
-
+  var VOICE = (script && script.getAttribute("data-voice")) || ""; // ElevenLabs Voice ID za srpski (prazno = podrazumevano)
   var AVATAR_OK = true;
+  var TTS = (script && script.getAttribute("data-tts")) || API.replace(/\/api\/[a-z-]+\/?$/, "/api/tts");
+  var RATE = (script && script.getAttribute("data-rate")) || ""; // brzina govora (npr. "0.85" za sporije); prazno = normalno
 
   // ——— prevodi UI-ja (AI ionako odgovara na izabranom jeziku) ———
   var T = {
-    sr: { sub: "profesorica · mala matura", hi: "Ćao! 😊 Ja sam Zoi, tvoja profesorica za malu maturu iz matematike. Napiši zadatak ili pošalji 📷 sliku — idemo korak po korak, polako i lepo.", ph: "Napiši zadatak ili pitanje…", send: "Pošalji", chips: ["Napiši zadatak", "Pošalji sliku 📷", "Objasni mi pojam"], thinking: "Zoi razmišlja…" },
-    en: { sub: "teacher · final exam (grade 8)", hi: "Hi! 😊 I'm Zoi, your math teacher. Type a problem or send a 📷 photo — we'll go step by step.", ph: "Type a problem or question…", send: "Send", chips: ["Type a problem", "Send a photo 📷", "Explain a concept"], thinking: "Zoi is thinking…" },
-    de: { sub: "Lehrerin · Mathematik", hi: "Hallo! 😊 Ich bin Zoi, deine Mathelehrerin. Schreib eine Aufgabe oder schick ein 📷 Foto — wir gehen Schritt für Schritt vor.", ph: "Schreib eine Aufgabe oder Frage…", send: "Senden", chips: ["Aufgabe schreiben", "Foto senden 📷", "Begriff erklären"], thinking: "Zoi denkt nach…" },
-    fr: { sub: "professeure · mathématiques", hi: "Salut ! 😊 Je suis Zoi, ta prof de maths. Écris un exercice ou envoie une 📷 photo — on avance étape par étape.", ph: "Écris l'exercice ou la question…", send: "Envoyer", chips: ["Écris un exercice", "Envoyer une photo 📷", "Explique une notion"], thinking: "Zoi réfléchit…" },
-    es: { sub: "profesora · matemáticas", hi: "¡Hola! 😊 Soy Zoi, tu profesora de matemáticas. Escribe un ejercicio o envía una 📷 foto — vamos paso a paso.", ph: "Escribe el ejercicio o la pregunta…", send: "Enviar", chips: ["Escribe un ejercicio", "Enviar foto 📷", "Explica un concepto"], thinking: "Zoi está pensando…" },
-    it: { sub: "insegnante · matematica", hi: "Ciao! 😊 Sono Zoi, la tua insegnante di matematica. Scrivi un esercizio o invia una 📷 foto — andiamo passo dopo passo.", ph: "Scrivi l'esercizio o la domanda…", send: "Invia", chips: ["Scrivi un esercizio", "Invia una foto 📷", "Spiega un concetto"], thinking: "Zoi sta pensando…" },
-    ru: { sub: "учительница · математика", hi: "Привет! 😊 Я Zoi, твоя учительница математики. Напиши задачу или пришли 📷 фото — будем решать шаг за шагом.", ph: "Напиши задачу или вопрос…", send: "Отправить", chips: ["Написать задачу", "Прислать фото 📷", "Объяснить понятие"], thinking: "Zoi думает…" },
-    pt: { sub: "professora · matemática", hi: "Olá! 😊 Sou a Zoi, a tua professora de matemática. Escreve um exercício ou envia uma 📷 foto — vamos passo a passo.", ph: "Escreve o exercício ou a pergunta…", send: "Enviar", chips: ["Escreve um exercício", "Enviar foto 📷", "Explica um conceito"], thinking: "Zoi está a pensar…" },
+    sr: { sub: "profesorica · mala matura", hi: "Ćao! 😊 Ja sam Zoi, tvoja profesorica za malu maturu iz matematike. Napiši zadatak ili pošalji 📷 sliku — idemo korak po korak, polako i lepo.", ph: "Napiši zadatak ili pitanje…", send: "Pošalji", chips: ["Napiši zadatak", "Pošalji sliku 📷", "Objasni mi pojam"], voice: "Glas", thinking: "Zoi razmišlja…" },
+    en: { sub: "teacher · final exam (grade 8)", hi: "Hi! 😊 I'm Zoi, your math teacher for the grade-8 final exam. Type a problem or send a 📷 photo — we'll go step by step.", ph: "Type a problem or question…", send: "Send", chips: ["Type a problem", "Send a photo 📷", "Explain a concept"], voice: "Voice", thinking: "Zoi is thinking…" },
+    hu: { sub: "tanárnő · kisérettségi", hi: "Szia! 😊 Zoi vagyok, a matek tanárnőd a kisérettségire. Írj be egy feladatot vagy küldj 📷 képet — lépésről lépésre haladunk.", ph: "Írd be a feladatot vagy kérdést…", send: "Küldés", chips: ["Feladat beírása", "Kép küldése 📷", "Fogalom magyarázat"], voice: "Hang", thinking: "Zoi gondolkodik…" },
+    hr: { sub: "profesorica · mala matura", hi: "Bok! 😊 Ja sam Zoi, tvoja profesorica matematike za malu maturu. Napiši zadatak ili pošalji 📷 sliku — idemo korak po korak.", ph: "Napiši zadatak ili pitanje…", send: "Pošalji", chips: ["Napiši zadatak", "Pošalji sliku 📷", "Objasni pojam"], voice: "Glas", thinking: "Zoi razmišlja…" },
+    ro: { sub: "profesoară · examen final", hi: "Bună! 😊 Sunt Zoi, profesoara ta de matematică. Scrie un exercițiu sau trimite o 📷 poză — mergem pas cu pas.", ph: "Scrie exercițiul sau întrebarea…", send: "Trimite", chips: ["Scrie un exercițiu", "Trimite o poză 📷", "Explică un concept"], voice: "Voce", thinking: "Zoi se gândește…" },
+    sk: { sub: "učiteľka · malá matura", hi: "Ahoj! 😊 Som Zoi, tvoja učiteľka matematiky. Napíš úlohu alebo pošli 📷 fotku — pôjdeme krok za krokom.", ph: "Napíš úlohu alebo otázku…", send: "Poslať", chips: ["Napíš úlohu", "Pošli fotku 📷", "Vysvetli pojem"], voice: "Hlas", thinking: "Zoi premýšľa…" },
+    de: { sub: "Lehrerin · Abschlussprüfung (Kl. 8)", hi: "Hallo! 😊 Ich bin Zoi, deine Mathelehrerin für die Abschlussprüfung der 8. Klasse. Schreib eine Aufgabe oder schick ein 📷 Foto — wir gehen Schritt für Schritt vor.", ph: "Schreib eine Aufgabe oder Frage…", send: "Senden", chips: ["Aufgabe schreiben", "Foto senden 📷", "Begriff erklären"], voice: "Stimme", thinking: "Zoi denkt nach…" },
+    el: { sub: "καθηγήτρια · τελικές εξετάσεις", hi: "Γεια! 😊 Είμαι η Zoi, η καθηγήτριά σου στα μαθηματικά για τις τελικές εξετάσεις. Γράψε μια άσκηση ή στείλε μια 📷 φωτογραφία — θα πάμε βήμα βήμα.", ph: "Γράψε την άσκηση ή την ερώτηση…", send: "Αποστολή", chips: ["Γράψε άσκηση", "Στείλε φωτογραφία 📷", "Εξήγησε μια έννοια"], voice: "Φωνή", thinking: "Η Zoi σκέφτεται…" },
+    es: { sub: "profesora · examen final (8.º)", hi: "¡Hola! 😊 Soy Zoi, tu profesora de matemáticas. Escribe un ejercicio o envía una 📷 foto — vamos paso a paso.", ph: "Escribe el ejercicio o la pregunta…", send: "Enviar", chips: ["Escribe un ejercicio", "Enviar foto 📷", "Explica un concepto"], voice: "Voz", thinking: "Zoi está pensando…" },
+    fr: { sub: "professeure · examen final", hi: "Salut ! 😊 Je suis Zoi, ta prof de maths. Écris un exercice ou envoie une 📷 photo — on avance étape par étape.", ph: "Écris l’exercice ou la question…", send: "Envoyer", chips: ["Écris un exercice", "Envoyer une photo 📷", "Explique une notion"], voice: "Voix", thinking: "Zoi réfléchit…" },
   };
-  var ORDER = ["sr", "en", "de", "fr", "es", "it", "ru", "pt"];
-  function t() { return T[LANG] || (LANG === "sr" ? T.sr : T.en) || T.sr; }
+  var SPEAK = { sr: "sr-RS", en: "en-US", hu: "hu-HU", hr: "hr-HR", ro: "ro-RO", sk: "sk-SK", de: "de-DE", el: "el-GR", es: "es-ES", fr: "fr-FR" };
+  var ORDER = ["sr", "en"];
+  function t() { return T[LANG] || T.sr; }
 
   // dopune: 4. čip (zadatak za vežbu), prefiks za „objasni pojam", poruka za vežbu — po jeziku
   var EXTRA = {
@@ -124,8 +111,8 @@
     es: { sub: "profesora · acceso FTN", hi: "¡Hola! 😊 Soy Zoi, tu profesora de matemáticas para el examen de acceso a la FTN. Escribe un ejercicio o envía una 📷 foto — vamos paso a paso." },
     fr: { sub: "professeure · concours FTN", hi: "Salut ! 😊 Je suis Zoi, ta prof de maths pour le concours d’entrée à la FTN. Écris un exercice ou envoie une 📷 photo — on avance étape par étape." },
   };
-  function modeSub(x) { if (SUB && LANG === "sr") return SUB; if (SUB_EN && LANG !== "sr") return SUB_EN; var sj=SUBJECTS[RMODE]; if (sj && sj.sub) return sj.sub[LANG] || (T[LANG] && T[LANG].sub) || sj.sub.en || sj.sub.sr; return (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].sub : x.sub; }
-  function modeHi(x) { var s; if (HI && LANG === "sr") { s = HI; } else if (HI_EN && LANG !== "sr") { s = HI_EN; } else { var sj = SUBJECTS[RMODE]; if (sj && sj.hi) { s = sj.hi[LANG] || (T[LANG] && T[LANG].hi) || sj.hi.en || sj.hi.sr; } else { s = (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].hi : x.hi; } } return String(s).replace(/\{name\}/g, NAME).replace(/Zoi/g, NAME); }
+  function modeSub(x) { if (SUB) return SUB; var sj=SUBJECTS[RMODE]; if (sj && sj.sub) return sj.sub[LANG] || sj.sub.en || sj.sub.sr; return (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].sub : x.sub; }
+  function modeHi(x) { var s; if (HI) { s = HI; } else { var sj = SUBJECTS[RMODE]; if (sj && sj.hi) { s = sj.hi[LANG] || sj.hi.en || sj.hi.sr; } else { s = (MODE === "ftn" && FTN[LANG]) ? FTN[LANG].hi : x.hi; } } return String(s).replace(/\{name\}/g, NAME).replace(/Zoi/g, NAME); }
 
   // ——— stilovi (sve scope-ovano sa zoi- prefiksom) ———
   var css =
@@ -134,6 +121,10 @@
     "#zoi-btn:hover{transform:scale(1.06)}" +
     "#zoi-panel{position:fixed;right:20px;bottom:94px;width:370px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 130px);background:#FBF5EA;border-radius:22px;overflow:hidden;display:none;flex-direction:column;z-index:2147483000;box-shadow:0 24px 60px rgba(20,60,55,.30);font-family:'Nunito',system-ui,sans-serif;border:1px solid #ECE0CC}" +
     "#zoi-panel.zoi-open{display:flex}" +
+    "#zoi-cta{position:fixed;right:92px;bottom:34px;z-index:2147483000;background:#fff;color:#1f6f63;font-family:'Nunito',system-ui,sans-serif;font-weight:800;font-size:14px;padding:9px 14px;border-radius:16px;box-shadow:0 8px 22px rgba(20,80,70,.25);cursor:pointer;white-space:nowrap;animation:zoicta 2.4s ease-in-out infinite}" +
+    "#zoi-cta:after{content:'';position:absolute;right:-7px;bottom:13px;border:7px solid transparent;border-left-color:#fff;border-right:0}" +
+    "#zoi-cta.zoi-hide{display:none}" +
+    "@keyframes zoicta{0%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}" +
     "#zoi-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#1F8A78,#2FB7A0);color:#fff}" +
     "#zoi-head img{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.7);object-fit:cover}" +
     "#zoi-head .zoi-name{font-family:'Baloo 2',cursive;font-weight:700;font-size:18px;line-height:1}" +
@@ -170,41 +161,11 @@
     "#zoi-head .zoi-headfb{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.7);font-size:20px}" +
     ".zoi-fig{background:#fff;border:1px solid #E2D6BF;border-radius:12px;padding:8px;margin:6px 0;max-width:100%;overflow-x:auto}" +
     ".zoi-fig svg{max-width:100%;height:auto;display:block;margin:0 auto}" +
-    ".zoi-bub sup{font-size:.72em;vertical-align:super}.zoi-bub sub{font-size:.72em;vertical-align:sub}" +
-    ".zoi-bub .katex{max-width:100%}" +
-    ".zoi-bub .katex-display{margin:.45em 0;overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}" +
-    ".zoi-bub .katex-display>.katex{white-space:nowrap}";
+    ".zoi-bub sup{font-size:.72em;vertical-align:super}.zoi-bub sub{font-size:.72em;vertical-align:sub}";
 
   var style = document.createElement("style");
   style.textContent = css;
   document.head.appendChild(style);
-
-  // ——— KaTeX: iscrtava se iz SIROVOG teksta (renderToString), pre fmt-a ———
-  function renderTex(tex, display) {
-    try {
-      if (window.katex) return window.katex.renderToString(String(tex), { displayMode: !!display, throwOnError: false, output: "html" });
-    } catch (e) {}
-    return null; // KaTeX još nije spreman ili greška -> ostaje placeholder
-  }
-  // prepiše sve preostale .zoi-tex placeholdere kad se KaTeX učita kasnije
-  function flushTex() {
-    var ph = document.querySelectorAll("#zoi-msgs .zoi-tex");
-    for (var i = 0; i < ph.length; i++) {
-      var el = ph[i], html = renderTex(el.getAttribute("data-tex"), el.getAttribute("data-disp") === "1");
-      if (html != null) { var tmp = document.createElement("span"); tmp.innerHTML = html; el.replaceWith(tmp.firstChild || tmp); }
-    }
-  }
-  (function loadKatex() {
-    if (window.katex || document.getElementById("zoi-katex-css")) return;
-    var V = "0.16.11", base = "https://cdn.jsdelivr.net/npm/katex@" + V + "/dist/";
-    var l = document.createElement("link");
-    l.id = "zoi-katex-css"; l.rel = "stylesheet"; l.href = base + "katex.min.css";
-    document.head.appendChild(l);
-    var s = document.createElement("script");
-    s.src = base + "katex.min.js"; s.defer = true;
-    s.onload = flushTex;   // iscrtaj sve što je stiglo pre KaTeX-a
-    document.head.appendChild(s);
-  })();
 
   // ——— DOM ———
   var btn = document.createElement("div");
@@ -234,6 +195,7 @@
       '<div><div class="zoi-name">' + NAME + '</div><div class="zoi-sub" id="zoi-sub"></div></div>' +
       '<div class="zoi-sp"></div>' +
       '<select id="zoi-lang" title="Jezik">' + langOpts + "</select>" +
+      '<button class="zoi-ico" id="zoi-voice" title="Glas">🔊</button>' +
       '<button class="zoi-ico" id="zoi-x" title="Zatvori">✕</button>' +
     "</div>" +
     '<div id="zoi-msgs"></div>' +
@@ -250,6 +212,12 @@
 
   document.body.appendChild(btn);
   document.body.appendChild(panel);
+  var cta = document.createElement("div");
+  cta.id = "zoi-cta";
+  cta.textContent = (CTA_TX[LANG] || CTA_TX.sr) + NAME;
+  document.body.appendChild(cta);
+  cta.onclick = function () { panel.classList.add("zoi-open"); cta.classList.add("zoi-hide"); var ta=panel.querySelector("#zoi-ta"); if(ta) ta.focus(); };
+  if (ISSITE) { var _ph = panel.querySelector("#zoi-photo"); if (_ph) _ph.style.display = "none"; }
 
   // ——— reference ———
   var $ = function (id) { return panel.querySelector(id); };
@@ -282,18 +250,28 @@
     taEl.placeholder = x.ph;
     goEl.textContent = x.send;
     chipsEl.innerHTML = "";
-    x.chips.forEach(function (c, i) {
-      var b = document.createElement("button");
-      b.className = "zoi-chip";
-      b.textContent = c;
-      b.onclick = function () {
-        if (i === 1) { fileEl.click(); }
-        else if (i === 2) { taEl.value = x.cp || (c + ": "); taEl.focus(); }
-        else if (i === 3) { taEl.value = x.pr || ""; send(); }
-        else { taEl.value = ""; taEl.focus(); }
-      };
-      chipsEl.appendChild(b);
-    });
+    if (ISSITE) {
+      (SITE_CHIPS[LANG] || SITE_CHIPS.en).forEach(function (c) {
+        var b = document.createElement("button");
+        b.className = "zoi-chip";
+        b.textContent = c;
+        b.onclick = function () { taEl.value = c; send(); };
+        chipsEl.appendChild(b);
+      });
+    } else {
+      x.chips.forEach(function (c, i) {
+        var b = document.createElement("button");
+        b.className = "zoi-chip";
+        b.textContent = c;
+        b.onclick = function () {
+          if (i === 1) { fileEl.click(); }
+          else if (i === 2) { taEl.value = x.cp || (c + ": "); taEl.focus(); }
+          else if (i === 3) { taEl.value = x.pr || ""; send(); }
+          else { taEl.value = ""; taEl.focus(); }
+        };
+        chipsEl.appendChild(b);
+      });
+    }
   }
 
   function greet() {
@@ -325,25 +303,7 @@
     svg = svg.replace(/(href|xlink:href)\s*=\s*"(?:\s*javascript:)[^"]*"/gi, "");
     return svg;
   }
-  // Razdvoji formule ($...$, $$...$$, \(..\), \[..\]) od teksta:
-  // formule -> KaTeX iz SIROVOG teksta; ostalo -> fmt (markdown). Tako fmt nikad ne kvari LaTeX.
-  function mathHtml(t) {
-    t = String(t);
-    var re = /\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\$([^\$\n]+?)\$|\\\(([\s\S]+?)\\\)/g;
-    var out = "", last = 0, m;
-    while ((m = re.exec(t))) {
-      out += fmt(t.slice(last, m.index));
-      var display = (m[1] != null) || (m[2] != null);
-      var tex = (m[1] != null ? m[1] : m[2] != null ? m[2] : m[3] != null ? m[3] : m[4]) || "";
-      var html = renderTex(tex, display);
-      out += (html != null) ? html
-           : '<span class="zoi-tex" data-tex="' + esc(tex) + '" data-disp="' + (display ? 1 : 0) + '">' + esc(tex) + "</span>";
-      last = re.lastIndex;
-    }
-    out += fmt(t.slice(last));
-    return out;
-  }
-  function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=mathHtml(t); bub.appendChild(d); } }
+  function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=fmt(t); bub.appendChild(d); } }
   function addSvg(bub, svg){ var fig=document.createElement("div"); fig.className="zoi-fig"; fig.innerHTML=safeSvg(svg); var sv=fig.querySelector("svg"); if (sv){ sv.removeAttribute("width"); sv.removeAttribute("height"); bub.appendChild(fig); return true; } return false; }
   function renderZoi(bub, text){
     var str = String(text);
@@ -389,7 +349,17 @@
       else { bub.appendChild(document.createTextNode(text)); }
     }
     if (imgUrl) { var im = document.createElement("img"); im.src = imgUrl; bub.appendChild(im); }
-    if (who === "zoi" && text) { lastZoiText = text; }
+    if (who === "zoi" && text) {
+      lastZoiText = text;
+      var say = document.createElement("button");
+      say.className = "zoi-say"; say.type = "button"; say.textContent = "🔊";
+      say.title = "Pročitaj naglas / zaustavi";
+      say.onclick = function () {
+        if (curBtn === say) { stopSpeak(); }
+        else { primeAudio(); speakNow(text, say); }
+      };
+      row.appendChild(say);
+    }
     msgsEl.appendChild(row);
     msgsEl.scrollTop = msgsEl.scrollHeight;
     return bub;
@@ -606,8 +576,94 @@
             .replace(/\^/g, " ").replace(/\s{2,}/g, " ").trim();
   }
 
-  // ——— glas (TTS) uklonjen ———
-  function speak(text) {}
+  // ——— glas (TTS) ———
+  var synth = window.speechSynthesis || null;
+  var voices = [];
+  var curBtn = null;
+  var curAudio = null;          // trenutni izvor zvuka
+  // Web Audio — najpouzdaniji način da Safari pusti preuzeti (Azure) zvuk
+  var AC = window.AudioContext || window.webkitAudioContext || null;
+  var actx = null, curSrc = null;
+  function ensureCtx() {
+    if (!AC) return null;
+    if (!actx) { try { actx = new AC(); } catch (e) { actx = null; } }
+    return actx;
+  }
+  function primeAudio() {        // MORA unutar klika (sinhrono) — otključava zvuk u Safariju
+    var c = ensureCtx(); if (!c) return;
+    try { if (c.state === "suspended") c.resume(); } catch (e) {}
+    try { var bb = c.createBuffer(1, 1, 22050); var ss = c.createBufferSource(); ss.buffer = bb; ss.connect(c.destination); ss.start(0); } catch (e) {}
+  }
+  function loadVoices() { try { voices = (synth && synth.getVoices()) || []; } catch (e) {} }
+  loadVoices();
+  if (synth && typeof synth.onvoiceschanged !== "undefined") synth.onvoiceschanged = loadVoices;
+
+  // za srpski/bosanski/hrvatski koristi srodan glas ako tačnog nema
+  var VFALL = { sr: ["sr","hr"], hr: ["hr","sr"], sk: ["sk","cs"], de: ["de"], el: ["el"], en: ["en"], hu: ["hu"], ro: ["ro"], es: ["es"], fr: ["fr"] };
+  function pickVoice(code) {
+    if (!voices.length) loadVoices();
+    var chain = VFALL[code] || [code];
+    for (var i = 0; i < chain.length; i++) {
+      var pre = chain[i];
+      for (var j = 0; j < voices.length; j++) {
+        var L = (voices[j].lang || "").toLowerCase().replace("_", "-");
+        if (L.indexOf(pre) === 0) return voices[j];
+      }
+    }
+    return null;
+  }
+  function stopSpeak() {
+    try { if (synth) synth.cancel(); } catch (e) {}
+    if (curSrc) { try { curSrc.onended = null; curSrc.stop(0); } catch (e) {} curSrc = null; }
+    curAudio = null;
+    if (curBtn) { curBtn.textContent = "🔊"; curBtn = null; }
+  }
+  function deviceSpeak(text, btn) {            // rezerva: glas uređaja
+    if (!synth) { if (btn) btn.textContent = "🔊"; return; }
+    loadVoices();
+    var u = new SpeechSynthesisUtterance(clean(text));
+    var v = pickVoice(LANG);
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = SPEAK[LANG] || "sr-RS"; }
+    u.rate = 0.98;
+    if (btn) {
+      curBtn = btn; btn.textContent = "⏹";
+      u.onend = function () { if (curBtn === btn) curBtn = null; if (btn) btn.textContent = "🔊"; };
+      u.onerror = function () { if (curBtn === btn) curBtn = null; if (btn) btn.textContent = "🔊"; };
+    }
+    try { synth.speak(u); } catch (e) {}
+  }
+  function speakNow(text, btn) {
+    stopSpeak();
+    primeAudio();                       // otključaj zvuk JOŠ unutar klika (Safari)
+    if (btn) { curBtn = btn; btn.textContent = "⏹"; }
+    var spoken = clean(text);
+    var c = ensureCtx();
+    if (!c) { deviceSpeak(text, btn); return; }
+    // 1) Azure glas (isti za sve uređaje); 2) ako zakaže -> glas uređaja
+    var ttsBody = { text: spoken, lang: LANG, voice: VOICE };
+    if (RATE) ttsBody.speed = RATE;
+    fetch(TTS, { method: "POST", headers: { "Content-Type": "application/json" },
+                 body: JSON.stringify(ttsBody) })
+      .then(function (r) { if (!r.ok) throw 0; return r.arrayBuffer(); })
+      .then(function (buf) {
+        if (!buf || buf.byteLength < 256) throw 0;
+        if (curBtn !== btn) throw "stop";
+        return new Promise(function (resolve, reject) {
+          try { c.decodeAudioData(buf, resolve, function () { reject(0); }); } catch (e) { reject(0); }
+        });
+      })
+      .then(function (audioBuf) {
+        if (curBtn !== btn) return;
+        try { if (c.state === "suspended") c.resume(); } catch (e) {}
+        var src = c.createBufferSource();
+        src.buffer = audioBuf; src.connect(c.destination);
+        src.onended = function () { if (curSrc === src) curSrc = null; if (curBtn === btn) curBtn = null; if (btn) btn.textContent = "🔊"; };
+        curSrc = src; curAudio = src;
+        try { src.start(0); } catch (e) { deviceSpeak(text, btn); }
+      })
+      .catch(function (e) { if (e === "stop") return; deviceSpeak(text, btn); });
+  }
+  function speak(text) { if (voiceOn) speakNow(text); } // auto-čitanje kad je 🔊 (gore) uključen
 
   // ——— slanje ———
   function send() {
@@ -641,6 +697,7 @@
         var reply = data.text || "…";
         history.push({ role: "assistant", content: reply });
         addBub("zoi", reply);
+        speak(reply);
       })
       .catch(function () {
         typing(false); goEl.disabled = false;
@@ -665,8 +722,8 @@
   $("#zoi-photo").onclick = function () { fileEl.click(); };
 
   // ——— događaji ———
-  btn.onclick = function () { panel.classList.toggle("zoi-open"); taEl.focus(); };
-  $("#zoi-x").onclick = function () { panel.classList.remove("zoi-open"); };
+  btn.onclick = function () { panel.classList.toggle("zoi-open"); var op=panel.classList.contains("zoi-open"); cta.classList.toggle("zoi-hide", op); if(op) taEl.focus(); };
+  $("#zoi-x").onclick = function () { panel.classList.remove("zoi-open"); cta.classList.remove("zoi-hide"); stopSpeak(); };
   goEl.onclick = send;
   taEl.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
@@ -674,205 +731,15 @@
   taEl.addEventListener("input", function () {
     taEl.style.height = "auto"; taEl.style.height = Math.min(taEl.scrollHeight, 96) + "px";
   });
-  langEl.onchange = function () { LANG = langEl.value; applyLang(); greet(); history = []; };
-  // Čitanje naglas (TTS) je isključeno — dugme uklonjeno iz zaglavlja.
-  if (voiceBtn) voiceBtn.style.display = "none";
+  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; applyLang(); greet(); history = []; };
+  voiceBtn.onclick = function () {
+    voiceOn = !voiceOn;
+    voiceBtn.style.background = voiceOn ? "rgba(255,255,255,.45)" : "rgba(255,255,255,.18)";
+    if (voiceOn) { if (lastZoiText) speakNow(lastZoiText); }
+    else { stopSpeak(); }
+  };
 
   // ——— start ———
   applyLang();
   greet();
-
-  // Uskladi UGRAĐENI "Pitaj Zoi" gumb na stranici (klonovi) sa pravom profesorkom.
-  // Tako se ime i slika vide tačno ODMAH, a ne tek kad se otvori čet.
-  function askName() {
-        // srpski/bliski: akuzativ (ime na -a -> -u, npr. Ada->Adu, Mila->Milu); strano Zoi ostaje; engleski bez promene
-        if (LANG === "en") return NAME;
-        return /a$/.test(NAME) ? NAME.slice(0, -1) + "u" : NAME;
-      }
-      function syncStaticLauncher() {
-    try {
-      var ask = (LANG === "en") ? "Ask " : "Pitaj ";
-      var avas = document.querySelectorAll(".mfab-ava, .mbubble-ava, .zchat-ava");
-      for (var i = 0; i < avas.length; i++) avas[i].style.backgroundImage = "url('" + AVATAR + "')";
-      var imgs = document.querySelectorAll(".mfab-ava img, .zchat-ava img, .mbubble img, .zchat-head img");
-      for (var j = 0; j < imgs.length; j++) imgs[j].src = AVATAR;
-      var nm = document.querySelector(".mfab-name");
-      if (nm) {
-        nm.removeAttribute("data-i18n");
-        nm.textContent = (RMODE === "site") ? (LANG === "en" ? "Ask a teacher" : "Pitaj profesorku") : (ask + askName());
-      }
-      var eb = document.querySelector(".mbubble-eyebrow");
-      if (eb && /Zoi/.test(eb.innerHTML)) eb.innerHTML = eb.innerHTML.replace(/Zoi/g, NAME);
-      var zid = document.querySelector(".zchat-id b");
-      if (zid) zid.textContent = NAME;
-      // rotacione poruke u baloncětu (npr. "Ja sam Zoi") — menjamo "Zoi" u pravo ime
-      var bubble = document.querySelector(".mbubble");
-      if (bubble && NAME !== "Zoi") {
-        var swap = function () {
-          (function walk(node) {
-            for (var k = 0; k < node.childNodes.length; k++) {
-              var c = node.childNodes[k];
-              if (c.nodeType === 3) { if (c.nodeValue.indexOf("Zoi") > -1) c.nodeValue = c.nodeValue.replace(/Zoi/g, NAME); }
-              else if (c.nodeType === 1) walk(c);
-            }
-          })(bubble);
-        };
-        swap();
-        if (window.MutationObserver) new MutationObserver(swap).observe(bubble, { childList: true, subtree: true, characterData: true });
-      }
-      // "Marina te vodi" (podnaslov) i demo potpis "Marina ✍️" -> ime profesorke.
-      // NE diramo sekciju osnivačice (data-i18n="founder_msg"), tamo Marina ostaje.
-      if (NAME !== "Marina") {
-        var relabel = function (el) {
-          if (!el) return;
-          var fix = function () {
-            (function walk(node) {
-              for (var p = 0; p < node.childNodes.length; p++) {
-                var c = node.childNodes[p];
-                if (c.nodeType === 3) { if (c.nodeValue.indexOf("Marina") > -1) c.nodeValue = c.nodeValue.replace(/Marina/g, NAME); }
-                else if (c.nodeType === 1) walk(c);
-              }
-            })(el);
-          };
-          fix();
-          if (window.MutationObserver) new MutationObserver(fix).observe(el, { childList: true, subtree: true, characterData: true });
-        };
-        relabel(document.querySelector('[data-i18n="subj_sub"]')); // hero podnaslov
-        relabel(document.querySelector(".bubble.a"));              // demo odgovor („kako izgleda čas")
-      }
-    } catch (e) {}
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", syncStaticLauncher);
-  else syncStaticLauncher();
-})();
-
-/* ============================================================
-   MathIA — traka probnog perioda ("Besplatno: X min")
-   Nezavisan dodatak. Čita GET {api}/me -> {ok, profile:{trial:{active,minutesLeft}, subscribed}}.
-   Ako backend još ne postoji (404/greška) -> traka se ne prikazuje (bez greške).
-   ============================================================ */
-(function () {
-  var sc = document.querySelector('script[src*="widget.js"]');
-  var API = (sc && sc.getAttribute("data-api")) || "/api/chat";
-  var ME = API.replace(/\/[^\/]*$/, "") + "/me";
-  var EN = (document.documentElement.lang || "sr").slice(0, 2) === "en";
-  var t = {
-    free: EN ? "Free" : "Besplatno",
-    min: EN ? "min" : "min",
-    q: EN ? "questions" : "pitanja",
-    over: EN ? "Free trial ended" : "Probni period je istekao",
-    sub: EN ? "Subscribe →" : "Pretplati se →",
-    hour: EN ? "hour" : "sat",
-    login: EN ? "Sign in →" : "Prijavi se →"
-  };
-  var state = null, bar = null, tick = null;
-
-  function el() {
-    var panel = document.getElementById("zoi-panel");
-    if (!panel) return null;
-    if (bar && bar.isConnected) return bar;
-    bar = document.createElement("div");
-    bar.id = "zoi-trial";
-    bar.style.cssText =
-      "font:600 12.5px/1.4 'Plus Jakarta Sans',Arial,sans-serif;padding:8px 14px;text-align:center;" +
-      "background:linear-gradient(135deg,#fffdf6,#fff3dc);color:#9b7420;border-bottom:1px solid #ecd9a4";
-    var head = panel.querySelector("#zoi-head");
-    if (head && head.parentNode) head.parentNode.insertBefore(bar, head.nextSibling);
-    else panel.insertBefore(bar, panel.firstChild);
-    return bar;
-  }
-
-  var BADGE_EMOJI = { first_step: "👣", curious_mind: "🧠", marathon: "🏅", comeback: "🌟" };
-  var BADGE_NAME = {
-    first_step:   { sr: "Prvi korak",   en: "First step" },
-    curious_mind: { sr: "Radoznali um", en: "Curious mind" },
-    marathon:     { sr: "Maraton",      en: "Marathon" },
-    comeback:     { sr: "Vratio se",    en: "Comeback" }
-  };
-  function badgeStr() {
-    if (!state || !state.badges || !state.badges.length) return "";
-    var out = "";
-    for (var i = 0; i < state.badges.length; i++) {
-      var b = state.badges[i], e = BADGE_EMOJI[b];
-      if (e) {
-        var nm = BADGE_NAME[b] ? BADGE_NAME[b][LANG === "en" ? "en" : "sr"] : b;
-        out += "<span title='" + nm + "' style='cursor:default'>" + e + "</span>";
-      }
-    }
-    return out;
-  }
-  function progStr() {
-    if (!state) return "";
-    var p = state.points | 0, s = state.streak | 0;
-    var out = "";
-    if (p || s) {
-      out = "⭐ " + p;
-      if (s > 0) out += " · 🔥 " + s + (LANG === "en" ? (s === 1 ? " day" : " days") : (s === 1 ? " dan" : " dana"));
-    }
-    var bg = badgeStr();
-    if (bg) out += (out ? " &nbsp; " : "") + bg;
-    return out;
-  }
-
-  function render() {
-    var b = el(); if (!b || !state) return;
-    if (state.authenticated === false) {
-      b.style.display = "block";
-      b.innerHTML = "🎁 " + t.free + ": <b>15 " + t.min + "</b> — <a href='/prijava.html' style='color:#9b7420;font-weight:800'>" + t.login + "</a>";
-      return;
-    }
-    var pr = progStr();
-    if (state.subscribed) {
-      // pretplatnik: nema odbrojavanja, ali pokaži napredak (motivacija)
-      if (pr) { b.style.display = "block"; b.innerHTML = pr; } else { b.style.display = "none"; }
-      return;
-    }
-    b.style.display = "block";
-    if (state.trial && state.trial.active) {
-      var m = Math.max(0, state.trial.minutesLeft | 0);
-      b.innerHTML = "🎁 " + t.free + ": <b>" + m + " " + t.min + "</b>" + (pr ? " &nbsp;·&nbsp; " + pr : "");
-    } else {
-      b.innerHTML = "🔒 " + t.over + " — <a href='/index.html#cene' style='color:#9b7420;font-weight:800'>" + t.sub + "</a>";
-    }
-  }
-
-  async function fetchMe() {
-    try {
-      var r = await fetch(ME, { credentials: "include" });
-      if (!r.ok) throw 0;
-      var d = await r.json();
-      if (d && d.ok === false) { state = { authenticated: false }; render(); return; }
-      var p = (d && d.profile) ? d.profile : d;   // podrži {profile:{...}} i ravan oblik
-      if (p && (p.trial || p.subscribed != null)) { state = p; render(); }
-    } catch (e) { /* backend nije spreman -> bez trake */ }
-  }
-
-  function startTick() {
-    if (tick) return;
-    tick = setInterval(function () {
-      if (state && state.trial && state.trial.active && state.trial.minutesLeft > 0) {
-        state.trial.minutesLeft -= 1;
-        if (state.trial.minutesLeft <= 0) state.trial.active = false;
-        render();
-      }
-    }, 60000);
-  }
-
-  function boot() {
-    if (!document.getElementById("zoi-panel")) return false;
-    fetchMe(); startTick();
-    // osveži kad se panel otvori i periodično dok je otvoren
-    var panel = document.getElementById("zoi-panel");
-    panel.addEventListener("click", function () {}, false);
-    setInterval(function () {
-      var p = document.getElementById("zoi-panel");
-      if (p && /\bzoi-open\b/.test(p.className)) fetchMe();
-    }, 20000);
-    return true;
-  }
-
-  var tries = 0;
-  var w = setInterval(function () {
-    if (boot() || ++tries > 40) clearInterval(w); // čekaj da widget napravi panel (do ~20s)
-  }, 500);
 })();
