@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moj nalog — Mathia</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23432C37'/%3E%3Ctext x='16' y='21' font-size='14' text-anchor='middle' fill='%23C6A05C' font-family='Georgia'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{--paper:#FBF6EE;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--gold2:#E7D2A2;--card:#FFFCF6;--line:#E7DBC4;--ink:#5a4853}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--plum);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.5}
+  a{color:var(--golddk)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header{border-bottom:1px solid var(--line);background:rgba(251,246,238,.9);backdrop-filter:blur(6px);position:sticky;top:0;z-index:10}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-size:1.35rem;text-decoration:none;color:var(--plum)}
+  .brand .seal{width:34px;height:34px;border-radius:50%;background:var(--plum);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:.8rem}
+  h1{font-family:'Playfair Display',serif;font-weight:600}
+  .muted{color:var(--ink)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:18px 0;box-shadow:0 30px 60px -45px rgba(120,70,80,.45)}
+  .card h2{font-family:'Playfair Display',serif;font-weight:600;margin:0 0 4px;font-size:1.4rem}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--golddk);margin-bottom:10px}
+  label{display:block;font-size:.85rem;font-weight:600;margin:12px 0 5px}
+  input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff;color:var(--plum)}
+  input:focus{outline:none;border-color:var(--gold)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;border:1px solid transparent;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+  .btn-gold{background:linear-gradient(180deg,#D9B978,#B98E45);color:#3a2630;box-shadow:0 14px 30px -16px rgba(156,120,56,.7)}
+  .btn-ghost{background:#fff;border-color:rgba(198,160,92,.55);color:var(--plum)}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .tabs{display:flex;gap:6px;margin-bottom:8px}
+  .tabs button{flex:1;padding:10px;border-radius:12px;border:1px solid var(--line);background:#fff;font:inherit;font-weight:600;cursor:pointer;color:var(--ink)}
+  .tabs button.on{background:var(--plum);color:var(--gold2);border-color:var(--plum)}
+  .hide{display:none!important}
+  .msg{padding:10px 14px;border-radius:12px;margin:10px 0;font-size:.9rem}
+  .msg.err{background:#fbeaea;color:#8a2b2b}
+  .msg.ok{background:#eaf3ec;color:#2b6b3a}
+  /* paketi */
+  .paks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .pak{border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center;background:#fff}
+  .pak h3{margin:.2em 0;font-family:'Playfair Display',serif}
+  .pak .lim{font-size:.8rem;color:var(--ink)}
+  .pak .pr{font-weight:700;color:var(--golddk);margin-top:6px}
+  /* predmeti */
+  .grp{margin-top:14px}
+  .grp h4{font-family:'Playfair Display',serif;font-weight:600;margin:0 0 6px;font-size:1.05rem}
+  .subj{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:12px;margin:6px 0;background:#fff;cursor:pointer;transition:border-color .15s,background .15s}
+  .subj:hover{border-color:var(--gold)}
+  .subj.sel{border-color:var(--gold);background:linear-gradient(180deg,#FFFDF8,#FBF1E2)}
+  .subj input{width:auto;margin:0}
+  .counter{font-weight:700;color:var(--golddk)}
+  /* napredak */
+  .pbar{height:10px;border-radius:999px;background:#efe6d4;overflow:hidden;margin:4px 0 12px}
+  .pbar > span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--golddk))}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+  .stat b{display:block;font-size:1.5rem;font-family:'Playfair Display',serif;color:var(--plum)}
+  .stat small{color:var(--ink)}
+  .badge{display:inline-block;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);margin:4px 4px 0 0;font-size:.85rem}
+  footer{border-top:1px solid var(--line);margin-top:30px;padding:20px;text-align:center;color:var(--ink);font-size:.8rem}
+  .note{font-size:.8rem;color:var(--ink);background:#fff;border:1px dashed rgba(198,160,92,.6);border-radius:12px;padding:10px 12px;margin-top:10px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="index.html"><span class="seal">M</span> Mathia</a>
+  <div class="row" style="gap:14px">
+    <span id="who" class="muted hide"></span>
+    <button id="logout" class="btn btn-ghost hide" style="padding:8px 16px">Odjava</button>
+  </div>
+</div></header>
+
+<main class="wrap">
+
+  <!-- ============ NIJE PRIJAVLJEN ============ -->
+  <section id="auth" class="card" style="max-width:440px;margin:34px auto">
+    <div class="eyebrow">Moj nalog</div>
+    <h2 id="authTitle">Prijava</h2>
+    <p class="muted" style="margin-top:0">Uloguj se da izabereš predmete i pratiš napredak.</p>
+    <div class="tabs">
+      <button id="tabLogin" class="on" onclick="setMode('login')">Prijava</button>
+      <button id="tabReg" onclick="setMode('reg')">Registracija</button>
+    </div>
+    <div id="regName" class="hide">
+      <label>Ime</label><input id="ime" placeholder="Tvoje ime">
+    </div>
+    <label>Email</label><input id="email" type="email" placeholder="email@primer.rs" autocomplete="email">
+    <label>Lozinka</label><input id="pass" type="password" placeholder="••••••••" autocomplete="current-password">
+    <div id="authMsg"></div>
+    <button id="authBtn" class="btn btn-gold" style="width:100%;margin-top:14px" onclick="doAuth()">Prijavi se</button>
+  </section>
+
+  <!-- ============ PRIJAVLJEN ============ -->
+  <section id="app" class="hide">
+
+    <h1 style="margin:24px 0 0">Zdravo<span id="hi"></span> 👋</h1>
+    <p class="muted" style="margin-top:4px">Ovde biraš predmete (prema paketu) i pratiš svoj napredak.</p>
+
+    <!-- PAKET -->
+    <div class="card">
+      <div class="eyebrow">Tvoj paket</div>
+      <div id="pakState"></div>
+      <div id="pakChoose" class="hide">
+        <p class="muted" style="margin-top:0">Još nemaš aktivan paket. Izaberi (privremeno — kasnije ovo radi naplata):</p>
+        <div class="paks">
+          <div class="pak"><h3>BASIC</h3><div class="lim">1 predmet</div><div class="pr">4.990</div><button class="btn btn-ghost" style="margin-top:8px;width:100%" onclick="setPaket('basic',1,'MATHIA-BASIC')">Izaberi</button></div>
+          <div class="pak"><h3>GOLD</h3><div class="lim">2 predmeta</div><div class="pr">6.990</div><button class="btn btn-ghost" style="margin-top:8px;width:100%" onclick="setPaket('gold',2,'MATHIA-GOLD')">Izaberi</button></div>
+          <div class="pak"><h3>DIAMOND</h3><div class="lim">3 predmeta</div><div class="pr">9.990</div><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="setPaket('diamond',3,'MATHIA-DIAMOND')">Izaberi</button></div>
+        </div>
+        <div class="note">Napomena: ovaj izbor paketa je <b>privremen, za testiranje</b>. Kada se poveže eFiskalizacija, paket se automatski aktivira posle uplate.</div>
+      </div>
+    </div>
+
+    <!-- PREDMETI -->
+    <div id="subjCard" class="card hide">
+      <div class="eyebrow">Izbor predmeta</div>
+      <h2>Tvoji predmeti <span class="counter" id="cnt"></span></h2>
+      <p class="muted" style="margin-top:0">Izaberi predmete prema svom paketu. Kad popuniš limit, ostali se zaključaju.</p>
+      <div id="subjList"></div>
+      <div id="subjMsg"></div>
+      <button id="saveSubj" class="btn btn-gold" style="margin-top:14px" onclick="saveSubjects()">Sačuvaj izbor</button>
+    </div>
+
+    <!-- NAPREDAK -->
+    <div id="progCard" class="card hide">
+      <div class="eyebrow">Napredak</div>
+      <h2>Tvoj napredak</h2>
+      <div class="stats">
+        <div class="stat"><b id="stStreak">0</b><small>dana niz</small></div>
+        <div class="stat"><b id="stMin">0</b><small>min danas</small></div>
+        <div class="stat"><b id="stBadge">0</b><small>značke</small></div>
+      </div>
+      <div id="progBars"></div>
+      <div id="badges"></div>
+      <div class="note">Napredak se puni kada učiš/rešavaš kvizove. Za prikaz testa, klikni:
+        <button class="btn btn-ghost" style="padding:6px 14px;margin-top:8px" onclick="seedDemo()">Dodaj demo napredak</button>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<footer>© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</footer>
+
+<script>
+/* ============================================================
+   1) PODESI SUPABASE — zameni ove dve vrednosti svojim iz
+      Supabase → Project Settings → API
+   ============================================================ */
+const SUPABASE_URL = "PASTE-YOUR-SUPABASE-URL";        // npr. https://xxxx.supabase.co
+const SUPABASE_ANON_KEY = "PASTE-YOUR-ANON-KEY";
+
+/* Predmeti (ključ → naziv), grupisani */
+const SUBJECTS = {
+  "Osnovna škola": [
+    ["osn-mat-5","Matematika 5. razred"],["osn-mat-6","Matematika 6. razred"],
+    ["osn-mat-7","Matematika 7. razred"],["osn-mat-8","Matematika 8. razred"],
+    ["osn-fiz-6","Fizika 6. razred"],["osn-fiz-7","Fizika 7. razred"],["osn-fiz-8","Fizika 8. razred"],
+    ["mala-matura","Mala matura"]
+  ],
+  "Srednja škola": [
+    ["sr-mat-1","Matematika 1. razred"],["sr-mat-2","Matematika 2. razred"],
+    ["sr-mat-3","Matematika 3. razred"],["sr-mat-4","Matematika 4. razred"],
+    ["sr-fiz-1","Fizika 1. razred"],["sr-fiz-2","Fizika 2. razred"],
+    ["sr-fiz-3","Fizika 3. razred"],["sr-fiz-4","Fizika 4. razred"]
+  ],
+  "Prijemni za fakultet": [
+    ["prijemni","Prijemni iz matematike"],["prijemni-ftn","Prijemni iz matematike — FTN"]
+  ],
+  "Fakultet": [
+    ["analiza1","Matematička analiza 1"],["analiza2","Matematička analiza 2"],
+    ["linearna","Linearna algebra"],["diskretna","Diskretna matematika"],
+    ["kompleksna","Kompleksna analiza"],["verovatnoca","Verovatnoća i statistika"],
+    ["operaciona","Operaciona istraživanja"],["elektrotehnika","Teorija električnih kola"],
+    ["mehanika","Mehanika"]
+  ],
+  "Programiranje": [
+    ["python","Python"],["cpp","C++"],["csharp","C#"],["java","Java"],["js","JavaScript"],
+    ["kotlin","Kotlin"],["pascal","Pascal"],["r","R"],["sql","SQL"],["web","Veb (HTML/CSS/JS)"],
+    ["algoritmi","Algoritmi i strukture"],["matlab","MATLAB"],["scratch","Scratch"],["arduino","Arduino"]
+  ],
+  "Elektronika i alati": [
+    ["kicad","KiCad"],["ltspice","LTSpice"],["cadence","Cadence"]
+  ]
+};
+
+let sb=null, user=null, sub=null, selected=new Set(), maxPredmeta=0;
+
+function $(id){return document.getElementById(id);}
+function show(el,on){ $(el).classList.toggle('hide', !on); }
+
+/* init */
+(function(){
+  if (SUPABASE_URL.startsWith("PASTE")) {
+    $('authMsg').innerHTML='<div class="msg err">Supabase nije podešen. Otvori nalog.html i upiši SUPABASE_URL i SUPABASE_ANON_KEY (uputstvo u poruci).</div>';
+    return;
+  }
+  sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  sb.auth.getSession().then(({data})=>{ if(data.session){ user=data.session.user; afterLogin(); } });
+  sb.auth.onAuthStateChange((_e,session)=>{ user = session ? session.user : null; if(user) afterLogin(); else logoutUI(); });
+})();
+
+/* AUTH UI */
+let mode='login';
+function setMode(m){ mode=m;
+  $('tabLogin').classList.toggle('on',m==='login'); $('tabReg').classList.toggle('on',m==='reg');
+  show('regName', m==='reg');
+  $('authTitle').textContent = m==='reg'?'Registracija':'Prijava';
+  $('authBtn').textContent = m==='reg'?'Napravi nalog':'Prijavi se';
+  $('authMsg').innerHTML='';
+}
+async function doAuth(){
+  if(!sb) return;
+  const email=$('email').value.trim(), pass=$('pass').value;
+  if(!email||!pass){ $('authMsg').innerHTML='<div class="msg err">Unesi email i lozinku.</div>'; return; }
+  $('authBtn').disabled=true;
+  try{
+    if(mode==='reg'){
+      const {error}=await sb.auth.signUp({email,password:pass,options:{data:{ime:$('ime').value.trim()}}});
+      if(error) throw error;
+      $('authMsg').innerHTML='<div class="msg ok">Nalog napravljen! Ako je uključena potvrda emaila, proveri inbox, pa se prijavi.</div>';
+    }else{
+      const {error}=await sb.auth.signInWithPassword({email,password:pass});
+      if(error) throw error;
+    }
+  }catch(e){ $('authMsg').innerHTML='<div class="msg err">'+(e.message||'Greška')+'</div>'; }
+  $('authBtn').disabled=false;
+}
+async function logout(){ if(sb) await sb.auth.signOut(); }
+$('logout').onclick=logout;
+
+function logoutUI(){ show('auth',true); show('app',false); show('who',false); show('logout',false); }
+
+async function afterLogin(){
+  show('auth',false); show('app',true); show('who',true); show('logout',true);
+  const name = (user.user_metadata&&user.user_metadata.ime)||'';
+  $('hi').textContent = name?(', '+name):''; $('who').textContent=user.email;
+  await loadSub();
+  await loadSelected();
+  await loadProgress();
+}
+
+/* PAKET */
+async function loadSub(){
+  const {data}=await sb.from('subscriptions').select('*').eq('status','active').order('started_at',{ascending:false}).limit(1);
+  sub = (data&&data[0])||null;
+  if(sub){
+    maxPredmeta=sub.max_predmeta;
+    $('pakState').innerHTML='<div class="row" style="justify-content:space-between"><div><h2 style="text-transform:capitalize">'+sub.paket+' paket</h2><span class="muted">'+sub.max_predmeta+' predmeta · status: aktivan</span></div></div>';
+    show('pakChoose',false); show('subjCard',true); show('progCard',true);
+  }else{
+    $('pakState').innerHTML=''; show('pakChoose',true); show('subjCard',false); show('progCard',false);
+  }
+}
+async function setPaket(paket,maxp,sifra){
+  const {error}=await sb.from('subscriptions').insert({user_id:user.id,paket:paket,max_predmeta:maxp,sifra:sifra,status:'active'});
+  if(error){ alert(error.message); return; }
+  await loadSub(); await loadSelected();
+}
+
+/* PREDMETI */
+async function loadSelected(){
+  const {data}=await sb.from('selected_subjects').select('*').eq('user_id',user.id);
+  selected=new Set((data||[]).map(r=>r.subject_key));
+  renderSubjects();
+}
+function renderSubjects(){
+  let html='';
+  for(const grp in SUBJECTS){
+    html+='<div class="grp"><h4>'+grp+'</h4>';
+    for(const [key,name] of SUBJECTS[grp]){
+      const on=selected.has(key);
+      html+='<label class="subj'+(on?' sel':'')+'"><input type="checkbox" data-k="'+key+'" data-n="'+name+'" '+(on?'checked':'')+' onchange="toggleSubj(this)"> '+name+'</label>';
+    }
+    html+='</div>';
+  }
+  $('subjList').innerHTML=html;
+  updCounter();
+}
+function toggleSubj(cb){
+  const k=cb.getAttribute('data-k');
+  if(cb.checked){
+    if(selected.size>=maxPredmeta){ cb.checked=false; $('subjMsg').innerHTML='<div class="msg err">Tvoj paket dozvoljava '+maxPredmeta+' predmeta. Ukloni jedan ili nadogradi paket.</div>'; return; }
+    selected.add(k);
+  }else{ selected.delete(k); }
+  cb.closest('.subj').classList.toggle('sel',cb.checked);
+  $('subjMsg').innerHTML=''; updCounter();
+}
+function updCounter(){ $('cnt').textContent='('+selected.size+'/'+maxPredmeta+')';
+  document.querySelectorAll('#subjList input').forEach(cb=>{ if(!cb.checked) cb.disabled = selected.size>=maxPredmeta; }); }
+async function saveSubjects(){
+  // obriši sve pa upiši izabrane (jednostavno i pouzdano)
+  await sb.from('selected_subjects').delete().eq('user_id',user.id);
+  const rows=[]; for(const grp in SUBJECTS) for(const [key,name] of SUBJECTS[grp]) if(selected.has(key)) rows.push({user_id:user.id,subject_key:key,subject_name:name});
+  if(rows.length){ const {error}=await sb.from('selected_subjects').insert(rows); if(error){ $('subjMsg').innerHTML='<div class="msg err">'+error.message+'</div>'; return; } }
+  $('subjMsg').innerHTML='<div class="msg ok">Sačuvano! Tvoji predmeti su otključani.</div>';
+  await loadProgress();
+}
+
+/* NAPREDAK */
+function nameOf(key){ for(const g in SUBJECTS) for(const [k,n] of SUBJECTS[g]) if(k===key) return n; return key; }
+async function loadProgress(){
+  const {data}=await sb.from('progress_events').select('*').eq('user_id',user.id).order('created_at',{ascending:false});
+  const ev=data||[];
+  // po predmetu: % = prosek kvizova ili broj lekcija*15 (cap 100)
+  const bySubj={};
+  ev.forEach(e=>{ (bySubj[e.subject_key]=bySubj[e.subject_key]||[]).push(e); });
+  let bars='';
+  const keys = selected.size?[...selected]:Object.keys(bySubj);
+  keys.forEach(k=>{
+    const list=bySubj[k]||[];
+    const quizzes=list.filter(x=>x.kind==='quiz'&&x.score!=null);
+    const lessons=list.filter(x=>x.kind==='lesson').length;
+    let pct = quizzes.length ? Math.round(quizzes.reduce((s,x)=>s+Number(x.score),0)/quizzes.length) : Math.min(100,lessons*15);
+    bars+='<div class="row" style="justify-content:space-between"><b>'+nameOf(k)+'</b><span class="counter">'+pct+'%</span></div><div class="pbar"><span style="width:'+pct+'%"></span></div>';
+  });
+  $('progBars').innerHTML = bars || '<p class="muted">Još nema napretka. Počni da učiš ili klikni „Dodaj demo napredak".</p>';
+  // niz dana
+  const days=new Set(ev.map(e=>e.created_at.slice(0,10))); $('stStreak').textContent=days.size;
+  // minuti danas
+  const today=new Date().toISOString().slice(0,10);
+  const min=ev.filter(e=>e.kind==='minutes'&&e.created_at.slice(0,10)===today).reduce((s,e)=>s+(e.minutes||0),0);
+  $('stMin').textContent=min;
+  // značke = savladane lekcije
+  const badges=ev.filter(e=>e.kind==='lesson');
+  $('stBadge').textContent=badges.length;
+  $('badges').innerHTML = badges.slice(0,8).map(b=>'<span class="badge">🏅 '+(b.label||nameOf(b.subject_key))+'</span>').join('');
+}
+async function seedDemo(){
+  const keys = selected.size?[...selected]:['osn-mat-5'];
+  const rows=[]; const now=Date.now();
+  keys.forEach((k,i)=>{
+    rows.push({user_id:user.id,subject_key:k,kind:'quiz',label:'Test',score:60+Math.round(Math.random()*35)});
+    rows.push({user_id:user.id,subject_key:k,kind:'lesson',label:'Savladana lekcija'});
+    rows.push({user_id:user.id,subject_key:k,kind:'minutes',minutes:20+i*10});
+  });
+  await sb.from('progress_events').insert(rows);
+  await loadProgress();
+}
+window.setMode=setMode;window.doAuth=doAuth;window.setPaket=setPaket;window.toggleSubj=toggleSubj;window.saveSubjects=saveSubjects;window.seedDemo=seedDemo;
+</script>
+</body>
+</html>
