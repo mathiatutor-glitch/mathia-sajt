@@ -193,6 +193,10 @@
   var style = document.createElement("style");
   style.textContent = css;
   document.head.appendChild(style);
+  (function(){ if (window.__mathiaKx) return; window.__mathiaKx=1;
+    var l=document.createElement("link"); l.rel="stylesheet"; l.href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"; document.head.appendChild(l);
+    var sc=document.createElement("script"); sc.src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"; sc.onload=function(){ try{ typeset(document); }catch(e){} }; document.head.appendChild(sc);
+  })();
 
   // ——— DOM ———
   var btn = document.createElement("div");
@@ -310,16 +314,31 @@
   // ——— čišćenje Markdown-a (da se ne vide gole zvezdice/taraba) ———
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
   function fmt(s) {
+    var math = [];
+    s = String(s);
+    s = s.replace(/\$\$([\s\S]+?)\$\$/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    s = s.replace(/\$([^\$\n]+?)\$/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    s = s.replace(/\\\(([\s\S]+?)\\\)/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = esc(s);
-    s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>"); // **podebljano**
-    s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");     // __podebljano__
-    s = s.replace(/^[ \t]*#{1,6}\s*/gm, "");                  // ### naslovi -> bez taraba
-    s = s.replace(/^[ \t]*[\*\-\+]\s+/gm, "• ");              // „* "/„- " na početku reda -> tačkica
-    s = s.replace(/\*([^*\n]+)\*/g, "$1");                    // *kurziv* -> tekst
-    s = s.replace(/\*/g, "");                                  // sve preostale zvezdice
+    s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
+    s = s.replace(/^[ \t]*#{1,6}\s*/gm, "");
+    s = s.replace(/^[ \t]*[\*\-\+]\s+/gm, "• ");
+    s = s.replace(/\*([^*\n]+)\*/g, "$1");
+    s = s.replace(/\*/g, "");
     s = s.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>").replace(/\^(-?\d+|[A-Za-z])/g, "<sup>$1</sup>");
     s = s.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>").replace(/_(\d+)/g, "<sub>$1</sub>");
+    s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; return '<span class="kx" data-d="'+oo[1]+'">'+esc(oo[0])+'</span>'; });
     return s;
+  }
+  function typeset(root){
+    if (!window.katex || !root || !root.querySelectorAll) return;
+    var ns = root.querySelectorAll(".kx:not([data-done])");
+    for (var i=0;i<ns.length;i++){ var el=ns[i];
+      try { window.katex.render(el.textContent, el, {displayMode: el.getAttribute("data-d")==="1", throwOnError:false}); } catch(e){}
+      el.setAttribute("data-done","1");
+    }
   }
 
   // ——— bezbedan SVG (crteži/animacije iz odgovora) ———
@@ -331,7 +350,7 @@
     svg = svg.replace(/(href|xlink:href)\s*=\s*"(?:\s*javascript:)[^"]*"/gi, "");
     return svg;
   }
-  function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=fmt(t); bub.appendChild(d); } }
+  function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=fmt(t); bub.appendChild(d); typeset(d); } }
   function addSvg(bub, svg){ var fig=document.createElement("div"); fig.className="zoi-fig"; fig.innerHTML=safeSvg(svg); var sv=fig.querySelector("svg"); if (sv){ sv.removeAttribute("width"); sv.removeAttribute("height"); bub.appendChild(fig); return true; } return false; }
   function renderZoi(bub, text){
     var str = String(text);
