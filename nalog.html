@@ -227,7 +227,7 @@ async function doAuth(){
   $('authBtn').disabled=true;
   try{
     if(mode==='reg'){
-      const {error}=await sb.auth.signUp({email,password:pass,options:{data:{ime:$('ime').value.trim()}}});
+      const {error}=await sb.auth.signUp({email,password:pass,options:{emailRedirectTo:location.origin+'/nalog.html',data:{ime:$('ime').value.trim()}}});
       if(error) throw error;
       $('authMsg').innerHTML='<div class="msg ok">Nalog napravljen! Ako je uključena potvrda emaila, proveri inbox, pa se prijavi.</div>';
     }else{
