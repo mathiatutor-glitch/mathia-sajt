@@ -68,8 +68,9 @@
 <header><div class="wrap">
   <a class="brand" href="index.html"><span class="seal">M</span> Mathia</a>
   <div class="row" style="gap:14px">
+    <select id="lang" class="btn btn-ghost" style="padding:8px 10px;cursor:pointer"><option>SR</option><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>RU</option><option>PT</option></select>
     <span id="who" class="muted hide"></span>
-    <button id="logout" class="btn btn-ghost hide" style="padding:8px 16px">Odjava</button>
+    <button id="logout" class="btn btn-ghost hide" style="padding:8px 16px" data-i18n="logout">Odjava</button>
   </div>
 </div></header>
 
@@ -77,18 +78,18 @@
 
   <!-- ============ NIJE PRIJAVLJEN ============ -->
   <section id="auth" class="card" style="max-width:440px;margin:34px auto">
-    <div class="eyebrow">Moj nalog</div>
+    <div class="eyebrow" data-i18n="eyebrow_acc">Moj nalog</div>
     <h2 id="authTitle">Prijava</h2>
-    <p class="muted" style="margin-top:0">Uloguj se da izabereš predmete i pratiš napredak.</p>
+    <p class="muted" style="margin-top:0" data-i18n="auth_sub">Uloguj se da izabereš predmete i pratiš napredak.</p>
     <div class="tabs">
-      <button id="tabLogin" class="on" onclick="setMode('login')">Prijava</button>
-      <button id="tabReg" onclick="setMode('reg')">Registracija</button>
+      <button id="tabLogin" class="on" onclick="setMode('login')" data-i18n="tab_login">Prijava</button>
+      <button id="tabReg" onclick="setMode('reg')" data-i18n="tab_reg">Registracija</button>
     </div>
     <div id="regName" class="hide">
-      <label>Ime</label><input id="ime" placeholder="Tvoje ime">
+      <label data-i18n="lbl_ime">Ime</label><input id="ime" placeholder="Tvoje ime" data-i18n-ph="ph_ime">
     </div>
-    <label>Email</label><input id="email" type="email" placeholder="email@primer.rs" autocomplete="email">
-    <label>Lozinka</label><input id="pass" type="password" placeholder="••••••••" autocomplete="current-password">
+    <label data-i18n="lbl_email">Email</label><input id="email" type="email" placeholder="email@primer.rs" autocomplete="email">
+    <label data-i18n="lbl_pass">Lozinka</label><input id="pass" type="password" placeholder="••••••••" autocomplete="current-password">
     <div id="authMsg"></div>
     <button id="authBtn" class="btn btn-gold" style="width:100%;margin-top:14px" onclick="doAuth()">Prijavi se</button>
   </section>
@@ -97,46 +98,58 @@
   <section id="app" class="hide">
 
     <h1 style="margin:24px 0 0">Zdravo<span id="hi"></span> 👋</h1>
-    <p class="muted" style="margin-top:4px">Ovde biraš predmete (prema paketu) i pratiš svoj napredak.</p>
+    <p class="muted" style="margin-top:4px" data-i18n="hi_intro">Ovde biraš predmete (prema paketu) i pratiš svoj napredak.</p>
 
     <!-- PAKET -->
     <div class="card">
-      <div class="eyebrow">Tvoj paket</div>
+      <div class="eyebrow" data-i18n="eyebrow_pak">Tvoj paket</div>
       <div id="pakState"></div>
       <div id="pakChoose" class="hide">
-        <p class="muted" style="margin-top:0">Još nemaš aktivan paket. Izaberi (privremeno — kasnije ovo radi naplata):</p>
+        <p class="muted" style="margin-top:0" data-i18n="pak_none">Još nemaš aktivan paket. Izaberi (privremeno — kasnije ovo radi naplata):</p>
         <div class="paks">
-          <div class="pak"><h3>BASIC</h3><div class="lim">1 predmet</div><div class="pr">4.990</div><button class="btn btn-ghost" style="margin-top:8px;width:100%" onclick="setPaket('basic',1,'MATHIA-BASIC')">Izaberi</button></div>
-          <div class="pak"><h3>GOLD</h3><div class="lim">2 predmeta</div><div class="pr">6.990</div><button class="btn btn-ghost" style="margin-top:8px;width:100%" onclick="setPaket('gold',2,'MATHIA-GOLD')">Izaberi</button></div>
-          <div class="pak"><h3>DIAMOND</h3><div class="lim">3 predmeta</div><div class="pr">9.990</div><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="setPaket('diamond',3,'MATHIA-DIAMOND')">Izaberi</button></div>
+          <div class="pak"><h3>BASIC</h3><div class="lim" data-i18n="lim1">1 predmet</div><div class="pr">4.990</div><button class="btn btn-ghost" style="margin-top:8px;width:100%" onclick="setPaket('basic',1,'MATHIA-BASIC')" data-i18n="btn_choose">Izaberi</button></div>
+          <div class="pak"><h3>GOLD</h3><div class="lim" data-i18n="lim2">2 predmeta</div><div class="pr">6.990</div><button class="btn btn-ghost" style="margin-top:8px;width:100%" onclick="setPaket('gold',2,'MATHIA-GOLD')" data-i18n="btn_choose">Izaberi</button></div>
+          <div class="pak"><h3>DIAMOND</h3><div class="lim" data-i18n="lim3">3 predmeta</div><div class="pr">9.990</div><button class="btn btn-gold" style="margin-top:8px;width:100%" onclick="setPaket('diamond',3,'MATHIA-DIAMOND')" data-i18n="btn_choose">Izaberi</button></div>
         </div>
-        <div class="note">Napomena: ovaj izbor paketa je <b>privremen, za testiranje</b>. Kada se poveže eFiskalizacija, paket se automatski aktivira posle uplate.</div>
+        <div class="note" data-i18n="pak_note">Napomena: ovaj izbor paketa je <b>privremen, za testiranje</b>. Kada se poveže eFiskalizacija, paket se automatski aktivira posle uplate.</div>
       </div>
+    </div>
+
+    <!-- MOJI PREDMETI (pristup) -->
+    <div id="myCard" class="card hide">
+      <div class="eyebrow" data-i18n="eyebrow_mine">Moji predmeti</div>
+      <h2 style="margin-top:2px" data-i18n="mine_title">Tvoj pristup</h2>
+      <p class="muted" style="margin-top:0" data-i18n="mine_sub">Klikni predmet da uđeš — unutra su priručnici, Marina (klon) i tvoj napredak. Dostupno 24/7.</p>
+      <div id="myList"></div>
+      <a href="test-sklonosti.html" style="display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;border:1.5px solid var(--goldlt);border-radius:14px;padding:14px 16px;margin-top:14px;background:linear-gradient(180deg,#fffdf7,#fbf3df)">
+        <div><b style="color:var(--plum)" data-i18n="test_title">🎯 Test sklonosti</b><div class="muted" style="font-size:.85rem" data-i18n="test_sub">Za srednju školu i fakultet · uključen u svaki paket</div></div>
+        <span style="color:var(--golddk);font-weight:800;white-space:nowrap" data-i18n="test_btn">Uradi test →</span>
+      </a>
     </div>
 
     <!-- PREDMETI -->
     <div id="subjCard" class="card hide">
-      <div class="eyebrow">Izbor predmeta</div>
-      <h2>Tvoji predmeti <span class="counter" id="cnt"></span></h2>
-      <p class="muted" style="margin-top:0">Izaberi predmete prema svom paketu. Kad popuniš limit, ostali se zaključaju.</p>
+      <div class="eyebrow" data-i18n="eyebrow_subj">Izbor predmeta</div>
+      <h2><span data-i18n="subj_title">Tvoji predmeti</span> <span class="counter" id="cnt"></span></h2>
+      <p class="muted" style="margin-top:0" data-i18n="subj_sub">Izaberi predmete prema svom paketu. Kad popuniš limit, ostali se zaključaju.</p>
       <div id="subjList"></div>
       <div id="subjMsg"></div>
-      <button id="saveSubj" class="btn btn-gold" style="margin-top:14px" onclick="saveSubjects()">Sačuvaj izbor</button>
+      <button id="saveSubj" class="btn btn-gold" style="margin-top:14px" onclick="saveSubjects()" data-i18n="btn_save">Sačuvaj izbor</button>
     </div>
 
     <!-- NAPREDAK -->
     <div id="progCard" class="card hide">
-      <div class="eyebrow">Napredak</div>
-      <h2>Tvoj napredak</h2>
+      <div class="eyebrow" data-i18n="eyebrow_prog">Napredak</div>
+      <h2 data-i18n="prog_title">Tvoj napredak</h2>
       <div class="stats">
-        <div class="stat"><b id="stStreak">0</b><small>dana niz</small></div>
-        <div class="stat"><b id="stMin">0</b><small>min danas</small></div>
-        <div class="stat"><b id="stBadge">0</b><small>značke</small></div>
+        <div class="stat"><b id="stStreak">0</b><small data-i18n="st_streak">dana niz</small></div>
+        <div class="stat"><b id="stMin">0</b><small data-i18n="st_min">min danas</small></div>
+        <div class="stat"><b id="stBadge">0</b><small data-i18n="st_badge">značke</small></div>
       </div>
       <div id="progBars"></div>
       <div id="badges"></div>
-      <div class="note">Napredak se puni kada učiš/rešavaš kvizove. Za prikaz testa, klikni:
-        <button class="btn btn-ghost" style="padding:6px 14px;margin-top:8px" onclick="seedDemo()">Dodaj demo napredak</button>
+      <div class="note"><span data-i18n="prog_note">Napredak se puni kada učiš/rešavaš kvizove. Za prikaz testa, klikni:</span>
+        <button class="btn btn-ghost" style="padding:6px 14px;margin-top:8px" onclick="seedDemo()" data-i18n="btn_demo">Dodaj demo napredak</button>
       </div>
     </div>
 
@@ -180,12 +193,73 @@ const SUBJECTS = {
   "Programiranje": [
     ["python","Python"],["cpp","C++"],["csharp","C#"],["java","Java"],["js","JavaScript"],
     ["kotlin","Kotlin"],["pascal","Pascal"],["r","R"],["sql","SQL"],["web","Veb (HTML/CSS/JS)"],
-    ["algoritmi","Algoritmi i strukture"],["matlab","MATLAB"],["scratch","Scratch"],["arduino","Arduino"]
+    ["algoritmi","Algoritmi i strukture"],["matlab","MATLAB"],["scratch","Scratch"],["arduino","Arduino"],
+    ["c","C"],["go","Go"],["php","PHP"],["swift","Swift"],["ts","TypeScript"]
   ],
   "Elektronika i alati": [
     ["kicad","KiCad"],["ltspice","LTSpice"],["cadence","Cadence"]
   ]
 };
+
+var curMode="login";
+/* ===== i18n (8 jezika) ===== */
+var I18N={
+ sr:{eyebrow_acc:"Moj nalog",auth_sub:"Uloguj se da izabereš predmete i pratiš napredak.",tab_login:"Prijava",tab_reg:"Registracija",lbl_ime:"Ime",ph_ime:"Tvoje ime",lbl_email:"Email",lbl_pass:"Lozinka",hi_intro:"Ovde biraš predmete (prema paketu) i pratiš svoj napredak.",eyebrow_pak:"Tvoj paket",pak_none:"Još nemaš aktivan paket. Izaberi (privremeno — kasnije ovo radi naplata):",lim1:"1 predmet",lim2:"2 predmeta",lim3:"3 predmeta",btn_choose:"Izaberi",pak_note:"Napomena: ovaj izbor paketa je <b>privremen, za testiranje</b>. Kada se poveže eFiskalizacija, paket se automatski aktivira posle uplate.",eyebrow_mine:"Moji predmeti",mine_title:"Tvoj pristup",mine_sub:"Klikni predmet da uđeš — unutra su priručnici, Marina (klon) i tvoj napredak. Dostupno 24/7.",mine_meta:"Priručnici · Marina (klon) · napredak",mine_open:"Otvori →",test_title:"🎯 Test sklonosti",test_sub:"Za srednju školu i fakultet · uključen u svaki paket",test_btn:"Uradi test →",eyebrow_subj:"Izbor predmeta",subj_title:"Tvoji predmeti",subj_sub:"Izaberi predmete prema svom paketu. Kad popuniš limit, ostali se zaključaju.",btn_save:"Sačuvaj izbor",eyebrow_prog:"Napredak",prog_title:"Tvoj napredak",st_streak:"dana niz",st_min:"min danas",st_badge:"značke",prog_note:"Napredak se puni kada učiš/rešavaš kvizove. Za prikaz testa, klikni:",btn_demo:"Dodaj demo napredak",logout:"Odjava",t_login_title:"Prijava",t_reg_title:"Registracija",t_btn_login:"Prijavi se",t_btn_reg:"Napravi nalog",t_need_creds:"Unesi email i lozinku.",t_made:"Nalog napravljen! Ako je uključena potvrda emaila, proveri inbox, pa se prijavi.",t_err:"Greška",paket_word:"paket",stat:"{n} predmeta · status: aktivan",t_limit:"Tvoj paket dozvoljava {n} predmeta. Ukloni jedan ili nadogradi paket.",t_saved:"Sačuvano! Tvoji predmeti su otključani.",t_no_prog:"Još nema napretka. Počni da učiš ili izaberi predmet."},
+ en:{eyebrow_acc:"My account",auth_sub:"Sign in to choose subjects and track your progress.",tab_login:"Sign in",tab_reg:"Register",lbl_ime:"Name",ph_ime:"Your name",lbl_email:"Email",lbl_pass:"Password",hi_intro:"Here you choose subjects (per plan) and track your progress.",eyebrow_pak:"Your plan",pak_none:"You don’t have an active plan yet. Choose one (temporary — billing comes later):",lim1:"1 subject",lim2:"2 subjects",lim3:"3 subjects",btn_choose:"Choose",pak_note:"Note: this plan choice is <b>temporary, for testing</b>. Once eFiscalization is connected, the plan activates automatically after payment.",eyebrow_mine:"My subjects",mine_title:"Your access",mine_sub:"Tap a subject to enter — inside are the guides, Marina (clone) and your progress. Available 24/7.",mine_meta:"Guides · Marina (clone) · progress",mine_open:"Open →",test_title:"🎯 Aptitude test",test_sub:"For secondary school and university · included in every plan",test_btn:"Take the test →",eyebrow_subj:"Subject selection",subj_title:"Your subjects",subj_sub:"Choose subjects per your plan. Once you reach the limit, the rest lock.",btn_save:"Save selection",eyebrow_prog:"Progress",prog_title:"Your progress",st_streak:"day streak",st_min:"min today",st_badge:"badges",prog_note:"Progress fills as you study/solve quizzes. To see a demo, click:",btn_demo:"Add demo progress",logout:"Sign out",t_login_title:"Sign in",t_reg_title:"Register",t_btn_login:"Sign in",t_btn_reg:"Create account",t_need_creds:"Enter email and password.",t_made:"Account created! If email confirmation is on, check your inbox, then sign in.",t_err:"Error",paket_word:"plan",stat:"{n} subjects · status: active",t_limit:"Your plan allows {n} subjects. Remove one or upgrade your plan.",t_saved:"Saved! Your subjects are unlocked.",t_no_prog:"No progress yet. Start studying or choose a subject."},
+ de:{eyebrow_acc:"Mein Konto",auth_sub:"Melde dich an, um Fächer zu wählen und deinen Fortschritt zu verfolgen.",tab_login:"Anmelden",tab_reg:"Registrieren",lbl_ime:"Name",ph_ime:"Dein Name",lbl_email:"E-Mail",lbl_pass:"Passwort",hi_intro:"Hier wählst du Fächer (je nach Paket) und verfolgst deinen Fortschritt.",eyebrow_pak:"Dein Paket",pak_none:"Du hast noch kein aktives Paket. Wähle eines (vorläufig — Abrechnung folgt später):",lim1:"1 Fach",lim2:"2 Fächer",lim3:"3 Fächer",btn_choose:"Wählen",pak_note:"Hinweis: diese Paketwahl ist <b>vorläufig, zum Testen</b>. Sobald die eFiskalisierung verbunden ist, wird das Paket nach Zahlung automatisch aktiviert.",eyebrow_mine:"Meine Fächer",mine_title:"Dein Zugang",mine_sub:"Tippe ein Fach an — drinnen sind die Skripte, Marina (Klon) und dein Fortschritt. 24/7 verfügbar.",mine_meta:"Skripte · Marina (Klon) · Fortschritt",mine_open:"Öffnen →",test_title:"🎯 Eignungstest",test_sub:"Für Schule und Universität · in jedem Paket enthalten",test_btn:"Test starten →",eyebrow_subj:"Fächerauswahl",subj_title:"Deine Fächer",subj_sub:"Wähle Fächer gemäß deinem Paket. Bei erreichtem Limit werden die übrigen gesperrt.",btn_save:"Auswahl speichern",eyebrow_prog:"Fortschritt",prog_title:"Dein Fortschritt",st_streak:"Tage Serie",st_min:"Min heute",st_badge:"Abzeichen",prog_note:"Der Fortschritt füllt sich beim Lernen/Quiz. Für eine Demo klicke:",btn_demo:"Demo-Fortschritt hinzufügen",logout:"Abmelden",t_login_title:"Anmelden",t_reg_title:"Registrieren",t_btn_login:"Anmelden",t_btn_reg:"Konto erstellen",t_need_creds:"E-Mail und Passwort eingeben.",t_made:"Konto erstellt! Falls die E-Mail-Bestätigung aktiv ist, prüfe dein Postfach und melde dich an.",t_err:"Fehler",paket_word:"Paket",stat:"{n} Fächer · Status: aktiv",t_limit:"Dein Paket erlaubt {n} Fächer. Entferne eines oder erweitere dein Paket.",t_saved:"Gespeichert! Deine Fächer sind freigeschaltet.",t_no_prog:"Noch kein Fortschritt. Fange an zu lernen oder wähle ein Fach."},
+ fr:{eyebrow_acc:"Mon compte",auth_sub:"Connecte-toi pour choisir des matières et suivre ta progression.",tab_login:"Connexion",tab_reg:"S'inscrire",lbl_ime:"Nom",ph_ime:"Ton nom",lbl_email:"E-mail",lbl_pass:"Mot de passe",hi_intro:"Ici tu choisis des matières (selon la formule) et tu suis ta progression.",eyebrow_pak:"Ta formule",pak_none:"Tu n’as pas encore de formule active. Choisis-en une (provisoire — la facturation viendra plus tard) :",lim1:"1 matière",lim2:"2 matières",lim3:"3 matières",btn_choose:"Choisir",pak_note:"Note : ce choix de formule est <b>provisoire, pour les tests</b>. Une fois l’eFiscalisation connectée, la formule s’active automatiquement après le paiement.",eyebrow_mine:"Mes matières",mine_title:"Ton accès",mine_sub:"Touche une matière pour entrer — à l’intérieur : les guides, Marina (clone) et ta progression. Disponible 24/7.",mine_meta:"Guides · Marina (clone) · progression",mine_open:"Ouvrir →",test_title:"🎯 Test d’aptitude",test_sub:"Pour le lycée et l’université · inclus dans chaque formule",test_btn:"Faire le test →",eyebrow_subj:"Choix des matières",subj_title:"Tes matières",subj_sub:"Choisis les matières selon ta formule. Une fois la limite atteinte, les autres se verrouillent.",btn_save:"Enregistrer",eyebrow_prog:"Progression",prog_title:"Ta progression",st_streak:"jours d’affilée",st_min:"min aujourd’hui",st_badge:"badges",prog_note:"La progression se remplit en étudiant/résolvant des quiz. Pour une démo, clique :",btn_demo:"Ajouter une démo",logout:"Déconnexion",t_login_title:"Connexion",t_reg_title:"S'inscrire",t_btn_login:"Se connecter",t_btn_reg:"Créer un compte",t_need_creds:"Saisis l’e-mail et le mot de passe.",t_made:"Compte créé ! Si la confirmation par e-mail est activée, vérifie ta boîte, puis connecte-toi.",t_err:"Erreur",paket_word:"formule",stat:"{n} matières · statut : actif",t_limit:"Ta formule autorise {n} matières. Retire-en une ou améliore ta formule.",t_saved:"Enregistré ! Tes matières sont débloquées.",t_no_prog:"Pas encore de progression. Commence à étudier ou choisis une matière."},
+ es:{eyebrow_acc:"Mi cuenta",auth_sub:"Inicia sesión para elegir materias y seguir tu progreso.",tab_login:"Entrar",tab_reg:"Registrarse",lbl_ime:"Nombre",ph_ime:"Tu nombre",lbl_email:"Correo",lbl_pass:"Contraseña",hi_intro:"Aquí eliges materias (según el plan) y sigues tu progreso.",eyebrow_pak:"Tu plan",pak_none:"Aún no tienes un plan activo. Elige uno (provisional — el cobro vendrá después):",lim1:"1 materia",lim2:"2 materias",lim3:"3 materias",btn_choose:"Elegir",pak_note:"Nota: esta elección de plan es <b>provisional, para pruebas</b>. Cuando se conecte la eFiscalización, el plan se activa automáticamente tras el pago.",eyebrow_mine:"Mis materias",mine_title:"Tu acceso",mine_sub:"Toca una materia para entrar — dentro están las guías, Marina (clon) y tu progreso. Disponible 24/7.",mine_meta:"Guías · Marina (clon) · progreso",mine_open:"Abrir →",test_title:"🎯 Test de aptitud",test_sub:"Para secundaria y universidad · incluido en cada plan",test_btn:"Hacer el test →",eyebrow_subj:"Selección de materias",subj_title:"Tus materias",subj_sub:"Elige materias según tu plan. Al llegar al límite, las demás se bloquean.",btn_save:"Guardar selección",eyebrow_prog:"Progreso",prog_title:"Tu progreso",st_streak:"días seguidos",st_min:"min hoy",st_badge:"insignias",prog_note:"El progreso se llena al estudiar/resolver cuestionarios. Para una demo, haz clic:",btn_demo:"Añadir progreso demo",logout:"Salir",t_login_title:"Entrar",t_reg_title:"Registrarse",t_btn_login:"Entrar",t_btn_reg:"Crear cuenta",t_need_creds:"Introduce correo y contraseña.",t_made:"¡Cuenta creada! Si la confirmación por correo está activada, revisa tu bandeja y luego inicia sesión.",t_err:"Error",paket_word:"plan",stat:"{n} materias · estado: activo",t_limit:"Tu plan permite {n} materias. Quita una o mejora tu plan.",t_saved:"¡Guardado! Tus materias están desbloqueadas.",t_no_prog:"Aún no hay progreso. Empieza a estudiar o elige una materia."},
+ it:{eyebrow_acc:"Il mio account",auth_sub:"Accedi per scegliere le materie e seguire i tuoi progressi.",tab_login:"Accedi",tab_reg:"Registrati",lbl_ime:"Nome",ph_ime:"Il tuo nome",lbl_email:"Email",lbl_pass:"Password",hi_intro:"Qui scegli le materie (in base al piano) e segui i tuoi progressi.",eyebrow_pak:"Il tuo piano",pak_none:"Non hai ancora un piano attivo. Scegline uno (provvisorio — la fatturazione arriverà dopo):",lim1:"1 materia",lim2:"2 materie",lim3:"3 materie",btn_choose:"Scegli",pak_note:"Nota: questa scelta del piano è <b>provvisoria, per test</b>. Una volta collegata l’eFiscalizzazione, il piano si attiva automaticamente dopo il pagamento.",eyebrow_mine:"Le mie materie",mine_title:"Il tuo accesso",mine_sub:"Tocca una materia per entrare — dentro ci sono le dispense, Marina (clone) e i tuoi progressi. Disponibile 24/7.",mine_meta:"Dispense · Marina (clone) · progressi",mine_open:"Apri →",test_title:"🎯 Test attitudinale",test_sub:"Per le superiori e l’università · incluso in ogni piano",test_btn:"Fai il test →",eyebrow_subj:"Selezione materie",subj_title:"Le tue materie",subj_sub:"Scegli le materie in base al piano. Raggiunto il limite, le altre si bloccano.",btn_save:"Salva selezione",eyebrow_prog:"Progressi",prog_title:"I tuoi progressi",st_streak:"giorni di fila",st_min:"min oggi",st_badge:"badge",prog_note:"I progressi si riempiono studiando/facendo quiz. Per una demo, clicca:",btn_demo:"Aggiungi progressi demo",logout:"Esci",t_login_title:"Accedi",t_reg_title:"Registrati",t_btn_login:"Accedi",t_btn_reg:"Crea account",t_need_creds:"Inserisci email e password.",t_made:"Account creato! Se la conferma via email è attiva, controlla la posta e poi accedi.",t_err:"Errore",paket_word:"piano",stat:"{n} materie · stato: attivo",t_limit:"Il tuo piano consente {n} materie. Rimuovine una o passa a un piano superiore.",t_saved:"Salvato! Le tue materie sono sbloccate.",t_no_prog:"Ancora nessun progresso. Inizia a studiare o scegli una materia."},
+ ru:{eyebrow_acc:"Мой аккаунт",auth_sub:"Войдите, чтобы выбрать предметы и следить за прогрессом.",tab_login:"Вход",tab_reg:"Регистрация",lbl_ime:"Имя",ph_ime:"Ваше имя",lbl_email:"Эл. почта",lbl_pass:"Пароль",hi_intro:"Здесь вы выбираете предметы (по пакету) и следите за прогрессом.",eyebrow_pak:"Ваш пакет",pak_none:"У вас пока нет активного пакета. Выберите (временно — оплата позже):",lim1:"1 предмет",lim2:"2 предмета",lim3:"3 предмета",btn_choose:"Выбрать",pak_note:"Примечание: этот выбор пакета <b>временный, для теста</b>. После подключения э-фискализации пакет активируется автоматически после оплаты.",eyebrow_mine:"Мои предметы",mine_title:"Ваш доступ",mine_sub:"Нажмите на предмет, чтобы войти — внутри пособия, Марина (клон) и ваш прогресс. Доступно 24/7.",mine_meta:"Пособия · Марина (клон) · прогресс",mine_open:"Открыть →",test_title:"🎯 Тест на склонности",test_sub:"Для школы и университета · входит в каждый пакет",test_btn:"Пройти тест →",eyebrow_subj:"Выбор предметов",subj_title:"Ваши предметы",subj_sub:"Выберите предметы по вашему пакету. При достижении лимита остальные блокируются.",btn_save:"Сохранить выбор",eyebrow_prog:"Прогресс",prog_title:"Ваш прогресс",st_streak:"дней подряд",st_min:"мин сегодня",st_badge:"значки",prog_note:"Прогресс растёт по мере учёбы/тестов. Для демо нажмите:",btn_demo:"Добавить демо-прогресс",logout:"Выйти",t_login_title:"Вход",t_reg_title:"Регистрация",t_btn_login:"Войти",t_btn_reg:"Создать аккаунт",t_need_creds:"Введите эл. почту и пароль.",t_made:"Аккаунт создан! Если включено подтверждение по почте, проверьте ящик и войдите.",t_err:"Ошибка",paket_word:"пакет",stat:"{n} предметов · статус: активен",t_limit:"Ваш пакет допускает {n} предметов. Удалите один или повысьте пакет.",t_saved:"Сохранено! Ваши предметы разблокированы.",t_no_prog:"Прогресса пока нет. Начните учиться или выберите предмет."},
+ pt:{eyebrow_acc:"A minha conta",auth_sub:"Inicia sessão para escolher matérias e acompanhar o teu progresso.",tab_login:"Entrar",tab_reg:"Registar",lbl_ime:"Nome",ph_ime:"O teu nome",lbl_email:"Email",lbl_pass:"Palavra-passe",hi_intro:"Aqui escolhes matérias (conforme o plano) e acompanhas o teu progresso.",eyebrow_pak:"O teu plano",pak_none:"Ainda não tens um plano ativo. Escolhe um (provisório — a cobrança vem depois):",lim1:"1 matéria",lim2:"2 matérias",lim3:"3 matérias",btn_choose:"Escolher",pak_note:"Nota: esta escolha de plano é <b>provisória, para testes</b>. Quando a eFiscalização estiver ligada, o plano ativa-se automaticamente após o pagamento.",eyebrow_mine:"As minhas matérias",mine_title:"O teu acesso",mine_sub:"Toca numa matéria para entrar — lá dentro estão os guias, a Marina (clone) e o teu progresso. Disponível 24/7.",mine_meta:"Guias · Marina (clone) · progresso",mine_open:"Abrir →",test_title:"🎯 Teste de aptidão",test_sub:"Para o secundário e a universidade · incluído em cada plano",test_btn:"Fazer o teste →",eyebrow_subj:"Seleção de matérias",subj_title:"As tuas matérias",subj_sub:"Escolhe matérias conforme o teu plano. Ao atingir o limite, as restantes bloqueiam.",btn_save:"Guardar seleção",eyebrow_prog:"Progresso",prog_title:"O teu progresso",st_streak:"dias seguidos",st_min:"min hoje",st_badge:"distintivos",prog_note:"O progresso enche-se ao estudar/resolver questionários. Para uma demo, clica:",btn_demo:"Adicionar progresso demo",logout:"Sair",t_login_title:"Entrar",t_reg_title:"Registar",t_btn_login:"Entrar",t_btn_reg:"Criar conta",t_need_creds:"Introduz email e palavra-passe.",t_made:"Conta criada! Se a confirmação por email estiver ativa, verifica a caixa e depois inicia sessão.",t_err:"Erro",paket_word:"plano",stat:"{n} matérias · estado: ativo",t_limit:"O teu plano permite {n} matérias. Remove uma ou melhora o plano.",t_saved:"Guardado! As tuas matérias estão desbloqueadas.",t_no_prog:"Ainda sem progresso. Começa a estudar ou escolhe uma matéria."}
+};
+function curLang(){ var l=(localStorage.getItem('mathia_lang')||'sr').toLowerCase(); return I18N[l]?l:'sr'; }
+var CUR=curLang();
+function t(k){ return (I18N[CUR]&&I18N[CUR][k])!=null?I18N[CUR][k]:(I18N.sr[k]!=null?I18N.sr[k]:k); }
+var GROUPS={
+ "Osnovna škola":{en:"Primary school",de:"Grundschule",fr:"École primaire",es:"Primaria",it:"Scuola primaria",ru:"Начальная школа",pt:"Ensino básico"},
+ "Srednja škola":{en:"Secondary school",de:"Weiterführende Schule",fr:"Lycée",es:"Secundaria",it:"Scuola superiore",ru:"Средняя школа",pt:"Ensino médio"},
+ "Prijemni za fakultet":{en:"University entrance",de:"Aufnahmeprüfung",fr:"Concours d’entrée",es:"Acceso a la universidad",it:"Ammissione all’università",ru:"Вступительные",pt:"Acesso à universidade"},
+ "Fakultet":{en:"University",de:"Universität",fr:"Université",es:"Universidad",it:"Università",ru:"Университет",pt:"Universidade"},
+ "Programiranje":{en:"Programming",de:"Programmierung",fr:"Programmation",es:"Programación",it:"Programmazione",ru:"Программирование",pt:"Programação"},
+ "Elektronika i alati":{en:"Electronics & tools",de:"Elektronik & Tools",fr:"Électronique & outils",es:"Electrónica y herramientas",it:"Elettronica e strumenti",ru:"Электроника и инструменты",pt:"Eletrónica e ferramentas"}
+};
+function localizeGroup(g){ if(CUR==='sr')return g; return (GROUPS[g]&&GROUPS[g][CUR])||g; }
+var MATW={en:"Mathematics",de:"Mathematik",fr:"Mathématiques",es:"Matemáticas",it:"Matematica",ru:"Математика",pt:"Matemática"};
+var FIZW={en:"Physics",de:"Physik",fr:"Physique",es:"Física",it:"Fisica",ru:"Физика",pt:"Física"};
+var GRADE={en:"grade {n}",de:"Klasse {n}",fr:"niveau {n}",es:"grado {n}",it:"classe {n}",ru:"{n} класс",pt:"{n}.º ano"};
+var NAMED={
+ "mala-matura":{en:"Final primary exam",de:"Abschlussprüfung (Grundschule)",fr:"Examen de fin de collège",es:"Examen final de primaria",it:"Esame di fine scuola media",ru:"Выпускной экзамен (8 кл.)",pt:"Exame final do básico"},
+ "prijemni":{en:"University entrance — Math",de:"Aufnahmeprüfung — Mathe",fr:"Concours — Maths",es:"Acceso — Matemáticas",it:"Ammissione — Matematica",ru:"Вступительный — математика",pt:"Acesso — Matemática"},
+ "prijemni-ftn":{en:"Entrance — Math (FTN)",de:"Aufnahme — Mathe (FTN)",fr:"Concours — Maths (FTN)",es:"Acceso — Mates (FTN)",it:"Ammissione — Mate (FTN)",ru:"Вступит. — матем. (FTN)",pt:"Acesso — Mat. (FTN)"},
+ "analiza1":{en:"Calculus 1",de:"Analysis 1",fr:"Analyse 1",es:"Análisis 1",it:"Analisi 1",ru:"Матанализ 1",pt:"Análise 1"},
+ "analiza2":{en:"Calculus 2",de:"Analysis 2",fr:"Analyse 2",es:"Análisis 2",it:"Analisi 2",ru:"Матанализ 2",pt:"Análise 2"},
+ "linearna":{en:"Linear algebra",de:"Lineare Algebra",fr:"Algèbre linéaire",es:"Álgebra lineal",it:"Algebra lineare",ru:"Линейная алгебра",pt:"Álgebra linear"},
+ "diskretna":{en:"Discrete mathematics",de:"Diskrete Mathematik",fr:"Mathématiques discrètes",es:"Matemática discreta",it:"Matematica discreta",ru:"Дискретная математика",pt:"Matemática discreta"},
+ "kompleksna":{en:"Complex analysis",de:"Funktionentheorie",fr:"Analyse complexe",es:"Análisis complejo",it:"Analisi complessa",ru:"Комплексный анализ",pt:"Análise complexa"},
+ "verovatnoca":{en:"Probability & statistics",de:"Wahrscheinlichkeit & Statistik",fr:"Probabilités & statistiques",es:"Probabilidad y estadística",it:"Probabilità e statistica",ru:"Вероятность и статистика",pt:"Probabilidade e estatística"},
+ "operaciona":{en:"Operations research",de:"Operations Research",fr:"Recherche opérationnelle",es:"Investigación operativa",it:"Ricerca operativa",ru:"Исследование операций",pt:"Investigação operacional"},
+ "elektrotehnika":{en:"Electric circuits theory",de:"Theorie elektrischer Schaltungen",fr:"Théorie des circuits",es:"Teoría de circuitos",it:"Teoria dei circuiti",ru:"Теория электрических цепей",pt:"Teoria de circuitos"},
+ "mehanika":{en:"Mechanics",de:"Mechanik",fr:"Mécanique",es:"Mecánica",it:"Meccanica",ru:"Механика",pt:"Mecânica"},
+ "web":{en:"Web (HTML/CSS/JS)",de:"Web (HTML/CSS/JS)",fr:"Web (HTML/CSS/JS)",es:"Web (HTML/CSS/JS)",it:"Web (HTML/CSS/JS)",ru:"Веб (HTML/CSS/JS)",pt:"Web (HTML/CSS/JS)"},
+ "algoritmi":{en:"Algorithms & data structures",de:"Algorithmen & Datenstrukturen",fr:"Algorithmes & structures",es:"Algoritmos y estructuras",it:"Algoritmi e strutture",ru:"Алгоритмы и структуры",pt:"Algoritmos e estruturas"}
+};
+function localizeName(key,sr){
+  if(CUR==='sr') return sr;
+  var m=/^(osn|sr)-(mat|fiz)-(\d+)$/.exec(key);
+  if(m){ var w=(m[2]==='mat'?MATW:FIZW)[CUR]; var g=GRADE[CUR].replace('{n}',m[3]); return w+' — '+g; }
+  if(NAMED[key]&&NAMED[key][CUR]) return NAMED[key][CUR];
+  return sr;
+}
+function applyStatic(){
+  document.querySelectorAll('[data-i18n]').forEach(function(el){ var v=t(el.getAttribute('data-i18n')); if(v!=null) el.innerHTML=v; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){ var v=t(el.getAttribute('data-i18n-ph')); if(v!=null) el.placeholder=v; });
+}
+function setLang(code){ code=(code||'sr').toLowerCase(); if(!I18N[code])code='sr'; CUR=code; localStorage.setItem('mathia_lang',code);
+  var sel=document.getElementById('lang'); if(sel) sel.value=code.toUpperCase();
+  applyStatic(); setMode(curMode); if(user){ afterLogin(); }
+}
+
 
 let sb=null, user=null, sub=null, selected=new Set(), maxPredmeta=0;
 
@@ -216,25 +290,25 @@ let mode='login';
 function setMode(m){ mode=m;
   $('tabLogin').classList.toggle('on',m==='login'); $('tabReg').classList.toggle('on',m==='reg');
   show('regName', m==='reg');
-  $('authTitle').textContent = m==='reg'?'Registracija':'Prijava';
-  $('authBtn').textContent = m==='reg'?'Napravi nalog':'Prijavi se';
+  curMode=m; $('authTitle').textContent = m==='reg'?t('t_reg_title'):t('t_login_title');
+  $('authBtn').textContent = m==='reg'?t('t_btn_reg'):t('t_btn_login');
   $('authMsg').innerHTML='';
 }
 async function doAuth(){
   if(!sb) return;
   const email=$('email').value.trim(), pass=$('pass').value;
-  if(!email||!pass){ $('authMsg').innerHTML='<div class="msg err">Unesi email i lozinku.</div>'; return; }
+  if(!email||!pass){ $('authMsg').innerHTML='<div class="msg err">'+t('t_need_creds')+'</div>'; return; }
   $('authBtn').disabled=true;
   try{
     if(mode==='reg'){
       const {error}=await sb.auth.signUp({email,password:pass,options:{emailRedirectTo:location.origin+'/nalog.html',data:{ime:$('ime').value.trim()}}});
       if(error) throw error;
-      $('authMsg').innerHTML='<div class="msg ok">Nalog napravljen! Ako je uključena potvrda emaila, proveri inbox, pa se prijavi.</div>';
+      $('authMsg').innerHTML='<div class="msg ok">'+t('t_made')+'</div>';
     }else{
       const {error}=await sb.auth.signInWithPassword({email,password:pass});
       if(error) throw error;
     }
-  }catch(e){ $('authMsg').innerHTML='<div class="msg err">'+(e.message||'Greška')+'</div>'; }
+  }catch(e){ $('authMsg').innerHTML='<div class="msg err">'+(e.message||t('t_err'))+'</div>'; }
   $('authBtn').disabled=false;
 }
 async function logout(){ if(sb) await sb.auth.signOut(); }
@@ -257,7 +331,7 @@ async function loadSub(){
   sub = (data&&data[0])||null;
   if(sub){
     maxPredmeta=sub.max_predmeta;
-    $('pakState').innerHTML='<div class="row" style="justify-content:space-between"><div><h2 style="text-transform:capitalize">'+sub.paket+' paket</h2><span class="muted">'+sub.max_predmeta+' predmeta · status: aktivan</span></div></div>';
+    $('pakState').innerHTML='<div class="row" style="justify-content:space-between"><div><h2 style="text-transform:capitalize">'+sub.paket+' '+t('paket_word')+'</h2><span class="muted">'+t('stat').replace('{n}',sub.max_predmeta)+'</span></div></div>';
     show('pakChoose',false); show('subjCard',true); show('progCard',true);
   }else{
     $('pakState').innerHTML=''; show('pakChoose',true); show('subjCard',false); show('progCard',false);
@@ -273,15 +347,43 @@ async function setPaket(paket,maxp,sifra){
 async function loadSelected(){
   const {data}=await sb.from('selected_subjects').select('*').eq('user_id',user.id);
   selected=new Set((data||[]).map(r=>r.subject_key));
-  renderSubjects();
+  renderSubjects(); renderMine();
+}
+/* ključ predmeta → stranica predmeta (priručnici + klon su na toj strani) */
+const PAGES = {
+  "osn-mat-5":"osnovna-matematika-5.html","osn-mat-6":"osnovna-matematika-6.html","osn-mat-7":"osnovna-matematika-7.html","osn-mat-8":"osnovna-matematika-8.html",
+  "osn-fiz-6":"osnovna-fizika-6.html","osn-fiz-7":"osnovna-fizika-7.html","osn-fiz-8":"osnovna-fizika-8.html","mala-matura":"mala-matura.html",
+  "sr-mat-1":"srednja-matematika-1.html","sr-mat-2":"srednja-matematika-2.html","sr-mat-3":"srednja-matematika-3.html","sr-mat-4":"srednja-matematika-4.html",
+  "sr-fiz-1":"srednja-fizika-1.html","sr-fiz-2":"srednja-fizika-2.html","sr-fiz-3":"srednja-fizika-3.html","sr-fiz-4":"srednja-fizika-4.html",
+  "prijemni":"prijemni.html","prijemni-ftn":"prijemni-ftn.html",
+  "analiza1":"predmet-analiza1.html","analiza2":"predmet-analiza2.html","linearna":"predmet-linearna-algebra.html","diskretna":"predmet-diskretna-matematika.html",
+  "kompleksna":"predmet-kompleksna-analiza.html","verovatnoca":"predmet-verovatnoca-statistika.html","operaciona":"predmet-operaciona-istrazivanja.html",
+  "elektrotehnika":"predmet-elektrotehnika.html","mehanika":"predmet-fizika-mehanika.html",
+  "python":"programiranje-python.html","cpp":"programiranje-cpp.html","csharp":"programiranje-csharp.html","java":"programiranje-java.html","js":"programiranje-js.html",
+  "kotlin":"programiranje-kotlin.html","pascal":"programiranje-pascal.html","r":"programiranje-r.html","sql":"programiranje-sql.html","web":"programiranje-web.html",
+  "algoritmi":"programiranje-algoritmi.html","matlab":"programiranje-matlab.html","scratch":"programiranje-scratch.html","arduino":"programiranje-arduino.html",
+  "c":"programiranje-c.html","go":"programiranje-go.html","php":"programiranje-php.html","swift":"programiranje-swift.html","ts":"programiranje-ts.html",
+  "kicad":"elektronika-kicad.html","ltspice":"elektronika-ltspice.html","cadence":"elektronika-cadence.html"
+};
+function renderMine(){
+  if(!selected.size){ show('myCard',false); return; }
+  show('myCard',true);
+  let h='';
+  [...selected].forEach(k=>{
+    const url=PAGES[k]||'predmeti.html';
+    h+='<a href="'+url+'" style="display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;border:1.5px solid var(--bord);border-radius:14px;padding:14px 16px;margin-top:10px;background:var(--card)">'
+      +'<div><b style="color:var(--plum)">'+localizeName(k,nameOf(k))+'</b><div class="muted" style="font-size:.85rem">'+t('mine_meta')+'</div></div>'
+      +'<span style="color:var(--golddk);font-weight:800;white-space:nowrap">'+t('mine_open')+'</span></a>';
+  });
+  $('myList').innerHTML=h;
 }
 function renderSubjects(){
   let html='';
   for(const grp in SUBJECTS){
-    html+='<div class="grp"><h4>'+grp+'</h4>';
+    html+='<div class="grp"><h4>'+localizeGroup(grp)+'</h4>';
     for(const [key,name] of SUBJECTS[grp]){
       const on=selected.has(key);
-      html+='<label class="subj'+(on?' sel':'')+'"><input type="checkbox" data-k="'+key+'" data-n="'+name+'" '+(on?'checked':'')+' onchange="toggleSubj(this)"> '+name+'</label>';
+      html+='<label class="subj'+(on?' sel':'')+'"><input type="checkbox" data-k="'+key+'" data-n="'+name+'" '+(on?'checked':'')+' onchange="toggleSubj(this)"> '+localizeName(key,name)+'</label>';
     }
     html+='</div>';
   }
@@ -291,7 +393,7 @@ function renderSubjects(){
 function toggleSubj(cb){
   const k=cb.getAttribute('data-k');
   if(cb.checked){
-    if(selected.size>=maxPredmeta){ cb.checked=false; $('subjMsg').innerHTML='<div class="msg err">Tvoj paket dozvoljava '+maxPredmeta+' predmeta. Ukloni jedan ili nadogradi paket.</div>'; return; }
+    if(selected.size>=maxPredmeta){ cb.checked=false; $('subjMsg').innerHTML='<div class="msg err">'+t('t_limit').replace('{n}',maxPredmeta)+'</div>'; return; }
     selected.add(k);
   }else{ selected.delete(k); }
   cb.closest('.subj').classList.toggle('sel',cb.checked);
@@ -304,7 +406,8 @@ async function saveSubjects(){
   await sb.from('selected_subjects').delete().eq('user_id',user.id);
   const rows=[]; for(const grp in SUBJECTS) for(const [key,name] of SUBJECTS[grp]) if(selected.has(key)) rows.push({user_id:user.id,subject_key:key,subject_name:name});
   if(rows.length){ const {error}=await sb.from('selected_subjects').insert(rows); if(error){ $('subjMsg').innerHTML='<div class="msg err">'+error.message+'</div>'; return; } }
-  $('subjMsg').innerHTML='<div class="msg ok">Sačuvano! Tvoji predmeti su otključani.</div>';
+  $('subjMsg').innerHTML='<div class="msg ok">'+t('t_saved')+'</div>';
+  renderMine();
   await loadProgress();
 }
 
@@ -323,9 +426,9 @@ async function loadProgress(){
     const quizzes=list.filter(x=>x.kind==='quiz'&&x.score!=null);
     const lessons=list.filter(x=>x.kind==='lesson').length;
     let pct = quizzes.length ? Math.round(quizzes.reduce((s,x)=>s+Number(x.score),0)/quizzes.length) : Math.min(100,lessons*15);
-    bars+='<div class="row" style="justify-content:space-between"><b>'+nameOf(k)+'</b><span class="counter">'+pct+'%</span></div><div class="pbar"><span style="width:'+pct+'%"></span></div>';
+    bars+='<div class="row" style="justify-content:space-between"><b>'+localizeName(k,nameOf(k))+'</b><span class="counter">'+pct+'%</span></div><div class="pbar"><span style="width:'+pct+'%"></span></div>';
   });
-  $('progBars').innerHTML = bars || '<p class="muted">Još nema napretka. Počni da učiš ili klikni „Dodaj demo napredak".</p>';
+  $('progBars').innerHTML = bars || '<p class="muted">'+t('t_no_prog')+'</p>';
   // niz dana
   const days=new Set(ev.map(e=>e.created_at.slice(0,10))); $('stStreak').textContent=days.size;
   // minuti danas
@@ -335,7 +438,7 @@ async function loadProgress(){
   // značke = savladane lekcije
   const badges=ev.filter(e=>e.kind==='lesson');
   $('stBadge').textContent=badges.length;
-  $('badges').innerHTML = badges.slice(0,8).map(b=>'<span class="badge">🏅 '+(b.label||nameOf(b.subject_key))+'</span>').join('');
+  $('badges').innerHTML = badges.slice(0,8).map(b=>'<span class="badge">🏅 '+(b.label||localizeName(b.subject_key,nameOf(b.subject_key)))+'</span>').join('');
 }
 async function seedDemo(){
   const keys = selected.size?[...selected]:['osn-mat-5'];
@@ -348,7 +451,8 @@ async function seedDemo(){
   await sb.from('progress_events').insert(rows);
   await loadProgress();
 }
-window.setMode=setMode;window.doAuth=doAuth;window.setPaket=setPaket;window.toggleSubj=toggleSubj;window.saveSubjects=saveSubjects;window.seedDemo=seedDemo;
+window.setMode=setMode;window.doAuth=doAuth;window.setLang=setLang;
+(function(){var _l=document.getElementById("lang"); if(_l){ _l.value=CUR.toUpperCase(); _l.onchange=function(){ setLang(this.value); }; } applyStatic(); setMode(curMode);})();window.setPaket=setPaket;window.toggleSubj=toggleSubj;window.saveSubjects=saveSubjects;window.seedDemo=seedDemo;
 </script>
 </body>
 </html>
