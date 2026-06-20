@@ -6,105 +6,126 @@
 <title>Plaćanje · Mathia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#FBF6EE; --paper2:#F5EADB; --blush:#F4E3DD; --rose:#CC8E86; --rose-dk:#B5746C;
     --plum:#432C37; --plum2:#5C3B49; --plum3:#7E5765;
     --gold:#C6A05C; --golddk:#9C7838; --goldlt:#E7D2A2; --champ:#F7EAC9;
     --ink:#3E2D34; --muted:#90787E; --bord:#ECDAC5; --card:#fffcf6;
-    --maxw:760px;
+    --maxw:780px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);
-    background:radial-gradient(1200px 600px at 50% -10%, #fff8ee 0%, rgba(255,248,238,0) 60%),var(--paper);
+    background:
+      radial-gradient(680px 480px at 88% -4%, var(--blush), transparent 70%),
+      radial-gradient(620px 520px at -6% 8%, var(--champ), transparent 62%),
+      radial-gradient(900px 600px at 50% 120%, #fbeede, transparent 70%),
+      var(--paper);
     line-height:1.55;-webkit-font-smoothing:antialiased}
   a{color:inherit}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-size:.7rem;letter-spacing:.36em;text-transform:uppercase;color:var(--golddk);font-weight:800}
 
-  header{border-bottom:1px solid var(--bord);background:rgba(251,246,238,.86);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px}
+  /* HEADER */
+  header{border-bottom:1px solid var(--bord);background:rgba(251,246,238,.82);backdrop-filter:blur(10px);position:sticky;top:0;z-index:30}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 22px}
   .brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none}
-  .brand img{height:38px;width:auto;display:block}
+  .brand img{height:40px;width:auto;display:block}
   .bwrap{display:flex;flex-direction:column;line-height:1}
-  .bmark{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.35rem;color:var(--plum);letter-spacing:.3px}
-  .bsub{font-family:'Pinyon Script',cursive;font-size:.92rem;color:var(--golddk);margin-top:1px}
+  .bmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.25rem;letter-spacing:.12em;
+    background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);
+    background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+  @keyframes foil{to{background-position:230% center}}
+  .bsub{font-family:'Pinyon Script',cursive;font-size:1.02rem;color:var(--golddk);margin-top:1px}
   .nav-r{display:flex;align-items:center;gap:14px}
-  .back{font-size:.9rem;color:var(--plum3);text-decoration:none;font-weight:600;white-space:nowrap}
+  .back{font-size:.84rem;color:var(--plum3);text-decoration:none;font-weight:700;white-space:nowrap;letter-spacing:.01em}
   .back:hover{color:var(--plum)}
-  .lang{font-family:'Nunito';font-weight:700;font-size:.82rem;color:var(--plum);background:#fff;border:1px solid var(--bord);border-radius:9px;padding:6px 8px;cursor:pointer}
+  .lang{font-family:'Nunito';font-weight:800;font-size:.74rem;letter-spacing:.08em;color:var(--plum);background:#fff;border:1px solid var(--bord);border-radius:100px;padding:7px 12px;cursor:pointer}
 
-  .head{text-align:center;padding:38px 0 8px}
-  .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--golddk);letter-spacing:.4px}
-  h1{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font-size:2.3rem;margin:.18em 0 .1em;letter-spacing:.3px}
-  .sub{color:var(--muted);max-width:50ch;margin:0 auto}
+  /* HEAD */
+  .head{text-align:center;padding:46px 0 6px}
+  .head .ksub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--rose-dk);margin:7px 0 2px}
+  h1{font-size:clamp(2rem,6vw,3rem);color:var(--plum);font-weight:500;margin:.04em 0 .12em}
+  .sub{color:var(--muted);max-width:48ch;margin:0 auto;font-size:1.01rem}
 
-  main{padding:18px 0 60px}
+  main{padding:24px 0 64px}
 
-  .summary{background:linear-gradient(180deg,#fffdf8,#fff8ee);border:1px solid var(--bord);
-    border-radius:18px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;
-    gap:16px;box-shadow:0 14px 40px -28px rgba(67,44,55,.5);margin-bottom:14px}
-  .summary .pk{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--plum)}
-  .summary .pk small{display:block;font-family:'Nunito';font-size:.84rem;font-weight:600;color:var(--muted);letter-spacing:.3px;margin-top:3px}
-  .summary .price{text-align:right}
-  .summary .price b{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--golddk);font-weight:700}
-  .summary .price span{display:block;font-size:.8rem;color:var(--muted);font-weight:600}
+  /* SUMMARY — feat-tier izgled */
+  .summary{position:relative;overflow:hidden;background:linear-gradient(170deg,#fffcf6,var(--champ));
+    border:1.6px solid var(--gold);border-radius:24px;padding:26px 30px;display:flex;align-items:center;justify-content:space-between;
+    gap:18px;box-shadow:0 30px 64px -34px rgba(198,160,92,.7);margin-bottom:14px}
+  .summary:after{content:"";position:absolute;width:280px;height:280px;right:-90px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(231,210,162,.5),transparent 70%);pointer-events:none}
+  .summary .pk{position:relative;font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--plum);letter-spacing:.01em}
+  .summary .pk small{display:block;font-family:'Nunito';font-size:.82rem;font-weight:700;color:var(--plum3);letter-spacing:.02em;margin-top:4px}
+  .summary .price{position:relative;text-align:right;flex:none}
+  .summary .price b{font-family:'Cormorant Garamond',serif;font-size:2.3rem;line-height:1;color:var(--golddk);font-weight:700}
+  .summary .price span{display:block;font-size:.74rem;color:var(--plum3);font-weight:700;letter-spacing:.04em;margin-top:4px}
 
-  .pick{display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%;margin:0 0 18px}
-  .pick a{font-size:.82rem;font-weight:700;color:var(--plum3);text-decoration:none;border:1px solid var(--bord);
-    border-radius:999px;padding:6px 14px;background:#fff}
-  .pick a.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+  /* PICK chips */
+  .pick{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;width:100%;margin:0 0 22px}
+  .pick a{font-size:.78rem;font-weight:800;letter-spacing:.04em;color:var(--plum3);text-decoration:none;border:1.5px solid var(--bord);
+    border-radius:100px;padding:8px 18px;background:#fff;transition:all .16s}
+  .pick a:hover{border-color:var(--gold);color:var(--plum)}
+  .pick a.on{background:linear-gradient(180deg,var(--plum2),var(--plum));color:#fdf6ea;border-color:var(--plum);box-shadow:0 12px 22px -12px rgba(67,44,55,.7)}
 
-  .warn{background:#fbeede;border:1px solid #e7c98f;color:#7a5a1f;border-radius:12px;padding:10px 14px;font-size:.86rem;margin-bottom:16px;display:none}
+  .warn{background:#fbeede;border:1px solid #e7c98f;color:#7a5a1f;border-radius:14px;padding:12px 16px;font-size:.86rem;font-weight:600;margin-bottom:18px;display:none}
   .warn.show{display:block}
 
-  .opt{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:22px;margin-bottom:16px;
-    box-shadow:0 12px 34px -28px rgba(67,44,55,.45)}
-  .opt.primary{border-color:var(--goldlt);box-shadow:0 16px 44px -26px rgba(156,120,56,.55);position:relative}
-  .badge{position:absolute;top:-11px;left:22px;background:var(--gold);color:#3b2a16;
-    font-size:.72rem;font-weight:800;letter-spacing:.5px;padding:3px 11px;border-radius:999px}
-  .opt h2{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font-size:1.4rem;margin:0 0 3px;display:flex;align-items:center;gap:9px}
-  .opt h2 .ic{width:26px;height:26px;flex:none;color:var(--golddk)}
-  .opt .lead{color:var(--muted);font-size:.92rem;margin:0 0 16px}
+  /* OPTION cards — tier izgled */
+  .opt{position:relative;background:var(--card);border:1px solid var(--bord);border-radius:24px;padding:28px;margin-bottom:18px;
+    box-shadow:0 26px 56px -40px rgba(67,44,55,.55)}
+  .opt.primary{background:linear-gradient(170deg,#fffcf6,var(--champ));border:1.6px solid var(--gold);box-shadow:0 30px 64px -32px rgba(198,160,92,.62)}
+  .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,var(--rose),var(--rose-dk));
+    color:#fff;font-weight:800;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:7px 18px;border-radius:100px;white-space:nowrap;box-shadow:0 10px 20px -8px rgba(181,116,108,.7)}
+  .opt h2{font-size:1.55rem;color:var(--plum);font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:10px;letter-spacing:.01em}
+  .opt h2 .ic{width:27px;height:27px;flex:none;color:var(--golddk)}
+  .opt .lead{color:var(--muted);font-size:.94rem;margin:0 0 18px;max-width:54ch}
 
-  .btn{display:block;width:100%;border:none;border-radius:13px;padding:15px;font-family:'Nunito';font-weight:800;
-    font-size:1.02rem;cursor:pointer;letter-spacing:.2px;transition:transform .12s}
-  .btn-card{background:linear-gradient(180deg,var(--plum2),var(--plum));color:#fdf6ea;box-shadow:0 12px 26px -12px rgba(67,44,55,.7)}
-  .btn-card:hover{transform:translateY(-1px)}
-  .fineprint{font-size:.8rem;color:var(--muted);margin-top:10px;text-align:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;border:1.5px solid transparent;border-radius:100px;
+    padding:15px 28px;font-family:'Nunito';font-weight:800;font-size:1rem;letter-spacing:.02em;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
+  .btn-card{background:linear-gradient(180deg,var(--plum2),var(--plum));color:#fdf6ea;box-shadow:0 16px 30px -14px rgba(67,44,55,.75)}
+  .btn-card:hover{transform:translateY(-2px);box-shadow:0 22px 38px -16px rgba(67,44,55,.8)}
+  .fineprint{font-size:.8rem;color:var(--muted);margin-top:12px;text-align:center;font-weight:600}
 
-  .qrbox{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}
-  .qrframe{flex:none;width:228px;margin:0 auto;text-align:center}
-  .qrframe .pad{background:#fff;border:1px solid var(--bord);border-radius:14px;padding:14px;box-shadow:0 10px 30px -22px rgba(67,44,55,.5)}
-  #qr img{display:block;width:200px;height:200px;margin:0 auto;image-rendering:pixelated}
-  .qrlabel{margin-top:9px;font-size:.74rem;font-weight:800;letter-spacing:1.5px;color:var(--plum3)}
-  .qrtip{font-size:.8rem;color:var(--muted);margin-top:6px;line-height:1.4}
-  .det{flex:1;min-width:240px}
-  .row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--bord)}
+  /* QR */
+  .qrbox{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+  .qrframe{flex:none;width:236px;margin:0 auto;text-align:center}
+  .qrframe .pad{background:#fff;border:1.5px solid var(--goldlt);border-radius:18px;padding:16px;box-shadow:0 16px 36px -24px rgba(156,120,56,.6)}
+  #qr img{display:block;width:204px;height:204px;margin:0 auto;image-rendering:pixelated}
+  .qrlabel{margin-top:11px;font-size:.7rem;font-weight:800;letter-spacing:.22em;color:var(--plum3)}
+  .qrtip{font-size:.8rem;color:var(--muted);margin-top:7px;line-height:1.45;font-weight:600}
+  .det{flex:1;min-width:248px}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px dashed var(--bord)}
   .row:last-child{border-bottom:none}
-  .row .k{font-size:.78rem;color:var(--muted);font-weight:700;letter-spacing:.3px}
-  .row .v{font-weight:700;color:var(--plum);text-align:right;word-break:break-word}
-  .copy{border:1px solid var(--bord);background:#fff;border-radius:8px;font-size:.72rem;font-weight:700;color:var(--plum3);
-    padding:4px 9px;cursor:pointer;margin-left:8px;flex:none}
+  .row .k{font-size:.66rem;color:var(--muted);font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+  .row .v{font-weight:700;color:var(--plum);text-align:right;word-break:break-word;font-size:.95rem}
+  .copy{border:1.5px solid var(--bord);background:#fff;border-radius:100px;font-size:.68rem;font-weight:800;letter-spacing:.04em;color:var(--plum3);
+    padding:5px 12px;cursor:pointer;margin-left:9px;flex:none;transition:all .14s}
+  .copy:hover{border-color:var(--gold);color:var(--plum)}
   .copy:active{background:var(--paper2)}
 
-  .email label{display:block;font-size:.86rem;font-weight:700;color:var(--plum);margin-bottom:6px}
-  .email input{width:100%;border:1.5px solid var(--bord);border-radius:11px;padding:13px 14px;font-family:'Nunito';font-size:1rem;background:#fff;color:var(--ink)}
-  .email input:focus{outline:none;border-color:var(--gold)}
-  .email .hint{font-size:.8rem;color:var(--muted);margin-top:7px}
+  /* EMAIL */
+  .email label{display:block;font-size:.86rem;font-weight:800;color:var(--plum);margin-bottom:8px;letter-spacing:.01em}
+  .email input{width:100%;border:1.5px solid var(--bord);border-radius:14px;padding:14px 16px;font-family:'Nunito';font-size:1rem;background:#fff;color:var(--ink);transition:border-color .16s,box-shadow .16s}
+  .email input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(231,210,162,.4)}
+  .email .hint{font-size:.8rem;color:var(--muted);margin-top:9px;font-weight:600}
 
-  footer{border-top:1px solid var(--bord);padding:26px 0;text-align:center;color:var(--muted);font-size:.82rem}
-  .mathia-copyr{max-width:60ch;margin:8px auto 0;font-size:.74rem;line-height:1.5}
+  /* FOOTER */
+  footer{border-top:1px solid var(--bord);padding:34px 0 30px;text-align:center;color:var(--muted)}
+  footer .fmark{font-family:'Pinyon Script',cursive;font-size:2rem;color:var(--golddk);line-height:1}
+  footer .fcon{font-size:.84rem;font-weight:700;color:var(--plum3);margin-top:4px}
+  .mathia-copyr{max-width:62ch;margin:12px auto 0;font-size:.72rem;line-height:1.55}
 
   @media (max-width:560px){
-    h1{font-size:1.9rem}
-    .summary{flex-direction:column;align-items:flex-start;text-align:left}
+    .summary{flex-direction:column;align-items:flex-start;text-align:left;padding:22px}
     .summary .price{text-align:left}
     .qrframe{width:100%}
-    .opt{padding:18px}
+    .opt{padding:22px}
   }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -115,7 +136,7 @@
       <span class="bwrap"><span class="bmark">Mathia</span><span class="bsub">s Marinom</span></span>
     </a>
     <div class="nav-r">
-      <a class="back" id="back" href="index.html#paketi">← Nazad na pakete</a>
+      <a class="back" id="back" data-i18n="back" href="index.html#paketi">← Nazad na pakete</a>
       <select class="lang" aria-label="Jezik / Language">
         <option>SR</option><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>RU</option><option>PT</option>
       </select>
@@ -194,7 +215,8 @@
 
 <footer>
   <div class="wrap">
-    <div>Mathia · kontakt@mathia.rs</div>
+    <div class="fmark">Mathia</div>
+    <div class="fcon">kontakt@mathia.rs</div>
     <p class="mathia-copyr">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</p>
   </div>
 </footer>
