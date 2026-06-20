@@ -194,13 +194,21 @@ function show(el,on){ $(el).classList.toggle('hide', !on); }
 
 /* init */
 (function(){
+  // otvori registracioni tab ako je stigao iz menija: nalog.html#reg
+  try { if ((location.hash||'').toLowerCase().indexOf('reg')>-1 || /[?&]reg/i.test(location.search)) setMode('reg'); } catch(e){}
   if (SUPABASE_URL.startsWith("PASTE")) {
     $('authMsg').innerHTML='<div class="msg err">Supabase nije podešen. Otvori nalog.html i upiši SUPABASE_URL i SUPABASE_ANON_KEY (uputstvo u poruci).</div>';
     return;
   }
-  sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  sb.auth.getSession().then(({data})=>{ if(data.session){ user=data.session.user; afterLogin(); } });
-  sb.auth.onAuthStateChange((_e,session)=>{ user = session ? session.user : null; if(user) afterLogin(); else logoutUI(); });
+  if (typeof supabase === "undefined") {
+    $('authMsg').innerHTML='<div class="msg err">Konekcija ka serveru nije učitana (proveri internet ili ad-blocker), pa osveži stranu.</div>';
+    return;
+  }
+  try {
+    sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    sb.auth.getSession().then(({data})=>{ if(data.session){ user=data.session.user; afterLogin(); } });
+    sb.auth.onAuthStateChange((_e,session)=>{ user = session ? session.user : null; if(user) afterLogin(); else logoutUI(); });
+  } catch(e){ $('authMsg').innerHTML='<div class="msg err">Greška pri povezivanju: '+(e.message||e)+'</div>'; }
 })();
 
 /* AUTH UI */
