@@ -1,0 +1,14 @@
+const path=require('path'), fs=require('fs');
+const render=require('./render.js');
+const root=path.join(__dirname,'..');
+const { formule }=require(path.join(root,'content/ma1_formule.js'));
+const sr=JSON.parse(fs.readFileSync(path.join(root,'content/_ma1_strings.json'),'utf8'));
+const tx=require(path.join(root,'content/ma1.i18n.js'));
+const DICT={}; for(let i=0;i<sr.length;i++) DICT[sr[i]]=tx[i];
+render.reset(); render.setDict(DICT);
+const topics=formule.map(t=>render.formuleTopic(t)).join('\n');
+const shell=path.join(root,'shells/Matematicka-Analiza-1-Formule.html');
+const out=path.join(root,'_final/Matematicka-Analiza-1-Formule.html');
+const len=render.injectFormule(shell,out,topics);
+console.log('OUT bytes:',len,'| REG:',Object.keys(render.REG).length,'| MISS:',render.MISS.size,'| WARN:',render.WARN.length);
+if(render.MISS.size) console.log('MISS primeri:',[...render.MISS].slice(0,8));
