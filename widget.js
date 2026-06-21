@@ -320,6 +320,11 @@
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\$([^\$\n]+?)\$/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\(([\s\S]+?)\\\)/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    // ukloni linije-razdelnike (---, ***, ___) i skupi višestruke prazne redove —
+    // mehur koristi white-space:pre-wrap, pa bi inače pravili prevelike praznine
+    s = s.replace(/^[ \t]*([-*_])(?:[ \t]*\1){2,}[ \t]*$/gm, "");
+    s = s.replace(/\n{3,}/g, "\n\n");
+    s = s.replace(/^\s+|\s+$/g, "");
     s = esc(s);
     s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
