@@ -1,0 +1,123 @@
+// Rekonstruisano iz UZORAK Skripte. Oblik kao ma1.js. Srpski je ključ za prevode.
+const r = String.raw;
+const skripta = [
+{ n:1, title:{sr:"Algebra događaja i aksiome verovatnoće"},
+  lead:[{sr:"Skup svih ishoda je prostor elementarnih događaja"}," ",{m:"\\Omega"},{sr:", a događaji su njegovi podskupovi. Verovatnoća se zadaje Kolmogorovljevim aksiomama; kod jednako verovatnih ishoda važi klasična definicija."}],
+  zapamti:[
+    {label:{sr:"Klasična verovatnoća"}, tex:"P(A)=\\frac{m}{n}=\\frac{\\text{broj povoljnih}}{\\text{broj mogućih}}"},
+    {label:{sr:"Aksiome"}, tex:"0\\le P(A)\\le 1,\\qquad P(\\Omega)=1"},
+    {label:{sr:"Verovatnoća unije"}, tex:"P(A\\cup B)=P(A)+P(B)-P(A\\cap B)"},
+    {label:{sr:"Suprotan događaj"}, tex:"P(A^{c})=1-P(A)"},
+  ],
+  primer:{ task:[{sr:"Pri bacanju kocke naći verovatnoću da padne paran broj."}],
+    steps:[
+      [{sr:"Povoljni ishodi:"}," ",{m:"\\{2,4,6\\}"},{sr:", dakle"}," ",{m:"m=3"},"."],
+      [{sr:"Svih ishoda ima"}," ",{m:"n=6"},"."],
+      [{m:"P(A)=\\dfrac{3}{6}=\\dfrac{1}{2}"},"."],
+    ]} },
+{ n:2, title:{sr:"Uslovna verovatnoća i nezavisnost"},
+  lead:[{sr:"Uslovna verovatnoća meri verovatnoću događaja kada znamo da se drugi već dogodio. Događaji su nezavisni kada verovatnoća preseka jednaka proizvodu verovatnoća."}],
+  zapamti:[
+    {label:{sr:"Uslovna verovatnoća"}, tex:"P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)},\\qquad P(B)>0"},
+    {label:{sr:"Pravilo množenja"}, tex:"P(A\\cap B)=P(A\\mid B)\\,P(B)"},
+    {label:{sr:"Nezavisnost"}, tex:"P(A\\cap B)=P(A)\\,P(B)"},
+  ],
+  primer:{ task:[{sr:"Iz špila od"}," ",{m:"52"}," ",{sr:"karte izvlačimo dve karte (bez vraćanja). Naći verovatnoću da su obe kralj."}],
+    steps:[
+      [{sr:"Prvi kralj:"}," ",{m:"\\dfrac{4}{52}"},"."],
+      [{sr:"Drugi kralj (ostalo"}," ",{m:"3"}," ",{sr:"od"}," ",{m:"51"},"):"," ",{m:"\\dfrac{3}{51}"},"."],
+      [{m:"P=\\dfrac{4}{52}\\cdot\\dfrac{3}{51}=\\dfrac{1}{221}"},"."],
+    ]} },
+{ n:3, title:{sr:"Formula totalne verovatnoće i Bajesova formula"},
+  lead:[{sr:"Kada događaj može nastupiti pod više hipoteza (potpun sistem događaja), njegovu verovatnoću daje formula totalne verovatnoće, a obrnuti zaključak (verovatnoća hipoteze nakon ishoda) Bajesova formula."}],
+  zapamti:[
+    {label:{sr:"Formula totalne verovatnoće"}, tex:"P(A)=\\sum_{i} P(A\\mid H_i)\\,P(H_i)"},
+    {label:{sr:"Bajesova formula"}, tex:"P(H_k\\mid A)=\\frac{P(A\\mid H_k)\\,P(H_k)}{\\sum_i P(A\\mid H_i)\\,P(H_i)}"},
+  ],
+  primer:{ task:[{sr:"Pogon"}," ",{m:"H_1"}," ",{sr:"daje"}," ",{m:"60\\%"}," ",{sr:"proizvoda ("},{m:"2\\%"}," ",{sr:"škarta), pogon"}," ",{m:"H_2"}," "," ",{m:"40\\%"}," ","(",{m:"5\\%"}," ",{sr:"škarta). Naći verovatnoću škarta."}],
+    steps:[
+      [{m:"P(A\\mid H_1)=0{,}02,\\ P(A\\mid H_2)=0{,}05"},"."],
+      [{m:"P(A)=0{,}6\\cdot0{,}02+0{,}4\\cdot0{,}05"},"."],
+      [{m:"P(A)=0{,}012+0{,}020=0{,}032"},"."],
+    ]} },
+{ n:4, title:{sr:"Slučajne promenljive i funkcija raspodele"},
+  lead:[{sr:"Slučajna promenljiva"}," ",{m:"X"}," ",{sr:"pridružuje broj ishodu. Potpuno je opisuje funkcija raspodele"}," ",{m:"F(x)=P(X\\le x)"},{sr:", koja je neopadajuća i raste od"}," ",{m:"0"}," ",{sr:"do"}," ",{m:"1"},"."],
+  zapamti:[
+    {label:{sr:"Funkcija raspodele"}, tex:"F(x)=P(X\\le x)"},
+    {label:{sr:"Granice"}, tex:"\\lim_{x\\to-\\infty}F(x)=0,\\qquad \\lim_{x\\to+\\infty}F(x)=1"},
+    {label:{sr:"Verovatnoća intervala"}, tex:"P(a<X\\le b)=F(b)-F(a)"},
+  ],
+  primer:{ task:[{m:"X"}," ",{sr:"je broj grbova pri dva bacanja novčića. Naći"}," ",{m:"F(1)"},"."],
+    steps:[
+      [{m:"P(X=0)=\\tfrac14,\\ P(X=1)=\\tfrac12,\\ P(X=2)=\\tfrac14"},"."],
+      [{m:"F(1)=P(X\\le1)=P(X=0)+P(X=1)"},"."],
+      [{m:"F(1)=\\tfrac14+\\tfrac12=\\tfrac34"},"."],
+    ]} },
+{ n:5, title:{sr:"Diskretne raspodele"},
+  lead:[{sr:"Najvažnije diskretne raspodele su binomna (broj uspeha u"}," ",{m:"n"}," ",{sr:"pokušaja), Poasonova (retki događaji) i geometrijska (prvi uspeh)."}],
+  zapamti:[
+    {label:{sr:"Binomna raspodela"}, tex:"P(X=k)=\\binom{n}{k}p^{k}(1-p)^{\\,n-k}"},
+    {label:{sr:"Poasonova raspodela"}, tex:"P(X=k)=\\frac{\\lambda^{k}e^{-\\lambda}}{k!}"},
+    {label:{sr:"Geometrijska raspodela"}, tex:"P(X=k)=(1-p)^{\\,k-1}p"},
+  ],
+  primer:{ task:[{sr:"Novčić se baca"}," ",{m:"5"}," ",{sr:"puta. Naći verovatnoću tačno"}," ",{m:"2"}," ",{sr:"grba ("},{m:"p=\\tfrac12"},")."],
+    steps:[
+      [{sr:"Binomna:"}," ",{m:"P(X=2)=\\dbinom{5}{2}\\Big(\\tfrac12\\Big)^{2}\\Big(\\tfrac12\\Big)^{3}"},"."],
+      [{m:"\\dbinom{5}{2}=10"},{sr:", a"}," ",{m:"\\Big(\\tfrac12\\Big)^{5}=\\tfrac{1}{32}"},"."],
+      [{m:"P(X=2)=\\dfrac{10}{32}=\\dfrac{5}{16}"},"."],
+    ]} },
+{ n:6, title:{sr:"Neprekidne raspodele"},
+  lead:[{sr:"Neprekidnu slučajnu promenljivu opisuje gustina raspodele"}," ",{m:"f(x)"},{sr:". Najvažnije su uniformna, eksponencijalna i normalna (Gausova) raspodela."}],
+  zapamti:[
+    {label:{sr:"Gustina i raspodela"}, tex:"F(x)=\\int_{-\\infty}^{x} f(t)\\,dt,\\qquad \\int_{-\\infty}^{\\infty} f(t)\\,dt=1"},
+    {label:{sr:"Eksponencijalna raspodela"}, tex:"f(x)=\\lambda e^{-\\lambda x},\\qquad x\\ge0"},
+    {label:{sr:"Normalna (Gausova) raspodela"}, tex:"f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}\\,e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}"},
+  ],
+  primer:{ task:[{sr:"Za eksponencijalnu raspodelu sa"}," ",{m:"\\lambda=1"}," ",{sr:"naći"}," ",{m:"P(X>1)"},"."],
+    steps:[
+      [{m:"P(X>1)=\\displaystyle\\int_{1}^{\\infty} e^{-x}\\,dx"},"."],
+      [{m:"=\\left.-e^{-x}\\right|_{1}^{\\infty}=0-(-e^{-1})"},"."],
+      [{m:"P(X>1)=e^{-1}\\approx0{,}368"},"."],
+    ]} },
+{ n:7, title:{sr:"Brojne karakteristike"},
+  lead:[{sr:"Slučajnu promenljivu sažimaju matematičko očekivanje"}," ",{m:"E(X)"}," ",{sr:"(prosečna vrednost) i disperzija"}," ",{m:"D(X)"}," ",{sr:"(rasipanje), čiji koren je standardna devijacija."}],
+  zapamti:[
+    {label:{sr:"Očekivanje (diskretno)"}, tex:"E(X)=\\sum_i x_i\\,p_i"},
+    {label:{sr:"Očekivanje (neprekidno)"}, tex:"E(X)=\\int_{-\\infty}^{\\infty} x\\,f(x)\\,dx"},
+    {label:{sr:"Disperzija"}, tex:"D(X)=E(X^2)-\\big(E(X)\\big)^2"},
+    {label:{sr:"Standardna devijacija"}, tex:"\\sigma=\\sqrt{D(X)}"},
+  ],
+  primer:{ task:[{sr:"Naći matematičko očekivanje broja na simetričnoj kocki."}],
+    steps:[
+      [{sr:"Svaki ishod ima verovatnoću"}," ",{m:"\\tfrac16"},"."],
+      [{m:"E(X)=\\dfrac{1+2+3+4+5+6}{6}=\\dfrac{21}{6}"},"."],
+      [{m:"E(X)=3{,}5"},"."],
+    ]} },
+{ n:8, title:{sr:"Granične teoreme"},
+  lead:[{sr:"Zakon velikih brojeva kaže da se prosek velikog broja merenja približava očekivanju, a centralna granična teorema da zbir mnogo nezavisnih uticaja teži normalnoj raspodeli. Ocenu daje Čebišovljeva nejednakost."}],
+  zapamti:[
+    {label:{sr:"Čebišovljeva nejednakost"}, tex:"P\\big(|X-E(X)|\\ge\\varepsilon\\big)\\le\\frac{D(X)}{\\varepsilon^{2}}"},
+    {label:{sr:"Zakon velikih brojeva"}, tex:"\\overline{X}_n=\\frac{1}{n}\\sum_{i=1}^{n}X_i\\ \\longrightarrow\\ E(X)"},
+    {label:{sr:"Centralna granična teorema"}, tex:"\\frac{\\sum X_i-n\\mu}{\\sigma\\sqrt{n}}\\ \\longrightarrow\\ \\mathcal{N}(0,1)"},
+  ],
+  primer:{ task:[{sr:"Ako je"}," ",{m:"D(X)=4"},{sr:", oceniti"}," ",{m:"P(|X-E(X)|\\ge4)"},"."],
+    steps:[
+      [{sr:"Čebišov:"}," ",{m:"P\\le\\dfrac{D(X)}{\\varepsilon^2}"}," ",{sr:"sa"}," ",{m:"\\varepsilon=4"},"."],
+      [{m:"P\\le\\dfrac{4}{16}"},"."],
+      [{m:"P\\le\\dfrac{1}{4}"},"."],
+    ]} },
+{ n:9, title:{sr:"Slučajni procesi i Markovljevi lanci"},
+  lead:[{sr:"Slučajni proces je familija slučajnih promenljivih u vremenu. Markovljev lanac ima svojstvo da budućnost zavisi samo od sadašnjeg stanja, a opisuje ga matrica prelaza."}],
+  zapamti:[
+    {label:{sr:"Markovljevo svojstvo"}, tex:"P(X_{n+1}=j\\mid X_n=i,\\dots)=P(X_{n+1}=j\\mid X_n=i)"},
+    {label:{sr:"Matrica prelaza"}, tex:"p_{ij}=P(X_{n+1}=j\\mid X_n=i),\\qquad \\sum_j p_{ij}=1"},
+    {label:{sr:"Čapmen–Kolmogorovljeva jednačina"}, tex:"P^{(n)}=P^{\\,n}"},
+  ],
+  primer:{ task:[{sr:"Data je matrica prelaza"}," ",{m:"P=\\begin{pmatrix}0{,}9&0{,}1\\\\0{,}5&0{,}5\\end{pmatrix}"},{sr:". Proveriti ispravnost."}],
+    steps:[
+      [{sr:"Zbir prve vrste:"}," ",{m:"0{,}9+0{,}1=1"},"."],
+      [{sr:"Zbir druge vrste:"}," ",{m:"0{,}5+0{,}5=1"},"."],
+      [{sr:"Svaka vrsta sumira na"}," ",{m:"1"},{sr:", pa je matrica ispravna; npr. prelaz iz stanja"}," ",{m:"1"}," ",{sr:"u stanje"}," ",{m:"2"}," ",{sr:"je"}," ",{m:"0{,}1"},"."],
+    ]} },
+];
+module.exports = { skripta };
