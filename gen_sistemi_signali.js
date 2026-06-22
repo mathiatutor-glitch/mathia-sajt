@@ -1,0 +1,16 @@
+const path=require('path'), fs=require('fs');
+const render=require('./render.js');
+const root=__dirname;
+const { skripta }=require(path.join(root,'content/sistemi_signali.js'));
+const sr=JSON.parse(fs.readFileSync(path.join(root,'content/_sistemi_signali_strings.json'),'utf8'));
+const tx=require(path.join(root,'content/sistemi_signali.i18n.js'));
+const DICT={}; for(let i=0;i<sr.length;i++) DICT[sr[i]]=tx[i];
+render.reset(); render.setDict(DICT);
+const topics=skripta.map(t=>render.skriptaTopic(t)).join('\n');
+const shell=path.join(root,'shells/Sistemi-Signali-Skripta.html');
+const out=path.join(root,'_final/Sistemi-Signali-Skripta.html');
+const len=render.inject(shell,out,topics);
+console.log('[SKRIPTA] OUT bytes:',len,'| REG:',Object.keys(render.REG).length,'| MISS:',render.MISS.size,'| WARN:',render.WARN.length,'| TEXERR:',render.TEXERR.length);
+if(render.MISS.size) console.log('  MISS:',[...render.MISS].slice(0,8));
+if(render.WARN.length) console.log('  WARN:',render.WARN.slice(0,8));
+if(render.TEXERR.length) console.log('  TEXERR:',render.TEXERR.slice(0,8));
