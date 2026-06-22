@@ -1,0 +1,19 @@
+============================================================
+WIRING #2 — predmeti.html  (kartica predmeta u katalogu)
+============================================================
+GDE: u mrezu kartica fakultetskih predmeta, pored kartice „Merenja NEV".
+Iskoristi SLEDECI slobodan kljuc (po dosadasnjoj numeraciji c50/cn50 —
+proveri pregledom fajla i uzmi prvi slobodan).
+
+PRINCIP: kopiraj postojecu karticu (npr. predmet-merenja-nev) i zameni:
+  • link/href     -> predmet-sistemi-signali.html
+  • naslov        -> „Sistemi i signali"
+  • opis/tagline  -> „Signali, Laplas, Furije, LVN sistemi, stabilnost, filtri"
+  • mode/data-mode (ako kartica nosi mode) -> sistemi-signali
+  • ikonu/grupu   -> ista grupa kao ostali FTN predmeti
+
+GENERICKI OBLIK (uskladi klase sa postojecim karticama):
+  <a class="predmet-card" href="predmet-sistemi-signali.html" data-mode="sistemi-signali">
+    <h3>Sistemi i signali</h3>
+    <p>Signali, Laplasova i Furijeova transformacija, LVN sistemi, stabilnost, filtri.</p>
+  </a>

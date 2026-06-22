@@ -1,0 +1,7 @@
+============================================================
+WIRING #4 — index.html  (katalog/landing sajta, sekcija predmeta)
+============================================================
+Ako index.html nabraja predmete (ili ih puni iz iste liste kao predmeti.html),
+dodaj „Sistemi i signali" sa linkom na predmet-sistemi-signali.html, identicno
+ostalim FTN predmetima. Ako se katalog generise iz zajednicke liste, dovoljno je
+uskladiti #2/#3 i index ce pokupiti automatski.

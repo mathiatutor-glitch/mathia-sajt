@@ -1,0 +1,13 @@
+============================================================
+WIRING #3 — nalog.html  (unos u listi „moji predmeti" / izbor predmeta)
+============================================================
+GDE: u listu/mapu predmeta koja povezuje kljuc -> landing stranicu.
+Dodaj unos po istom obrascu kao za „merenja-nev":
+
+  • kljuc:    sistemi-signali
+  • naziv:    Sistemi i signali
+  • landing:  predmet-sistemi-signali.html
+  • (ako postoji polje mode za widget) mode: sistemi-signali
+
+GENERICKI OBLIK (uskladi sa postojecim unosima u fajlu):
+  { key:"sistemi-signali", title:"Sistemi i signali", href:"predmet-sistemi-signali.html" },
