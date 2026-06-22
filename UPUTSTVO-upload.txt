@@ -1,0 +1,38 @@
+================================================================
+ŠTA TREBA UPLOUDOVATI / IZMENITI — kratko
+================================================================
+NOVI/IZMENJENI FAJLOVI U OVOM PAKETU (upload-novo/):
+  predmet-verovatnoca.html
+  predmet-uvod-u-elektroniku.html
+  predmet-elektricna-merenja.html        (zamenjuje predmet-merenja-nev.html)
+  predmet-prijemni-visa-ns.html
+  chat-klonovi-NOVO.txt                  (blokovi za chat.js: 3 nova klona + aliasi)
+  RAZVRSTAVANJE-fajlova.txt              (gde ide koji PDF + duplikati + flag)
+
+SVAKI LANDING ima DVE animacije u tvom stilu:
+  • zlatna „signal" linija u kartici predmeta (.sc-illu) — sama se crta + sonda klizi
+  • suptilna „signal" linija u POZADINI heroja (.hero-wave) — sama se crta, lagano se kreće
+  Talas je karakterističan po predmetu: Verovatnoća = Gausova kriva, Uvod u elektroniku =
+  sinusoida, Električna merenja = RC kriva (punjenje), Prijemni = kriva rasta (S-kriva).
+  Sve poštuje prefers-reduced-motion.
+
+KORACI:
+  1) Uploaduj 4 .html landinga (zameni predmet-merenja-nev.html sa predmet-elektricna-merenja.html).
+  2) U chat.js nalepi 3 nova klona + aliase iz chat-klonovi-NOVO.txt.
+     (verovatnoca vec ima klon: fax-verovatnoca — nista ne menjas.)
+  3) Uploaduj materijale (PDF/PPTX/JPG) pod imenima iz RAZVRSTAVANJE-fajlova.txt
+     (preskoci 3 duplikata; „flag" fajlove stavi gde je naznaceno).
+  4) U katalog (predmeti.html), pocetnu (index.html) i nalog.html dodaj po stavku za
+     3 NOVA predmeta (verovatnoca verovatno vec postoji), po uzoru na postojece kartice
+     — kljuc/landing/naziv su:
+        elektricna-merenja   → predmet-elektricna-merenja.html   „Električna merenja"
+        uvod-u-elektroniku   → predmet-uvod-u-elektroniku.html   „Uvod u elektroniku"
+        prijemni-visa-ns     → predmet-prijemni-visa-ns.html     „Prijemni — Viša poslovna škola NS"
+  5) gate.js: svaki landing vec ima data-subject (verovatnoca / uvod-u-elektroniku /
+     elektricna-merenja / prijemni-visa-ns) — proveri da su ti kljucevi dozvoljeni u gate logici.
+
+PROVERA KLONOVA (trazeno):
+  verovatnoca .......... ✓ postoji (fax-verovatnoca)
+  elektricna-merenja ... ✱ dodaj (u paketu)
+  uvod-u-elektroniku ... ✱ dodaj (u paketu)
+  prijemni-visa-ns ..... ✱ dodaj (u paketu)

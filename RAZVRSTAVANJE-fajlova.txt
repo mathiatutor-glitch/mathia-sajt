@@ -1,0 +1,50 @@
+================================================================
+RAZVRSTAVANJE FAJLOVA IZ Archive.zip — po predmetima
+(levo: original u zip-u  →  desno: predmet + ime za upload)
+Landinzi linkuju TACNO ova imena (mat-grid), pa preimenuj pri uploadu.
+================================================================
+
+■ VEROVATNOĆA  (landing: predmet-verovatnoca.html, klon: fax-verovatnoca)
+  verovatnoca, statistika i slucajni procesi 1.deo.pdf  → Verovatnoca-statistika-slucajni-procesi-1.deo.pdf   [mat-grid #1]
+  verovatnoca, statistika i slucajni procesi 2.deo.pdf  → Verovatnoca-statistika-slucajni-procesi-2.deo.pdf   [mat-grid #2]
+  FormuleDozvoljeneNaKolokvijumima_Raspodele.pdf        → Verovatnoca-Raspodele-formule.pdf     (dozvoljeno na kolokvijumu)
+  Adobe Scan 8 Jun 2026.pdf                             → Verovatnoca-Karakteristicna-funkcija-resenja.pdf  (rukom resavani zadaci)
+  WhatsApp Image 2026-06-19 at 13.48.40.jpeg            → Verovatnoca-Statistika-ispit-1.jpg
+  WhatsApp Image 2026-06-20 at 15.19.35.jpeg            → Verovatnoca-Statistika-ispit-2.jpg
+
+■ UVOD U ELEKTRONIKU  (landing: predmet-uvod-u-elektroniku.html, klon: uvod-u-elektroniku — NOV)
+  Zbirka zadataka.pdf  (FTN, Stojanovic i dr.)          → Uvod-u-elektroniku-Zbirka-zadataka-FTN.pdf          [mat-grid #1]
+  07_Tranzistori.pdf                                    → (spoji u) Uvod-u-elektroniku-Tranzistori-MOSFET-diode.pdf  [mat-grid #2]
+  08_MOSFET.pdf                                         → (isti spoj)  -//-
+  05_diode_zadaci.pptx                                  → (isti spoj ili zasebno) Diode-zadaci.pptx
+  04_transformatori_zadaci.pptx                         → Transformatori-zadaci.pptx
+  Tranzistori.pdf  (Hardverski interfejs, Vezbe 6)      → Tranzistori-vezbe.pdf   (napomena: iz drugog kursa, ali tema=tranzistori)
+
+■ ELEKTRIČNA MERENJA  (landing: predmet-elektricna-merenja.html, klon: elektricna-merenja — NOV; zamenjuje „merenja-nev")
+  Elektronske komponente u instrumentaciji - zbirka resenih zadataka.pdf → EKI-Zbirka-resenih-zadataka.pdf   [mat-grid #1]
+  R.pdf            (1. Zadaci iz otpornika)             → (spoji u) EKI-Auditorne-vezbe.pdf                   [mat-grid #2]
+  Adobe Scan 10 Jun 2026.pdf  (2. kondenzatori)         → (isti spoj)  -//-
+  kalemovi.pdf     (3. kalemovi)                        → (isti spoj)  -//-
+
+■ PRIJEMNI — VIŠA POSLOVNA ŠKOLA NOVI SAD  (landing: predmet-prijemni-visa-ns.html, klon: prijemni-visa-ns — NOV)
+  PRIJEMNI ZA VISU POSLOVNU SKOLU ... UPIS-2026.pdf     → Prijemni-Visa-poslovna-skola-NS-Zbirka-2026.pdf     [mat-grid #1 i #2]
+  (7 oblasti: Ekonomija, Poslovna ekonomija, Sociologija, Psihologija, Geografija, Matematika, Informatika; bira se 2)
+
+----------------------------------------------------------------
+DUPLIKATI (isti MD5 — NE uploaduj, samo jedan):
+  Zbirka-pitanja-za-prijemni-ispit-UPIS-2026 2.pdf   = isti kao PRIJEMNI ... UPIS-2026.pdf
+  Adobe Scan 10 Jun 2027.pdf                         = isti kao Adobe Scan 10 Jun 2026.pdf (kondenzatori)
+  kalemovi 2.pdf                                     = isti kao kalemovi.pdf
+
+----------------------------------------------------------------
+NE PRIPADA TRAZENIM PREDMETIMA (proveri pre uploada):
+  zbirka zadataka iz matematike ... zavrsni ispit u osnovnom obrazovanju 2025/2026.pdf
+        → MALA MATURA (zavrsni ispit, osnovno) — postojeci predmet, ne ovde.
+  1770361018564367.pdf  → rukom resen zadatak iz MEHANIKE (klizanje stapa) — stray; verovatno predmet Mehanika.
+  1_kol2526_res.pdf      → „MERENJA U TELEKOMUNIKACIONIM SISTEMIMA" — DRUGI kurs (ne EKI). Stavi pod taj predmet ili odvojeno.
+  Tablice izvoda i integrala, Maklorenove formule i trig. identiteti.pdf
+        → opsti matematicki dodatak (izvodi/integrali/Makloren) — pre za Analizu/Sisteme i signale nego za poslovni prijemni.
+
+NAPOMENA o spajanju: „(spoji u)" znaci — radi urednosti spoji te PDF-ove u jedan
+(npr. pdfunite ili online), jer landing ima 2 kartice po predmetu. Mozes i da
+ostavis odvojeno i samo dodas jos kartica u mat-grid (lako se kopira blok <a class="mat">).
