@@ -1,155 +1,148 @@
-<!doctype html><html lang="sr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mathia — Priprema za upis u srednju školu</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priprema – srednja škola — Mathia</title>
+<meta name="description" content="Sigurna priprema za upis u srednju (mala matura) — sve oblasti uz rešene zadatke.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
-.lang{position:fixed;top:14px;right:14px;z-index:20;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
-.frame{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 50% 0%,#fff,var(--paper))}
-.hero-wave{position:absolute;left:0;right:0;top:46%;width:100%;height:200px;opacity:.5;pointer-events:none}
-.hero-wave path{fill:none;stroke:url(#hgold);stroke-width:2.5;stroke-dasharray:var(--hlen,1200);stroke-dashoffset:var(--hlen,1200);animation:hwDraw 3.2s ease forwards}
-@keyframes hwDraw{to{stroke-dashoffset:0}}
-.wrap{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:64px 22px 30px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
-@media(max-width:820px){.wrap{grid-template-columns:1fr;text-align:center}}
-.eyb{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--golddk);font-weight:700}
-h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(34px,6vw,54px);line-height:1.08;margin:10px 0 12px}
-.gold-underline{background:linear-gradient(transparent 64%,var(--goldlt) 0);padding:0 .06em}
-.htxt p.s{color:#7a6b66;max-width:32em;margin:0 0 20px}
-@media(max-width:820px){.htxt p.s{margin-inline:auto}}
-.cta{display:flex;gap:12px;flex-wrap:wrap}
-@media(max-width:820px){.cta{justify-content:center}}
-.btn{display:inline-block;border:1px solid var(--goldlt);background:#fff;color:var(--plum);font:600 15px Inter;padding:13px 20px;border-radius:999px;text-decoration:none;transition:.18s;cursor:pointer}
-.btn:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 12px 24px rgba(67,44,55,.12)}
-.btn.primary{background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;border:none}
-.portrait{display:flex;justify-content:center}
-.subjcard{width:300px;max-width:86vw;background:#fff;border:1px solid var(--goldlt);border-radius:22px;padding:24px;box-shadow:0 26px 60px rgba(67,44,55,.16);text-align:center}
-.sc-emblem{width:96px;height:96px;border-radius:50%;margin:4px auto 12px;display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--golddk)}
-.sc-illu{display:block;width:100%;height:64px;margin:6px 0 2px}
-.sc-illu path.p{fill:none;stroke:url(#sgGold);stroke-width:2.4;stroke-dasharray:var(--len,520);stroke-dashoffset:var(--len,520);animation:scDraw 2.8s ease forwards}
-.sc-illu .probe{fill:var(--golddk)}
-@keyframes scDraw{to{stroke-dashoffset:0}}
-.sc-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin:6px 0 2px}
-.sc-cat{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose)}
-section{max-width:1080px;margin:0 auto;padding:26px 22px}
-.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,34px);font-weight:700;text-align:center;margin:0 0 22px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:820px){.grid{grid-template-columns:1fr}}
-.tile{background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px;box-shadow:0 12px 28px rgba(67,44,55,.05)}
-.tile .ic{font-size:24px}
-.tile h3{font-family:'Cormorant Garamond',serif;font-size:20px;margin:8px 0 4px}
-.tile p{margin:0;color:#7a6b66;font-size:14.5px}
-.mat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:820px){.mat-grid{grid-template-columns:1fr}}
-.mat{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px;text-decoration:none;color:inherit;transition:.18s}
-.mat:hover{border-color:var(--gold);transform:translateY(-1px);box-shadow:0 14px 30px rgba(67,44,55,.1)}
-.mat .ic{font-size:26px}.mat h3{font-family:'Cormorant Garamond',serif;font-size:20px;margin:0 0 3px}.mat p{margin:0;color:#7a6b66;font-size:14px}
-.band{background:linear-gradient(180deg,#fff,#FBF1DD);border:1px solid var(--goldlt);border-radius:20px;padding:26px;text-align:center;margin-top:8px}
-.band h3{font-family:'Cormorant Garamond',serif;font-size:26px;margin:0 0 8px}
-.band p{color:#7a6b66;margin:0 auto 16px;max-width:34em}
-.foot{text-align:center;color:#a89a93;font-size:12px;padding:26px}
-@media(prefers-reduced-motion:reduce){.hero-wave path,.sc-illu path.p{animation:none;stroke-dashoffset:0}.sc-illu .probe{display:none}}
-</style></head>
+  :root{--paper:#FBF6EE;--paper2:#F5EADB;--blush:#F4E3DD;--rose:#CC8E86;--rose-dk:#B5746C;--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:1120px}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0}
+  p{margin:0}a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+  .goldtext{background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:13px 26px;font-family:inherit;font-weight:700;font-size:.92rem;letter-spacing:.02em;cursor:pointer;border:1.5px solid transparent;transition:transform .16s,box-shadow .16s}
+  .btn-gold{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;box-shadow:0 12px 30px -12px rgba(198,160,92,.85)}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--plum);border-color:var(--gold)}
+  .btn-ghost:hover{background:rgba(198,160,92,.12)}
+  .btn-ghost-l{background:transparent;color:#fff;border-color:rgba(231,210,162,.55)}
+  .btn-ghost-l:hover{background:rgba(231,210,162,.14)}
+  .orn{display:flex;align-items:center;gap:14px;justify-content:center;max-width:260px;margin:0 auto 14px;color:var(--gold)}
+  .orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+  .orn:after{background:linear-gradient(90deg,var(--gold),transparent)}
+  header{position:sticky;top:0;z-index:40;background:rgba(251,246,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord)}
+  header:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent)}
+  .nav{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:14px}
+  .brand{display:flex;flex-direction:column;line-height:1}
+  .brand .bmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;letter-spacing:.12em}
+  .brand .bsub{font-family:'Pinyon Script',cursive;color:var(--rose-dk);font-size:.95rem;margin-top:1px}
+  .nav-r{display:flex;align-items:center;gap:20px}
+  .nav-r a{position:relative;color:var(--plum2);font-weight:600;font-size:.82rem;letter-spacing:.05em;display:none}
+  @media(min-width:820px){.nav-r a{display:inline}}
+  .nav-r a:hover{color:var(--golddk)}
+  .hero{position:relative;background:linear-gradient(160deg,#4A2A38,#3A2330 60%,#2C1A25);color:#fff;padding:60px 0 66px;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 85% 0,rgba(231,210,162,.16),transparent 70%)}
+  .hero .wrap{position:relative}
+  .hero .back{display:inline-block;color:var(--goldlt);font-weight:700;font-size:.82rem;margin-bottom:16px}
+  .hero .eyebrow{color:var(--goldlt)}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.6rem);margin:8px 0 14px;color:#fff}
+  .hero .lead{max-width:680px;color:#e9d9dd;font-size:1.08rem}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .sec{padding:58px 0}
+  .sec.alt{background:var(--card);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord)}
+  .sec h2{color:var(--plum);font-size:clamp(1.7rem,4.4vw,2.4rem);text-align:center;margin-bottom:26px}
+  .topics{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:680px){.topics{grid-template-columns:1fr 1fr}}
+  .topic{display:flex;gap:14px;background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:18px 20px;box-shadow:0 14px 34px -26px rgba(120,70,80,.4)}
+  .topic .tk{font-size:22px;flex:0 0 auto;line-height:1.3}
+  .topic b{color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
+  .topic p{color:#6a5a62;font-size:.93rem;margin-top:3px}
+  .steps{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--paper);border:1px solid var(--bord);border-radius:16px;padding:22px}
+  .step .num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldlt));color:#4a3812;font-weight:800;margin-bottom:10px}
+  .step b{display:block;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;margin-bottom:4px}
+  .step p{color:#6a5a62;font-size:.93rem}
+  .cta{background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#fff;text-align:center;padding:58px 0}
+  .cta h2{color:#fff;font-size:clamp(1.8rem,4.6vw,2.5rem);margin-bottom:10px}
+  .cta p{color:#e9d9dd;margin-bottom:22px}
+  footer{background:var(--plum);color:#d9c7cd;text-align:center;padding:38px 0}
+  footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.1em;margin-bottom:6px}
+  footer p{font-size:.85rem;color:#c7b3ba;margin-top:4px}
+  footer a{color:var(--goldlt);font-weight:700}
+</style>
+</head>
 <body>
-<select class="lang" id="lang" aria-label="Jezik / Language">
-<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
+    <nav class="nav-r">
+      <a href="index.html#mathia">Šta je Mathia</a>
+      <a href="predmeti.html">Predmeti</a>
+      <a href="prodavnica.html">Prodavnica</a>
+      <a href="index.html#paketi">Paketi</a>
+      <a href="o-marini.html">O meni</a>
+    </nav>
+  </div>
+</header>
 
-<svg width="0" height="0"><defs>
-<linearGradient id="hgold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E7D2A2"/><stop offset=".5" stop-color="#C6A05C"/><stop offset="1" stop-color="#9C7838"/></linearGradient>
-<linearGradient id="sgGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E7D2A2"/><stop offset="1" stop-color="#9C7838"/></linearGradient>
-</defs></svg>
-
-<div class="frame">
-<svg class="hero-wave" viewBox="0 0 1200 200" preserveAspectRatio="none"><path id="hp" d="M0,140 C150,60 300,60 450,120 C600,180 750,180 900,110 C1020,55 1120,80 1200,120"/></svg>
-<div class="wrap">
-<div class="htxt">
-<div class="eyb" data-i18n="eyb">Priprema za malu maturu</div>
-<h1><span data-i18n="h1a">Spremi se za srednju školu</span> <span class="gold-underline" data-i18n="h1b">lako i sigurno</span></h1>
-<p class="s" data-i18n="sub">Matematika za malu maturu — jasno, s primerima iz života, i Marina koja ti pomaže kad zapneš.</p>
-<div class="cta">
-<a class="btn primary" href="#materijali" data-i18n="cta1">Počni</a>
-<a class="btn" href="test-sklonosti.html?nivo=srednja" data-i18n="cta2">Uradi test sklonosti</a>
-</div>
-</div>
-<div class="portrait"><div class="subjcard">
-<div class="sc-emblem">÷ √ π</div>
-<svg class="sc-illu" viewBox="0 0 260 64" preserveAspectRatio="none"><path class="p" id="sp" d="M6,52 C50,52 60,12 104,12 C150,12 150,52 196,52 C226,52 240,30 254,18"/><circle class="probe" r="3.6"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#sp"/></animateMotion></circle></svg>
-<div class="sc-name" data-i18n="scName">Priprema — srednja škola</div>
-<div class="sc-cat" data-i18n="scCat">za osmake</div>
-</div></div>
-</div>
-</div>
-
-<section>
-<h2 class="sec-h" data-i18n="whatH">Sve što ti treba za malu maturu</h2>
-<div class="grid">
-<div class="tile"><div class="ic">📑</div><h3 data-i18n="t1">Skripta</h3><p data-i18n="d1">Sažeto gradivo i zadaci zatvorenog tipa za brzo ponavljanje.</p></div>
-<div class="tile"><div class="ic">📘</div><h3 data-i18n="t2">Knjiga</h3><p data-i18n="d2">Objašnjenja i rešeni primeri, korak po korak.</p></div>
-<div class="tile"><div class="ic">💬</div><h3 data-i18n="t3">Marina</h3><p data-i18n="d3">Tutor koji te vodi do rešenja — uvek dostupna.</p></div>
-<div class="tile"><div class="ic">🎯</div><h3 data-i18n="t4">Test sklonosti</h3><p data-i18n="d4">Saznaj koji tip srednje škole ti najviše leži.</p></div>
-<div class="tile"><div class="ic">📈</div><h3 data-i18n="t5">Moj napredak</h3><p data-i18n="d5">Prati gde si, šta si postigao i koliko da učiš.</p></div>
-<div class="tile"><div class="ic">🌍</div><h3 data-i18n="t6">8 jezika</h3><p data-i18n="d6">Uči na svom jeziku — sadržaj se prebacuje jednim klikom.</p></div>
-</div>
+<section class="hero">
+  <div class="wrap">
+    <a class="back" href="predmeti.html">← Svi predmeti</a>
+    <div class="eyebrow">Priprema</div>
+    <h1>Priprema – srednja škola</h1>
+    <p class="lead">Sigurna priprema za upis u srednju (mala matura) — sve oblasti uz rešene zadatke.</p>
+    <div class="row">
+      <a class="btn btn-gold" href="index.html#paketi">Probaj 15 min besplatno →</a>
+      <a class="btn btn-ghost-l" href="predmeti.html">Svi predmeti</a>
+    </div>
+  </div>
 </section>
 
-<section id="materijali">
-<h2 class="sec-h" data-i18n="matH">Materijali</h2>
-<div class="mat-grid">
-<a class="mat" href="Priprema-Srednja-Knjiga.html"><span class="ic">📘</span><div><h3 data-i18n="kT">Knjiga</h3><p data-i18n="kD">Puna e-knjiga: objašnjenja + rešeni primeri.</p></div></a>
-<a class="mat" href="Priprema-Srednja-Skripta.html"><span class="ic">📑</span><div><h3 data-i18n="sT">Skripta</h3><p data-i18n="sD">Sažeto + zadaci zatvorenog tipa i tehnika eliminacije.</p></div></a>
-</div>
+<section class="sec">
+  <div class="wrap">
+    <div class="orn"><i>✦</i></div>
+    <h2>Šta pokrivamo</h2>
+    <div class="topics">
+      <div class="topic"><span class="tk">🔢</span><div><b>Aritmetika</b><p>Brojevi, deljivost, razlomci.</p></div></div>
+      <div class="topic"><span class="tk">✖️</span><div><b>Algebra</b><p>Izrazi i operacije.</p></div></div>
+      <div class="topic"><span class="tk">🟰</span><div><b>Jednačine i nejednačine</b><p>Postavljanje i rešavanje.</p></div></div>
+      <div class="topic"><span class="tk">📐</span><div><b>Geometrija</b><p>Uglovi, površine, obim.</p></div></div>
+      <div class="topic"><span class="tk">📊</span><div><b>Razmere i procenti</b><p>Praktični zadaci.</p></div></div>
+      <div class="topic"><span class="tk">📝</span><div><b>Mala matura</b><p>Rešeni zadaci sa ispita.</p></div></div>
+    </div>
+  </div>
 </section>
 
-<section>
-<div class="band">
-<h3 data-i18n="progH">Tvoj napredak na jednom mestu</h3>
-<p data-i18n="progTxt">Posle testa sklonosti dobijaš profil i preporuku učenja, a Marina pamti gde si stao.</p>
-<a class="btn primary" href="napredak.html" data-i18n="progBtn">Otvori „Moj napredak"</a>
-</div>
+<section class="sec alt">
+  <div class="wrap">
+    <h2>Kako radi</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><b>Pošalji zadatak</b><p>Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b>Objašnjenje korak po korak</b><p>Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b>Vežbaj i napreduj</b><p>Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
+    </div>
+  </div>
 </section>
 
-<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
+<section class="cta">
+  <div class="wrap">
+    <h2>Priprema – srednja škola — bez muke.</h2>
+    <p>Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi">Započni besplatno →</a>
+  </div>
+</section>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="priprema-srednja" data-name="Marina" data-subj="Priprema za upis u srednju školu"></script>
-<script defer src="gate.js" data-subject="priprema-srednja"></script>
-<script>
-var I18N={
-eyb:{en:"Final-exam prep",de:"Abschlussprüfung – Vorbereitung",fr:"Préparation à l'examen",es:"Preparación para el examen",it:"Preparazione all'esame",ru:"Подготовка к экзамену",pt:"Preparação para o exame"},
-h1a:{en:"Get ready for high school",de:"Bereit für die weiterführende Schule",fr:"Prépare-toi pour le lycée",es:"Prepárate para secundaria",it:"Pronto per le superiori",ru:"Готовься к средней школе",pt:"Prepara-te para o secundário"},
-h1b:{en:"easily and surely",de:"leicht und sicher",fr:"facilement et sûrement",es:"fácil y seguro",it:"con facilità e sicurezza",ru:"легко и уверенно",pt:"com facilidade e confiança"},
-sub:{en:"Maths for the final exam — clear, with everyday examples, and Marina to help when you get stuck.",de:"Mathe für die Abschlussprüfung — klar, mit Alltagsbeispielen, und Marina, die hilft, wenn du nicht weiterkommst.",fr:"Maths pour l'examen — clair, avec des exemples du quotidien, et Marina pour t'aider quand tu bloques.",es:"Mates para el examen — claro, con ejemplos cotidianos, y Marina para ayudarte cuando te atascas.",it:"Matematica per l'esame — chiara, con esempi quotidiani, e Marina che aiuta quando ti blocchi.",ru:"Математика для экзамена — понятно, с примерами из жизни, и Марина поможет, если застрянешь.",pt:"Matemática para o exame — clara, com exemplos do dia a dia, e a Marina para ajudar quando ficas preso."},
-cta1:{en:"Start",de:"Loslegen",fr:"Commencer",es:"Empezar",it:"Inizia",ru:"Начать",pt:"Começar"},
-cta2:{en:"Take the aptitude test",de:"Eignungstest machen",fr:"Passer le test d'aptitude",es:"Hacer el test de aptitud",it:"Fai il test attitudinale",ru:"Пройти тест склонностей",pt:"Fazer o teste de aptidão"},
-scName:{en:"Prep — high school",de:"Vorb. — Mittelschule",fr:"Prépa — lycée",es:"Prep — secundaria",it:"Prep — superiori",ru:"Подготовка — школа",pt:"Prep — secundário"},
-scCat:{en:"for 8th-graders",de:"für die 8. Klasse",fr:"pour la 3e",es:"para 8.º",it:"per la 3ª media",ru:"для 8 класса",pt:"para o 8.º ano"},
-whatH:{en:"Everything you need for the exam",de:"Alles, was du für die Prüfung brauchst",fr:"Tout ce qu'il te faut pour l'examen",es:"Todo lo que necesitas para el examen",it:"Tutto ciò che ti serve per l'esame",ru:"Всё, что нужно для экзамена",pt:"Tudo o que precisas para o exame"},
-t1:{en:"Study notes",de:"Skript",fr:"Fiches",es:"Apuntes",it:"Appunti",ru:"Конспект",pt:"Resumo"},
-d1:{en:"Concise material and multiple-choice tasks for quick review.",de:"Kompaktes Material und Multiple-Choice-Aufgaben zum schnellen Wiederholen.",fr:"Matière concise et QCM pour réviser vite.",es:"Material conciso y preguntas tipo test para repasar rápido.",it:"Materiale sintetico e quiz a risposta multipla per ripassare in fretta.",ru:"Сжатый материал и тестовые задания для быстрого повторения.",pt:"Material conciso e perguntas de escolha múltipla para rever depressa."},
-t2:{en:"Book",de:"Buch",fr:"Livre",es:"Libro",it:"Libro",ru:"Книга",pt:"Livro"},
-d2:{en:"Explanations and worked examples, step by step.",de:"Erklärungen und gelöste Beispiele, Schritt für Schritt.",fr:"Explications et exemples résolus, pas à pas.",es:"Explicaciones y ejemplos resueltos, paso a paso.",it:"Spiegazioni ed esempi svolti, passo dopo passo.",ru:"Объяснения и разобранные примеры, шаг за шагом.",pt:"Explicações e exemplos resolvidos, passo a passo."},
-t3:{en:"Marina",de:"Marina",fr:"Marina",es:"Marina",it:"Marina",ru:"Марина",pt:"Marina"},
-d3:{en:"A tutor who guides you to the answer — always available.",de:"Eine Tutorin, die dich zur Lösung führt — immer verfügbar.",fr:"Une tutrice qui te guide vers la solution — toujours disponible.",es:"Una tutora que te guía hasta la solución — siempre disponible.",it:"Una tutor che ti guida alla soluzione — sempre disponibile.",ru:"Наставница, которая ведёт к ответу — всегда рядом.",pt:"Uma tutora que te guia até à solução — sempre disponível."},
-t4:{en:"Aptitude test",de:"Eignungstest",fr:"Test d'aptitude",es:"Test de aptitud",it:"Test attitudinale",ru:"Тест склонностей",pt:"Teste de aptidão"},
-d4:{en:"Find out which type of high school suits you best.",de:"Finde heraus, welche Schulart am besten zu dir passt.",fr:"Découvre quel type de lycée te convient le mieux.",es:"Descubre qué tipo de instituto te conviene más.",it:"Scopri quale tipo di scuola fa per te.",ru:"Узнай, какой тип школы тебе подходит.",pt:"Descobre que tipo de escola combina contigo."},
-t5:{en:"My progress",de:"Mein Fortschritt",fr:"Ma progression",es:"Mi progreso",it:"I miei progressi",ru:"Мой прогресс",pt:"O meu progresso"},
-d5:{en:"Track where you are, what you've achieved and how much to study.",de:"Verfolge, wo du stehst, was du erreicht hast und wie viel du lernen solltest.",fr:"Suis où tu en es, ce que tu as réussi et combien étudier.",es:"Sigue dónde estás, qué has logrado y cuánto estudiar.",it:"Segui a che punto sei, cosa hai raggiunto e quanto studiare.",ru:"Следи, где ты, чего достиг и сколько учиться.",pt:"Acompanha onde estás, o que alcançaste e quanto estudar."},
-t6:{en:"8 languages",de:"8 Sprachen",fr:"8 langues",es:"8 idiomas",it:"8 lingue",ru:"8 языков",pt:"8 idiomas"},
-d6:{en:"Learn in your language — switch content with one click.",de:"Lerne in deiner Sprache — Inhalt mit einem Klick umschalten.",fr:"Apprends dans ta langue — change le contenu en un clic.",es:"Aprende en tu idioma — cambia el contenido con un clic.",it:"Impara nella tua lingua — cambia contenuto con un clic.",ru:"Учись на своём языке — переключение одним кликом.",pt:"Aprende na tua língua — muda o conteúdo num clique."},
-matH:{en:"Materials",de:"Materialien",fr:"Supports",es:"Materiales",it:"Materiali",ru:"Материалы",pt:"Materiais"},
-kT:{en:"Book",de:"Buch",fr:"Livre",es:"Libro",it:"Libro",ru:"Книга",pt:"Livro"},
-kD:{en:"Full e-book: explanations + worked examples.",de:"Vollständiges E-Book: Erklärungen + gelöste Beispiele.",fr:"E-book complet : explications + exemples résolus.",es:"E-book completo: explicaciones + ejemplos resueltos.",it:"E-book completo: spiegazioni + esempi svolti.",ru:"Полная э-книга: объяснения + разобранные примеры.",pt:"E-book completo: explicações + exemplos resolvidos."},
-sT:{en:"Study notes",de:"Skript",fr:"Fiches",es:"Apuntes",it:"Appunti",ru:"Конспект",pt:"Resumo"},
-sD:{en:"Concise + multiple-choice tasks and elimination technique.",de:"Kompakt + Multiple-Choice-Aufgaben und Eliminationstechnik.",fr:"Synthèse + QCM et technique d'élimination.",es:"Resumen + preguntas tipo test y técnica de eliminación.",it:"Sintesi + quiz a risposta multipla e tecnica di eliminazione.",ru:"Кратко + тестовые задания и техника исключения.",pt:"Resumo + perguntas de escolha múltipla e técnica de eliminação."},
-progH:{en:"Your progress in one place",de:"Dein Fortschritt an einem Ort",fr:"Ta progression au même endroit",es:"Tu progreso en un solo lugar",it:"I tuoi progressi in un posto",ru:"Твой прогресс в одном месте",pt:"O teu progresso num só lugar"},
-progTxt:{en:"After the aptitude test you get a profile and a study plan, and Marina remembers where you stopped.",de:"Nach dem Eignungstest erhältst du ein Profil und einen Lernplan, und Marina merkt sich, wo du aufgehört hast.",fr:"Après le test, tu obtiens un profil et un plan d'étude, et Marina retient où tu t'es arrêté.",es:"Tras el test obtienes un perfil y un plan de estudio, y Marina recuerda dónde lo dejaste.",it:"Dopo il test ottieni un profilo e un piano di studio, e Marina ricorda dove eri.",ru:"После теста ты получаешь профиль и план учёбы, а Марина помнит, где ты остановился.",pt:"Após o teste recebes um perfil e um plano, e a Marina lembra-se de onde paraste."},
-progBtn:{en:"Open “My progress”",de:"„Mein Fortschritt“ öffnen",fr:"Ouvrir « Ma progression »",es:"Abrir «Mi progreso»",it:"Apri «I miei progressi»",ru:"Открыть «Мой прогресс»",pt:"Abrir «O meu progresso»"},
-foot:{en:"learn with love · mathia.rs",de:"lerne mit Liebe · mathia.rs",fr:"apprends avec amour · mathia.rs",es:"aprende con amor · mathia.rs",it:"impara con amore · mathia.rs",ru:"учись с любовью · mathia.rs",pt:"aprende com amor · mathia.rs"}};
-document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
-function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
-document.getElementById("lang").onchange=function(){apply(this.value)};
-function setlen(){document.querySelectorAll(".sc-illu path.p").forEach(function(p){try{p.style.setProperty("--len",Math.ceil(p.getTotalLength()))}catch(e){}});var h=document.getElementById("hp");if(h){try{document.documentElement.style.setProperty("--hlen",Math.ceil(h.getTotalLength()))}catch(e){}}}
-window.addEventListener("load",setlen);
-</script>
-</body></html>
+<footer>
+  <div class="wrap">
+    <div class="fbrand"><span class="goldtext">Mathia</span></div>
+    <p>Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
+    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a></p>
+  </div>
+</footer>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9"
+        data-api="https://project-y23je.vercel.app/api/chat"
+        data-mode="site" data-name="Profesorica"
+        data-lang="sr" data-sub="Priprema – srednja škola" data-sub-en="Priprema – srednja škola"
+        data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko predmeta „Priprema – srednja škola“. Pošalji zadatak (može i slika) ili pitanje — objasniću korak po korak!"
+        data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 Here I help you with “Priprema – srednja škola”. Send a problem (a photo works too) or a question — I&#39;ll explain step by step!"></script>
+</body>
+</html>
