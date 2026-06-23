@@ -1,0 +1,108 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Verovatnoća i statistika · Formule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
+.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
+.topic p{margin:6px 0 12px}
+.box{border-radius:14px;padding:13px 15px;margin:12px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.task{font-weight:600;margin-bottom:6px}
+.katex-display{margin:.5em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">P ∑ σ</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">formule · priručnik</div>
+<h1 data-i18n="name">Verovatnoća i statistika</h1>
+<p class="subtitle" data-i18n="sub">Ključne formule verovatnoće i statistike, sa kratkim primerom uz svaku.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Verovatnoća događaja</span></h2>
+<p>Verovatnoća je odnos povoljnih i svih jednako mogućih ishoda; uvek je između 0 i 1.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(A)=\frac{\text{povoljni}}{\text{ukupni}},\qquad 0\le P(A)\le1$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Verovatnoća da na kocki padne 6?</div>$$P=\frac{1}{6}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>Komplement i unija</span></h2>
+<p>Komplement je „da se ne desi"; za uniju oduzimamo presek da ne brojimo dvaput.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(\bar A)=1-P(A)\qquad P(A\cup B)=P(A)+P(B)-P(A\cap B)$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Kocka: P(nije 6)?</div>$$1-\tfrac{1}{6}=\tfrac{5}{6}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Uslovna verovatnoća i nezavisnost</span></h2>
+<p>Uslovna verovatnoća je verovatnoća A ako znamo da se B desio. Nezavisni događaji se ne utiču.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(A\mid B)=\frac{P(A\cap B)}{P(B)}\qquad \text{nezavisni}:\ P(A\cap B)=P(A)P(B)$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Dva novčića, oba „pismo" (nezavisno)?</div>$$\tfrac12\cdot\tfrac12=\tfrac14$$</div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Kombinatorika</span></h2>
+<p>Permutacije broje raspored, kombinacije izbor bez obzira na redosled.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P_n=n!\qquad \binom{n}{k}=\frac{n!}{k!\,(n-k)!}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Na koliko načina biramo 2 od 5?</div>$$\binom{5}{2}=10$$</div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Bajesova formula</span></h2>
+<p>Omogućava „obrtanje" uslovne verovatnoće kada znamo obrnuti smer.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(A\mid B)=\frac{P(B\mid A)\,P(A)}{P(B)}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Očekivanje (srednja vrednost)</span></h2>
+<p>Očekivana vrednost je „prosek na duge staze" — zbir vrednosti puta njihove verovatnoće.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$E(X)=\sum_i x_i\,p_i$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Očekivanje broja na kocki?</div>$$E(X)=\tfrac{1+2+3+4+5+6}{6}=3{,}5$$</div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Varijansa i standardna devijacija</span></h2>
+<p>Mere koliko vrednosti odstupaju od proseka.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\operatorname{Var}(X)=E(X^2)-\big(E(X)\big)^2,\qquad \sigma=\sqrt{\operatorname{Var}(X)}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Normalna raspodela</span></h2>
+<p>Mnoge pojave prate „zvonastu" krivu; standardizacijom prelazimo na z-vrednost.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$z=\frac{x-\mu}{\sigma}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">μ = 50, σ = 10, x = 70 → z?</div>$$z=\frac{70-50}{10}=2$$</div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Opisna statistika</span></h2>
+<p>Srednja vrednost, medijana (sredina poređanih) i mod (najčešća vrednost).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\bar x=\frac{1}{n}\sum_{i=1}^{n} x_i$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Medijana niza 1, 2, 3, 4, 5?</div>$$\text{med}=3$$</div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="fax-verovatnoca" data-name="Marina" data-subj="Verovatnoća i statistika"></script>
+<script defer src="gate.js" data-subject="fax-verovatnoca"></script>
+<script>
+var I18N={
+kind:{en:"formulas · handbook",de:"Formeln · Handbuch",fr:"formules · aide-mémoire",es:"fórmulas · manual",it:"formule · prontuario",ru:"формулы · справочник",pt:"fórmulas · manual"},
+name:{en:"Probability & statistics",de:"Wahrscheinlichkeit & Statistik",fr:"Probabilités & statistiques",es:"Probabilidad y estadística",it:"Probabilità e statistica",ru:"Вероятность и статистика",pt:"Probabilidade e estatística"},
+sub:{en:"Key probability and statistics formulas, with a short example for each.",de:"Kernformeln der Wahrscheinlichkeit und Statistik, mit einem kurzen Beispiel zu jeder.",fr:"Formules clés de probabilités et statistiques, avec un court exemple pour chacune.",es:"Fórmulas clave de probabilidad y estadística, con un ejemplo breve para cada una.",it:"Formule chiave di probabilità e statistica, con un breve esempio per ciascuna.",ru:"Ключевые формулы теории вероятностей и статистики, с коротким примером к каждой.",pt:"Fórmulas-chave de probabilidade e estatística, com um exemplo breve para cada."},
+formule:{en:"FORMULAS",de:"FORMELN",fr:"FORMULES",es:"FÓRMULAS",it:"FORMULE",ru:"ФОРМУЛЫ",pt:"FÓRMULAS"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+</body></html>

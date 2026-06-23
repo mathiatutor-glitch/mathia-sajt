@@ -1,0 +1,110 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Cenovnik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.wrap{max-width:1000px;margin:0 auto;padding:54px 22px 80px}
+.eyebrow{font-size:12px;letter-spacing:.32em;color:var(--golddk);font-weight:700;text-align:center}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(34px,7vw,54px);margin:8px 0 6px;text-align:center}
+.sub{color:#7a6b66;text-align:center;max-width:34em;margin:0 auto 8px}
+.note{color:#a08b84;text-align:center;font-size:13px;margin-bottom:34px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch}
+.card{position:relative;background:#fff;border:1px solid var(--goldlt);border-radius:22px;padding:26px 24px;display:flex;flex-direction:column;box-shadow:0 16px 40px rgba(67,44,55,.07)}
+.card.best{border:2px solid var(--gold);box-shadow:0 22px 54px rgba(67,44,55,.13)}
+.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 11px Inter;letter-spacing:.12em;padding:6px 14px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
+.pname{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:28px}
+.price{font-size:34px;font-weight:700;margin:6px 0 2px}
+.price small{font-size:14px;color:#a08b84;font-weight:600}
+.pcount{color:var(--rose);font-weight:600;margin-bottom:14px}
+.feat{list-style:none;padding:0;margin:0 0 20px;flex:1}
+.feat li{padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed #efe2cb;font-size:14.5px}
+.feat li:before{content:"✓";position:absolute;left:0;color:var(--golddk);font-weight:700}
+.btn{display:block;text-align:center;text-decoration:none;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;padding:13px 18px;border-radius:14px}
+.btn.ghost{background:#fff;color:var(--plum);border:1.5px solid var(--gold)}
+.foot{text-align:center;color:#a89a93;font-size:12px;margin-top:40px}
+.foot a{color:var(--golddk)}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="wrap">
+<div class="eyebrow" data-i18n="eyebrow">PAKETI</div>
+<h1 data-i18n="title">Cenovnik</h1>
+<p class="sub" data-i18n="sub">Izaberi paket i otključaj predmete uz Marinu — knjige, skripte, formule, razgovor i praćenje napretka.</p>
+<p class="note" data-i18n="note">Svaki predmet je prvih 15 minuta besplatan. Pretplata je mesečna.</p>
+
+<div class="grid">
+  <div class="card">
+    <div class="pname">Basic</div>
+    <div class="price">4.990 <small>din<span data-i18n="mo">/mes</span></small></div>
+    <div class="pcount"><span data-i18n="c1">1 predmet</span></div>
+    <ul class="feat">
+      <li data-i18n="f_book">Knjige, skripte i formule</li>
+      <li data-i18n="f_chat">Razgovor sa Marinom</li>
+      <li data-i18n="f_test">Test sklonosti</li>
+      <li data-i18n="f_prog">Praćenje napretka</li>
+    </ul>
+    <a class="btn ghost" href="placanje.html?plan=basic" data-i18n="choose">Izaberi</a>
+  </div>
+
+  <div class="card best">
+    <div class="badge" data-i18n="best">NAJPOPULARNIJE</div>
+    <div class="pname">Gold</div>
+    <div class="price">6.990 <small>din<span data-i18n="mo">/mes</span></small></div>
+    <div class="pcount"><span data-i18n="c2">2 predmeta</span></div>
+    <ul class="feat">
+      <li data-i18n="f_book">Knjige, skripte i formule</li>
+      <li data-i18n="f_chat">Razgovor sa Marinom</li>
+      <li data-i18n="f_test">Test sklonosti</li>
+      <li data-i18n="f_prog">Praćenje napretka</li>
+    </ul>
+    <a class="btn" href="placanje.html?plan=gold" data-i18n="choose">Izaberi</a>
+  </div>
+
+  <div class="card">
+    <div class="pname">Diamond</div>
+    <div class="price">9.990 <small>din<span data-i18n="mo">/mes</span></small></div>
+    <div class="pcount"><span data-i18n="c3">3 predmeta</span></div>
+    <ul class="feat">
+      <li data-i18n="f_book">Knjige, skripte i formule</li>
+      <li data-i18n="f_chat">Razgovor sa Marinom</li>
+      <li data-i18n="f_test">Test sklonosti</li>
+      <li data-i18n="f_prog">Praćenje napretka</li>
+    </ul>
+    <a class="btn ghost" href="placanje.html?plan=diamond" data-i18n="choose">Izaberi</a>
+  </div>
+</div>
+
+<div class="foot">uči s ljubavlju · mathia.rs · <a href="uslovi.html" data-i18n="terms">Uslovi</a> · <a href="privatnost.html" data-i18n="privacy">Privatnost</a> · <a href="povracaj.html" data-i18n="refund">Povraćaj</a></div>
+</div>
+
+<script>
+var I18N={
+eyebrow:{en:"PLANS",de:"PAKETE",fr:"FORMULES",es:"PLANES",it:"PIANI",ru:"ТАРИФЫ",pt:"PLANOS"},
+title:{en:"Pricing",de:"Preise",fr:"Tarifs",es:"Precios",it:"Prezzi",ru:"Цены",pt:"Preços"},
+sub:{en:"Pick a plan and unlock subjects with Marina — books, notes, formulas, chat and progress tracking.",de:"Wähle ein Paket und schalte Fächer mit Marina frei — Bücher, Skripte, Formeln, Chat und Fortschritt.",fr:"Choisis une formule et débloque des matières avec Marina — livres, fiches, formules, chat et suivi.",es:"Elige un plan y desbloquea asignaturas con Marina — libros, apuntes, fórmulas, chat y progreso.",it:"Scegli un piano e sblocca le materie con Marina — libri, appunti, formule, chat e progressi.",ru:"Выберите тариф и откройте предметы с Мариной — книги, конспекты, формулы, чат и прогресс.",pt:"Escolhe um plano e desbloqueia matérias com a Marina — livros, resumos, fórmulas, chat e progresso."},
+note:{en:"Each subject's first 15 minutes are free. Subscription is monthly.",de:"Die ersten 15 Minuten jedes Fachs sind kostenlos. Abo monatlich.",fr:"Les 15 premières minutes de chaque matière sont gratuites. Abonnement mensuel.",es:"Los primeros 15 minutos de cada asignatura son gratis. Suscripción mensual.",it:"I primi 15 minuti di ogni materia sono gratuiti. Abbonamento mensile.",ru:"Первые 15 минут каждого предмета бесплатно. Подписка ежемесячная.",pt:"Os primeiros 15 minutos de cada matéria são grátis. Subscrição mensal."},
+mo:{en:"/mo",de:"/Mon",fr:"/mois",es:"/mes",it:"/mese",ru:"/мес",pt:"/mês"},
+c1:{en:"1 subject",de:"1 Fach",fr:"1 matière",es:"1 asignatura",it:"1 materia",ru:"1 предмет",pt:"1 matéria"},
+c2:{en:"2 subjects",de:"2 Fächer",fr:"2 matières",es:"2 asignaturas",it:"2 materie",ru:"2 предмета",pt:"2 matérias"},
+c3:{en:"3 subjects",de:"3 Fächer",fr:"3 matières",es:"3 asignaturas",it:"3 materie",ru:"3 предмета",pt:"3 matérias"},
+f_book:{en:"Books, notes and formulas",de:"Bücher, Skripte und Formeln",fr:"Livres, fiches et formules",es:"Libros, apuntes y fórmulas",it:"Libri, appunti e formule",ru:"Книги, конспекты и формулы",pt:"Livros, resumos e fórmulas"},
+f_chat:{en:"Chat with Marina",de:"Chat mit Marina",fr:"Discussion avec Marina",es:"Chat con Marina",it:"Chat con Marina",ru:"Чат с Мариной",pt:"Chat com a Marina"},
+f_test:{en:"Aptitude test",de:"Eignungstest",fr:"Test d'aptitude",es:"Test de aptitud",it:"Test attitudinale",ru:"Тест склонностей",pt:"Teste de aptidão"},
+f_prog:{en:"Progress tracking",de:"Fortschritt verfolgen",fr:"Suivi des progrès",es:"Seguimiento del progreso",it:"Monitoraggio progressi",ru:"Отслеживание прогресса",pt:"Acompanhamento do progresso"},
+best:{en:"MOST POPULAR",de:"AM BELIEBTESTEN",fr:"LE PLUS POPULAIRE",es:"MÁS POPULAR",it:"PIÙ POPOLARE",ru:"ПОПУЛЯРНОЕ",pt:"MAIS POPULAR"},
+choose:{en:"Choose",de:"Wählen",fr:"Choisir",es:"Elegir",it:"Scegli",ru:"Выбрать",pt:"Escolher"},
+terms:{en:"Terms",de:"AGB",fr:"Conditions",es:"Términos",it:"Termini",ru:"Условия",pt:"Termos"},
+privacy:{en:"Privacy",de:"Datenschutz",fr:"Confidentialité",es:"Privacidad",it:"Privacy",ru:"Приватность",pt:"Privacidade"},
+refund:{en:"Refunds",de:"Rückerstattung",fr:"Remboursement",es:"Reembolso",it:"Rimborsi",ru:"Возврат",pt:"Reembolso"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+</script>
+</body></html>

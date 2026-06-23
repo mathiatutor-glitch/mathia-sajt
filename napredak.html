@@ -1,0 +1,248 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Moj napredak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(120% 120% at 50% 0%,#fff,var(--paper) 60%);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;min-height:100vh;padding:26px 14px}
+.wrap{width:100%;max-width:820px;margin:0 auto}
+.card{background:#fff;border:1px solid var(--goldlt);border-radius:22px;box-shadow:0 24px 60px rgba(67,44,55,.12);padding:26px 24px;position:relative;overflow:hidden;margin-bottom:16px}
+.card:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,var(--goldlt),var(--gold),var(--golddk))}
+.brand{font-size:12px;letter-spacing:.32em;color:var(--golddk);font-weight:700}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:32px;margin:6px 0 2px}
+h2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;margin:0 0 12px}
+.hi{color:#7a6b66;margin:0 0 4px}
+.lang{position:absolute;top:14px;right:14px;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.prow{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--goldlt);padding:10px 2px;font-size:15px}
+.prow span:first-child{color:#8a7a74}.prow span:last-child{font-weight:600;text-align:right}
+.big{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--golddk)}
+.bar{height:11px;background:#f0e6d4;border-radius:999px;overflow:hidden;margin:6px 0}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--golddk));width:0;transition:width .5s ease}
+.ringwrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center}
+.pct{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:var(--golddk)}
+.subj{border:1px solid var(--goldlt);border-radius:14px;padding:14px 16px;margin:10px 0}
+.subj .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.subj .nm{font-weight:700}.subj .me{font-size:13px;color:#8a7a74;margin-top:3px}
+.pill{display:inline-block;font-size:12px;color:var(--golddk);border:1px solid var(--goldlt);border-radius:999px;padding:3px 9px;margin:4px 6px 0 0}
+a.btn,button.btn{display:inline-block;border:1px solid var(--goldlt);background:#fff;color:var(--plum);font:600 15px Inter,sans-serif;padding:11px 16px;border-radius:12px;cursor:pointer;text-decoration:none;transition:.18s}
+a.btn:hover,button.btn:hover{border-color:var(--gold);transform:translateY(-1px)}
+.primary{background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;border:none}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.plan{background:#FBF6EE;border:1px solid var(--goldlt);border-radius:14px;padding:14px 16px;font-size:15px;line-height:1.5}
+.muted{color:#8a7a74}.center{text-align:center}
+details{margin-top:10px}summary{cursor:pointer;color:var(--golddk);font-weight:600;font-size:14px}
+.tasks{list-style:none;padding:0;margin:8px 0 0}
+.tasks li{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:14.5px;border-bottom:1px dashed #f0e6d4}
+.tasks .ck{width:18px;height:18px;border-radius:5px;border:2px solid var(--goldlt);display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex:none}
+.tasks li.done .ck{background:linear-gradient(180deg,var(--gold),var(--golddk));border-color:var(--golddk)}
+.tasks li.done span{color:#8a7a74;text-decoration:line-through}
+.foot{text-align:center;font-size:12px;color:#a89a93;margin-top:6px}
+.hide{display:none}
+</style></head>
+<body><div class="wrap">
+
+<div class="card">
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option>
+</select>
+<div class="brand">MATHIA</div>
+<h1 id="t_title">Moj napredak</h1>
+<p class="hi" id="t_hi"></p>
+</div>
+
+<div class="card hide" id="c_login"><p id="t_needlogin"></p><a class="btn primary" id="a_login" href="nalog.html"></a></div>
+
+<div class="card hide" id="c_overall">
+<h2 id="t_overallH"></h2>
+<div class="ringwrap"><span class="pct" id="o_pct">0%</span><div style="flex:1;min-width:200px"><div class="bar"><i id="o_bar"></i></div><div class="muted" id="o_sub" style="font-size:13px"></div></div></div>
+</div>
+
+<div class="card hide" id="c_profile">
+<h2 id="t_profileH"></h2>
+<p class="center"><span class="muted" id="t_leadL"></span><br><span class="big" id="p_lead"></span></p>
+<div id="p_rows"></div>
+</div>
+
+<div class="card hide" id="c_noprofile">
+<h2 id="t_profileH2"></h2><p id="t_noprofile"></p><a class="btn primary" id="a_test" href="test-sklonosti.html"></a>
+</div>
+
+<div class="card" id="c_plan">
+<h2 id="t_planH"></h2><div class="plan" id="p_plan"></div>
+</div>
+
+<div class="card" id="c_subj">
+<h2 id="t_subjH"></h2><div id="p_subj"></div>
+</div>
+
+<div class="card center">
+<div class="row" style="justify-content:center">
+<a class="btn" id="a_again" href="test-sklonosti.html"></a>
+<a class="btn" id="a_back" href="predmeti.html"></a>
+</div>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+</div>
+<script>
+/* ====== CONFIG ====== */
+var SUPABASE_URL="https://ibhirxltgeyecrjwymai.supabase.co";
+var SUPABASE_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+/* ==================== */
+var sb=null; try{ if(SUPABASE_URL&&SUPABASE_ANON&&window.supabase) sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON);}catch(e){}
+
+var T={
+sr:{title:"Moj napredak",hi:"Tvoj pregled učenja na jednom mestu.",needlogin:"Prijavi se da vidiš svoj napredak i preporuke.",login:"Prijavi se",overallH:"Ukupan napredak",profileH:"Tvoj profil",lead:"Najjača oblast",noprofile:"Još nemaš profil. Uradi test sklonosti — za par minuta dobiješ oblast, stil učenja i plan.",test:"Uradi test sklonosti",planH:"Preporuka učenja",subjH:"Tvoji predmeti",none:"Još nisi počeo nijedan predmet. Izaberi predmet i kreni 💛",cont:"Nastavi",last:"Poslednja tema",total:"Ukupno",streak:"Niz",min:"min",days:"dana",again:"Uradi test ponovo",back:"Svi predmeti",done:"urađeno",todo:"preostalo",tasks:"Obaveze",noTasks:"Nema upisanih obaveza još.",ofDone:"od",
+styleL:"Stil učenja",minL:"Tempo",timeL:"Najbolje vreme",socL:"Način rada",
+plan:"Uči ≈ %m min dnevno, najbolje %t. Cilj: 2–3 teme nedeljno, %s. Klikni „Nastavi" na predmetu da se vratiš tačno gde si stao.",
+types:{T:"Tehnika i IT",E:"Ekonomija i poslovno",P:"Prirodne nauke i medicina",D:"Društveno-humanističke nauke",U:"Umetnost i dizajn"},
+stil:{V:"vizuelno (slike i dijagrami)",Pr:"praktično (radeći zadatke)",Te:"čitanjem objašnjenja",Ex:"kroz rešene primere"},
+vreme:{jutro:"ujutru",popodne:"popodne",vece:"uveče"},drustvo:{sam:"Sam/a",par:"U paru",grupa:"U grupi"}},
+
+en:{title:"My progress",hi:"Your learning overview in one place.",needlogin:"Log in to see your progress and recommendations.",login:"Log in",overallH:"Overall progress",profileH:"Your profile",lead:"Strongest area",noprofile:"You don't have a profile yet. Take the aptitude test — in a few minutes you'll get your area, learning style and a plan.",test:"Take the aptitude test",planH:"Study recommendation",subjH:"Your subjects",none:"You haven't started any subject yet. Pick one and begin 💛",cont:"Continue",last:"Last topic",total:"Total",streak:"Streak",min:"min",days:"days",again:"Take the test again",back:"All subjects",done:"done",todo:"left",tasks:"Tasks",noTasks:"No tasks recorded yet.",ofDone:"of",
+styleL:"Learning style",minL:"Pace",timeL:"Best time",socL:"How you work",
+plan:"Study ≈ %m min/day, best %t. Goal: 2–3 topics per week, %s. Click “Continue” on a subject to pick up right where you left off.",
+types:{T:"Engineering & IT",E:"Business & economics",P:"Science & medicine",D:"Humanities & social sciences",U:"Art & design"},
+stil:{V:"visually (images & diagrams)",Pr:"hands-on (doing tasks)",Te:"reading explanations",Ex:"via worked examples"},
+vreme:{jutro:"in the morning",popodne:"in the afternoon",vece:"in the evening"},drustvo:{sam:"Alone",par:"In a pair",grupa:"In a group"}},
+
+de:{title:"Mein Fortschritt",hi:"Dein Lernüberblick an einem Ort.",needlogin:"Melde dich an, um Fortschritt und Empfehlungen zu sehen.",login:"Anmelden",overallH:"Gesamtfortschritt",profileH:"Dein Profil",lead:"Stärkster Bereich",noprofile:"Du hast noch kein Profil. Mach den Eignungstest — in wenigen Minuten bekommst du Bereich, Lernstil und einen Plan.",test:"Eignungstest machen",planH:"Lernempfehlung",subjH:"Deine Fächer",none:"Du hast noch kein Fach begonnen. Wähle eines und leg los 💛",cont:"Fortsetzen",last:"Letztes Thema",total:"Gesamt",streak:"Serie",min:"Min",days:"Tage",again:"Test erneut machen",back:"Alle Fächer",done:"erledigt",todo:"offen",tasks:"Aufgaben",noTasks:"Noch keine Aufgaben erfasst.",ofDone:"von",
+styleL:"Lernstil",minL:"Tempo",timeL:"Beste Zeit",socL:"Arbeitsweise",
+plan:"Lerne ≈ %m Min/Tag, am besten %t. Ziel: 2–3 Themen pro Woche, %s. Klicke „Fortsetzen", um genau dort weiterzumachen, wo du aufgehört hast.",
+types:{T:"Technik & IT",E:"Wirtschaft & Business",P:"Naturwissenschaft & Medizin",D:"Geistes- & Sozialwissenschaften",U:"Kunst & Design"},
+stil:{V:"visuell (Bilder & Diagramme)",Pr:"praktisch (Aufgaben lösen)",Te:"Erklärungen lesen",Ex:"anhand gelöster Beispiele"},
+vreme:{jutro:"morgens",popodne:"nachmittags",vece:"abends"},drustvo:{sam:"Allein",par:"Zu zweit",grupa:"In der Gruppe"}},
+
+fr:{title:"Ma progression",hi:"Ton suivi d'apprentissage en un seul endroit.",needlogin:"Connecte-toi pour voir ta progression et tes recommandations.",login:"Se connecter",overallH:"Progression totale",profileH:"Ton profil",lead:"Domaine le plus fort",noprofile:"Tu n'as pas encore de profil. Passe le test d'aptitude — en quelques minutes tu obtiens ton domaine, ton style et un plan.",test:"Passer le test d'aptitude",planH:"Recommandation d'étude",subjH:"Tes matières",none:"Tu n'as encore commencé aucune matière. Choisis-en une et commence 💛",cont:"Continuer",last:"Dernier sujet",total:"Total",streak:"Série",min:"min",days:"jours",again:"Repasser le test",back:"Toutes les matières",done:"fait",todo:"restant",tasks:"Tâches",noTasks:"Aucune tâche enregistrée pour l'instant.",ofDone:"sur",
+styleL:"Style d'apprentissage",minL:"Rythme",timeL:"Meilleur moment",socL:"Façon de travailler",
+plan:"Étudie ≈ %m min/jour, idéalement %t. Objectif : 2–3 sujets par semaine, %s. Clique « Continuer » pour reprendre exactement où tu t'es arrêté.",
+types:{T:"Technique & informatique",E:"Économie & business",P:"Sciences & médecine",D:"Sciences humaines & sociales",U:"Art & design"},
+stil:{V:"visuel (images & schémas)",Pr:"pratique (faire des exercices)",Te:"en lisant des explications",Ex:"par exemples résolus"},
+vreme:{jutro:"le matin",popodne:"l'après-midi",vece:"le soir"},drustvo:{sam:"Seul(e)",par:"À deux",grupa:"En groupe"}},
+
+es:{title:"Mi progreso",hi:"Tu resumen de aprendizaje en un solo lugar.",needlogin:"Inicia sesión para ver tu progreso y recomendaciones.",login:"Iniciar sesión",overallH:"Progreso total",profileH:"Tu perfil",lead:"Área más fuerte",noprofile:"Aún no tienes perfil. Haz el test de aptitud — en unos minutos obtienes tu área, estilo y un plan.",test:"Hacer el test de aptitud",planH:"Recomendación de estudio",subjH:"Tus asignaturas",none:"Aún no has empezado ninguna asignatura. Elige una y empieza 💛",cont:"Continuar",last:"Último tema",total:"Total",streak:"Racha",min:"min",days:"días",again:"Repetir el test",back:"Todas las asignaturas",done:"hecho",todo:"restante",tasks:"Tareas",noTasks:"Aún no hay tareas registradas.",ofDone:"de",
+styleL:"Estilo de aprendizaje",minL:"Ritmo",timeL:"Mejor momento",socL:"Cómo trabajas",
+plan:"Estudia ≈ %m min/día, mejor %t. Meta: 2–3 temas por semana, %s. Pulsa «Continuar» para seguir justo donde lo dejaste.",
+types:{T:"Tecnología e informática",E:"Economía y negocios",P:"Ciencias y medicina",D:"Humanidades y ciencias sociales",U:"Arte y diseño"},
+stil:{V:"visual (imágenes y diagramas)",Pr:"práctico (haciendo ejercicios)",Te:"leyendo explicaciones",Ex:"con ejemplos resueltos"},
+vreme:{jutro:"por la mañana",popodne:"por la tarde",vece:"por la noche"},drustvo:{sam:"Solo/a",par:"En pareja",grupa:"En grupo"}},
+
+it:{title:"I miei progressi",hi:"Il tuo quadro di studio in un unico posto.",needlogin:"Accedi per vedere progressi e consigli.",login:"Accedi",overallH:"Progresso totale",profileH:"Il tuo profilo",lead:"Ambito più forte",noprofile:"Non hai ancora un profilo. Fai il test attitudinale — in pochi minuti ottieni ambito, stile e un piano.",test:"Fai il test attitudinale",planH:"Consiglio di studio",subjH:"Le tue materie",none:"Non hai ancora iniziato nessuna materia. Scegline una e inizia 💛",cont:"Continua",last:"Ultimo argomento",total:"Totale",streak:"Serie",min:"min",days:"giorni",again:"Rifai il test",back:"Tutte le materie",done:"fatto",todo:"rimanente",tasks:"Attività",noTasks:"Ancora nessuna attività registrata.",ofDone:"di",
+styleL:"Stile di studio",minL:"Ritmo",timeL:"Momento migliore",socL:"Come lavori",
+plan:"Studia ≈ %m min/giorno, meglio %t. Obiettivo: 2–3 argomenti a settimana, %s. Clicca «Continua» per riprendere esattamente da dove eri.",
+types:{T:"Tecnica e informatica",E:"Economia e business",P:"Scienze e medicina",D:"Scienze umane e sociali",U:"Arte e design"},
+stil:{V:"visivo (immagini e diagrammi)",Pr:"pratico (facendo esercizi)",Te:"leggendo spiegazioni",Ex:"con esempi svolti"},
+vreme:{jutro:"di mattina",popodne:"di pomeriggio",vece:"di sera"},drustvo:{sam:"Da solo/a",par:"In coppia",grupa:"In gruppo"}},
+
+ru:{title:"Мой прогресс",hi:"Твоя картина учёбы в одном месте.",needlogin:"Войди, чтобы увидеть прогресс и рекомендации.",login:"Войти",overallH:"Общий прогресс",profileH:"Твой профиль",lead:"Самая сильная область",noprofile:"У тебя ещё нет профиля. Пройди тест склонностей — за пару минут получишь область, стиль и план.",test:"Пройти тест склонностей",planH:"Рекомендация по учёбе",subjH:"Твои предметы",none:"Ты ещё не начал ни один предмет. Выбери и начни 💛",cont:"Продолжить",last:"Последняя тема",total:"Всего",streak:"Серия",min:"мин",days:"дн.",again:"Пройти тест заново",back:"Все предметы",done:"выполнено",todo:"осталось",tasks:"Задачи",noTasks:"Пока нет задач.",ofDone:"из",
+styleL:"Стиль обучения",minL:"Темп",timeL:"Лучшее время",socL:"Как работаешь",
+plan:"Занимайся ≈ %m мин/день, лучше %t. Цель: 2–3 темы в неделю, %s. Нажми «Продолжить», чтобы вернуться точно туда, где остановился.",
+types:{T:"Техника и ИТ",E:"Экономика и бизнес",P:"Естественные науки и медицина",D:"Гуманитарные и общественные науки",U:"Искусство и дизайн"},
+stil:{V:"визуально (картинки и схемы)",Pr:"практически (решая задачи)",Te:"читая объяснения",Ex:"по разобранным примерам"},
+vreme:{jutro:"утром",popodne:"днём",vece:"вечером"},drustvo:{sam:"Один/одна",par:"В паре",grupa:"В группе"}},
+
+pt:{title:"O meu progresso",hi:"A tua visão de estudo num só lugar.",needlogin:"Inicia sessão para ver o teu progresso e recomendações.",login:"Iniciar sessão",overallH:"Progresso total",profileH:"O teu perfil",lead:"Área mais forte",noprofile:"Ainda não tens perfil. Faz o teste de aptidão — em poucos minutos obténs área, estilo e um plano.",test:"Fazer o teste de aptidão",planH:"Recomendação de estudo",subjH:"As tuas disciplinas",none:"Ainda não começaste nenhuma disciplina. Escolhe uma e começa 💛",cont:"Continuar",last:"Último tema",total:"Total",streak:"Sequência",min:"min",days:"dias",again:"Repetir o teste",back:"Todas as disciplinas",done:"feito",todo:"restante",tasks:"Tarefas",noTasks:"Ainda sem tarefas registadas.",ofDone:"de",
+styleL:"Estilo de aprendizagem",minL:"Ritmo",timeL:"Melhor altura",socL:"Como trabalhas",
+plan:"Estuda ≈ %m min/dia, melhor %t. Meta: 2–3 temas por semana, %s. Carrega em «Continuar» para retomar exatamente onde paraste.",
+types:{T:"Tecnologia e TI",E:"Economia e negócios",P:"Ciências e medicina",D:"Humanidades e ciências sociais",U:"Arte e design"},
+stil:{V:"visual (imagens e diagramas)",Pr:"prático (a fazer exercícios)",Te:"a ler explicações",Ex:"a seguir exemplos resolvidos"},
+vreme:{jutro:"de manhã",popodne:"à tarde",vece:"à noite"},drustvo:{sam:"Sozinho/a",par:"A pares",grupa:"Em grupo"}}
+};
+
+var NAMES={
+"priprema-fakultet":{sr:"Priprema — fakultet",en:"Prep — university",de:"Vorb. — Universität",fr:"Prépa — université",es:"Prep — universidad",it:"Prep — università",ru:"Подготовка — вуз",pt:"Prep — universidade"},
+"priprema-visa":{sr:"Priprema — viša škola",en:"Prep — college",de:"Vorb. — Hochschule",fr:"Prépa — école sup.",es:"Prep — escuela superior",it:"Prep — college",ru:"Подготовка — колледж",pt:"Prep — ensino superior"},
+"priprema-srednja":{sr:"Priprema — srednja škola",en:"Prep — high school",de:"Vorb. — Mittelschule",fr:"Prépa — lycée",es:"Prep — secundaria",it:"Prep — superiori",ru:"Подготовка — школа",pt:"Prep — secundário"},
+"elektricna-merenja":{sr:"Električna merenja",en:"Electrical measurements",de:"Elektrische Messtechnik",fr:"Mesures électriques",es:"Medidas eléctricas",it:"Misure elettriche",ru:"Электрические измерения",pt:"Medições elétricas"},
+"uvod-u-elektroniku":{sr:"Uvod u elektroniku",en:"Introduction to electronics",de:"Einführung in die Elektronik",fr:"Introduction à l'électronique",es:"Introducción a la electrónica",it:"Introduzione all'elettronica",ru:"Введение в электронику",pt:"Introdução à eletrónica"},
+"fax-verovatnoca":{sr:"Verovatnoća i statistika",en:"Probability & statistics",de:"Wahrscheinlichkeit & Statistik",fr:"Probabilités & statistiques",es:"Probabilidad y estadística",it:"Probabilità e statistica",ru:"Вероятность и статистика",pt:"Probabilidade e estatística"},
+"verovatnoca":{sr:"Verovatnoća i statistika",en:"Probability & statistics",de:"Wahrscheinlichkeit & Statistik",fr:"Probabilités & statistiques",es:"Probabilidad y estadística",it:"Probabilità e statistica",ru:"Вероятность и статистика",pt:"Probabilidade e estatística"}};
+
+var lang="sr",t,profile=null,subjects=[];
+function $(id){return document.getElementById(id)}
+function row(k,v){return '<div class="prow"><span>'+k+'</span><span>'+v+'</span></div>'}
+function nm(key){var n=NAMES[key];return n?(n[lang]||n.sr):key}
+function pageFor(key){return "predmet-"+(key==="fax-verovatnoca"?"verovatnoca":key)+".html"}
+
+function pct(s){
+ if(s.obaveze&&s.obaveze.length){var d=s.obaveze.filter(function(o){return o.g}).length;return Math.round(d/s.obaveze.length*100);}
+ if(typeof s.procenat==="number")return Math.max(0,Math.min(100,s.procenat));
+ if(s.status==="zavrseno"||s.status==="završeno")return 100;
+ return 0;
+}
+
+async function load(){
+ if(sb){ try{
+   var u=await sb.auth.getUser(); var user=u&&u.data&&u.data.user;
+   if(!user){ render(false); return; }
+   var pr=await sb.from('mathia_profil').select('*').eq('user_id',user.id).maybeSingle();
+   profile=pr&&pr.data?pr.data:null;
+   var np=await sb.from('mathia_napredak').select('*').eq('user_id',user.id).order('azurirano',{ascending:false});
+   subjects=(np&&np.data)?np.data:[];
+   render(true,user); return;
+ }catch(e){} }
+ try{ var ls=localStorage.getItem('mathia_profil'); if(ls) profile=JSON.parse(ls);}catch(e){}
+ render(true,null);
+}
+
+function render(loggedOk,user){t=T[lang];
+ $("t_title").textContent=t.title;$("t_hi").textContent=t.hi;
+ $("a_again").textContent=t.again;$("a_back").textContent=t.back;
+ var showLogin=(sb && !user && !profile);
+ $("c_login").classList.toggle("hide",!showLogin);
+ $("t_needlogin").textContent=t.needlogin;$("a_login").textContent=t.login;
+
+ // overall
+ if(subjects&&subjects.length){
+   var avg=Math.round(subjects.reduce(function(a,s){return a+pct(s)},0)/subjects.length);
+   $("c_overall").classList.remove("hide");
+   $("t_overallH").textContent=t.overallH;
+   $("o_pct").textContent=avg+"%";
+   $("o_bar").style.width=avg+"%";
+   var totDone=0,totAll=0;
+   subjects.forEach(function(s){if(s.obaveze&&s.obaveze.length){totAll+=s.obaveze.length;totDone+=s.obaveze.filter(function(o){return o.g}).length;}});
+   $("o_sub").textContent=totAll?(totDone+" "+t.ofDone+" "+totAll+" · "+t.tasks.toLowerCase()):"";
+ }else $("c_overall").classList.add("hide");
+
+ if(profile){
+   $("c_profile").classList.remove("hide");$("c_noprofile").classList.add("hide");
+   $("t_profileH").textContent=t.profileH;$("t_leadL").textContent=t.lead;
+   $("p_lead").textContent=t.types[profile.top_oblast]||"—";
+   $("p_rows").innerHTML=row(t.styleL,t.stil[profile.stil]||"—")+row(t.minL,"≈ "+(profile.minuta||"—")+" "+t.min)+row(t.timeL,t.vreme[profile.vreme]||"—")+row(t.socL,t.drustvo[profile.drustvo]||"—");
+   $("p_plan").innerHTML=t.plan.replace("%m",profile.minuta||"—").replace("%t",t.vreme[profile.vreme]||"").replace("%s",t.stil[profile.stil]||"");
+ }else{
+   $("c_profile").classList.add("hide");$("c_noprofile").classList.remove("hide");
+   $("t_profileH2").textContent=t.profileH;$("t_noprofile").textContent=t.noprofile;$("a_test").textContent=t.test;
+   $("p_plan").textContent=t.noprofile;
+ }
+ $("t_planH").textContent=t.planH;
+ $("t_subjH").textContent=t.subjH;
+ var box=$("p_subj");
+ if(subjects&&subjects.length){
+   box.innerHTML=subjects.map(function(s){
+     var p=pct(s),meta=[];
+     if(s.poslednja_tema)meta.push('<span class="pill">'+t.last+": "+s.poslednja_tema+'</span>');
+     if(s.minuta_ukupno)meta.push('<span class="pill">'+t.total+": "+s.minuta_ukupno+" "+t.min+'</span>');
+     if(s.serija)meta.push('<span class="pill">'+t.streak+": "+s.serija+" "+t.days+'</span>');
+     var tasks="";
+     if(s.obaveze&&s.obaveze.length){
+       var d=s.obaveze.filter(function(o){return o.g}).length;
+       tasks='<details><summary>'+t.tasks+" ("+d+" "+t.ofDone+" "+s.obaveze.length+')</summary><ul class="tasks">'+
+         s.obaveze.map(function(o){return '<li class="'+(o.g?"done":"")+'"><span class="ck">'+(o.g?"✓":"")+'</span><span>'+(o.t||"")+'</span></li>'}).join("")+
+         '</ul></details>';
+     }
+     return '<div class="subj"><div class="top"><div><div class="nm">'+nm(s.predmet)+'</div><div class="me">'+meta.join(" ")+'</div></div>'
+       +'<a class="btn primary" href="'+pageFor(s.predmet)+'">'+t.cont+'</a></div>'
+       +'<div class="bar"><i style="width:'+p+'%"></i></div>'
+       +'<div class="muted" style="font-size:13px">'+p+'% '+t.done+'</div>'
+       +tasks+'</div>';
+   }).join("");
+ }else{ box.innerHTML='<p class="muted">'+t.none+'</p>'; }
+}
+$("lang").onchange=function(){lang=this.value;document.documentElement.lang=lang;render(true,profile&&true);};
+load();
+</script>
+</body></html>

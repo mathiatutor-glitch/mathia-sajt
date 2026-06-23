@@ -1,0 +1,246 @@
+<!doctype html><html lang="sr-Latn"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Prodavnica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#FBF6EE;--paper2:#F5EADB;--blush:#F4E3DD;--rose:#CC8E86;--rose-dk:#B5746C;
+--plum:#432C37;--plum2:#5C3B49;--plum3:#7E5765;
+--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;
+--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:1120px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{font-size:.7rem;letter-spacing:.36em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+.script{font-family:'Pinyon Script',cursive;font-weight:400}
+.goldtext{background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+@keyframes foil{to{background-position:-230% center}}
+.orn{display:flex;align-items:center;gap:16px;justify-content:center;margin:34px auto;max-width:300px;color:var(--gold)}
+.orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn:after{background:linear-gradient(90deg,var(--gold),transparent)}
+.orn i{font-style:normal;font-size:14px}
+.btn{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:14px 28px;font-family:inherit;font-weight:700;font-size:.92rem;letter-spacing:.02em;cursor:pointer;border:1.5px solid transparent;transition:transform .16s ease,box-shadow .16s ease,background .2s}
+.btn-gold{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;box-shadow:0 12px 30px -12px rgba(198,160,92,.85),inset 0 1px 0 rgba(255,255,255,.55)}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-rose{background:linear-gradient(180deg,var(--rose),var(--rose-dk));color:#fff;box-shadow:0 12px 28px -14px rgba(181,116,108,.9)}
+.btn-rose:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--plum);border-color:var(--gold)}
+.btn-ghost:hover{background:rgba(198,160,92,.12)}
+.btn-ghost-l{background:transparent;color:#fff;border-color:rgba(231,210,162,.6)}
+.btn-ghost-l:hover{background:rgba(231,210,162,.14)}
+.btn.soon{background:#efe6d4;color:#9a8a72;box-shadow:none;cursor:not-allowed}
+/* topbar + header */
+.topbar{background:linear-gradient(90deg,var(--plum),var(--plum2),var(--plum))}
+.topbar .wrap{display:flex;align-items:center;justify-content:center;gap:12px;min-height:36px;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ecd9dd}
+.topbar .tb-orn{color:var(--gold)}
+header{position:sticky;top:0;z-index:40;background:rgba(251,246,238,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord)}
+header:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent);background-size:220% 100%;animation:goldslide 6.5s linear infinite}
+@keyframes goldslide{to{background-position:-220% 0}}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:14px}
+.brand{display:flex;align-items:center;gap:9px}
+.bmark{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.5rem;letter-spacing:.06em;background:linear-gradient(100deg,#9C7838,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C);background-size:230% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+.bseal{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--golddk);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD)}
+.navlinks{display:flex;align-items:center;gap:20px;font-weight:600;font-size:.92rem;margin-left:auto}
+.navlinks a:hover{color:var(--golddk)}
+.navbtns{display:flex;align-items:center;gap:9px}
+.lang{appearance:menulist;font:700 13px Nunito;padding:7px 9px;border-radius:100px;background:#fff;border:1.5px solid var(--gold);color:var(--plum);cursor:pointer}
+@media(max-width:880px){.navlinks{display:none}}
+/* hero */
+.hero{text-align:center;padding:64px 0 30px;background:radial-gradient(120% 90% at 50% 0%,#fff,var(--paper))}
+.hero h1{font-size:clamp(40px,9vw,72px);margin:8px 0 4px}
+.hero .script{font-size:clamp(26px,6vw,40px);color:var(--rose)}
+.hero p{color:var(--muted);max-width:30em;margin:10px auto 0}
+.covers{display:flex;gap:12px;justify-content:center;margin-top:24px}
+.cov{width:84px;height:116px;border-radius:9px;background:linear-gradient(160deg,var(--plum2),var(--plum));border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--goldlt);font-family:'Cormorant Garamond',serif;font-size:32px;box-shadow:0 16px 32px -10px rgba(67,44,55,.5)}
+.cov:nth-child(1){transform:rotate(-6deg)}.cov:nth-child(3){transform:rotate(6deg)}.cov:nth-child(2){transform:translateY(-8px)}
+/* sections */
+section{padding:18px 0}
+.sech{text-align:center;margin-bottom:26px}
+.sech h2{font-size:clamp(28px,5vw,42px);margin:6px 0 0}
+.sech p{color:var(--muted);max-width:34em;margin:8px auto 0}
+.prods{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:20px}
+.prod{position:relative;background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:22px;display:flex;flex-direction:column;box-shadow:0 18px 44px -22px rgba(67,44,55,.4)}
+.prod.blush{background:linear-gradient(180deg,#fff,var(--blush))}
+.badge{position:absolute;top:-12px;left:20px;background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;font:800 10.5px Nunito;letter-spacing:.1em;padding:5px 12px;border-radius:100px;text-transform:uppercase}
+.thumb{height:120px;border-radius:13px;background:linear-gradient(160deg,var(--plum2),var(--plum));display:flex;align-items:center;justify-content:center;color:var(--goldlt);font-family:'Cormorant Garamond',serif;font-size:40px;margin-bottom:14px}
+.prod.blush .thumb{background:linear-gradient(160deg,var(--rose),var(--rose-dk));color:#fff}
+.cat{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose-dk);font-weight:800}
+.prod h3{font-size:23px;margin:3px 0 4px}
+.stars{color:var(--gold);font-size:14px;letter-spacing:2px}
+.desc{color:var(--muted);font-size:14px;margin:8px 0 14px;flex:1}
+.price{font-size:26px;font-weight:800;margin-bottom:12px;font-family:'Cormorant Garamond',serif}
+.price small{font-size:13px;color:var(--muted);font-weight:600}
+.buy{justify-content:center;width:100%}
+.bundle{background:linear-gradient(160deg,var(--plum),#2C1A25);color:#F7ECEF;border-radius:24px;padding:34px 26px;text-align:center}
+.bundle h2{font-size:clamp(26px,5vw,40px);margin:0 0 6px;color:#fff}
+.bundle .save{display:inline-block;background:linear-gradient(180deg,var(--rose),var(--rose-dk));color:#fff;font-weight:800;font-size:12px;padding:5px 13px;border-radius:100px;letter-spacing:.08em}
+.bundle p{color:var(--goldlt);max-width:30em;margin:12px auto 16px}
+.bundle .price{color:var(--goldlt)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.stp{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:20px;text-align:center}
+.stp .n{width:40px;height:40px;border-radius:50%;background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 10px;font-family:'Cormorant Garamond',serif;font-size:18px}
+.faq{max-width:760px;margin:0 auto}
+.faq details{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:14px 18px;margin:10px 0}
+.faq summary{font-weight:700;cursor:pointer}
+.faq p{color:var(--muted);margin:8px 0 0}
+.note-cur{text-align:center;color:var(--muted);font-size:12.5px;margin-top:12px}
+footer{background:linear-gradient(160deg,var(--plum),#2C1A25);color:#E7D6DC;text-align:center;padding:40px 22px;margin-top:30px}
+footer .wm{font-family:'Pinyon Script',cursive;font-size:34px}
+footer .wm span{background:linear-gradient(100deg,#9C7838,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C);background-size:230% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+footer a{color:var(--goldlt)}
+footer .links{margin:12px 0;font-size:13px}
+footer .sml{color:#b79aa3;font-size:12px;margin-top:8px}
+</style></head>
+<body>
+
+<div class="topbar"><div class="wrap"><span class="tb-orn">❧</span><span data-i18n="tb">Instant download · fiskalni račun na mejl · plaćanje uskoro</span><span class="tb-orn">❧</span></div></div>
+
+<header><div class="wrap nav">
+  <a class="brand" href="index.html"><span class="bseal">M</span><span class="bmark">MATHIA</span></a>
+  <nav class="navlinks">
+    <a href="index.html" data-i18n="nav_home">Početna</a>
+    <a href="index.html#predmeti" data-i18n="nav_subjects">Predmeti</a>
+    <a href="cenovnik.html" data-i18n="nav_pricing">Paketi</a>
+  </nav>
+  <div class="navbtns">
+    <a class="btn btn-ghost" href="nalog.html" data-i18n="nav_login">Prijavi se</a>
+    <select class="lang" id="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option></select>
+  </div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div class="eyebrow" data-i18n="eyebrow">PRODAVNICA</div>
+  <h1><span class="goldtext">Prodavnica</span></h1>
+  <div class="script">study in style</div>
+  <p data-i18n="hero_p">Luksuzni digitalni planeri, vodiči i stikeri — instant download odmah po uplati</p>
+  <div class="covers"><div class="cov">M</div><div class="cov">∫</div><div class="cov">★</div></div>
+</div></section>
+
+<div class="orn"><i>❦</i></div>
+
+<section><div class="wrap">
+  <div class="sech"><div class="eyebrow" data-i18n="why_ey">ZAŠTO BAŠ OVO</div><h2 data-i18n="why_h">Lepo, korisno, odmah tvoje</h2><p data-i18n="why_p">Dizajn u MathIA stilu, za tablet (GoodNotes/Notability) ili štampu</p></div>
+  <div class="prods">
+    <div class="prod">
+      <div class="badge" data-i18n="bestseller">NAJPRODAVANIJE</div>
+      <div class="thumb">M</div>
+      <div class="cat" data-i18n="cat_planner">Planer</div>
+      <h3 data-i18n="p_fak_n">Fakultetski planer XL</h3>
+      <div class="stars">★★★★★</div>
+      <div class="desc" data-i18n="p_fak_d">24 strane, luks dizajn sa presijavajućim zlatom i kaligrafijom. Za ceo semestar.</div>
+      <div class="price" data-i18n="p_fak_p">1.290 <small>din</small></div>
+      <a class="btn btn-gold buy" data-link="fak" href="#" data-i18n="buy">Kupi</a>
+    </div>
+    <div class="prod">
+      <div class="thumb">∑</div>
+      <div class="cat" data-i18n="cat_guide">Vodič</div>
+      <h3 data-i18n="p_prij_n">Prijemni bez panike</h3>
+      <div class="stars">★★★★★</div>
+      <div class="desc" data-i18n="p_prij_d">14 strana — plan učenja, kontrolne liste i smirena strategija za prijemni.</div>
+      <div class="price" data-i18n="p_prij_p">990 <small>din</small></div>
+      <a class="btn btn-gold buy" data-link="prij" href="#" data-i18n="buy">Kupi</a>
+    </div>
+    <div class="prod">
+      <div class="thumb">▦</div>
+      <div class="cat" data-i18n="cat_planner">Planer</div>
+      <h3 data-i18n="p_dan_n">Dnevni planer</h3>
+      <div class="stars">★★★★★</div>
+      <div class="desc" data-i18n="p_dan_d">6 strana — dnevni raspored, zadaci i fokus blokovi. Krem stil.</div>
+      <div class="price" data-i18n="p_dan_p">490 <small>din</small></div>
+      <a class="btn btn-gold buy" data-link="dan" href="#" data-i18n="buy">Kupi</a>
+    </div>
+    <div class="prod blush">
+      <div class="thumb">★</div>
+      <div class="cat" data-i18n="cat_sticker">Stikeri</div>
+      <h3 data-i18n="p_stik_n">Stikeri LUX</h3>
+      <div class="stars">★★★★★</div>
+      <div class="desc" data-i18n="p_stik_d">3 strane stikera — presijavajuće zlato + blush. Za planer i svesku.</div>
+      <div class="price" data-i18n="p_stik_p">390 <small>din</small></div>
+      <a class="btn btn-rose buy" data-link="stik" href="#" data-i18n="buy">Kupi</a>
+    </div>
+  </div>
+  <div class="note-cur" data-i18n="cur_note">Cene su u dinarima; promenom jezika na EN prikazuju se u evrima</div>
+</div></section>
+
+<div class="orn"><i>✦</i></div>
+
+<section><div class="wrap">
+  <div class="bundle">
+    <span class="save" data-i18n="save">−30% · NAJVEĆA VREDNOST</span>
+    <h2 data-i18n="bundle_n">Studentski paket</h2>
+    <p data-i18n="bundle_d">Svi proizvodi zajedno — planer XL, vodič za prijemni, dnevni planer i stikeri</p>
+    <div class="price" data-i18n="bundle_p">1.990 <small style="color:#E7D6DC">din</small></div>
+    <a class="btn btn-gold buy" data-link="bundle" href="#" style="width:auto;min-width:170px" data-i18n="buy">Kupi</a>
+  </div>
+</div></section>
+
+<div class="orn"><i>❧</i></div>
+
+<section><div class="wrap">
+  <div class="sech"><div class="eyebrow" data-i18n="how_ey">KAKO FUNKCIONIŠE</div><h2 data-i18n="how_h">Tri koraka</h2></div>
+  <div class="steps">
+    <div class="stp"><div class="n">1</div><b data-i18n="hs1">Izabereš</b><p style="color:var(--muted);font-size:14px;margin:6px 0 0" data-i18n="hs1d">Klikneš „Kupi" na proizvod</p></div>
+    <div class="stp"><div class="n">2</div><b data-i18n="hs2">Platiš</b><p style="color:var(--muted);font-size:14px;margin:6px 0 0" data-i18n="hs2d">Karticom, instant transferom ili PayPal-om</p></div>
+    <div class="stp"><div class="n">3</div><b data-i18n="hs3">Odmah stigne</b><p style="color:var(--muted);font-size:14px;margin:6px 0 0" data-i18n="hs3d">PDF na mejl + fiskalni račun</p></div>
+  </div>
+</div></section>
+
+<div class="orn"><i>✦</i></div>
+
+<section><div class="wrap">
+  <div class="sech"><div class="eyebrow" data-i18n="faq_ey">PITANJA</div><h2 data-i18n="faq_h">Često postavljano</h2></div>
+  <div class="faq">
+    <details><summary data-i18n="q1">Kako dobijam proizvod?</summary><p data-i18n="a1">Odmah po uplati dobiješ link za preuzimanje PDF-a i mejl sa fajlom.</p></details>
+    <details><summary data-i18n="q2">Na čemu se koristi?</summary><p data-i18n="a2">Na tabletu (GoodNotes, Notability) ili štampano. Stikeri na samolepljiv papir.</p></details>
+    <details><summary data-i18n="q3">Da li dobijam račun?</summary><p data-i18n="a3">Da — fiskalni račun stiže na mejl, automatski.</p></details>
+    <details><summary data-i18n="q4">Mogu li da vratim?</summary><p data-i18n="a4">Digitalni proizvodi su konačni; detalji su na strani Povraćaj.</p></details>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wm"><span>Mathia</span></div>
+  <div class="links">
+    <a href="index.html" data-i18n="nav_home">Početna</a> ·
+    <a href="cenovnik.html" data-i18n="nav_pricing">Paketi</a> ·
+    <a href="uslovi.html" data-i18n="terms">Uslovi</a> ·
+    <a href="privatnost.html" data-i18n="privacy">Privatnost</a> ·
+    <a href="povracaj.html" data-i18n="refund">Povraćaj</a>
+  </div>
+  <div class="links">Instagram @mathia.ai · YouTube @mathiatutor</div>
+  <div class="sml">© 2026 MathIA · www.mathia.rs</div>
+</footer>
+
+<script>
+const LINKS={fak:"#", prij:"#", dan:"#", stik:"#", bundle:"#"};
+var I18N={
+tb:{en:"Instant download · fiscal receipt by email · payment coming soon"},
+nav_home:{en:"Home"},nav_subjects:{en:"Subjects"},nav_pricing:{en:"Plans"},nav_login:{en:"Log in"},
+eyebrow:{en:"SHOP"},
+hero_p:{en:"Luxe digital planners, guides and stickers — instant download right after payment"},
+why_ey:{en:"WHY THIS"},why_h:{en:"Beautiful, useful, instantly yours"},why_p:{en:"MathIA-style design, for tablet (GoodNotes/Notability) or print"},
+bestseller:{en:"BESTSELLER"},cat_planner:{en:"Planner"},cat_guide:{en:"Guide"},cat_sticker:{en:"Stickers"},
+p_fak_n:{en:"University Planner XL"},p_fak_d:{en:"24 pages, luxe design with shimmering gold and calligraphy. For the whole semester."},p_fak_p:{en:"€11"},
+p_prij_n:{en:"Exam Prep, No Panic"},p_prij_d:{en:"13 pages — study plan, checklists and a calm strategy for entrance exams."},p_prij_p:{en:"€8"},
+p_dan_n:{en:"Daily Planner"},p_dan_d:{en:"6 pages — daily schedule, tasks and focus blocks. Cream style."},p_dan_p:{en:"€5"},
+p_stik_n:{en:"Stickers LUX"},p_stik_d:{en:"3 sticker pages — shimmering gold + blush. For planner and notebook."},p_stik_p:{en:"€4"},
+buy:{en:"Buy"},
+cur_note:{en:"Prices in euros; switch to SR for Serbian dinar prices"},
+save:{en:"−30% · BEST VALUE"},bundle_n:{en:"Student Bundle"},bundle_d:{en:"All products together — XL planner, exam guide, daily planner and stickers"},bundle_p:{en:"€19"},
+how_ey:{en:"HOW IT WORKS"},how_h:{en:"Three steps"},
+hs1:{en:"Choose"},hs1d:{en:"Click \"Buy\" on a product"},hs2:{en:"Pay"},hs2d:{en:"By card, instant transfer or PayPal"},hs3:{en:"Instant delivery"},hs3d:{en:"PDF by email + fiscal receipt"},
+faq_ey:{en:"QUESTIONS"},faq_h:{en:"Frequently asked"},
+q1:{en:"How do I get the product?"},a1:{en:"Right after payment you get a PDF download link and an email with the file."},
+q2:{en:"Where do I use it?"},a2:{en:"On a tablet (GoodNotes, Notability) or printed. Stickers on adhesive paper."},
+q3:{en:"Do I get a receipt?"},a3:{en:"Yes — a fiscal receipt is emailed automatically."},
+q4:{en:"Can I get a refund?"},a4:{en:"Digital products are final; details on the Refunds page."},
+terms:{en:"Terms"},privacy:{en:"Privacy"},refund:{en:"Refunds"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(l==="en"&&t&&t.en)?t.en:e.__sr});document.documentElement.lang=(l==="en"?"en":"sr-Latn");wireBuy();}
+function wireBuy(){document.querySelectorAll("[data-link]").forEach(function(a){var k=a.getAttribute("data-link"),u=LINKS[k];if(!u||u==="#"){a.classList.add("soon");a.removeAttribute("href");a.innerHTML=(document.documentElement.lang==="en"?"Soon":"Uskoro");}else{a.classList.remove("soon");a.href=u;a.target="_blank";a.rel="noopener";}});}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+wireBuy();
+</script>
+</body></html>

@@ -1,0 +1,110 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Priprema za prijemni (viša škola) · Knjiga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
+.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
+.topic p{margin:6px 0 12px}
+.box{border-radius:14px;padding:13px 15px;margin:12px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.task{font-weight:600;margin-bottom:6px}
+.katex-display{margin:.5em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">∑ % √</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">e-knjiga · priprema</div>
+<h1 data-i18n="name">Priprema za prijemni — viša škola</h1>
+<p class="subtitle" data-i18n="sub">Osnovna matematika, logika i poslovne teme — uči s ljubavlju.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Procenti i razmere</span></h2>
+<p>Najčešća tema na prijemnom za višu školu. Procenat je deo od sto; razmera poredi dve veličine.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\text{deo}=\frac{p}{100}\cdot\text{celina}\qquad a:b=c:d\Rightarrow ad=bc$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Popust 20% na 1500 din — koliko plaćaš?</div>$$1500\cdot(1-0{,}2)=1200\ \text{din}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>Kamata i krediti</span></h2>
+<p>Prosta kamata se računa na glavnicu; složena se obračunava na glavnicu uvećanu prethodnim kamatama.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$I=\frac{K\cdot p\cdot t}{100}\qquad K_n=K\left(1+\frac{p}{100}\right)^n$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Kamata na 50.000 din, 4% godišnje, 2 godine (prosta).</div>$$I=\frac{50000\cdot4\cdot2}{100}=4000\ \text{din}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Linearne jednačine i funkcije</span></h2>
+<p>Osnovni alat za poslovne i tehničke zadatke. Linearna funkcija opisuje stalan rast/pad.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$ax+b=0\Rightarrow x=-\frac{b}{a}\qquad y=kx+n$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Reši: 5x − 20 = 0.</div>$$x=4$$</div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Razmere, proporcije i podela</span></h2>
+<p>Mnogi poslovni zadaci traže podelu na delove u datom odnosu (npr. podela dobiti).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\text{deo}_i=\text{ukupno}\cdot\frac{u_i}{\sum u}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Podeli 9000 din u odnosu 2 : 1.</div>$$6000\ \text{i}\ 3000\ \text{din}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Osnovni ekonomski pojmovi</span></h2>
+<p>Ponuda i tražnja određuju cenu; tržišna ravnoteža je tamo gde se izjednače. Dobit je razlika prihoda i rashoda.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$D=\text{prihod}-\text{rashod}\qquad k_o=\frac{\text{ukupan prihod}}{\text{prosečna sredstva}}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prihod 1.200.000, rashod 950.000. Dobit?</div>$$D=250000\ \text{din}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Informatička pismenost</span></h2>
+<p>Računar radi sa bitovima; osnovne jedinice rastu po 1024. Korisno za pitanja iz informatike.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$1\ \text{B}=8\ \text{bita}\qquad 1\ \text{KB}=1024\ \text{B}\qquad 1\ \text{MB}=1024\ \text{KB}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko bajtova ima 2 KB?</div>$$2\cdot1024=2048\ \text{B}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Površine i obimi</span></h2>
+<p>Osnovna geometrija — često u zadacima primene (npr. površina prostorije, materijala).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$P_{\text{pravoug}}=a\cdot b\qquad P_{\text{kr}}=r^2\pi\qquad O_{\text{kr}}=2r\pi$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Površina pravougaonika 5 × 3 m.</div>$$P=15\ \text{m}^2$$</div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Statistika — osnove</span></h2>
+<p>Srednja vrednost i procentualni udeo su čest deo poslovnih zadataka i čitanja tabela.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\bar{x}=\frac{x_1+x_2+\dots+x_n}{n}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prosek brojeva 4, 6, 8, 10.</div>$$\bar{x}=\frac{28}{4}=7$$</div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Logika i zadaci zatvorenog tipa</span></h2>
+<p>Prepoznaj pravilo, isključi netačne odgovore i proveri red veličine — tako se najbrže rešava test.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\text{pravilo}\to\text{eliminacija}\to\text{provera}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Nastavi: 5, 10, 20, 40, …</div>$$\times 2\Rightarrow 80$$</div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="priprema-visa" data-name="Marina" data-subj="Priprema za prijemni — viša škola"></script>
+<script defer src="gate.js" data-subject="priprema-visa"></script>
+<script>
+var I18N={
+kind:{en:"e-book · prep",de:"E-Book · Vorbereitung",fr:"e-book · prépa",es:"e-book · preparación",it:"e-book · preparazione",ru:"э-книга · подготовка",pt:"e-book · preparação"},
+name:{en:"College entrance prep",de:"Hochschulaufnahme – Vorbereitung",fr:"Préparation à l'école supérieure",es:"Preparación para escuela superior",it:"Preparazione al college",ru:"Подготовка к поступлению в колледж",pt:"Preparação para o ensino superior"},
+sub:{en:"Basic maths, logic and business topics — learn with love.",de:"Grundlagen-Mathe, Logik und Wirtschaftsthemen — lerne mit Liebe.",fr:"Maths de base, logique et notions de gestion — apprends avec amour.",es:"Matemática básica, lógica y temas de negocios — aprende con amor.",it:"Matematica di base, logica e temi aziendali — impara con amore.",ru:"Базовая математика, логика и бизнес-темы — учись с любовью.",pt:"Matemática básica, lógica e temas de negócios — aprende com amor."},
+zapamti:{en:"REMEMBER",de:"MERKE",fr:"À RETENIR",es:"RECUERDA",it:"RICORDA",ru:"ЗАПОМНИ",pt:"LEMBRA"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+</body></html>

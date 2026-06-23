@@ -1,0 +1,110 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Priprema za prijemni (fakultet) · Knjiga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
+.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
+.topic p{margin:6px 0 12px}
+.box{border-radius:14px;padding:13px 15px;margin:12px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.task{font-weight:600;margin-bottom:6px}
+.katex-display{margin:.5em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">∫ ∑ √</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">e-knjiga · priprema</div>
+<h1 data-i18n="name">Priprema za prijemni — fakultet</h1>
+<p class="subtitle" data-i18n="sub">Matematika i logika za prijemni — uči s ljubavlju.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Procenti, razmere i kamata</span></h2>
+<p>Procenat je deo od sto. Veliki broj zadataka svodi se na „koliko je p% od neke vrednosti" i na uvećanje/umanjenje cene. Kamata se računa na uloženu glavnicu.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\text{deo}=\frac{p}{100}\cdot\text{celina}\qquad I=\frac{K\cdot p\cdot t}{100}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Cena 4000 din uvećana je za 15%. Nova cena?</div>$$4000\left(1+\tfrac{15}{100}\right)=4000\cdot1{,}15=4600\ \text{din}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>Izrazi, jednačine i nejednačine</span></h2>
+<p>Linearna jednačina se rešava izolovanjem nepoznate; nejednačina isto, uz pravilo da se pri množenju negativnim brojem znak okreće. Korisne su formule za kvadrat binoma.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$ax+b=0\Rightarrow x=-\frac{b}{a}\qquad (a\pm b)^2=a^2\pm 2ab+b^2$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Reši: 3x − 12 = 0.</div>$$3x=12\Rightarrow x=4$$</div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Funkcije — linearna i kvadratna</span></h2>
+<p>Linearna funkcija daje pravu liniju; kvadratna parabolu. Za kvadratnu su važni teme, nule i diskriminanta.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$y=kx+n\qquad y=ax^2+bx+c,\quad x_{t}=-\frac{b}{2a},\quad D=b^2-4ac$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Nule funkcije x² − 5x + 6.</div>$$x_{1,2}=\frac{5\pm\sqrt{25-24}}{2}=\{2,\ 3\}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Sistemi jednačina</span></h2>
+<p>Dve linearne jednačine sa dve nepoznate rešavamo zamenom ili sabiranjem (eliminacijom jedne nepoznate).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\begin{cases}x+y=s\\ x-y=d\end{cases}\Rightarrow x=\frac{s+d}{2},\ y=\frac{s-d}{2}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">x + y = 5, x − y = 1.</div>$$x=3,\quad y=2$$</div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Nizovi i progresije</span></h2>
+<p>Aritmetički niz raste za stalnu razliku d, geometrijski se množi stalnim količnikom q.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$a_n=a_1+(n-1)d,\quad S_n=\frac{n(a_1+a_n)}{2}\qquad a_n=a_1q^{\,n-1}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Zbir prvih 10 prirodnih brojeva.</div>$$S_{10}=\frac{10(1+10)}{2}=55$$</div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Stepeni, koreni, logaritmi</span></h2>
+<p>Logaritam je „obrnut" stepenu. Pravila za stepene i logaritme ubrzavaju računanje.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$a^m a^n=a^{m+n},\quad (a^m)^n=a^{mn}\qquad \log_a(xy)=\log_a x+\log_a y$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko je log₂ 8?</div>$$\log_2 8=3\quad(\text{jer }2^3=8)$$</div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Geometrija i trigonometrija</span></h2>
+<p>Pitagorina teorema povezuje stranice pravouglog trougla; osnovni trigonometrijski identitet važi za svaki ugao.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$a^2+b^2=c^2\qquad \sin^2\alpha+\cos^2\alpha=1\qquad P_{\text{kr}}=r^2\pi$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Katete 3 i 4 — hipotenuza?</div>$$c=\sqrt{3^2+4^2}=\sqrt{25}=5$$</div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Uvod u izvode</span></h2>
+<p>Izvod meri brzinu promene funkcije. Za tehničke fakultete dovoljno je poznavati osnovna pravila.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$(x^n)'=n\,x^{n-1}\qquad (\sin x)'=\cos x,\quad (\cos x)'=-\sin x$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Izvod funkcije f(x) = x³.</div>$$f'(x)=3x^2$$</div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Logičko i verbalno rezonovanje</span></h2>
+<p>Kod pitanja zatvorenog tipa najvažnije je prepoznati pravilo i isključiti netačne odgovore. Uvek proveri red veličine i krajnje slučajeve.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\text{prepoznaj pravilo}\ \rightarrow\ \text{eliminiši netačno}\ \rightarrow\ \text{proveri}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Nastavi niz: 2, 4, 8, 16, …</div>$$\times 2\ \Rightarrow\ 32$$</div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="priprema-fakultet" data-name="Marina" data-subj="Priprema za prijemni — fakultet"></script>
+<script defer src="gate.js" data-subject="priprema-fakultet"></script>
+<script>
+var I18N={
+kind:{en:"e-book · prep",de:"E-Book · Vorbereitung",fr:"e-book · prépa",es:"e-book · preparación",it:"e-book · preparazione",ru:"э-книга · подготовка",pt:"e-book · preparação"},
+name:{en:"University entrance prep",de:"Studienaufnahme – Vorbereitung",fr:"Préparation au concours universitaire",es:"Preparación para la universidad",it:"Preparazione all'università",ru:"Подготовка к поступлению в вуз",pt:"Preparação para a universidade"},
+sub:{en:"Maths & logic for the entrance exam — learn with love.",de:"Mathe & Logik für die Aufnahmeprüfung — lerne mit Liebe.",fr:"Maths & logique pour le concours — apprends avec amour.",es:"Mates y lógica para el acceso — aprende con amor.",it:"Matematica e logica per l'ammissione — impara con amore.",ru:"Математика и логика для экзамена — учись с любовью.",pt:"Matemática e lógica para o exame — aprende com amor."},
+zapamti:{en:"REMEMBER",de:"MERKE",fr:"À RETENIR",es:"RECUERDA",it:"RICORDA",ru:"ЗАПОМНИ",pt:"LEMBRA"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+</body></html>

@@ -1,151 +1,101 @@
-<!doctype html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sistemi i signali — Skripta · Mathia</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&family=Tangerine:wght@700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Sistemi i signali · Skripta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 <style>
- :root{--paper:#FBF6EE;--paper2:#F5EADB;--blush:#F4E3DD;--rose:#CC8E86;--rose-dk:#B5746C;
-  --plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;
-  --ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:880px}
- *{box-sizing:border-box}
- body{margin:0;background:var(--paper);color:var(--ink);line-height:1.66;
-  font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-size:18px}
- .disp{font-family:'Cormorant Garamond','Source Serif 4',Georgia,serif}
- h1,h2,h3{margin:0;line-height:1.14;font-weight:600}
- /* visejezicnost */
- .L{display:none}
- body[data-lang="en"] .L-en,body[data-lang="de"] .L-de,body[data-lang="fr"] .L-fr,
- body[data-lang="es"] .L-es,body[data-lang="it"] .L-it,body[data-lang="ru"] .L-ru,
- body[data-lang="pt"] .L-pt{display:inline}
- /* gold foil */
- @keyframes foil{to{background-position:-230% center}}
- @keyframes goldslide{to{background-position:-220% 0}}
- .goldtext{background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);
-  background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
-  -webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
- /* traka gore + brand + jezici */
- header{position:relative;background:linear-gradient(180deg,#fff,rgba(255,255,255,0))}
- header:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent);
-  background-size:220% 100%;animation:goldslide 6.5s linear infinite}
- .bar{position:sticky;top:0;z-index:20;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;
-  justify-content:flex-end;padding:.55rem clamp(1rem,4vw,2rem);
-  background:rgba(251,246,238,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--bord)}
- .bar .bmark{margin-right:auto;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;letter-spacing:.12em}
- .lang{background:transparent;border:1px solid var(--gold);color:var(--golddk);border-radius:100px;
-  font-family:'Nunito';font-weight:800;font-size:.72rem;padding:5px 10px;cursor:pointer;transition:all .15s}
- .lang:hover{color:var(--plum)}
- .lang.on{background:var(--gold);color:#fff;border-color:var(--gold)}
- .lang:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
- /* masthead */
- .hero{position:relative;overflow:hidden;padding:0}
- .hero .frame{position:absolute;inset:16px;border:1px solid rgba(198,160,92,.4);border-radius:18px;pointer-events:none;z-index:1}
- .hero .corner{position:absolute;width:52px;height:52px;color:var(--gold);opacity:.65;z-index:1}
- .hero .corner.tl{top:7px;left:7px}.hero .corner.tr{top:7px;right:7px;transform:rotate(90deg)}
- .hero .corner.br{bottom:7px;right:7px;transform:rotate(180deg)}.hero .corner.bl{bottom:7px;left:7px;transform:rotate(270deg)}
- .hero-math{position:absolute;inset:0;z-index:0;pointer-events:none;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);overflow:hidden}
- .hero-math span{position:absolute;font-size:clamp(2rem,5vw,3.2rem);opacity:.07;transform:rotate(-6deg)}
- .mast{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:clamp(2.4rem,7vw,3.8rem) clamp(1.2rem,4vw,2rem) 1.4rem;text-align:center}
- .mast .slogan{font-family:'Pinyon Script',cursive;font-size:clamp(2.2rem,7vw,3.2rem);line-height:.9;color:var(--rose-dk);margin-bottom:.2rem}
- .mast .eyebrow{font-family:'Nunito';font-weight:800;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--golddk);margin:.5rem 0 .7rem}
- .mast h1{font-family:'Cormorant Garamond','Source Serif 4',Georgia,serif;font-weight:600;color:var(--plum);
-  font-size:clamp(2.5rem,8vw,4.1rem);letter-spacing:.005em}
- .mast .kind{margin-top:.55rem;font-family:'Nunito';font-weight:800;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose-dk)}
- .mast .src{margin:.5rem auto 0;max-width:60ch;color:var(--muted);font-size:.92rem;font-style:italic;font-family:'Cormorant Garamond',serif}
- /* signal ilustracija u masthead-u */
- .sig{display:block;width:100%;max-width:680px;height:42px;margin:1.3rem auto .2rem;overflow:visible}
- .sig .axis{stroke:rgba(198,160,92,.3);stroke-width:1;stroke-dasharray:2 6}
- .sig .wave{fill:none;stroke:url(#gold);stroke-width:2.2;stroke-linecap:round;
-  stroke-dasharray:var(--len,4000);stroke-dashoffset:var(--len,4000);
-  animation:draw 1.9s .2s cubic-bezier(.4,.6,.2,1) forwards}
- .sig .probe{filter:drop-shadow(0 0 5px rgba(255,247,226,.9))}
- @keyframes draw{to{stroke-dashoffset:0}}
- /* sadrzaj */
- main{max-width:var(--maxw);margin:0 auto;padding:1.4rem clamp(1.2rem,4vw,2rem) 4rem}
- .topic,.ftopic{padding:2rem 0;border-top:1px solid var(--bord)}
- .topic:first-of-type,.ftopic:first-of-type{border-top:0}
- h2{font-family:'Cormorant Garamond','Source Serif 4',Georgia,serif;color:var(--plum);
-  font-size:clamp(1.7rem,4.6vw,2.3rem);display:flex;gap:.55rem;align-items:baseline;margin-bottom:.7rem}
- h2 .num{font-family:'Nunito';font-weight:800;font-size:.82rem;color:#fff;background:linear-gradient(180deg,var(--goldlt),var(--gold));
-  border-radius:100px;padding:.18em .6em;flex:none;transform:translateY(-.22em);box-shadow:0 8px 16px -8px rgba(198,160,92,.8)}
- .lead{color:#5a474d;margin:0 0 1.2rem;max-width:64ch}
- h3{font-family:'Nunito';font-weight:800;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-dk);margin:0 0 .7rem}
- .zapamti h3{color:var(--golddk)}
- .zapamti ul,.flist{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
- .zapamti li,.flist li{background:var(--card);border:1px solid var(--bord);border-left:3px solid var(--gold);
-  border-radius:12px;padding:.75rem 1rem;display:flex;flex-direction:column;gap:.35rem;
-  box-shadow:0 18px 40px -34px rgba(120,70,80,.5)}
- .flist li{border-left-color:var(--rose)}
- .zl{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.06rem;color:var(--plum2)}
- .zf{overflow-x:auto;overflow-y:hidden}.zf .katex{font-size:1.05em;color:var(--ink)}
- .primer{margin-top:1.1rem;background:linear-gradient(160deg,#FFFDF8,var(--blush));
-  border:1px solid rgba(204,142,134,.4);border-radius:16px;padding:1rem 1.2rem}
- .primer h3{color:var(--rose-dk)}
- .primer .zad{margin:0 0 .6rem;color:var(--plum2)}
- .koraci{margin:.2rem 0 0;padding-left:1.4rem;display:grid;gap:.4rem}
- .koraci li::marker{color:var(--rose);font-weight:700}
- .texerr{color:#b00020;font-family:monospace;font-size:.8rem}
- /* footer */
- footer{border-top:1px solid var(--bord);text-align:center;padding:2.2rem 1rem 3rem;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
- footer .flove{font-family:'Pinyon Script',cursive;font-size:2rem;margin-bottom:.3rem}
- footer .sig-name{font-family:'Tangerine',cursive;font-weight:700;font-size:2.1rem;color:var(--golddk);transform:rotate(-3deg);display:inline-block}
- footer .meta{color:var(--muted);font-size:.8rem;margin-top:.6rem}
- @media(max-width:560px){body{font-size:17px}.hero .frame{inset:9px}.hero .corner{width:38px;height:38px}.zf .katex{font-size:1em}}
- @media(prefers-reduced-motion:reduce){.sig .wave{animation:none;stroke-dashoffset:0}.sig .probe{display:none}
-  .goldtext,header:before{animation:none}}
-</style>
-</head>
-<body data-lang="en">
-<header>
- <div class="bar">
-  <span class="bmark goldtext">MathIA</span>
-  <button class="lang on" data-l="en" type="button">EN</button><button class="lang" data-l="de" type="button">DE</button><button class="lang" data-l="fr" type="button">FR</button><button class="lang" data-l="es" type="button">ES</button><button class="lang" data-l="it" type="button">IT</button><button class="lang" data-l="ru" type="button">RU</button><button class="lang" data-l="pt" type="button">PT</button>
- </div>
- <section class="hero">
-  <div class="frame"></div>
-  <div class="hero-math" aria-hidden="true"><span style="top:12%;left:6%">δ(t)</span><span style="top:64%;left:10%">∿</span><span style="top:26%;left:34%">ℒ</span><span style="top:78%;left:30%">ω</span><span style="top:16%;left:62%">H(s)</span><span style="top:58%;left:66%">ℱ</span><span style="top:34%;left:86%">∫</span></div>
-  <svg class="corner tl" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <svg class="corner tr" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <svg class="corner br" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <svg class="corner bl" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <div class="mast">
-   <div class="slogan">Uz Marinu</div>
-   <div class="eyebrow"><span class="t"><span class="L L-en">Signals & systems</span><span class="L L-de">Signale & Systeme</span><span class="L L-fr">Signaux & systèmes</span><span class="L L-es">Señales y sistemas</span><span class="L L-it">Segnali e sistemi</span><span class="L L-ru">Сигналы и системы</span><span class="L L-pt">Sinais e sistemas</span></span></div>
-   <h1>Sistemi i signali</h1>
-   <div class="kind"><span class="t"><span class="L L-en">Lecture notes</span><span class="L L-de">Skript</span><span class="L L-fr">Notes de cours</span><span class="L L-es">Apuntes</span><span class="L L-it">Dispensa</span><span class="L L-ru">Конспект</span><span class="L L-pt">Apontamentos</span></span></div>
-   <svg class="sig" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
-    <defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
-     <stop offset="0" stop-color="#9C7838"/><stop offset=".3" stop-color="#E7D2A2"/><stop offset=".5" stop-color="#FFF7E2"/><stop offset=".7" stop-color="#E7D2A2"/><stop offset="1" stop-color="#C6A05C"/>
-    </linearGradient></defs>
-    <line class="axis" x1="0" y1="30" x2="1200" y2="30"/>
-    <path id="sgPath" class="wave" d="M10 26.2 L16 24.1 L22 22.1 L28 20.2 L34 18.5 L40 16.9 L46 15.6 L52 14.5 L58 13.6 L64 12.9 L70 12.5 L76 12.3 L82 12.4 L88 12.7 L94 13.2 L100 13.9 L106 14.8 L112 15.9 L118 17.2 L124 18.7 L130 20.2 L136 21.9 L142 23.6 L148 25.4 L154 27.2 L160 29.0 L166 30.8 L172 32.5 L178 34.2 L184 35.8 L190 37.3 L196 38.7 L202 39.9 L208 41.0 L214 41.9 L220 42.6 L226 43.2 L232 43.6 L238 43.7 L244 43.7 L250 43.6 L256 43.2 L262 42.7 L268 42.0 L274 41.1 L280 40.2 L286 39.1 L292 37.9 L298 36.6 L304 35.3 L310 33.9 L316 32.5 L322 31.1 L328 29.7 L334 28.3 L340 27.0 L346 25.7 L352 24.6 L358 23.5 L364 22.5 L370 21.6 L376 20.9 L382 20.3 L388 19.8 L394 19.5 L400 19.3 L406 19.3 L412 19.4 L418 19.7 L424 20.0 L430 20.6 L436 21.2 L442 21.9 L448 22.7 L454 23.6 L460 24.6 L466 25.6 L472 26.7 L478 27.8 L484 28.9 L490 30.0 L496 31.1 L502 32.1 L508 33.1 L514 34.0 L520 34.9 L526 35.7 L532 36.4 L538 37.0 L544 37.5 L550 37.8 L556 38.1 L562 38.3 L568 38.3 L574 38.3 L580 38.1 L586 37.8 L592 37.4 L598 37.0 L604 36.4 L610 35.8 L616 35.1 L622 34.4 L628 33.6 L634 32.8 L640 31.9 L646 31.1 L652 30.2 L658 29.4 L664 28.5 L670 27.8 L676 27.0 L682 26.3 L688 25.7 L694 25.2 L700 24.7 L706 24.3 L712 24.0 L718 23.7 L724 23.6 L730 23.5 L736 23.6 L742 23.7 L748 23.9 L754 24.1 L760 24.5 L766 24.9 L772 25.4 L778 25.9 L784 26.5 L790 27.1 L796 27.7 L802 28.4 L808 29.0 L814 29.7 L820 30.3 L826 31.0 L832 31.6 L838 32.2 L844 32.7 L850 33.2 L856 33.7 L862 34.1 L868 34.4 L874 34.6 L880 34.8 L886 35.0 L892 35.0 L898 35.0 L904 34.9 L910 34.8 L916 34.6 L922 34.4 L928 34.0 L934 33.7 L940 33.3 L946 32.9 L952 32.4 L958 31.9 L964 31.4 L970 30.9 L976 30.4 L982 29.8 L988 29.3 L994 28.9 L1000 28.4 L1006 28.0 L1012 27.6 L1018 27.2 L1024 26.9 L1030 26.6 L1036 26.4 L1042 26.3 L1048 26.2 L1054 26.1 L1060 26.1 L1066 26.1 L1072 26.2 L1078 26.4 L1084 26.6 L1090 26.8 L1096 27.1 L1102 27.4 L1108 27.7 L1114 28.1 L1120 28.4 L1126 28.8 L1132 29.2 L1138 29.6 L1144 30.0 L1150 30.4 L1156 30.8 L1162 31.2 L1168 31.5 L1174 31.8 L1180 32.1 L1186 32.4"/>
-    <circle class="probe" r="3.4" fill="#FFF7E2" cx="0" cy="0"><animateMotion dur="4.2s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1" keyTimes="0;1"><mpath xlink:href="#sgPath" href="#sgPath"/></animateMotion></circle>
-   </svg>
-   <p class="src">Izvor: „Signali i sistemi" (Z. Trpovski, FTN) · Novak (FTN 2005), Dautović, Poularikas &amp; Seely</p>
-  </div>
- </section>
-</header>
-<main>
-<!--TOPICS-->
-</main>
-<footer>
- <div class="flove goldtext">Uči s ljubavlju</div>
- <div class="sig-name">dr Marina Bulat</div>
- <div class="meta">Sistemi i signali — Skripta · MathIA · 7 jezika (EN·DE·FR·ES·IT·RU·PT)</div>
-</footer>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.55}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:54vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:16px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,6vw,44px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:32em;margin:0 auto}
+.foot{margin-top:24px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:0 12px 28px rgba(67,44,55,.05)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 14px Inter;flex:none}
+.box{border-radius:12px;padding:11px 14px;margin:9px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:11.5px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.task{font-weight:600;margin-bottom:4px}
+.ans{font-size:14px;color:var(--golddk);margin-top:4px}
+.katex-display{margin:.4em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">∿ ∑ ∫</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">skripta · sažeto</div>
+<h1 data-i18n="name">Sistemi i signali</h1>
+<p class="subtitle" data-i18n="sub">Sažeto, sa ključnim formulama i zadacima zatvorenog tipa.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Linearnost</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{superpozicija}\Rightarrow\text{linearan}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Sistem koji zadovoljava superpoziciju je…  a) nelinearan  b) linearan  c) vremenski promenljiv  d) diskretan</div><div class="ans">b) linearan.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>LTI sistemi</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{LTI}\to h(t)$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">LTI sistem je opisan…  a) impulsnim odzivom h(t)  b) samo ulazom  c) samo izlazom  d) 0</div><div class="ans">a) h(t).</div></div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Konvolucija</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$y=x*h$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Izlaz LTI = ulaz ⊛ ?  a) h(t) (konvolucija)  b) zbir  c) izvod  d) 0</div><div class="ans">a) h(t).</div></div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Furijeov red</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$x(t)=\sum_n c_n e^{jn\omega_0 t}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Furijeov red se koristi za…  a) periodične signale  b) slučajne  c) konstante  d) 0</div><div class="ans">a) periodične signale.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Furijeova transformacija</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$X(\omega)=\int x(t)e^{-j\omega t}dt$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">FT: X(ω) = ∫ x(t)·?  a) e^{jωt}  b) e^{−jωt}  c) eᵗ  d) 1</div><div class="ans">b) e^{−jωt}.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Laplasova transformacija</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$X(s)=\int_0^\infty x(t)e^{-st}dt$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Laplas: X(s) = ∫₀^∞ x(t)·?  a) e^{−st}  b) e^{st}  c) e^{−t}  d) s</div><div class="ans">a) e^{−st}.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Prenosna funkcija</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$H(s)=\tfrac{Y(s)}{X(s)}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prenosna funkcija H(s) = ?  a) Y/X  b) X/Y  c) Y·X  d) Y−X</div><div class="ans">a) Y(s)/X(s).</div></div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Stabilnost</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\operatorname{Re}(s_k)<0$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Sistem je stabilan ako su polovi u…  a) desnoj poluravni  b) levoj poluravni  c) na imag. osi  d) beskonačnosti</div><div class="ans">b) levoj poluravni.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Odabiranje (Nyquist)</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$f_s\ge 2f_{\max}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Nyquist: f_s ≥ ?  a) f_max  b) 2 f_max  c) f_max/2  d) 0</div><div class="ans">b) 2 f_max.</div></div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="sistemi-signali" data-name="Marina" data-subj="Sistemi i signali"></script>
+<script defer src="gate.js" data-subject="sistemi-signali"></script>
 <script>
-(function(){var b=document.body,btns=[].slice.call(document.querySelectorAll('.lang'));
- function set(l){b.setAttribute('data-lang',l);btns.forEach(function(x){x.classList.toggle('on',x.dataset.l===l);x.setAttribute('aria-pressed',x.dataset.l===l);});
-  try{if(location.hash.slice(1)!==l)history.replaceState(null,'','#'+l);}catch(e){}}
- btns.forEach(function(x){x.addEventListener('click',function(){set(x.dataset.l);});});
- var h=(location.hash||'').slice(1);set(/^(en|de|fr|es|it|ru|pt)$/.test(h)?h:'en');
- document.querySelectorAll('.sig .wave').forEach(function(p){try{p.style.setProperty('--len',p.getTotalLength());}catch(e){}});
-})();
+var I18N={
+kind:{en:"study notes · concise",de:"Skript · kompakt",fr:"fiches · synthèse",es:"apuntes · resumen",it:"appunti · sintesi",ru:"конспект · кратко",pt:"resumo · conciso"},
+name:{en:"Signals & systems",de:"Signale & Systeme",fr:"Signaux et systèmes",es:"Señales y sistemas",it:"Segnali e sistemi",ru:"Сигналы и системы",pt:"Sinais e sistemas"},
+sub:{en:"Concise, with key formulas and multiple-choice practice.",de:"Kompakt, mit Kernformeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec formules clés et QCM.",es:"Resumen, con fórmulas clave y preguntas tipo test.",it:"Sintesi, con formule chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми формулами и тестовыми заданиями.",pt:"Resumo, com fórmulas-chave e perguntas de escolha múltipla."},
+formule:{en:"KEY FORMULAS",de:"KERNFORMELN",fr:"FORMULES CLÉS",es:"FÓRMULAS CLAVE",it:"FORMULE CHIAVE",ru:"КЛЮЧЕВЫЕ ФОРМУЛЫ",pt:"FÓRMULAS-CHAVE"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
 </script>
-</body>
-</html>
+</body></html>

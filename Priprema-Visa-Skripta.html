@@ -1,0 +1,101 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Priprema za prijemni (viša škola) · Skripta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.55}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:54vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:29px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:16px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,6vw,44px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:32em;margin:0 auto}
+.foot{margin-top:24px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:0 12px 28px rgba(67,44,55,.05)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 14px Inter;flex:none}
+.box{border-radius:12px;padding:11px 14px;margin:9px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:11.5px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.task{font-weight:600;margin-bottom:4px}
+.ans{font-size:14px;color:var(--golddk);margin-top:4px}
+.katex-display{margin:.4em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">∑ % √</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">skripta · sažeto</div>
+<h1 data-i18n="name">Priprema za prijemni — viša škola</h1>
+<p class="subtitle" data-i18n="sub">Sažeto, sa ključnim formulama i zadacima zatvorenog tipa.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Procenti i razmere</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\text{deo}=\tfrac{p}{100}\cdot\text{celina}\qquad a:b=c:d\Rightarrow ad=bc$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">30% od 200 = ?  a) 50  b) 60  c) 70  d) 30</div><div class="ans">b) 60 — $0{,}3\cdot200=60$.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>Kamata</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$I=\tfrac{K p t}{100}\qquad K_n=K(1+\tfrac{p}{100})^n$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prosta kamata: 10.000, 5%, 1 g.  a) 500  b) 5000  c) 50  d) 1500</div><div class="ans">a) 500.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Linearne jednačine</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$ax+b=0\Rightarrow x=-\tfrac{b}{a}\qquad y=kx+n$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">5x − 20 = 0 → x?  a) 2  b) 4  c) 5  d) −4</div><div class="ans">b) 4.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Podela u odnosu</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\text{deo}_i=\text{ukupno}\cdot\tfrac{u_i}{\sum u}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">9000 u odnosu 2:1 — veći deo?  a) 4500  b) 6000  c) 3000  d) 5000</div><div class="ans">b) 6000.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Ekonomski pojmovi</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$D=\text{prihod}-\text{rashod}\qquad k_o=\tfrac{\text{ukupan prihod}}{\text{prosečna sredstva}}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prihod 1.200.000, rashod 950.000 — dobit?  a) 150.000  b) 250.000  c) 2.150.000  d) 250</div><div class="ans">b) 250.000.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Informatika — jedinice</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$1\ \text{B}=8\ \text{bita}\qquad 1\ \text{KB}=1024\ \text{B}\qquad 1\ \text{MB}=1024\ \text{KB}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">1 MB = ? KB  a) 100  b) 1000  c) 1024  d) 8</div><div class="ans">c) 1024.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Površine</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P_{\text{pravoug}}=a b\qquad P_{\text{kr}}=r^2\pi$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Pravougaonik 5 × 3 m — površina?  a) 8  b) 15  c) 16  d) 153</div><div class="ans">b) 15 m².</div></div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Statistika — prosek</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\bar{x}=\frac{x_1+\dots+x_n}{n}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prosek 4, 6, 8, 10?  a) 6  b) 7  c) 8  d) 28</div><div class="ans">b) 7.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Logika</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\text{pravilo}\to\text{eliminacija}\to\text{provera}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">5, 10, 20, 40, … sledeći?  a) 60  b) 80  c) 50  d) 45</div><div class="ans">b) 80 — množi se sa 2.</div></div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="priprema-visa" data-name="Marina" data-subj="Priprema za prijemni — viša škola"></script>
+<script defer src="gate.js" data-subject="priprema-visa"></script>
+<script>
+var I18N={
+kind:{en:"study notes · concise",de:"Skript · kompakt",fr:"fiches · synthèse",es:"apuntes · resumen",it:"appunti · sintesi",ru:"конспект · кратко",pt:"resumo · conciso"},
+name:{en:"College entrance prep",de:"Hochschulaufnahme – Vorbereitung",fr:"Préparation à l'école supérieure",es:"Preparación para escuela superior",it:"Preparazione al college",ru:"Подготовка к поступлению в колледж",pt:"Preparação para o ensino superior"},
+sub:{en:"Concise, with key formulas and multiple-choice practice.",de:"Kompakt, mit Kernformeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec formules clés et QCM.",es:"Resumen, con fórmulas clave y preguntas tipo test.",it:"Sintesi, con formule chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми формулами и тестовыми заданиями.",pt:"Resumo, com fórmulas-chave e perguntas de escolha múltipla."},
+formule:{en:"KEY FORMULAS",de:"KERNFORMELN",fr:"FORMULES CLÉS",es:"FÓRMULAS CLAVE",it:"FORMULE CHIAVE",ru:"КЛЮЧЕВЫЕ ФОРМУЛЫ",pt:"FÓRMULAS-CHAVE"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+</body></html>

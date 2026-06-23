@@ -1,106 +1,116 @@
-/* Mathia – access gate (provera pristupa u browseru)
-   Ubacuje se na zaštićene stranice: <script defer src="gate.js" data-subject="KEY[,KEY2]"></script>
-   Proverava: ulogovan + aktivna pretplata + (bar jedan) traženi predmet izabran.
-   Napomena: ovo je provera na strani klijenta — odvraća korisnike, ali nije potpuna zaštita. */
-(function(){
-  var SB_URL="https://ibhirxltgeyecrjwymai.supabase.co";
-  var SB_KEY="sb_publishable_CCYCDgnEYW6FgWvsfoFZIA_vE_yD6qb";
-  var sc=document.querySelector('script[data-subject]');
-  var need=((sc&&sc.getAttribute('data-subject'))||'').split(',').map(function(x){return x.trim();}).filter(Boolean);
-  var LANG=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();
+/* ================================================================
+   Mathia — gate.js  (pristup: vlasnik / pretplata / 15 min free)
+   Drop-in: <script defer src="gate.js" data-subject="<predmet>"></script>
+   ================================================================ */
+(function () {
+  "use strict";
 
-  var T={
-    sr:{tl:"Zaključano 🔒",ml:"Ova stranica je deo pretplate. Prijavi se ili izaberi paket da dobiješ pristup.",
-        ts:"Potrebna je pretplata 🔒",ms:"Tvoj nalog još nema aktivan paket. Izaberi paket da otključaš predmete, priručnike i Marinu.",
-        tj:"Predmet nije u tvom izboru 🔒",mj:"Ovaj predmet nije među izabranim u tvom paketu. Izmeni izbor predmeta ili nadogradi paket.",
-        login:"Prijava",pkg:"Vidi pakete",acc:"Moj nalog",edit:"Izmeni predmete",load:"Provera pristupa…",home:"Početna"},
-    en:{tl:"Locked 🔒",ml:"This page is part of a subscription. Sign in or choose a plan to get access.",
-        ts:"Subscription required 🔒",ms:"Your account has no active plan yet. Choose a plan to unlock subjects, guides and Marina.",
-        tj:"Subject not in your selection 🔒",mj:"This subject isn’t among the ones in your plan. Change your subject selection or upgrade your plan.",
-        login:"Sign in",pkg:"See plans",acc:"My account",edit:"Edit subjects",load:"Checking access…",home:"Home"},
-    de:{tl:"Gesperrt 🔒",ml:"Diese Seite gehört zum Abo. Melde dich an oder wähle ein Paket, um Zugang zu erhalten.",
-        ts:"Abo erforderlich 🔒",ms:"Dein Konto hat noch kein aktives Paket. Wähle ein Paket, um Fächer, Skripte und Marina freizuschalten.",
-        tj:"Fach nicht in deiner Auswahl 🔒",mj:"Dieses Fach gehört nicht zu deinem Paket. Ändere deine Fächerauswahl oder erweitere dein Paket.",
-        login:"Anmelden",pkg:"Pakete ansehen",acc:"Mein Konto",edit:"Fächer ändern",load:"Zugang wird geprüft…",home:"Start"},
-    fr:{tl:"Verrouillé 🔒",ml:"Cette page fait partie d’un abonnement. Connecte-toi ou choisis une formule pour y accéder.",
-        ts:"Abonnement requis 🔒",ms:"Ton compte n’a pas encore de formule active. Choisis une formule pour débloquer les matières, les guides et Marina.",
-        tj:"Matière non sélectionnée 🔒",mj:"Cette matière ne fait pas partie de ta formule. Modifie ta sélection ou améliore ta formule.",
-        login:"Connexion",pkg:"Voir les formules",acc:"Mon compte",edit:"Modifier les matières",load:"Vérification de l’accès…",home:"Accueil"},
-    es:{tl:"Bloqueado 🔒",ml:"Esta página es parte de una suscripción. Inicia sesión o elige un plan para acceder.",
-        ts:"Se requiere suscripción 🔒",ms:"Tu cuenta aún no tiene un plan activo. Elige un plan para desbloquear materias, guías y Marina.",
-        tj:"Materia no seleccionada 🔒",mj:"Esta materia no está entre las de tu plan. Cambia tu selección o mejora tu plan.",
-        login:"Entrar",pkg:"Ver planes",acc:"Mi cuenta",edit:"Editar materias",load:"Comprobando acceso…",home:"Inicio"},
-    it:{tl:"Bloccato 🔒",ml:"Questa pagina fa parte di un abbonamento. Accedi o scegli un piano per avere accesso.",
-        ts:"Abbonamento necessario 🔒",ms:"Il tuo account non ha ancora un piano attivo. Scegli un piano per sbloccare materie, dispense e Marina.",
-        tj:"Materia non selezionata 🔒",mj:"Questa materia non è tra quelle del tuo piano. Modifica la selezione o passa a un piano superiore.",
-        login:"Accedi",pkg:"Vedi i piani",acc:"Il mio account",edit:"Modifica materie",load:"Verifica accesso…",home:"Home"},
-    ru:{tl:"Заблокировано 🔒",ml:"Эта страница входит в подписку. Войдите или выберите пакет, чтобы получить доступ.",
-        ts:"Нужна подписка 🔒",ms:"У вашего аккаунта пока нет активного пакета. Выберите пакет, чтобы открыть предметы, пособия и Марину.",
-        tj:"Предмет не выбран 🔒",mj:"Этого предмета нет в вашем пакете. Измените выбор предметов или повысьте пакет.",
-        login:"Вход",pkg:"Посмотреть пакеты",acc:"Мой аккаунт",edit:"Изменить предметы",load:"Проверка доступа…",home:"Главная"},
-    pt:{tl:"Bloqueado 🔒",ml:"Esta página faz parte de uma subscrição. Inicia sessão ou escolhe um plano para teres acesso.",
-        ts:"Subscrição necessária 🔒",ms:"A tua conta ainda não tem um plano ativo. Escolhe um plano para desbloquear matérias, guias e a Marina.",
-        tj:"Matéria não selecionada 🔒",mj:"Esta matéria não está entre as do teu plano. Altera a tua seleção ou melhora o plano.",
-        login:"Entrar",pkg:"Ver planos",acc:"A minha conta",edit:"Editar matérias",load:"A verificar acesso…",home:"Início"}
-  };
-  var L=T[LANG]||T.sr;
+  /* ====== CONFIG ====== */
+  var SUPABASE_URL  = "https://ibhirxltgeyecrjwymai.supabase.co";
+  var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+  var OWNER_EMAILS  = ["mathia.tutor@gmail.com"];        // vlasnik — bez ograničenja
+  var FREE_MIN      = 15;                                 // besplatno minuta po predmetu
+  var PAY_URL       = "placanje.html";                    // stranica za pretplatu
+  var LOGIN_URL     = "nalog.html";
+  var PLANS = [
+    { id:"basic",   naziv:"Basic",   din:4990, predmeta:1 },
+    { id:"gold",    naziv:"Gold",    din:6990, predmeta:2 },
+    { id:"diamond", naziv:"Diamond", din:9990, predmeta:3 }
+  ];
+  /* ==================== */
 
-  // 1) odmah sakrij sadržaj (loading veo) da nema "blica"
-  var cover=document.createElement('div');
-  cover.id="mathia-gate";
-  cover.setAttribute('style',"position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;"
-    +"background:linear-gradient(180deg,#FBF6EE,#F5EADB);font-family:Nunito,system-ui,sans-serif;color:#3E2D34;text-align:center;padding:24px");
-  cover.innerHTML='<div style="opacity:.7;font-size:.95rem">'+L.load+'</div>';
-  (document.body||document.documentElement).appendChild(cover);
-  document.documentElement.style.overflow="hidden";
+  // predmet sa <script data-subject="...">
+  var me = document.currentScript;
+  if (!me) { var ss = document.querySelectorAll('script[data-subject]'); me = ss[ss.length - 1]; }
+  var SUBJECT = (me && me.getAttribute("data-subject")) || "";
+  var FREE_MS = FREE_MIN * 60 * 1000;
+  var KEY = "mathia_free_" + SUBJECT;
 
-  function pass(){ // pristup dozvoljen
-    var g=document.getElementById('mathia-gate'); if(g) g.remove();
-    document.documentElement.style.overflow="";
-  }
-  function block(kind){ // kind: 'login' | 'sub' | 'subj'
-    var title = kind==='login'?L.tl : kind==='sub'?L.ts : L.tj;
-    var msg   = kind==='login'?L.ml : kind==='sub'?L.ms : L.mj;
-    var b1,b2;
-    if(kind==='login'){ b1=['nalog.html#reg',L.login]; b2=['index.html#paketi',L.pkg]; }
-    else if(kind==='sub'){ b1=['index.html#paketi',L.pkg]; b2=['nalog.html',L.acc]; }
-    else { b1=['nalog.html',L.edit]; b2=['index.html#paketi',L.pkg]; }
-    cover.innerHTML=''
-      +'<div style="max-width:440px;background:#fffcf6;border:1px solid #ECDAC5;border-radius:22px;padding:30px 26px;box-shadow:0 18px 50px rgba(67,44,55,.12)">'
-      +'<div style="font-family:\'Cormorant Garamond\',Georgia,serif;font-size:1.9rem;font-weight:700;color:#432C37;line-height:1.15;margin-bottom:8px">'+title+'</div>'
-      +'<p style="color:#6c565d;margin:0 0 20px;line-height:1.55">'+msg+'</p>'
-      +'<a href="'+b1[0]+'" style="display:block;text-decoration:none;font-weight:800;color:#3a2630;background:linear-gradient(180deg,#E7D2A2,#C6A05C);border:1.5px solid #9C7838;border-radius:100px;padding:13px 22px;margin-bottom:10px">'+b1[1]+'</a>'
-      +'<a href="'+b2[0]+'" style="display:block;text-decoration:none;font-weight:800;color:#432C37;background:#fff;border:1.5px solid #ECDAC5;border-radius:100px;padding:13px 22px">'+b2[1]+'</a>'
-      +'<a href="index.html" style="display:inline-block;margin-top:16px;color:#90787E;text-decoration:none;font-size:.85rem">← '+L.home+'</a>'
-      +'</div>';
-    document.documentElement.style.overflow="hidden";
-  }
-
-  function loadSB(cb){
-    if(window.supabase){ cb(); return; }
-    var s=document.createElement('script');
-    s.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
-    s.onload=cb; s.onerror=function(){ block('login'); };
+  function loadSb(cb) {
+    if (window.supabase) return cb();
+    var s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+    s.onload = cb; s.onerror = function () { cb(); };
     document.head.appendChild(s);
   }
+  function fmt(n){ return n.toLocaleString("sr-RS"); }
 
-  loadSB(function(){
-    try{
-      var sb=window.supabase.createClient(SB_URL,SB_KEY);
-      sb.auth.getSession().then(function(r){
-        var session=r&&r.data&&r.data.session;
-        if(!session){ block('login'); return; }
-        sb.from('subscriptions').select('id').eq('status','active').limit(1).then(function(sr){
-          var hasSub=sr&&sr.data&&sr.data.length>0;
-          if(!hasSub){ block('sub'); return; }
-          if(!need.length){ pass(); return; }
-          sb.from('selected_subjects').select('subject_key').then(function(ss){
-            var keys=((ss&&ss.data)||[]).map(function(x){return x.subject_key;});
-            var ok=need.some(function(k){ return keys.indexOf(k)>-1; });
-            if(ok) pass(); else block('subj');
-          });
-        });
+  function freeMsLeft() {
+    var t = null;
+    try { t = localStorage.getItem(KEY); } catch (e) {}
+    var now = Date.now();
+    if (!t) { try { localStorage.setItem(KEY, String(now)); } catch (e) {} t = now; }
+    return FREE_MS - (now - Number(t));
+  }
+
+  async function status() {
+    var sb = null;
+    try { if (SUPABASE_URL && SUPABASE_ANON && window.supabase) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON); } catch (e) {}
+    if (!sb) return "free";
+    var user = null;
+    try { var u = await sb.auth.getUser(); user = u && u.data && u.data.user; } catch (e) {}
+    if (user && user.email && OWNER_EMAILS.indexOf(user.email.toLowerCase()) > -1) return "owner";
+    if (user) {
+      try {
+        var r = await sb.from("mathia_pretplata").select("*").eq("user_id", user.id).eq("predmet", SUBJECT).maybeSingle();
+        if (r && r.data && r.data.aktivno && (!r.data.istice || new Date(r.data.istice) > new Date())) return "subscribed";
+      } catch (e) {}
+    }
+    return "free";
+  }
+
+  /* ---- UI ---- */
+  function badge(msLeft) {
+    var b = document.createElement("div");
+    b.id = "mathia-free-badge";
+    b.style.cssText = "position:fixed;left:14px;bottom:14px;z-index:99998;background:#fff;border:1px solid #E7D2A2;color:#9C7838;font:600 13px Inter,system-ui,Arial,sans-serif;padding:8px 12px;border-radius:999px;box-shadow:0 8px 22px rgba(67,44,55,.14)";
+    document.body.appendChild(b);
+    function tick() {
+      var left = freeMsLeft();
+      if (left <= 0) { b.remove(); lock(); return; }
+      var m = Math.floor(left / 60000), s = Math.floor((left % 60000) / 1000);
+      b.textContent = "Besplatno još " + m + ":" + (s < 10 ? "0" : "") + s;
+      setTimeout(tick, 1000);
+    }
+    tick();
+  }
+
+  function lock() {
+    if (document.getElementById("mathia-gate")) return;
+    var o = document.createElement("div");
+    o.id = "mathia-gate";
+    o.style.cssText = "position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(67,44,55,.34);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);font-family:Inter,system-ui,Arial,sans-serif";
+    var plans = PLANS.map(function (p) {
+      return '<a href="' + PAY_URL + '?plan=' + p.id + '&predmet=' + encodeURIComponent(SUBJECT) +
+        '" style="display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #E7D2A2;border-radius:14px;padding:13px 16px;margin:8px 0;text-decoration:none;color:#432C37;transition:.15s" ' +
+        'onmouseover="this.style.borderColor=\'#C6A05C\'" onmouseout="this.style.borderColor=\'#E7D2A2\'">' +
+        '<span><b style="font-family:Cormorant Garamond,serif;font-size:19px">' + p.naziv + '</b><br><small style="color:#8a7a74">' + p.predmeta + (p.predmeta === 1 ? ' predmet' : (p.predmeta < 5 ? ' predmeta' : ' predmeta')) + '</small></span>' +
+        '<b style="color:#9C7838">' + fmt(p.din) + ' din</b></a>';
+    }).join("");
+    o.innerHTML =
+      '<div style="width:100%;max-width:440px;background:#fff;border:1px solid #E7D2A2;border-radius:22px;box-shadow:0 30px 70px rgba(67,44,55,.3);padding:26px 24px;text-align:center">' +
+      '<div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
+      '<h2 style="font-family:Cormorant Garamond,serif;font-weight:700;font-size:26px;margin:8px 0 6px;color:#432C37">Besplatnih 15 minuta je isteklo</h2>' +
+      '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">Izaberi paket da nastaviš s ovim predmetom — knjige, skripte, Marina i test sklonosti.</p>' +
+      plans +
+      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">Već imaš pretplatu? <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>' +
+      '</div>';
+    document.body.appendChild(o);
+    document.documentElement.style.overflow = "hidden";
+  }
+
+  function start() {
+    if (!SUBJECT) return; // nema predmeta -> ne zaključavaj
+    loadSb(function () {
+      status().then(function (st) {
+        if (st === "owner" || st === "subscribed") return; // pun pristup
+        var left = freeMsLeft();
+        if (left > 0) { if (document.body) badge(left); else window.addEventListener("DOMContentLoaded", function(){badge(left);}); }
+        else lock();
       });
-    }catch(e){ block('login'); }
-  });
+    });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
 })();

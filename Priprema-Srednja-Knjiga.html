@@ -1,0 +1,110 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Priprema za upis u srednju školu · Knjiga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
+.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
+.topic p{margin:6px 0 12px}
+.box{border-radius:14px;padding:13px 15px;margin:12px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.task{font-weight:600;margin-bottom:6px}
+.katex-display{margin:.5em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">÷ √ π</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">e-knjiga · priprema</div>
+<h1 data-i18n="name">Priprema za upis u srednju školu</h1>
+<p class="subtitle" data-i18n="sub">Matematika za malu maturu — jasno, s primerima iz života.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Redosled računskih operacija</span></h2>
+<p>Prvo zagrade, pa stepenovanje, pa množenje i deljenje, i na kraju sabiranje i oduzimanje.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$(\ )\;\rightarrow\;a^n\;\rightarrow\;\times\,\div\;\rightarrow\;+\,-$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko je 2 + 3 · 4?</div>$$2+3\cdot4=2+12=14$$</div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>Razlomci</span></h2>
+<p>Da bismo sabrali razlomke, svedemo ih na isti imenilac. Brojilac je gornji, imenilac donji broj.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\frac{a}{b}+\frac{c}{d}=\frac{ad+bc}{bd}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko je 1/2 + 1/4?</div>$$\frac{1}{2}+\frac{1}{4}=\frac{2}{4}+\frac{1}{4}=\frac{3}{4}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Procenti</span></h2>
+<p>Procenat je deo od sto. „10% od nečega" znači taj broj podeljen sa 10.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$p\%\ \text{od}\ N=\frac{p}{100}\cdot N$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko je 10% od 50?</div>$$\frac{10}{100}\cdot50=5$$</div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Jednačine</span></h2>
+<p>Jednačina je kao vaga — što uradiš jednoj strani, uradi i drugoj. Cilj je da x ostane sam.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$x+a=b\ \Rightarrow\ x=b-a$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Reši: x + 7 = 12.</div>$$x=12-7=5$$</div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Proporcije</span></h2>
+<p>Kada dve veličine rastu zajedno, koristimo proporciju (unakrsno množenje).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\frac{a}{b}=\frac{c}{x}\ \Rightarrow\ x=\frac{b\cdot c}{a}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">3 olovke koštaju 90 din. Koliko 5 olovaka?</div>$$\frac{3}{90}=\frac{5}{x}\Rightarrow x=150\ \text{din}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Obim i površina</span></h2>
+<p>Obim je dužina ivice, površina je koliko prostora figura zauzima.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$O_{\text{kvadrat}}=4a\qquad P_{\text{kvadrat}}=a^2\qquad P_{\text{pravoug}}=a\cdot b$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Kvadrat stranice 6 cm — obim i površina?</div>$$O=24\ \text{cm},\quad P=36\ \text{cm}^2$$</div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Merne jedinice</span></h2>
+<p>Pretvaranje jedinica je čest deo testa — zapamti osnovne odnose.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$1\ \text{m}=100\ \text{cm}\qquad 1\ \text{kg}=1000\ \text{g}\qquad 1\ \text{h}=60\ \text{min}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko je 2,5 m u centimetrima?</div>$$2{,}5\cdot100=250\ \text{cm}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Srednja vrednost (prosek)</span></h2>
+<p>Prosek se računa kao zbir svih vrednosti podeljen njihovim brojem — npr. prosek ocena.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\bar{x}=\frac{\text{zbir}}{\text{broj}}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prosek ocena 5, 4, 3, 4?</div>$$\bar{x}=\frac{16}{4}=4$$</div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Logika i nizovi</span></h2>
+<p>Potraži pravilo po kome se brojevi menjaju, pa nastavi niz. Ako zapneš, isključi odgovore koji ne mogu da budu tačni.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="zapamti">ZAPAMTI</div>$$\text{nađi pravilo}\ \rightarrow\ \text{nastavi niz}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Nastavi: 1, 4, 9, 16, …</div>$$\text{kvadrati}\Rightarrow 25$$</div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="priprema-srednja" data-name="Marina" data-subj="Priprema za upis u srednju školu"></script>
+<script defer src="gate.js" data-subject="priprema-srednja"></script>
+<script>
+var I18N={
+kind:{en:"e-book · prep",de:"E-Book · Vorbereitung",fr:"e-book · prépa",es:"e-book · preparación",it:"e-book · preparazione",ru:"э-книга · подготовка",pt:"e-book · preparação"},
+name:{en:"High-school entrance prep",de:"Aufnahme weiterführende Schule – Vorbereitung",fr:"Préparation à l'entrée au lycée",es:"Preparación para secundaria",it:"Preparazione alla scuola superiore",ru:"Подготовка к поступлению в среднюю школу",pt:"Preparação para o ensino secundário"},
+sub:{en:"Maths for the final exam — clear, with everyday examples.",de:"Mathe für die Abschlussprüfung — klar, mit Alltagsbeispielen.",fr:"Maths pour l'examen — clair, avec des exemples du quotidien.",es:"Mates para el examen — claro, con ejemplos cotidianos.",it:"Matematica per l'esame — chiara, con esempi di vita quotidiana.",ru:"Математика для экзамена — понятно, с примерами из жизни.",pt:"Matemática para o exame — claro, com exemplos do dia a dia."},
+zapamti:{en:"REMEMBER",de:"MERKE",fr:"À RETENIR",es:"RECUERDA",it:"RICORDA",ru:"ЗАПОМНИ",pt:"LEMBRA"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+</body></html>

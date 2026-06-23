@@ -1,6 +1,6 @@
 <!doctype html><html lang="sr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mathia — Kompleksna analiza · Skripta</title>
+<title>Mathia — Verovatnoća i statistika · Skripta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -36,59 +36,59 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 
 <div class="cover">
-<div class="seal">i ∮ ∞</div>
+<div class="seal">P ∑ σ</div>
 <div class="brandline">MATHIA</div>
 <div class="kind" data-i18n="kind">skripta · sažeto</div>
-<h1 data-i18n="name">Kompleksna analiza</h1>
+<h1 data-i18n="name">Verovatnoća i statistika</h1>
 <p class="subtitle" data-i18n="sub">Sažeto, sa ključnim formulama i zadacima zatvorenog tipa.</p>
 <div class="foot">uči s ljubavlju · mathia.rs</div>
 </div>
 
 <div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span>Kompleksan broj</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$z=a+bi,\ i^2=-1$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">i² = ?  a) 1  b) −1  c) i  d) 0</div><div class="ans">b) −1.</div></div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span>Verovatnoća događaja</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P(A)=\tfrac{\text{povoljni}}{\text{ukupni}},\ 0\le P\le1$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">P(6) na kocki?  a) 1/2  b) 1/6  c) 1/3  d) 6</div><div class="ans">b) 1/6.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">2</span> <span>Moduo</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$|z|=\sqrt{a^2+b^2}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">|3 + 4i| = ?  a) 5  b) 7  c) 25  d) 1</div><div class="ans">a) 5.</div></div></section>
+<section class="topic"><h2><span class="tnum">2</span> <span>Komplement i unija</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P(\bar A)=1-P(A),\ P(A\cup B)=P(A)+P(B)-P(A\cap B)$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">P(nije 6) na kocki?  a) 5/6  b) 1/6  c) 1/2  d) 1</div><div class="ans">a) 5/6.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">3</span> <span>Konjugovano</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\bar z=a-bi$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Konjugovano od a + bi?  a) a+bi  b) a−bi  c) −a+bi  d) b+ai</div><div class="ans">b) a − bi.</div></div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span>Nezavisnost</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P(A\mid B)=\tfrac{P(A\cap B)}{P(B)};\ \text{nezavisni}:P(A\cap B)=P(A)P(B)$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Dva novčića, oba pismo?  a) 1/2  b) 1/4  c) 1/3  d) 1/8</div><div class="ans">b) 1/4.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">4</span> <span>Ojlerova formula</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$e^{i\theta}=\cos\theta+i\sin\theta$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">e^{iπ} = ?  a) 1  b) −1  c) i  d) 0</div><div class="ans">b) −1.</div></div></section>
+<section class="topic"><h2><span class="tnum">4</span> <span>Kombinatorika</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P_n=n!,\quad \binom{n}{k}=\tfrac{n!}{k!(n-k)!}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Izbor 2 od 5 — koliko načina?  a) 10  b) 20  c) 25  d) 120</div><div class="ans">a) 10.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">5</span> <span>Eksponencijalni oblik</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$z=r e^{i\theta}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">U z = r·e^{iθ}, r je…  a) argument  b) moduo  c) realni deo  d) 0</div><div class="ans">b) moduo.</div></div></section>
+<section class="topic"><h2><span class="tnum">5</span> <span>Bajes / uslovna</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P(A\mid B)=\tfrac{P(B\mid A)P(A)}{P(B)}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Za nezavisne, P(A∩B) = ?  a) P(A)+P(B)  b) P(A)·P(B)  c) 0  d) 1</div><div class="ans">b) P(A)·P(B).</div></div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Moavrova formula</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$(\cos\theta+i\sin\theta)^n=\cos n\theta+i\sin n\theta$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(cosθ+i sinθ)ⁿ = ?  a) cos nθ+i sin nθ  b) cosθ+i sinθ  c) n cosθ  d) 0</div><div class="ans">a).</div></div></section>
+<section class="topic"><h2><span class="tnum">6</span> <span>Očekivanje</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$E(X)=\sum_i x_i p_i$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Očekivanje broja na kocki?  a) 3  b) 3,5  c) 6  d) 21</div><div class="ans">b) 3,5.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">7</span> <span>n-ti koreni</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\sqrt[n]{z}\to n\ \text{rešenja}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko n-tih korena ima kompleksan broj?  a) 1  b) 2  c) n  d) ∞</div><div class="ans">c) n.</div></div></section>
+<section class="topic"><h2><span class="tnum">7</span> <span>Varijansa i σ</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\operatorname{Var}(X)=E(X^2)-(E X)^2,\ \sigma=\sqrt{\operatorname{Var}}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">σ je koren od…  a) proseka  b) varijanse  c) medijane  d) moda</div><div class="ans">b) varijanse.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">8</span> <span>Koši–Riman</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$u_x=v_y,\ u_y=-v_x$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koši–Riman: u_x = ?  a) v_y  b) −v_y  c) u_y  d) 0</div><div class="ans">a) v_y.</div></div></section>
+<section class="topic"><h2><span class="tnum">8</span> <span>Normalna raspodela</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$z=\tfrac{x-\mu}{\sigma}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">μ = 50, σ = 10, x = 70 → z?  a) 1  b) 2  c) 0,5  d) 20</div><div class="ans">b) 2.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">9</span> <span>Cauchyjeva teorema</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\oint_C f\,dz=0\ (f\ \text{analitička})$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">∮_C f dz za analitičku f na zatvorenoj konturi?  a) 1  b) 0  c) ∞  d) f</div><div class="ans">b) 0.</div></div></section>
+<section class="topic"><h2><span class="tnum">9</span> <span>Opisna statistika</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\bar x=\tfrac{1}{n}\sum x_i,\quad \text{med}= \text{sredina poređanih}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Medijana niza 1, 2, 3, 4, 5?  a) 2,5  b) 3  c) 5  d) 15</div><div class="ans">b) 3.</div></div></section>
 </div>
 <div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="kompleksna-analiza" data-name="Marina" data-subj="Kompleksna analiza"></script>
-<script defer src="gate.js" data-subject="kompleksna-analiza"></script>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="fax-verovatnoca" data-name="Marina" data-subj="Verovatnoća i statistika"></script>
+<script defer src="gate.js" data-subject="fax-verovatnoca"></script>
 <script>
 var I18N={
 kind:{en:"study notes · concise",de:"Skript · kompakt",fr:"fiches · synthèse",es:"apuntes · resumen",it:"appunti · sintesi",ru:"конспект · кратко",pt:"resumo · conciso"},
-name:{en:"Complex analysis",de:"Funktionentheorie",fr:"Analyse complexe",es:"Análisis complejo",it:"Analisi complessa",ru:"Комплексный анализ",pt:"Análise complexa"},
+name:{en:"Probability & statistics",de:"Wahrscheinlichkeit & Statistik",fr:"Probabilités & statistiques",es:"Probabilidad y estadística",it:"Probabilità e statistica",ru:"Вероятность и статистика",pt:"Probabilidade e estatística"},
 sub:{en:"Concise, with key formulas and multiple-choice practice.",de:"Kompakt, mit Kernformeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec formules clés et QCM.",es:"Resumen, con fórmulas clave y preguntas tipo test.",it:"Sintesi, con formule chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми формулами и тестовыми заданиями.",pt:"Resumo, com fórmulas-chave e perguntas de escolha múltipla."},
 formule:{en:"KEY FORMULAS",de:"KERNFORMELN",fr:"FORMULES CLÉS",es:"FÓRMULAS CLAVE",it:"FORMULE CHIAVE",ru:"КЛЮЧЕВЫЕ ФОРМУЛЫ",pt:"FÓRMULAS-CHAVE"},
 primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};

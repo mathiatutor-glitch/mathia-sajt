@@ -1,0 +1,101 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Priprema za prijemni (fakultet) · Skripta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.55}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:54vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:29px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:16px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,6vw,44px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:32em;margin:0 auto}
+.foot{margin-top:24px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:0 12px 28px rgba(67,44,55,.05)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 14px Inter;flex:none}
+.box{border-radius:12px;padding:11px 14px;margin:9px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:11.5px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.task{font-weight:600;margin-bottom:4px}
+.ans{font-size:14px;color:var(--golddk);margin-top:4px}
+.katex-display{margin:.4em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">∫ ∑ √</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">skripta · sažeto</div>
+<h1 data-i18n="name">Priprema za prijemni — fakultet</h1>
+<p class="subtitle" data-i18n="sub">Sažeto, sa ključnim formulama i zadacima zatvorenog tipa.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Procenti, razmere, kamata</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\text{deo}=\tfrac{p}{100}\cdot\text{celina}\qquad C_{nova}=C(1\pm\tfrac{p}{100})\qquad I=\tfrac{K p t}{100}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">20% od 250 = ?  a) 40  b) 50  c) 25  d) 60</div><div class="ans">b) 50 — $0{,}2\cdot250=50$. (eliminiši: 25 je 10%, 60 je 24%)</div></div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>Jednačine i nejednačine</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$ax+b=0\Rightarrow x=-\tfrac{b}{a}\qquad (a\pm b)^2=a^2\pm2ab+b^2$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Rešenje 2x + 6 = 0?  a) 3  b) −3  c) −6  d) 6</div><div class="ans">b) −3 — $x=-\tfrac{6}{2}=-3$.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Kvadratna funkcija</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$x_{1,2}=\frac{-b\pm\sqrt{D}}{2a},\quad D=b^2-4ac,\quad x_t=-\tfrac{b}{2a}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Nule x² − 5x + 6?  a) {1,6}  b) {2,3}  c) {−2,−3}  d) {0,5}</div><div class="ans">b) {2,3} — zbir 5, proizvod 6.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Sistemi jednačina</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$x+y=s,\ x-y=d\ \Rightarrow\ x=\tfrac{s+d}{2},\ y=\tfrac{s-d}{2}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">x + y = 5, x − y = 1 → (x, y)?  a) (2,3)  b) (3,2)  c) (4,1)  d) (1,4)</div><div class="ans">b) (3,2).</div></div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Nizovi i progresije</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$a_n=a_1+(n-1)d,\ S_n=\tfrac{n(a_1+a_n)}{2}\qquad a_n=a_1q^{\,n-1}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">3, 6, 9, 12, … sledeći?  a) 14  b) 15  c) 16  d) 18</div><div class="ans">b) 15 — aritmetički, d = 3.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Stepeni, koreni, logaritmi</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$a^m a^n=a^{m+n}\qquad \log_a(xy)=\log_a x+\log_a y\qquad \log_a a^k=k$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">log₃ 27 = ?  a) 2  b) 3  c) 9  d) ⅓</div><div class="ans">b) 3 — $3^3=27$.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Geometrija i trigonometrija</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$a^2+b^2=c^2\qquad O=2r\pi,\ P=r^2\pi\qquad \sin^2\alpha+\cos^2\alpha=1$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Obim kruga r = 5 (π≈3,14)?  a) 15,7  b) 31,4  c) 78,5  d) 10</div><div class="ans">b) 31,4 — $O=2\cdot5\cdot3{,}14$. (78,5 je površina)</div></div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Uvod u izvode</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$(x^n)'=n x^{n-1}\qquad (c)'=0\qquad (\sin x)'=\cos x$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(x²)′ = ?  a) x  b) 2x  c) x³/3  d) 2</div><div class="ans">b) 2x.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Logičko rezonovanje</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\text{prepoznaj pravilo}\to\text{eliminiši netačno}\to\text{proveri red veličine}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">1, 1, 2, 3, 5, 8, … sledeći?  a) 11  b) 13  c) 12  d) 10</div><div class="ans">b) 13 — Fibonači (zbir prethodna dva).</div></div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="priprema-fakultet" data-name="Marina" data-subj="Priprema za prijemni — fakultet"></script>
+<script defer src="gate.js" data-subject="priprema-fakultet"></script>
+<script>
+var I18N={
+kind:{en:"study notes · concise",de:"Skript · kompakt",fr:"fiches · synthèse",es:"apuntes · resumen",it:"appunti · sintesi",ru:"конспект · кратко",pt:"resumo · conciso"},
+name:{en:"University entrance prep",de:"Studienaufnahme – Vorbereitung",fr:"Préparation au concours universitaire",es:"Preparación para la universidad",it:"Preparazione all'università",ru:"Подготовка к поступлению в вуз",pt:"Preparação para a universidade"},
+sub:{en:"Concise, with key formulas and multiple-choice practice.",de:"Kompakt, mit Kernformeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec formules clés et QCM.",es:"Resumen, con fórmulas clave y preguntas tipo test.",it:"Sintesi, con formule chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми формулами и тестовыми заданиями.",pt:"Resumo, com fórmulas-chave e perguntas de escolha múltipla."},
+formule:{en:"KEY FORMULAS",de:"KERNFORMELN",fr:"FORMULES CLÉS",es:"FÓRMULAS CLAVE",it:"FORMULE CHIAVE",ru:"КЛЮЧЕВЫЕ ФОРМУЛЫ",pt:"FÓRMULAS-CHAVE"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+</body></html>
