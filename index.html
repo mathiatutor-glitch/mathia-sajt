@@ -230,7 +230,7 @@
 
   /* final */
   .final{background:var(--card);text-align:center}
-  .final h2{color:var(--plum);font-size:clamp(2rem,5vw,2.9rem);max-width:20ch;margin:0 auto;font-weight:600}
+  .final h2{color:var(--plum);font-size:clamp(2.1rem,5.4vw,3.15rem);max-width:30ch;margin:0 auto;font-weight:600;line-height:1.08}
   .final p{color:var(--muted);margin:14px auto 0;max-width:48ch}
   .final .row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 
@@ -409,8 +409,8 @@
 <section class="pain">
   <div class="wrap">
     <p class="q reveal">Da li vaše dete ne ispušta telefon iz ruku?</p>
-    <p class="q reveal">Da li svaki razgovor o školi završava raspravom, a ocene polako padaju?</p>
-    <div class="big reveal">Šta ako vam kažem da telefon više nije problem — <em>već rešenje?</em></div>
+    <p class="q reveal">Da li svaki razgovor o školi završava raspravom,<br>a ocene polako padaju?</p>
+    <div class="big reveal">Šta ako vam kažem da telefon više nije problem —<br><em>već rešenje?</em></div>
   </div>
 </section>
 
@@ -477,28 +477,27 @@
         </div>
       </div>
       <div class="reveal" style="justify-self:center;display:flex;flex-direction:column;align-items:center;gap:18px">
-        <div class="phone">
-          <div class="scr">
-            <div class="ttl">Napredak · Ana</div>
-            <div class="lbl"><span>Matematika</span><span>78%</span></div>
-            <div class="bar2"><i style="width:78%"></i></div>
-            <div class="lbl"><span>Fizika</span><span>54%</span></div>
-            <div class="bar2"><i style="width:54%"></i></div>
-            <div class="pill">❤️ Savladano: Linearne jednačine</div>
-            <div class="pill">🕒 Danas učila: 42 min</div>
-            <div class="pill">🎯 Sledeće: Kvadratna funkcija</div>
+        <div style="width:344px;max-width:86vw;background:linear-gradient(180deg,#ffffff,#fffdf8);border:1px solid var(--bord);border-radius:26px;padding:20px 20px 22px;box-shadow:0 34px 66px -30px rgba(120,70,80,.55)">
+          <div style="display:flex;align-items:center;gap:12px;padding-bottom:15px;border-bottom:1px solid var(--bord)">
+            <span style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldlt));display:inline-flex;align-items:center;justify-content:center;font-size:25px;box-shadow:0 8px 18px -7px rgba(198,160,92,.85);flex:0 0 48px">👩‍🏫</span>
+            <div style="line-height:1.25">
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.34rem;color:var(--plum)">Profesorica</div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--rose-dk);font-weight:700"><span style="width:7px;height:7px;border-radius:50%;background:#46b46a;display:inline-block;box-shadow:0 0 0 3px rgba(70,180,106,.2)"></span> uvek na vezi · pamti tvoje gradivo</div>
+            </div>
           </div>
-        </div>
-        <div class="profnote" style="width:300px;max-width:78vw;background:#fff;border:1px solid var(--bord);border-radius:18px;padding:15px 17px;box-shadow:0 18px 44px -20px rgba(120,70,80,.5)">
-          <div style="display:flex;align-items:center;gap:9px;margin-bottom:9px">
-            <span style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldlt));display:inline-flex;align-items:center;justify-content:center;font-size:16px;flex:0 0 30px">👩‍🏫</span>
-            <b style="font-family:'Cormorant Garamond',serif;color:var(--plum);font-size:1.12rem">Profesorica</b>
-          </div>
-          <div style="color:#5a474d;font-size:.95rem;line-height:1.45">Prošli put smo radili granične vrednosti 👏 Danas predlažem 3 zadatka za vežbu pre nego što pređemo na izvode.</div>
-          <div style="margin-top:13px">
-            <div style="display:flex;justify-content:space-between;font-size:.74rem;color:#8a7780;margin-bottom:6px"><span>Analiza 1</span><span>62% pređeno</span></div>
+          <div style="background:var(--blush);border:1px solid #efd9d3;border-radius:16px 16px 16px 6px;padding:13px 15px;margin-top:15px;color:#5a3f45;font-size:.95rem;line-height:1.5">Prošli put smo radili <b style="color:var(--plum)">granične vrednosti</b> 👏 Danas predlažem <b style="color:var(--plum)">3 zadatka</b> za vežbu — pa onda prelazimo na <b style="color:var(--plum)">izvode</b>.</div>
+          <div style="margin-top:16px;background:var(--paper);border:1px solid var(--bord);border-radius:16px;padding:14px 15px">
+            <div style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:11px">Tvoj napredak</div>
+            <div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin-bottom:6px"><span>📘 Analiza 1</span><span>62%</span></div>
             <div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:62%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div>
-            <div style="font-size:.74rem;color:#8a7780;margin-top:6px">sledeće: izvodi</div>
+            <div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin:13px 0 6px"><span>📐 Matematika</span><span>78%</span></div>
+            <div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:78%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div>
+            <div style="margin-top:13px;display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--bord);border-radius:100px;padding:6px 13px;font-size:.78rem;color:var(--plum);font-weight:700">🎯 Sledeće: izvodi</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:15px">
+            <span style="background:var(--blush);border:1px solid #efd9d3;border-radius:100px;padding:6px 12px;font-size:.77rem;font-weight:700;color:var(--plum)">🧠 Pamti gradivo</span>
+            <span style="background:var(--blush);border:1px solid #efd9d3;border-radius:100px;padding:6px 12px;font-size:.77rem;font-weight:700;color:var(--plum)">🧭 Vodi korak po korak</span>
+            <span style="background:var(--blush);border:1px solid #efd9d3;border-radius:100px;padding:6px 12px;font-size:.77rem;font-weight:700;color:var(--plum)">📈 Prati napredak</span>
           </div>
         </div>
       </div>
@@ -563,10 +562,10 @@
     <div class="levels">
       <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🎒</span><span class="lvl-tx"><h3>Osnovna škola</h3><div class="cap">5–8. razred</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="osnovna-matematika-5.html">Matematika za osnovnu školu 5. razred</a><a href="osnovna-matematika-6.html">Matematika za osnovnu školu 6. razred</a><a href="osnovna-matematika-7.html">Matematika za osnovnu školu 7. razred</a><a href="osnovna-matematika-8.html">Matematika za osnovnu školu 8. razred</a><a href="osnovna-fizika-6.html">Fizika za osnovnu školu 6. razred</a><a href="osnovna-fizika-7.html">Fizika za osnovnu školu 7. razred</a><a href="osnovna-fizika-8.html">Fizika za osnovnu školu 8. razred</a><a href="mala-matura.html">Mala matura — završni ispit</a></div></div>
       <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">📐</span><span class="lvl-tx"><h3>Srednja škola</h3><div class="cap">1–4. razred</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="srednja-matematika-1.html">Matematika za srednju školu 1. razred</a><a href="srednja-matematika-2.html">Matematika za srednju školu 2. razred</a><a href="srednja-matematika-3.html">Matematika za srednju školu 3. razred</a><a href="srednja-matematika-4.html">Matematika za srednju školu 4. razred</a><a href="srednja-fizika-1.html">Fizika za srednju školu 1. razred</a><a href="srednja-fizika-2.html">Fizika za srednju školu 2. razred</a><a href="srednja-fizika-3.html">Fizika za srednju školu 3. razred</a><a href="srednja-fizika-4.html">Fizika za srednju školu 4. razred</a></div></div>
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🎯</span><span class="lvl-tx"><h3>Prijemni za fakultet</h3><div class="cap">FTN i srodni</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="prijemni-ftn.html">Prijemni iz matematike (FTN) — pun obim</a><a href="prijemni.html">Prijemni: matematika sa logikom</a><a href="prijemni.html">Prijemni: matematika sa testom sklonosti</a><a href="prijemni.html">Rešeni prijemni rokovi 2012–2025</a></div></div>
+      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🎯</span><span class="lvl-tx"><h3>Prijemni ispiti</h3><div class="cap">FTN i srodni</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="prijemni-ftn.html">Prijemni iz matematike (FTN) — pun obim</a><a href="prijemni.html">Prijemni: matematika sa logikom</a><a href="prijemni.html">Prijemni: matematika sa testom sklonosti</a><a href="prijemni.html">Rešeni prijemni rokovi 2012–2025</a></div></div>
       <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🎓</span><span class="lvl-tx"><h3>Fakultet</h3><div class="cap">inženjerski predmeti</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="predmet-algebra.html">Algebra</a><a href="predmet-analiza1.html">Matematička analiza 1</a><a href="predmet-analiza2.html">Matematička analiza 2</a><a href="predmet-linearna-algebra.html">Linearna algebra</a><a href="predmet-diskretna-matematika.html">Diskretna matematika</a><a href="predmet-kompleksna-analiza.html">Kompleksna analiza</a><a href="predmet-verovatnoca.html">Verovatnoća i statistika</a><a href="predmet-operaciona-istrazivanja.html">Operaciona istraživanja</a><a href="predmet-elektrotehnika.html">Teorija električnih kola</a><a href="predmet-elektricna-merenja.html">Električna merenja</a><a href="predmet-uvod-u-elektroniku.html">Uvod u elektroniku</a><a href="predmet-sistemi-signali.html">Sistemi i signali</a><a href="predmet-merenja-nev.html">Merenja neelektričnih veličina</a><a href="predmet-fizika-mehanika.html">Mehanika</a></div></div>
       <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">💻</span><span class="lvl-tx"><h3>Programiranje</h3><div class="cap">od Scratch-a do SQL-a</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="programiranje-python.html">Python</a><a href="programiranje-cpp.html">C++</a><a href="programiranje-csharp.html">C#</a><a href="programiranje-java.html">Java</a><a href="programiranje-js.html">JavaScript</a><a href="programiranje-kotlin.html">Kotlin</a><a href="programiranje-pascal.html">Pascal</a><a href="programiranje-r.html">R</a><a href="programiranje-sql.html">SQL</a><a href="predmeti.html">LabVIEW</a><a href="programiranje-web.html">Veb (HTML, CSS, JavaScript)</a><a href="programiranje-algoritmi.html">Algoritmi i strukture podataka</a><a href="programiranje-matlab.html">MATLAB</a><a href="programiranje-scratch.html">Scratch</a><a href="programiranje-arduino.html">Arduino</a></div></div>
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🔌</span><span class="lvl-tx"><h3>Elektronika i alati</h3><div class="cap">projektovanje kola</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="elektronika-kicad.html">KiCad</a><a href="elektronika-ltspice.html">LTSpice</a><a href="elektronika-cadence.html">Cadence</a><a href="predmeti.html">PSpice</a></div></div><div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">📚</span><span class="lvl-tx"><h3>Priprema</h3><div class="cap">srednja · viša · fakultet</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="predmet-priprema-srednja.html">Priprema – srednja škola</a><a href="predmet-priprema-visa.html">Priprema – viša škola</a><a href="predmet-priprema-fakultet.html">Priprema – fakultet</a></div></div>
+      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🔌</span><span class="lvl-tx"><h3>Elektronika i alati</h3><div class="cap">projektovanje kola</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="elektronika-kicad.html">KiCad</a><a href="elektronika-ltspice.html">LTSpice</a><a href="elektronika-cadence.html">Cadence</a><a href="predmeti.html">PSpice</a></div></div><div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">📚</span><span class="lvl-tx"><h3>Priprema</h3><div class="cap">srednja · viša · fakultet</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="predmet-priprema-srednja.html">Priprema – srednja škola</a><a href="predmet-priprema-visa.html">Priprema – viša škola</a><a href="predmet-priprema-fakultet.html">Priprema za upis na fakultet</a></div></div>
     </div>
     <div class="tests-head reveal"><h3>Testovi — uz svaki paket</h3></div>
     <div class="tests">
