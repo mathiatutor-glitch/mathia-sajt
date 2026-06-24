@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="sr-Latn"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LTSpice — skripta — Mathia</title>
+<meta name="description" content="Besplatan SPICE: crtanje šeme, direktive .tran/.ac/.dc/.step/.meas, izvori i waveform viewer.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<script src="mathia-guard.js?v=1" defer></script>
+<style>
+:root{--paper:#FBF6EE;--card:#FFFCF6;--head:#432C37;--ink:#4f3b44;--muted:#8a7480;--gold:#9C7838;--goldlt:#E7D2A2;--line:#E7DBC4;--plum:#432C37}
+*{box-sizing:border-box}body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;color:var(--head);line-height:1.14;margin:0}
+a{color:inherit;text-decoration:none}.wrap{max-width:780px;margin:0 auto;padding:0 22px}
+.cover{background:linear-gradient(160deg,#4A2A38,#3A2330 60%,#2C1A25);color:#fff;padding:64px 0 56px;text-align:center;position:relative;overflow:hidden}
+.cover:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 280px at 80% 0,rgba(231,210,162,.16),transparent 70%)}
+.cover .wrap{position:relative}
+.cover .brandline{font-family:'Cormorant Garamond',serif;letter-spacing:.32em;color:var(--goldlt);font-size:.95rem}
+.cover .kind{color:#e9d9dd;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;margin-top:8px}
+.cover h1{color:#fff;font-size:clamp(2rem,6vw,3.2rem);margin:12px 0}
+.cover .sub{color:#e9d9dd;max-width:560px;margin:0 auto;font-size:1.05rem}
+.cover .rule{width:84px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto 0}
+.toc{max-width:780px;margin:24px auto 0;padding:0 22px;text-align:center}
+.toc a{display:inline-block;margin:4px 7px;font-size:.84rem;color:var(--gold);font-weight:700}
+.topic{max-width:780px;margin:30px auto;padding:0 22px}
+.topic h2{font-size:1.55rem;display:flex;gap:10px;align-items:baseline;margin-bottom:10px}
+.tnum{font-family:'Nunito';font-weight:800;font-size:.78rem;color:#fff;background:linear-gradient(135deg,var(--gold),var(--goldlt));border-radius:8px;padding:3px 9px}
+.topic p{margin:0;overflow-wrap:break-word;word-break:break-word}
+.endcard{max-width:780px;margin:42px auto 0;padding:24px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.endcard h3{font-size:1.5rem}
+footer{background:var(--plum);color:#d9c7cd;text-align:center;padding:32px 0;margin-top:28px}
+footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:1.4rem;letter-spacing:.1em}
+footer p{font-size:.82rem;color:#c7b3ba;margin:4px 0 0}
+.mathia-copyr{text-align:center;padding:14px 20px 22px;font-size:.74rem;color:rgba(67,44,55,.5)}
+</style></head><body class="fakultet">
+<div class="cover"><div class="wrap">
+<div class="brandline">MATHIA</div><div class="kind">e-knjiga · skripta</div>
+<h1>LTSpice</h1><div class="sub">Besplatan SPICE: crtanje šeme, direktive .tran/.ac/.dc/.step/.meas, izvori i waveform viewer.</div><div class="rule"></div>
+</div></div>
+<div class="toc"><a href="#t1">1 · Šta je LTSpice</a>
+<a href="#t2">2 · Crtanje šeme</a>
+<a href="#t3">3 · Izvori signala</a>
+<a href="#t4">4 · Direktive .tran / .ac / .dc</a>
+<a href="#t5">5 · .step i .meas</a>
+<a href="#t6">6 · Waveform viewer</a>
+<a href="#t7">7 · Modeli, .subckt i saveti</a></div>
+<section class="topic"><h2><span class="tnum">1</span> <span id="t1">Šta je LTSpice</span></h2><p>LTSpice je <b>besplatan</b>, brz SPICE simulator (Analog Devices), veoma popularan za napajanja i analogna kola. Nudi crtanje šeme, ugrađene modele i moćan prikaz talasnih oblika — bez ograničenja na broj čvorova.</p></section>
+<section class="topic"><h2><span class="tnum">2</span> <span id="t2">Crtanje šeme</span></h2><p>Postavljaš komponente (R, C, L, dioda, tranzistor, izvor), povezuješ <b>žicama</b> i obeležavaš čvorove (<b>Net Name</b>). <b>Masa (GND) je obavezna</b> — bez referentnog čvora simulacija ne radi.</p></section>
+<section class="topic"><h2><span class="tnum">3</span> <span id="t3">Izvori signala</span></h2><p>Naponski/strujni izvori sa funkcijama: <b>PULSE</b> (impulsi), <b>SINE</b> (sinus), <b>PWL</b> (tačka-po-tačku), <b>EXP</b>. Za frekvencijsku analizu izvoru se zada <b>AC</b> amplituda.</p></section>
+<section class="topic"><h2><span class="tnum">4</span> <span id="t4">Direktive .tran / .ac / .dc</span></h2><p>Analize se unose kao SPICE direktiva (desni klik → SPICE directive): <b>.tran</b> (vreme), <b>.ac</b> (frekvencija), <b>.dc</b> (DC sweep), <b>.op</b> (radna tačka). Sintaksa je ista kao u klasičnom SPICE-u.</p></section>
+<section class="topic"><h2><span class="tnum">5</span> <span id="t5">.step i .meas</span></h2><p><b>.step param</b> ponavlja simulaciju za niz vrednosti (uporedi krive na istom grafiku). <b>.meas</b> izmeri veličinu iz rezultata (npr. rise time, RMS, maksimum), a <b>.four</b> daje FFT i harmonike.</p></section>
+<section class="topic"><h2><span class="tnum">6</span> <span id="t6">Waveform viewer</span></h2><p>Klik na <b>žicu</b> prikazuje napon tog čvora, klik na <b>komponentu</b> prikazuje struju kroz nju. Mogu se crtati i matematički izrazi nad signalima (npr. V(out)*I(R1) za snagu).</p></section>
+<section class="topic"><h2><span class="tnum">7</span> <span id="t7">Modeli, .subckt i saveti</span></h2><p>Uvoze se proizvođački <b>.model</b> i <b>.subckt</b> (.lib/.inc). Saveti: uvek postavi masu, po potrebi zadaj početne uslove (.ic) i ograniči maksimalni korak vremena ako talasni oblik preskače detalje.</p></section>
+<div class="endcard"><h3>Spreman za vežbu?</h3><p style="color:#6a5a62;margin:8px 0 0">Pitaj Profesoricu bilo šta o LTSpice — dugme je dole desno. 💬</p></div>
+<footer><div class="wrap"><div class="fbrand">Mathia</div><p>Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p><p>© 2026 Mathia · <a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a></p></div></footer>
+<div class="mathia-copyr">© 2026 Mathia Edu — sadržaj je zaštićen autorskim pravom. Umnožavanje i plagiranje su zabranjeni.</div>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="site" data-name="Profesorica" data-lang="sr" data-subj="LTSpice" data-sub="LTSpice — skripta" data-sub-en="LTSpice — notes" data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko LTSpice-a. Pitaj o crtanju šeme, direktivama .tran/.ac/.step ili .meas — objasniću korak po korak!" data-hi-en="Hi! I'm Profesorica 👩‍🏫 Here I help you with LTSpice. Ask about drawing the schematic, .tran/.ac/.step or .meas directives — I'll explain step by step!"></script>
+</body></html>
