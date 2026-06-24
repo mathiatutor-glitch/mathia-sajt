@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nacrtna geometrija 2 — Mathia</title>
+<meta name="description" content="Geometrijske strukture i vizuelizacija složenih 3D formi — površi, aksonometrija, senčenje i kotirana projekcija, objašnjeni jasno.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FBF6EE;--paper2:#F5EADB;--blush:#F4E3DD;--rose:#CC8E86;--rose-dk:#B5746C;--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:1120px}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0}
+  p{margin:0}a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+  .goldtext{background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:13px 26px;font-family:inherit;font-weight:700;font-size:.92rem;letter-spacing:.02em;cursor:pointer;border:1.5px solid transparent;transition:transform .16s,box-shadow .16s}
+  .btn-gold{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;box-shadow:0 12px 30px -12px rgba(198,160,92,.85)}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--plum);border-color:var(--gold)}
+  .btn-ghost:hover{background:rgba(198,160,92,.12)}
+  .btn-ghost-l{background:transparent;color:#fff;border-color:rgba(231,210,162,.55)}
+  .btn-ghost-l:hover{background:rgba(231,210,162,.14)}
+  .orn{display:flex;align-items:center;gap:14px;justify-content:center;max-width:260px;margin:0 auto 14px;color:var(--gold)}
+  .orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+  .orn:after{background:linear-gradient(90deg,var(--gold),transparent)}
+  header{position:sticky;top:0;z-index:40;background:rgba(251,246,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord)}
+  header:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent)}
+  .nav{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:14px}
+  .brand{display:flex;flex-direction:column;line-height:1}
+  .brand .bmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;letter-spacing:.12em}
+  .brand .bsub{font-family:'Pinyon Script',cursive;color:var(--rose-dk);font-size:.95rem;margin-top:1px}
+  .nav-r{display:flex;align-items:center;gap:20px}
+  .nav-r a{position:relative;color:var(--plum2);font-weight:600;font-size:.82rem;letter-spacing:.05em;display:none}
+  @media(min-width:820px){.nav-r a{display:inline}}
+  .nav-r a:hover{color:var(--golddk)}
+  .hero{position:relative;background:linear-gradient(160deg,#4A2A38,#3A2330 60%,#2C1A25);color:#fff;padding:60px 0 66px;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 85% 0,rgba(231,210,162,.16),transparent 70%)}
+  .hero .wrap{position:relative}
+  .hero .back{display:inline-block;color:var(--goldlt);font-weight:700;font-size:.82rem;margin-bottom:16px}
+  .hero .eyebrow{color:var(--goldlt)}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.6rem);margin:8px 0 14px;color:#fff}
+  .hero .lead{max-width:680px;color:#e9d9dd;font-size:1.08rem}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .sec{padding:58px 0}
+  .sec.alt{background:var(--card);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord)}
+  .sec h2{color:var(--plum);font-size:clamp(1.7rem,4.4vw,2.4rem);text-align:center;margin-bottom:26px}
+  .topics{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:680px){.topics{grid-template-columns:1fr 1fr}}
+  .topic{display:flex;gap:14px;background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:18px 20px;box-shadow:0 14px 34px -26px rgba(120,70,80,.4)}
+  .topic .tk{font-size:22px;flex:0 0 auto;line-height:1.3}
+  .topic b{color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
+  .topic p{color:#6a5a62;font-size:.93rem;margin-top:3px}
+  .steps{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--paper);border:1px solid var(--bord);border-radius:16px;padding:22px}
+  .step .num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldlt));color:#4a3812;font-weight:800;margin-bottom:10px}
+  .step b{display:block;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;margin-bottom:4px}
+  .step p{color:#6a5a62;font-size:.93rem}
+  .cta{background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#fff;text-align:center;padding:58px 0}
+  .cta h2{color:#fff;font-size:clamp(1.8rem,4.6vw,2.5rem);margin-bottom:10px}
+  .cta p{color:#e9d9dd;margin-bottom:22px}
+  footer{background:var(--plum);color:#d9c7cd;text-align:center;padding:38px 0}
+  footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.1em;margin-bottom:6px}
+  footer p{font-size:.85rem;color:#c7b3ba;margin-top:4px}
+  footer a{color:var(--goldlt);font-weight:700}
+
+  @keyframes foil{0%{background-position:0 0}100%{background-position:230% 0}}
+  footer .ftop{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;text-align:left}
+  footer .ftop .fbrand{margin-bottom:6px}
+  footer .footsig{font-family:'Tangerine',cursive;font-weight:700;font-size:2.4rem;display:inline-block;transform:rotate(-4deg);background:linear-gradient(100deg,#5E461E 0%,#8A6A2C 30%,#E7D2A2 50%,#8A6A2C 70%,#5E461E 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+  .mathia-copyr{text-align:center;padding:18px 20px 0;margin-top:16px;border-top:1px solid rgba(231,210,162,.14);font-size:.75rem;color:rgba(251,246,238,.5);letter-spacing:.02em;line-height:1.5}
+  .lit{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-width:820px}
+  .lit li{background:var(--card);border:1px solid var(--bord);border-radius:13px;padding:13px 16px;color:#5a4750;font-size:.95rem}
+  .lit li b{color:var(--plum);font-weight:700}
+  .lit li span{color:var(--muted);font-size:.85rem}
+  .mat{display:grid;gap:14px;grid-template-columns:1fr;max-width:820px}
+  @media(min-width:680px){.mat{grid-template-columns:1fr 1fr}}
+  .mat a{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:16px 18px;box-shadow:0 14px 34px -28px rgba(120,70,80,.4);transition:transform .15s,box-shadow .15s}
+  .mat a:hover{transform:translateY(-2px);box-shadow:0 20px 40px -26px rgba(120,70,80,.5)}
+  .mat .mi{font-size:24px}
+  .mat b{display:block;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
+  .mat p{color:#6a5a62;font-size:.86rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
+    <nav class="nav-r">
+      <a href="index.html#mathia">Šta je Mathia</a>
+      <a href="predmeti.html">Predmeti</a>
+      <a href="prodavnica.html">Prodavnica</a>
+      <a href="index.html#paketi">Paketi</a>
+      <a href="o-marini.html">O meni</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <a class="back" href="predmeti.html">← Svi predmeti</a>
+    <div class="eyebrow">Fakultet</div>
+    <h1>Nacrtna geometrija 2</h1>
+    <p class="lead">Geometrijske strukture i vizuelizacija složenih 3D formi — površi, aksonometrija, senčenje i kotirana projekcija, objašnjeni jasno.</p>
+    <div class="row">
+      <a class="btn btn-gold" href="index.html#paketi">Probaj 15 min besplatno →</a>
+      <a class="btn btn-ghost-l" href="skripta-nacrtna-geometrija-2.html">Otvori skriptu</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="orn"><i>✦</i></div>
+    <h2>Šta pokrivamo</h2>
+    <div class="topics">
+      <div class="topic"><span class="tk">🌀</span><div><b>Generisanje površi</b><p>Prostorne i ravne krive kao vodilje ili izvodnice; karakteristični pogledi i detekcija struktura.</p></div></div>
+      <div class="topic"><span class="tk">🏛️</span><div><b>Razvojne i nerazvojne površi</b><p>Pravoizvodne kvadrike, konoidi, cilindroidi, zavojne i konvolutne površi; lukovi, svodovi, kupole, krovovi.</p></div></div>
+      <div class="topic"><span class="tk">📐</span><div><b>Aksonometrijski prikazi</b><p>Aksonometrija složenih prostornih formi.</p></div></div>
+      <div class="topic"><span class="tk">🌑</span><div><b>Senčenje i vizuelni realizam</b><p>Principi senčenja, rastavnica osvetljenosti i bačene senke u ortogonalnim i kosim pogledima.</p></div></div>
+      <div class="topic"><span class="tk">🗺️</span><div><b>Kotirana projekcija</b><p>Realan teren, topografska površ i površi konstantnog pada; objekti sa usecima i nasipima.</p></div></div>
+      <div class="topic"><span class="tk">💧</span><div><b>Profili i zaštita objekta</b><p>Preseci/profili u vertikalnim zračnim površima; analiza zaštite objekta od atmosferske vode.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap">
+    <h2>Kako radi</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><b>Pošalji zadatak</b><p>Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b>Objašnjenje korak po korak</b><p>Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b>Vežbaj i napreduj</b><p>Zadaci i provere za utvrđivanje, prilagođeni tvom tempu.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="orn"><i>✦</i></div>
+    <h2>Literatura</h2>
+    <ul class="lit">
+      <li><b>Dovniković, L.</b> — Nacrtna geometrija <span>(1985 · Univerzitet u Novom Sadu)</span></li>
+      <li><b>Anagnosti, P.</b> — Nacrtna geometrija <span>(1996 · Naučna knjiga, Beograd)</span></li>
+      <li><b>Štulić, Radovan</b> — Nacrtna geometrija 2 — podloge za predavanja <span>(2012 · Novi Sad)</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap">
+    <h2>Materijali</h2>
+    <div class="mat" style="margin:0 auto">
+      <a href="skripta-nacrtna-geometrija-2.html"><span class="mi">📘</span><div><b>Skripta</b><p>Sažeta priprema kroz celo gradivo — korak po korak.</p></div></a>
+      <a href="index.html#paketi"><span class="mi">👩‍🏫</span><div><b>Profesorica (klon)</b><p>Pitaj bilo šta o predmetu — 0–24h, na tvom jeziku.</p></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Nacrtna geometrija 2 — bez muke.</h2>
+    <p>Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi">Započni besplatno →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div>
+        <div class="fbrand"><span class="goldtext">Mathia</span></div>
+        <p>Matematika · Fizika · Elektrotehnika · Programiranje — uz Profesoricu, 0–24h.</p>
+        <p style="margin-top:8px"><a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a> · <a href="index.html#paketi">Paketi</a></p>
+      </div>
+      <div class="footsig-wrap"><span class="footsig">dr Marina Bulat</span></div>
+    </div>
+    <div class="mathia-copyr">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
+  </div>
+</footer>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9"
+        data-api="https://project-y23je.vercel.app/api/chat"
+        data-mode="site" data-name="Profesorica"
+        data-lang="sr" data-sub="Nacrtna geometrija 2" data-sub-en="Descriptive Geometry 2"
+        data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 za Nacrtnu geometriju 2. Tu sam za generisanje površi, razvojne i nerazvojne površi, aksonometriju, senčenje i kotiranu projekciju. Pošalji zadatak ili sliku — vodim te korak po korak!"
+        data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 for Descriptive Geometry 2. I cover surface generation, developable and non-developable surfaces, axonometry, shading and contour projection. Send a problem or a photo — step by step!"></script>
+</body>
+</html>
