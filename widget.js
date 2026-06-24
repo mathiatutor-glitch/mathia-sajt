@@ -21,7 +21,7 @@
     return (script && script.getAttribute("data-lang")) || "sr";
   })();
   var MODE = (script && script.getAttribute("data-mode")) || "matura"; // "matura" | "ftn"
-  var NAME = (script && script.getAttribute("data-name")) || "Marina"; // ime asistenta (npr. "Marina")
+  var NAME = (script && script.getAttribute("data-name")) || "Profesorica"; // ime asistenta (default: "Profesorica")
   var HI = (script && script.getAttribute("data-hi")) || ""; // pozdrav po stranici (opciono)
   var SUB = (script && script.getAttribute("data-sub")) || ""; // podnaslov po stranici (opciono)
   var SUBJ = (script && script.getAttribute("data-subj")) || ""; // naziv predmeta (za 8-jezični pozdrav)
@@ -164,10 +164,13 @@
     ".zoi-row{display:flex;gap:8px;align-items:flex-end}" +
     ".zoi-row.zoi-me{flex-direction:row-reverse}" +
     ".zoi-av{width:26px;height:26px;border-radius:50%;object-fit:cover;flex:none}" +
-    ".zoi-bub{max-width:78%;padding:9px 12px;border-radius:15px;font-size:14.5px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}" +
+    ".zoi-bub{max-width:78%;min-width:0;padding:9px 12px;border-radius:15px;font-size:14.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:break-word;word-wrap:break-word;word-break:break-word;box-sizing:border-box}" +
     ".zoi-zoi .zoi-bub{background:#fff;color:#27302d;border-bottom-left-radius:5px;box-shadow:0 2px 6px rgba(0,0,0,.05)}" +
     ".zoi-me .zoi-bub{background:#1F8A78;color:#fff;border-bottom-right-radius:5px}" +
     ".zoi-bub img{max-width:100%;border-radius:10px;margin-top:4px}" +
+    ".zoi-bub pre,.zoi-bub code{white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;max-width:100%;overflow-x:auto;box-sizing:border-box}" +
+    ".zoi-bub table{display:block;max-width:100%;overflow-x:auto}" +
+    ".zoi-bub a{overflow-wrap:break-word;word-break:break-word}" +
     "#zoi-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 6px}" +
     ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:6px 11px;font-size:12.5px;font-family:inherit;cursor:pointer}" +
     ".zoi-chip:hover{background:#F0FAF7;border-color:#2FB7A0}" +
