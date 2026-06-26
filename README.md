@@ -1,54 +1,38 @@
-# MathIA — sajt (mathia-sajt)
+# Mathia — sajt + prodavnica + naplata (komplet za GitHub)
 
-Tople, pametne **mentorke** i raskošni materijali za fakultet, srednju, prijemni i malu maturu.
-Brend: *slatko + skupo* (krem/zlatna, Playfair Display + Plus Jakarta Sans).
+Sve što je napravljeno u ovom radu, spremno za GitHub → Vercel.
 
-> **Napomena:** MathIA je nezavisna obrazovna platforma opšteg karaktera. Sadržaj je informativan i nije
-> povezan ni sa jednom konkretnom obrazovnom ustanovom, niti je predstavlja.
+## Strane (web root)
+- `prodavnica.html` — prodavnica (katalog + korpa), zove `/api/checkout`
+- `uslovi.html`, `privatnost.html`, `reklamacije.html` — pravne strane (popunjene: PIB 115779761, MB 68628091, Apatin, kontakt@mathia.rs, 069 3000 500)
+- `e-skripta-matematika.html` — e-skripta za prijemni (fakulteti), svih 14 oblasti + tablice izvoda/integrala
+- `e-skripta-mala-matura.html` — e-skripta za malu maturu (matematika)
 
-## ✅ Čisti set naziva (dogovoreno)
+> `index.html` ostaje tvoj postojeći. Treba samo povezati 3 dugmeta paketa (`#paketi`, sad `href="#"`) na isti checkout kao prodavnica — to radimo u novom četu.
 
-### Root strane
-| Nova (čista) | Zamenjuje / spaja | Status |
-|---|---|---|
-| `index.html` | `mathia_naslovna.html`, stari `index.html` | ✅ |
-| `kviz.html` | `mathia_kviz_fakultet.html`, `mathia_kviz_srednja.html`, `test-sklonosti.html` | ✅ |
-| `prijava.html` | nova — prijava telefonom + 1 dan besplatno | ✅ |
-| `predmet-analiza1.html` | primer/šablon strane predmeta | ✅ |
-| `predmet-*.html` (fakultetski) | `fakultet.html`, `mathia_fakultet.html`, `vodic-fakultet*.html` | ⏳ Batch 2 |
-| `srednja-matematika-1..4.html`, `srednja-fizika-1..4.html` | iste | ⏳ Batch 2 |
-| `prijemni.html` | `prijemni-ftn.html`, `tutor-ftn*.html` | ⏳ Batch 2 |
-| `mala-matura.html` | ista | ⏳ Batch 2 |
-| `mathia_ponuda.html` | ista | ⏳ Batch 2 |
+## Backend (Vercel serverless)
+- `api/checkout.js` — početak kupovine (iznos se računa na serveru)
+- `api/raiaccept-callback.js` — posle uplate: fiskalni račun → baza → aktivacija → mejl
+- `api/cron/proveri-istek.js` — dnevni mejl o isteku pretplate
+- `lib/` — `proizvodi.js` (CENE/katalog), `raiaccept.js`, `esir.js`, `supabase.js`, `email.js`
+- `schema.sql` — tabele za Supabase
+- `.env.example` — svi ključevi (kopirati u Vercel env)
+- `vercel.json` — raspored cron-a · `package.json` — zavisnosti
 
-### Folderi / ostalo
-| | Sadržaj | Status |
-|---|---|---|
-| `api/` | `chat.js`, `widget.js`, `api_chat_KLONOVI.js`, persona, `tts.js` (off) | ⏳ Batch 3 |
-| `sr/`, `en/` | baze znanja `.md` + promptovi | ⏳ Batch 3 |
-| PDF (root) | `Oblast_*`, `MathIA_E-skripta_*`, `MathIA_Formule_*`, `MathIA_Izdanje_*`, `MathIA_Mala_matura_*`, `MathIA_Prijemni_*` | ⏳ Batch 4 |
+## Postavljanje (redosled)
+1. Push na GitHub → poveži repo sa Vercel.
+2. Supabase: pokreni `schema.sql`, ubaci `SUPABASE_*` u Vercel env.
+3. RaiAccept (Rajfajzen): ubaci `RAIACCEPT_*`, priliv na dinarski račun.
+4. Bezbednosni element (PEP → ePorezi → ESF) + izaberi ESIR → ubaci `ESIR_*`.
+5. Email: ubaci `EMAIL_API_KEY`.
 
-## Cene — TRI paketa (po predmetu; Diamond = sve uključeno)
-- **Basic 5.990 RSD/mes** — mentorka za 1 predmet.
-- **Gold 6.990 RSD/mes** (najpopularnije) — mentorka + e-knjiga + priručnik sa formulama.
-- **Diamond 9.990 RSD/mes** — sve mentorke, svi predmeti, svi materijali + probni testovi.
+Bez koraka 4 ne može da se izda fiskalni račun — to je tačka na kojoj smo stali sa e-fiskalizacijom.
 
-## Pristup
-- **Prijava brojem telefona (SMS kod).**
-- **1 dan besplatno za ceo sajt** (bez kartice), pa pretplata.
-- Zaštita (backend): **jedan broj = jedan trial** (trajni hash broja), **blok VOIP/virtuelnih brojeva**, **otisak uređaja + IP rate-limit**.
-- Test izbora fakulteta/srednje je i dalje besplatan (lead magnet).
+## Cene
+Sve u **dinarima** (RSD). Fiskalni račun je uvek u RSD. Katalog/cene se menjaju na jednom mestu: `lib/proizvodi.js` (+ prikaz u `prodavnica.html`).
 
-## Klonovi (mentorke)
-- **Bez glasa** — samo pišu i crtaju (canvas), korak po korak, tačno.
-- Tačni odgovori dolaze od živog modela preko **tvog Anthropic ključa** (widget app); ovde su front-end + persona + baze znanja (Batch 3).
-
-## Jezici
-10 jezika (bez bugarskog): SR, EN, DE, EL, HU, ES, RU, IT, SL, FR. Mehanizam: jedan set fajlova + `?lang=`/JS rečnik. SR+EN gotovi; ostalih 8 padaju na EN dok se ne popune.
-
-## Batch plan
-1. **Jezgro** — `index.html`, `kviz.html`, `prijava.html`, `predmet-analiza1.html`, `README.md`, `UPUTSTVO.md` ✅
-2. **Predmeti** — fakultetski + srednja (mat 1–4, fiz 1–4), prijemni, mala matura, `mathia_ponuda.html`
-3. **Klonovi** — `api/`, `chat.js`, `widget.js`, persona, baze znanja
-4. **PDF** — sve oblasti, skripte, formule, izdanja
-5. **Jezici** — preostalih 8
+## Ostaje za sledeći čet
+- E-skripta za **višu poslovnu školu (NS)** — to je test sa pitanjima iz 7 predmeta (drugačiji tip proizvoda: pitanja + odgovori), pravi se iz tvog PDF-a sa Drive-a.
+- Povezivanje dugmadi paketa u `index.html` na checkout.
+- Ubacivanje e-skripti u prodavnicu kao proizvoda (kad daš cene).
+- Nastavak e-fiskalizacije kroz ePorezi.
