@@ -67,6 +67,7 @@
   footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.1em;margin-bottom:6px}
   footer p{font-size:.85rem;color:#c7b3ba;margin-top:4px}
   footer a{color:var(--goldlt);font-weight:700}
+.nav-r .lang{display:inline-block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.04em;color:var(--plum2);background:transparent;border:1.5px solid var(--gold);border-radius:100px;padding:5px 11px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -74,24 +75,25 @@
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
     <nav class="nav-r">
-      <a href="index.html#mathia">Šta je Mathia</a>
-      <a href="predmeti.html">Predmeti</a>
-      <a href="prodavnica.html">Prodavnica</a>
-      <a href="index.html#paketi">Paketi</a>
-      <a href="o-marini.html">O meni</a>
+      <a href="index.html#mathia" data-i18n="nav1">Šta je Mathia</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+<select class="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <a class="back" href="predmeti.html">← Svi predmeti</a>
-    <div class="eyebrow">Fakultet · matematika</div>
-    <h1>Matematička analiza 2</h1>
-    <p class="lead">Integrali, redovi i funkcije više promenljivih — od tehnike integracije do višestrukih integrala.</p>
+    <a class="back" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
+    <div class="eyebrow" data-i18n="eyebrow">Fakultet · matematika</div>
+    <h1 data-i18n="h1">Matematička analiza 2</h1>
+    <p class="lead" data-i18n="lead">Integrali, redovi i funkcije više promenljivih — od tehnike integracije do višestrukih integrala.</p>
     <div class="row">
-      <a class="btn btn-gold" href="index.html#paketi">Probaj 15 min besplatno →</a>
-      <a class="btn btn-ghost-l" href="predmeti.html">Svi predmeti</a>
+      <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Probaj 15 min besplatno →</a>
+      <a class="btn btn-ghost-l" href="predmeti.html" data-i18n="btnAll">Svi predmeti</a>
     </div>
   </div>
 </section>
@@ -99,42 +101,42 @@
 <section class="sec">
   <div class="wrap">
     <div class="orn"><i>✦</i></div>
-    <h2>Šta pokrivamo</h2>
+    <h2 data-i18n="secCover">Šta pokrivamo</h2>
     <div class="topics">
-      <div class="topic"><span class="tk">∫</span><div><b>Neodređeni integral</b><p>Tehnike integracije korak po korak.</p></div></div>
-      <div class="topic"><span class="tk">∑</span><div><b>Određeni integral</b><p>Površine, zapremine i primene.</p></div></div>
-      <div class="topic"><span class="tk">🔗</span><div><b>Redovi</b><p>Konvergencija brojnih i stepenih redova.</p></div></div>
-      <div class="topic"><span class="tk">🗺️</span><div><b>Funkcije više promenljivih</b><p>Granične vrednosti i neprekidnost.</p></div></div>
-      <div class="topic"><span class="tk">∂</span><div><b>Parcijalni izvodi</b><p>Gradijent, ekstremi i primene.</p></div></div>
-      <div class="topic"><span class="tk">🧱</span><div><b>Višestruki integrali</b><p>Dvojni i trojni integrali.</p></div></div>
+      <div class="topic"><span class="tk">∫</span><div><b data-i18n="c1t">Neodređeni integral</b><p data-i18n="c1d">Tehnike integracije korak po korak.</p></div></div>
+      <div class="topic"><span class="tk">∑</span><div><b data-i18n="c2t">Određeni integral</b><p data-i18n="c2d">Površine, zapremine i primene.</p></div></div>
+      <div class="topic"><span class="tk">🔗</span><div><b data-i18n="c3t">Redovi</b><p data-i18n="c3d">Konvergencija brojnih i stepenih redova.</p></div></div>
+      <div class="topic"><span class="tk">🗺️</span><div><b data-i18n="c4t">Funkcije više promenljivih</b><p data-i18n="c4d">Granične vrednosti i neprekidnost.</p></div></div>
+      <div class="topic"><span class="tk">∂</span><div><b data-i18n="c5t">Parcijalni izvodi</b><p data-i18n="c5d">Gradijent, ekstremi i primene.</p></div></div>
+      <div class="topic"><span class="tk">🧱</span><div><b data-i18n="c6t">Višestruki integrali</b><p data-i18n="c6d">Dvojni i trojni integrali.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="sec alt">
   <div class="wrap">
-    <h2>Kako radi</h2>
+    <h2 data-i18n="secHow">Kako radi</h2>
     <div class="steps">
-      <div class="step"><span class="num">1</span><b>Pošalji zadatak</b><p>Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
-      <div class="step"><span class="num">2</span><b>Objašnjenje korak po korak</b><p>Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
-      <div class="step"><span class="num">3</span><b>Vežbaj i napreduj</b><p>Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
+      <div class="step"><span class="num">1</span><b data-i18n="s1t">Pošalji zadatak</b><p data-i18n="s1d">Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b data-i18n="s2t">Objašnjenje korak po korak</b><p data-i18n="s2d">Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b data-i18n="s3t">Vežbaj i napreduj</b><p data-i18n="s3d">Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
     </div>
   </div>
 </section>
 
 <section class="cta">
   <div class="wrap">
-    <h2>Matematička analiza 2 — bez muke.</h2>
-    <p>Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
-    <a class="btn btn-gold" href="index.html#paketi">Započni besplatno →</a>
+    <h2 data-i18n="ctaH">Matematička analiza 2 — bez muke.</h2>
+    <p data-i18n="ctaSub">Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno →</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="fbrand"><span class="goldtext">Mathia</span></div>
-    <p>Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
-    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a></p>
+    <p data-i18n="footTag">Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
+    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html" data-i18n="fLink1">Početna</a> · <a href="predmeti.html" data-i18n="nav2">Predmeti</a> · <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a></p>
   </div>
 </footer>
 
@@ -144,5 +146,13 @@
         data-lang="sr" data-sub="Matematička analiza 2" data-sub-en="Matematička analiza 2"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko predmeta „Matematička analiza 2“. Pošalji zadatak (može i slika) ili pitanje — objasniću korak po korak!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 Here I help you with “Matematička analiza 2”. Send a problem (a photo works too) or a question — I&#39;ll explain step by step!"></script>
+
+<script>
+(function(){var I18N={"nav1": {"en": "What is Mathia", "de": "Was ist Mathia", "fr": "Qu'est-ce que Mathia", "es": "Qué es Mathia", "it": "Cos'è Mathia", "ru": "Что такое Mathia", "pt": "O que é a Mathia"}, "nav2": {"en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav3": {"en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav4": {"en": "Plans", "de": "Pakete", "fr": "Forfaits", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav5": {"en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "back": {"en": "← All subjects", "de": "← Alle Fächer", "fr": "← Toutes les matières", "es": "← Todas las asignaturas", "it": "← Tutte le materie", "ru": "← Все предметы", "pt": "← Todas as disciplinas"}, "btnFree": {"en": "Try 15 min free →", "de": "15 Min. kostenlos testen →", "fr": "Essaie 15 min gratuitement →", "es": "Prueba 15 min gratis →", "it": "Prova 15 min gratis →", "ru": "15 минут бесплатно →", "pt": "Experimente 15 min grátis →"}, "btnAll": {"en": "All subjects", "de": "Alle Fächer", "fr": "Toutes les matières", "es": "Todas las asignaturas", "it": "Tutte le materie", "ru": "Все предметы", "pt": "Todas as disciplinas"}, "secCover": {"en": "What we cover", "de": "Was wir behandeln", "fr": "Ce que nous couvrons", "es": "Qué cubrimos", "it": "Cosa copriamo", "ru": "Что мы охватываем", "pt": "O que cobrimos"}, "secHow": {"en": "How it works", "de": "So funktioniert's", "fr": "Comment ça marche", "es": "Cómo funciona", "it": "Come funziona", "ru": "Как это работает", "pt": "Como funciona"}, "s1t": {"en": "Send a problem", "de": "Aufgabe senden", "fr": "Envoie un exercice", "es": "Envía un problema", "it": "Invia un problema", "ru": "Отправь задачу", "pt": "Envie um exercício"}, "s1d": {"en": "Snap or type your question — Profesorica instantly understands what you need.", "de": "Fotografiere oder tippe deine Frage — Profesorica versteht sofort, was du brauchst.", "fr": "Prends une photo ou écris ta question — Profesorica comprend tout de suite ce qu'il te faut.", "es": "Haz una foto o escribe tu pregunta — Profesorica entiende al instante lo que necesitas.", "it": "Fotografa o scrivi la domanda — Profesorica capisce subito ciò di cui hai bisogno.", "ru": "Сфотографируй или напиши вопрос — Profesorica сразу поймёт, что тебе нужно.", "pt": "Tira uma foto ou escreve a pergunta — a Profesorica percebe logo o que precisas."}, "s2t": {"en": "Step-by-step explanation", "de": "Schritt-für-Schritt-Erklärung", "fr": "Explication étape par étape", "es": "Explicación paso a paso", "it": "Spiegazione passo dopo passo", "ru": "Объяснение шаг за шагом", "pt": "Explicação passo a passo"}, "s2d": {"en": "You get the method, not just the answer — until it's completely clear.", "de": "Du bekommst den Lösungsweg, nicht nur das Ergebnis — bis alles klar ist.", "fr": "Tu obtiens la méthode, pas seulement la réponse — jusqu'à ce que tout soit clair.", "es": "Obtienes el procedimiento, no solo la respuesta — hasta que lo tengas claro.", "it": "Ottieni il procedimento, non solo la soluzione — finché non è tutto chiaro.", "ru": "Ты получаешь не просто ответ, а весь ход решения — пока всё не станет ясно.", "pt": "Recebes o método, não só a resposta — até ficar tudo claro."}, "s3t": {"en": "Practice and progress", "de": "Üben und Fortschritt", "fr": "Entraîne-toi et progresse", "es": "Practica y avanza", "it": "Esercitati e migliora", "ru": "Практикуйся и расти", "pt": "Pratica e evolui"}, "s3d": {"en": "Exercises and tests to reinforce, adapted to your pace.", "de": "Übungen und Tests zur Festigung, an dein Tempo angepasst.", "fr": "Exercices et tests de consolidation, adaptés à ton rythme.", "es": "Ejercicios y test de refuerzo, adaptados a tu ritmo.", "it": "Esercizi e test di consolidamento, adattati al tuo ritmo.", "ru": "Задания и тесты для закрепления, под твой темп.", "pt": "Exercícios e testes de consolidação, adaptados ao teu ritmo."}, "ctaSub": {"en": "The first 15 minutes are free. No card, no commitment.", "de": "Die ersten 15 Minuten sind kostenlos. Ohne Karte, ohne Verpflichtung.", "fr": "Les 15 premières minutes sont gratuites. Sans carte, sans engagement.", "es": "Los primeros 15 minutos son gratis. Sin tarjeta, sin compromiso.", "it": "I primi 15 minuti sono gratis. Senza carta, senza impegno.", "ru": "Первые 15 минут бесплатно. Без карты, без обязательств.", "pt": "Os primeiros 15 minutos são grátis. Sem cartão, sem compromisso."}, "ctaBtn": {"en": "Start free →", "de": "Kostenlos starten →", "fr": "Commence gratuitement →", "es": "Empieza gratis →", "it": "Inizia gratis →", "ru": "Начать бесплатно →", "pt": "Começa grátis →"}, "footTag": {"en": "Maths · Physics · Electrical engineering — with Profesorica, 24/7.", "de": "Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.", "fr": "Maths · Physique · Génie électrique — avec Profesorica, 24h/24.", "es": "Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.", "it": "Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.", "ru": "Математика · Физика · Электротехника — с Profesorica, 24/7.", "pt": "Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."}, "fLink1": {"en": "Home", "de": "Startseite", "fr": "Accueil", "es": "Inicio", "it": "Home", "ru": "Главная", "pt": "Início"}, "eyebrow": {"en": "University · mathematics", "de": "Universität · Mathematik", "fr": "Université · mathématiques", "es": "Universidad · matemáticas", "it": "Università · matematica", "ru": "Университет · математика", "pt": "Universidade · matemática"}, "h1": {"en": "Calculus 2", "de": "Analysis 2", "fr": "Analyse 2", "es": "Cálculo 2", "it": "Analisi matematica 2", "ru": "Математический анализ 2", "pt": "Cálculo 2"}, "lead": {"en": "Integrals, series and functions of several variables — from integration techniques to multiple integrals.", "de": "Integrale, Reihen und Funktionen mehrerer Variablen — von Integrationstechniken bis zu Mehrfachintegralen.", "fr": "Intégrales, séries et fonctions de plusieurs variables — des techniques d'intégration aux intégrales multiples.", "es": "Integrales, series y funciones de varias variables — de las técnicas de integración a las integrales múltiples.", "it": "Integrali, serie e funzioni di più variabili — dalle tecniche di integrazione agli integrali multipli.", "ru": "Интегралы, ряды и функции нескольких переменных — от техник интегрирования до кратных интегралов.", "pt": "Integrais, séries e funções de várias variáveis — das técnicas de integração aos integrais múltiplos."}, "c1t": {"en": "Indefinite integral", "de": "Unbestimmtes Integral", "fr": "Intégrale indéfinie", "es": "Integral indefinida", "it": "Integrale indefinito", "ru": "Неопределённый интеграл", "pt": "Integral indefinido"}, "c1d": {"en": "Integration techniques step by step.", "de": "Integrationstechniken Schritt für Schritt.", "fr": "Techniques d'intégration étape par étape.", "es": "Técnicas de integración paso a paso.", "it": "Tecniche di integrazione passo dopo passo.", "ru": "Техники интегрирования шаг за шагом.", "pt": "Técnicas de integração passo a passo."}, "c2t": {"en": "Definite integral", "de": "Bestimmtes Integral", "fr": "Intégrale définie", "es": "Integral definida", "it": "Integrale definito", "ru": "Определённый интеграл", "pt": "Integral definido"}, "c2d": {"en": "Areas, volumes and applications.", "de": "Flächen, Volumina und Anwendungen.", "fr": "Aires, volumes et applications.", "es": "Áreas, volúmenes y aplicaciones.", "it": "Aree, volumi e applicazioni.", "ru": "Площади, объёмы и применения.", "pt": "Áreas, volumes e aplicações."}, "c3t": {"en": "Series", "de": "Reihen", "fr": "Séries", "es": "Series", "it": "Serie", "ru": "Ряды", "pt": "Séries"}, "c3d": {"en": "Convergence of numerical and power series.", "de": "Konvergenz von Zahlen- und Potenzreihen.", "fr": "Convergence des séries numériques et entières.", "es": "Convergencia de series numéricas y de potencias.", "it": "Convergenza di serie numeriche e di potenze.", "ru": "Сходимость числовых и степенных рядов.", "pt": "Convergência de séries numéricas e de potências."}, "c4t": {"en": "Functions of several variables", "de": "Funktionen mehrerer Variablen", "fr": "Fonctions de plusieurs variables", "es": "Funciones de varias variables", "it": "Funzioni di più variabili", "ru": "Функции нескольких переменных", "pt": "Funções de várias variáveis"}, "c4d": {"en": "Limits and continuity.", "de": "Grenzwerte und Stetigkeit.", "fr": "Limites et continuité.", "es": "Límites y continuidad.", "it": "Limiti e continuità.", "ru": "Пределы и непрерывность.", "pt": "Limites e continuidade."}, "c5t": {"en": "Partial derivatives", "de": "Partielle Ableitungen", "fr": "Dérivées partielles", "es": "Derivadas parciales", "it": "Derivate parziali", "ru": "Частные производные", "pt": "Derivadas parciais"}, "c5d": {"en": "Gradient, extrema and applications.", "de": "Gradient, Extrema und Anwendungen.", "fr": "Gradient, extrema et applications.", "es": "Gradiente, extremos y aplicaciones.", "it": "Gradiente, estremi e applicazioni.", "ru": "Градиент, экстремумы и применения.", "pt": "Gradiente, extremos e aplicações."}, "c6t": {"en": "Multiple integrals", "de": "Mehrfachintegrale", "fr": "Intégrales multiples", "es": "Integrales múltiples", "it": "Integrali multipli", "ru": "Кратные интегралы", "pt": "Integrais múltiplos"}, "c6d": {"en": "Double and triple integrals.", "de": "Doppel- und Dreifachintegrale.", "fr": "Intégrales doubles et triples.", "es": "Integrales dobles y triples.", "it": "Integrali doppi e tripli.", "ru": "Двойные и тройные интегралы.", "pt": "Integrais duplos e triplos."}, "ctaH": {"en": "Calculus 2 — made easy.", "de": "Analysis 2 — ganz einfach.", "fr": "Analyse 2 — sans peine.", "es": "Cálculo 2 — sin complicaciones.", "it": "Analisi matematica 2 — senza fatica.", "ru": "Математический анализ 2 — без мучений.", "pt": "Cálculo 2 — sem dificuldade."}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=l;}catch(_){}}
+var sel=document.querySelector('select.lang');var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+if(sel){sel.value=sv;sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);});}
+apply(sv);})();
+</script>
 </body>
 </html>
