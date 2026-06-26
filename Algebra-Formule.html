@@ -30,7 +30,22 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 .task{font-weight:600;margin-bottom:6px}
 .katex-display{margin:.5em 0}
 .foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
-</style></head>
+</style><style>
+.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
+.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
+.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
+.cover{min-height:68vh;padding:74px 24px 50px}
+.brandline{letter-spacing:.42em}
+.kind{margin-top:10px}
+.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
+.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
+.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.foot{margin-top:30px}
+@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
+@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+</style>
+</head>
 <body>
 <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
@@ -41,70 +56,79 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 <div class="kind" data-i18n="kind">formule · priručnik</div>
 <h1 data-i18n="name">Algebra</h1>
 <p class="subtitle" data-i18n="sub">Ključne algebarske formule, sa kratkim primerom uz svaku.</p>
-<div class="foot">uči s ljubavlju · mathia.rs</div>
+<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
 </div>
 
 <div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span>Stepeni i koreni</span></h2>
-<p>Pravila za stepene ubrzavaju računanje; koren je stepen sa razlomljenim izložiocem.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$a^m a^n=a^{m+n},\ (a^m)^n=a^{mn},\ a^{-n}=\tfrac{1}{a^n},\ a^{1/n}=\sqrt[n]{a}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">2³ · 2² = ?</div>$$2^{3+2}=2^5=32$$</div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Stepeni i koreni</span></h2>
+<p data-i18n="e1">Pravila za stepene ubrzavaju računanje; koren je stepen sa razlomljenim izložiocem.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} a^m a^n=a^{m+n} \\[8pt] (a^m)^n=a^{mn} \\[8pt] a^{-n}=\tfrac{1}{a^n} \\[8pt] a^{1/n}=\sqrt[n]{a} \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$2^3\cdot 2^2=\;?$</div>$$2^{3+2}=2^5=32$$</div></section>
 
-<section class="topic"><h2><span class="tnum">2</span> <span>Formule množenja</span></h2>
-<p>Kvadrat binoma i razlika kvadrata su najčešće korišćene transformacije.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$(a\pm b)^2=a^2\pm2ab+b^2,\quad a^2-b^2=(a-b)(a+b)$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(x + 3)² = ?</div>$$x^2+6x+9$$</div></section>
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Formule množenja</span></h2>
+<p data-i18n="e2">Kvadrat binoma i razlika kvadrata su najčešće korišćene transformacije.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} (a\pm b)^2=a^2\pm2ab+b^2 \\[8pt] a^2-b^2=(a-b)(a+b) \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$(x+3)^2=\;?$</div>$$x^2+6x+9$$</div></section>
 
-<section class="topic"><h2><span class="tnum">3</span> <span>Kvadratna jednačina</span></h2>
-<p>Rešenja zavise od diskriminante D.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$x_{1,2}=\frac{-b\pm\sqrt{D}}{2a},\quad D=b^2-4ac$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">x² − 5x + 6 = 0</div>$$x=\{2,\ 3\}$$</div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Kvadratna jednačina</span></h2>
+<p data-i18n="e3">Rešenja zavise od diskriminante D.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} x_{1,2}=\frac{-b\pm\sqrt{D}}{2a} \\[8pt] D=b^2-4ac \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$x^2-5x+6=0$</div>$$x=\{2,\ 3\}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">4</span> <span>Vietove formule</span></h2>
-<p>Povezuju koeficijente i rešenja kvadratne jednačine.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$x_1+x_2=-\frac{b}{a},\qquad x_1\cdot x_2=\frac{c}{a}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">x² − 5x + 6: zbir i proizvod?</div>$$x_1+x_2=5,\quad x_1x_2=6$$</div></section>
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Vietove formule</span></h2>
+<p data-i18n="e4">Povezuju koeficijente i rešenja kvadratne jednačine.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} x_1+x_2=-\frac{b}{a} \\[8pt] x_1\cdot x_2=\frac{c}{a} \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q4">x² − 5x + 6: zbir i proizvod?</div>$$x_1+x_2=5,\quad x_1x_2=6$$</div></section>
 
-<section class="topic"><h2><span class="tnum">5</span> <span>Nejednačine</span></h2>
-<p>Pri množenju ili deljenju negativnim brojem znak nejednakosti se okreće.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$a<b,\ c<0\ \Rightarrow\ ac>bc$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">−2x < 6</div>$$x>-3$$</div></section>
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Nejednačine</span></h2>
+<p data-i18n="e5">Pri množenju ili deljenju negativnim brojem znak nejednakosti se okreće.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} a<b \\[8pt] c<0\ \Rightarrow\ ac>bc \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$-2x<6</div>$$x>-3$$</div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Polinomi (Bezuova teorema)</span></h2>
-<p>Broj a je nula polinoma akko je polinom deljiv sa (x − a).</p>
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Polinomi (Bezuova teorema)</span></h2>
+<p data-i18n="e6">Broj a je nula polinoma akko je polinom deljiv sa (x − a).</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(a)=0\iff (x-a)\mid P(x)$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Da li je x²−1 deljivo sa (x−1)?</div>$$P(1)=0\Rightarrow \text{da}$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q6">Da li je x²−1 deljivo sa (x−1)?</div>$$P(1)=0\Rightarrow \text{da}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">7</span> <span>Racionalni izrazi</span></h2>
-<p>Sabiranje razlomaka svodi se na zajednički imenilac.</p>
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Racionalni izrazi</span></h2>
+<p data-i18n="e7">Sabiranje razlomaka svodi se na zajednički imenilac.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\frac{a}{b}\pm\frac{c}{d}=\frac{ad\pm bc}{bd}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">1/2 + 1/3 = ?</div>$$\frac{3+2}{6}=\frac{5}{6}$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$\tfrac12+\tfrac13=\;?$</div>$$\frac{3+2}{6}=\frac{5}{6}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">8</span> <span>Logaritmi</span></h2>
-<p>Logaritam pretvara množenje u sabiranje; korisna je i promena baze.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\log_a(xy)=\log_a x+\log_a y,\ \log_a x^k=k\log_a x,\ \log_a x=\frac{\ln x}{\ln a}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">log₂ 8 = ?</div>$$3\quad(2^3=8)$$</div></section>
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Logaritmi</span></h2>
+<p data-i18n="e8">Logaritam pretvara množenje u sabiranje; korisna je i promena baze.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} \log_a(xy)=\log_a x+\log_a y \\[8pt] \log_a x^k=k\log_a x \\[8pt] \log_a x=\frac{\ln x}{\ln a} \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$\log_2 8=\;?$</div>$$3\quad(2^3=8)$$</div></section>
 
-<section class="topic"><h2><span class="tnum">9</span> <span>Apsolutna vrednost</span></h2>
-<p>Rastojanje od nule — zato daje dva slučaja.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$|x|=a\Rightarrow x=\pm a,\qquad |x|<a\Rightarrow -a<x<a$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">|x| = 5</div>$$x=\pm5$$</div></section>
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Apsolutna vrednost</span></h2>
+<p data-i18n="e9">Rastojanje od nule — zato daje dva slučaja.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} |x|=a\Rightarrow x=\pm a \\[8pt] |x|<a\Rightarrow -a<x<a \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$|x|=5$</div>$$x=\pm5$$</div></section>
 </div>
-<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="algebra" data-name="Marina" data-subj="Algebra"></script>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="algebra" data-name="Zoi" data-subj="Algebra"></script>
 <script defer src="gate.js" data-subject="algebra"></script>
 <script>
-var I18N={
-kind:{en:"formulas · handbook",de:"Formeln · Handbuch",fr:"formules · aide-mémoire",es:"fórmulas · manual",it:"formule · prontuario",ru:"формулы · справочник",pt:"fórmulas · manual"},
-name:{en:"Algebra",de:"Algebra",fr:"Algèbre",es:"Álgebra",it:"Algebra",ru:"Алгебра",pt:"Álgebra"},
-sub:{en:"Key algebra formulas, with a short example for each.",de:"Algebra-Kernformeln, mit einem kurzen Beispiel zu jeder.",fr:"Formules clés d'algèbre, avec un court exemple pour chacune.",es:"Fórmulas clave de álgebra, con un ejemplo breve para cada una.",it:"Formule chiave di algebra, con un breve esempio per ciascuna.",ru:"Ключевые формулы алгебры, с коротким примером к каждой.",pt:"Fórmulas-chave de álgebra, com um exemplo breve para cada."},
-formule:{en:"FORMULAS",de:"FORMELN",fr:"FORMULES",es:"FÓRMULAS",it:"FORMULE",ru:"ФОРМУЛЫ",pt:"FÓRMULAS"},
-primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "name": {"en": "Algebra", "de": "Algebra", "fr": "Algèbre", "es": "Álgebra", "it": "Algebra", "ru": "Алгебра", "pt": "Álgebra"}, "sub": {"en": "Key algebra formulas, each with a short example.", "de": "Wichtige Algebra-Formeln, jeweils mit kurzem Beispiel.", "fr": "Formules d'algèbre essentielles, chacune avec un court exemple.", "es": "Fórmulas clave de álgebra, cada una con un breve ejemplo.", "it": "Formule chiave di algebra, ognuna con un breve esempio.", "ru": "Ключевые формулы алгебры, каждая с кратким примером.", "pt": "Fórmulas-chave de álgebra, cada uma com um breve exemplo."}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "t1": {"en": "Powers and roots", "de": "Potenzen und Wurzeln", "fr": "Puissances et racines", "es": "Potencias y raíces", "it": "Potenze e radici", "ru": "Степени и корни", "pt": "Potências e raízes"}, "t2": {"en": "Multiplication formulas", "de": "Binomische Formeln", "fr": "Identités remarquables", "es": "Productos notables", "it": "Prodotti notevoli", "ru": "Формулы сокращённого умножения", "pt": "Produtos notáveis"}, "t3": {"en": "Quadratic equation", "de": "Quadratische Gleichung", "fr": "Équation du second degré", "es": "Ecuación cuadrática", "it": "Equazione di secondo grado", "ru": "Квадратное уравнение", "pt": "Equação do segundo grau"}, "t4": {"en": "Vieta's formulas", "de": "Satz von Vieta", "fr": "Relations de Viète", "es": "Fórmulas de Vieta", "it": "Formule di Viète", "ru": "Формулы Виета", "pt": "Fórmulas de Viète"}, "t5": {"en": "Inequalities", "de": "Ungleichungen", "fr": "Inéquations", "es": "Inecuaciones", "it": "Disequazioni", "ru": "Неравенства", "pt": "Inequações"}, "t6": {"en": "Polynomials (Bézout's theorem)", "de": "Polynome (Satz von Bézout)", "fr": "Polynômes (théorème de Bézout)", "es": "Polinomios (teorema de Bézout)", "it": "Polinomi (teorema di Bézout)", "ru": "Многочлены (теорема Безу)", "pt": "Polinômios (teorema de Bézout)"}, "t7": {"en": "Rational expressions", "de": "Rationale Ausdrücke", "fr": "Expressions rationnelles", "es": "Expresiones racionales", "it": "Espressioni razionali", "ru": "Рациональные выражения", "pt": "Expressões racionais"}, "t8": {"en": "Logarithms", "de": "Logarithmen", "fr": "Logarithmes", "es": "Logaritmos", "it": "Logaritmi", "ru": "Логарифмы", "pt": "Logaritmos"}, "t9": {"en": "Absolute value", "de": "Betrag", "fr": "Valeur absolue", "es": "Valor absoluto", "it": "Valore assoluto", "ru": "Модуль", "pt": "Valor absoluto"}, "e1": {"en": "Power rules speed up computation; a root is a power with a fractional exponent.", "de": "Potenzregeln beschleunigen das Rechnen; eine Wurzel ist eine Potenz mit gebrochenem Exponenten.", "fr": "Les règles des puissances accélèrent le calcul ; une racine est une puissance à exposant fractionnaire.", "es": "Las reglas de las potencias agilizan el cálculo; una raíz es una potencia con exponente fraccionario.", "it": "Le regole delle potenze velocizzano il calcolo; una radice è una potenza con esponente frazionario.", "ru": "Правила степеней ускоряют вычисления; корень — это степень с дробным показателем.", "pt": "As regras de potências agilizam o cálculo; uma raiz é uma potência com expoente fracionário."}, "e2": {"en": "The square of a binomial and the difference of squares are the most used transformations.", "de": "Das Binomquadrat und die Differenz von Quadraten sind die häufigsten Umformungen.", "fr": "Le carré d'un binôme et la différence de carrés sont les transformations les plus utilisées.", "es": "El cuadrado de un binomio y la diferencia de cuadrados son las transformaciones más usadas.", "it": "Il quadrato di un binomio e la differenza di quadrati sono le trasformazioni più usate.", "ru": "Квадрат бинома и разность квадратов — самые используемые преобразования.", "pt": "O quadrado de um binômio e a diferença de quadrados são as transformações mais usadas."}, "e3": {"en": "The solutions depend on the discriminant D.", "de": "Die Lösungen hängen von der Diskriminante D ab.", "fr": "Les solutions dépendent du discriminant D.", "es": "Las soluciones dependen del discriminante D.", "it": "Le soluzioni dipendono dal discriminante D.", "ru": "Решения зависят от дискриминанта D.", "pt": "As soluções dependem do discriminante D."}, "e4": {"en": "They relate the coefficients and the roots of a quadratic equation.", "de": "Sie verknüpfen die Koeffizienten und die Lösungen einer quadratischen Gleichung.", "fr": "Elles relient les coefficients et les racines d'une équation du second degré.", "es": "Relacionan los coeficientes y las raíces de una ecuación cuadrática.", "it": "Collegano i coefficienti e le radici di un'equazione di secondo grado.", "ru": "Связывают коэффициенты и корни квадратного уравнения.", "pt": "Relacionam os coeficientes e as raízes de uma equação do segundo grau."}, "e5": {"en": "When multiplying or dividing by a negative number, the inequality sign flips.", "de": "Beim Multiplizieren oder Dividieren mit einer negativen Zahl dreht sich das Ungleichheitszeichen um.", "fr": "En multipliant ou divisant par un nombre négatif, le sens de l'inégalité change.", "es": "Al multiplicar o dividir por un número negativo, el signo de la desigualdad se invierte.", "it": "Moltiplicando o dividendo per un numero negativo, il verso della disuguaglianza si inverte.", "ru": "При умножении или делении на отрицательное число знак неравенства меняется на противоположный.", "pt": "Ao multiplicar ou dividir por um número negativo, o sinal da desigualdade inverte."}, "e6": {"en": "A number a is a root of a polynomial iff the polynomial is divisible by (x − a).", "de": "Eine Zahl a ist genau dann Nullstelle eines Polynoms, wenn das Polynom durch (x − a) teilbar ist.", "fr": "Un nombre a est racine d'un polynôme si et seulement si le polynôme est divisible par (x − a).", "es": "Un número a es raíz de un polinomio si y solo si el polinomio es divisible por (x − a).", "it": "Un numero a è radice di un polinomio se e solo se il polinomio è divisibile per (x − a).", "ru": "Число a — корень многочлена тогда и только тогда, когда многочлен делится на (x − a).", "pt": "Um número a é raiz de um polinômio se e somente se o polinômio for divisível por (x − a)."}, "e7": {"en": "Adding fractions reduces to finding a common denominator.", "de": "Das Addieren von Brüchen läuft auf einen gemeinsamen Nenner hinaus.", "fr": "L'addition de fractions revient à trouver un dénominateur commun.", "es": "Sumar fracciones se reduce a un denominador común.", "it": "Sommare frazioni si riduce a un denominatore comune.", "ru": "Сложение дробей сводится к общему знаменателю.", "pt": "Somar frações reduz-se a um denominador comum."}, "e8": {"en": "A logarithm turns multiplication into addition; the change-of-base formula is also useful.", "de": "Ein Logarithmus verwandelt Multiplikation in Addition; auch der Basiswechsel ist nützlich.", "fr": "Un logarithme transforme la multiplication en addition ; le changement de base est aussi utile.", "es": "Un logaritmo convierte la multiplicación en suma; también es útil el cambio de base.", "it": "Un logaritmo trasforma la moltiplicazione in addizione; utile anche il cambio di base.", "ru": "Логарифм превращает умножение в сложение; полезна и формула смены основания.", "pt": "Um logaritmo transforma multiplicação em adição; a mudança de base também é útil."}, "e9": {"en": "Distance from zero — that's why it gives two cases.", "de": "Abstand von null — deshalb ergeben sich zwei Fälle.", "fr": "Distance à zéro — d'où les deux cas.", "es": "Distancia al cero — por eso da dos casos.", "it": "Distanza dallo zero — perciò dà due casi.", "ru": "Расстояние от нуля — поэтому возникают два случая.", "pt": "Distância até zero — por isso dá dois casos."}, "q4": {"en": "x² − 5x + 6: sum and product?", "de": "x² − 5x + 6: Summe und Produkt?", "fr": "x² − 5x + 6 : somme et produit ?", "es": "x² − 5x + 6: ¿suma y producto?", "it": "x² − 5x + 6: somma e prodotto?", "ru": "x² − 5x + 6: сумма и произведение?", "pt": "x² − 5x + 6: soma e produto?"}, "q6": {"en": "Is x²−1 divisible by (x−1)?", "de": "Ist x²−1 durch (x−1) teilbar?", "fr": "x²−1 est-il divisible par (x−1) ?", "es": "¿Es x²−1 divisible por (x−1)?", "it": "x²−1 è divisibile per (x−1)?", "ru": "Делится ли x²−1 на (x−1)?", "pt": "x²−1 é divisível por (x−1)?"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}};
 document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
 function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
 document.getElementById("lang").onchange=function(){apply(this.value)};
 function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
 window.addEventListener("load",rk);
+</script>
+<script>
+(function(){
+ function fit(){
+  var ds=document.querySelectorAll('.katex-display');
+  for(var i=0;i<ds.length;i++){
+   var el=ds[i];el.style.fontSize='';
+   var p=100,n=0;
+   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
+  }
+ }
+ window.addEventListener('load',function(){setTimeout(fit,60);});
+ window.addEventListener('resize',function(){setTimeout(fit,80);});
+})();
 </script>
 </body></html>

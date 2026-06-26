@@ -30,7 +30,22 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 .task{font-weight:600;margin-bottom:6px}
 .katex-display{margin:.5em 0}
 .foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
-</style></head>
+</style><style>
+.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
+.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
+.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
+.cover{min-height:68vh;padding:74px 24px 50px}
+.brandline{letter-spacing:.42em}
+.kind{margin-top:10px}
+.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
+.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
+.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.foot{margin-top:30px}
+@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
+@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+</style>
+</head>
 <body>
 <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
@@ -41,68 +56,77 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 <div class="kind" data-i18n="kind">formule · priručnik</div>
 <h1 data-i18n="name">Verovatnoća i statistika</h1>
 <p class="subtitle" data-i18n="sub">Ključne formule verovatnoće i statistike, sa kratkim primerom uz svaku.</p>
-<div class="foot">uči s ljubavlju · mathia.rs</div>
+<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
 </div>
 
 <div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span>Verovatnoća događaja</span></h2>
-<p>Verovatnoća je odnos povoljnih i svih jednako mogućih ishoda; uvek je između 0 i 1.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(A)=\frac{\text{povoljni}}{\text{ukupni}},\qquad 0\le P(A)\le1$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Verovatnoća da na kocki padne 6?</div>$$P=\frac{1}{6}$$</div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Verovatnoća događaja</span></h2>
+<p data-i18n="e1">Verovatnoća je odnos povoljnih i svih jednako mogućih ishoda; uvek je između 0 i 1.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} P(A)=\frac{\text{povoljni}}{\text{ukupni}} \\[8pt] 0\le P(A)\le1 \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q1">Verovatnoća da na kocki padne 6?</div>$$P=\frac{1}{6}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">2</span> <span>Komplement i unija</span></h2>
-<p>Komplement je „da se ne desi"; za uniju oduzimamo presek da ne brojimo dvaput.</p>
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Komplement i unija</span></h2>
+<p data-i18n="e2">Komplement je „da se ne desi"; za uniju oduzimamo presek da ne brojimo dvaput.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(\bar A)=1-P(A)\qquad P(A\cup B)=P(A)+P(B)-P(A\cap B)$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Kocka: P(nije 6)?</div>$$1-\tfrac{1}{6}=\tfrac{5}{6}$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q2">Kocka: P(nije 6)?</div>$$1-\tfrac{1}{6}=\tfrac{5}{6}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">3</span> <span>Uslovna verovatnoća i nezavisnost</span></h2>
-<p>Uslovna verovatnoća je verovatnoća A ako znamo da se B desio. Nezavisni događaji se ne utiču.</p>
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Uslovna verovatnoća i nezavisnost</span></h2>
+<p data-i18n="e3">Uslovna verovatnoća je verovatnoća A ako znamo da se B desio. Nezavisni događaji se ne utiču.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(A\mid B)=\frac{P(A\cap B)}{P(B)}\qquad \text{nezavisni}:\ P(A\cap B)=P(A)P(B)$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Dva novčića, oba „pismo" (nezavisno)?</div>$$\tfrac12\cdot\tfrac12=\tfrac14$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q3">Dva novčića, oba „pismo" (nezavisno)?</div>$$\tfrac12\cdot\tfrac12=\tfrac14$$</div></section>
 
-<section class="topic"><h2><span class="tnum">4</span> <span>Kombinatorika</span></h2>
-<p>Permutacije broje raspored, kombinacije izbor bez obzira na redosled.</p>
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Kombinatorika</span></h2>
+<p data-i18n="e4">Permutacije broje raspored, kombinacije izbor bez obzira na redosled.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P_n=n!\qquad \binom{n}{k}=\frac{n!}{k!\,(n-k)!}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Na koliko načina biramo 2 od 5?</div>$$\binom{5}{2}=10$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q4">Na koliko načina biramo 2 od 5?</div>$$\binom{5}{2}=10$$</div></section>
 
-<section class="topic"><h2><span class="tnum">5</span> <span>Bajesova formula</span></h2>
-<p>Omogućava „obrtanje" uslovne verovatnoće kada znamo obrnuti smer.</p>
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Bajesova formula</span></h2>
+<p data-i18n="e5">Omogućava „obrtanje" uslovne verovatnoće kada znamo obrnuti smer.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(A\mid B)=\frac{P(B\mid A)\,P(A)}{P(B)}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Očekivanje (srednja vrednost)</span></h2>
-<p>Očekivana vrednost je „prosek na duge staze" — zbir vrednosti puta njihove verovatnoće.</p>
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Očekivanje (srednja vrednost)</span></h2>
+<p data-i18n="e6">Očekivana vrednost je „prosek na duge staze" — zbir vrednosti puta njihove verovatnoće.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$E(X)=\sum_i x_i\,p_i$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Očekivanje broja na kocki?</div>$$E(X)=\tfrac{1+2+3+4+5+6}{6}=3{,}5$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q6">Očekivanje broja na kocki?</div>$$E(X)=\tfrac{1+2+3+4+5+6}{6}=3{,}5$$</div></section>
 
-<section class="topic"><h2><span class="tnum">7</span> <span>Varijansa i standardna devijacija</span></h2>
-<p>Mere koliko vrednosti odstupaju od proseka.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\operatorname{Var}(X)=E(X^2)-\big(E(X)\big)^2,\qquad \sigma=\sqrt{\operatorname{Var}(X)}$$</div></section>
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Varijansa i standardna devijacija</span></h2>
+<p data-i18n="e7">Mere koliko vrednosti odstupaju od proseka.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} \operatorname{Var}(X)=E(X^2)-\big(E(X)\big)^2 \\[8pt] \sigma=\sqrt{\operatorname{Var}(X)} \end{gathered}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">8</span> <span>Normalna raspodela</span></h2>
-<p>Mnoge pojave prate „zvonastu" krivu; standardizacijom prelazimo na z-vrednost.</p>
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Normalna raspodela</span></h2>
+<p data-i18n="e8">Mnoge pojave prate „zvonastu" krivu; standardizacijom prelazimo na z-vrednost.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$z=\frac{x-\mu}{\sigma}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">μ = 50, σ = 10, x = 70 → z?</div>$$z=\frac{70-50}{10}=2$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$\mu=50,\ \sigma=10,\ x=70\Rightarrow z=\;?$</div>$$z=\frac{70-50}{10}=2$$</div></section>
 
-<section class="topic"><h2><span class="tnum">9</span> <span>Opisna statistika</span></h2>
-<p>Srednja vrednost, medijana (sredina poređanih) i mod (najčešća vrednost).</p>
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Opisna statistika</span></h2>
+<p data-i18n="e9">Srednja vrednost, medijana (sredina poređanih) i mod (najčešća vrednost).</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\bar x=\frac{1}{n}\sum_{i=1}^{n} x_i$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Medijana niza 1, 2, 3, 4, 5?</div>$$\text{med}=3$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q9">Medijana niza 1, 2, 3, 4, 5?</div>$$\text{med}=3$$</div></section>
 </div>
-<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="fax-verovatnoca" data-name="Marina" data-subj="Verovatnoća i statistika"></script>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="fax-verovatnoca" data-name="Zoi" data-subj="Verovatnoća i statistika"></script>
 <script defer src="gate.js" data-subject="fax-verovatnoca"></script>
 <script>
-var I18N={
-kind:{en:"formulas · handbook",de:"Formeln · Handbuch",fr:"formules · aide-mémoire",es:"fórmulas · manual",it:"formule · prontuario",ru:"формулы · справочник",pt:"fórmulas · manual"},
-name:{en:"Probability & statistics",de:"Wahrscheinlichkeit & Statistik",fr:"Probabilités & statistiques",es:"Probabilidad y estadística",it:"Probabilità e statistica",ru:"Вероятность и статистика",pt:"Probabilidade e estatística"},
-sub:{en:"Key probability and statistics formulas, with a short example for each.",de:"Kernformeln der Wahrscheinlichkeit und Statistik, mit einem kurzen Beispiel zu jeder.",fr:"Formules clés de probabilités et statistiques, avec un court exemple pour chacune.",es:"Fórmulas clave de probabilidad y estadística, con un ejemplo breve para cada una.",it:"Formule chiave di probabilità e statistica, con un breve esempio per ciascuna.",ru:"Ключевые формулы теории вероятностей и статистики, с коротким примером к каждой.",pt:"Fórmulas-chave de probabilidade e estatística, com um exemplo breve para cada."},
-formule:{en:"FORMULAS",de:"FORMELN",fr:"FORMULES",es:"FÓRMULAS",it:"FORMULE",ru:"ФОРМУЛЫ",pt:"FÓRMULAS"},
-primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "name": {"en": "Probability and statistics", "de": "Wahrscheinlichkeit und Statistik", "fr": "Probabilités et statistique", "es": "Probabilidad y estadística", "it": "Probabilità e statistica", "ru": "Теория вероятностей и статистика", "pt": "Probabilidade e estatística"}, "sub": {"en": "Key probability and statistics formulas, each with a short example.", "de": "Wichtige Formeln der Wahrscheinlichkeit und Statistik, jeweils mit kurzem Beispiel.", "fr": "Formules essentielles de probabilités et de statistique, chacune avec un court exemple.", "es": "Fórmulas clave de probabilidad y estadística, cada una con un breve ejemplo.", "it": "Formule chiave di probabilità e statistica, ognuna con un breve esempio.", "ru": "Ключевые формулы вероятности и статистики, каждая с кратким примером.", "pt": "Fórmulas-chave de probabilidade e estatística, cada uma com um breve exemplo."}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "t1": {"en": "Probability of an event", "de": "Wahrscheinlichkeit eines Ereignisses", "fr": "Probabilité d'un événement", "es": "Probabilidad de un suceso", "it": "Probabilità di un evento", "ru": "Вероятность события", "pt": "Probabilidade de um evento"}, "t2": {"en": "Complement and union", "de": "Komplement und Vereinigung", "fr": "Complément et union", "es": "Complemento y unión", "it": "Complemento e unione", "ru": "Дополнение и объединение", "pt": "Complemento e união"}, "t3": {"en": "Conditional probability and independence", "de": "Bedingte Wahrscheinlichkeit und Unabhängigkeit", "fr": "Probabilité conditionnelle et indépendance", "es": "Probabilidad condicional e independencia", "it": "Probabilità condizionata e indipendenza", "ru": "Условная вероятность и независимость", "pt": "Probabilidade condicional e independência"}, "t4": {"en": "Combinatorics", "de": "Kombinatorik", "fr": "Dénombrement", "es": "Combinatoria", "it": "Calcolo combinatorio", "ru": "Комбинаторика", "pt": "Combinatória"}, "t5": {"en": "Bayes' theorem", "de": "Satz von Bayes", "fr": "Théorème de Bayes", "es": "Teorema de Bayes", "it": "Teorema di Bayes", "ru": "Формула Байеса", "pt": "Teorema de Bayes"}, "t6": {"en": "Expectation (mean)", "de": "Erwartungswert (Mittelwert)", "fr": "Espérance (moyenne)", "es": "Esperanza (media)", "it": "Valore atteso (media)", "ru": "Математическое ожидание (среднее)", "pt": "Esperança (média)"}, "t7": {"en": "Variance and standard deviation", "de": "Varianz und Standardabweichung", "fr": "Variance et écart-type", "es": "Varianza y desviación típica", "it": "Varianza e deviazione standard", "ru": "Дисперсия и стандартное отклонение", "pt": "Variância e desvio padrão"}, "t8": {"en": "Normal distribution", "de": "Normalverteilung", "fr": "Loi normale", "es": "Distribución normal", "it": "Distribuzione normale", "ru": "Нормальное распределение", "pt": "Distribuição normal"}, "t9": {"en": "Descriptive statistics", "de": "Deskriptive Statistik", "fr": "Statistique descriptive", "es": "Estadística descriptiva", "it": "Statistica descrittiva", "ru": "Описательная статистика", "pt": "Estatística descritiva"}, "e1": {"en": "Probability is the ratio of favorable to all equally likely outcomes; it is always between 0 and 1.", "de": "Wahrscheinlichkeit ist das Verhältnis günstiger zu allen gleich möglichen Ausgängen; sie liegt stets zwischen 0 und 1.", "fr": "La probabilité est le rapport des cas favorables à tous les cas également possibles ; elle est toujours entre 0 et 1.", "es": "La probabilidad es la razón entre casos favorables y todos los igualmente posibles; siempre está entre 0 y 1.", "it": "La probabilità è il rapporto tra casi favorevoli e tutti i casi ugualmente possibili; è sempre tra 0 e 1.", "ru": "Вероятность — отношение благоприятных исходов ко всем равновозможным; она всегда между 0 и 1.", "pt": "A probabilidade é a razão entre casos favoráveis e todos os igualmente possíveis; está sempre entre 0 e 1."}, "e2": {"en": "The complement is \"not happening\"; for the union we subtract the intersection to avoid double counting.", "de": "Das Komplement ist „tritt nicht ein“; bei der Vereinigung ziehen wir den Schnitt ab, um nicht doppelt zu zählen.", "fr": "Le complément, c'est « ne pas se produire » ; pour l'union, on soustrait l'intersection afin de ne pas compter deux fois.", "es": "El complemento es «que no ocurra»; para la unión restamos la intersección para no contar dos veces.", "it": "Il complemento è «non accade»; per l'unione sottraiamo l'intersezione per non contare due volte.", "ru": "Дополнение — «не произойдёт»; для объединения вычитаем пересечение, чтобы не считать дважды.", "pt": "O complemento é «não acontecer»; para a união subtraímos a interseção para não contar duas vezes."}, "e3": {"en": "Conditional probability is the probability of A given that B has occurred. Independent events do not affect each other.", "de": "Die bedingte Wahrscheinlichkeit ist die Wahrscheinlichkeit von A, wenn B eingetreten ist. Unabhängige Ereignisse beeinflussen sich nicht.", "fr": "La probabilité conditionnelle est la probabilité de A sachant que B s'est produit. Des événements indépendants ne s'influencent pas.", "es": "La probabilidad condicional es la probabilidad de A dado que B ha ocurrido. Los sucesos independientes no se influyen.", "it": "La probabilità condizionata è la probabilità di A dato che B si è verificato. Eventi indipendenti non si influenzano.", "ru": "Условная вероятность — вероятность A при условии, что B произошло. Независимые события не влияют друг на друга.", "pt": "A probabilidade condicional é a probabilidade de A dado que B ocorreu. Eventos independentes não se influenciam."}, "e4": {"en": "Permutations count arrangements, combinations count selections regardless of order.", "de": "Permutationen zählen Anordnungen, Kombinationen die Auswahl ohne Berücksichtigung der Reihenfolge.", "fr": "Les permutations comptent les arrangements, les combinaisons le choix sans tenir compte de l'ordre.", "es": "Las permutaciones cuentan ordenaciones, las combinaciones la selección sin importar el orden.", "it": "Le permutazioni contano le disposizioni, le combinazioni la scelta senza tener conto dell'ordine.", "ru": "Перестановки учитывают порядок, сочетания — выбор без учёта порядка.", "pt": "As permutações contam arranjos, as combinações a escolha sem considerar a ordem."}, "e5": {"en": "It lets us \"reverse\" a conditional probability when we know the opposite direction.", "de": "Sie erlaubt das „Umkehren“ einer bedingten Wahrscheinlichkeit, wenn die umgekehrte Richtung bekannt ist.", "fr": "Elle permet d'« inverser » une probabilité conditionnelle quand on connaît le sens opposé.", "es": "Permite «invertir» una probabilidad condicional cuando conocemos el sentido contrario.", "it": "Permette di «invertire» una probabilità condizionata quando conosciamo il verso opposto.", "ru": "Позволяет «обратить» условную вероятность, когда известно обратное направление.", "pt": "Permite «inverter» uma probabilidade condicional quando conhecemos o sentido oposto."}, "e6": {"en": "The expected value is the \"long-run average\" — the sum of values times their probabilities.", "de": "Der Erwartungswert ist der „langfristige Durchschnitt“ — die Summe der Werte mal ihren Wahrscheinlichkeiten.", "fr": "L'espérance est la « moyenne à long terme » — la somme des valeurs multipliées par leurs probabilités.", "es": "El valor esperado es el «promedio a largo plazo» — la suma de los valores por sus probabilidades.", "it": "Il valore atteso è la «media a lungo termine» — la somma dei valori per le loro probabilità.", "ru": "Математическое ожидание — «среднее в долгой перспективе» — сумма значений на их вероятности.", "pt": "O valor esperado é a «média a longo prazo» — a soma dos valores vezes suas probabilidades."}, "e7": {"en": "Measures of how much the values deviate from the average.", "de": "Maße dafür, wie stark die Werte vom Mittelwert abweichen.", "fr": "Mesures de l'écart des valeurs par rapport à la moyenne.", "es": "Medidas de cuánto se desvían los valores de la media.", "it": "Misure di quanto i valori si discostano dalla media.", "ru": "Меры того, насколько значения отклоняются от среднего.", "pt": "Medidas de quanto os valores se afastam da média."}, "e8": {"en": "Many phenomena follow a \"bell\" curve; standardizing converts to a z-value.", "de": "Viele Phänomene folgen einer „Glockenkurve“; durch Standardisierung gelangt man zum z-Wert.", "fr": "De nombreux phénomènes suivent une courbe « en cloche » ; la standardisation donne la valeur z.", "es": "Muchos fenómenos siguen una curva «de campana»; al estandarizar pasamos al valor z.", "it": "Molti fenomeni seguono una curva «a campana»; con la standardizzazione si passa al valore z.", "ru": "Многие явления подчиняются «колоколообразной» кривой; стандартизация переводит к z-значению.", "pt": "Muitos fenômenos seguem uma curva «em sino»; ao padronizar passamos ao valor z."}, "e9": {"en": "The mean, the median (middle of the sorted values) and the mode (most frequent value).", "de": "Mittelwert, Median (Mitte der sortierten Werte) und Modus (häufigster Wert).", "fr": "La moyenne, la médiane (milieu des valeurs ordonnées) et le mode (valeur la plus fréquente).", "es": "La media, la mediana (centro de los valores ordenados) y la moda (valor más frecuente).", "it": "La media, la mediana (centro dei valori ordinati) e la moda (valore più frequente).", "ru": "Среднее, медиана (середина упорядоченных значений) и мода (самое частое значение).", "pt": "A média, a mediana (centro dos valores ordenados) e a moda (valor mais frequente)."}, "q1": {"en": "Probability of rolling a 6 on a die?", "de": "Wahrscheinlichkeit, mit einem Würfel eine 6 zu werfen?", "fr": "Probabilité d'obtenir un 6 avec un dé ?", "es": "¿Probabilidad de sacar un 6 en un dado?", "it": "Probabilità di ottenere un 6 con un dado?", "ru": "Вероятность выпадения 6 на кубике?", "pt": "Probabilidade de sair 6 num dado?"}, "q2": {"en": "Die: P(not 6)?", "de": "Würfel: P(keine 6)?", "fr": "Dé : P(pas 6) ?", "es": "Dado: ¿P(no 6)?", "it": "Dado: P(non 6)?", "ru": "Кубик: P(не 6)?", "pt": "Dado: P(não 6)?"}, "q3": {"en": "Two coins, both \"tails\" (independent)?", "de": "Zwei Münzen, beide „Zahl“ (unabhängig)?", "fr": "Deux pièces, les deux « pile » (indépendant) ?", "es": "Dos monedas, ambas «cruz» (independiente)?", "it": "Due monete, entrambe «croce» (indipendente)?", "ru": "Две монеты, обе «решка» (независимо)?", "pt": "Duas moedas, ambas «coroa» (independente)?"}, "q4": {"en": "In how many ways can we choose 2 of 5?", "de": "Auf wie viele Arten wählt man 2 aus 5?", "fr": "De combien de façons choisir 2 parmi 5 ?", "es": "¿De cuántas maneras elegimos 2 de 5?", "it": "In quanti modi scegliamo 2 su 5?", "ru": "Сколькими способами выбрать 2 из 5?", "pt": "De quantas maneiras escolhemos 2 de 5?"}, "q6": {"en": "Expected value of a die roll?", "de": "Erwartungswert eines Würfelwurfs?", "fr": "Espérance d'un lancer de dé ?", "es": "¿Esperanza del número de un dado?", "it": "Valore atteso del lancio di un dado?", "ru": "Математическое ожидание числа на кубике?", "pt": "Esperança do número de um dado?"}, "q9": {"en": "Median of the sequence 1, 2, 3, 4, 5?", "de": "Median der Folge 1, 2, 3, 4, 5?", "fr": "Médiane de la suite 1, 2, 3, 4, 5 ?", "es": "¿Mediana de la serie 1, 2, 3, 4, 5?", "it": "Mediana della sequenza 1, 2, 3, 4, 5?", "ru": "Медиана ряда 1, 2, 3, 4, 5?", "pt": "Mediana da sequência 1, 2, 3, 4, 5?"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}};
 document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
 function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
 document.getElementById("lang").onchange=function(){apply(this.value)};
 function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
 window.addEventListener("load",rk);
+</script>
+<script>
+(function(){
+ function fit(){
+  var ds=document.querySelectorAll('.katex-display');
+  for(var i=0;i<ds.length;i++){
+   var el=ds[i];el.style.fontSize='';
+   var p=100,n=0;
+   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
+  }
+ }
+ window.addEventListener('load',function(){setTimeout(fit,60);});
+ window.addEventListener('resize',function(){setTimeout(fit,80);});
+})();
 </script>
 </body></html>

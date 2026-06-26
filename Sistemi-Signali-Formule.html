@@ -30,7 +30,22 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 .task{font-weight:600;margin-bottom:6px}
 .katex-display{margin:.5em 0}
 .foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
-</style></head>
+</style><style>
+.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
+.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
+.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
+.cover{min-height:68vh;padding:74px 24px 50px}
+.brandline{letter-spacing:.42em}
+.kind{margin-top:10px}
+.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
+.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
+.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.foot{margin-top:30px}
+@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
+@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+</style>
+</head>
 <body>
 <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
@@ -41,59 +56,72 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 <div class="kind" data-i18n="kind">formule · priručnik</div>
 <h1 data-i18n="name">Sistemi i signali</h1>
 <p class="subtitle" data-i18n="sub">Konvolucija, Furije, Laplas i stabilnost — ključne formule sa primerom.</p>
-<div class="foot">uči s ljubavlju · mathia.rs</div>
+<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
 </div>
 
 <div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span>Signali</span></h2>
-<p>Kontinualni x(t) i diskretni x[n] signali su osnovni objekti.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$x(t),\qquad x[n]$$</div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Signali</span></h2>
+<p data-i18n="e1">Kontinualni x(t) i diskretni x[n] signali su osnovni objekti.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} x(t) \\[8pt] x[n] \end{gathered}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">2</span> <span>LTI sistemi</span></h2>
-<p>Linearni i vremenski invarijantni sistemi potpuno su određeni impulsnim odzivom.</p>
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">LTI sistemi</span></h2>
+<p data-i18n="e2">Linearni i vremenski invarijantni sistemi potpuno su određeni impulsnim odzivom.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\text{LTI}=\text{linearnost}+\text{vremenska invarijantnost}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">3</span> <span>Konvolucija</span></h2>
-<p>Izlaz LTI sistema je konvolucija ulaza i impulsnog odziva.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$y(t)=x(t)*h(t)=\int_{-\infty}^{\infty}x(\tau)h(t-\tau)\,d\tau$$</div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Konvolucija</span></h2>
+<p data-i18n="e3">Izlaz LTI sistema je konvolucija ulaza i impulsnog odziva.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$y(t)=x(t)*h(t)=\int\limits_{-\infty}^{\infty}x(\tau)h(t-\tau)\,d\tau$$</div></section>
 
-<section class="topic"><h2><span class="tnum">4</span> <span>Furijeov red</span></h2>
-<p>Periodičan signal je zbir harmonika.</p>
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Furijeov red</span></h2>
+<p data-i18n="e4">Periodičan signal je zbir harmonika.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$x(t)=\sum_{n}c_n e^{jn\omega_0 t}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">5</span> <span>Furijeova transformacija</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$X(\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}\,dt$$</div></section>
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Furijeova transformacija</span></h2>
+<p data-i18n="e5">Razlaže neperiodičan signal na frekvencijske komponente; inverzna ga vraća iz spektra.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} X(\omega)=\int\limits_{-\infty}^{\infty}x(t)e^{-j\omega t}\,dt \\[8pt] x(t)=\frac{1}{2\pi}\int\limits_{-\infty}^{\infty}X(\omega)e^{j\omega t}\,d\omega \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$x(t)=\delta(t)\Rightarrow X(\omega)=\;?$</div>$$X(\omega)=1$$</div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Laplasova transformacija</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$X(s)=\int_{0}^{\infty}x(t)e^{-st}\,dt$$</div></section>
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Laplasova transformacija</span></h2>
+<p data-i18n="e6">Uopštava Furijeovu na kompleksnu promenljivu s = σ + jω; pogodna za analizu sistema i diferencijalne jednačine.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} X(s)=\int\limits_{0}^{\infty}x(t)e^{-st}\,dt \\[8pt] \mathcal{L}\{x'(t)\}=sX(s)-x(0) \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$x(t)=1\Rightarrow X(s)=\;?$</div>$$X(s)=\dfrac{1}{s}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">7</span> <span>Prenosna funkcija</span></h2>
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Prenosna funkcija</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$H(s)=\frac{Y(s)}{X(s)}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">8</span> <span>Stabilnost</span></h2>
-<p>Sistem je stabilan ako svi polovi prenosne funkcije imaju negativan realni deo.</p>
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Stabilnost</span></h2>
+<p data-i18n="e8">Sistem je stabilan ako svi polovi prenosne funkcije imaju negativan realni deo.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\operatorname{Re}(s_k)<0\ \text{za sve polove}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">9</span> <span>Odabiranje (Nyquist)</span></h2>
-<p>Da bi se signal verno rekonstruisao, učestanost odabiranja mora biti bar dvostruka.</p>
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Teorema o odabiranju (Najkvist–Šenon)</span></h2>
+<p data-i18n="e9">Da bi se signal verno rekonstruisao, učestanost odabiranja mora biti bar dvostruka.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$f_s\ge 2f_{\max}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">f_max = 10 kHz → minimalno f_s ?</div>$$f_s\ge20\ \text{kHz}$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$f_{max}=10\text{ kHz}\Rightarrow f_{s,\min}=\;?$</div>$$f_s\ge20\ \text{kHz}$$</div></section>
 </div>
-<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="sistemi-signali" data-name="Marina" data-subj="Sistemi i signali"></script>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="sistemi-signali" data-name="Zoi" data-subj="Sistemi i signali"></script>
 <script defer src="gate.js" data-subject="sistemi-signali"></script>
 <script>
-var I18N={
-kind:{en:"formulas · handbook",de:"Formeln · Handbuch",fr:"formules · aide-mémoire",es:"fórmulas · manual",it:"formule · prontuario",ru:"формулы · справочник",pt:"fórmulas · manual"},
-name:{en:"Signals & systems",de:"Signale & Systeme",fr:"Signaux et systèmes",es:"Señales y sistemas",it:"Segnali e sistemi",ru:"Сигналы и системы",pt:"Sinais e sistemas"},
-sub:{en:"Convolution, Fourier, Laplace and stability — key formulas with an example.",de:"Faltung, Fourier, Laplace und Stabilität — Kernformeln mit Beispiel.",fr:"Convolution, Fourier, Laplace et stabilité — formules clés avec un exemple.",es:"Convolución, Fourier, Laplace y estabilidad — fórmulas clave con un ejemplo.",it:"Convoluzione, Fourier, Laplace e stabilità — formule chiave con un esempio.",ru:"Свёртка, Фурье, Лаплас и устойчивость — ключевые формулы с примером.",pt:"Convolução, Fourier, Laplace e estabilidade — fórmulas-chave com um exemplo."},
-formule:{en:"FORMULAS",de:"FORMELN",fr:"FORMULES",es:"FÓRMULAS",it:"FORMULE",ru:"ФОРМУЛЫ",pt:"FÓRMULAS"},
-primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "name": {"en": "Signals and systems", "de": "Signale und Systeme", "fr": "Signaux et systèmes", "es": "Señales y sistemas", "it": "Segnali e sistemi", "ru": "Сигналы и системы", "pt": "Sinais e sistemas"}, "sub": {"en": "Convolution, Fourier, Laplace and stability — key formulas with an example.", "de": "Faltung, Fourier, Laplace und Stabilität — Kernformeln mit Beispiel.", "fr": "Convolution, Fourier, Laplace et stabilité — formules clés avec exemple.", "es": "Convolución, Fourier, Laplace y estabilidad — fórmulas clave con un ejemplo.", "it": "Convoluzione, Fourier, Laplace e stabilità — formule chiave con esempio.", "ru": "Свёртка, Фурье, Лаплас и устойчивость — ключевые формулы с примером.", "pt": "Convolução, Fourier, Laplace e estabilidade — fórmulas-chave com exemplo."}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "t1": {"en": "Signals", "de": "Signale", "fr": "Signaux", "es": "Señales", "it": "Segnali", "ru": "Сигналы", "pt": "Sinais"}, "t2": {"en": "LTI systems", "de": "LTI-Systeme", "fr": "Systèmes LTI", "es": "Sistemas LTI", "it": "Sistemi LTI", "ru": "ЛИВ-системы", "pt": "Sistemas LIT"}, "t3": {"en": "Convolution", "de": "Faltung", "fr": "Convolution", "es": "Convolución", "it": "Convoluzione", "ru": "Свёртка", "pt": "Convolução"}, "t4": {"en": "Fourier series", "de": "Fourier-Reihe", "fr": "Série de Fourier", "es": "Serie de Fourier", "it": "Serie di Fourier", "ru": "Ряд Фурье", "pt": "Série de Fourier"}, "t5": {"en": "Fourier transform", "de": "Fourier-Transformation", "fr": "Transformée de Fourier", "es": "Transformada de Fourier", "it": "Trasformata di Fourier", "ru": "Преобразование Фурье", "pt": "Transformada de Fourier"}, "t6": {"en": "Laplace transform", "de": "Laplace-Transformation", "fr": "Transformée de Laplace", "es": "Transformada de Laplace", "it": "Trasformata di Laplace", "ru": "Преобразование Лапласа", "pt": "Transformada de Laplace"}, "t7": {"en": "Transfer function", "de": "Übertragungsfunktion", "fr": "Fonction de transfert", "es": "Función de transferencia", "it": "Funzione di trasferimento", "ru": "Передаточная функция", "pt": "Função de transferência"}, "t8": {"en": "Stability", "de": "Stabilität", "fr": "Stabilité", "es": "Estabilidad", "it": "Stabilità", "ru": "Устойчивость", "pt": "Estabilidade"}, "t9": {"en": "Sampling (Nyquist–Shannon theorem)", "de": "Abtastung (Nyquist-Shannon-Theorem)", "fr": "Échantillonnage (théorème de Nyquist-Shannon)", "es": "Muestreo (teorema de Nyquist-Shannon)", "it": "Campionamento (teorema di Nyquist-Shannon)", "ru": "Дискретизация (теорема Котельникова–Шеннона)", "pt": "Amostragem (teorema de Nyquist-Shannon)"}, "e1": {"en": "Continuous x(t) and discrete x[n] signals are the basic objects.", "de": "Kontinuierliche x(t) und diskrete x[n] Signale sind die Grundobjekte.", "fr": "Les signaux continus x(t) et discrets x[n] sont les objets de base.", "es": "Las señales continuas x(t) y discretas x[n] son los objetos básicos.", "it": "I segnali continui x(t) e discreti x[n] sono gli oggetti di base.", "ru": "Непрерывные x(t) и дискретные x[n] сигналы — основные объекты.", "pt": "Os sinais contínuos x(t) e discretos x[n] são os objetos básicos."}, "e2": {"en": "Linear time-invariant systems are completely determined by their impulse response.", "de": "Lineare zeitinvariante Systeme sind vollständig durch ihre Impulsantwort bestimmt.", "fr": "Les systèmes linéaires invariants dans le temps sont entièrement déterminés par leur réponse impulsionnelle.", "es": "Los sistemas lineales e invariantes en el tiempo quedan completamente determinados por su respuesta al impulso.", "it": "I sistemi lineari tempo-invarianti sono completamente determinati dalla loro risposta all'impulso.", "ru": "Линейные инвариантные во времени системы полностью определяются импульсной характеристикой.", "pt": "Os sistemas lineares e invariantes no tempo ficam completamente determinados pela sua resposta ao impulso."}, "e3": {"en": "The output of an LTI system is the convolution of the input and the impulse response.", "de": "Der Ausgang eines LTI-Systems ist die Faltung von Eingang und Impulsantwort.", "fr": "La sortie d'un système LTI est la convolution de l'entrée et de la réponse impulsionnelle.", "es": "La salida de un sistema LTI es la convolución de la entrada y la respuesta al impulso.", "it": "L'uscita di un sistema LTI è la convoluzione dell'ingresso e della risposta all'impulso.", "ru": "Выход ЛИВ-системы — свёртка входа и импульсной характеристики.", "pt": "A saída de um sistema LIT é a convolução da entrada e da resposta ao impulso."}, "e4": {"en": "A periodic signal is a sum of harmonics.", "de": "Ein periodisches Signal ist eine Summe von Harmonischen.", "fr": "Un signal périodique est une somme d'harmoniques.", "es": "Una señal periódica es una suma de armónicos.", "it": "Un segnale periodico è una somma di armoniche.", "ru": "Периодический сигнал — сумма гармоник.", "pt": "Um sinal periódico é uma soma de harmônicos."}, "e8": {"en": "A system is stable if all poles of the transfer function have negative real part.", "de": "Ein System ist stabil, wenn alle Pole der Übertragungsfunktion einen negativen Realteil haben.", "fr": "Un système est stable si tous les pôles de la fonction de transfert ont une partie réelle négative.", "es": "Un sistema es estable si todos los polos de la función de transferencia tienen parte real negativa.", "it": "Un sistema è stabile se tutti i poli della funzione di trasferimento hanno parte reale negativa.", "ru": "Система устойчива, если все полюсы передаточной функции имеют отрицательную вещественную часть.", "pt": "Um sistema é estável se todos os polos da função de transferência tiverem parte real negativa."}, "e9": {"en": "To reconstruct a signal faithfully, the sampling rate must be at least twice the highest frequency.", "de": "Um ein Signal getreu zu rekonstruieren, muss die Abtastrate mindestens doppelt so hoch sein wie die höchste Frequenz.", "fr": "Pour reconstruire fidèlement un signal, la fréquence d'échantillonnage doit être au moins le double de la fréquence maximale.", "es": "Para reconstruir fielmente una señal, la frecuencia de muestreo debe ser al menos el doble de la frecuencia máxima.", "it": "Per ricostruire fedelmente un segnale, la frequenza di campionamento deve essere almeno doppia della frequenza massima.", "ru": "Чтобы точно восстановить сигнал, частота дискретизации должна быть не менее чем вдвое выше максимальной частоты.", "pt": "Para reconstruir fielmente um sinal, a frequência de amostragem deve ser pelo menos o dobro da frequência máxima."}, "e5": {"en": "Decomposes a non-periodic signal into frequency components; the inverse recovers it from the spectrum.", "de": "Zerlegt ein nichtperiodisches Signal in Frequenzkomponenten; die Inverse stellt es aus dem Spektrum wieder her.", "fr": "Décompose un signal non périodique en composantes fréquentielles ; l'inverse le reconstitue à partir du spectre.", "es": "Descompone una señal no periódica en componentes de frecuencia; la inversa la recupera del espectro.", "it": "Scompone un segnale non periodico in componenti in frequenza; l'inversa lo ricostruisce dallo spettro.", "ru": "Раскладывает непериодический сигнал на частотные составляющие; обратное преобразование восстанавливает его из спектра.", "pt": "Decompõe um sinal não periódico em componentes de frequência; a inversa recupera-o do espectro."}, "e6": {"en": "Generalizes the Fourier transform to a complex variable s = σ + jω; well suited to system analysis and differential equations.", "de": "Verallgemeinert die Fourier-Transformation auf eine komplexe Variable s = σ + jω; geeignet für Systemanalyse und Differentialgleichungen.", "fr": "Généralise la transformée de Fourier à une variable complexe s = σ + jω ; adaptée à l'analyse des systèmes et aux équations différentielles.", "es": "Generaliza la transformada de Fourier a una variable compleja s = σ + jω; adecuada para el análisis de sistemas y ecuaciones diferenciales.", "it": "Generalizza la trasformata di Fourier a una variabile complessa s = σ + jω; adatta all'analisi dei sistemi e alle equazioni differenziali.", "ru": "Обобщает преобразование Фурье на комплексную переменную s = σ + jω; удобно для анализа систем и дифференциальных уравнений.", "pt": "Generaliza a transformada de Fourier para uma variável complexa s = σ + jω; adequada à análise de sistemas e a equações diferenciais."}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}};
 document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
 function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
 document.getElementById("lang").onchange=function(){apply(this.value)};
 function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
 window.addEventListener("load",rk);
+</script>
+<script>
+(function(){
+ function fit(){
+  var ds=document.querySelectorAll('.katex-display');
+  for(var i=0;i<ds.length;i++){
+   var el=ds[i];el.style.fontSize='';
+   var p=100,n=0;
+   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
+  }
+ }
+ window.addEventListener('load',function(){setTimeout(fit,60);});
+ window.addEventListener('resize',function(){setTimeout(fit,80);});
+})();
 </script>
 </body></html>

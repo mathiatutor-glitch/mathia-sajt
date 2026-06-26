@@ -30,7 +30,22 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 .task{font-weight:600;margin-bottom:6px}
 .katex-display{margin:.5em 0}
 .foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
-</style></head>
+</style><style>
+.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
+.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
+.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
+.cover{min-height:68vh;padding:74px 24px 50px}
+.brandline{letter-spacing:.42em}
+.kind{margin-top:10px}
+.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
+.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
+.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.foot{margin-top:30px}
+@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
+@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+</style>
+</head>
 <body>
 <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
@@ -41,66 +56,75 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 <div class="kind" data-i18n="kind">formule · priručnik</div>
 <h1 data-i18n="name">Uvod u elektroniku</h1>
 <p class="subtitle" data-i18n="sub">Od poluprovodnika do pojačavača — ključne formule i pravila, s primerom.</p>
-<div class="foot">uči s ljubavlju · mathia.rs</div>
+<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
 </div>
 
 <div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span>Poluprovodnici</span></h2>
-<p>Čist silicijum se „dopira" primesama: N-tip ima višak elektrona, P-tip višak šupljina.</p>
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Poluprovodnici</span></h2>
+<p data-i18n="e1">Čist silicijum se „dopira" primesama: N-tip ima višak elektrona, P-tip višak šupljina.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{N-tip}:\ \text{elektroni}\qquad \text{P-tip}:\ \text{šupljine}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">2</span> <span>Dioda (PN spoj)</span></h2>
-<p>Dioda provodi struju samo u jednom smeru — kad je direktno polarisana i napon pređe prag.</p>
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Dioda (PN spoj)</span></h2>
+<p data-i18n="e2">Dioda provodi struju samo u jednom smeru — kad je direktno polarisana i napon pređe prag.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$U_{prag}\approx0{,}7\ \text{V (Si)}\qquad \text{provodi: anoda}(+)\to\text{katoda}(-)$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Napon na diodi je 0,3 V (Si). Da li provodi?</div>$$0{,}3<0{,}7\ \Rightarrow\ \text{ne provodi}$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q2">Napon na diodi je 0,3 V (Si). Da li provodi?</div>$$0{,}3<0{,}7\ \Rightarrow\ \text{ne provodi}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">3</span> <span>Ispravljanje</span></h2>
-<p>Diode pretvaraju naizmeničnu struju (AC) u jednosmernu (DC) — poluttalasno ili punotalasno.</p>
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Ispravljanje</span></h2>
+<p data-i18n="e3">Diode pretvaraju naizmeničnu struju (AC) u jednosmernu (DC) — poluttalasno ili punotalasno.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{AC}\ \xrightarrow{\text{diode}}\ \text{DC}\qquad \text{Grecov spoj}=4\ \text{diode}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">4</span> <span>Tranzistor</span></h2>
-<p>Bipolarni tranzistor (NPN/PNP) ima tri izvoda: emitor, baza, kolektor. Mala bazna struja upravlja velikom kolektorskom.</p>
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Tranzistor</span></h2>
+<p data-i18n="e4">Bipolarni tranzistor (NPN/PNP) ima tri izvoda: emitor, baza, kolektor. Mala bazna struja upravlja velikom kolektorskom.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$I_E=I_B+I_C\qquad \beta=\frac{I_C}{I_B}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">I_B = 1 mA, I_C = 100 mA → β?</div>$$\beta=\frac{100}{1}=100$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$I_B=1\text{ mA},\ I_C=100\text{ mA}\Rightarrow \beta=\;?$</div>$$\beta=\frac{100}{1}=100$$</div></section>
 
-<section class="topic"><h2><span class="tnum">5</span> <span>Tranzistor kao prekidač i pojačavač</span></h2>
-<p>U zasićenju radi kao uključen prekidač, u zakočenju kao isključen; u aktivnom režimu pojačava signal.</p>
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Tranzistor kao prekidač i pojačavač</span></h2>
+<p data-i18n="e5">U zasićenju radi kao uključen prekidač, u zakočenju kao isključen; u aktivnom režimu pojačava signal.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{zakočenje}\ \to\ \text{OFF}\qquad \text{zasićenje}\ \to\ \text{ON}\qquad \text{aktivni}\ \to\ \text{pojačanje}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Logička kola</span></h2>
-<p>Osnovna kola: I (AND), ILI (OR), NE (NOT). Rade sa 0 i 1.</p>
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Logička kola</span></h2>
+<p data-i18n="e6">Osnovna kola: I (AND), ILI (OR), NE (NOT). Rade sa 0 i 1.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{AND}:1\!\cdot\!1=1\qquad \text{OR}:1\!+\!0=1\qquad \text{NOT}:\overline{0}=1$$</div></section>
 
-<section class="topic"><h2><span class="tnum">7</span> <span>Delitelj napona</span></h2>
-<p>Dva otpornika u rednoj vezi dele napon srazmerno svojim vrednostima.</p>
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Delitelj napona</span></h2>
+<p data-i18n="e7">Dva otpornika u rednoj vezi dele napon srazmerno svojim vrednostima.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$U_2=U\cdot\frac{R_2}{R_1+R_2}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">U = 10 V, R₁ = R₂ → U₂?</div>$$U_2=10\cdot\tfrac{1}{2}=5\ \text{V}$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$U=10\text{ V},\ R_1=R_2\Rightarrow U_2=\;?$</div>$$U_2=10\cdot\tfrac{1}{2}=5\ \text{V}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">8</span> <span>Kondenzator i RC</span></h2>
-<p>Kondenzator skladišti naelektrisanje; u RC kolu vreme punjenja određuje vremenska konstanta.</p>
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Kondenzator i RC</span></h2>
+<p data-i18n="e8">Kondenzator skladišti naelektrisanje; u RC kolu vreme punjenja određuje vremenska konstanta.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$Q=C\,U\qquad \tau=R\,C$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">R = 1 kΩ, C = 1 µF → τ?</div>$$\tau=10^3\cdot10^{-6}=1\ \text{ms}$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$R=1\text{ k}\Omega,\ C=1\,\mu\text{F}\Rightarrow \tau=\;?$</div>$$\tau=10^3\cdot10^{-6}=1\ \text{ms}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">9</span> <span>Operacioni pojačavač</span></h2>
-<p>Op-amp pojačava razliku ulaza. U neinvertujućoj vezi pojačanje zavisi od dva otpornika.</p>
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Operacioni pojačavač</span></h2>
+<p data-i18n="e9">Op-amp pojačava razliku ulaza. U neinvertujućoj vezi pojačanje zavisi od dva otpornika.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$A=1+\frac{R_f}{R_1}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">R_f = 10 kΩ, R₁ = 1 kΩ → A?</div>$$A=1+10=11$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$R_f=10\text{ k}\Omega,\ R_1=1\text{ k}\Omega\Rightarrow A=\;?$</div>$$A=1+10=11$$</div></section>
 </div>
-<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="uvod-u-elektroniku" data-name="Marina" data-subj="Uvod u elektroniku"></script>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="uvod-u-elektroniku" data-name="Zoi" data-subj="Uvod u elektroniku"></script>
 <script defer src="gate.js" data-subject="uvod-u-elektroniku"></script>
 <script>
-var I18N={
-kind:{en:"formulas · handbook",de:"Formeln · Handbuch",fr:"formules · aide-mémoire",es:"fórmulas · manual",it:"formule · prontuario",ru:"формулы · справочник",pt:"fórmulas · manual"},
-name:{en:"Introduction to electronics",de:"Einführung in die Elektronik",fr:"Introduction à l'électronique",es:"Introducción a la electrónica",it:"Introduzione all'elettronica",ru:"Введение в электронику",pt:"Introdução à eletrónica"},
-sub:{en:"From semiconductors to amplifiers — key formulas and rules, with an example.",de:"Von Halbleitern bis Verstärkern — Kernformeln und Regeln, mit Beispiel.",fr:"Des semi-conducteurs aux amplificateurs — formules et règles clés, avec un exemple.",es:"De semiconductores a amplificadores — fórmulas y reglas clave, con un ejemplo.",it:"Dai semiconduttori agli amplificatori — formule e regole chiave, con un esempio.",ru:"От полупроводников до усилителей — ключевые формулы и правила, с примером.",pt:"De semicondutores a amplificadores — fórmulas e regras-chave, com um exemplo."},
-formule:{en:"FORMULAS",de:"FORMELN",fr:"FORMULES",es:"FÓRMULAS",it:"FORMULE",ru:"ФОРМУЛЫ",pt:"FÓRMULAS"},
-primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "name": {"en": "Introduction to electronics", "de": "Einführung in die Elektronik", "fr": "Introduction à l'électronique", "es": "Introducción a la electrónica", "it": "Introduzione all'elettronica", "ru": "Введение в электронику", "pt": "Introdução à eletrônica"}, "sub": {"en": "From semiconductors to amplifiers — key formulas and rules, with an example.", "de": "Von Halbleitern bis zu Verstärkern — Kernformeln und Regeln, mit Beispiel.", "fr": "Des semi-conducteurs aux amplificateurs — formules et règles clés, avec un exemple.", "es": "De los semiconductores a los amplificadores — fórmulas y reglas clave, con un ejemplo.", "it": "Dai semiconduttori agli amplificatori — formule e regole chiave, con un esempio.", "ru": "От полупроводников до усилителей — ключевые формулы и правила, с примером.", "pt": "Dos semicondutores aos amplificadores — fórmulas e regras-chave, com um exemplo."}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "t1": {"en": "Semiconductors", "de": "Halbleiter", "fr": "Semi-conducteurs", "es": "Semiconductores", "it": "Semiconduttori", "ru": "Полупроводники", "pt": "Semicondutores"}, "t2": {"en": "Diode (PN junction)", "de": "Diode (PN-Übergang)", "fr": "Diode (jonction PN)", "es": "Diodo (unión PN)", "it": "Diodo (giunzione PN)", "ru": "Диод (PN-переход)", "pt": "Diodo (junção PN)"}, "t3": {"en": "Rectification", "de": "Gleichrichtung", "fr": "Redressement", "es": "Rectificación", "it": "Raddrizzamento", "ru": "Выпрямление", "pt": "Retificação"}, "t4": {"en": "Transistor", "de": "Transistor", "fr": "Transistor", "es": "Transistor", "it": "Transistor", "ru": "Транзистор", "pt": "Transistor"}, "t5": {"en": "Transistor as switch and amplifier", "de": "Transistor als Schalter und Verstärker", "fr": "Transistor comme interrupteur et amplificateur", "es": "Transistor como interruptor y amplificador", "it": "Transistor come interruttore e amplificatore", "ru": "Транзистор как ключ и усилитель", "pt": "Transistor como interruptor e amplificador"}, "t6": {"en": "Logic gates", "de": "Logikgatter", "fr": "Portes logiques", "es": "Puertas lógicas", "it": "Porte logiche", "ru": "Логические вентили", "pt": "Portas lógicas"}, "t7": {"en": "Voltage divider", "de": "Spannungsteiler", "fr": "Diviseur de tension", "es": "Divisor de tensión", "it": "Partitore di tensione", "ru": "Делитель напряжения", "pt": "Divisor de tensão"}, "t8": {"en": "Capacitor and RC", "de": "Kondensator und RC", "fr": "Condensateur et RC", "es": "Condensador y RC", "it": "Condensatore e RC", "ru": "Конденсатор и RC", "pt": "Capacitor e RC"}, "t9": {"en": "Operational amplifier", "de": "Operationsverstärker", "fr": "Amplificateur opérationnel", "es": "Amplificador operacional", "it": "Amplificatore operazionale", "ru": "Операционный усилитель", "pt": "Amplificador operacional"}, "e1": {"en": "Pure silicon is \"doped\" with impurities: N-type has excess electrons, P-type excess holes.", "de": "Reines Silizium wird mit Fremdatomen „dotiert“: N-Typ hat überschüssige Elektronen, P-Typ überschüssige Löcher.", "fr": "Le silicium pur est « dopé » avec des impuretés : le type N a un excès d'électrons, le type P un excès de trous.", "es": "El silicio puro se «dopa» con impurezas: el tipo N tiene exceso de electrones, el tipo P exceso de huecos.", "it": "Il silicio puro viene «drogato» con impurità: il tipo N ha un eccesso di elettroni, il tipo P un eccesso di lacune.", "ru": "Чистый кремний «легируют» примесями: N-тип имеет избыток электронов, P-тип — избыток дырок.", "pt": "O silício puro é «dopado» com impurezas: o tipo N tem excesso de elétrons, o tipo P excesso de lacunas."}, "e2": {"en": "A diode conducts current in only one direction — when forward-biased and the voltage exceeds the threshold.", "de": "Eine Diode leitet Strom nur in einer Richtung — in Durchlassrichtung, wenn die Spannung die Schwelle überschreitet.", "fr": "Une diode ne conduit le courant que dans un sens — en polarisation directe et lorsque la tension dépasse le seuil.", "es": "Un diodo conduce corriente solo en un sentido — en polarización directa y cuando la tensión supera el umbral.", "it": "Un diodo conduce corrente in un solo verso — in polarizzazione diretta e quando la tensione supera la soglia.", "ru": "Диод проводит ток только в одном направлении — при прямом смещении, когда напряжение превышает порог.", "pt": "Um diodo conduz corrente apenas num sentido — quando diretamente polarizado e a tensão ultrapassa o limiar."}, "e3": {"en": "Diodes convert alternating current (AC) into direct current (DC) — half-wave or full-wave.", "de": "Dioden wandeln Wechselstrom (AC) in Gleichstrom (DC) um — Einweg oder Zweiweg.", "fr": "Les diodes convertissent le courant alternatif (AC) en courant continu (DC) — simple ou double alternance.", "es": "Los diodos convierten la corriente alterna (AC) en continua (DC) — de media onda o de onda completa.", "it": "I diodi convertono la corrente alternata (AC) in continua (DC) — a semionda o a onda intera.", "ru": "Диоды преобразуют переменный ток (AC) в постоянный (DC) — однополупериодное или двухполупериодное выпрямление.", "pt": "Os diodos convertem corrente alternada (AC) em contínua (DC) — de meia onda ou de onda completa."}, "e4": {"en": "A bipolar transistor (NPN/PNP) has three terminals: emitter, base, collector. A small base current controls a large collector current.", "de": "Ein Bipolartransistor (NPN/PNP) hat drei Anschlüsse: Emitter, Basis, Kollektor. Ein kleiner Basisstrom steuert einen großen Kollektorstrom.", "fr": "Un transistor bipolaire (NPN/PNP) a trois bornes : émetteur, base, collecteur. Un faible courant de base commande un fort courant de collecteur.", "es": "Un transistor bipolar (NPN/PNP) tiene tres terminales: emisor, base, colector. Una pequeña corriente de base controla una gran corriente de colector.", "it": "Un transistor bipolare (NPN/PNP) ha tre terminali: emettitore, base, collettore. Una piccola corrente di base controlla una grande corrente di collettore.", "ru": "Биполярный транзистор (NPN/PNP) имеет три вывода: эмиттер, база, коллектор. Малый ток базы управляет большим током коллектора.", "pt": "Um transistor bipolar (NPN/PNP) tem três terminais: emissor, base, coletor. Uma pequena corrente de base controla uma grande corrente de coletor."}, "e5": {"en": "In saturation it acts as a closed switch, in cutoff as an open one; in the active region it amplifies the signal.", "de": "In der Sättigung wirkt er als geschlossener Schalter, im Sperrbereich als offener; im aktiven Bereich verstärkt er das Signal.", "fr": "En saturation, il agit comme un interrupteur fermé, en blocage comme un interrupteur ouvert ; en régime actif, il amplifie le signal.", "es": "En saturación actúa como un interruptor cerrado, en corte como uno abierto; en la región activa amplifica la señal.", "it": "In saturazione funziona come un interruttore chiuso, in interdizione come uno aperto; in regione attiva amplifica il segnale.", "ru": "В насыщении работает как замкнутый ключ, в отсечке — как разомкнутый; в активном режиме усиливает сигнал.", "pt": "Na saturação funciona como um interruptor fechado, no corte como um aberto; na região ativa amplifica o sinal."}, "e6": {"en": "Basic gates: AND, OR, NOT. They work with 0 and 1.", "de": "Grundgatter: UND (AND), ODER (OR), NICHT (NOT). Sie arbeiten mit 0 und 1.", "fr": "Portes de base : ET (AND), OU (OR), NON (NOT). Elles fonctionnent avec 0 et 1.", "es": "Puertas básicas: Y (AND), O (OR), NO (NOT). Funcionan con 0 y 1.", "it": "Porte di base: AND, OR, NOT. Lavorano con 0 e 1.", "ru": "Базовые вентили: И (AND), ИЛИ (OR), НЕ (NOT). Работают с 0 и 1.", "pt": "Portas básicas: E (AND), OU (OR), NÃO (NOT). Funcionam com 0 e 1."}, "e7": {"en": "Two resistors in series divide the voltage in proportion to their values.", "de": "Zwei Widerstände in Reihe teilen die Spannung im Verhältnis ihrer Werte.", "fr": "Deux résistances en série divisent la tension proportionnellement à leurs valeurs.", "es": "Dos resistencias en serie dividen la tensión en proporción a sus valores.", "it": "Due resistori in serie dividono la tensione in proporzione ai loro valori.", "ru": "Два резистора, соединённые последовательно, делят напряжение пропорционально своим значениям.", "pt": "Dois resistores em série dividem a tensão proporcionalmente aos seus valores."}, "e8": {"en": "A capacitor stores charge; in an RC circuit the charging time is set by the time constant.", "de": "Ein Kondensator speichert Ladung; in einer RC-Schaltung bestimmt die Zeitkonstante die Ladezeit.", "fr": "Un condensateur stocke de la charge ; dans un circuit RC, le temps de charge est fixé par la constante de temps.", "es": "Un condensador almacena carga; en un circuito RC el tiempo de carga lo fija la constante de tiempo.", "it": "Un condensatore immagazzina carica; in un circuito RC il tempo di carica è dato dalla costante di tempo.", "ru": "Конденсатор накапливает заряд; в RC-цепи время заряда определяется постоянной времени.", "pt": "Um capacitor armazena carga; num circuito RC o tempo de carga é dado pela constante de tempo."}, "e9": {"en": "An op-amp amplifies the difference of its inputs. In the non-inverting configuration the gain depends on two resistors.", "de": "Ein Op-Amp verstärkt die Differenz seiner Eingänge. In der nichtinvertierenden Schaltung hängt die Verstärkung von zwei Widerständen ab.", "fr": "Un ampli-op amplifie la différence de ses entrées. En montage non inverseur, le gain dépend de deux résistances.", "es": "Un amplificador operacional amplifica la diferencia de sus entradas. En la configuración no inversora la ganancia depende de dos resistencias.", "it": "Un amplificatore operazionale amplifica la differenza dei suoi ingressi. Nella configurazione non invertente il guadagno dipende da due resistori.", "ru": "Операционный усилитель усиливает разность входов. В неинвертирующем включении усиление зависит от двух резисторов.", "pt": "Um amplificador operacional amplifica a diferença das suas entradas. Na configuração não inversora o ganho depende de dois resistores."}, "q2": {"en": "The voltage across the diode is 0.3 V (Si). Does it conduct?", "de": "Die Spannung an der Diode beträgt 0,3 V (Si). Leitet sie?", "fr": "La tension aux bornes de la diode est de 0,3 V (Si). Conduit-elle ?", "es": "La tensión en el diodo es de 0,3 V (Si). ¿Conduce?", "it": "La tensione sul diodo è 0,3 V (Si). Conduce?", "ru": "Напряжение на диоде 0,3 В (Si). Проводит ли он?", "pt": "A tensão no diodo é 0,3 V (Si). Conduz?"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}};
 document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
 function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
 document.getElementById("lang").onchange=function(){apply(this.value)};
 function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
 window.addEventListener("load",rk);
+</script>
+<script>
+(function(){
+ function fit(){
+  var ds=document.querySelectorAll('.katex-display');
+  for(var i=0;i<ds.length;i++){
+   var el=ds[i];el.style.fontSize='';
+   var p=100,n=0;
+   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
+  }
+ }
+ window.addEventListener('load',function(){setTimeout(fit,60);});
+ window.addEventListener('resize',function(){setTimeout(fit,80);});
+})();
 </script>
 </body></html>

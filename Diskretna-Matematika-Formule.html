@@ -30,7 +30,22 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 .task{font-weight:600;margin-bottom:6px}
 .katex-display{margin:.5em 0}
 .foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
-</style></head>
+</style><style>
+.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
+.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
+.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
+.cover{min-height:68vh;padding:74px 24px 50px}
+.brandline{letter-spacing:.42em}
+.kind{margin-top:10px}
+.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
+.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
+.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.foot{margin-top:30px}
+@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
+@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+</style>
+</head>
 <body>
 <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
@@ -41,58 +56,67 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 <div class="kind" data-i18n="kind">formule · priručnik</div>
 <h1 data-i18n="name">Diskretna matematika</h1>
 <p class="subtitle" data-i18n="sub">Skupovi, logika, kombinatorika i grafovi — ključna pravila sa primerom.</p>
-<div class="foot">uči s ljubavlju · mathia.rs</div>
+<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
 </div>
 
 <div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span>Skupovi</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$A\cup B,\ A\cap B,\ A\setminus B,\ \bar A$$</div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Skupovi</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} A\cup B \\[8pt] A\cap B \\[8pt] A\setminus B \\[8pt] \bar A \end{gathered}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">2</span> <span>De Morganovi zakoni</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\overline{A\cup B}=\bar A\cap\bar B,\qquad \overline{A\cap B}=\bar A\cup\bar B$$</div></section>
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">De Morganovi zakoni</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} \overline{A\cup B}=\bar A\cap\bar B \\[8pt] \overline{A\cap B}=\bar A\cup\bar B \end{gathered}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">3</span> <span>Logika</span></h2>
-<p>Implikacija je netačna jedino kada je pretpostavka tačna, a posledica netačna.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$p\to q\ \text{netačno}\iff p=\top,\ q=\bot$$</div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Logika</span></h2>
+<p data-i18n="e3">Implikacija je netačna jedino kada je pretpostavka tačna, a posledica netačna.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} p\to q\ \text{netačno}\iff p=\top \\[8pt] q=\bot \end{gathered}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">4</span> <span>Kombinatorika</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(n,k)=\frac{n!}{(n-k)!},\qquad \binom{n}{k}=\frac{n!}{k!(n-k)!}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">C(5, 2) ?</div>$$\binom{5}{2}=10$$</div></section>
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Kombinatorika</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} P(n,k)=\frac{n!}{(n-k)!} \\[8pt] \binom{n}{k}=\frac{n!}{k!(n-k)!} \end{gathered}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q4">C(5, 2) ?</div>$$\binom{5}{2}=10$$</div></section>
 
-<section class="topic"><h2><span class="tnum">5</span> <span>Uključenje–isključenje</span></h2>
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Princip uključenja–isključenja</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$|A\cup B|=|A|+|B|-|A\cap B|$$</div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Relacije</span></h2>
-<p>Relacija ekvivalencije je refleksivna, simetrična i tranzitivna.</p>
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Relacije</span></h2>
+<p data-i18n="e6">Relacija ekvivalencije je refleksivna, simetrična i tranzitivna.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\text{ekvivalencija}=\text{refl.}+\text{sim.}+\text{tranz.}$$</div></section>
 
-<section class="topic"><h2><span class="tnum">7</span> <span>Grafovi</span></h2>
-<p>Zbir stepena svih čvorova jednak je dvostrukom broju grana (lema o rukovanju).</p>
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Grafovi</span></h2>
+<p data-i18n="e7">Zbir stepena svih čvorova jednak je dvostrukom broju grana (lema o rukovanju).</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\sum_{v}\deg(v)=2|E|$$</div></section>
 
-<section class="topic"><h2><span class="tnum">8</span> <span>Matematička indukcija</span></h2>
-<p>Dokaz za sve prirodne brojeve: baza (n = 1) i korak (iz n sledi n + 1).</p>
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Matematička indukcija</span></h2>
+<p data-i18n="e8">Dokaz za sve prirodne brojeve: baza (n = 1) i korak (iz n sledi n + 1).</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P(1)\ \wedge\ \big(P(n)\Rightarrow P(n+1)\big)\Rightarrow \forall n\,P(n)$$</div></section>
 
-<section class="topic"><h2><span class="tnum">9</span> <span>Rekurzije</span></h2>
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Rekurzije</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$F_n=F_{n-1}+F_{n-2}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Fibonači: 1, 1, 2, 3, 5, … sledeći?</div>$$5+3=8$$</div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q9">Fibonači: 1, 1, 2, 3, 5, … sledeći?</div>$$5+3=8$$</div></section>
 </div>
-<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="diskretna-matematika" data-name="Marina" data-subj="Diskretna matematika"></script>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="diskretna-matematika" data-name="Zoi" data-subj="Diskretna matematika"></script>
 <script defer src="gate.js" data-subject="diskretna-matematika"></script>
 <script>
-var I18N={
-kind:{en:"formulas · handbook",de:"Formeln · Handbuch",fr:"formules · aide-mémoire",es:"fórmulas · manual",it:"formule · prontuario",ru:"формулы · справочник",pt:"fórmulas · manual"},
-name:{en:"Discrete mathematics",de:"Diskrete Mathematik",fr:"Mathématiques discrètes",es:"Matemática discreta",it:"Matematica discreta",ru:"Дискретная математика",pt:"Matemática discreta"},
-sub:{en:"Sets, logic, combinatorics and graphs — key rules with an example.",de:"Mengen, Logik, Kombinatorik und Graphen — Kernregeln mit Beispiel.",fr:"Ensembles, logique, combinatoire et graphes — règles clés avec un exemple.",es:"Conjuntos, lógica, combinatoria y grafos — reglas clave con un ejemplo.",it:"Insiemi, logica, combinatoria e grafi — regole chiave con un esempio.",ru:"Множества, логика, комбинаторика и графы — ключевые правила с примером.",pt:"Conjuntos, lógica, combinatória e grafos — regras-chave com um exemplo."},
-formule:{en:"FORMULAS",de:"FORMELN",fr:"FORMULES",es:"FÓRMULAS",it:"FORMULE",ru:"ФОРМУЛЫ",pt:"FÓRMULAS"},
-primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "name": {"en": "Discrete mathematics", "de": "Diskrete Mathematik", "fr": "Mathématiques discrètes", "es": "Matemática discreta", "it": "Matematica discreta", "ru": "Дискретная математика", "pt": "Matemática discreta"}, "sub": {"en": "Sets, logic, combinatorics, relations and graphs — key formulas with an example.", "de": "Mengen, Logik, Kombinatorik, Relationen und Graphen — Kernformeln mit Beispiel.", "fr": "Ensembles, logique, dénombrement, relations et graphes — formules clés avec exemple.", "es": "Conjuntos, lógica, combinatoria, relaciones y grafos — fórmulas clave con un ejemplo.", "it": "Insiemi, logica, calcolo combinatorio, relazioni e grafi — formule chiave con esempio.", "ru": "Множества, логика, комбинаторика, отношения и графы — ключевые формулы с примером.", "pt": "Conjuntos, lógica, combinatória, relações e grafos — fórmulas-chave com exemplo."}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "t1": {"en": "Sets", "de": "Mengen", "fr": "Ensembles", "es": "Conjuntos", "it": "Insiemi", "ru": "Множества", "pt": "Conjuntos"}, "t2": {"en": "De Morgan's laws", "de": "De Morgansche Gesetze", "fr": "Lois de De Morgan", "es": "Leyes de De Morgan", "it": "Leggi di De Morgan", "ru": "Законы де Моргана", "pt": "Leis de De Morgan"}, "t3": {"en": "Logic", "de": "Logik", "fr": "Logique", "es": "Lógica", "it": "Logica", "ru": "Логика", "pt": "Lógica"}, "t4": {"en": "Combinatorics", "de": "Kombinatorik", "fr": "Combinatoire", "es": "Combinatoria", "it": "Calcolo combinatorio", "ru": "Комбинаторика", "pt": "Combinatória"}, "t5": {"en": "Inclusion–exclusion principle", "de": "Prinzip von Inklusion und Exklusion", "fr": "Principe d'inclusion-exclusion", "es": "Principio de inclusión–exclusión", "it": "Principio di inclusione–esclusione", "ru": "Принцип включения–исключения", "pt": "Princípio de inclusão–exclusão"}, "t6": {"en": "Relations", "de": "Relationen", "fr": "Relations", "es": "Relaciones", "it": "Relazioni", "ru": "Отношения", "pt": "Relações"}, "t7": {"en": "Graphs", "de": "Graphen", "fr": "Graphes", "es": "Grafos", "it": "Grafi", "ru": "Графы", "pt": "Grafos"}, "t8": {"en": "Mathematical induction", "de": "Vollständige Induktion", "fr": "Raisonnement par récurrence", "es": "Inducción matemática", "it": "Induzione matematica", "ru": "Математическая индукция", "pt": "Indução matemática"}, "t9": {"en": "Recurrences", "de": "Rekursionen", "fr": "Suites récurrentes", "es": "Recurrencias", "it": "Ricorrenze", "ru": "Рекуррентные соотношения", "pt": "Recorrências"}, "e3": {"en": "An implication is false only when the premise is true and the conclusion is false.", "de": "Eine Implikation ist nur dann falsch, wenn die Voraussetzung wahr und die Folgerung falsch ist.", "fr": "Une implication est fausse uniquement lorsque la prémisse est vraie et la conclusion fausse.", "es": "Una implicación es falsa solo cuando la premisa es verdadera y la conclusión falsa.", "it": "Un'implicazione è falsa solo quando la premessa è vera e la conclusione è falsa.", "ru": "Импликация ложна только тогда, когда посылка истинна, а следствие ложно.", "pt": "Uma implicação é falsa apenas quando a premissa é verdadeira e a conclusão é falsa."}, "e6": {"en": "An equivalence relation is reflexive, symmetric and transitive.", "de": "Eine Äquivalenzrelation ist reflexiv, symmetrisch und transitiv.", "fr": "Une relation d'équivalence est réflexive, symétrique et transitive.", "es": "Una relación de equivalencia es reflexiva, simétrica y transitiva.", "it": "Una relazione di equivalenza è riflessiva, simmetrica e transitiva.", "ru": "Отношение эквивалентности рефлексивно, симметрично и транзитивно.", "pt": "Uma relação de equivalência é reflexiva, simétrica e transitiva."}, "e7": {"en": "The sum of all vertex degrees equals twice the number of edges (handshake lemma).", "de": "Die Summe aller Knotengrade ist gleich dem Doppelten der Kantenzahl (Handschlaglemma).", "fr": "La somme des degrés de tous les sommets est égale au double du nombre d'arêtes (lemme des poignées de main).", "es": "La suma de los grados de todos los vértices es igual al doble del número de aristas (lema del apretón de manos).", "it": "La somma dei gradi di tutti i vertici è uguale al doppio del numero di archi (lemma della stretta di mano).", "ru": "Сумма степеней всех вершин равна удвоенному числу рёбер (лемма о рукопожатиях).", "pt": "A soma dos graus de todos os vértices é igual ao dobro do número de arestas (lema dos apertos de mão)."}, "e8": {"en": "Proof for all natural numbers: base case (n = 1) and step (from n follows n + 1).", "de": "Beweis für alle natürlichen Zahlen: Basisfall (n = 1) und Schritt (von n folgt n + 1).", "fr": "Preuve pour tous les entiers naturels : cas de base (n = 1) et hérédité (de n découle n + 1).", "es": "Demostración para todos los números naturales: caso base (n = 1) y paso (de n se sigue n + 1).", "it": "Dimostrazione per tutti i numeri naturali: caso base (n = 1) e passo (da n segue n + 1).", "ru": "Доказательство для всех натуральных чисел: база (n = 1) и шаг (из n следует n + 1).", "pt": "Prova para todos os números naturais: caso base (n = 1) e passo (de n segue n + 1)."}, "q4": {"en": "C(5, 2) ?", "de": "C(5, 2) ?", "fr": "C(5, 2) ?", "es": "C(5, 2) ?", "it": "C(5, 2) ?", "ru": "C(5, 2) ?", "pt": "C(5, 2) ?"}, "q9": {"en": "Fibonacci: 1, 1, 2, 3, 5, … next?", "de": "Fibonacci: 1, 1, 2, 3, 5, … nächste?", "fr": "Fibonacci : 1, 1, 2, 3, 5, … suivant ?", "es": "Fibonacci: 1, 1, 2, 3, 5, … ¿siguiente?", "it": "Fibonacci: 1, 1, 2, 3, 5, … successivo?", "ru": "Фибоначчи: 1, 1, 2, 3, 5, … следующее?", "pt": "Fibonacci: 1, 1, 2, 3, 5, … próximo?"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}};
 document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
 function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
 document.getElementById("lang").onchange=function(){apply(this.value)};
 function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
 window.addEventListener("load",rk);
+</script>
+<script>
+(function(){
+ function fit(){
+  var ds=document.querySelectorAll('.katex-display');
+  for(var i=0;i<ds.length;i++){
+   var el=ds[i];el.style.fontSize='';
+   var p=100,n=0;
+   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
+  }
+ }
+ window.addEventListener('load',function(){setTimeout(fit,60);});
+ window.addEventListener('resize',function(){setTimeout(fit,80);});
+})();
 </script>
 </body></html>
