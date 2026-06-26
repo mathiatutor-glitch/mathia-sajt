@@ -84,6 +84,7 @@
   .mat .mi{font-size:24px}
   .mat b{display:block;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
   .mat p{color:#6a5a62;font-size:.86rem}
+.nav-r .lang{display:inline-block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.04em;color:var(--plum2);background:transparent;border:1.5px solid var(--gold);border-radius:100px;padding:5px 11px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -91,23 +92,24 @@
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
     <nav class="nav-r">
-      <a href="index.html#mathia">Šta je Mathia</a>
-      <a href="predmeti.html">Predmeti</a>
-      <a href="prodavnica.html">Prodavnica</a>
-      <a href="index.html#paketi">Paketi</a>
-      <a href="o-marini.html">O meni</a>
+      <a href="index.html#mathia" data-i18n="nav1">Šta je Mathia</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+<select class="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <a class="back" href="predmeti.html">← Svi predmeti</a>
-    <div class="eyebrow">Fakultet</div>
-    <h1>Nacrtna geometrija 1</h1>
-    <p class="lead">Osnovni elementi prostorne vizualizacije — projiciranje, pravci posmatranja i prikazi osnovnih geometrijskih formi, sa jasnim postupkom i puno primera.</p>
+    <a class="back" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
+    <div class="eyebrow" data-i18n="eyebrow">Fakultet</div>
+    <h1 data-i18n="h1">Nacrtna geometrija 1</h1>
+    <p class="lead" data-i18n="lead">Osnovni elementi prostorne vizualizacije — projiciranje, pravci posmatranja i prikazi osnovnih geometrijskih formi, sa jasnim postupkom i puno primera.</p>
     <div class="row">
-      <a class="btn btn-gold" href="index.html#paketi">Probaj 15 min besplatno →</a>
+      <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Probaj 15 min besplatno →</a>
       <a class="btn btn-ghost-l" href="skripta-nacrtna-geometrija-1.html">Otvori skriptu</a>
     </div>
   </div>
@@ -116,25 +118,25 @@
 <section class="sec">
   <div class="wrap">
     <div class="orn"><i>✦</i></div>
-    <h2>Šta pokrivamo</h2>
+    <h2 data-i18n="secCover">Šta pokrivamo</h2>
     <div class="topics">
-      <div class="topic"><span class="tk">🧭</span><div><b>Projiciranje i pravci posmatranja</b><p>Vrste slika osnovnih formi: tačka, prava i raven.</p></div></div>
-      <div class="topic"><span class="tk">👁️</span><div><b>Karakteristični pogledi</b><p>Kriterijumi za dobijanje karakterističnih pogleda i položaja objekta.</p></div></div>
-      <div class="topic"><span class="tk">🔄</span><div><b>Transformacija i rotacija</b><p>Neposredna detekcija metričkih svojstava i prostornih odnosa objekata.</p></div></div>
-      <div class="topic"><span class="tk">🚦</span><div><b>Koncepti vidljivosti</b><p>Šta se vidi a šta zaklanja — pravila i njihova primena.</p></div></div>
-      <div class="topic"><span class="tk">🧱</span><div><b>Složene forme</b><p>Ravne figure, poliedri i rotaciona tela i njihovi prikazi.</p></div></div>
-      <div class="topic"><span class="tk">✂️</span><div><b>Preseci 3D formi</b><p>Ravni i međusobni preseci pramenastih (rogljasta tela, paraboličke kvadrike) i rotacionih površi — karakteristični elementi i vizuelni realizam.</p></div></div>
+      <div class="topic"><span class="tk">🧭</span><div><b data-i18n="c1t">Projiciranje i pravci posmatranja</b><p data-i18n="c1d">Vrste slika osnovnih formi: tačka, prava i raven.</p></div></div>
+      <div class="topic"><span class="tk">👁️</span><div><b data-i18n="c2t">Karakteristični pogledi</b><p data-i18n="c2d">Kriterijumi za dobijanje karakterističnih pogleda i položaja objekta.</p></div></div>
+      <div class="topic"><span class="tk">🔄</span><div><b data-i18n="c3t">Transformacija i rotacija</b><p data-i18n="c3d">Neposredna detekcija metričkih svojstava i prostornih odnosa objekata.</p></div></div>
+      <div class="topic"><span class="tk">🚦</span><div><b data-i18n="c4t">Koncepti vidljivosti</b><p data-i18n="c4d">Šta se vidi a šta zaklanja — pravila i njihova primena.</p></div></div>
+      <div class="topic"><span class="tk">🧱</span><div><b data-i18n="c5t">Složene forme</b><p data-i18n="c5d">Ravne figure, poliedri i rotaciona tela i njihovi prikazi.</p></div></div>
+      <div class="topic"><span class="tk">✂️</span><div><b data-i18n="c6t">Preseci 3D formi</b><p data-i18n="c6d">Ravni i međusobni preseci pramenastih (rogljasta tela, paraboličke kvadrike) i rotacionih površi — karakteristični elementi i vizuelni realizam.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="sec alt">
   <div class="wrap">
-    <h2>Kako radi</h2>
+    <h2 data-i18n="secHow">Kako radi</h2>
     <div class="steps">
-      <div class="step"><span class="num">1</span><b>Pošalji zadatak</b><p>Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
-      <div class="step"><span class="num">2</span><b>Objašnjenje korak po korak</b><p>Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
-      <div class="step"><span class="num">3</span><b>Vežbaj i napreduj</b><p>Zadaci i provere za utvrđivanje, prilagođeni tvom tempu.</p></div>
+      <div class="step"><span class="num">1</span><b data-i18n="s1t">Pošalji zadatak</b><p data-i18n="s1d">Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b data-i18n="s2t">Objašnjenje korak po korak</b><p data-i18n="s2d">Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b data-i18n="s3t">Vežbaj i napreduj</b><p>Zadaci i provere za utvrđivanje, prilagođeni tvom tempu.</p></div>
     </div>
   </div>
 </section>
@@ -152,9 +154,9 @@
 
 <section class="cta">
   <div class="wrap">
-    <h2>Nacrtna geometrija 1 — bez muke.</h2>
-    <p>Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
-    <a class="btn btn-gold" href="index.html#paketi">Započni besplatno →</a>
+    <h2 data-i18n="ctaH">Nacrtna geometrija 1 — bez muke.</h2>
+    <p data-i18n="ctaSub">Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno →</a>
   </div>
 </section>
 
@@ -164,7 +166,7 @@
       <div>
         <div class="fbrand"><span class="goldtext">Mathia</span></div>
         <p>Matematika · Fizika · Elektrotehnika · Programiranje — uz Profesoricu, 0–24h.</p>
-        <p style="margin-top:8px"><a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a> · <a href="index.html#paketi">Paketi</a></p>
+        <p style="margin-top:8px"><a href="index.html" data-i18n="fLink1">Početna</a> · <a href="predmeti.html" data-i18n="nav2">Predmeti</a> · <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a> · <a href="index.html#paketi" data-i18n="nav4">Paketi</a></p>
       </div>
       <div class="footsig-wrap"><span class="footsig">dr Marina Bulat</span></div>
     </div>
@@ -178,5 +180,13 @@
         data-lang="sr" data-sub="Nacrtna geometrija 1" data-sub-en="Descriptive Geometry 1"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 za Nacrtnu geometriju 1. Pomažem ti oko projiciranja, karakterističnih pogleda, transformacija i rotacija, vidljivosti i preseka složenih 3D formi. Pošalji zadatak ili sliku — objasniću korak po korak!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 for Descriptive Geometry 1. I help with projections, characteristic views, transformations and rotations, visibility and intersections of complex 3D forms. Send a problem or a photo — I&#39;ll explain step by step!"></script>
+
+<script>
+(function(){var I18N={"nav1": {"en": "What is Mathia", "de": "Was ist Mathia", "fr": "Qu'est-ce que Mathia", "es": "Qué es Mathia", "it": "Cos'è Mathia", "ru": "Что такое Mathia", "pt": "O que é a Mathia"}, "nav2": {"en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav3": {"en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav4": {"en": "Plans", "de": "Pakete", "fr": "Forfaits", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav5": {"en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "back": {"en": "← All subjects", "de": "← Alle Fächer", "fr": "← Toutes les matières", "es": "← Todas las asignaturas", "it": "← Tutte le materie", "ru": "← Все предметы", "pt": "← Todas as disciplinas"}, "btnFree": {"en": "Try 15 min free →", "de": "15 Min. kostenlos testen →", "fr": "Essaie 15 min gratuitement →", "es": "Prueba 15 min gratis →", "it": "Prova 15 min gratis →", "ru": "15 минут бесплатно →", "pt": "Experimente 15 min grátis →"}, "btnAll": {"en": "All subjects", "de": "Alle Fächer", "fr": "Toutes les matières", "es": "Todas las asignaturas", "it": "Tutte le materie", "ru": "Все предметы", "pt": "Todas as disciplinas"}, "secCover": {"en": "What we cover", "de": "Was wir behandeln", "fr": "Ce que nous couvrons", "es": "Qué cubrimos", "it": "Cosa copriamo", "ru": "Что мы охватываем", "pt": "O que cobrimos"}, "secHow": {"en": "How it works", "de": "So funktioniert's", "fr": "Comment ça marche", "es": "Cómo funciona", "it": "Come funziona", "ru": "Как это работает", "pt": "Como funciona"}, "s1t": {"en": "Send a problem", "de": "Aufgabe senden", "fr": "Envoie un exercice", "es": "Envía un problema", "it": "Invia un problema", "ru": "Отправь задачу", "pt": "Envie um exercício"}, "s1d": {"en": "Snap or type your question — Profesorica instantly understands what you need.", "de": "Fotografiere oder tippe deine Frage — Profesorica versteht sofort, was du brauchst.", "fr": "Prends une photo ou écris ta question — Profesorica comprend tout de suite ce qu'il te faut.", "es": "Haz una foto o escribe tu pregunta — Profesorica entiende al instante lo que necesitas.", "it": "Fotografa o scrivi la domanda — Profesorica capisce subito ciò di cui hai bisogno.", "ru": "Сфотографируй или напиши вопрос — Profesorica сразу поймёт, что тебе нужно.", "pt": "Tira uma foto ou escreve a pergunta — a Profesorica percebe logo o que precisas."}, "s2t": {"en": "Step-by-step explanation", "de": "Schritt-für-Schritt-Erklärung", "fr": "Explication étape par étape", "es": "Explicación paso a paso", "it": "Spiegazione passo dopo passo", "ru": "Объяснение шаг за шагом", "pt": "Explicação passo a passo"}, "s2d": {"en": "You get the method, not just the answer — until it's completely clear.", "de": "Du bekommst den Lösungsweg, nicht nur das Ergebnis — bis alles klar ist.", "fr": "Tu obtiens la méthode, pas seulement la réponse — jusqu'à ce que tout soit clair.", "es": "Obtienes el procedimiento, no solo la respuesta — hasta que lo tengas claro.", "it": "Ottieni il procedimento, non solo la soluzione — finché non è tutto chiaro.", "ru": "Ты получаешь не просто ответ, а весь ход решения — пока всё не станет ясно.", "pt": "Recebes o método, não só a resposta — até ficar tudo claro."}, "s3t": {"en": "Practice and progress", "de": "Üben und Fortschritt", "fr": "Entraîne-toi et progresse", "es": "Practica y avanza", "it": "Esercitati e migliora", "ru": "Практикуйся и расти", "pt": "Pratica e evolui"}, "s3d": {"en": "Exercises and tests to reinforce, adapted to your pace.", "de": "Übungen und Tests zur Festigung, an dein Tempo angepasst.", "fr": "Exercices et tests de consolidation, adaptés à ton rythme.", "es": "Ejercicios y test de refuerzo, adaptados a tu ritmo.", "it": "Esercizi e test di consolidamento, adattati al tuo ritmo.", "ru": "Задания и тесты для закрепления, под твой темп.", "pt": "Exercícios e testes de consolidação, adaptados ao teu ritmo."}, "ctaSub": {"en": "The first 15 minutes are free. No card, no commitment.", "de": "Die ersten 15 Minuten sind kostenlos. Ohne Karte, ohne Verpflichtung.", "fr": "Les 15 premières minutes sont gratuites. Sans carte, sans engagement.", "es": "Los primeros 15 minutos son gratis. Sin tarjeta, sin compromiso.", "it": "I primi 15 minuti sono gratis. Senza carta, senza impegno.", "ru": "Первые 15 минут бесплатно. Без карты, без обязательств.", "pt": "Os primeiros 15 minutos são grátis. Sem cartão, sem compromisso."}, "ctaBtn": {"en": "Start free →", "de": "Kostenlos starten →", "fr": "Commence gratuitement →", "es": "Empieza gratis →", "it": "Inizia gratis →", "ru": "Начать бесплатно →", "pt": "Começa grátis →"}, "footTag": {"en": "Maths · Physics · Electrical engineering — with Profesorica, 24/7.", "de": "Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.", "fr": "Maths · Physique · Génie électrique — avec Profesorica, 24h/24.", "es": "Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.", "it": "Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.", "ru": "Математика · Физика · Электротехника — с Profesorica, 24/7.", "pt": "Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."}, "fLink1": {"en": "Home", "de": "Startseite", "fr": "Accueil", "es": "Inicio", "it": "Home", "ru": "Главная", "pt": "Início"}, "eyebrow": {"en": "University", "de": "Universität", "fr": "Université", "es": "Universidad", "it": "Università", "ru": "Университет", "pt": "Universidade"}, "h1": {"en": "Descriptive geometry 1", "de": "Darstellende Geometrie 1", "fr": "Géométrie descriptive 1", "es": "Geometría descriptiva 1", "it": "Geometria descrittiva 1", "ru": "Начертательная геометрия 1", "pt": "Geometria descritiva 1"}, "lead": {"en": "Basics of spatial visualization — projection, viewing directions and representations of basic geometric forms, with a clear method and many examples.", "de": "Grundlagen der räumlichen Visualisierung — Projektion, Blickrichtungen und Darstellung geometrischer Grundformen, mit klarem Vorgehen und vielen Beispielen.", "fr": "Bases de la visualisation spatiale — projection, directions d'observation et représentations des formes géométriques de base, avec une méthode claire et de nombreux exemples.", "es": "Fundamentos de la visualización espacial — proyección, direcciones de observación y representaciones de formas geométricas básicas, con un método claro y muchos ejemplos.", "it": "Basi della visualizzazione spaziale — proiezione, direzioni di osservazione e rappresentazioni delle forme geometriche di base, con metodo chiaro e tanti esempi.", "ru": "Основы пространственной визуализации — проецирование, направления наблюдения и изображения базовых геометрических форм, с чётким методом и множеством примеров.", "pt": "Fundamentos da visualização espacial — projeção, direções de observação e representações de formas geométricas básicas, com método claro e muitos exemplos."}, "c1t": {"en": "Projection and viewing directions", "de": "Projektion und Blickrichtungen", "fr": "Projection et directions d'observation", "es": "Proyección y direcciones de observación", "it": "Proiezione e direzioni di osservazione", "ru": "Проецирование и направления наблюдения", "pt": "Projeção e direções de observação"}, "c1d": {"en": "Types of images of basic forms: point, line and plane.", "de": "Bildarten der Grundformen: Punkt, Gerade und Ebene.", "fr": "Types d'images des formes de base : point, droite et plan.", "es": "Tipos de imágenes de formas básicas: punto, recta y plano.", "it": "Tipi di immagini delle forme di base: punto, retta e piano.", "ru": "Виды изображений базовых форм: точка, прямая и плоскость.", "pt": "Tipos de imagens das formas básicas: ponto, reta e plano."}, "c2t": {"en": "Characteristic views", "de": "Charakteristische Ansichten", "fr": "Vues caractéristiques", "es": "Vistas características", "it": "Viste caratteristiche", "ru": "Характерные виды", "pt": "Vistas características"}, "c2d": {"en": "Criteria for obtaining characteristic views and object positions.", "de": "Kriterien für charakteristische Ansichten und Objektlagen.", "fr": "Critères pour obtenir des vues et positions caractéristiques de l'objet.", "es": "Criterios para obtener vistas y posiciones características del objeto.", "it": "Criteri per ottenere viste e posizioni caratteristiche dell'oggetto.", "ru": "Критерии получения характерных видов и положений объекта.", "pt": "Critérios para obter vistas e posições características do objeto."}, "c3t": {"en": "Transformation and rotation", "de": "Transformation und Drehung", "fr": "Transformation et rotation", "es": "Transformación y rotación", "it": "Trasformazione e rotazione", "ru": "Преобразование и вращение", "pt": "Transformação e rotação"}, "c3d": {"en": "Direct detection of metric properties and spatial relations of objects.", "de": "Direkte Erkennung metrischer Eigenschaften und räumlicher Beziehungen.", "fr": "Détection directe des propriétés métriques et des relations spatiales des objets.", "es": "Detección directa de propiedades métricas y relaciones espaciales de los objetos.", "it": "Rilevamento diretto di proprietà metriche e relazioni spaziali degli oggetti.", "ru": "Прямое определение метрических свойств и пространственных отношений объектов.", "pt": "Deteção direta de propriedades métricas e relações espaciais dos objetos."}, "c4t": {"en": "Visibility concepts", "de": "Sichtbarkeitskonzepte", "fr": "Notions de visibilité", "es": "Conceptos de visibilidad", "it": "Concetti di visibilità", "ru": "Понятия видимости", "pt": "Conceitos de visibilidade"}, "c4d": {"en": "What is seen and what is hidden — rules and their application.", "de": "Was sichtbar und was verdeckt ist — Regeln und ihre Anwendung.", "fr": "Ce qui est vu et ce qui est caché — règles et leur application.", "es": "Qué se ve y qué se oculta — reglas y su aplicación.", "it": "Cosa si vede e cosa è nascosto — regole e loro applicazione.", "ru": "Что видно, а что скрыто — правила и их применение.", "pt": "O que se vê e o que se oculta — regras e a sua aplicação."}, "c5t": {"en": "Complex forms", "de": "Komplexe Formen", "fr": "Formes complexes", "es": "Formas complejas", "it": "Forme complesse", "ru": "Сложные формы", "pt": "Formas complexas"}, "c5d": {"en": "Plane figures, polyhedra and solids of revolution and their representations.", "de": "Ebene Figuren, Polyeder und Rotationskörper und ihre Darstellungen.", "fr": "Figures planes, polyèdres et solides de révolution et leurs représentations.", "es": "Figuras planas, poliedros y sólidos de revolución y sus representaciones.", "it": "Figure piane, poliedri e solidi di rotazione e le loro rappresentazioni.", "ru": "Плоские фигуры, многогранники и тела вращения и их изображения.", "pt": "Figuras planas, poliedros e sólidos de revolução e as suas representações."}, "c6t": {"en": "Sections of 3D forms", "de": "Schnitte von 3D-Formen", "fr": "Sections de formes 3D", "es": "Secciones de formas 3D", "it": "Sezioni di forme 3D", "ru": "Сечения 3D-форм", "pt": "Secções de formas 3D"}, "c6d": {"en": "Plane and mutual intersections of ruled and rotational surfaces — characteristic elements and visual realism.", "de": "Ebene und gegenseitige Schnitte von Regel- und Rotationsflächen — charakteristische Elemente und visueller Realismus.", "fr": "Sections planes et intersections mutuelles de surfaces réglées et de révolution — éléments caractéristiques et réalisme visuel.", "es": "Secciones planas e intersecciones mutuas de superficies regladas y de revolución — elementos característicos y realismo visual.", "it": "Sezioni piane e intersezioni reciproche di superfici rigate e di rotazione — elementi caratteristici e realismo visivo.", "ru": "Плоские и взаимные сечения линейчатых и вращательных поверхностей — характерные элементы и визуальный реализм.", "pt": "Secções planas e interseções mútuas de superfícies regradas e de revolução — elementos característicos e realismo visual."}, "ctaH": {"en": "Descriptive geometry 1 — made easy.", "de": "Darstellende Geometrie 1 — ganz einfach.", "fr": "Géométrie descriptive 1 — sans peine.", "es": "Geometría descriptiva 1 — sin complicaciones.", "it": "Geometria descrittiva 1 — senza fatica.", "ru": "Начертательная геометрия 1 — без мучений.", "pt": "Geometria descritiva 1 — sem dificuldade."}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=l;}catch(_){}}
+var sel=document.querySelector('select.lang');var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+if(sel){sel.value=sv;sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);});}
+apply(sv);})();
+</script>
 </body>
 </html>

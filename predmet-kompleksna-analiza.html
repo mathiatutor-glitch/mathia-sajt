@@ -67,6 +67,7 @@
   footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.1em;margin-bottom:6px}
   footer p{font-size:.85rem;color:#c7b3ba;margin-top:4px}
   footer a{color:var(--goldlt);font-weight:700}
+.nav-r{gap:14px}.nav-r .lang{display:inline-block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.04em;color:var(--plum2);background:transparent;border:1.5px solid var(--gold);border-radius:100px;padding:5px 11px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -74,24 +75,25 @@
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
     <nav class="nav-r">
-      <a href="index.html#mathia">Šta je Mathia</a>
-      <a href="predmeti.html">Predmeti</a>
-      <a href="prodavnica.html">Prodavnica</a>
-      <a href="index.html#paketi">Paketi</a>
-      <a href="o-marini.html">O meni</a>
+      <a href="index.html#mathia" data-i18n="nav1">Šta je Mathia</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+      <select class="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <a class="back" href="predmeti.html">← Svi predmeti</a>
-    <div class="eyebrow">Fakultet · matematika</div>
-    <h1>Kompleksna analiza</h1>
-    <p class="lead">Funkcije kompleksne promenljive, konturni integrali i rezidumi — korak po korak.</p>
+    <a class="back" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
+    <div class="eyebrow" data-i18n="eyebrow">Fakultet · matematika</div>
+    <h1 data-i18n="h1">Kompleksna analiza</h1>
+    <p class="lead" data-i18n="lead">Funkcije kompleksne promenljive, konturni integrali i rezidumi — korak po korak.</p>
     <div class="row">
-      <a class="btn btn-gold" href="index.html#paketi">Probaj 15 min besplatno →</a>
-      <a class="btn btn-ghost-l" href="predmeti.html">Svi predmeti</a>
+      <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Probaj 15 min besplatno →</a>
+      <a class="btn btn-ghost-l" href="predmeti.html" data-i18n="btnAll">Svi predmeti</a>
     </div>
   </div>
 </section>
@@ -99,42 +101,42 @@
 <section class="sec">
   <div class="wrap">
     <div class="orn"><i>✦</i></div>
-    <h2>Šta pokrivamo</h2>
+    <h2 data-i18n="secCover">Šta pokrivamo</h2>
     <div class="topics">
-      <div class="topic"><span class="tk">➕</span><div><b>Kompleksni brojevi</b><p>Algebra, moduo i argument.</p></div></div>
-      <div class="topic"><span class="tk">🌀</span><div><b>Analitičke funkcije</b><p>Cauchy–Riemann uslovi.</p></div></div>
-      <div class="topic"><span class="tk">➰</span><div><b>Konturni integrali</b><p>Integracija u kompleksnoj ravni.</p></div></div>
-      <div class="topic"><span class="tk">🧲</span><div><b>Cauchyjeva teorema</b><p>Integralna formula i posledice.</p></div></div>
-      <div class="topic"><span class="tk">🔗</span><div><b>Redovi</b><p>Tejlorov i Loranov razvoj.</p></div></div>
-      <div class="topic"><span class="tk">🎯</span><div><b>Rezidumi</b><p>Računanje integrala pomoću reziduma.</p></div></div>
+      <div class="topic"><span class="tk">➕</span><div><b data-i18n="c1t">Kompleksni brojevi</b><p data-i18n="c1d">Algebra, moduo i argument.</p></div></div>
+      <div class="topic"><span class="tk">🌀</span><div><b data-i18n="c2t">Analitičke funkcije</b><p data-i18n="c2d">Cauchy–Riemann uslovi.</p></div></div>
+      <div class="topic"><span class="tk">➰</span><div><b data-i18n="c3t">Konturni integrali</b><p data-i18n="c3d">Integracija u kompleksnoj ravni.</p></div></div>
+      <div class="topic"><span class="tk">🧲</span><div><b data-i18n="c4t">Cauchyjeva teorema</b><p data-i18n="c4d">Integralna formula i posledice.</p></div></div>
+      <div class="topic"><span class="tk">🔗</span><div><b data-i18n="c5t">Redovi</b><p data-i18n="c5d">Tejlorov i Loranov razvoj.</p></div></div>
+      <div class="topic"><span class="tk">🎯</span><div><b data-i18n="c6t">Rezidumi</b><p data-i18n="c6d">Računanje integrala pomoću reziduma.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="sec alt">
   <div class="wrap">
-    <h2>Kako radi</h2>
+    <h2 data-i18n="secHow">Kako radi</h2>
     <div class="steps">
-      <div class="step"><span class="num">1</span><b>Pošalji zadatak</b><p>Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
-      <div class="step"><span class="num">2</span><b>Objašnjenje korak po korak</b><p>Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
-      <div class="step"><span class="num">3</span><b>Vežbaj i napreduj</b><p>Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
+      <div class="step"><span class="num">1</span><b data-i18n="s1t">Pošalji zadatak</b><p data-i18n="s1d">Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b data-i18n="s2t">Objašnjenje korak po korak</b><p data-i18n="s2d">Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b data-i18n="s3t">Vežbaj i napreduj</b><p data-i18n="s3d">Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
     </div>
   </div>
 </section>
 
 <section class="cta">
   <div class="wrap">
-    <h2>Kompleksna analiza — bez muke.</h2>
-    <p>Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
-    <a class="btn btn-gold" href="index.html#paketi">Započni besplatno →</a>
+    <h2 data-i18n="ctaH">Kompleksna analiza — bez muke.</h2>
+    <p data-i18n="ctaSub">Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno →</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="fbrand"><span class="goldtext">Mathia</span></div>
-    <p>Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
-    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a></p>
+    <p data-i18n="footTag">Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
+    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html" data-i18n="fLink1">Početna</a> · <a href="predmeti.html" data-i18n="nav2">Predmeti</a> · <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a></p>
   </div>
 </footer>
 
@@ -144,5 +146,13 @@
         data-lang="sr" data-sub="Kompleksna analiza" data-sub-en="Kompleksna analiza"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko predmeta „Kompleksna analiza“. Pošalji zadatak (može i slika) ili pitanje — objasniću korak po korak!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 Here I help you with “Kompleksna analiza”. Send a problem (a photo works too) or a question — I&#39;ll explain step by step!"></script>
+
+<script>
+(function(){var I18N={"nav1": {"en": "What is Mathia", "de": "Was ist Mathia", "fr": "Qu'est-ce que Mathia", "es": "Qué es Mathia", "it": "Cos'è Mathia", "ru": "Что такое Mathia", "pt": "O que é a Mathia"}, "nav2": {"en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav3": {"en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav4": {"en": "Plans", "de": "Pakete", "fr": "Forfaits", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav5": {"en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "back": {"en": "← All subjects", "de": "← Alle Fächer", "fr": "← Toutes les matières", "es": "← Todas las asignaturas", "it": "← Tutte le materie", "ru": "← Все предметы", "pt": "← Todas as disciplinas"}, "eyebrow": {"en": "University · mathematics", "de": "Universität · Mathematik", "fr": "Université · mathématiques", "es": "Universidad · matemáticas", "it": "Università · matematica", "ru": "Университет · математика", "pt": "Universidade · matemática"}, "h1": {"en": "Complex analysis", "de": "Komplexe Analysis", "fr": "Analyse complexe", "es": "Análisis complejo", "it": "Analisi complessa", "ru": "Комплексный анализ", "pt": "Análise complexa"}, "lead": {"en": "Functions of a complex variable, contour integrals and residues — step by step.", "de": "Funktionen einer komplexen Variablen, Konturintegrale und Residuen — Schritt für Schritt.", "fr": "Fonctions d'une variable complexe, intégrales de contour et résidus — étape par étape.", "es": "Funciones de variable compleja, integrales de contorno y residuos — paso a paso.", "it": "Funzioni di variabile complessa, integrali di contorno e residui — passo dopo passo.", "ru": "Функции комплексной переменной, контурные интегралы и вычеты — шаг за шагом.", "pt": "Funções de variável complexa, integrais de contorno e resíduos — passo a passo."}, "btnFree": {"en": "Try 15 min free →", "de": "15 Min. kostenlos testen →", "fr": "Essaie 15 min gratuitement →", "es": "Prueba 15 min gratis →", "it": "Prova 15 min gratis →", "ru": "15 минут бесплатно →", "pt": "Experimente 15 min grátis →"}, "btnAll": {"en": "All subjects", "de": "Alle Fächer", "fr": "Toutes les matières", "es": "Todas las asignaturas", "it": "Tutte le materie", "ru": "Все предметы", "pt": "Todas as disciplinas"}, "secCover": {"en": "What we cover", "de": "Was wir behandeln", "fr": "Ce que nous couvrons", "es": "Qué cubrimos", "it": "Cosa copriamo", "ru": "Что мы охватываем", "pt": "O que cobrimos"}, "c1t": {"en": "Complex numbers", "de": "Komplexe Zahlen", "fr": "Nombres complexes", "es": "Números complejos", "it": "Numeri complessi", "ru": "Комплексные числа", "pt": "Números complexos"}, "c1d": {"en": "Algebra, modulus and argument.", "de": "Algebra, Betrag und Argument.", "fr": "Algèbre, module et argument.", "es": "Álgebra, módulo y argumento.", "it": "Algebra, modulo e argomento.", "ru": "Алгебра, модуль и аргумент.", "pt": "Álgebra, módulo e argumento."}, "c2t": {"en": "Analytic functions", "de": "Analytische Funktionen", "fr": "Fonctions analytiques", "es": "Funciones analíticas", "it": "Funzioni analitiche", "ru": "Аналитические функции", "pt": "Funções analíticas"}, "c2d": {"en": "Cauchy–Riemann conditions.", "de": "Cauchy-Riemann-Bedingungen.", "fr": "Conditions de Cauchy–Riemann.", "es": "Condiciones de Cauchy–Riemann.", "it": "Condizioni di Cauchy–Riemann.", "ru": "Условия Коши–Римана.", "pt": "Condições de Cauchy–Riemann."}, "c3t": {"en": "Contour integrals", "de": "Konturintegrale", "fr": "Intégrales de contour", "es": "Integrales de contorno", "it": "Integrali di contorno", "ru": "Контурные интегралы", "pt": "Integrais de contorno"}, "c3d": {"en": "Integration in the complex plane.", "de": "Integration in der komplexen Ebene.", "fr": "Intégration dans le plan complexe.", "es": "Integración en el plano complejo.", "it": "Integrazione nel piano complesso.", "ru": "Интегрирование в комплексной плоскости.", "pt": "Integração no plano complexo."}, "c4t": {"en": "Cauchy's theorem", "de": "Cauchyscher Integralsatz", "fr": "Théorème de Cauchy", "es": "Teorema de Cauchy", "it": "Teorema di Cauchy", "ru": "Теорема Коши", "pt": "Teorema de Cauchy"}, "c4d": {"en": "Integral formula and consequences.", "de": "Integralformel und Folgerungen.", "fr": "Formule intégrale et conséquences.", "es": "Fórmula integral y consecuencias.", "it": "Formula integrale e conseguenze.", "ru": "Интегральная формула и следствия.", "pt": "Fórmula integral e consequências."}, "c5t": {"en": "Series", "de": "Reihen", "fr": "Séries", "es": "Series", "it": "Serie", "ru": "Ряды", "pt": "Séries"}, "c5d": {"en": "Taylor and Laurent expansion.", "de": "Taylor- und Laurent-Entwicklung.", "fr": "Développement de Taylor et de Laurent.", "es": "Desarrollo de Taylor y Laurent.", "it": "Sviluppo di Taylor e Laurent.", "ru": "Разложение Тейлора и Лорана.", "pt": "Desenvolvimento de Taylor e Laurent."}, "c6t": {"en": "Residues", "de": "Residuen", "fr": "Résidus", "es": "Residuos", "it": "Residui", "ru": "Вычеты", "pt": "Resíduos"}, "c6d": {"en": "Computing integrals via residues.", "de": "Integralberechnung mit Residuen.", "fr": "Calcul d'intégrales par les résidus.", "es": "Cálculo de integrales mediante residuos.", "it": "Calcolo di integrali con i residui.", "ru": "Вычисление интегралов с помощью вычетов.", "pt": "Cálculo de integrais por resíduos."}, "secHow": {"en": "How it works", "de": "So funktioniert's", "fr": "Comment ça marche", "es": "Cómo funciona", "it": "Come funziona", "ru": "Как это работает", "pt": "Como funciona"}, "s1t": {"en": "Send a problem", "de": "Aufgabe senden", "fr": "Envoie un exercice", "es": "Envía un problema", "it": "Invia un problema", "ru": "Отправь задачу", "pt": "Envie um exercício"}, "s1d": {"en": "Snap or type your question — Profesorica instantly understands what you need.", "de": "Fotografiere oder tippe deine Frage — Profesorica versteht sofort, was du brauchst.", "fr": "Prends une photo ou écris ta question — Profesorica comprend tout de suite ce qu'il te faut.", "es": "Haz una foto o escribe tu pregunta — Profesorica entiende al instante lo que necesitas.", "it": "Fotografa o scrivi la domanda — Profesorica capisce subito ciò di cui hai bisogno.", "ru": "Сфотографируй или напиши вопрос — Profesorica сразу поймёт, что тебе нужно.", "pt": "Tira uma foto ou escreve a pergunta — a Profesorica percebe logo o que precisas."}, "s2t": {"en": "Step-by-step explanation", "de": "Schritt-für-Schritt-Erklärung", "fr": "Explication étape par étape", "es": "Explicación paso a paso", "it": "Spiegazione passo dopo passo", "ru": "Объяснение шаг за шагом", "pt": "Explicação passo a passo"}, "s2d": {"en": "You get the method, not just the answer — until it's completely clear.", "de": "Du bekommst den Lösungsweg, nicht nur das Ergebnis — bis alles klar ist.", "fr": "Tu obtiens la méthode, pas seulement la réponse — jusqu'à ce que tout soit clair.", "es": "Obtienes el procedimiento, no solo la respuesta — hasta que lo tengas claro.", "it": "Ottieni il procedimento, non solo la soluzione — finché non è tutto chiaro.", "ru": "Ты получаешь не просто ответ, а весь ход решения — пока всё не станет ясно.", "pt": "Recebes o método, não só a resposta — até ficar tudo claro."}, "s3t": {"en": "Practice and progress", "de": "Üben und Fortschritt", "fr": "Entraîne-toi et progresse", "es": "Practica y avanza", "it": "Esercitati e migliora", "ru": "Практикуйся и расти", "pt": "Pratica e evolui"}, "s3d": {"en": "Exercises and tests to reinforce, adapted to your pace.", "de": "Übungen und Tests zur Festigung, an dein Tempo angepasst.", "fr": "Exercices et tests de consolidation, adaptés à ton rythme.", "es": "Ejercicios y test de refuerzo, adaptados a tu ritmo.", "it": "Esercizi e test di consolidamento, adattati al tuo ritmo.", "ru": "Задания и тесты для закрепления, под твой темп.", "pt": "Exercícios e testes de consolidação, adaptados ao teu ritmo."}, "ctaH": {"en": "Complex analysis — made easy.", "de": "Komplexe Analysis — ganz einfach.", "fr": "L'analyse complexe — sans peine.", "es": "Análisis complejo — sin complicaciones.", "it": "Analisi complessa — senza fatica.", "ru": "Комплексный анализ — без мучений.", "pt": "Análise complexa — sem dificuldade."}, "ctaSub": {"en": "The first 15 minutes are free. No card, no commitment.", "de": "Die ersten 15 Minuten sind kostenlos. Ohne Karte, ohne Verpflichtung.", "fr": "Les 15 premières minutes sont gratuites. Sans carte, sans engagement.", "es": "Los primeros 15 minutos son gratis. Sin tarjeta, sin compromiso.", "it": "I primi 15 minuti sono gratis. Senza carta, senza impegno.", "ru": "Первые 15 минут бесплатно. Без карты, без обязательств.", "pt": "Os primeiros 15 minutos são grátis. Sem cartão, sem compromisso."}, "ctaBtn": {"en": "Start free →", "de": "Kostenlos starten →", "fr": "Commence gratuitement →", "es": "Empieza gratis →", "it": "Inizia gratis →", "ru": "Начать бесплатно →", "pt": "Começa grátis →"}, "footTag": {"en": "Maths · Physics · Electrical engineering — with Profesorica, 24/7.", "de": "Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.", "fr": "Maths · Physique · Génie électrique — avec Profesorica, 24h/24.", "es": "Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.", "it": "Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.", "ru": "Математика · Физика · Электротехника — с Profesorica, 24/7.", "pt": "Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."}, "fLink1": {"en": "Home", "de": "Startseite", "fr": "Accueil", "es": "Inicio", "it": "Home", "ru": "Главная", "pt": "Início"}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=l;}catch(_){}}
+var sel=document.querySelector('select.lang');var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+if(sel){sel.value=sv;sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);});}
+apply(sv);})();
+</script>
 </body>
 </html>

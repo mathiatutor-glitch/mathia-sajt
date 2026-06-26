@@ -67,6 +67,7 @@
   footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.1em;margin-bottom:6px}
   footer p{font-size:.85rem;color:#c7b3ba;margin-top:4px}
   footer a{color:var(--goldlt);font-weight:700}
+.nav-r .lang{display:inline-block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.04em;color:var(--plum2);background:transparent;border:1.5px solid var(--gold);border-radius:100px;padding:5px 11px;cursor:pointer}
 </style>
 <script src="mathia-guard.js?v=1" defer></script>
 </head>
@@ -75,24 +76,25 @@
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
     <nav class="nav-r">
-      <a href="index.html#mathia">Šta je Mathia</a>
-      <a href="predmeti.html">Predmeti</a>
-      <a href="prodavnica.html">Prodavnica</a>
-      <a href="index.html#paketi">Paketi</a>
-      <a href="o-marini.html">O meni</a>
+      <a href="index.html#mathia" data-i18n="nav1">Šta je Mathia</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+<select class="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <a class="back" href="predmeti.html">← Svi predmeti</a>
-    <div class="eyebrow">Fakultet · merenja i instrumentacija</div>
-    <h1>LabVIEW</h1>
-    <p class="lead">Grafičko programiranje virtuelnih instrumenata — Front Panel, Block Diagram i dataflow, korak po korak.</p>
+    <a class="back" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
+    <div class="eyebrow" data-i18n="eyebrow">Fakultet · merenja i instrumentacija</div>
+    <h1 data-i18n="h1">LabVIEW</h1>
+    <p class="lead" data-i18n="lead">Grafičko programiranje virtuelnih instrumenata — Front Panel, Block Diagram i dataflow, korak po korak.</p>
     <div class="row">
-      <a class="btn btn-gold" href="index.html#paketi">Probaj 15 min besplatno →</a>
-      <a class="btn btn-ghost-l" href="skripta-labview.html">📖 Skripta</a><a class="btn btn-ghost-l" href="predmeti.html">Svi predmeti</a>
+      <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Probaj 15 min besplatno →</a>
+      <a class="btn btn-ghost-l" href="skripta-labview.html">📖 Skripta</a><a class="btn btn-ghost-l" href="predmeti.html" data-i18n="btnAll">Svi predmeti</a>
     </div>
   </div>
 </section>
@@ -100,42 +102,42 @@
 <section class="sec">
   <div class="wrap">
     <div class="orn"><i>✦</i></div>
-    <h2>Šta pokrivamo</h2>
+    <h2 data-i18n="secCover">Šta pokrivamo</h2>
     <div class="topics">
-      <div class="topic"><span class="tk">🎛️</span><div><b>Front Panel i Block Diagram</b><p>Interfejs (kontrole i indikatori) i logika (čvorovi i žice).</p></div></div>
-      <div class="topic"><span class="tk">🔀</span><div><b>Dataflow paradigma</b><p>Čvor se izvršava tek kad svi njegovi ulazi imaju podatke.</p></div></div>
-      <div class="topic"><span class="tk">🔁</span><div><b>Petlje i strukture</b><p>While, For, Case, Sequence i Event — sa shift registrima.</p></div></div>
-      <div class="topic"><span class="tk">🧩</span><div><b>SubVI</b><p>Bilo koji VI postaje potprogram: ikona i konektor.</p></div></div>
-      <div class="topic"><span class="tk">📊</span><div><b>Grafici i klasteri</b><p>Waveform Chart/Graph, nizovi i klasteri podataka.</p></div></div>
-      <div class="topic"><span class="tk">🔌</span><div><b>DAQ i instrumenti</b><p>Akvizicija (DAQmx), VISA/GPIB i merni lanac.</p></div></div>
+      <div class="topic"><span class="tk">🎛️</span><div><b data-i18n="c1t">Front Panel i Block Diagram</b><p data-i18n="c1d">Interfejs (kontrole i indikatori) i logika (čvorovi i žice).</p></div></div>
+      <div class="topic"><span class="tk">🔀</span><div><b data-i18n="c2t">Dataflow paradigma</b><p data-i18n="c2d">Čvor se izvršava tek kad svi njegovi ulazi imaju podatke.</p></div></div>
+      <div class="topic"><span class="tk">🔁</span><div><b data-i18n="c3t">Petlje i strukture</b><p data-i18n="c3d">While, For, Case, Sequence i Event — sa shift registrima.</p></div></div>
+      <div class="topic"><span class="tk">🧩</span><div><b data-i18n="c4t">SubVI</b><p data-i18n="c4d">Bilo koji VI postaje potprogram: ikona i konektor.</p></div></div>
+      <div class="topic"><span class="tk">📊</span><div><b data-i18n="c5t">Grafici i klasteri</b><p data-i18n="c5d">Waveform Chart/Graph, nizovi i klasteri podataka.</p></div></div>
+      <div class="topic"><span class="tk">🔌</span><div><b data-i18n="c6t">DAQ i instrumenti</b><p data-i18n="c6d">Akvizicija (DAQmx), VISA/GPIB i merni lanac.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="sec alt">
   <div class="wrap">
-    <h2>Kako radi</h2>
+    <h2 data-i18n="secHow">Kako radi</h2>
     <div class="steps">
-      <div class="step"><span class="num">1</span><b>Pošalji zadatak</b><p>Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
-      <div class="step"><span class="num">2</span><b>Objašnjenje korak po korak</b><p>Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
-      <div class="step"><span class="num">3</span><b>Vežbaj i napreduj</b><p>Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
+      <div class="step"><span class="num">1</span><b data-i18n="s1t">Pošalji zadatak</b><p data-i18n="s1d">Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b data-i18n="s2t">Objašnjenje korak po korak</b><p data-i18n="s2d">Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b data-i18n="s3t">Vežbaj i napreduj</b><p data-i18n="s3d">Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
     </div>
   </div>
 </section>
 
 <section class="cta">
   <div class="wrap">
-    <h2>LabVIEW — bez muke.</h2>
-    <p>Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
-    <a class="btn btn-gold" href="index.html#paketi">Započni besplatno →</a>
+    <h2 data-i18n="ctaH">LabVIEW — bez muke.</h2>
+    <p data-i18n="ctaSub">Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno →</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     <div class="fbrand"><span class="goldtext">Mathia</span></div>
-    <p>Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
-    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a></p>
+    <p data-i18n="footTag">Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
+    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html" data-i18n="fLink1">Početna</a> · <a href="predmeti.html" data-i18n="nav2">Predmeti</a> · <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a></p>
   </div>
 </footer>
 
@@ -145,5 +147,13 @@
         data-lang="sr" data-subj="LabVIEW" data-sub="LabVIEW" data-sub-en="LabVIEW"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko LabVIEW-a. Pitaj o Front Panelu, Block Diagramu, petljama ili DAQ-u — objasniću korak po korak!"
         data-hi-en="Hi! I'm Profesorica 👩‍🏫 Here I help you with LabVIEW. Ask about the Front Panel, Block Diagram, loops or DAQ — I'll explain step by step!"></script>
+
+<script>
+(function(){var I18N={"nav1": {"en": "What is Mathia", "de": "Was ist Mathia", "fr": "Qu'est-ce que Mathia", "es": "Qué es Mathia", "it": "Cos'è Mathia", "ru": "Что такое Mathia", "pt": "O que é a Mathia"}, "nav2": {"en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav3": {"en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav4": {"en": "Plans", "de": "Pakete", "fr": "Forfaits", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav5": {"en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "back": {"en": "← All subjects", "de": "← Alle Fächer", "fr": "← Toutes les matières", "es": "← Todas las asignaturas", "it": "← Tutte le materie", "ru": "← Все предметы", "pt": "← Todas as disciplinas"}, "btnFree": {"en": "Try 15 min free →", "de": "15 Min. kostenlos testen →", "fr": "Essaie 15 min gratuitement →", "es": "Prueba 15 min gratis →", "it": "Prova 15 min gratis →", "ru": "15 минут бесплатно →", "pt": "Experimente 15 min grátis →"}, "btnAll": {"en": "All subjects", "de": "Alle Fächer", "fr": "Toutes les matières", "es": "Todas las asignaturas", "it": "Tutte le materie", "ru": "Все предметы", "pt": "Todas as disciplinas"}, "secCover": {"en": "What we cover", "de": "Was wir behandeln", "fr": "Ce que nous couvrons", "es": "Qué cubrimos", "it": "Cosa copriamo", "ru": "Что мы охватываем", "pt": "O que cobrimos"}, "secHow": {"en": "How it works", "de": "So funktioniert's", "fr": "Comment ça marche", "es": "Cómo funciona", "it": "Come funziona", "ru": "Как это работает", "pt": "Como funciona"}, "s1t": {"en": "Send a problem", "de": "Aufgabe senden", "fr": "Envoie un exercice", "es": "Envía un problema", "it": "Invia un problema", "ru": "Отправь задачу", "pt": "Envie um exercício"}, "s1d": {"en": "Snap or type your question — Profesorica instantly understands what you need.", "de": "Fotografiere oder tippe deine Frage — Profesorica versteht sofort, was du brauchst.", "fr": "Prends une photo ou écris ta question — Profesorica comprend tout de suite ce qu'il te faut.", "es": "Haz una foto o escribe tu pregunta — Profesorica entiende al instante lo que necesitas.", "it": "Fotografa o scrivi la domanda — Profesorica capisce subito ciò di cui hai bisogno.", "ru": "Сфотографируй или напиши вопрос — Profesorica сразу поймёт, что тебе нужно.", "pt": "Tira uma foto ou escreve a pergunta — a Profesorica percebe logo o que precisas."}, "s2t": {"en": "Step-by-step explanation", "de": "Schritt-für-Schritt-Erklärung", "fr": "Explication étape par étape", "es": "Explicación paso a paso", "it": "Spiegazione passo dopo passo", "ru": "Объяснение шаг за шагом", "pt": "Explicação passo a passo"}, "s2d": {"en": "You get the method, not just the answer — until it's completely clear.", "de": "Du bekommst den Lösungsweg, nicht nur das Ergebnis — bis alles klar ist.", "fr": "Tu obtiens la méthode, pas seulement la réponse — jusqu'à ce que tout soit clair.", "es": "Obtienes el procedimiento, no solo la respuesta — hasta que lo tengas claro.", "it": "Ottieni il procedimento, non solo la soluzione — finché non è tutto chiaro.", "ru": "Ты получаешь не просто ответ, а весь ход решения — пока всё не станет ясно.", "pt": "Recebes o método, não só a resposta — até ficar tudo claro."}, "s3t": {"en": "Practice and progress", "de": "Üben und Fortschritt", "fr": "Entraîne-toi et progresse", "es": "Practica y avanza", "it": "Esercitati e migliora", "ru": "Практикуйся и расти", "pt": "Pratica e evolui"}, "s3d": {"en": "Exercises and tests to reinforce, adapted to your pace.", "de": "Übungen und Tests zur Festigung, an dein Tempo angepasst.", "fr": "Exercices et tests de consolidation, adaptés à ton rythme.", "es": "Ejercicios y test de refuerzo, adaptados a tu ritmo.", "it": "Esercizi e test di consolidamento, adattati al tuo ritmo.", "ru": "Задания и тесты для закрепления, под твой темп.", "pt": "Exercícios e testes de consolidação, adaptados ao teu ritmo."}, "ctaSub": {"en": "The first 15 minutes are free. No card, no commitment.", "de": "Die ersten 15 Minuten sind kostenlos. Ohne Karte, ohne Verpflichtung.", "fr": "Les 15 premières minutes sont gratuites. Sans carte, sans engagement.", "es": "Los primeros 15 minutos son gratis. Sin tarjeta, sin compromiso.", "it": "I primi 15 minuti sono gratis. Senza carta, senza impegno.", "ru": "Первые 15 минут бесплатно. Без карты, без обязательств.", "pt": "Os primeiros 15 minutos são grátis. Sem cartão, sem compromisso."}, "ctaBtn": {"en": "Start free →", "de": "Kostenlos starten →", "fr": "Commence gratuitement →", "es": "Empieza gratis →", "it": "Inizia gratis →", "ru": "Начать бесплатно →", "pt": "Começa grátis →"}, "footTag": {"en": "Maths · Physics · Electrical engineering — with Profesorica, 24/7.", "de": "Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.", "fr": "Maths · Physique · Génie électrique — avec Profesorica, 24h/24.", "es": "Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.", "it": "Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.", "ru": "Математика · Физика · Электротехника — с Profesorica, 24/7.", "pt": "Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."}, "fLink1": {"en": "Home", "de": "Startseite", "fr": "Accueil", "es": "Inicio", "it": "Home", "ru": "Главная", "pt": "Início"}, "eyebrow": {"en": "University · measurement & instrumentation", "de": "Universität · Messtechnik", "fr": "Université · mesure et instrumentation", "es": "Universidad · medición e instrumentación", "it": "Università · misure e strumentazione", "ru": "Университет · измерения и КИП", "pt": "Universidade · medição e instrumentação"}, "h1": {"en": "LabVIEW", "de": "LabVIEW", "fr": "LabVIEW", "es": "LabVIEW", "it": "LabVIEW", "ru": "LabVIEW", "pt": "LabVIEW"}, "lead": {"en": "Graphical programming of virtual instruments — Front Panel, Block Diagram and dataflow, step by step.", "de": "Grafische Programmierung virtueller Instrumente — Front Panel, Block Diagram und Dataflow, Schritt für Schritt.", "fr": "Programmation graphique d'instruments virtuels — Front Panel, Block Diagram et dataflow, étape par étape.", "es": "Programación gráfica de instrumentos virtuales — Front Panel, Block Diagram y dataflow, paso a paso.", "it": "Programmazione grafica di strumenti virtuali — Front Panel, Block Diagram e dataflow, passo dopo passo.", "ru": "Графическое программирование виртуальных приборов — Front Panel, Block Diagram и dataflow, шаг за шагом.", "pt": "Programação gráfica de instrumentos virtuais — Front Panel, Block Diagram e dataflow, passo a passo."}, "c1t": {"en": "Front Panel and Block Diagram", "de": "Front Panel und Block Diagram", "fr": "Front Panel et Block Diagram", "es": "Front Panel y Block Diagram", "it": "Front Panel e Block Diagram", "ru": "Front Panel и Block Diagram", "pt": "Front Panel e Block Diagram"}, "c1d": {"en": "Interface (controls and indicators) and logic (nodes and wires).", "de": "Oberfläche (Bedien- und Anzeigeelemente) und Logik (Knoten und Drähte).", "fr": "Interface (commandes et indicateurs) et logique (nœuds et fils).", "es": "Interfaz (controles e indicadores) y lógica (nodos y cables).", "it": "Interfaccia (controlli e indicatori) e logica (nodi e fili).", "ru": "Интерфейс (элементы управления и индикаторы) и логика (узлы и провода).", "pt": "Interface (controlos e indicadores) e lógica (nós e fios)."}, "c2t": {"en": "Dataflow paradigm", "de": "Dataflow-Paradigma", "fr": "Paradigme dataflow", "es": "Paradigma dataflow", "it": "Paradigma dataflow", "ru": "Парадигма потока данных", "pt": "Paradigma dataflow"}, "c2d": {"en": "A node runs only when all its inputs have data.", "de": "Ein Knoten wird erst ausgeführt, wenn alle Eingänge Daten haben.", "fr": "Un nœud s'exécute seulement quand toutes ses entrées ont des données.", "es": "Un nodo se ejecuta solo cuando todas sus entradas tienen datos.", "it": "Un nodo viene eseguito solo quando tutti i suoi ingressi hanno dati.", "ru": "Узел выполняется, только когда на всех входах есть данные.", "pt": "Um nó executa apenas quando todas as entradas têm dados."}, "c3t": {"en": "Loops and structures", "de": "Schleifen und Strukturen", "fr": "Boucles et structures", "es": "Bucles y estructuras", "it": "Cicli e strutture", "ru": "Циклы и структуры", "pt": "Ciclos e estruturas"}, "c3d": {"en": "While, For, Case, Sequence and Event — with shift registers.", "de": "While, For, Case, Sequence und Event — mit Schieberegistern.", "fr": "While, For, Case, Sequence et Event — avec registres à décalage.", "es": "While, For, Case, Sequence y Event — con shift registers.", "it": "While, For, Case, Sequence ed Event — con shift register.", "ru": "While, For, Case, Sequence и Event — со сдвиговыми регистрами.", "pt": "While, For, Case, Sequence e Event — com shift registers."}, "c4t": {"en": "SubVI", "de": "SubVI", "fr": "SubVI", "es": "SubVI", "it": "SubVI", "ru": "SubVI (подпрограмма)", "pt": "SubVI"}, "c4d": {"en": "Any VI becomes a subroutine: icon and connector.", "de": "Jedes VI wird zum Unterprogramm: Icon und Anschluss.", "fr": "Tout VI devient un sous-programme : icône et connecteur.", "es": "Cualquier VI se vuelve subrutina: icono y conector.", "it": "Qualsiasi VI diventa una subroutine: icona e connettore.", "ru": "Любой VI становится подпрограммой: иконка и коннектор.", "pt": "Qualquer VI torna-se uma sub-rotina: ícone e conector."}, "c5t": {"en": "Graphs and clusters", "de": "Diagramme und Cluster", "fr": "Graphiques et clusters", "es": "Gráficos y clústeres", "it": "Grafici e cluster", "ru": "Графики и кластеры", "pt": "Gráficos e clusters"}, "c5d": {"en": "Waveform Chart/Graph, arrays and data clusters.", "de": "Waveform Chart/Graph, Arrays und Datencluster.", "fr": "Waveform Chart/Graph, tableaux et clusters de données.", "es": "Waveform Chart/Graph, arrays y clústeres de datos.", "it": "Waveform Chart/Graph, array e cluster di dati.", "ru": "Waveform Chart/Graph, массивы и кластеры данных.", "pt": "Waveform Chart/Graph, arrays e clusters de dados."}, "c6t": {"en": "DAQ and instruments", "de": "DAQ und Instrumente", "fr": "DAQ et instruments", "es": "DAQ e instrumentos", "it": "DAQ e strumenti", "ru": "Сбор данных и приборы", "pt": "DAQ e instrumentos"}, "c6d": {"en": "Acquisition (DAQmx), VISA/GPIB and the measuring chain.", "de": "Erfassung (DAQmx), VISA/GPIB und die Messkette.", "fr": "Acquisition (DAQmx), VISA/GPIB et la chaîne de mesure.", "es": "Adquisición (DAQmx), VISA/GPIB y la cadena de medida.", "it": "Acquisizione (DAQmx), VISA/GPIB e la catena di misura.", "ru": "Сбор (DAQmx), VISA/GPIB и измерительная цепь.", "pt": "Aquisição (DAQmx), VISA/GPIB e a cadeia de medição."}, "ctaH": {"en": "LabVIEW — made easy.", "de": "LabVIEW — ganz einfach.", "fr": "LabVIEW — sans peine.", "es": "LabVIEW — sin complicaciones.", "it": "LabVIEW — senza fatica.", "ru": "LabVIEW — без мучений.", "pt": "LabVIEW — sem dificuldade."}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=l;}catch(_){}}
+var sel=document.querySelector('select.lang');var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+if(sel){sel.value=sv;sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);});}
+apply(sv);})();
+</script>
 </body>
 </html>

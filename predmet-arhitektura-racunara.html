@@ -84,6 +84,7 @@
   .mat .mi{font-size:24px}
   .mat b{display:block;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
   .mat p{color:#6a5a62;font-size:.86rem}
+.nav-r .lang{display:inline-block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.04em;color:var(--plum2);background:transparent;border:1.5px solid var(--gold);border-radius:100px;padding:5px 11px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -91,23 +92,24 @@
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
     <nav class="nav-r">
-      <a href="index.html#mathia">Šta je Mathia</a>
-      <a href="predmeti.html">Predmeti</a>
-      <a href="prodavnica.html">Prodavnica</a>
-      <a href="index.html#paketi">Paketi</a>
-      <a href="o-marini.html">O meni</a>
+      <a href="index.html#mathia" data-i18n="nav1">Šta je Mathia</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+<select class="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <a class="back" href="predmeti.html">← Svi predmeti</a>
-    <div class="eyebrow">Fakultet</div>
-    <h1>Arhitektura računara</h1>
-    <p class="lead">Od modela računara i asemblerskog programiranja do organizacije procesora, memorijske hijerarhije i paralelizma — jasno i sa primerima.</p>
+    <a class="back" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
+    <div class="eyebrow" data-i18n="eyebrow">Fakultet</div>
+    <h1 data-i18n="h1">Arhitektura računara</h1>
+    <p class="lead" data-i18n="lead">Od modela računara i asemblerskog programiranja do organizacije procesora, memorijske hijerarhije i paralelizma — jasno i sa primerima.</p>
     <div class="row">
-      <a class="btn btn-gold" href="index.html#paketi">Probaj 15 min besplatno →</a>
+      <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Probaj 15 min besplatno →</a>
       <a class="btn btn-ghost-l" href="skripta-arhitektura-racunara.html">Otvori skriptu</a>
     </div>
   </div>
@@ -116,25 +118,25 @@
 <section class="sec">
   <div class="wrap">
     <div class="orn"><i>✦</i></div>
-    <h2>Šta pokrivamo</h2>
+    <h2 data-i18n="secCover">Šta pokrivamo</h2>
     <div class="topics">
-      <div class="topic"><span class="tk">🖥️</span><div><b>Pojam i model računara</b><p>Arhitektura računara, model računara i mašinska reprezentacija podataka.</p></div></div>
-      <div class="topic"><span class="tk">🧾</span><div><b>Arhitektura naredbi</b><p>Asemblerski jezici i asemblersko programiranje: potprogram, makro i stek.</p></div></div>
-      <div class="topic"><span class="tk">🧠</span><div><b>Organizacija računara</b><p>Memorija, procesor, kodiranje i formati mašinskih naredbi, U/I uređaji, sabirnica i prekidi.</p></div></div>
-      <div class="topic"><span class="tk">🛠️</span><div><b>Sistemski programi</b><p>Editor, asembler, makro pretprocesor, linker, louder, dibager i operativni sistem.</p></div></div>
-      <div class="topic"><span class="tk">🚀</span><div><b>Evolucija arhitekture</b><p>CISC i RISC, protočni i vektorski procesori; memorijska hijerarhija — radna, masovna, asocijativna, skrivena i virtuelna.</p></div></div>
-      <div class="topic"><span class="tk">🔗</span><div><b>Paralelizam</b><p>Spojne mreže, multiprocesori i multiračunari; paralelizam na nivou naredbe i nizova naredbi.</p></div></div>
+      <div class="topic"><span class="tk">🖥️</span><div><b data-i18n="c1t">Pojam i model računara</b><p data-i18n="c1d">Arhitektura računara, model računara i mašinska reprezentacija podataka.</p></div></div>
+      <div class="topic"><span class="tk">🧾</span><div><b data-i18n="c2t">Arhitektura naredbi</b><p data-i18n="c2d">Asemblerski jezici i asemblersko programiranje: potprogram, makro i stek.</p></div></div>
+      <div class="topic"><span class="tk">🧠</span><div><b data-i18n="c3t">Organizacija računara</b><p data-i18n="c3d">Memorija, procesor, kodiranje i formati mašinskih naredbi, U/I uređaji, sabirnica i prekidi.</p></div></div>
+      <div class="topic"><span class="tk">🛠️</span><div><b data-i18n="c4t">Sistemski programi</b><p data-i18n="c4d">Editor, asembler, makro pretprocesor, linker, louder, dibager i operativni sistem.</p></div></div>
+      <div class="topic"><span class="tk">🚀</span><div><b data-i18n="c5t">Evolucija arhitekture</b><p data-i18n="c5d">CISC i RISC, protočni i vektorski procesori; memorijska hijerarhija — radna, masovna, asocijativna, skrivena i virtuelna.</p></div></div>
+      <div class="topic"><span class="tk">🔗</span><div><b data-i18n="c6t">Paralelizam</b><p data-i18n="c6d">Spojne mreže, multiprocesori i multiračunari; paralelizam na nivou naredbe i nizova naredbi.</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="sec alt">
   <div class="wrap">
-    <h2>Kako radi</h2>
+    <h2 data-i18n="secHow">Kako radi</h2>
     <div class="steps">
-      <div class="step"><span class="num">1</span><b>Pošalji zadatak</b><p>Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
-      <div class="step"><span class="num">2</span><b>Objašnjenje korak po korak</b><p>Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
-      <div class="step"><span class="num">3</span><b>Vežbaj i napreduj</b><p>Zadaci i provere za utvrđivanje, prilagođeni tvom tempu.</p></div>
+      <div class="step"><span class="num">1</span><b data-i18n="s1t">Pošalji zadatak</b><p data-i18n="s1d">Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b data-i18n="s2t">Objašnjenje korak po korak</b><p data-i18n="s2d">Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b data-i18n="s3t">Vežbaj i napreduj</b><p>Zadaci i provere za utvrđivanje, prilagođeni tvom tempu.</p></div>
     </div>
   </div>
 </section>
@@ -152,9 +154,9 @@
 
 <section class="cta">
   <div class="wrap">
-    <h2>Arhitektura računara — bez muke.</h2>
-    <p>Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
-    <a class="btn btn-gold" href="index.html#paketi">Započni besplatno →</a>
+    <h2 data-i18n="ctaH">Arhitektura računara — bez muke.</h2>
+    <p data-i18n="ctaSub">Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno →</a>
   </div>
 </section>
 
@@ -164,7 +166,7 @@
       <div>
         <div class="fbrand"><span class="goldtext">Mathia</span></div>
         <p>Matematika · Fizika · Elektrotehnika · Programiranje — uz Profesoricu, 0–24h.</p>
-        <p style="margin-top:8px"><a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a> · <a href="index.html#paketi">Paketi</a></p>
+        <p style="margin-top:8px"><a href="index.html" data-i18n="fLink1">Početna</a> · <a href="predmeti.html" data-i18n="nav2">Predmeti</a> · <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a> · <a href="index.html#paketi" data-i18n="nav4">Paketi</a></p>
       </div>
       <div class="footsig-wrap"><span class="footsig">dr Marina Bulat</span></div>
     </div>
@@ -178,5 +180,13 @@
         data-lang="sr" data-sub="Arhitektura računara" data-sub-en="Computer Architecture"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 za Arhitekturu računara. Pitaj me o modelu računara, asemblerskom programiranju, organizaciji procesora i memorije, sistemskim programima ili CISC/RISC i paralelizmu — objašnjavam korak po korak!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 for Computer Architecture. Ask me about the computer model, assembly programming, processor and memory organization, system software, or CISC/RISC and parallelism — step by step!"></script>
+
+<script>
+(function(){var I18N={"nav1": {"en": "What is Mathia", "de": "Was ist Mathia", "fr": "Qu'est-ce que Mathia", "es": "Qué es Mathia", "it": "Cos'è Mathia", "ru": "Что такое Mathia", "pt": "O que é a Mathia"}, "nav2": {"en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav3": {"en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav4": {"en": "Plans", "de": "Pakete", "fr": "Forfaits", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav5": {"en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "back": {"en": "← All subjects", "de": "← Alle Fächer", "fr": "← Toutes les matières", "es": "← Todas las asignaturas", "it": "← Tutte le materie", "ru": "← Все предметы", "pt": "← Todas as disciplinas"}, "btnFree": {"en": "Try 15 min free →", "de": "15 Min. kostenlos testen →", "fr": "Essaie 15 min gratuitement →", "es": "Prueba 15 min gratis →", "it": "Prova 15 min gratis →", "ru": "15 минут бесплатно →", "pt": "Experimente 15 min grátis →"}, "btnAll": {"en": "All subjects", "de": "Alle Fächer", "fr": "Toutes les matières", "es": "Todas las asignaturas", "it": "Tutte le materie", "ru": "Все предметы", "pt": "Todas as disciplinas"}, "secCover": {"en": "What we cover", "de": "Was wir behandeln", "fr": "Ce que nous couvrons", "es": "Qué cubrimos", "it": "Cosa copriamo", "ru": "Что мы охватываем", "pt": "O que cobrimos"}, "secHow": {"en": "How it works", "de": "So funktioniert's", "fr": "Comment ça marche", "es": "Cómo funciona", "it": "Come funziona", "ru": "Как это работает", "pt": "Como funciona"}, "s1t": {"en": "Send a problem", "de": "Aufgabe senden", "fr": "Envoie un exercice", "es": "Envía un problema", "it": "Invia un problema", "ru": "Отправь задачу", "pt": "Envie um exercício"}, "s1d": {"en": "Snap or type your question — Profesorica instantly understands what you need.", "de": "Fotografiere oder tippe deine Frage — Profesorica versteht sofort, was du brauchst.", "fr": "Prends une photo ou écris ta question — Profesorica comprend tout de suite ce qu'il te faut.", "es": "Haz una foto o escribe tu pregunta — Profesorica entiende al instante lo que necesitas.", "it": "Fotografa o scrivi la domanda — Profesorica capisce subito ciò di cui hai bisogno.", "ru": "Сфотографируй или напиши вопрос — Profesorica сразу поймёт, что тебе нужно.", "pt": "Tira uma foto ou escreve a pergunta — a Profesorica percebe logo o que precisas."}, "s2t": {"en": "Step-by-step explanation", "de": "Schritt-für-Schritt-Erklärung", "fr": "Explication étape par étape", "es": "Explicación paso a paso", "it": "Spiegazione passo dopo passo", "ru": "Объяснение шаг за шагом", "pt": "Explicação passo a passo"}, "s2d": {"en": "You get the method, not just the answer — until it's completely clear.", "de": "Du bekommst den Lösungsweg, nicht nur das Ergebnis — bis alles klar ist.", "fr": "Tu obtiens la méthode, pas seulement la réponse — jusqu'à ce que tout soit clair.", "es": "Obtienes el procedimiento, no solo la respuesta — hasta que lo tengas claro.", "it": "Ottieni il procedimento, non solo la soluzione — finché non è tutto chiaro.", "ru": "Ты получаешь не просто ответ, а весь ход решения — пока всё не станет ясно.", "pt": "Recebes o método, não só a resposta — até ficar tudo claro."}, "s3t": {"en": "Practice and progress", "de": "Üben und Fortschritt", "fr": "Entraîne-toi et progresse", "es": "Practica y avanza", "it": "Esercitati e migliora", "ru": "Практикуйся и расти", "pt": "Pratica e evolui"}, "s3d": {"en": "Exercises and tests to reinforce, adapted to your pace.", "de": "Übungen und Tests zur Festigung, an dein Tempo angepasst.", "fr": "Exercices et tests de consolidation, adaptés à ton rythme.", "es": "Ejercicios y test de refuerzo, adaptados a tu ritmo.", "it": "Esercizi e test di consolidamento, adattati al tuo ritmo.", "ru": "Задания и тесты для закрепления, под твой темп.", "pt": "Exercícios e testes de consolidação, adaptados ao teu ritmo."}, "ctaSub": {"en": "The first 15 minutes are free. No card, no commitment.", "de": "Die ersten 15 Minuten sind kostenlos. Ohne Karte, ohne Verpflichtung.", "fr": "Les 15 premières minutes sont gratuites. Sans carte, sans engagement.", "es": "Los primeros 15 minutos son gratis. Sin tarjeta, sin compromiso.", "it": "I primi 15 minuti sono gratis. Senza carta, senza impegno.", "ru": "Первые 15 минут бесплатно. Без карты, без обязательств.", "pt": "Os primeiros 15 minutos são grátis. Sem cartão, sem compromisso."}, "ctaBtn": {"en": "Start free →", "de": "Kostenlos starten →", "fr": "Commence gratuitement →", "es": "Empieza gratis →", "it": "Inizia gratis →", "ru": "Начать бесплатно →", "pt": "Começa grátis →"}, "footTag": {"en": "Maths · Physics · Electrical engineering — with Profesorica, 24/7.", "de": "Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.", "fr": "Maths · Physique · Génie électrique — avec Profesorica, 24h/24.", "es": "Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.", "it": "Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.", "ru": "Математика · Физика · Электротехника — с Profesorica, 24/7.", "pt": "Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."}, "fLink1": {"en": "Home", "de": "Startseite", "fr": "Accueil", "es": "Inicio", "it": "Home", "ru": "Главная", "pt": "Início"}, "eyebrow": {"en": "University", "de": "Universität", "fr": "Université", "es": "Universidad", "it": "Università", "ru": "Университет", "pt": "Universidade"}, "h1": {"en": "Computer architecture", "de": "Rechnerarchitektur", "fr": "Architecture des ordinateurs", "es": "Arquitectura de computadores", "it": "Architettura dei calcolatori", "ru": "Архитектура компьютеров", "pt": "Arquitetura de computadores"}, "lead": {"en": "From the computer model and assembly programming to processor organization, the memory hierarchy and parallelism — clearly and with examples.", "de": "Vom Rechnermodell und der Assemblerprogrammierung bis zur Prozessororganisation, Speicherhierarchie und Parallelität — klar und mit Beispielen.", "fr": "Du modèle de l'ordinateur et la programmation en assembleur à l'organisation du processeur, la hiérarchie mémoire et le parallélisme — clairement et avec des exemples.", "es": "Del modelo de computador y la programación en ensamblador a la organización del procesador, la jerarquía de memoria y el paralelismo — con claridad y ejemplos.", "it": "Dal modello del calcolatore e la programmazione assembly all'organizzazione del processore, la gerarchia di memoria e il parallelismo — con chiarezza ed esempi.", "ru": "От модели компьютера и программирования на ассемблере до организации процессора, иерархии памяти и параллелизма — ясно и с примерами.", "pt": "Do modelo de computador e programação em assembly à organização do processador, hierarquia de memória e paralelismo — com clareza e exemplos."}, "c1t": {"en": "Concept and model of a computer", "de": "Begriff und Modell eines Rechners", "fr": "Notion et modèle d'ordinateur", "es": "Concepto y modelo de computador", "it": "Concetto e modello di calcolatore", "ru": "Понятие и модель компьютера", "pt": "Conceito e modelo de computador"}, "c1d": {"en": "Computer architecture, the computer model and machine data representation.", "de": "Rechnerarchitektur, Rechnermodell und maschinelle Datendarstellung.", "fr": "Architecture, modèle d'ordinateur et représentation machine des données.", "es": "Arquitectura, modelo de computador y representación máquina de datos.", "it": "Architettura, modello di calcolatore e rappresentazione macchina dei dati.", "ru": "Архитектура, модель компьютера и машинное представление данных.", "pt": "Arquitetura, modelo de computador e representação máquina dos dados."}, "c2t": {"en": "Instruction set architecture", "de": "Befehlssatzarchitektur", "fr": "Architecture du jeu d'instructions", "es": "Arquitectura del conjunto de instrucciones", "it": "Architettura del set di istruzioni", "ru": "Архитектура набора команд", "pt": "Arquitetura do conjunto de instruções"}, "c2d": {"en": "Assembly languages and programming: subroutine, macro and stack.", "de": "Assemblersprachen und -programmierung: Unterprogramm, Makro und Stack.", "fr": "Langages d'assemblage et programmation : sous-programme, macro et pile.", "es": "Lenguajes ensambladores y programación: subrutina, macro y pila.", "it": "Linguaggi assembly e programmazione: subroutine, macro e stack.", "ru": "Языки ассемблера и программирование: подпрограмма, макро и стек.", "pt": "Linguagens assembly e programação: sub-rotina, macro e pilha."}, "c3t": {"en": "Computer organization", "de": "Rechnerorganisation", "fr": "Organisation de l'ordinateur", "es": "Organización del computador", "it": "Organizzazione del calcolatore", "ru": "Организация компьютера", "pt": "Organização do computador"}, "c3d": {"en": "Memory, processor, encoding and instruction formats, I/O devices, the bus and interrupts.", "de": "Speicher, Prozessor, Kodierung und Befehlsformate, E/A-Geräte, Bus und Interrupts.", "fr": "Mémoire, processeur, codage et formats d'instructions, périphériques E/S, bus et interruptions.", "es": "Memoria, procesador, codificación y formatos de instrucción, dispositivos E/S, bus e interrupciones.", "it": "Memoria, processore, codifica e formati delle istruzioni, dispositivi I/O, bus e interrupt.", "ru": "Память, процессор, кодирование и форматы команд, устройства ввода-вывода, шина и прерывания.", "pt": "Memória, processador, codificação e formatos de instruções, dispositivos E/S, barramento e interrupções."}, "c4t": {"en": "System programs", "de": "Systemprogramme", "fr": "Programmes système", "es": "Programas de sistema", "it": "Programmi di sistema", "ru": "Системные программы", "pt": "Programas de sistema"}, "c4d": {"en": "Editor, assembler, macro preprocessor, linker, loader, debugger and operating system.", "de": "Editor, Assembler, Makropräprozessor, Linker, Loader, Debugger und Betriebssystem.", "fr": "Éditeur, assembleur, préprocesseur de macros, éditeur de liens, chargeur, débogueur et système d'exploitation.", "es": "Editor, ensamblador, preprocesador de macros, enlazador, cargador, depurador y sistema operativo.", "it": "Editor, assemblatore, preprocessore di macro, linker, loader, debugger e sistema operativo.", "ru": "Редактор, ассемблер, макропроцессор, компоновщик, загрузчик, отладчик и ОС.", "pt": "Editor, assemblador, pré-processador de macros, linker, loader, depurador e sistema operativo."}, "c5t": {"en": "Evolution of architecture", "de": "Entwicklung der Architektur", "fr": "Évolution de l'architecture", "es": "Evolución de la arquitectura", "it": "Evoluzione dell'architettura", "ru": "Эволюция архитектуры", "pt": "Evolução da arquitetura"}, "c5d": {"en": "CISC and RISC, pipelined and vector processors; memory hierarchy — main, mass, associative, cache and virtual.", "de": "CISC und RISC, Pipeline- und Vektorprozessoren; Speicherhierarchie — Haupt-, Massen-, Assoziativ-, Cache- und virtueller Speicher.", "fr": "CISC et RISC, processeurs pipeline et vectoriels ; hiérarchie mémoire — principale, de masse, associative, cache et virtuelle.", "es": "CISC y RISC, procesadores segmentados y vectoriales; jerarquía de memoria — principal, masiva, asociativa, caché y virtual.", "it": "CISC e RISC, processori pipeline e vettoriali; gerarchia di memoria — principale, di massa, associativa, cache e virtuale.", "ru": "CISC и RISC, конвейерные и векторные процессоры; иерархия памяти — оперативная, массовая, ассоциативная, кэш и виртуальная.", "pt": "CISC e RISC, processadores pipeline e vetoriais; hierarquia de memória — principal, de massa, associativa, cache e virtual."}, "c6t": {"en": "Parallelism", "de": "Parallelität", "fr": "Parallélisme", "es": "Paralelismo", "it": "Parallelismo", "ru": "Параллелизм", "pt": "Paralelismo"}, "c6d": {"en": "Interconnection networks, multiprocessors and multicomputers; instruction- and thread-level parallelism.", "de": "Verbindungsnetzwerke, Multiprozessoren und Multicomputer; Parallelität auf Befehls- und Thread-Ebene.", "fr": "Réseaux d'interconnexion, multiprocesseurs et multi-ordinateurs ; parallélisme au niveau instruction et threads.", "es": "Redes de interconexión, multiprocesadores y multicomputadores; paralelismo a nivel de instrucción e hilos.", "it": "Reti di interconnessione, multiprocessori e multicomputer; parallelismo a livello di istruzione e thread.", "ru": "Сети межсоединений, мультипроцессоры и мультикомпьютеры; параллелизм на уровне команд и потоков.", "pt": "Redes de interconexão, multiprocessadores e multicomputadores; paralelismo ao nível de instrução e threads."}, "ctaH": {"en": "Computer architecture — made easy.", "de": "Rechnerarchitektur — ganz einfach.", "fr": "Architecture des ordinateurs — sans peine.", "es": "Arquitectura de computadores — sin complicaciones.", "it": "Architettura dei calcolatori — senza fatica.", "ru": "Архитектура компьютеров — без мучений.", "pt": "Arquitetura de computadores — sem dificuldade."}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=l;}catch(_){}}
+var sel=document.querySelector('select.lang');var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+if(sel){sel.value=sv;sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);});}
+apply(sv);})();
+</script>
 </body>
 </html>
