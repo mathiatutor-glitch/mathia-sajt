@@ -1,0 +1,149 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — E-skripta: Priprema za malu maturu (matematika)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--plum:#432C37;--plum2:#5C3B49;--navy:#1d1830;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--rose:#CC8E86;--ink:#3E2D34;--bord:#ECDAC5;--card:#fffcf6}
+*{box-sizing:border-box}
+body{margin:0;background:#efe6d8;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);line-height:1.6}
+@keyframes foil{to{background-position:230% center}}
+.page{background:var(--paper);max-width:840px;margin:22px auto;padding:52px 58px;box-shadow:0 30px 60px -40px rgba(80,50,60,.5);position:relative}
+.cover{min-height:78vh;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.logo{width:108px;height:108px;border-radius:50%;background:radial-gradient(circle at 50% 36%,#3a3358,#191427);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 16px 32px -16px rgba(25,20,40,.8)}
+.logo span{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.55rem;letter-spacing:.02em;background:linear-gradient(100deg,#9C7838,#E7D2A2,#FFF7E2,#E7D2A2,#C6A05C);background-size:230% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+.brandline{font-family:'Cormorant Garamond',serif;letter-spacing:.42em;font-size:1rem;color:var(--golddk);font-weight:600;margin-bottom:18px}
+.eyebrow{font-weight:800;letter-spacing:.34em;text-transform:uppercase;font-size:.72rem;color:var(--golddk);margin-bottom:10px}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(2.3rem,6vw,3.4rem);color:var(--plum);line-height:1.04;margin:0}
+.cover .pod{color:#6a5a62;max-width:470px;margin:14px auto 0;font-size:1.02rem}
+.rule{width:84px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:26px auto}
+.sig{font-family:'Tangerine',cursive;font-weight:700;font-size:2.7rem;color:var(--plum2);line-height:1}
+.sig small{display:block;font-family:'Nunito';font-weight:700;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--golddk);margin-top:2px}
+.how{background:var(--card);border:1px solid var(--bord);border-radius:14px;padding:16px 20px;color:#5a474d;font-size:.95rem;margin:6px 0 18px}
+h2.oblast{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.6rem;color:var(--plum);margin:0 0 4px;padding-bottom:8px;border-bottom:2px solid var(--goldlt);display:flex;align-items:center;gap:12px}
+h2.oblast .num{font-size:.92rem;font-weight:800;color:#fff;background:var(--gold);border-radius:8px;padding:3px 9px;font-family:'Nunito';min-width:30px;text-align:center}
+.toc{columns:2;column-gap:34px;margin-top:16px}
+.toc a{display:block;text-decoration:none;color:var(--plum);padding:6px 0;border-bottom:1px dashed var(--bord);font-weight:600;font-size:.95rem;break-inside:avoid}
+.toc a b{color:var(--golddk);margin-right:8px}
+.f-grid{display:grid;gap:18px;margin:18px 0 6px}
+.f{background:var(--card);border:1px solid var(--bord);border-left:4px solid var(--gold);border-radius:12px;padding:16px 20px;overflow:hidden}
+.f .ime{font-weight:800;color:var(--plum2);font-size:.9rem;margin-bottom:4px}
+.f .formula{font-size:1rem;color:#2c2026}
+.f .formula .katex-display{margin:.55em 0;overflow-x:auto;overflow-y:hidden;max-width:100%}
+.f .nap{font-size:.83rem;color:#7a6a70;margin-top:7px}
+.pfoot{margin-top:38px;padding-top:14px;border-top:1px solid var(--bord);display:flex;justify-content:space-between;align-items:center;color:#a89a93;font-size:.74rem}
+.pfoot .sig{font-family:'Tangerine',cursive;font-weight:700;font-size:1.4rem;color:var(--golddk)}
+.wm{color:var(--rose)}
+@media(max-width:600px){.page{padding:34px 20px}.f .formula{font-size:.9rem}.toc{columns:1}}
+@media print{body{background:#fff}.page{box-shadow:none;margin:0;max-width:none;min-height:auto;padding:15mm 16mm}.oblast-sec{break-inside:avoid-page}h2.oblast{break-after:avoid}.f{break-inside:avoid}.cover{min-height:92vh}@page{size:A4;margin:0}}
+</style></head>
+<body>
+
+<section class="page cover">
+  <div class="logo"><span>MathIA</span></div>
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">e-knjiga · skripta</div>
+  <h1>Priprema za<br>malu maturu</h1>
+  <div class="pod">Glavne formule iz matematike — gradivo za završni ispit, pregledno i na jednom mestu.</div>
+  <div class="rule"></div>
+  <div class="sig">dr Marina Bulat<small>Mathia · uči s ljubavlju · mathia.rs</small></div>
+</section>
+
+<section class="page">
+  <h2 class="oblast"><span class="num">·</span> Sadržaj</h2>
+  <div class="how"><b>Kako da koristiš:</b> svaka oblast ima karticu sa ključnim formulama. Idealno za ponavljanje pred završni ispit.</div>
+  <div class="toc">
+    <a href="#o1"><b>1</b> Razlomci, proporcije i procenti</a>
+    <a href="#o2"><b>2</b> Stepeni i algebarski izrazi</a>
+    <a href="#o3"><b>3</b> Linearne jednačine i sistemi</a>
+    <a href="#o4"><b>4</b> Linearna funkcija</a>
+    <a href="#o5"><b>5</b> Trougao i Pitagorina teorema</a>
+    <a href="#o6"><b>6</b> Četvorouglovi i krug</a>
+    <a href="#o7"><b>7</b> Površine i zapremine tela</a>
+    <a href="#o8"><b>8</b> Srednja vrednost i verovatnoća</a>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o1">
+  <h2 class="oblast"><span class="num">1</span> Razlomci, proporcije i procenti</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Razlomci</div><div class="formula">$$\begin{gathered} \dfrac{a}{b}\pm\dfrac{c}{d}=\dfrac{ad\pm bc}{bd} \\[5pt] \dfrac{a}{b}\cdot\dfrac{c}{d}=\dfrac{ac}{bd},\quad \dfrac{a}{b}:\dfrac{c}{d}=\dfrac{a}{b}\cdot\dfrac{d}{c} \end{gathered}$$</div></div>
+    <div class="f"><div class="ime">Proporcija</div><div class="formula">$$a:b=c:d\iff a\,d=b\,c$$</div></div>
+    <div class="f"><div class="ime">Procenti</div><div class="formula">$$\begin{gathered} p\%\ \text{od}\ x=\dfrac{p}{100}\cdot x \\[5pt] \text{uvećanje: } x\Big(1+\dfrac{p}{100}\Big),\quad \text{umanjenje: } x\Big(1-\dfrac{p}{100}\Big) \end{gathered}$$</div></div>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o2">
+  <h2 class="oblast"><span class="num">2</span> Stepeni i algebarski izrazi</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Pravila stepenovanja</div><div class="formula">$$\begin{gathered} a^m\cdot a^n=a^{m+n},\quad \dfrac{a^m}{a^n}=a^{m-n} \\[5pt] (a^m)^n=a^{mn},\quad a^{-n}=\dfrac{1}{a^n},\quad a^0=1 \end{gathered}$$</div></div>
+    <div class="f"><div class="ime">Važni identiteti</div><div class="formula">$$\begin{gathered} (a\pm b)^2=a^2\pm 2ab+b^2 \\[5pt] a^2-b^2=(a-b)(a+b) \end{gathered}$$</div></div>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o3">
+  <h2 class="oblast"><span class="num">3</span> Linearne jednačine i sistemi</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Linearna jednačina</div><div class="formula">$$ax+b=0 \;\Rightarrow\; x=-\dfrac{b}{a}\quad (a\neq 0)$$</div></div>
+    <div class="f"><div class="ime">Sistem dve jednačine</div><div class="formula">$$\begin{gathered} a_1x+b_1y=c_1 \\[5pt] a_2x+b_2y=c_2 \end{gathered}$$</div><div class="nap">Rešava se metodom zamene ili suprotnih koeficijenata.</div></div>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o4">
+  <h2 class="oblast"><span class="num">4</span> Linearna funkcija</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Oblik i nagib</div><div class="formula">$$\begin{gathered} y=kx+n \\[5pt] k=\dfrac{y_2-y_1}{x_2-x_1} \end{gathered}$$</div><div class="nap">\(k\) je nagib (koeficijent pravca), \(n\) je odsečak na \(y\)-osi.</div></div>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o5">
+  <h2 class="oblast"><span class="num">5</span> Trougao i Pitagorina teorema</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Uglovi i površina</div><div class="formula">$$\begin{gathered} \alpha+\beta+\gamma=180^\circ \\[5pt] P=\dfrac{a\cdot h_a}{2},\quad O=a+b+c \end{gathered}$$</div></div>
+    <div class="f"><div class="ime">Pitagorina teorema</div><div class="formula">$$a^2+b^2=c^2$$</div><div class="nap">Važi u pravouglom trouglu; \(c\) je hipotenuza.</div></div>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o6">
+  <h2 class="oblast"><span class="num">6</span> Četvorouglovi i krug</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Površine četvorouglova</div><div class="formula">$$\begin{gathered} P_{\text{kvadrat}}=a^2,\quad P_{\text{pravoug.}}=ab \\[5pt] P_{\text{paralelogram}}=a\,h,\quad P_{\text{trapez}}=\dfrac{a+b}{2}\,h \end{gathered}$$</div></div>
+    <div class="f"><div class="ime">Krug</div><div class="formula">$$O=2r\pi,\quad P=r^2\pi$$</div></div>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o7">
+  <h2 class="oblast"><span class="num">7</span> Površine i zapremine tela</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Kvadar i kocka</div><div class="formula">$$\begin{gathered} V_{\text{kvadar}}=abc,\quad P_{\text{kvadar}}=2(ab+bc+ca) \\[5pt] V_{\text{kocka}}=a^3,\quad P_{\text{kocka}}=6a^2 \end{gathered}$$</div></div>
+    <div class="f"><div class="ime">Prizma i valjak</div><div class="formula">$$\begin{gathered} V_{\text{prizma}}=B\cdot H \\[5pt] V_{\text{valjak}}=r^2\pi H,\quad P_{\text{valjak}}=2r\pi(r+H) \end{gathered}$$</div></div>
+  </div>
+</section>
+
+<section class="page oblast-sec" id="o8">
+  <h2 class="oblast"><span class="num">8</span> Srednja vrednost i verovatnoća</h2>
+  <div class="f-grid">
+    <div class="f"><div class="ime">Aritmetička sredina</div><div class="formula">$$\bar{x}=\dfrac{x_1+x_2+\cdots+x_n}{n}$$</div></div>
+    <div class="f"><div class="ime">Verovatnoća</div><div class="formula">$$P=\dfrac{\text{broj povoljnih ishoda}}{\text{broj svih ishoda}}$$</div></div>
+  </div>
+  <div class="pfoot">
+    <span class="wm">© 2026 Mathia Edu · samo za ličnu upotrebu · zabranjeno umnožavanje i deljenje</span>
+    <span class="sig">dr Marina Bulat</span>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left:'$$', right:'$$', display:true},
+      {left:'\\(', right:'\\)', display:false}
+    ],
+    throwOnError:false
+  });
+});
+</script>
+</body></html>
