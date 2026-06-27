@@ -95,6 +95,17 @@ html,body{overflow-x:hidden}
 .foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
 .rule{margin-top:30px}
 </style>
+<style>/* === Heder v2 (MATHIA) === */
+header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(176,138,74,.16)}
+.nav-r{align-items:center}
+.nav-r>a:not(.navcta){position:relative;transition:color .15s}
+.nav-r>a:not(.navcta)::after{content:"";position:absolute;left:0;right:0;bottom:-3px;margin:auto;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#c69a52,#e7d4b0);transition:width .22s}
+.nav-r>a:not(.navcta):hover::after{width:100%}
+.navcta{background:linear-gradient(135deg,#c69a52,#a87f36);color:#fff !important;padding:9px 18px !important;border-radius:999px;font-weight:700 !important;box-shadow:0 6px 16px rgba(176,138,74,.30);white-space:nowrap;text-decoration:none;display:inline-block}
+.navcta::after{display:none !important}
+.navcta:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(176,138,74,.40);color:#fff !important}
+@media(max-width:760px){.navcta{padding:8px 14px !important}}
+</style>
 </head>
 <body>
 <header>
@@ -106,7 +117,7 @@ html,body{overflow-x:hidden}
       <a href="prodavnica.html">Prodavnica</a>
       <a href="index.html#paketi">Paketi</a>
       <a href="o-marini.html">O meni</a>
-    </nav>
+    <a class="navcta" href="index.html#paketi">Probaj besplatno →</a></nav>
   </div>
 </header>
 
