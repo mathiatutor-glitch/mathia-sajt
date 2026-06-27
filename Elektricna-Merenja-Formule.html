@@ -44,6 +44,16 @@ body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system
 .foot{margin-top:30px}
 @media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
 @media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
 </style>
 </head>
 <body>
@@ -128,4 +138,4 @@ window.addEventListener("load",rk);
  window.addEventListener('resize',function(){setTimeout(fit,80);});
 })();
 </script>
-</body></html>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>
