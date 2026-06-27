@@ -101,6 +101,16 @@
   footer .footsig-wrap{line-height:1;padding-right:8px}
   footer .footsig{font-family:'Tangerine',cursive;font-weight:700;font-size:2.4rem;display:inline-block;transform:rotate(-4deg);background:linear-gradient(100deg,#5E461E 0%,#8A6A2C 30%,#E7D2A2 50%,#8A6A2C 70%,#5E461E 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
   .mathia-copyr{text-align:center;padding:18px 20px 0;margin-top:16px;border-top:1px solid rgba(231,210,162,.14);font-size:.75rem;color:rgba(251,246,238,.5);letter-spacing:.02em;line-height:1.5}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
 </style>
 </head>
 <body>
@@ -218,5 +228,5 @@
         data-lang="sr" data-sub="Predmeti — nađi svoj put" data-sub-en="Subjects — find your path"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Pomažem ti da nađeš svoj put — da otkriješ za šta si talentovan(a), koju školu ili fakultet da upišeš i s kojim predmetima da kreneš. Pitaj me bilo šta o predmetima!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 I help you find your path — discover what you&#39;re good at, which school or faculty to choose, and which subjects to start with. Ask me anything about the subjects!"></script>
-</body>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body>
 </html>
