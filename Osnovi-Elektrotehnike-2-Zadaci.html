@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia — Osnovi elektrotehnike 2 · Zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
+  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
+  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
+.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
+.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
+h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
+.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
+.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
+.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.chip.soon{opacity:.5}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
+.intro b{font-family:var(--hf)}
+.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
+.zad-n.solved{background:var(--good)}
+.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
+.opcije{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
+.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
+.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
+.opt.correct{background:#edf6ee;border-color:var(--good)}
+.opt.wrong{background:#fbeeed;border-color:var(--bad)}
+.opt.correct .opt-l{background:var(--good);color:#fff}
+.opt.wrong .opt-l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{transform:none;background:#fffdf8}
+.opt.correct[disabled]:hover{background:#edf6ee}
+.opt.wrong[disabled]:hover{background:#fbeeed}
+.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+.reveal-btn:hover{background:var(--acc);color:#fff}
+.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
+.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
+.rstep+.rstep{border-top:1px solid #f3ead9}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
+.katex{white-space:nowrap;font-size:1.02em}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">Zadaci sa rešenjima · Baza</div>
+  <h1>Osnovi elektrotehnike 2 — zadaci</h1>
+  <p class="sub">Originalni zadaci iz osnova elektrotehnike, sa rešenjima korak po korak. Probaj sam, pa otkrij postupak.</p>
+  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
+</div>
+
+<div class="page">
+  <div class="chips" id="roksel">
+    <span class="chip active" data-y="mag">Magnetsko polje i indukcija</span>
+    <span class="chip" data-y="ac">Naizmenična kola</span>
+  </div>
+  <div class="intro"><b id="rok-label">Oblast: Magnetsko polje i indukcija</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div id="lista"></div>
+  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <div class="foot" id="rok-foot">Osnovi elektrotehnike 2 · Magnetsko polje i indukcija · uči s ljubavlju · mathia.rs</div>
+</div>
+
+<script>
+// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
+// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
+const ZMAG=[{"n": 1, "t": "Pravolinijski provodnik nosi struju $I=10\\text{ A}$. Magnetska indukcija na rastojanju $r=5\\text{ cm}$ je:", "o": ["$2\\cdot10^{-5}\\text{ T}$", "$8\\cdot10^{-5}\\text{ T}$", "$4\\cdot10^{-5}\\text{ T}$", "$4\\cdot10^{-6}\\text{ T}$", "$10^{-4}\\text{ T}$"], "c": 2, "r": ["$B=\\dfrac{\\mu_0 I}{2\\pi r}=\\dfrac{4\\pi\\cdot10^{-7}\\cdot10}{2\\pi\\cdot0{,}05}$.", "$B=\\dfrac{4\\cdot10^{-6}}{0{,}1}=4\\cdot10^{-5}\\text{ T}$."]}, {"n": 2, "t": "Magnetska indukcija $B=0{,}5\\text{ T}$ probija ravnu površ $S=200\\text{ cm}^2$ upravno. Magnetski fluks je:", "o": ["$0{,}1\\text{ Wb}$", "$0{,}001\\text{ Wb}$", "$0{,}02\\text{ Wb}$", "$0{,}01\\text{ Wb}$", "$1\\text{ Wb}$"], "c": 3, "r": ["$\\Phi=BS\\cos\\theta=0{,}5\\cdot0{,}02\\cdot1$.", "$\\Phi=0{,}01\\text{ Wb}=10\\text{ mWb}$."]}, {"n": 3, "t": "Idealni solenoid ima $n=1000$ navojaka po metru i struju $I=2\\text{ A}$. Indukcija u njemu je približno:", "o": ["$2{,}5\\text{ mT}$", "$25\\text{ mT}$", "$0{,}25\\text{ mT}$", "$5\\text{ mT}$", "$1{,}25\\text{ mT}$"], "c": 0, "r": ["$B=\\mu_0 n I=4\\pi\\cdot10^{-7}\\cdot1000\\cdot2$.", "$B\\approx2{,}51\\cdot10^{-3}\\text{ T}\\approx2{,}5\\text{ mT}$."]}, {"n": 4, "t": "Kroz kalem induktivnosti $L=0{,}2\\text{ H}$ struja se menja brzinom $\\dfrac{di}{dt}=3\\text{ A/s}$. Indukovani napon (po modulu) je:", "o": ["$6\\text{ V}$", "$0{,}6\\text{ V}$", "$0{,}06\\text{ V}$", "$1{,}5\\text{ V}$", "$0{,}9\\text{ V}$"], "c": 1, "r": ["$e=L\\dfrac{di}{dt}=0{,}2\\cdot3$.", "$e=0{,}6\\text{ V}$."]}, {"n": 5, "t": "Energija nagomilana u kalemu $L=0{,}5\\text{ H}$ kroz koji teče struja $I=4\\text{ A}$ je:", "o": ["$2\\text{ J}$", "$8\\text{ J}$", "$4\\text{ J}$", "$16\\text{ J}$", "$1\\text{ J}$"], "c": 2, "r": ["$W=\\dfrac12 LI^2=\\dfrac12\\cdot0{,}5\\cdot4^2$.", "$W=0{,}25\\cdot16=4\\text{ J}$."]}, {"n": 6, "t": "Severni pol magneta približava se kalemu. Indukovana struja u kalemu stvara polje koje magnet:", "o": ["privlači", "odbija", "ne deluje na njega", "okreće", "ubrzava"], "c": 1, "r": ["Po Lencovom zakonu indukovana struja se suprotstavlja promeni fluksa.", "Kalem stvara polje koje odbija magnet koji se približava."]}, {"n": 7, "t": "Provodni štap dužine $l=0{,}5\\text{ m}$ kreće se brzinom $v=4\\text{ m/s}$ upravno na polje $B=0{,}2\\text{ T}$. Indukovani napon je:", "o": ["$0{,}04\\text{ V}$", "$4\\text{ V}$", "$1{,}6\\text{ V}$", "$0{,}4\\text{ V}$", "$0{,}8\\text{ V}$"], "c": 3, "r": ["$e=Blv=0{,}2\\cdot0{,}5\\cdot4$.", "$e=0{,}4\\text{ V}$."]}];
+const ZAC=[{"n": 1, "t": "Maksimalna vrednost naizmeničnog napona je $U_m=311\\text{ V}$. Efektivna vrednost je:", "o": ["$311\\text{ V}$", "$156\\text{ V}$", "$440\\text{ V}$", "$220\\text{ V}$", "$155\\text{ V}$"], "c": 3, "r": ["$U_{ef}=\\dfrac{U_m}{\\sqrt2}=\\dfrac{311}{1{,}41}$.", "$U_{ef}\\approx220\\text{ V}$."]}, {"n": 2, "t": "Kalem induktivnosti $L=10\\text{ mH}$ priključen je na mrežu učestanosti $f=50\\text{ Hz}$. Induktivna reaktansa je:", "o": ["$3{,}14\\,\\Omega$", "$0{,}314\\,\\Omega$", "$31{,}4\\,\\Omega$", "$6{,}28\\,\\Omega$", "$1{,}57\\,\\Omega$"], "c": 0, "r": ["$X_L=\\omega L=2\\pi\\cdot50\\cdot0{,}01$.", "$X_L=\\pi\\approx3{,}14\\,\\Omega$."]}, {"n": 3, "t": "Kondenzator $C=100\\text{ µF}$ priključen je na učestanost $f=50\\text{ Hz}$. Kapacitivna reaktansa je približno:", "o": ["$3{,}18\\,\\Omega$", "$318\\,\\Omega$", "$31{,}8\\,\\Omega$", "$15{,}9\\,\\Omega$", "$63{,}7\\,\\Omega$"], "c": 2, "r": ["$X_C=\\dfrac{1}{\\omega C}=\\dfrac{1}{2\\pi\\cdot50\\cdot100\\cdot10^{-6}}$.", "$X_C\\approx31{,}8\\,\\Omega$."]}, {"n": 4, "t": "U rednom $RL$ kolu je $R=3\\,\\Omega$ i $X_L=4\\,\\Omega$. Modul impedanse je:", "o": ["$7\\,\\Omega$", "$1\\,\\Omega$", "$25\\,\\Omega$", "$3{,}5\\,\\Omega$", "$5\\,\\Omega$"], "c": 4, "r": ["$|Z|=\\sqrt{R^2+X_L^2}=\\sqrt{9+16}$.", "$|Z|=5\\,\\Omega$."]}, {"n": 5, "t": "Redno $RLC$ kolo ima $L=1\\text{ mH}$ i $C=1\\text{ µF}$. Rezonantna učestanost je približno:", "o": ["$50\\text{ kHz}$", "$5\\text{ kHz}$", "$500\\text{ Hz}$", "$1{,}6\\text{ kHz}$", "$10\\text{ kHz}$"], "c": 1, "r": ["$f_0=\\dfrac{1}{2\\pi\\sqrt{LC}}=\\dfrac{1}{2\\pi\\sqrt{10^{-3}\\cdot10^{-6}}}$.", "$f_0\\approx5\\text{ kHz}$."]}, {"n": 6, "t": "Potrošač radi pri $U=230\\text{ V}$, $I=5\\text{ A}$ i $\\cos\\varphi=0{,}8$. Aktivna snaga je:", "o": ["$1150\\text{ W}$", "$690\\text{ W}$", "$920\\text{ W}$", "$575\\text{ W}$", "$1840\\text{ W}$"], "c": 2, "r": ["$P=UI\\cos\\varphi=230\\cdot5\\cdot0{,}8$.", "$P=920\\text{ W}$."]}, {"n": 7, "t": "Za isti potrošač ($U=230\\text{ V}$, $I=5\\text{ A}$), prividna snaga je:", "o": ["$1150\\text{ VA}$", "$920\\text{ VA}$", "$690\\text{ VA}$", "$575\\text{ VA}$", "$1380\\text{ VA}$"], "c": 0, "r": ["$S=UI=230\\cdot5$.", "$S=1150\\text{ VA}$."]}, {"n": 8, "t": "U simetričnom trofaznom sistemu, veza zvezda, fazni napon je $U_f=220\\text{ V}$. Linijski napon je:", "o": ["$220\\text{ V}$", "$660\\text{ V}$", "$311\\text{ V}$", "$381\\text{ V}$", "$127\\text{ V}$"], "c": 3, "r": ["U vezi zvezda: $U_l=\\sqrt3\\,U_f=\\sqrt3\\cdot220$.", "$U_l\\approx381\\text{ V}$."]}];
+const EXAMS={
+  'mag':{label:'Magnetsko polje i indukcija', z:ZMAG},
+  'ac':{label:'Naizmenična kola', z:ZAC}
+};
+let YEAR='mag';
+let ZADACI=EXAMS[YEAR].z;
+let KEY='mathia_progress_zad_oe2_'+YEAR;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+let stanje=load();
+
+function updateProgress(){
+  const n=Object.values(stanje).filter(v=>v==='ok').length;
+  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
+  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  ZADACI.forEach(z=>{
+    const solved=stanje[z.n]==='ok';
+    const card=document.createElement('div'); card.className='zad';
+    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
+    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
+    card.innerHTML=`
+      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
+      <div class="zad-q">${z.t}</div>
+      <div class="opcije">${opts}</div>
+      <button class="reveal-btn">Prikaži rešenje ✦</button>
+      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
+    // option clicks
+    const optEls=card.querySelectorAll('.opt');
+    optEls.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        const i=+btn.dataset.i;
+        optEls.forEach(b=>b.setAttribute('disabled','')); 
+        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
+        if(i!==z.c) btn.classList.add('wrong');
+        card.dataset.done='1';
+        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
+        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
+        const fb=document.createElement('div');
+        fb.className='feedback '+(i===z.c?'ok':'no');
+        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
+        card.querySelector('.opcije').after(fb);
+        updateProgress();
+      });
+    });
+    card.querySelector('.reveal-btn').addEventListener('click',e=>{
+      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
+      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+      if(!r.hidden) fitFormulas(r);
+    });
+    lista.appendChild(card);
+  });
+  updateProgress();
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Resetovati napredak za ovu oblast?')){stanje={};save(stanje);location.reload();}
+});
+
+function fitFormulas(root){
+  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
+    var avail=box.clientWidth; if(avail<=0) return;
+    box.querySelectorAll('.katex').forEach(function(k){
+      k.style.fontSize=''; var size=1.02, g=0;
+      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
+    });
+  });
+}
+function typeset(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+  fitFormulas();
+}
+var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
+function go(){ render(); typeset(); }
+function switchYear(y){
+  if(!EXAMS[y]||y===YEAR) return;
+  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_progress_zad_oe2_'+YEAR; stanje=load();
+  document.getElementById('lista').innerHTML='';
+  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
+  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Oblast: '+EXAMS[y].label;
+  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='Osnovi elektrotehnike 2 · '+EXAMS[y].label+' · uči s ljubavlju · mathia.rs';
+  render(); typeset();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
+if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
+</script>
+</body>
+</html>
