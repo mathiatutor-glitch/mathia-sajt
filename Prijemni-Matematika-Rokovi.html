@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prijemni iz matematike — Rešeni rokovi · MATHIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
+  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
+  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
+.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
+.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
+h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
+.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
+.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
+.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.chip.soon{opacity:.5}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
+.intro b{font-family:var(--hf)}
+.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
+.zad-n.solved{background:var(--good)}
+.zad-q{font-size:1.1rem;line-height:1.75;margin-bottom:16px;overflow-x:auto}
+.opcije{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:10px 14px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
+.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
+.opt-m{flex:1;overflow-x:auto;overflow-y:hidden;padding:3px 0}
+.opt.correct{background:#edf6ee;border-color:var(--good)}
+.opt.wrong{background:#fbeeed;border-color:var(--bad)}
+.opt.correct .opt-l{background:var(--good);color:#fff}
+.opt.wrong .opt-l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{transform:none;background:#fffdf8}
+.opt.correct[disabled]:hover{background:#edf6ee}
+.opt.wrong[disabled]:hover{background:#fbeeed}
+.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+.reveal-btn:hover{background:var(--acc);color:#fff}
+.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
+.rstep{padding:7px 0;color:var(--ink);overflow-x:auto;line-height:1.7}
+.rstep+.rstep{border-top:1px solid #f3ead9}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
+.katex{white-space:nowrap}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">Rešeni rokovi · Baza zadataka</div>
+  <h1>Prijemni iz matematike — MATF</h1>
+  <p class="sub">Rešeni zadaci sa prošlih prijemnih ispita Matematičkog fakulteta u Beogradu. Probaj sam, pa otkrij rešenje korak po korak.</p>
+  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
+</div>
+
+<div class="page">
+  <div class="chips">
+    <span class="chip active">Jun 2023</span>
+    <span class="chip soon">Jun 2022</span>
+    <span class="chip soon">Jun 2021</span>
+    <span class="chip soon">Septembar 2023</span>
+  </div>
+  <div class="intro"><b>Rok: Jun 2023</b> · 20 zadataka · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div id="lista"></div>
+  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <div class="foot">MATF · Jun 2023 · uči s ljubavlju · mathia.rs</div>
+</div>
+
+<script>
+// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
+// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
+const ZADACI = [
+{n:1,t:"Broj $\\dfrac{\\sqrt6}{\\sqrt3-\\sqrt6-\\sqrt{24}-\\sqrt{48}+\\sqrt{108}}$ jednak je:",
+ o:["$-\\dfrac{2-\\sqrt2}{3}$","$-\\dfrac{2+\\sqrt2}{3}$","$\\dfrac{2-\\sqrt2}{3}$","$\\dfrac{2+\\sqrt2}{3}$","$\\dfrac{2}{3}$"],c:1,
+ r:["Imenilac: $\\sqrt3-\\sqrt6-2\\sqrt6-4\\sqrt3+6\\sqrt3=3\\sqrt3-3\\sqrt6$.","$\\dfrac{\\sqrt6}{3(\\sqrt3-\\sqrt6)}\\cdot\\dfrac{\\sqrt3+\\sqrt6}{\\sqrt3+\\sqrt6}=\\dfrac{\\sqrt{18}+6}{3(3-6)}=-\\dfrac{3\\sqrt2+6}{9}=-\\dfrac{2+\\sqrt2}{3}.$"]},
+{n:2,t:"Skup vrednosti realnog parametra $a$ tako da jednačina $|x|-|x-1|+|x-2|=a$ ima tačno dva realna rešenja je:",
+ o:["$(2,\\infty)$","$[2,\\infty)$","$(0,1)\\cup\\{2\\}$","$\\{1\\}\\cup(2,\\infty)$","$\\{1\\}\\cup[2,\\infty)$"],c:3,
+ r:["$f(x)$ je deo-po-deo linearna; minimum je $1$ (na $[0,1]$), a za $x\\ge2$ raste kao $x-1$.","Prava $y=a$ seče grafik u tačno dve tačke za $a\\in\\{1\\}\\cup(2,\\infty)$."]},
+{n:3,t:"Aca, Bane i Vlada su podelili čokoladu u odnosu $11:8:6$. Koliki procenat čokolade je dobio Aca?",
+ o:["$11\\%$","$24\\%$","$32\\%$","$44\\%$","$55\\%$"],c:3,
+ r:["$\\dfrac{11}{11+8+6}=\\dfrac{11}{25}=44\\%.$"]},
+{n:4,t:"Skup rešenja nejednačine $\\dfrac{|2x-1|+x+1}{x^2-x}\\le 1$ je:",
+ o:["$(-\\infty,-\\sqrt2\\,]\\cup(0,\\tfrac12]\\cup[4,\\infty)$","$(-\\infty,0)\\cup(0,1)\\cup[4,\\infty)$","$[\\tfrac12,1)\\cup[4,\\infty)$","$(-\\infty,-\\sqrt2\\,]\\cup(0,1)\\cup[4,\\infty)$","nijedan od ponuđenih odgovora"],c:3,
+ r:["Definisano za $x\\notin\\{0,1\\}$. Razdvoji slučaj $x<\\tfrac12$ i $x\\ge\\tfrac12$ (zbog $|2x-1|$).","Za $x\\in(-\\infty,0)\\cup(0,\\tfrac12)$ dobija se $\\dfrac{2-x^2}{x(x-1)}\\le0$, a za $x\\ge\\tfrac12$: $\\dfrac{4-x}{x-1}\\le0$.","Spajanjem: $x\\in(-\\infty,-\\sqrt2\\,]\\cup(0,1)\\cup[4,\\infty).$"]},
+{n:5,t:"Ako su $a,b\\in\\mathbb{R}$ i za rešenja $x_1,x_2$ jednačine $x^2+ax+b=0$ važi $x_1<0,\\ x_2>0$ i $\\dfrac{1}{x_1}+\\dfrac{1}{x_1x_2}+\\dfrac{1}{x_2}=-1$, onda $x_1$ pripada intervalu:",
+ o:["$(-\\infty,-5)$","$[-5,-4]$","$(-4,-2)$","$[-2,-1]$","$(-1,0)$"],c:3,
+ r:["Po Vietovim pravilima $x_1+x_2=-a$, $x_1x_2=b$.","Izraz $=\\dfrac{x_1+x_2+1}{x_1x_2}=\\dfrac{1-a}{b}=-1\\Rightarrow 1-a+b=0$.","Leva strana je vrednost kvadratne funkcije u $-1$, pa je $x_1=-1\\in[-2,-1].$"]},
+{n:6,t:"Skup rešenja nejednačine $\\sqrt[3]{x^2-1}>x-1$ je:",
+ o:["$[0,3]$","$[1,3]$","$(-\\infty,-1]$","$(-\\infty,-1]\\cup[1,3]$","$(-\\infty,0]\\cup[1,3]$"],c:4,
+ r:["Kubiranjem: $x^2-1>(x-1)^3$, tj. $(x-1)\\big((x-1)^2-(x+1)\\big)\\le0$.","$x(x-1)(x-3)\\le0\\Rightarrow x\\in(-\\infty,0]\\cup[1,3].$"]},
+{n:7,t:"Skup rešenja nejednačine $\\dfrac{5\\cdot 3^{x}}{3^{x}-2^{x}}>9+\\dfrac{2^{x}}{3^{x}-2^{x}}$ je:",
+ o:["$(-\\infty,0)\\cup[1,\\infty)$","$(0,1]$","$(0,1)$","$[-1,0)\\cup(0,1]$","$[0,1]$"],c:1,
+ r:["Definisano za $x\\ne0$. Smena $t=\\left(\\tfrac23\\right)^{x}>0$, $t\\ne1$.","Nejednačina postaje $\\dfrac{(3t-2)(3t+2)}{t-1}\\le0\\Rightarrow t\\in[\\tfrac23,1)$.","Kako je $\\left(\\tfrac23\\right)^{x}$ opadajuća: $x\\in(0,1].$"]},
+{n:8,t:"Broj rešenja nejednačine $\\log_{\\frac12}(2^{x}-1)\\cdot\\log_{\\frac12}\\!\\big(2^{x-1}-\\tfrac12\\big)\\le 2$ u skupu prirodnih brojeva je:",
+ o:["$0$","$1$","$2$","$3$","veći od $3$"],c:2,
+ r:["Mora $2^{x}-1>0$ i $2^{x-1}-\\tfrac12>0$, tj. $x>0$.","Smena $t=\\log_{\\frac12}(2^{x}-1)$ daje $t(t+1)\\le2\\Rightarrow t\\in[-2,1]$.","Tada $\\tfrac32\\le 2^{x}\\le5$, pa su prirodni brojevi $x=1$ i $x=2$ — dakle $2$ rešenja."]},
+{n:9,t:"Dužina poluprečnika opisanog kruga jednakokrakog trougla osnovice $6$ i kraka $5$ pripada intervalu:",
+ o:["$(0,1)$","$[1,2]$","$(2,3)$","$[3,4]$","$(4,\\infty)$"],c:3,
+ r:["Visina na osnovicu: $h=\\sqrt{5^2-3^2}=4$, površina $P=\\tfrac{6\\cdot4}{2}=12$.","$R=\\dfrac{a\\,b\\,c}{4P}=\\dfrac{5\\cdot5\\cdot6}{48}=\\dfrac{25}{8}=3{,}125\\in[3,4].$"]},
+{n:10,t:"U pravu zarubljenu kupu upisana je lopta površine $P$, a ugao izvodnice sa ravni veće osnove je $60^\\circ$. Površina omotača zarubljene kupe jednaka je:",
+ o:["$\\dfrac{4\\sqrt3\\,P}{3}$","$\\dfrac{3\\sqrt3\\,P}{2}$","$\\dfrac{3P}{2}$","$\\dfrac{4P}{3}$","$\\dfrac{4\\sqrt3\\,P}{2}$"],c:3,
+ r:["Iz tangentnosti: $s=r_1+r_2$ (izvodnica = zbir poluprečnika osnova).","Iz ugla $60^\\circ$: $2R=\\tfrac{\\sqrt3}{2}s\\Rightarrow s=\\tfrac{4R}{\\sqrt3}$, a $P=4\\pi R^2$.","Omotač $=(r_1+r_2)s\\pi=s^2\\pi=\\dfrac{16\\pi R^2}{3}=\\dfrac{4P}{3}.$"]},
+{n:11,t:"Zbir svih rešenja jednačine $4\\cos x\\cos 2x=\\cos 3x$ koja pripadaju $[0,2\\pi]$ je:",
+ o:["$2\\pi$","$3\\pi$","$4\\pi$","$5\\pi$","$6\\pi$"],c:4,
+ r:["$\\cos3x=4\\cos^3x-3\\cos x$, pa jednačina postaje $4\\cos^3x-\\cos x=0$.","$\\cos x(2\\cos x-1)(2\\cos x+1)=0$.","Rešenja u $[0,2\\pi]$: $\\tfrac{\\pi}{2},\\tfrac{3\\pi}{2},\\tfrac{\\pi}{3},\\tfrac{5\\pi}{3},\\tfrac{2\\pi}{3},\\tfrac{4\\pi}{3}$ — zbir $6\\pi.$"]},
+{n:12,t:"$AB$ je duža osnovica jednakokrakog trapeza $ABCD$. Ako dijagonala deli trapez na dva jednakokraka trougla, onda $\\dfrac{AB}{CD}$ pripada intervalu:",
+ o:["$(1,\\sqrt2)$","$[\\sqrt2,\\sqrt3)$","$[\\sqrt3,2)$","$[2,\\sqrt5)$","$[\\sqrt5,\\infty)$"],c:1,
+ r:["Iz uslova: oštar ugao trapeza je $72^\\circ$, ugao dijagonale $36^\\circ$.","$\\dfrac{AB}{CD}=2\\cos36^\\circ=\\dfrac{1+\\sqrt5}{2}\\in[\\sqrt2,\\sqrt3).$"]},
+{n:13,t:"Tačka kružnice $(x-5)^2+(y-4)^2=4$ najbliža kružnici $(x-1)^2+(y-1)^2=1$ ima $x$-koordinatu jednaku:",
+ o:["$2{,}8$","$3{,}4$","$4$","$3{,}8$","$6{,}6$"],c:1,
+ r:["Centri $(5,4)$ i $(1,1)$, rastojanje $5>1+2$ — kružnice se ne seku.","Najbliža tačka je na pravoj kroz centre: $y-1=\\tfrac34(x-1)$.","Zamenom u prvu kružnicu: $(x-5)^2=\\tfrac{64}{25}\\Rightarrow x=\\tfrac{17}{5}=3{,}4.$"]},
+{n:14,t:"Stranice pravouglog trougla su tri uzastopna člana aritmetičke progresije sa razlikom $d$. Površina tog trougla je:",
+ o:["$\\dfrac{9d^2}{2}$","$6d^2$","$12d^2$","$d^2$","$15d^2$"],c:1,
+ r:["Stranice $a,\\ a+d,\\ a+2d$; po Pitagori $a^2+(a+d)^2=(a+2d)^2$.","$(a+d)(a-3d)=0\\Rightarrow a=3d$, katete $3d$ i $4d$.","$P=\\tfrac{3d\\cdot4d}{2}=6d^2.$"]},
+{n:15,t:"Neka je $n$ neparan prirodan broj deljiv sa $3$. Onda za broj $n^2+3$ važi:",
+ o:["deljiv je sa $3$ i $4$, a nije sa $9$","deljiv je sa $2$ i $9$, a nije sa $4$","deljiv je sa $2$ i $9$, a nije sa $4$ i $9$","deljiv je sa $4$ i $9$","nije tačno nijedno od navedenih"],c:0,
+ r:["$n=2k+1\\Rightarrow n^2+3=4(k^2+k+1)$, pa je deljiv sa $4$.","$3\\mid n\\Rightarrow 9\\mid n^2$, pa $n^2+3$ daje ostatak $3$ pri deljenju sa $9$: deljiv sa $3$, a nije sa $9$."]},
+{n:16,t:"Imaginarni deo kompleksnog broja $\\dfrac{5(1+i)^{24}}{(1+i)^{20}+(1-i)^{18}}$ (gde je $i^2=-1$) je:",
+ o:["$-6$","$-4$","$-2$","$8$","$16$"],c:3,
+ r:["$(1+i)^2=2i,\\ (1-i)^2=-2i$.","$=\\dfrac{5(2i)^{12}}{(2i)^{10}+(-2i)^{9}}=\\dfrac{5\\cdot2^{12}}{-2^{10}-2^{9}i}=-16+8i.$","Imaginarni deo je $8$."]},
+{n:17,t:"Ostatak pri deljenju polinoma $x^{2024}+x^{2023}+1$ sa $x^3-x^2+x-1$ jednak je:",
+ o:["$-x^2-x+5$","$x^2-x+3$","$-x^2+x+3$","$-x^2+4$","$x^2+2$"],c:1,
+ r:["$x^3-x^2+x-1=(x-1)(x^2+1)$, ostatak je $ax^2+bx+c$.","$x=1:\\ a+b+c=p(1)=3$; $x=i:\\ -a+bi+c=p(i)=2-i\\Rightarrow -a+c=2,\\ b=-1$.","$a=1,b=-1,c=3$, ostatak $x^2-x+3.$"]},
+{n:18,t:"Skup vrednosti realnog parametra $a$ za koje jednačina $|x^3-3x^2+2x|=a$ ima najveći mogući broj rešenja je:",
+ o:["$\\left(0,\\dfrac{2\\sqrt3}{9}\\right)$","$\\left(0,\\dfrac{2\\sqrt3}{9}\\right]$","$\\{0\\}$","$\\left(\\dfrac{2\\sqrt3}{9},\\infty\\right)$","$\\left[\\dfrac{2\\sqrt3}{9},\\infty\\right)$"],c:0,
+ r:["$f(x)=x(x-1)(x-2)$, $g(x)=|f(x)|$ je simetrična oko $x=1$.","Lokalni maksimum $|f|$ je $\\left|f\\!\\left(1+\\tfrac{\\sqrt3}{3}\\right)\\right|=\\dfrac{2\\sqrt3}{9}$.","Najveći broj rešenja (šest) postiže se za $a\\in\\left(0,\\dfrac{2\\sqrt3}{9}\\right).$"]},
+{n:19,t:"Učenik baca novčić i beleži rezultate; igra se završava kada se po četvrti put pojavi jedna od strana. Ishod je niz rezultata. Koliko ima mogućih ishoda?",
+ o:["$35$","$56$","$70$","$112$","$117$"],c:2,
+ r:["Dužina ishoda je od $4$ do $7$. Ako se igra završi $k$-tim bacanjem (glava $4.$ put), u prvih $k-1$ bacanja imamo $3$ glave: $\\binom{k-1}{3}$ rasporeda.","Po simetriji (glava/pismo): $2\\left(\\binom{3}{3}+\\binom{4}{3}+\\binom{5}{3}+\\binom{6}{3}\\right)=2\\cdot35=70.$"]},
+{n:20,t:"Broj racionalnih članova u razvoju binoma $\\big(\\sqrt2+\\sqrt[3]{3}\\big)^{2023}$ je:",
+ o:["$0$","$337$","$338$","$675$","$1\\,687$"],c:1,
+ r:["Opšti član: $\\binom{2023}{k}2^{\\frac{2023-k}{2}}3^{\\frac{k}{3}}$.","Racionalan je kada je $2023-k$ paran i $k$ deljiv sa $3$, tj. $k$ neparan i $3\\mid k$: $k\\in\\{3,9,15,\\dots,2019\\}$.","Tih vrednosti ima $337.$"]}
+];
+
+const KEY='mathia_progress_zad_matf_jun2023';
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+let stanje=load();
+
+function updateProgress(){
+  const n=Object.values(stanje).filter(v=>v==='ok').length;
+  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
+  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  ZADACI.forEach(z=>{
+    const solved=stanje[z.n]==='ok';
+    const card=document.createElement('div'); card.className='zad';
+    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
+    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
+    card.innerHTML=`
+      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
+      <div class="zad-q">${z.t}</div>
+      <div class="opcije">${opts}</div>
+      <button class="reveal-btn">Prikaži rešenje ✦</button>
+      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
+    // option clicks
+    const optEls=card.querySelectorAll('.opt');
+    optEls.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        const i=+btn.dataset.i;
+        optEls.forEach(b=>b.setAttribute('disabled','')); 
+        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
+        if(i!==z.c) btn.classList.add('wrong');
+        card.dataset.done='1';
+        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
+        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
+        const fb=document.createElement('div');
+        fb.className='feedback '+(i===z.c?'ok':'no');
+        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
+        card.querySelector('.opcije').after(fb);
+        updateProgress();
+      });
+    });
+    card.querySelector('.reveal-btn').addEventListener('click',e=>{
+      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
+      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+    });
+    lista.appendChild(card);
+  });
+  updateProgress();
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Resetovati napredak za ovaj rok?')){stanje={};save(stanje);location.reload();}
+});
+
+function go(){
+  render();
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+}
+if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
+</script>
+</body>
+</html>
