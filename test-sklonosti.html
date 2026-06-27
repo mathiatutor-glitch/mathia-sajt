@@ -42,6 +42,16 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:34px;line-he
 .status{font-size:13px;color:var(--golddk);text-align:center;margin-top:10px;min-height:18px}
 .hide{display:none}a.btnlink{text-decoration:none}
 .foot{text-align:center;font-size:12px;color:#a89a93;margin-top:16px}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
 </style></head>
 <body>
 <div class="card">
@@ -354,4 +364,4 @@ $("lang").onchange=function(){lang=this.value;document.documentElement.lang=lang
 paintStart();
 if(lvl&&p)startQuiz(lvl);else show("start");
 </script>
-</body></html>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>

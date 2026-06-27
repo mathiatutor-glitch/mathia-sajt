@@ -84,6 +84,16 @@
   .mat .mi{font-size:24px}
   .mat b{display:block;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
   .mat p{color:#6a5a62;font-size:.86rem}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
 </style>
 </head>
 <body>
@@ -168,5 +178,5 @@
         data-lang="sr" data-sub="Skripta — Nacrtna geometrija 1" data-sub-en="Study guide — Nacrtna geometrija 1"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 za Nacrtnu geometriju 1. Pomažem ti oko projiciranja, karakterističnih pogleda, transformacija i rotacija, vidljivosti i preseka složenih 3D formi. Pošalji zadatak ili sliku — objasniću korak po korak!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 for Descriptive Geometry 1. I help with projections, characteristic views, transformations and rotations, visibility and intersections of complex 3D forms. Send a problem or a photo — I&#39;ll explain step by step!"></script>
-</body>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body>
 </html>
