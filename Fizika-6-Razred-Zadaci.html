@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia — Fizika 6. razred — zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
+  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
+  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
+.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
+.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
+h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
+.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
+.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
+.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.chip.soon{opacity:.5}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
+.intro b{font-family:var(--hf)}
+.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
+.zad-n.solved{background:var(--good)}
+.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
+.opcije{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
+.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
+.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
+.opt.correct{background:#edf6ee;border-color:var(--good)}
+.opt.wrong{background:#fbeeed;border-color:var(--bad)}
+.opt.correct .opt-l{background:var(--good);color:#fff}
+.opt.wrong .opt-l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{transform:none;background:#fffdf8}
+.opt.correct[disabled]:hover{background:#edf6ee}
+.opt.wrong[disabled]:hover{background:#fbeeed}
+.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+.reveal-btn:hover{background:var(--acc);color:#fff}
+.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
+.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
+.rstep+.rstep{border-top:1px solid #f3ead9}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
+.katex{white-space:nowrap;font-size:1.02em}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">Osnovna škola · Fizika</div>
+  <h1>Fizika 6. razred — zadaci</h1>
+  <p class="sub">Vežba po oblastima za 6. razred: fizičke veličine i jedinice, brzina i kretanje, masa i gustina, sila i težina, merenje. Probaj sam, pa otkrij rešenje korak po korak.</p>
+  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
+</div>
+
+<div class="page">
+  <div class="chips" id="roksel">
+    <span class="chip active" data-y="vel">Veličine i jedinice</span>
+    <span class="chip" data-y="brz">Brzina i kretanje</span>
+    <span class="chip" data-y="mas">Masa i gustina</span>
+    <span class="chip" data-y="sil">Sila i težina</span>
+    <span class="chip" data-y="mer">Merenje</span>
+  </div>
+  <div class="intro"><b id="rok-label">Oblast: Veličine i jedinice</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div id="lista"></div>
+  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <div class="foot" id="rok-foot">MATHIA · Veličine i jedinice · uči s ljubavlju · mathia.rs</div>
+</div>
+
+<script>
+// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
+// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
+const A=[{"n": 1, "t": "Osnovna jedinica za dužinu u SI sistemu je:", "o": ["metar (m)", "kilogram (kg)", "sekunda (s)", "njutn (N)", "litar (l)"], "c": 0, "r": ["Dužina se meri u metrima.", "Oznaka: m."]}, {"n": 2, "t": "Osnovna jedinica za masu u SI sistemu je:", "o": ["gram", "kilogram (kg)", "njutn", "litar", "metar"], "c": 1, "r": ["SI jedinica mase je kilogram.", "Oznaka: kg."]}, {"n": 3, "t": "Osnovna jedinica za vreme u SI sistemu je:", "o": ["sat", "minut", "sekunda (s)", "metar", "kilogram"], "c": 2, "r": ["SI jedinica vremena je sekunda.", "Oznaka: s."]}, {"n": 4, "t": "Koliko sekundi ima jedan minut?", "o": ["$10$", "$100$", "$60$", "$24$", "$3600$"], "c": 2, "r": ["$1$ minut $=60$ sekundi.", ""]}];
+const B=[{"n": 1, "t": "Telo pređe $s=20\\text{ m}$ za $t=4\\text{ s}$. Brzina je:", "o": ["$4\\text{ m/s}$", "$5\\text{ m/s}$", "$80\\text{ m/s}$", "$24\\text{ m/s}$", "$16\\text{ m/s}$"], "c": 1, "r": ["$v=\\dfrac{s}{t}=\\dfrac{20}{4}$.", "$v=5\\text{ m/s}$."]}, {"n": 2, "t": "Jedinica za brzinu je:", "o": ["m/s", "m/s²", "kg", "N", "s"], "c": 0, "r": ["Brzina = put po vremenu.", "Jedinica: m/s."]}, {"n": 3, "t": "Telo za $2\\text{ s}$ pređe $10\\text{ m}$. Njegova brzina je:", "o": ["$2\\text{ m/s}$", "$20\\text{ m/s}$", "$5\\text{ m/s}$", "$12\\text{ m/s}$", "$8\\text{ m/s}$"], "c": 2, "r": ["$v=\\dfrac{10}{2}$.", "$v=5\\text{ m/s}$."]}, {"n": 4, "t": "Ako se telo kreće brzinom $3\\text{ m/s}$, za $5\\text{ s}$ pređe put:", "o": ["$8\\text{ m}$", "$15\\text{ m}$", "$1{,}5\\text{ m}$", "$3\\text{ m}$", "$30\\text{ m}$"], "c": 1, "r": ["$s=v\\cdot t=3\\cdot 5$.", "$s=15\\text{ m}$."]}];
+const C=[{"n": 1, "t": "Telo mase $m=20\\text{ g}$ ima zapreminu $V=10\\text{ cm}^3$. Gustina je:", "o": ["$0{,}5\\text{ g/cm}^3$", "$2\\text{ g/cm}^3$", "$200\\text{ g/cm}^3$", "$30\\text{ g/cm}^3$", "$10\\text{ g/cm}^3$"], "c": 1, "r": ["$\\rho=\\dfrac{m}{V}=\\dfrac{20}{10}$.", "$\\rho=2\\text{ g/cm}^3$."]}, {"n": 2, "t": "Jedinica za gustinu (u SI) je:", "o": ["m/s", "kg/m³", "N", "J", "Pa"], "c": 1, "r": ["Gustina = masa po zapremini.", "Jedinica: kg/m³."]}, {"n": 3, "t": "Gustina vode približno iznosi:", "o": ["$0{,}1\\text{ g/cm}^3$", "$1\\text{ g/cm}^3$", "$10\\text{ g/cm}^3$", "$100\\text{ g/cm}^3$", "$1000\\text{ g/cm}^3$"], "c": 1, "r": ["Voda: $1\\text{ g/cm}^3=1000\\text{ kg/m}^3$.", ""]}, {"n": 4, "t": "Masa tela meri se:", "o": ["lenjirom", "vagom", "termometrom", "satom", "dinamometrom"], "c": 1, "r": ["Za merenje mase koristi se vaga.", ""]}];
+const D=[{"n": 1, "t": "Jedinica za silu je:", "o": ["paskal", "njutn (N)", "džul", "vat", "kilogram"], "c": 1, "r": ["Sila se meri u njutnima.", "Oznaka: N."]}, {"n": 2, "t": "Sila kojom Zemlja privlači telo naziva se:", "o": ["trenje", "težina (sila teže)", "elastična sila", "potisak", "magnetna sila"], "c": 1, "r": ["Zemljino privlačenje daje težinu tela.", ""]}, {"n": 3, "t": "Sila se meri:", "o": ["vagom", "lenjirom", "dinamometrom", "termometrom", "satom"], "c": 2, "r": ["Za merenje sile koristi se dinamometar.", ""]}, {"n": 4, "t": "Telo mase $1\\text{ kg}$ ima težinu približno (uz $g\\approx 10\\text{ N/kg}$):", "o": ["$1\\text{ N}$", "$10\\text{ N}$", "$100\\text{ N}$", "$0{,}1\\text{ N}$", "$1000\\text{ N}$"], "c": 1, "r": ["$G=m\\cdot g=1\\cdot 10$.", "$G=10\\text{ N}$."]}];
+const E=[{"n": 1, "t": "Koliko metara ima $1\\text{ km}$?", "o": ["$10$", "$100$", "$1000$", "$1$", "$10000$"], "c": 2, "r": ["$1\\text{ km}=1000\\text{ m}$.", ""]}, {"n": 2, "t": "Koliko centimetara ima $2\\text{ m}$?", "o": ["$20$", "$200$", "$2000$", "$2$", "$0{,}2$"], "c": 1, "r": ["$1\\text{ m}=100\\text{ cm}$, pa $2\\cdot 100$.", "$=200\\text{ cm}$."]}, {"n": 3, "t": "Koliko grama ima $1\\text{ kg}$?", "o": ["$100$", "$10$", "$1000$", "$500$", "$2000$"], "c": 2, "r": ["$1\\text{ kg}=1000\\text{ g}$.", ""]}, {"n": 4, "t": "Termometar je instrument kojim merimo:", "o": ["masu", "dužinu", "temperaturu", "vreme", "silu"], "c": 2, "r": ["Termometar meri temperaturu.", ""]}];
+
+const EXAMS={
+  'vel':{label:'Veličine i jedinice', z:A},
+  'brz':{label:'Brzina i kretanje', z:B},
+  'mas':{label:'Masa i gustina', z:C},
+  'sil':{label:'Sila i težina', z:D},
+  'mer':{label:'Merenje', z:E}
+};
+let YEAR='vel';
+let ZADACI=EXAMS[YEAR].z;
+let KEY='mathia_f6_'+YEAR;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+let stanje=load();
+
+function updateProgress(){
+  const n=Object.values(stanje).filter(v=>v==='ok').length;
+  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
+  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  ZADACI.forEach(z=>{
+    const solved=stanje[z.n]==='ok';
+    const card=document.createElement('div'); card.className='zad';
+    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
+    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
+    card.innerHTML=`
+      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
+      <div class="zad-q">${z.t}</div>
+      <div class="opcije">${opts}</div>
+      <button class="reveal-btn">Prikaži rešenje ✦</button>
+      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
+    // option clicks
+    const optEls=card.querySelectorAll('.opt');
+    optEls.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        const i=+btn.dataset.i;
+        optEls.forEach(b=>b.setAttribute('disabled','')); 
+        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
+        if(i!==z.c) btn.classList.add('wrong');
+        card.dataset.done='1';
+        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
+        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
+        const fb=document.createElement('div');
+        fb.className='feedback '+(i===z.c?'ok':'no');
+        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
+        card.querySelector('.opcije').after(fb);
+        updateProgress();
+      });
+    });
+    card.querySelector('.reveal-btn').addEventListener('click',e=>{
+      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
+      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+      if(!r.hidden) fitFormulas(r);
+    });
+    lista.appendChild(card);
+  });
+  updateProgress();
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
+});
+
+function fitFormulas(root){
+  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
+    var avail=box.clientWidth; if(avail<=0) return;
+    box.querySelectorAll('.katex').forEach(function(k){
+      k.style.fontSize=''; var size=1.02, g=0;
+      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
+    });
+  });
+}
+function typeset(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+  fitFormulas();
+}
+var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
+function go(){ render(); typeset(); }
+function switchYear(y){
+  if(!EXAMS[y]||y===YEAR) return;
+  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_f6_'+YEAR; stanje=load();
+  document.getElementById('lista').innerHTML='';
+  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
+  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
+  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Veličine i jedinice · uči s ljubavlju · mathia.rs';
+  render(); typeset();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
+if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
+</script>
+</body>
+</html>
