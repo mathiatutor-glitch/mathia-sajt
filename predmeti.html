@@ -101,16 +101,17 @@
   footer .footsig-wrap{line-height:1;padding-right:8px}
   footer .footsig{font-family:'Tangerine',cursive;font-weight:700;font-size:2.4rem;display:inline-block;transform:rotate(-4deg);background:linear-gradient(100deg,#5E461E 0%,#8A6A2C 30%,#E7D2A2 50%,#8A6A2C 70%,#5E461E 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
   .mathia-copyr{text-align:center;padding:18px 20px 0;margin-top:16px;border-top:1px solid rgba(231,210,162,.14);font-size:.75rem;color:rgba(251,246,238,.5);letter-spacing:.02em;line-height:1.5}
-
-/* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
-.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
-.katex{max-width:100%}
-.katex{font-family:KaTeX_Main,"Times New Roman",serif}
-.scroll-h{position:static;bottom:auto;margin-top:22px}
-.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
-.rule{margin-top:30px}
+</style>
+<style>/* === Heder v2 (MATHIA) === */
+header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(176,138,74,.16)}
+.nav-r{align-items:center}
+.nav-r>a:not(.navcta){position:relative;transition:color .15s}
+.nav-r>a:not(.navcta)::after{content:"";position:absolute;left:0;right:0;bottom:-3px;margin:auto;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#c69a52,#e7d4b0);transition:width .22s}
+.nav-r>a:not(.navcta):hover::after{width:100%}
+.navcta{background:linear-gradient(135deg,#c69a52,#a87f36);color:#fff !important;padding:9px 18px !important;border-radius:999px;font-weight:700 !important;box-shadow:0 6px 16px rgba(176,138,74,.30);white-space:nowrap;text-decoration:none;display:inline-block}
+.navcta::after{display:none !important}
+.navcta:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(176,138,74,.40);color:#fff !important}
+@media(max-width:760px){.navcta{padding:8px 14px !important}}
 </style>
 </head>
 <body>
@@ -123,7 +124,7 @@ html,body{overflow-x:hidden}
       <a href="prodavnica.html">Prodavnica</a>
       <a href="index.html#paketi">Paketi</a>
       <a href="o-marini.html">O meni</a>
-    </nav>
+    <a class="navcta" href="index.html#paketi">Probaj besplatno →</a></nav>
   </div>
 </header>
 
@@ -174,7 +175,7 @@ html,body{overflow-x:hidden}
       </div>
       <div class="grp">
         <div class="ghead"><span class="gico">🎓</span><div><div class="gname">Fakultet</div><div class="gcap">inženjerski predmeti</div></div></div>
-        <ul><li><a href="predmet-algebra.html">Algebra</a></li><li><a href="predmet-analiza1.html">Matematička analiza 1</a></li><li><a href="predmet-analiza2.html">Matematička analiza 2</a></li><li><a href="predmet-linearna-algebra.html">Linearna algebra</a></li><li><a href="predmet-diskretna-matematika.html">Diskretna matematika</a></li><li><a href="predmet-kompleksna-analiza.html">Kompleksna analiza</a></li><li><a href="predmet-verovatnoca.html">Verovatnoća i statistika</a></li><li><a href="predmet-operaciona-istrazivanja.html">Operaciona istraživanja</a></li><li><a href="predmet-elektrotehnika.html">Teorija električnih kola</a></li><li><a href="predmet-elektricna-merenja.html">Električna merenja</a></li><li><a href="predmet-uvod-u-elektroniku.html">Uvod u elektroniku</a></li><li><a href="predmet-sistemi-signali.html">Sistemi i signali</a></li><li><a href="predmet-merenja-nev.html">Merenja neelektričnih veličina</a></li><li><a href="predmet-fizika-mehanika.html">Mehanika</a></li><li><a href="predmet-nacrtna-geometrija-1.html">Nacrtna geometrija 1</a></li><li><a href="predmet-nacrtna-geometrija-2.html">Nacrtna geometrija 2</a></li><li><a href="predmet-arhitektura-racunara.html">Arhitektura računara</a></li></ul>
+        <ul><li><a href="predmet-algebra.html">Algebra</a></li><li><a href="predmet-analiza1.html">Matematička analiza 1</a></li><li><a href="predmet-analiza2.html">Matematička analiza 2</a></li><li><a href="predmet-linearna-algebra.html">Linearna algebra</a></li><li><a href="predmet-diskretna-matematika.html">Diskretna matematika</a></li><li><a href="predmet-kompleksna-analiza.html">Kompleksna analiza</a></li><li><a href="predmet-verovatnoca.html">Verovatnoća i statistika</a></li><li><a href="predmet-operaciona-istrazivanja.html">Operaciona istraživanja</a></li><li><a href="predmet-elektrotehnika.html">Teorija električnih kola</a></li><li><a href="predmet-elektricna-merenja.html">Električna merenja</a></li><li><a href="predmet-uvod-u-elektroniku.html">Uvod u elektroniku</a></li><li><a href="predmet-sistemi-signali.html">Sistemi i signali</a></li><li><a href="predmet-merenja-nev.html">Merenja neelektričnih veličina</a></li><li><a href="predmet-fizika-mehanika.html">Mehanika</a></li><li><a href="predmet-nacrtna-geometrija-1.html">Nacrtna geometrija 1</a></li><li><a href="predmet-nacrtna-geometrija-2.html">Nacrtna geometrija 2</a></li><li><a href="predmet-arhitektura-racunara.html">Arhitektura računara</a></li><li><a href="predmet-oop.html">Objektno orijentisano programiranje</a></li><li><a href="predmet-baze-podataka-1.html">Baze podataka 1</a></li><li><a href="predmet-baze-podataka-2.html">Baze podataka 2</a></li><li><a href="predmet-web-programiranje.html">Web programiranje</a></li><li><a href="predmet-programski-prevodioci.html">Programski prevodioci</a></li><li><a href="predmet-hci.html">Interakcija čovek-računar (HCI)</a></li><li><a href="predmet-labview.html">LabVIEW</a></li><li><a href="predmet-ltspice.html">LTSpice</a></li><li><a href="predmet-pspice.html">PSpice</a></li></ul>
       </div>
       <div class="grp">
         <div class="ghead"><span class="gico">💻</span><div><div class="gname">Programiranje</div><div class="gcap">od Scratch-a do TypeScript-a</div></div></div>
@@ -228,5 +229,5 @@ html,body{overflow-x:hidden}
         data-lang="sr" data-sub="Predmeti — nađi svoj put" data-sub-en="Subjects — find your path"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Pomažem ti da nađeš svoj put — da otkriješ za šta si talentovan(a), koju školu ili fakultet da upišeš i s kojim predmetima da kreneš. Pitaj me bilo šta o predmetima!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 I help you find your path — discover what you&#39;re good at, which school or faculty to choose, and which subjects to start with. Ask me anything about the subjects!"></script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body>
+</body>
 </html>
