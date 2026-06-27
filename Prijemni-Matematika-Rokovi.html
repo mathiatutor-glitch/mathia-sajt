@@ -42,12 +42,12 @@ h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin
 .zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
 .zad-n.solved{background:var(--good)}
-.zad-q{font-size:1.1rem;line-height:1.75;margin-bottom:16px;overflow-x:auto}
-.opcije{display:flex;flex-direction:column;gap:9px}
-.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:10px 14px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
+.opcije{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
 .opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
 .opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
-.opt-m{flex:1;overflow-x:auto;overflow-y:hidden;padding:3px 0}
+.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
 .opt.correct{background:#edf6ee;border-color:var(--good)}
 .opt.wrong{background:#fbeeed;border-color:var(--bad)}
 .opt.correct .opt-l{background:var(--good);color:#fff}
@@ -63,10 +63,10 @@ h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin
 .reveal-btn:hover{background:var(--acc);color:#fff}
 .resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
 .res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
-.rstep{padding:7px 0;color:var(--ink);overflow-x:auto;line-height:1.7}
+.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
 .rstep+.rstep{border-top:1px solid #f3ead9}
 .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
-.katex{white-space:nowrap}
+.katex{white-space:nowrap;font-size:1.02em}
 .foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
 .reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
 </style>
@@ -81,13 +81,11 @@ h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin
 </div>
 
 <div class="page">
-  <div class="chips">
-    <span class="chip active">Jun 2023</span>
-    <span class="chip soon">Jun 2022</span>
-    <span class="chip soon">Jun 2021</span>
-    <span class="chip soon">Septembar 2023</span>
+  <div class="chips" id="roksel">
+    <span class="chip active" data-y="2024">Jun 2024</span>
+    <span class="chip" data-y="2023">Jun 2023</span>
   </div>
-  <div class="intro"><b>Rok: Jun 2023</b> · 20 zadataka · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+  <div class="intro"><b id="rok-label">Rok: Jun 2024</b> · 20 zadataka · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
 
   <div class="prog-wrap">
     <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
@@ -96,13 +94,13 @@ h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin
 
   <div id="lista"></div>
   <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
-  <div class="foot">MATF · Jun 2023 · uči s ljubavlju · mathia.rs</div>
+  <div class="foot" id="rok-foot">MATF · Jun 2024 · uči s ljubavlju · mathia.rs</div>
 </div>
 
 <script>
 // ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
 // t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
-const ZADACI = [
+const Z2023 = [
 {n:1,t:"Broj $\\dfrac{\\sqrt6}{\\sqrt3-\\sqrt6-\\sqrt{24}-\\sqrt{48}+\\sqrt{108}}$ jednak je:",
  o:["$-\\dfrac{2-\\sqrt2}{3}$","$-\\dfrac{2+\\sqrt2}{3}$","$\\dfrac{2-\\sqrt2}{3}$","$\\dfrac{2+\\sqrt2}{3}$","$\\dfrac{2}{3}$"],c:1,
  r:["Imenilac: $\\sqrt3-\\sqrt6-2\\sqrt6-4\\sqrt3+6\\sqrt3=3\\sqrt3-3\\sqrt6$.","$\\dfrac{\\sqrt6}{3(\\sqrt3-\\sqrt6)}\\cdot\\dfrac{\\sqrt3+\\sqrt6}{\\sqrt3+\\sqrt6}=\\dfrac{\\sqrt{18}+6}{3(3-6)}=-\\dfrac{3\\sqrt2+6}{9}=-\\dfrac{2+\\sqrt2}{3}.$"]},
@@ -165,7 +163,76 @@ const ZADACI = [
  r:["Opšti član: $\\binom{2023}{k}2^{\\frac{2023-k}{2}}3^{\\frac{k}{3}}$.","Racionalan je kada je $2023-k$ paran i $k$ deljiv sa $3$, tj. $k$ neparan i $3\\mid k$: $k\\in\\{3,9,15,\\dots,2019\\}$.","Tih vrednosti ima $337.$"]}
 ];
 
-const KEY='mathia_progress_zad_matf_jun2023';
+const Z2024 = [
+{n:1,t:"Ako je $A=\\sum_{n=1}^{2024}\\dfrac{1}{n(n+1)}$, $B=\\sin\\dfrac{\\pi}{6}$, $C=\\sin\\dfrac{\\pi}{3}+\\sin\\dfrac{3\\pi}{4}$ i $D=\\sum_{n=1}^{2024}\\dfrac{1}{2^{n}}$, onda je:",
+ o:["$B<A<D<C$","$B<D<A<C$","$A<D<B<C$","$C<B<A<D$","nijedan od ponuđenih odgovora"],c:0,
+ r:["$A=\\sum\\left(\\frac1n-\\frac1{n+1}\\right)=1-\\frac1{2025}$, $B=\\frac12$, $C=\\frac{\\sqrt3+\\sqrt2}{2}$, $D=1-\\frac1{2^{2024}}$.","Kako je $\\frac12>\\frac1{2025}>\\frac1{2^{2024}}$ i $C>1$, sledi $B<A<D<C$."]},
+{n:2,t:"Ako je $a\\in(-1,0)$, onda je $\\dfrac{\\sqrt{|a-1|}}{2(a-1)}\\cdot\\left(\\sqrt{2-2\\sqrt{a+1}+a}+\\sqrt{2+2\\sqrt{a+1}+a}\\right)$ jednako:",
+ o:["$\\sqrt{\\dfrac{a+1}{a-1}}$","$-\\dfrac{1}{2\\sqrt{1-a}}$","$-\\dfrac{1}{\\sqrt{1-a}}$","$-\\dfrac{\\sqrt{1+a}}{\\sqrt{1-a}}$","$\\dfrac{1}{\\sqrt{a-1}}$"],c:2,
+ r:["Korenovi se svode na $\\sqrt{(\\sqrt{a+1}-1)^2}$ i $\\sqrt{(\\sqrt{a+1}+1)^2}$.","Zbir je $2$, a $a-1=-\\sqrt{(1-a)^2}$, pa izraz iznosi $-\\dfrac{1}{\\sqrt{1-a}}$."]},
+{n:3,t:"Parametara $a\\in\\mathbb{R}$ za koje sistem jednačina $x^2-y^2=x+y$, $x+ay=1$ ima tačno jedno rešenje u skupu realnih brojeva ima:",
+ o:["$0$","$1$","$2$","$3$","beskonačno mnogo"],c:1,
+ r:["Sistem je ekvivalentan sa $x=1-ay$, $(a+1)y\\big((a-1)y-1\\big)=0$.","Za $a=-1$ — beskonačno rešenja, za $a=1$ — jedno, inače dva. Dakle tačno jedno samo za $a=1$ → $1$ vrednost."]},
+{n:4,t:"Neka su $a,b\\in\\mathbb{R}$, a $x_1$ i $x_2$ nule kvadratne funkcije $f(x)=x^2+ax+b$. Ako je $f(2)=4$ i $2x_1x_2+x_1+x_2=-5$, onda je $a-b$ jednako:",
+ o:["$-3$","$1$","$\\dfrac54$","$3$","$5$"],c:3,
+ r:["$f(2)=4\\Rightarrow 2a+b=0$. Vietove: $x_1+x_2=-a,\\ x_1x_2=b$.","$2b-a=-5\\Rightarrow a=1,\\ b=-2$, pa $a-b=3$."]},
+{n:5,t:"Zbir svih $p\\in\\mathbb{R}$ za koje jednačina $x^2+px-7=0$ ima rešenja čija je apsolutna vrednost razlike jednaka $8$ je:",
+ o:["$7$","$-7$","$1$","$6$","$0$"],c:4,
+ r:["$|x_1-x_2|=\\sqrt{p^2+28}=8\\Rightarrow p^2=36$.","$p\\in\\{-6,6\\}$, pa je zbir $0$."]},
+{n:6,t:"Skup rešenja nejednačine $\\sqrt{(x-1)(x-2)(x+1)}>x-2$ je:",
+ o:["$[-1,1]\\cup(2,\\infty)$","$[-1,1]\\cup[2,\\infty)$","$[-1,1]$","$(2,\\infty)$","$[2,\\infty)$"],c:0,
+ r:["Definisano za $x\\in[-1,1]\\cup[2,\\infty)$. Na $[-1,1]$ uvek važi.","Na $[2,\\infty)$ svodi se na $(x-2)(x^2-x+1)>0$, tj. $x>2$. Rešenje: $[-1,1]\\cup(2,\\infty)$."]},
+{n:7,t:"Skup rešenja nejednačine $(4x^2-10x+7)^{x^2-x}>1$ je:",
+ o:["$(-\\infty,0)\\cup\\left(\\tfrac32,\\infty\\right)$","$(-\\infty,1)\\cup\\left(\\tfrac32,\\infty\\right)$","$\\left(1,\\tfrac32\\right)$","$(0,1)\\cup\\left(1,\\tfrac32\\right)$","$(-\\infty,0)\\cup(1,\\infty)$"],c:0,
+ r:["Baza $4x^2-10x+7>0$ za svako $x$. Analizom slučajeva $>1$, $=1$, $<1$.","Dobija se $x\\in(-\\infty,0)\\cup\\left(\\tfrac32,\\infty\\right)$."]},
+{n:8,t:"Proizvod rešenja jednačine $x^{(\\log_3 x)^2+\\log_3 x^2}=9x$ je:",
+ o:["$\\dfrac1{27}$","$\\dfrac19$","$\\dfrac13$","$1$","$3$"],c:1,
+ r:["Smena $t=\\log_3 x$: $t^3+2t^2-t-2=(t+2)(t+1)(t-1)=0$.","$x\\in\\{\\tfrac19,\\tfrac13,3\\}$; proizvod je $\\tfrac19$."]},
+{n:9,t:"Trapez $ABCD$, čije su osnovice $AB$ i $CD$ ($AB>CD$), upisan je u krug poluprečnika $1$. Ako je $AC=\\sqrt3$ i $BC=1$, onda je površina tog trapeza:",
+ o:["$\\dfrac{\\sqrt3}{2}$","$\\dfrac{3\\sqrt3}{4}$","$\\dfrac{2\\sqrt3}{3}$","$\\dfrac32$","nijedan od ponuđenih odgovora"],c:1,
+ r:["$\\triangle ABC$ je pravougli sa $AB=2$ i visinom $\\tfrac{\\sqrt3}{2}$; trapez je jednakokrak sa $CD=1$.","Površina $=\\dfrac{2+1}{2}\\cdot\\dfrac{\\sqrt3}{2}=\\dfrac{3\\sqrt3}{4}$."]},
+{n:10,t:"Zbir rešenja jednačine $4\\sin^2 x-2(\\sqrt3+1)\\sin x+\\sqrt3=0$ na intervalu $(0,2\\pi)$ je:",
+ o:["$0$","$\\dfrac{\\pi}{2}$","$\\pi$","$\\dfrac{3\\pi}{2}$","$2\\pi$"],c:4,
+ r:["$(2\\sin x-1)(2\\sin x-\\sqrt3)=0$, pa $\\sin x\\in\\{\\tfrac12,\\tfrac{\\sqrt3}{2}\\}$.","Na $(0,2\\pi)$: $\\tfrac{\\pi}{6},\\tfrac{5\\pi}{6},\\tfrac{\\pi}{3},\\tfrac{2\\pi}{3}$; zbir je $2\\pi$."]},
+{n:11,t:"Ako je $\\alpha\\in\\left(\\dfrac{\\pi}{4},\\dfrac{3\\pi}{4}\\right)$ takvo da važi $\\sqrt2\\sin\\alpha+\\sqrt2\\cos\\alpha=1$, onda je $\\cos\\alpha$ jednak:",
+ o:["$-\\dfrac{\\sqrt3-1}{2\\sqrt2}$","$\\dfrac{\\sqrt2-\\sqrt3}{2}$","$\\dfrac{\\sqrt3-\\sqrt2}{2}$","$\\dfrac{\\sqrt3-1}{2\\sqrt2}$","$\\dfrac{\\sqrt3+1}{2\\sqrt2}$"],c:0,
+ r:["$\\sin\\!\\left(\\alpha+\\tfrac{\\pi}{4}\\right)=\\tfrac12$ i $\\alpha\\in\\left(\\tfrac{\\pi}{4},\\tfrac{3\\pi}{4}\\right)\\Rightarrow\\alpha=\\tfrac{7\\pi}{12}$.","Tada je $\\cos\\alpha=-\\dfrac{\\sqrt3-1}{2\\sqrt2}$."]},
+{n:12,t:"U pravu kružnu kupu upisan je prav valjak najveće moguće zapremine. Odnos visina valjka i kupe pripada intervalu:",
+ o:["$\\left(0,\\tfrac15\\right)$","$\\left[\\tfrac15,\\tfrac25\\right]$","$\\left(\\tfrac25,\\tfrac35\\right)$","$\\left[\\tfrac35,\\tfrac45\\right]$","$\\left(\\tfrac45,1\\right)$"],c:1,
+ r:["Ako je $\\alpha=\\tfrac{h}{H}$, zapremina valjka je proporcionalna sa $\\alpha(1-\\alpha)^2$.","Maksimum se dostiže za $\\alpha=\\tfrac13\\in\\left[\\tfrac15,\\tfrac25\\right]$."]},
+{n:13,t:"Proizvod svih realnih brojeva $c$ za koje je prava $y=-x+c$ tangenta elipse $\\dfrac{x^2}{20}+\\dfrac{(y-1)^2}{5}=1$ jednak je:",
+ o:["$-30$","$-24$","$-20$","$-18$","$-12$"],c:1,
+ r:["Uslov dodira daje $-16(c+4)(c-6)=0$, pa $c\\in\\{-4,6\\}$.","Proizvod je $-24$."]},
+{n:14,t:"Zbir trećeg i sedmog člana opadajućeg aritmetičkog niza je $6$, a njihov proizvod je $8$. Zbir prvih $12$ članova tog niza je:",
+ o:["$15$","$20$","$27$","$33$","$45$"],c:2,
+ r:["$(a+2d)+(a+6d)=6$ i $(a+2d)(a+6d)=8$; pošto niz opada, $d=-\\tfrac12$.","$S_{12}=12a+66d=27$."]},
+{n:15,t:"Trocifrenih brojeva čiji je zbir kvadrata cifara deljiv sa $3$ ima:",
+ o:["$48$","$102$","$216$","$264$","$300$"],c:3,
+ r:["Kvadrat daje ostatak $0$ ili $1$ pri deljenju sa $3$, pa su cifre ili sve deljive sa $3$ ili nijedna.","Broj: $3\\cdot4\\cdot4+6\\cdot6\\cdot6=264$."]},
+{n:16,t:"Neka je $z$ kompleksan broj iz drugog kvadranta za koji važi $\\operatorname{Im}\\dfrac{z+2}{2-i}=1$ i $\\operatorname{Re}(z^2+1)=1$. Onda je $z^{24}$ jednako:",
+ o:["$2^{12}$","$2^{12}(1+i)$","$3^{24}2^{12}i$","$3^{12}2^{24}$","$3^{24}2^{12}$"],c:4,
+ r:["Iz uslova: $a+2b=3$ i $a^2-b^2=0$, uz $a\\le 0,\\ b>0$ daje $z=-3+3i$.","$z^2=3^2(-2i)$, pa $z^{24}=3^{24}2^{12}$."]},
+{n:17,t:"Ako je $1+i\\sqrt3$ nula polinoma $x^3+ax^2+2x+b$, gde su $a,b\\in\\mathbb{R}$, onda je realna nula tog polinoma:",
+ o:["$-2$","$-1$","$1$","$2$","$4$"],c:1,
+ r:["Uvrštavanjem: $a=-1,\\ b=4$, pa je polinom $(x^2-2x+4)(x+1)$.","Realna nula je $-1$."]},
+{n:18,t:"Neka su $f,g:\\mathbb{R}\\to\\mathbb{R}$ funkcije za koje važi $f(x-2)=3x-1$ i $g(2x+1)=4x+1$ za svako $x$. Ako je $(f\\circ g)(a)=2024$, onda je $a$ jednako:",
+ o:["$118$","$\\dfrac{337}{2}$","$336$","$\\dfrac{1009}{3}$","$337$"],c:4,
+ r:["$f(t)=3t+5$ i $g(t)=2t-1$.","$(f\\circ g)(a)=6a+2=2024\\Rightarrow a=337$."]},
+{n:19,t:"Broj bijekcija skupa $\\{1,2,\\dots,2024\\}$ u sebe, kojima se svaki paran broj slika u sebe, je:",
+ o:["$2024!$","$2\\cdot1012!$","$1012!$","$2^{1012}$","nijedan od ponuđenih odgovora"],c:2,
+ r:["Takva bijekcija je jednoznačno određena bijekcijom na skupu neparnih elemenata.","Neparnih ima $1012$, pa je broj $1012!$."]},
+{n:20,t:"Ako su koeficijenti polinoma $\\left(1+\\dfrac{x}{2}\\right)^{n}$ uz $x^{2024}$ i $x^{2025}$ jednaki, pri čemu je $n>2025$, onda je $n$ jednak:",
+ o:["$4048$","$4050$","$6073$","$6074$","$6075$"],c:3,
+ r:["$\\binom{n}{2025}\\frac1{2^{2025}}=\\binom{n}{2024}\\frac1{2^{2024}}$.","$\\frac1{2025}=\\frac{2}{n-2024}\\Rightarrow n=6074$."]}
+];
+
+const EXAMS={
+  '2024':{label:'Jun 2024', z:Z2024},
+  '2023':{label:'Jun 2023', z:Z2023}
+};
+let YEAR='2024';
+let ZADACI=EXAMS[YEAR].z;
+let KEY='mathia_progress_zad_matf_'+YEAR;
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
 function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
 let stanje=load();
@@ -211,6 +278,7 @@ function render(){
     card.querySelector('.reveal-btn').addEventListener('click',e=>{
       const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
       e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+      if(!r.hidden) fitFormulas(r);
     });
     lista.appendChild(card);
   });
@@ -221,12 +289,34 @@ document.getElementById('reset').addEventListener('click',()=>{
   if(confirm('Resetovati napredak za ovaj rok?')){stanje={};save(stanje);location.reload();}
 });
 
-function go(){
-  render();
+function fitFormulas(root){
+  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
+    var avail=box.clientWidth; if(avail<=0) return;
+    box.querySelectorAll('.katex').forEach(function(k){
+      k.style.fontSize=''; var size=1.02, g=0;
+      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
+    });
+  });
+}
+function typeset(){
   if(window.renderMathInElement){
     renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
   }
+  fitFormulas();
 }
+var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
+function go(){ render(); typeset(); }
+function switchYear(y){
+  if(!EXAMS[y]||y===YEAR) return;
+  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_progress_zad_matf_'+YEAR; stanje=load();
+  document.getElementById('lista').innerHTML='';
+  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
+  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Rok: '+EXAMS[y].label;
+  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATF · '+EXAMS[y].label+' · uči s ljubavlju · mathia.rs';
+  render(); typeset();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
 if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
 </script>
 </body>
