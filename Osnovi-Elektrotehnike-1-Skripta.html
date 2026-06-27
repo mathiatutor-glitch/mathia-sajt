@@ -1,0 +1,119 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Osnovi elektrotehnike 1 · Skripta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.55}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:54vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:16px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,6vw,44px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:32em;margin:0 auto}
+.foot{margin-top:24px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:0 12px 28px rgba(67,44,55,.05)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 14px Inter;flex:none}
+.box{border-radius:12px;padding:11px 14px;margin:9px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:11.5px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.task{font-weight:600;margin-bottom:4px}
+.ans{font-size:14px;color:var(--golddk);margin-top:4px}
+.katex-display{margin:.4em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
+</style></head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">Q E R</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">skripta · sažeto</div>
+<h1 data-i18n="name">Osnovi elektrotehnike 1</h1>
+<p class="subtitle" data-i18n="sub">Sažeto, sa ključnim formulama i zadacima zatvorenog tipa.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Naelektrisanje i Kulonov zakon</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$F=\frac{1}{4\pi\varepsilon_0}\frac{Q_1Q_2}{r^2}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Jedinica naelektrisanja je: a) V  b) C  c) A  d) F</div><div class="ans">b) kulon (C).</div></div></section>
+<section class="topic"><h2><span class="tnum">2</span> <span>Jačina električnog polja</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\vec E=\frac{\vec F}{q}\qquad E=\frac{Q}{4\pi\varepsilon_0 r^2}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Ako se rastojanje udvostruči, jačina polja tačkastog naboja: a) 2×  b) ½  c) ¼</div><div class="ans">c) ¼ (zavisi od $1/r^2$).</div></div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span>Gausov zakon</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\oint\vec E\cdot d\vec S=\frac{Q}{\varepsilon_0}\qquad E_{\text{ravan}}=\frac{\sigma}{2\varepsilon_0}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Polje beskonačne naelektrisane ravni zavisi od rastojanja? a) da, $1/r$  b) da, $1/r^2$  c) ne</div><div class="ans">c) ne — konstantno je.</div></div></section>
+<section class="topic"><h2><span class="tnum">4</span> <span>Potencijal i napon</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$V=\frac{Q}{4\pi\varepsilon_0 r}\qquad U_{AB}=V_A-V_B$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Jedinica napona je: a) C  b) V  c) Ω</div><div class="ans">b) volt (V).</div></div></section>
+<section class="topic"><h2><span class="tnum">5</span> <span>Provodnik u elektrostatičkom polju</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\vec E_{\text{unutra}}=0\qquad E_{\text{pov}}=\frac{\sigma}{\varepsilon_0}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Polje unutar provodnika u ravnoteži je: a) 0  b) najveće  c) const ≠ 0</div><div class="ans">a) 0.</div></div></section>
+<section class="topic"><h2><span class="tnum">6</span> <span>Kondenzator i kapacitivnost</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$C=\frac{Q}{U}\qquad C=\frac{\varepsilon S}{d}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Ako se rastojanje ploča udvostruči (vazduh), kapacitivnost: a) 2×  b) ½  c) isto</div><div class="ans">b) ½.</div></div></section>
+<section class="topic"><h2><span class="tnum">7</span> <span>Veze kondenzatora</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$C_p=C_1+C_2+\dots\qquad \frac{1}{C_s}=\frac{1}{C_1}+\frac{1}{C_2}+\dots$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Dva kondenzatora po 2 µF redno daju: a) 4 µF  b) 1 µF  c) 2 µF</div><div class="ans">b) 1 µF.</div></div></section>
+<section class="topic"><h2><span class="tnum">8</span> <span>Dielektrik u polju</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\vec D=\varepsilon\vec E\qquad \varepsilon=\varepsilon_0\varepsilon_r$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Pri istom naboju, uvođenje dielektrika ($\varepsilon_r>1$) polje $E$: a) raste  b) opada  c) isto</div><div class="ans">b) opada.</div></div></section>
+<section class="topic"><h2><span class="tnum">9</span> <span>Energija elektrostatičkog polja</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$W=\frac12 CU^2=\frac{Q^2}{2C}=\frac12 QU$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Ako se napon udvostruči, energija kondenzatora: a) 2×  b) 4×  c) ½</div><div class="ans">b) 4×.</div></div></section>
+<section class="topic"><h2><span class="tnum">10</span> <span>Gustina i jačina struje</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$I=\int\vec J\cdot d\vec S\qquad I=\frac{dQ}{dt}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Jedinica gustine struje je: a) A  b) A/m²  c) C</div><div class="ans">b) A/m².</div></div></section>
+<section class="topic"><h2><span class="tnum">11</span> <span>Omov zakon i otpor provodnika</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$U=RI\qquad R=\rho\frac{l}{S}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Dvostruka dužina, isti presek → otpor: a) $2R$  b) $R/2$  c) $R$</div><div class="ans">a) $2R$.</div></div></section>
+<section class="topic"><h2><span class="tnum">12</span> <span>Veze otpornika</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$R_s=R_1+R_2+\dots\qquad \frac{1}{R_p}=\frac{1}{R_1}+\frac{1}{R_2}+\dots$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Dva otpornika po 10 Ω paralelno: a) 20 Ω  b) 5 Ω  c) 10 Ω</div><div class="ans">b) 5 Ω.</div></div></section>
+<section class="topic"><h2><span class="tnum">13</span> <span>Džulov zakon</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P=UI=I^2R=\frac{U^2}{R}\qquad W=Pt$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Ako se struja udvostruči (isti $R$), snaga: a) 2×  b) 4×  c) ½</div><div class="ans">b) 4×.</div></div></section>
+<section class="topic"><h2><span class="tnum">14</span> <span>Kirhofovi zakoni</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\sum_k I_k=0\qquad \sum_k U_k=0$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Prvi Kirhofov zakon (KZS) odnosi se na: a) čvor  b) konturu  c) granu</div><div class="ans">a) čvor.</div></div></section>
+<section class="topic"><h2><span class="tnum">15</span> <span>Tevenin i Norton</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$U_T=U_{oc}\qquad R_T=\frac{U_{oc}}{I_{sc}}\qquad I_N=I_{sc}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Tevenenov ekvivalent je: a) izvor napona + otpor  b) samo otpor  c) samo izvor</div><div class="ans">a) izvor napona u seriji sa otporom.</div></div></section>
+<section class="topic"><h2><span class="tnum">16</span> <span>Uslov maksimalne snage</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$R_p=R_g\ \Rightarrow\ P_{max}=\frac{E^2}{4R_g}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Maksimalna snaga na potrošaču je kada je $R_p$ jednako: a) 0  b) ∞  c) $R_g$</div><div class="ans">c) $R_g$.</div></div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="osnovi-elektrotehnike-1" data-name="Marina" data-subj="Osnovi elektrotehnike 1"></script>
+<script defer src="gate.js" data-subject="elektricna-merenja"></script>
+<script>
+var I18N={"kind": {"en": "study notes · concise", "de": "Skript · kompakt", "fr": "fiche · synthèse", "es": "apuntes · resumen", "it": "dispensa · sintesi", "ru": "конспект · кратко", "pt": "resumo · conciso"}, "name": {"en": "Fundamentals of Electrical Engineering 1", "de": "Grundlagen der Elektrotechnik 1", "fr": "Bases du génie électrique 1", "es": "Fundamentos de electrotecnia 1", "it": "Fondamenti di elettrotecnica 1", "ru": "Основы электротехники 1", "pt": "Fundamentos de eletrotecnia 1"}, "sub": {"en": "Concise, with key formulas and closed-type questions.", "de": "Kompakt, mit den wichtigsten Formeln und Auswahlaufgaben.", "fr": "Synthétique, avec les formules clés et des questions à choix.", "es": "Resumido, con las fórmulas clave y preguntas de opción.", "it": "Sintetico, con le formule chiave e domande a scelta.", "ru": "Кратко, с ключевыми формулами и вопросами с выбором ответа.", "pt": "Conciso, com as fórmulas-chave e questões de escolha."}, "formule": {"en": "KEY FORMULAS", "de": "WICHTIGE FORMELN", "fr": "FORMULES CLÉS", "es": "FÓRMULAS CLAVE", "it": "FORMULE CHIAVE", "ru": "КЛЮЧЕВЫЕ ФОРМУЛЫ", "pt": "FÓRMULAS-CHAVE"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>

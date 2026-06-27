@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osnovi elektrotehnike 2 — Mathia</title>
+<meta name="description" content="Naizmenične struje, fazori i impedansa, RLC kola, rezonansa i trofazni sistemi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FBF6EE;--paper2:#F5EADB;--blush:#F4E3DD;--rose:#CC8E86;--rose-dk:#B5746C;--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:1120px}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0}
+  p{margin:0}a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+  .goldtext{background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:13px 26px;font-family:inherit;font-weight:700;font-size:.92rem;letter-spacing:.02em;cursor:pointer;border:1.5px solid transparent;transition:transform .16s,box-shadow .16s}
+  .btn-gold{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;box-shadow:0 12px 30px -12px rgba(198,160,92,.85)}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--plum);border-color:var(--gold)}
+  .btn-ghost:hover{background:rgba(198,160,92,.12)}
+  .btn-ghost-l{background:transparent;color:#fff;border-color:rgba(231,210,162,.55)}
+  .btn-ghost-l:hover{background:rgba(231,210,162,.14)}
+  .orn{display:flex;align-items:center;gap:14px;justify-content:center;max-width:260px;margin:0 auto 14px;color:var(--gold)}
+  .orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+  .orn:after{background:linear-gradient(90deg,var(--gold),transparent)}
+  header{position:sticky;top:0;z-index:40;background:rgba(251,246,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord)}
+  header:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent)}
+  .nav{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:14px}
+  .brand{display:flex;flex-direction:column;line-height:1}
+  .brand .bmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;letter-spacing:.12em}
+  .brand .bsub{font-family:'Pinyon Script',cursive;color:var(--rose-dk);font-size:.95rem;margin-top:1px}
+  .nav-r{display:flex;align-items:center;gap:20px}
+  .nav-r a{position:relative;color:var(--plum2);font-weight:600;font-size:.82rem;letter-spacing:.05em;display:none}
+  @media(min-width:820px){.nav-r a{display:inline}}
+  .nav-r a:hover{color:var(--golddk)}
+  .hero{position:relative;background:linear-gradient(160deg,#4A2A38,#3A2330 60%,#2C1A25);color:#fff;padding:60px 0 66px;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 85% 0,rgba(231,210,162,.16),transparent 70%)}
+  .hero .wrap{position:relative}
+  .hero .back{display:inline-block;color:var(--goldlt);font-weight:700;font-size:.82rem;margin-bottom:16px}
+  .hero .eyebrow{color:var(--goldlt)}
+  .hero h1{font-size:clamp(2.2rem,6vw,3.6rem);margin:8px 0 14px;color:#fff}
+  .hero .lead{max-width:680px;color:#e9d9dd;font-size:1.08rem}
+  .hero .row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .sec{padding:58px 0}
+  .sec.alt{background:var(--card);border-top:1px solid var(--bord);border-bottom:1px solid var(--bord)}
+  .sec h2{color:var(--plum);font-size:clamp(1.7rem,4.4vw,2.4rem);text-align:center;margin-bottom:26px}
+  .topics{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:680px){.topics{grid-template-columns:1fr 1fr}}
+  .topic{display:flex;gap:14px;background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:18px 20px;box-shadow:0 14px 34px -26px rgba(120,70,80,.4)}
+  .topic .tk{font-size:22px;flex:0 0 auto;line-height:1.3}
+  .topic b{color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600}
+  .topic p{color:#6a5a62;font-size:.93rem;margin-top:3px}
+  .steps{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--paper);border:1px solid var(--bord);border-radius:16px;padding:22px}
+  .step .num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldlt));color:#4a3812;font-weight:800;margin-bottom:10px}
+  .step b{display:block;color:var(--plum);font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;margin-bottom:4px}
+  .step p{color:#6a5a62;font-size:.93rem}
+  .cta{background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#fff;text-align:center;padding:58px 0}
+  .cta h2{color:#fff;font-size:clamp(1.8rem,4.6vw,2.5rem);margin-bottom:10px}
+  .cta p{color:#e9d9dd;margin-bottom:22px}
+  footer{background:var(--plum);color:#d9c7cd;text-align:center;padding:38px 0}
+  footer .fbrand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.1em;margin-bottom:6px}
+  footer p{font-size:.85rem;color:#c7b3ba;margin-top:4px}
+  footer a{color:var(--goldlt);font-weight:700}
+.nav-r .lang{display:inline-block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.04em;color:var(--plum2);background:transparent;border:1.5px solid var(--gold);border-radius:100px;padding:5px 11px;cursor:pointer}
+</style>
+<script src="mathia-guard.js?v=1" defer></script>
+<style>/* === Heder v2 (MATHIA) === */
+header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(176,138,74,.16)}
+.nav-r{align-items:center}
+.nav-r>a:not(.navcta){position:relative;transition:color .15s}
+.nav-r>a:not(.navcta)::after{content:"";position:absolute;left:0;right:0;bottom:-3px;margin:auto;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#c69a52,#e7d4b0);transition:width .22s}
+.nav-r>a:not(.navcta):hover::after{width:100%}
+.navcta{background:linear-gradient(135deg,#c69a52,#a87f36);color:#fff !important;padding:9px 18px !important;border-radius:999px;font-weight:700 !important;box-shadow:0 6px 16px rgba(176,138,74,.30);white-space:nowrap;text-decoration:none;display:inline-block}
+.navcta::after{display:none !important}
+.navcta:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(176,138,74,.40);color:#fff !important}
+@media(max-width:760px){.navcta{padding:8px 14px !important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
+    <nav class="nav-r">
+      <a href="index.html#mathia" data-i18n="nav1">Šta je Mathia</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+<a class="navcta" href="index.html#paketi">Probaj besplatno →</a><select class="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <a class="back" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
+    <div class="eyebrow" data-i18n="eyebrow">Fakultet · elektrotehnika</div>
+    <h1 data-i18n="h1">Osnovi elektrotehnike 2</h1>
+    <p class="lead" data-i18n="lead">Naizmenične struje, fazori i impedansa, RLC kola, rezonansa i trofazni sistemi.</p>
+    <div class="row">
+      <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Probaj 15 min besplatno →</a>
+      <a class="btn btn-ghost-l" href="Osnovi-Elektrotehnike-2-Skripta.html">📖 Skripta</a><a class="btn btn-ghost-l" href="Osnovi-Elektrotehnike-2-Formule.html">📐 Formule</a><a class="btn btn-ghost-l" href="predmeti.html" data-i18n="btnAll">Svi predmeti</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="orn"><i>✦</i></div>
+    <h2 data-i18n="secCover">Šta pokrivamo</h2>
+    <div class="topics">
+      <div class="topic"><span class="tk">〰️</span><div><b data-i18n="c1t">Naizmenične veličine</b><p data-i18n="c1d">Efektivna i srednja vrednost, učestanost i faza.</p></div></div>
+      <div class="topic"><span class="tk">🧭</span><div><b data-i18n="c2t">Fazori i impedansa</b><p data-i18n="c2d">Kompleksni račun napona, struja i impedansi.</p></div></div>
+      <div class="topic"><span class="tk">🎚️</span><div><b data-i18n="c3t">RLC kola</b><p data-i18n="c3d">Otpornik, kalem i kondenzator u naizmeničnom režimu.</p></div></div>
+      <div class="topic"><span class="tk">📡</span><div><b data-i18n="c4t">Rezonansa</b><p data-i18n="c4d">Redna i paralelna rezonansa, faktor dobrote Q.</p></div></div>
+      <div class="topic"><span class="tk">⚙️</span><div><b data-i18n="c5t">Snaga u naizmeničnom kolu</b><p data-i18n="c5d">Aktivna, reaktivna i prividna snaga; faktor snage.</p></div></div>
+      <div class="topic"><span class="tk">🔺</span><div><b data-i18n="c6t">Trofazni sistemi</b><p data-i18n="c6d">Veze zvezda i trougao, linijske i fazne veličine.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap">
+    <h2 data-i18n="secHow">Kako radi</h2>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><b data-i18n="s1t">Pošalji zadatak</b><p data-i18n="s1d">Slikaj ili upiši pitanje — Profesorica odmah razume šta ti treba.</p></div>
+      <div class="step"><span class="num">2</span><b data-i18n="s2t">Objašnjenje korak po korak</b><p data-i18n="s2d">Dobijaš postupak, ne samo rešenje — dok ti ne bude potpuno jasno.</p></div>
+      <div class="step"><span class="num">3</span><b data-i18n="s3t">Vežbaj i napreduj</b><p data-i18n="s3d">Zadaci i testovi za utvrđivanje, prilagođeni tvom tempu.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2 data-i18n="ctaH">Osnovi elektrotehnike 2 — bez muke.</h2>
+    <p data-i18n="ctaSub">Prvih 15 minuta je besplatno. Bez kartice, bez obaveza.</p>
+    <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand"><span class="goldtext">Mathia</span></div>
+    <p data-i18n="footTag">Matematika · Fizika · Elektrotehnika — uz Profesoricu, 0–24h.</p>
+    <p style="color:#9d8088;font-size:.8rem">© 2026 Mathia · <a href="index.html" data-i18n="fLink1">Početna</a> · <a href="predmeti.html" data-i18n="nav2">Predmeti</a> · <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a></p>
+  </div>
+</footer>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9"
+        data-api="https://project-y23je.vercel.app/api/chat"
+        data-mode="site" data-name="Profesorica"
+        data-lang="sr" data-subj="Osnovi elektrotehnike 2" data-sub="Osnovi elektrotehnike 2" data-sub-en="Fundamentals of Electrical Engineering 2"
+        data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko predmeta „Osnovi elektrotehnike 2“. Pošalji zadatak (može i slika) — radimo fazore, impedanse, RLC kola i rezonansu korak po korak!"
+        data-hi-en="Hi! I'm Profesorica 👩‍🏫 Here I help you with Fundamentals of Electrical Engineering 2. Send a problem (a photo works too) — we'll work through phasors, impedances, RLC circuits and resonance step by step!"></script>
+
+<script>
+(function(){var I18N={"nav1": {"en": "What is Mathia", "de": "Was ist Mathia", "fr": "Qu'est-ce que Mathia", "es": "Qué es Mathia", "it": "Cos'è Mathia", "ru": "Что такое Mathia", "pt": "O que é a Mathia"}, "nav2": {"en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav3": {"en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav4": {"en": "Plans", "de": "Pakete", "fr": "Forfaits", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav5": {"en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "back": {"en": "← All subjects", "de": "← Alle Fächer", "fr": "← Toutes les matières", "es": "← Todas las asignaturas", "it": "← Tutte le materie", "ru": "← Все предметы", "pt": "← Todas as disciplinas"}, "btnFree": {"en": "Try 15 min free →", "de": "15 Min. kostenlos testen →", "fr": "Essaie 15 min gratuitement →", "es": "Prueba 15 min gratis →", "it": "Prova 15 min gratis →", "ru": "15 минут бесплатно →", "pt": "Experimente 15 min grátis →"}, "btnAll": {"en": "All subjects", "de": "Alle Fächer", "fr": "Toutes les matières", "es": "Todas las asignaturas", "it": "Tutte le materie", "ru": "Все предметы", "pt": "Todas as disciplinas"}, "secCover": {"en": "What we cover", "de": "Was wir behandeln", "fr": "Ce que nous couvrons", "es": "Qué cubrimos", "it": "Cosa copriamo", "ru": "Что мы охватываем", "pt": "O que cobrimos"}, "secHow": {"en": "How it works", "de": "So funktioniert's", "fr": "Comment ça marche", "es": "Cómo funciona", "it": "Come funziona", "ru": "Как это работает", "pt": "Como funciona"}, "s1t": {"en": "Send a problem", "de": "Aufgabe senden", "fr": "Envoie un exercice", "es": "Envía un problema", "it": "Invia un problema", "ru": "Отправь задачу", "pt": "Envie um exercício"}, "s1d": {"en": "Snap or type your question — Profesorica instantly understands what you need.", "de": "Fotografiere oder tippe deine Frage — Profesorica versteht sofort, was du brauchst.", "fr": "Prends une photo ou écris ta question — Profesorica comprend tout de suite ce qu'il te faut.", "es": "Haz una foto o escribe tu pregunta — Profesorica entiende al instante lo que necesitas.", "it": "Fotografa o scrivi la domanda — Profesorica capisce subito ciò di cui hai bisogno.", "ru": "Сфотографируй или напиши вопрос — Profesorica сразу поймёт, что тебе нужно.", "pt": "Tira uma foto ou escreve a pergunta — a Profesorica percebe logo o que precisas."}, "s2t": {"en": "Step-by-step explanation", "de": "Schritt-für-Schritt-Erklärung", "fr": "Explication étape par étape", "es": "Explicación paso a paso", "it": "Spiegazione passo dopo passo", "ru": "Объяснение шаг за шагом", "pt": "Explicação passo a passo"}, "s2d": {"en": "You get the method, not just the answer — until it's completely clear.", "de": "Du bekommst den Lösungsweg, nicht nur das Ergebnis — bis alles klar ist.", "fr": "Tu obtiens la méthode, pas seulement la réponse — jusqu'à ce que tout soit clair.", "es": "Obtienes el procedimiento, no solo la respuesta — hasta que lo tengas claro.", "it": "Ottieni il procedimento, non solo la soluzione — finché non è tutto chiaro.", "ru": "Ты получаешь не просто ответ, а весь ход решения — пока всё не станет ясно.", "pt": "Recebes o método, não só a resposta — até ficar tudo claro."}, "s3t": {"en": "Practice and progress", "de": "Üben und Fortschritt", "fr": "Entraîne-toi et progresse", "es": "Practica y avanza", "it": "Esercitati e migliora", "ru": "Практикуйся и расти", "pt": "Pratica e evolui"}, "s3d": {"en": "Exercises and tests to reinforce, adapted to your pace.", "de": "Übungen und Tests zur Festigung, an dein Tempo angepasst.", "fr": "Exercices et tests de consolidation, adaptés à ton rythme.", "es": "Ejercicios y test de refuerzo, adaptados a tu ritmo.", "it": "Esercizi e test di consolidamento, adattati al tuo ritmo.", "ru": "Задания и тесты для закрепления, под твой темп.", "pt": "Exercícios e testes de consolidação, adaptados ao teu ritmo."}, "ctaSub": {"en": "The first 15 minutes are free. No card, no commitment.", "de": "Die ersten 15 Minuten sind kostenlos. Ohne Karte, ohne Verpflichtung.", "fr": "Les 15 premières minutes sont gratuites. Sans carte, sans engagement.", "es": "Los primeros 15 minutos son gratis. Sin tarjeta, sin compromiso.", "it": "I primi 15 minuti sono gratis. Senza carta, senza impegno.", "ru": "Первые 15 минут бесплатно. Без карты, без обязательств.", "pt": "Os primeiros 15 minutos são grátis. Sem cartão, sem compromisso."}, "ctaBtn": {"en": "Start free →", "de": "Kostenlos starten →", "fr": "Commence gratuitement →", "es": "Empieza gratis →", "it": "Inizia gratis →", "ru": "Начать бесплатно →", "pt": "Começa grátis →"}, "footTag": {"en": "Maths · Physics · Electrical engineering — with Profesorica, 24/7.", "de": "Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.", "fr": "Maths · Physique · Génie électrique — avec Profesorica, 24h/24.", "es": "Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.", "it": "Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.", "ru": "Математика · Физика · Электротехника — с Profesorica, 24/7.", "pt": "Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."}, "fLink1": {"en": "Home", "de": "Startseite", "fr": "Accueil", "es": "Inicio", "it": "Home", "ru": "Главная", "pt": "Início"}, "h1": {"en": "Fundamentals of Electrical Engineering 2", "de": "Grundlagen der Elektrotechnik 2", "fr": "Bases du génie électrique 2", "es": "Fundamentos de electrotecnia 2", "it": "Fondamenti di elettrotecnica 2", "ru": "Основы электротехники 2", "pt": "Fundamentos de eletrotecnia 2"}, "lead": {"en": "Alternating current, phasors and impedance, RLC circuits, resonance and three-phase systems.", "de": "Wechselstrom, Zeiger und Impedanz, RLC-Schaltungen, Resonanz und Dreiphasensysteme.", "fr": "Courant alternatif, phaseurs et impédance, circuits RLC, résonance et systèmes triphasés.", "es": "Corriente alterna, fasores e impedancia, circuitos RLC, resonancia y sistemas trifásicos.", "it": "Corrente alternata, fasori e impedenza, circuiti RLC, risonanza e sistemi trifase.", "ru": "Переменный ток, векторы и импеданс, RLC-цепи, резонанс и трёхфазные системы.", "pt": "Corrente alternada, fasores e impedância, circuitos RLC, ressonância e sistemas trifásicos."}, "ctaH": {"en": "Fundamentals of Electrical Engineering 2 — made easy.", "de": "Grundlagen der Elektrotechnik 2 — ganz einfach.", "fr": "Bases du génie électrique 2 — sans peine.", "es": "Fundamentos de electrotecnia 2 — sin complicaciones.", "it": "Fondamenti di elettrotecnica 2 — senza fatica.", "ru": "Основы электротехники 2 — без мучений.", "pt": "Fundamentos de eletrotecnia 2 — sem dificuldade."}, "eyebrow": {"en": "University · electrical engineering", "de": "Universität · Elektrotechnik", "fr": "Université · génie électrique", "es": "Universidad · electrotecnia", "it": "Università · ingegneria elettrica", "ru": "Университет · электротехника", "pt": "Universidade · eletrotecnia"}, "c1t": {"en": "AC quantities", "de": "Wechselgrößen", "fr": "Grandeurs alternatives", "es": "Magnitudes alternas", "it": "Grandezze alternate", "ru": "Переменные величины", "pt": "Grandezas alternadas"}, "c1d": {"en": "RMS and average value, frequency and phase.", "de": "Effektiv- und Mittelwert, Frequenz und Phase.", "fr": "Valeur efficace et moyenne, fréquence et phase.", "es": "Valor eficaz y medio, frecuencia y fase.", "it": "Valore efficace e medio, frequenza e fase.", "ru": "Действующее и среднее значение, частота и фаза.", "pt": "Valor eficaz e médio, frequência e fase."}, "c2t": {"en": "Phasors & impedance", "de": "Zeiger & Impedanz", "fr": "Phaseurs et impédance", "es": "Fasores e impedancia", "it": "Fasori e impedenza", "ru": "Векторы и импеданс", "pt": "Fasores e impedância"}, "c2d": {"en": "Complex calculus of voltages, currents and impedances.", "de": "Komplexe Rechnung von Spannungen, Strömen und Impedanzen.", "fr": "Calcul complexe des tensions, courants et impédances.", "es": "Cálculo complejo de tensiones, corrientes e impedancias.", "it": "Calcolo complesso di tensioni, correnti e impedenze.", "ru": "Комплексный расчёт напряжений, токов и импедансов.", "pt": "Cálculo complexo de tensões, correntes e impedâncias."}, "c3t": {"en": "RLC circuits", "de": "RLC-Schaltungen", "fr": "Circuits RLC", "es": "Circuitos RLC", "it": "Circuiti RLC", "ru": "RLC-цепи", "pt": "Circuitos RLC"}, "c3d": {"en": "Resistor, inductor and capacitor in AC operation.", "de": "Widerstand, Spule und Kondensator im Wechselstrombetrieb.", "fr": "Résistance, bobine et condensateur en régime alternatif.", "es": "Resistencia, bobina y condensador en régimen alterno.", "it": "Resistore, induttore e condensatore in regime alternato.", "ru": "Резистор, катушка и конденсатор в режиме переменного тока.", "pt": "Resistor, bobina e condensador em regime alternado."}, "c4t": {"en": "Resonance", "de": "Resonanz", "fr": "Résonance", "es": "Resonancia", "it": "Risonanza", "ru": "Резонанс", "pt": "Ressonância"}, "c4d": {"en": "Series and parallel resonance, quality factor Q.", "de": "Reihen- und Parallelresonanz, Gütefaktor Q.", "fr": "Résonance série et parallèle, facteur de qualité Q.", "es": "Resonancia serie y paralelo, factor de calidad Q.", "it": "Risonanza serie e parallelo, fattore di qualità Q.", "ru": "Последовательный и параллельный резонанс, добротность Q.", "pt": "Ressonância série e paralelo, fator de qualidade Q."}, "c5t": {"en": "AC power", "de": "Wechselstromleistung", "fr": "Puissance en alternatif", "es": "Potencia en CA", "it": "Potenza in AC", "ru": "Мощность переменного тока", "pt": "Potência em CA"}, "c5d": {"en": "Active, reactive and apparent power; power factor.", "de": "Wirk-, Blind- und Scheinleistung; Leistungsfaktor.", "fr": "Puissances active, réactive et apparente ; facteur de puissance.", "es": "Potencia activa, reactiva y aparente; factor de potencia.", "it": "Potenza attiva, reattiva e apparente; fattore di potenza.", "ru": "Активная, реактивная и полная мощность; коэффициент мощности.", "pt": "Potência ativa, reativa e aparente; fator de potência."}, "c6t": {"en": "Three-phase systems", "de": "Dreiphasensysteme", "fr": "Systèmes triphasés", "es": "Sistemas trifásicos", "it": "Sistemi trifase", "ru": "Трёхфазные системы", "pt": "Sistemas trifásicos"}, "c6d": {"en": "Star and delta connections, line and phase quantities.", "de": "Stern- und Dreieckschaltung, Leiter- und Stranggrößen.", "fr": "Couplages étoile et triangle, grandeurs de ligne et de phase.", "es": "Conexiones estrella y triángulo, magnitudes de línea y de fase.", "it": "Collegamenti a stella e a triangolo, grandezze di linea e di fase.", "ru": "Соединения звездой и треугольником, линейные и фазные величины.", "pt": "Ligações estrela e triângulo, grandezas de linha e de fase."}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=l;}catch(_){}}
+var sel=document.querySelector('select.lang');var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+if(sel){sel.value=sv;sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);});}
+apply(sv);})();
+</script>
+</body>
+</html>
