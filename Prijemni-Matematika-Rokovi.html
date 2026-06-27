@@ -76,7 +76,7 @@ h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin
   <div class="brandline">MATHIA</div>
   <div class="eyebrow">Rešeni rokovi · Baza zadataka</div>
   <h1>Prijemni iz matematike — MATF</h1>
-  <p class="sub">Rešeni zadaci sa prošlih prijemnih ispita Matematičkog fakulteta u Beogradu. Probaj sam, pa otkrij rešenje korak po korak.</p>
+  <p class="sub">Rešeni zadaci sa prošlih prijemnih ispita Matematičkog fakulteta u Beogradu, plus originalni MATHIA probni rokovi. Probaj sam, pa otkrij rešenje korak po korak.</p>
   <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
 </div>
 
@@ -90,6 +90,7 @@ h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin
     <span class="chip" data-y="2020">Jul 2020</span>
     <span class="chip" data-y="2019">Jun 2019</span>
     <span class="chip" data-y="2018">Jun 2018</span>
+    <span class="chip" data-y="probni1">★ Probni rok 1</span>
   </div>
   <div class="intro"><b id="rok-label">Rok: Jul 2025</b> · 20 zadataka · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
 
@@ -610,6 +611,8 @@ const Z2018 = [
  r:["$(x^2+2x)^{11}=x^{11}(x+2)^{11}$; opšti član je $\\dbinom{11}{k}2^{11-k}x^{11+k}$.","Za $11+k=20$ je $k=9$: $\\dbinom{11}{9}\\cdot2^2=55\\cdot4=220$."]}
 ];
 
+const ZPROBNI1=[{"n": 1, "t": "Vrednost izraza $\\dfrac{2^{10}\\cdot 3^{4}}{6^{4}\\cdot 2^{6}}$ je:", "o": ["$1$", "$0$", "$2$", "$4$", "$16$"], "c": 0, "r": ["$6^4=2^4\\cdot 3^4$, pa je imenilac $2^4 3^4\\cdot 2^6=2^{10}3^4$.", "Brojilac je $2^{10}3^4$, pa je razlomak $=1$."]}, {"n": 2, "t": "Zbir rešenja jednačine $x^2-7x+10=0$ je:", "o": ["$2$", "$5$", "$10$", "$7$", "$-7$"], "c": 3, "r": ["Po Vijetovim formulama $x_1+x_2=-\\dfrac{b}{a}=7$.", "(Rešenja su $2$ i $5$.)"]}, {"n": 3, "t": "Ako je $x+y=5$ i $x-y=1$, vrednost proizvoda $xy$ je:", "o": ["$6$", "$5$", "$4$", "$10$", "$3$"], "c": 0, "r": ["Sabiranjem: $2x=6\\Rightarrow x=3$, pa $y=2$.", "$xy=3\\cdot 2=6$."]}, {"n": 4, "t": "Vrednost izraza $\\log_2 32-\\log_3 9$ je:", "o": ["$1$", "$2$", "$3$", "$5$", "$7$"], "c": 2, "r": ["$\\log_2 32=5$ jer $2^5=32$; $\\log_3 9=2$ jer $3^2=9$.", "$5-2=3$."]}, {"n": 5, "t": "Rešenje jednačine $2^{\\,x+1}=16$ je:", "o": ["$4$", "$2$", "$8$", "$3$", "$7$"], "c": 3, "r": ["$16=2^4$, pa $2^{x+1}=2^4\\Rightarrow x+1=4$.", "$x=3$."]}, {"n": 6, "t": "Zbir rešenja jednačine $|2x-4|=6$ je:", "o": ["$2$", "$6$", "$4$", "$5$", "$-1$"], "c": 2, "r": ["$2x-4=6\\Rightarrow x=5$ ili $2x-4=-6\\Rightarrow x=-1$.", "$5+(-1)=4$."]}, {"n": 7, "t": "Rešenje nejednačine $x^2-5x+6<0$ je interval $(a,b)$. Vrednost $a+b$ je:", "o": ["$1$", "$5$", "$6$", "$-5$", "$2$"], "c": 1, "r": ["Koreni su $2$ i $3$, a parabola je negativna između njih: $(2,3)$.", "$a+b=2+3=5$."]}, {"n": 8, "t": "U aritmetičkom nizu je $a_1=3$ i $d=4$. Član $a_{10}$ je:", "o": ["$43$", "$36$", "$39$", "$40$", "$42$"], "c": 2, "r": ["$a_{10}=a_1+9d=3+9\\cdot 4$.", "$a_{10}=3+36=39$."]}, {"n": 9, "t": "U geometrijskom nizu je $a_1=2$ i $q=3$. Član $a_{4}$ je:", "o": ["$54$", "$18$", "$162$", "$6$", "$27$"], "c": 0, "r": ["$a_4=a_1 q^3=2\\cdot 3^3$.", "$a_4=2\\cdot 27=54$."]}, {"n": 10, "t": "Zbir prvih deset prirodnih brojeva $1+2+\\dots+10$ je:", "o": ["$45$", "$55$", "$50$", "$100$", "$110$"], "c": 1, "r": ["$S_n=\\dfrac{n(n+1)}{2}=\\dfrac{10\\cdot 11}{2}$.", "$S=55$."]}, {"n": 11, "t": "Vrednost binomnog koeficijenta $\\dbinom{6}{2}$ je:", "o": ["$30$", "$12$", "$20$", "$15$", "$36$"], "c": 3, "r": ["$\\dbinom{6}{2}=\\dfrac{6\\cdot 5}{2}$.", "$=15$."]}, {"n": 12, "t": "Koeficijent uz $x^2$ u razvoju $(1+x)^5$ je:", "o": ["$10$", "$5$", "$20$", "$15$", "$1$"], "c": 0, "r": ["Opšti član daje koeficijent $\\dbinom{5}{2}$.", "$\\dbinom{5}{2}=10$."]}, {"n": 13, "t": "Vrednost izraza $\\sin 30^\\circ+\\cos 60^\\circ$ je:", "o": ["$0$", "$\\dfrac{1}{2}$", "$1$", "$\\dfrac{\\sqrt3}{2}$", "$2$"], "c": 2, "r": ["$\\sin 30^\\circ=\\dfrac12$ i $\\cos 60^\\circ=\\dfrac12$.", "Zbir je $1$."]}, {"n": 14, "t": "Najmanje pozitivno rešenje jednačine $\\cos x=0$ je:", "o": ["$\\dfrac{\\pi}{2}$", "$0$", "$\\pi$", "$\\dfrac{\\pi}{4}$", "$2\\pi$"], "c": 0, "r": ["$\\cos x=0$ za $x=\\dfrac{\\pi}{2}+k\\pi$.", "Najmanje pozitivno je $\\dfrac{\\pi}{2}$."]}, {"n": 15, "t": "Rastojanje tačaka $A(1,2)$ i $B(4,6)$ je:", "o": ["$3$", "$4$", "$5$", "$7$", "$25$"], "c": 2, "r": ["$d=\\sqrt{(4-1)^2+(6-2)^2}=\\sqrt{9+16}$.", "$d=\\sqrt{25}=5$."]}, {"n": 16, "t": "Koeficijent pravca prave koja prolazi kroz tačke $(0,1)$ i $(2,5)$ je:", "o": ["$1$", "$3$", "$\\dfrac{1}{2}$", "$4$", "$2$"], "c": 4, "r": ["$k=\\dfrac{y_2-y_1}{x_2-x_1}=\\dfrac{5-1}{2-0}$.", "$k=2$."]}, {"n": 17, "t": "Poluprečnik kružnice $x^2+y^2=49$ je:", "o": ["$49$", "$7$", "$14$", "$\\sqrt7$", "$24{,}5$"], "c": 1, "r": ["Jednačina je oblika $x^2+y^2=r^2$, pa $r^2=49$.", "$r=7$."]}, {"n": 18, "t": "Vrednost izraza $i^2+i^4$ (gde je $i$ imaginarna jedinica) je:", "o": ["$1$", "$0$", "$-1$", "$2i$", "$2$"], "c": 1, "r": ["$i^2=-1$ i $i^4=1$.", "$-1+1=0$."]}, {"n": 19, "t": "Koliko iznosi $20\\%$ od broja $250$?", "o": ["$25$", "$40$", "$5$", "$50$", "$20$"], "c": 3, "r": ["$20\\%=\\dfrac{20}{100}=0{,}2$.", "$0{,}2\\cdot 250=50$."]}, {"n": 20, "t": "Granična vrednost $\\displaystyle\\lim_{x\\to 2}\\dfrac{x^2-4}{x-2}$ je:", "o": ["$0$", "$2$", "$4$", "nije definisana", "$\\infty$"], "c": 2, "r": ["$\\dfrac{x^2-4}{x-2}=\\dfrac{(x-2)(x+2)}{x-2}=x+2$.", "Kad $x\\to 2$, vrednost je $4$."]}];
+
 const EXAMS={
   '2025':{label:'Jul 2025', z:Z2025},
   '2024':{label:'Jun 2024', z:Z2024},
@@ -618,7 +621,8 @@ const EXAMS={
   '2021':{label:'Jun 2021', z:Z2021},
   '2020':{label:'Jul 2020', z:Z2020},
   '2019':{label:'Jun 2019', z:Z2019},
-  '2018':{label:'Jun 2018', z:Z2018}
+  '2018':{label:'Jun 2018', z:Z2018},
+  'probni1':{label:'MATHIA probni rok 1 ★', z:ZPROBNI1}
 };
 let YEAR='2025';
 let ZADACI=EXAMS[YEAR].z;
