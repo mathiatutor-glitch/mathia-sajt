@@ -725,7 +725,7 @@
     } else {
       content = txt;
     }
-    history.push({ role: "user", content: content }); bumpStats(); persist();
+    history.push({ role: "user", content: content });
 
     taEl.value = ""; clearAttach();
     typing(true); goEl.disabled = true;
@@ -740,7 +740,7 @@
         typing(false); goEl.disabled = false;
         if (data.error) { addBub("zoi", "⚠️ " + data.error); return; }
         var reply = data.text || "…";
-        history.push({ role: "assistant", content: reply }); persist();
+        history.push({ role: "assistant", content: reply });
         addBub("zoi", reply);
         speak(reply);
       })
@@ -793,34 +793,17 @@
   taEl.addEventListener("input", function () {
     taEl.style.height = "auto"; taEl.style.height = Math.min(taEl.scrollHeight, 96) + "px";
   });
-  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; applyLang(); greet(); history = []; persist(); };
+  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; applyLang(); greet(); history = []; };
   window.addEventListener("mathia:lang", function (e) {
     var l = e && e.detail; if (!l) return; l = String(l).toLowerCase();
     if (l === LANG) return;
     LANG = l; stopSpeak();
     try { if (langEl) langEl.value = l.toUpperCase(); } catch (_) {}
-    applyLang(); greet(); history = []; persist();
+    applyLang(); greet(); history = [];
   });
   if (voiceBtn) voiceBtn.onclick = function () { voiceOn = false; };
 
-  // ——— MATHIA+ : pamćenje razgovora, lokalna statistika, auto-jezik (prati stranicu) ———
-  var SUPP_LANGS = ["sr","en","de","fr","es","it","ru","pt","hr","bs"];
-  var CKEY = "mathia_chat_v1_" + (MODE || "site");
-  var SKEY = "mathia_stats_v1";
-  function liteHist(){ return history.slice(-30).map(function(m){ if(m && m.role==="user" && Array.isArray(m.content)){ var tx=""; m.content.forEach(function(p){ if(p && p.type==="text") tx=p.text; }); return {role:"user", content: tx || "📷 (slika)"}; } return {role:(m&&m.role)||"assistant", content:(m&&typeof m.content==="string")?m.content:""}; }); }
-  function persist(){ try{ localStorage.setItem(CKEY, JSON.stringify(liteHist())); }catch(e){} }
-  function replay(h){ if(!h||!h.length) return; msgsEl.innerHTML=""; addBub("zoi", modeHi(t())); for(var i=0;i<h.length;i++){ var m=h[i]; addBub((m&&m.role==="user")?"me":"zoi", (m&&typeof m.content==="string")?m.content:""); } }
-  function restore(){ try{ var r=localStorage.getItem(CKEY); var h=r?JSON.parse(r):null; if(h&&h.length){ history=h; replay(h); } }catch(e){} }
-  function bumpStats(){ try{ var s=JSON.parse(localStorage.getItem(SKEY)||"{}"); s.modes=s.modes||{}; var k=MODE||"site"; var en=s.modes[k]||{count:0,first:Date.now(),last:0}; en.count=(en.count||0)+1; en.last=Date.now(); s.modes[k]=en; s.total=(s.total||0)+1; localStorage.setItem(SKEY, JSON.stringify(s)); }catch(e){} }
-  function detectPageLang(){ try{ var s=localStorage.getItem("mathia_lang"); if(s){ s=String(s).slice(0,2).toLowerCase(); if(SUPP_LANGS.indexOf(s)>=0) return s; } }catch(e){} var hl=(document.documentElement.getAttribute("lang")||"").slice(0,2).toLowerCase(); if(SUPP_LANGS.indexOf(hl)>=0) return hl; return null; }
-  function syncLang(){ var l=detectPageLang(); if(!l||l===LANG) return; LANG=l; try{ stopSpeak(); }catch(e){} try{ if(langEl) langEl.value=l.toUpperCase(); }catch(_){} applyLang(); if(!history.length) greet(); }
-  try{ new MutationObserver(syncLang).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]}); }catch(e){}
-  try{ window.addEventListener("storage", function(e){ if(e && e.key==="mathia_lang") syncLang(); }); }catch(e){}
-  try{ setInterval(syncLang, 800); }catch(e){}
-
   // ——— start ———
-  syncLang();
   applyLang();
   greet();
-  restore();
 })();
