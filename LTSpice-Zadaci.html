@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia — LTSpice — zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
+  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
+  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
+.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
+.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
+h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
+.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
+.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
+.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.chip.soon{opacity:.5}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
+.intro b{font-family:var(--hf)}
+.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
+.zad-n.solved{background:var(--good)}
+.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
+.opcije{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
+.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
+.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
+.opt.correct{background:#edf6ee;border-color:var(--good)}
+.opt.wrong{background:#fbeeed;border-color:var(--bad)}
+.opt.correct .opt-l{background:var(--good);color:#fff}
+.opt.wrong .opt-l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{transform:none;background:#fffdf8}
+.opt.correct[disabled]:hover{background:#edf6ee}
+.opt.wrong[disabled]:hover{background:#fbeeed}
+.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+.reveal-btn:hover{background:var(--acc);color:#fff}
+.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
+.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
+.rstep+.rstep{border-top:1px solid #f3ead9}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
+.katex{white-space:nowrap;font-size:1.02em}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">Elektrotehnika · Vežba</div>
+  <h1>LTSpice — zadaci</h1>
+  <p class="sub">Vežba po oblastima: osnove i crtanje šeme, komponente, vrste analiza (.tran/.ac/.dc/.op), direktive i modeli, čitanje rezultata i greške. Probaj sam, pa otkrij rešenje.</p>
+  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
+</div>
+
+<div class="page">
+  <div class="chips" id="roksel">
+    <span class="chip active" data-y="osn">Osnove i šema</span>
+    <span class="chip" data-y="kom">Komponente</span>
+    <span class="chip" data-y="ana">Vrste analiza</span>
+    <span class="chip" data-y="dir">Direktive i modeli</span>
+    <span class="chip" data-y="rez">Rezultati i greške</span>
+  </div>
+  <div class="intro"><b id="rok-label">Oblast: Osnove i šema</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div id="lista"></div>
+  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <div class="foot" id="rok-foot">MATHIA · Osnove i šema · uči s ljubavlju · mathia.rs</div>
+</div>
+
+<script>
+// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
+// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
+const A=[{"n": 1, "t": "LTSpice je program za:", "o": ["simulaciju elektronskih kola", "montažu videa", "crtanje 3D modela", "pisanje teksta", "obradu fotografija"], "c": 0, "r": ["SPICE simulator kola.", ""]}, {"n": 2, "t": "Svako kolo u LTSpice-u mora imati:", "o": ["bar 10 dioda", "referentnu masu (<code>GND</code>)", "zvučnik", "mikrofon", "štampač"], "c": 1, "r": ["Bez mase nema referentnog potencijala.", ""]}, {"n": 3, "t": "Čvor (node) u šemi je:", "o": ["naziv fajla", "dugme menija", "tačka u kojoj se spajaju komponente", "marka tranzistora", "boja žice"], "c": 2, "r": ["Električki zajednička tačka.", ""]}, {"n": 4, "t": "Provodnik (žica) se crta alatom:", "o": ["<code>Run</code>", "<code>Move</code>", "<code>Label</code>", "<code>Wire</code> (prečica F3)", "<code>Ctrl+P</code>"], "c": 3, "r": ["Wire povezuje komponente.", ""]}];
+const B=[{"n": 1, "t": "Otpornik se dodaje prečicom:", "o": ["<code>R</code>", "<code>C</code>", "<code>L</code>", "<code>D</code>", "<code>V</code>"], "c": 0, "r": ["R = resistor.", ""]}, {"n": 2, "t": "Naponski izvor u LTSpice-u je komponenta:", "o": ["<code>res</code>", "<code>voltage</code> (V)", "<code>ind</code>", "<code>diode</code>", "<code>gnd</code>"], "c": 1, "r": ["Nezavisni naponski izvor.", ""]}, {"n": 3, "t": "Vrednost 1 mikrofarad upisuje se kao:", "o": ["<code>1m</code>", "<code>1M</code>", "<code>1u</code>", "<code>1k</code>", "<code>1M EG</code>"], "c": 2, "r": ["u = mikro (µ).", ""]}, {"n": 4, "t": "Vrednost 1 kiloom upisuje se kao:", "o": ["<code>1u</code>", "<code>1MEG</code>", "<code>1m</code>", "<code>1k</code>", "<code>1p</code>"], "c": 3, "r": ["k = kilo.", ""]}];
+const C=[{"n": 1, "t": "Vremenski odziv (talasni oblik u vremenu) daje analiza:", "o": ["<code>.tran</code>", "<code>.ac</code>", "<code>.dc</code>", "<code>.op</code>", "<code>.four</code>"], "c": 0, "r": ["Transient analiza.", ""]}, {"n": 2, "t": "Frekvencijski odziv (Bodeov dijagram) daje:", "o": ["<code>.tran</code>", "<code>.ac</code>", "<code>.dc</code>", "<code>.op</code>", "<code>.step</code>"], "c": 1, "r": ["AC (small-signal) analiza.", ""]}, {"n": 3, "t": "Radnu (mirnu) tačku kola daje:", "o": ["<code>.tran</code>", "<code>.ac</code>", "<code>.op</code>", "<code>.meas</code>", "<code>.lib</code>"], "c": 2, "r": ["Operating point.", ""]}, {"n": 4, "t": "Variranje parametra kroz opseg vrednosti radi:", "o": ["<code>.tran</code>", "<code>.op</code>", "<code>.end</code>", "<code>.step</code>", "<code>.print</code>"], "c": 3, "r": ["Parametarsko sweep-ovanje.", ""]}];
+const D=[{"n": 1, "t": "SPICE direktiva u LTSpice-u počinje znakom:", "o": ["tačka (<code>.</code>)", "zvezdica", "znak dolara", "slovo V", "broj"], "c": 0, "r": ["Npr. .tran, .ac, .lib.", ""]}, {"n": 2, "t": "Komentar u SPICE netlistu počinje:", "o": ["<code>//</code>", "zvezdicom <code>*</code> (ili <code>;</code> u liniji)", "<code>#</code>", "<code>--</code>", "nema komentara"], "c": 1, "r": ["* na početku linije.", ""]}, {"n": 3, "t": "Model ili biblioteku komponenti učitava direktiva:", "o": ["<code>.run</code>", "<code>.plot</code>", "<code>.lib</code> / <code>.include</code>", "<code>.zoom</code>", "<code>.save</code>"], "c": 2, "r": ["Učitava .lib/.inc fajl.", ""]}, {"n": 4, "t": "SPICE direktiva se na šemu dodaje kao:", "o": ["slika", "zvučni zapis", "video", "tekst (SPICE directive)", "3D objekat"], "c": 3, "r": ["Komanda kao tekst na crtežu.", ""]}];
+const E=[{"n": 1, "t": "Napon u tački kola prikazuje se klikom:", "o": ["na čvor (žicu) u šemi", "na prazan prostor", "na naslov prozora", "na ime fajla", "na ivicu ekrana"], "c": 0, "r": ["Sonda na čvoru → napon.", ""]}, {"n": 2, "t": "Struju kroz komponentu vidiš:", "o": ["klikom na čvor", "klikom na samu komponentu", "klikom na masu", "klikom na osu grafika", "nigde"], "c": 1, "r": ["Strujna sonda na komponenti.", ""]}, {"n": 3, "t": "Greška „floating node“ znači:", "o": ["previše masa u kolu", "dupli naziv fajla", "čvor bez jednosmernog puta do mase", "premala šema", "previše boja"], "c": 2, "r": ["Dodati put do GND ili otpornik.", ""]}, {"n": 4, "t": "Ako simulacija ne konvergira, pomaže:", "o": ["gašenje računara", "brisanje cele šeme", "veći monitor", "provera mase, početnih uslova i koraka vremena", "promena boje žica"], "c": 3, "r": ["Numerička podešavanja i masa.", ""]}];
+
+const EXAMS={
+  'osn':{label:'Osnove i šema', z:A},
+  'kom':{label:'Komponente', z:B},
+  'ana':{label:'Vrste analiza', z:C},
+  'dir':{label:'Direktive i modeli', z:D},
+  'rez':{label:'Rezultati i greške', z:E}
+};
+let YEAR='osn';
+let ZADACI=EXAMS[YEAR].z;
+let KEY='mathia_lt_'+YEAR;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+let stanje=load();
+
+function updateProgress(){
+  const n=Object.values(stanje).filter(v=>v==='ok').length;
+  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
+  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  ZADACI.forEach(z=>{
+    const solved=stanje[z.n]==='ok';
+    const card=document.createElement('div'); card.className='zad';
+    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
+    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
+    card.innerHTML=`
+      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
+      <div class="zad-q">${z.t}</div>
+      <div class="opcije">${opts}</div>
+      <button class="reveal-btn">Prikaži rešenje ✦</button>
+      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
+    // option clicks
+    const optEls=card.querySelectorAll('.opt');
+    optEls.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        const i=+btn.dataset.i;
+        optEls.forEach(b=>b.setAttribute('disabled','')); 
+        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
+        if(i!==z.c) btn.classList.add('wrong');
+        card.dataset.done='1';
+        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
+        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
+        const fb=document.createElement('div');
+        fb.className='feedback '+(i===z.c?'ok':'no');
+        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
+        card.querySelector('.opcije').after(fb);
+        updateProgress();
+      });
+    });
+    card.querySelector('.reveal-btn').addEventListener('click',e=>{
+      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
+      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+      if(!r.hidden) fitFormulas(r);
+    });
+    lista.appendChild(card);
+  });
+  updateProgress();
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
+});
+
+function fitFormulas(root){
+  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
+    var avail=box.clientWidth; if(avail<=0) return;
+    box.querySelectorAll('.katex').forEach(function(k){
+      k.style.fontSize=''; var size=1.02, g=0;
+      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
+    });
+  });
+}
+function typeset(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+  fitFormulas();
+}
+var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
+function go(){ render(); typeset(); }
+function switchYear(y){
+  if(!EXAMS[y]||y===YEAR) return;
+  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_lt_'+YEAR; stanje=load();
+  document.getElementById('lista').innerHTML='';
+  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
+  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
+  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Osnove i šema · uči s ljubavlju · mathia.rs';
+  render(); typeset();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
+if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
+</script>
+</body>
+</html>

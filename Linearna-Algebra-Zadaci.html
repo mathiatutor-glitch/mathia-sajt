@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia — Linearna algebra — zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
+  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
+  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
+.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
+.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
+h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
+.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
+.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
+.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.chip.soon{opacity:.5}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
+.intro b{font-family:var(--hf)}
+.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
+.zad-n.solved{background:var(--good)}
+.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
+.opcije{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
+.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
+.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
+.opt.correct{background:#edf6ee;border-color:var(--good)}
+.opt.wrong{background:#fbeeed;border-color:var(--bad)}
+.opt.correct .opt-l{background:var(--good);color:#fff}
+.opt.wrong .opt-l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{transform:none;background:#fffdf8}
+.opt.correct[disabled]:hover{background:#edf6ee}
+.opt.wrong[disabled]:hover{background:#fbeeed}
+.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+.reveal-btn:hover{background:var(--acc);color:#fff}
+.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
+.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
+.rstep+.rstep{border-top:1px solid #f3ead9}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
+.katex{white-space:nowrap;font-size:1.02em}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">Fakultet · Vežba</div>
+  <h1>Linearna algebra — zadaci</h1>
+  <p class="sub">Vežba po oblastima: matrice, determinante, sistemi jednačina, vektorski prostori, sopstvene vrednosti. Probaj sam, pa otkrij rešenje korak po korak.</p>
+  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
+</div>
+
+<div class="page">
+  <div class="chips" id="roksel">
+    <span class="chip active" data-y="mat">Matrice</span>
+    <span class="chip" data-y="det">Determinante</span>
+    <span class="chip" data-y="sis">Sistemi</span>
+    <span class="chip" data-y="vek">Vektorski prostori</span>
+    <span class="chip" data-y="sop">Sopstvene vrednosti</span>
+  </div>
+  <div class="intro"><b id="rok-label">Oblast: Matrice</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div id="lista"></div>
+  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <div class="foot" id="rok-foot">MATHIA · Matrice · uči s ljubavlju · mathia.rs</div>
+</div>
+
+<script>
+// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
+// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
+const A=[{"n": 1, "t": "Množenje matrica je u opštem slučaju:", "o": ["komutativno uvek", "nekomutativno", "komutativno samo za $2\\times2$", "uvek daje nulu", "uvek jednako $A$"], "c": 1, "r": ["$AB\\ne BA$ u opštem slučaju.", ""]}, {"n": 2, "t": "Za jediničnu matricu $I$ važi:", "o": ["$AI=A$", "$AI=I$", "$AI=0$", "$AI=A^{-1}$", "$AI=A^{T}$"], "c": 0, "r": ["$I$ je neutral za množenje.", ""]}, {"n": 3, "t": "Koliko je $\\left(A^{T}\\right)^{T}$?", "o": ["$A$", "$A^{T}$", "$A^{-1}$", "$I$", "$0$"], "c": 0, "r": ["Dvostruko transponovanje vraća matricu.", ""]}, {"n": 4, "t": "Proizvod matrice $2\\times 3$ i matrice $3\\times 2$ je dimenzije:", "o": ["$3\\times 3$", "$2\\times 2$", "$2\\times 3$", "$3\\times 2$", "ne može se množiti"], "c": 1, "r": ["Unutrašnje dimenzije se poklapaju → $2\\times 2$.", ""]}];
+const B=[{"n": 1, "t": "Determinanta matrice $\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ je:", "o": ["$ad-bc$", "$ab-cd$", "$ad+bc$", "$ac-bd$", "$a+d$"], "c": 0, "r": ["$\\det=ad-bc$.", ""]}, {"n": 2, "t": "Koliko je $\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?", "o": ["$2$", "$-2$", "$10$", "$-10$", "$0$"], "c": 1, "r": ["$1\\cdot 4-2\\cdot 3=4-6$.", "$=-2$."]}, {"n": 3, "t": "Ako je $\\det A=0$, matrica je:", "o": ["invertibilna", "singularna (nije invertibilna)", "jedinična", "simetrična", "ortogonalna"], "c": 1, "r": ["Nulta determinanta → nema inverz.", ""]}, {"n": 4, "t": "Koliko je $\\det(I)$?", "o": ["$0$", "$1$", "$n$", "$\\infty$", "$-1$"], "c": 1, "r": ["Determinanta jedinične matrice je $1$.", ""]}];
+const C=[{"n": 1, "t": "Sistem ima jedinstveno rešenje ako je:", "o": ["$\\det A=0$", "$\\det A\\ne 0$", "$A=0$", "$A=I$", "uvek"], "c": 1, "r": ["Nenula determinanta → jedinstveno rešenje.", ""]}, {"n": 2, "t": "Homogen sistem $Ax=0$ uvek ima:", "o": ["trivijalno rešenje $x=0$", "nema rešenja", "beskonačno uvek", "negativno rešenje", "ne zavisi"], "c": 0, "r": ["$x=0$ je uvek rešenje.", ""]}, {"n": 3, "t": "Gausova eliminacija svodi sistem na:", "o": ["determinantu samo", "stepenasti (trougaoni) oblik", "množenje matrica", "sopstvene vrednosti", "transponovanu matricu"], "c": 1, "r": ["Eliminacijom do trougaonog oblika.", ""]}, {"n": 4, "t": "Linearni sistem može imati rešenja:", "o": ["uvek tačno $1$", "$0$, $1$ ili beskonačno mnogo", "uvek $0$", "uvek $2$", "uvek beskonačno"], "c": 1, "r": ["Tri mogućnosti za broj rešenja.", ""]}];
+const D=[{"n": 1, "t": "Baza vektorskog prostora je:", "o": ["bilo koji skup vektora", "linearno nezavisan skup koji generiše prostor", "samo jedan vektor", "nula-vektor", "linearno zavisan skup"], "c": 1, "r": ["Nezavisni vektori koji razapinju prostor.", ""]}, {"n": 2, "t": "Dimenzija prostora $\\mathbb{R}^3$ je:", "o": ["$1$", "$2$", "$3$", "$\\infty$", "$0$"], "c": 2, "r": ["Tri bazna vektora.", ""]}, {"n": 3, "t": "Vektori su linearno zavisni ako je:", "o": ["jedan linearna kombinacija ostalih", "svi su nula", "ortogonalni su", "jedinični su", "nezavisni su"], "c": 0, "r": ["Postoji netrivijalna kombinacija jednaka nuli.", ""]}, {"n": 4, "t": "Nula-vektor pripada:", "o": ["nijednom potprostoru", "svakom potprostoru", "samo $\\mathbb{R}^3$", "samo ako je baza", "nikad"], "c": 1, "r": ["Svaki potprostor sadrži $\\vec 0$.", ""]}];
+const E=[{"n": 1, "t": "Ako je $A\\vec v=\\lambda\\vec v$ (uz $\\vec v\\ne 0$), onda je $\\lambda$:", "o": ["sopstvena vrednost", "nula uvek", "determinanta", "trag", "inverz"], "c": 0, "r": ["$\\lambda$ je sopstvena (karakteristična) vrednost.", ""]}, {"n": 2, "t": "Sopstvene vrednosti se dobijaju iz:", "o": ["$\\det(A-\\lambda I)=0$", "$\\det A=0$", "$A\\lambda=0$", "$\\det(A+I)=0$", "$A=\\lambda$"], "c": 0, "r": ["Karakteristična jednačina.", ""]}, {"n": 3, "t": "Trag matrice (zbir dijagonale) jednak je:", "o": ["proizvodu sopstvenih vrednosti", "zbiru sopstvenih vrednosti", "razlici", "nuli", "determinanti"], "c": 1, "r": ["$\\operatorname{tr}(A)=\\sum\\lambda_i$.", ""]}, {"n": 4, "t": "Determinanta je jednaka:", "o": ["zbiru sopstvenih vrednosti", "proizvodu sopstvenih vrednosti", "tragu", "nuli", "jedinici"], "c": 1, "r": ["$\\det(A)=\\prod\\lambda_i$.", ""]}];
+
+const EXAMS={
+  'mat':{label:'Matrice', z:A},
+  'det':{label:'Determinante', z:B},
+  'sis':{label:'Sistemi', z:C},
+  'vek':{label:'Vektorski prostori', z:D},
+  'sop':{label:'Sopstvene vrednosti', z:E}
+};
+let YEAR='mat';
+let ZADACI=EXAMS[YEAR].z;
+let KEY='mathia_la_'+YEAR;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+let stanje=load();
+
+function updateProgress(){
+  const n=Object.values(stanje).filter(v=>v==='ok').length;
+  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
+  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  ZADACI.forEach(z=>{
+    const solved=stanje[z.n]==='ok';
+    const card=document.createElement('div'); card.className='zad';
+    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
+    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
+    card.innerHTML=`
+      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
+      <div class="zad-q">${z.t}</div>
+      <div class="opcije">${opts}</div>
+      <button class="reveal-btn">Prikaži rešenje ✦</button>
+      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
+    // option clicks
+    const optEls=card.querySelectorAll('.opt');
+    optEls.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        const i=+btn.dataset.i;
+        optEls.forEach(b=>b.setAttribute('disabled','')); 
+        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
+        if(i!==z.c) btn.classList.add('wrong');
+        card.dataset.done='1';
+        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
+        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
+        const fb=document.createElement('div');
+        fb.className='feedback '+(i===z.c?'ok':'no');
+        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
+        card.querySelector('.opcije').after(fb);
+        updateProgress();
+      });
+    });
+    card.querySelector('.reveal-btn').addEventListener('click',e=>{
+      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
+      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+      if(!r.hidden) fitFormulas(r);
+    });
+    lista.appendChild(card);
+  });
+  updateProgress();
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
+});
+
+function fitFormulas(root){
+  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
+    var avail=box.clientWidth; if(avail<=0) return;
+    box.querySelectorAll('.katex').forEach(function(k){
+      k.style.fontSize=''; var size=1.02, g=0;
+      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
+    });
+  });
+}
+function typeset(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+  fitFormulas();
+}
+var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
+function go(){ render(); typeset(); }
+function switchYear(y){
+  if(!EXAMS[y]||y===YEAR) return;
+  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_la_'+YEAR; stanje=load();
+  document.getElementById('lista').innerHTML='';
+  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
+  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
+  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Matrice · uči s ljubavlju · mathia.rs';
+  render(); typeset();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
+if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
+</script>
+</body>
+</html>

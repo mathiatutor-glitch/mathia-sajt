@@ -1,6 +1,6 @@
 <!doctype html><html lang="sr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mathia — Kompleksna analiza · Skripta</title>
+<title>Mathia — Energetska elektronika 2 · Skripta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -46,61 +46,61 @@ html,body{overflow-x:hidden}
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 
 <div class="cover">
-<div class="seal">i ∮ ∞</div>
+<div class="seal">▷ ⎓ Ω</div>
 <div class="brandline">MATHIA</div>
 <div class="kind" data-i18n="kind">skripta · sažeto</div>
-<h1 data-i18n="name">Kompleksna analiza</h1>
-<p class="subtitle" data-i18n="sub">Sažeto, sa ključnim formulama i zadacima zatvorenog tipa.</p>
+<h1 data-i18n="name">Energetska elektronika 2</h1>
+<p class="subtitle" data-i18n="sub">Sažeto, sa ključnim pravilima i zadacima zatvorenog tipa.</p>
 <div class="foot">uči s ljubavlju · mathia.rs</div>
 </div>
 
 <div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span>Kompleksan broj</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$z=a+bi,\ i^2=-1$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">i² = ?  a) 1  b) −1  c) i  d) 0</div><div class="ans">b) −1.</div></div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span>Čoperi (DC/DC)</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{buck},\ \text{boost},\ \text{buck-boost}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">DC/DC pretvarač zove se… a) ispravljač b) čoper c) invertor d) transformator</div><div class="ans">b) čoper.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">2</span> <span>Moduo</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$|z|=\sqrt{a^2+b^2}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">|3 + 4i| = ?  a) 5  b) 7  c) 25  d) 1</div><div class="ans">a) 5.</div></div></section>
+<section class="topic"><h2><span class="tnum">2</span> <span>Faktor ispune D</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$D=\dfrac{t_{on}}{T}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Ako je $t_{on}=T$, koliko je D? a) 0 b) 0,5 c) 1 d) 2</div><div class="ans">c) 1.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">3</span> <span>Konjugovano</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\bar z=a-bi$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Konjugovano od a + bi?  a) a+bi  b) a−bi  c) −a+bi  d) b+ai</div><div class="ans">b) a − bi.</div></div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span>Silazni (buck)</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$U_{out}=D\,U_{in}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$U_{in}=10$ V, $D=0{,}3$ → $U_{out}$? a) 30 V b) 3 V c) 13 V d) 0,3 V</div><div class="ans">b) 3 V.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">4</span> <span>Ojlerova formula</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$e^{i\theta}=\cos\theta+i\sin\theta$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">e^{iπ} = ?  a) 1  b) −1  c) i  d) 0</div><div class="ans">b) −1.</div></div></section>
+<section class="topic"><h2><span class="tnum">4</span> <span>Uzlazni (boost)</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$U_{out}=\dfrac{U_{in}}{1-D}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Boost daje napon… a) manji b) veći c) isti d) nula</div><div class="ans">b) veći.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">5</span> <span>Eksponencijalni oblik</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$z=r e^{i\theta}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">U z = r·e^{iθ}, r je…  a) argument  b) moduo  c) realni deo  d) 0</div><div class="ans">b) moduo.</div></div></section>
+<section class="topic"><h2><span class="tnum">5</span> <span>Buck-boost</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$U_{out}=U_{in}\dfrac{D}{1-D}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Buck-boost može da… a) samo snizi b) samo povisi c) i snizi i povisi d) ništa</div><div class="ans">c) i snizi i povisi.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Moavrova formula</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$(\cos\theta+i\sin\theta)^n=\cos n\theta+i\sin n\theta$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(cosθ+i sinθ)ⁿ = ?  a) cos nθ+i sin nθ  b) cosθ+i sinθ  c) n cosθ  d) 0</div><div class="ans">a).</div></div></section>
+<section class="topic"><h2><span class="tnum">6</span> <span>Invertor (DC/AC)</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{DC}\xrightarrow{\text{PWM}}\text{AC}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Invertor pretvara… a) AC→DC b) DC→AC c) DC→DC d) AC→AC</div><div class="ans">b) DC→AC.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">7</span> <span>n-ti koreni</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\sqrt[n]{z}\to n\ \text{rešenja}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koliko n-tih korena ima kompleksan broj?  a) 1  b) 2  c) n  d) ∞</div><div class="ans">c) n.</div></div></section>
+<section class="topic"><h2><span class="tnum">7</span> <span>Linearni napajač</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$P_{gub}=(U_{in}-U_{out})I$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$U_{in}=10$, $U_{out}=4$ V, $I=2$ A → gubici? a) 8 W b) 12 W c) 20 W d) 28 W</div><div class="ans">b) 12 W.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">8</span> <span>Koši–Riman</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$u_x=v_y,\ u_y=-v_x$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Koši–Riman: u_x = ?  a) v_y  b) −v_y  c) u_y  d) 0</div><div class="ans">a) v_y.</div></div></section>
+<section class="topic"><h2><span class="tnum">8</span> <span>Prekidački (SMPS)</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\eta=\dfrac{P_{out}}{P_{in}}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">SMPS u odnosu na linearni ima η… a) manji b) veći c) isti d) nula</div><div class="ans">b) veći.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">9</span> <span>Cauchyjeva teorema</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\oint_C f\,dz=0\ (f\ \text{analitička})$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">∮_C f dz za analitičku f na zatvorenoj konturi?  a) 1  b) 0  c) ∞  d) f</div><div class="ans">b) 0.</div></div></section>
+<section class="topic"><h2><span class="tnum">9</span> <span>Izolovani</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\dfrac{U_2}{U_1}=\dfrac{N_2}{N_1}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Galvansku izolaciju daje… a) otpornik b) transformator c) dioda d) kondenzator</div><div class="ans">b) transformator.</div></div></section>
 </div>
 <div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
-<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="kompleksna-analiza" data-name="Profesorica" data-subj="Kompleksna analiza"></script>
-<script defer src="gate.js" data-subject="kompleksna-analiza"></script>
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="energetska-elektronika-2" data-name="Profesorica" data-subj="Energetska elektronika 2"></script>
+<script defer src="gate.js" data-subject="energetska-elektronika-2"></script>
 <script>
 var I18N={
 kind:{en:"study notes · concise",de:"Skript · kompakt",fr:"fiches · synthèse",es:"apuntes · resumen",it:"appunti · sintesi",ru:"конспект · кратко",pt:"resumo · conciso"},
-name:{en:"Complex analysis",de:"Funktionentheorie",fr:"Analyse complexe",es:"Análisis complejo",it:"Analisi complessa",ru:"Комплексный анализ",pt:"Análise complexa"},
-sub:{en:"Concise, with key formulas and multiple-choice practice.",de:"Kompakt, mit Kernformeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec formules clés et QCM.",es:"Resumen, con fórmulas clave y preguntas tipo test.",it:"Sintesi, con formule chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми формулами и тестовыми заданиями.",pt:"Resumo, com fórmulas-chave e perguntas de escolha múltipla."},
-formule:{en:"KEY FORMULAS",de:"KERNFORMELN",fr:"FORMULES CLÉS",es:"FÓRMULAS CLAVE",it:"FORMULE CHIAVE",ru:"КЛЮЧЕВЫЕ ФОРМУЛЫ",pt:"FÓRMULAS-CHAVE"},
+name:{"en": "Power electronics 2", "de": "Leistungselektronik 2", "fr": "Électronique de puissance 2", "es": "Electrónica de potencia 2", "it": "Elettronica di potenza 2", "ru": "Силовая электроника 2", "pt": "Eletrónica de potência 2"},
+sub:{en:"Concise, with key rules and multiple-choice practice.",de:"Kompakt, mit Kernregeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec règles clés et QCM.",es:"Resumen, con reglas clave y preguntas tipo test.",it:"Sintesi, con regole chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми правилами и тестовыми заданиями.",pt:"Resumo, com regras-chave e perguntas de escolha múltipla."},
+formule:{en:"KEY",de:"WICHTIG",fr:"CLÉ",es:"CLAVE",it:"CHIAVE",ru:"ГЛАВНОЕ",pt:"CHAVE"},
 primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
 document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
 function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
