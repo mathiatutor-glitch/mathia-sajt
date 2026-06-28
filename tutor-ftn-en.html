@@ -392,6 +392,14 @@ header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit
 .navcta:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(176,138,74,.40);color:#fff !important}
 @media(max-width:760px){.navcta{padding:8px 14px !important}}
 </style>
+<style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
 </head>
 <body>
 <header>
@@ -503,6 +511,7 @@ try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,a
 setInterval(ap,800);})();</script>
 <!--prijnav--><script>(function(){
 var L={
+ nalog:{sr:'Moj nalog',en:'My account',de:'Mein Konto',fr:'Mon compte',es:'Mi cuenta',it:'Il mio account',ru:'\u041b\u0438\u0447\u043d\u044b\u0439 \u043a\u0430\u0431\u0438\u043d\u0435\u0442',pt:'Minha conta'},
  home:{sr:'\u2302 Po\u010detna',en:'\u2302 Home',de:'\u2302 Start',fr:'\u2302 Accueil',es:'\u2302 Inicio',it:'\u2302 Home',ru:'\u2302 \u0413\u043b\u0430\u0432\u043d\u0430\u044f',pt:'\u2302 In\u00edcio'},
  pj:{sr:'Prijemni',en:'Admissions',de:'Aufnahme',fr:'Concours',es:'Admisi\u00f3n',it:'Ammissione',ru:'\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435',pt:'Admiss\u00e3o'},
  mm:{sr:'Mala matura',en:'High school',de:'Oberschule',fr:'Lyc\u00e9e',es:'Instituto',it:'Superiori',ru:'\u0421\u0440\u0435\u0434\u043d\u044f\u044f \u0448\u043a\u043e\u043b\u0430',pt:'Ensino m\u00e9dio'},
@@ -524,12 +533,12 @@ function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&L.pj[s.slice(
 function mk(href,cls,attr,txt){var a=document.createElement('a');a.href=href;if(cls)a.className=cls;a.setAttribute(attr,'1');a.textContent=txt;return a;}
 function ins(nav,ref,href,attr,txt){var ex=nav.querySelector('a['+attr+']');if(ex)return ex;var cls=ref?ref.className:'';var a=mk(href,cls,attr,txt);if(ref)ref.insertAdjacentElement('afterend',a);else nav.appendChild(a);return a;}
 function ensure(){var nav=document.querySelector('.nav-r');if(!nav)return;
- if(!nav.querySelector('a[data-homenav]')){var cls=(nav.querySelector('a.link')||{}).className||'link';var hb=mk('index.html',cls,'data-homenav',L.home.sr);nav.insertBefore(hb,nav.firstChild);}
+ if(!nav.querySelector('a[data-homenav]')){var cls=(nav.querySelector('a.link')||{}).className||'link';var hb=mk('index.html',cls,'data-homenav',L.home.sr);nav.insertBefore(hb,nav.firstChild);} if(!nav.querySelector('a[data-acctnav]')){var c2=(nav.querySelector('a.link')||{}).className||'link';var ab=mk('nalog.html',c2,'data-acctnav',L.nalog.sr);var cta=nav.querySelector('a.navcta');if(cta){nav.insertBefore(ab,cta);}else{nav.appendChild(ab);}}
  
  
  
  }
-function stdLinks(nav,l){var ls=nav.querySelectorAll('a.link:not([data-i18n])');for(var i=0;i<ls.length;i++){var el=ls[i];if(el.hasAttribute('data-homenav')||el.hasAttribute('data-pjnav')||el.hasAttribute('data-mmnav')||el.hasAttribute('data-plnav'))continue;if(el.className&&el.className.indexOf('navcta')>=0)continue;var hr=el.getAttribute('href')||'',k=null;if(/predmeti\.html/.test(hr))k='predmeti';else if(/prodavnica\.html/.test(hr))k='prodavnica';else if(/#paketi$/.test(hr))k='paketi';else if(/o-marini\.html/.test(hr))k='omeni';else if(/#mathia$/.test(hr))k='mathia';if(k)el.textContent=L[k][l]||L[k].sr;}}
+function stdLinks(nav,l){var ls=nav.querySelectorAll('a.link:not([data-i18n])');for(var i=0;i<ls.length;i++){var el=ls[i];if(el.hasAttribute('data-homenav')||el.hasAttribute('data-pjnav')||el.hasAttribute('data-mmnav')||el.hasAttribute('data-plnav'))continue;if(el.className&&el.className.indexOf('navcta')>=0)continue;var hr=el.getAttribute('href')||'',k=null;if(/nalog\.html/.test(hr))k='nalog';else if(/predmeti\.html/.test(hr))k='predmeti';else if(/prodavnica\.html/.test(hr))k='prodavnica';else if(/#paketi$/.test(hr))k='paketi';else if(/o-marini\.html/.test(hr))k='omeni';else if(/#mathia$/.test(hr))k='mathia';if(k)el.textContent=L[k][l]||L[k].sr;}}
 function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}var nav=document.querySelector('.nav-r');
  var hb=document.querySelector('a[data-homenav]');if(hb)hb.textContent=L.home[l]||L.home.sr;
  
@@ -540,5 +549,18 @@ function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatc
  var bn=document.querySelector('[data-prij-banner]');if(bn){var t=bn.querySelector('[data-pt]'),s=bn.querySelector('[data-ps]'),c=bn.querySelector('[data-pc]');if(t)t.textContent=BT[l]||BT.sr;if(s)s.textContent=BS[l]||BS.sr;if(c)c.textContent=BC[l]||BC.sr;}
  var pb=document.querySelector('[data-plan-banner]');if(pb){var t2=pb.querySelector('[data-plt]'),s2=pb.querySelector('[data-pls]'),c2=pb.querySelector('[data-plc]');if(t2)t2.textContent=BPT[l]||BPT.sr;if(s2)s2.textContent=BPS[l]||BPS.sr;if(c2)c2.textContent=BPC[l]||BPC.sr;}}
 ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:lng()}));}catch(e){}},_t);});addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}setInterval(function(){ensure();ap();},900);
+})();</script>
+<!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
 })();</script>
 </body></html>
