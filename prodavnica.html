@@ -43,9 +43,9 @@ header{position:sticky;top:0;z-index:30;background:rgba(251,246,238,.86);backdro
 .paketi-cta h2{color:var(--plum);font-size:1.6rem}
 .paketi-cta p{color:#6a5a62;margin:6px 0 14px}
 /* korpa drawer */
-.overlay{position:fixed;inset:0;background:rgba(60,40,48,.4);opacity:0;pointer-events:none;transition:.25s;z-index:40}
+.overlay{position:fixed;inset:0;background:rgba(60,40,48,.4);opacity:0;pointer-events:none;transition:.25s;z-index:70}
 .overlay.open{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--paper);box-shadow:-20px 0 50px -30px rgba(60,40,48,.6);transform:translateX(100%);transition:.28s;z-index:50;display:flex;flex-direction:column}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--paper);box-shadow:-20px 0 50px -30px rgba(60,40,48,.6);transform:translateX(100%);transition:.28s;z-index:71;display:flex;flex-direction:column}
 .drawer.open{transform:none}
 .drawer header{position:static;background:none;border:none;padding:20px 22px 10px;display:flex;justify-content:space-between;align-items:center}
 .drawer h2{color:var(--plum)}
@@ -57,6 +57,12 @@ header{position:sticky;top:0;z-index:30;background:rgba(251,246,238,.86);backdro
 .kp-item .q button{width:26px;height:26px;border-radius:50%;border:1px solid var(--bord);background:#fff;cursor:pointer;font-weight:800;color:var(--golddk)}
 .kp-cena{font-weight:800;color:var(--golddk);white-space:nowrap}
 .korpa-foot{padding:18px 22px 26px;border-top:1px solid var(--bord)}
+html.kopen #zoi-btn,html.kopen #zoi-cta{display:none!important}
+@media(max-width:600px){
+.drawer{width:100vw}
+.drawer header{padding-top:calc(20px + env(safe-area-inset-top))}
+.korpa-foot{padding-bottom:calc(26px + env(safe-area-inset-bottom))}
+}
 .total{display:flex;justify-content:space-between;font-weight:800;color:var(--plum);font-size:1.1rem;margin-bottom:12px}
 .korpa-foot input{width:100%;padding:12px 14px;border:1px solid var(--bord);border-radius:12px;font-family:inherit;margin-bottom:10px;background:#fff}
 .korpa-foot .btn{width:100%}
@@ -262,8 +268,8 @@ function osveziKorpu(){
   var _sub=ids.some(function(id){var pp=PROIZVODI.find(x=>x.id===id);return pp&&pp.mesecno;});
   document.getElementById('tot').innerHTML = din(total) + (_sub?'<div style="font-size:.72rem;color:#90787E;font-weight:700;margin-top:3px">pretplata se obnavlja mesečno</div>':'');
 }
-function otvori(){ document.getElementById('ov').classList.add('open'); document.getElementById('drawer').classList.add('open'); }
-function zatvori(){ document.getElementById('ov').classList.remove('open'); document.getElementById('drawer').classList.remove('open'); }
+function otvori(){ document.documentElement.classList.add('kopen'); document.getElementById('ov').classList.add('open'); document.getElementById('drawer').classList.add('open'); }
+function zatvori(){ document.documentElement.classList.remove('kopen'); document.getElementById('ov').classList.remove('open'); document.getElementById('drawer').classList.remove('open'); }
 
 async function plati(){
   const msg = document.getElementById('msg');
