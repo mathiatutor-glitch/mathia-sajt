@@ -133,4 +133,28 @@ window.addEventListener("load",rk);
  window.addEventListener('resize',function(){setTimeout(fit,80);});
 })();
 </script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--planbtn--><script>(function(){
+var PL={sr:'Planer',en:'Planner',de:'Planer',fr:'Agenda',es:'Agenda',it:'Agenda',ru:'\u041f\u043b\u0430\u043d\u0435\u0440',pt:'Agenda'};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&PL[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return PL[h]?h:'sr';}
+function levelFor(){var f=(location.pathname.split('/').pop()||'').toLowerCase();
+ if(/mala-matura/.test(f))return 'osnovna';
+ if(/matematika-[1-8]-razred/.test(f))return 'osnovna';
+ if(/fizika-[6-8]-razred/.test(f))return 'osnovna';
+ if(/fizika-[1-4]-razred/.test(f))return 'srednja';
+ if(/priprema-srednja/.test(f))return 'osnovna';
+ if(/prijemni|priprema-fakultet|priprema-visa/.test(f))return 'srednja';
+ if(/^predmet-/.test(f))return 'fakultet';
+ if(/(analiza|algebra|elektro|energetska|masine|mehanik|verovatno|programir|elektronika|nacrtna|arhitektura-racunara|oop|baze-podataka|merenja|sistemi-signali|operaciona|kompleksna|diskretna|linearna|uvod-u-elektroniku|elektromagnetika|pretvaraci)/.test(f))return 'fakultet';
+ return '';}
+var MAP={fakultet:'Mathia-Student-Planner.html',srednja:'Planer-Srednja.html',osnovna:'Planer-Osnovna.html'};
+function build(){if(document.getElementById('mathiaPlanBtn'))return;var href=MAP[levelFor()]||'Planeri.html';
+ var a=document.createElement('a');a.id='mathiaPlanBtn';a.href=href;
+ a.style.cssText='position:fixed;left:18px;bottom:18px;z-index:9998;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#C6A05C,#9C7838);color:#fff;font-family:Nunito,system-ui,sans-serif;font-weight:800;font-size:.9rem;padding:11px 17px;border-radius:100px;text-decoration:none;box-shadow:0 8px 22px rgba(120,90,50,.34)';
+ a.innerHTML='\uD83D\uDCD4 <span data-pll>Planer</span>';
+ document.body.appendChild(a);}
+function ap(){var s=document.querySelector('#mathiaPlanBtn [data-pll]');if(s)s.textContent=PL[lng()]||PL.sr;}
+function go(){build();ap();}
+if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);
+addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
+})();</script>
+</body></html>
