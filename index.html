@@ -1041,6 +1041,17 @@ ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{win
 .upact{display:flex;flex-direction:column;gap:10px;margin-top:20px}
 .upskip{background:none;border:none;color:var(--muted,#90787E);font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;padding:6px;text-decoration:underline}
 .upnudge{text-align:center;font-size:.82rem;color:var(--muted,#90787E);margin-top:12px}
+html.upopen #zoi-btn,html.upopen #zoi-cta{display:none!important}
+@media(max-width:600px){
+.upscrim{padding:10px;align-items:flex-start}
+.upmodal{max-height:94vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.uptop{padding:18px 18px}
+.upbody{padding:18px 18px 22px}
+.upoffer{flex-direction:column;align-items:flex-start;gap:12px}
+.upico{flex:0 0 54px;height:54px;font-size:1.7rem}
+.uppr{margin-left:0;text-align:left}
+.uppr b{font-size:1.35rem}
+}
 </style>
 <div class="upscrim" id="upscrim">
   <div class="upmodal" role="dialog" aria-modal="true" aria-label="Dodaj Planer uz paket">
@@ -1066,8 +1077,8 @@ ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{win
 </div>
 <script>
 var UPSEL={name:'',price:0,id:''};
-function upOpen(name,price,id){UPSEL={name:name,price:price,id:id};var e=document.getElementById('upplan');if(e)e.textContent='Paket '+name;document.getElementById('upscrim').classList.add('on');}
-function upClose(){document.getElementById('upscrim').classList.remove('on');}
+function upOpen(name,price,id){document.documentElement.classList.add('upopen');UPSEL={name:name,price:price,id:id};var e=document.getElementById('upplan');if(e)e.textContent='Paket '+name;document.getElementById('upscrim').classList.add('on');}
+function upClose(){document.documentElement.classList.remove('upopen');document.getElementById('upscrim').classList.remove('on');}
 function upChoose(withPlanner){
   var k={};try{k=JSON.parse(localStorage.getItem('mathia_korpa')||'{}');}catch(e){}
   if(UPSEL.id)k[UPSEL.id]=(k[UPSEL.id]||0)+1;
