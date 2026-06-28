@@ -189,5 +189,16 @@ header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit
         data-lang="sr" data-sub="Skripta — Nacrtna geometrija 1" data-sub-en="Study guide — Nacrtna geometrija 1"
         data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 za Nacrtnu geometriju 1. Pomažem ti oko projiciranja, karakterističnih pogleda, transformacija i rotacija, vidljivosti i preseka složenih 3D formi. Pošalji zadatak ili sliku — objasniću korak po korak!"
         data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 for Descriptive Geometry 1. I help with projections, characteristic views, transformations and rotations, visibility and intersections of complex 3D forms. Send a problem or a photo — I&#39;ll explain step by step!"></script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--i18nfix--><script>(function(){
+var NAV={en:'Try for free →',de:'Kostenlos testen →',fr:'Essaie gratuitement →',es:'Prueba gratis →',it:'Prova gratis →',ru:'Попробуй бесплатно →',pt:'Experimenta grátis →'};
+var SCR={en:'Open the notes',de:'Skript öffnen',fr:'Ouvrir le polycopié',es:'Abrir los apuntes',it:'Apri la dispensa',ru:'Открыть конспект',pt:'Abrir os apontamentos'};
+var it=[];
+document.querySelectorAll('.navcta').forEach(function(e){if(e.__o===undefined)e.__o=e.textContent;it.push([e,NAV]);});
+document.querySelectorAll('a,button').forEach(function(e){if((e.textContent||'').trim()==='Otvori skriptu'){if(e.__o===undefined)e.__o=e.textContent;it.push([e,SCR]);}});
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return (document.documentElement.lang||'sr').slice(0,2).toLowerCase();}
+function ap(){var l=lng();it.forEach(function(p){var e=p[0],m=p[1];e.textContent=(l==='sr'||!m[l])?e.__o:m[l];});}
+ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);
+try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
+setInterval(ap,800);})();</script>
+</body>
 </html>
