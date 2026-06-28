@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mathia Planer — Osnovna škola · by Dr. Marina Bulat</title>
-<meta name="description" content="Digitalni akademski sistem: od prvog dana fakulteta do male mature. Planiranje, praćenje učenja, navike, ispiti, portfolio i vodič kroz školu.">
+<meta name="description" content="Digitalni planer za osnovnu školu. Planiranje, praćenje učenja, navike, ciljevi i vodič dr Marine.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -194,7 +194,7 @@ function defaults(){
     raspored:[],
     rok:[],
     sumarum:{polozeno:'',prosek:'',espb:'',najtezi:'',najlaksi:'',ponos:'',menjam:''},
-    godine:[{naziv:'Prva godina',prosek:'',espb:'',polozeno:''},{naziv:'Druga godina',prosek:'',espb:'',polozeno:''},{naziv:'Treća godina',prosek:'',espb:'',polozeno:''},{naziv:'Četvrta godina',prosek:'',espb:'',polozeno:''},{naziv:'Master',prosek:'',espb:'',polozeno:''}],
+    godine:[{naziv:'I razred',prosek:'',espb:'',polozeno:''},{naziv:'II razred',prosek:'',espb:'',polozeno:''},{naziv:'III razred',prosek:'',espb:'',polozeno:''},{naziv:'IV razred',prosek:'',espb:'',polozeno:''}],
     diploma:{ukupno:'40',polozeno:'0',datum:''},
     refleksija:{naucio:'',drugacije:'',ponos:'',profesor:'',sledece:''},
     subjects:[],
@@ -214,19 +214,19 @@ function defaults(){
     projekti:[],
     praksa:[],
     konferencije:[],
-    bucket:{'Erasmus':false,'Studentska razmena':false,'Objavljen rad':false,'Konferencija':false,'Praksa':false,'Diplomiranje':false},
+    bucket:{'Sve petice':false,'Nagrada na takmičenju':false,'Ekskurzija':false,'Nešto novo da naučim':false,'Nova knjiga':false},
     vision:{note:'',imgs:['','','']},
     stickers:{},
     stikTabla:'',
     badges:[
-      {e:'🏅',name:'Prvi položen ispit',on:false},
-      {e:'🥇',name:'Sve desetke u roku',on:false},
+      {e:'🏅',name:'Prva petica',on:false},
+      {e:'🥇',name:'Sve petice',on:false},
       {e:'🔥',name:'30 dana bez pauze',on:false},
       {e:'☕',name:'100 sati učenja',on:false},
-      {e:'🎓',name:'Položen najteži predmet',on:false},
-      {e:'📚',name:'Završena godina',on:false},
-      {e:'🏆',name:'Prosek preko 9',on:false},
-      {e:'⭐',name:'Dekanova nagrada',on:false}
+      {e:'🎓',name:'Savladan najteži predmet',on:false},
+      {e:'📚',name:'Završen razred',on:false},
+      {e:'🏆',name:'Prosek 5,0',on:false},
+      {e:'⭐',name:'Đak generacije',on:false}
     ]
   };
 }
@@ -278,13 +278,13 @@ const MOTIV=[
   'Disciplina pobeđuje motivaciju.',
   'Mali napredak svakog dana vodi velikim rezultatima.',
   'Ne moraš biti najbolji — moraš biti istrajan.',
-  'Svaki rešen zadatak je cigla u tvojoj diplomi.',
+  'Svaki rešen zadatak je korak bliže tvom cilju.',
   'Učenje je maraton, ne sprint.',
   'Današnji trud je sutrašnja sigurnost na ispitu.',
   'Pametan plan vredi više od duge noći učenja.'
 ];
 const SUBJECT_CHECK=['Prvo predavanje','Preuzeo prezentacije','Vežbe','Projekat','Seminar','Domaći','Lab. vežbe','Potpis','Prijavljen ispit','Položen ispit'];
-const PONETI=['indeks','olovka','digitron','lenjir','studentska kartica','voda','dozvoljena literatura'];
+const PONETI=['olovka','sveska','digitron','lenjir','đačka knjižica','voda','pribor'];
 
 const SECTIONS=[
   {id:'profil',grp:'Ja',ic:'🎒',t:'Naslovna',r:renderProfil},
@@ -319,18 +319,16 @@ function renderProfil(){
   let h=card('🎓 Naslovna',
     `<div class="grid2">
        ${field('Ime i prezime','profil.ime')}
-       ${field('Broj indeksa','profil.indeks')}
        ${field('Škola','profil.fakultet')}
-       ${field('Univerzitet','profil.univerzitet')}
        ${field('Odeljenje','profil.smer')}
        ${field('Razred','profil.godina')}
-       ${field('Akademska godina','profil.akademska',{ph:'npr. 2025/26'})}
+       ${field('Školska godina','profil.akademska',{ph:'npr. 2025/26'})}
        ${field('E-mail','profil.email',{type:'email'})}
        ${field('Telefon','profil.telefon')}
-       ${field('Mentor','profil.mentor')}
+       ${field('Razredni starešina','profil.mentor')}
      </div>
      <div style="margin-top:12px">${field('🎯 Cilj za ovu godinu','profil.cilj',{area:true,ph:'Šta želiš da postigneš ove godine?'})}</div>
-     <div style="margin-top:12px">${field('Zašto studiram?','profil.zasto',{area:true,ph:'Tvoja motivacija — pročitaj je kad bude teško.'})}</div>`);
+     <div style="margin-top:12px">${field('Zašto učim?','profil.zasto',{area:true,ph:'Tvoja motivacija — pročitaj je kad bude teško.'})}</div>`);
   h+=card('📌 Pregled na prvi pogled',
     `<div class="grid3">
        <div class="stat"><span class="n">${subs.length}</span><span class="k">Predmeta</span></div>
@@ -343,14 +341,10 @@ function renderProfil(){
 function renderVizija(){
   return card('🌟 Moji ciljevi',
     `<div class="grid2">
-       ${field('Prosek koji želim','vizija.prosek')}
-       ${field('Prosek ocena','vizija.espb')}
-       ${field('Stipendija','vizija.stipendija')}
-       ${field('Erasmus','vizija.erasmus')}
-       ${field('Studentske razmene','vizija.razmena')}
-       ${field('Naučni rad','vizija.rad')}
-       ${field('Master','vizija.master')}
-       ${field('Doktorat','vizija.doktorat')}
+       ${field('Ocene kojima težim','vizija.prosek')}
+       ${field('Omiljeni predmet','vizija.espb')}
+       ${field('Sekcije i hobiji','vizija.stipendija')}
+       ${field('Takmičenja','vizija.erasmus')}
      </div>`,'Postavi jasne ciljeve za ovu godinu i dalje. Vraćaj se ovde i ažuriraj ih.');
 }
 function renderCV(){
@@ -374,10 +368,10 @@ function renderGodisnji(){
   return card('🗓️ Godišnji pregled',
     tableEditor('godisnji',[
       {key:'naziv',label:'Događaj',def:''},
-      {key:'kategorija',label:'Kategorija',sel:['Polugodište','Kontrolni','Ispit','Raspust','Praksa','Konferencija','Konkurs'],def:'Kontrolni'},
+      {key:'kategorija',label:'Kategorija',sel:['Polugodište','Kontrolni','Pismeni','Raspust','Ekskurzija','Takmičenje','Priredba'],def:'Kontrolni'},
       {key:'datum',label:'Datum',type:'date',def:''}
     ],'Dodaj događaj'),
-    'Cela akademska godina na jednom mestu — početak semestra, kontrolnii, ispiti, raspusti, praksa, konkursi.');
+    'Cela školska godina na jednom mestu — polugodišta, kontrolni, pismeni, raspusti, ekskurzije, takmičenja.');
 }
 function renderRaspored(){
   return card('⏰ Raspored časova',
@@ -388,7 +382,7 @@ function renderRaspored(){
       {key:'predmet',label:'Predmet',def:''},
       {key:'tip',label:'Tip',sel:['Predavanje','Vežbe','Lab','Konsultacije'],def:'Predavanje'},
       {key:'sala',label:'Sala',def:''},
-      {key:'nastavnik',label:'Profesor/Asistent',def:''}
+      {key:'nastavnik',label:'Nastavnik',def:''}
     ],'Dodaj termin')+'</div>');
 }
 function renderRok(){
@@ -405,7 +399,7 @@ function renderRok(){
 function renderSumarum(){
   return card('📊 Sumarum godine',
     `<div class="grid2">
-       ${field('Broj položenih ispita','sumarum.polozeno')}
+       ${field('Urađene provere','sumarum.polozeno')}
        ${field('Prosek','sumarum.prosek')}
        ${field('Prosek','sumarum.espb')}
        ${field('Najteži predmet','sumarum.najtezi')}
@@ -417,11 +411,11 @@ function renderSumarum(){
 function renderGodine(){
   return card('🏛️ Svi razredi',
     tableEditor('godine',[
-      {key:'naziv',label:'Godina',def:''},
+      {key:'naziv',label:'Razred',def:''},
       {key:'prosek',label:'Prosek',def:''},
       {key:'espb',label:'Ocena',def:''},
-      {key:'polozeno',label:'Položeno ispita',def:''}
-    ],'Dodaj godinu'),'Cela tvoja studentska istorija — prati prosek kroz sve godine.');
+      {key:'polozeno',label:'Napomena',def:''}
+    ],'Dodaj godinu'),'Svi razredi na jednom mestu — prati prosek kroz školu.');
 }
 function renderDiploma(){
   const uk=+get('diploma.ukupno')||0, pol=+get('diploma.polozeno')||0;
@@ -434,12 +428,12 @@ function renderDiploma(){
        <div class="ring" style="--p:${pct}"><div class="in"><b>${ost}</b><small style="color:var(--muted);font-weight:800">ispita ostalo</small></div></div>
        <div style="flex:1;min-width:220px">
          <div class="grid3" style="margin-bottom:12px">
-           ${field('Ukupno ispita','diploma.ukupno',{type:'number'})}
-           ${field('Položeno','diploma.polozeno',{type:'number'})}
+           ${field('Predmeta','diploma.ukupno',{type:'number'})}
+           ${field('Spremljeno','diploma.polozeno',{type:'number'})}
            ${field('Ciljni datum','diploma.datum',{type:'date'})}
          </div>
          <div class="bar"><i style="width:${pct}%"></i></div>
-         <div class="hint" style="margin-top:8px">Do diplome: <b>${pct}%</b> ${dani?'· '+dani:''} 🎓</div>
+         <div class="hint" style="margin-top:8px">Do male mature: <b>${pct}%</b> ${dani?'· '+dani:''} 🎓</div>
        </div>
      </div>`,'Vizuelni podsetnik koliko ti je ostalo. Svaki položen ispit pomeri brojač!');
 }
@@ -448,7 +442,7 @@ function renderRefleksija(){
     field('Šta sam naučio/la?','refleksija.naucio',{area:true})+
     '<div style="margin-top:12px">'+field('Šta bih uradio/la drugačije?','refleksija.drugacije',{area:true})+'</div>'+
     '<div style="margin-top:12px">'+field('Čime sam najponosniji/ja?','refleksija.ponos',{area:true})+'</div>'+
-    '<div style="margin-top:12px">'+field('Koji profesor me je najviše inspirisao?','refleksija.profesor')+'</div>'+
+    '<div style="margin-top:12px">'+field('Koji nastavnik me je najviše inspirisao?','refleksija.profesor')+'</div>'+
     '<div style="margin-top:12px">'+field('Gde želim da budem sledeće godine?','refleksija.sledece',{area:true})+'</div>');
 }
 
@@ -466,7 +460,7 @@ function renderPredmeti(){
     `<div class="grid3">
        ${field('Naziv predmeta','subjects.'+i+'.name')}
        ${field('Profesor','subjects.'+i+'.prof')}
-       ${field('Asistent','subjects.'+i+'.asistent')}
+       ${field('Učionica','subjects.'+i+'.asistent')}
        ${field('Kabinet','subjects.'+i+'.kabinet')}
        ${field('E-mail','subjects.'+i+'.email')}
        ${field('Konsultacije','subjects.'+i+'.konsultacije')}
@@ -487,7 +481,7 @@ function renderPredmeti(){
   h+=card('🎒 Šta poneti na kontrolni/ispit',checklist('subjects.'+i+'.poneti',PONETI));
   h+=card('📐 Formula sheet',field('Najvažnije formule','subjects.'+i+'.formule',{area:true,ph:'Zapiši ključne formule…'}));
   h+=card('💡 Najvažnije definicije',field('Definicije','subjects.'+i+'.definicije',{area:true}));
-  h+=card('⚠️ Najčešće greške',field('Na prošlom kontrolniu/ispitu sam pogrešio…','subjects.'+i+'.greske',{area:true}));
+  h+=card('⚠️ Najčešće greške',field('Na prošlom kontrolnom/pismenom sam pogrešio…','subjects.'+i+'.greske',{area:true}));
   h+=card('❓ Pitanja profesoru',field('Lista pitanja','subjects.'+i+'.pitanja',{area:true}));
   h+=card('🔁 Zadaci za ponovo','<div class="hint" style="margin-bottom:8px">Šta moraš ponovo da uradiš pre ispita.</div>'+field('','subjects.'+i+'.ponovo',{area:true}));
   h+=card('📈 Moj napredak',
@@ -620,7 +614,7 @@ function renderBadges(){
 function renderVodic(){
   return card('🧭 Vodič — dr Marina Bulat',
   `<div class="guide">
-    <p style="font-style:italic;color:var(--muted)">Kratki saveti koje studenti retko dobiju na fakultetu — iz iskustva profesora i mentora.</p>
+    <p style="font-style:italic;color:var(--muted)">Kratki saveti koje đaci retko čuju u školi — iz iskustva profesora i mentora.</p>
 
     <h4>📘 Kako učiti tehničke predmete</h4>
     <ul>
@@ -660,7 +654,7 @@ function renderVodic(){
 
     <h4>💼 Kako izgraditi portfolio za posao ili master</h4>
     <ul>
-      <li>Svaki projekat sa fakulteta okači na GitHub — to je tvoj dokaz.</li>
+      <li>Sačuvaj svoje najbolje radove i projekte — to je tvoj ponos.</li>
       <li>Vodi LinkedIn ažurnim; dodaj veštine koje stvarno koristiš.</li>
       <li>Čuvaj sertifikate i preporuke na jednom mestu (sekcija Portfolio).</li>
     </ul>
