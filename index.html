@@ -638,7 +638,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
           <li>Uvid za korisnika · neograničen pristup</li>
         </ul>
         <div class="price">4.990 <span>RSD / mesec</span></div>
-        <a class="btn btn-ghost" href="#">Izaberi Basic</a>
+        <a class="btn btn-ghost" href="#" onclick="upOpen('Basic',4990,'basic');return false">Izaberi Basic</a>
       </div>
       <div class="tier feat-tier reveal">
         <span class="badge-top">★ Najpopularnije</span>
@@ -651,7 +651,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
           <li>Uvid za korisnika · neograničen pristup</li>
         </ul>
         <div class="price">6.990 <span>RSD / mesec</span></div>
-        <a class="btn btn-gold" href="#">Izaberi Gold</a>
+        <a class="btn btn-gold" href="#" onclick="upOpen('Gold',6990,'gold');return false">Izaberi Gold</a>
       </div>
       <div class="tier reveal">
         <h3>DIAMOND</h3>
@@ -662,7 +662,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
           <li>Personalizovani plan učenja · prioritetna podrška</li>
         </ul>
         <div class="price">9.990 <span>RSD / mesec</span></div>
-        <a class="btn btn-rose" href="#">Izaberi Diamond</a>
+        <a class="btn btn-rose" href="#" onclick="upOpen('Diamond',9990,'diamond');return false">Izaberi Diamond</a>
       </div>
     </div>
   </div>
@@ -1009,5 +1009,65 @@ function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatc
  var pb=document.querySelector('[data-plan-banner]');if(pb){var t2=pb.querySelector('[data-plt]'),s2=pb.querySelector('[data-pls]'),c2=pb.querySelector('[data-plc]');if(t2)t2.textContent=BPT[l]||BPT.sr;if(s2)s2.textContent=BPS[l]||BPS.sr;if(c2)c2.textContent=BPC[l]||BPC.sr;}}
 ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:lng()}));}catch(e){}},_t);});addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}setInterval(function(){ensure();ap();},900);
 })();</script>
+
+<!--upsell--><style>
+.upscrim{position:fixed;inset:0;background:rgba(46,28,38,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:18px;z-index:99998;opacity:0;transition:opacity .22s ease}
+.upscrim.on{display:flex;opacity:1}
+.upmodal{background:var(--paper,#FBF6EE);border:1px solid var(--bord,#ECDAC5);border-radius:26px;max-width:560px;width:100%;overflow:hidden;transform:translateY(14px) scale(.98);transition:transform .26s cubic-bezier(.2,.8,.2,1);box-shadow:0 40px 90px -30px rgba(46,28,38,.6)}
+.upscrim.on .upmodal{transform:none}
+.uptop{background:linear-gradient(120deg,var(--plum,#432C37),var(--plum2,#5C3B49));color:#FBF6EE;padding:22px 26px}
+.upeye{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--goldlt,#E7D2A2)}
+.uph2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.7rem;margin:6px 0 0;color:#fff}
+.upp{margin:8px 0 0;color:#ecdde1;font-size:.95rem;line-height:1.5}
+.upbody{padding:22px 26px 26px}
+.upoffer{display:flex;gap:16px;align-items:center;background:var(--card,#fffcf6);border:1px solid var(--bord,#ECDAC5);border-radius:18px;padding:16px}
+.upico{flex:0 0 64px;height:64px;border-radius:16px;background:linear-gradient(145deg,#fff,var(--champ,#F7EAC9));border:1px solid var(--goldlt,#E7D2A2);display:flex;align-items:center;justify-content:center;font-size:2rem}
+.upt b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.32rem;color:var(--plum,#432C37);display:block;line-height:1.1}
+.upt span{font-size:.9rem;color:#6b585e}
+.uppr{margin-left:auto;text-align:right;white-space:nowrap}
+.uppr b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--golddk,#9C7838)}
+.uppr small{display:block;font-size:.72rem;color:var(--muted,#90787E);font-weight:700}
+.upfeats{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.upfeats span{font-size:.8rem;background:#fbf1de;border:1px solid var(--goldlt,#E7D2A2);color:#7a5f2f;border-radius:100px;padding:5px 11px;font-weight:700}
+.upact{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.upskip{background:none;border:none;color:var(--muted,#90787E);font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;padding:6px;text-decoration:underline}
+.upnudge{text-align:center;font-size:.82rem;color:var(--muted,#90787E);margin-top:12px}
+</style>
+<div class="upscrim" id="upscrim">
+  <div class="upmodal" role="dialog" aria-modal="true" aria-label="Dodaj Planer uz paket">
+    <div class="uptop">
+      <div class="upeye" id="upplan">Paket Gold</div>
+      <h2 class="uph2">Još samo jedno 💛</h2>
+      <p class="upp">Dodaj <b>Mathia Student Planner</b> uz pretplatu — i imaš baš sve na jednom mestu, od prvog predavanja do odbrane diplome.</p>
+    </div>
+    <div class="upbody">
+      <div class="upoffer">
+        <div class="upico">📔</div>
+        <div class="upt"><b>Mathia Student Planner</b><span>Raspored, ispitni rokovi, fokus, navike i odbrojavanje do diplome.</span></div>
+        <div class="uppr"><b>+1.990</b><small>RSD jednokratno</small></div>
+      </div>
+      <div class="upfeats"><span>🗓️ Raspored</span><span>📝 Ispitni rokovi</span><span>🍅 Fokus</span><span>🌱 Navike</span><span>🎓 Do diplome</span></div>
+      <div class="upact">
+        <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="upChoose(true)">Da, dodaj Planer (+1.990 RSD) →</button>
+        <button class="upskip" onclick="upChoose(false)">Ne, hvala — samo pretplata</button>
+      </div>
+      <div class="upnudge">Planer se inače kupuje zasebno u Prodavnici za 1.990 RSD.</div>
+    </div>
+  </div>
+</div>
+<script>
+var UPSEL={name:'',price:0,id:''};
+function upOpen(name,price,id){UPSEL={name:name,price:price,id:id};var e=document.getElementById('upplan');if(e)e.textContent='Paket '+name;document.getElementById('upscrim').classList.add('on');}
+function upClose(){document.getElementById('upscrim').classList.remove('on');}
+function upChoose(withPlanner){
+  var k={};try{k=JSON.parse(localStorage.getItem('mathia_korpa')||'{}');}catch(e){}
+  if(UPSEL.id)k[UPSEL.id]=(k[UPSEL.id]||0)+1;
+  if(withPlanner)k['PLANER-2026']=(k['PLANER-2026']||0)+1;
+  try{localStorage.setItem('mathia_korpa',JSON.stringify(k));}catch(e){}
+  location.href='prodavnica.html?korpa=1';
+}
+(function(){var s=document.getElementById('upscrim');if(s)s.addEventListener('click',function(e){if(e.target===this)upClose();});document.addEventListener('keydown',function(e){if(e.key==='Escape')upClose();});})();
+</script>
+
 </body>
 </html>

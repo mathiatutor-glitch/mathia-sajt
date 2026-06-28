@@ -213,6 +213,9 @@ header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit
 // Katalog (prikaz). Cene su informativne — server (lib/proizvodi.js) ih ponovo
 // računa pri naplati. Kad dodaš artikal ovde, dodaj ga i u lib/proizvodi.js.
 const PROIZVODI = [
+  { id:'basic',   naziv:'Paket Basic',   opis:'1 predmet · Profesorica 24/7 · skripte.',        cena:4990, tag:'pretplata', mesecno:true },
+  { id:'gold',    naziv:'Paket Gold',    opis:'Do 3 predmeta · prioritet · sve skripte.',       cena:6990, tag:'pretplata', mesecno:true },
+  { id:'diamond', naziv:'Paket Diamond', opis:'Svi predmeti · Marina uživo · svi materijali.', cena:9990, tag:'pretplata', mesecno:true },
   { id:'PLANER-2026', naziv:'Mathia Student Planner', opis:'Kompletan planer za studije — online pristup uz nalog.', cena:1990, tag:'planer' },
 ];
 
@@ -222,7 +225,7 @@ const din = n => n.toLocaleString('sr-RS') + ' RSD';
 const sacuvaj = () => { try{ localStorage.setItem('mathia_korpa', JSON.stringify(korpa)); }catch(e){} };
 
 function nacrtajGrid(){
-  document.getElementById('grid').innerHTML = PROIZVODI.map(p => `
+  document.getElementById('grid').innerHTML = PROIZVODI.filter(p=>p.tag!=='pretplata').map(p => `
     <div class="card">
       <span class="tag">${p.tag}</span>
       <h3>${p.naziv}</h3>
@@ -246,9 +249,10 @@ function osveziKorpu(){
     const p = PROIZVODI.find(x=>x.id===id); const iznos = p.cena*korpa[id]; total += iznos;
     return `<div class="kp-item"><div class="ime">${p.naziv}</div>
       <div class="q"><button onclick="promeni('${id}',-1)">−</button>${korpa[id]}<button onclick="promeni('${id}',1)">+</button></div>
-      <div class="kp-cena">${din(iznos)}</div></div>`;
+      <div class="kp-cena">${din(iznos)}${p.mesecno?' /mes':''}</div></div>`;
   }).join('');
-  document.getElementById('tot').textContent = din(total);
+  var _sub=ids.some(function(id){var pp=PROIZVODI.find(x=>x.id===id);return pp&&pp.mesecno;});
+  document.getElementById('tot').innerHTML = din(total) + (_sub?'<div style="font-size:.72rem;color:#90787E;font-weight:700;margin-top:3px">pretplata se obnavlja mesečno</div>':'');
 }
 function otvori(){ document.getElementById('ov').classList.add('open'); document.getElementById('drawer').classList.add('open'); }
 function zatvori(){ document.getElementById('ov').classList.remove('open'); document.getElementById('drawer').classList.remove('open'); }
@@ -272,7 +276,7 @@ async function plati(){
   }catch(e){ msg.textContent = 'Naplata još nije povezana (čekamo ključeve banke).'; }
 }
 
-osveziKorpu();
+osveziKorpu(); if(location.search.indexOf('korpa=1')>=0){try{otvori();}catch(e){}}
 </script>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><script src="https://project-y23je.vercel.app/widget.js?v=10" data-api="https://project-y23je.vercel.app/api/chat" data-mode="site" data-name="Profesorica" data-lang="sr" data-sub="Prodavnica" data-sub-en="Store"></script>
 <!--prijnav--><script>(function(){
