@@ -2660,7 +2660,7 @@ var it=[];
 document.querySelectorAll('.navcta').forEach(function(e){if(e.__o===undefined)e.__o=e.textContent;it.push([e,NAV]);});
 document.querySelectorAll('a,button').forEach(function(e){if((e.textContent||'').trim()==='Otvori skriptu'){if(e.__o===undefined)e.__o=e.textContent;it.push([e,SCR]);}});
 function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return (document.documentElement.lang||'sr').slice(0,2).toLowerCase();}
-function ap(){var l=lng();it.forEach(function(p){var e=p[0],m=p[1];e.textContent=(l==='sr'||!m[l])?e.__o:m[l];});}
+function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}it.forEach(function(p){var e=p[0],m=p[1];e.textContent=(l==='sr'||!m[l])?e.__o:m[l];});}
 ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);
 try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
 setInterval(ap,800);})();</script>
@@ -2691,13 +2691,13 @@ function ensure(){var nav=document.querySelector('.nav-r');if(!nav)return;
  var ref=nav.querySelector('a[href="predmeti.html"]')||nav.querySelector('a[data-homenav]');
  ref=ins(nav,ref,'Prijemni-Fakulteti.html','data-pjnav',L.pj.sr);
  ref=ins(nav,ref,'Test-Sklonosti-Srednja.html','data-mmnav',L.mm.sr);
- ref=ins(nav,ref,'Planeri.html','data-plnav',L.pl.sr);}
+ }
 function stdLinks(nav,l){var ls=nav.querySelectorAll('a.link:not([data-i18n])');for(var i=0;i<ls.length;i++){var el=ls[i];if(el.hasAttribute('data-homenav')||el.hasAttribute('data-pjnav')||el.hasAttribute('data-mmnav')||el.hasAttribute('data-plnav'))continue;if(el.className&&el.className.indexOf('navcta')>=0)continue;var hr=el.getAttribute('href')||'',k=null;if(/predmeti\.html/.test(hr))k='predmeti';else if(/prodavnica\.html/.test(hr))k='prodavnica';else if(/#paketi$/.test(hr))k='paketi';else if(/o-marini\.html/.test(hr))k='omeni';else if(/#mathia$/.test(hr))k='mathia';if(k)el.textContent=L[k][l]||L[k].sr;}}
-function ap(){var l=lng();var nav=document.querySelector('.nav-r');
+function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}var nav=document.querySelector('.nav-r');
  var hb=document.querySelector('a[data-homenav]');if(hb)hb.textContent=L.home[l]||L.home.sr;
  var a=document.querySelector('a[data-pjnav]');if(a)a.textContent=L.pj[l]||L.pj.sr;
  var m=document.querySelector('a[data-mmnav]');if(m)m.textContent=L.mm[l]||L.mm.sr;
- var p=document.querySelector('a[data-plnav]');if(p)p.textContent=L.pl[l]||L.pl.sr;
+ 
  if(nav){stdLinks(nav,l);
   var cb=nav.querySelector('.cart-btn');if(cb&&cb.firstChild&&cb.firstChild.nodeType===3&&!cb.hasAttribute('data-i18n'))cb.firstChild.textContent=(L.korpa[l]||L.korpa.sr)+' ';}
  var bn=document.querySelector('[data-prij-banner]');if(bn){var t=bn.querySelector('[data-pt]'),s=bn.querySelector('[data-ps]'),c=bn.querySelector('[data-pc]');if(t)t.textContent=BT[l]||BT.sr;if(s)s.textContent=BS[l]||BS.sr;if(c)c.textContent=BC[l]||BC.sr;}

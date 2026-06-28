@@ -741,5 +741,12 @@ function resetAll(){if(confirm('Obrisati SVE podatke i početi iznova? Ovo se ne
   setInterval(rotateMotiv,16000);
 })();
 </script>
+<!--demo--><script>(function(){try{if(new URLSearchParams(location.search).get('demo')!=='1')return;
+window.print=function(){};window.expData=function(){};
+var hide=function(){document.querySelectorAll('.tbtn').forEach(function(b){var t=(b.textContent||'');if(t.indexOf('PDF')>=0||t.indexOf('Izvoz')>=0||t.indexOf('Uvoz')>=0||t.indexOf('Izvezi')>=0){b.style.display='none';}});var imp=document.getElementById('imp');if(imp){imp.disabled=true;}};
+var badge=function(){var d=document.createElement('div');d.textContent='DEMO — kupi u Prodavnici da čuvaš i skidaš';d.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:99999;background:#432C37;color:#FBF6EE;padding:8px 16px;border-radius:999px;font:600 13px/1.2 Nunito,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.25)';document.body.appendChild(d);};
+if(document.readyState!=='loading'){hide();badge();}else{document.addEventListener('DOMContentLoaded',function(){hide();badge();});}
+setTimeout(hide,600);setTimeout(hide,1500);
+}catch(e){}})();</script>
 </body>
 </html>
