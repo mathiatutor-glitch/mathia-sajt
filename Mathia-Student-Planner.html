@@ -7,18 +7,18 @@
 <meta name="description" content="Digitalni akademski sistem: od prvog dana fakulteta do diplome. Planiranje, praćenje učenja, navike, ispiti, portfolio i vodič kroz studije.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800;900&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f6f5f2;--bg2:#efede8;--card:#ffffff;--ink:#2c2230;--muted:#8a7f8c;--line:#ece8ee;
-    --plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--rose:#CC8E86;--rose-dk:#B5746C;
+    --bg:#FBF6EE;--bg2:#F1E7D7;--card:#FFFDF8;--ink:#3a2d36;--muted:#9a8a90;--line:#EDE3D4;
+    --plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--rose:#CC8E86;--rose-dk:#B5746C;
     --mint:#8FB99B;--sky:#86A7C6;--lilac:#A99BC4;--sun:#E7C063;
     --ok:#5fa978;--warn:#d99a4e;--bad:#cc7d76;
-    --rad:16px;--sh:0 1px 2px rgba(40,30,45,.05),0 8px 24px -16px rgba(40,30,45,.28);
+    --rad:18px;--sh:0 1px 2px rgba(120,90,50,.05),0 16px 36px -22px rgba(120,90,50,.32);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Nunito',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{margin:0;font-family:'Nunito',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);background-image:radial-gradient(1200px 620px at 100% -8%,rgba(231,210,162,.20),transparent 60%),radial-gradient(900px 520px at -8% 112%,rgba(204,142,134,.10),transparent 55%);background-attachment:fixed;line-height:1.55;-webkit-font-smoothing:antialiased}
   h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.1;margin:0}
   a{color:var(--golddk);text-decoration:none}
   .serif{font-family:'Cormorant Garamond',serif}
@@ -28,7 +28,7 @@
   .side::-webkit-scrollbar{width:7px}.side::-webkit-scrollbar-thumb{background:rgba(231,210,162,.25);border-radius:9px}
   .brand{padding:20px 22px 16px;border-bottom:1px solid rgba(231,210,162,.18);position:sticky;top:0;background:linear-gradient(180deg,#3c2733,#352230);z-index:2}
   .brand b{font-family:'Cormorant Garamond',serif;font-size:1.34rem;letter-spacing:.02em;display:block;color:#fff}
-  .brand .by{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--goldlt);margin-top:3px;font-weight:700}
+  .brand .by{font-family:'Pinyon Script',cursive;font-size:1.32rem;letter-spacing:.01em;text-transform:none;color:var(--goldlt);margin-top:5px;font-weight:400}
   .navgrp{padding:14px 14px 2px}
   .navgrp .gt{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(231,210,162,.55);font-weight:800;padding:0 10px 6px}
   .navi{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:11px;cursor:pointer;color:#e9ddcf;font-weight:600;font-size:.88rem;transition:background .14s,transform .08s}
@@ -37,7 +37,7 @@
   .navi .ic{width:22px;text-align:center;font-size:1.02rem;flex:0 0 22px}
   /* main */
   .main{padding:0 0 60px;min-width:0}
-  .top{position:sticky;top:0;z-index:5;background:rgba(246,245,242,.86);backdrop-filter:blur(9px);border-bottom:1px solid var(--line);padding:12px 30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .top{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .top .mt{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--plum);font-weight:600;flex:1;min-width:160px}
   .savei{font-size:.74rem;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:6px}
   .savei .dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
@@ -45,7 +45,7 @@
   .tbtn:hover{border-color:var(--gold);background:#fffdf8}
   .tbtn.danger:hover{border-color:var(--bad);color:var(--bad)}
   .wrap{max-width:980px;margin:0 auto;padding:26px 30px}
-  .banner{background:linear-gradient(100deg,#fbf3e4,#f7ead0);border:1px solid var(--goldlt);border-radius:var(--rad);padding:14px 20px;margin-bottom:22px;display:flex;align-items:center;gap:14px;color:var(--plum)}
+  .banner{background:linear-gradient(100deg,#FCF4E4,#F8EBD2 58%,#F7E7E1);border:1px solid var(--goldlt);border-radius:var(--rad);padding:15px 22px;margin-bottom:22px;display:flex;align-items:center;gap:14px;color:var(--plum);box-shadow:0 16px 34px -26px rgba(198,160,92,.75)}
   .banner .q{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-weight:600;font-style:italic}
   /* cards */
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);box-shadow:var(--sh);padding:20px 22px;margin-bottom:18px}
