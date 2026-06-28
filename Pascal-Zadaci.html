@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia — Pascal — zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
+  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
+  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
+.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
+.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
+h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
+.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
+.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
+.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.chip.soon{opacity:.5}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
+.intro b{font-family:var(--hf)}
+.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
+.zad-n.solved{background:var(--good)}
+.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
+.opcije{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
+.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
+.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
+.opt.correct{background:#edf6ee;border-color:var(--good)}
+.opt.wrong{background:#fbeeed;border-color:var(--bad)}
+.opt.correct .opt-l{background:var(--good);color:#fff}
+.opt.wrong .opt-l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{transform:none;background:#fffdf8}
+.opt.correct[disabled]:hover{background:#edf6ee}
+.opt.wrong[disabled]:hover{background:#fbeeed}
+.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+.reveal-btn:hover{background:var(--acc);color:#fff}
+.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
+.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
+.rstep+.rstep{border-top:1px solid #f3ead9}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
+.katex{white-space:nowrap;font-size:1.02em}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">Programiranje · Vežba</div>
+  <h1>Pascal — zadaci</h1>
+  <p class="sub">Vežbaj Pascal kroz pitanja o sintaksi i konceptima — izaberi tačan odgovor pa pogledaj objašnjenje.</p>
+  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
+</div>
+
+<div class="page">
+  <div class="chips" id="roksel">
+    <span class="chip active" data-y="osn">Osnove</span>
+    <span class="chip" data-y="var">Promenljive i tipovi</span>
+    <span class="chip" data-y="tok">Kontrola toka</span>
+    <span class="chip" data-y="fun">Procedure i funkcije</span>
+    <span class="chip" data-y="str">Strukture</span>
+  </div>
+  <div class="intro"><b id="rok-label">Oblast: Osnove</b> · izaberi tačan odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div id="lista"></div>
+  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <div class="foot" id="rok-foot">MATHIA · Osnove · uči s ljubavlju · mathia.rs</div>
+</div>
+
+<script>
+// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
+// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
+const A=[{"n": 1, "t": "Tekst se ispisuje sa:", "o": ["<code>writeln('Zdravo')</code>", "<code>print(\"x\")</code>", "<code>cout &lt;&lt; \"x\"</code>", "<code>echo \"x\"</code>", "<code>say(\"x\")</code>"], "c": 0, "r": ["<code>writeln</code> ispisuje i prelazi u novi red.", ""]}, {"n": 2, "t": "Glavni blok programa nalazi se između:", "o": ["<code>begin</code> i <code>end.</code>", "<code>{ }</code>", "<code>( )</code>", "posle <code>main</code>", "bez bloka"], "c": 0, "r": ["<code>begin ... end.</code> zatvara program.", ""]}, {"n": 3, "t": "Naredbe se razdvajaju znakom:", "o": ["tačkom-zapetom <code>;</code>", "tačkom <code>.</code>", "dvotačkom <code>:</code>", "zarezom", "novim redom"], "c": 0, "r": ["<code>;</code> razdvaja naredbe.", ""]}, {"n": 4, "t": "Komentar se piše kao:", "o": ["<code>// komentar</code>", "<code>{ ovo je komentar }</code>", "<code># komentar</code>", "<code>&lt;!-- --&gt;</code>", "<code>-- komentar</code>"], "c": 1, "r": ["U Pascalu: <code>{ komentar }</code> ili <code>(* *)</code>.", ""]}];
+const B=[{"n": 1, "t": "Promenljive se deklarišu rečju:", "o": ["<code>var</code>", "<code>let</code>", "<code>dim</code>", "<code>def</code>", "<code>set</code>"], "c": 0, "r": ["<code>var x: integer;</code>.", ""]}, {"n": 2, "t": "Ceo broj je tip:", "o": ["<code>int</code>", "<code>integer</code>", "<code>number</code>", "<code>Int</code>", "<code>long</code>"], "c": 1, "r": ["U Pascalu je to <code>integer</code>.", ""]}, {"n": 3, "t": "Vrednost se dodeljuje operatorom:", "o": ["<code>=</code>", "<code>:=</code>", "<code>&lt;-</code>", "<code>==</code>", "<code>=&gt;</code>"], "c": 1, "r": ["<code>x := 5;</code>.", ""]}, {"n": 4, "t": "Tekst čuva tip:", "o": ["<code>string</code>", "<code>text</code>", "<code>str</code>", "<code>char[]</code>", "<code>word</code>"], "c": 0, "r": ["<code>string</code> čuva niz znakova.", ""]}];
+const C=[{"n": 1, "t": "Uslov se piše kao:", "o": ["<code>if ... then</code>", "<code>if ( ) { }</code>", "<code>if: </code>", "<code>when ... do</code>", "<code>if ... :</code>"], "c": 0, "r": ["<code>if x &gt; 0 then ...</code>.", ""]}, {"n": 2, "t": "Petlja sa brojačem je:", "o": ["<code>for(i=0;i&lt;n;i++)</code>", "<code>for i := 1 to n do</code>", "<code>for i in range</code>", "<code>foreach</code>", "<code>loop i</code>"], "c": 1, "r": ["<code>for i := 1 to n do ...</code>.", ""]}, {"n": 3, "t": "Petlja sa uslovom je:", "o": ["<code>while( ) { }</code>", "<code>while uslov do</code>", "<code>while:</code>", "<code>do-while only</code>", "<code>repeat-until only</code>"], "c": 1, "r": ["<code>while uslov do ...</code>.", ""]}, {"n": 4, "t": "Reč <code>else</code> ide uz:", "o": ["uz <code>if</code>", "uz <code>for</code>", "uz <code>while</code>", "uz <code>var</code>", "samostalno"], "c": 0, "r": ["<code>if ... then ... else ...</code>.", ""]}];
+const D=[{"n": 1, "t": "Potprogram bez povratne vrednosti je:", "o": ["<code>procedure</code>", "<code>function</code>", "<code>def</code>", "<code>sub</code>", "<code>method</code>"], "c": 0, "r": ["<code>procedure</code> ne vraća vrednost.", ""]}, {"n": 2, "t": "Potprogram koji VRAĆA vrednost je:", "o": ["<code>procedure</code>", "<code>function</code>", "<code>void</code>", "<code>return-blok</code>", "<code>def</code>"], "c": 1, "r": ["<code>function f(...): integer;</code>.", ""]}, {"n": 3, "t": "Sa tastature se učitava sa:", "o": ["<code>input(x)</code>", "<code>readln(x)</code>", "<code>scanf(x)</code>", "<code>cin &gt;&gt; x</code>", "<code>get(x)</code>"], "c": 1, "r": ["<code>readln(x)</code>.", ""]}, {"n": 4, "t": "Telo potprograma je između:", "o": ["<code>begin</code> / <code>end</code>", "<code>{ }</code>", "<code>( )</code>", "<code>do/od</code>", "<code>[ ]</code>"], "c": 0, "r": ["<code>begin ... end;</code>.", ""]}];
+const E=[{"n": 1, "t": "Niz se deklariše kao:", "o": ["<code>int[] a</code>", "<code>array[1..n] of integer</code>", "<code>list</code>", "<code>vector</code>", "<code>a = []</code>"], "c": 1, "r": ["<code>a: array[1..10] of integer;</code>.", ""]}, {"n": 2, "t": "Niz <code>a: array[1..10]</code> ima indekse:", "o": ["od 1 do 10", "od 0 do 9", "samo 10", "negativne", "slova"], "c": 0, "r": ["Pascal nizovi obično idu od navedene donje granice.", ""]}, {"n": 3, "t": "Konstanta se definiše rečju:", "o": ["<code>const</code>", "<code>final</code>", "<code>val</code>", "<code>static</code>", "<code>def</code>"], "c": 0, "r": ["<code>const PI = 3.14;</code>.", ""]}, {"n": 4, "t": "Tip sa više polja (zapis) je:", "o": ["<code>struct</code>", "<code>record</code>", "<code>class</code>", "<code>object</code>", "<code>table</code>"], "c": 1, "r": ["<code>record ... end;</code> grupiše polja.", ""]}];
+
+const EXAMS={
+  'osn':{label:'Osnove', z:A},
+  'var':{label:'Promenljive i tipovi', z:B},
+  'tok':{label:'Kontrola toka', z:C},
+  'fun':{label:'Procedure i funkcije', z:D},
+  'str':{label:'Strukture', z:E}
+};
+let YEAR='osn';
+let ZADACI=EXAMS[YEAR].z;
+let KEY='mathia_pas_'+YEAR;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+let stanje=load();
+
+function updateProgress(){
+  const n=Object.values(stanje).filter(v=>v==='ok').length;
+  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
+  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  ZADACI.forEach(z=>{
+    const solved=stanje[z.n]==='ok';
+    const card=document.createElement('div'); card.className='zad';
+    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
+    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
+    card.innerHTML=`
+      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
+      <div class="zad-q">${z.t}</div>
+      <div class="opcije">${opts}</div>
+      <button class="reveal-btn">Prikaži rešenje ✦</button>
+      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
+    // option clicks
+    const optEls=card.querySelectorAll('.opt');
+    optEls.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        const i=+btn.dataset.i;
+        optEls.forEach(b=>b.setAttribute('disabled','')); 
+        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
+        if(i!==z.c) btn.classList.add('wrong');
+        card.dataset.done='1';
+        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
+        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
+        const fb=document.createElement('div');
+        fb.className='feedback '+(i===z.c?'ok':'no');
+        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
+        card.querySelector('.opcije').after(fb);
+        updateProgress();
+      });
+    });
+    card.querySelector('.reveal-btn').addEventListener('click',e=>{
+      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
+      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+      if(!r.hidden) fitFormulas(r);
+    });
+    lista.appendChild(card);
+  });
+  updateProgress();
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
+});
+
+function fitFormulas(root){
+  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
+    var avail=box.clientWidth; if(avail<=0) return;
+    box.querySelectorAll('.katex').forEach(function(k){
+      k.style.fontSize=''; var size=1.02, g=0;
+      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
+    });
+  });
+}
+function typeset(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+  fitFormulas();
+}
+var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
+function go(){ render(); typeset(); }
+function switchYear(y){
+  if(!EXAMS[y]||y===YEAR) return;
+  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_pas_'+YEAR; stanje=load();
+  document.getElementById('lista').innerHTML='';
+  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
+  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
+  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Osnove · uči s ljubavlju · mathia.rs';
+  render(); typeset();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
+if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
+</script>
+</body>
+</html>
