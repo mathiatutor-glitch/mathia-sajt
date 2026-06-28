@@ -223,10 +223,19 @@ img,svg{max-width:100%}
   .m{max-width:88%}
 }
 </style>
+<style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6A05C"/><stop offset="1" stop-color="#9C7838"/></linearGradient></defs></svg>
-<div class="note-strip">Pregled članske stranice — prikazani su primeri podataka</div>
+<div class="note-strip" id="note-strip" style="display:none"></div>
 
 <!-- LOGIN -->
 <div id="login">
@@ -235,12 +244,11 @@ img,svg{max-width:100%}
     <div class="script">Tvoj kutak za učenje</div>
     <h2 id="ltitle">Prijavi se</h2>
     <p class="sub" id="lsub">Lepo je videti te ponovo.</p>
-    <div class="field" id="fname" style="display:none"><label>Ime i prezime</label><input id="in-name" placeholder="Ana Jovanović"></div>
-    <div class="field"><label>E-mail</label><input id="in-mail" type="email" placeholder="ana@primer.rs"></div>
-    <div class="field"><label>Lozinka</label><input id="in-pass" type="password" placeholder="••••••••"></div>
-    <button class="btn btn-gold" style="width:100%" onclick="enter()" id="lbtn">Prijavi se →</button>
-    <div class="lswitch" id="lswitch">Nemaš nalog? <button onclick="toggleReg(true)">Registruj se</button></div>
-    <div class="lnote">Pregled — bilo koji podaci te vode na stranicu.</div>
+    <div class="field" id="f-email"><label>E-mail</label><input id="in-mail" type="email" autocomplete="email" placeholder="ti@primer.rs" onkeydown="if(event.key==='Enter')auth()"></div>
+    <div class="field" id="f-code" style="display:none"><label>Kod iz mejla (6 cifara)</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456" onkeydown="if(event.key==='Enter')auth()"></div>
+    <button class="btn btn-gold" style="width:100%" onclick="auth()" id="lbtn">Pošalji mi kod →</button>
+    <div id="lmsg" style="min-height:18px;font-size:.84rem;color:var(--golddk);margin-top:10px"></div>
+    <div class="lnote">Prijava bez lozinke — pošaljemo ti link i kod na e-mail.</div>
   </div>
 </div>
 
@@ -390,197 +398,185 @@ img,svg{max-width:100%}
 </div>
 
 <script>
-var USER={ime:'Ana Jovanović', prvo:'Ana'};
-var SUBJ=[
-  {nm:'Matematika 1', topic:'Određeni integrali', pct:68},
-  {nm:'Linearna algebra', topic:'Sopstvene vrednosti', pct:42},
-  {nm:'Fizika 1', topic:'Kinematika', pct:15}
-];
-var WEEK=[{d:'Pon',m:40},{d:'Uto',m:25},{d:'Sre',m:60},{d:'Čet',m:15},{d:'Pet',m:50},{d:'Sub',m:35},{d:'Ned',m:45}];
+var SB_URL="https://ibhirxltgeyecrjwymai.supabase.co";
+var SB_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+var sb=null; try{ if(window.supabase) sb=window.supabase.createClient(SB_URL,SB_ANON); }catch(e){}
+
+var USER=null, PROFILE=null, SUBJECTS=[], STEP='email', EMAIL='';
 var MISLI=[
-  'Svaki rešen zadatak je korak bliže cilju — idemo polako, ali sigurno.',
-  'Ne moraš da znaš sve odjednom. Dovoljno je da danas naučiš jednu stvar više.',
-  'Disciplina danas je sloboda sutra. Tu sam uz tebe na svakom koraku.'
+ 'Svaki rešen zadatak je korak bliže cilju — idemo polako, ali sigurno.',
+ 'Ne moraš da znaš sve odjednom. Dovoljno je da danas naučiš jednu stvar više.',
+ 'Disciplina danas je sloboda sutra. Tu sam uz tebe na svakom koraku.'
 ];
-var MAT={
- 'Matematika 1':{
-   formule:[
-     {g:'Integrali', f:['∫ xⁿ dx = xⁿ⁺¹/(n+1) + C','∫ 1/x dx = ln|x| + C','∫ eˣ dx = eˣ + C','∫ sin x dx = − cos x + C']},
-     {g:'Izvodi', f:['(xⁿ)′ = n · xⁿ⁻¹','(eˣ)′ = eˣ','(ln x)′ = 1/x','(sin x)′ = cos x']},
-     {g:'Trigonometrija', f:['sin²x + cos²x = 1','sin 2x = 2 sin x cos x','cos 2x = cos²x − sin²x']}
-   ],
-   zbirka:[
-     {t:'Određeni integrali', n:24, z:2},
-     {t:'Izvodi funkcije', n:30, z:1},
-     {t:'Granične vrednosti', n:18, z:3}
-   ]
- },
- 'Linearna algebra':{
-   formule:[
-     {g:'Determinante', f:['det(2×2) = a·d − b·c','det(A·B) = det A · det B']},
-     {g:'Sopstvene vrednosti', f:['det(A − λI) = 0','A · v = λ · v']}
-   ],
-   zbirka:[
-     {t:'Determinante', n:20, z:1},
-     {t:'Matrice i operacije', n:26, z:2},
-     {t:'Sistemi jednačina', n:22, z:2}
-   ]
- },
- 'Fizika 1':{
-   formule:[
-     {g:'Kinematika', f:['v = v₀ + a · t','s = v₀ · t + ½ · a · t²','v² = v₀² + 2 · a · s']},
-     {g:'Njutnovi zakoni', f:['F = m · a','akcija = − reakcija']}
-   ],
-   zbirka:[
-     {t:'Ravnomerno kretanje', n:16, z:1},
-     {t:'Ubrzano kretanje', n:21, z:2},
-     {t:'Dinamika — sile', n:19, z:3}
-   ]
- }
-};
+function $(id){return document.getElementById(id);}
+function setMsg(m,err){var e=$('lmsg'); if(e){e.textContent=m||''; e.style.color=err?'#B5746C':'var(--golddk)';}}
 
-/* login */
-var reg=false;
-function toggleReg(on){reg=on;
-  document.getElementById('fname').style.display=on?'block':'none';
-  document.getElementById('ltitle').textContent=on?'Napravi nalog':'Prijavi se';
-  document.getElementById('lsub').textContent=on?'Par sekundi i počinješ.':'Lepo je videti te ponovo.';
-  document.getElementById('lbtn').textContent=on?'Registruj se →':'Prijavi se →';
-  document.getElementById('lswitch').innerHTML=on?'Već imaš nalog? <button onclick="toggleReg(false)">Prijavi se</button>':'Nemaš nalog? <button onclick="toggleReg(true)">Registruj se</button>';
+/* AUTH */
+async function auth(){
+  if(!sb){ setMsg('Veza sa nalogom trenutno nije dostupna. Pokušaj malo kasnije.',true); return; }
+  var btn=$('lbtn');
+  if(STEP==='email'){
+    var em=(($('in-mail').value)||'').trim();
+    if(!em || em.indexOf('@')<0){ setMsg('Unesi ispravan e-mail.',true); return; }
+    btn.disabled=true; setMsg('Šaljem ti mejl…');
+    try{
+      var r=await sb.auth.signInWithOtp({email:em, options:{shouldCreateUser:true, emailRedirectTo:location.origin+location.pathname}});
+      if(r.error){ setMsg(r.error.message||'Greška pri slanju. Pokušaj ponovo.',true); btn.disabled=false; return; }
+      EMAIL=em; STEP='code'; $('f-code').style.display='block'; try{$('in-code').focus();}catch(e){}
+      btn.textContent='Potvrdi kod →'; btn.disabled=false;
+      setMsg('Poslali smo ti mejl na '+em+'. Klikni link u njemu — ili upiši kod ispod.');
+    }catch(e){ setMsg('Greška pri slanju. Pokušaj ponovo.',true); btn.disabled=false; }
+  } else {
+    var code=(($('in-code').value)||'').trim();
+    if(code.length<4){ setMsg('Unesi kod iz mejla.',true); return; }
+    btn.disabled=true; setMsg('Proveravam…');
+    try{
+      var v=await sb.auth.verifyOtp({email:EMAIL, token:code, type:'email'});
+      if(v.error){ setMsg('Pogrešan ili istekao kod.',true); btn.disabled=false; return; }
+      USER=(v.data&&v.data.user)?v.data.user:((v.data&&v.data.session)?v.data.session.user:null);
+      btn.disabled=false; await loadData(); showApp();
+    }catch(e){ setMsg('Pogrešan ili istekao kod.',true); btn.disabled=false; }
+  }
 }
-function enter(){
-  var nm=(document.getElementById('in-name').value||'').trim();
-  if(reg && nm){USER.ime=nm; USER.prvo=nm.split(' ')[0];}
-  applyUser();
-  document.getElementById('login').style.display='none';
-  document.getElementById('app').classList.add('on');
-  document.getElementById('misao').textContent='„'+MISLI[Math.floor(Math.random()*MISLI.length)]+'"';
-  renderAll();
-}
-function logout(){document.getElementById('app').classList.remove('on');document.getElementById('login').style.display='flex';window.scrollTo(0,0);}
-function applyUser(){
-  document.getElementById('u-nm').textContent=USER.ime;
-  document.getElementById('hello-nm').textContent=USER.prvo+' 👋';
-  document.getElementById('u-av').textContent=USER.ime.split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();
-}
+async function logout(){ try{ if(sb) await sb.auth.signOut(); }catch(e){} USER=null;PROFILE=null;SUBJECTS=[]; var m=$('msgs'); if(m){m.innerHTML='';delete m.dataset.init;} showLogin(); }
 
-/* nav */
+/* BOOT / DATA */
+async function boot(){
+  if(sb){ try{ var u=await sb.auth.getUser(); USER=(u&&u.data&&u.data.user)?u.data.user:null; }catch(e){ USER=null; } }
+  if(USER){ await loadData(); showApp(); } else { showLogin(); }
+}
+async function loadData(){
+  PROFILE=null; SUBJECTS=[]; if(!sb||!USER) return;
+  try{ var pr=await sb.from('mathia_profil').select('*').eq('user_id',USER.id).maybeSingle(); PROFILE=(pr&&pr.data)?pr.data:null; }catch(e){}
+  try{ var np=await sb.from('mathia_napredak').select('*').eq('user_id',USER.id).order('azurirano',{ascending:false}); SUBJECTS=(np&&np.data)?np.data:[]; }catch(e){ SUBJECTS=[]; }
+}
+function showLogin(){ $('login').style.display='flex'; $('app').classList.remove('on');
+  STEP='email'; EMAIL=''; var c=$('f-code'); if(c)c.style.display='none';
+  var b=$('lbtn'); if(b){b.textContent='Pošalji mi kod →'; b.disabled=false;}
+  var sub=$('lsub'); if(sub)sub.textContent='Unesi e-mail — pošaljemo ti link i kod za prijavu.';
+  setMsg(''); window.scrollTo(0,0);
+}
+function showApp(){ $('login').style.display='none'; $('app').classList.add('on'); render(); window.scrollTo(0,0); }
+
+/* HELPERS */
+function fullName(){ return (PROFILE&&PROFILE.ime)?PROFILE.ime:((USER&&USER.email)?USER.email:'Moj nalog'); }
+function firstName(){ var n=(PROFILE&&PROFILE.ime)?PROFILE.ime:((USER&&USER.email)?USER.email.split('@')[0]:'ti'); return (''+n).trim().split(/\s+/)[0]; }
+function initials(){ var p=fullName().split(/[\s@.]+/).filter(Boolean); return (((p[0]||'')[0]||'')+((p[1]||'')[0]||'')).toUpperCase()||'M'; }
+function cap(s){ s=(''+s).replace(/[-_]/g,' ').trim(); return s.charAt(0).toUpperCase()+s.slice(1); }
+function pageFor(k){ k=(''+k); return 'predmet-'+(k==='fax-verovatnoca'?'verovatnoca':k)+'.html'; }
+function pct(s){ if(s.obaveze&&s.obaveze.length){var d=s.obaveze.filter(function(o){return o.g;}).length;return Math.round(d/s.obaveze.length*100);}
+  if(typeof s.procenat==='number')return Math.max(0,Math.min(100,Math.round(s.procenat)));
+  if(s.status==='zavrseno'||s.status==='završeno')return 100;
+  if(s.total)return Math.round((s.done||0)/s.total*100); return 0; }
+
+/* NAV */
 var TITLES={home:'Početna',subj:'Moji predmeti',mat:'Materijali',plan:'Moj planer',stat:'Statistika',prof:'Profesorica'};
-function go(sec,btn){
-  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on');});
-  document.getElementById('sec-'+sec).classList.add('on');
-  document.querySelectorAll('.snav').forEach(function(b){b.classList.remove('act');});
-  if(btn)btn.classList.add('act');
-  document.getElementById('ptitle').textContent=TITLES[sec]||'';
-  if(sec==='stat')drawStats();
-  if(sec==='home'||sec==='subj')setTimeout(fillRings,30);
-  window.scrollTo(0,0);
+function go(sec,btn){ document.querySelectorAll('.sec').forEach(function(x){x.classList.remove('on');});
+  var el=$('sec-'+sec); if(el)el.classList.add('on');
+  document.querySelectorAll('.snav').forEach(function(b){b.classList.remove('act');}); if(btn)btn.classList.add('act');
+  $('ptitle').textContent=TITLES[sec]||'';
+  if(sec==='stat')drawStats(); if(sec==='home'||sec==='subj')setTimeout(fillRings,30); window.scrollTo(0,0);
 }
+function openRes(){ go('mat', document.querySelectorAll('.snav')[2]); }
+function closeRes(){ var s=$('scrim'); if(s)s.classList.remove('on'); }
 
-/* render */
-function ring(pct){
-  var r=26,c=2*Math.PI*r,off=c*(1-pct/100);
-  return '<div class="ring"><svg width="62" height="62" viewBox="0 0 62 62"><circle cx="31" cy="31" r="'+r+'" stroke="#efe2cf" stroke-width="6" fill="none"/>'+
-    '<circle class="rc" cx="31" cy="31" r="'+r+'" stroke="url(#ringg)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+c+'" data-off="'+off+'"/></svg>'+
-    '<div class="pc">'+pct+'%</div></div>';
-}
-function subjCard(s){
-  return '<div class="subj"><div class="hd">'+ring(s.pct)+'<div><div class="nm">'+s.nm+'</div><div class="topic">Trenutno: '+s.topic+'</div></div></div>'+
-    '<div class="res">'+
-    '<button onclick="go(\'prof\',document.querySelectorAll(\'.snav\')[5])">📖 Lekcije</button>'+
-    '<button onclick="openRes(\''+s.nm+'\',\'zbirka\')">📝 Zbirka</button>'+
-    '<button onclick="openRes(\''+s.nm+'\',\'formule\')">📐 Formule</button>'+
-    '</div></div>';
-}
-function matCard(s){
-  return '<div class="card hov" style="margin-bottom:14px"><div class="matrow"><div class="mnm">'+s.nm+'</div>'+
-    '<button class="btn btn-ghost btn-sm" onclick="go(\'prof\',document.querySelectorAll(\'.snav\')[5])">📖 Lekcije</button>'+
-    '<button class="btn btn-ghost btn-sm" onclick="openRes(\''+s.nm+'\',\'zbirka\')">📝 Zbirka zadataka</button>'+
-    '<button class="btn btn-gold btn-sm" onclick="openRes(\''+s.nm+'\',\'formule\')">📐 Priručnik formula</button>'+
-    '</div></div>';
-}
-function renderAll(){
-  document.getElementById('home-subj').innerHTML=SUBJ.map(subjCard).join('');
-  document.getElementById('all-subj').innerHTML=SUBJ.map(subjCard).join('');
-  document.getElementById('mat-list').innerHTML=SUBJ.map(matCard).join('');
-  setTimeout(fillRings,60);
-  initChat();
+/* RENDER */
+function ring(p){ var r=26,c=2*Math.PI*r,off=c*(1-p/100);
+  return '<div class="ring"><svg width="62" height="62" viewBox="0 0 62 62"><circle cx="31" cy="31" r="'+r+'" stroke="#efe2cf" stroke-width="6" fill="none"/><circle class="rc" cx="31" cy="31" r="'+r+'" stroke="url(#ringg)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+c+'" data-off="'+off+'"/></svg><div class="pc">'+p+'%</div></div>'; }
+function subjCard(s){ var p=pct(s);
+  return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+cap(s.predmet)+'</div><div class="topic">'+(s.poslednja_tema?('Tema: '+s.poslednja_tema):'Spremno za početak')+'</div></div></div><div class="res"><a class="btn btn-ghost btn-sm" href="'+pageFor(s.predmet)+'">Otvori predmet →</a></div></div>'; }
+function emptyCard(msg,cta,href){ return '<div class="card" style="grid-column:1/-1;text-align:center;padding:28px"><p style="color:var(--muted);margin-bottom:14px">'+msg+'</p><a class="btn btn-gold" href="'+href+'">'+cta+'</a></div>'; }
+
+function render(){
+  document.querySelector('.uchip .nm').textContent=fullName();
+  document.querySelector('.uchip .av').textContent=initials();
+  $('hello-nm').textContent=firstName()+' 👋';
+  var paket=(PROFILE&&PROFILE.paket)?(''+PROFILE.paket):'';
+  document.querySelector('#sec-home .pill').textContent= paket?('💎 '+cap(paket)+' paket — aktivan'):'✦ Tvoj nalog';
+  var pbB=document.querySelector('.plan-badge b'),pbS=document.querySelector('.plan-badge span');
+  if(pbB)pbB.textContent= paket?(cap(paket)+' paket'):'Moj nalog'; if(pbS)pbS.textContent= paket?'Aktivna pretplata':'Mathia';
+  $('misao').textContent='„'+MISLI[Math.floor(Math.random()*MISLI.length)]+'"';
+  var totalMin=0,bestNiz=0,teme=0;
+  SUBJECTS.forEach(function(s){ totalMin+=(+s.minuta_ukupno||0); bestNiz=Math.max(bestNiz,(+s.serija||0)); if(s.obaveze)teme+=s.obaveze.filter(function(o){return o.g;}).length; });
+  var sv=document.querySelectorAll('#sec-home .stat .v'), sl=document.querySelectorAll('#sec-home .stat .l');
+  var stats=[[SUBJECTS.length,'Predmeti'],[Math.round(totalMin/60)+' h','Vreme učenja'],[bestNiz+(bestNiz?' 🔥':''),'Najduži niz'],[teme,'Urađene teme']];
+  for(var i=0;i<sv.length&&i<4;i++){ sv[i].textContent=stats[i][0]; if(sl[i])sl[i].textContent=stats[i][1]; }
+  var rc=document.querySelector('#sec-home .resume'), rh=rc?rc.previousElementSibling:null;
+  if(SUBJECTS.length){ var s0=SUBJECTS[0]; rc.style.display=''; if(rh)rh.style.display='';
+    rc.querySelector('.ic').textContent='📘';
+    rc.querySelector('.t b').textContent=cap(s0.predmet);
+    rc.querySelector('.t span').textContent=(s0.poslednja_tema?('Tema: '+s0.poslednja_tema):'Nastavi učenje');
+    var rb=rc.querySelector('.btn'); if(rb)rb.outerHTML='<a class="btn btn-gold" href="'+pageFor(s0.predmet)+'">Nastavi →</a>';
+  } else { if(rc)rc.style.display='none'; if(rh)rh.style.display='none'; }
+  var hs=$('home-subj'),as=$('all-subj');
+  if(SUBJECTS.length){ var html=SUBJECTS.map(subjCard).join(''); hs.innerHTML=html; as.innerHTML=html; }
+  else { var e=emptyCard('Još nisi započela nijedan predmet.','Izaberi predmet →','predmeti.html'); hs.innerHTML=e; as.innerHTML=e; }
+  $('mat-list').innerHTML= SUBJECTS.length ? SUBJECTS.map(function(s){
+    return '<div class="card hov" style="margin-bottom:14px"><div class="matrow"><div class="mnm">'+cap(s.predmet)+'</div><a class="btn btn-gold btn-sm" href="'+pageFor(s.predmet)+'">Otvori materijale →</a></div></div>'; }).join('')
+    : emptyCard('Materijali se otključavaju uz tvoje predmete.','Izaberi predmet →','predmeti.html');
+  var owns=!!(PROFILE&&(PROFILE.planer===true||PROFILE.planer==='da'||PROFILE.planer===1));
+  var pt=document.querySelector('#sec-plan .plan-hero .t');
+  if(pt){ pt.innerHTML= owns
+    ? '<b>Mathia Student Planner</b><span class="own">✓ U vlasništvu</span><p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-gold" href="Mathia-Student-Planner.html">Otvori planer →</a></div>'
+    : '<b>Mathia Student Planner</b><p style="font-size:.92rem;color:#6b585e;margin:8px 0 0">Tvoj kompletan planer za studije — raspored, rokovi, fokus i navike. Dodaj ga uz nalog.</p><div style="margin-top:12px"><a class="btn btn-gold" href="prodavnica.html">Pogledaj u Prodavnici →</a></div>'; }
+  initChat(); setTimeout(fillRings,60);
 }
 function fillRings(){document.querySelectorAll('.ring .rc').forEach(function(c){c.style.transition='stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)';c.style.strokeDashoffset=c.getAttribute('data-off');});}
 
-/* materijali modal */
-var CUR={subj:'Matematika 1', type:'formule'};
-function openRes(subj,type){CUR={subj:subj,type:type};document.getElementById('scrim').classList.add('on');drawRes();}
-function closeRes(){document.getElementById('scrim').classList.remove('on');}
-function drawRes(){
-  var isF=CUR.type==='formule';
-  document.getElementById('r-ic').textContent=isF?'📐':'📝';
-  document.getElementById('r-title').textContent=isF?'Priručnik formula':'Zbirka zadataka';
-  document.getElementById('r-sub').textContent=CUR.subj;
-  document.getElementById('r-tabs').innerHTML=Object.keys(MAT).map(function(k){
-    return '<button class="'+(k===CUR.subj?'act':'')+'" onclick="CUR.subj=\''+k+'\';drawRes()">'+k+'</button>';
-  }).join('');
-  var data=MAT[CUR.subj][CUR.type], html='';
-  if(isF){
-    html=data.map(function(grp){
-      return '<div class="fgrp"><h4>✦ '+grp.g+'</h4>'+grp.f.map(function(x){return '<div class="fline">'+x+'</div>';}).join('')+'</div>';
-    }).join('');
-  }else{
-    html=data.map(function(z){
-      var st='';for(var i=0;i<3;i++)st+=(i<z.z?'★':'☆');
-      return '<div class="zitem"><div class="zt"><b>'+z.t+'</b><span>'+z.n+' zadataka</span></div><span class="stars">'+st+'</span>'+
-        '<button class="btn btn-gold btn-sm" onclick="solve(\''+z.t+'\')">Reši →</button></div>';
-    }).join('');
-  }
-  document.getElementById('r-body').innerHTML=html;
-}
-function solve(tema){closeRes();go('prof',document.querySelectorAll('.snav')[5]);
-  me('Hajde da vežbamo: '+tema);
-  typing(function(){bot('Odličan izbor! Krećemo sa <b>'+tema+'</b>. Evo prvog zadatka — reši ga, pa ti odmah dam povratnu informaciju. Ako negde zapne, prolazimo zajedno korak po korak. 💛');});
-}
-
-/* statistika */
+/* STATS */
 function drawStats(){
-  var mx=Math.max.apply(null,WEEK.map(function(w){return w.m;}));
-  document.getElementById('wk').innerHTML=WEEK.map(function(w){
-    return '<div class="d"><div class="col" data-h="'+Math.round(w.m/mx*100)+'"></div><div class="dl">'+w.d+'</div></div>';
-  }).join('');
-  document.getElementById('prog').innerHTML=SUBJ.map(function(s){
-    return '<div class="prow"><div class="pn">'+s.nm+'</div><div class="bar"><i data-w="'+s.pct+'"></i></div><div class="pv">'+s.pct+'%</div></div>';
-  }).join('');
-  var st='';for(var i=0;i<7;i++){st+='<div class="dot'+(i<6?' on':'')+'">'+(i<6?'🔥':'·')+'</div>';}
-  document.getElementById('streak').innerHTML=st;
-  setTimeout(function(){
-    document.querySelectorAll('.wk .col').forEach(function(c){c.style.height=c.getAttribute('data-h')+'%';});
-    document.querySelectorAll('#prog .bar > i').forEach(function(i){i.style.width=i.getAttribute('data-w')+'%';});
-  },40);
+  var h4=document.querySelectorAll('#sec-stat .card h4'); if(h4[0])h4[0].textContent='Vreme učenja po predmetu';
+  var leg=document.querySelector('#sec-stat .legend'); if(leg)leg.textContent='Ukupno minuta po predmetu';
+  var wk=$('wk');
+  if(SUBJECTS.length){
+    var mx=Math.max.apply(null,SUBJECTS.map(function(s){return +s.minuta_ukupno||0;}).concat([1]));
+    wk.innerHTML=SUBJECTS.map(function(s){var m=+s.minuta_ukupno||0;return '<div class="d"><div class="col" data-h="'+Math.round(m/mx*100)+'"></div><div class="dl">'+cap(s.predmet).slice(0,7)+'</div></div>';}).join('');
+    $('prog').innerHTML=SUBJECTS.map(function(s){var p=pct(s);return '<div class="prow"><div class="pn">'+cap(s.predmet)+'</div><div class="bar"><i data-w="'+p+'"></i></div><div class="pv">'+p+'%</div></div>';}).join('');
+    var best=0;SUBJECTS.forEach(function(s){best=Math.max(best,+s.serija||0);});
+    var sl=document.querySelector('#sec-stat .card:last-child .legend'); if(sl)sl.textContent=best?('Najduži niz: '+best+' dana'):'Počni svoj niz već danas';
+    var st='';for(var i=0;i<7;i++){st+='<div class="dot'+(i<best?' on':'')+'">'+(i<best?'🔥':'·')+'</div>';}
+    $('streak').innerHTML=st;
+    setTimeout(function(){document.querySelectorAll('#sec-stat .wk .col').forEach(function(c){c.style.height=c.getAttribute('data-h')+'%';});document.querySelectorAll('#sec-stat .bar > i').forEach(function(x){x.style.width=x.getAttribute('data-w')+'%';});},40);
+  } else { wk.innerHTML='<p style="color:var(--muted)">Statistika se pojavljuje čim počneš da učiš.</p>'; $('prog').innerHTML=''; $('streak').innerHTML=''; }
 }
 
-/* Profesorica */
-function initChat(){
-  var m=document.getElementById('msgs'); if(m.dataset.init)return; m.dataset.init='1';
-  bot('Zdravo, '+USER.prvo+'! 👋 Prošli put smo radili <b>određene integrale</b> — stigli smo do <b>68%</b> u Matematici 1. Hoćeš da nastavimo odatle, ili da nešto ponovimo?');
-  var chips=[['Nastavi integrale','nastavi'],['Objasni parcijalnu integraciju','parc'],['Daj mi 3 zadatka','zad'],['Kako stojim?','stat']];
-  document.getElementById('chips').innerHTML=chips.map(function(c){return '<button onclick="ask(\''+c[1]+'\')">'+c[0]+'</button>';}).join('');
+/* CHAT */
+function initChat(){ var m=$('msgs'); if(!m||m.dataset.init)return; m.dataset.init='1';
+  var hi='Zdravo, '+firstName()+'! 👋 ';
+  if(SUBJECTS.length){ var s0=SUBJECTS[0]; hi+='Tu sam za tvoje predmete. Poslednje smo radili <b>'+cap(s0.predmet)+'</b>'+(s0.poslednja_tema?(' — '+s0.poslednja_tema):'')+'. Hoćeš da nastavimo?'; }
+  else { hi+='Tu sam da ti pomognem oko gradiva. Reci mi koji predmet učiš, pa krećemo.'; }
+  bot(hi);
+  var chips=[['Objasni mi pojam','objasni'],['Daj mi zadatak','zad'],['Plan učenja','plan'],['Kako napredujem?','stat']];
+  $('chips').innerHTML=chips.map(function(c){return '<button onclick="ask(\''+c[1]+'\')">'+c[0]+'</button>';}).join('');
 }
-function bot(html){add(html,'bot');}
-function me(t){add(esc(t),'me');}
-function esc(s){return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function add(html,who){var d=document.createElement('div');d.className='m '+who;d.innerHTML=html;var m=document.getElementById('msgs');m.appendChild(d);m.scrollTop=m.scrollHeight;}
-function typing(cb){var m=document.getElementById('msgs');var t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';m.appendChild(t);m.scrollTop=m.scrollHeight;setTimeout(function(){if(t.parentNode)m.removeChild(t);cb();},650);}
-function reply(key){
-  var t=(''+key).toLowerCase();
-  if(t.indexOf('nastavi')>=0||t.indexOf('integral')>=0) return 'Nastavljamo sa određenim integralima. Polazimo od <b>Njutn–Lajbnicove formule</b>:<span class="fx">∫ₐᵇ f(x) dx = F(b) − F(a)</span>Hoćeš prvo kratko pravilo ili odmah primer?';
-  if(t.indexOf('parc')>=0) return 'Parcijalna integracija:<span class="fx">∫ u · dv = u · v − ∫ v · du</span>„u" biraš po pravilu LIATE. Pošalji mi jedan integral, pa ga rešavamo zajedno, korak po korak.';
-  if(t.indexOf('zad')>=0||t.indexOf('3 ')>=0) return 'Evo tri zadatka, rastuća težina:<span class="fx">1) ∫ x · eˣ dx</span><span class="fx">2) ∫ ln x dx</span><span class="fx">3) ∫ x² · sin x dx</span>Reši prvi, pa ti proverim. Ako zapne, tu sam. 💪';
-  if(t.indexOf('stat')>=0||t.indexOf('stoj')>=0||t.indexOf('napred')>=0) return 'Evo gde si trenutno:<br>• Matematika 1 — <b>68%</b><br>• Linearna algebra — <b>42%</b><br>• Fizika 1 — <b>15%</b><br>Niz: <b>6 dana</b> 🔥. Najbolje ti ide Matematika 1 — odličan tempo, samo tako nastavi!';
-  return 'Tu sam za sve oko tvojih predmeta — pravilo, primer ili zadaci. Pamtim dokle smo stigli (Matematika 1: 68%), pa lako nastavljamo gde god želiš. 💛';
+function bot(h){add(h,'bot');} function me(t){add(esc(t),'me');}
+function esc(s){return(''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function add(h,w){var d=document.createElement('div');d.className='m '+w;d.innerHTML=h;var m=$('msgs');m.appendChild(d);m.scrollTop=m.scrollHeight;}
+function typing(cb){var m=$('msgs');var t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';m.appendChild(t);m.scrollTop=m.scrollHeight;setTimeout(function(){if(t.parentNode)m.removeChild(t);cb();},650);}
+function reply(k){var t=(''+k).toLowerCase();
+  if(t.indexOf('objasni')>=0)return 'Naravno — reci mi pojam ili temu, pa ću ti objasniti jednostavno, korak po korak, uz primer.';
+  if(t.indexOf('zad')>=0)return 'Važi! Reci predmet i temu, pa ti dajem zadatak po tvom nivou — i rešavamo zajedno.';
+  if(t.indexOf('plan')>=0)return 'Hajde da napravimo plan: koliko dana imaš do ispita i koliko vremena dnevno? Onda razbijem gradivo na lake dnevne korake.';
+  if(t.indexOf('stat')>=0||t.indexOf('napre')>=0){ if(SUBJECTS.length)return 'Imaš '+SUBJECTS.length+' predmeta u toku, najviše si radila '+cap(SUBJECTS[0].predmet)+'. Samo nastavi — ide ti! 💛'; return 'Čim počneš predmet, ovde ću ti pratiti napredak i bodriti te. 💛'; }
+  return 'Tu sam za tebe — pitaj me pojam, traži zadatak ili plan učenja. Idemo zajedno. 💛';
 }
-function ask(key){
-  var label={nastavi:'Nastavi integrale',parc:'Objasni parcijalnu integraciju',zad:'Daj mi 3 zadatka',stat:'Kako stojim?'}[key]||key;
-  me(label); typing(function(){bot(reply(key));});
-}
-function send(){var i=document.getElementById('cin');var v=i.value.trim();if(!v)return;me(v);i.value='';typing(function(){bot(reply(v));});}
+function ask(k){var lbl={objasni:'Objasni mi pojam',zad:'Daj mi zadatak',plan:'Plan učenja',stat:'Kako napredujem?'}[k]||k; me(lbl); typing(function(){bot(reply(k));});}
+function send(){var i=$('cin');var v=i.value.trim();if(!v)return;me(v);i.value='';typing(function(){bot(reply(v));});}
+
+boot();
 </script>
+<!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
+})();</script>
 </body>
 </html>

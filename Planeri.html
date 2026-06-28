@@ -26,7 +26,15 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font
 .note{color:var(--muted);font-size:.92rem;margin-top:26px;text-align:center}
 .sig{font-family:'Pinyon Script',cursive;color:var(--golddk);font-size:1.25rem}
 @media(max-width:560px){h1{font-size:2rem}}
-</style></head>
+</style><style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
+</head>
 <body>
 <div class="bar"><div class="brand">MATHIA<span> · planeri</span></div><a class="back" href="predmeti.html">←</a></div>
 <div class="wrap">
@@ -40,4 +48,17 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font
 </div>
 <p class="note">Popunjavaš i čuvaš na svom uređaju · <b>Izvoz</b> i <b>🖨️ PDF</b> za preuzimanje · <span class="sig">by Dr. Marina Bulat</span></p>
 </div>
+<!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
+})();</script>
 </body></html>

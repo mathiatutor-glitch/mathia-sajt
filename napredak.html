@@ -51,7 +51,15 @@ html,body{overflow-x:hidden}
 .scroll-h{position:static;bottom:auto;margin-top:22px}
 .foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
 .rule{margin-top:30px}
-</style></head>
+</style><style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
+</head>
 <body><div class="wrap">
 
 <div class="card">
@@ -107,7 +115,7 @@ var sb=null; try{ if(SUPABASE_URL&&SUPABASE_ANON&&window.supabase) sb=window.sup
 var T={
 sr:{title:"Moj napredak",hi:"Tvoj pregled učenja na jednom mestu.",needlogin:"Prijavi se da vidiš svoj napredak i preporuke.",login:"Prijavi se",overallH:"Ukupan napredak",profileH:"Tvoj profil",lead:"Najjača oblast",noprofile:"Još nemaš profil. Uradi test sklonosti — za par minuta dobiješ oblast, stil učenja i plan.",test:"Uradi test sklonosti",planH:"Preporuka učenja",subjH:"Tvoji predmeti",none:"Još nisi počeo nijedan predmet. Izaberi predmet i kreni 💛",cont:"Nastavi",last:"Poslednja tema",total:"Ukupno",streak:"Niz",min:"min",days:"dana",again:"Uradi test ponovo",back:"Svi predmeti",done:"urađeno",todo:"preostalo",tasks:"Obaveze",noTasks:"Nema upisanih obaveza još.",ofDone:"od",
 styleL:"Stil učenja",minL:"Tempo",timeL:"Najbolje vreme",socL:"Način rada",
-plan:"Uči ≈ %m min dnevno, najbolje %t. Cilj: 2–3 teme nedeljno, %s. Klikni „Nastavi" na predmetu da se vratiš tačno gde si stao.",
+plan:"Uči ≈ %m min dnevno, najbolje %t. Cilj: 2–3 teme nedeljno, %s. Klikni „Nastavi“ na predmetu da se vratiš tačno gde si stao.",
 types:{T:"Tehnika i IT",E:"Ekonomija i poslovno",P:"Prirodne nauke i medicina",D:"Društveno-humanističke nauke",U:"Umetnost i dizajn"},
 stil:{V:"vizuelno (slike i dijagrami)",Pr:"praktično (radeći zadatke)",Te:"čitanjem objašnjenja",Ex:"kroz rešene primere"},
 vreme:{jutro:"ujutru",popodne:"popodne",vece:"uveče"},drustvo:{sam:"Sam/a",par:"U paru",grupa:"U grupi"}},
@@ -121,7 +129,7 @@ vreme:{jutro:"in the morning",popodne:"in the afternoon",vece:"in the evening"},
 
 de:{title:"Mein Fortschritt",hi:"Dein Lernüberblick an einem Ort.",needlogin:"Melde dich an, um Fortschritt und Empfehlungen zu sehen.",login:"Anmelden",overallH:"Gesamtfortschritt",profileH:"Dein Profil",lead:"Stärkster Bereich",noprofile:"Du hast noch kein Profil. Mach den Eignungstest — in wenigen Minuten bekommst du Bereich, Lernstil und einen Plan.",test:"Eignungstest machen",planH:"Lernempfehlung",subjH:"Deine Fächer",none:"Du hast noch kein Fach begonnen. Wähle eines und leg los 💛",cont:"Fortsetzen",last:"Letztes Thema",total:"Gesamt",streak:"Serie",min:"Min",days:"Tage",again:"Test erneut machen",back:"Alle Fächer",done:"erledigt",todo:"offen",tasks:"Aufgaben",noTasks:"Noch keine Aufgaben erfasst.",ofDone:"von",
 styleL:"Lernstil",minL:"Tempo",timeL:"Beste Zeit",socL:"Arbeitsweise",
-plan:"Lerne ≈ %m Min/Tag, am besten %t. Ziel: 2–3 Themen pro Woche, %s. Klicke „Fortsetzen", um genau dort weiterzumachen, wo du aufgehört hast.",
+plan:"Lerne ≈ %m Min/Tag, am besten %t. Ziel: 2–3 Themen pro Woche, %s. Klicke „Fortsetzen“, um genau dort weiterzumachen, wo du aufgehört hast.",
 types:{T:"Technik & IT",E:"Wirtschaft & Business",P:"Naturwissenschaft & Medizin",D:"Geistes- & Sozialwissenschaften",U:"Kunst & Design"},
 stil:{V:"visuell (Bilder & Diagramme)",Pr:"praktisch (Aufgaben lösen)",Te:"Erklärungen lesen",Ex:"anhand gelöster Beispiele"},
 vreme:{jutro:"morgens",popodne:"nachmittags",vece:"abends"},drustvo:{sam:"Allein",par:"Zu zweit",grupa:"In der Gruppe"}},
@@ -255,4 +263,17 @@ function render(loggedOk,user){t=T[lang];
 $("lang").onchange=function(){lang=this.value;document.documentElement.lang=lang;render(true,profile&&true);};
 load();
 </script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
+})();</script>
+</body></html>
