@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prijemni po fakultetu · MATHIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FBF6EE;--paper2:#F5EADB;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--plum:#432C37;--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:1080px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 18px;border-bottom:1px solid var(--bord);background:#fff9ef;flex-wrap:wrap}
+.brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;color:var(--plum)}
+.brand span{color:var(--golddk)}
+.barr{display:flex;align-items:center;gap:12px}
+.lang{font:inherit;font-weight:700;color:var(--plum);border:1.5px solid var(--bord);border-radius:100px;padding:6px 12px;background:#fff}
+.back{color:var(--golddk);text-decoration:none;font-weight:700}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 70px}
+.eyebrow{color:var(--golddk);font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:.78rem;margin:6px 0 8px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font-size:2.4rem;line-height:1.1;margin:0 0 10px}
+.lead{color:var(--ink);font-size:1.06rem;max-width:760px;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.fc{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:18px 18px 16px;box-shadow:0 8px 22px rgba(176,138,74,.09);display:flex;flex-direction:column}
+.ab{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font-size:1.5rem;line-height:1}
+.nm{color:var(--ink);font-weight:700;font-size:.96rem;margin-top:3px}
+.gr{color:var(--muted);font-size:.85rem;margin-top:2px}
+.lbl{color:var(--golddk);font-weight:800;text-transform:uppercase;letter-spacing:.6px;font-size:.68rem;margin:12px 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--champ);border:1px solid var(--goldlt);color:var(--plum);font-weight:700;font-size:.8rem;padding:4px 10px;border-radius:100px}
+.acts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.b{appearance:none;border:none;font:inherit;font-weight:800;padding:10px 14px;border-radius:100px;text-decoration:none;text-align:center;cursor:pointer;font-size:.9rem}
+.b-g{background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;box-shadow:0 5px 14px rgba(176,138,74,.28)}
+.b-o{background:#fff;color:var(--golddk);border:1.5px solid var(--bord)}
+.note{color:var(--muted);font-size:.92rem;margin-top:26px;text-align:center}
+@media(max-width:560px){h1{font-size:2rem}.wrap{padding:20px 14px 60px}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="brand">MATHIA<span> · prijemni</span></div>
+  <div class="barr">
+    <select class="lang" id="lang" aria-label="Jezik">
+      <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option>
+    </select>
+    <a class="back" href="predmeti.html">←</a>
+  </div>
+</div>
+<div class="wrap">
+  <div class="eyebrow" id="eyebrow"></div>
+  <h1 id="h1"></h1>
+  <p class="lead" id="lead"></p>
+  <div class="grid" id="grid"></div>
+  <p class="note" id="note"></p>
+</div>
+<script>
+var DATA={"I18N": {"sr": {"eyebrow": "Prijemni · po fakultetu", "h1": "Prijemni po fakultetu", "lead": "Izaberi fakultet pa kreni: rešeni rokovi iz predmeta koji se polaže i test sklonosti za taj smer. Platforma je posvećena tehničkim i matematičkim fakultetima.", "polaze": "Prijemni iz", "btnRok": "Rešeni rokovi →", "btnTest": "Test sklonosti →", "mat": "Matematika", "fiz": "Fizika", "hem": "Hemija", "dar": "Darovitost (crtanje)", "note": "Nedostaje ti fakultet? Javi nam — dodajemo tehničke i matematičke smerove."}, "en": {"eyebrow": "Admissions · by faculty", "h1": "Entrance exams by faculty", "lead": "Pick a faculty and start: solved past exams for the required subject and an aptitude test for that track. The platform focuses on technical and mathematical faculties.", "polaze": "Exam subject", "btnRok": "Solved exams →", "btnTest": "Aptitude test →", "mat": "Mathematics", "fiz": "Physics", "hem": "Chemistry", "dar": "Aptitude (drawing)", "note": "Missing your faculty? Tell us — we add technical and mathematical tracks."}, "de": {"eyebrow": "Aufnahme · nach Fakultät", "h1": "Aufnahmeprüfung nach Fakultät", "lead": "Wähle eine Fakultät: gelöste Altklausuren im Prüfungsfach und ein Eignungstest für die Richtung. Die Plattform widmet sich technischen und mathematischen Fakultäten.", "polaze": "Prüfungsfach", "btnRok": "Altklausuren →", "btnTest": "Eignungstest →", "mat": "Mathematik", "fiz": "Physik", "hem": "Chemie", "dar": "Begabung (Zeichnen)", "note": "Deine Fakultät fehlt? Sag uns Bescheid — wir ergänzen technische und mathematische Richtungen."}, "fr": {"eyebrow": "Admission · par faculté", "h1": "Concours par faculté", "lead": "Choisis une faculté : annales corrigées de la matière et un test d'aptitude pour la filière. La plateforme se consacre aux facultés techniques et mathématiques.", "polaze": "Matière d'examen", "btnRok": "Annales →", "btnTest": "Test d'aptitude →", "mat": "Mathématiques", "fiz": "Physique", "hem": "Chimie", "dar": "Aptitude (dessin)", "note": "Ta faculté manque ? Dis-le-nous — nous ajoutons des filières techniques et mathématiques."}, "es": {"eyebrow": "Admisión · por facultad", "h1": "Examen por facultad", "lead": "Elige una facultad: exámenes resueltos de la materia y un test de aptitud para esa rama. La plataforma se centra en facultades técnicas y matemáticas.", "polaze": "Materia del examen", "btnRok": "Exámenes →", "btnTest": "Test de aptitud →", "mat": "Matemáticas", "fiz": "Física", "hem": "Química", "dar": "Aptitud (dibujo)", "note": "¿Falta tu facultad? Dínoslo — añadimos ramas técnicas y matemáticas."}, "it": {"eyebrow": "Ammissione · per facoltà", "h1": "Esame per facoltà", "lead": "Scegli una facoltà: esami risolti della materia e un test attitudinale per l'indirizzo. La piattaforma è dedicata alle facoltà tecniche e matematiche.", "polaze": "Materia d'esame", "btnRok": "Esami risolti →", "btnTest": "Test attitudinale →", "mat": "Matematica", "fiz": "Fisica", "hem": "Chimica", "dar": "Attitudine (disegno)", "note": "Manca la tua facoltà? Scrivici — aggiungiamo indirizzi tecnici e matematici."}, "ru": {"eyebrow": "Поступление · по факультету", "h1": "Вступительный по факультету", "lead": "Выбери факультет: разобранные варианты по нужному предмету и тест склонностей для направления. Платформа посвящена техническим и математическим факультетам.", "polaze": "Предмет экзамена", "btnRok": "Варианты →", "btnTest": "Тест склонностей →", "mat": "Математика", "fiz": "Физика", "hem": "Химия", "dar": "Одарённость (рисунок)", "note": "Нет твоего факультета? Напиши — добавляем технические и математические направления."}, "pt": {"eyebrow": "Admissão · por faculdade", "h1": "Exame por faculdade", "lead": "Escolhe uma faculdade: provas resolvidas da disciplina e um teste de aptidão para a área. A plataforma dedica-se a faculdades técnicas e matemáticas.", "polaze": "Disciplina do exame", "btnRok": "Provas →", "btnTest": "Teste de aptidão →", "mat": "Matemática", "fiz": "Física", "hem": "Química", "dar": "Aptidão (desenho)", "note": "Falta a tua faculdade? Diz-nos — acrescentamos áreas técnicas e matemáticas."}}, "FAK": [{"ab": "MATF", "nm": "Matematički fakultet", "grad": "Beograd", "subj": ["mat"]}, {"ab": "ETF", "nm": "Elektrotehnički fakultet", "grad": "Beograd", "subj": ["mat"]}, {"ab": "RAF", "nm": "Računarski fakultet", "grad": "Beograd", "subj": ["mat"]}, {"ab": "FON", "nm": "Fakultet organizacionih nauka", "grad": "Beograd", "subj": ["mat"]}, {"ab": "Mašinski", "nm": "Mašinski fakultet", "grad": "Beograd", "subj": ["mat"]}, {"ab": "Građevinski", "nm": "Građevinski fakultet", "grad": "Beograd", "subj": ["mat"]}, {"ab": "Arhitektonski", "nm": "Arhitektonski fakultet", "grad": "Beograd", "subj": ["mat", "dar"]}, {"ab": "Saobraćajni", "nm": "Saobraćajni fakultet", "grad": "Beograd", "subj": ["mat"]}, {"ab": "Tehnološko-metalurški", "nm": "Tehnološko-metalurški fakultet", "grad": "Beograd", "subj": ["mat", "hem"]}, {"ab": "Rudarsko-geološki", "nm": "Rudarsko-geološki fakultet", "grad": "Beograd", "subj": ["mat"]}, {"ab": "FTN", "nm": "Fakultet tehničkih nauka", "grad": "Novi Sad", "subj": ["mat", "fiz"]}, {"ab": "PMF", "nm": "Prirodno-matematički fakultet", "grad": "Novi Sad / Kragujevac / Niš", "subj": ["mat", "fiz"]}]};var I18N=DATA.I18N,FAK=DATA.FAK;
+function pickLang(){try{var s=localStorage.getItem('mathia_lang');if(s&&I18N[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return I18N[h]?h:'sr';}
+var LANG=pickLang();var $=function(id){return document.getElementById(id);};
+function T(){return I18N[LANG]||I18N.sr;}
+function render(){
+  var u=T();
+  $('eyebrow').textContent=u.eyebrow;$('h1').textContent=u.h1;$('lead').textContent=u.lead;$('note').textContent=u.note;
+  document.documentElement.lang=LANG;$('lang').value=LANG;
+  var g=$('grid');g.innerHTML='';
+  FAK.forEach(function(f){
+    var chips=f.subj.map(function(s){return '<span class="chip">'+u[s]+'</span>';}).join('');
+    var rok=f.subj.indexOf('mat')>=0?'Prijemni-Matematika-Rokovi.html':'#';
+    var d=document.createElement('div');d.className='fc';
+    d.innerHTML='<div class="ab">'+f.ab+'</div><div class="nm">'+f.nm+'</div><div class="gr">'+f.grad+'</div>'+
+      '<div class="lbl">'+u.polaze+'</div><div class="chips">'+chips+'</div>'+
+      '<div class="acts"><a class="b b-o" href="'+rok+'">'+u.btnRok+'</a><a class="b b-g" href="Test-Sklonosti-Fakultet.html">'+u.btnTest+'</a></div>';
+    g.appendChild(d);
+  });
+}
+$('lang').onchange=function(){LANG=this.value;try{localStorage.setItem('mathia_lang',LANG);}catch(e){}render();};
+render();
+</script>
+</body>
+</html>
