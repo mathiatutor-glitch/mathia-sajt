@@ -1,0 +1,136 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Elektroenergetski pretvarači · Formule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
+.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
+.topic p{margin:6px 0 12px}
+.box{border-radius:14px;padding:13px 15px;margin:12px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.task{font-weight:600;margin-bottom:6px}
+.katex-display{margin:.5em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style><style>
+.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
+.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
+.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
+.cover{min-height:68vh;padding:74px 24px 50px}
+.brandline{letter-spacing:.42em}
+.kind{margin-top:10px}
+.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
+.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
+.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.foot{margin-top:30px}
+@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
+@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
+</style>
+</head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">▷ ⎓ Ω</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">formule · priručnik</div>
+<h1 data-i18n="name">Elektroenergetski pretvarači</h1>
+<p class="subtitle" data-i18n="sub">Pretvaranje energije i mašine — ključne formule na jednom mestu, s primerom.</p>
+<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Elektromehaničko pretvaranje</span></h2>
+<p data-i18n="e1">Električna energija se pretvara u mehaničku (motor) i obrnuto (generator).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{el.}\ \leftrightarrow\ \text{meh.}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Teslino obrtno polje</span></h2>
+<p data-i18n="e2">Trofazni sistem stvara obrtno polje koje pokreće sve obrtne mašine.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$n_s=\dfrac{60\,f}{p}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Transformator — prenosni odnos</span></h2>
+<p data-i18n="e3">Naponi se odnose kao brojevi navojaka.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\dfrac{U_1}{U_2}=\dfrac{N_1}{N_2}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Asinhrona mašina — klizanje</span></h2>
+<p data-i18n="e4">Rotor se okreće sporije od polja, pa je klizanje veće od nule.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$s=\dfrac{n_s-n}{n_s}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Sinhrona mašina</span></h2>
+<p data-i18n="e5">Rotor se okreće tačno brzinom obrtnog polja.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$n=n_s$$</div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Mašina jednosmerne struje — EMS</span></h2>
+<p data-i18n="e6">EMS armature srazmerna je fluksu i brzini.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$E=k\,\Phi\,n$$</div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Ispravljač (energetski pretvarač)</span></h2>
+<p data-i18n="e7">Ispravljač pretvara naizmenični u jednosmerni napon.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$U_{dc}=\dfrac{2U_m}{\pi}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Stepen korisnog dejstva</span></h2>
+<p data-i18n="e8">Odnos korisne izlazne i ukupne uložene snage.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\eta=\dfrac{P_{izl}}{P_{ul}}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Mehanička snaga pogona</span></h2>
+<p data-i18n="e9">Mehanička snaga je proizvod momenta i ugaone brzine.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$P=M\,\omega$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q9">Za $M=10$ Nm i $\omega=100$ rad/s, kolika je snaga $P$?</div>$$P=10\cdot 100=1000\ \text{W}$$</div></section>
+</div>
+<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="elektroenergetski-pretvaraci" data-name="Profesorica" data-subj="Elektroenergetski pretvarači"></script>
+<script defer src="gate.js" data-subject="elektroenergetski-pretvaraci"></script>
+<script>
+var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}, "name": {"en": "Electromechanical & power converters", "de": "Elektroenergetische Wandler", "fr": "Convertisseurs électroénergétiques", "es": "Convertidores electroenergéticos", "it": "Convertitori elettroenergetici", "ru": "Электроэнергетические преобразователи", "pt": "Conversores eletroenergéticos"}, "sub": {"en": "Energy conversion and machines — key formulas in one place, with an example.", "de": "Energiewandlung und Maschinen — Kernformeln an einem Ort, mit Beispiel.", "fr": "Conversion d'énergie et machines — formules clés en un seul endroit, avec un exemple.", "es": "Conversión de energía y máquinas — fórmulas clave en un solo lugar, con un ejemplo.", "it": "Conversione di energia e macchine — formule chiave in un unico posto, con un esempio.", "ru": "Преобразование энергии и машины — ключевые формулы в одном месте, с примером.", "pt": "Conversão de energia e máquinas — fórmulas-chave num só lugar, com um exemplo."}, "t1": {"en": "Electromechanical conversion", "de": "Elektromechanische Wandlung", "fr": "Conversion électromécanique", "es": "Conversión electromecánica", "it": "Conversione elettromeccanica", "ru": "Электромеханическое преобразование", "pt": "Conversão eletromecânica"}, "e1": {"en": "Electrical energy is converted to mechanical (motor) and vice versa (generator).", "de": "Elektrische Energie wird in mechanische (Motor) und umgekehrt (Generator) gewandelt.", "fr": "L'énergie électrique est convertie en mécanique (moteur) et inversement (génératrice).", "es": "La energía eléctrica se convierte en mecánica (motor) y viceversa (generador).", "it": "L'energia elettrica si converte in meccanica (motore) e viceversa (generatore).", "ru": "Электрическая энергия преобразуется в механическую (двигатель) и наоборот (генератор).", "pt": "A energia elétrica converte-se em mecânica (motor) e vice-versa (gerador)."}, "t2": {"en": "Tesla's rotating field", "de": "Teslas Drehfeld", "fr": "Champ tournant de Tesla", "es": "Campo giratorio de Tesla", "it": "Campo rotante di Tesla", "ru": "Вращающееся поле Теслы", "pt": "Campo girante de Tesla"}, "e2": {"en": "A three-phase system creates a rotating field that drives all rotating machines.", "de": "Ein Dreiphasensystem erzeugt ein Drehfeld, das alle rotierenden Maschinen antreibt.", "fr": "Un système triphasé crée un champ tournant qui entraîne toutes les machines tournantes.", "es": "Un sistema trifásico crea un campo giratorio que mueve todas las máquinas rotativas.", "it": "Un sistema trifase crea un campo rotante che muove tutte le macchine rotanti.", "ru": "Трёхфазная система создаёт вращающееся поле, приводящее в движение все вращающиеся машины.", "pt": "Um sistema trifásico cria um campo girante que move todas as máquinas rotativas."}, "t3": {"en": "Transformer — turns ratio", "de": "Transformator — Übersetzung", "fr": "Transformateur — rapport", "es": "Transformador — relación", "it": "Trasformatore — rapporto", "ru": "Трансформатор — коэффициент", "pt": "Transformador — relação"}, "e3": {"en": "Voltages are in the ratio of the turns.", "de": "Die Spannungen verhalten sich wie die Windungszahlen.", "fr": "Les tensions sont dans le rapport des spires.", "es": "Las tensiones están en la relación de espiras.", "it": "Le tensioni sono nel rapporto delle spire.", "ru": "Напряжения относятся как числа витков.", "pt": "As tensões estão na razão das espiras."}, "t4": {"en": "Asynchronous machine — slip", "de": "Asynchronmaschine — Schlupf", "fr": "Machine asynchrone — glissement", "es": "Máquina asíncrona — deslizamiento", "it": "Macchina asincrona — scorrimento", "ru": "Асинхронная машина — скольжение", "pt": "Máquina assíncrona — escorregamento"}, "e4": {"en": "The rotor turns slower than the field, so slip is greater than zero.", "de": "Der Rotor dreht langsamer als das Feld, daher ist der Schlupf größer null.", "fr": "Le rotor tourne plus lentement que le champ, donc le glissement est positif.", "es": "El rotor gira más lento que el campo, así que el deslizamiento es positivo.", "it": "Il rotore gira più lento del campo, quindi lo scorrimento è positivo.", "ru": "Ротор вращается медленнее поля, поэтому скольжение больше нуля.", "pt": "O rotor gira mais devagar que o campo, logo o escorregamento é positivo."}, "t5": {"en": "Synchronous machine", "de": "Synchronmaschine", "fr": "Machine synchrone", "es": "Máquina síncrona", "it": "Macchina sincrona", "ru": "Синхронная машина", "pt": "Máquina síncrona"}, "e5": {"en": "The rotor turns exactly at the rotating-field speed.", "de": "Der Rotor dreht genau mit der Drehfelddrehzahl.", "fr": "Le rotor tourne exactement à la vitesse du champ tournant.", "es": "El rotor gira exactamente a la velocidad del campo giratorio.", "it": "Il rotore gira esattamente alla velocità del campo rotante.", "ru": "Ротор вращается точно со скоростью вращающегося поля.", "pt": "O rotor gira exatamente à velocidade do campo girante."}, "t6": {"en": "DC machine — EMF", "de": "GS-Maschine — EMK", "fr": "Machine CC — f.é.m.", "es": "Máquina CC — FEM", "it": "Macchina CC — f.e.m.", "ru": "Машина постоянного тока — ЭДС", "pt": "Máquina CC — f.e.m."}, "e6": {"en": "The armature EMF is proportional to flux and speed.", "de": "Die Anker-EMK ist proportional zu Fluss und Drehzahl.", "fr": "La f.é.m. d'induit est proportionnelle au flux et à la vitesse.", "es": "La FEM del inducido es proporcional al flujo y la velocidad.", "it": "La f.e.m. d'indotto è proporzionale al flusso e alla velocità.", "ru": "ЭДС якоря пропорциональна потоку и скорости.", "pt": "A f.e.m. do induzido é proporcional ao fluxo e à velocidade."}, "t7": {"en": "Rectifier (power converter)", "de": "Gleichrichter (Stromrichter)", "fr": "Redresseur (convertisseur)", "es": "Rectificador (convertidor)", "it": "Raddrizzatore (convertitore)", "ru": "Выпрямитель (преобразователь)", "pt": "Retificador (conversor)"}, "e7": {"en": "A rectifier converts AC to DC voltage.", "de": "Ein Gleichrichter wandelt Wechsel- in Gleichspannung.", "fr": "Un redresseur convertit la tension alternative en continue.", "es": "Un rectificador convierte tensión alterna en continua.", "it": "Un raddrizzatore converte la tensione alternata in continua.", "ru": "Выпрямитель преобразует переменное напряжение в постоянное.", "pt": "Um retificador converte tensão alternada em contínua."}, "t8": {"en": "Efficiency", "de": "Wirkungsgrad", "fr": "Rendement", "es": "Rendimiento", "it": "Rendimento", "ru": "КПД", "pt": "Rendimento"}, "e8": {"en": "Ratio of useful output to total input power.", "de": "Verhältnis von Nutz- zu aufgenommener Gesamtleistung.", "fr": "Rapport de la puissance utile à la puissance totale absorbée.", "es": "Relación entre la potencia útil y la total absorbida.", "it": "Rapporto tra potenza utile e totale assorbita.", "ru": "Отношение полезной мощности к полной потреблённой.", "pt": "Razão entre a potência útil e a total absorvida."}, "t9": {"en": "Mechanical drive power", "de": "Mechanische Antriebsleistung", "fr": "Puissance mécanique d'entraînement", "es": "Potencia mecánica del accionamiento", "it": "Potenza meccanica dell'azionamento", "ru": "Механическая мощность привода", "pt": "Potência mecânica do acionamento"}, "e9": {"en": "Mechanical power is the product of torque and angular speed.", "de": "Die mechanische Leistung ist das Produkt aus Moment und Winkelgeschwindigkeit.", "fr": "La puissance mécanique est le produit du couple et de la vitesse angulaire.", "es": "La potencia mecánica es el producto del par y la velocidad angular.", "it": "La potenza meccanica è il prodotto di coppia e velocità angolare.", "ru": "Механическая мощность — произведение момента и угловой скорости.", "pt": "A potência mecânica é o produto do binário pela velocidade angular."}, "q9": {"en": "For $M=10$ Nm and $\\omega=100$ rad/s, what is the power $P$?", "de": "Für $M=10$ Nm und $\\omega=100$ rad/s, wie groß ist die Leistung $P$?", "fr": "Pour $M=10$ Nm et $\\omega=100$ rad/s, quelle est la puissance $P$ ?", "es": "Para $M=10$ Nm y $\\omega=100$ rad/s, ¿cuál es la potencia $P$?", "it": "Per $M=10$ Nm e $\\omega=100$ rad/s, quanto vale la potenza $P$?", "ru": "При $M=10$ Н·м и $\\omega=100$ рад/с, чему равна мощность $P$?", "pt": "Para $M=10$ Nm e $\\omega=100$ rad/s, qual é a potência $P$?"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l;try{rk()}catch(_){}}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+<script>
+(function(){
+ function fit(){
+  var ds=document.querySelectorAll('.katex-display');
+  for(var i=0;i<ds.length;i++){
+   var el=ds[i];el.style.fontSize='';
+   var p=100,n=0;
+   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
+  }
+ }
+ window.addEventListener('load',function(){setTimeout(fit,60);});
+ window.addEventListener('resize',function(){setTimeout(fit,80);});
+})();
+</script>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>

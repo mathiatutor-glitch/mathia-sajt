@@ -1,0 +1,136 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Električne mašine 2 · Formule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
+.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
+.topic p{margin:6px 0 12px}
+.box{border-radius:14px;padding:13px 15px;margin:12px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.task{font-weight:600;margin-bottom:6px}
+.katex-display{margin:.5em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+</style><style>
+.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
+.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
+.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
+.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
+.cover{min-height:68vh;padding:74px 24px 50px}
+.brandline{letter-spacing:.42em}
+.kind{margin-top:10px}
+.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
+.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
+.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.foot{margin-top:30px}
+@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
+@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
+</style>
+</head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">▷ ⎓ Ω</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">formule · priručnik</div>
+<h1 data-i18n="name">Električne mašine 2</h1>
+<p class="subtitle" data-i18n="sub">Obrtno polje, asinhrone i sinhrone mašine — ključne formule, s primerom.</p>
+<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Obrtno magnetno polje</span></h2>
+<p data-i18n="e1">Tri fazne struje pomerene za 120° stvaraju polje koje se okreće (Teslin princip).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$n_s=\dfrac{60\,f}{p}$$</div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Klizanje (s)</span></h2>
+<p data-i18n="e2">Klizanje je relativna razlika brzine obrtnog polja i rotora.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$s=\dfrac{n_s-n}{n_s}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q2">Za $n_s=1500$ i $n=1440$ o/min, koliko je klizanje $s$?</div>$$s=\dfrac{1500-1440}{1500}=0{,}04$$</div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Brzina rotora</span></h2>
+<p data-i18n="e3">Rotor asinhrone mašine okreće se nešto sporije od obrtnog polja.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$n=n_s\,(1-s)$$</div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Frekvencija rotorskih struja</span></h2>
+<p data-i18n="e4">Učestanost struja u rotoru zavisi od klizanja.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$f_2=s\,f$$</div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Asinhrona mašina</span></h2>
+<p data-i18n="e5">Rotor se okreće sporije od polja, pa je klizanje veće od nule.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$n<n_s\ \Rightarrow\ s>0$$</div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Sinhrona mašina</span></h2>
+<p data-i18n="e6">Rotor se okreće tačno brzinom obrtnog polja — nema klizanja.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$n=n_s\ \Rightarrow\ s=0$$</div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Broj pari polova i brzina</span></h2>
+<p data-i18n="e7">Više pari polova daje manju sinhronu brzinu pri istoj učestanosti.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$p\!\uparrow\ \Rightarrow\ n_s\!\downarrow$$</div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Trofazna snaga</span></h2>
+<p data-i18n="e8">Aktivna snaga trofaznog sistema.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$P=\sqrt{3}\,U\,I\cos\varphi$$</div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Jednofazni asinhroni motor</span></h2>
+<p data-i18n="e9">Sam po sebi nema startni moment; pokreće ga pomoćni namotaj ili kondenzator.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$M_{\text{start}}=0\quad(1\phi)$$</div></section>
+</div>
+<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="elektricne-masine-2" data-name="Profesorica" data-subj="Električne mašine 2"></script>
+<script defer src="gate.js" data-subject="elektricne-masine-2"></script>
+<script>
+var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}, "name": {"en": "Electrical machines 2", "de": "Elektrische Maschinen 2", "fr": "Machines électriques 2", "es": "Máquinas eléctricas 2", "it": "Macchine elettriche 2", "ru": "Электрические машины 2", "pt": "Máquinas elétricas 2"}, "sub": {"en": "Rotating field, asynchronous and synchronous machines — key formulas, with an example.", "de": "Drehfeld, Asynchron- und Synchronmaschinen — Kernformeln, mit Beispiel.", "fr": "Champ tournant, machines asynchrones et synchrones — formules clés, avec un exemple.", "es": "Campo giratorio, máquinas asíncronas y síncronas — fórmulas clave, con un ejemplo.", "it": "Campo rotante, macchine asincrone e sincrone — formule chiave, con un esempio.", "ru": "Вращающееся поле, асинхронные и синхронные машины — ключевые формулы, с примером.", "pt": "Campo girante, máquinas assíncronas e síncronas — fórmulas-chave, com um exemplo."}, "t1": {"en": "Rotating magnetic field", "de": "Drehfeld", "fr": "Champ tournant", "es": "Campo magnético giratorio", "it": "Campo magnetico rotante", "ru": "Вращающееся магнитное поле", "pt": "Campo magnético girante"}, "e1": {"en": "Three phase currents shifted by 120° create a field that rotates (Tesla's principle).", "de": "Drei um 120° verschobene Phasenströme erzeugen ein drehendes Feld (Tesla-Prinzip).", "fr": "Trois courants déphasés de 120° créent un champ qui tourne (principe de Tesla).", "es": "Tres corrientes desfasadas 120° crean un campo que gira (principio de Tesla).", "it": "Tre correnti sfasate di 120° creano un campo che ruota (principio di Tesla).", "ru": "Три фазных тока со сдвигом 120° создают вращающееся поле (принцип Теслы).", "pt": "Três correntes desfasadas de 120° criam um campo que gira (princípio de Tesla)."}, "t2": {"en": "Slip (s)", "de": "Schlupf (s)", "fr": "Glissement (s)", "es": "Deslizamiento (s)", "it": "Scorrimento (s)", "ru": "Скольжение (s)", "pt": "Escorregamento (s)"}, "e2": {"en": "Slip is the relative difference between the field and rotor speeds.", "de": "Schlupf ist die relative Differenz von Feld- und Rotordrehzahl.", "fr": "Le glissement est la différence relative des vitesses du champ et du rotor.", "es": "El deslizamiento es la diferencia relativa entre las velocidades del campo y el rotor.", "it": "Lo scorrimento è la differenza relativa tra le velocità del campo e del rotore.", "ru": "Скольжение — относительная разница скоростей поля и ротора.", "pt": "O escorregamento é a diferença relativa entre as velocidades do campo e do rotor."}, "q2": {"en": "For $n_s=1500$ and $n=1440$ rpm, what is the slip $s$?", "de": "Für $n_s=1500$ und $n=1440$ U/min, wie groß ist der Schlupf $s$?", "fr": "Pour $n_s=1500$ et $n=1440$ tr/min, quel est le glissement $s$ ?", "es": "Para $n_s=1500$ y $n=1440$ rpm, ¿cuál es el deslizamiento $s$?", "it": "Per $n_s=1500$ e $n=1440$ giri/min, quanto vale lo scorrimento $s$?", "ru": "При $n_s=1500$ и $n=1440$ об/мин, чему равно скольжение $s$?", "pt": "Para $n_s=1500$ e $n=1440$ rpm, qual é o escorregamento $s$?"}, "t3": {"en": "Rotor speed", "de": "Rotordrehzahl", "fr": "Vitesse du rotor", "es": "Velocidad del rotor", "it": "Velocità del rotore", "ru": "Частота вращения ротора", "pt": "Velocidade do rotor"}, "e3": {"en": "The asynchronous rotor turns slightly slower than the rotating field.", "de": "Der Asynchronrotor dreht etwas langsamer als das Drehfeld.", "fr": "Le rotor asynchrone tourne un peu plus lentement que le champ.", "es": "El rotor asíncrono gira algo más lento que el campo.", "it": "Il rotore asincrono gira un po' più lentamente del campo.", "ru": "Асинхронный ротор вращается чуть медленнее поля.", "pt": "O rotor assíncrono gira um pouco mais devagar que o campo."}, "t4": {"en": "Rotor current frequency", "de": "Frequenz der Rotorströme", "fr": "Fréquence des courants rotoriques", "es": "Frecuencia de corrientes del rotor", "it": "Frequenza delle correnti rotoriche", "ru": "Частота токов ротора", "pt": "Frequência das correntes do rotor"}, "e4": {"en": "The frequency of rotor currents depends on the slip.", "de": "Die Frequenz der Rotorströme hängt vom Schlupf ab.", "fr": "La fréquence des courants rotoriques dépend du glissement.", "es": "La frecuencia de las corrientes del rotor depende del deslizamiento.", "it": "La frequenza delle correnti rotoriche dipende dallo scorrimento.", "ru": "Частота токов ротора зависит от скольжения.", "pt": "A frequência das correntes do rotor depende do escorregamento."}, "t5": {"en": "Asynchronous machine", "de": "Asynchronmaschine", "fr": "Machine asynchrone", "es": "Máquina asíncrona", "it": "Macchina asincrona", "ru": "Асинхронная машина", "pt": "Máquina assíncrona"}, "e5": {"en": "The rotor turns slower than the field, so the slip is greater than zero.", "de": "Der Rotor dreht langsamer als das Feld, daher ist der Schlupf größer als null.", "fr": "Le rotor tourne plus lentement que le champ, donc le glissement est positif.", "es": "El rotor gira más lento que el campo, así que el deslizamiento es mayor que cero.", "it": "Il rotore gira più lento del campo, quindi lo scorrimento è maggiore di zero.", "ru": "Ротор вращается медленнее поля, поэтому скольжение больше нуля.", "pt": "O rotor gira mais devagar que o campo, logo o escorregamento é maior que zero."}, "t6": {"en": "Synchronous machine", "de": "Synchronmaschine", "fr": "Machine synchrone", "es": "Máquina síncrona", "it": "Macchina sincrona", "ru": "Синхронная машина", "pt": "Máquina síncrona"}, "e6": {"en": "The rotor turns exactly at field speed — no slip.", "de": "Der Rotor dreht genau mit Felddrehzahl — kein Schlupf.", "fr": "Le rotor tourne exactement à la vitesse du champ — pas de glissement.", "es": "El rotor gira exactamente a la velocidad del campo — sin deslizamiento.", "it": "Il rotore gira esattamente alla velocità del campo — nessuno scorrimento.", "ru": "Ротор вращается точно со скоростью поля — скольжения нет.", "pt": "O rotor gira exatamente à velocidade do campo — sem escorregamento."}, "t7": {"en": "Pole pairs and speed", "de": "Polpaarzahl und Drehzahl", "fr": "Paires de pôles et vitesse", "es": "Pares de polos y velocidad", "it": "Coppie polari e velocità", "ru": "Число пар полюсов и скорость", "pt": "Pares de polos e velocidade"}, "e7": {"en": "More pole pairs give a lower synchronous speed at the same frequency.", "de": "Mehr Polpaare ergeben eine niedrigere Synchrondrehzahl bei gleicher Frequenz.", "fr": "Plus de paires de pôles donnent une vitesse synchrone plus faible à fréquence égale.", "es": "Más pares de polos dan menor velocidad síncrona a igual frecuencia.", "it": "Più coppie polari danno una velocità sincrona minore a parità di frequenza.", "ru": "Больше пар полюсов — меньше синхронная скорость при той же частоте.", "pt": "Mais pares de polos dão menor velocidade síncrona à mesma frequência."}, "t8": {"en": "Three-phase power", "de": "Dreiphasige Leistung", "fr": "Puissance triphasée", "es": "Potencia trifásica", "it": "Potenza trifase", "ru": "Трёхфазная мощность", "pt": "Potência trifásica"}, "e8": {"en": "Active power of a three-phase system.", "de": "Wirkleistung eines Dreiphasensystems.", "fr": "Puissance active d'un système triphasé.", "es": "Potencia activa de un sistema trifásico.", "it": "Potenza attiva di un sistema trifase.", "ru": "Активная мощность трёхфазной системы.", "pt": "Potência ativa de um sistema trifásico."}, "t9": {"en": "Single-phase induction motor", "de": "Einphasen-Asynchronmotor", "fr": "Moteur asynchrone monophasé", "es": "Motor asíncrono monofásico", "it": "Motore asincrono monofase", "ru": "Однофазный асинхронный двигатель", "pt": "Motor assíncrono monofásico"}, "e9": {"en": "It has no starting torque by itself; an auxiliary winding or capacitor starts it.", "de": "Er hat allein kein Anlaufmoment; eine Hilfswicklung oder ein Kondensator startet ihn.", "fr": "Il n'a pas de couple de démarrage seul ; un enroulement auxiliaire ou un condensateur le lance.", "es": "No tiene par de arranque por sí solo; lo arranca un devanado auxiliar o un condensador.", "it": "Da solo non ha coppia di avviamento; lo avvia un avvolgimento ausiliario o un condensatore.", "ru": "Сам по себе не имеет пускового момента; его запускает вспомогательная обмотка или конденсатор.", "pt": "Sozinho não tem binário de arranque; arranca com um enrolamento auxiliar ou um condensador."}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l;try{rk()}catch(_){}}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+<script>
+(function(){
+ function fit(){
+  var ds=document.querySelectorAll('.katex-display');
+  for(var i=0;i<ds.length;i++){
+   var el=ds[i];el.style.fontSize='';
+   var p=100,n=0;
+   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
+  }
+ }
+ window.addEventListener('load',function(){setTimeout(fit,60);});
+ window.addEventListener('resize',function(){setTimeout(fit,80);});
+})();
+</script>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>
