@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia Student Planner — by Dr. Marina Bulat</title>
+<meta name="description" content="Digitalni akademski sistem: od prvog dana fakulteta do diplome. Planiranje, praćenje učenja, navike, ispiti, portfolio i vodič kroz studije.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f5f2;--bg2:#efede8;--card:#ffffff;--ink:#2c2230;--muted:#8a7f8c;--line:#ece8ee;
+    --plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--rose:#CC8E86;--rose-dk:#B5746C;
+    --mint:#8FB99B;--sky:#86A7C6;--lilac:#A99BC4;--sun:#E7C063;
+    --ok:#5fa978;--warn:#d99a4e;--bad:#cc7d76;
+    --rad:16px;--sh:0 1px 2px rgba(40,30,45,.05),0 8px 24px -16px rgba(40,30,45,.28);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Nunito',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.1;margin:0}
+  a{color:var(--golddk);text-decoration:none}
+  .serif{font-family:'Cormorant Garamond',serif}
+  /* layout */
+  .app{display:grid;grid-template-columns:262px 1fr;min-height:100vh}
+  .side{background:linear-gradient(180deg,#3c2733,#2e1d27);color:#f3e9da;position:sticky;top:0;height:100vh;overflow-y:auto;padding:0 0 30px}
+  .side::-webkit-scrollbar{width:7px}.side::-webkit-scrollbar-thumb{background:rgba(231,210,162,.25);border-radius:9px}
+  .brand{padding:20px 22px 16px;border-bottom:1px solid rgba(231,210,162,.18);position:sticky;top:0;background:linear-gradient(180deg,#3c2733,#352230);z-index:2}
+  .brand b{font-family:'Cormorant Garamond',serif;font-size:1.34rem;letter-spacing:.02em;display:block;color:#fff}
+  .brand .by{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--goldlt);margin-top:3px;font-weight:700}
+  .navgrp{padding:14px 14px 2px}
+  .navgrp .gt{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(231,210,162,.55);font-weight:800;padding:0 10px 6px}
+  .navi{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:11px;cursor:pointer;color:#e9ddcf;font-weight:600;font-size:.88rem;transition:background .14s,transform .08s}
+  .navi:hover{background:rgba(231,210,162,.1)}
+  .navi.on{background:linear-gradient(100deg,rgba(198,160,92,.95),rgba(156,120,56,.9));color:#3a2a12;box-shadow:0 6px 16px -8px rgba(0,0,0,.5)}
+  .navi .ic{width:22px;text-align:center;font-size:1.02rem;flex:0 0 22px}
+  /* main */
+  .main{padding:0 0 60px;min-width:0}
+  .top{position:sticky;top:0;z-index:5;background:rgba(246,245,242,.86);backdrop-filter:blur(9px);border-bottom:1px solid var(--line);padding:12px 30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .top .mt{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--plum);font-weight:600;flex:1;min-width:160px}
+  .savei{font-size:.74rem;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:6px}
+  .savei .dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+  .tbtn{border:1.4px solid var(--line);background:var(--card);color:var(--plum2);border-radius:10px;padding:7px 13px;font-family:inherit;font-weight:700;font-size:.8rem;cursor:pointer;transition:.14s;display:inline-flex;gap:6px;align-items:center}
+  .tbtn:hover{border-color:var(--gold);background:#fffdf8}
+  .tbtn.danger:hover{border-color:var(--bad);color:var(--bad)}
+  .wrap{max-width:980px;margin:0 auto;padding:26px 30px}
+  .banner{background:linear-gradient(100deg,#fbf3e4,#f7ead0);border:1px solid var(--goldlt);border-radius:var(--rad);padding:14px 20px;margin-bottom:22px;display:flex;align-items:center;gap:14px;color:var(--plum)}
+  .banner .q{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-weight:600;font-style:italic}
+  /* cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);box-shadow:var(--sh);padding:20px 22px;margin-bottom:18px}
+  .card>h3{font-size:1.45rem;color:var(--plum);margin-bottom:4px;display:flex;align-items:center;gap:9px}
+  .card .desc{color:var(--muted);font-size:.86rem;margin-bottom:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 16px}
+  @media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
+  label.f{display:block;margin-bottom:2px}
+  label.f .l{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--golddk);font-weight:800;display:block;margin-bottom:4px}
+  input.t,select.t,textarea.t{width:100%;border:1.4px solid var(--line);background:#fcfbf9;border-radius:11px;padding:9px 12px;font-family:inherit;font-size:.92rem;color:var(--ink);transition:.14s;resize:none}
+  input.t:focus,select.t:focus,textarea.t:focus{outline:none;border-color:var(--gold);background:#fff;box-shadow:0 0 0 3px rgba(198,160,92,.13)}
+  textarea.t{line-height:1.6;min-height:46px;overflow:hidden}
+  .hint{font-size:.78rem;color:var(--muted);margin-top:3px}
+  /* tables */
+  .tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:.88rem}
+  .tbl th{text-align:left;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--golddk);font-weight:800;padding:0 8px 7px}
+  .tbl td{padding:4px 6px;vertical-align:top}
+  .tbl input.t,.tbl select.t,.tbl textarea.t{padding:7px 9px;font-size:.86rem;border-radius:9px}
+  .tbl tr+tr td{padding-top:7px}
+  .rowdel{border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;padding:6px 4px;border-radius:8px}
+  .rowdel:hover{color:var(--bad);background:#fbeeee}
+  .addbtn{margin-top:10px;border:1.4px dashed var(--goldlt);background:#fffdf6;color:var(--golddk);border-radius:11px;padding:9px 14px;font-family:inherit;font-weight:800;font-size:.83rem;cursor:pointer;transition:.14s;width:100%}
+  .addbtn:hover{border-color:var(--gold);background:#fdf6e8}
+  /* chips / checklist */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chk{display:inline-flex;align-items:center;gap:8px;border:1.4px solid var(--line);background:#fcfbf9;border-radius:100px;padding:7px 14px;font-weight:700;font-size:.85rem;cursor:pointer;color:var(--plum2);transition:.14s;user-select:none}
+  .chk:hover{border-color:var(--gold)}
+  .chk.on{background:linear-gradient(100deg,#eaf6ee,#dff0e6);border-color:#aed7bd;color:#2f6b46}
+  .chk .bx{width:17px;height:17px;border-radius:6px;border:2px solid #cbb9c2;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;color:#fff}
+  .chk.on .bx{background:var(--ok);border-color:var(--ok)}
+  /* progress */
+  .bar{height:11px;background:var(--bg2);border-radius:100px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--goldlt),var(--gold));border-radius:100px;transition:width .3s}
+  .stat{display:flex;flex-direction:column;gap:2px;background:#faf8f4;border:1px solid var(--line);border-radius:13px;padding:13px 15px}
+  .stat .n{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--plum);line-height:1}
+  .stat .k{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:800}
+  /* misc widgets */
+  .ring{--p:0;width:128px;height:128px;border-radius:50%;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--bg2) 0);display:flex;align-items:center;justify-content:center}
+  .ring .in{width:98px;height:98px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .in b{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--plum)}
+  .pomo{display:flex;flex-direction:column;align-items:center;gap:14px;padding:8px 0}
+  .pomo .time{font-family:'Cormorant Garamond',serif;font-size:4.4rem;color:var(--plum);font-weight:700;letter-spacing:.02em}
+  .pomo .ctl{display:flex;gap:10px}
+  .bigbtn{border:none;border-radius:100px;padding:12px 30px;font-family:inherit;font-weight:800;font-size:.95rem;cursor:pointer;transition:.16s;box-shadow:0 10px 24px -12px rgba(198,160,92,.8)}
+  .bigbtn.g{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812}
+  .bigbtn.o{background:#fff;border:1.5px solid var(--line);color:var(--plum2);box-shadow:none}
+  .bigbtn:hover{transform:translateY(-2px)}
+  .tom{font-size:1.5rem;letter-spacing:3px}
+  .week{display:grid;grid-template-columns:1.4fr repeat(7,1fr);gap:6px;align-items:center;font-size:.82rem}
+  .week .hd{font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:800;text-align:center}
+  .cell{aspect-ratio:1;border-radius:9px;border:1.6px solid var(--line);background:#fcfbf9;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:.12s}
+  .cell.on{background:linear-gradient(120deg,var(--gold),var(--goldlt));border-color:var(--gold);color:#fff}
+  .moodc{width:42px;height:42px;border-radius:50%;border:2px solid var(--line);background:#fcfbf9;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;transition:.12s}
+  .moodc:hover{border-color:var(--gold)}
+  .badge{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:#fbfaf7;cursor:pointer;transition:.16s;opacity:.55;filter:grayscale(.7)}
+  .badge.on{opacity:1;filter:none;background:linear-gradient(110deg,#fff7e6,#fdeecb);border-color:var(--goldlt);box-shadow:0 10px 22px -14px rgba(198,160,92,.7)}
+  .badge .e{font-size:1.7rem}
+  .badge b{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--plum);display:block}
+  .badge small{color:var(--muted)}
+  .stik{font-size:1.9rem;cursor:pointer;width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--line);background:#fcfbf9;transition:.12s;position:relative}
+  .stik:hover{transform:translateY(-2px) rotate(-4deg);border-color:var(--gold)}
+  .stik .cnt{position:absolute;top:-7px;right:-7px;background:var(--rose);color:#fff;font-family:'Nunito';font-size:.68rem;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+  .subtab{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .subtab .st{border:1.4px solid var(--line);background:#fcfbf9;border-radius:100px;padding:7px 15px;font-weight:800;font-size:.85rem;cursor:pointer;color:var(--plum2);transition:.14s}
+  .subtab .st:hover{border-color:var(--gold)}
+  .subtab .st.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+  .pill{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:#f1ece6;color:var(--golddk)}
+  .vimg{width:100%;border-radius:13px;border:1px solid var(--line);margin-top:8px;display:block}
+  .guide h4{font-size:1.2rem;color:var(--plum);margin:16px 0 4px}
+  .guide p{margin:0 0 8px;color:#4a3f4a}
+  .guide ul{margin:0 0 10px;padding-left:20px;color:#4a3f4a}
+  .guide li{margin:3px 0}
+  .miniad{display:none}
+  @media(max-width:860px){
+    .app{grid-template-columns:1fr}
+    .side{position:fixed;left:0;top:0;width:84%;max-width:300px;transform:translateX(-103%);transition:transform .22s;z-index:60;box-shadow:0 0 60px rgba(0,0,0,.4)}
+    .side.open{transform:none}
+    .miniad{display:inline-flex}
+    .scrim{position:fixed;inset:0;background:rgba(20,12,18,.4);z-index:55;opacity:0;pointer-events:none;transition:.2s}
+    .scrim.on{opacity:1;pointer-events:auto}
+  }
+  @media print{
+    .side,.top,.banner,.addbtn,.rowdel,.tbtn,.scrim{display:none!important}
+    .app{display:block}.wrap{max-width:100%}
+    .card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <b>Mathia Planer</b>
+      <span class="by">by Dr. Marina Bulat</span>
+    </div>
+    <nav id="nav"></nav>
+  </aside>
+  <div class="scrim" id="scrim" onclick="toggleSide(false)"></div>
+
+  <main class="main">
+    <div class="top">
+      <button class="tbtn miniad" onclick="toggleSide(true)">☰</button>
+      <div class="mt" id="mtitle">Naslovna</div>
+      <span class="savei"><span class="dot"></span><span id="savetxt">Sačuvano</span></span>
+      <button class="tbtn" onclick="window.print()">🖨️ PDF</button>
+      <button class="tbtn" onclick="expData()">⬇️ Izvoz</button>
+      <button class="tbtn" onclick="document.getElementById('imp').click()">⬆️ Uvoz</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="impData(event)">
+      <button class="tbtn danger" onclick="resetAll()">↺ Reset</button>
+    </div>
+    <div class="wrap">
+      <div class="banner" id="banner"><span style="font-size:1.5rem">✨</span><span class="q" id="motiv"></span></div>
+      <div id="content"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+"use strict";
+/* ---------------- storage ---------------- */
+const KEY='mathia_student_planner_v1';
+let DB={};
+const store={
+  load(){try{const r=localStorage.getItem(KEY);return r?JSON.parse(r):null}catch(e){return null}},
+  save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+};
+function defaults(){
+  return {
+    profil:{ime:'',foto:'',indeks:'',fakultet:'',univerzitet:'',smer:'',godina:'',akademska:'',email:'',telefon:'',mentor:'',cilj:'',zasto:''},
+    vizija:{prosek:'',espb:'',stipendija:'',erasmus:'',razmena:'',rad:'',master:'',doktorat:''},
+    cv:{tekst:'',naucio:''},
+    portfolio:{github:'',linkedin:'',sajt:'',projekti:'',certifikati:''},
+    godisnji:[],
+    rasporedSem:'Zimski semestar',
+    raspored:[],
+    rok:[],
+    sumarum:{polozeno:'',prosek:'',espb:'',najtezi:'',najlaksi:'',ponos:'',menjam:''},
+    godine:[{naziv:'Prva godina',prosek:'',espb:'',polozeno:''},{naziv:'Druga godina',prosek:'',espb:'',polozeno:''},{naziv:'Treća godina',prosek:'',espb:'',polozeno:''},{naziv:'Četvrta godina',prosek:'',espb:'',polozeno:''},{naziv:'Master',prosek:'',espb:'',polozeno:''}],
+    diploma:{ukupno:'40',polozeno:'0',datum:''},
+    refleksija:{naucio:'',drugacije:'',ponos:'',profesor:'',sledece:''},
+    subjects:[],
+    curSub:0,
+    ucenje:[],
+    pomodoro:{count:0,minuta:0},
+    habits:[
+      {name:'Učio',days:[false,false,false,false,false,false,false]},
+      {name:'Vežbao zadatke',days:[false,false,false,false,false,false,false]},
+      {name:'Pročitao literaturu',days:[false,false,false,false,false,false,false]},
+      {name:'Naspavao se',days:[false,false,false,false,false,false,false]},
+      {name:'Dovoljno vode',days:[false,false,false,false,false,false,false]},
+      {name:'Trening',days:[false,false,false,false,false,false,false]}
+    ],
+    mood:Array(14).fill(-1),
+    finansije:[],
+    projekti:[],
+    praksa:[],
+    konferencije:[],
+    bucket:{'Erasmus':false,'Studentska razmena':false,'Objavljen rad':false,'Konferencija':false,'Praksa':false,'Diplomiranje':false},
+    vision:{note:'',imgs:['','','']},
+    stickers:{},
+    stikTabla:'',
+    badges:[
+      {e:'🏅',name:'Prvi položen ispit',on:false},
+      {e:'🥇',name:'Sve desetke u roku',on:false},
+      {e:'🔥',name:'30 dana bez pauze',on:false},
+      {e:'☕',name:'100 sati učenja',on:false},
+      {e:'🎓',name:'Položen najteži predmet',on:false},
+      {e:'📚',name:'Završena godina',on:false},
+      {e:'🏆',name:'Prosek preko 9',on:false},
+      {e:'⭐',name:'Dekanova nagrada',on:false}
+    ]
+  };
+}
+function migrate(d){const def=defaults();for(const k in def){if(!(k in d))d[k]=def[k];}return d;}
+
+/* ---------------- path get/set ---------------- */
+function get(p){let o=DB;for(const seg of String(p).split('.')){if(o==null)return undefined;o=o[seg];}return o;}
+function set(p,v){const segs=String(p).split('.');let o=DB;for(let i=0;i<segs.length-1;i++){const s=segs[i];if(o[s]==null)o[s]=/^\d+$/.test(segs[i+1])?[]:{};o=o[s];}o[segs[segs.length-1]]=v;}
+let saveT=null;
+function flag(t){const e=document.getElementById('savetxt');e.textContent=t;}
+function save(){store.save(DB);flag('Čuvam…');clearTimeout(saveT);saveT=setTimeout(()=>flag('Sačuvano'),500);}
+
+/* ---------------- helpers ---------------- */
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function field(label,path,opt={}){
+  const v=esc(get(path));
+  if(opt.area)return `<label class="f"><span class="l">${label}</span><textarea class="t" data-path="${path}" rows="2" placeholder="${opt.ph||''}">${v}</textarea></label>`;
+  if(opt.sel)return `<label class="f"><span class="l">${label}</span><select class="t" data-path="${path}">${opt.sel.map(o=>`<option ${o===get(path)?'selected':''}>${o}</option>`).join('')}</select></label>`;
+  return `<label class="f"><span class="l">${label}</span><input class="t" data-path="${path}" value="${v}" placeholder="${opt.ph||''}" ${opt.type?`type="${opt.type}"`:''}></label>`;
+}
+function tableEditor(arrPath,cols,addLabel){
+  const arr=get(arrPath)||[];
+  let h='<div style="overflow-x:auto"><table class="tbl"><tr>'+cols.map(c=>`<th>${c.label}</th>`).join('')+'<th></th></tr>';
+  arr.forEach((row,i)=>{
+    h+='<tr>'+cols.map(c=>{
+      const p=`${arrPath}.${i}.${c.key}`;
+      if(c.sel)return `<td><select class="t" data-path="${p}">${c.sel.map(o=>`<option ${o===row[c.key]?'selected':''}>${o}</option>`).join('')}</select></td>`;
+      if(c.area)return `<td><textarea class="t" data-path="${p}" rows="1">${esc(row[c.key])}</textarea></td>`;
+      return `<td><input class="t" data-path="${p}" value="${esc(row[c.key])}" ${c.type?`type="${c.type}"`:''} placeholder="${c.ph||''}"></td>`;
+    }).join('')+`<td><button class="rowdel" data-act="del" data-arr="${arrPath}" data-idx="${i}" title="Obriši">✕</button></td></tr>`;
+  });
+  h+='</table></div>';
+  const tpl=encodeURIComponent(JSON.stringify(cols.reduce((a,c)=>(a[c.key]=c.def||'',a),{})));
+  h+=`<button class="addbtn" data-act="add" data-arr="${arrPath}" data-tpl="${tpl}">+ ${addLabel||'Dodaj red'}</button>`;
+  return h;
+}
+function checklist(objPath,items){
+  const obj=get(objPath)||{};
+  return '<div class="chips">'+items.map(it=>{
+    const on=!!obj[it];
+    return `<span class="chk ${on?'on':''}" data-act="chk" data-obj="${objPath}" data-k="${esc(it)}"><span class="bx">${on?'✓':''}</span>${esc(it)}</span>`;
+  }).join('')+'</div>';
+}
+function card(title,inner,desc){return `<div class="card"><h3>${title}</h3>${desc?`<div class="desc">${desc}</div>`:''}${inner}</div>`;}
+function autosize(ta){ta.style.height='auto';ta.style.height=(ta.scrollHeight)+'px';}
+
+/* ---------------- sections ---------------- */
+const MOTIV=[
+  'Disciplina pobeđuje motivaciju.',
+  'Mali napredak svakog dana vodi velikim rezultatima.',
+  'Ne moraš biti najbolji — moraš biti istrajan.',
+  'Svaki rešen zadatak je cigla u tvojoj diplomi.',
+  'Učenje je maraton, ne sprint.',
+  'Današnji trud je sutrašnja sigurnost na ispitu.',
+  'Pametan plan vredi više od duge noći učenja.'
+];
+const SUBJECT_CHECK=['Prvo predavanje','Preuzeo prezentacije','Vežbe','Projekat','Seminar','Domaći','Lab. vežbe','Potpis','Prijavljen ispit','Položen ispit'];
+const PONETI=['indeks','olovka','digitron','lenjir','studentska kartica','voda','dozvoljena literatura'];
+
+const SECTIONS=[
+  {id:'profil',grp:'Ja',ic:'🎓',t:'Naslovna',r:renderProfil},
+  {id:'vizija',grp:'Ja',ic:'🌟',t:'Vizija i ciljevi',r:renderVizija},
+  {id:'cv',grp:'Ja',ic:'📄',t:'CV godine',r:renderCV},
+  {id:'portfolio',grp:'Ja',ic:'💼',t:'Portfolio',r:renderPortfolio},
+
+  {id:'godisnji',grp:'Godina',ic:'🗓️',t:'Godišnji pregled',r:renderGodisnji},
+  {id:'raspored',grp:'Godina',ic:'⏰',t:'Raspored časova',r:renderRaspored},
+  {id:'rok',grp:'Godina',ic:'📝',t:'Ispitni rok',r:renderRok},
+  {id:'sumarum',grp:'Godina',ic:'📊',t:'Sumarum godine',r:renderSumarum},
+  {id:'godine',grp:'Godina',ic:'🏛️',t:'Sve godine',r:renderGodine},
+  {id:'diploma',grp:'Godina',ic:'🎓',t:'Diploma countdown',r:renderDiploma},
+  {id:'refleksija',grp:'Godina',ic:'🪞',t:'Godišnja refleksija',r:renderRefleksija},
+
+  {id:'predmeti',grp:'Predmeti',ic:'📚',t:'Moji predmeti',r:renderPredmeti},
+
+  {id:'ucenje',grp:'Navike',ic:'📈',t:'Praćenje učenja',r:renderUcenje},
+  {id:'pomodoro',grp:'Navike',ic:'🍅',t:'Pomodoro',r:renderPomodoro},
+  {id:'habit',grp:'Navike',ic:'✅',t:'Habit tracker',r:renderHabit},
+  {id:'mood',grp:'Navike',ic:'😊',t:'Mood tracker',r:renderMood},
+
+  {id:'finansije',grp:'Život',ic:'💸',t:'Finansije',r:renderFinansije},
+  {id:'projekti',grp:'Život',ic:'🚀',t:'Projekti',r:renderProjekti},
+  {id:'praksa',grp:'Život',ic:'🏢',t:'Praksa',r:renderPraksa},
+  {id:'konferencije',grp:'Život',ic:'🎤',t:'Konferencije',r:renderKonf},
+  {id:'bucket',grp:'Život',ic:'🪣',t:'Bucket list',r:renderBucket},
+  {id:'vision',grp:'Život',ic:'🖼️',t:'Vision board',r:renderVision},
+
+  {id:'stickers',grp:'Nagrade',ic:'✨',t:'Sticker book',r:renderStickers},
+  {id:'badges',grp:'Nagrade',ic:'🏅',t:'Bedževi',r:renderBadges},
+
+  {id:'vodic',grp:'Vodič',ic:'🧭',t:'Vodič dr Marine',r:renderVodic}
+];
+
+function renderProfil(){
+  const subs=DB.subjects||[];
+  const avg=subs.length?Math.round(subs.reduce((a,s)=>a+(+s.napredak||0),0)/subs.length):0;
+  const polozeno=subs.filter(s=>(s.poneti&&false)|| (s.checklist&&s.checklist['Položen ispit'])).length;
+  let h=card('🎓 Naslovna',
+    `<div class="grid2">
+       ${field('Ime i prezime','profil.ime')}
+       ${field('Broj indeksa','profil.indeks')}
+       ${field('Fakultet','profil.fakultet')}
+       ${field('Univerzitet','profil.univerzitet')}
+       ${field('Smer','profil.smer')}
+       ${field('Godina studija','profil.godina')}
+       ${field('Akademska godina','profil.akademska',{ph:'npr. 2025/26'})}
+       ${field('E-mail','profil.email',{type:'email'})}
+       ${field('Telefon','profil.telefon')}
+       ${field('Mentor','profil.mentor')}
+     </div>
+     <div style="margin-top:12px">${field('🎯 Cilj za ovu godinu','profil.cilj',{area:true,ph:'Šta želiš da postigneš ove godine?'})}</div>
+     <div style="margin-top:12px">${field('Zašto studiram?','profil.zasto',{area:true,ph:'Tvoja motivacija — pročitaj je kad bude teško.'})}</div>`);
+  h+=card('📌 Pregled na prvi pogled',
+    `<div class="grid3">
+       <div class="stat"><span class="n">${subs.length}</span><span class="k">Predmeta</span></div>
+       <div class="stat"><span class="n">${polozeno}</span><span class="k">Položeno</span></div>
+       <div class="stat"><span class="n">${avg}%</span><span class="k">Prosečan napredak</span></div>
+     </div>
+     <div style="margin-top:14px"><div class="bar"><i style="width:${avg}%"></i></div></div>`);
+  return h;
+}
+function renderVizija(){
+  return card('🌟 Moji ciljevi',
+    `<div class="grid2">
+       ${field('Prosek koji želim','vizija.prosek')}
+       ${field('Broj položenih ESPB','vizija.espb')}
+       ${field('Stipendija','vizija.stipendija')}
+       ${field('Erasmus','vizija.erasmus')}
+       ${field('Studentske razmene','vizija.razmena')}
+       ${field('Naučni rad','vizija.rad')}
+       ${field('Master','vizija.master')}
+       ${field('Doktorat','vizija.doktorat')}
+     </div>`,'Postavi jasne ciljeve za ovu godinu i dalje. Vraćaj se ovde i ažuriraj ih.');
+}
+function renderCV(){
+  return card('📄 CV godine',
+    field('Šta sam naučio ove godine','cv.naucio',{area:true,ph:'Veštine, alati, predmeti, projekti…'})+
+    '<div style="margin-top:12px">'+field('Kratak CV / sažetak','cv.tekst',{area:true,ph:'Obrazovanje, iskustvo, veštine — sažeto na jednoj strani.'})+'</div>',
+    'Jednom godišnje osveži — do diplome imaš gotov CV.');
+}
+function renderPortfolio(){
+  return card('💼 Portfolio',
+    `<div class="grid2">
+       ${field('GitHub','portfolio.github',{ph:'github.com/…'})}
+       ${field('LinkedIn','portfolio.linkedin',{ph:'linkedin.com/in/…'})}
+       ${field('Lični sajt / blog','portfolio.sajt')}
+     </div>
+     <div style="margin-top:12px">${field('Projekti (po jedan u redu)','portfolio.projekti',{area:true})}</div>
+     <div style="margin-top:12px">${field('Sertifikati','portfolio.certifikati',{area:true})}</div>`,
+     'Sve na jednom mestu — spremno za prijavu za posao ili master.');
+}
+function renderGodisnji(){
+  return card('🗓️ Godišnji pregled',
+    tableEditor('godisnji',[
+      {key:'naziv',label:'Događaj',def:''},
+      {key:'kategorija',label:'Kategorija',sel:['Semestar','Kolokvijum','Ispit','Raspust','Praksa','Konferencija','Konkurs'],def:'Kolokvijum'},
+      {key:'datum',label:'Datum',type:'date',def:''}
+    ],'Dodaj događaj'),
+    'Cela akademska godina na jednom mestu — početak semestra, kolokvijumi, ispiti, raspusti, praksa, konkursi.');
+}
+function renderRaspored(){
+  return card('⏰ Raspored časova',
+    field('Semestar','rasporedSem')+
+    '<div style="margin-top:12px">'+tableEditor('raspored',[
+      {key:'dan',label:'Dan',sel:['Ponedeljak','Utorak','Sreda','Četvrtak','Petak','Subota','Nedelja'],def:'Ponedeljak'},
+      {key:'vreme',label:'Vreme',def:'',ph:'08–10'},
+      {key:'predmet',label:'Predmet',def:''},
+      {key:'tip',label:'Tip',sel:['Predavanje','Vežbe','Lab','Konsultacije'],def:'Predavanje'},
+      {key:'sala',label:'Sala',def:''},
+      {key:'nastavnik',label:'Profesor/Asistent',def:''}
+    ],'Dodaj termin')+'</div>');
+}
+function renderRok(){
+  return card('📝 Ispitni rok',
+    tableEditor('rok',[
+      {key:'predmet',label:'Predmet',def:''},
+      {key:'datum',label:'Datum',type:'date',def:''},
+      {key:'vreme',label:'Vreme',def:''},
+      {key:'sala',label:'Sala',def:''},
+      {key:'profesor',label:'Profesor',def:''},
+      {key:'ocena',label:'Ocena',def:''}
+    ],'Dodaj ispit'),'Velika tabela celog roka — sve što ti treba na jednom mestu.');
+}
+function renderSumarum(){
+  return card('📊 Sumarum godine',
+    `<div class="grid2">
+       ${field('Broj položenih ispita','sumarum.polozeno')}
+       ${field('Prosek','sumarum.prosek')}
+       ${field('Osvojeni ESPB','sumarum.espb')}
+       ${field('Najteži predmet','sumarum.najtezi')}
+       ${field('Najlakši predmet','sumarum.najlaksi')}
+     </div>
+     <div style="margin-top:12px">${field('Na šta sam ponosan/na','sumarum.ponos',{area:true})}</div>
+     <div style="margin-top:12px">${field('Šta menjam sledeće godine','sumarum.menjam',{area:true})}</div>`);
+}
+function renderGodine(){
+  return card('🏛️ Sve godine studija',
+    tableEditor('godine',[
+      {key:'naziv',label:'Godina',def:''},
+      {key:'prosek',label:'Prosek',def:''},
+      {key:'espb',label:'ESPB',def:''},
+      {key:'polozeno',label:'Položeno ispita',def:''}
+    ],'Dodaj godinu'),'Cela tvoja studentska istorija — prati prosek i ESPB kroz sve godine.');
+}
+function renderDiploma(){
+  const uk=+get('diploma.ukupno')||0, pol=+get('diploma.polozeno')||0;
+  const ost=Math.max(0,uk-pol), pct=uk?Math.round(pol/uk*100):0;
+  let dani='';
+  const dt=get('diploma.datum');
+  if(dt){const d=Math.ceil((new Date(dt)-new Date())/86400000);dani=d>=0?`još <b>${d}</b> dana do cilja`:`cilj je prošao pre ${-d} dana`;}
+  return card('🎓 Diploma countdown',
+    `<div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center">
+       <div class="ring" style="--p:${pct}"><div class="in"><b>${ost}</b><small style="color:var(--muted);font-weight:800">ispita ostalo</small></div></div>
+       <div style="flex:1;min-width:220px">
+         <div class="grid3" style="margin-bottom:12px">
+           ${field('Ukupno ispita','diploma.ukupno',{type:'number'})}
+           ${field('Položeno','diploma.polozeno',{type:'number'})}
+           ${field('Ciljni datum','diploma.datum',{type:'date'})}
+         </div>
+         <div class="bar"><i style="width:${pct}%"></i></div>
+         <div class="hint" style="margin-top:8px">Do diplome: <b>${pct}%</b> ${dani?'· '+dani:''} 🎓</div>
+       </div>
+     </div>`,'Vizuelni podsetnik koliko ti je ostalo. Svaki položen ispit pomeri brojač!');
+}
+function renderRefleksija(){
+  return card('🪞 Godišnja refleksija',
+    field('Šta sam naučio/la?','refleksija.naucio',{area:true})+
+    '<div style="margin-top:12px">'+field('Šta bih uradio/la drugačije?','refleksija.drugacije',{area:true})+'</div>'+
+    '<div style="margin-top:12px">'+field('Čime sam najponosniji/ja?','refleksija.ponos',{area:true})+'</div>'+
+    '<div style="margin-top:12px">'+field('Koji profesor me je najviše inspirisao?','refleksija.profesor')+'</div>'+
+    '<div style="margin-top:12px">'+field('Gde želim da budem sledeće godine?','refleksija.sledece',{area:true})+'</div>');
+}
+
+/* ----- predmeti (najvažniji deo) ----- */
+function renderPredmeti(){
+  const subs=DB.subjects||[];
+  let tabs='<div class="subtab">';
+  subs.forEach((s,i)=>tabs+=`<span class="st ${i===DB.curSub?'on':''}" data-act="subsel" data-idx="${i}">${esc(s.name||'Predmet '+(i+1))}</span>`);
+  tabs+=`<span class="st" data-act="subadd">+ Predmet</span></div>`;
+  if(!subs.length)return card('📚 Moji predmeti',tabs+'<div class="hint">Dodaj svoj prvi predmet da počneš. Za svaki predmet imaš: podatke, literaturu, checklist, kolokvijume, ispite, šta poneti, formula sheet, definicije, greške, pitanja i napredak.</div>');
+  if(DB.curSub>=subs.length)DB.curSub=0;
+  const i=DB.curSub, s=subs[i];
+  const np=+s.napredak||0;
+  let h=card('📚 Moji predmeti',tabs+
+    `<div class="grid3">
+       ${field('Naziv predmeta','subjects.'+i+'.name')}
+       ${field('Profesor','subjects.'+i+'.prof')}
+       ${field('Asistent','subjects.'+i+'.asistent')}
+       ${field('Kabinet','subjects.'+i+'.kabinet')}
+       ${field('E-mail','subjects.'+i+'.email')}
+       ${field('Konsultacije','subjects.'+i+'.konsultacije')}
+       ${field('ESPB','subjects.'+i+'.espb')}
+     </div>
+     <div style="margin-top:14px">${field('📖 Literatura (knjige, skripte, prezentacije)','subjects.'+i+'.literatura',{area:true})}</div>
+     <div style="text-align:right;margin-top:14px"><button class="tbtn danger" data-act="subdel" data-idx="${i}">🗑️ Obriši predmet</button></div>`);
+
+  h+=card('✅ Checklist obaveza',checklist('subjects.'+i+'.checklist',SUBJECT_CHECK));
+  h+=card('🧮 Kolokvijumi',tableEditor('subjects.'+i+'.kolokvijumi',[
+      {key:'naziv',label:'Kolokvijum',def:''},{key:'datum',label:'Datum',type:'date',def:''},
+      {key:'poeni',label:'Poeni',def:''},{key:'max',label:'Maks',def:''},{key:'napomena',label:'Napomena',def:''}
+    ],'Dodaj kolokvijum'));
+  h+=card('📝 Ispiti',tableEditor('subjects.'+i+'.ispiti',[
+      {key:'rok',label:'Rok',def:''},{key:'ocena',label:'Ocena',def:''},
+      {key:'poeni',label:'Poeni',def:''},{key:'komentar',label:'Komentar',def:''}
+    ],'Dodaj ispit'));
+  h+=card('🎒 Šta poneti na kolokvijum/ispit',checklist('subjects.'+i+'.poneti',PONETI));
+  h+=card('📐 Formula sheet',field('Najvažnije formule','subjects.'+i+'.formule',{area:true,ph:'Zapiši ključne formule…'}));
+  h+=card('💡 Najvažnije definicije',field('Definicije','subjects.'+i+'.definicije',{area:true}));
+  h+=card('⚠️ Najčešće greške',field('Na prošlom kolokvijumu/ispitu sam pogrešio…','subjects.'+i+'.greske',{area:true}));
+  h+=card('❓ Pitanja profesoru',field('Lista pitanja','subjects.'+i+'.pitanja',{area:true}));
+  h+=card('🔁 Zadaci za ponovo','<div class="hint" style="margin-bottom:8px">Šta moraš ponovo da uradiš pre ispita.</div>'+field('','subjects.'+i+'.ponovo',{area:true}));
+  h+=card('📈 Moj napredak',
+    `<input type="range" min="0" max="100" step="5" value="${np}" data-path="subjects.${i}.napredak" data-act="range" style="width:100%">
+     <div class="bar" style="margin-top:10px"><i style="width:${np}%"></i></div>
+     <div class="hint" style="margin-top:6px">Napredak: <b>${np}%</b></div>`);
+  return h;
+}
+
+function renderUcenje(){
+  return card('📈 Praćenje učenja',tableEditor('ucenje',[
+      {key:'datum',label:'Datum',type:'date',def:''},
+      {key:'predmet',label:'Predmet',def:''},
+      {key:'sati',label:'Sati',def:''},
+      {key:'osecaj',label:'Kako sam se osećao',sel:['😀 Odlično','🙂 Dobro','😐 Ok','😕 Teško','😫 Iscrpljeno'],def:'🙂 Dobro'},
+      {key:'prod',label:'Produktivnost',sel:['★','★★','★★★','★★★★','★★★★★'],def:'★★★'}
+    ],'Dodaj dan'),'Beleži koliko si učio i kako si se osećao — vremenom vidiš svoj ritam.');
+}
+let pTimer=null,pLeft=25*60,pRun=false,pMode='rad';
+function renderPomodoro(){
+  const c=get('pomodoro.count')||0, m=get('pomodoro.minuta')||0;
+  const mm=String(Math.floor(pLeft/60)).padStart(2,'0'),ss=String(pLeft%60).padStart(2,'0');
+  const toms='🍅'.repeat(Math.min(c,10))+(c>10?' +'+(c-10):'');
+  return card('🍅 Pomodoro tracker',
+    `<div class="pomo">
+       <div class="pill">${pMode==='rad'?'Fokus (25 min)':'Pauza (5 min)'}</div>
+       <div class="time" id="ptime">${mm}:${ss}</div>
+       <div class="ctl">
+         <button class="bigbtn g" data-act="pstart">${pRun?'⏸ Pauziraj':'▶ Start'}</button>
+         <button class="bigbtn o" data-act="preset">↺ Reset</button>
+       </div>
+     </div>
+     <div class="grid2" style="margin-top:18px">
+       <div class="stat"><span class="n">${c}</span><span class="k">Završenih sesija</span></div>
+       <div class="stat"><span class="n">${m}</span><span class="k">Minuta fokusa</span></div>
+     </div>
+     <div style="margin-top:12px;font-size:1.4rem;text-align:center">${toms||'—'}</div>`,
+    '25 minuta fokusa, pa 5 minuta pauze. Tehnika koja stvarno radi.');
+}
+function pTick(){
+  pLeft--;
+  if(pLeft<0){
+    if(pMode==='rad'){set('pomodoro.count',(get('pomodoro.count')||0)+1);set('pomodoro.minuta',(get('pomodoro.minuta')||0)+25);save();pMode='pauza';pLeft=5*60;}
+    else{pMode='rad';pLeft=25*60;}
+    if(SECTIONS[curIdx].id==='pomodoro')renderCurrent();
+    return;
+  }
+  const e=document.getElementById('ptime');
+  if(e)e.textContent=String(Math.floor(pLeft/60)).padStart(2,'0')+':'+String(pLeft%60).padStart(2,'0');
+}
+function renderHabit(){
+  const days=['Pon','Uto','Sre','Čet','Pet','Sub','Ned'];
+  const hs=DB.habits||[];
+  let h='<div class="week"><div></div>'+days.map(d=>`<div class="hd">${d}</div>`).join('');
+  hs.forEach((hb,i)=>{
+    h+=`<div style="font-weight:700;font-size:.86rem;display:flex;align-items:center;gap:6px">${esc(hb.name)}</div>`;
+    hb.days.forEach((on,d)=>{h+=`<div class="cell ${on?'on':''}" data-act="habit" data-i="${i}" data-d="${d}">${on?'✓':''}</div>`;});
+  });
+  h+='</div>';
+  h+='<div style="margin-top:14px">'+tableEditor('habits',[{key:'name',label:'Navika',def:'Nova navika'}],'Dodaj naviku')+'</div>';
+  return card('✅ Habit tracker',h,'Označi svaki dan kad ispuniš naviku. Niz bez prekida je najbolji motivator.');
+}
+const MOODS=['😢','😕','😐','🙂','😀'];
+function renderMood(){
+  const m=DB.mood||[];
+  let h='<div style="display:flex;flex-wrap:wrap;gap:9px">';
+  for(let i=0;i<14;i++){const v=m[i];h+=`<div class="moodc" data-act="mood" data-i="${i}" title="Dan ${i+1}">${v>=0?MOODS[v]:'·'}</div>`;}
+  h+='</div><div class="hint" style="margin-top:10px">Klikni na krug da promeniš raspoloženje za taj dan (poslednje 2 nedelje).</div>';
+  return card('😊 Mood tracker',h);
+}
+function renderFinansije(){
+  const arr=get('finansije')||[];
+  const sum=arr.reduce((a,r)=>a+(parseFloat((r.iznos||'').toString().replace(',','.'))||0),0);
+  return card('💸 Finansije',
+    tableEditor('finansije',[
+      {key:'stavka',label:'Stavka',def:''},
+      {key:'kategorija',label:'Kategorija',sel:['Školarina','Knjige','Kopirnica','Prevoz','Menza','Dom','Ostalo'],def:'Knjige'},
+      {key:'iznos',label:'Iznos',def:''}
+    ],'Dodaj trošak')+
+    `<div class="stat" style="margin-top:14px;max-width:240px"><span class="n">${sum.toLocaleString('sr-RS')}</span><span class="k">Ukupno</span></div>`);
+}
+function renderProjekti(){
+  return card('🚀 Projekti',tableEditor('projekti',[
+      {key:'naziv',label:'Naziv',def:''},{key:'opis',label:'Opis',area:true,def:''},
+      {key:'deadline',label:'Rok',type:'date',def:''},
+      {key:'status',label:'Status',sel:['Ideja','U toku','Pauziran','Završen'],def:'U toku'}
+    ],'Dodaj projekat'));
+}
+function renderPraksa(){
+  return card('🏢 Praksa',tableEditor('praksa',[
+      {key:'firma',label:'Firma',def:''},{key:'mentor',label:'Mentor',def:''},
+      {key:'kontakt',label:'Kontakt',def:''},{key:'zaduzenja',label:'Zaduženja',area:true,def:''}
+    ],'Dodaj praksu'));
+}
+function renderKonf(){
+  return card('🎤 Konferencije',tableEditor('konferencije',[
+      {key:'naziv',label:'Naziv',def:''},{key:'mesto',label:'Mesto',def:''},
+      {key:'datum',label:'Datum',type:'date',def:''},{key:'rad',label:'Rad koji prezentujem',def:''}
+    ],'Dodaj konferenciju'));
+}
+function renderBucket(){
+  return card('🪣 Bucket list tokom studija',checklist('bucket',Object.keys(get('bucket')||{})),'Velike stvari koje želiš da uradiš dok studiraš.');
+}
+function renderVision(){
+  const im=get('vision.imgs')||['','',''];
+  let imgs='';
+  im.forEach((u,i)=>{imgs+=`<div>${field('Slika '+(i+1)+' (URL)','vision.imgs.'+i)}${u?`<img class="vimg" src="${esc(u)}" alt="" onerror="this.style.display='none'">`:''}</div>`;});
+  return card('🖼️ Vision board',
+    field('Moja vizija (reči, citati, ciljevi)','vision.note',{area:true,ph:'Kako izgleda tvoj uspeh?'})+
+    '<div class="grid3" style="margin-top:14px">'+imgs+'</div>',
+    'Zalepi slike i reči koje te inspirišu. Nalepi linkove slika.');
+}
+const STIK=['📚','☕','💻','🎓','⭐','❤️','🍀','📖','📝','🏆','💯','🌙','✨','🍎','🚀','🔥','🎯','💪','🧠','🎉'];
+function renderStickers(){
+  const col=get('stickers')||{};
+  let pal='<div style="display:flex;flex-wrap:wrap;gap:10px">';
+  STIK.forEach(e=>{const c=col[e]||0;pal+=`<div class="stik" data-act="stik" data-e="${e}">${e}${c?`<span class="cnt">${c}</span>`:''}</div>`;});
+  pal+='</div>';
+  return card('✨ Sticker book',
+    '<div class="hint" style="margin-bottom:10px">Klikni stiker da ga „zalepiš" — sakupljaj ih kako napreduješ. 💛</div>'+pal+
+    '<div style="margin-top:16px">'+field('Moja tabla stikera','stikTabla',{area:true,ph:'Slobodno ređaj emoji-je i beleške…'})+'</div>');
+}
+function renderBadges(){
+  const bs=DB.badges||[];
+  let h='<div class="grid2">';
+  bs.forEach((b,i)=>{h+=`<div class="badge ${b.on?'on':''}" data-act="badge" data-i="${i}"><span class="e">${b.e}</span><span><b>${esc(b.name)}</b><small>${b.on?'Osvojeno 🎉':'Klikni kad osvojiš'}</small></span></div>`;});
+  h+='</div>';
+  return card('🏅 Achievement bedževi',h,'Svaki uspeh zaslužuje bedž. Klikni da ga osvojiš.');
+}
+function renderVodic(){
+  return card('🧭 Vodič kroz studije — dr Marina Bulat',
+  `<div class="guide">
+    <p style="font-style:italic;color:var(--muted)">Kratki saveti koje studenti retko dobiju na fakultetu — iz iskustva profesora i mentora.</p>
+
+    <h4>📘 Kako učiti tehničke predmete</h4>
+    <ul>
+      <li>Ne uči napamet — razumi <b>zašto</b> formula važi. Izvedi je bar jednom sam.</li>
+      <li>Uči sa olovkom u ruci: rešavaj zadatke, ne samo čitaj rešenja.</li>
+      <li>Pravi svoj <b>formula sheet</b> — sam čin pisanja je učenje.</li>
+      <li>Posle svakog poglavlja uradi 3–5 zadataka različite težine.</li>
+    </ul>
+
+    <h4>🧮 Kako se spremati za kolokvijume</h4>
+    <ul>
+      <li>Skupljaj zadatke sa prethodnih kolokvijuma — obrasci se ponavljaju.</li>
+      <li>Vežbaj „na vreme": simuliraj kolokvijum sa štopericom.</li>
+      <li>Beleži <b>greške</b> i vrati im se dan pre — tu se gubi najviše poena.</li>
+    </ul>
+
+    <h4>🗓️ Kako organizovati ispitni rok</h4>
+    <ul>
+      <li>Rasporedi predmete po datumima, pa unazad isplaniraj učenje.</li>
+      <li>Teže/obimnije predmete stavi prve u plan, dok je energija najveća.</li>
+      <li>Ostavi jedan „prazan" dan kao rezervu za nepredviđeno.</li>
+    </ul>
+
+    <h4>✍️ Kako pisati seminarske radove</h4>
+    <ul>
+      <li>Prvo napravi <b>strukturu</b> (uvod–razrada–zaključak), pa piši.</li>
+      <li>Citiraj izvore uredno — to je razlika između dobrog i odličnog rada.</li>
+      <li>Piši svojim rečima; prepisivanje se prepozna i ruši utisak.</li>
+    </ul>
+
+    <h4>🤝 Kako komunicirati sa profesorima</h4>
+    <ul>
+      <li>Mejl kratko i jasno: ko si, koji predmet, konkretno pitanje.</li>
+      <li>Idi na konsultacije sa pripremljenim pitanjima — to se ceni.</li>
+      <li>Budi učtiv i tačan; dobar odnos otvara prilike (projekti, preporuke).</li>
+    </ul>
+
+    <h4>💼 Kako izgraditi portfolio za posao ili master</h4>
+    <ul>
+      <li>Svaki projekat sa fakulteta okači na GitHub — to je tvoj dokaz.</li>
+      <li>Vodi LinkedIn ažurnim; dodaj veštine koje stvarno koristiš.</li>
+      <li>Čuvaj sertifikate i preporuke na jednom mestu (sekcija Portfolio).</li>
+    </ul>
+
+    <div class="banner" style="margin-top:18px"><span style="font-size:1.5rem">💛</span><span class="q">Disciplina pobeđuje motivaciju — a tvoj planer ti čuva disciplinu.</span></div>
+  </div>`);
+}
+
+/* ---------------- nav + render ---------------- */
+let curIdx=0;
+function buildNav(){
+  const groups=[];const seen={};
+  SECTIONS.forEach(s=>{if(!seen[s.grp]){seen[s.grp]=[];groups.push(s.grp);}seen[s.grp].push(s);});
+  let h='';
+  groups.forEach(g=>{
+    h+=`<div class="navgrp"><div class="gt">${g}</div>`;
+    seen[g].forEach(s=>{const i=SECTIONS.indexOf(s);h+=`<div class="navi" data-i="${i}"><span class="ic">${s.ic}</span>${s.t}</div>`;});
+    h+='</div>';
+  });
+  document.getElementById('nav').innerHTML=h;
+  document.querySelectorAll('.navi').forEach(n=>n.addEventListener('click',()=>{go(+n.dataset.i);toggleSide(false);}));
+}
+function go(i){curIdx=i;document.querySelectorAll('.navi').forEach(n=>n.classList.toggle('on',+n.dataset.i===i));renderCurrent();window.scrollTo(0,0);}
+function renderCurrent(){
+  const s=SECTIONS[curIdx];
+  document.getElementById('mtitle').textContent=s.ic+'  '+s.t;
+  document.getElementById('content').innerHTML=s.r();
+  document.querySelectorAll('#content textarea.t').forEach(autosize);
+}
+function rotateMotiv(){document.getElementById('motiv').textContent=MOTIV[Math.floor(Math.random()*MOTIV.length)];}
+
+/* ---------------- events ---------------- */
+document.getElementById('content').addEventListener('input',e=>{
+  const t=e.target;
+  if(t.dataset.path){
+    let v=t.value;
+    set(t.dataset.path,v);save();
+    if(t.tagName==='TEXTAREA')autosize(t);
+    // live update bars/rings without losing focus: only for range
+    if(t.dataset.act==='range'){const bar=t.parentElement.querySelector('.bar>i');if(bar)bar.style.width=v+'%';const hb=t.parentElement.querySelector('.hint b');if(hb)hb.textContent=v+'%';}
+  }
+});
+document.getElementById('content').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const act=b.dataset.act;
+  if(act==='add'){const arr=get(b.dataset.arr)||[];arr.push(JSON.parse(decodeURIComponent(b.dataset.tpl)));set(b.dataset.arr,arr);save();renderCurrent();}
+  else if(act==='del'){const arr=get(b.dataset.arr)||[];arr.splice(+b.dataset.idx,1);save();renderCurrent();}
+  else if(act==='chk'){const o=get(b.dataset.obj)||{};o[b.dataset.k]=!o[b.dataset.k];set(b.dataset.obj,o);save();renderCurrent();}
+  else if(act==='habit'){DB.habits[+b.dataset.i].days[+b.dataset.d]=!DB.habits[+b.dataset.i].days[+b.dataset.d];save();renderCurrent();}
+  else if(act==='mood'){const i=+b.dataset.i;DB.mood[i]=((DB.mood[i]==null?-1:DB.mood[i])+1)%5;save();renderCurrent();}
+  else if(act==='badge'){DB.badges[+b.dataset.i].on=!DB.badges[+b.dataset.i].on;save();renderCurrent();}
+  else if(act==='stik'){const e2=b.dataset.e;DB.stickers[e2]=(DB.stickers[e2]||0)+1;save();renderCurrent();}
+  else if(act==='subsel'){DB.curSub=+b.dataset.idx;save();renderCurrent();}
+  else if(act==='subadd'){DB.subjects.push({name:'',prof:'',asistent:'',kabinet:'',email:'',konsultacije:'',espb:'',literatura:'',checklist:{},kolokvijumi:[],ispiti:[],poneti:{},formule:'',definicije:'',greske:'',pitanja:'',ponovo:'',napredak:0});DB.curSub=DB.subjects.length-1;save();renderCurrent();}
+  else if(act==='subdel'){if(confirm('Obrisati ovaj predmet?')){DB.subjects.splice(+b.dataset.idx,1);DB.curSub=0;save();renderCurrent();}}
+  else if(act==='pstart'){pRun=!pRun;if(pRun){pTimer=setInterval(pTick,1000);}else{clearInterval(pTimer);}renderCurrent();}
+  else if(act==='preset'){pRun=false;clearInterval(pTimer);pMode='rad';pLeft=25*60;renderCurrent();}
+});
+
+/* ---------------- toolbar ---------------- */
+function toggleSide(v){document.getElementById('side').classList.toggle('open',v);document.getElementById('scrim').classList.toggle('on',v);}
+function expData(){
+  const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='mathia-planer-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+}
+function impData(ev){
+  const f=ev.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=()=>{try{DB=migrate(JSON.parse(r.result));save();renderCurrent();alert('Uvezeno! 🎉');}catch(e){alert('Greška pri uvozu fajla.');}};r.readAsText(f);
+}
+function resetAll(){if(confirm('Obrisati SVE podatke i početi iznova? Ovo se ne može poništiti.')){DB=defaults();save();go(0);}}
+
+/* ---------------- init ---------------- */
+(function init(){
+  DB=store.load();
+  DB=DB?migrate(DB):defaults();
+  store.save(DB);
+  buildNav();rotateMotiv();go(0);
+  setInterval(rotateMotiv,16000);
+})();
+</script>
+</body>
+</html>

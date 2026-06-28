@@ -77,6 +77,33 @@ html,body{overflow-x:hidden}
 .scroll-h{position:static;bottom:auto;margin-top:22px}
 .foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
 .rule{margin-top:30px}
+
+/* ===== PLANER showcase ===== */
+.planer-hero{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;background:linear-gradient(165deg,#fffdf8,var(--champ));border:1.4px solid var(--gold);border-radius:24px;padding:28px;margin:8px 0 34px;box-shadow:0 30px 60px -44px rgba(120,70,80,.45)}
+@media(max-width:820px){.planer-hero{grid-template-columns:1fr;padding:20px}}
+.ph-visual{background:var(--plum);border-radius:18px;padding:22px;color:#FBF6EE;min-height:240px;display:flex;flex-direction:column;gap:12px;justify-content:center;box-shadow:inset 0 0 0 1px rgba(231,210,162,.2)}
+.ph-visual .pv-k{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#F0E4CC;text-align:center}
+.ph-ring{width:104px;height:104px;border-radius:50%;border:9px solid rgba(231,210,162,.22);border-top-color:var(--gold);border-right-color:var(--gold);margin:2px auto;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;transform:rotate(38deg)}
+.ph-ring span{transform:rotate(-38deg)}
+.pv-row{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.pv-chip{background:rgba(231,210,162,.14);border:1px solid rgba(231,210,162,.3);border-radius:999px;padding:5px 11px;font-size:.72rem;color:#F0E4CC}
+.ph-info h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--plum);margin:.15em 0}
+.ph-by{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--golddk);margin-bottom:8px}
+.ph-lead{color:#6a5a62;margin:0 0 12px}
+.ph-feat{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:7px}
+.ph-feat li{padding-left:24px;position:relative;color:#5a4a52;font-size:.92rem}
+.ph-feat li::before{content:"✓";position:absolute;left:0;color:var(--golddk);font-weight:800}
+.ph-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.cena small{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;color:var(--muted)}
+.planer-feat{margin:6px 0 44px}
+.pf-title{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--plum);margin-bottom:6px}
+.pf-sub{text-align:center;color:var(--muted);margin:0 0 20px;font-size:.92rem}
+.pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.pf-card{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:18px;transition:transform .16s,box-shadow .16s}
+.pf-card:hover{transform:translateY(-3px);box-shadow:0 18px 36px -28px rgba(120,70,80,.5)}
+.pf-card .ic{font-size:1.5rem}
+.pf-card h4{margin:9px 0 4px;color:var(--plum);font-size:1rem}
+.pf-card p{font-size:.85rem;color:var(--muted);margin:0;line-height:1.5}
 </style><style>/* === Heder v2 (MATHIA) === */
 header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(176,138,74,.16)}
 .nav-r{align-items:center}
@@ -104,12 +131,57 @@ header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit
 
 <section class="shop-hero">
   <div class="ksub">prodavnica</div>
-  <h1>Materijali i priručnici</h1>
-  <p>Pojedinačne skripte i zbirke za preuzimanje. Za stalan pristup predmetima i Marini 24/7, pogledaj <a href="index.html#paketi">mesečne pakete</a>.</p>
+  <h1>Mathia Student Planner</h1>
+  <p>Tvoj kompletan planer za studije — raspored, ispitni rokovi, fokus, navike i odbrojavanje do diplome, na jednom mestu. <b>Osmislila dr Marina Bulat.</b></p>
 </section>
 
 <div class="wrap">
-  <div class="grid" id="grid"></div>
+
+  <section class="planer-hero">
+    <div class="ph-visual">
+      <div class="pv-k">🎓 Do diplome</div>
+      <div class="ph-ring"><span>62%</span></div>
+      <div class="pv-row">
+        <span class="pv-chip">🗓️ Raspored</span><span class="pv-chip">📝 Ispitni rok</span>
+        <span class="pv-chip">🍅 Fokus</span><span class="pv-chip">🌱 Navike</span>
+        <span class="pv-chip">📚 Predmeti</span><span class="pv-chip">🧭 Vodič</span>
+      </div>
+    </div>
+    <div class="ph-info">
+      <span class="tag">flagship · planer</span>
+      <h2>Student Success Planner</h2>
+      <div class="ph-by">by dr Marina Bulat</div>
+      <p class="ph-lead">Interaktivni planer koji te vodi kroz celu studentsku godinu — od prvog predavanja do odbrane diplome. Isprobaj demo odmah, a uz nalog ti se planer čuva i prati online.</p>
+      <ul class="ph-feat">
+        <li>Semestar i nedeljni raspored na jednom mestu</li>
+        <li>Ispitni rokovi i odbrojavanje do diplome</li>
+        <li>Pomodoro fokus-tajmer i praćenje učenja</li>
+        <li>Svaki predmet: literatura, formule, greške, napredak</li>
+        <li>Navike, raspoloženje i vodič dr Marine</li>
+        <li>Uz nalog: tvoj planer se čuva i prati online</li>
+      </ul>
+      <div class="cena">1.990 <span>RSD</span> <small>· jednokratno · online pristup uz nalog</small></div>
+      <div class="ph-cta">
+        <button class="btn btn-gold" onclick="dodaj('PLANER-2026')">Dodaj u korpu →</button>
+        <a class="btn btn-ghost" href="Mathia-Student-Planner.html" target="_blank" rel="noopener">Isprobaj uživo (demo) →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="planer-feat">
+    <h2 class="pf-title">Šta sve dobijaš</h2>
+    <p class="pf-sub">25+ alata na jednom mestu — isprobaj demo odmah, a uz nalog ti se sve čuva i prati online.</p>
+    <div class="pf-grid">
+      <div class="pf-card"><div class="ic">🗓️</div><h4>Planiranje &amp; raspored</h4><p>Godišnji pregled, nedeljni raspored i sve obaveze pod kontrolom.</p></div>
+      <div class="pf-card"><div class="ic">📝</div><h4>Ispitni rok</h4><p>Prijave, kolokvijumi, ispiti i bodovi — po svakom predmetu.</p></div>
+      <div class="pf-card"><div class="ic">🍅</div><h4>Pomodoro fokus</h4><p>Tajmer za učenje sa pauzama i statistikom učenja.</p></div>
+      <div class="pf-card"><div class="ic">🌱</div><h4>Navike &amp; raspoloženje</h4><p>Nedeljni habit tracker i praćenje raspoloženja.</p></div>
+      <div class="pf-card"><div class="ic">📚</div><h4>Predmeti A–Z</h4><p>Literatura, formule, definicije, greške, pitanja i napredak.</p></div>
+      <div class="pf-card"><div class="ic">🎓</div><h4>Do diplome</h4><p>Prsten odbrojavanja i sumarni pregled svih godina.</p></div>
+      <div class="pf-card"><div class="ic">💼</div><h4>Portfolio &amp; CV</h4><p>Vizija, projekti, praksa, konferencije i bucket lista.</p></div>
+      <div class="pf-card"><div class="ic">🧭</div><h4>Vodič dr Marine</h4><p>Originalni saveti za organizaciju, fokus i ispite.</p></div>
+    </div>
+  </section>
 
   <div class="paketi-cta">
     <h2>Tražiš stalan pristup?</h2>
@@ -141,9 +213,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit
 // Katalog (prikaz). Cene su informativne — server (lib/proizvodi.js) ih ponovo
 // računa pri naplati. Kad dodaš artikal ovde, dodaj ga i u lib/proizvodi.js.
 const PROIZVODI = [
-  { id:'SKR-MAT-1', naziv:'Matematika za prijemni', opis:'Skripta sa rešenim zadacima i savetima za prijemni.', cena:1490, tag:'skripta' },
-  { id:'SKR-FIZ-1', naziv:'Fizika — osnove',        opis:'Pregled formula i tipskih zadataka, korak po korak.', cena:1490, tag:'skripta' },
-  { id:'ZBR-NACRT', naziv:'Nacrtna geometrija',     opis:'Zbirka zadataka sa postupnim crtežima i objašnjenjima.', cena:1990, tag:'zbirka' },
+  { id:'PLANER-2026', naziv:'Mathia Student Planner', opis:'Kompletan planer za studije — online pristup uz nalog.', cena:1990, tag:'planer' },
 ];
 
 let korpa = {};
@@ -202,6 +272,7 @@ async function plati(){
   }catch(e){ msg.textContent = 'Naplata još nije povezana (čekamo ključeve banke).'; }
 }
 
-nacrtajGrid(); osveziKorpu();
+osveziKorpu();
 </script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script></body></html>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><script src="https://project-y23je.vercel.app/widget.js?v=10" data-api="https://project-y23je.vercel.app/api/chat" data-mode="site" data-name="Profesorica" data-lang="sr" data-sub="Prodavnica" data-sub-en="Store"></script>
+</body></html>
