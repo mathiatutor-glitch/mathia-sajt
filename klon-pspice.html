@@ -150,20 +150,43 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
 setInterval(ap,800);})();</script>
 <!--prijnav--><script>(function(){
-var NAV={sr:'Prijemni',en:'Admissions',de:'Aufnahme',fr:'Concours',es:'Admisi\u00f3n',it:'Ammissione',ru:'\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435',pt:'Admiss\u00e3o'};
-var MM={sr:'Mala matura',en:'High school',de:'Oberschule',fr:'Lyc\u00e9e',es:'Instituto',it:'Superiori',ru:'\u0421\u0440\u0435\u0434\u043d\u044f\u044f \u0448\u043a\u043e\u043b\u0430',pt:'Ensino m\u00e9dio'};
-var PL={sr:'Planer',en:'Planner',de:'Planer',fr:'Agenda',es:'Agenda',it:'Agenda',ru:'\u041f\u043b\u0430\u043d\u0435\u0440',pt:'Agenda'};
+var L={
+ home:{sr:'\u2302 Po\u010detna',en:'\u2302 Home',de:'\u2302 Start',fr:'\u2302 Accueil',es:'\u2302 Inicio',it:'\u2302 Home',ru:'\u2302 \u0413\u043b\u0430\u0432\u043d\u0430\u044f',pt:'\u2302 In\u00edcio'},
+ pj:{sr:'Prijemni',en:'Admissions',de:'Aufnahme',fr:'Concours',es:'Admisi\u00f3n',it:'Ammissione',ru:'\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435',pt:'Admiss\u00e3o'},
+ mm:{sr:'Mala matura',en:'High school',de:'Oberschule',fr:'Lyc\u00e9e',es:'Instituto',it:'Superiori',ru:'\u0421\u0440\u0435\u0434\u043d\u044f\u044f \u0448\u043a\u043e\u043b\u0430',pt:'Ensino m\u00e9dio'},
+ pl:{sr:'Planer',en:'Planner',de:'Planer',fr:'Agenda',es:'Agenda',it:'Agenda',ru:'\u041f\u043b\u0430\u043d\u0435\u0440',pt:'Agenda'},
+ predmeti:{sr:'Predmeti',en:'Subjects',de:'F\u00e4cher',fr:'Mati\u00e8res',es:'Asignaturas',it:'Materie',ru:'\u041f\u0440\u0435\u0434\u043c\u0435\u0442\u044b',pt:'Disciplinas'},
+ prodavnica:{sr:'Prodavnica',en:'Shop',de:'Shop',fr:'Boutique',es:'Tienda',it:'Negozio',ru:'\u041c\u0430\u0433\u0430\u0437\u0438\u043d',pt:'Loja'},
+ paketi:{sr:'Paketi',en:'Plans',de:'Pakete',fr:'Forfaits',es:'Planes',it:'Pacchetti',ru:'\u041f\u0430\u043a\u0435\u0442\u044b',pt:'Pacotes'},
+ omeni:{sr:'O meni',en:'About',de:'\u00dcber mich',fr:'\u00c0 propos',es:'Sobre m\u00ed',it:'Chi sono',ru:'\u041e\u0431\u043e \u043c\u043d\u0435',pt:'Sobre'},
+ mathia:{sr:'\u0160ta je Mathia',en:'What is Mathia',de:'Was ist Mathia',fr:'Qu\u2019est-ce que Mathia',es:'Qu\u00e9 es Mathia',it:'Cos\u2019\u00e8 Mathia',ru:'\u0427\u0442\u043e \u0442\u0430\u043a\u043e\u0435 Mathia',pt:'O que \u00e9 a Mathia'},
+ korpa:{sr:'Korpa',en:'Cart',de:'Warenkorb',fr:'Panier',es:'Carrito',it:'Carrello',ru:'\u041a\u043e\u0440\u0437\u0438\u043d\u0430',pt:'Carrinho'}
+};
 var BT={sr:'Prijemni po fakultetu',en:'Entrance exams by faculty',de:'Aufnahmepr\u00fcfung nach Fakult\u00e4t',fr:'Concours par facult\u00e9',es:'Examen por facultad',it:'Esame per facolt\u00e0',ru:'\u0412\u0441\u0442\u0443\u043f\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u043f\u043e \u0444\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u0443',pt:'Exame por faculdade'};
 var BS={sr:'Re\u0161i rokove i otkrij koji ti smer le\u017ei \u2014 tehni\u010dki i matemati\u010dki fakulteti.',en:'Solve past exams and find your track \u2014 technical and mathematical faculties.',de:'L\u00f6se Altklausuren und finde deine Richtung \u2014 technische und mathematische Fakult\u00e4ten.',fr:'Fais les annales et trouve ta fili\u00e8re \u2014 facult\u00e9s techniques et math\u00e9matiques.',es:'Resuelve ex\u00e1menes y encuentra tu rama \u2014 facultades t\u00e9cnicas y matem\u00e1ticas.',it:'Risolvi gli esami e trova il tuo indirizzo \u2014 facolt\u00e0 tecniche e matematiche.',ru:'\u0420\u0435\u0448\u0430\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u044b \u0438 \u043d\u0430\u0439\u0434\u0438 \u0441\u0432\u043e\u0451 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u2014 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0438 \u043c\u0430\u0442\u0435\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0444\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u044b.',pt:'Resolve provas e encontra a tua \u00e1rea \u2014 faculdades t\u00e9cnicas e matem\u00e1ticas.'};
 var BC={sr:'Pogledaj fakultete \u2192',en:'See faculties \u2192',de:'Fakult\u00e4ten ansehen \u2192',fr:'Voir les facult\u00e9s \u2192',es:'Ver facultades \u2192',it:'Vedi le facolt\u00e0 \u2192',ru:'\u0424\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u044b \u2192',pt:'Ver faculdades \u2192'};
-function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&NAV[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return NAV[h]?h:'sr';}
+var BPT={sr:'Tvoj planer za celu godinu',en:'Your planner for the whole year',de:'Dein Planer f\u00fcr das ganze Jahr',fr:'Ton agenda pour toute l\u2019ann\u00e9e',es:'Tu agenda para todo el a\u00f1o',it:'La tua agenda per tutto l\u2019anno',ru:'\u0422\u0432\u043e\u0439 \u043f\u043b\u0430\u043d\u0435\u0440 \u043d\u0430 \u0432\u0435\u0441\u044c \u0433\u043e\u0434',pt:'A tua agenda para o ano todo'};
+var BPS={sr:'Popunjava\u0161 sve i \u010duva\u0161 — za fakultet, srednju i osnovnu. Skini kad ho\u0107e\u0161.',en:'Fill in everything and keep it — university, high and primary school. Download anytime.',de:'Trage alles ein und behalte es — Uni, Ober- und Grundschule. Jederzeit herunterladen.',fr:'Remplis tout et garde-le — fac, lyc\u00e9e et primaire. T\u00e9l\u00e9charge quand tu veux.',es:'Rellena todo y gu\u00e1rdalo — universidad, instituto y primaria. Desc\u00e1rgalo cuando quieras.',it:'Compila tutto e conservalo — universit\u00e0, superiori ed elementari. Scarica quando vuoi.',ru:'\u0417\u0430\u043f\u043e\u043b\u043d\u044f\u0439 \u0432\u0441\u0451 \u0438 \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u0439 — \u0432\u0443\u0437, \u0441\u0440\u0435\u0434\u043d\u044f\u044f \u0438 \u043d\u0430\u0447\u0430\u043b\u044c\u043d\u0430\u044f \u0448\u043a\u043e\u043b\u0430.',pt:'Preenche tudo e guarda — faculdade, secund\u00e1ria e prim\u00e1ria.'};
+var BPC={sr:'Izaberi planer \u2192',en:'Choose a planner \u2192',de:'Planer w\u00e4hlen \u2192',fr:'Choisir l\u2019agenda \u2192',es:'Elegir agenda \u2192',it:'Scegli l\u2019agenda \u2192',ru:'\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u043f\u043b\u0430\u043d\u0435\u0440 \u2192',pt:'Escolher agenda \u2192'};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&L.pj[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return L.pj[h]?h:'sr';}
 function mk(href,cls,attr,txt){var a=document.createElement('a');a.href=href;if(cls)a.className=cls;a.setAttribute(attr,'1');a.textContent=txt;return a;}
-function ins(nav,ref,href,attr,txt){var ex=nav.querySelector('a[href="'+href+'"]');if(ex){return ex;}var cls=ref?ref.className:'';var a=mk(href,cls,attr,txt);if(ref)ref.insertAdjacentElement('afterend',a);else nav.appendChild(a);return a;}
-function ensure(){var nav=document.querySelector('.nav-r');if(!nav)return;var ref=nav.querySelector('a[href="predmeti.html"]');
- ref=ins(nav,ref,'Prijemni-Fakulteti.html','data-pjnav',NAV.sr);
- ref=ins(nav,ref,'Test-Sklonosti-Srednja.html','data-mmnav',MM.sr);
- ref=ins(nav,ref,'Planeri.html','data-plnav',PL.sr);}
-function ap(){var l=lng();var a=document.querySelector('a[data-pjnav]');if(a)a.textContent=NAV[l]||NAV.sr;var m=document.querySelector('a[data-mmnav]');if(m)m.textContent=MM[l]||MM.sr;var p=document.querySelector('a[data-plnav]');if(p)p.textContent=PL[l]||PL.sr;var bn=document.querySelector('[data-prij-banner]');if(bn){var t=bn.querySelector('[data-pt]'),s=bn.querySelector('[data-ps]'),c=bn.querySelector('[data-pc]');if(t)t.textContent=BT[l]||BT.sr;if(s)s.textContent=BS[l]||BS.sr;if(c)c.textContent=BC[l]||BC.sr;}}
+function ins(nav,ref,href,attr,txt){var ex=nav.querySelector('a['+attr+']');if(ex)return ex;var cls=ref?ref.className:'';var a=mk(href,cls,attr,txt);if(ref)ref.insertAdjacentElement('afterend',a);else nav.appendChild(a);return a;}
+function ensure(){var nav=document.querySelector('.nav-r');if(!nav)return;
+ if(!nav.querySelector('a[data-homenav]')){var cls=(nav.querySelector('a.link')||{}).className||'link';var hb=mk('index.html',cls,'data-homenav',L.home.sr);nav.insertBefore(hb,nav.firstChild);}
+ var ref=nav.querySelector('a[href="predmeti.html"]')||nav.querySelector('a[data-homenav]');
+ ref=ins(nav,ref,'Prijemni-Fakulteti.html','data-pjnav',L.pj.sr);
+ ref=ins(nav,ref,'Test-Sklonosti-Srednja.html','data-mmnav',L.mm.sr);
+ ref=ins(nav,ref,'Planeri.html','data-plnav',L.pl.sr);}
+function setStd(nav,sel,map,l){var a=nav.querySelector(sel);if(a&&!a.hasAttribute('data-i18n'))a.textContent=map[l]||map.sr;}
+function ap(){var l=lng();var nav=document.querySelector('.nav-r');
+ var hb=document.querySelector('a[data-homenav]');if(hb)hb.textContent=L.home[l]||L.home.sr;
+ var a=document.querySelector('a[data-pjnav]');if(a)a.textContent=L.pj[l]||L.pj.sr;
+ var m=document.querySelector('a[data-mmnav]');if(m)m.textContent=L.mm[l]||L.mm.sr;
+ var p=document.querySelector('a[data-plnav]');if(p)p.textContent=L.pl[l]||L.pl.sr;
+ if(nav){setStd(nav,'a[href="predmeti.html"]',L.predmeti,l);setStd(nav,'a[href="prodavnica.html"]',L.prodavnica,l);setStd(nav,'a[href="index.html#paketi"]',L.paketi,l);setStd(nav,'a[href="o-marini.html"]',L.omeni,l);setStd(nav,'a[href="index.html#mathia"]',L.mathia,l);
+  var cb=nav.querySelector('.cart-btn');if(cb&&cb.firstChild&&cb.firstChild.nodeType===3&&!cb.hasAttribute('data-i18n'))cb.firstChild.textContent=(L.korpa[l]||L.korpa.sr)+' ';}
+ var bn=document.querySelector('[data-prij-banner]');if(bn){var t=bn.querySelector('[data-pt]'),s=bn.querySelector('[data-ps]'),c=bn.querySelector('[data-pc]');if(t)t.textContent=BT[l]||BT.sr;if(s)s.textContent=BS[l]||BS.sr;if(c)c.textContent=BC[l]||BC.sr;}
+ var pb=document.querySelector('[data-plan-banner]');if(pb){var t2=pb.querySelector('[data-plt]'),s2=pb.querySelector('[data-pls]'),c2=pb.querySelector('[data-plc]');if(t2)t2.textContent=BPT[l]||BPT.sr;if(s2)s2.textContent=BPS[l]||BPS.sr;if(c2)c2.textContent=BPC[l]||BPC.sr;}}
 ensure();ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}setInterval(function(){ensure();ap();},900);
 })();</script>
 </body>
