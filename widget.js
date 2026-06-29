@@ -988,6 +988,12 @@
     typing(true);
     setTimeout(function(){ typing(false); addBub("zoi", a); }, 320);
   }
+  function sbToken(){
+    try{
+      for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(k && /^sb-.*-auth-token$/.test(k)){ var raw=localStorage.getItem(k); if(!raw) continue; var v=JSON.parse(raw); var t=v && (v.access_token || (v.currentSession && v.currentSession.access_token) || (v.session && v.session.access_token)); if(t) return t; } }
+    }catch(e){}
+    return null;
+  }
   function send() {
     var txt = (taEl.value || "").trim();
     if (!txt && !attachment) return;
@@ -1014,7 +1020,7 @@
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode: MODE, lang: LANG, messages: history }),
+      body: JSON.stringify({ mode: MODE, lang: LANG, messages: history, token: sbToken() }),
     })
       .then(function (r) { return r.json(); })
       .then(function (data) {
