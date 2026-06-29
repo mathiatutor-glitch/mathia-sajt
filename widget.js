@@ -53,7 +53,16 @@
     "el-kicad":["Crtanje šeme","Dodela otisaka (footprint)","Rutiranje ploče","Vodi me korak po korak"],
     "el-cadence":["OrCAD Capture šema","PSpice simulacija","Prelazak na ploču","Vodi me korak po korak"]
   };
-  function srGeneric(){ return SUBJ ? ["Objasni mi ključni pojam iz: "+SUBJ,"Daj mi zadatak za vežbu","Napravi probni kolokvijum 📝","Pripremi me za ispit"] : ["Objasni mi pojam","Daj mi zadatak za vežbu","Napravi probni test 📝","Pripremi me za ispit"]; }
+  var GEN = {
+    sr:function(s){return s?["Objasni mi ključni pojam iz: "+s,"Daj mi zadatak za vežbu","Napravi probni kolokvijum 📝","Pripremi me za ispit"]:["Objasni mi pojam","Daj mi zadatak za vežbu","Napravi probni test 📝","Pripremi me za ispit"];},
+    en:function(s){return s?["Explain a key concept from: "+s,"Give me a practice problem","Make a mock test 📝","Help me prepare for the exam"]:["Explain a concept","Give me a practice problem","Make a mock test 📝","Help me prepare for the exam"];},
+    de:function(s){return s?["Erkläre einen Kernbegriff aus: "+s,"Gib mir eine Übungsaufgabe","Erstelle einen Probetest 📝","Bereite mich auf die Prüfung vor"]:["Erkläre einen Begriff","Gib mir eine Übungsaufgabe","Erstelle einen Probetest 📝","Bereite mich auf die Prüfung vor"];},
+    fr:function(s){return s?["Explique une notion clé de : "+s,"Donne-moi un exercice","Crée un test blanc 📝","Prépare-moi à l'examen"]:["Explique une notion","Donne-moi un exercice","Crée un test blanc 📝","Prépare-moi à l'examen"];},
+    es:function(s){return s?["Explícame un concepto clave de: "+s,"Dame un ejercicio","Crea un examen de prueba 📝","Prepárame para el examen"]:["Explícame un concepto","Dame un ejercicio","Crea un examen de prueba 📝","Prepárame para el examen"];},
+    it:function(s){return s?["Spiegami un concetto chiave di: "+s,"Dammi un esercizio","Crea una simulazione d'esame 📝","Preparami all'esame"]:["Spiegami un concetto","Dammi un esercizio","Crea una simulazione d'esame 📝","Preparami all'esame"];},
+    ru:function(s){return s?["Объясни ключевое понятие из: "+s,"Дай задачу для практики","Составь пробный тест 📝","Подготовь меня к экзамену"]:["Объясни понятие","Дай задачу для практики","Составь пробный тест 📝","Подготовь меня к экзамену"];},
+    pt:function(s){return s?["Explica um conceito-chave de: "+s,"Dá-me um exercício","Cria um teste simulado 📝","Prepara-me para o exame"]:["Explica um conceito","Dá-me um exercício","Cria um teste simulado 📝","Prepara-me para o exame"];}
+  };
   var SITE_CHIPS = {
     sr:["Koji predmeti?","Cene i paketi","Izbor fakulteta","Test sklonosti","Kako počinjem?"],
     en:["Which subjects?","Plans & prices","Choosing a faculty","Aptitude test","How do I start?"],
@@ -391,24 +400,12 @@
         b.onclick = function () { siteChip(i, c); };
         chipsEl.appendChild(b);
       });
-    } else if (LANG === "sr") {
-      (SUBJ_CHIPS[MODE] || srGeneric()).forEach(function (c) {
+    } else {
+      var starter = (LANG === "sr") ? (SUBJ_CHIPS[MODE] || GEN.sr(SUBJ || "")) : ((GEN[LANG] || GEN.en)(SUBJ || ""));
+      starter.forEach(function (c) {
         var b = document.createElement("button");
         b.className = "zoi-chip"; b.textContent = c;
         b.onclick = function () { taEl.value = c; send(); };
-        chipsEl.appendChild(b);
-      });
-    } else {
-      x.chips.forEach(function (c, i) {
-        var b = document.createElement("button");
-        b.className = "zoi-chip";
-        b.textContent = c;
-        b.onclick = function () {
-          if (i === 1) { fileEl.click(); }
-          else if (i === 2) { taEl.value = x.cp || (c + ": "); taEl.focus(); }
-          else if (i === 3) { taEl.value = x.pr || ""; send(); }
-          else { taEl.value = ""; taEl.focus(); }
-        };
         chipsEl.appendChild(b);
       });
     }
@@ -426,7 +423,7 @@
   }
   function parseChips(t){
     var out = { text: t, chips: [] };
-    var m = String(t).match(/\[+\s*PITANJA\s*\]+\s*:?\s*([\s\S]*)$/i);
+    var m = String(t).match(/\[+\s*(?:PITANJA|QUESTIONS?|FRAGEN|PREGUNTAS|DOMANDE|PERGUNTAS|\u0412\u041E\u041F\u0420\u041E\u0421\u042B)\s*\]+\s*:?\s*([\s\S]*)$/i);
     if (m) {
       out.text = String(t).slice(0, m.index).replace(/[\s*#>\-]+$/, "");
       out.chips = m[1].split(/\|\|/).map(function (s) { return s.replace(/^[\s|>•*\-]+|[\s|]+$/g, "").trim(); }).filter(function (s) { return s && s.length <= 42; }).slice(0, 4);
