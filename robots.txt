@@ -1,9 +1,3 @@
 User-agent: *
 Allow: /
-
-# Materijali su iza pretplate — ne indeksirati
-Disallow: /*-Skripta.html$
-Disallow: /*-Formule.html$
-Disallow: /kviz.html
-
-Sitemap: https://www.mathia.rs/sitemap.xml
+Sitemap: https://mathia.rs/sitemap.xml
