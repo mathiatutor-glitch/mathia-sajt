@@ -121,6 +121,86 @@ img,svg,video,iframe,table{max-width:100%}
 pre{max-width:100%;overflow-x:auto}
 code{overflow-wrap:break-word}
 </style>
+<style>/*navham*/
+@media(max-width:600px){.nav-r a.link{display:none!important}.nav-r select.lang{display:none!important}}
+.navham-btn{display:none;position:relative;width:30px;height:26px;background:none;border:none;cursor:pointer;padding:0;margin-left:8px;vertical-align:middle}
+.navham-btn span{position:absolute;left:3px;right:3px;height:2.5px;background:var(--plum,#432C37);border-radius:3px;transition:transform .28s,opacity .2s,top .28s}
+.navham-btn span:nth-child(1){top:5px}.navham-btn span:nth-child(2){top:12px}.navham-btn span:nth-child(3){top:19px}
+.navham-btn.open span:nth-child(1){top:12px;transform:rotate(45deg)}
+.navham-btn.open span:nth-child(2){opacity:0}
+.navham-btn.open span:nth-child(3){top:12px;transform:rotate(-45deg)}
+@media(max-width:600px){.navham-btn{display:inline-block}}
+html.navham-lock{overflow:hidden}
+html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
+.navham-scrim{position:fixed;inset:0;background:rgba(45,30,36,.45);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:1400}
+.navham-scrim.open{opacity:1;visibility:visible}
+.navham-draw{position:fixed;top:0;right:0;height:100%;width:min(86vw,340px);background:linear-gradient(180deg,#FFFDF8,#F6ECDC);box-shadow:-18px 0 50px rgba(60,40,48,.30);transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);z-index:1401;display:flex;flex-direction:column;border-left:1px solid var(--bord,#ECDAC5)}
+.navham-draw.open{transform:translateX(0)}
+.navham-top{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 14px;border-bottom:1px solid var(--bord,#ECDAC5)}
+.navham-id{display:flex;align-items:center;gap:11px;min-width:0}
+.navham-logo{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--gold,#C6A05C);flex:none;box-shadow:0 3px 10px rgba(160,120,60,.25)}
+.navham-brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.5rem;color:var(--plum,#432C37);line-height:1.04}
+.navham-brand small{display:block;font-family:'Pinyon Script','Tangerine',cursive;font-size:1.05rem;color:var(--golddk,#9C7838);font-weight:400;margin-top:0}
+.navham-x{background:none;border:none;font-size:22px;color:var(--muted,#90787E);cursor:pointer;line-height:1;padding:4px 6px;flex:none}
+.navham-list{flex:1;overflow-y:auto;padding:12px 12px 4px}
+.navham-list a{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:12px;text-decoration:none;color:var(--plum,#432C37);font-family:'Nunito',sans-serif;font-weight:700;font-size:1.05rem;transition:background .15s}
+.navham-list a .ic{font-size:1.15rem;width:22px;text-align:center;flex:none}
+.navham-list a:hover,.navham-list a:active{background:var(--paper2,#F5EADB)}
+.navham-list a.acct{color:var(--golddk,#9C7838)}
+.navham-cta{margin:6px 16px 8px;display:block;text-align:center;padding:13px 16px;border-radius:999px;background:linear-gradient(135deg,#C6A05C,#9C7838);color:#fff !important;text-decoration:none;font-family:'Nunito',sans-serif;font-weight:800;box-shadow:0 8px 20px rgba(176,138,74,.32)}
+.navham-langs{padding:14px 16px calc(20px + env(safe-area-inset-bottom));border-top:1px solid var(--bord,#ECDAC5);display:flex;flex-wrap:wrap;gap:7px}
+.navham-langs button{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--bord,#ECDAC5);color:var(--plum,#432C37);border-radius:999px;padding:6px 11px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s}
+.navham-langs button .fl{font-size:1rem;line-height:1}
+.navham-langs button.on{background:linear-gradient(135deg,#C6A05C,#9C7838);color:#fff;border-color:transparent}
+</style>
+<script>/*navham*/
+(function(){
+ var ICON=[[/nalog\.html/,'\uD83D\uDC64'],[/#paketi|paketi/,'\u2726'],[/predmeti\.html/,'\uD83D\uDCDA'],[/prodavnica/,'\uD83D\uDED2'],[/test-sklonosti/,'\uD83E\uDDED'],[/o-marini|marina/,'\uD83C\uDF38'],[/index\.html/,'\uD83C\uDFE0']];
+ var FLAG={SR:'\uD83C\uDDF7\uD83C\uDDF8',EN:'\uD83C\uDDEC\uD83C\uDDE7',DE:'\uD83C\uDDE9\uD83C\uDDEA',FR:'\uD83C\uDDEB\uD83C\uDDF7',ES:'\uD83C\uDDEA\uD83C\uDDF8',IT:'\uD83C\uDDEE\uD83C\uDDF9',RU:'\uD83C\uDDF7\uD83C\uDDFA',PT:'\uD83C\uDDF5\uD83C\uDDF9'};
+ function iconFor(h){h=(h||'').toLowerCase();for(var i=0;i<ICON.length;i++){if(ICON[i][0].test(h))return ICON[i][1];}return '\u203A';}
+ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+ function init(){
+  var nav=document.querySelector('.nav-r'); if(!nav||nav.querySelector('.navham-btn'))return;
+  var btn=document.createElement('button'); btn.type='button'; btn.className='navham-btn'; btn.setAttribute('aria-label','Meni'); btn.setAttribute('aria-expanded','false'); btn.innerHTML='<span></span><span></span><span></span>';
+  var scrim=document.createElement('div'); scrim.className='navham-scrim';
+  var draw=document.createElement('div'); draw.className='navham-draw'; draw.setAttribute('role','dialog'); draw.setAttribute('aria-label','Glavni meni');
+  nav.appendChild(btn); document.body.appendChild(scrim); document.body.appendChild(draw);
+  function build(){
+   var logo=document.querySelector('.brand img.bav')||document.querySelector('.brand img')||document.querySelector('img.bav');
+   var logoSrc=logo?logo.getAttribute('src'):'';
+   var html='<div class="navham-top"><div class="navham-id">';
+   if(logoSrc){ html+='<img class="navham-logo" src="'+esc(logoSrc)+'" alt="Mathia">'; }
+   html+='<div class="navham-brand">Mathia<small>s Marinom</small></div></div><button class="navham-x" type="button" aria-label="Zatvori">\u2715</button></div><div class="navham-list">';
+   nav.querySelectorAll('a.link').forEach(function(a){
+     var t=(a.textContent||'').trim(); if(!t)return;
+     var href=a.getAttribute('href')||'#';
+     var cls=a.hasAttribute('data-acctnav')?' acct':'';
+     html+='<a class="'+cls.trim()+'" href="'+esc(href)+'"><span class="ic">'+iconFor(href)+'</span><span>'+esc(t)+'</span></a>';
+   });
+   html+='</div>';
+   var cta=nav.querySelector('a.navcta');
+   if(cta){ html+='<a class="navham-cta" href="'+esc(cta.getAttribute('href')||'#')+'">'+esc((cta.textContent||'').trim())+'</a>'; }
+   var sel=nav.querySelector('select.lang')||document.querySelector('select.lang');
+   if(sel&&sel.options&&sel.options.length){ html+='<div class="navham-langs">';
+     Array.prototype.forEach.call(sel.options,function(o){ var v=o.value||o.textContent; var fl=FLAG[(v||'').toUpperCase()]||''; var on=(v===sel.value)?' class="on"':''; html+='<button type="button" data-l="'+esc(v)+'"'+on+'>'+(fl?'<span class="fl">'+fl+'</span>':'')+'<span>'+esc(o.textContent)+'</span></button>'; });
+     html+='</div>';
+   }
+   draw.innerHTML=html;
+   draw.querySelector('.navham-x').onclick=close;
+   draw.querySelectorAll('.navham-list a, .navham-cta').forEach(function(a){ a.addEventListener('click',close); });
+   draw.querySelectorAll('.navham-langs button').forEach(function(b){ b.onclick=function(){ var sel=document.querySelector('select.lang'); if(sel){ sel.value=b.getAttribute('data-l'); sel.dispatchEvent(new Event('change',{bubbles:true})); } close(); }; });
+  }
+  function open(){ build(); scrim.classList.add('open'); draw.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.documentElement.classList.add('navham-lock'); }
+  function close(){ scrim.classList.remove('open'); draw.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.documentElement.classList.remove('navham-lock'); }
+  btn.onclick=function(e){ e.stopPropagation(); if(draw.classList.contains('open'))close(); else open(); };
+  scrim.onclick=close;
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape')close(); });
+  window.addEventListener('resize',function(){ if(window.innerWidth>600)close(); });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
+ setTimeout(init,500);
+})();
+</script>
 </head>
 <body>
 <header>
