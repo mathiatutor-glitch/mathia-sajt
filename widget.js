@@ -232,6 +232,10 @@
     ".zoi-tbl th,.zoi-tbl td{border:1px solid #E8DDC8;padding:5px 9px;text-align:left;vertical-align:top}" +
     ".zoi-tbl th{background:#F3EAD9;font-weight:700;color:#3a2a30;white-space:nowrap}" +
     ".zoi-tbl tbody tr:nth-child(even) td{background:#FBF7EF}" +
+    ".zoi-bub pre.zoi-code{background:#2c2230;color:#f4ecdf;border-radius:10px;padding:10px 12px;margin:7px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84em;line-height:1.5;overflow-x:auto;white-space:pre;max-width:100%}" +
+    ".zoi-bub pre.zoi-code code{white-space:pre;background:none;border:0;padding:0;color:inherit;font-family:inherit;font-size:inherit}" +
+    ".zoi-bub pre.zoi-code[data-lang]:before{content:attr(data-lang);display:block;color:#c6a05c;font-size:.78em;font-family:'Nunito',sans-serif;margin:-2px 0 6px;text-transform:uppercase;letter-spacing:.04em}" +
+    ".zoi-bub code.zoi-ic{background:#F1E7D6;border:1px solid #E2D6BF;border-radius:6px;padding:1px 5px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;white-space:pre-wrap}" +
     ".zoi-bub a{overflow-wrap:break-word;word-break:break-word}" +
     "#zoi-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 6px}" +
     ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:6px 11px;font-size:12.5px;font-family:inherit;cursor:pointer}" +
@@ -405,6 +409,8 @@
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\$([^\$\n]+?)\$/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\(([\s\S]+?)\\\)/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    var codes = [];
+    s = s.replace(/`([^`\n]+)`/g, function(_m,c){ codes.push(c); return "\u0002C"+(codes.length-1)+"\u0002"; });
     // sigurnosna mreza: tekstualni limes -> pravi LaTeX (granica ispod znaka)
     function _lim(v,t){ t=(t==="\u221E"||t==="+\u221E")?"\\infty":(t==="-\u221E"?"-\\infty":t); math.push(["\\lim_{"+v+" \\to "+t+"}",0]); return "\u0001K"+(math.length-1)+"\u0001"; }
     s = s.replace(/\blim\s*\(\s*([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)\s*\)/g, function(_m,v,t){ return _lim(v,t); });
@@ -426,7 +432,8 @@
     s = s.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>").replace(/\^(-?\d+|[A-Za-z])/g, "<sup>$1</sup>");
     s = s.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>").replace(/_(\d+)/g, "<sub>$1</sub>");
     s = mdTables(s);
-    s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; return '<span class="kx" data-d="'+oo[1]+'">'+esc(oo[0])+'</span>'; });
+    s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; var src=String(oo[0]).replace(/(^|[^\\])%/g,"$1\\%"); return '<span class="kx" data-d="'+oo[1]+'">'+esc(src)+'</span>'; });
+    s = s.replace(/\u0002C(\d+)\u0002/g, function(_m,i){ return '<code class="zoi-ic">'+esc(codes[i])+'</code>'; });
     return s;
   }
   function typeset(root){
@@ -449,11 +456,22 @@
   }
   function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=fmt(t); bub.appendChild(d); typeset(d); } }
   function addSvg(bub, svg){ var fig=document.createElement("div"); fig.className="zoi-fig"; fig.innerHTML=safeSvg(svg); var sv=fig.querySelector("svg"); if (sv){ sv.removeAttribute("width"); sv.removeAttribute("height"); bub.appendChild(fig); return true; } return false; }
+  function addCode(bub, code, lang){
+    var pre=document.createElement("pre"); pre.className="zoi-code";
+    if(lang){ pre.setAttribute("data-lang", lang); }
+    var c=document.createElement("code"); c.textContent=String(code).replace(/^\n+/,"").replace(/\s+$/,"");
+    pre.appendChild(c); bub.appendChild(pre);
+  }
   function renderZoi(bub, text){
     var str = String(text);
-    var re = /```svg\s*([\s\S]*?)```|(<svg[\s\S]*?<\/svg>)/gi;
+    var re = /```([A-Za-z0-9+#_-]*)[ \t]*\n?([\s\S]*?)```|(<svg[\s\S]*?<\/svg>)/gi;
     var last = 0, m;
-    while ((m = re.exec(str))) { addText(bub, str.slice(last, m.index)); addSvg(bub, m[1] || m[2] || ""); last = re.lastIndex; }
+    while ((m = re.exec(str))) {
+      addText(bub, str.slice(last, m.index));
+      if (m[3]) { addSvg(bub, m[3]); }
+      else { var lang = (m[1]||"").toLowerCase(); if (lang === "svg") addSvg(bub, m[2]||""); else addCode(bub, m[2]||"", lang); }
+      last = re.lastIndex;
+    }
     var rest = str.slice(last);
     var cut = rest.search(/```svg|<svg\b/i);
     if (cut !== -1) {                              // odsečen/nedovršen crtež -> nikad ne pokazuj sirov kod
@@ -467,6 +485,8 @@
       if (!ok) { var note=document.createElement("div"); note.style.cssText="margin-top:6px;color:#8a93a6;font-size:.86em;font-style:italic"; note.textContent=(LANG==="en")?"(the sketch got cut off — ask me to draw a simpler version)":"(crtež je bio predugačak — zamoli me: nacrtaj jednostavniju skicu)"; bub.appendChild(note); }
       return;
     }
+    var cc = rest.match(/```([A-Za-z0-9+#_-]*)[ \t]*\n?([\s\S]*)$/);
+    if (cc) { addText(bub, rest.slice(0, cc.index)); addCode(bub, cc[2] || "", (cc[1] || "").toLowerCase()); return; }
     addText(bub, rest);
   }
 
