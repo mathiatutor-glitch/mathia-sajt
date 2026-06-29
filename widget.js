@@ -228,6 +228,10 @@
     ".zoi-bub img{max-width:100%;border-radius:10px;margin-top:4px}" +
     ".zoi-bub pre,.zoi-bub code{white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;max-width:100%;overflow-x:auto;box-sizing:border-box}" +
     ".zoi-bub table{display:block;max-width:100%;overflow-x:auto}" +
+    ".zoi-tbl{border-collapse:collapse;margin:8px 0;font-size:.92em;border:1px solid #E2D6BF;border-radius:8px;overflow:hidden}" +
+    ".zoi-tbl th,.zoi-tbl td{border:1px solid #E8DDC8;padding:5px 9px;text-align:left;vertical-align:top}" +
+    ".zoi-tbl th{background:#F3EAD9;font-weight:700;color:#3a2a30;white-space:nowrap}" +
+    ".zoi-tbl tbody tr:nth-child(even) td{background:#FBF7EF}" +
     ".zoi-bub a{overflow-wrap:break-word;word-break:break-word}" +
     "#zoi-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 6px}" +
     ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:6px 11px;font-size:12.5px;font-family:inherit;cursor:pointer}" +
@@ -375,6 +379,25 @@
 
   // ——— čišćenje Markdown-a (da se ne vide gole zvezdice/taraba) ———
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  function mdTables(str){
+    var lines = str.split("\n"), out = [], i = 0;
+    function isSep(l){ return /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$/.test(l); }
+    function cells(l){ return l.trim().replace(/^\|/,"").replace(/\|$/,"").split("|").map(function(c){return c.trim();}); }
+    while (i < lines.length){
+      var l = lines[i];
+      if (l.indexOf("|") >= 0 && i+1 < lines.length && isSep(lines[i+1])){
+        var head = cells(l), rows = []; i += 2;
+        while (i < lines.length && lines[i].indexOf("|") >= 0 && lines[i].trim() !== ""){ rows.push(cells(lines[i])); i++; }
+        var h = '<table class="zoi-tbl"><thead><tr>';
+        head.forEach(function(c){ h += "<th>" + c + "</th>"; });
+        h += "</tr></thead><tbody>";
+        rows.forEach(function(r){ h += "<tr>"; for (var k=0;k<head.length;k++){ h += "<td>" + (r[k]||"") + "</td>"; } h += "</tr>"; });
+        h += "</tbody></table>";
+        out.push(h);
+      } else { out.push(l); i++; }
+    }
+    return out.join("\n");
+  }
   function fmt(s) {
     var math = [];
     s = String(s);
@@ -397,6 +420,7 @@
     s = s.replace(/\*/g, "");
     s = s.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>").replace(/\^(-?\d+|[A-Za-z])/g, "<sup>$1</sup>");
     s = s.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>").replace(/_(\d+)/g, "<sub>$1</sub>");
+    s = mdTables(s);
     s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; return '<span class="kx" data-d="'+oo[1]+'">'+esc(oo[0])+'</span>'; });
     return s;
   }
