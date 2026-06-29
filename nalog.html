@@ -309,6 +309,7 @@ code{overflow-wrap:break-word}
         <div class="hello">
           <div class="script">Zdravo,</div>
           <h2 id="hello-nm">Ana 👋</h2>
+          <button type="button" onclick="editName()" style="background:none;border:none;color:var(--golddk,#9C7838);font:inherit;font-size:.82rem;cursor:pointer;padding:2px 0;text-decoration:underline">✎ izmeni ime</button>
           <span class="pill">💎 Gold paket · aktivan do 28. 07. 2026.</span>
         </div>
         <div class="misao"><span class="q">🌷</span><p id="misao"></p></div>
@@ -511,6 +512,17 @@ function ring(p){ var r=26,c=2*Math.PI*r,off=c*(1-p/100);
 function subjCard(s){ var p=pct(s);
   return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+cap(s.predmet)+'</div><div class="topic">'+(s.poslednja_tema?('Tema: '+s.poslednja_tema):'Spremno za početak')+'</div></div></div><div class="res"><a class="btn btn-ghost btn-sm" href="'+pageFor(s.predmet)+'">Otvori predmet →</a></div></div>'; }
 function emptyCard(msg,cta,href){ return '<div class="card" style="grid-column:1/-1;text-align:center;padding:28px"><p style="color:var(--muted);margin-bottom:14px">'+msg+'</p><a class="btn btn-gold" href="'+href+'">'+cta+'</a></div>'; }
+
+function editName(){
+  var cur=(PROFILE&&PROFILE.ime)?PROFILE.ime:'';
+  var v=window.prompt('Kako želiš da te zovem? (ime i prezime)', cur);
+  if(v===null)return; v=(''+v).trim(); if(!v)return;
+  if(!USER||!USER.id){ alert('Prvo se prijavi.'); return; }
+  sb.from('mathia_profil').upsert({user_id:USER.id, ime:v},{onConflict:'user_id'}).then(function(r){
+    if(r&&r.error){ alert('Čuvanje nije uspelo: '+r.error.message); return; }
+    if(!PROFILE)PROFILE={}; PROFILE.ime=v; render();
+  }).catch(function(){ alert('Čuvanje imena nije uspelo. Pokušaj ponovo.'); });
+}
 
 function render(){
   document.querySelector('.uchip .nm').textContent=fullName();
