@@ -29,6 +29,31 @@
   function resolveMode(m){ return m ? (ALIASES[m] || m) : m; }
   var RMODE = resolveMode(MODE);
   var ISSITE = (MODE === "site" || RMODE === "site");
+  var SUBJ_CHIPS = {
+    "algebra":["Objasni grupe i podgrupe","Determinante i Kramerova teorema","Daj mi zadatak iz matrica","Pripremi me za kolokvijum"],
+    "fax-linearna":["Gausov postupak","Determinanta 3×3","Sopstvene vrednosti i vektori","Daj mi zadatak iz sistema"],
+    "fax-analiza1":["Objasni granične vrednosti","Pravila izvoda sa primerom","Reši mi jedan integral","Ispitivanje toka funkcije"],
+    "fax-analiza2":["Parcijalni izvodi i gradijent","Dvojni integral sa primerom","Redovi i konvergencija","Daj mi zadatak za vežbu"],
+    "fax-kompleksna":["Algebarski i Ojlerov oblik","Reziduumi sa primerom","Košijeva integralna formula","Daj mi zadatak"],
+    "fax-verovatnoca":["Bajesova formula","Normalna raspodela","Očekivanje i disperzija","Daj mi zadatak"],
+    "fax-diskretna":["Matematička indukcija","Kombinatorika sa primerom","Kongruencije po modulu","Daj mi zadatak"],
+    "fax-operaciona":["Postavi LP model","Objasni simpleks metodu","Transportni problem","Daj mi zadatak"],
+    "fax-elektronika":["Omov i Kirhofovi zakoni","Veze otpornika","PN spoj i diode","Daj mi zadatak"],
+    "fax-kola":["Kolo sa kompleksnim veličinama","Rezonansa u kolu","Snage (P, Q, S)","Daj mi zadatak"],
+    "fax-merenja":["Merna nesigurnost","Greške merenja","Obrada rezultata","Daj mi zadatak"],
+    "fax-mehanika":["Slobodno telo i sile","Momenti sile","Uslovi ravnoteže","Daj mi zadatak"],
+    "prijemni-matematika":["Kvadratne (ne)jednačine","Trigonometrija","Analitička geometrija","Daj mi probni zadatak"],
+    "mala-matura":["Razlomci i procenti","Linearne jednačine","Geometrija — zadatak","Daj mi zadatak za vežbu"],
+    "prog-python":["Promenljive i tipovi","Petlje sa primerom","Funkcije i argumenti","Daj mi zadatak"],
+    "prog-cpp":["Promenljive i tipovi","Petlje i nizovi","Funkcije i pokazivači","Daj mi zadatak"],
+    "prog-java":["Klase i objekti","Petlje sa primerom","Metode","Daj mi zadatak"],
+    "prog-js":["Promenljive i funkcije","Rad sa nizovima","Osnove DOM-a","Daj mi zadatak"],
+    "prog-sql":["SELECT upit","JOIN tabela","Grupisanje (GROUP BY)","Daj mi zadatak"],
+    "el-ltspice":["Kako da nacrtam šemu","Pokreni .tran simulaciju","Najčešće greške","Vodi me korak po korak"],
+    "el-kicad":["Crtanje šeme","Dodela otisaka (footprint)","Rutiranje ploče","Vodi me korak po korak"],
+    "el-cadence":["OrCAD Capture šema","PSpice simulacija","Prelazak na ploču","Vodi me korak po korak"]
+  };
+  function srGeneric(){ return SUBJ ? ["Objasni mi ključni pojam iz: "+SUBJ,"Daj mi zadatak za vežbu","Napravi probni kolokvijum 📝","Pripremi me za ispit"] : ["Objasni mi pojam","Daj mi zadatak za vežbu","Napravi probni test 📝","Pripremi me za ispit"]; }
   var SITE_CHIPS = {
     sr:["Koji predmeti?","Cene i paketi","Izbor fakulteta","Test sklonosti","Kako počinjem?"],
     en:["Which subjects?","Plans & prices","Choosing a faculty","Aptitude test","How do I start?"],
@@ -235,7 +260,13 @@
     ".zoi-bub pre.zoi-code{background:#2c2230;color:#f4ecdf;border-radius:10px;padding:10px 12px;margin:7px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84em;line-height:1.5;overflow-x:auto;white-space:pre;max-width:100%}" +
     ".zoi-bub pre.zoi-code code{white-space:pre;background:none;border:0;padding:0;color:inherit;font-family:inherit;font-size:inherit}" +
     ".zoi-bub pre.zoi-code[data-lang]:before{content:attr(data-lang);display:block;color:#c6a05c;font-size:.78em;font-family:'Nunito',sans-serif;margin:-2px 0 6px;text-transform:uppercase;letter-spacing:.04em}" +
+    ".zoi-bub .zoi-codewrap{position:relative}" +
+    ".zoi-bub .zoi-copy{position:absolute;top:7px;right:8px;background:#43384a;color:#e9ddc8;border:1px solid #5a4d63;border-radius:7px;font:600 11px 'Nunito',sans-serif;padding:3px 9px;cursor:pointer;opacity:.85;z-index:2}" +
+    ".zoi-bub .zoi-copy:hover{opacity:1;background:#52465c}" +
     ".zoi-bub code.zoi-ic{background:#F1E7D6;border:1px solid #E2D6BF;border-radius:6px;padding:1px 5px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;white-space:pre-wrap}" +
+    ".zoi-bub .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;margin:6px 0;padding-bottom:2px}" +
+    ".zoi-bub .katex{max-width:100%}" +
+    ".zoi-bub .kx-fallback{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em;color:#5a4a50}" +
     ".zoi-bub a{overflow-wrap:break-word;word-break:break-word}" +
     "#zoi-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 6px}" +
     ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:6px 11px;font-size:12.5px;font-family:inherit;cursor:pointer}" +
@@ -296,6 +327,7 @@
       '<div><div class="zoi-name">' + NAME + '</div><div class="zoi-sub" id="zoi-sub"></div></div>' +
       '<div class="zoi-sp"></div>' +
       '<select id="zoi-lang" title="Jezik">' + langOpts + "</select>" +
+      '<button class="zoi-ico" id="zoi-print" title="Štampaj ili sačuvaj kao PDF">🖨️</button>' +
       '<button class="zoi-ico" id="zoi-x" title="Zatvori">✕</button>' +
     "</div>" +
     '<div id="zoi-msgs"></div>' +
@@ -303,9 +335,9 @@
     '<div id="zoi-foot">' +
       '<div id="zoi-prev"><img id="zoi-prev-img"/><span id="zoi-prev-name"></span><button id="zoi-prev-x">ukloni</button></div>' +
       '<div id="zoi-inrow">' +
-        '<button class="zoi-tool" id="zoi-photo" title="Slika zadatka">📷</button>' +
+        '<button class="zoi-tool" id="zoi-photo" title="Pošalji sliku, kod-fajl ili screenshot zadatka">📎</button>' +
         '<button class="zoi-tool" id="zoi-mic" title="Izdiktiraj zadatak">🎙️</button>' +
-        '<input type="file" id="zoi-file" accept="image/*" style="display:none"/>' +
+        '<input type="file" id="zoi-file" accept="image/*,text/*,.txt,.py,.js,.ts,.jsx,.tsx,.java,.c,.cc,.cpp,.cxx,.h,.hpp,.cs,.go,.rs,.rb,.php,.swift,.kt,.scala,.sql,.html,.htm,.css,.scss,.json,.xml,.yaml,.yml,.md,.csv,.r,.m,.ino,.sh,.pas,.lua,.dart,.pl,.asm,.vhd,.v" style="display:none"/>' +
         '<textarea id="zoi-ta" rows="1"></textarea>' +
         '<button class="zoi-send" id="zoi-go"></button>' +
       "</div>" +
@@ -358,6 +390,13 @@
         b.className = "zoi-chip";
         b.textContent = c;
         b.onclick = function () { siteChip(i, c); };
+        chipsEl.appendChild(b);
+      });
+    } else if (LANG === "sr") {
+      (SUBJ_CHIPS[MODE] || srGeneric()).forEach(function (c) {
+        var b = document.createElement("button");
+        b.className = "zoi-chip"; b.textContent = c;
+        b.onclick = function () { taEl.value = c; send(); };
         chipsEl.appendChild(b);
       });
     } else {
@@ -416,6 +455,8 @@
     s = s.replace(/\blim\s*\(\s*([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)\s*\)/g, function(_m,v,t){ return _lim(v,t); });
     s = s.replace(/\blim_\{\s*([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)\s*\}/g, function(_m,v,t){ return _lim(v,t); });
     s = s.replace(/\blim\s+([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)/g, function(_m,v,t){ return _lim(v,t); });
+    // sigurnosna mreza: tekstualni parcijalni izvod ∂f/∂x -> \frac{\partial f}{\partial x}
+    s = s.replace(/\u2202(\u00B2|\^2)?\s*([A-Za-z])\s*\/\s*\u2202\s*([A-Za-z])(\u00B2|\^2)?/g, function(_m,o1,fn,vr,o2){ var ord=(o1||o2)?"^2":""; math.push(["\\frac{\\partial"+ord+" "+fn+"}{\\partial "+vr+ord+"}",0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     // ukloni linije-razdelnike (---, ***, ___) i skupi višestruke prazne redove —
     // mehur koristi white-space:pre-wrap, pa bi inače pravili prevelike praznine
     s = s.replace(/^[ \t]*([-*_])(?:[ \t]*\1){2,}[ \t]*$/gm, "");
@@ -432,15 +473,33 @@
     s = s.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>").replace(/\^(-?\d+|[A-Za-z])/g, "<sup>$1</sup>");
     s = s.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>").replace(/_(\d+)/g, "<sub>$1</sub>");
     s = mdTables(s);
-    s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; var src=String(oo[0]).replace(/(^|[^\\])%/g,"$1\\%"); return '<span class="kx" data-d="'+oo[1]+'">'+esc(src)+'</span>'; });
+    s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; var src=String(oo[0]).replace(/(^|[^\\])%/g,"$1\\%").replace(/(\d),(\d)/g,"$1{,}$2"); return '<span class="kx" data-d="'+oo[1]+'">'+esc(src)+'</span>'; });
     s = s.replace(/\u0002C(\d+)\u0002/g, function(_m,i){ return '<code class="zoi-ic">'+esc(codes[i])+'</code>'; });
     return s;
   }
+  function texToText(t){
+    t = String(t);
+    t = t.replace(/\\left|\\right|\\!|\\,|\\;|\\:|\\big[lr]?|\\Big[lr]?/g, "");
+    t = t.replace(/\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}/g, "($1)/($2)");
+    t = t.replace(/\\sqrt\s*\[([^\]]+)\]\s*\{([^{}]+)\}/g, "$1\u221A($2)");
+    t = t.replace(/\\sqrt\s*\{([^{}]+)\}/g, "\u221A($1)");
+    t = t.replace(/\\d?frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}/g, "($1)/($2)");
+    t = t.replace(/\\boxed\s*\{([^{}]+)\}/g, "[ $1 ]");
+    t = t.replace(/\\(?:vec|overline|underline|overrightarrow|hat|bar|widehat|widetilde|tilde|dot|ddot|mathbf|mathrm|mathbb|operatorname|text)\s*\{([^{}]+)\}/g, "$1");
+    var GR = {infty:"\u221E",pi:"\u03C0",theta:"\u03B8",alpha:"\u03B1",beta:"\u03B2",gamma:"\u03B3",lambda:"\u03BB",mu:"\u03BC",sigma:"\u03C3",omega:"\u03C9",delta:"\u03B4",rho:"\u03C1",phi:"\u03C6",chi:"\u03C7",tau:"\u03C4",cdot:"\u00B7",times:"\u00D7",div:"\u00F7",pm:"\u00B1",le:"\u2264",leq:"\u2264",ge:"\u2265",geq:"\u2265",neq:"\u2260",ne:"\u2260",approx:"\u2248",to:"\u2192",rightarrow:"\u2192",Rightarrow:"\u21D2",iff:"\u21D4",Leftrightarrow:"\u21D4",in:"\u2208",notin:"\u2209",subset:"\u2282",cup:"\u222A",cap:"\u2229",sum:"\u2211",prod:"\u220F",int:"\u222B",iint:"\u222C",mid:"|",sim:"~",forall:"\u2200",exists:"\u2203",Omega:"\u03A9",omega:"\u03C9",Delta:"\u0394",Phi:"\u03A6",varphi:"\u03C6",phi:"\u03C6",epsilon:"\u03B5",angle:"\u2220",circ:"\u00B0",perp:"\u22A5",parallel:"\u2225",nabla:"\u2207",partial:"\u2202",cong:"\u2245",oint:"\u222E",cong2:"\u2245"};
+    t = t.replace(/\\([A-Za-z]+)/g, function(_m,n){ return GR.hasOwnProperty(n)?GR[n]:n; });
+    t = t.replace(/\^\{([^{}]+)\}/g, "^($1)").replace(/_\{([^{}]+)\}/g, "_($1)");
+    t = t.replace(/\^\s*\u00B0/g, "\u00B0");
+    t = t.replace(/[{}]/g, "");
+    return t.replace(/\s+/g, " ").trim();
+  }
   function typeset(root){
-    if (!window.katex || !root || !root.querySelectorAll) return;
+    if (!root || !root.querySelectorAll) return;
+    if (!window.katex){ var n=+(root.getAttribute("data-kxr")||0); if(n<14){ root.setAttribute("data-kxr",n+1); setTimeout(function(){ typeset(root); }, 250); } return; }
     var ns = root.querySelectorAll(".kx:not([data-done])");
-    for (var i=0;i<ns.length;i++){ var el=ns[i];
-      try { window.katex.render(el.textContent, el, {displayMode: el.getAttribute("data-d")==="1", throwOnError:false}); } catch(e){}
+    for (var i=0;i<ns.length;i++){ var el=ns[i]; var src=el.textContent;
+      try { window.katex.render(src, el, {displayMode: el.getAttribute("data-d")==="1", throwOnError:true, errorColor:"#9C7838"}); }
+      catch(e){ el.textContent = texToText(src); el.className += " kx-fallback"; }
       el.setAttribute("data-done","1");
     }
   }
@@ -456,11 +515,89 @@
   }
   function addText(bub, t){ if (t && t.trim()) { var d=document.createElement("div"); d.innerHTML=fmt(t); bub.appendChild(d); typeset(d); } }
   function addSvg(bub, svg){ var fig=document.createElement("div"); fig.className="zoi-fig"; fig.innerHTML=safeSvg(svg); var sv=fig.querySelector("svg"); if (sv){ sv.removeAttribute("width"); sv.removeAttribute("height"); bub.appendChild(fig); return true; } return false; }
+  function plotSvg(spec){
+    try{
+      var lines = String(spec).split(/[\n;]+/).map(function(l){return l.trim();}).filter(Boolean);
+      var a=-10,b=10,fns=[],fill=null;
+      function compile(expr){
+        var s=expr.replace(/\s+/g,"").replace(/\u03C0/g,"pi");
+        s=s.replace(/(\d)\s*([a-zA-Z(])/g,"$1*$2").replace(/(\))\s*([0-9a-zA-Z(])/g,"$1*$2");
+        var i=0; function peek(){return s.charAt(i);}
+        function E(){var v=T(),c;while((c=peek())==="+"||c==="-"){i++;var r=T();v=(function(p,q,o){return function(x){return o==="+"?p(x)+q(x):p(x)-q(x);};})(v,r,c);}return v;}
+        function T(){var v=F(),c;while((c=peek())==="*"||c==="/"){i++;var r=F();v=(function(p,q,o){return function(x){return o==="*"?p(x)*q(x):p(x)/q(x);};})(v,r,c);}return v;}
+        function F(){var bb=B();if(peek()==="^"){i++;var e=F();var b0=bb;return function(x){return Math.pow(b0(x),e(x));};}return bb;}
+        function B(){var c=peek();
+          if(c==="-"){i++;var f=B();return function(x){return -f(x);};}
+          if(c==="+"){i++;return B();}
+          if(c==="("){i++;var e=E();if(peek()!==")")throw 0;i++;return e;}
+          if(/[0-9.]/.test(c)){var j=i;while(/[0-9.]/.test(s.charAt(i)))i++;var num=parseFloat(s.slice(j,i));return function(){return num;};}
+          if(/[a-zA-Z]/.test(c)){var j=i;while(/[a-zA-Z]/.test(s.charAt(i)))i++;var nm=s.slice(j,i).toLowerCase();
+            if(nm==="x")return function(x){return x;};
+            if(nm==="pi")return function(){return Math.PI;}; if(nm==="e")return function(){return Math.E;};
+            var FN={sin:Math.sin,cos:Math.cos,tan:Math.tan,cot:function(v){return 1/Math.tan(v);},asin:Math.asin,acos:Math.acos,atan:Math.atan,sqrt:Math.sqrt,cbrt:(Math.cbrt||function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),1/3);}),exp:Math.exp,ln:Math.log,log:function(v){return Math.log(v)/Math.LN10;},abs:Math.abs,sinh:Math.sinh,cosh:Math.cosh,tanh:Math.tanh};
+            if(FN[nm]){if(peek()!=="(")throw 0;i++;var arg=E();if(peek()!==")")throw 0;i++;var fn=FN[nm];return function(x){return fn(arg(x));};}
+            throw 0;}
+          throw 0;}
+        var f=E();if(i<s.length)throw 0;return f;
+      }
+      for(var li=0;li<lines.length;li++){ var ln=lines[li];
+        var am=ln.match(/^(?:area|fill|povr[s\u0161]ina|oboji|\u0161rafiraj)\b(.*)$/i);
+        if(am){ var rest=am[1], between=/between|izme[d\u0111\u0111]u/i.test(rest); var rr=rest.match(/\[\s*(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)\s*\]/); if(rr){ fill={a:parseFloat(rr[1].replace(",",".")),b:parseFloat(rr[2].replace(",",".")),between:between}; } continue; }
+        var rm=ln.match(/x\s*(?:in|\u2208|:)?\s*\[\s*(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)\s*\]/i)||ln.match(/^\[\s*(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)\s*\]$/);
+        if(rm){ a=parseFloat(rm[1].replace(",",".")); b=parseFloat(rm[2].replace(",",".")); continue; }
+        var ex=ln.replace(/^y\s*=\s*/i,"").replace(/^f\s*\(\s*x\s*\)\s*=\s*/i,"");
+        if(!ex)continue;
+        try{ fns.push({label:ln,f:compile(ex)}); }catch(e){}
+      }
+      if(!fns.length||!(b>a)) return null;
+      var W=320,H=220,N=300,pad=26,xmin=a,xmax=b,ymin=Infinity,ymax=-Infinity,series=[];
+      for(var k=0;k<fns.length;k++){ var pts=[]; for(var n2=0;n2<=N;n2++){ var x=a+(b-a)*n2/N,y; try{y=fns[k].f(x);}catch(e){y=NaN;} pts.push([x,y]); if(isFinite(y)){ if(y<ymin)ymin=y; if(y>ymax)ymax=y; } } series.push(pts); }
+      if(!isFinite(ymin)||!isFinite(ymax)) return null;
+      if(ymax-ymin>1e6){ ymin=Math.max(ymin,-100); ymax=Math.min(ymax,100); }
+      if(ymin===ymax){ ymin-=1; ymax+=1; }
+      var pY=(ymax-ymin)*0.08; ymin-=pY; ymax+=pY; var span=ymax-ymin;
+      function X(x){ return pad+(x-xmin)/(xmax-xmin)*(W-2*pad); }
+      function Y(y){ return H-pad-(y-ymin)/(ymax-ymin)*(H-2*pad); }
+      function fmtv(v){ return ""+(Math.round(v*100)/100); }
+      function nice(r){ var raw=r/5,p=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)),m=raw/p; return (m<1.5?1:(m<3?2:(m<7?5:10)))*p; }
+      var sx=nice(xmax-xmin),sy=nice(span);
+      var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" font-family="Nunito,sans-serif"><rect width="'+W+'" height="'+H+'" fill="#fffdf8"/>';
+      for(var gx=Math.ceil(xmin/sx)*sx; gx<=xmax+1e-9; gx+=sx){ var px=X(gx); svg+='<line x1="'+px.toFixed(1)+'" y1="'+pad+'" x2="'+px.toFixed(1)+'" y2="'+(H-pad)+'" stroke="#eee3d2"/>'; if(Math.abs(gx)>1e-9)svg+='<text x="'+px.toFixed(1)+'" y="'+(H-pad+12)+'" font-size="8" fill="#9a8f86" text-anchor="middle">'+fmtv(gx)+'</text>'; }
+      for(var gy=Math.ceil(ymin/sy)*sy; gy<=ymax+1e-9; gy+=sy){ var py=Y(gy); svg+='<line x1="'+pad+'" y1="'+py.toFixed(1)+'" x2="'+(W-pad)+'" y2="'+py.toFixed(1)+'" stroke="#eee3d2"/>'; if(Math.abs(gy)>1e-9)svg+='<text x="'+(pad-4)+'" y="'+(py+3).toFixed(1)+'" font-size="8" fill="#9a8f86" text-anchor="end">'+fmtv(gy)+'</text>'; }
+      if(0>=xmin&&0<=xmax)svg+='<line x1="'+X(0).toFixed(1)+'" y1="'+pad+'" x2="'+X(0).toFixed(1)+'" y2="'+(H-pad)+'" stroke="#b9a98f" stroke-width="1.3"/>';
+      if(ymin<=0&&ymax>=0)svg+='<line x1="'+pad+'" y1="'+Y(0).toFixed(1)+'" x2="'+(W-pad)+'" y2="'+Y(0).toFixed(1)+'" stroke="#b9a98f" stroke-width="1.3"/>';
+      if(fill){ var fa=Math.max(fill.a,xmin), fb=Math.min(fill.b,xmax), cl=function(v){ if(!isFinite(v))v=0; return Math.max(ymin,Math.min(ymax,v)); };
+        if(fb>fa){ var f0=fns[0].f, f1=(fill.between&&fns[1])?fns[1].f:null, ST=140, dp="", st=false;
+          for(var fsx=0;fsx<=ST;fsx++){ var fx=fa+(fb-fa)*fsx/ST,fy; try{fy=f0(fx);}catch(e){fy=NaN;} dp+=(st?"L":"M")+X(fx).toFixed(1)+" "+Y(cl(fy)).toFixed(1); st=true; }
+          if(f1){ for(var gsx=ST;gsx>=0;gsx--){ var gx2=fa+(fb-fa)*gsx/ST,gy2; try{gy2=f1(gx2);}catch(e){gy2=NaN;} dp+="L"+X(gx2).toFixed(1)+" "+Y(cl(gy2)).toFixed(1); } }
+          else { dp+="L"+X(fb).toFixed(1)+" "+Y(cl(0)).toFixed(1)+"L"+X(fa).toFixed(1)+" "+Y(cl(0)).toFixed(1); }
+          dp+="Z"; svg+='<path d="'+dp+'" fill="#1F8A78" fill-opacity="0.2" stroke="none"/>';
+          var bya=f1?cl(f1(fa)):cl(0), byb=f1?cl(f1(fb)):cl(0); var tya, tyb; try{tya=cl(f0(fa));}catch(e){tya=cl(0);} try{tyb=cl(f0(fb));}catch(e){tyb=cl(0);}
+          svg+='<line x1="'+X(fa).toFixed(1)+'" y1="'+Y(bya).toFixed(1)+'" x2="'+X(fa).toFixed(1)+'" y2="'+Y(tya).toFixed(1)+'" stroke="#1F8A78" stroke-width="1" stroke-dasharray="3 2"/>';
+          svg+='<line x1="'+X(fb).toFixed(1)+'" y1="'+Y(byb).toFixed(1)+'" x2="'+X(fb).toFixed(1)+'" y2="'+Y(tyb).toFixed(1)+'" stroke="#1F8A78" stroke-width="1" stroke-dasharray="3 2"/>';
+        }
+      }
+      var COL=["#1F8A78","#C25E7A","#5B7CC2","#9C7838"];
+      for(var c2=0;c2<series.length;c2++){ var pp=series[c2],d="",pen=false,prev=null,col=COL[c2%COL.length];
+        for(var p2=0;p2<pp.length;p2++){ var xx=pp[p2][0],yy=pp[p2][1];
+          if(isFinite(yy)&&yy>=ymin-span&&yy<=ymax+span){ var Px=X(xx).toFixed(1),Py=Y(Math.max(ymin-span,Math.min(ymax+span,yy))).toFixed(1);
+            if(!pen){ d+="M"+Px+" "+Py; pen=true; } else { d+=(prev!==null&&Math.abs(yy-prev)>span*4?"M":"L")+Px+" "+Py; } prev=yy;
+          } else { pen=false; prev=null; } }
+        svg+='<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="2"/>'; }
+      for(var lg=0;lg<fns.length;lg++){ var c3=COL[lg%COL.length],ty=12+lg*12; svg+='<rect x="'+(pad+2)+'" y="'+(ty-6)+'" width="11" height="3" fill="'+c3+'"/><text x="'+(pad+16)+'" y="'+ty+'" font-size="8.5" fill="#5a4a50">'+esc(fns[lg].label)+'</text>'; }
+      return svg+'</svg>';
+    }catch(e){ return null; }
+  }
+  function addPlot(bub, spec){ var svg=plotSvg(spec); if(svg){ var fig=document.createElement("div"); fig.className="zoi-fig"; fig.innerHTML=safeSvg(svg); bub.appendChild(fig); } else { addCode(bub, spec, "plot"); } }
   function addCode(bub, code, lang){
+    var clean=String(code).replace(/^\n+/,"").replace(/\s+$/,"");
+    var wrap=document.createElement("div"); wrap.className="zoi-codewrap";
+    var btn=document.createElement("button"); btn.className="zoi-copy"; btn.type="button"; btn.textContent="kopiraj";
+    btn.onclick=function(){ try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(clean); } else { var ta=document.createElement("textarea"); ta.value=clean; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); } btn.textContent="kopirano \u2713"; setTimeout(function(){ btn.textContent="kopiraj"; },1400); }catch(e){} };
     var pre=document.createElement("pre"); pre.className="zoi-code";
     if(lang){ pre.setAttribute("data-lang", lang); }
-    var c=document.createElement("code"); c.textContent=String(code).replace(/^\n+/,"").replace(/\s+$/,"");
-    pre.appendChild(c); bub.appendChild(pre);
+    var c=document.createElement("code"); c.textContent=clean;
+    pre.appendChild(c); wrap.appendChild(btn); wrap.appendChild(pre); bub.appendChild(wrap);
   }
   function renderZoi(bub, text){
     var str = String(text);
@@ -469,7 +606,7 @@
     while ((m = re.exec(str))) {
       addText(bub, str.slice(last, m.index));
       if (m[3]) { addSvg(bub, m[3]); }
-      else { var lang = (m[1]||"").toLowerCase(); if (lang === "svg") addSvg(bub, m[2]||""); else addCode(bub, m[2]||"", lang); }
+      else { var lang = (m[1]||"").toLowerCase(); if (lang === "svg") addSvg(bub, m[2]||""); else if (lang==="plot"||lang==="graf"||lang==="graph"||lang==="funkcija"||lang==="crtaj") addPlot(bub, m[2]||""); else addCode(bub, m[2]||"", lang); }
       last = re.lastIndex;
     }
     var rest = str.slice(last);
@@ -833,13 +970,16 @@
     var txt = (taEl.value || "").trim();
     if (!txt && !attachment) return;
 
-    addBub("me", txt, attachment ? attachment.url : null);
+    var isImg = attachment && attachment.kind !== "text";
+    addBub("me", txt || (attachment && attachment.kind === "text" ? ("📎 " + (attachment.name || "fajl")) : ""), isImg ? attachment.url : null);
 
     var content;
-    if (attachment) {
+    if (isImg) {
       content = [];
       if (txt) content.push({ type: "text", text: txt });
       content.push({ type: "image", source: { type: "base64", media_type: attachment.media_type, data: attachment.data } });
+    } else if (attachment && attachment.kind === "text") {
+      content = (txt ? txt + "\n\n" : "") + "Evo mog fajla \"" + (attachment.name || "kod") + "\":\n```" + (attachment.ext || "") + "\n" + attachment.text + "\n```";
     } else {
       content = txt;
     }
@@ -868,18 +1008,26 @@
       });
   }
 
-  // ——— slika ———
-  function clearAttach() { attachment = null; prevEl.style.display = "none"; fileEl.value = ""; }
+  // ——— prilog: slika ili kod-fajl ———
+  function clearAttach() { attachment = null; prevEl.style.display = "none"; prevImg.style.display = ""; prevImg.src = ""; fileEl.value = ""; }
+  var TEXTEXT = ["txt","py","js","ts","jsx","tsx","java","c","cc","cpp","cxx","h","hpp","cs","go","rs","rb","php","swift","kt","kts","scala","sql","html","htm","css","scss","json","xml","yaml","yml","md","csv","tsv","r","m","ino","sh","bat","ps1","pas","lua","dart","pl","asm","vhd","v"];
   fileEl.addEventListener("change", function () {
     var f = fileEl.files && fileEl.files[0];
     if (!f) return;
-    var rd = new FileReader();
-    rd.onload = function () {
-      var url = rd.result;
-      attachment = { media_type: f.type || "image/jpeg", data: String(url).split(",")[1], url: url };
-      prevImg.src = url; prevName.textContent = f.name || "slika"; prevEl.style.display = "flex";
-    };
-    rd.readAsDataURL(f);
+    var ext = (f.name || "").split(".").pop().toLowerCase();
+    var isImg = (f.type && f.type.indexOf("image/") === 0);
+    var isText = !isImg && (((f.type && f.type.indexOf("text/") === 0)) || TEXTEXT.indexOf(ext) >= 0);
+    if (isImg) {
+      var rd = new FileReader();
+      rd.onload = function () { var url = rd.result; attachment = { kind:"image", media_type: f.type || "image/jpeg", data: String(url).split(",")[1], url: url }; prevImg.style.display = ""; prevImg.src = url; prevName.textContent = f.name || "slika"; prevEl.style.display = "flex"; };
+      rd.readAsDataURL(f);
+    } else if (isText) {
+      var rt = new FileReader();
+      rt.onload = function () { var t = String(rt.result || ""); if (t.length > 100000) t = t.slice(0, 100000) + "\n…(skraćeno)"; attachment = { kind:"text", name: f.name || "kod", ext: ext, text: t }; prevImg.style.display = "none"; prevName.textContent = "📎 " + (f.name || "kod"); prevEl.style.display = "flex"; };
+      rt.readAsText(f);
+    } else {
+      prevImg.style.display = "none"; prevName.textContent = "Nepodržan fajl — pošalji sliku ili kod-fajl"; prevEl.style.display = "flex"; attachment = null; fileEl.value = "";
+    }
   });
   $("#zoi-prev-x").onclick = clearAttach;
   $("#zoi-photo").onclick = function () { fileEl.click(); };
@@ -904,6 +1052,18 @@
   // ——— događaji ———
   btn.onclick = function () { panel.classList.toggle("zoi-open"); var op=panel.classList.contains("zoi-open"); cta.classList.toggle("zoi-hide", op); if(op) taEl.focus(); };
   $("#zoi-x").onclick = function () { panel.classList.remove("zoi-open"); cta.classList.remove("zoi-hide"); stopSpeak(); };
+  function printChat(){
+    var msgs = panel.querySelector("#zoi-msgs"); if(!msgs) return;
+    var rows = msgs.querySelectorAll(".zoi-row"), body="";
+    for(var i=0;i<rows.length;i++){ var r=rows[i], bub=r.querySelector(".zoi-bub"); if(!bub) continue; var me=r.className.indexOf("zoi-me")>=0; if(me && !(bub.textContent||"").trim()) continue; body+='<div class="p-row '+(me?"p-me":"p-zoi")+'"><div class="p-who">'+(me?"Pitanje":(typeof NAME!=="undefined"?NAME:"Mathia"))+'</div><div class="p-bub">'+bub.innerHTML+'</div></div>'; }
+    if(!body){ return; }
+    var w=window.open("","_blank","width=820,height=900"); if(!w){ alert("Dozvoli iskačući prozor da bi sačuvao PDF."); return; }
+    var css='<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><style>*{box-sizing:border-box}body{font-family:Nunito,Arial,sans-serif;color:#241c28;max-width:740px;margin:0 auto;padding:26px 20px;line-height:1.55}h1{font-family:Georgia,serif;color:#432C37;font-size:20px;margin:0 0 2px}.p-date{color:#8a7f86;font-size:12px;margin-bottom:18px}.p-row{margin:0 0 13px;page-break-inside:avoid}.p-who{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#1F8A78;font-weight:700;margin-bottom:3px}.p-me .p-who{color:#9a7a86}.p-bub{font-size:14px}.p-me .p-bub{color:#5a4a52}pre{background:#2c2230;color:#f4ecdf;padding:10px 12px;border-radius:8px;overflow:auto;white-space:pre-wrap;font-size:12.5px}code{font-family:ui-monospace,Menlo,Consolas,monospace}table{border-collapse:collapse;margin:6px 0}td,th{border:1px solid #d8cdbb;padding:4px 9px}svg{max-width:100%;height:auto}img{display:none}.zoi-copy{display:none}.katex-display{overflow:visible;margin:6px 0}@media print{body{padding:0 8px}}</style>';
+    var title='<h1>MATHIA — '+(typeof NAME!=="undefined"?NAME:"vežbanje")+'</h1><div class="p-date">'+new Date().toLocaleDateString("sr-RS")+'</div>';
+    w.document.write('<!doctype html><html lang="sr"><head><meta charset="utf-8"><title>MATHIA</title>'+css+'</head><body>'+title+body+'</body></html>'); w.document.close();
+    setTimeout(function(){ try{ w.focus(); w.print(); }catch(e){} }, 500);
+  }
+  (function(){ var pb=panel.querySelector("#zoi-print"); if(pb) pb.onclick=printChat; })();
   goEl.onclick = send;
   taEl.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
