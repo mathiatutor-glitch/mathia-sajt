@@ -405,6 +405,11 @@
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\$([^\$\n]+?)\$/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\(([\s\S]+?)\\\)/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    // sigurnosna mreza: tekstualni limes -> pravi LaTeX (granica ispod znaka)
+    function _lim(v,t){ t=(t==="\u221E"||t==="+\u221E")?"\\infty":(t==="-\u221E"?"-\\infty":t); math.push(["\\lim_{"+v+" \\to "+t+"}",0]); return "\u0001K"+(math.length-1)+"\u0001"; }
+    s = s.replace(/\blim\s*\(\s*([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)\s*\)/g, function(_m,v,t){ return _lim(v,t); });
+    s = s.replace(/\blim_\{\s*([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)\s*\}/g, function(_m,v,t){ return _lim(v,t); });
+    s = s.replace(/\blim\s+([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)/g, function(_m,v,t){ return _lim(v,t); });
     // ukloni linije-razdelnike (---, ***, ___) i skupi višestruke prazne redove —
     // mehur koristi white-space:pre-wrap, pa bi inače pravili prevelike praznine
     s = s.replace(/^[ \t]*([-*_])(?:[ \t]*\1){2,}[ \t]*$/gm, "");
