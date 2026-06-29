@@ -42,56 +42,56 @@
   var SITE_ANSWERS = {
     sr:[
       "Sve predmete vidiš ovde — biraš po fakultetu i godini: [Pogledaj predmete →](predmeti.html)",
-      "Svi paketi i cene su na jednom mestu: [Paketi i cene →](prodavnica.html)",
+      "Svi paketi i cene su na jednom mestu: [Paketi i cene →](index.html#paketi)",
       "Da otkriješ koji smer i fakultet ti najviše leže, uradi kratak test: [Test sklonosti →](test-sklonosti.html)",
       "Za par minuta otkriješ šta ti najviše leži: [Uradi test sklonosti →](test-sklonosti.html)",
       "Najlakše je da kreneš od predmeta koji te zanima: [Izaberi predmet →](predmeti.html). A možeš prvo i [test sklonosti →](test-sklonosti.html) — idemo zajedno, polako i bez žurbe. 💛"
     ],
     en:[
       "All subjects are here — pick by faculty and year: [See subjects →](predmeti.html)",
-      "All plans and prices are in one place: [Plans & prices →](prodavnica.html)",
+      "All plans and prices are in one place: [Plans & prices →](index.html#paketi)",
       "To find which programme suits you best, take a short test: [Aptitude test →](test-sklonosti.html)",
       "In a few minutes you'll discover what suits you best: [Take the aptitude test →](test-sklonosti.html)",
       "The easiest start is to pick a subject you like: [Choose a subject →](predmeti.html). Or take the [aptitude test →](test-sklonosti.html) first — we'll go step by step. 💛"
     ],
     de:[
       "Alle Fächer findest du hier — wähle nach Fakultät und Jahr: [Fächer ansehen →](predmeti.html)",
-      "Alle Pakete und Preise an einem Ort: [Pakete & Preise →](prodavnica.html)",
+      "Alle Pakete und Preise an einem Ort: [Pakete & Preise →](index.html#paketi)",
       "Um herauszufinden, welche Richtung zu dir passt, mach einen kurzen Test: [Eignungstest →](test-sklonosti.html)",
       "In wenigen Minuten findest du heraus, was dir am besten liegt: [Eignungstest machen →](test-sklonosti.html)",
       "Am einfachsten beginnst du mit einem Fach, das dich interessiert: [Fach wählen →](predmeti.html). Oder mach zuerst den [Eignungstest →](test-sklonosti.html) — wir gehen es gemeinsam an, in Ruhe. 💛"
     ],
     fr:[
       "Toutes les matières sont ici — choisis par faculté et par année : [Voir les matières →](predmeti.html)",
-      "Tous les forfaits et les prix au même endroit : [Forfaits & prix →](prodavnica.html)",
+      "Tous les forfaits et les prix au même endroit : [Forfaits & prix →](index.html#paketi)",
       "Pour découvrir la filière qui te convient, fais un petit test : [Test d'aptitude →](test-sklonosti.html)",
       "En quelques minutes, tu découvres ce qui te convient le mieux : [Faire le test d'aptitude →](test-sklonosti.html)",
       "Le plus simple est de commencer par une matière qui t'intéresse : [Choisir une matière →](predmeti.html). Ou fais d'abord le [test d'aptitude →](test-sklonosti.html) — on y va ensemble, tranquillement. 💛"
     ],
     es:[
       "Todas las materias están aquí — elige por facultad y año: [Ver materias →](predmeti.html)",
-      "Todos los planes y precios en un solo lugar: [Planes y precios →](prodavnica.html)",
+      "Todos los planes y precios en un solo lugar: [Planes y precios →](index.html#paketi)",
       "Para descubrir qué carrera te conviene, haz un test corto: [Test de aptitud →](test-sklonosti.html)",
       "En unos minutos descubres lo que mejor se te da: [Hacer el test de aptitud →](test-sklonosti.html)",
       "Lo más fácil es empezar por una materia que te guste: [Elegir materia →](predmeti.html). O haz primero el [test de aptitud →](test-sklonosti.html) — vamos juntos, con calma. 💛"
     ],
     it:[
       "Tutte le materie sono qui — scegli per facoltà e anno: [Vedi le materie →](predmeti.html)",
-      "Tutti i pacchetti e i prezzi in un unico posto: [Piani e prezzi →](prodavnica.html)",
+      "Tutti i pacchetti e i prezzi in un unico posto: [Piani e prezzi →](index.html#paketi)",
       "Per scoprire quale corso fa per te, fai un breve test: [Test attitudinale →](test-sklonosti.html)",
       "In pochi minuti scopri cosa fa per te: [Fai il test attitudinale →](test-sklonosti.html)",
       "Il modo più facile è partire da una materia che ti piace: [Scegli una materia →](predmeti.html). Oppure fai prima il [test attitudinale →](test-sklonosti.html) — andiamo insieme, con calma. 💛"
     ],
     ru:[
       "Все предметы здесь — выбирай по факультету и курсу: [Посмотреть предметы →](predmeti.html)",
-      "Все пакеты и цены в одном месте: [Пакеты и цены →](prodavnica.html)",
+      "Все пакеты и цены в одном месте: [Пакеты и цены →](index.html#paketi)",
       "Чтобы понять, какое направление тебе подходит, пройди короткий тест: [Тест на способности →](test-sklonosti.html)",
       "За пару минут узнаешь, что тебе ближе всего: [Пройти тест на способности →](test-sklonosti.html)",
       "Проще всего начать с предмета, который тебе интересен: [Выбрать предмет →](predmeti.html). Или сначала пройди [тест на способности →](test-sklonosti.html) — идём вместе, спокойно. 💛"
     ],
     pt:[
       "Todas as matérias estão aqui — escolhe por faculdade e ano: [Ver matérias →](predmeti.html)",
-      "Todos os planos e preços num só lugar: [Planos e preços →](prodavnica.html)",
+      "Todos os planos e preços num só lugar: [Planos e preços →](index.html#paketi)",
       "Para descobrir qual curso combina contigo, faz um teste curto: [Teste de aptidão →](test-sklonosti.html)",
       "Em poucos minutos descobres o que te dá mais jeito: [Fazer o teste de aptidão →](test-sklonosti.html)",
       "O mais fácil é começar por uma matéria de que gostes: [Escolher matéria →](predmeti.html). Ou faz primeiro o [teste de aptidão →](test-sklonosti.html) — vamos juntos, com calma. 💛"
@@ -249,7 +249,8 @@
     "#zoi-head .zoi-headfb{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.7);font-size:20px}" +
     ".zoi-fig{background:#fff;border:1px solid #E2D6BF;border-radius:12px;padding:8px;margin:6px 0;max-width:100%;overflow-x:auto}" +
     ".zoi-fig svg{max-width:100%;height:auto;display:block;margin:0 auto}" +
-    ".zoi-bub sup{font-size:.72em;vertical-align:super}.zoi-bub sub{font-size:.72em;vertical-align:sub}";
+    ".zoi-bub sup{font-size:.72em;vertical-align:super}.zoi-bub sub{font-size:.72em;vertical-align:sub}" +
+    "@media(max-width:560px){#zoi-panel{left:8px;right:8px;width:auto;max-width:none;bottom:80px;height:auto;max-height:calc(100vh - 150px);border-radius:18px}#zoi-head{padding:9px 12px;gap:8px}.zoi-name{font-size:15.5px}.zoi-sub{font-size:10.5px}.zoi-av{width:22px;height:22px}#zoi-msgs{padding:11px;gap:8px}.zoi-bub{font-size:13px;padding:8px 10px;max-width:84%;border-radius:13px}#zoi-chips{padding:0 11px 6px;gap:5px}.zoi-chip{font-size:11.5px;padding:5px 9px}#zoi-foot{padding:8px}#zoi-ta{font-size:13px;padding:8px 10px}.zoi-send{height:38px;font-size:13px;padding:0 12px}.zoi-tool{width:38px;height:38px;font-size:16px}#zoi-btn{width:54px;height:54px;right:14px;bottom:14px}#zoi-cta{right:76px;bottom:24px;font-size:12.5px;padding:7px 11px}}";
 
   var style = document.createElement("style");
   style.textContent = css;
