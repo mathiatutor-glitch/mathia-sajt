@@ -12,8 +12,8 @@ import {
 import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 
 const LOGIN_MSG = {
-  sr: "Zdravo. Da započnemo čas, prijavi se brojem telefona na stranici Prijava (/prijava.html). Prvih 15 minuta je potpuno besplatno.",
-  en: "Hi. To start the lesson, please sign in with your phone number on the Sign-in page (/prijava.html). Your first 15 minutes are completely free."
+  sr: "Zdravo! Da započnemo čas, prijavi se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
+  en: "Hi! To start the lesson, please sign in on the Account page (/nalog.html). Your first 15 minutes are completely free."
 };
 const OVER_MSG = {
   sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
@@ -210,6 +210,19 @@ const RL_MSG = {
   sr: "Samo trenutak — stižu pitanja prebrzo. Sačekaj koji sekund pa probaj ponovo.",
   en: "Just a moment — questions are coming in too fast. Wait a few seconds and try again."
 };
+// ——— identitet preko Supabase (email) naloga ———
+const SB_URL = process.env.SUPABASE_URL || "https://ibhirxltgeyecrjwymai.supabase.co";
+const SB_ANON = process.env.SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+async function sbUser(token) {
+  if (!token || typeof token !== "string") return null;
+  try {
+    const r = await fetch(SB_URL + "/auth/v1/user", { headers: { apikey: SB_ANON, Authorization: "Bearer " + token } });
+    if (!r.ok) return null;
+    const u = await r.json();
+    return (u && u.id) ? u : null;
+  } catch (e) { return null; }
+}
+
 function clientIp(req) {
   const xf = (req.headers && (req.headers["x-forwarded-for"] || req.headers["x-real-ip"])) || "";
   return String(xf).split(",")[0].trim() || "noip";
@@ -254,15 +267,19 @@ export default async function handler(req, res) {
 
     // "site" (vodič na naslovnoj) je otvoren svima; SVI ostali modovi traže prijavu telefonom.
     if (rmode !== "site") {
-      const phone = await getSessionPhone(req);
-      if (!phone) return res.status(200).json({ text: LOGIN_MSG[msgLang], reply: LOGIN_MSG[msgLang], mode: rmode });
+      // identitet: prvo Supabase (email) nalog, pa stari telefon-login kao rezerva
+      let uid = null;
+      const sb = await sbUser(body.token);
+      if (sb) uid = "sb:" + sb.id;
+      else { const phone = await getSessionPhone(req); if (phone) uid = phone; }
+      if (!uid) return res.status(200).json({ text: LOGIN_MSG[msgLang], reply: LOGIN_MSG[msgLang], mode: rmode });
 
       // ograničenje po korisniku (velikodušno za stvarno učenje, ali staje botu/spamu)
-      if (await tooMany("u:" + phone, 20, 400)) {
+      if (await tooMany("u:" + uid, 20, 400)) {
         return res.status(200).json({ text: RL_MSG[msgLang], reply: RL_MSG[msgLang], mode: rmode });
       }
 
-      const u = await getUser(phone);
+      const u = await getUser(uid);
 
       if (!isSubscribed(u)) {
         const tnow = computeTrial(u);
