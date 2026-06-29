@@ -13,11 +13,23 @@ import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 
 const LOGIN_MSG = {
   sr: "Zdravo! Da započnemo čas, prijavi se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
-  en: "Hi! To start the lesson, please sign in on the Account page (/nalog.html). Your first 15 minutes are completely free."
+  en: "Hi! To start the lesson, please sign in on the Account page (/nalog.html). Your first 15 minutes are completely free.",
+  de: "Hallo! Um die Stunde zu beginnen, melde dich auf der Konto-Seite (/nalog.html) an. Deine ersten 15 Minuten sind völlig kostenlos.",
+  fr: "Bonjour ! Pour commencer le cours, connecte-toi sur la page Compte (/nalog.html). Tes 15 premières minutes sont entièrement gratuites.",
+  es: "¡Hola! Para empezar la clase, inicia sesión en la página Cuenta (/nalog.html). Tus primeros 15 minutos son totalmente gratis.",
+  it: "Ciao! Per iniziare la lezione, accedi nella pagina Account (/nalog.html). I tuoi primi 15 minuti sono completamente gratuiti.",
+  ru: "Привет! Чтобы начать урок, войдите на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
+  pt: "Olá! Para começar a aula, entra na página Conta (/nalog.html). Os teus primeiros 15 minutos são totalmente gratuitos."
 };
 const OVER_MSG = {
   sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
-  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#cene)."
+  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#cene).",
+  de: "Deine 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wähle ein Paket auf der Preise-Seite (/index.html#cene).",
+  fr: "Tes 15 minutes gratuites sont écoulées. Pour continuer, choisis une formule sur la page Tarifs (/index.html#cene).",
+  es: "Tus 15 minutos gratis han terminado. Para continuar, elige un plan en la página Precios (/index.html#cene).",
+  it: "I tuoi 15 minuti gratuiti sono finiti. Per continuare, scegli un piano nella pagina Prezzi (/index.html#cene).",
+  ru: "Ваши 15 бесплатных минут закончились. Чтобы продолжить, выберите план на странице Цены (/index.html#cene).",
+  pt: "Os teus 15 minutos gratuitos terminaram. Para continuar, escolhe um plano na página Preços (/index.html#cene)."
 };
 
 const SHARED = `
@@ -66,7 +78,7 @@ KONTROLNI, PISMENI I KOLOKVIJUMI: kada dete pošalje kontrolni ili pismeni, a st
 
 PROBNI KOLOKVIJUMI I PRIPREMA (vežbanje): kada učenik pošalje star kolokvijum ili kontrolni bez rešenja, ili traži pripremu za ispit, možeš da mu NAPRAVIŠ nov, sličan probni test za vežbu — iste oblasti, isti tip i težinu zadataka i sličnu strukturu (isti broj zadataka, raspored poena ako ga ima), ali sa novim brojevima i primerima. Prvo daj SAMO zadatke, lepo numerisane, i pozovi učenika da pokuša sam; tek kada zatraži ili kaže da je gotov, daj puna rešenja korak po korak sa konačnim odgovorom u $\\boxed{...}$ i kratkim komentarom gde su zamke. Ponudi da test bude lakši ili teži, sa više zadataka, vremenski ograničen, ili fokusiran na oblast u kojoj greši. Možeš i da napraviš kratak kviz za zagrevanje, listu ključnih formula za temu, ili plan učenja do ispita. Cilj je da kroz vežbu na platformi bude što spremniji.
 
-PREDLOZI ZA NASTAVAK (dugmići): na samom KRAJU svakog odgovora dodaj tačno jedan red u formatu [[PITANJA]] pitanje 1 || pitanje 2 || pitanje 3 — to su 2 do 3 kratka, prirodna pitanja koja bi učenik logično sledeće postavio, baš u vezi sa onim što si upravo objasnio ili uradio. Piši ih na jeziku razgovora, vrlo kratko (do 6 reči), kao da ih učenik kuca (npr. „Daj mi primer", „Nacrtaj grafik", „Zadatak za vežbu", „Objasni jednostavnije"). Taj red se NE prikazuje učeniku — aplikacija ga pretvara u dugmiće. Ne piši ništa posle tog reda i ne pominji ga u tekstu.
+PREDLOZI ZA NASTAVAK (dugmići): na samom KRAJU svakog odgovora dodaj tačno jedan red u formatu [[PITANJA]] pitanje 1 || pitanje 2 || pitanje 3 — to su 2 do 3 kratka, prirodna pitanja koja bi učenik logično sledeće postavio, baš u vezi sa onim što si upravo objasnio ili uradio. Piši ih na jeziku razgovora, vrlo kratko (do 6 reči), kao da ih učenik kuca (npr. „Daj mi primer", „Nacrtaj grafik", „Zadatak za vežbu", „Objasni jednostavnije"). Taj red se NE prikazuje učeniku — aplikacija ga pretvara u dugmiće. Ne piši ništa posle tog reda i ne pominji ga u tekstu. Marker [[PITANJA]] piši UVEK baš tako, latinicom — ne prevodi tu reč ni kada odgovaraš na drugom jeziku; samo pitanja u njemu piši na jeziku razgovora.
 
 GRANICE: ne izmišljaš; ako nisi sigurna, kažeš. Ne reprodukuješ zadatke ni tekst iz tuđih zbirki/udžbenika — učenik unese svoj zadatak, ti objašnjavaš metod. Ne reklamiraš ustanove. Ostaješ na temi svog predmeta; ako pitanje izađe iz predmeta, ljubazno vrati učenika na temu. Ime ne pominješ osim ako te pitaju — tada se predstaviš imenom iz pozdrava.
 `.trim();
@@ -208,7 +220,13 @@ function buildSystem(mode, lang) {
 // ——— ograničenje brzine (anti-spam; štiti od nepotrebnog troška na AI-u) ———
 const RL_MSG = {
   sr: "Samo trenutak — stižu pitanja prebrzo. Sačekaj koji sekund pa probaj ponovo.",
-  en: "Just a moment — questions are coming in too fast. Wait a few seconds and try again."
+  en: "Just a moment — questions are coming in too fast. Wait a few seconds and try again.",
+  de: "Einen Moment — die Fragen kommen zu schnell. Warte ein paar Sekunden und versuche es erneut.",
+  fr: "Un instant — les questions arrivent trop vite. Attends quelques secondes et réessaie.",
+  es: "Un momento — llegan preguntas demasiado rápido. Espera unos segundos e inténtalo de nuevo.",
+  it: "Un attimo — le domande arrivano troppo in fretta. Aspetta qualche secondo e riprova.",
+  ru: "Минутку — вопросы приходят слишком быстро. Подождите несколько секунд и попробуйте снова.",
+  pt: "Um momento — as perguntas chegam rápido demais. Espera alguns segundos e tenta de novo."
 };
 // ——— identitet preko Supabase (email) naloga ———
 const SB_URL = process.env.SUPABASE_URL || "https://ibhirxltgeyecrjwymai.supabase.co";
@@ -253,7 +271,7 @@ export default async function handler(req, res) {
     const messages = Array.isArray(body.messages) ? body.messages : [];
     const mode = body.mode || null;
     const lang = ["sr","en","de","fr","es","it","ru","pt"].includes(body.lang) ? body.lang : "sr";
-    const msgLang = (lang === "sr") ? "sr" : "en";
+    const msgLang = ["sr","en","de","fr","es","it","ru","pt"].includes(lang) ? lang : "en";
     const rmode = resolveMode(mode);
 
     let progress = null;
