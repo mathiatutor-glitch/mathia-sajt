@@ -39,6 +39,64 @@
     ru:["Какие предметы?","Пакеты и цены","Выбор факультета","Тест на способности","Как начать?"],
     pt:["Que matérias?","Planos e preços","Escolher faculdade","Teste de aptidão","Como começo?"]
   };
+  var SITE_ANSWERS = {
+    sr:[
+      "Sve predmete vidiš ovde — biraš po fakultetu i godini: [Pogledaj predmete →](predmeti.html)",
+      "Svi paketi i cene su na jednom mestu: [Paketi i cene →](prodavnica.html)",
+      "Da otkriješ koji smer i fakultet ti najviše leže, uradi kratak test: [Test sklonosti →](test-sklonosti.html)",
+      "Za par minuta otkriješ šta ti najviše leži: [Uradi test sklonosti →](test-sklonosti.html)",
+      "Najlakše je da kreneš od predmeta koji te zanima: [Izaberi predmet →](predmeti.html). A možeš prvo i [test sklonosti →](test-sklonosti.html) — idemo zajedno, polako i bez žurbe. 💛"
+    ],
+    en:[
+      "All subjects are here — pick by faculty and year: [See subjects →](predmeti.html)",
+      "All plans and prices are in one place: [Plans & prices →](prodavnica.html)",
+      "To find which programme suits you best, take a short test: [Aptitude test →](test-sklonosti.html)",
+      "In a few minutes you'll discover what suits you best: [Take the aptitude test →](test-sklonosti.html)",
+      "The easiest start is to pick a subject you like: [Choose a subject →](predmeti.html). Or take the [aptitude test →](test-sklonosti.html) first — we'll go step by step. 💛"
+    ],
+    de:[
+      "Alle Fächer findest du hier — wähle nach Fakultät und Jahr: [Fächer ansehen →](predmeti.html)",
+      "Alle Pakete und Preise an einem Ort: [Pakete & Preise →](prodavnica.html)",
+      "Um herauszufinden, welche Richtung zu dir passt, mach einen kurzen Test: [Eignungstest →](test-sklonosti.html)",
+      "In wenigen Minuten findest du heraus, was dir am besten liegt: [Eignungstest machen →](test-sklonosti.html)",
+      "Am einfachsten beginnst du mit einem Fach, das dich interessiert: [Fach wählen →](predmeti.html). Oder mach zuerst den [Eignungstest →](test-sklonosti.html) — wir gehen es gemeinsam an, in Ruhe. 💛"
+    ],
+    fr:[
+      "Toutes les matières sont ici — choisis par faculté et par année : [Voir les matières →](predmeti.html)",
+      "Tous les forfaits et les prix au même endroit : [Forfaits & prix →](prodavnica.html)",
+      "Pour découvrir la filière qui te convient, fais un petit test : [Test d'aptitude →](test-sklonosti.html)",
+      "En quelques minutes, tu découvres ce qui te convient le mieux : [Faire le test d'aptitude →](test-sklonosti.html)",
+      "Le plus simple est de commencer par une matière qui t'intéresse : [Choisir une matière →](predmeti.html). Ou fais d'abord le [test d'aptitude →](test-sklonosti.html) — on y va ensemble, tranquillement. 💛"
+    ],
+    es:[
+      "Todas las materias están aquí — elige por facultad y año: [Ver materias →](predmeti.html)",
+      "Todos los planes y precios en un solo lugar: [Planes y precios →](prodavnica.html)",
+      "Para descubrir qué carrera te conviene, haz un test corto: [Test de aptitud →](test-sklonosti.html)",
+      "En unos minutos descubres lo que mejor se te da: [Hacer el test de aptitud →](test-sklonosti.html)",
+      "Lo más fácil es empezar por una materia que te guste: [Elegir materia →](predmeti.html). O haz primero el [test de aptitud →](test-sklonosti.html) — vamos juntos, con calma. 💛"
+    ],
+    it:[
+      "Tutte le materie sono qui — scegli per facoltà e anno: [Vedi le materie →](predmeti.html)",
+      "Tutti i pacchetti e i prezzi in un unico posto: [Piani e prezzi →](prodavnica.html)",
+      "Per scoprire quale corso fa per te, fai un breve test: [Test attitudinale →](test-sklonosti.html)",
+      "In pochi minuti scopri cosa fa per te: [Fai il test attitudinale →](test-sklonosti.html)",
+      "Il modo più facile è partire da una materia che ti piace: [Scegli una materia →](predmeti.html). Oppure fai prima il [test attitudinale →](test-sklonosti.html) — andiamo insieme, con calma. 💛"
+    ],
+    ru:[
+      "Все предметы здесь — выбирай по факультету и курсу: [Посмотреть предметы →](predmeti.html)",
+      "Все пакеты и цены в одном месте: [Пакеты и цены →](prodavnica.html)",
+      "Чтобы понять, какое направление тебе подходит, пройди короткий тест: [Тест на способности →](test-sklonosti.html)",
+      "За пару минут узнаешь, что тебе ближе всего: [Пройти тест на способности →](test-sklonosti.html)",
+      "Проще всего начать с предмета, который тебе интересен: [Выбрать предмет →](predmeti.html). Или сначала пройди [тест на способности →](test-sklonosti.html) — идём вместе, спокойно. 💛"
+    ],
+    pt:[
+      "Todas as matérias estão aqui — escolhe por faculdade e ano: [Ver matérias →](predmeti.html)",
+      "Todos os planos e preços num só lugar: [Planos e preços →](prodavnica.html)",
+      "Para descobrir qual curso combina contigo, faz um teste curto: [Teste de aptidão →](test-sklonosti.html)",
+      "Em poucos minutos descobres o que te dá mais jeito: [Fazer o teste de aptidão →](test-sklonosti.html)",
+      "O mais fácil é começar por uma matéria de que gostes: [Escolher matéria →](predmeti.html). Ou faz primeiro o [teste de aptidão →](test-sklonosti.html) — vamos juntos, com calma. 💛"
+    ]
+  };
   var CTA_TX = {sr:"Pitaj ",en:"Ask ",de:"Frag ",fr:"Demande à ",es:"Pregunta a ",it:"Chiedi a ",ru:"Спроси ",pt:"Pergunta à "};
   var SITE = {
     sr:{sub:"profesorica", ph:"Napiši pitanje…", send:"Pošalji", hi:"Ćao! ❤️ Ja sam Profesorica, tvoj vodič kroz Mathiu. Objasniću ti gradivo, pomoći da izabereš pravi paket i pripremiti te za prijemni i upis na fakultete u Beogradu i Novom Sadu. 💡 Uz svaki paket dobijaš i test sklonosti — za par minuta otkriješ šta ti najviše leži i koji smer je pravi za tebe. Pitaj me bilo šta — prvih 15 minuta je besplatno! ✨"},
@@ -286,11 +344,11 @@
     if (typeof cta !== "undefined" && cta) cta.textContent = ctaLabel();
     chipsEl.innerHTML = "";
     if (ISSITE) {
-      (SITE_CHIPS[LANG] || SITE_CHIPS.en).forEach(function (c) {
+      (SITE_CHIPS[LANG] || SITE_CHIPS.en).forEach(function (c, i) {
         var b = document.createElement("button");
         b.className = "zoi-chip";
         b.textContent = c;
-        b.onclick = function () { taEl.value = c; send(); };
+        b.onclick = function () { siteChip(i, c); };
         chipsEl.appendChild(b);
       });
     } else {
@@ -329,6 +387,7 @@
     s = s.replace(/\n{3,}/g, "\n\n");
     s = s.replace(/^\s+|\s+$/g, "");
     s = esc(s);
+    s = s.replace(/\[([^\]]+)\]\((#[\w-]+|[\w.\/-]+\.html(?:#[\w-]+)?)\)/g, '<a href="$2" style="color:#157f6e;font-weight:700;text-decoration:underline">$1</a>');
     s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
     s = s.replace(/^[ \t]*#{1,6}\s*/gm, "");
@@ -711,6 +770,15 @@
   function speak(text) { /* klon nema voice */ }
 
   // ——— slanje ———
+  function siteChip(i, label){
+    addBub("me", label);
+    var arr = SITE_ANSWERS[LANG] || SITE_ANSWERS.en;
+    var a = arr[i] || SITE_ANSWERS.en[i] || "";
+    history.push({ role: "user", content: label });
+    history.push({ role: "assistant", content: a });
+    typing(true);
+    setTimeout(function(){ typing(false); addBub("zoi", a); }, 320);
+  }
   function send() {
     var txt = (taEl.value || "").trim();
     if (!txt && !attachment) return;
