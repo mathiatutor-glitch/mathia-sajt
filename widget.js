@@ -415,6 +415,26 @@
     }
   }
 
+  function setChips(list){
+    chipsEl.innerHTML = "";
+    if (!list || !list.length) return;
+    list.forEach(function (c) {
+      var b = document.createElement("button");
+      b.className = "zoi-chip"; b.textContent = c;
+      b.onclick = function () { taEl.value = c; send(); };
+      chipsEl.appendChild(b);
+    });
+  }
+  function parseChips(t){
+    var out = { text: t, chips: [] };
+    var m = String(t).match(/\[+\s*PITANJA\s*\]+\s*:?\s*([\s\S]*)$/i);
+    if (m) {
+      out.text = String(t).slice(0, m.index).replace(/[\s*#>\-]+$/, "");
+      out.chips = m[1].split(/\|\|/).map(function (s) { return s.replace(/^[\s|>•*\-]+|[\s|]+$/g, "").trim(); }).filter(function (s) { return s && s.length <= 42; }).slice(0, 4);
+    }
+    return out;
+  }
+
   function greet() {
     msgsEl.innerHTML = "";
     addBub("zoi", modeHi(t()));
@@ -988,6 +1008,7 @@
     history.push({ role: "user", content: content });
 
     taEl.value = ""; clearAttach();
+    chipsEl.innerHTML = "";
     typing(true); goEl.disabled = true;
 
     fetch(API, {
@@ -998,15 +1019,18 @@
       .then(function (r) { return r.json(); })
       .then(function (data) {
         typing(false); goEl.disabled = false;
-        if (data.error) { addBub("zoi", "⚠️ " + data.error); return; }
+        if (data.error) { addBub("zoi", "⚠️ " + data.error); setChips([]); return; }
         var reply = data.text || "…";
-        history.push({ role: "assistant", content: reply });
-        addBub("zoi", reply);
-        speak(reply);
+        var pc = parseChips(reply);
+        history.push({ role: "assistant", content: pc.text });
+        addBub("zoi", pc.text);
+        speak(pc.text);
+        setChips(pc.chips);
       })
       .catch(function () {
         typing(false); goEl.disabled = false;
         addBub("zoi", "⚠️ Veza je zapela. Pokušaj ponovo.");
+        setChips([]);
       });
   }
 
