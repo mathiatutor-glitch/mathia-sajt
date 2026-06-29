@@ -327,7 +327,6 @@
       '<div><div class="zoi-name">' + NAME + '</div><div class="zoi-sub" id="zoi-sub"></div></div>' +
       '<div class="zoi-sp"></div>' +
       '<select id="zoi-lang" title="Jezik">' + langOpts + "</select>" +
-      '<button class="zoi-ico" id="zoi-print" title="Štampaj ili sačuvaj kao PDF">🖨️</button>' +
       '<button class="zoi-ico" id="zoi-x" title="Zatvori">✕</button>' +
     "</div>" +
     '<div id="zoi-msgs"></div>' +
@@ -1084,19 +1083,6 @@
   // ——— događaji ———
   btn.onclick = function () { panel.classList.toggle("zoi-open"); var op=panel.classList.contains("zoi-open"); cta.classList.toggle("zoi-hide", op); if(op) taEl.focus(); };
   $("#zoi-x").onclick = function () { panel.classList.remove("zoi-open"); cta.classList.remove("zoi-hide"); stopSpeak(); };
-  function printChat(){
-    var msgs = panel.querySelector("#zoi-msgs"); if(!msgs) return;
-    var rows = msgs.querySelectorAll(".zoi-row"), body="";
-    for(var i=0;i<rows.length;i++){ var r=rows[i], bub=r.querySelector(".zoi-bub"); if(!bub) continue; if(r.querySelector(".zoi-typing")) continue; var me=r.className.indexOf("zoi-me")>=0; var hasContent=(bub.textContent||"").trim()||bub.querySelector("svg,table,pre,img"); if(!hasContent) continue; body+='<div class="p-row '+(me?"p-me":"p-zoi")+'"><div class="p-who">'+(me?"Pitanje":(typeof NAME!=="undefined"?NAME:"Mathia"))+'</div><div class="p-bub">'+bub.innerHTML+'</div></div>'; }
-    if(!body){ return; }
-    var w=window.open("","_blank","width=820,height=900"); if(!w){ alert("Dozvoli iskačući prozor da bi sačuvao PDF."); return; }
-    var css='<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><style>*{box-sizing:border-box}body{font-family:Nunito,Arial,sans-serif;color:#241c28;max-width:740px;margin:0 auto;padding:26px 20px;line-height:1.55}h1{font-family:Georgia,serif;color:#432C37;font-size:20px;margin:0 0 2px}.p-date{color:#8a7f86;font-size:12px;margin-bottom:18px}.p-row{margin:0 0 13px;page-break-inside:avoid}.p-who{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#1F8A78;font-weight:700;margin-bottom:3px}.p-me .p-who{color:#9a7a86}.p-bub{font-size:14px}.p-me .p-bub{color:#5a4a52}pre{background:#2c2230;color:#f4ecdf;padding:10px 12px;border-radius:8px;overflow:auto;white-space:pre-wrap;font-size:12.5px}code{font-family:ui-monospace,Menlo,Consolas,monospace}table{border-collapse:collapse;margin:6px 0}td,th{border:1px solid #d8cdbb;padding:4px 9px}svg{max-width:100%;height:auto}img{display:none}.p-logo{display:block;height:46px;width:auto;border-radius:8px}.p-head{display:flex;align-items:center;gap:12px;border-bottom:2px solid #1F8A78;padding-bottom:10px;margin-bottom:16px}.zoi-copy{display:none}.katex-display{overflow:visible;margin:6px 0}@media print{body{padding:0 8px}}</style>';
-    var logo=(location.origin||"")+"/logo.png";
-    var title='<div class="p-head"><img class="p-logo" src="'+logo+'" onerror="this.style.display=\'none\'"/><div><h1>MATHIA</h1><div class="p-date">'+(typeof NAME!=="undefined"?NAME:"")+' &middot; '+new Date().toLocaleDateString("sr-RS")+'</div></div></div>';
-    w.document.write('<!doctype html><html lang="sr"><head><meta charset="utf-8"><title>MATHIA</title>'+css+'</head><body>'+title+body+'</body></html>'); w.document.close();
-    setTimeout(function(){ try{ w.focus(); w.print(); }catch(e){} }, 500);
-  }
-  (function(){ var pb=panel.querySelector("#zoi-print"); if(pb) pb.onclick=printChat; })();
   goEl.onclick = send;
   taEl.addEventListener("keydown", function (e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
