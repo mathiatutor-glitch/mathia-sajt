@@ -21,6 +21,23 @@
     return (script && script.getAttribute("data-lang")) || "sr";
   })();
   var MODE = (script && script.getAttribute("data-mode")) || "matura"; // "matura" | "ftn"
+  var MODE_ALIASES = { analiza1:"fax-analiza1", analiza2:"fax-analiza2", "diskretna-matematika":"fax-diskretna", "kompleksna-analiza":"fax-kompleksna", "linearna-algebra":"fax-linearna", "elektricna-merenja":"fax-merenja",
+    algoritmi:"prog-algoritmi", arduino:"prog-arduino", cpp:"prog-cpp", csharp:"prog-csharp", cadence:"el-cadence",
+    "osn-fiz-6":"os-fiz-6", "osn-fiz-7":"os-fiz-7", "osn-fiz-8":"os-fiz-8",
+    js:"prog-js", java:"prog-java", kicad:"el-kicad", kotlin:"prog-kotlin", ltspice:"el-ltspice", matlab:"prog-matlab",
+    "osn-mat-5":"os-mat-5", "osn-mat-6":"os-mat-6", "osn-mat-7":"os-mat-7", "osn-mat-8":"os-mat-8",
+    mehanika:"fax-mehanika", operaciona:"fax-operaciona", pascal:"prog-pascal", prijemni:"prijemni-matematika", "prijemni-ftn":"prijemni-matematika",
+    python:"prog-python", r:"prog-r", sql:"prog-sql", scratch:"prog-scratch", elektrotehnika:"fax-kola", web:"prog-web", verovatnoca:"fax-verovatnoca" };
+  if (MODE === "subject") {
+    // Strane sa materijalima (Skripta/Priručnik/Formule) nose pravi predmet u gate.js skripti,
+    // ne u data-mode (koji ostaje "subject" da napredak.js zna da je to strana za čitanje).
+    var gateEl = document.querySelector('script[src*="gate.js"]');
+    var gateSubj = gateEl ? (gateEl.getAttribute("data-subject") || "") : "";
+    var firstSubj = gateSubj.split(",")[0].trim();
+    if (firstSubj) MODE = MODE_ALIASES[firstSubj] || firstSubj;
+  } else {
+    MODE = MODE_ALIASES[MODE] || MODE;
+  }
   var NAME = (script && script.getAttribute("data-name")) || "Profesorica"; // ime asistenta (default: "Profesorica")
   var HI = (script && script.getAttribute("data-hi")) || ""; // pozdrav po stranici (opciono)
   var SUB = (script && script.getAttribute("data-sub")) || ""; // podnaslov po stranici (opciono)
