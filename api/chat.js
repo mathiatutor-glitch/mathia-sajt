@@ -10,6 +10,7 @@ import {
   recordQuestion, publicProfile,
 } from "../lib/user.js";
 import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
+import { sbUser } from "../lib/sbauth.js";
 
 const LOGIN_MSG = {
   sr: "Zdravo! Da započnemo čas, prijavi se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
@@ -229,17 +230,6 @@ const RL_MSG = {
   pt: "Um momento — as perguntas chegam rápido demais. Espera alguns segundos e tenta de novo."
 };
 // ——— identitet preko Supabase (email) naloga ———
-const SB_URL = process.env.SUPABASE_URL || "https://ibhirxltgeyecrjwymai.supabase.co";
-const SB_ANON = process.env.SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
-async function sbUser(token) {
-  if (!token || typeof token !== "string") return null;
-  try {
-    const r = await fetch(SB_URL + "/auth/v1/user", { headers: { apikey: SB_ANON, Authorization: "Bearer " + token } });
-    if (!r.ok) return null;
-    const u = await r.json();
-    return (u && u.id) ? u : null;
-  } catch (e) { return null; }
-}
 
 function clientIp(req) {
   const xf = (req.headers && (req.headers["x-forwarded-for"] || req.headers["x-real-ip"])) || "";

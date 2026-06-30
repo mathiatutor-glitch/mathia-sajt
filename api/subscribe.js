@@ -6,18 +6,19 @@
 // ============================================================
 import { getSessionPhone } from "../lib/auth.js";
 import { getUser, saveUser } from "../lib/user.js";
+import { resolveUid } from "../lib/sbauth.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
   try {
-    const phone = await getSessionPhone(req);
-    if (!phone) return res.status(401).json({ error: "Prvo se prijavi." });
     const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
+    const uid = await resolveUid(req, body, getSessionPhone);
+    if (!uid) return res.status(401).json({ error: "Prvo se prijavi." });
     const plan = body.plan || "gold";
 
     const admin = req.headers["x-admin-secret"];
     if (process.env.ADMIN_SECRET && admin === process.env.ADMIN_SECRET) {
-      const u = await getUser(phone);
+      const u = await getUser(uid);
       u.plan = plan;
       u.subscribedUntil = Date.now() + 30 * 24 * 3600 * 1000; // 30 dana (test)
       await saveUser(u);

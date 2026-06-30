@@ -6,21 +6,24 @@
 // ============================================================
 import { getSessionPhone } from "../lib/auth.js";
 import { getUser, saveUser, setGoal, publicProfile } from "../lib/user.js";
+import { resolveUid } from "../lib/sbauth.js";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   if (req.method === "OPTIONS") return res.status(204).end();
 
-  const phone = await getSessionPhone(req);
-  if (!phone) return res.status(200).json({ ok: false, error: "not_authenticated" });
+  let body = {};
+  if (req.method === "POST") { try { body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {}); } catch (e) { body = {}; } }
+
+  const uid = await resolveUid(req, body, getSessionPhone);
+  if (!uid) return res.status(200).json({ ok: false, error: "not_authenticated" });
 
   try {
-    const u = await getUser(phone);
+    const u = await getUser(uid);
 
     if (req.method === "POST") {
-      const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
       if (body && body.goal) { setGoal(u, body.goal); await saveUser(u); }
     } else if (req.method !== "GET") {
       return res.status(405).json({ ok: false, error: "Method not allowed" });

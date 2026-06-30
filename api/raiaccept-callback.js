@@ -9,6 +9,8 @@ import * as rai from '../lib/raiaccept.js';
 import * as esir from '../lib/esir.js';
 import * as supa from '../lib/supabase.js';
 import * as mail from '../lib/email.js';
+import { adminFindUidByEmail } from '../lib/sbauth.js';
+import { getUser, saveUser } from '../lib/user.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
@@ -41,6 +43,26 @@ export default async function handler(req, res) {
       const paketSifra = detaljno[0]?.sifra?.replace('PKT-', '').toLowerCase();
       const istice = await supa.aktivirajPretplatu({ email, paket: paketSifra, predmeti });
       pristupLink += `?istice=${istice.toISOString().slice(0, 10)}`;
+
+      // 4b) VEZA KOJA JE FALILA: otključaj sam čet (KV) za istog kupca.
+      // Nađemo Supabase nalog po emailu i upišemo isti datum isteka kao u Supabase pretplati.
+      try {
+        const uidSb = await adminFindUidByEmail(email);
+        if (uidSb) {
+          const u = await getUser('sb:' + uidSb);
+          u.plan = paketSifra;
+          u.subscribedUntil = istice.getTime();
+          await saveUser(u);
+        } else {
+          // Kupac još nema email-nalog na sajtu (platio je bez prijave) — pretplata
+          // je upisana u Supabase i čeka; otključaće se čim napravi/poveže nalog
+          // sa istim emailom (ili joj ručno aktiviraj preko /api/subscribe).
+          console.warn('raiaccept-callback: nije nađen Supabase nalog za', email, '— čet se nije automatski otključao.');
+        }
+      } catch (e) {
+        console.error('raiaccept-callback: otključavanje četa nije uspelo', e);
+        // Ne prekidamo tok — račun i Supabase pretplata su već upisani; ovo se može ručno doraditi.
+      }
     }
     // (za 'prodavnica' artikle ovde dodeli download/pristup po sifri)
 
