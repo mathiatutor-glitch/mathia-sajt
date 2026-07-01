@@ -1,51 +1,103 @@
-// api/raiaccept-callback.js  →  POST /api/raiaccept-callback
+// api/raiaccept-callback.js  →  POST /api/raiaccept-callback   (UPC NOTIFY_URL)
 // ──────────────────────────────────────────────────────────────────────────
-// RaiAccept ovde javi ishod plaćanja (server-to-server). Ovo je SRCE sistema —
-// ovde se sve dešava automatski, bez tebe:
-//   1) provera potpisa  2) fiskalni račun (ESIR/VPFR)  3) upis u bazu
-//   4) aktivacija paketa/pristupa  5) mejl kupcu sa računom
+// UPC ovde javi ishod plaćanja (server-to-server, sa UPC IP adresa:
+// test 195.85.198.16, produkcija 195.85.198.15). SRCE sistema:
+//   1) provera potpisa (UPC sertifikat)  2) fiskalni račun (ESIR)
+//   3) upis u bazu  4) aktivacija paketa/pristupa  5) mejl kupcu
+// UPC-u se MORA vratiti tekstualni odgovor sa "Response.action= approve/reverse".
 // ──────────────────────────────────────────────────────────────────────────
-import * as rai from '../lib/raiaccept.js';
+import * as upc from '../lib/upc.js';
 import * as esir from '../lib/esir.js';
 import * as supa from '../lib/supabase.js';
 import * as mail from '../lib/email.js';
 import { adminFindUidByEmail } from '../lib/sbauth.js';
 import { getUser, saveUser } from '../lib/user.js';
 
+// 32-heks (SD bez crtica) → kanonski UUID sa crticama
+function uuidIzSD(s) {
+  const h = String(s || '').replace(/[^0-9a-fA-F]/g, '');
+  if (h.length !== 32) return s;
+  return h.slice(0, 8) + '-' + h.slice(8, 12) + '-' + h.slice(12, 16) + '-' + h.slice(16, 20) + '-' + h.slice(20);
+}
+
+// Tekstualni odgovor koji UPC očekuje (kao u notify.php primeru)
+function odgovorUPC(f, action, reason) {
+  return [
+    'MerchantID = ' + (f.MerchantID || ''),
+    'TerminalID = ' + (f.TerminalID || ''),
+    'OrderID = ' + (f.OrderID || ''),
+    'Delay = ' + (f.Delay || ''),
+    'Currency = ' + (f.Currency || ''),
+    'TotalAmount = ' + (f.TotalAmount || ''),
+    'XID = ' + (f.XID || ''),
+    'PurchaseTime = ' + (f.PurchaseTime || ''),
+    'Response.action= ' + action + ' ',
+    'Response.reason= ' + reason + ' ',
+    'Response.forwardUrl=  ',
+  ].join('\n') + '\n';
+}
+function posalji(res, f, action, reason) {
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  return res.status(200).send(odgovorUPC(f, action, reason));
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
-  try {
-    // 1) Da li poziv zaista dolazi od RaiAccept-a?
-    const potpis = req.headers['x-raiaccept-signature'];
-    if (!rai.proveriPotpis(req.body, potpis)) return res.status(401).json({ greska: 'Loš potpis' });
+  const f = req.body || {};
 
-    const { orderId, status } = req.body || {};
-    if (status !== 'success' && status !== 'paid') {
-      return res.status(200).json({ ok: true, info: 'Uplata nije uspešna — ništa se ne aktivira' });
+  // 1) Da li poziv zaista dolazi od UPC-a? (RSA-SHA1 potpis, UPC sertifikat)
+  if (!upc.proveriOdgovor(f)) {
+    console.warn('upc-callback: LOS POTPIS', { OrderID: f.OrderID, SD: f.SD });
+    return posalji(res, f, 'reverse', 'bad signature');
+  }
+
+  try {
+    const supaId = uuidIzSD(f.SD);
+    let porudzbina;
+    try {
+      porudzbina = await supa.ucitajPorudzbinu(supaId);
+    } catch (e) {
+      console.error('upc-callback: porudzbina nije nadjena za SD=', f.SD, e.message);
+      return posalji(res, f, 'approve', 'order not found - manual');
     }
 
-    const porudzbina = await supa.ucitajPorudzbinu(orderId);
-    if (porudzbina.status === 'placeno') return res.status(200).json({ ok: true, info: 'Već obrađeno' });
+    // Transakcija nije uspesna (TranCode != 000) -> potvrdi prijem, nista ne aktiviraj
+    if (!upc.uspesno(f)) {
+      return posalji(res, f, 'approve', 'declined - nothing activated');
+    }
+
+    // Idempotencija - vec obradjeno
+    if (porudzbina.status === 'placeno') {
+      return posalji(res, f, 'approve', 'already processed');
+    }
+
+    // (soft) provera iznosa: TotalAmount je u parama
+    const ocekivano = Math.round(Number(porudzbina.iznos_rsd) * 100);
+    if (String(f.TotalAmount) !== String(ocekivano)) {
+      console.warn('upc-callback: iznos se ne poklapa', { primljeno: f.TotalAmount, ocekivano, OrderID: f.OrderID });
+    }
 
     const { detaljno, predmeti } = porudzbina.stavke;
     const email = porudzbina.kupac_email;
 
-    // 2) Fiskalni račun preko VPFR-a (automatski potpis bezbednosnim elementom)
-    const racun = await esir.izdajRacun({ detaljno, ukupno: porudzbina.iznos_rsd, email, ref: orderId });
+    // 2) Fiskalni racun (ESIR). Ako pukne, NE blokiramo pristup - logujemo za rucno.
+    let racun = null;
+    try {
+      racun = await esir.izdajRacun({ detaljno, ukupno: porudzbina.iznos_rsd, email, ref: supaId });
+      await supa.sacuvajFiskalni(supaId, racun);
+    } catch (e) {
+      console.error('upc-callback: ESIR fiskalni racun NIJE izdat (rucno dovrsiti)', supaId, e.message);
+    }
 
-    // 3) Upis: račun + status porudžbine
-    await supa.sacuvajFiskalni(orderId, racun);
-    await supa.oznaciPlaceno(orderId, req.body.transactionId || null);
+    // 3) Status porudzbine -> placeno
+    await supa.oznaciPlaceno(supaId, f.XID || f.ApprovalCode || null);
 
-    // 4) Aktivacija
+    // 4) Aktivacija pristupa
     let pristupLink = (process.env.APP_URL || '') + '/moj-nalog.html';
     if (porudzbina.tip === 'paket') {
-      const paketSifra = detaljno[0]?.sifra?.replace('PKT-', '').toLowerCase();
+      const paketSifra = detaljno[0] && detaljno[0].sifra ? detaljno[0].sifra.replace(/^(MATHIA-|PKT-)/i, '').toLowerCase() : null;
       const istice = await supa.aktivirajPretplatu({ email, paket: paketSifra, predmeti });
-      pristupLink += `?istice=${istice.toISOString().slice(0, 10)}`;
-
-      // 4b) VEZA KOJA JE FALILA: otključaj sam čet (KV) za istog kupca.
-      // Nađemo Supabase nalog po emailu i upišemo isti datum isteka kao u Supabase pretplati.
+      pristupLink += '?istice=' + istice.toISOString().slice(0, 10);
       try {
         const uidSb = await adminFindUidByEmail(email);
         if (uidSb) {
@@ -54,30 +106,28 @@ export default async function handler(req, res) {
           u.subscribedUntil = istice.getTime();
           await saveUser(u);
         } else {
-          // Kupac još nema email-nalog na sajtu (platio je bez prijave) — pretplata
-          // je upisana u Supabase i čeka; otključaće se čim napravi/poveže nalog
-          // sa istim emailom (ili joj ručno aktiviraj preko /api/subscribe).
-          console.warn('raiaccept-callback: nije nađen Supabase nalog za', email, '— čet se nije automatski otključao.');
+          console.warn('upc-callback: nema Supabase naloga za', email, '- cet se nije automatski otkljucao.');
         }
       } catch (e) {
-        console.error('raiaccept-callback: otključavanje četa nije uspelo', e);
-        // Ne prekidamo tok — račun i Supabase pretplata su već upisani; ovo se može ručno doraditi.
+        console.error('upc-callback: otkljucavanje ceta nije uspelo', e.message);
       }
     }
-    // (za 'prodavnica' artikle ovde dodeli download/pristup po sifri)
 
-    // 5) Mejl kupcu sa fiskalnim računom
-    await mail.posaljiRacun({
-      to: email,
-      racun,
-      sta: detaljno.map((s) => `${s.naziv} ×${s.kolicina}`).join(', '),
-      pristupLink,
-    });
+    // 5) Mejl kupcu (ako pukne, ne rusimo - placanje i aktivacija su prosli)
+    try {
+      await mail.posaljiRacun({
+        to: email,
+        racun,
+        sta: detaljno.map(function (s) { return s.naziv + ' x' + s.kolicina; }).join(', '),
+        pristupLink,
+      });
+    } catch (e) {
+      console.error('upc-callback: slanje mejla nije uspelo', e.message);
+    }
 
-    return res.status(200).json({ ok: true });
+    return posalji(res, f, 'approve', 'ok');
   } catch (e) {
-    console.error('raiaccept-callback', e);
-    // Vrati 500 da RaiAccept ponovi poziv (retry) ako nešto pukne
-    return res.status(500).json({ greska: e.message });
+    console.error('upc-callback', e);
+    return posalji(res, f, 'approve', 'processing error - manual');
   }
 }

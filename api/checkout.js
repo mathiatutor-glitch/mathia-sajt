@@ -4,7 +4,6 @@
 // Server izračuna iznos iz kataloga, napravi porudžbinu i vrati URL za plaćanje.
 // ──────────────────────────────────────────────────────────────────────────
 import { izracunajIznos, nadjiStavku } from '../lib/proizvodi.js';
-import * as rai from '../lib/raiaccept.js';
 import * as supa from '../lib/supabase.js';
 
 export default async function handler(req, res) {
@@ -25,19 +24,12 @@ export default async function handler(req, res) {
     if (!supa.konfigurisan()) return res.status(503).json({ greska: 'Baza nije podešena (Supabase ključevi)' });
     const orderId = await supa.napraviPorudzbinu({ email, ime, iznos: ukupno, stavke: { detaljno, predmeti: predmeti || null }, tip });
 
-    // 4) RaiAccept sesija plaćanja
+    // 4) URL za plaćanje — vodi na pay-start koji pravi potpisanu UPC formu.
+    //    (SUCCESS_URL / FAILURE_URL / NOTIFY_URL se podešavaju na UPC Merchant portalu.)
     const base = process.env.APP_URL || `https://${req.headers.host}`;
-    const { paymentUrl, ref } = await rai.kreirajPlacanje({
-      orderId,
-      iznosRsd: ukupno,
-      opis: detaljno.map((s) => s.naziv).join(', '),
-      email,
-      returnUrl: `${base}/hvala.html?porudzbina=${orderId}`,
-      callbackUrl: `${base}/api/raiaccept-callback`,
-    });
-    await supa.oznaciPlaceno; // (no-op ovde; status menja callback)
+    const paymentUrl = `${base}/api/pay-start?order=${orderId}`;
 
-    return res.status(200).json({ paymentUrl, orderId, ref, iznos: ukupno });
+    return res.status(200).json({ paymentUrl, orderId, iznos: ukupno });
   } catch (e) {
     console.error('checkout', e);
     return res.status(500).json({ greska: e.message });
