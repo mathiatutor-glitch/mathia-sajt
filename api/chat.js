@@ -6,31 +6,31 @@
 // ============================================================
 import { getSessionPhone } from "../lib/auth.js";
 import {
-  getUser, saveUser, isSubscribed, computeTrial,
+  getUser, saveUser, isSubscribed, isAdmin, computeTrial,
   recordQuestion, publicProfile,
 } from "../lib/user.js";
 import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 import { sbUser } from "../lib/sbauth.js";
 
 const LOGIN_MSG = {
-  sr: "Zdravo! Da započnemo čas, prijavi se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
-  en: "Hi! To start the lesson, please sign in on the Account page (/nalog.html). Your first 15 minutes are completely free.",
-  de: "Hallo! Um die Stunde zu beginnen, melde dich auf der Konto-Seite (/nalog.html) an. Deine ersten 15 Minuten sind völlig kostenlos.",
-  fr: "Bonjour ! Pour commencer le cours, connecte-toi sur la page Compte (/nalog.html). Tes 15 premières minutes sont entièrement gratuites.",
-  es: "¡Hola! Para empezar la clase, inicia sesión en la página Cuenta (/nalog.html). Tus primeros 15 minutos son totalmente gratis.",
-  it: "Ciao! Per iniziare la lezione, accedi nella pagina Account (/nalog.html). I tuoi primi 15 minuti sono completamente gratuiti.",
-  ru: "Привет! Чтобы начать урок, войдите на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
-  pt: "Olá! Para começar a aula, entra na página Conta (/nalog.html). Os teus primeiros 15 minutos são totalmente gratuitos."
+  sr: "Zdravo! Da bismo započeli čas, prijavite se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
+  en: "Hello! To start the lesson, please sign in on the Account page (/nalog.html). Your first 15 minutes are completely free.",
+  de: "Hallo! Um die Stunde zu beginnen, melden Sie sich auf der Konto-Seite (/nalog.html) an. Ihre ersten 15 Minuten sind völlig kostenlos.",
+  fr: "Bonjour ! Pour commencer le cours, connectez-vous sur la page Compte (/nalog.html). Vos 15 premières minutes sont entièrement gratuites.",
+  es: "¡Hola! Para empezar la clase, inicie sesión en la página Cuenta (/nalog.html). Sus primeros 15 minutos son totalmente gratuitos.",
+  it: "Buongiorno! Per iniziare la lezione, acceda nella pagina Account (/nalog.html). I suoi primi 15 minuti sono completamente gratuiti.",
+  ru: "Добрый день! Чтобы начать урок, войдите на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
+  pt: "Olá! Para começar a aula, entre na página Conta (/nalog.html). Os seus primeiros 15 minutos são totalmente gratuitos."
 };
 const OVER_MSG = {
-  sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
+  sr: "Vaših 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberite paket na stranici Cene (/index.html#cene).",
   en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#cene).",
-  de: "Deine 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wähle ein Paket auf der Preise-Seite (/index.html#cene).",
-  fr: "Tes 15 minutes gratuites sont écoulées. Pour continuer, choisis une formule sur la page Tarifs (/index.html#cene).",
-  es: "Tus 15 minutos gratis han terminado. Para continuar, elige un plan en la página Precios (/index.html#cene).",
-  it: "I tuoi 15 minuti gratuiti sono finiti. Per continuare, scegli un piano nella pagina Prezzi (/index.html#cene).",
+  de: "Ihre 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wählen Sie ein Paket auf der Preise-Seite (/index.html#cene).",
+  fr: "Vos 15 minutes gratuites sont écoulées. Pour continuer, choisissez une formule sur la page Tarifs (/index.html#cene).",
+  es: "Sus 15 minutos gratuitos han terminado. Para continuar, elija un plan en la página Precios (/index.html#cene).",
+  it: "I suoi 15 minuti gratuiti sono finiti. Per continuare, scelga un piano nella pagina Prezzi (/index.html#cene).",
   ru: "Ваши 15 бесплатных минут закончились. Чтобы продолжить, выберите план на странице Цены (/index.html#cene).",
-  pt: "Os teus 15 minutos gratuitos terminaram. Para continuar, escolhe um plano na página Preços (/index.html#cene)."
+  pt: "Os seus 15 minutos gratuitos terminaram. Para continuar, escolha um plano na página Preços (/index.html#cene)."
 };
 
 const SHARED = `
@@ -254,14 +254,14 @@ function buildSystem(mode, lang) {
 
 // ——— ograničenje brzine (anti-spam; štiti od nepotrebnog troška na AI-u) ———
 const RL_MSG = {
-  sr: "Samo trenutak — stižu pitanja prebrzo. Sačekaj koji sekund pa probaj ponovo.",
+  sr: "Samo trenutak — pitanja pristižu previše brzo. Sačekajte koji sekund i pokušajte ponovo.",
   en: "Just a moment — questions are coming in too fast. Wait a few seconds and try again.",
-  de: "Einen Moment — die Fragen kommen zu schnell. Warte ein paar Sekunden und versuche es erneut.",
-  fr: "Un instant — les questions arrivent trop vite. Attends quelques secondes et réessaie.",
-  es: "Un momento — llegan preguntas demasiado rápido. Espera unos segundos e inténtalo de nuevo.",
-  it: "Un attimo — le domande arrivano troppo in fretta. Aspetta qualche secondo e riprova.",
+  de: "Einen Moment — die Fragen kommen zu schnell. Warten Sie ein paar Sekunden und versuchen Sie es erneut.",
+  fr: "Un instant — les questions arrivent trop vite. Attendez quelques secondes et réessayez.",
+  es: "Un momento — llegan preguntas demasiado rápido. Espere unos segundos e inténtelo de nuevo.",
+  it: "Un attimo — le domande arrivano troppo in fretta. Attenda qualche secondo e riprovi.",
   ru: "Минутку — вопросы приходят слишком быстро. Подождите несколько секунд и попробуйте снова.",
-  pt: "Um momento — as perguntas chegam rápido demais. Espera alguns segundos e tenta de novo."
+  pt: "Um momento — as perguntas chegam rápido demais. Aguarde alguns segundos e tente novamente."
 };
 // ——— identitet preko Supabase (email) naloga ———
 
@@ -316,6 +316,12 @@ export default async function handler(req, res) {
       else { const phone = await getSessionPhone(req); if (phone) uid = phone; }
       if (!uid) return res.status(200).json({ text: LOGIN_MSG[msgLang], reply: LOGIN_MSG[msgLang], mode: rmode });
 
+      // ——— ADMIN BYPASS ———
+      // Ako je korisnik u ADMIN_EMAILS listi — preskoči SVA ograničenja (rate limit, trial, pretplata, predmeti)
+      const sbEmail = sb && sb.email ? sb.email : null;
+      if (sbEmail && isAdmin(sbEmail)) {
+        // Admin prolazi direktno — samo gradi odgovor, nema provera
+      } else {
       // ograničenje po korisniku (velikodušno za stvarno učenje, ali staje botu/spamu)
       if (await tooMany("u:" + uid, 20, 400)) {
         return res.status(200).json({ text: RL_MSG[msgLang], reply: RL_MSG[msgLang], mode: rmode });
@@ -326,26 +332,23 @@ export default async function handler(req, res) {
       if (!isSubscribed(u)) {
         const tnow = computeTrial(u);
         if (tnow.expired) return res.status(200).json({ text: OVER_MSG[msgLang], reply: OVER_MSG[msgLang], mode: rmode });
-        if (!u.trialStartedAt) u.trialStartedAt = Date.now();   // sat kreće od prvog pitanja
+        if (!u.trialStartedAt) u.trialStartedAt = Date.now();
         u.trialQuestions = (u.trialQuestions || 0) + 1;
       } else if (rmode !== "site") {
-        // Provera da li pretplaćeni korisnik ima pristup ovom predmetu
-        const izabrani = u.predmeti || []; // lista izabranih predmeta (upisana pri pretplati)
+        const izabrani = u.predmeti || [];
         const PAKETI_LIMIT = { basic: 1, gold: 2, diamond: 3 };
         const limit = PAKETI_LIMIT[u.plan] || 1;
-        // Ako korisnik još nije izabrao predmete, neka ih izabere
         if (izabrani.length === 0) {
           const PICK_MSG = {
-            sr: `Zdravo! Pre nego što počnemo, molim te izaberi ${limit === 1 ? "predmet koji" : limit + " predmeta koje"} želiš da učiš uz tvoj ${u.plan || ""} paket. Idi na stranicu Nalog (/nalog.html) i izaberi predmete — pa se vrati ovde!`,
-            en: `Hi! Before we start, please choose ${limit === 1 ? "the subject you" : limit + " subjects you"} want to study. Go to Account (/nalog.html) and select your subjects — then come back here!`,
+            sr: `Zdravo! Pre nego što počnemo, molimo vas da izaberete ${limit === 1 ? "predmet koji" : limit + " predmeta koje"} želite da učite uz vaš ${u.plan || ""} paket. Posetite stranicu Nalog (/nalog.html) i izaberite predmete — zatim se vratite ovde.`,
+            en: `Hello! Before we start, please choose ${limit === 1 ? "the subject you" : limit + " subjects you"} want to study. Go to Account (/nalog.html) and select your subjects — then come back here.`,
           };
           return res.status(200).json({ text: PICK_MSG[msgLang] || PICK_MSG.sr, mode: rmode });
         }
-        // Ako ima izabrane predmete ali ne i ovaj
         if (izabrani.length > 0 && !izabrani.includes(rmode)) {
           const LOCKED_MSG = {
-            sr: `Ovaj predmet nije u tvom planu. Tvoj ${u.plan || ""} paket pokriva ${limit} predmet${limit > 1 ? "a" : ""}. Promeni predmete na stranici Nalog (/nalog.html).`,
-            en: `This subject is not in your plan. Your ${u.plan || ""} package covers ${limit} subject${limit > 1 ? "s" : ""}. Change subjects on Account page (/nalog.html).`,
+            sr: `Ovaj predmet nije obuhvaćen vašim planom. Vaš ${u.plan || ""} paket pokriva ${limit} predmet${limit > 1 ? "a" : ""}. Promenite predmete na stranici Nalog (/nalog.html).`,
+            en: `This subject is not included in your plan. Your ${u.plan || ""} package covers ${limit} subject${limit > 1 ? "s" : ""}. Change subjects on the Account page (/nalog.html).`,
           };
           return res.status(200).json({ text: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, mode: rmode });
         }
@@ -355,21 +358,27 @@ export default async function handler(req, res) {
       const gained = recordQuestion(u);
       await saveUser(u);
       progress = publicProfile(u);
-      progress.gained = gained;   // {gainedStars, firstToday, newBadges}
+      progress.gained = gained;
+      } // kraj else (nije admin)
     }
 
     const system = buildSystem(mode, lang);
-    // Personalizacija: ako znamo ime i napredak korisnika, dodajemo ih u system prompt
     const userName = body.userName || null;
     const userPredmeti = body.userPredmeti || [];
     let personalCtx = "";
     if (uid && rmode !== "site") {
       const u2 = await getUser(uid);
       const profil = [];
-      if (userName) profil.push("Ime korisnika: " + userName.split(" ")[0]);
-      if (u2 && u2.trialQuestions) profil.push("Pitanja do sada: " + u2.trialQuestions);
+      if (userName) profil.push("Korisnik se zove " + userName.split(" ")[0]);
+      if (u2 && u2.trialQuestions) profil.push("Broj pitanja do sada: " + u2.trialQuestions);
       if (userPredmeti.length) profil.push("Izabrani predmeti: " + userPredmeti.join(", "));
-      if (profil.length) personalCtx = "\n\nKORISNIK: " + profil.join("; ") + ". Oslovljavaj korisnika po imenu kad je prirodno (ali ne preterano). Znaš ko si i ko je on/ona.";
+      if (profil.length) {
+        personalCtx = "\n\nKORISNIK PROFIL: " + profil.join("; ") + "."
+          + "\nPravila obraćanja: Oslovljavaj korisnika po imenu prirodno — ne u svakoj poruci, ali kad počinješ objašnjenje ili kad ga pohvališ. "
+          + "Kada korisnik reši zadatak ili shvati pojam, pohvali ga toplo i po imenu. "
+          + "Kada zaglavi, ohrabri ga po imenu. "
+          + "Ti si Marina — topla, strpljiva, uvek uz korisnika. Pamtiš ko je i šta uči.";
+      }
     }
     const finalSystem = system + personalCtx;
 
