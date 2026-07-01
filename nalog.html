@@ -47,7 +47,7 @@ img,svg{max-width:100%}
 .lcard .sub{color:var(--muted);font-size:.92rem;margin:6px 0 22px}
 .field{text-align:left;margin-bottom:14px}
 .field label{display:block;font-size:.76rem;font-weight:800;color:var(--plum2);margin-bottom:5px}
-.field input{width:100%;border:1.5px solid var(--bord);background:#fff;border-radius:13px;padding:12px 14px;font-family:inherit;font-size:.95rem;color:var(--ink)}
+.field input{width:100%;border:1.5px solid var(--bord);background:#fff;border-radius:13px;padding:12px 14px;font-family:inherit;font-size:16px;color:var(--ink)}
 .field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,160,92,.16)}
 .lswitch{margin-top:16px;font-size:.86rem;color:var(--muted)}
 .lswitch button{background:none;border:none;color:var(--golddk);font-family:inherit;font-weight:800;cursor:pointer;text-decoration:underline}
@@ -266,21 +266,26 @@ code{overflow-wrap:break-word}
 <div id="login">
   <div class="lcard">
     <div class="lmark foil">MATHIA</div>
-    <div class="script">Tvoj kutak za učenje</div>
+    <div class="script">Vaš prostor za učenje</div>
     <h2 id="ltitle">Prijavi se</h2>
-    <p class="sub" id="lsub">Lepo je videti te ponovo.</p>
+    <p class="sub" id="lsub">Dobrodošli nazad.</p>
     <div class="field" id="f-email"><label>E-mail</label><input id="in-mail" type="email" autocomplete="email" placeholder="ti@primer.rs" onkeydown="if(event.key==='Enter')auth()"></div>
     <div class="field" id="f-code" style="display:none"><label>Kod iz mejla (6 cifara)</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456" onkeydown="if(event.key==='Enter')auth()"></div>
-    <button class="btn btn-gold" style="width:100%" onclick="auth()" id="lbtn">Pošalji mi kod →</button>
+    <div class="field" id="f-name" style="display:none">
+      <label>Kako ti je ime? 🌷</label>
+      <input id="in-name" type="text" autocomplete="given-name" placeholder="npr. Ana" onkeydown="if(event.key==='Enter')saveName()">
+      <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Koristićemo ga za personalizovanu komunikaciju.</div>
+    </div>
+    <button class="btn btn-gold" style="width:100%" onclick="auth()" id="lbtn">Pošaljite mi kod →</button>
     <div id="lmsg" style="min-height:18px;font-size:.84rem;color:var(--golddk);margin-top:10px"></div>
-    <div class="lnote">Prijava bez lozinke — pošaljemo ti link i kod na e-mail.</div>
+    <div class="lnote">Prijava bez lozinke — poslaćemo vam link i kod na e-adresu.</div>
   </div>
 </div>
 
 <!-- APP -->
 <div id="app">
   <aside class="side">
-    <div class="brand foil">MATHIA<small class="script">tvoj kutak za učenje</small></div>
+    <div class="brand foil">MATHIA<small class="script">vaš prostor za učenje</small></div>
     <button class="snav act" onclick="go('home',this)"><span class="ic">🏠</span> Početna</button>
     <button class="snav" onclick="go('subj',this)"><span class="ic">📚</span> Moji predmeti</button>
     <button class="snav" onclick="go('mat',this)"><span class="ic">📐</span> Materijali</button>
@@ -332,7 +337,7 @@ code{overflow-wrap:break-word}
         <div class="card resume">
           <div class="ic">∫</div>
           <div class="t"><b>Matematika 1 — Određeni integrali</b><span>Lekcija 9 od 14 · poslednji put juče</span></div>
-          <button class="btn btn-gold" onclick="go('prof',document.querySelectorAll('.snav')[5])">Nastavi →</button>
+          <button class="btn btn-gold" onclick="go('prof',document.querySelectorAll('.snav')[5])">Nastavite →</button>
         </div>
 
         <h3 class="sectitle">Moji predmeti</h3>
@@ -401,7 +406,7 @@ code{overflow-wrap:break-word}
         </div>
         <div class="card" style="margin-top:16px">
           <h4 style="font-size:1.2rem;color:var(--plum);margin-bottom:8px">Niz učenja 🔥</h4>
-          <div class="legend">Šest dana zaredom — najduži niz: 11 dana</div>
+          <div class="legend">Šest uzastopnih dana — najduži niz: 11 dana</div>
           <div class="streak" id="streak"></div>
         </div>
       </section>
@@ -474,7 +479,20 @@ async function auth(){
       if(v.error){ setMsg('Pogrešan ili istekao kod.',true); btn.disabled=false; return; }
       USER=(v.data&&v.data.user)?v.data.user:((v.data&&v.data.session)?v.data.session.user:null);
       btn.disabled=false; await loadData();
-      // Posle login-a: ako postoji ?next= URL, idi tamo; inače ostaj na nalogu
+      // Ako je novi korisnik (nema ime u profilu) — pitaj ime
+      var imaIme = PROFILE && PROFILE.ime && PROFILE.ime.trim().length > 0;
+      if(!imaIme){
+        STEP='name';
+        $('f-code').style.display='none';
+        $('f-name').style.display='block';
+        $('ltitle').textContent='Jedno pitanje za vas 🌷';
+        $('lsub').textContent='Da bi Marina znala kako da ti se obraća:';
+        $('lbtn').textContent='Nastavite →';
+        $('lbtn').onclick=saveName;
+        setTimeout(function(){ try{$('in-name').focus();}catch(e){} },100);
+        return;
+      }
+      // Stari korisnik — idi na ?next= ili nalog
       var next = new URLSearchParams(location.search).get('next');
       if(next && next.startsWith('/')) { location.href = next; return; }
       showApp();
@@ -483,10 +501,33 @@ async function auth(){
 }
 async function logout(){ try{ if(sb) await sb.auth.signOut(); }catch(e){} USER=null;PROFILE=null;SUBJECTS=[]; var m=$('msgs'); if(m){m.innerHTML='';delete m.dataset.init;} showLogin(); }
 
+async function saveName(){
+  var ime=($('in-name').value||'').trim();
+  if(!ime){ setMsg('Unesi bar ime 🌷',true); return; }
+  var btn=$('lbtn'); btn.disabled=true; setMsg('Čuvam…');
+  try{
+    if(sb && USER){
+      await sb.from('mathia_profil').upsert({user_id:USER.id, ime:ime},{onConflict:'user_id'});
+      if(!PROFILE) PROFILE={};
+      PROFILE.ime = ime;
+    }
+  }catch(e){}
+  btn.disabled=false;
+  // Posle čuvanja — idi na ?next= ili nalog
+  var next=new URLSearchParams(location.search).get('next');
+  if(next && next.startsWith('/')) { location.href=next; return; }
+  showApp();
+}
+
 /* BOOT / DATA */
 async function boot(){
   if(sb){ try{ var u=await sb.auth.getUser(); USER=(u&&u.data&&u.data.user)?u.data.user:null; }catch(e){ USER=null; } }
-  if(USER){ await loadData(); showApp(); } else { showLogin(); }
+  if(USER){
+    await loadData();
+    var next=new URLSearchParams(location.search).get('next');
+    if(next && next.startsWith('/')) { location.href=next; return; }
+    showApp();
+  } else { showLogin(); }
 }
 async function loadData(){
   PROFILE=null; SUBJECTS=[]; if(!sb||!USER) return;
@@ -495,8 +536,12 @@ async function loadData(){
 }
 function showLogin(){ $('login').style.display='flex'; $('app').classList.remove('on');
   STEP='email'; EMAIL=''; var c=$('f-code'); if(c)c.style.display='none';
-  var b=$('lbtn'); if(b){b.textContent='Pošalji mi kod →'; b.disabled=false;}
-  var sub=$('lsub'); if(sub)sub.textContent='Unesi e-mail — pošaljemo ti link i kod za prijavu.';
+  var fn=$('f-name'); if(fn)fn.style.display='none';
+  var b=$('lbtn'); if(b){b.textContent='Pošaljite mi kod →'; b.disabled=false; b.onclick=auth;}
+  var sub=$('lsub'); if(sub)sub.textContent='Unesite e-adresu — poslaćemo vam link i kod za prijavu.';
+  var tit=$('ltitle'); if(tit)tit.textContent='Prijavi se';
+  var b=$('lbtn'); if(b){b.textContent='Pošaljite mi kod →'; b.disabled=false;}
+  var sub=$('lsub'); if(sub)sub.textContent='Unesite e-adresu — poslaćemo vam link i kod za prijavu.';
   setMsg(''); window.scrollTo(0,0);
 }
 function showApp(){ $('login').style.display='none'; $('app').classList.add('on'); render(); window.scrollTo(0,0); }
@@ -560,7 +605,7 @@ function render(){
     rc.querySelector('.ic').textContent='📘';
     rc.querySelector('.t b').textContent=cap(s0.predmet);
     rc.querySelector('.t span').textContent=(s0.poslednja_tema?('Tema: '+s0.poslednja_tema):'Nastavi učenje');
-    var rb=rc.querySelector('.btn'); if(rb)rb.outerHTML='<a class="btn btn-gold" href="'+pageFor(s0.predmet)+'">Nastavi →</a>';
+    var rb=rc.querySelector('.btn'); if(rb)rb.outerHTML='<a class="btn btn-gold" href="'+pageFor(s0.predmet)+'">Nastavite →</a>';
   } else { if(rc)rc.style.display='none'; if(rh)rh.style.display='none'; }
   var hs=$('home-subj'),as=$('all-subj');
   // Opis predmeta i dugme prema paketu
