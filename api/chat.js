@@ -359,6 +359,19 @@ export default async function handler(req, res) {
     }
 
     const system = buildSystem(mode, lang);
+    // Personalizacija: ako znamo ime i napredak korisnika, dodajemo ih u system prompt
+    const userName = body.userName || null;
+    const userPredmeti = body.userPredmeti || [];
+    let personalCtx = "";
+    if (uid && rmode !== "site") {
+      const u2 = await getUser(uid);
+      const profil = [];
+      if (userName) profil.push("Ime korisnika: " + userName.split(" ")[0]);
+      if (u2 && u2.trialQuestions) profil.push("Pitanja do sada: " + u2.trialQuestions);
+      if (userPredmeti.length) profil.push("Izabrani predmeti: " + userPredmeti.join(", "));
+      if (profil.length) personalCtx = "\n\nKORISNIK: " + profil.join("; ") + ". Oslovljavaj korisnika po imenu kad je prirodno (ali ne preterano). Znaš ko si i ko je on/ona.";
+    }
+    const finalSystem = system + personalCtx;
 
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -367,7 +380,7 @@ export default async function handler(req, res) {
         "x-api-key": process.env.ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01",
       },
-      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, system, messages }),
+      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, system: finalSystem, messages }),
     });
 
     const data = await r.json();
