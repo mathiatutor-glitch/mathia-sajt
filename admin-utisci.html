@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Utisci — administracija</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="icon-192.png">
+<style>
+  :root{
+    --paper:#FBF6EE; --plum:#432C37; --plum3:#7E5765; --gold:#C6A05C; --golddk:#9C7838;
+    --ink:#3E2D34; --muted:#90787E; --bord:#ECDAC5; --card:#fffcf6;
+    --ok:#37703a; --okbg:#eef6ec; --okbd:#cfe6cf;
+    --wait:#9c6a1e; --waitbg:#fbf1dc; --waitbd:#eed9ac;
+    --del:#a5342a; --delbg:#fbe9e7; --delbd:#f3cfc9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}
+  h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;color:var(--plum);margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding:26px 18px 60px}
+  header{text-align:center;margin-bottom:8px}
+  header .eyebrow{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+  header h1{font-size:2rem;margin:6px 0}
+  .sub{text-align:center;color:var(--muted);font-size:.9rem;margin-bottom:22px}
+  .bar{display:flex;gap:10px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+  .chip{font-size:.82rem;font-weight:800;padding:6px 13px;border-radius:100px;border:1px solid var(--bord);background:#fff;color:var(--plum3)}
+  .chip b{color:var(--plum)}
+  .gate{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:26px;text-align:center;color:var(--muted)}
+  .gate a{color:var(--golddk);font-weight:800}
+  .card{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:16px 17px;margin-bottom:14px;box-shadow:0 14px 34px -26px rgba(120,70,80,.4)}
+  .card.wait{border-left:4px solid var(--gold)}
+  .card.live{border-left:4px solid var(--ok)}
+  .row1{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
+  .who{font-weight:800;color:var(--plum)}
+  .who span{color:var(--muted);font-weight:600;font-size:.86rem}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:.95rem}
+  .txt{color:var(--ink);margin:6px 0 10px;white-space:pre-wrap}
+  .meta{font-size:.75rem;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .status{font-weight:800;padding:2px 9px;border-radius:100px;font-size:.72rem}
+  .status.w{background:var(--waitbg);color:var(--wait);border:1px solid var(--waitbd)}
+  .status.l{background:var(--okbg);color:var(--ok);border:1px solid var(--okbd)}
+  .acts{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  button{font-family:inherit;font-weight:800;font-size:.86rem;border-radius:100px;padding:9px 16px;border:1.5px solid transparent;cursor:pointer;transition:transform .12s,opacity .2s}
+  button:active{transform:scale(.97)}
+  button:disabled{opacity:.5;cursor:wait}
+  .b-ok{background:var(--ok);color:#fff}
+  .b-un{background:#fff;color:var(--wait);border-color:var(--waitbd)}
+  .b-del{background:#fff;color:var(--del);border-color:var(--delbd)}
+  .empty{text-align:center;color:var(--muted);padding:26px;font-style:italic}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--plum);color:#fff;padding:11px 20px;border-radius:100px;font-weight:700;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .25s}
+  .toast.show{opacity:1}
+  .sec-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--plum);margin:22px 0 10px;font-weight:600}
+  .back{display:inline-block;margin-top:20px;color:var(--golddk);font-weight:700;text-align:center;width:100%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">administracija</div>
+    <h1>Utisci učenika</h1>
+  </header>
+  <div class="sub">Odobreni utisci se prikazuju na naslovnoj strani. Neodobreni čekaju vas.</div>
+
+  <div id="content"><div class="gate">Učitavanje…</div></div>
+  <a class="back" href="index.html">← Nazad na sajt</a>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var API = "/api/utisci-admin";
+  var content = document.getElementById("content");
+  var toast = document.getElementById("toast");
+
+  function sbToken(){
+    try{
+      for(var i=0;i<localStorage.length;i++){
+        var k=localStorage.key(i);
+        if(k && /^sb-.*-auth-token$/.test(k)){
+          var raw=localStorage.getItem(k); if(!raw) continue;
+          var v=JSON.parse(raw);
+          var t=v && (v.access_token || (v.currentSession&&v.currentSession.access_token) || (v.session&&v.session.access_token));
+          if(t) return t;
+        }
+      }
+    }catch(e){}
+    return null;
+  }
+
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function stars(n){ n=Math.max(1,Math.min(5,n||5)); return new Array(n+1).join("★")+new Array(6-n).join("☆"); }
+  function datum(s){ try{ var d=new Date(s); return d.toLocaleDateString("sr-RS")+" "+d.toLocaleTimeString("sr-RS",{hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
+  function say(msg){ toast.textContent=msg; toast.classList.add("show"); setTimeout(function(){toast.classList.remove("show");},2200); }
+
+  function gate(html){ content.innerHTML='<div class="gate">'+html+'</div>'; }
+
+  var token = sbToken();
+  if(!token){
+    gate('Niste prijavljeni. <br><br><a href="nalog.html?next=/admin-utisci.html">Prijavite se ovde →</a>');
+    return;
+  }
+
+  function load(){
+    fetch(API, { headers:{ Authorization:"Bearer "+token } })
+    .then(function(r){ return r.json().then(function(j){ return {status:r.status, j:j}; }); })
+    .then(function(res){
+      if(res.status===401){ gate('Sesija je istekla. <br><br><a href="nalog.html?next=/admin-utisci.html">Prijavite se ponovo →</a>'); return; }
+      if(res.status===403){ gate('Ovaj nalog nema administratorski pristup.<br>Prijavite se nalogom <b>mathia.tutor@gmail.com</b>.'); return; }
+      if(!res.j || !res.j.ok){ gate('Greška pri učitavanju.'); return; }
+      render(res.j.utisci || []);
+    })
+    .catch(function(){ gate('Nema veze sa serverom. Osvežite stranicu.'); });
+  }
+
+  function render(list){
+    var wait = list.filter(function(u){return !u.odobreno;});
+    var live = list.filter(function(u){return u.odobreno;});
+
+    var html =
+      '<div class="bar">'+
+        '<span class="chip">Čeka odobrenje: <b>'+wait.length+'</b></span>'+
+        '<span class="chip">Na sajtu: <b>'+live.length+'</b></span>'+
+      '</div>';
+
+    if(!list.length){ content.innerHTML = html + '<div class="empty">Još nema pristiglih utisaka.</div>'; return; }
+
+    if(wait.length){
+      html += '<div class="sec-title">Za pregled</div>';
+      html += wait.map(function(u){ return card(u,false); }).join("");
+    }
+    if(live.length){
+      html += '<div class="sec-title">Objavljeno na sajtu</div>';
+      html += live.map(function(u){ return card(u,true); }).join("");
+    }
+    content.innerHTML = html;
+    bind();
+  }
+
+  function card(u, isLive){
+    var who = esc(u.ime)+(u.razred?' <span>· '+esc(u.razred)+'</span>':'');
+    var acts = isLive
+      ? '<button class="b-un" data-act="unapprove" data-id="'+u.id+'">Skloni sa sajta</button>'
+      : '<button class="b-ok" data-act="approve" data-id="'+u.id+'">✓ Odobri</button>';
+    acts += '<button class="b-del" data-act="delete" data-id="'+u.id+'">Obriši</button>';
+    return '<div class="card '+(isLive?'live':'wait')+'">'+
+      '<div class="row1"><div class="who">'+who+'</div><div class="stars">'+stars(u.zvezdice)+'</div></div>'+
+      '<div class="txt">'+esc(u.tekst)+'</div>'+
+      '<div class="meta"><span class="status '+(isLive?'l':'w')+'">'+(isLive?'na sajtu':'čeka')+'</span><span>'+datum(u.kreirano)+'</span></div>'+
+      '<div class="acts">'+acts+'</div>'+
+    '</div>';
+  }
+
+  function bind(){
+    Array.prototype.forEach.call(document.querySelectorAll(".acts button"), function(btn){
+      btn.addEventListener("click", function(){
+        var id = btn.getAttribute("data-id");
+        var act = btn.getAttribute("data-act");
+        if(act==="delete" && !confirm("Trajno obrisati ovaj utisak?")) return;
+        Array.prototype.forEach.call(document.querySelectorAll(".acts button"), function(b){ b.disabled=true; });
+        fetch(API, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json", Authorization:"Bearer "+token },
+          body: JSON.stringify({ id:id, action:act })
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(j && j.ok){
+            say(act==="approve"?"Objavljeno na sajtu ✓":act==="unapprove"?"Sklonjeno sa sajta":"Obrisano");
+            load();
+          } else { say("Greška — pokušajte ponovo"); load(); }
+        })
+        .catch(function(){ say("Greška u vezi"); load(); });
+      });
+    });
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>
