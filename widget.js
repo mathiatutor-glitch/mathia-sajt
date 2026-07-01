@@ -450,7 +450,33 @@
 
   function greet() {
     msgsEl.innerHTML = "";
+    // Ako memorija već učitana i ima poruka — ne prikazuj standardni pozdrav ponovo
+    if (MEM_LOADED && history.length > 0) return;
     addBub("zoi", modeHi(t()));
+  }
+
+  async function initMemory() {
+    if (ISSITE) { greet(); return; }
+    await memLoad();
+    if (!MEM_LOADED || history.length === 0) {
+      // Nema memorije ili nije ulogovan — standardni pozdrav
+      greet();
+    } else {
+      // Ima memoriju — personalizovani pozdrav nastavka
+      var ime = MEM_IME ? MEM_IME.split(" ")[0] : null;
+      var pozdrav = {
+        sr: (ime ? "Dobrodošla nazad, " + ime + "! 🌷 " : "Dobrodošla nazad! 🌷 ") + "Nastavljamo gde smo stali.",
+        en: (ime ? "Welcome back, " + ime + "! 🌷 " : "Welcome back! 🌷 ") + "Let's continue where we left off.",
+        de: (ime ? "Willkommen zurück, " + ime + "! 🌷 " : "Willkommen zurück! 🌷 ") + "Weiter geht's!",
+        fr: (ime ? "Bienvenue, " + ime + " ! 🌷 " : "Bienvenue ! 🌷 ") + "On reprend où on s'est arrêtés.",
+        es: (ime ? "¡Bienvenida, " + ime + "! 🌷 " : "¡Bienvenida! 🌷 ") + "Continuamos donde lo dejamos.",
+        it: (ime ? "Ben tornata, " + ime + "! 🌷 " : "Ben tornata! 🌷 ") + "Continuiamo da dove ci siamo fermati.",
+        ru: (ime ? "С возвращением, " + ime + "! 🌷 " : "С возвращением! 🌷 ") + "Продолжаем с того места.",
+        pt: (ime ? "Bem-vinda, " + ime + "! 🌷 " : "Bem-vinda! 🌷 ") + "Continuamos de onde ficamos."
+      };
+      addBub("zoi", pozdrav[LANG] || pozdrav.sr);
+    }
+    renderChips();
   }
 
   // ——— čišćenje Markdown-a (da se ne vide gole zvezdice/taraba) ———
@@ -1001,6 +1027,74 @@
     typing(true);
     setTimeout(function(){ typing(false); addBub("zoi", a); }, 320);
   }
+  // ——— MEMORIJA: pamćenje razgovora između sesija (Supabase) ———
+  var SB_URL = "https://ibhirxltgeyecrjwymai.supabase.co";
+  var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+  var MEM_USER = null;   // Supabase korisnik
+  var MEM_IME = null;    // ime korisnika
+  var MEM_PREDMETI = []; // lista predmeta iz pretplate
+  var MEM_KEY = RMODE || MODE; // ključ predmeta za memoriju
+  var MEM_LOADED = false;
+  var MEM_SAVING = false;
+  var MAX_PORUKA = 20;   // čuvamo do 20 poruka (10 pitanja + 10 odgovora)
+
+  function sbApiFetch(path, opts) {
+    var token = sbToken();
+    var headers = Object.assign({ "apikey": SB_ANON, "Content-Type": "application/json" }, opts && opts.headers || {});
+    if (token) headers["Authorization"] = "Bearer " + token;
+    return fetch(SB_URL + path, Object.assign({}, opts || {}, { headers: headers }));
+  }
+
+  async function memLoad() {
+    if (MEM_LOADED || ISSITE) return;
+    if (!sbToken()) return;
+    try {
+      // 1) Učitaj korisnika i profil
+      var ur = await sbApiFetch("/auth/v1/user");
+      if (!ur.ok) return;
+      MEM_USER = await ur.json();
+      if (!MEM_USER || !MEM_USER.id) return;
+      var pr = await sbApiFetch("/rest/v1/mathia_profil?user_id=eq." + MEM_USER.id + "&select=ime,predmeti");
+      if (pr.ok) {
+        var profilArr = await pr.json();
+        var profil = profilArr && profilArr[0];
+        if (profil) {
+          MEM_IME = profil.ime || null;
+          MEM_PREDMETI = profil.predmeti || [];
+        }
+      }
+      // 2) Učitaj razgovor za ovaj predmet
+      var rr = await sbApiFetch("/rest/v1/mathia_razgovori?user_id=eq." + MEM_USER.id + "&predmet=eq." + encodeURIComponent(MEM_KEY) + "&select=poruke,summary");
+      if (rr.ok) {
+        var arr = await rr.json();
+        if (arr && arr[0] && arr[0].poruke && arr[0].poruke.length > 0) {
+          history = arr[0].poruke.slice(-MAX_PORUKA);
+          // Prikaži prethodne poruke u četu
+          history.forEach(function(m) {
+            if (m.role === "user") addBub("me", m.content, null);
+            else if (m.role === "assistant") addBub("zoi", m.content);
+          });
+        }
+      }
+      MEM_LOADED = true;
+    } catch(e) { /* tiho — memorija nije kritična */ }
+  }
+
+  async function memSave() {
+    if (!MEM_USER || !MEM_USER.id || ISSITE || MEM_SAVING) return;
+    MEM_SAVING = true;
+    try {
+      var poruke = history.slice(-MAX_PORUKA);
+      var payload = JSON.stringify({ user_id: MEM_USER.id, predmet: MEM_KEY, poruke: poruke, azurirano: new Date().toISOString() });
+      await sbApiFetch("/rest/v1/mathia_razgovori", {
+        method: "POST",
+        headers: { "Prefer": "resolution=merge-duplicates" },
+        body: payload
+      });
+    } catch(e) { /* tiho */ }
+    MEM_SAVING = false;
+  }
+
   function sbToken(){
     try{
       for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(k && /^sb-.*-auth-token$/.test(k)){ var raw=localStorage.getItem(k); if(!raw) continue; var v=JSON.parse(raw); var t=v && (v.access_token || (v.currentSession && v.currentSession.access_token) || (v.session && v.session.access_token)); if(t) return t; } }
@@ -1033,7 +1127,7 @@
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode: MODE, lang: LANG, messages: history, token: sbToken() }),
+      body: JSON.stringify({ mode: MODE, lang: LANG, messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
     })
       .then(function (r) { return r.json(); })
       .then(function (data) {
@@ -1045,6 +1139,7 @@
         addBub("zoi", pc.text);
         speak(pc.text);
         setChips(pc.chips);
+        memSave(); // ← sačuvaj razgovor u Supabase
       })
       .catch(function () {
         typing(false); goEl.disabled = false;
@@ -1116,5 +1211,5 @@
 
   // ——— start ———
   applyLang();
-  greet();
+  initMemory(); // učita memoriju i personalizovano pozdravi
 })();
