@@ -473,7 +473,11 @@ async function auth(){
       var v=await sb.auth.verifyOtp({email:EMAIL, token:code, type:'email'});
       if(v.error){ setMsg('Pogrešan ili istekao kod.',true); btn.disabled=false; return; }
       USER=(v.data&&v.data.user)?v.data.user:((v.data&&v.data.session)?v.data.session.user:null);
-      btn.disabled=false; await loadData(); showApp();
+      btn.disabled=false; await loadData();
+      // Posle login-a: ako postoji ?next= URL, idi tamo; inače ostaj na nalogu
+      var next = new URLSearchParams(location.search).get('next');
+      if(next && next.startsWith('/')) { location.href = next; return; }
+      showApp();
     }catch(e){ setMsg('Pogrešan ili istekao kod.',true); btn.disabled=false; }
   }
 }
