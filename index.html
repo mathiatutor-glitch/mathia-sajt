@@ -690,12 +690,14 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 <section class="tst">
   <div class="wrap">
     <div class="sec-head reveal"><div class="ksub">poverenje</div><h2>Šta kažu roditelji i učenici</h2></div>
-    <div class="tgrid">
+    <div class="tgrid" id="tgrid">
       <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Ćerka je prvi put rekla da joj je matematika — zabavna. Konačno razume, a ne samo prepiše.</p><div class="who">Mama učenice · <span>7. razred</span></div></div>
       <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Više nema svađe oko telefona. Sada na njemu — uči. Ocene su krenule nagore.</p><div class="who">Roditelj · <span>srednja škola</span></div></div>
       <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Kao da dete ima privatnog profesora koji je uvek tu, strpljiv i tačan. Vredno svakog dinara.</p><div class="who">Roditelj · <span>osnovna škola</span></div></div>
     </div>
-    
+    <div class="reveal" style="text-align:center;margin-top:26px">
+      <a class="btn btn-ghost" href="utisci-posalji.html">Podelite i vi svoj utisak ✍</a>
+    </div>
   </div>
 </section>
 
@@ -1207,6 +1209,28 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
  if(k==='f12'){e.preventDefault();}
  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
 },{capture:true});
+})();</script>
+<script>/*utisci*/(function(){
+  var SB="https://ibhirxltgeyecrjwymai.supabase.co";
+  var AK="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+  var grid=document.getElementById("tgrid");
+  if(!grid) return;
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  fetch(SB+"/rest/v1/mathia_utisci?odobreno=eq.true&select=ime,razred,tekst,zvezdice&order=kreirano.desc&limit=9",
+    {headers:{apikey:AK,Authorization:"Bearer "+AK}})
+  .then(function(r){return r.ok?r.json():null;})
+  .then(function(rows){
+    if(!rows||!rows.length) return; /* nema odobrenih — ostavi postojeće */
+    grid.innerHTML=rows.map(function(u){
+      var n=Math.max(1,Math.min(5,u.zvezdice||5));
+      var stars=new Array(n+1).join("★");
+      var who=esc(u.ime)+(u.razred?' · <span>'+esc(u.razred)+'</span>':'');
+      return '<div class="quote reveal"><div class="qm">\u201C</div><div class="stars">'+stars+'</div><p>'+esc(u.tekst)+'</p><div class="who">'+who+'</div></div>';
+    }).join("");
+    /* re-trigger reveal animacije ako postoje */
+    grid.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});
+  })
+  .catch(function(){});
 })();</script>
 </body>
 </html>
