@@ -150,7 +150,7 @@
   };
   var CTA_TX = {sr:"Pitaj ",en:"Ask ",de:"Frag ",fr:"Demande à ",es:"Pregunta a ",it:"Chiedi a ",ru:"Спроси ",pt:"Pergunta à "};
   var SITE = {
-    sr:{sub:"profesorica", ph:"Napiši pitanje…", send:"Pošalji", hi:"Ćao! ❤️ Ja sam Profesorica, tvoj vodič kroz Mathiu. Objasniću ti gradivo, pomoći da izabereš pravi paket i pripremiti te za prijemni i upis na fakultete u Beogradu i Novom Sadu. 💡 Uz svaki paket dobijaš i test sklonosti — za par minuta otkriješ šta ti najviše leži i koji smer je pravi za tebe. Pitaj me bilo šta — prvih 15 minuta je besplatno! ✨"},
+    sr:{sub:"profesorica", ph:"Napiši pitanje…", send:"Pošalji", hi:"Zdravo! Ja sam Profesorica, tvoj vodič kroz Mathiu. Objasniću ti gradivo, pomoći da izabereš pravi paket i pripremiti te za prijemni i upis na fakultete u Beogradu i Novom Sadu. 💡 Uz svaki paket dobijaš i test sklonosti — za par minuta otkriješ šta ti najviše leži i koji smer je pravi za tebe. Pitaj me bilo šta — prvih 15 minuta je besplatno! ✨"},
     en:{sub:"your teacher", ph:"Type your question…", send:"Send", hi:"Hi! ❤️ I'm Profesorica, your guide through Mathia. I'll explain the material, help you choose the right plan, and prepare you for the entrance exams and enrolment at universities in Belgrade and Novi Sad. 💡 Every plan comes with an aptitude test — in just a few minutes you'll discover what suits you best and which programme is right for you. Ask me anything — your first 15 minutes are free! ✨"},
     de:{sub:"deine Lehrerin", ph:"Schreib deine Frage…", send:"Senden", hi:"Hallo! ❤️ Ich bin Profesorica, deine Begleiterin durch Mathia. Ich erkläre dir den Stoff, helfe dir beim passenden Paket und bereite dich auf die Aufnahmeprüfungen und die Einschreibung an Universitäten in Belgrad und Novi Sad vor. 💡 Zu jedem Paket gehört ein Eignungstest — in wenigen Minuten findest du heraus, was dir liegt und welcher Studiengang zu dir passt. Frag mich alles — deine ersten 15 Minuten sind gratis! ✨"},
     fr:{sub:"ta professeure", ph:"Écris ta question…", send:"Envoyer", hi:"Salut ! ❤️ Je suis Profesorica, ton guide sur Mathia. Je t'explique les cours, t'aide à choisir le bon forfait et te prépare aux concours d'entrée et à l'inscription dans les universités de Belgrade et Novi Sad. 💡 Chaque forfait inclut un test d'aptitude — en quelques minutes, tu découvres ce qui te convient et quelle filière est faite pour toi. Demande-moi ce que tu veux — tes 15 premières minutes sont offertes ! ✨"},
@@ -160,7 +160,7 @@
     pt:{sub:"a tua professora", ph:"Escreve a tua pergunta…", send:"Enviar", hi:"Olá! ❤️ Sou a Profesorica, o teu guia na Mathia. Explico-te a matéria, ajudo-te a escolher o plano certo e preparo-te para os exames de acesso e a matrícula nas universidades de Belgrado e Novi Sad. 💡 Cada plano inclui um teste de aptidão — em poucos minutos descobres o que te dá mais jeito e qual o curso certo para ti. Pergunta o que quiseres — os primeiros 15 minutos são grátis! ✨"}
   };
   var SUBJHI = {
-    sr:"Ćao! ❤️ Ja sam Profesorica za {subj}. Pitaj, slikaj 📷 ili izdiktiraj 🎙️ zadatak.",
+    sr:"Zdravo! Ja sam vaša profesorica za {subj}. Postavite pitanje, pošaljite sliku 📷 ili diktirajte 🎙️ zadatak.",
     en:"Hi! ❤️ I'm Profesorica, your {subj} teacher. Ask me, snap 📷 or dictate 🎙️ the problem.",
     de:"Hallo! ❤️ Ich bin Profesorica, deine Lehrerin für {subj}. Frag mich, fotografiere 📷 oder diktiere 🎙️ die Aufgabe.",
     fr:"Salut ! ❤️ Je suis Profesorica, ta professeure de {subj}. Pose ta question, photographie 📷 ou dicte 🎙️ l'exercice.",
@@ -171,27 +171,27 @@
   };
   function ctaLabel(){ var nm=NAME; if((LANG==="sr"||LANG==="hr")&&/a$/.test(nm)) nm=nm.slice(0,-1)+"u"; return (CTA_TX[LANG]||CTA_TX.sr)+nm; }
   var SUBJECTS = {
-    "prijemni-matematika": { name: "Profesorica", sub: { sr: "profesorica · prijemni", en: "teacher · entrance exam" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za prijemni iz matematike. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for the math entrance exam. Type a problem or send a photo — we'll go step by step." } },
-    "mala-matura": { name: "Profesorica", sub: { sr: "profesorica · mala matura", en: "teacher · grade-8 final" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za malu maturu iz matematike. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for the grade-8 math final. Type a problem or send a photo — we'll go step by step." } },
-    "sr-mat-1": { name: "Profesorica", sub: { sr: "profesorica · matematika 1. razred", en: "teacher · math · grade 1" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 1. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-1 math. Type a problem or send a photo — we'll go step by step." } },
-    "sr-mat-2": { name: "Profesorica", sub: { sr: "profesorica · matematika 2. razred", en: "teacher · math · grade 2" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 2. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-2 math. Type a problem or send a photo — we'll go step by step." } },
-    "sr-mat-3": { name: "Profesorica", sub: { sr: "profesorica · matematika 3. razred", en: "teacher · math · grade 3" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 3. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-3 math. Type a problem or send a photo — we'll go step by step." } },
-    "sr-mat-4": { name: "Profesorica", sub: { sr: "profesorica · matematika 4. razred", en: "teacher · math · grade 4" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za matematiku 4. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-4 math. Type a problem or send a photo — we'll go step by step." } },
-    "sr-fiz-1": { name: "Profesorica", sub: { sr: "profesorica · fizika 1. razred", en: "teacher · physics · grade 1" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 1. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-1 physics. Type a problem or send a photo — we'll go step by step." } },
-    "sr-fiz-2": { name: "Profesorica", sub: { sr: "profesorica · fizika 2. razred", en: "teacher · physics · grade 2" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 2. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-2 physics. Type a problem or send a photo — we'll go step by step." } },
-    "sr-fiz-3": { name: "Profesorica", sub: { sr: "profesorica · fizika 3. razred", en: "teacher · physics · grade 3" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 3. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-3 physics. Type a problem or send a photo — we'll go step by step." } },
-    "sr-fiz-4": { name: "Profesorica", sub: { sr: "profesorica · fizika 4. razred", en: "teacher · physics · grade 4" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za fiziku 4. razreda. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-4 physics. Type a problem or send a photo — we'll go step by step." } },
-    "fax-analiza1": { name: "Profesorica", sub: { sr: "profesorica · Analiza 1", en: "teacher · Calculus 1" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Matematičku analizu 1. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 1. Type a problem or send a photo — we'll go step by step." } },
-    "fax-analiza2": { name: "Profesorica", sub: { sr: "profesorica · Analiza 2", en: "teacher · Calculus 2" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Matematičku analizu 2. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 2. Type a problem or send a photo — we'll go step by step." } },
-    "fax-kompleksna": { name: "Profesorica", sub: { sr: "profesorica · Kompleksna analiza", en: "teacher · Complex analysis" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Kompleksnu analizu. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for complex analysis. Type a problem or send a photo — we'll go step by step." } },
-    "fax-linearna": { name: "Profesorica", sub: { sr: "profesorica · Linearna algebra", en: "teacher · Linear algebra" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Linearnu algebru. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for linear algebra. Type a problem or send a photo — we'll go step by step." } },
-    "fax-verovatnoca": { name: "Profesorica", sub: { sr: "profesorica · Verovatnoća i statistika", en: "teacher · Probability & stats" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Verovatnoću i statistiku. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for probability & statistics. Type a problem or send a photo — we'll go step by step." } },
-    "fax-operaciona": { name: "Profesorica", sub: { sr: "profesorica · Operaciona istraživanja", en: "teacher · Operations research" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Operaciona istraživanja. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for operations research. Type a problem or send a photo — we'll go step by step." } },
-    "fax-diskretna": { name: "Profesorica", sub: { sr: "profesorica · Diskretna matematika", en: "teacher · Discrete math" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Diskretnu matematiku. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for discrete mathematics. Type a problem or send a photo — we'll go step by step." } },
-    "fax-elektronika": { name: "Profesorica", sub: { sr: "profesorica · Uvod u elektroniku", en: "teacher · Intro electronics" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Uvod u elektroniku. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for intro to electronics. Type a problem or send a photo — we'll go step by step." } },
-    "fax-kola": { name: "Profesorica", sub: { sr: "profesorica · Teorija el. kola", en: "teacher · Electric circuits" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Teoriju električnih kola. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for electric circuits. Type a problem or send a photo — we'll go step by step." } },
-    "fax-merenja": { name: "Profesorica", sub: { sr: "profesorica · Električna merenja", en: "teacher · Electrical meas." }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Električna merenja. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for electrical measurements. Type a problem or send a photo — we'll go step by step." } },
-    "fax-mehanika": { name: "Profesorica", sub: { sr: "profesorica · Mehanika", en: "teacher · Mechanics" }, hi: { sr: "Ćao! Ja sam {name}, tvoja profesorica za Mehaniku. Napiši zadatak ili pošalji sliku — idemo korak po korak.", en: "Hi! I'm {name}, your teacher for mechanics. Type a problem or send a photo — we'll go step by step." } }
+    "prijemni-matematika": { name: "Profesorica", sub: { sr: "profesorica · prijemni", en: "teacher · entrance exam" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za prijemni iz matematike. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for the math entrance exam. Type a problem or send a photo — we'll go step by step." } },
+    "mala-matura": { name: "Profesorica", sub: { sr: "profesorica · mala matura", en: "teacher · grade-8 final" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za malu maturu iz matematike. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for the grade-8 math final. Type a problem or send a photo — we'll go step by step." } },
+    "sr-mat-1": { name: "Profesorica", sub: { sr: "profesorica · matematika 1. razred", en: "teacher · math · grade 1" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za matematiku 1. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-1 math. Type a problem or send a photo — we'll go step by step." } },
+    "sr-mat-2": { name: "Profesorica", sub: { sr: "profesorica · matematika 2. razred", en: "teacher · math · grade 2" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za matematiku 2. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-2 math. Type a problem or send a photo — we'll go step by step." } },
+    "sr-mat-3": { name: "Profesorica", sub: { sr: "profesorica · matematika 3. razred", en: "teacher · math · grade 3" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za matematiku 3. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-3 math. Type a problem or send a photo — we'll go step by step." } },
+    "sr-mat-4": { name: "Profesorica", sub: { sr: "profesorica · matematika 4. razred", en: "teacher · math · grade 4" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za matematiku 4. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-4 math. Type a problem or send a photo — we'll go step by step." } },
+    "sr-fiz-1": { name: "Profesorica", sub: { sr: "profesorica · fizika 1. razred", en: "teacher · physics · grade 1" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za fiziku 1. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-1 physics. Type a problem or send a photo — we'll go step by step." } },
+    "sr-fiz-2": { name: "Profesorica", sub: { sr: "profesorica · fizika 2. razred", en: "teacher · physics · grade 2" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za fiziku 2. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-2 physics. Type a problem or send a photo — we'll go step by step." } },
+    "sr-fiz-3": { name: "Profesorica", sub: { sr: "profesorica · fizika 3. razred", en: "teacher · physics · grade 3" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za fiziku 3. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-3 physics. Type a problem or send a photo — we'll go step by step." } },
+    "sr-fiz-4": { name: "Profesorica", sub: { sr: "profesorica · fizika 4. razred", en: "teacher · physics · grade 4" }, hi: { sr: "Zdravo! Ja sam {name}, tvoja profesorica za fiziku 4. razreda. Napiši zadatak ili pošalji sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for grade-4 physics. Type a problem or send a photo — we'll go step by step." } },
+    "fax-analiza1": { name: "Profesorica", sub: { sr: "profesorica · Analiza 1", en: "teacher · Calculus 1" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Matematičku analizu 1. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 1. Type a problem or send a photo — we'll go step by step." } },
+    "fax-analiza2": { name: "Profesorica", sub: { sr: "profesorica · Analiza 2", en: "teacher · Calculus 2" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Matematičku analizu 2. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for Calculus 2. Type a problem or send a photo — we'll go step by step." } },
+    "fax-kompleksna": { name: "Profesorica", sub: { sr: "profesorica · Kompleksna analiza", en: "teacher · Complex analysis" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Kompleksnu analizu. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for complex analysis. Type a problem or send a photo — we'll go step by step." } },
+    "fax-linearna": { name: "Profesorica", sub: { sr: "profesorica · Linearna algebra", en: "teacher · Linear algebra" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Linearnu algebru. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for linear algebra. Type a problem or send a photo — we'll go step by step." } },
+    "fax-verovatnoca": { name: "Profesorica", sub: { sr: "profesorica · Verovatnoća i statistika", en: "teacher · Probability & stats" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Verovatnoću i statistiku. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for probability & statistics. Type a problem or send a photo — we'll go step by step." } },
+    "fax-operaciona": { name: "Profesorica", sub: { sr: "profesorica · Operaciona istraživanja", en: "teacher · Operations research" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Operaciona istraživanja. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for operations research. Type a problem or send a photo — we'll go step by step." } },
+    "fax-diskretna": { name: "Profesorica", sub: { sr: "profesorica · Diskretna matematika", en: "teacher · Discrete math" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Diskretnu matematiku. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for discrete mathematics. Type a problem or send a photo — we'll go step by step." } },
+    "fax-elektronika": { name: "Profesorica", sub: { sr: "profesorica · Uvod u elektroniku", en: "teacher · Intro electronics" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Uvod u elektroniku. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for intro to electronics. Type a problem or send a photo — we'll go step by step." } },
+    "fax-kola": { name: "Profesorica", sub: { sr: "profesorica · Teorija el. kola", en: "teacher · Electric circuits" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Teoriju električnih kola. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for electric circuits. Type a problem or send a photo — we'll go step by step." } },
+    "fax-merenja": { name: "Profesorica", sub: { sr: "profesorica · Električna merenja", en: "teacher · Electrical meas." }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Električna merenja. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for electrical measurements. Type a problem or send a photo — we'll go step by step." } },
+    "fax-mehanika": { name: "Profesorica", sub: { sr: "profesorica · Mehanika", en: "teacher · Mechanics" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za Mehaniku. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for mechanics. Type a problem or send a photo — we'll go step by step." } }
   };
   if (!ISSITE && !(script && script.getAttribute("data-name")) && SUBJECTS[RMODE] && SUBJECTS[RMODE].name) NAME = SUBJECTS[RMODE].name;
 
@@ -202,10 +202,10 @@
 
   // ——— prevodi UI-ja (AI ionako odgovara na izabranom jeziku) ———
   var T = {
-    sr: { sub: "profesorica · mala matura", hi: "Ćao! 😊 Ja sam tvoja Profesorica za malu maturu iz matematike. Napiši zadatak ili pošalji 📷 sliku — idemo korak po korak, polako i lepo.", ph: "Napiši zadatak ili pitanje…", send: "Pošalji", chips: ["Napiši zadatak", "Pošalji sliku 📷", "Objasni mi pojam"], voice: "Glas", thinking: "Profesorica razmišlja…" },
+    sr: { sub: "profesorica · mala matura", hi: "Zdravo! 😊 Ja sam vaša profesorica za malu maturu iz matematike. Napišite zadatak ili pošaljite 📷 sliku — rešavamo korak po korak, polako i temeljno.", ph: "Napišite zadatak ili pitanje…", send: "Pošalji", chips: ["Napiši zadatak", "Pošalji sliku 📷", "Objasni mi pojam"], voice: "Glas", thinking: "Profesorica razmišlja…" },
     en: { sub: "teacher · final exam (grade 8)", hi: "Hi! 😊 I'm Profesorica, your math teacher for the grade-8 final exam. Type a problem or send a 📷 photo — we'll go step by step.", ph: "Type a problem or question…", send: "Send", chips: ["Type a problem", "Send a photo 📷", "Explain a concept"], voice: "Voice", thinking: "Profesorica is thinking…" },
     hu: { sub: "tanárnő · kisérettségi", hi: "Szia! 😊 Profesorica vagyok, a matek tanárnőd a kisérettségire. Írj be egy feladatot vagy küldj 📷 képet — lépésről lépésre haladunk.", ph: "Írd be a feladatot vagy kérdést…", send: "Küldés", chips: ["Feladat beírása", "Kép küldése 📷", "Fogalom magyarázat"], voice: "Hang", thinking: "Profesorica gondolkodik…" },
-    hr: { sub: "profesorica · mala matura", hi: "Bok! 😊 Ja sam tvoja Profesorica matematike za malu maturu. Napiši zadatak ili pošalji 📷 sliku — idemo korak po korak.", ph: "Napiši zadatak ili pitanje…", send: "Pošalji", chips: ["Napiši zadatak", "Pošalji sliku 📷", "Objasni pojam"], voice: "Glas", thinking: "Profesorica razmišlja…" },
+    hr: { sub: "profesorica · mala matura", hi: "Bok! 😊 Ja sam tvoja Profesorica matematike za malu maturu. Napiši zadatak ili pošalji 📷 sliku — rešavamo korak po korak.", ph: "Napiši zadatak ili pitanje…", send: "Pošalji", chips: ["Napiši zadatak", "Pošalji sliku 📷", "Objasni pojam"], voice: "Glas", thinking: "Profesorica razmišlja…" },
     ro: { sub: "profesoară · examen final", hi: "Bună! 😊 Sunt Profesorica, profesoara ta de matematică. Scrie un exercițiu sau trimite o 📷 poză — mergem pas cu pas.", ph: "Scrie exercițiul sau întrebarea…", send: "Trimite", chips: ["Scrie un exercițiu", "Trimite o poză 📷", "Explică un concept"], voice: "Voce", thinking: "Profesorica se gândește…" },
     sk: { sub: "učiteľka · malá matura", hi: "Ahoj! 😊 Som Profesorica, tvoja učiteľka matematiky. Napíš úlohu alebo pošli 📷 fotku — pôjdeme krok za krokom.", ph: "Napíš úlohu alebo otázku…", send: "Poslať", chips: ["Napíš úlohu", "Pošli fotku 📷", "Vysvetli pojem"], voice: "Hlas", thinking: "Profesorica premýšľa…" },
     de: { sub: "Lehrerin · Abschlussprüfung (Kl. 8)", hi: "Hallo! 😊 Ich bin Profesorica, deine Mathelehrerin für die Abschlussprüfung der 8. Klasse. Schreib eine Aufgabe oder schick ein 📷 Foto — wir gehen Schritt für Schritt vor.", ph: "Schreib eine Aufgabe oder Frage…", send: "Senden", chips: ["Aufgabe schreiben", "Foto senden 📷", "Begriff erklären"], voice: "Stimme", thinking: "Profesorica denkt nach…" },
@@ -236,10 +236,10 @@
 
   // ——— FTN mod: drugačiji pozdrav/podnaslov (UI ostaje isti, „mozak" bira server) ———
   var FTN = {
-    sr: { sub: "profesorica · prijemni FTN", hi: "Ćao! 😊 Ja sam tvoja Profesorica za prijemni iz matematike (FTN). Napiši zadatak ili pošalji 📷 sliku — idemo korak po korak." },
+    sr: { sub: "profesorica · prijemni FTN", hi: "Zdravo! 😊 Ja sam vaša profesorica za prijemni ispit iz matematike (FTN). Napišite zadatak ili pošaljite 📷 sliku — rešavamo korak po korak." },
     en: { sub: "teacher · FTN entrance exam", hi: "Hi! 😊 I'm Profesorica, your math teacher for the FTN entrance exam. Type a problem or send a 📷 photo — we'll go step by step." },
     hu: { sub: "tanárnő · FTN felvételi", hi: "Szia! 😊 Profesorica vagyok, a matek tanárnőd az FTN felvételire. Írj egy feladatot vagy küldj 📷 képet — lépésről lépésre haladunk." },
-    hr: { sub: "profesorica · prijemni FTN", hi: "Bok! 😊 Ja sam tvoja Profesorica za prijemni iz matematike (FTN). Napiši zadatak ili pošalji 📷 sliku — idemo korak po korak." },
+    hr: { sub: "profesorica · prijemni FTN", hi: "Bok! 😊 Ja sam tvoja Profesorica za prijemni iz matematike (FTN). Napiši zadatak ili pošalji 📷 sliku — rešavamo korak po korak." },
     ro: { sub: "profesoară · admitere FTN", hi: "Bună! 😊 Sunt Profesorica, profesoara ta de matematică pentru admiterea la FTN. Scrie un exercițiu sau trimite o 📷 poză — mergem pas cu pas." },
     sk: { sub: "učiteľka · prijímačky FTN", hi: "Ahoj! 😊 Som Profesorica, tvoja učiteľka matematiky na prijímačky na FTN. Napíš úlohu alebo pošli 📷 fotku — pôjdeme krok za krokom." },
     de: { sub: "Lehrerin · FTN-Aufnahmeprüfung", hi: "Hallo! 😊 Ich bin Profesorica, deine Mathelehrerin für die FTN-Aufnahmeprüfung. Schreib eine Aufgabe oder schick ein 📷 Foto — wir gehen Schritt für Schritt vor." },
@@ -458,25 +458,41 @@
   async function initMemory() {
     if (ISSITE) { greet(); return; }
     await memLoad();
-    if (!MEM_LOADED || history.length === 0) {
-      // Nema memorije ili nije ulogovan — standardni pozdrav
+    if (!MEM_LOADED || !MEM_IMA_RAZGOVOR) {
       greet();
     } else {
-      // Ima memoriju — personalizovani pozdrav nastavka
       var ime = MEM_IME ? MEM_IME.split(" ")[0] : null;
-      var pozdrav = {
-        sr: (ime ? "Dobrodošla nazad, " + ime + "! 🌷 " : "Dobrodošla nazad! 🌷 ") + "Nastavljamo gde smo stali.",
-        en: (ime ? "Welcome back, " + ime + "! 🌷 " : "Welcome back! 🌷 ") + "Let's continue where we left off.",
-        de: (ime ? "Willkommen zurück, " + ime + "! 🌷 " : "Willkommen zurück! 🌷 ") + "Weiter geht's!",
-        fr: (ime ? "Bienvenue, " + ime + " ! 🌷 " : "Bienvenue ! 🌷 ") + "On reprend où on s'est arrêtés.",
-        es: (ime ? "¡Bienvenida, " + ime + "! 🌷 " : "¡Bienvenida! 🌷 ") + "Continuamos donde lo dejamos.",
-        it: (ime ? "Ben tornata, " + ime + "! 🌷 " : "Ben tornata! 🌷 ") + "Continuiamo da dove ci siamo fermati.",
-        ru: (ime ? "С возвращением, " + ime + "! 🌷 " : "С возвращением! 🌷 ") + "Продолжаем с того места.",
-        pt: (ime ? "Bem-vinda, " + ime + "! 🌷 " : "Bem-vinda! 🌷 ") + "Continuamos de onde ficamos."
+      var tema = MEM_NAPREDAK && MEM_NAPREDAK.poslednja_tema;
+      var minuti = MEM_NAPREDAK && MEM_NAPREDAK.minuta_ukupno;
+      var serija = MEM_NAPREDAK && MEM_NAPREDAK.serija;
+
+      // Gradiš personalizovani pozdrav
+      var pozdrav = {};
+      var uvod = {
+        sr: ime ? "Dobrodošli nazad, " + ime + "! 🌷" : "Dobrodošli nazad! 🌷",
+        en: ime ? "Welcome back, " + ime + "! 🌷" : "Welcome back! 🌷",
+        de: ime ? "Willkommen zurück, " + ime + "! 🌷" : "Willkommen zurück! 🌷",
+        fr: ime ? "Bienvenue, " + ime + " ! 🌷" : "Bienvenue ! 🌷",
+        es: ime ? "¡Bienvenido de nuevo, " + ime + "! 🌷" : "¡Bienvenido de nuevo! 🌷",
+        it: ime ? "Bentornato/a, " + ime + "! 🌷" : "Bentornato/a! 🌷",
+        ru: ime ? "С возвращением, " + ime + "! 🌷" : "С возвращением! 🌷",
+        pt: ime ? "Bem-vindo/a de volta, " + ime + "! 🌷" : "Bem-vindo/a de volta! 🌷"
       };
-      addBub("zoi", pozdrav[LANG] || pozdrav.sr);
+      var detalji = "";
+      if (tema) {
+        detalji = { sr: " Poslednji put smo obrađivali: **" + tema + "**.", en: " Last time we covered: **" + tema + "**.", de: " Zuletzt haben wir **" + tema + "** behandelt.", fr: " La dernière fois, nous avons vu **" + tema + "**.", es: " La última vez trabajamos en **" + tema + "**.", it: " L'ultima volta abbiamo trattato **" + tema + "**.", ru: " В прошлый раз мы изучали **" + tema + "**.", pt: " Da última vez trabalhamos **" + tema + "**." }[LANG] || (" Last time: **" + tema + "**.");
+      }
+      var motivacija = "";
+      if (serija && serija >= 3) {
+        motivacija = { sr: " " + serija + " uzastopnih dana učenja — izvrsno! 🔥", en: " " + serija + " days in a row — great! 🔥", de: " " + serija + " Tage am Stück — klasse! 🔥", fr: " " + serija + " jours d'affilée — super ! 🔥", es: " ¡" + serija + " días seguidos — genial! 🔥", it: " " + serija + " giorni di fila — ottimo! 🔥", ru: " " + serija + " дней подряд — отлично! 🔥", pt: " " + serija + " dias seguidos — ótimo! 🔥" }[LANG] || (" " + serija + " days streak 🔥");
+      }
+      var nastavak = { sr: " Da nastavimo?", en: " Shall we continue?", de: " Machen wir weiter?", fr: " On continue ?", es: " ¿Continuamos?", it: " Continuiamo?", ru: " Продолжаем?", pt: " Continuamos?" }[LANG] || " Da nastavimo?";
+      var tekst = (uvod[LANG] || uvod.sr) + detalji + motivacija + nastavak;
+      addBub("zoi", tekst);
+      // Prikaži inicijalne čipove za predmet
+      var starter = (LANG === "sr") ? (SUBJ_CHIPS[RMODE] || GEN.sr(SUBJ || "")) : ((GEN[LANG] || GEN.en)(SUBJ || ""));
+      setChips(starter ? starter.split("||").map(function(s){return s.trim();}).filter(Boolean) : []);
     }
-    renderChips();
   }
 
   // ——— čišćenje Markdown-a (da se ne vide gole zvezdice/taraba) ———
@@ -1030,13 +1046,15 @@
   // ——— MEMORIJA: pamćenje razgovora između sesija (Supabase) ———
   var SB_URL = "https://ibhirxltgeyecrjwymai.supabase.co";
   var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
-  var MEM_USER = null;   // Supabase korisnik
-  var MEM_IME = null;    // ime korisnika
-  var MEM_PREDMETI = []; // lista predmeta iz pretplate
-  var MEM_KEY = RMODE || MODE; // ključ predmeta za memoriju
+  var MEM_USER = null;
+  var MEM_IME = null;
+  var MEM_PREDMETI = [];
+  var MEM_NAPREDAK = null;
+  var MEM_IMA_RAZGOVOR = false;
+  var MEM_KEY = RMODE || MODE;
   var MEM_LOADED = false;
   var MEM_SAVING = false;
-  var MAX_PORUKA = 20;   // čuvamo do 20 poruka (10 pitanja + 10 odgovora)
+  var MAX_PORUKA = 20;
 
   function sbApiFetch(path, opts) {
     var token = sbToken();
@@ -1049,11 +1067,13 @@
     if (MEM_LOADED || ISSITE) return;
     if (!sbToken()) return;
     try {
-      // 1) Učitaj korisnika i profil
+      // 1) Učitaj korisnika
       var ur = await sbApiFetch("/auth/v1/user");
       if (!ur.ok) return;
       MEM_USER = await ur.json();
       if (!MEM_USER || !MEM_USER.id) return;
+
+      // 2) Učitaj profil (ime, predmeti)
       var pr = await sbApiFetch("/rest/v1/mathia_profil?user_id=eq." + MEM_USER.id + "&select=ime,predmeti");
       if (pr.ok) {
         var profilArr = await pr.json();
@@ -1063,8 +1083,15 @@
           MEM_PREDMETI = profil.predmeti || [];
         }
       }
-      // 2) Učitaj razgovor za ovaj predmet
+
+      // 3) Učitaj napredak za ovaj predmet (poslednja tema, minuti)
+      var nr = await sbApiFetch("/rest/v1/mathia_napredak?user_id=eq." + MEM_USER.id + "&predmet=eq." + encodeURIComponent(MEM_KEY) + "&select=poslednja_tema,minuta_ukupno,serija");
+      var napredak = null;
+      if (nr.ok) { var na = await nr.json(); napredak = na && na[0]; }
+
+      // 4) Učitaj prethodne poruke razgovora
       var rr = await sbApiFetch("/rest/v1/mathia_razgovori?user_id=eq." + MEM_USER.id + "&predmet=eq." + encodeURIComponent(MEM_KEY) + "&select=poruke,summary");
+      var imaRazgovor = false;
       if (rr.ok) {
         var arr = await rr.json();
         if (arr && arr[0] && arr[0].poruke && arr[0].poruke.length > 0) {
@@ -1074,8 +1101,13 @@
             if (m.role === "user") addBub("me", m.content, null);
             else if (m.role === "assistant") addBub("zoi", m.content);
           });
+          imaRazgovor = true;
         }
       }
+
+      // 5) Sačuvaj napredak u globalnu varijablu za greeting i server
+      MEM_NAPREDAK = napredak;
+      MEM_IMA_RAZGOVOR = imaRazgovor;
       MEM_LOADED = true;
     } catch(e) { /* tiho — memorija nije kritična */ }
   }
