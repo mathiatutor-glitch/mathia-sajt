@@ -382,7 +382,7 @@
   var msgsEl = $("#zoi-msgs"), taEl = $("#zoi-ta"), goEl = $("#zoi-go");
   var chipsEl = $("#zoi-chips"), subEl = $("#zoi-sub"), langEl = $("#zoi-lang");
   var fileEl = $("#zoi-file"), prevEl = $("#zoi-prev"), prevImg = $("#zoi-prev-img"), prevName = $("#zoi-prev-name");
-  var voiceBtn = $("#zoi-voice"); if(ISSITE){var _ph=$("#zoi-photo");if(_ph)_ph.style.display="none";}
+  var voiceBtn = $("#zoi-voice"); if(voiceBtn) voiceBtn.style.display="none"; if(ISSITE){var _ph=$("#zoi-photo");if(_ph)_ph.style.display="none";}
 
   // rezerva za sliku u zaglavlju ako se ne učita
   (function () {
