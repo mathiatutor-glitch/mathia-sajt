@@ -230,7 +230,8 @@ code{overflow-wrap:break-word}
         trkSkola:"School",trkSkolaS:"primary & high school",trkPrijemni:"Entrance exam",trkPrijemniS:"for university",
         trkFax:"University",trkFaxS:"math, physics, EE",obBack:"← Back",obSaving:"Setting up your space…"}
   };
-  var lang = (navigator.language||"sr").slice(0,2)==="en" ? "en":"sr";
+  // Jezik: uvek srpski osim ako browser eksplicitno nije engleski
+  var lang = (navigator.language||"sr").slice(0,2)==="en" ? "en" : "sr";
   var $=function(id){return document.getElementById(id);};
   function applyLang(){
     var d=T[lang];
@@ -344,7 +345,20 @@ code{overflow-wrap:break-word}
     clearMsg(); ok(T[lang].obSaving);
     var goal={ track:track, mode:it.mode, teacher:it.teacher, subject:(lang==="en"?it.en:it.sr) };
     try{ localStorage.setItem("mathia_goal", JSON.stringify(goal)); }catch(e){}
-    post("/me",{goal:goal}).then(function(){ setTimeout(function(){ location.href="/index.html"; },500); });
+    // Preusmeri na odabrani predmet ili na ?next= parametar
+    var nextUrl = new URLSearchParams(location.search).get("next") || null;
+    var SUBJECT_URLS = {
+      "mala-matura":"/Mala-Matura-Formule.html",
+      "sr-mat-1":"/Matematika-1-Razred-Formule.html",
+      "sr-fiz-1":"/Fizika-1-Razred-Formule.html",
+      "prijemni-matematika":"/prijemni.html",
+      "fax-analiza1":"/predmet-analiza1.html",
+      "fax-verovatnoca":"/predmet-verovatnoca-statistika.html",
+      "fax-elektronika":"/predmet-elektrotehnika.html",
+      "fax-mehanika":"/predmet-fizika-mehanika.html"
+    };
+    var destUrl = nextUrl || SUBJECT_URLS[it.mode] || "/index.html";
+    post("/me",{goal:goal}).then(function(){ setTimeout(function(){ location.href=destUrl; },500); });
   }
   Array.prototype.forEach.call(document.querySelectorAll("#ob-track .ob-big"),function(b){
     b.onclick=function(){ pickTrack(b.getAttribute("data-track")); };

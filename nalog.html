@@ -339,12 +339,25 @@ code{overflow-wrap:break-word}
         <div class="grid g3" id="home-subj"></div>
       </section>
 
-      <!-- SUBJECTS -->
       <section class="sec" id="sec-subj">
         <h2 style="font-size:1.8rem;color:var(--plum)">Moji predmeti</h2>
-        <p style="color:var(--muted);margin:6px 0 18px">Gold paket pokriva do tri predmeta — sa svim lekcijama, zbirkama i formulama.</p>
+        <p style="color:var(--muted);margin:6px 0 6px" id="subj-desc">Učitavam tvoj paket…</p>
+        <button class="btn btn-gold" id="btn-pick-subj" onclick="openPickSubj()" style="margin-bottom:18px;display:none">+ Izaberi predmet</button>
         <div class="grid g3" id="all-subj"></div>
       </section>
+
+      <!-- Modal za biranje predmeta -->
+      <div id="subj-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;overflow-y:auto;padding:20px">
+        <div style="background:#fff;border-radius:16px;max-width:560px;margin:40px auto;padding:28px">
+          <h3 style="font-family:'Playfair Display',serif;color:var(--plum);margin:0 0 6px" id="modal-title">Izaberi predmete</h3>
+          <p style="color:var(--muted);margin:0 0 18px;font-size:.9rem" id="modal-desc"></p>
+          <div id="modal-subj-list" style="display:grid;gap:8px;grid-template-columns:1fr 1fr"></div>
+          <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end">
+            <button class="btn btn-ghost" onclick="closePickSubj()">Otkaži</button>
+            <button class="btn btn-gold" id="btn-save-subj" onclick="saveSubjPick()">Sačuvaj izbor</button>
+          </div>
+        </div>
+      </div>
 
       <!-- MATERIJALI -->
       <section class="sec" id="sec-mat">
@@ -546,6 +559,12 @@ function render(){
     var rb=rc.querySelector('.btn'); if(rb)rb.outerHTML='<a class="btn btn-gold" href="'+pageFor(s0.predmet)+'">Nastavi →</a>';
   } else { if(rc)rc.style.display='none'; if(rh)rh.style.display='none'; }
   var hs=$('home-subj'),as=$('all-subj');
+  // Opis predmeta i dugme prema paketu
+  var paket=(PROFILE&&PROFILE.paket)||'';
+  var limit=PAKET_LIMIT[paket]||1;
+  var desc=$('subj-desc'); var btn=$('btn-pick-subj');
+  if(desc) desc.textContent = paket ? (cap(paket)+' paket pokriva do '+limit+(limit===1?' predmet':' predmeta')+' — sa svim lekcijama, zbirkama i formulama.') : 'Odaberi paket da otključaš predmete.';
+  if(btn) btn.style.display = paket ? '' : 'none';
   if(SUBJECTS.length){ var html=SUBJECTS.map(subjCard).join(''); hs.innerHTML=html; as.innerHTML=html; }
   else { var e=emptyCard('Još nisi započela nijedan predmet.','Izaberi predmet →','predmeti.html'); hs.innerHTML=e; as.innerHTML=e; }
   $('mat-list').innerHTML= SUBJECTS.length ? SUBJECTS.map(function(s){
@@ -578,6 +597,100 @@ function drawStats(){
 }
 
 /* CHAT */
+/* BIRANJE PREDMETA */
+var PAKET_LIMIT = { basic: 1, gold: 2, diamond: 3 };
+var SVI_PREDMETI = [
+  { mode:"mala-matura",      naziv:"Mala matura",            url:"/Mala-Matura-Formule.html" },
+  { mode:"sr-mat-1",         naziv:"Matematika (srednja)",   url:"/Matematika-1-Razred-Formule.html" },
+  { mode:"sr-mat-2",         naziv:"Matematika 2. razred",   url:"/Matematika-2-Razred-Formule.html" },
+  { mode:"sr-mat-3",         naziv:"Matematika 3. razred",   url:"/Matematika-3-Razred-Formule.html" },
+  { mode:"sr-mat-4",         naziv:"Matematika 4. razred",   url:"/Matematika-4-Razred-Formule.html" },
+  { mode:"sr-fiz-1",         naziv:"Fizika (srednja)",       url:"/Fizika-1-Razred-Formule.html" },
+  { mode:"sr-fiz-2",         naziv:"Fizika 2. razred",       url:"/Fizika-2-Razred-Formule.html" },
+  { mode:"os-mat-5",         naziv:"Matematika 5. razred",   url:"/predmet-analiza1.html" },
+  { mode:"os-mat-6",         naziv:"Matematika 6. razred",   url:"/predmet-analiza1.html" },
+  { mode:"os-mat-7",         naziv:"Matematika 7. razred",   url:"/predmet-analiza1.html" },
+  { mode:"os-mat-8",         naziv:"Matematika 8. razred",   url:"/predmet-analiza1.html" },
+  { mode:"os-fiz-6",         naziv:"Fizika 6. razred",       url:"/predmet-analiza1.html" },
+  { mode:"os-fiz-7",         naziv:"Fizika 7. razred",       url:"/predmet-analiza1.html" },
+  { mode:"os-fiz-8",         naziv:"Fizika 8. razred",       url:"/predmet-analiza1.html" },
+  { mode:"prijemni-matematika", naziv:"Prijemni ispit",      url:"/prijemni.html" },
+  { mode:"fax-analiza1",     naziv:"Analiza 1",              url:"/predmet-analiza1.html" },
+  { mode:"fax-analiza2",     naziv:"Analiza 2",              url:"/predmet-analiza2.html" },
+  { mode:"fax-linearna",     naziv:"Linearna algebra",       url:"/predmet-linearna-algebra.html" },
+  { mode:"fax-verovatnoca",  naziv:"Verovatnoća",            url:"/predmet-verovatnoca-statistika.html" },
+  { mode:"fax-diskretna",    naziv:"Diskretna matematika",   url:"/predmet-diskretna-matematika.html" },
+  { mode:"fax-kompleksna",   naziv:"Kompleksna analiza",     url:"/predmet-kompleksna-analiza.html" },
+  { mode:"fax-operaciona",   naziv:"Operaciona istraž.",     url:"/predmet-elektricna-kola.html" },
+  { mode:"fax-kola",         naziv:"Električna kola",        url:"/predmet-elektricna-kola.html" },
+  { mode:"fax-merenja",      naziv:"Električna merenja",     url:"/predmet-elektricna-merenja.html" },
+  { mode:"fax-mehanika",     naziv:"Fizika i mehanika",      url:"/predmet-fizika-mehanika.html" },
+  { mode:"fax-elektronika",  naziv:"Elektronika",            url:"/predmet-elektrotehnika.html" },
+  { mode:"osnovi-elektrotehnike-1", naziv:"Osnovi ETF 1",   url:"/predmet-analiza1.html" },
+  { mode:"osnovi-elektrotehnike-2", naziv:"Osnovi ETF 2",   url:"/predmet-analiza1.html" },
+  { mode:"elektricne-masine-1", naziv:"El. mašine 1",       url:"/predmet-elektricne-masine-1.html" },
+  { mode:"elektricne-masine-2", naziv:"El. mašine 2",       url:"/predmet-elektricne-masine-2.html" },
+  { mode:"elektricne-masine-3", naziv:"El. mašine 3",       url:"/predmet-elektricne-masine-3.html" },
+  { mode:"sistemi-signali",  naziv:"Sistemi i signali",      url:"/predmet-analiza1.html" },
+  { mode:"elektromagnetika", naziv:"Elektromagnetika",       url:"/predmet-elektromagnetika.html" },
+  { mode:"energetska-elektronika-1", naziv:"En. elektronika 1", url:"/predmet-energetska-elektronika-1.html" },
+  { mode:"energetska-elektronika-2", naziv:"En. elektronika 2", url:"/predmet-energetska-elektronika-2.html" },
+  { mode:"prog-python",      naziv:"Python",                 url:"/Python-Skripta.html" },
+  { mode:"prog-cpp",         naziv:"C++",                    url:"/CPP-Skripta.html" },
+  { mode:"prog-java",        naziv:"Java",                   url:"/Java-Skripta.html" },
+  { mode:"prog-js",          naziv:"JavaScript",             url:"/JS-Skripta.html" },
+  { mode:"prog-c",           naziv:"C",                      url:"/C-Skripta.html" },
+  { mode:"prog-ts",          naziv:"TypeScript",             url:"/TS-Skripta.html" },
+  { mode:"prog-sql",         naziv:"SQL",                    url:"/SQL-Skripta.html" },
+  { mode:"el-ltspice",       naziv:"LTspice",                url:"/LTSpice-Skripta.html" },
+  { mode:"el-kicad",         naziv:"KiCad",                  url:"/KiCad-Skripta.html" },
+  { mode:"el-cadence",       naziv:"Cadence",                url:"/elektronika-cadence.html" },
+];
+var pickedSubj = [];
+
+function openPickSubj(){
+  var paket = (PROFILE&&PROFILE.paket)||'basic';
+  var limit = PAKET_LIMIT[paket]||1;
+  pickedSubj = (PROFILE&&PROFILE.predmeti)? [].concat(PROFILE.predmeti) : [];
+  $('modal-title').textContent = 'Izaberi predmete';
+  $('modal-desc').textContent = 'Tvoj ' + paket + ' paket pokriva ' + limit + (limit===1?' predmet':' predmeta') + '. Izaberi koje hoćeš.';
+  $('modal-subj-list').innerHTML = SVI_PREDMETI.map(function(p){
+    var sel = pickedSubj.indexOf(p.mode)>=0;
+    return '<label style="display:flex;align-items:center;gap:8px;padding:8px 12px;border:1.5px solid '+(sel?'#c6a05c':'#e8ddd5')+';border-radius:10px;cursor:pointer;background:'+(sel?'#fffbf0':'#fff')+'" data-mode="'+p.mode+'">'
+      +'<input type="checkbox" '+(sel?'checked':'')+' style="accent-color:#c6a05c" onchange="toggleSubj(\''+p.mode+'\','+limit+')">'
+      +'<span style="font-size:.9rem;font-weight:600;color:#432C37">'+p.naziv+'</span></label>';
+  }).join('');
+  $('subj-modal').style.display='block';
+}
+function toggleSubj(mode, limit){
+  var idx = pickedSubj.indexOf(mode);
+  if(idx>=0){ pickedSubj.splice(idx,1); }
+  else {
+    if(pickedSubj.length>=limit){ alert('Tvoj paket pokriva samo '+limit+(limit===1?' predmet':' predmeta')+'. Ukloni neki da bi dodao novi.'); return; }
+    pickedSubj.push(mode);
+  }
+  // Vizuelno ažuriraj
+  var lbl = $('subj-modal').querySelector('[data-mode="'+mode+'"]');
+  if(lbl){ var sel=pickedSubj.indexOf(mode)>=0; lbl.style.borderColor=sel?'#c6a05c':'#e8ddd5'; lbl.style.background=sel?'#fffbf0':'#fff'; }
+}
+function closePickSubj(){ $('subj-modal').style.display='none'; }
+async function saveSubjPick(){
+  $('btn-save-subj').disabled=true; $('btn-save-subj').textContent='Čuvam…';
+  try{
+    await sb.from('mathia_profil').upsert({user_id:USER.id, predmeti:pickedSubj},{onConflict:'user_id'});
+    if(!PROFILE) PROFILE={};
+    PROFILE.predmeti = pickedSubj;
+    closePickSubj();
+    renderAccount();
+    $('btn-save-subj').textContent='Sačuvaj izbor';
+    $('btn-save-subj').disabled=false;
+  }catch(e){
+    alert('Greška pri čuvanju. Pokušaj ponovo.');
+    $('btn-save-subj').textContent='Sačuvaj izbor';
+    $('btn-save-subj').disabled=false;
+  }
+}
+
 function initChat(){ var m=$('msgs'); if(!m||m.dataset.init)return; m.dataset.init='1';
   var hi='Zdravo, '+firstName()+'! 👋 ';
   if(SUBJECTS.length){ var s0=SUBJECTS[0]; hi+='Tu sam za tvoje predmete. Poslednje smo radili <b>'+cap(s0.predmet)+'</b>'+(s0.poslednja_tema?(' — '+s0.poslednja_tema):'')+'. Hoćeš da nastavimo?'; }
