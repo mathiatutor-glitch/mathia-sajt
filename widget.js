@@ -303,7 +303,7 @@
     "#zoi-prev img{width:38px;height:38px;border-radius:8px;object-fit:cover}" +
     "#zoi-prev button{margin-left:auto;border:none;background:#eee;border-radius:8px;cursor:pointer;padding:3px 8px}" +
     "#zoi-inrow{display:flex;gap:7px;align-items:flex-end}" +
-    "#zoi-ta{flex:1;min-width:0;resize:none;border:1px solid #E2D6BF;border-radius:13px;padding:9px 11px;font-family:inherit;font-size:14px;max-height:96px;outline:none}" +
+    "#zoi-ta{flex:1;min-width:0;resize:none;border:1px solid #E2D6BF;border-radius:13px;padding:9px 11px;font-family:inherit;font-size:14px;max-height:96px;outline:none;color:#3a3033}#zoi-ta::placeholder{color:#8a7a74;opacity:1}" +
     "#zoi-ta:focus{border-color:#2FB7A0}" +
     ".zoi-send{background:#1F8A78;color:#fff;border:none;border-radius:13px;padding:0 14px;height:40px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;flex:none;white-space:nowrap}" +
     ".zoi-tool{background:#F0FAF7;border:1px solid #CFE9E2;border-radius:13px;width:40px;height:40px;cursor:pointer;font-size:17px;flex:none}" +

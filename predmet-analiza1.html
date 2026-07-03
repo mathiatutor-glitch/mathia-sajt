@@ -20,14 +20,14 @@
     --serif:'Cormorant Garamond',Georgia,serif; --sans:'Nunito',system-ui,sans-serif;
     --maxw:1180px; --measure:760px; --sp:clamp(60px,8.5vw,112px);
     /* usklađena tipografska skala */
-    --t-hero:clamp(2.5rem,6vw,4.1rem);
-    --t-h2:clamp(1.72rem,3.4vw,2.5rem);
+    --t-hero:clamp(2.3rem,4.6vw,3.5rem);
+    --t-h2:clamp(1.6rem,2.8vw,2.15rem);
     --t-h3:1.44rem;
     --t-card:1.2rem;
     --t-lead:clamp(1.06rem,1.5vw,1.18rem);
     --t-body:1rem;
     --t-small:.9rem;
-    --t-eyebrow:.72rem;
+    --t-eyebrow:.78rem;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -64,17 +64,20 @@
   .brandmark b{color:var(--gold);margin:0 .1em}
   @media(max-width:620px){.brandmark{display:none}}
 
-  /* HERO — centriran, uravnotežen */
-  .hero{position:relative;text-align:center;padding:clamp(52px,8vw,104px) 0 clamp(44px,6vw,80px)}
-  .hero .inner{max-width:var(--measure);margin:0 auto}
-  .hero .eyebrow{font-size:var(--t-eyebrow);letter-spacing:.34em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:16px}
-  .hero .kicker{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.15rem,2.2vw,1.55rem);color:var(--rose);margin-bottom:.15em}
-  .hero h1{font-size:var(--t-hero);line-height:1.04;font-weight:600}
-  .hero .lead{margin:22px auto 0;max-width:50ch;font-size:var(--t-lead);color:var(--ink);line-height:1.66}
-  .hero .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin-top:26px;color:var(--muted);font-size:var(--t-small);font-weight:600}
-  .hero .meta b{color:var(--plum);font-weight:800}
-  .hero .meta .sep{color:var(--goldlt)}
-  .hero .cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:34px}
+  /* HERO — editorijalni, levo + info kartica desno */
+  .hero{position:relative;padding:clamp(46px,6.5vw,92px) 0 clamp(44px,6vw,78px)}
+  .hero-grid{display:grid;gap:38px;grid-template-columns:1fr}
+  @media(min-width:920px){.hero-grid{grid-template-columns:1.4fr .82fr;align-items:center;gap:60px}}
+  .hero .eyebrow{font-size:var(--t-eyebrow);letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:14px}
+  .hero .kicker{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.1rem,1.9vw,1.4rem);color:var(--rose);margin-bottom:.12em}
+  .hero h1{font-size:var(--t-hero);line-height:1.06;font-weight:600}
+  .hero .lead{margin:20px 0 0;max-width:46ch;font-size:var(--t-lead);color:var(--ink);line-height:1.65}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
+  .hero-card{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:10px 26px;box-shadow:0 26px 56px -38px rgba(120,70,80,.55)}
+  .hc-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+  .hc-row:last-child{border-bottom:none}
+  .hc-row .k{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;flex:none}
+  .hc-row .v{font-family:var(--serif);font-size:1.12rem;color:var(--plum);text-align:right;font-weight:600}
 
   .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:800;font-size:1rem;text-decoration:none;padding:14px 28px;border-radius:100px;transition:transform .16s ease,box-shadow .16s ease,border-color .16s}
   .btn-gold{color:#fff;background:linear-gradient(180deg,var(--gold),var(--golddk));box-shadow:0 12px 26px -12px rgba(156,120,56,.6)}
@@ -143,16 +146,17 @@
   .bar .t i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--goldlt),var(--gold))}
   .stat{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;padding-top:15px;border-top:1px solid var(--line);font-size:.83rem;color:var(--muted)}
   .stat b{color:var(--plum)}
+  .stat span{display:inline-flex;align-items:center;gap:6px}
   .stat .svic svg{width:15px;height:15px;vertical-align:-2px;margin-right:2px}
   .panel.prof{background:linear-gradient(165deg,#fff,var(--blush));display:flex;flex-direction:column}
   .prof .who{display:flex;align-items:center;gap:13px;margin-bottom:16px}
   .prof .av{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 8px 20px -8px rgba(120,70,80,.5)}
   .prof .who b{font-family:var(--serif);font-size:1.28rem;color:var(--plum);display:block;line-height:1.1}
   .prof .who span{font-size:.8rem;color:var(--muted)}
-  .prof .chat{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-  .prof .q{align-self:flex-end;max-width:88%;background:linear-gradient(180deg,var(--goldlt),#dfc38f);color:var(--plum);border-radius:16px 16px 5px 16px;padding:11px 15px;font-size:.92rem;font-weight:600}
-  .prof .a{align-self:flex-start;max-width:92%;background:#fff;border:1px solid var(--bord);border-radius:16px 16px 16px 5px;padding:11px 15px;font-size:.92rem;color:var(--ink)}
-  .prof .a b{color:var(--plum)}
+  .prof .qlabel{font-size:.82rem;color:var(--muted);font-weight:700;margin-bottom:12px}
+  .prof .qlist{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:9px}
+  .prof .qlist li{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.72);border:1px solid var(--bord);border-radius:13px;padding:12px 15px;font-size:.92rem;color:var(--plum);line-height:1.35}
+  .prof .qlist li:before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold)}
   .prof .btn{margin-top:auto;align-self:flex-start}
 
   /* FINALE */
@@ -161,18 +165,18 @@
   .finale .sub{color:var(--plum2);margin:16px auto 28px;max-width:46ch;font-size:var(--t-lead)}
   .finale .fine{margin-top:18px;color:var(--muted);font-size:.8rem}
 
-  /* FOOTER — miran, premium, Cormorant wordmark */
-  footer{background:var(--plum);color:rgba(251,246,238,.66);padding:64px 24px 34px;text-align:center;position:relative;z-index:1}
-  footer .fmark{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--goldlt);opacity:.4}
-  footer .word{font-family:var(--serif);font-weight:600;font-size:1.9rem;letter-spacing:.02em;color:var(--goldlt);margin-top:2px}
-  footer .tag{font-size:.86rem;max-width:40ch;margin:12px auto 0;color:rgba(251,246,238,.55)}
-  footer nav{display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:center;margin-top:26px;font-size:.85rem;font-weight:600}
-  footer nav a{color:rgba(251,246,238,.72);text-decoration:none;transition:color .15s}
-  footer nav a:hover{color:var(--goldlt)}
-  footer .fdiv{width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(231,210,162,.5),transparent);margin:30px auto 22px}
-  footer .legal{font-size:.73rem;color:rgba(251,246,238,.38);line-height:1.8}
-  footer .legal a{color:rgba(231,210,162,.5);text-decoration:none}
-  footer .legal a:hover{color:var(--goldlt)}
+  /* FOOTER — strukturisan, premium */
+  footer{background:var(--plum);color:rgba(251,246,238,.66);padding:60px 0 30px;position:relative;z-index:1}
+  footer .ftop{display:grid;grid-template-columns:1fr;gap:32px;padding-bottom:34px;border-bottom:1px solid rgba(231,210,162,.16)}
+  @media(min-width:720px){footer .ftop{grid-template-columns:1.6fr 1fr 1fr}}
+  footer .word{font-family:var(--serif);font-weight:600;font-size:1.85rem;letter-spacing:.02em;color:var(--goldlt);line-height:1}
+  footer .tag{font-size:.86rem;max-width:36ch;margin-top:12px;color:rgba(251,246,238,.56);line-height:1.55}
+  footer .fcol h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--goldlt);margin:0 0 14px;font-weight:800}
+  footer .fcol a{display:block;color:rgba(251,246,238,.7);text-decoration:none;font-size:.9rem;padding:5px 0;transition:color .15s}
+  footer .fcol a:hover{color:var(--goldlt)}
+  footer .fbottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:24px;font-size:.74rem;color:rgba(251,246,238,.4)}
+  footer .fbottom a{color:rgba(231,210,162,.55);text-decoration:none}
+  footer .fbottom a:hover{color:var(--goldlt)}
 
   .svic{display:inline-flex;color:var(--golddk)}
   .svic svg{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
@@ -206,21 +210,24 @@
 <main>
 
   <header class="hero">
-    <div class="wrap"><div class="inner">
-      <div class="eyebrow rv" data-i18n="eyebrow">Fakultet &#183; Matematika</div>
-      <div class="kicker rv">Fakultetski kurs</div>
-      <h1 class="rv" data-i18n="h1">Matematička analiza 1</h1>
-      <p class="lead rv balance" data-i18n="lead">Granične vrednosti, izvodi, integrali i ispitivanje funkcija — objašnjeni jasnim postupkom, dok gradivo ne postane tvoje.</p>
-      <div class="meta rv">
-        <span><b>6</b> ključnih oblasti</span><span class="sep">&#183;</span>
-        <span><b>Skripta, formule i vežba</b></span><span class="sep">&#183;</span>
-        <span><b>Profesorica</b> 0&#8211;24h</span>
+    <div class="wrap hero-grid">
+      <div class="hero-main rv">
+        <div class="eyebrow" data-i18n="eyebrow">Fakultet &#183; Matematika</div>
+        <div class="kicker">Fakultetski kurs</div>
+        <h1 data-i18n="h1">Matematička analiza 1</h1>
+        <p class="lead balance" data-i18n="lead">Granične vrednosti, izvodi i integrali — objašnjeni jasnim postupkom, dok gradivo ne postane tvoje.</p>
+        <div class="cta">
+          <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Započni besplatno &#8594;</a>
+          <a class="btn btn-ghost" href="Analiza-1-Zadaci.html">Pogledaj vežbu</a>
+        </div>
       </div>
-      <div class="cta rv">
-        <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Započni besplatno &#8594;</a>
-        <a class="btn btn-ghost" href="Analiza-1-Zadaci.html">Pogledaj vežbu</a>
-      </div>
-    </div></div>
+      <aside class="hero-card rv">
+        <div class="hc-row"><span class="k">Nivo</span><span class="v">Fakultet</span></div>
+        <div class="hc-row"><span class="k">Oblasti</span><span class="v">6 ključnih</span></div>
+        <div class="hc-row"><span class="k">Materijali</span><span class="v">Skripta &#183; Formule &#183; Vežba</span></div>
+        <div class="hc-row"><span class="k">Profesorica</span><span class="v">Dostupna 0&#8211;24h</span></div>
+      </aside>
+    </div>
   </header>
 
   <section class="band">
@@ -297,12 +304,13 @@
           </div>
         </div>
         <div class="panel prof rv">
-          <div class="who"><img class="av" src="avatar.jpg" alt="Profesorica" onerror="this.onerror=null;this.src='icon-192.png'"><div><b>Profesorica</b><span>za Matematičku analizu 1 &#183; 0&#8211;24h</span></div></div>
-          <div class="chat">
-            <div class="q">Reši <span class="kx" data-tex="{\displaystyle\lim_{x\to 0}\frac{\sin x}{x}}"></span> korak po korak.</div>
-            <div class="a"><b>Rado.</b> Krećemo od poznate granične vrednosti, pa je primenjujemo na dati izraz&#8230;</div>
-          </div>
-          <p class="sub" style="margin-bottom:16px">Pošalji pitanje, sliku zadatka ili diktiraj — dobijaš postupak, ne samo rešenje.</p>
+          <div class="who"><img class="av" src="avatar.jpg" alt="Profesorica" onerror="this.onerror=null;this.src='icon-192.png'"><div><b>Profesorica</b><span>za Matematičku analizu 1 &#183; dostupna 0&#8211;24h</span></div></div>
+          <div class="qlabel">Pitaj je bilo šta — na primer:</div>
+          <ul class="qlist">
+            <li>Objasni zašto je izvod nagib tangente</li>
+            <li>Reši <span class="kx" data-tex="{\displaystyle\lim_{x\to 0}\frac{\sin x}{x}}"></span> korak po korak</li>
+            <li>Skiciraj tok funkcije <span class="kx" data-tex="f(x)=x^{3}-3x"></span></li>
+          </ul>
           <a class="btn btn-gold sm" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;">Pitaj Profesoricu &#8594;</a>
         </div>
       </div>
@@ -312,7 +320,7 @@
   <section class="finale">
     <div class="wrap">
       <span class="ornament">&#10022;</span>
-      <h2 class="balance">Matematička analiza 1, konačno jasna.</h2>
+      <h2 class="balance" style="max-width:22ch">Matematička analiza 1 — konačno jasna</h2>
       <p class="sub balance">Počni s pitanjem koje te muči — Profesorica te vodi ostatak puta.</p>
       <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno &#8594;</a>
       <div class="fine" data-i18n="ctaSub">Prvih 15 minuta je besplatno — bez kartice, bez obaveza.</div>
@@ -323,19 +331,30 @@
 
 <footer>
   <div class="wrap">
-    <div class="fmark">&#8747;</div>
-    <div class="word">Mathia</div>
-    <p class="tag" data-i18n="footTag">Matematika &#183; Fizika &#183; Elektrotehnika — uz Profesoricu, 0&#8211;24h.</p>
-    <nav>
-      <a href="index.html" data-i18n="fLink1">Početna</a>
-      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
-      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
-      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
-      <a href="o-marini.html" data-i18n="nav5">O meni</a>
-    </nav>
-    <div class="fdiv"></div>
-    <div class="legal">&#169; 2026 Mathia Edu &#183; Sva prava zadržana.<br>
-      <a href="uslovi.html">Uslovi</a> &#183; <a href="privatnost.html">Privatnost</a> &#183; <a href="reklamacije.html">Reklamacije</a></div>
+    <div class="ftop">
+      <div class="fbrand">
+        <div class="word">Mathia</div>
+        <p class="tag" data-i18n="footTag">Matematika &#183; Fizika &#183; Elektrotehnika — uz Profesoricu, 0&#8211;24h.</p>
+      </div>
+      <div class="fcol">
+        <h4>Navigacija</h4>
+        <a href="index.html" data-i18n="fLink1">Početna</a>
+        <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+        <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+        <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+        <a href="o-marini.html" data-i18n="nav5">O meni</a>
+      </div>
+      <div class="fcol">
+        <h4>Pravno</h4>
+        <a href="uslovi.html">Uslovi korišćenja</a>
+        <a href="privatnost.html">Politika privatnosti</a>
+        <a href="reklamacije.html">Reklamacije i povraćaj</a>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span>&#169; 2026 Mathia Edu &#183; Sva prava zadržana.</span>
+      <span>Srpskih Vladara 36A, Apatin &#183; kontakt@mathia.rs</span>
+    </div>
   </div>
 </footer>
 
