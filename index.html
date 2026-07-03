@@ -13,7 +13,7 @@
     --plum:#432C37; --plum2:#5C3B49; --plum3:#7E5765;
     --gold:#C6A05C; --golddk:#9C7838; --goldlt:#E7D2A2; --champ:#F7EAC9;
     --ink:#3E2D34; --muted:#90787E; --bord:#ECDAC5; --card:#fffcf6;
-    --maxw:1120px;
+    --maxw:1220px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -78,7 +78,7 @@
   @media(min-width:900px){.hero .wrap{grid-template-columns:1.18fr .92fr;align-items:center;padding:64px 24px 80px}}
   .hero .slogan{font-family:'Pinyon Script',cursive;font-size:clamp(2.6rem,8vw,4rem);line-height:.9;margin-bottom:6px}
   .hero h1{color:var(--plum);font-size:clamp(2.3rem,5.8vw,3.7rem);font-weight:500}
-  .hero .lead{margin-top:18px;color:#5a474d;font-size:1.08rem;max-width:46ch}
+  .hero .lead{margin-top:18px;color:#5a474d;font-size:1.12rem;max-width:54ch;line-height:1.62}
   .hero .sign{margin-top:10px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;color:var(--golddk)}
   .cta-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:13px;align-items:center}
   .microtrust{margin-top:15px;color:var(--muted);font-size:.84rem;font-weight:700}
@@ -493,7 +493,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
     </a>
     <div class="nav-r">
       <a class="link" href="#mathia">Šta je Mathia</a>
-      <a class="link" href="predmeti.html">Predmeti</a> <a class="link" href="prodavnica.html">Prodavnica</a> <a class="link" href="#paketi">Paketi</a>
+      <a class="link" href="predmeti.html">Predmeti</a> <a class="link" href="biblioteka.html">Skripte</a> <a class="link" href="prodavnica.html">Prodavnica</a> <a class="link" href="#paketi">Paketi</a>
       <a class="link" href="o-marini.html">O meni</a>
       <a class="navcta" href="index.html#paketi">Probaj besplatno →</a><select class="lang" aria-label="Jezik / Language">
         <option>SR</option><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>RU</option><option>PT</option>
@@ -535,7 +535,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 <!-- 2 · PAIN -->
 <div class="eqfrieze" aria-hidden="true"><span>e<sup>iπ</sup>+1=0</span><span>a²+b²=c²</span><span>∫</span><span>E=mc²</span><span>π</span><span>√</span><span>Σ</span><span>φ = 1,618…</span><span>∞</span><span>∂</span></div>
 <section data-prij-banner="1" style="background:linear-gradient(180deg,#fff,#F7EAC9);border-top:1px solid #ECDAC5;border-bottom:1px solid #ECDAC5">
-<div style="max-width:1080px;margin:0 auto;padding:30px 20px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+<div style="max-width:920px;margin:0 auto;padding:30px 20px;display:flex;gap:28px;align-items:center;justify-content:center;flex-wrap:wrap">
 <div style="max-width:660px">
 <div style="color:#9C7838;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:.75rem">MATHIA · prijemni</div>
 <h2 data-pt style="font-family:'Cormorant Garamond',serif;color:#432C37;font-size:1.95rem;margin:.18em 0 .12em">Prijemni po fakultetu</h2>
@@ -609,7 +609,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
     <div class="badges">
       <div class="badge reveal"><span class="em">📷</span><h3>Slikaj zadatak</h3><p>Fotografišete ga, Marina ga rešava zajedno s vama — korak po korak</p></div>
       <div class="badge reveal"><span class="em">💡</span><h3>Razumite, ne pamtite</h3><p>Marina objašnjava odakle formula dolazi — razumevanje koje ostaje</p></div>
-      <div class="badge reveal"><span class="em">📚</span><h3>Skripte i priručnici</h3><p>Stručni materijali uz svaki predmet — uvek dostupni, bez ograničenja</p></div>
+      <a class="badge reveal" href="biblioteka.html" style="text-decoration:none;cursor:pointer"><span class="em">📚</span><h3>Skripte i priručnici</h3><p>Stručni materijali uz svaki predmet — otvori Biblioteku →</p></a>
       <div class="badge reveal"><span class="em">🔥</span><h3>Niz dana</h3><p>Učite svaki dan i pratite kako vaš niz napretka raste</p></div>
       <div class="badge reveal"><span class="em">📊</span><h3>Praćenje napretka</h3><p>Vidite koliko ste minuta učili, koje teme ste savladali i vaš niz dana</p></div>
       <div class="badge reveal"><span class="em">🌙</span><h3>Uvek je tu</h3><p>Pred kontrolni, kasno uveče — bez panike, Marina je dostupna</p></div>
@@ -647,7 +647,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
             <div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin-bottom:6px"><span class="pf-s1">📘 Analiza 1</span><span>62%</span></div>
             <div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:62%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div>
             <div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin:13px 0 6px"><span class="pf-s2">📐 Matematika</span><span>78%</span></div>
-            <div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:78%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div>
+            <div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:78%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div><div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin:13px 0 6px"><span>🔬 Fizika</span><span>45%</span></div><div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:45%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div><div style="display:flex;gap:14px;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid rgba(231,210,162,.5);font-size:.8rem;color:var(--muted,#90787E)"><span>🔥 Niz: <b style="color:var(--plum)">12 dana</b></span><span>⏱️ Ove nedelje: <b style="color:var(--plum)">3h 20min</b></span></div>
             <div style="margin-top:13px;display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--bord);border-radius:100px;padding:6px 13px;font-size:.78rem;color:var(--plum);font-weight:700" class="pf-next">🎯 Sledeće: izvodi</div>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:15px">
@@ -690,6 +690,15 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 <section class="tst">
   <div class="wrap">
     <div class="sec-head reveal"><div class="ksub">poverenje</div><h2>Šta kažu roditelji i učenici</h2></div>
+    <div class="reveal" style="max-width:640px;margin:0 auto 26px">
+      <a href="https://oceniprofesora.rs/profesori/marina-bulat" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:18px;justify-content:center;background:#fffcf6;border:1px solid #ECDAC5;border-radius:20px;padding:16px 22px;text-decoration:none;box-shadow:0 16px 40px -28px rgba(120,70,80,.5)">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;color:#C6A05C;font-size:2.4rem;line-height:1;white-space:nowrap">★ 5.0</div>
+        <div style="text-align:left;line-height:1.35">
+          <div style="font-weight:800;color:#432C37">Ocena 5,0 / 5 — 40 studentskih ocena</div>
+          <div style="color:#90787E;font-size:.86rem">Nezavisna platforma „Oceni profesora" · Fakultet tehničkih nauka, Novi Sad · <span style="color:#9C7838;font-weight:700">proveri ↗</span></div>
+        </div>
+      </a>
+    </div>
     <div class="tgrid" id="tgrid">
       <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Ćerka je prvi put rekla da joj je matematika — zabavna. Konačno razume, a ne samo prepiše.</p><div class="who">Mama učenice · <span>7. razred</span></div></div>
       <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Više nema svađe oko telefona. Sada na njemu — uči. Ocene su krenule naviše.</p><div class="who">Roditelj · <span>srednja škola</span></div></div>
@@ -868,7 +877,7 @@ html,body{overflow-x:hidden}
     <div class="flove script goldtext">Uči s ljubavlju</div>
     <p class="foot-last"><a href="https://www.mathia.rs">www.mathia.rs</a></p>
     <div class="social" data-social="1"><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a><a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>Email</span></a></div>
-    <div class="footsig-wrap"><span class="signature footsig">dr Marina Bulat</span></div>
+    <div class="footsig-wrap" style="margin:14px 0 4px"><span class="signature footsig" style="font-size:2.5rem">dr Marina Bulat</span></div>
   </div>
 <div style="max-width:1100px;margin:0 auto;padding:20px 20px 0;text-align:center">
   <div style="display:flex;gap:10px 18px;flex-wrap:wrap;justify-content:center;font-family:'Nunito',sans-serif;font-size:.8rem">
