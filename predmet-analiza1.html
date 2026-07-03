@@ -165,9 +165,10 @@
 
   /* FOOTER — strukturisan, premium */
   footer{background:var(--plum);color:rgba(251,246,238,.66);padding:60px 0 30px;position:relative;z-index:1}
-  footer .ftop{display:grid;grid-template-columns:1fr;gap:32px;padding-bottom:34px;border-bottom:1px solid rgba(231,210,162,.16)}
+  footer{text-align:center;padding:66px 0 34px}
   @media(min-width:720px){footer .ftop{grid-template-columns:1.6fr 1fr 1fr}}
-  footer .word{font-family:var(--serif);font-weight:600;font-size:1.85rem;letter-spacing:.02em;color:var(--goldlt);line-height:1}
+  footer .fmark{font-family:var(--serif);color:var(--goldlt);font-size:1.1rem;letter-spacing:.5em;opacity:.7}
+  footer .word{font-family:var(--serif);font-weight:600;font-size:2.6rem;letter-spacing:.02em;color:var(--goldlt);line-height:1;margin-top:8px}
   footer .tag{font-size:.86rem;max-width:36ch;margin-top:12px;color:rgba(251,246,238,.56);line-height:1.55}
   footer .fcol h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--goldlt);margin:0 0 14px;font-weight:800}
   footer .fcol a{display:block;color:rgba(251,246,238,.7);text-decoration:none;font-size:.9rem;padding:5px 0;transition:color .15s}
@@ -187,6 +188,43 @@
   .rv.in{opacity:1;transform:none}
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+  /* HERO minimal + traka činjenica */
+  .hero{text-align:center;padding:clamp(48px,6vw,86px) 0 clamp(30px,4vw,50px)}
+  .hero .eyebrow{font-size:var(--t-eyebrow);letter-spacing:.32em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:16px}
+  .hero h1{font-size:clamp(2.6rem,5.4vw,4.2rem);line-height:1.05;font-weight:600}
+  .hero .lead{margin:20px auto 0;max-width:66ch;font-size:var(--t-lead);color:var(--muted)}
+  .factsbar{background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(244,233,216,.55));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .factsbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px 34px;flex-wrap:wrap;padding:22px 24px}
+  .facts{list-style:none;display:flex;flex-wrap:wrap;gap:16px 38px;margin:0;padding:0}
+  .facts li{display:flex;flex-direction:column;gap:3px}
+  .facts li span{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .facts li b{font-family:var(--serif);font-size:1.08rem;color:var(--plum);font-weight:600}
+  @media(max-width:680px){.factsbar .wrap{justify-content:center;text-align:center}.facts{justify-content:center}.factsbar .btn{width:100%;justify-content:center}}
+
+  /* FINALE — istaknuto "konačno jasna" */
+  .finale .fin-name{font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:6px;font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
+  .finale .fin-em{font-family:var(--serif);font-style:italic;font-weight:600;font-size:clamp(2.6rem,5.6vw,4.2rem);line-height:1.02;color:var(--plum);margin:0}
+  .finale .fin-em b{font-style:normal;color:var(--golddk)}
+
+  /* stat stub — jedno ispod drugog */
+  .stat.col{flex-direction:column;align-items:flex-start;gap:10px}
+
+  /* FOOTER — fenomenalan, centriran */
+  .fsocial{display:flex;justify-content:center;gap:14px;margin-top:22px}
+  .fsocial a{display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(231,210,162,.28);border-radius:50%;color:rgba(231,210,162,.75);transition:.16s}
+  .fsocial a:hover{border-color:var(--goldlt);color:var(--goldlt);transform:translateY(-2px)}
+  .fsocial svg{width:17px;height:17px;fill:currentColor}
+
+  .prof .qcycle{position:relative;height:70px;margin-bottom:20px}
+  .prof .qcycle li{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,var(--goldlt),#e4cd95);color:var(--plum);border-radius:16px;padding:12px 18px;font-size:.94rem;font-weight:600;line-height:1.35;opacity:0;box-shadow:0 10px 24px -16px rgba(120,70,80,.5);animation:qcyc 17.5s infinite}
+  .prof .qcycle li:nth-child(1){animation-delay:0s}
+  .prof .qcycle li:nth-child(2){animation-delay:3.5s}
+  .prof .qcycle li:nth-child(3){animation-delay:7s}
+  .prof .qcycle li:nth-child(4){animation-delay:10.5s}
+  .prof .qcycle li:nth-child(5){animation-delay:14s}
+  @keyframes qcyc{0%{opacity:0;transform:translateY(9px) scale(.98)}3%{opacity:1;transform:none}17%{opacity:1;transform:none}21%{opacity:0;transform:translateY(-9px) scale(.98)}100%{opacity:0}}
+  @media(prefers-reduced-motion:reduce){.prof .qcycle{height:auto}.prof .qcycle li{position:static;opacity:1;animation:none;margin-bottom:8px}}
 </style>
 </head>
 <body>
@@ -208,25 +246,23 @@
 <main>
 
   <header class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-main rv">
-        <div class="eyebrow" data-i18n="eyebrow">Fakultet &#183; Matematika</div>
-        <div class="kicker">Fakultetski kurs</div>
-        <h1 data-i18n="h1">Matematička analiza&#160;1</h1>
-        <p class="lead" data-i18n="lead">Izvodi, integrali i granične vrednosti — objašnjeni jasno, korak po korak.</p>
-        <div class="cta">
-          <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Započni besplatno &#8594;</a>
-          <a class="btn btn-ghost" href="Analiza-1-Zadaci.html">Pogledaj vežbu</a>
-        </div>
-      </div>
-      <aside class="hero-card rv">
-        <div class="hc-row"><span class="k">Nivo</span><span class="v">Fakultet</span></div>
-        <div class="hc-row"><span class="k">Oblasti</span><span class="v">6 ključnih</span></div>
-        <div class="hc-row"><span class="k">Materijali</span><span class="v">Skripta &#183; Formule &#183; Vežba</span></div>
-        <div class="hc-row"><span class="k">Profesorica</span><span class="v">Dostupna 0&#8211;24h</span></div>
-      </aside>
+    <div class="wrap">
+      <div class="eyebrow rv" data-i18n="eyebrow">Fakultet &#183; Matematika</div>
+      <h1 class="rv" data-i18n="h1">Matematička analiza 1</h1>
+      <p class="lead rv" data-i18n="lead">Izvodi, integrali i granične vrednosti — objašnjeni jasno, korak po korak.</p>
     </div>
   </header>
+  <div class="factsbar">
+    <div class="wrap rv">
+      <ul class="facts">
+        <li><span>Nivo</span><b>Fakultet</b></li>
+        <li><span>Oblasti</span><b>6 ključnih</b></li>
+        <li><span>Materijali</span><b>Skripta &#183; Formule &#183; Vežba</b></li>
+        <li><span>Profesorica</span><b>Dostupna 0&#8211;24h</b></li>
+      </ul>
+      <a class="btn btn-gold" href="index.html#paketi" data-i18n="btnFree">Započni besplatno &#8594;</a>
+    </div>
+  </div>
 
   <section class="band">
     <div class="wrap">
@@ -276,7 +312,7 @@
         <a class="mat rv" href="Analiza-1-Formule.html"><span class="corner"></span><span class="ic"><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 8h16M9 8v10M15 8v10"/><path d="M4 8c0-1.5 1-2.5 2.5-2.5"/></svg></span></span><h3>Formule</h3><p>Sve ključne formule pregledno složene — spremne za ponavljanje pred ispit.</p><span class="go">Otvori formule &#8594;</span></a>
         <a class="mat rv" href="Analiza-1-Zadaci.html"><span class="corner"></span><span class="ic"><span class="svic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".9" fill="currentColor" stroke="none"/></svg></span></span><h3 class="balance">Vežbaj i proveri znanje</h3><p>Rešavaj zadatke, otkrij postupak i proveri koliko si zaista savladao.</p><span class="go">Počni vežbu &#8594;</span></a>
       </div>
-      <p class="note balance">Prvu stranu svakog materijala pogledaš besplatno. <b>Ceo sadržaj se otključava pretplatom na ovaj predmet.</b></p>
+      <p class="note" style="max-width:none">Prvu stranu vidiš besplatno &#183; <b>ceo sadržaj se otključava pretplatom na ovaj predmet.</b></p>
     </div>
   </section>
 
@@ -295,7 +331,7 @@
           <div class="bar"><div class="r"><span>Nizovi i granične vrednosti</span><span>72%</span></div><div class="t"><i style="width:72%"></i></div></div>
           <div class="bar"><div class="r"><span>Izvodi</span><span>48%</span></div><div class="t"><i style="width:48%"></i></div></div>
           <div class="bar"><div class="r"><span>Integrali</span><span>20%</span></div><div class="t"><i style="width:20%"></i></div></div>
-          <div class="stat">
+          <div class="stat col">
             <span><span class="svic"><svg viewBox="0 0 24 24"><path d="M12 3c1 3-2 4-2 7a2 2 0 0 0 4 0c2 2 3 3.5 3 6a5 5 0 0 1-10 0c0-3.5 3-5 5-13Z"/></svg></span>Niz: <b>9 dana</b></span>
             <span><span class="svic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 3h6"/></svg></span>Nedeljno: <b>2h 40min</b></span>
             <span><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>Sledeće: <b>Primena izvoda</b></span>
@@ -303,11 +339,13 @@
         </div>
         <div class="panel prof rv">
           <div class="who"><img class="av" src="avatar.jpg" alt="Profesorica" onerror="this.onerror=null;this.src='icon-192.png'"><div><b>Profesorica</b><span>za Matematičku analizu 1 &#183; dostupna 0&#8211;24h</span></div></div>
-          <div class="qlabel">Pitaj je bilo šta — na primer:</div>
-          <ul class="qlist">
-            <li>Objasni zašto je izvod nagib tangente</li>
-            <li>Reši <span class="kx" data-tex="{\displaystyle\lim_{x\to 0}\frac{\sin x}{x}}"></span> korak po korak</li>
-            <li>Skiciraj tok funkcije <span class="kx" data-tex="f(x)=x^{3}-3x"></span></li>
+          <div class="qlabel">Pitaj je bilo šta — evo ideja:</div>
+          <ul class="qcycle">
+            <li>&#8222;Objasni zašto je izvod nagib tangente.&#8220;</li>
+            <li>&#8222;Reši <span class="kx" data-tex="{\displaystyle\lim_{x\to 0}\frac{\sin x}{x}}"></span> korak po korak.&#8220;</li>
+            <li>&#8222;Skiciraj tok funkcije <span class="kx" data-tex="f(x)=x^{3}-3x"></span>.&#8220;</li>
+            <li>&#8222;Kada funkcija ima ekstrem?&#8220;</li>
+            <li>&#8222;Objasni Tejlorov razvoj na primeru.&#8220;</li>
           </ul>
           <a class="btn btn-gold sm" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;">Pitaj Profesoricu &#8594;</a>
         </div>
@@ -318,8 +356,9 @@
   <section class="finale">
     <div class="wrap">
       <span class="ornament">&#10022;</span>
-      <h2 class="balance" style="max-width:24ch">Matematička analiza&#160;1 — konačno jasna</h2>
-      <p class="sub balance">Počni s pitanjem koje te muči — Profesorica te vodi ostatak puta.</p>
+      <div class="fin-name">Matematička analiza 1</div>
+      <h2 class="fin-em">konačno <b>jasna.</b></h2>
+      <p class="sub balance" style="margin-top:16px">Počni s pitanjem koje te muči — Profesorica te vodi ostatak puta.</p>
       <a class="btn btn-gold" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno &#8594;</a>
       <div class="fine" data-i18n="ctaSub">Prvih 15 minuta je besplatno — bez kartice, bez obaveza.</div>
     </div>
@@ -329,30 +368,22 @@
 
 <footer>
   <div class="wrap">
-    <div class="ftop">
-      <div class="fbrand">
-        <div class="word">Mathia</div>
-        <p class="tag" data-i18n="footTag">Matematika &#183; Fizika &#183; Elektrotehnika — uz Profesoricu, 0&#8211;24h.</p>
-      </div>
-      <div class="fcol">
-        <h4>Navigacija</h4>
-        <a href="index.html" data-i18n="fLink1">Početna</a>
-        <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
-        <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
-        <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
-        <a href="o-marini.html" data-i18n="nav5">O meni</a>
-      </div>
-      <div class="fcol">
-        <h4>Pravno</h4>
-        <a href="uslovi.html">Uslovi korišćenja</a>
-        <a href="privatnost.html">Politika privatnosti</a>
-        <a href="reklamacije.html">Reklamacije i povraćaj</a>
-      </div>
+    <div class="fmark">&#10022;</div>
+    <div class="word">Mathia</div>
+    <nav>
+      <a href="index.html" data-i18n="fLink1">Početna</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+    </nav>
+    <div class="fsocial">
+      <a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 3.65A6.15 6.15 0 1 0 18.15 12 6.15 6.15 0 0 0 12 5.85zm0 10.15A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-10.55a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
+      <a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+      <a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg></a>
     </div>
-    <div class="fbottom">
-      <span>&#169; 2026 Mathia Edu &#183; Sva prava zadržana.</span>
-      <span>Srpskih Vladara 36A, Apatin &#183; kontakt@mathia.rs</span>
-    </div>
+    <div class="fdiv"></div>
+    <div class="legal">&#169; 2026 Mathia Edu &#183; Sva prava zadržana &#183; <a href="mailto:kontakt@mathia.rs">kontakt@mathia.rs</a></div>
   </div>
 </footer>
 
