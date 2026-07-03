@@ -1231,11 +1231,12 @@
   taEl.addEventListener("input", function () {
     taEl.style.height = "auto"; taEl.style.height = Math.min(taEl.scrollHeight, 96) + "px";
   });
-  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; applyLang(); greet(); history = []; };
+  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; try{localStorage.setItem("mathia_lang",LANG);window.dispatchEvent(new CustomEvent("mathia:lang",{detail:LANG}));}catch(e){} applyLang(); greet(); history = []; };
   window.addEventListener("mathia:lang", function (e) {
     var l = e && e.detail; if (!l) return; l = String(l).toLowerCase();
     if (l === LANG) return;
     LANG = l; stopSpeak();
+    try{ localStorage.setItem("mathia_lang", l); }catch(e){}
     try { if (langEl) langEl.value = l.toUpperCase(); } catch (_) {}
     applyLang(); greet(); history = [];
   });
@@ -1244,4 +1245,25 @@
   // ——— start ———
   applyLang();
   initMemory(); // učita memoriju i personalizovano pozdravi
+
+  // ——— vidljiv prekidač jezika na stranama koje ga nemaju (gore desno) ———
+  (function () {
+    try {
+      if (document.querySelector('select.lang')) return;      // strana već ima svoj prekidač
+      if (document.getElementById('mathia-langbar')) return;  // već ubačen
+      var wrap = document.createElement('div');
+      wrap.id = 'mathia-langbar';
+      wrap.style.cssText = 'position:fixed;top:10px;right:12px;z-index:2147483000;';
+      var sel = document.createElement('select');
+      sel.setAttribute('aria-label', 'Jezik / Language');
+      sel.style.cssText = 'font-family:inherit;font-size:13px;font-weight:700;color:#432C37;background:#fffcf6;border:1px solid #ECDAC5;border-radius:100px;padding:6px 12px;box-shadow:0 6px 18px -8px rgba(120,70,80,.45);cursor:pointer;';
+      ORDER.forEach(function (l) {
+        var o = document.createElement('option'); o.value = l; o.textContent = l.toUpperCase();
+        if (l === LANG) o.selected = true; sel.appendChild(o);
+      });
+      sel.onchange = function () { try { localStorage.setItem('mathia_lang', sel.value); } catch (e) {} location.reload(); };
+      wrap.appendChild(sel);
+      document.body.appendChild(wrap);
+    } catch (e) {}
+  })();
 })();
