@@ -294,8 +294,9 @@
     ".zoi-bub .katex{max-width:100%}" +
     ".zoi-bub .kx-fallback{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em;color:#5a4a50}" +
     ".zoi-bub a{overflow-wrap:break-word;word-break:break-word}" +
-    "#zoi-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 6px}" +
-    ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:6px 11px;font-size:12.5px;font-family:inherit;cursor:pointer}" +
+    "#zoi-chips{display:flex;flex-wrap:nowrap;gap:6px;padding:0 14px 8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}" +
+    "#zoi-chips::-webkit-scrollbar{height:5px}#zoi-chips::-webkit-scrollbar-thumb{background:#E2D6BF;border-radius:6px}" +
+    ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:6px 11px;font-size:12.5px;font-family:inherit;cursor:pointer;white-space:nowrap;flex:0 0 auto;scroll-snap-align:start}" +
     ".zoi-chip:hover{background:#F0FAF7;border-color:#2FB7A0}" +
     "#zoi-foot{padding:10px;border-top:1px solid #ECE0CC;background:#FFFDF8}" +
     "#zoi-prev{display:none;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;color:#5b6863}" +
