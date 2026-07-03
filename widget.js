@@ -296,7 +296,7 @@
     ".zoi-bub a{overflow-wrap:break-word;word-break:break-word}" +
     "#zoi-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 8px}" +
     
-    ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:6px 11px;font-size:12.5px;font-family:inherit;cursor:pointer;white-space:normal}" +
+    ".zoi-chip{background:#FFF;border:1px solid #E2D6BF;color:#3a4a45;border-radius:999px;padding:7px 13px;font-size:12.5px;font-family:inherit;cursor:pointer;white-space:normal;transition:transform .16s ease,background .16s,border-color .16s,box-shadow .16s;animation:zoiChipIn .5s both}.zoi-chip:hover{transform:translateY(-2px);border-color:#C6A05C;background:#FFF8EC;box-shadow:0 6px 14px -8px rgba(156,120,56,.6)}@keyframes zoiChipIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}#zoi-chips .zoi-chip:nth-child(1){animation-delay:.02s}#zoi-chips .zoi-chip:nth-child(2){animation-delay:.09s}#zoi-chips .zoi-chip:nth-child(3){animation-delay:.16s}#zoi-chips .zoi-chip:nth-child(4){animation-delay:.23s}#zoi-chips .zoi-chip:nth-child(5){animation-delay:.3s}" +
     ".zoi-chip:hover{background:#F0FAF7;border-color:#2FB7A0}" +
     "#zoi-foot{padding:10px;border-top:1px solid #ECE0CC;background:#FFFDF8}" +
     "#zoi-prev{display:none;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;color:#5b6863}" +
