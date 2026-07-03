@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
 <link rel="icon" href="/icon-192.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <style>
   :root{
     --paper:#FBF6EE; --paper2:#F5EADB; --champ:#F7EAC9;
@@ -129,20 +130,29 @@
   .finale>.wrap>p{color:var(--plum2);margin:16px auto 30px;max-width:44ch;font-size:1.08rem}
   .finale .fine{margin-top:18px;color:var(--muted);font-size:.82rem}
 
-  footer{background:var(--plum);color:rgba(251,246,238,.72);padding:56px 0 30px}
-  footer .top{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start;border-bottom:1px solid rgba(231,210,162,.14);padding-bottom:26px}
-  footer .sig{font-family:'Pinyon Script',cursive;font-size:2.2rem;color:var(--goldlt);line-height:1}
-  footer .tag{font-size:.9rem;max-width:34ch;margin-top:8px}
-  footer nav{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.88rem;font-weight:600}
-  footer nav a{color:rgba(251,246,238,.72);text-decoration:none;transition:color .15s}
+  footer{background:var(--plum);color:rgba(251,246,238,.7);padding:66px 0 36px;text-align:center}
+  footer .fmark{font-family:var(--serif);font-style:italic;font-size:1.9rem;color:var(--goldlt);opacity:.45;line-height:1}
+  footer .sig{font-family:'Pinyon Script',cursive;font-size:2.9rem;color:var(--goldlt);line-height:1;margin-top:4px}
+  footer .tag{font-size:.9rem;max-width:42ch;margin:14px auto 0;color:rgba(251,246,238,.58)}
+  footer nav{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center;margin-top:26px;font-size:.86rem;font-weight:600}
+  footer nav a{color:rgba(251,246,238,.74);text-decoration:none;transition:color .15s}
   footer nav a:hover{color:var(--goldlt)}
-  footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:22px;font-size:.75rem;color:rgba(251,246,238,.45)}
-  footer .legal a{color:rgba(231,210,162,.6)}
+  footer .fdiv{width:64px;height:1px;background:linear-gradient(90deg,transparent,rgba(231,210,162,.55),transparent);margin:32px auto}
+  footer .legal{display:flex;flex-direction:column;gap:7px;font-size:.74rem;color:rgba(251,246,238,.4)}
+  footer .legal a{color:rgba(231,210,162,.55);text-decoration:none}
+  footer .legal a:hover{color:var(--goldlt)}
+  .kx .katex{font-size:1.02em}
 
   .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
   .rv.in{opacity:1;transform:none}
   :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+  .svic{display:inline-flex;align-items:center;justify-content:center;color:var(--golddk)}
+  .svic svg{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+  .stn .dot .svic svg{width:30px;height:30px}
+  .topic .tk .svic svg{width:27px;height:27px}
+  .mat .ic .svic svg{width:34px;height:34px}
+  .stat .svic svg{width:16px;height:16px;vertical-align:-2px}
 </style>
 </head>
 <body>
@@ -183,11 +193,11 @@
       <h2 class="sec-title balance">Jasan put od prvog pitanja do sigurnosti</h2>
       <div class="rule"></div>
       <div class="journey">
-        <div class="stn rv"><div class="dot">&#128161;</div><div><div class="rn">I</div><h3>Razumi</h3><p>Profesorica objasni suštinu — zašto, ne samo kako.</p></div></div>
-        <div class="stn rv"><div class="dot">&#128212;</div><div><div class="rn">II</div><h3>Nauči</h3><p>Skripta i formule složene pregledno, korak po korak.</p></div></div>
-        <div class="stn rv"><div class="dot">&#9999;&#65039;</div><div><div class="rn">III</div><h3>Vežbaj</h3><p>Rešavaš zadatke uz vođenje, sopstvenim tempom.</p></div></div>
-        <div class="stn rv"><div class="dot">&#127919;</div><div><div class="rn">IV</div><h3>Proveri</h3><p>Kratke provere pokažu šta znaš, a šta još treba.</p></div></div>
-        <div class="stn rv"><div class="dot">&#128200;</div><div><div class="rn">V</div><h3>Napreduj</h3><p>Pratiš napredak i uvek znaš svoj sledeći korak.</p></div></div>
+        <div class="stn rv"><div class="dot"><span class="svic"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6.9 1.3 1 2.5h6c.1-1.2.4-1.9 1-2.5A6 6 0 0 0 12 3Z"/></svg></span></div><div><div class="rn">I</div><h3>Razumi</h3><p>Profesorica objasni suštinu — zašto, ne samo kako</p></div></div>
+        <div class="stn rv"><div class="dot"><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5ZM19 18v3M8 3v15"/></svg></span></div><div><div class="rn">II</div><h3>Nauči</h3><p>Skripta i formule složene pregledno, korak po korak</p></div></div>
+        <div class="stn rv"><div class="dot"><span class="svic"><svg viewBox="0 0 24 24"><path d="m5 19 1.4-4.4L16 5a2 2 0 0 1 3 3l-9.6 9.6L5 19ZM14.5 6.5l3 3"/></svg></span></div><div><div class="rn">III</div><h3>Vežbaj</h3><p>Rešavaš zadatke uz vođenje, sopstvenim tempom</p></div></div>
+        <div class="stn rv"><div class="dot"><span class="svic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".9" fill="currentColor" stroke="none"/></svg></span></div><div><div class="rn">IV</div><h3>Proveri</h3><p>Kratke provere pokažu šta znaš, a šta još treba</p></div></div>
+        <div class="stn rv"><div class="dot"><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 20V4M4 20h16M7.5 15.5l3.5-3.5 3 2 5-6.5M20 7.5h-3M20 7.5v3"/></svg></span></div><div><div class="rn">V</div><h3>Napreduj</h3><p>Pratiš napredak i uvek znaš svoj sledeći korak</p></div></div>
       </div>
     </div>
   </section>
@@ -198,12 +208,12 @@
       <h2 class="sec-title balance">Šta pokrivamo u Analizi 1</h2>
       <div class="rule"></div>
       <div class="topics">
-        <div class="topic rv"><span class="tk">&#9854;&#65039;</span><div><h3 data-i18n="c1t">Nizovi i granične vrednosti</h3><p data-i18n="c1d">Konvergencija i računanje limesa.</p></div></div>
-        <div class="topic rv"><span class="tk">&#129701;</span><div><h3 data-i18n="c2t">Neprekidnost</h3><p data-i18n="c2d">Teoreme o neprekidnim funkcijama i posledice.</p></div></div>
-        <div class="topic rv"><span class="tk">&#128201;</span><div><h3 data-i18n="c3t">Izvodi</h3><p data-i18n="c3d">Pravila izvođenja i geometrijsko značenje.</p></div></div>
-        <div class="topic rv"><span class="tk">&#128200;</span><div><h3 data-i18n="c4t">Primena izvoda</h3><p data-i18n="c4d">Monotonost, ekstremi i konveksnost.</p></div></div>
-        <div class="topic rv"><span class="tk">&#128269;</span><div><h3 data-i18n="c5t">Ispitivanje funkcija</h3><p data-i18n="c5d">Tok funkcije i precizno crtanje grafika.</p></div></div>
-        <div class="topic rv"><span class="tk">&#129513;</span><div><h3 data-i18n="c6t">Tejlorov razvoj</h3><p data-i18n="c6d">Aproksimacija funkcija polinomima.</p></div></div>
+        <div class="topic rv"><span class="tk"><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 12c0-2.1 1.5-3.6 3.4-3.6S10.8 10 12 12s2.7 3.6 4.6 3.6S20 14.1 20 12s-1.5-3.6-3.4-3.6S13.2 10 12 12s-2.7 3.6-4.6 3.6S4 14.1 4 12Z"/></svg></span></span><div><h3 data-i18n="c1t">Nizovi i granične vrednosti</h3><p data-i18n="c1d">Konvergencija i računanje limesa</p></div></div>
+        <div class="topic rv"><span class="tk"><span class="svic"><svg viewBox="0 0 24 24"><path d="M3 15.5c4.5 0 4.5-9 9-9s4.5 9 9 9"/><circle cx="3" cy="15.5" r=".3" fill="currentColor"/></svg></span></span><div><h3 data-i18n="c2t">Neprekidnost</h3><p data-i18n="c2d">Teoreme o neprekidnim funkcijama i posledice</p></div></div>
+        <div class="topic rv"><span class="tk"><span class="svic"><svg viewBox="0 0 24 24"><path d="M3 18C9 18 15 12 20 4"/><path d="M6 13.5 20 18"/></svg></span></span><div><h3 data-i18n="c3t">Izvodi</h3><p data-i18n="c3d">Pravila izvođenja i geometrijsko značenje</p></div></div>
+        <div class="topic rv"><span class="tk"><span class="svic"><svg viewBox="0 0 24 24"><path d="M3 13c3 0 3.2-7 5.5-7s3 13 5.5 13 3-7 6-7"/></svg></span></span><div><h3 data-i18n="c4t">Primena izvoda</h3><p data-i18n="c4d">Monotonost, ekstremi i konveksnost</p></div></div>
+        <div class="topic rv"><span class="tk"><span class="svic"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m20 20-5-5"/></svg></span></span><div><h3 data-i18n="c5t">Ispitivanje funkcija</h3><p data-i18n="c5d">Tok funkcije i precizno crtanje grafika</p></div></div>
+        <div class="topic rv"><span class="tk"><span class="svic"><svg viewBox="0 0 24 24"><path d="M3 18C8.5 18 13.5 6 21 6"/><path d="M3 13h18" stroke-dasharray="2.4 2.6"/></svg></span></span><div><h3 data-i18n="c6t">Tejlorov razvoj</h3><p data-i18n="c6d">Aproksimacija funkcija polinomima</p></div></div>
       </div>
     </div>
   </section>
@@ -214,9 +224,9 @@
       <h2 class="sec-title balance">Sve za ovaj predmet, na jednom mestu</h2>
       <div class="rule"></div>
       <div class="mats">
-        <a class="mat rv" href="Analiza-1-Skripta.html"><span class="corner"></span><span class="ic">&#128212;</span><h3>Skripta</h3><p>Teorija objašnjena korak po korak, sa rešenim primerima za svaku oblast.</p><span class="go">Otvori skriptu &#8594;</span></a>
-        <a class="mat rv" href="Analiza-1-Formule.html"><span class="corner"></span><span class="ic">&#128208;</span><h3>Formule</h3><p>Sve ključne formule pregledno složene — spremne za ponavljanje pred ispit.</p><span class="go">Otvori formule &#8594;</span></a>
-        <a class="mat rv" href="Analiza-1-Zadaci.html"><span class="corner"></span><span class="ic">&#127919;</span><h3>Vežbaj i proveri znanje</h3><p>Rešavaj zadatke, otkrij postupak i proveri koliko si zaista savladao.</p><span class="go">Počni vežbu &#8594;</span></a>
+        <a class="mat rv" href="Analiza-1-Skripta.html"><span class="corner"></span><span class="ic"><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5ZM19 18v3M8 3v15"/></svg></span></span><h3>Skripta</h3><p>Teorija objašnjena korak po korak, sa rešenim primerima za svaku oblast.</p><span class="go">Otvori skriptu &#8594;</span></a>
+        <a class="mat rv" href="Analiza-1-Formule.html"><span class="corner"></span><span class="ic"><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 8h16M9 8v10M15 8v10"/><path d="M4 8c0-1.5 1-2.5 2.5-2.5"/></svg></span></span><h3>Formule</h3><p>Sve ključne formule pregledno složene — spremne za ponavljanje pred ispit.</p><span class="go">Otvori formule &#8594;</span></a>
+        <a class="mat rv" href="Analiza-1-Zadaci.html"><span class="corner"></span><span class="ic"><span class="svic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".9" fill="currentColor" stroke="none"/></svg></span></span><h3>Vežbaj i proveri znanje</h3><p>Rešavaj zadatke, otkrij postupak i proveri koliko si zaista savladao.</p><span class="go">Počni vežbu &#8594;</span></a>
       </div>
       <p class="note balance">Prvu stranu svakog materijala pogledaš besplatno. <b>Ceo sadržaj se otključava pretplatom na ovaj predmet</b> — i tada ti sve stoji na tvom nalogu, uz Profesoricu 0&#8211;24h.</p>
     </div>
@@ -235,13 +245,13 @@
           <div class="bar"><div class="r"><span>Nizovi i granične vrednosti</span><span>72%</span></div><div class="t"><i style="width:72%"></i></div></div>
           <div class="bar"><div class="r"><span>Izvodi</span><span>48%</span></div><div class="t"><i style="width:48%"></i></div></div>
           <div class="bar"><div class="r"><span>Integrali</span><span>20%</span></div><div class="t"><i style="width:20%"></i></div></div>
-          <div class="stat"><span>&#128293; Niz: <b>9 dana</b></span><span>&#9201;&#65039; Ove nedelje: <b>2h 40min</b></span><span>&#10145;&#65039; Sledeće: <b>Primena izvoda</b></span></div>
+          <div class="stat"><span><span class="svic"><svg viewBox="0 0 24 24"><path d="M12 3c1 3-2 4-2 7a2 2 0 0 0 4 0c2 2 3 3.5 3 6a5 5 0 0 1-10 0c0-3.5 3-5 5-13Z"/></svg></span> Niz: <b>9 dana</b></span><span><span class="svic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 3h6"/></svg></span> Ove nedelje: <b>2h 40min</b></span><span><span class="svic"><svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span> Sledeće: <b>Primena izvoda</b></span></div>
         </div>
         <div class="panel prof rv">
-          <div class="who"><img class="av" src="avatar.jpg" alt="Profesorica"><div><b>Profesorica</b><span>specijalizovana za Analizu 1 &#183; 0&#8211;24h</span></div></div>
+          <div class="who"><img class="av" src="avatar.jpg" alt="Profesorica" onerror="this.onerror=null;this.src='icon-192.png'"><div><b>Profesorica</b><span>specijalizovana za Analizu 1 &#183; 0&#8211;24h</span></div></div>
           <div class="ex">&#8222;Objasni mi zašto je izvod nagib tangente.&#8220;</div>
-          <div class="ex">&#8222;Reši lim<sub>x&#8594;0</sub> sin(x)/x korak po korak.&#8220;</div>
-          <div class="ex">&#8222;Skiciraj tok funkcije f(x)=x&#179;&#8722;3x.&#8220;</div>
+          <div class="ex">&#8222;Reši <span class="kx" data-tex="{\displaystyle\lim_{x\to 0}\frac{\sin x}{x}}"></span> korak po korak.&#8220;</div>
+          <div class="ex">&#8222;Skiciraj tok funkcije <span class="kx" data-tex="f(x)=x^{3}-3x"></span>.&#8220;</div>
           <p style="margin:16px 0 0;font-size:.9rem;color:var(--muted)">Pošalji pitanje, sliku zadatka ili diktiraj — dobijaš postupak, ne samo rešenje.</p>
           <a class="btn btn-gold" href="#" onclick="var b=document.getElementById('zoi-btn')||document.querySelector('[id^=zoi-btn]');if(b&amp;&amp;b.click){b.click();}return false;">Pitaj Profesoricu &#8594;</a>
         </div>
@@ -263,19 +273,17 @@
 
 <footer>
   <div class="wrap">
-    <div class="top">
-      <div>
-        <div class="sig">Mathia</div>
-        <p class="tag" data-i18n="footTag">Matematika &#183; Fizika &#183; Elektrotehnika — uz Profesoricu, 0&#8211;24h.</p>
-      </div>
-      <nav>
-        <a href="index.html" data-i18n="fLink1">Početna</a>
-        <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
-        <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
-        <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
-        <a href="o-marini.html" data-i18n="nav5">O meni</a>
-      </nav>
-    </div>
+    <div class="fmark">&#8747;</div>
+    <div class="sig">Mathia</div>
+    <p class="tag" data-i18n="footTag">Matematika &#183; Fizika &#183; Elektrotehnika — uz Profesoricu, 0&#8211;24h.</p>
+    <nav>
+      <a href="index.html" data-i18n="fLink1">Početna</a>
+      <a href="predmeti.html" data-i18n="nav2">Predmeti</a>
+      <a href="prodavnica.html" data-i18n="nav3">Prodavnica</a>
+      <a href="index.html#paketi" data-i18n="nav4">Paketi</a>
+      <a href="o-marini.html" data-i18n="nav5">O meni</a>
+    </nav>
+    <div class="fdiv"></div>
     <div class="legal">
       <span>&#169; 2026 Mathia Edu &#183; Sva prava zadržana.</span>
       <span><a href="uslovi.html">Uslovi</a> &#183; <a href="privatnost.html">Privatnost</a> &#183; <a href="reklamacije.html">Reklamacije</a></span>
@@ -307,5 +315,6 @@ if(sv!=='sr')apply(sv);
 window.addEventListener('mathia:lang',function(e){apply((e&&e.detail?String(e.detail):'sr').toLowerCase());});
 })();
 </script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" onload="document.querySelectorAll('.kx').forEach(function(el){try{katex.render(el.getAttribute('data-tex'),el,{throwOnError:false});}catch(e){}});"></script>
 </body>
 </html>
