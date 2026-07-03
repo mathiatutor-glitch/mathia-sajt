@@ -380,7 +380,11 @@ export default async function handler(req, res) {
           + "Ti si Marina — topla, strpljiva, uvek uz korisnika. Pamtiš ko je i šta uči.";
       }
     }
-    const finalSystem = system + personalCtx;
+    // Sistemski prompt (klon + uputstva za formule) je VELIK i isti za svaku poruku →
+    // keširamo ga (ponovljeni ulaz je do 90% jeftiniji). Personalni deo (ime, predmeti…)
+    // se menja po korisniku, pa ide kao zaseban, nekeširani blok.
+    const systemBlocks = [{ type: "text", text: system, cache_control: { type: "ephemeral" } }];
+    if (personalCtx) systemBlocks.push({ type: "text", text: personalCtx });
 
     const r = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -389,12 +393,23 @@ export default async function handler(req, res) {
         "x-api-key": process.env.ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01",
       },
-      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, system: finalSystem, messages }),
+      body: JSON.stringify({ model: "claude-sonnet-4-6", max_tokens: 2000, system: systemBlocks, messages }),
     });
 
     const data = await r.json();
     if (!r.ok) {
-      return res.status(500).json({ error: (data && data.error && data.error.message) || ("HTTP " + r.status) });
+      const apiMsg = (data && data.error && data.error.message) || ("HTTP " + r.status);
+      console.error("Anthropic API greška:", r.status, apiMsg);
+      const lowCredit = /credit balance|too low|billing|quota|insufficient/i.test(apiMsg);
+      const BUSY = {
+        sr: lowCredit
+          ? "Mathia je trenutno privremeno nedostupna zbog tehničkog razloga na našoj strani. Molimo pokušajte malo kasnije. 🌷"
+          : "Izvinite, došlo je do kratkog tehničkog zastoja. Pokušajte ponovo za koji trenutak.",
+        en: lowCredit
+          ? "Mathia is temporarily unavailable due to a technical issue on our side. Please try again a little later."
+          : "Sorry, a brief technical hiccup occurred. Please try again in a moment.",
+      };
+      return res.status(200).json({ text: BUSY[msgLang] || BUSY.sr, reply: BUSY[msgLang] || BUSY.sr, mode: rmode });
     }
     const text = (data.content || [])
       .filter((b) => b.type === "text")
@@ -404,6 +419,9 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ text, reply: text, mode: rmode, progress });
   } catch (e) {
-    return res.status(500).json({ error: String((e && e.message) || e) });
+    console.error("chat.js greška:", (e && e.message) || e);
+    var mlang = (typeof msgLang !== "undefined" && msgLang) ? msgLang : "sr";
+    var BUSY = { sr: "Izvinite, došlo je do kratkog tehničkog zastoja. Pokušajte ponovo za koji trenutak.", en: "Sorry, a brief technical hiccup occurred. Please try again in a moment." };
+    return res.status(200).json({ text: BUSY[mlang] || BUSY.sr, reply: BUSY[mlang] || BUSY.sr });
   }
 }
