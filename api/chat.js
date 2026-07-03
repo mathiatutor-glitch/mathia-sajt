@@ -308,9 +308,9 @@ export default async function handler(req, res) {
     }
 
     // "site" (vodič na naslovnoj) je otvoren svima; SVI ostali modovi traže prijavu telefonom.
+    let uid = null;
     if (rmode !== "site") {
       // identitet: prvo Supabase (email) nalog, pa stari telefon-login kao rezerva
-      let uid = null;
       const sb = await sbUser(body.token);
       if (sb) uid = "sb:" + sb.id;
       else { const phone = await getSessionPhone(req); if (phone) uid = phone; }
