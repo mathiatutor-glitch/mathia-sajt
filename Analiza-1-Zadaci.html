@@ -78,6 +78,41 @@ img,svg,video,iframe,table{max-width:100%}
 pre{max-width:100%;overflow-x:auto}
 code{overflow-wrap:break-word}
 </style>
+<style>/* premium-v2 */
+:root{--plum:#402A34;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+body{background:var(--bg)}
+.mathfog{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.mathfog span{position:absolute;font-family:var(--hf);font-style:italic;color:var(--acc2);opacity:.06;font-size:clamp(3rem,9vw,7rem);white-space:nowrap}
+.mathfog span:nth-child(1){top:10%;left:-1%}.mathfog span:nth-child(2){top:34%;right:-2%}.mathfog span:nth-child(3){top:60%;left:4%}.mathfog span:nth-child(4){top:82%;right:6%}.mathfog span:nth-child(5){top:48%;left:44%;opacity:.04}
+.topbar,.cover,.page{position:relative;z-index:1}
+.topbar{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
+.topbar .back{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--plum);font-weight:700;font-size:.92rem;font-family:'Nunito',sans-serif}
+.topbar .back .arw{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--accS);border-radius:50%;background:#fff;transition:.15s}
+.topbar .back:hover .arw{transform:translateX(-3px);border-color:var(--acc)}
+.topbar .brandmark{font-family:var(--hf);font-weight:700;letter-spacing:.16em;font-size:.8rem;color:var(--acc2);text-transform:uppercase;text-decoration:none}
+@media(max-width:560px){.topbar .brandmark{display:none}}
+.cover{min-height:auto!important;padding:34px 24px 46px!important;background:linear-gradient(180deg,rgba(246,236,220,.5),rgba(243,231,212,.55))!important}
+.cover .eyebrow{font-size:.8rem;letter-spacing:.3em}
+.cover h1{font-size:clamp(2.4rem,5.4vw,3.8rem);color:var(--plum);font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
+.cover-sub{font-family:var(--hf);font-style:italic;font-weight:600;font-size:clamp(1.55rem,3.4vw,2.35rem);color:var(--golddk);margin:2px 0 18px;line-height:1.1}
+.cover .sub{max-width:660px;font-size:1.05rem;color:var(--muted)}
+.cover .sub b{color:var(--plum);font-weight:700;font-size:1.14rem;display:inline-block;margin-bottom:7px}
+.chips{gap:10px;margin:22px 0 6px}
+.chip{font-size:1rem;padding:10px 22px}
+.intro{text-align:center;font-family:'Nunito',sans-serif;background:#fff;border-radius:16px;max-width:660px;margin:8px auto 22px;color:var(--muted);line-height:1.7;padding:16px 20px}
+.intro b{font-family:var(--hf);color:var(--plum);font-size:1.18rem;letter-spacing:.01em}
+.zad{border-radius:20px;box-shadow:0 18px 44px -32px rgba(120,70,80,.5);padding:22px 22px 20px}
+.zad-h{justify-content:center}
+.zad-q{font-size:1.2rem;text-align:center;color:var(--plum);line-height:1.65;margin-bottom:20px}
+.opt{font-size:1.05rem;padding:13px 17px}
+.opt-m{font-size:1.02rem}
+.foot{margin-top:40px;font-size:.78rem;color:var(--muted);opacity:.65}
+.zfooter{text-align:center;margin:10px auto 0;padding-top:26px;border-top:1px solid var(--line);max-width:660px}
+.zfooter .fmk{color:var(--gold);font-size:1.05rem;letter-spacing:.4em}
+.zfooter .zword{font-family:var(--hf);font-weight:600;font-size:1.7rem;color:var(--acc2);line-height:1;margin:6px 0 14px}
+.zfooter .zback{display:inline-block;color:var(--acc2);font-weight:700;text-decoration:none;font-family:'Nunito',sans-serif;font-size:.9rem}
+.zfooter .zback:hover{color:var(--acc)}
+</style>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#432C37">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -105,11 +140,16 @@ code{overflow-wrap:break-word}
 <!--seo-->
 </head>
 <body>
+<div class="mathfog" aria-hidden="true"><span>lim</span><span>&#8747; f(x)dx</span><span>dy/dx</span><span>f&#8242;(x)</span><span>&#8721;</span></div>
+<div class="topbar">
+  <a class="back" href="predmet-analiza1.html"><span class="arw">&#8592;</span> Nazad na predmet</a>
+  <a class="brandmark" href="index.html">MATHIA&#183;EDU</a>
+</div>
 <div class="cover">
-  <div class="brandline">MATHIA</div>
-  <div class="eyebrow">Fakultet · Vežba</div>
-  <h1>Analiza 1 — zadaci</h1>
-  <p class="sub">Vežba po oblastima: nizovi i granične vrednosti, granična vrednost funkcije, neprekidnost, izvodi, integrali. Probaj sam, pa otkrij rešenje korak po korak.</p>
+  <div class="eyebrow">Fakultet &#183; Vežba</div>
+  <h1>Matematička analiza 1</h1>
+  <div class="cover-sub">Vežbaj i proveri znanje</div>
+  <p class="sub"><b>Zaokruži odgovor, pa otkrij rešenje korak po korak.</b><br>Napredak se pamti — vrati se i nastavi tačno gde si stao.</p>
   <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
 </div>
 
@@ -121,7 +161,7 @@ code{overflow-wrap:break-word}
     <span class="chip" data-y="izv">Izvodi</span>
     <span class="chip" data-y="int">Integrali</span>
   </div>
-  <div class="intro"><b id="rok-label">Oblast: Nizovi</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+  <div class="intro"><b id="rok-label">Oblast: Nizovi</b><br>zaokruži odgovor, pa proveri — napredak se pamti na ovom uređaju.</div>
 
   <div class="prog-wrap">
     <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
@@ -131,6 +171,7 @@ code{overflow-wrap:break-word}
   <div id="lista"></div>
   <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
   <div class="foot" id="rok-foot">MATHIA · Nizovi · uči s ljubavlju · mathia.rs</div>
+  <div class="zfooter"><span class="fmk">&#10022;</span><div class="zword">Mathia</div><a class="zback" href="predmet-analiza1.html">&#8592; Nazad na predmet</a></div>
 </div>
 
 <script>
