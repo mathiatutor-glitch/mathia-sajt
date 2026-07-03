@@ -253,7 +253,7 @@
   // ——— stilovi (sve scope-ovano sa zoi- prefiksom) ———
   var css =
     '@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700&display=swap");' +
-    "#zoi-btn{position:fixed;right:20px;bottom:20px;width:62px;height:62px;border-radius:50%;border:3px solid #fff;cursor:pointer;z-index:2147483000;box-shadow:0 10px 30px rgba(20,80,70,.35);background-position:center;background-size:cover;transition:transform .15s ease}" +
+    "@keyframes zoiPulse{0%,100%{box-shadow:0 10px 30px rgba(20,80,70,.35),0 0 0 0 rgba(198,160,92,.45)}70%{box-shadow:0 12px 34px rgba(20,80,70,.4),0 0 0 12px rgba(198,160,92,0)}}@keyframes zoiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}#zoi-btn{position:fixed;right:20px;bottom:20px;width:62px;height:62px;border-radius:50%;border:3px solid #fff;cursor:pointer;z-index:2147483000;box-shadow:0 10px 30px rgba(20,80,70,.35);background-position:center;background-size:cover;transition:transform .15s ease;animation:zoiPulse 2.8s ease-in-out infinite,zoiFloat 3.5s ease-in-out infinite}#zoi-btn:hover{animation-play-state:paused}@media(prefers-reduced-motion:reduce){#zoi-btn{animation:none}}" +
     "#zoi-btn:hover{transform:scale(1.06)}" +
     "#zoi-panel{position:fixed;right:20px;bottom:94px;width:404px;max-width:calc(100vw - 32px);height:620px;max-height:calc(100vh - 120px);background:#FBF5EA;border-radius:22px;overflow:hidden;display:none;flex-direction:column;z-index:2147483000;box-shadow:0 24px 60px rgba(20,60,55,.30);font-family:'Nunito',system-ui,sans-serif;border:1px solid #ECE0CC}" +
     "#zoi-panel.zoi-open{display:flex}" +
