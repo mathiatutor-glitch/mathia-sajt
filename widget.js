@@ -1246,24 +1246,44 @@
   applyLang();
   initMemory(); // učita memoriju i personalizovano pozdravi
 
-  // ——— vidljiv prekidač jezika na stranama koje ga nemaju (gore desno) ———
+  // ——— vidljiv prekidač jezika + Nazad/Početna na stranama koje nemaju svoj meni ———
   (function () {
     try {
-      if (document.querySelector('select.lang')) return;      // strana već ima svoj prekidač
+      var imaMeni = document.querySelector('select.lang, header nav, .mathia-topnav, nav.main');
       if (document.getElementById('mathia-langbar')) return;  // već ubačen
-      var wrap = document.createElement('div');
-      wrap.id = 'mathia-langbar';
-      wrap.style.cssText = 'position:fixed;top:10px;right:12px;z-index:2147483000;';
-      var sel = document.createElement('select');
-      sel.setAttribute('aria-label', 'Jezik / Language');
-      sel.style.cssText = 'font-family:inherit;font-size:13px;font-weight:700;color:#432C37;background:#fffcf6;border:1px solid #ECDAC5;border-radius:100px;padding:6px 12px;box-shadow:0 6px 18px -8px rgba(120,70,80,.45);cursor:pointer;';
-      ORDER.forEach(function (l) {
-        var o = document.createElement('option'); o.value = l; o.textContent = l.toUpperCase();
-        if (l === LANG) o.selected = true; sel.appendChild(o);
-      });
-      sel.onchange = function () { try { localStorage.setItem('mathia_lang', sel.value); } catch (e) {} location.reload(); };
-      wrap.appendChild(sel);
-      document.body.appendChild(wrap);
+
+      // Prekidač jezika (gore desno) — samo ako strana nema svoj
+      if (!document.querySelector('select.lang')) {
+        var wrap = document.createElement('div');
+        wrap.id = 'mathia-langbar';
+        wrap.style.cssText = 'position:fixed;top:10px;right:12px;z-index:2147483000;';
+        var sel = document.createElement('select');
+        sel.setAttribute('aria-label', 'Jezik / Language');
+        sel.style.cssText = 'font-family:inherit;font-size:13px;font-weight:700;color:#432C37;background:#fffcf6;border:1px solid #ECDAC5;border-radius:100px;padding:6px 12px;box-shadow:0 6px 18px -8px rgba(120,70,80,.45);cursor:pointer;';
+        ORDER.forEach(function (l) {
+          var o = document.createElement('option'); o.value = l; o.textContent = l.toUpperCase();
+          if (l === LANG) o.selected = true; sel.appendChild(o);
+        });
+        sel.onchange = function () { try { localStorage.setItem('mathia_lang', sel.value); } catch (e) {} location.reload(); };
+        wrap.appendChild(sel);
+        document.body.appendChild(wrap);
+      }
+
+      // Nazad + Početna (gore levo) — samo ako strana nema svoj glavni meni/nav
+      if (!imaMeni) {
+        var bar = document.createElement('div');
+        bar.id = 'mathia-navbar';
+        bar.style.cssText = 'position:fixed;top:10px;left:12px;z-index:2147483000;display:flex;gap:8px;';
+        var mkBtn = function (txt, fn) {
+          var b = document.createElement('button');
+          b.type = 'button'; b.textContent = txt;
+          b.style.cssText = 'font-family:inherit;font-size:13px;font-weight:700;color:#432C37;background:#fffcf6;border:1px solid #ECDAC5;border-radius:100px;padding:6px 14px;box-shadow:0 6px 18px -8px rgba(120,70,80,.45);cursor:pointer;';
+          b.onclick = fn; return b;
+        };
+        bar.appendChild(mkBtn('← Nazad', function () { if (history.length > 1) history.back(); else location.href = '/index.html'; }));
+        bar.appendChild(mkBtn('⌂ Početna', function () { location.href = '/index.html'; }));
+        document.body.appendChild(bar);
+      }
     } catch (e) {}
   })();
 })();
