@@ -93,7 +93,7 @@ export default async function handler(req, res) {
     await supa.oznaciPlaceno(supaId, f.XID || f.ApprovalCode || null);
 
     // 4) Aktivacija pristupa
-    let pristupLink = (process.env.APP_URL || '') + '/moj-nalog.html';
+    let pristupLink = (process.env.APP_URL || '') + '/nalog.html';
     if (porudzbina.tip === 'paket') {
       const paketSifra = detaljno[0] && detaljno[0].sifra ? detaljno[0].sifra.replace(/^(MATHIA-|PKT-)/i, '').toLowerCase() : null;
       const istice = await supa.aktivirajPretplatu({ email, paket: paketSifra, predmeti });
