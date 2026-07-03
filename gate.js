@@ -68,8 +68,15 @@
     if (user && user.email && OWNER_EMAILS.indexOf(user.email.toLowerCase()) > -1) return "owner";
     if (user) {
       try {
-        var r = await sb.from("mathia_pretplata").select("*").eq("user_id", user.id).eq("predmet", SUBJECT).maybeSingle();
-        if (r && r.data && r.data.aktivno && (!r.data.istice || new Date(r.data.istice) > new Date())) return "subscribed";
+        var r = await sb.from("pretplate").select("*")
+          .eq("kupac_email", user.email).eq("status", "aktivna");
+        var rows = (r && r.data) || [];
+        for (var i = 0; i < rows.length; i++) {
+          var row = rows[i];
+          var vazi = !row.istice || new Date(row.istice) > new Date();
+          var pokriva = Array.isArray(row.predmeti) && row.predmeti.indexOf(SUBJECT) > -1;
+          if (vazi && pokriva) return "subscribed";
+        }
       } catch (e) {}
     }
     return "free";
