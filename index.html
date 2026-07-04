@@ -580,6 +580,23 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 <meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
+<style>
+/* === DORADA: meni + hero (v1) === */
+header .wrap.nav{min-height:76px}
+.nav-r{gap:32px}
+.nav-r a.link{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;letter-spacing:.02em;color:var(--plum);padding:6px 2px;transition:color .18s ease}
+.nav-r a.link:hover{color:var(--golddk)}
+.nav-r>a.link::after{content:"";position:absolute;left:50%;right:auto;bottom:0;transform:translateX(-50%);width:0;height:1.5px;border-radius:2px;background:linear-gradient(90deg,var(--gold),#FFF6D6,var(--gold));transition:width .26s ease}
+.nav-r>a.link:hover::after{width:100%}
+.nav-r>select.lang{border:1.5px solid rgba(198,160,92,.5);border-radius:100px;padding:8px 15px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.04em;color:var(--plum);background:#fff;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease}
+.nav-r>select.lang:hover{border-color:var(--gold);box-shadow:0 8px 20px -12px rgba(198,160,92,.65)}
+
+/* hero — nežno „disanje" slike */
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.hero .portrait .photo{animation:heroFloat 6.5s ease-in-out 1.3s infinite;will-change:transform}
+.hero .portrait-name .plate{font-size:1.28rem}
+@media(prefers-reduced-motion:reduce){.hero .portrait .photo{animation:none}}
+</style>
 </head>
 <body>
 
@@ -633,7 +650,6 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
       <div class="photo"><img class="ph" alt="dr Marina Bulat" style="object-position:center 40%" src="marina.jpg"></div>
       <div class="portrait-name">
         <div class="plate">dr Marina Bulat</div>
-        <div class="portrait-role">Doktor nauka · magistar matematike</div>
       </div>
     </div>
   </div>
