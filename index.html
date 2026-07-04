@@ -802,10 +802,28 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 </section>
 
 <!-- · REČ MARINE -->
+<style>
+.mquote{background:linear-gradient(180deg,var(--paper),var(--blush));text-align:center;position:relative;overflow:hidden}
+.mquote .wrap{max-width:780px;position:relative;z-index:1}
+.mq-mark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(4.5rem,13vw,8rem);line-height:.55;color:var(--goldlt);opacity:.6;margin:0 0 -6px;user-select:none}
+.mquote .mq{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,4vw,2.55rem);color:var(--plum);max-width:26ch;margin:0 auto;line-height:1.38;letter-spacing:.004em;text-wrap:balance}
+.mquote .mq-vow{font-family:'Cormorant Garamond',serif;font-style:normal;font-weight:600;font-size:clamp(1.55rem,3.6vw,2.25rem);margin:22px auto 0;line-height:1.2;letter-spacing:.006em;text-wrap:balance;background:linear-gradient(100deg,#9C7838 0%,#C6A05C 22%,#E7D2A2 46%,#B58E43 70%,#9C7838 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.mq-sign{margin-top:36px;display:flex;flex-direction:column;align-items:center}
+.mq-flourish{display:block;width:min(184px,50vw);height:14px;margin-bottom:12px;color:var(--gold);opacity:.9}
+.mq-name{font-family:'Tangerine',cursive;font-weight:700;font-size:clamp(3.2rem,9vw,4.6rem);line-height:.9;letter-spacing:.02em;background:linear-gradient(100deg,#5E461E 0%,#856528 16%,#B58E43 34%,#E7D196 47%,#FFF6D6 51%,#E7D196 55%,#B58E43 64%,#856528 82%,#5E461E 100%);background-size:265% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 4s linear infinite}
+.mq-role{font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);margin-top:9px}
+@media(prefers-reduced-motion:reduce){.mq-name{animation:none}}
+</style>
 <section class="mquote">
   <div class="wrap">
-    <p class="mq reveal">„Verujem da svako dete može da razume —<br>potrebni su samo strpljenje, jasno objašnjenje i malo topline.<br><b>Zato sam i stvorila Mathiu.</b>"</p>
-    <div class="mq-by reveal">Marina</div>
+    <div class="mq-mark" aria-hidden="true">“</div>
+    <p class="mq reveal">Verujem da svako dete može da razume — potrebni su mu samo strpljenje, jasna reč i malo topline.</p>
+    <p class="mq-vow reveal">Zato sam stvorila Mathiu.</p>
+    <div class="mq-sign reveal">
+      <svg class="mq-flourish" viewBox="0 0 200 14" fill="none" aria-hidden="true"><path d="M4 7C40 2 70 2 100 7c30 5 60 5 96 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="100" cy="7" r="2.4" fill="currentColor"/></svg>
+      <span class="mq-name">Marina</span>
+      <span class="mq-role">dr Marina Bulat · tvoja profesorica</span>
+    </div>
   </div>
 </section>
 
