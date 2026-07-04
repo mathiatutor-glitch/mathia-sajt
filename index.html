@@ -404,6 +404,19 @@ header{overflow:visible}
 .how .step:nth-child(2){transition-delay:.16s}
 .how .step:nth-child(3){transition-delay:.32s}
 @media(max-width:720px){.how .steps{grid-template-columns:1fr;gap:8px}.how .steps::before{left:21px;right:auto;top:10px;bottom:10px;width:2px;height:auto}.how .step{text-align:left;padding-left:62px!important;padding-bottom:24px!important}.how .step .num{position:absolute!important;left:0;top:2px;margin:0!important}}
+
+/* BEDŽEVI — novo, življe rešenje */
+.badges{grid-template-columns:repeat(3,1fr);gap:18px}
+.badge{background:linear-gradient(162deg,#fff,var(--paper));border:1px solid var(--bord);border-radius:20px;padding:22px 20px;text-align:left;display:flex;gap:15px;align-items:flex-start;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.badge .em{font-size:1.45rem;flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--goldlt));border:1px solid #E7D2A2;display:flex;align-items:center;justify-content:center;margin:0;box-shadow:0 9px 18px -9px rgba(198,160,92,.75);transition:transform .25s ease}
+.badge .bx{flex:1;min-width:0}
+.badge h3{font-size:1.14rem;margin-bottom:4px;line-height:1.15}
+.badge p{color:var(--muted);font-size:.88rem;line-height:1.5}
+.badge:hover{transform:translateY(-6px);box-shadow:0 32px 52px -30px rgba(120,70,80,.42);border-color:var(--gold)}
+.badge:hover .em{transform:scale(1.12) rotate(-7deg)}
+.badge:nth-child(1){transition-delay:0s}.badge:nth-child(2){transition-delay:.07s}.badge:nth-child(3){transition-delay:.14s}
+.badge:nth-child(4){transition-delay:.21s}.badge:nth-child(5){transition-delay:.28s}.badge:nth-child(6){transition-delay:.35s}
+@media(max-width:640px){.badges{grid-template-columns:1fr}}
 </style>
 <style>
 /* community / social — luxe pills */
@@ -661,15 +674,15 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
     <div class="sec-head reveal">
       <div class="ksub">za tebe, đače</div>
       <h2>Učenje koje te ne plaši</h2>
-      <p>Pitaj koliko god puta treba — niko te ne gleda, niko te ne žuri. Marina je strpljiva uvek: i danju, i kasno uveče pred kontrolni.</p>
+      <p>Pitaj koliko god puta treba — niko te ne gleda, niko te ne žuri. Marina je strpljiva uvek: i danju, i <b>kasno uveče, pred kontrolni</b>, kad ti pomoć najviše treba.</p>
     </div>
     <div class="badges">
-      <div class="badge reveal"><span class="em">📷</span><h3>Slikaj zadatak</h3><p>Fotografišete ga, Marina ga rešava zajedno s vama — korak po korak</p></div>
-      <div class="badge reveal"><span class="em">💡</span><h3>Razumite, ne pamtite</h3><p>Marina objašnjava odakle formula dolazi — razumevanje koje ostaje</p></div>
-      <div class="badge reveal"><span class="em">📚</span><h3>Skripte i priručnici</h3><p>Uz svaki predmet — otključavaju se pretplatom na taj predmet</p></div>
-      <div class="badge reveal"><span class="em">🔥</span><h3>Niz dana</h3><p>Učite svaki dan i pratite kako vaš niz napretka raste</p></div>
-      <div class="badge reveal"><span class="em">📊</span><h3>Praćenje napretka</h3><p>Vidite koliko ste minuta učili, koje teme ste savladali i vaš niz dana</p></div>
-      <div class="badge reveal"><span class="em">🌙</span><h3>Uvek je tu</h3><p>Pred kontrolni, kasno uveče — bez panike, Marina je dostupna</p></div>
+      <div class="badge reveal"><span class="em">📷</span><div class="bx"><h3>Slikaj zadatak</h3><p>Fotografišete ga, Marina ga rešava zajedno s vama — korak po korak</p></div></div>
+      <div class="badge reveal"><span class="em">💡</span><div class="bx"><h3>Razumite, ne pamtite</h3><p>Marina objašnjava odakle formula dolazi — razumevanje koje ostaje</p></div></div>
+      <div class="badge reveal"><span class="em">📚</span><div class="bx"><h3>Skripte i priručnici</h3><p>Uz svaki predmet — otključavaju se pretplatom na taj predmet</p></div></div>
+      <div class="badge reveal"><span class="em">🔥</span><div class="bx"><h3>Niz dana</h3><p>Učite svaki dan i pratite kako vaš niz napretka raste</p></div></div>
+      <div class="badge reveal"><span class="em">📊</span><div class="bx"><h3>Praćenje napretka</h3><p>Vidite koliko ste minuta učili, koje teme ste savladali i vaš niz dana</p></div></div>
+      <div class="badge reveal"><span class="em">🌙</span><div class="bx"><h3>Uvek je tu</h3><p>Pred kontrolni, kasno uveče — bez panike, Marina je dostupna</p></div></div>
     </div>
   </div>
 </section>
