@@ -81,7 +81,7 @@
     pt:function(s){return s?["Explica um conceito-chave de: "+s,"Dá-me um exercício","Cria um teste simulado 📝","Prepara-me para o exame"]:["Explica um conceito","Dá-me um exercício","Cria um teste simulado 📝","Prepara-me para o exame"];}
   };
   var SITE_CHIPS = {
-    sr:["Koji predmeti?","Cene i paketi","Izbor fakulteta","Test sklonosti","Kako počinjem?"],
+    sr:["Koji predmeti?","Cene i paketi","Prijemni","Kako počinjem?"],
     en:["Which subjects?","Plans & prices","Choosing a faculty","Aptitude test","How do I start?"],
     de:["Welche Fächer?","Pakete & Preise","Studienwahl","Eignungstest","Wie fange ich an?"],
     fr:["Quelles matières ?","Forfaits & prix","Choix de la faculté","Test d'aptitude","Comment commencer ?"],
@@ -150,7 +150,7 @@
   };
   var CTA_TX = {sr:"Pitaj ",en:"Ask ",de:"Frag ",fr:"Demande à ",es:"Pregunta a ",it:"Chiedi a ",ru:"Спроси ",pt:"Pergunta à "};
   var SITE = {
-    sr:{sub:"tvoj vodič kroz Mathiu", ph:"Napiši pitanje…", send:"Pošalji", hi:"Zdravo! Ja sam Profesorica, tvoj vodič kroz Mathiu. Objasniću ti gradivo, pomoći da izabereš pravi paket i pripremiti te za prijemni i upis na fakultete u Beogradu i Novom Sadu. 💡 Uz svaki paket dobijaš i test sklonosti — za par minuta otkriješ šta ti najviše leži i koji smer je pravi za tebe. Pitaj me bilo šta — prvih 15 minuta je besplatno! ✨"},
+    sr:{sub:"tvoj vodič kroz Mathiu", ph:"Napiši pitanje…", send:"Pošalji", hi:"Zdravo! 👋 Ja sam Profesorica — tvoj vodič kroz Mathiu. Pitaj me bilo šta: predmeti, paketi, prijemni. Prvih 15 minuta je besplatno."},
     en:{sub:"your teacher", ph:"Type your question…", send:"Send", hi:"Hi! ❤️ I'm Profesorica, your guide through Mathia. I'll explain the material, help you choose the right plan, and prepare you for the entrance exams and enrolment at universities in Belgrade and Novi Sad. 💡 Every plan comes with an aptitude test — in just a few minutes you'll discover what suits you best and which programme is right for you. Ask me anything — your first 15 minutes are free! ✨"},
     de:{sub:"deine Lehrerin", ph:"Schreib deine Frage…", send:"Senden", hi:"Hallo! ❤️ Ich bin Profesorica, deine Begleiterin durch Mathia. Ich erkläre dir den Stoff, helfe dir beim passenden Paket und bereite dich auf die Aufnahmeprüfungen und die Einschreibung an Universitäten in Belgrad und Novi Sad vor. 💡 Zu jedem Paket gehört ein Eignungstest — in wenigen Minuten findest du heraus, was dir liegt und welcher Studiengang zu dir passt. Frag mich alles — deine ersten 15 Minuten sind gratis! ✨"},
     fr:{sub:"ta professeure", ph:"Écris ta question…", send:"Envoyer", hi:"Salut ! ❤️ Je suis Profesorica, ton guide sur Mathia. Je t'explique les cours, t'aide à choisir le bon forfait et te prépare aux concours d'entrée et à l'inscription dans les universités de Belgrade et Novi Sad. 💡 Chaque forfait inclut un test d'aptitude — en quelques minutes, tu découvres ce qui te convient et quelle filière est faite pour toi. Demande-moi ce que tu veux — tes 15 premières minutes sont offertes ! ✨"},
