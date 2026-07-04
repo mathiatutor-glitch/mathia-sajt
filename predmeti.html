@@ -101,6 +101,17 @@
   footer .footsig-wrap{line-height:1;padding-right:8px}
   footer .footsig{font-family:'Tangerine',cursive;font-weight:700;font-size:2.4rem;display:inline-block;transform:rotate(-4deg);background:linear-gradient(100deg,#5E461E 0%,#8A6A2C 30%,#E7D2A2 50%,#8A6A2C 70%,#5E461E 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
   .mathia-copyr{text-align:center;padding:18px 20px 0;margin-top:16px;border-top:1px solid rgba(231,210,162,.14);font-size:.75rem;color:rgba(251,246,238,.5);letter-spacing:.02em;line-height:1.5}
+
+/* MENI v3 — centriran, serif, veći brend, jezik desno */
+.nav{position:relative;display:flex;align-items:center;gap:20px;min-height:76px}
+.brand .bmark{font-size:2.05rem;letter-spacing:.05em}
+.nav-r{flex:1;display:flex;align-items:center;justify-content:center;gap:30px}
+.nav-r>a:not(.navcta){font-family:'Cormorant Garamond',serif;font-size:1.26rem;font-weight:600;letter-spacing:.015em;color:#432C37;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap}
+.nav-r>a:not(.navcta)::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;margin:0;height:1.5px;width:auto;background:linear-gradient(90deg,#C6A05C,#E7D2A2);transition:right .25s ease}
+.nav-r>a:not(.navcta):hover{color:#9C7838}
+.nav-r>a:not(.navcta):hover::after{right:0}
+.nav-r a[data-acctnav]{order:0}
+.nav-r>select.lang{position:absolute;right:0;top:50%;transform:translateY(-50%);font-family:'Nunito',sans-serif;font-size:.86rem;font-weight:800;color:#432C37;border:1.5px solid rgba(198,160,92,.45);border-radius:100px;padding:8px 16px;background:#fff;cursor:pointer}
 </style>
 <style>/* === Heder v2 (MATHIA) === */
 header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(176,138,74,.16)}
@@ -236,8 +247,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
       <a href="predmeti.html">Predmeti</a>
       <a href="prodavnica.html">Prodavnica</a>
       <a href="index.html#paketi">Paketi</a>
-      <a href="o-marini.html">O meni</a>
-    <a class="navcta" href="index.html#paketi">Probaj besplatno →</a></nav>
+      <a href="o-marini.html">O meni</a></nav>
   </div>
 </header>
 
@@ -356,7 +366,7 @@ setInterval(ap,800);})();</script>
 <!--prijnav--><script>(function(){
 var L={
  nalog:{sr:'Moj nalog',en:'My account',de:'Mein Konto',fr:'Mon compte',es:'Mi cuenta',it:'Il mio account',ru:'\u041b\u0438\u0447\u043d\u044b\u0439 \u043a\u0430\u0431\u0438\u043d\u0435\u0442',pt:'Minha conta'},
- home:{sr:'\u2302 Po\u010detna',en:'\u2302 Home',de:'\u2302 Start',fr:'\u2302 Accueil',es:'\u2302 Inicio',it:'\u2302 Home',ru:'\u2302 \u0413\u043b\u0430\u0432\u043d\u0430\u044f',pt:'\u2302 In\u00edcio'},
+ home:{sr:'Po\u010detna',en:'Home',de:'Start',fr:'Accueil',es:'Inicio',it:'Home',ru:'\u0413\u043b\u0430\u0432\u043d\u0430\u044f',pt:'In\u00edcio'},
  pj:{sr:'Prijemni',en:'Admissions',de:'Aufnahme',fr:'Concours',es:'Admisi\u00f3n',it:'Ammissione',ru:'\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435',pt:'Admiss\u00e3o'},
  mm:{sr:'Mala matura',en:'High school',de:'Oberschule',fr:'Lyc\u00e9e',es:'Instituto',it:'Superiori',ru:'\u0421\u0440\u0435\u0434\u043d\u044f\u044f \u0448\u043a\u043e\u043b\u0430',pt:'Ensino m\u00e9dio'},
  pl:{sr:'Planer',en:'Planner',de:'Planer',fr:'Agenda',es:'Agenda',it:'Agenda',ru:'\u041f\u043b\u0430\u043d\u0435\u0440',pt:'Agenda'},
