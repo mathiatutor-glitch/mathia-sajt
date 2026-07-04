@@ -14,11 +14,10 @@
     --gold:#C6A05C; --golddk:#9C7838; --goldlt:#E7D2A2; --champ:#F7EAC9;
     --ink:#3E2D34; --muted:#90787E; --bord:#ECDAC5; --card:#fffcf6;
     --maxw:1220px;
-    --lux:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27150%27%20height%3D%27150%27%20viewBox%3D%270%200%20150%20150%27%3E%3Cdefs%3E%3Cfilter%20id%3D%27sb%27%20x%3D%27-20%25%27%20y%3D%27-20%25%27%20width%3D%27140%25%27%20height%3D%27140%25%27%3E%3CfeGaussianBlur%20stdDeviation%3D%270.8%27%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20filter%3D%27url%28%23sb%29%27%3E%3Cg%20fill%3D%27%239C7838%27%20fill-opacity%3D%270.025%27%20transform%3D%27translate%280.7%2C0.9%29%27%3E%3Cpath%20d%3D%27M75%2041C84%2057%2084%2068%2075%2075C66%2068%2066%2057%2075%2041Z%27%2F%3E%3Cpath%20d%3D%27M75%20109C66%2093%2066%2082%2075%2075C84%2082%2084%2093%2075%20109Z%27%2F%3E%3Cpath%20d%3D%27M41%2075C57%2066%2068%2066%2075%2075C68%2084%2057%2084%2041%2075Z%27%2F%3E%3Cpath%20d%3D%27M109%2075C93%2084%2082%2084%2075%2075C82%2066%2093%2066%20109%2075Z%27%2F%3E%3Ccircle%20cx%3D%2775%27%20cy%3D%2775%27%20r%3D%273%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%270%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%270%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%27150%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%27150%27%20r%3D%271.8%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23FFFFFF%27%20fill-opacity%3D%270.10%27%20transform%3D%27translate%28-0.7%2C-0.9%29%27%3E%3Cpath%20d%3D%27M75%2041C84%2057%2084%2068%2075%2075C66%2068%2066%2057%2075%2041Z%27%2F%3E%3Cpath%20d%3D%27M75%20109C66%2093%2066%2082%2075%2075C84%2082%2084%2093%2075%20109Z%27%2F%3E%3Cpath%20d%3D%27M41%2075C57%2066%2068%2066%2075%2075C68%2084%2057%2084%2041%2075Z%27%2F%3E%3Cpath%20d%3D%27M109%2075C93%2084%2082%2084%2075%2075C82%2066%2093%2066%20109%2075Z%27%2F%3E%3Ccircle%20cx%3D%2775%27%20cy%3D%2775%27%20r%3D%273%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%270%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%270%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%27150%27%20r%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%27150%27%20r%3D%271.8%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%),var(--lux);background-size:auto,auto,150px 150px;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%);background-size:auto,auto;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
   p{margin:0}
   a{color:inherit;text-decoration:none}
@@ -647,10 +646,9 @@ header .brand .bmark{font-size:2.35rem}
 @media(prefers-reduced-motion:reduce){.sparkles{display:none}.hf-line{animation:none;stroke-dashoffset:0}.hero h1 .gold-underline{animation:none;background-size:100% .32em}.hero .portrait .photo-wrap{animation:none}}
 </style>
 <style>
-/* meki damast — iza sadržaja u svakoj sekciji (nikad preko teksta/slika) */
+/* nežna svetlosna atmosfera — iza sadržaja (nikad preko teksta/slika) */
 section{position:relative;isolation:isolate}
-section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:var(--lux);background-size:150px 150px;background-attachment:fixed}
-footer.mfoot{background-image:var(--lux),linear-gradient(180deg,#3b2530 0%,#432C37 44%,#39222e 100%);background-size:150px 150px,auto;background-attachment:fixed,scroll}
+section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(62% 52% at 14% 6%,rgba(231,210,162,.05),transparent 60%),radial-gradient(58% 48% at 86% 20%,rgba(204,142,134,.045),transparent 60%),radial-gradient(72% 60% at 72% 96%,rgba(231,210,162,.04),transparent 62%);background-attachment:fixed}
 </style>
 </head>
 <body>
