@@ -17,7 +17,7 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%);background-size:auto,auto;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%),url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27150%27%20height%3D%27150%27%20viewBox%3D%270%200%20150%20150%27%3E%3Cdefs%3E%3Cfilter%20id%3D%27sb%27%20x%3D%27-20%25%27%20y%3D%27-20%25%27%20width%3D%27140%25%27%20height%3D%27140%25%27%3E%3CfeGaussianBlur%20stdDeviation%3D%270.7%27%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg%20filter%3D%27url%28%23sb%29%27%3E%3Cg%20fill%3D%27%239C7838%27%20fill-opacity%3D%270.055%27%20transform%3D%27translate%280.8%2C1%29%27%3E%3Cpath%20d%3D%27M75%2041C84%2057%2084%2068%2075%2075C66%2068%2066%2057%2075%2041Z%27%2F%3E%3Cpath%20d%3D%27M75%20109C66%2093%2066%2082%2075%2075C84%2082%2084%2093%2075%20109Z%27%2F%3E%3Cpath%20d%3D%27M41%2075C57%2066%2068%2066%2075%2075C68%2084%2057%2084%2041%2075Z%27%2F%3E%3Cpath%20d%3D%27M109%2075C93%2084%2082%2084%2075%2075C82%2066%2093%2066%20109%2075Z%27%2F%3E%3Ccircle%20cx%3D%2775%27%20cy%3D%2775%27%20r%3D%273.4%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%270%27%20r%3D%272.2%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%270%27%20r%3D%272.2%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%27150%27%20r%3D%272.2%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%27150%27%20r%3D%272.2%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23FFFFFF%27%20fill-opacity%3D%270.5%27%20transform%3D%27translate%28-0.8%2C-1%29%27%3E%3Cpath%20d%3D%27M75%2041C84%2057%2084%2068%2075%2075C66%2068%2066%2057%2075%2041Z%27%2F%3E%3Cpath%20d%3D%27M75%20109C66%2093%2066%2082%2075%2075C84%2082%2084%2093%2075%20109Z%27%2F%3E%3Cpath%20d%3D%27M41%2075C57%2066%2068%2066%2075%2075C68%2084%2057%2084%2041%2075Z%27%2F%3E%3Cpath%20d%3D%27M109%2075C93%2084%2082%2084%2075%2075C82%2066%2093%2066%20109%2075Z%27%2F%3E%3Ccircle%20cx%3D%2775%27%20cy%3D%2775%27%20r%3D%273.4%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%270%27%20r%3D%272.2%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%270%27%20r%3D%272.2%27%2F%3E%3Ccircle%20cx%3D%270%27%20cy%3D%27150%27%20r%3D%272.2%27%2F%3E%3Ccircle%20cx%3D%27150%27%20cy%3D%27150%27%20r%3D%272.2%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");background-size:auto,auto,150px 150px;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
   p{margin:0}
   a{color:inherit;text-decoration:none}
@@ -582,9 +582,6 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 <!--seo-->
 <style>
 /* === DORADA: meni + hero (v1) === */
-/* luksuzni reljefni grid preko cele strane (tih, utisnut) */
-.lux-grid{position:fixed;inset:0;pointer-events:none;z-index:3;background-image:linear-gradient(90deg,rgba(120,90,45,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px),linear-gradient(rgba(120,90,45,.03) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:58px 58px,58px 58px,58px 58px,58px 58px;background-position:0 0,1px 0,0 0,0 1px}
-@media(max-width:560px){.lux-grid{background-size:44px 44px,44px 44px,44px 44px,44px 44px}}
 header .wrap.nav{min-height:76px}
 .nav-r{gap:32px}
 .nav-r a.link{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;letter-spacing:.02em;color:var(--plum);padding:6px 2px;transition:color .18s ease}
@@ -650,8 +647,6 @@ header .brand .bmark{font-size:2.35rem}
 </style>
 </head>
 <body>
-
-<div class="lux-grid" aria-hidden="true"></div>
 <header>
   <div class="wrap nav">
     <a class="brand" href="index.html">
