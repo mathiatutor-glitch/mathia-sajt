@@ -128,9 +128,9 @@
   .what{background:var(--card)}
   .feat{display:grid;gap:20px}
   @media(min-width:760px){.feat{grid-template-columns:repeat(3,1fr)}}
-  .feat .it{position:relative;background:var(--paper);border:1px solid var(--bord);border-radius:22px;padding:30px 24px;transition:transform .18s ease,box-shadow .18s ease}
+  .feat .it{position:relative;background:linear-gradient(165deg,#fff,var(--paper));border:1px solid var(--bord);border-radius:22px;padding:32px 26px;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
   .feat .it:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(120,70,80,.4)}
-  .feat .it .ic{width:52px;height:52px;border-radius:50%;background:linear-gradient(160deg,var(--blush),#fff);border:1px solid var(--bord);color:var(--rose-dk);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:15px}
+  .feat .it .ic{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--goldlt));border:1px solid #E7D2A2;color:var(--golddk);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;box-shadow:0 10px 20px -10px rgba(198,160,92,.7)}
   .feat .it h3{font-size:1.4rem;color:var(--plum);margin-bottom:5px;font-weight:600}
   .feat .it p{color:var(--muted);font-size:.96rem}
 
@@ -390,7 +390,9 @@ header{overflow:visible}
 .hero .signature{font-size:2.8rem!important}
 
 .feat .it{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.feat .it::before{content:"";position:absolute;top:0;left:0;right:100%;height:3px;background:linear-gradient(90deg,var(--gold),var(--goldlt));transition:right .3s ease}
 .feat .it:hover{transform:translateY(-7px);box-shadow:0 34px 54px -32px rgba(120,70,80,.42);border-color:var(--gold)}
+.feat .it:hover::before{right:0}
 .feat .it .ic{transition:transform .25s ease}
 .feat .it:hover .ic{transform:scale(1.12) rotate(-5deg)}
 
@@ -616,9 +618,9 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 </section>
 <section class="pain">
   <div class="wrap">
-    <p class="q reveal">Da li vaše dete ne ispušta telefon iz ruku?</p>
-    <p class="q reveal">Da li svaki razgovor o školi završava svađom?</p>
-    <p class="q reveal">Dok ocene tiho klize nadole?</p>
+    <p class="q reveal">Telefon im ne izlazi iz ruke — a sveske ostaju prazne.</p>
+    <p class="q reveal">Svaki razgovor o školi završi se svađom.</p>
+    <p class="q reveal">A ocene, iz meseca u mesec, tiho klize nadole.</p>
     <div class="big reveal">Šta ako telefon više nije problem — <em>već rešenje?</em></div>
     <p class="q reveal" style="margin-top:22px;font-style:normal;opacity:.92">Ista ta ruka koja skroluje — <b>sada rešava, uči i napreduje.</b></p>
   </div>
