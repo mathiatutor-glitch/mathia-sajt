@@ -349,6 +349,18 @@
   .eqfrieze{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 40px;padding:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.55rem;color:var(--golddk);opacity:.45;letter-spacing:.01em;background:var(--paper)}
   .eqfrieze sup{font-size:.65em}
   @media(max-width:560px){.eqfrieze{font-size:1.12rem;gap:13px 22px;padding:16px 14px}}
+
+/* MENI v2 — veći, jasniji, elegantniji */
+.nav{min-height:68px}
+.brand .bmark{font-size:1.55rem;letter-spacing:.08em}
+.brand .bav{width:42px;height:42px}
+.nav-r{gap:30px}
+.nav-r a.link{font-size:.96rem;font-weight:700;letter-spacing:.01em;color:#432C37;padding:6px 2px}
+.nav-r a.link::after{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:2px;background:linear-gradient(90deg,#C6A05C,#E7D2A2);transition:right .22s ease;border-radius:2px}
+.nav-r a.link:hover{color:#9C7838}
+.nav-r a.link:hover::after{right:0}
+.nav-r select.lang{font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:800;color:#432C37;border:1.5px solid rgba(198,160,92,.45);border-radius:100px;padding:7px 13px;background:#fff;cursor:pointer;transition:border-color .15s}
+.nav-r select.lang:hover{border-color:#C6A05C}
 </style>
 <style>
 /* community / social — luxe pills */
