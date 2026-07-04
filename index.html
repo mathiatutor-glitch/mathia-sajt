@@ -430,6 +430,15 @@ header{overflow:visible}
 .pchips span{background:linear-gradient(160deg,#fff,var(--paper));border:1px solid #E7D2A2;border-radius:100px;padding:11px 19px;font-weight:800;font-size:.9rem;color:var(--plum);box-shadow:0 9px 18px -12px rgba(198,160,92,.55);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;cursor:default}
 .pchips span:hover{transform:translateY(-4px);box-shadow:0 18px 28px -14px rgba(198,160,92,.75);border-color:var(--gold)}
 .ksub:after{width:132px}
+
+/* POVERENJE — dinamičan slajder (ekonomično + lepo) */
+.tst .tgrid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;gap:20px;scroll-snap-type:x mandatory;padding:6px 4px 16px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.tst .tgrid .quote{flex:0 0 min(360px,82%);scroll-snap-align:center;align-self:stretch}
+.tst .tgrid::-webkit-scrollbar{height:6px}
+.tst .tgrid::-webkit-scrollbar-track{background:transparent}
+.tst .tgrid::-webkit-scrollbar-thumb{background:var(--goldlt);border-radius:4px}
+.tst .tgrid .quote{transition:transform .2s ease,box-shadow .2s ease}
+.tst .tgrid .quote:hover{transform:translateY(-4px);box-shadow:0 26px 44px -28px rgba(120,70,80,.4)}
 </style>
 <style>
 /* community / social — luxe pills */
@@ -1334,5 +1343,6 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
   })
   .catch(function(){});
 })();</script>
+<script>(function(){var g=document.getElementById('tgrid');if(!g)return;var i=0,paused=false;g.addEventListener('mouseenter',function(){paused=true;});g.addEventListener('mouseleave',function(){paused=false;});g.addEventListener('touchstart',function(){paused=true;},{passive:true});setInterval(function(){if(paused)return;var c=g.children;if(c.length<2)return;i=(i+1)%c.length;var el=c[i];g.scrollTo({left:el.offsetLeft-g.offsetLeft-20,behavior:'smooth'});},4500);})();</script>
 </body>
 </html>
