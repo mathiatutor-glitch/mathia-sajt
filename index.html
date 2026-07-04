@@ -439,6 +439,10 @@ header{overflow:visible}
 .tst .tgrid::-webkit-scrollbar-thumb{background:var(--goldlt);border-radius:4px}
 .tst .tgrid .quote{transition:transform .2s ease,box-shadow .2s ease}
 .tst .tgrid .quote:hover{transform:translateY(-4px);box-shadow:0 26px 44px -28px rgba(120,70,80,.4)}
+
+.mquote .mq{text-wrap:balance}
+.mquote .mq b{font-style:italic;color:var(--golddk)}
+.mquote .mq-by{text-align:right;margin-top:14px;font-family:'Tangerine',cursive;font-weight:700;font-size:2.6rem;color:var(--golddk);line-height:1}
 </style>
 <style>
 /* community / social — luxe pills */
@@ -800,33 +804,75 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 <!-- · REČ MARINE -->
 <section class="mquote">
   <div class="wrap">
-    <p class="mq reveal">„Verujem da svako dete može da razume — potrebni su samo strpljenje, jasno objašnjenje i malo topline. Zato sam i stvorila Mathiu."</p>
+    <p class="mq reveal">„Verujem da svako dete može da razume —<br>potrebni su samo strpljenje, jasno objašnjenje i malo topline.<br><b>Zato sam i stvorila Mathiu.</b>"</p>
     <div class="mq-by reveal">Marina</div>
   </div>
 </section>
 
 <!-- · PREDMETI I TESTOVI -->
+<style>
+/* Predmeti/testovi teaser (v2) */
+.subj-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;max-width:760px;margin:8px auto 0}
+.schip{display:inline-flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;color:var(--plum);background:linear-gradient(180deg,#fff,var(--paper));border:1px solid var(--goldlt);border-radius:100px;padding:9px 16px;box-shadow:0 12px 26px -20px rgba(120,70,80,.5)}
+.subj-cta{display:flex;justify-content:center;margin:28px auto 0}
+.subj-bubble{display:inline-flex;align-items:center;gap:20px;max-width:100%;text-decoration:none;background:linear-gradient(120deg,#fffdf8,var(--champ));border:1.6px solid var(--gold);border-radius:22px;padding:18px 22px;box-shadow:0 26px 54px -34px rgba(120,70,80,.5);transition:transform .18s ease,box-shadow .18s ease}
+.subj-bubble:hover{transform:translateY(-3px);box-shadow:0 34px 64px -30px rgba(160,120,60,.55)}
+.subj-bubble .sb-tx{display:flex;flex-direction:column;gap:3px;text-align:left}
+.subj-bubble .sb-tx b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.32rem;color:var(--plum);line-height:1.1}
+.subj-bubble .sb-tx small{font-family:'Nunito',sans-serif;font-size:.82rem;color:#7a6169}
+.subj-bubble .sb-arrow{flex:0 0 auto;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#4a3812;background:linear-gradient(180deg,var(--goldlt),var(--gold));box-shadow:0 10px 22px -10px rgba(198,160,92,.9),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .18s ease}
+.subj-bubble:hover .sb-arrow{transform:translateX(3px)}
+
+/* aptitude block — distinct blush card */
+.apt{position:relative;max-width:860px;margin:42px auto 0;border-radius:24px;overflow:hidden;background:linear-gradient(160deg,#fff,var(--blush));border:1px solid var(--bord)}
+.apt-glow{position:absolute;top:-90px;right:-40px;width:320px;height:260px;background:radial-gradient(ellipse at center,rgba(198,160,92,.22),transparent 68%);pointer-events:none}
+.apt-in{position:relative;padding:30px 28px}
+.apt-eye{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--golddk)}
+.apt-h{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--plum);font-size:clamp(1.5rem,3.4vw,2rem);margin:10px 0 6px;line-height:1.12}
+.apt-p{color:#6a565e;font-size:.96rem;line-height:1.6;margin:0 0 20px;max-width:54ch}
+.apt-lvls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.apt-lvl{display:flex;flex-direction:column;gap:2px;text-decoration:none;text-align:center;background:#fffdf8;border:1.4px solid var(--goldlt);border-radius:16px;padding:16px 12px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.apt-lvl:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 22px 44px -26px rgba(160,120,60,.55)}
+.apt-lvl b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.16rem;color:var(--plum)}
+.apt-lvl small{font-family:'Nunito',sans-serif;font-size:.76rem;color:#8a7078}
+@media(max-width:560px){.apt-lvls{grid-template-columns:1fr}.subj-bubble{gap:14px;padding:16px 18px}.apt-in{padding:24px 20px}}
+</style>
 <section class="subjects">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="ksub">sve na jednom mestu</div>
-      <h2>Predmeti i testovi</h2>
-      <p class="sub-lead">Od petog razreda do fakulteta — matematika, fizika, programiranje i elektrotehnika. Uz svaki paket dobijaš predmete po izboru, klon-profesoricu za svaki od njih i pripremne testove. Prvih 15 minuta je besplatno, za svakoga.</p>
+      <h2 class="subj-h2">Predmeti i testovi</h2>
+      <p class="sub-lead">Preko 60 predmeta — od 5. razreda do fakulteta. Matematika, fizika, programiranje i elektrotehnika. Uz svaki paket biraš predmete, dobijaš klon-profesoricu za svaki i sve skripte.</p>
     </div>
-    <div class="levels">
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🎒</span><span class="lvl-tx"><h3>Osnovna škola</h3><div class="cap">5–8. razred</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="osnovna-matematika-5.html">Matematika za osnovnu školu 5. razred</a><a href="osnovna-matematika-6.html">Matematika za osnovnu školu 6. razred</a><a href="osnovna-matematika-7.html">Matematika za osnovnu školu 7. razred</a><a href="osnovna-matematika-8.html">Matematika za osnovnu školu 8. razred</a><a href="osnovna-fizika-6.html">Fizika za osnovnu školu 6. razred</a><a href="osnovna-fizika-7.html">Fizika za osnovnu školu 7. razred</a><a href="osnovna-fizika-8.html">Fizika za osnovnu školu 8. razred</a><a href="mala-matura.html">Mala matura — završni ispit</a></div></div>
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">📐</span><span class="lvl-tx"><h3>Srednja škola</h3><div class="cap">1–4. razred</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="srednja-matematika-1.html">Matematika za srednju školu 1. razred</a><a href="srednja-matematika-2.html">Matematika za srednju školu 2. razred</a><a href="srednja-matematika-3.html">Matematika za srednju školu 3. razred</a><a href="srednja-matematika-4.html">Matematika za srednju školu 4. razred</a><a href="srednja-fizika-1.html">Fizika za srednju školu 1. razred</a><a href="srednja-fizika-2.html">Fizika za srednju školu 2. razred</a><a href="srednja-fizika-3.html">Fizika za srednju školu 3. razred</a><a href="srednja-fizika-4.html">Fizika za srednju školu 4. razred</a></div></div>
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🎯</span><span class="lvl-tx"><h3>Priprema za prijemne ispite</h3><div class="cap">od škole do fakulteta</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="predmet-priprema-srednja.html">Priprema – srednja škola</a><a href="predmet-priprema-visa.html">Priprema – viša škola</a><a href="predmet-priprema-fakultet.html">Priprema za upis na fakultet</a><a href="prijemni-ftn.html">Prijemni iz matematike (FTN) — pun obim</a><a href="prijemni.html">Prijemni: matematika sa logikom</a><a href="prijemni.html">Prijemni: matematika sa testom sklonosti</a><a href="prijemni.html">Rešeni prijemni rokovi 2012–2025</a></div></div>
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🎓</span><span class="lvl-tx"><h3>Fakultet</h3><div class="cap">inženjerski predmeti</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="predmet-algebra.html">Algebra</a><a href="predmet-analiza1.html">Matematička analiza 1</a><a href="predmet-analiza2.html">Matematička analiza 2</a><a href="predmet-linearna-algebra.html">Linearna algebra</a><a href="predmet-diskretna-matematika.html">Diskretna matematika</a><a href="predmet-kompleksna-analiza.html">Kompleksna analiza</a><a href="predmet-verovatnoca.html">Verovatnoća i statistika</a><a href="predmet-operaciona-istrazivanja.html">Operaciona istraživanja</a><a href="predmet-elektrotehnika.html">Teorija električnih kola</a><a href="predmet-elektricna-merenja.html">Električna merenja</a><a href="predmet-uvod-u-elektroniku.html">Uvod u elektroniku</a><a href="predmet-sistemi-signali.html">Sistemi i signali</a><a href="predmet-merenja-nev.html">Merenja neelektričnih veličina</a><a href="predmet-fizika-mehanika.html">Mehanika</a><a href="predmet-nacrtna-geometrija-1.html">Nacrtna geometrija 1</a><a href="predmet-nacrtna-geometrija-2.html">Nacrtna geometrija 2</a><a href="predmet-arhitektura-racunara.html">Arhitektura računara</a></div></div>
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">💻</span><span class="lvl-tx"><h3>Programiranje</h3><div class="cap">od Scratch-a do SQL-a</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="programiranje-python.html">Python</a><a href="programiranje-cpp.html">C++</a><a href="programiranje-csharp.html">C#</a><a href="programiranje-java.html">Java</a><a href="programiranje-js.html">JavaScript</a><a href="programiranje-kotlin.html">Kotlin</a><a href="programiranje-pascal.html">Pascal</a><a href="programiranje-r.html">R</a><a href="programiranje-sql.html">SQL</a><a href="programiranje-go.html">Go</a><a href="programiranje-php.html">PHP</a><a href="programiranje-swift.html">Swift</a><a href="programiranje-c.html">C</a><a href="programiranje-ts.html">TypeScript</a><a href="predmet-labview.html">LabVIEW</a><a href="programiranje-web.html">Veb (HTML, CSS, JavaScript)</a><a href="programiranje-algoritmi.html">Algoritmi i strukture podataka</a><a href="programiranje-matlab.html">MATLAB</a><a href="programiranje-scratch.html">Scratch</a><a href="programiranje-arduino.html">Arduino</a></div></div>
-      <div class="lvl reveal"><button class="lvl-head" type="button"><span class="lico">🔌</span><span class="lvl-tx"><h3>Elektronika i alati</h3><div class="cap">projektovanje kola</div></span><span class="chev">⌄</span></button><div class="subj-list"><a href="elektronika-kicad.html">KiCad</a><a href="predmet-ltspice.html">LTSpice</a><a href="elektronika-cadence.html">Cadence</a><a href="predmet-pspice.html">PSpice</a></div></div>
+
+    <div class="subj-chips reveal">
+      <span class="schip">🎒 Osnovna škola</span>
+      <span class="schip">📐 Srednja škola</span>
+      <span class="schip">🎓 Fakultet</span>
+      <span class="schip">💻 Programiranje</span>
+      <span class="schip">🔌 Elektronika i alati</span>
+      <span class="schip">🎯 Priprema za upis</span>
     </div>
-    <div class="tests-head reveal"><h3>Testovi — uz svaki paket</h3></div>
-    <div class="tests">
-      <a class="test reveal" href="kviz.html" style="text-decoration:none;color:inherit"><span class="lico">🧭</span><h4>Test sklonosti</h4><p>Otkrij koji smer i predmet detetu najviše leži — pre nego što krene.</p></a>
-      <a class="test reveal" href="mala-matura.html" style="text-decoration:none;color:inherit"><span class="lico">📝</span><h4>Mala matura</h4><p>Vežbaj završni ispit kroz realne zadatke sa rešenjima.</p></a>
-      <a class="test reveal" href="prijemni-ftn.html" style="text-decoration:none;color:inherit"><span class="lico">🎯</span><h4>Prijemni (FTN)</h4><p>Rešeni rokovi po oblastima — tačno ono što dolazi na ispit.</p></a>
-      <a class="test reveal" href="kviz.html" style="text-decoration:none;color:inherit"><span class="lico">🏆</span><h4>Kvizovi</h4><p>Brze provere znanja za srednju školu i fakultet.</p></a>
+
+    <div class="subj-cta reveal">
+      <a class="subj-bubble" href="predmeti.html">
+        <span class="sb-tx"><b>Pogledaj sve predmete</b><small>Cela biblioteka — predmeti, pripreme za upis i skripte</small></span>
+        <span class="sb-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="apt reveal">
+      <div class="apt-glow" aria-hidden="true"></div>
+      <div class="apt-in">
+        <div class="apt-eye">🧭 Test sklonosti</div>
+        <h3 class="apt-h">Nisi siguran šta ti leži?</h3>
+        <p class="apt-p">Kratak test predlaže oblast, predmete i način učenja — pre nego što doneseš odluku. Uradi ga za svoj nivo:</p>
+        <div class="apt-lvls">
+          <a class="apt-lvl apt-sred" href="test-sklonosti.html?nivo=sred"><b>Srednja škola</b><small>za osmake</small></a>
+          <a class="apt-lvl apt-visa" href="test-sklonosti.html?nivo=visa"><b>Viša škola</b><small>za maturante</small></a>
+          <a class="apt-lvl apt-fak" href="test-sklonosti.html?nivo=fak"><b>Fakultet</b><small>za maturante</small></a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -905,49 +951,70 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 <div class="ornament" aria-hidden="true"><span class="dot"></span><svg viewBox="0 0 300 20"><path d="M8 13 C 70 3 150 18 210 9 C 244 4 274 11 294 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="dot"></span><svg class="rev" viewBox="0 0 300 20"><path d="M8 13 C 70 3 150 18 210 9 C 244 4 274 11 294 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="dot"></span></div>
 <section class="final">
   <div class="wrap">
+    <div class="final-eye eyebrow reveal">Poslednja reč</div>
     <h2 class="reveal">Pretvorimo vreme na telefonu u vreme koje gradi budućnost.</h2>
     <p class="reveal">Prvih 15 minuta je besplatno — bez kartice, bez obaveza. Samo vaše dete, zadatak i profesorica koja ne odustaje.</p>
     <div class="row reveal">
-      <a class="btn btn-gold" href="#paketi">Započni besplatno →</a>
-      <a class="btn btn-rose" href="o-marini.html">Upoznaj Marinu</a>
+      <a class="btn btn-gold" href="#paketi">Rezerviši 15 besplatnih minuta →</a>
     </div>
   </div>
 </section>
 
 <style>
-.copyr-band{padding:30px 0 6px}
-.copyr-card{position:relative;display:flex;gap:20px;align-items:flex-start;max-width:900px;margin:0 auto;background:linear-gradient(165deg,#fffdf8,var(--champ));border:1.6px solid var(--gold);border-radius:20px;padding:24px 28px;box-shadow:0 26px 52px -38px rgba(120,70,80,.42)}
-.copyr-seal{flex:0 0 auto;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.7rem;color:#4a3812;background:linear-gradient(180deg,var(--goldlt),var(--gold));box-shadow:0 8px 18px -8px rgba(198,160,92,.9),inset 0 1px 0 rgba(255,255,255,.6)}
-.copyr-band-title{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--plum);font-size:clamp(1.35rem,3vw,1.7rem);margin:0 0 6px;letter-spacing:.01em}
-.copyr-band-text{color:#5a474d;font-size:.98rem;line-height:1.64;margin:0}
-.copyr-band-text b{color:var(--plum2)}
-@media(max-width:560px){.copyr-card{flex-direction:column;gap:14px;padding:22px 20px}}
-</style>
-<section class="legal-band"><div class="wrap">
-<div class="legal-grid">
-<div class="legal-col">
-<div class="legal-ic" aria-hidden="true">&copy;</div>
-<h3 class="legal-h">Autorska prava</h3>
-<p class="legal-p">Sav sadržaj na Mathia platformi — tekstovi, lekcije, skripte, zadaci, dizajn, ilustracije i nastavna metodologija — zaštićen je autorskim pravom. Kopiranje, umnožavanje, distribucija, preprodaja i plagiranje, u celini ili delimično, strogo su zabranjeni bez pismene dozvole; neovlašćena upotreba povlači zakonsku odgovornost.</p>
-</div>
-<div class="legal-col">
-<div class="legal-ic" aria-hidden="true">✶</div>
-<h3 class="legal-h">Napomena</h3>
-<p class="legal-p">Mathia je obrazovna platforma namenjena svim uzrastima — za učenje i pripremu. Nije povezana niti u zvaničnom odnosu sa bilo kojom školom, fakultetom, univerzitetom ni državnom ustanovom. Nazivi ustanova i ispita (uključujući FTN) navode se isključivo informativno. Priprema ne garantuje upis ni rezultat na ispitu.</p>
-</div>
-</div>
-<p class="legal-meta">Mathia Edu &middot; kontakt@mathia.rs &middot; &copy; 2026</p>
-</div></section>
-<style>
-.legal-band{padding:22px 0 8px}
-.legal-band>.wrap{max-width:1000px;margin:0 auto;padding:0 22px}
-.legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.legal-col{background:#FFFCF6;border:1px solid #ECE0CB;border-radius:18px;padding:22px 24px;box-shadow:0 22px 46px -40px rgba(120,70,80,.30)}
-.legal-ic{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #E1CFA6;color:#9C7838;background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-size:15px;margin-bottom:10px}
-.legal-h{font-family:'Cormorant Garamond',serif;color:#432C37;font-size:.98rem;margin:0 0 6px;letter-spacing:.2px}
-.legal-p{color:#6a5a62;font-size:.78rem;line-height:1.5;margin:0}
-.legal-meta{text-align:center;color:#a89a93;font-size:.72rem;letter-spacing:.05em;margin:12px 0 0}
-@media(max-width:760px){.legal-grid{grid-template-columns:1fr;gap:14px}}
+/* ===== LUX FOOTER (v2) ===== */
+footer.mfoot{position:relative;background:linear-gradient(180deg,#3b2530 0%,#432C37 44%,#39222e 100%);color:#e8d9de;padding:0;margin-top:10px;overflow:hidden}
+footer.mfoot:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(231,210,162,.6),transparent)}
+footer.mfoot .glow{position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:680px;height:360px;max-width:120%;background:radial-gradient(ellipse at center,rgba(198,160,92,.20),transparent 68%);pointer-events:none}
+footer.mfoot .wrap{position:relative;max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* crown */
+.mf-crown{text-align:center;padding:54px 0 28px}
+.mf-mono{width:58px;height:58px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.95rem;color:#4a3812;background:linear-gradient(180deg,#F0DCA6,#C6A05C);box-shadow:0 12px 28px -10px rgba(198,160,92,.85),inset 0 1px 0 rgba(255,255,255,.65)}
+footer.mfoot .flove{display:inline-block;font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(2.8rem,7.6vw,4.7rem);line-height:1.04;margin:0;padding:.02em .14em .12em;background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 26%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;-webkit-clip-path:inset(0 100% 0 0);clip-path:inset(0 100% 0 0);animation:mfWrite 2.6s cubic-bezier(.62,.02,.24,1) .3s forwards,foil 7s linear infinite}
+@keyframes mfWrite{to{-webkit-clip-path:inset(0 -.14em 0 0);clip-path:inset(0 -.14em 0 0)}}
+.mf-url{margin:16px 0 0}
+.mf-url a{color:#E7D2A2;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-decoration:none;border-bottom:1px solid rgba(231,210,162,.35);padding-bottom:2px;transition:color .18s,border-color .18s}
+.mf-url a:hover{color:#fff;border-color:rgba(231,210,162,.85)}
+
+/* hairline rule */
+.mf-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0 32px}
+.mf-rule .ln{height:1px;width:min(190px,27vw);background:linear-gradient(90deg,transparent,rgba(198,160,92,.55))}
+.mf-rule .ln.r{transform:scaleX(-1)}
+.mf-rule .dm{width:6px;height:6px;transform:rotate(45deg);background:#C6A05C;box-shadow:0 0 12px rgba(198,160,92,.8)}
+
+/* contact */
+.mf-contact{text-align:center;margin:0 0 36px}
+.mf-eye{font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:rgba(231,210,162,.72);margin:0 0 15px}
+footer.mfoot .social{margin:0 auto}
+footer.mfoot .social a{background:rgba(255,252,246,.045);border:1px solid rgba(231,210,162,.26);color:#EFE2E7;box-shadow:none}
+footer.mfoot .social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;border-color:transparent;transform:translateY(-3px);box-shadow:0 18px 38px -20px rgba(0,0,0,.6)}
+
+/* fine print */
+.mf-fine{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:930px;margin:0 auto 30px}
+.mf-card{position:relative;background:rgba(255,252,246,.035);border:1px solid rgba(231,210,162,.16);border-radius:16px;padding:20px 22px}
+.mf-card .ic{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(231,210,162,.34);color:#E7D2A2;font-size:14px;margin-bottom:11px}
+.mf-h{font-family:'Cormorant Garamond',serif;font-weight:600;color:#F1E4D0;font-size:1.04rem;letter-spacing:.3px;margin:0 0 7px}
+.mf-p{color:rgba(232,217,222,.64);font-size:.775rem;line-height:1.62;margin:0}
+.mf-p b{color:#EAD6AC;font-weight:700}
+
+/* legal links */
+.mf-links{display:flex;flex-wrap:wrap;gap:9px 22px;justify-content:center;margin:0 0 24px}
+.mf-links a{color:rgba(231,210,162,.82);font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:600;text-decoration:none;transition:color .18s}
+.mf-links a:hover{color:#fff}
+
+/* payment */
+.mf-pay{text-align:center;margin:0 0 22px}
+.mf-pay .paycard{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:14px;padding:10px 18px;max-width:100%;box-shadow:0 20px 42px -26px rgba(0,0,0,.6)}
+.mf-pay .paycard img{width:min(430px,100%);height:auto;display:block}
+.mf-secure{font-family:'Nunito',sans-serif;font-size:.72rem;color:rgba(232,217,222,.5);max-width:640px;margin:13px auto 0;line-height:1.6}
+
+/* bottom bar */
+.mf-bar{border-top:1px solid rgba(231,210,162,.14);text-align:center;padding:22px 24px 30px}
+.mf-copy{font-family:'Cormorant Garamond',serif;font-size:1.06rem;letter-spacing:.1em;color:rgba(231,210,162,.82)}
+.mf-note{font-family:'Nunito',sans-serif;font-size:.72rem;font-style:italic;color:rgba(232,217,222,.42);max-width:560px;margin:9px auto 0;line-height:1.66}
+
+@media(prefers-reduced-motion:reduce){footer.mfoot .flove{-webkit-clip-path:none;clip-path:none;animation:foil 7s linear infinite}}
+@media(max-width:720px){.mf-fine{grid-template-columns:1fr;gap:14px}.mf-crown{padding:44px 0 24px}}
 
 /* MATHIA fix: formule u okviru + hero bez preklapanja */
 html,body{overflow-x:hidden}
@@ -959,29 +1026,57 @@ html,body{overflow-x:hidden}
 .foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
 .rule{margin-top:30px}
 </style>
-<footer>
+
+<footer class="mfoot">
+  <div class="glow" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="flove script goldtext">Uči s ljubavlju</div>
-    <p class="foot-last"><a href="https://www.mathia.rs">www.mathia.rs</a></p>
-    <div class="footsig-wrap" style="margin:14px 0 4px"><span class="signature footsig" style="font-size:2.5rem">dr Marina Bulat</span></div>
-    <div class="social" data-social="1"><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a><a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>Email</span></a></div>
+
+    <div class="mf-crown">
+      <div class="mf-mono" aria-hidden="true">M</div>
+      <div class="flove script goldtext">Uči s ljubavlju</div>
+      <div class="mf-url"><a href="https://www.mathia.rs">www.mathia.rs</a></div>
+    </div>
+
+    <div class="mf-rule" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
+
+    <div class="mf-contact">
+      <p class="mf-eye mf-eye-contact">Kontakt i mreže</p>
+      <div class="social" data-social="1">
+        <a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>kontakt@mathia.rs</span></a><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a>
       </div>
-<div style="max-width:1100px;margin:0 auto;padding:20px 20px 0;text-align:center">
-  <div style="display:flex;gap:10px 18px;flex-wrap:wrap;justify-content:center;font-family:'Nunito',sans-serif;font-size:.8rem">
-    <a href="uslovi.html" style="color:#E7D2A2">Uslovi kupovine</a>
-    <a href="reklamacije.html" style="color:#E7D2A2">Reklamacije i povraćaj</a>
-    <a href="povracaj.html" style="color:#E7D2A2">Povraćaj sredstava</a>
-    <a href="privatnost.html" style="color:#E7D2A2">Politika privatnosti</a>
+    </div>
+
+    <div class="mf-fine">
+      <div class="mf-card">
+        <div class="ic" aria-hidden="true">&copy;</div>
+        <h3 class="mf-h mf-copyr-h">Autorska prava</h3>
+        <p class="mf-p mf-copyr-p">Sav sadržaj na Mathia platformi — tekstovi, lekcije, skripte, zadaci, dizajn, ilustracije i nastavna metodologija — zaštićen je autorskim pravom. <b>Kopiranje, umnožavanje, distribucija, preprodaja i plagiranje, u celini ili delimično, strogo su zabranjeni</b> bez pismene dozvole; neovlašćena upotreba povlači zakonsku odgovornost.</p>
+      </div>
+      <div class="mf-card">
+        <div class="ic" aria-hidden="true">✶</div>
+        <h3 class="mf-h mf-legal-h">Napomena</h3>
+        <p class="mf-p mf-legal-p">Mathia je obrazovna platforma namenjena svim uzrastima — za učenje i pripremu. Nije povezana niti u zvaničnom odnosu sa bilo kojom školom, fakultetom, univerzitetom ni državnom ustanovom. Nazivi ustanova i ispita (uključujući FTN) navode se isključivo informativno. Priprema ne garantuje upis ni rezultat na ispitu.</p>
+      </div>
+    </div>
+
+    <div class="mf-links">
+      <a class="mf-lnk-uslovi" href="uslovi.html">Uslovi kupovine</a>
+      <a class="mf-lnk-rekl" href="reklamacije.html">Reklamacije i povraćaj</a>
+      <a class="mf-lnk-pov" href="povracaj.html">Povraćaj sredstava</a>
+      <a class="mf-lnk-priv" href="privatnost.html">Politika privatnosti</a>
+    </div>
+
+    <div class="mf-pay">
+      <div class="paycard"><img src="placanje-logos.png" alt="Raiffeisen, Visa, Mastercard, DinaCard, Visa Secure, Mastercard ID Check"></div>
+      <p class="mf-secure">Plaćanje karticom je zaštićeno 3-D Secure programom (Visa Secure i Mastercard ID Check). Podaci o kartici unose se isključivo na bezbednoj stranici banke. Sve cene su u dinarima (RSD).</p>
+    </div>
+
   </div>
-  <div style="display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:14px;padding:10px 16px;margin-top:12px;max-width:100%">
-    <img src="placanje-logos.png" alt="Raiffeisen, Visa, Mastercard, DinaCard, Visa Secure, Mastercard ID Check" style="width:min(430px,100%);height:auto">
+
+  <div class="mf-bar">
+    <div class="mf-copy">© Mathia Edu · 2026</div>
+    <div class="mf-note">Sva prava zadržana. Sadržaj, dizajn i metodologija zaštićeni su autorskim pravima — zabranjeno je kopiranje, umnožavanje i distribucija bez pismene dozvole.</div>
   </div>
-  <div style="font-family:'Nunito',sans-serif;font-size:.74rem;color:rgba(251,246,238,.5);margin:10px auto 0;max-width:640px">Plaćanje karticom je zaštićeno 3-D Secure programom (Visa Secure i Mastercard ID Check). Podaci o kartici unose se isključivo na bezbednoj stranici banke. Sve cene su u dinarima (RSD).</div>
-</div>
-<div class="mathia-copyr" style="text-align:center;padding:24px 20px 28px;margin-top:12px;border-top:1px solid rgba(231,210,162,.14);font-family:'Nunito',sans-serif;color:rgba(251,246,238,.55)">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:1.08rem;letter-spacing:.08em;color:rgba(231,210,162,.78)">© Mathia Edu · 2026</div>
-  <div style="font-size:.74rem;font-style:italic;max-width:560px;margin:9px auto 0;line-height:1.65;color:rgba(251,246,238,.44)">Sva prava zadržana. Sadržaj, dizajn i metodologija zaštićeni su autorskim pravima — zabranjeno je kopiranje, umnožavanje i distribucija bez pismene dozvole.</div>
-</div>
 </footer>
 
 <script>
@@ -990,7 +1085,7 @@ html,body{overflow-x:hidden}
 </script>
 <script>
 (function(){
-  var M=[{s:`.copyr-band-title`,i:-1,t:{en:`Copyright is protected`,de:`Urheberrecht ist geschützt`,fr:`Droits d'auteur protégés`,es:`Derechos de autor protegidos`,it:`Diritti d'autore protetti`,ru:`Авторские права защищены`,pt:`Direitos de autor protegidos`}},{s:`.copyr-band-text`,i:-1,t:{en:`All content on the Mathia platform — texts, lessons, study notes, exercises, design, illustrations and teaching methodology — is protected by copyright. <b>Copying, reproduction, distribution, resale and plagiarism of the content, in whole or in part, are strictly prohibited</b> without prior written permission. Any unauthorized use or plagiarism carries legal liability.`,de:`Alle Inhalte der Mathia-Plattform — Texte, Lektionen, Skripte, Aufgaben, Design, Illustrationen und Lehrmethodik — sind urheberrechtlich geschützt. <b>Das Kopieren, Vervielfältigen, Verbreiten, der Weiterverkauf und das Plagiieren der Inhalte, ganz oder teilweise, sind strengstens untersagt</b> ohne vorherige schriftliche Genehmigung. Jede unbefugte Nutzung oder jedes Plagiat zieht rechtliche Haftung nach sich.`,fr:`Tout le contenu de la plateforme Mathia — textes, leçons, supports, exercices, design, illustrations et méthodologie pédagogique — est protégé par le droit d'auteur. <b>La copie, la reproduction, la distribution, la revente et le plagiat du contenu, en tout ou en partie, sont strictement interdits</b> sans autorisation écrite préalable. Toute utilisation non autorisée ou tout plagiat engage la responsabilité légale.`,es:`Todo el contenido de la plataforma Mathia — textos, lecciones, apuntes, ejercicios, diseño, ilustraciones y metodología docente — está protegido por derechos de autor. <b>Quedan estrictamente prohibidos la copia, reproducción, distribución, reventa y plagio del contenido, total o parcial,</b> sin autorización previa por escrito. Cualquier uso no autorizado o plagio conlleva responsabilidad legal.`,it:`Tutti i contenuti della piattaforma Mathia — testi, lezioni, dispense, esercizi, design, illustrazioni e metodologia didattica — sono protetti da copyright. <b>La copia, la riproduzione, la distribuzione, la rivendita e il plagio dei contenuti, in tutto o in parte, sono severamente vietati</b> senza previa autorizzazione scritta. Qualsiasi uso non autorizzato o plagio comporta responsabilità legale.`,ru:`Весь контент платформы Mathia — тексты, уроки, конспекты, задания, дизайн, иллюстрации и методика преподавания — защищён авторским правом. <b>Копирование, воспроизведение, распространение, перепродажа и плагиат контента, полностью или частично, строго запрещены</b> без предварительного письменного разрешения. Любое несанкционированное использование или плагиат влечёт юридическую ответственность.`,pt:`Todo o conteúdo da plataforma Mathia — textos, lições, apontamentos, exercícios, design, ilustrações e metodologia de ensino — está protegido por direitos de autor. <b>A cópia, reprodução, distribuição, revenda e plágio do conteúdo, no todo ou em parte, são estritamente proibidos</b> sem autorização prévia por escrito. Qualquer utilização não autorizada ou plágio acarreta responsabilidade legal.`}},{s:'.nav-r a.link',i:1,t:{en:`Subjects`,de:`Fächer`,fr:`Matières`,es:`Materias`,it:`Materie`,ru:`Предметы`,pt:`Matérias`}},{s:`.legal-title`,i:-1,t:{en:`Disclaimer`,de:`Rechtlicher Hinweis`,fr:`Mentions légales`,es:`Aviso legal`,it:`Avviso legale`,ru:`Правовая оговорка`,pt:`Aviso legal`}},{s:`.legal-text`,i:-1,t:{en:`Mathia is a general-purpose educational platform for learning and exam preparation. It is not affiliated with, nor in any official relationship with, any school, faculty, university or government institution. Names of institutions, faculties and exams (including FTN) are mentioned for informational purposes only — to describe the syllabus and preparation. Preparation on the platform does not guarantee enrolment or any specific exam result.`,de:`Mathia ist eine allgemeine Bildungsplattform zum Lernen und zur Prüfungsvorbereitung. Sie steht in keiner Verbindung und in keinem offiziellen Verhältnis zu Schulen, Fakultäten, Universitäten oder staatlichen Einrichtungen. Namen von Einrichtungen, Fakultäten und Prüfungen (einschließlich FTN) werden ausschließlich zu Informationszwecken genannt — zur Beschreibung des Stoffes und der Vorbereitung. Die Vorbereitung auf der Plattform garantiert weder die Einschreibung noch ein bestimmtes Prüfungsergebnis.`,fr:`Mathia est une plateforme éducative à caractère général, dédiée à l'apprentissage et à la préparation aux examens. Elle n'est ni affiliée ni en relation officielle avec une école, une faculté, une université ou une institution publique. Les noms d'institutions, de facultés et d'examens (y compris FTN) sont mentionnés à titre purement informatif — pour décrire le programme et la préparation. La préparation sur la plateforme ne garantit ni l'admission ni un résultat précis à l'examen.`,es:`Mathia es una plataforma educativa de carácter general, para el aprendizaje y la preparación de exámenes. No está afiliada ni mantiene relación oficial con ninguna escuela, facultad, universidad o institución pública. Los nombres de instituciones, facultades y exámenes (incluido FTN) se mencionan solo con fines informativos — para describir el temario y la preparación. La preparación en la plataforma no garantiza la admisión ni un resultado concreto en el examen.`,it:`Mathia è una piattaforma educativa di carattere generale, per l'apprendimento e la preparazione agli esami. Non è affiliata né ha alcun rapporto ufficiale con scuole, facoltà, università o istituzioni pubbliche. I nomi di istituzioni, facoltà ed esami (incluso FTN) sono citati solo a scopo informativo — per descrivere il programma e la preparazione. La preparazione sulla piattaforma non garantisce l'iscrizione né alcun risultato specifico all'esame.`,ru:`Mathia — образовательная платформа общего характера для обучения и подготовки к экзаменам. Она не связана и не состоит в официальных отношениях ни с одной школой, факультетом, университетом или государственным учреждением. Названия учреждений, факультетов и экзаменов (включая FTN) приводятся исключительно в информационных целях — для описания программы и подготовки. Подготовка на платформе не гарантирует поступление или какой-либо конкретный результат на экзамене.`,pt:`Mathia é uma plataforma educativa de caráter geral, para aprendizagem e preparação para exames. Não está afiliada nem mantém qualquer relação oficial com escolas, faculdades, universidades ou instituições públicas. Os nomes de instituições, faculdades e exames (incluindo FTN) são mencionados apenas para fins informativos — para descrever o programa e a preparação. A preparação na plataforma não garante a admissão nem qualquer resultado específico no exame.`}},{s:`.signature`,i:-1,t:{en:`Dr Marina Bulat`,de:`Dr. Marina Bulat`,fr:`Dr Marina Bulat`,es:`Dra. Marina Bulat`,it:`Dott.ssa Marina Bulat`,ru:`д-р Marina Bulat`,pt:`Dra. Marina Bulat`}},{s:'.mathia-copyr',i:0,t:{en:`© 2026 Mathia Edu · All rights reserved. Copying, reproduction and distribution of content, design and methodology without written permission is prohibited.`,de:`© 2026 Mathia Edu · Alle Rechte vorbehalten. Das Kopieren, die Vervielfältigung und die Verbreitung von Inhalten, Design und Methodik ohne schriftliche Genehmigung sind untersagt.`,fr:`© 2026 Mathia Edu · Tous droits réservés. Toute copie, reproduction ou distribution du contenu, du design et de la méthodologie sans autorisation écrite est interdite.`,es:`© 2026 Mathia Edu · Todos los derechos reservados. Queda prohibida la copia, reproducción y distribución del contenido, el diseño y la metodología sin autorización por escrito.`,it:`© 2026 Mathia Edu · Tutti i diritti riservati. È vietata la copia, la riproduzione e la distribuzione di contenuti, design e metodologia senza autorizzazione scritta.`,ru:`© 2026 Mathia Edu · Все права защищены. Копирование, воспроизведение и распространение содержимого, дизайна и методологии без письменного разрешения запрещены.`,pt:`© 2026 Mathia Edu · Todos os direitos reservados. É proibida a cópia, reprodução e distribuição de conteúdo, design e metodologia sem autorização escrita.`}},{s:`.bsub`,i:0,t:{en:`with Marina`,de:`mit Marina`,fr:`avec Marina`,es:`con Marina`,it:`con Marina`,ru:`с Мариной`,pt:`com Marina`}},
+  var M=[{s:`.mf-copyr-h`,i:-1,t:{en:`Copyright`,de:`Urheberrecht`,fr:`Droits d'auteur`,es:`Derechos de autor`,it:`Copyright`,ru:`Авторские права`,pt:`Direitos de autor`}},{s:`.mf-copyr-p`,i:-1,t:{en:`All content on the Mathia platform — texts, lessons, study notes, exercises, design, illustrations and teaching methodology — is protected by copyright. <b>Copying, reproduction, distribution, resale and plagiarism of the content, in whole or in part, are strictly prohibited</b> without prior written permission. Any unauthorized use or plagiarism carries legal liability.`,de:`Alle Inhalte der Mathia-Plattform — Texte, Lektionen, Skripte, Aufgaben, Design, Illustrationen und Lehrmethodik — sind urheberrechtlich geschützt. <b>Das Kopieren, Vervielfältigen, Verbreiten, der Weiterverkauf und das Plagiieren der Inhalte, ganz oder teilweise, sind strengstens untersagt</b> ohne vorherige schriftliche Genehmigung. Jede unbefugte Nutzung oder jedes Plagiat zieht rechtliche Haftung nach sich.`,fr:`Tout le contenu de la plateforme Mathia — textes, leçons, supports, exercices, design, illustrations et méthodologie pédagogique — est protégé par le droit d'auteur. <b>La copie, la reproduction, la distribution, la revente et le plagiat du contenu, en tout ou en partie, sont strictement interdits</b> sans autorisation écrite préalable. Toute utilisation non autorisée ou tout plagiat engage la responsabilité légale.`,es:`Todo el contenido de la plataforma Mathia — textos, lecciones, apuntes, ejercicios, diseño, ilustraciones y metodología docente — está protegido por derechos de autor. <b>Quedan estrictamente prohibidos la copia, reproducción, distribución, reventa y plagio del contenido, total o parcial,</b> sin autorización previa por escrito. Cualquier uso no autorizado o plagio conlleva responsabilidad legal.`,it:`Tutti i contenuti della piattaforma Mathia — testi, lezioni, dispense, esercizi, design, illustrazioni e metodologia didattica — sono protetti da copyright. <b>La copia, la riproduzione, la distribuzione, la rivendita e il plagio dei contenuti, in tutto o in parte, sono severamente vietati</b> senza previa autorizzazione scritta. Qualsiasi uso non autorizzato o plagio comporta responsabilità legale.`,ru:`Весь контент платформы Mathia — тексты, уроки, конспекты, задания, дизайн, иллюстрации и методика преподавания — защищён авторским правом. <b>Копирование, воспроизведение, распространение, перепродажа и плагиат контента, полностью или частично, строго запрещены</b> без предварительного письменного разрешения. Любое несанкционированное использование или плагиат влечёт юридическую ответственность.`,pt:`Todo o conteúdo da plataforma Mathia — textos, lições, apontamentos, exercícios, design, ilustrações e metodologia de ensino — está protegido por direitos de autor. <b>A cópia, reprodução, distribuição, revenda e plágio do conteúdo, no todo ou em parte, são estritamente proibidos</b> sem autorização prévia por escrito. Qualquer utilização não autorizada ou plágio acarreta responsabilidade legal.`}},{s:'.nav-r a.link',i:1,t:{en:`Subjects`,de:`Fächer`,fr:`Matières`,es:`Materias`,it:`Materie`,ru:`Предметы`,pt:`Matérias`}},{s:`.mf-legal-h`,i:-1,t:{en:`Disclaimer`,de:`Rechtlicher Hinweis`,fr:`Mentions légales`,es:`Aviso legal`,it:`Avviso legale`,ru:`Правовая оговорка`,pt:`Aviso legal`}},{s:`.mf-legal-p`,i:-1,t:{en:`Mathia is a general-purpose educational platform for learning and exam preparation. It is not affiliated with, nor in any official relationship with, any school, faculty, university or government institution. Names of institutions, faculties and exams (including FTN) are mentioned for informational purposes only — to describe the syllabus and preparation. Preparation on the platform does not guarantee enrolment or any specific exam result.`,de:`Mathia ist eine allgemeine Bildungsplattform zum Lernen und zur Prüfungsvorbereitung. Sie steht in keiner Verbindung und in keinem offiziellen Verhältnis zu Schulen, Fakultäten, Universitäten oder staatlichen Einrichtungen. Namen von Einrichtungen, Fakultäten und Prüfungen (einschließlich FTN) werden ausschließlich zu Informationszwecken genannt — zur Beschreibung des Stoffes und der Vorbereitung. Die Vorbereitung auf der Plattform garantiert weder die Einschreibung noch ein bestimmtes Prüfungsergebnis.`,fr:`Mathia est une plateforme éducative à caractère général, dédiée à l'apprentissage et à la préparation aux examens. Elle n'est ni affiliée ni en relation officielle avec une école, une faculté, une université ou une institution publique. Les noms d'institutions, de facultés et d'examens (y compris FTN) sont mentionnés à titre purement informatif — pour décrire le programme et la préparation. La préparation sur la plateforme ne garantit ni l'admission ni un résultat précis à l'examen.`,es:`Mathia es una plataforma educativa de carácter general, para el aprendizaje y la preparación de exámenes. No está afiliada ni mantiene relación oficial con ninguna escuela, facultad, universidad o institución pública. Los nombres de instituciones, facultades y exámenes (incluido FTN) se mencionan solo con fines informativos — para describir el temario y la preparación. La preparación en la plataforma no garantiza la admisión ni un resultado concreto en el examen.`,it:`Mathia è una piattaforma educativa di carattere generale, per l'apprendimento e la preparazione agli esami. Non è affiliata né ha alcun rapporto ufficiale con scuole, facoltà, università o istituzioni pubbliche. I nomi di istituzioni, facoltà ed esami (incluso FTN) sono citati solo a scopo informativo — per descrivere il programma e la preparazione. La preparazione sulla piattaforma non garantisce l'iscrizione né alcun risultato specifico all'esame.`,ru:`Mathia — образовательная платформа общего характера для обучения и подготовки к экзаменам. Она не связана и не состоит в официальных отношениях ни с одной школой, факультетом, университетом или государственным учреждением. Названия учреждений, факультетов и экзаменов (включая FTN) приводятся исключительно в информационных целях — для описания программы и подготовки. Подготовка на платформе не гарантирует поступление или какой-либо конкретный результат на экзамене.`,pt:`Mathia é uma plataforma educativa de caráter geral, para aprendizagem e preparação para exames. Não está afiliada nem mantém qualquer relação oficial com escolas, faculdades, universidades ou instituições públicas. Os nomes de instituições, faculdades e exames (incluindo FTN) são mencionados apenas para fins informativos — para descrever o programa e a preparação. A preparação na plataforma não garante a admissão nem qualquer resultado específico no exame.`}},{s:`.signature`,i:-1,t:{en:`Dr Marina Bulat`,de:`Dr. Marina Bulat`,fr:`Dr Marina Bulat`,es:`Dra. Marina Bulat`,it:`Dott.ssa Marina Bulat`,ru:`д-р Marina Bulat`,pt:`Dra. Marina Bulat`}},{s:'.mf-note',i:0,t:{en:`All rights reserved. Content, design and methodology are protected by copyright — copying, reproduction and distribution without written permission are prohibited.`,de:`Alle Rechte vorbehalten. Inhalte, Design und Methodik sind urheberrechtlich geschützt — Kopieren, Vervielfältigen und Verbreiten ohne schriftliche Genehmigung sind untersagt.`,fr:`Tous droits réservés. Le contenu, le design et la méthodologie sont protégés par le droit d'auteur — la copie, la reproduction et la distribution sans autorisation écrite sont interdites.`,es:`Todos los derechos reservados. El contenido, el diseño y la metodología están protegidos por derechos de autor — se prohíbe la copia, reproducción y distribución sin autorización por escrito.`,it:`Tutti i diritti riservati. Contenuti, design e metodologia sono protetti da copyright — è vietata la copia, la riproduzione e la distribuzione senza autorizzazione scritta.`,ru:`Все права защищены. Содержимое, дизайн и методология защищены авторским правом — копирование, воспроизведение и распространение без письменного разрешения запрещены.`,pt:`Todos os direitos reservados. O conteúdo, o design e a metodologia estão protegidos por direitos de autor — é proibida a cópia, reprodução e distribuição sem autorização escrita.`}},{s:`.bsub`,i:0,t:{en:`with Marina`,de:`mit Marina`,fr:`avec Marina`,es:`con Marina`,it:`con Marina`,ru:`с Мариной`,pt:`com Marina`}},
     {s:'.nav-r a.link',i:0,t:{en:`What is Mathia`,de:`Was ist Mathia`,fr:`Qu'est-ce que Mathia`,es:`Qué es Mathia`,it:`Cos'è Mathia`,ru:`Что такое Mathia`,pt:`O que é Mathia`}},
     {s:'.nav-r a.link',i:2,t:{en:`Shop`,de:`Shop`,fr:`Boutique`,es:`Tienda`,it:`Negozio`,ru:`Магазин`,pt:`Loja`}},
     {s:'.nav-r a.link',i:3,t:{en:`Plans`,de:`Pakete`,fr:`Forfaits`,es:`Planes`,it:`Pacchetti`,ru:`Тарифы`,pt:`Planos`}},
@@ -1126,13 +1221,12 @@ html,body{overflow-x:hidden}
 
     {s:'.final h2',i:0,t:{en:`Let's turn time on the phone into time that builds a future.`,de:`Verwandeln wir Handyzeit in Zeit, die Zukunft schafft.`,fr:`Transformons le temps passé au téléphone en temps qui construit l'avenir.`,es:`Convirtamos el tiempo en el teléfono en tiempo que construye futuro.`,it:`Trasformiamo il tempo al telefono in tempo che costruisce il futuro.`,ru:`Превратим время в телефоне во время, которое строит будущее.`,pt:`Vamos transformar o tempo no telemóvel em tempo que constrói o futuro.`}},
     {s:'.final p',i:0,t:{en:`The first 15 minutes are on us — no card, no obligation. Just your child, a task, and a teacher who doesn't give up.`,de:`Die ersten 15 Minuten gehen auf uns — ohne Karte, ohne Verpflichtung. Nur Ihr Kind, eine Aufgabe und eine Lehrerin, die nicht aufgibt.`,fr:`Les 15 premières minutes sont offertes — sans carte, sans engagement. Juste votre enfant, un exercice et une professeure qui n'abandonne pas.`,es:`Los primeros 15 minutos corren por nuestra cuenta — sin tarjeta, sin compromiso. Solo su hijo, un ejercicio y una profesora que no se rinde.`,it:`I primi 15 minuti li offriamo noi — senza carta, senza impegno. Solo vostro figlio, un esercizio e una professoressa che non molla.`,ru:`Первые 15 минут за наш счёт — без карты, без обязательств. Только ваш ребёнок, задача и преподаватель, который не сдаётся.`,pt:`Os primeiros 15 minutos são por nossa conta — sem cartão, sem compromisso. Só o seu filho, um exercício e uma professora que não desiste.`}},
-    {s:'.final .btn-gold',i:0,t:{en:`Start free →`,de:`Kostenlos starten →`,fr:`Commencer gratuitement →`,es:`Empieza gratis →`,it:`Inizia gratis →`,ru:`Начать бесплатно →`,pt:`Começa grátis →`}},
-    {s:'.final .btn-rose',i:0,t:{en:`Meet Marina`,de:`Marina kennenlernen`,fr:`Rencontrez Marina`,es:`Conoce a Marina`,it:`Conosci Marina`,ru:`Познакомьтесь с Мариной`,pt:`Conhece a Marina`}},
+    {s:'.final .btn-gold',i:0,t:{en:`Claim your 15 free minutes →`,de:`Sichere dir 15 Gratis-Minuten →`,fr:`Réserve tes 15 minutes offertes →`,es:`Reserva tus 15 minutos gratis →`,it:`Prenota i tuoi 15 minuti gratis →`,ru:`Забронируй 15 бесплатных минут →`,pt:`Reserva os teus 15 minutos grátis →`}},
 
     {s:'.tb-x',i:0,t:{en:`<span class="tb-orn">❦</span> Mathematics · Physics · Electrical engineering`,de:`<span class="tb-orn">❦</span> Mathematik · Physik · Elektrotechnik`,fr:`<span class="tb-orn">❦</span> Mathématiques · Physique · Électrotechnique`,es:`<span class="tb-orn">❦</span> Matemáticas · Física · Electrotecnia`,it:`<span class="tb-orn">❦</span> Matematica · Fisica · Elettrotecnica`,ru:`<span class="tb-orn">❦</span> Математика · Физика · Электротехника`,pt:`<span class="tb-orn">❦</span> Matemática · Física · Eletrotécnica`}},
     {s:'.subjects .ksub',i:0,t:{en:`all in one place`,de:`alles an einem Ort`,fr:`tout au même endroit`,es:`todo en un solo lugar`,it:`tutto in un unico posto`,ru:`всё в одном месте`,pt:`tudo num só lugar`}},
     {s:'.subjects h2',i:0,t:{en:`Subjects & tests`,de:`Fächer & Tests`,fr:`Matières et tests`,es:`Materias y tests`,it:`Materie e test`,ru:`Предметы и тесты`,pt:`Matérias e testes`}},
-    {s:'.sub-lead',i:0,t:{en:`From grade 5 to university — maths, physics, programming and electrical engineering. Every package includes the subjects you choose, a clone-teacher for each, and practice tests. The first 15 minutes are free, for everyone.`,de:`Von der 5. Klasse bis zur Universität — Mathe, Physik, Programmierung und Elektrotechnik. Jedes Paket umfasst die gewählten Fächer, einen Klon-Lehrer für jedes davon und Übungstests. Die ersten 15 Minuten sind für alle kostenlos.`,fr:`De la 5e à l'université — maths, physique, programmation et électrotechnique. Chaque forfait inclut les matières choisies, un professeur-clone pour chacune et des tests d'entraînement. Les 15 premières minutes sont gratuites, pour tous.`,es:`De 5.º curso a la universidad — matemáticas, física, programación y electrotecnia. Cada plan incluye las materias que elijas, una profesora-clon para cada una y tests de práctica. Los primeros 15 minutos son gratis, para todos.`,it:`Dalla quinta all'università — matematica, fisica, programmazione ed elettrotecnica. Ogni pacchetto include le materie scelte, una clone-insegnante per ciascuna e test di esercitazione. I primi 15 minuti sono gratis, per tutti.`,ru:`С 5 класса до университета — математика, физика, программирование и электротехника. Каждый пакет включает выбранные предметы, клон-преподавателя для каждого и тренировочные тесты. Первые 15 минут — бесплатно для всех.`,pt:`Do 5.º ano à universidade — matemática, física, programação e eletrotécnica. Cada plano inclui as matérias que escolher, uma professora-clone para cada uma e testes de treino. Os primeiros 15 minutos são grátis, para todos.`}},
+    {s:'.sub-lead',i:0,t:{en:`Over 60 subjects — from grade 5 to university. Maths, physics, programming and electrical engineering. Every package lets you pick subjects, with a clone-teacher for each and all the study notes.`,de:`Über 60 Fächer — von der 5. Klasse bis zur Universität. Mathe, Physik, Programmierung und Elektrotechnik. In jedem Paket wählst du Fächer, mit einem Klon-Lehrer für jedes und allen Skripten.`,fr:`Plus de 60 matières — de la 5e à l'université. Maths, physique, programmation et électrotechnique. Chaque forfait te laisse choisir les matières, avec un professeur-clone pour chacune et tous les supports.`,es:`Más de 60 materias — de 5.º a la universidad. Matemáticas, física, programación y electrotecnia. Cada plan te deja elegir materias, con una profesora-clon para cada una y todos los apuntes.`,it:`Oltre 60 materie — dalla quinta all'università. Matematica, fisica, programmazione ed elettrotecnica. Ogni pacchetto ti fa scegliere le materie, con una clone-insegnante per ciascuna e tutte le dispense.`,ru:`Более 60 предметов — с 5 класса до университета. Математика, физика, программирование и электротехника. В каждом пакете ты выбираешь предметы, с клоном-преподавателем для каждого и всеми конспектами.`,pt:`Mais de 60 matérias — do 5.º ano à universidade. Matemática, física, programação e eletrotécnica. Cada plano deixa-te escolher matérias, com uma professora-clone para cada uma e todos os apontamentos.`}},
     {s:'.lvl h3',i:0,t:{en:`Primary school`,de:`Grundschule`,fr:`École primaire`,es:`Primaria`,it:`Scuola primaria`,ru:`Начальная школа`,pt:`Ensino básico`}},
     {s:'.lvl h3',i:1,t:{en:`High school`,de:`Gymnasium`,fr:`Lycée`,es:`Secundaria`,it:`Scuola superiore`,ru:`Средняя школа`,pt:`Ensino secundário`}},
     {s:'.lvl h3',i:2,t:{en:`Entrance-exam prep`,de:`Vorbereitung auf die Aufnahmeprüfung`,fr:`Préparation au concours`,es:`Preparación para el examen de acceso`,it:`Preparazione al test d'ingresso`,ru:`Подготовка к вступительным`,pt:`Preparação para o exame de admissão`}},
@@ -1145,15 +1239,23 @@ html,body{overflow-x:hidden}
     {s:'.lvl .cap',i:3,t:{en:`engineering subjects`,de:`Ingenieurfächer`,fr:`matières d'ingénierie`,es:`asignaturas de ingeniería`,it:`materie ingegneristiche`,ru:`инженерные предметы`,pt:`disciplinas de engenharia`}},
     {s:'.lvl .cap',i:4,t:{en:`from Scratch to SQL`,de:`von Scratch bis SQL`,fr:`de Scratch à SQL`,es:`de Scratch a SQL`,it:`da Scratch a SQL`,ru:`от Scratch до SQL`,pt:`de Scratch a SQL`}},
     {s:'.lvl .cap',i:5,t:{en:`circuit design`,de:`Schaltungsentwurf`,fr:`conception de circuits`,es:`diseño de circuitos`,it:`progettazione di circuiti`,ru:`проектирование схем`,pt:`projeto de circuitos`}},
-    {s:'.tests-head h3',i:0,t:{en:`Tests — with every package`,de:`Tests — in jedem Paket`,fr:`Tests — avec chaque forfait`,es:`Tests — con cada plan`,it:`Test — in ogni pacchetto`,ru:`Тесты — в каждом пакете`,pt:`Testes — em cada plano`}},
-    {s:'.test h4',i:0,t:{en:`Aptitude test`,de:`Eignungstest`,fr:`Test d'aptitude`,es:`Test de aptitud`,it:`Test attitudinale`,ru:`Тест на склонности`,pt:`Teste de aptidão`}},
-    {s:'.test h4',i:1,t:{en:`Grade-8 final`,de:`Abschlussprüfung`,fr:`Examen de fin de collège`,es:`Examen final de 8.º`,it:`Esame finale`,ru:`Выпускной (8 кл.)`,pt:`Exame final do básico`}},
-    {s:'.test h4',i:2,t:{en:`Entrance exam (FTN)`,de:`Aufnahmeprüfung (FTN)`,fr:`Concours (FTN)`,es:`Acceso (FTN)`,it:`Ingresso (FTN)`,ru:`Вступительный (ФТН)`,pt:`Admissão (FTN)`}},
-    {s:'.test h4',i:3,t:{en:`Quizzes`,de:`Quizze`,fr:`Quiz`,es:`Cuestionarios`,it:`Quiz`,ru:`Викторины`,pt:`Questionários`}},
-    {s:'.test p',i:0,t:{en:`Discover which field and subject suit your child best — before they begin.`,de:`Finden Sie heraus, welche Richtung und welches Fach Ihrem Kind am besten liegen — schon vor dem Start.`,fr:`Découvrez quelle filière et quelle matière conviennent le mieux à votre enfant — avant de commencer.`,es:`Descubre qué rama y materia le van mejor a tu hijo — antes de empezar.`,it:`Scopri quale indirizzo e materia si addicono di più a tuo figlio — prima di iniziare.`,ru:`Узнайте, какое направление и предмет лучше всего подходят ребёнку — ещё до начала.`,pt:`Descubra que área e matéria mais combinam com o seu filho — antes de começar.`}},
-    {s:'.test p',i:1,t:{en:`Practise the grade-8 final with real problems and full solutions.`,de:`Üben Sie die Abschlussprüfung mit echten Aufgaben und vollständigen Lösungen.`,fr:`Entraînez-vous à l'examen de fin de collège avec de vrais exercices corrigés.`,es:`Practica el examen final con problemas reales y soluciones completas.`,it:`Esercitati per l'esame finale con problemi reali e soluzioni complete.`,ru:`Готовьтесь к выпускному по реальным задачам с полными решениями.`,pt:`Pratique o exame final com problemas reais e soluções completas.`}},
-    {s:'.test p',i:2,t:{en:`Solved past papers by topic — exactly what shows up on the exam.`,de:`Gelöste Prüfungen nach Themen — genau das, was in der Prüfung vorkommt.`,fr:`Annales corrigées par thème — exactement ce qui tombe à l'examen.`,es:`Exámenes resueltos por tema — justo lo que cae en la prueba.`,it:`Prove svolte per argomento — esattamente ciò che esce all'esame.`,ru:`Решённые экзамены по темам — именно то, что бывает на экзамене.`,pt:`Provas resolvidas por tema — exatamente o que sai no exame.`}},
-    {s:'.test p',i:3,t:{en:`Quick knowledge checks for high school and university.`,de:`Schnelle Wissenschecks für Gymnasium und Universität.`,fr:`Vérifications rapides des connaissances, lycée et université.`,es:`Comprobaciones rápidas de conocimientos, secundaria y universidad.`,it:`Verifiche rapide delle conoscenze, superiori e università.`,ru:`Быстрые проверки знаний для школы и университета.`,pt:`Verificações rápidas de conhecimento, secundário e universidade.`}},
+
+    {s:'.final-eye',i:0,t:{en:`The last word`,de:`Ein letztes Wort`,fr:`Le mot de la fin`,es:`La última palabra`,it:`L'ultima parola`,ru:`Последнее слово`,pt:`A última palavra`}},
+    {s:'.mf-eye-contact',i:0,t:{en:`Contact & socials`,de:`Kontakt & Netzwerke`,fr:`Contact & réseaux`,es:`Contacto y redes`,it:`Contatti e social`,ru:`Контакты и соцсети`,pt:`Contacto e redes`}},
+    {s:'.mf-lnk-uslovi',i:0,t:{en:`Terms of purchase`,de:`Kaufbedingungen`,fr:`Conditions d'achat`,es:`Condiciones de compra`,it:`Condizioni d'acquisto`,ru:`Условия покупки`,pt:`Condições de compra`}},
+    {s:'.mf-lnk-rekl',i:0,t:{en:`Complaints & returns`,de:`Reklamationen & Rückgabe`,fr:`Réclamations & retours`,es:`Reclamaciones y devoluciones`,it:`Reclami e resi`,ru:`Жалобы и возврат`,pt:`Reclamações e devoluções`}},
+    {s:'.mf-lnk-pov',i:0,t:{en:`Refunds`,de:`Rückerstattungen`,fr:`Remboursements`,es:`Reembolsos`,it:`Rimborsi`,ru:`Возврат средств`,pt:`Reembolsos`}},
+    {s:'.mf-lnk-priv',i:0,t:{en:`Privacy policy`,de:`Datenschutz`,fr:`Confidentialité`,es:`Política de privacidad`,it:`Privacy`,ru:`Политика конфиденциальности`,pt:`Política de privacidade`}},
+    {s:'.mf-secure',i:0,t:{en:`Card payments are protected by 3-D Secure (Visa Secure and Mastercard ID Check). Card details are entered only on the bank's secure page. All prices are in dinars (RSD).`,de:`Kartenzahlungen sind durch 3-D Secure geschützt (Visa Secure und Mastercard ID Check). Kartendaten werden ausschließlich auf der sicheren Seite der Bank eingegeben. Alle Preise sind in Dinar (RSD).`,fr:`Les paiements par carte sont protégés par 3-D Secure (Visa Secure et Mastercard ID Check). Les données de la carte sont saisies uniquement sur la page sécurisée de la banque. Tous les prix sont en dinars (RSD).`,es:`Los pagos con tarjeta están protegidos por 3-D Secure (Visa Secure y Mastercard ID Check). Los datos de la tarjeta se introducen solo en la página segura del banco. Todos los precios están en dinares (RSD).`,it:`I pagamenti con carta sono protetti da 3-D Secure (Visa Secure e Mastercard ID Check). I dati della carta si inseriscono solo sulla pagina sicura della banca. Tutti i prezzi sono in dinari (RSD).`,ru:`Оплата картой защищена технологией 3-D Secure (Visa Secure и Mastercard ID Check). Данные карты вводятся только на защищённой странице банка. Все цены указаны в динарах (RSD).`,pt:`Os pagamentos com cartão são protegidos por 3-D Secure (Visa Secure e Mastercard ID Check). Os dados do cartão são introduzidos apenas na página segura do banco. Todos os preços são em dinares (RSD).`}},
+    {s:'.subj-h2',i:0,t:{en:`Subjects & tests`,de:`Fächer & Tests`,fr:`Matières & tests`,es:`Materias y tests`,it:`Materie e test`,ru:`Предметы и тесты`,pt:`Matérias e testes`}},
+    {s:'.subj-chips',i:0,t:{en:`<span class="schip">🎒 Primary school</span><span class="schip">📐 High school</span><span class="schip">🎓 University</span><span class="schip">💻 Programming</span><span class="schip">🔌 Electronics & tools</span><span class="schip">🎯 Entrance prep</span>`,de:`<span class="schip">🎒 Grundschule</span><span class="schip">📐 Oberschule</span><span class="schip">🎓 Universität</span><span class="schip">💻 Programmierung</span><span class="schip">🔌 Elektronik & Tools</span><span class="schip">🎯 Aufnahmevorbereitung</span>`,fr:`<span class="schip">🎒 Primaire</span><span class="schip">📐 Lycée</span><span class="schip">🎓 Université</span><span class="schip">💻 Programmation</span><span class="schip">🔌 Électronique & outils</span><span class="schip">🎯 Prépa concours</span>`,es:`<span class="schip">🎒 Primaria</span><span class="schip">📐 Secundaria</span><span class="schip">🎓 Universidad</span><span class="schip">💻 Programación</span><span class="schip">🔌 Electrónica y herramientas</span><span class="schip">🎯 Preparación de acceso</span>`,it:`<span class="schip">🎒 Elementari</span><span class="schip">📐 Superiori</span><span class="schip">🎓 Università</span><span class="schip">💻 Programmazione</span><span class="schip">🔌 Elettronica e strumenti</span><span class="schip">🎯 Preparazione ammissione</span>`,ru:`<span class="schip">🎒 Начальная школа</span><span class="schip">📐 Средняя школа</span><span class="schip">🎓 Университет</span><span class="schip">💻 Программирование</span><span class="schip">🔌 Электроника и инструменты</span><span class="schip">🎯 Подготовка к поступлению</span>`,pt:`<span class="schip">🎒 Ensino básico</span><span class="schip">📐 Secundário</span><span class="schip">🎓 Universidade</span><span class="schip">💻 Programação</span><span class="schip">🔌 Eletrónica e ferramentas</span><span class="schip">🎯 Preparação de admissão</span>`}},
+    {s:'.sb-tx',i:0,t:{en:`<b>See all subjects</b><small>The whole library — subjects, entrance prep and study notes</small>`,de:`<b>Alle Fächer ansehen</b><small>Die ganze Bibliothek — Fächer, Aufnahmevorbereitung und Skripte</small>`,fr:`<b>Voir toutes les matières</b><small>Toute la bibliothèque — matières, prépa concours et supports</small>`,es:`<b>Ver todas las materias</b><small>Toda la biblioteca — materias, preparación de acceso y apuntes</small>`,it:`<b>Vedi tutte le materie</b><small>Tutta la biblioteca — materie, preparazione ammissione e dispense</small>`,ru:`<b>Все предметы</b><small>Вся библиотека — предметы, подготовка к поступлению и конспекты</small>`,pt:`<b>Ver todas as matérias</b><small>Toda a biblioteca — matérias, preparação de admissão e apontamentos</small>`}},
+    {s:'.apt-eye',i:0,t:{en:`🧭 Aptitude test`,de:`🧭 Eignungstest`,fr:`🧭 Test d'aptitude`,es:`🧭 Test de aptitud`,it:`🧭 Test attitudinale`,ru:`🧭 Тест на склонности`,pt:`🧭 Teste de aptidão`}},
+    {s:'.apt-h',i:0,t:{en:`Not sure what suits you?`,de:`Unsicher, was zu dir passt?`,fr:`Tu ne sais pas ce qui te convient ?`,es:`¿No sabes qué te encaja?`,it:`Non sai cosa fa per te?`,ru:`Не знаешь, что тебе подходит?`,pt:`Não sabes o que te encaixa?`}},
+    {s:'.apt-p',i:0,t:{en:`A short test suggests a field, subjects and a way to study — before you decide. Take it for your level:`,de:`Ein kurzer Test schlägt Bereich, Fächer und Lernweise vor — bevor du entscheidest. Mach ihn für deine Stufe:`,fr:`Un court test propose un domaine, des matières et une façon d'étudier — avant de décider. Fais-le pour ton niveau :`,es:`Un test breve sugiere un área, materias y una forma de estudiar — antes de decidir. Hazlo para tu nivel:`,it:`Un breve test suggerisce un ambito, materie e un modo di studiare — prima di decidere. Fallo per il tuo livello:`,ru:`Короткий тест предложит область, предметы и способ учёбы — до того как решишь. Пройди для своего уровня:`,pt:`Um teste curto sugere uma área, matérias e um modo de estudar — antes de decidires. Fá-lo para o teu nível:`}},
+    {s:'.apt-sred',i:0,t:{en:`<b>High school</b><small>for 8th-graders</small>`,de:`<b>Oberschule</b><small>für die 8. Klasse</small>`,fr:`<b>Lycée</b><small>pour la 3e</small>`,es:`<b>Secundaria</b><small>para 8.º</small>`,it:`<b>Superiori</b><small>per la terza media</small>`,ru:`<b>Средняя школа</b><small>для 8 класса</small>`,pt:`<b>Secundário</b><small>para o 8.º ano</small>`}},
+    {s:'.apt-visa',i:0,t:{en:`<b>College</b><small>for graduates</small>`,de:`<b>Hochschule</b><small>für Abiturienten</small>`,fr:`<b>École supérieure</b><small>pour les bacheliers</small>`,es:`<b>Escuela superior</b><small>para bachilleres</small>`,it:`<b>Istituto superiore</b><small>per i diplomandi</small>`,ru:`<b>Колледж</b><small>для выпускников</small>`,pt:`<b>Escola superior</b><small>para finalistas</small>`}},
+    {s:'.apt-fak',i:0,t:{en:`<b>University</b><small>for graduates</small>`,de:`<b>Universität</b><small>für Abiturienten</small>`,fr:`<b>Université</b><small>pour les bacheliers</small>`,es:`<b>Universidad</b><small>para bachilleres</small>`,it:`<b>Università</b><small>per i diplomandi</small>`,ru:`<b>Университет</b><small>для выпускников</small>`,pt:`<b>Universidade</b><small>para finalistas</small>`}},
     {s:'.flove',i:0,t:{en:`Learn with love`,de:`Mit Liebe lernen`,fr:`Apprendre avec amour`,es:`Aprender con amor`,it:`Imparare con amore`,ru:`Учиться с любовью`,pt:`Aprender com amor`}}
   ];
   function qsa(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
@@ -1344,5 +1446,6 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
   .catch(function(){});
 })();</script>
 <script>(function(){var g=document.getElementById('tgrid');if(!g)return;var i=0,paused=false;g.addEventListener('mouseenter',function(){paused=true;});g.addEventListener('mouseleave',function(){paused=false;});g.addEventListener('touchstart',function(){paused=true;},{passive:true});setInterval(function(){if(paused)return;var c=g.children;if(c.length<2)return;i=(i+1)%c.length;var el=c[i];g.scrollTo({left:el.offsetLeft-g.offsetLeft-20,behavior:'smooth'});},4500);})();</script>
+<script src="i18n-mathia.js"></script>
 </body>
 </html>
