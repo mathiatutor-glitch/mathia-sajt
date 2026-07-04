@@ -17,7 +17,7 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%);background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%),linear-gradient(rgba(156,120,56,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(156,120,56,.028) 1px,transparent 1px);background-size:auto,auto,52px 52px,52px 52px;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
   p{margin:0}
   a{color:inherit;text-decoration:none}
@@ -110,7 +110,7 @@
   section{padding:74px 0}
   .sec-head{text-align:center;max-width:680px;margin:0 auto 44px}
   .ksub{display:inline-block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(1.5rem,3vw,2rem);line-height:1.1;letter-spacing:.012em;margin-bottom:14px;background:linear-gradient(96deg,var(--golddk) 0%,var(--gold) 38%,var(--champ) 56%,var(--gold) 74%,var(--golddk) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--golddk)}
-  .ksub:after{content:"";display:block;width:58px;height:2px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--goldlt),transparent);-webkit-text-fill-color:initial}
+  .ksub:after{content:"";display:block;width:104px;height:2px;margin-top:12px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--goldlt),transparent);-webkit-text-fill-color:initial}
   .sec-head .ksub:after{margin-left:auto;margin-right:auto}
   .sec-head h2{font-size:clamp(1.9rem,5vw,2.8rem);color:var(--plum);font-weight:500;letter-spacing:.005em}
   .sec-head p{color:var(--muted);margin-top:13px;font-size:1.05rem}
@@ -388,6 +388,11 @@ header{overflow:visible}
 .hero .cta-row{margin-top:72px}
 .hero .sign{padding-right:0!important;margin-top:30px!important}
 .hero .signature{font-size:2.8rem!important}
+
+.feat .it{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.feat .it:hover{transform:translateY(-7px);box-shadow:0 34px 54px -32px rgba(120,70,80,.42);border-color:var(--gold)}
+.feat .it .ic{transition:transform .25s ease}
+.feat .it:hover .ic{transform:scale(1.12) rotate(-5deg)}
 </style>
 <style>
 /* community / social — luxe pills */
@@ -604,9 +609,9 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
       <p>Čak i predmeti koje najčešće izbegavate — matematika, fizika, elektrotehnika — postaju jasni i razumljivi uz profesoricu koja objašnjava korak po korak.</p>
     </div>
     <div class="feat">
-      <div class="it reveal"><div class="ic">📲</div><h3>Učite kroz omiljeni uređaj</h3><p>Stručni materijali i čet s profesoricom — dostupni 24 sata dnevno, na svakom uređaju.</p></div>
-      <div class="it reveal"><div class="ic">🪜</div><h3>Teško postaje jasno</h3><p>Složeno gradivo razloženo korak po korak, dok ne postane jasno — uz razumevanje, ne memorisanje.</p></div>
-      <div class="it reveal"><div class="ic">🎓</div><h3>Znanje sa izvora</h3><p>Lekcije i priručnici po metodologiji dr Marine Bulat, provereni u učionici.</p></div>
+      <div class="it reveal"><div class="ic">📲</div><h3>Uvek na dohvat ruke</h3><p>Profesorica i svi materijali — na telefonu, tabletu i računaru.</p></div>
+      <div class="it reveal"><div class="ic">🪜</div><h3>Teško postaje lako</h3><p>Najteže gradivo razloženo korak po korak, dok ne postane jasno.</p></div>
+      <div class="it reveal"><div class="ic">🎓</div><h3>Znanje sa izvora</h3><p>Lekcije i priručnici po proverenoj univerzitetskoj metodologiji.</p></div>
     </div>
   </div>
 </section>
@@ -615,14 +620,14 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 <section data-plan-banner="1" style="background:linear-gradient(100deg,#fff,#F3E8F0 70%,#F7EAC9);border-top:1px solid #ECDAC5;border-bottom:1px solid #ECDAC5">
 <div style="max-width:640px;margin:0 auto;padding:48px 24px;text-align:center">
 <div style="color:#9C7838;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.72rem">MATHIA · planeri</div>
-<h2 data-plt style="font-family:'Cormorant Garamond',serif;color:#432C37;font-size:clamp(1.9rem,4vw,2.5rem);font-weight:600;margin:.26em 0 .3em">Tvoj planer za celu godinu</h2>
-<p data-pls style="color:#5a474d;margin:0 auto 26px;max-width:480px;font-size:1.06rem;line-height:1.6">Popunjavaš sve i čuvaš — za fakultet, srednju i osnovnu. Skini kad hoćeš.</p>
+<h2 data-plt style="font-family:'Cormorant Garamond',serif;color:#432C37;font-size:clamp(2.3rem,5vw,3.1rem);font-weight:700;margin:.22em 0 .34em">Tvoj planer za celu godinu</h2>
+<p data-pls style="color:#5a474d;margin:0 auto 26px;max-width:640px;font-size:1.1rem;line-height:1.65"><b>Raspored, ciljevi i rokovi</b> na jednom mestu — za celu školsku godinu.</p>
 <a data-plc href="Planeri.html" style="display:inline-block;background:linear-gradient(180deg,#C6A05C,#9C7838);color:#fff;font-weight:800;padding:14px 32px;border-radius:100px;text-decoration:none;box-shadow:0 12px 28px -10px rgba(176,138,74,.6)">Izaberi planer →</a>
 </div>
 </section>
 <script>(function(){
 var T={sr:'Tvoj planer za celu godinu',en:'Your planner for the whole year',de:'Dein Planer für das ganze Jahr',fr:"Ton agenda pour toute l'année",es:'Tu agenda para todo el año',it:"La tua agenda per tutto l'anno",ru:'Твой планер на весь год',pt:'A tua agenda para o ano todo'};
-var S={sr:'Popunjavaš sve i čuvaš — za fakultet, srednju i osnovnu. Skini kad hoćeš.',en:'Fill in everything and keep it — university, high and primary school. Download anytime.',de:'Trage alles ein und behalte es — Uni, Ober- und Grundschule. Jederzeit herunterladen.',fr:'Remplis tout et garde-le — fac, lycée et primaire. Télécharge quand tu veux.',es:'Rellena todo y guárdalo — universidad, instituto y primaria. Descárgalo cuando quieras.',it:'Compila tutto e conservalo — università, superiori ed elementari. Scarica quando vuoi.',ru:'Заполняй всё и сохраняй — вуз, средняя и начальная школа. Скачивай в любой момент.',pt:'Preenche tudo e guarda — faculdade, secundária e primária. Descarrega quando quiseres.'};
+var S={sr:'Raspored, ciljevi i rokovi na jednom mestu — za celu školsku godinu.',en:'Fill in everything and keep it — university, high and primary school. Download anytime.',de:'Trage alles ein und behalte es — Uni, Ober- und Grundschule. Jederzeit herunterladen.',fr:'Remplis tout et garde-le — fac, lycée et primaire. Télécharge quand tu veux.',es:'Rellena todo y guárdalo — universidad, instituto y primaria. Descárgalo cuando quieras.',it:'Compila tutto e conservalo — università, superiori ed elementari. Scarica quando vuoi.',ru:'Заполняй всё и сохраняй — вуз, средняя и начальная школа. Скачивай в любой момент.',pt:'Preenche tudo e guarda — faculdade, secundária e primária. Descarrega quando quiseres.'};
 var C={sr:'Izaberi planer →',en:'Choose a planner →',de:'Planer wählen →',fr:"Choisir l'agenda →",es:'Elegir agenda →',it:"Scegli l'agenda →",ru:'Выбрать планер →',pt:'Escolher agenda →'};
 function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&T[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return T[h]?h:'sr';}
 function ap(){var l=lng(),b=document.querySelector('[data-plan-banner]');if(!b)return;var t=b.querySelector('[data-plt]'),s=b.querySelector('[data-pls]'),c=b.querySelector('[data-plc]');if(t)t.textContent=T[l]||T.sr;if(s)s.textContent=S[l]||S.sr;if(c)c.textContent=C[l]||C.sr;}
