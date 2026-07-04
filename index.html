@@ -720,13 +720,27 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
 </section>
 
 <!-- 2 · PAIN -->
-<section data-prij-banner="1" style="background:linear-gradient(180deg,#fff,#F7EAC9);border-top:1px solid #ECDAC5;border-bottom:1px solid #ECDAC5">
-<div style="max-width:640px;margin:0 auto;padding:48px 24px;text-align:center">
-<div style="color:#9C7838;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.72rem">MATHIA · prijemni</div>
-<h2 data-pt style="font-family:'Cormorant Garamond',serif;color:#432C37;font-size:clamp(2.3rem,5vw,3.1rem);font-weight:700;margin:.22em 0 .34em">Prijemni, rešen do detalja</h2>
-<p data-ps style="color:#5a474d;margin:0 auto 26px;max-width:620px;font-size:1.1rem;line-height:1.65"><b>Rešeni rokovi</b> po fakultetima i oblastima — tačno ono što te čeka na ispitu.</p>
-<a data-pc href="Prijemni-Fakulteti.html" style="display:inline-block;background:linear-gradient(180deg,#C6A05C,#9C7838);color:#fff;font-weight:800;padding:14px 32px;border-radius:100px;text-decoration:none;box-shadow:0 12px 28px -10px rgba(176,138,74,.6)">Pogledaj fakultete →</a>
-</div>
+<style>
+.promo-banner{position:relative;background:linear-gradient(180deg,#FFFDF8,#F6ECD8);border-top:1px solid rgba(198,160,92,.32);border-bottom:1px solid rgba(198,160,92,.32)}
+.promo-in{max-width:660px;margin:0 auto;padding:56px 24px;text-align:center;position:relative;z-index:1}
+.promo-eye{font-family:'Nunito',sans-serif;font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;color:var(--golddk)}
+.promo-orn{display:block;width:56px;height:12px;margin:12px auto 2px;color:var(--gold);opacity:.85}
+.promo-h{font-family:'Cormorant Garamond',serif;color:var(--plum);font-size:clamp(2.15rem,5vw,2.95rem);font-weight:600;margin:.12em 0 .32em;line-height:1.1}
+.promo-p{color:#5a474d;margin:0 auto 28px;max-width:600px;font-size:1.08rem;line-height:1.65}
+.promo-p b{color:var(--golddk)}
+.promo-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#F0DFB2,#C6A05C 55%,#B8923F);color:#4a3812;font-weight:700;letter-spacing:.03em;padding:14px 32px;border-radius:100px;text-decoration:none;box-shadow:0 14px 30px -12px rgba(198,160,92,.8),inset 0 1px 0 rgba(255,255,255,.6);position:relative;overflow:hidden;transition:transform .16s ease,box-shadow .16s ease}
+.promo-btn:hover{transform:translateY(-2px);box-shadow:0 18px 38px -12px rgba(198,160,92,.95)}
+.promo-btn::after{content:"";position:absolute;top:-20%;left:-70%;width:45%;height:140%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);transition:left .6s ease;pointer-events:none}
+.promo-btn:hover::after{left:135%}
+</style>
+<section data-prij-banner="1" class="promo-banner">
+  <div class="promo-in">
+    <div class="promo-eye">Mathia · Prijemni</div>
+    <svg class="promo-orn" viewBox="0 0 56 12" fill="none" aria-hidden="true"><path d="M4 6h18" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><path d="M28 2l3 4-3 4-3-4z" fill="currentColor"/><path d="M34 6h18" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+    <h2 data-pt class="promo-h">Prijemni, rešen do detalja</h2>
+    <p data-ps class="promo-p"><b>Rešeni rokovi</b> po fakultetima i oblastima — tačno ono što te čeka na ispitu.</p>
+    <a data-pc href="Prijemni-Fakulteti.html" class="promo-btn">Pogledaj fakultete →</a>
+  </div>
 </section>
 <section class="pain">
   <div class="wrap">
