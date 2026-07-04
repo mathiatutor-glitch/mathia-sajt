@@ -17,7 +17,7 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%);background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
   p{margin:0}
   a{color:inherit;text-decoration:none}
@@ -371,6 +371,17 @@ header{overflow:visible}
 .brand .bav{width:64px;height:64px;border:3px solid var(--gold);box-shadow:0 10px 22px -6px rgba(120,70,80,.5),0 0 0 5px var(--paper);position:relative;z-index:3;transform:translateY(9px)}
 .brand .bmark{font-size:2.05rem}
 @media(prefers-reduced-motion:reduce){.hero .slogan{animation:none;clip-path:none}}
+
+/* MENI centriran, logo veći-pečat */
+.nav{position:relative}
+.nav-r{flex:1;display:flex;align-items:center;justify-content:center;gap:32px}
+.nav-r a[data-acctnav]{order:0;margin-left:0}
+.nav-r>select.lang{order:0;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.brand .bav{width:74px;height:74px;transform:translateY(14px)}
+.brand .bmark{font-size:2.1rem}
+.microtrust{margin-top:16px;color:var(--muted);font-size:.9rem;font-weight:600;letter-spacing:.01em}
+.microtrust b{color:var(--golddk)}
+.hero .lead{max-width:62ch;line-height:1.7}
 </style>
 <style>
 /* community / social — luxe pills */
@@ -542,13 +553,13 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
       <div class="slogan script goldtext">Uči sa Marinom</div>
       <div class="eyebrow">Matematika · Fizika · Elektrotehnika</div>
       <h1 style="margin-top:14px">Pretvori telefon u <span class="gold-underline">najmoćniji alat za učenje</span>.</h1>
-      <p class="lead">MathIA sam stvorila iz ljubavi prema deci i prema učenju. Verujem da svako dete može da razume — potrebni su samo strpljenje, jasno objašnjenje i malo topline. Zato je profesorica uvek tu, uz svako dete.</p>
-      <div class="sign" style="position:relative;z-index:5;margin-top:6px;text-align:right;padding-right:66px"><span class="signature" style="font-size:2.5rem;line-height:1;vertical-align:-6px">dr Marina Bulat</span><svg class="sigflourish" style="margin:3px 0 0 auto;width:min(190px,44vw)" viewBox="0 0 300 20" aria-hidden="true"><path d="M8 13 C 70 3 150 18 210 9 C 244 4 274 11 294 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+      <p class="lead">MathIA je nastala iz ljubavi prema deci i znanju.<br>Verujem da svako dete može da razume, uz malo topline.<br>Zato je profesorica uvek tu, za svako dete.</p>
+      <div class="sign" style="position:relative;z-index:5;margin-top:22px;text-align:right;padding-right:40px"><span class="signature" style="font-size:2.6rem;line-height:1">dr Marina Bulat</span></div>
       <div class="cta-row">
         <a class="btn btn-gold" href="#paketi">Započni besplatno →</a>
         <a class="btn btn-rose" href="o-marini.html">Upoznaj Marinu</a>
       </div>
-      <div class="microtrust"><b>15 minuta besplatno</b> · bez kartice · bez obaveza</div>
+      <div class="microtrust">Prvih <b>15 minuta je na poklon</b> — bez kartice i bez obaveza.</div>
     </div>
     <div class="portrait">
       <div class="halo"></div>
@@ -560,7 +571,6 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 </section>
 
 <!-- 2 · PAIN -->
-<div class="eqfrieze" aria-hidden="true"><span>e<sup>iπ</sup>+1=0</span><span>a²+b²=c²</span><span>∫</span><span>E=mc²</span><span>π</span><span>√</span><span>Σ</span><span>φ = 1,618…</span><span>∞</span><span>∂</span></div>
 <section data-prij-banner="1" style="background:linear-gradient(180deg,#fff,#F7EAC9);border-top:1px solid #ECDAC5;border-bottom:1px solid #ECDAC5">
 <div style="max-width:640px;margin:0 auto;padding:48px 24px;text-align:center">
 <div style="color:#9C7838;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.72rem">MATHIA · prijemni</div>
