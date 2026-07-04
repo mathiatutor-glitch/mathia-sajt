@@ -39,7 +39,7 @@
   function isScriptPage() {
     if (me && me.getAttribute("data-skripta") === "1") return true;
     if (/Formule/i.test(location.pathname)) return true;
-    return !!(document.querySelector(".cover") && document.querySelector("section.topic"));
+    return !!document.querySelector(".cover, section.topic");
   }
 
   function loadSb(cb) {
@@ -123,7 +123,7 @@
 
   /* skripta u probi: pokaži samo prvu lekciju */
   function previewLock() {
-    var topics = Array.prototype.slice.call(document.querySelectorAll("section.topic"));
+    var topics = Array.prototype.slice.call(document.querySelectorAll("section.topic, section.part"));
     if (!topics.length) return;
 
     for (var i = 1; i < topics.length; i++) {
