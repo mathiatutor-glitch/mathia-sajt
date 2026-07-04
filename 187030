@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6EE; --paper2:#F5EADB; --blush:#F4E3DD; --rose:#CC8E86; --rose-dk:#B5746C;
+    --plum:#432C37; --plum2:#5C3B49; --plum3:#7E5765;
+    --gold:#C6A05C; --golddk:#9C7838; --goldlt:#E7D2A2; --champ:#F7EAC9;
+    --ink:#3E2D34; --muted:#90787E; --bord:#ECDAC5; --card:#fffcf6;
+    --maxw:1220px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%),linear-gradient(rgba(156,120,56,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(156,120,56,.028) 1px,transparent 1px);background-size:auto,auto,52px 52px,52px 52px;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.7rem;letter-spacing:.36em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+  .gold-underline{position:relative;background-image:linear-gradient(90deg,rgba(231,210,162,.6),rgba(204,142,134,.5));background-repeat:no-repeat;background-position:0 92%;background-size:100% .32em;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .gold-underline:after{content:none}
+
+  .script{font-family:'Pinyon Script',cursive;font-weight:400}
+  .goldtext{background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+  @keyframes foil{to{background-position:-230% center}}
+
+  .orn{display:flex;align-items:center;gap:16px;justify-content:center;margin:0 auto;max-width:300px;color:var(--gold)}
+  .orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+  .orn:after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .orn i{font-style:normal;font-size:14px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:100px;padding:15px 30px;font-family:inherit;font-weight:700;font-size:.94rem;letter-spacing:.02em;cursor:pointer;border:1.5px solid transparent;transition:transform .16s ease,box-shadow .16s ease,background .2s}
+.btn:hover{transform:translateY(-2px)}
+  .btn:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+  .btn-gold{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;box-shadow:0 12px 30px -12px rgba(198,160,92,.85),inset 0 1px 0 rgba(255,255,255,.55)}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-rose{background:linear-gradient(180deg,var(--rose),var(--rose-dk));color:#fff;box-shadow:0 12px 28px -14px rgba(181,116,108,.9)}
+  .btn-rose:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:var(--plum);border-color:var(--gold)}
+  .btn-ghost:hover{background:rgba(198,160,92,.12)}
+  .btn-ghost-l{background:transparent;color:#fff;border-color:rgba(231,210,162,.6)}
+  .btn-ghost-l:hover{background:rgba(231,210,162,.14)}
+
+  /* header */
+  .topbar{background:linear-gradient(90deg,var(--plum),var(--plum2),var(--plum))}
+  .topbar .wrap{display:flex;align-items:center;justify-content:center;gap:14px;min-height:36px;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ecd9dd}
+  .topbar a{color:var(--goldlt);text-decoration:none}
+  .topbar .tb-orn{color:var(--gold)}
+  .topbar .tb-x{display:none}
+  @media(min-width:660px){.topbar .wrap{justify-content:space-between}.topbar .tb-x{display:inline-flex;align-items:center;gap:10px}}
+  header{position:sticky;top:0;z-index:40;background:rgba(251,246,238,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord)}
+  header:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent);background-size:220% 100%;animation:goldslide 6.5s linear infinite}
+  @keyframes goldslide{to{background-position:-220% 0}}
+  .nav{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:14px}
+  .brand{display:flex;flex-direction:column;line-height:1}
+  .brand .bmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;letter-spacing:.12em;background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+  .brand .bmark b{color:var(--golddk);font-weight:600}
+  .brand .bsig{font-size:1.12rem;line-height:.8;margin-top:0}
+  .nav-r{display:flex;align-items:center;gap:22px}
+  .nav-r a.link{position:relative;color:var(--plum2);font-weight:600;font-size:.82rem;letter-spacing:.05em;text-decoration:none;display:none}
+  .nav-r a.link:after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:var(--gold);transition:right .28s ease}
+  @media(min-width:780px){.nav-r a.link{display:inline}}
+  .nav-r a.link:hover{color:var(--golddk)}
+  .nav-r a.link:hover:after{right:0}
+  .lang{background:transparent;border:1px solid var(--gold);color:var(--golddk);border-radius:100px;font-family:inherit;font-weight:800;font-size:.72rem;padding:6px 11px;cursor:pointer}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;background:
+     radial-gradient(680px 480px at 88% 0%,var(--blush),transparent 70%),
+     radial-gradient(620px 520px at 0% 100%,var(--champ),transparent 65%),
+     var(--paper)}
+  .hero .wrap{position:relative;z-index:2;display:grid;gap:38px;padding:48px 24px 64px}
+  @media(min-width:900px){.hero .wrap{grid-template-columns:1.18fr .92fr;align-items:center;padding:64px 24px 80px}}
+  .hero .slogan{font-family:'Pinyon Script',cursive;font-size:clamp(2.6rem,8vw,4rem);line-height:.9;margin-bottom:6px}
+  .hero h1{color:var(--plum);font-size:clamp(2.3rem,5.8vw,3.7rem);font-weight:500}
+  .hero .lead{margin-top:18px;color:#5a474d;font-size:1.12rem;max-width:54ch;line-height:1.62}
+  .hero .sign{margin-top:10px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;color:var(--golddk)}
+  .cta-row{margin-top:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+  .microtrust{margin-top:15px;color:var(--muted);font-size:.84rem;font-weight:700}
+  .microtrust b{color:var(--rose-dk)}
+
+  /* portrait */
+  .portrait{justify-self:center;position:relative}
+  .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:2}
+  .portrait .halo{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(204,142,134,.25),transparent 68%)}
+  .photo{width:min(384px,86vw);aspect-ratio:4/5;border-radius:28px;position:relative;overflow:hidden;background:linear-gradient(160deg,#fff,var(--blush));box-shadow:0 0 0 2px var(--gold),0 0 0 9px var(--paper),0 0 0 10px rgba(198,160,92,.5),0 40px 78px -30px rgba(120,70,80,.6)}
+  .photo:before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);z-index:3;pointer-events:none}
+  .photo:after{content:none}
+  .photo .slot{text-align:center;color:var(--plum3);font-weight:700;font-size:.82rem;z-index:2;padding:0 30px}
+  .photo .slot b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:3rem;color:var(--golddk);margin-bottom:6px}
+  .portrait .crown{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:152px;height:auto;color:var(--gold);z-index:3}
+  .portrait .plate{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:18px;color:var(--plum);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.18rem;letter-spacing:.02em}
+  .portrait .plate:before,.portrait .plate:after{content:"";height:1px;width:34px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .portrait .plate:after{background:linear-gradient(90deg,var(--gold),transparent)}
+  .hero .frame{position:absolute;inset:16px;border:1px solid rgba(198,160,92,.4);border-radius:18px;pointer-events:none;z-index:1}
+  .hero .corner{position:absolute;width:52px;height:52px;color:var(--gold);opacity:.65;z-index:1}
+  .hero .corner.tl{top:7px;left:7px}
+  .hero .corner.tr{top:7px;right:7px;transform:rotate(90deg)}
+  .hero .corner.br{bottom:7px;right:7px;transform:rotate(180deg)}
+  .hero .corner.bl{bottom:7px;left:7px;transform:rotate(270deg)}
+  @media(max-width:560px){.hero .frame{inset:9px}.hero .corner{width:38px;height:38px}section:not(.hero){padding:42px 0}.sec-head{margin:0 auto 24px}.steps{gap:16px}}
+  .portrait .cap{display:block;text-align:center;color:var(--muted);font-size:.74rem;margin-top:18px;font-weight:600}
+
+  section{padding:74px 0}
+  .sec-head{text-align:center;max-width:680px;margin:0 auto 44px}
+  .ksub{display:inline-block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(1.5rem,3vw,2rem);line-height:1.1;letter-spacing:.012em;margin-bottom:14px;background:linear-gradient(96deg,var(--golddk) 0%,var(--gold) 38%,var(--champ) 56%,var(--gold) 74%,var(--golddk) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--golddk)}
+  .ksub:after{content:"";display:block;width:104px;height:2px;margin-top:12px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--goldlt),transparent);-webkit-text-fill-color:initial}
+  .sec-head .ksub:after{margin-left:auto;margin-right:auto}
+  .sec-head h2{font-size:clamp(1.9rem,5vw,2.8rem);color:var(--plum);font-weight:500;letter-spacing:.005em}
+  .sec-head p{color:var(--muted);margin-top:13px;font-size:1.05rem}
+
+  /* pain */
+  .pain{position:relative;overflow:hidden;text-align:center;color:#fff;padding:92px 0;background:linear-gradient(160deg,var(--plum2),var(--plum))}
+  .pain:after{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 50% -10%,rgba(231,210,162,.16),transparent)}
+  .pain .wrap{position:relative;z-index:2;max-width:820px}
+  .pain .q{color:#ecdde1;font-size:clamp(1.3rem,2.7vw,1.72rem);line-height:1.46;margin:0 auto;max-width:46ch;font-family:'Cormorant Garamond',serif;font-style:italic}
+  .pain .q+.q{margin-top:16px}
+  .pain .big{margin-top:34px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.2;color:#fff}
+  .pain /*BOLDEM*/.big em{font-weight:800;font-style:normal;color:var(--goldlt)}
+
+  /* features */
+  .what{background:var(--card)}
+  .feat{display:grid;gap:20px}
+  @media(min-width:760px){.feat{grid-template-columns:repeat(3,1fr)}}
+  .feat .it{position:relative;background:linear-gradient(165deg,#fff,var(--paper));border:1px solid var(--bord);border-radius:22px;padding:32px 26px;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+  .feat .it:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(120,70,80,.4)}
+  .feat .it .ic{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--goldlt));border:1px solid #E7D2A2;color:var(--golddk);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px;box-shadow:0 10px 20px -10px rgba(198,160,92,.7)}
+  .feat .it h3{font-size:1.4rem;color:var(--plum);margin-bottom:5px;font-weight:600}
+  .feat .it p{color:var(--muted);font-size:.96rem}
+
+  /* how */
+  .how{background:linear-gradient(180deg,var(--paper),var(--blush))}
+  .steps{display:grid;gap:22px;counter-reset:s}
+  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{position:relative;background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:32px 24px 26px}
+  .step .num{counter-increment:s;position:absolute;top:-18px;left:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,var(--goldlt),var(--gold));color:#4a3812;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 20px -8px rgba(198,160,92,.8)}
+  .step .num:before{content:counter(s)}
+  .step h3{font-size:1.32rem;color:var(--plum);margin:6px 0 6px;font-weight:600}
+  .step p{color:var(--muted);font-size:.95rem}
+
+  /* parent */
+  .parent{background:var(--card)}
+  .pgrid{display:grid;gap:36px;align-items:center}
+  @media(min-width:860px){.pgrid{grid-template-columns:1.05fr .95fr}}
+  /* .ksub: stil je globalan (vidi gore) */
+  .parent h2{color:var(--plum);font-size:clamp(1.8rem,4.6vw,2.5rem);font-weight:600}
+  .parent p{color:#5a474d;margin-top:13px;font-size:1.05rem}
+  .pchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .pchips span{background:var(--blush);border:1px solid var(--bord);border-radius:100px;padding:8px 16px;font-weight:800;font-size:.85rem;color:var(--plum)}
+  .pchips span b{color:var(--rose-dk)}
+  .phone{justify-self:center;width:250px;max-width:72vw;aspect-ratio:9/18;background:#fff;border-radius:38px;padding:12px;box-shadow:0 40px 80px -34px rgba(120,70,80,.55);border:1px solid var(--bord)}
+  .phone .scr{height:100%;border-radius:28px;background:linear-gradient(170deg,var(--plum2),var(--plum));position:relative;overflow:hidden;display:flex;flex-direction:column;gap:11px;padding:22px 16px;color:#fff}
+  .phone .ttl{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.15rem;color:var(--goldlt)}
+  .phone .lbl{font-size:.76rem;color:#e9d9dd;display:flex;justify-content:space-between}
+  .phone .bar2{height:9px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden}
+  .phone .bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--goldlt),var(--gold))}
+  .phone .pill{background:rgba(255,255,255,.08);border:1px solid rgba(231,210,162,.25);border-radius:13px;padding:10px 12px;font-size:.78rem;color:#f3e9ea;display:flex;gap:8px;align-items:center}
+
+  /* persona */
+  .persona{background:linear-gradient(180deg,var(--blush),var(--paper))}
+  .persona-card{position:relative;overflow:hidden;background:linear-gradient(155deg,var(--plum2),var(--plum));color:#fff;border-radius:32px;padding:44px 26px;display:grid;gap:30px;align-items:center;box-shadow:0 40px 90px -40px rgba(67,44,55,.7)}
+  .persona-card:after{content:"";position:absolute;width:360px;height:360px;right:-100px;top:-100px;border-radius:50%;background:radial-gradient(circle,rgba(231,210,162,.16),transparent 70%)}
+  @media(min-width:860px){.persona-card{grid-template-columns:.78fr 1.22fr;padding:52px 50px}}
+  .persona-badge{justify-self:center;text-align:center;position:relative;z-index:2}
+  .persona-badge .ring{width:170px;height:170px;border-radius:50%;background:radial-gradient(circle at 50% 32%,#fff,var(--blush) 72%,#e6cdc6);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto;overflow:hidden}
+  .persona-badge .ring:before{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid var(--gold)}
+  .persona-badge .ring .slot{color:var(--plum3);font-size:.72rem;font-weight:700;z-index:2;text-align:center;padding:0 14px}
+  .persona-badge .ring .slot b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.2rem;color:var(--golddk);margin-bottom:2px}
+  .persona-badge .nm{margin-top:16px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.5rem;color:#fff}
+  .persona-badge .nm small{display:block;color:var(--goldlt);font-family:'Nunito';font-weight:800;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;margin-top:5px}
+  .persona-body{position:relative;z-index:2}
+  .persona-body h2{color:#fff;font-size:clamp(1.8rem,4.4vw,2.5rem);font-weight:600}
+  .persona-body>p{color:#e9d9dd;margin-top:13px;font-size:1.04rem}
+  .checks{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:11px}
+  @media(min-width:560px){.checks{grid-template-columns:1fr 1fr}}
+  .checks li{display:flex;gap:10px;align-items:flex-start;color:#f6eef0;font-weight:600;font-size:.95rem}
+  .checks li .ck{flex:0 0 auto;width:23px;height:23px;border-radius:50%;background:rgba(231,210,162,.2);color:var(--goldlt);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;margin-top:1px}
+  .one-brand{margin-top:26px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--goldlt);font-size:1.4rem}
+
+  /* testimonials */
+  .tst{background:var(--card)}
+  .tgrid{display:grid;gap:20px}
+  @media(min-width:760px){.tgrid{grid-template-columns:repeat(3,1fr)}}
+  .quote{background:var(--paper);border:1px solid var(--bord);border-radius:22px;padding:28px 26px;position:relative}
+  .quote .qm{font-family:'Cormorant Garamond',serif;font-size:3.4rem;color:var(--rose);line-height:.5;height:26px}
+  .quote .stars{color:var(--gold);letter-spacing:2px;font-size:.85rem;margin:6px 0 10px}
+  .quote p{color:var(--ink);font-size:1.04rem;font-family:'Cormorant Garamond',serif;font-style:italic}
+  .quote .who{margin-top:14px;color:var(--plum);font-weight:800;font-size:.86rem;font-family:'Nunito'}
+  .quote .who span{color:var(--muted);font-weight:600}
+  .tst .note{text-align:center;color:var(--muted);font-size:.8rem;margin-top:22px;font-style:italic}
+
+  /* packages */
+  .pack{background:linear-gradient(180deg,var(--paper),var(--paper2))}
+  .tiers{display:grid;gap:22px}
+  @media(min-width:880px){.tiers{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+  .tier{position:relative;background:var(--card);border:1px solid var(--bord);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+  .tier:hover{transform:translateY(-4px);box-shadow:0 26px 54px -30px rgba(120,70,80,.4)}
+  .tier:before{content:"";position:absolute;top:0;left:28px;right:28px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7}
+  .tier h3{font-size:1.7rem;color:var(--plum);letter-spacing:.02em;font-weight:700}
+  .tier .sub{color:var(--rose-dk);font-weight:800;font-size:.86rem;margin-top:3px;font-family:'Nunito'}
+  .tier ul{list-style:none;padding:0;margin:20px 0;display:grid;gap:11px}
+  .tier ul li{position:relative;padding-left:22px;color:var(--ink);font-size:.94rem;line-height:1.55}
+  .tier ul li:before{content:"❀";position:absolute;left:0;top:2px;color:var(--rose);font-size:.8rem}
+  .tier .price{margin-top:auto;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font-size:2.1rem}
+  .tier .price span{font-family:'Nunito';font-size:.8rem;color:var(--muted);font-weight:700}
+  .tier .btn{width:100%;justify-content:center;margin-top:18px}
+  .tier.feat-tier{background:linear-gradient(170deg,#fffcf6,var(--champ));border:1.6px solid var(--gold);box-shadow:0 30px 64px -32px rgba(198,160,92,.7)}
+  @media(min-width:880px){.tier.feat-tier{transform:scale(1.045)}.tier.feat-tier:hover{transform:scale(1.045) translateY(-4px)}}
+  .badge-top{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,var(--rose),var(--rose-dk));color:#fff;font-weight:800;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:7px 16px;border-radius:100px;white-space:nowrap;box-shadow:0 10px 20px -8px rgba(181,116,108,.7)}
+
+  /* about teaser */
+  .about{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--plum2),var(--plum));color:#fff}
+  .about:after{content:"";position:absolute;width:420px;height:420px;left:-120px;bottom:-150px;border-radius:50%;background:radial-gradient(circle,rgba(204,142,134,.2),transparent 70%)}
+  .about-grid{position:relative;z-index:2;display:grid;gap:34px;align-items:center}
+  @media(min-width:820px){.about-grid{grid-template-columns:.7fr 1.3fr}}
+  .about .seal{justify-self:center}
+  .about .seal .ring{width:176px;height:176px;border-radius:50%;background:radial-gradient(circle at 50% 32%,#fff,var(--blush) 72%,#e6cdc6);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .about .seal .ring:before{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--gold)}
+  .about .seal .ring .slot{color:var(--plum3);font-size:.7rem;font-weight:700;text-align:center;z-index:2;padding:0 12px}
+  .about .seal .ring .slot b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.3rem;color:var(--golddk);margin-bottom:2px}
+  .about h2{color:#fff;font-size:clamp(1.8rem,4.4vw,2.5rem);font-weight:600}
+  .about p{color:#e9d9dd;margin-top:14px;font-size:1.04rem}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .chip{background:rgba(255,255,255,.07);border:1px solid rgba(231,210,162,.32);border-radius:100px;padding:8px 15px;font-weight:800;font-size:.85rem;color:#fff}
+  .chip b{color:var(--goldlt)}
+  .about .btn{margin-top:26px}
+
+  /* final */
+  .final{background:var(--card);text-align:center}
+  .final h2{color:var(--plum);font-size:clamp(2.1rem,5.4vw,3.15rem);max-width:30ch;margin:0 auto;font-weight:600;line-height:1.08}
+  .final p{color:var(--muted);margin:14px auto 0;max-width:48ch}
+  .final .row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+
+  footer{background:var(--plum);color:#d9c7cd;padding:46px 0;text-align:center}
+  footer .brand{display:flex;justify-content:center;color:#fff;margin-bottom:4px}
+  footer .brand b{color:var(--goldlt)}
+  footer .slogan{font-family:'Pinyon Script',cursive;font-size:2.1rem;margin:2px 0 6px}
+  footer p{font-size:.85rem;color:#c7b3ba}
+  footer a{color:var(--goldlt);font-weight:700}
+
+  .hb{margin-top:12px;color:var(--plum2);font-weight:700;font-size:.82rem}
+  /* student */
+  .student{background:linear-gradient(180deg,var(--blush),var(--paper))}
+  .badges{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+  @media(min-width:760px){.badges{grid-template-columns:repeat(3,1fr)}}
+  .badge{background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:26px 18px;text-align:center;transition:transform .18s ease,box-shadow .18s ease}
+  .badge:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(120,70,80,.4)}
+  .badge .em{font-size:1.95rem;display:block;margin-bottom:9px}
+  .badge h3{font-size:1.28rem;color:var(--plum);font-weight:600;margin-bottom:3px}
+  .badge p{color:var(--muted);font-size:.9rem}
+  /* Marina quote */
+  .mquote{background:linear-gradient(180deg,var(--paper),var(--blush));text-align:center}
+  .mquote .mq{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1.6rem,3.6vw,2.35rem);color:var(--plum);max-width:46ch;margin:0 auto;line-height:1.55;letter-spacing:.003em}
+  .mquote .mq-by{margin-top:18px;font-family:'Pinyon Script',cursive;font-size:2rem;color:var(--golddk)}
+  /* wow: calligraphy, flourish, cinematic entrance */
+  .flourish{display:block;margin:16px auto 0;width:min(230px,56vw);height:auto;color:var(--gold)}
+  .namecalli{font-weight:400;line-height:1}
+  .namecalli .pre{display:block;font-family:'Nunito';font-weight:800;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--golddk);margin-bottom:4px}
+  .namecalli .nm{font-family:'Pinyon Script',cursive;font-size:clamp(3.2rem,12vw,5.6rem);line-height:.85;display:block}
+  .signature{font-family:'Tangerine',cursive;font-weight:700;display:inline-block;letter-spacing:.06em;transform:scaleX(1.12);transform-origin:left center;background:linear-gradient(100deg,#5E461E 0%,#856528 16%,#B58E43 34%,#E7D196 47%,#FFF6D6 51%,#E7D196 55%,#B58E43 64%,#856528 82%,#5E461E 100%);background-size:265% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 4s linear infinite}
+  @keyframes shine{0%{background-position:175% center}100%{background-position:-75% center}}
+  .signature-wrap{line-height:.9}
+  .signature-wrap .signature{font-size:clamp(3.6rem,13vw,6rem);transform:rotate(-1.5deg)}
+  .sigflourish{display:block;height:auto;color:var(--gold)} .dropcap:first-letter{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:3.6rem;float:left;line-height:.72;color:var(--golddk);padding:8px 12px 0 0} .ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 2px;color:var(--gold)} .ornament svg{width:min(170px,42vw);height:auto} .ornament .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none} .ornament .rev{transform:scaleX(-1)}
+  @keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  @keyframes fadeScale{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}
+  @keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-7px)}}
+  @keyframes glow{0%,100%{opacity:.45}50%{opacity:.85}}
+  .htxt>*{opacity:0;animation:riseIn .85s cubic-bezier(.2,.7,.2,1) both}
+  .htxt>*:nth-child(1){animation-delay:.06s}
+  .htxt>*:nth-child(2){animation-delay:.16s}
+  .htxt>*:nth-child(3){animation-delay:.27s}
+  .htxt>*:nth-child(4){animation-delay:.38s}
+  .htxt>*:nth-child(5){animation-delay:.49s}
+  .htxt>*:nth-child(6){animation-delay:.59s}
+  .htxt>*:nth-child(7){animation-delay:.69s}
+  .htxt>*:nth-child(8){animation-delay:.79s}
+  .hero .portrait{animation:fadeScale 1.1s ease .25s both}
+  .hero .portrait .halo{animation:glow 5s ease-in-out infinite}
+  .hero .portrait .crown{animation:floaty 4.5s ease-in-out infinite}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal,.htxt>*{opacity:1;transform:none;transition:none;animation:none}html{scroll-behavior:auto}.goldtext,.signature,.brand .bmark,header:before{animation:none}.hero .portrait,.hero .portrait .halo{animation:none;opacity:1;transform:none}.hero .portrait .crown{animation:none}}
+
+  header .brand{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none}
+  .bav{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 2px 9px rgba(124,58,71,.20);flex:none}
+  .bwrap{display:flex;flex-direction:column;line-height:1.02}
+  .bsub{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--golddk);margin-top:3px}
+  @media(max-width:480px){.bsub{display:block;font-family:'Nunito',sans-serif;font-size:.56rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#9C7838;margin-top:2px}.bav{width:34px;height:34px}}
+
+  /* — Predmeti i testovi — */
+  .subjects{background:linear-gradient(180deg,var(--paper),var(--paper2))}
+  .levels{display:grid;gap:18px;grid-template-columns:repeat(2,1fr);align-items:start}
+  .lvl{background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:24px 22px;transition:transform .25s,box-shadow .25s}
+  .lvl:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(120,70,80,.4)}
+  .lvl .lico{font-size:1.7rem;display:block;margin-bottom:8px}
+  .lvl h3{font-size:1.3rem;color:var(--plum);font-weight:600;margin-bottom:2px}
+  .lvl .cap{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose);font-size:1.05rem;margin-bottom:14px}
+  .schips{display:flex;flex-wrap:wrap;gap:8px}
+  .schips span{background:var(--paper);border:1px solid var(--bord);border-radius:100px;padding:6px 13px;font-size:.84rem;color:var(--plum2);font-weight:500}
+  .tests-head{text-align:center;margin:54px auto 24px}
+  .tests-head h3{font-size:clamp(1.4rem,4vw,1.9rem);color:var(--plum);font-weight:500}
+  .tests{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
+  .test{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:22px 18px;text-align:center}
+  .test .lico{font-size:1.55rem;display:block;margin-bottom:8px}
+  .test h4{font-size:1.1rem;color:var(--plum);font-weight:600;margin-bottom:5px}
+  .test p{color:var(--muted);font-size:.9rem;line-height:1.5}
+  .sub-note{max-width:760px;margin:40px auto 0;text-align:center;background:linear-gradient(170deg,#fffcf6,var(--champ));border:1.4px solid var(--goldlt);border-radius:18px;padding:18px 24px;color:var(--plum2);font-size:1rem;line-height:1.6}
+  .sub-note b{color:var(--golddk)}
+  @media(min-width:900px){.levels{grid-template-columns:repeat(3,1fr)}.tests{grid-template-columns:repeat(4,1fr)}}
+  .ksub::first-letter{text-transform:uppercase}
+  footer .foot-last{margin:0}
+  footer .footsig-wrap{margin-top:-8px;line-height:1;text-align:right;padding-right:28px}
+  footer .footsig{font-family:'Tangerine',cursive;font-weight:700;font-size:2.3rem;display:inline-block;transform:rotate(-4deg);margin-left:auto;background:linear-gradient(100deg,#5E461E 0%,#8A6A2C 30%,#E7D2A2 50%,#8A6A2C 70%,#5E461E 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
+.lvl{padding:0;cursor:default}
+  .lvl .lico{margin-bottom:0}
+  .lvl .cap{margin-bottom:0}
+  .lvl-head{width:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:14px;padding:20px 22px;text-align:left;font:inherit}
+  .lvl-head .lvl-tx{flex:1}
+  .lvl-head .chev{color:var(--gold);font-size:1.2rem;transition:transform .3s}
+  .lvl.open .lvl-head .chev{transform:rotate(180deg)}
+  .lvl.open{box-shadow:0 24px 46px -28px rgba(120,70,80,.4)}
+  .subj-list{display:none;flex-direction:column;gap:10px;padding:0 22px 22px}
+  .lvl.open .subj-list{display:flex}
+  footer .flove{font-family:'Pinyon Script',cursive;font-size:2.1rem;margin:0 0 6px}
+  h1,h2,h3,h4,.lead,.sub-lead,.sec-head p,.sec-head .ksub,.q,.big,.mquote p,.mquote .lead,.ksub,.titles span,.titles small,.tier .sub,.tier .name,.step h3,.step p,.badge h3,.badge p,.feat .it h3,.feat .it p,.test h4,.test p,.lvl h3,.lvl .cap,.plate,.signoff,.flove{text-wrap:balance}
+  p,.bio p,.tier ul li{text-wrap:pretty}
+  @media(max-width:560px){
+    .hero .sign{padding-right:8px !important;text-align:right}
+    .hero .sign .signature{font-size:1.95rem !important;transform:rotate(-1.5deg) !important}
+    footer .footsig-wrap{padding-right:20px}
+    footer .footsig{font-size:2.05rem}
+    .levels{grid-template-columns:1fr}
+  }
+  @media(max-width:380px){
+    .hero .sign .signature{font-size:1.7rem !important}
+  }
+  .hero-math{position:absolute;inset:0;z-index:0;pointer-events:none;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);overflow:hidden}
+  .hero-math span{position:absolute;font-size:clamp(2rem,5vw,3.4rem);opacity:.07;transform:rotate(-6deg)}
+  @media(max-width:760px){.hero-math span{opacity:.05;font-size:1.7rem}}
+  .eqfrieze{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 40px;padding:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.55rem;color:var(--golddk);opacity:.45;letter-spacing:.01em;background:var(--paper)}
+  .eqfrieze sup{font-size:.65em}
+  @media(max-width:560px){.eqfrieze{font-size:1.12rem;gap:13px 22px;padding:16px 14px}}
+
+/* MENI v3 — veći brend, serif jezičci, jezik na kraju */
+.nav{display:flex;align-items:center;gap:20px;min-height:78px}
+.brand .bmark{font-size:2rem;letter-spacing:.05em}
+.brand .bav{width:50px;height:50px}
+.nav-r{flex:1;display:flex;align-items:center;gap:30px}
+.nav-r a.link{display:inline!important;font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:600;letter-spacing:.015em;color:#432C37;text-decoration:none;position:relative;padding:4px 0;white-space:nowrap}
+.nav-r a.link::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:linear-gradient(90deg,#C6A05C,#E7D2A2);transition:right .25s ease;border-radius:2px}
+.nav-r a.link:hover{color:#9C7838}
+.nav-r a.link:hover::after{right:0}
+.nav-r a[data-acctnav]{order:1;margin-left:auto}
+.nav-r>select.lang{order:2;font-family:'Nunito',sans-serif;font-size:.86rem;font-weight:800;letter-spacing:.05em;color:#432C37;border:1.5px solid rgba(198,160,92,.45);border-radius:100px;padding:8px 16px;background:#fff;cursor:pointer;transition:border-color .15s}
+.nav-r>select.lang:hover{border-color:#C6A05C}
+@media(max-width:900px){.nav-r a.link{display:none!important}.nav-r>select.lang{display:none}}
+
+/* HERO slogan — presijava se i ispisuje se */
+.hero .slogan{background:linear-gradient(100deg,#856528 0%,#B58E43 24%,#E7D196 44%,#FFF6D6 50%,#E7D196 56%,#B58E43 76%,#856528 100%);background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:sloshine 4.5s linear infinite, slowrite 2.2s cubic-bezier(.2,.7,.2,1) .25s both}
+@keyframes sloshine{to{background-position:250% center}}
+@keyframes slowrite{from{clip-path:inset(0 105% 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* LOGO kao pečat — veći, ispred linije menija */
+header{overflow:visible}
+.brand .bav{width:64px;height:64px;border:3px solid var(--gold);box-shadow:0 10px 22px -6px rgba(120,70,80,.5),0 0 0 5px var(--paper);position:relative;z-index:3;transform:translateY(9px)}
+.brand .bmark{font-size:2.05rem}
+@media(prefers-reduced-motion:reduce){.hero .slogan{animation:none;clip-path:none}}
+
+/* MENI centriran, logo veći-pečat */
+.nav{position:relative}
+.nav-r{flex:1;display:flex;align-items:center;justify-content:center;gap:32px}
+.nav-r a[data-acctnav]{order:0;margin-left:0}
+.nav-r>select.lang{order:0;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.brand .bav{width:74px;height:74px;transform:translateY(14px)}
+.brand .bmark{font-size:2.1rem}
+.microtrust{margin-top:16px;color:var(--muted);font-size:.9rem;font-weight:600;letter-spacing:.01em}
+.microtrust b{color:var(--golddk)}
+.hero .lead{max-width:62ch;line-height:1.7}
+
+/* sklonjen lebdeći ornament iznad slike + dugmad niže + potpis desnije */
+.hero .crown{display:none!important}
+.hero .cta-row{margin-top:72px}
+.hero .sign{padding-right:0!important;margin-top:30px!important}
+.hero .signature{font-size:2.8rem!important}
+
+.feat .it{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.feat .it::before{content:"";position:absolute;top:0;left:0;right:100%;height:3px;background:linear-gradient(90deg,var(--gold),var(--goldlt));transition:right .3s ease}
+.feat .it:hover{transform:translateY(-7px);box-shadow:0 34px 54px -32px rgba(120,70,80,.42);border-color:var(--gold)}
+.feat .it:hover::before{right:0}
+.feat .it .ic{transition:transform .25s ease}
+.feat .it:hover .ic{transform:scale(1.12) rotate(-5deg)}
+
+/* KAKO RADI — vremenska osa */
+.how .steps{position:relative;grid-template-columns:repeat(3,1fr);gap:34px}
+.how .steps::before{content:"";position:absolute;top:22px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,var(--goldlt),var(--gold) 50%,var(--goldlt));z-index:0}
+.how .step{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;text-align:center;z-index:1}
+.how .step .num{position:static!important;margin:0 auto 20px!important;box-shadow:0 8px 18px -6px rgba(198,160,92,.85),0 0 0 7px var(--paper)!important}
+.how .step h3{margin-top:0}
+.how .step:nth-child(1){transition-delay:0s}
+.how .step:nth-child(2){transition-delay:.16s}
+.how .step:nth-child(3){transition-delay:.32s}
+@media(max-width:720px){.how .steps{grid-template-columns:1fr;gap:8px}.how .steps::before{left:21px;right:auto;top:10px;bottom:10px;width:2px;height:auto}.how .step{text-align:left;padding-left:62px!important;padding-bottom:24px!important}.how .step .num{position:absolute!important;left:0;top:2px;margin:0!important}}
+
+/* BEDŽEVI — novo, življe rešenje */
+.badges{grid-template-columns:repeat(3,1fr);gap:18px}
+.badge{background:linear-gradient(162deg,#fff,var(--paper));border:1px solid var(--bord);border-radius:20px;padding:22px 20px;text-align:left;display:flex;gap:15px;align-items:flex-start;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.badge .em{font-size:1.45rem;flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--goldlt));border:1px solid #E7D2A2;display:flex;align-items:center;justify-content:center;margin:0;box-shadow:0 9px 18px -9px rgba(198,160,92,.75);transition:transform .25s ease}
+.badge .bx{flex:1;min-width:0}
+.badge h3{font-size:1.14rem;margin-bottom:4px;line-height:1.15}
+.badge p{color:var(--muted);font-size:.88rem;line-height:1.5}
+.badge:hover{transform:translateY(-6px);box-shadow:0 32px 52px -30px rgba(120,70,80,.42);border-color:var(--gold)}
+.badge:hover .em{transform:scale(1.12) rotate(-7deg)}
+.badge:nth-child(1){transition-delay:0s}.badge:nth-child(2){transition-delay:.07s}.badge:nth-child(3){transition-delay:.14s}
+.badge:nth-child(4){transition-delay:.21s}.badge:nth-child(5){transition-delay:.28s}.badge:nth-child(6){transition-delay:.35s}
+@media(max-width:640px){.badges{grid-template-columns:1fr}}
+
+.how .step p{text-wrap:balance;line-height:1.5}
+.badge p{text-wrap:balance}
+.student .stud-lead{font-size:1.14rem;line-height:1.7;max-width:680px;margin:0 auto}
+.student .stud-lead b{color:#432C37}
+
+/* PCHIPS — "boom" */
+.pchips{gap:12px;margin-top:24px}
+.pchips span{background:linear-gradient(160deg,#fff,var(--paper));border:1px solid #E7D2A2;border-radius:100px;padding:11px 19px;font-weight:800;font-size:.9rem;color:var(--plum);box-shadow:0 9px 18px -12px rgba(198,160,92,.55);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;cursor:default}
+.pchips span:hover{transform:translateY(-4px);box-shadow:0 18px 28px -14px rgba(198,160,92,.75);border-color:var(--gold)}
+.ksub:after{width:132px}
+
+/* POVERENJE — dinamičan slajder (ekonomično + lepo) */
+.tst .tgrid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;gap:20px;scroll-snap-type:x mandatory;padding:6px 4px 16px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+.tst .tgrid .quote{flex:0 0 min(360px,82%);scroll-snap-align:center;align-self:stretch}
+.tst .tgrid::-webkit-scrollbar{height:6px}
+.tst .tgrid::-webkit-scrollbar-track{background:transparent}
+.tst .tgrid::-webkit-scrollbar-thumb{background:var(--goldlt);border-radius:4px}
+.tst .tgrid .quote{transition:transform .2s ease,box-shadow .2s ease}
+.tst .tgrid .quote:hover{transform:translateY(-4px);box-shadow:0 26px 44px -28px rgba(120,70,80,.4)}
+
+.mquote .mq{text-wrap:balance}
+.mquote .mq b{font-style:italic;color:var(--golddk)}
+.mquote .mq-by{text-align:right;margin-top:14px;font-family:'Tangerine',cursive;font-weight:700;font-size:2.6rem;color:var(--golddk);line-height:1}
+</style>
+<style>
+/* community / social — luxe pills */
+.social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 16px;margin:30px auto 8px;max-width:600px;padding:0 16px}
+.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
+.social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(160,120,60,.6)}
+.social svg{width:20px;height:20px;fill:currentColor;flex:none}
+</style>
+<link rel="icon" type="image/png" href="logo.png">
+<style>.subj-list{display:none}.lvl.open .subj-list{display:flex}.subj-list a{display:block;padding:8px 0;color:var(--plum);text-decoration:none;border-bottom:1px solid rgba(231,219,196,.55);transition:color .15s,padding-left .15s;font-family:'Nunito',sans-serif}.subj-list a:last-child{border-bottom:none}.subj-list a:hover{color:var(--golddk);padding-left:7px}.lvl-head{cursor:pointer}</style>
+<script src="mathia-guard.js?v=1" defer></script>
+<style>/* === Heder v2 (MATHIA) === */
+header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.9);-webkit-backdrop-filter:saturate(160%) blur(14px);backdrop-filter:saturate(160%) blur(14px);border-bottom:none;box-shadow:0 1px 0 rgba(198,160,92,.18)}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,160,92,.5),transparent)}
+.nav-r{align-items:center}
+.nav-r>a:not(.navcta){position:relative;transition:color .15s}
+.nav-r>a:not(.navcta)::after{content:"";position:absolute;left:0;right:0;bottom:-3px;margin:auto;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#c69a52,#e7d4b0);transition:width .22s}
+.nav-r>a:not(.navcta):hover::after{width:100%}
+.navcta{background:linear-gradient(135deg,#c69a52,#a87f36);color:#fff !important;padding:9px 18px !important;border-radius:999px;font-weight:700 !important;box-shadow:0 6px 16px rgba(176,138,74,.30);white-space:nowrap;text-decoration:none;display:inline-block}
+.navcta::after{display:none !important}
+.navcta:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(176,138,74,.40);color:#fff !important}
+@media(max-width:760px){.navcta{padding:8px 14px !important}}
+</style>
+<style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
+<style>/*navham*/
+@media(max-width:600px){.nav-r a.link{display:none!important}.nav-r select.lang{display:none!important}}
+.navham-btn{display:none;position:relative;width:30px;height:26px;background:none;border:none;cursor:pointer;padding:0;margin-left:8px;vertical-align:middle}
+.navham-btn span{position:absolute;left:3px;right:3px;height:2.5px;background:var(--plum,#432C37);border-radius:3px;transition:transform .28s,opacity .2s,top .28s}
+.navham-btn span:nth-child(1){top:5px}.navham-btn span:nth-child(2){top:12px}.navham-btn span:nth-child(3){top:19px}
+.navham-btn.open span:nth-child(1){top:12px;transform:rotate(45deg)}
+.navham-btn.open span:nth-child(2){opacity:0}
+.navham-btn.open span:nth-child(3){top:12px;transform:rotate(-45deg)}
+@media(max-width:600px){.navham-btn{display:inline-block}}
+html.navham-lock{overflow:hidden}
+html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
+.navham-scrim{position:fixed;inset:0;background:rgba(45,30,36,.45);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:1400}
+.navham-scrim.open{opacity:1;visibility:visible}
+.navham-draw{position:fixed;top:0;right:0;height:100%;width:min(86vw,340px);background:linear-gradient(180deg,#FFFDF8,#F6ECDC);box-shadow:-18px 0 50px rgba(60,40,48,.30);transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);z-index:1401;display:flex;flex-direction:column;border-left:1px solid var(--bord,#ECDAC5)}
+.navham-draw.open{transform:translateX(0)}
+.navham-top{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 14px;border-bottom:1px solid var(--bord,#ECDAC5)}
+.navham-id{display:flex;align-items:center;gap:11px;min-width:0}
+.navham-logo{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--gold,#C6A05C);flex:none;box-shadow:0 3px 10px rgba(160,120,60,.25)}
+.navham-brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.5rem;color:var(--plum,#432C37);line-height:1.04}
+.navham-brand small{display:block;font-family:'Pinyon Script','Tangerine',cursive;font-size:1.05rem;color:var(--golddk,#9C7838);font-weight:400;margin-top:0}
+.navham-x{background:none;border:none;font-size:22px;color:var(--muted,#90787E);cursor:pointer;line-height:1;padding:4px 6px;flex:none}
+.navham-list{flex:1;overflow-y:auto;padding:12px 12px 4px}
+.navham-list a{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:12px;text-decoration:none;color:var(--plum,#432C37);font-family:'Nunito',sans-serif;font-weight:700;font-size:1.05rem;transition:background .15s}
+.navham-list a .ic{font-size:1.15rem;width:22px;text-align:center;flex:none}
+.navham-list a:hover,.navham-list a:active{background:var(--paper2,#F5EADB)}
+.navham-list a.acct{color:var(--golddk,#9C7838)}
+.navham-cta{margin:6px 16px 8px;display:block;text-align:center;padding:13px 16px;border-radius:999px;background:linear-gradient(135deg,#C6A05C,#9C7838);color:#fff !important;text-decoration:none;font-family:'Nunito',sans-serif;font-weight:800;box-shadow:0 8px 20px rgba(176,138,74,.32)}
+.navham-langs{padding:14px 16px calc(20px + env(safe-area-inset-bottom));border-top:1px solid var(--bord,#ECDAC5);display:flex;flex-wrap:wrap;gap:7px}
+.navham-langs button{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--bord,#ECDAC5);color:var(--plum,#432C37);border-radius:999px;padding:6px 11px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s}
+.navham-langs button .fl{font-size:1rem;line-height:1}
+.navham-langs button.on{background:linear-gradient(135deg,#C6A05C,#9C7838);color:#fff;border-color:transparent}
+</style>
+<script>/*navham*/
+(function(){
+ var ICON=[[/nalog\.html/,'\uD83D\uDC64'],[/#paketi|paketi/,'\u2726'],[/predmeti\.html/,'\uD83D\uDCDA'],[/prodavnica/,'\uD83D\uDED2'],[/test-sklonosti/,'\uD83E\uDDED'],[/o-marini|marina/,'\uD83C\uDF38'],[/index\.html/,'\uD83C\uDFE0']];
+ var FLAG={SR:'\uD83C\uDDF7\uD83C\uDDF8',EN:'\uD83C\uDDEC\uD83C\uDDE7',DE:'\uD83C\uDDE9\uD83C\uDDEA',FR:'\uD83C\uDDEB\uD83C\uDDF7',ES:'\uD83C\uDDEA\uD83C\uDDF8',IT:'\uD83C\uDDEE\uD83C\uDDF9',RU:'\uD83C\uDDF7\uD83C\uDDFA',PT:'\uD83C\uDDF5\uD83C\uDDF9'};
+ function iconFor(h){h=(h||'').toLowerCase();for(var i=0;i<ICON.length;i++){if(ICON[i][0].test(h))return ICON[i][1];}return '\u203A';}
+ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+ function init(){
+  var nav=document.querySelector('.nav-r'); if(!nav||nav.querySelector('.navham-btn'))return;
+  var btn=document.createElement('button'); btn.type='button'; btn.className='navham-btn'; btn.setAttribute('aria-label','Meni'); btn.setAttribute('aria-expanded','false'); btn.innerHTML='<span></span><span></span><span></span>';
+  var scrim=document.createElement('div'); scrim.className='navham-scrim';
+  var draw=document.createElement('div'); draw.className='navham-draw'; draw.setAttribute('role','dialog'); draw.setAttribute('aria-label','Glavni meni');
+  nav.appendChild(btn); document.body.appendChild(scrim); document.body.appendChild(draw);
+  function build(){
+   var logo=document.querySelector('.brand img.bav')||document.querySelector('.brand img')||document.querySelector('img.bav');
+   var logoSrc=logo?logo.getAttribute('src'):'';
+   var html='<div class="navham-top"><div class="navham-id">';
+   if(logoSrc){ html+='<img class="navham-logo" src="'+esc(logoSrc)+'" alt="Mathia">'; }
+   html+='<div class="navham-brand">Mathia<small>s Marinom</small></div></div><button class="navham-x" type="button" aria-label="Zatvori">\u2715</button></div><div class="navham-list">';
+   nav.querySelectorAll('a.link').forEach(function(a){
+     var t=(a.textContent||'').trim(); if(!t)return;
+     var href=a.getAttribute('href')||'#';
+     var cls=a.hasAttribute('data-acctnav')?' acct':'';
+     html+='<a class="'+cls.trim()+'" href="'+esc(href)+'"><span class="ic">'+iconFor(href)+'</span><span>'+esc(t)+'</span></a>';
+   });
+   html+='</div>';
+   var cta=nav.querySelector('a.navcta');
+   if(cta){ html+='<a class="navham-cta" href="'+esc(cta.getAttribute('href')||'#')+'">'+esc((cta.textContent||'').trim())+'</a>'; }
+   var sel=nav.querySelector('select.lang')||document.querySelector('select.lang');
+   if(sel&&sel.options&&sel.options.length){ html+='<div class="navham-langs">';
+     Array.prototype.forEach.call(sel.options,function(o){ var v=o.value||o.textContent; var fl=FLAG[(v||'').toUpperCase()]||''; var on=(v===sel.value)?' class="on"':''; html+='<button type="button" data-l="'+esc(v)+'"'+on+'>'+(fl?'<span class="fl">'+fl+'</span>':'')+'<span>'+esc(o.textContent)+'</span></button>'; });
+     html+='</div>';
+   }
+   draw.innerHTML=html;
+   draw.querySelector('.navham-x').onclick=close;
+   draw.querySelectorAll('.navham-list a, .navham-cta').forEach(function(a){ a.addEventListener('click',close); });
+   draw.querySelectorAll('.navham-langs button').forEach(function(b){ b.onclick=function(){ var sel=document.querySelector('select.lang'); if(sel){ sel.value=b.getAttribute('data-l'); sel.dispatchEvent(new Event('change',{bubbles:true})); } close(); }; });
+  }
+  function open(){ build(); scrim.classList.add('open'); draw.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.documentElement.classList.add('navham-lock'); }
+  function close(){ scrim.classList.remove('open'); draw.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.documentElement.classList.remove('navham-lock'); }
+  btn.onclick=function(e){ e.stopPropagation(); if(draw.classList.contains('open'))close(); else open(); };
+  scrim.onclick=close;
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape')close(); });
+  window.addEventListener('resize',function(){ if(window.innerWidth>600)close(); });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
+ setTimeout(init,500);
+})();
+</script>
+<script defer src="napredak.js"></script><!--napredaklog-->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#432C37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mathia">
+<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<!--pwa-->
+<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<link rel="canonical" href="https://mathia.rs/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MATHIA EDU">
+<meta property="og:locale" content="sr_RS">
+<meta property="og:title" content="Mathia">
+<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta property="og:url" content="https://mathia.rs/">
+<meta property="og:image" content="https://mathia.rs/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mathia">
+<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta name="twitter:image" content="https://mathia.rs/og.png">
+<!--seo-->
+<style>
+/* === DORADA: meni + hero (v1) === */
+header .wrap.nav{min-height:76px}
+.nav-r{gap:32px}
+.nav-r a.link{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;letter-spacing:.02em;color:var(--plum);padding:6px 2px;transition:color .18s ease}
+.nav-r a.link:hover{color:var(--golddk)}
+.nav-r>a.link::after{content:"";position:absolute;left:50%;right:auto;bottom:0;transform:translateX(-50%);width:0;height:1.5px;border-radius:2px;background:linear-gradient(90deg,var(--gold),#FFF6D6,var(--gold));transition:width .26s ease}
+.nav-r>a.link:hover::after{width:100%}
+.nav-r>select.lang{border:1.5px solid rgba(198,160,92,.5);border-radius:100px;padding:8px 15px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.04em;color:var(--plum);background:#fff;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease}
+.nav-r>select.lang:hover{border-color:var(--gold);box-shadow:0 8px 20px -12px rgba(198,160,92,.65)}
+
+/* hero — nežno „disanje" slike */
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.hero .portrait .photo-wrap{animation:heroFloat 6.5s ease-in-out 1.3s infinite;will-change:transform}
+.hero .portrait-name .plate{font-size:1.28rem}
+
+/* (a) razdelnici u meniju */
+.nav-r a.link:not(:first-of-type)::before{content:"◆";display:inline-block;color:var(--gold);opacity:.42;font-size:.46rem;transform:translateY(-3px);margin:0 16px 0 -18px;pointer-events:none}
+/* (b) staklo — jače dok se skroluje */
+header{background:rgba(251,247,239,.72);-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);transition:background .3s ease,box-shadow .3s ease}
+header.scrolled{background:rgba(251,247,239,.92);box-shadow:0 8px 28px -18px rgba(120,70,80,.5)}
+/* (c) hero ornament između teksta i dugmadi */
+.hero-flourish{color:var(--gold);opacity:.9;margin:30px 0 0;line-height:0}
+.hero-flourish svg{width:min(230px,64%);height:auto;overflow:visible;filter:drop-shadow(0 0 5px rgba(231,210,162,.6))}
+.hf-line{stroke-dasharray:1;stroke-dashoffset:1;animation:hfDraw 1.2s cubic-bezier(.3,.7,.2,1) .5s forwards}
+@keyframes hfDraw{to{stroke-dashoffset:0}}
+
+/* logo gore levo — veći i uočljiviji */
+header .wrap.nav{min-height:82px}
+header .brand{gap:14px}
+header .brand .bav{width:86px;height:86px;border:3px solid var(--gold);box-shadow:0 12px 26px -8px rgba(120,70,80,.5),0 0 0 6px var(--paper),0 0 24px -4px rgba(198,160,92,.6);transform:translateY(12px);transition:transform .25s ease,box-shadow .25s ease}
+header .brand:hover .bav{transform:translateY(12px) scale(1.05);box-shadow:0 16px 32px -8px rgba(120,70,80,.55),0 0 0 6px var(--paper),0 0 30px -2px rgba(198,160,92,.8)}
+header .brand .bmark{font-size:2.35rem}
+@media(max-width:560px){header .wrap.nav{min-height:64px}header .brand .bav{width:60px;height:60px;transform:translateY(8px)}header .brand:hover .bav{transform:translateY(8px) scale(1.05)}header .brand .bmark{font-size:1.9rem}}
+
+/* dva dugmeta na dnu heroa — profinjeni par */
+.hero .htxt .cta-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.hero .cta-row .btn{border-radius:100px;padding:15px 30px;font-size:.95rem;font-weight:700;letter-spacing:.02em;position:relative;overflow:hidden}
+.hero .cta-row .btn-gold{background:linear-gradient(135deg,#EBD49A 0%,#C6A05C 56%,#B58E43 100%);color:#4a3812;border:none;box-shadow:0 14px 34px -14px rgba(198,160,92,.95),inset 0 1px 0 rgba(255,255,255,.6)}
+.hero .cta-row .btn-gold::after{content:"";position:absolute;top:-20%;left:-70%;width:45%;height:140%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);transition:left .65s ease;pointer-events:none}
+.hero .cta-row .btn-gold:hover{transform:translateY(-2px);box-shadow:0 20px 44px -14px rgba(198,160,92,1)}
+.hero .cta-row .btn-gold:hover::after{left:135%}
+.hero .cta-row .btn-rose{background:rgba(255,255,255,.55);color:var(--plum);border:1.5px solid var(--gold);box-shadow:0 10px 26px -18px rgba(120,70,80,.5);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.hero .cta-row .btn-rose:hover{background:linear-gradient(180deg,#fff,var(--blush));border-color:var(--rose);color:var(--plum);transform:translateY(-2px);box-shadow:0 16px 34px -18px rgba(181,116,108,.55)}
+/* (d) nežno iscrtavanje zlatne reči */
+@keyframes drawUnderline{from{background-size:0 .32em}to{background-size:100% .32em}}
+.hero h1 .gold-underline{animation:drawUnderline 1.1s cubic-bezier(.2,.7,.2,1) .85s both}
+/* (e) couture šljokice oko slike */
+.photo-wrap{position:relative;width:min(384px,86vw);margin-inline:auto}
+.photo-wrap .photo{width:100%}
+.sparkles{position:absolute;inset:-10px;pointer-events:none;z-index:4}
+.sparkles span{position:absolute;color:#EBCB7E;line-height:1;opacity:0;text-shadow:0 0 7px rgba(255,246,214,.85);animation:twinkle 3.8s ease-in-out infinite}
+.sparkles span::before{content:"✦"}
+.sparkles span:nth-child(1){font-size:.95rem;animation-delay:.2s}
+.sparkles span:nth-child(2){font-size:.7rem;animation-delay:1.2s}
+.sparkles span:nth-child(3){font-size:1.05rem;animation-delay:2.1s}
+.sparkles span:nth-child(4){font-size:.65rem;animation-delay:1.6s}
+.sparkles span:nth-child(5){font-size:.8rem;animation-delay:.7s}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.55) rotate(-8deg)}50%{opacity:.95;transform:scale(1) rotate(8deg)}}
+@media(prefers-reduced-motion:reduce){.sparkles{display:none}.hf-line{animation:none;stroke-dashoffset:0}.hero h1 .gold-underline{animation:none;background-size:100% .32em}.hero .portrait .photo-wrap{animation:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img class="bav" src="logo.png" alt="MathIA logo">
+      <span class="bwrap"><span class="bmark">Mathia</span><span class="bsub">s Marinom</span></span>
+    </a>
+    <div class="nav-r">
+      <a class="link" href="predmeti.html">Predmeti</a>
+      <a class="link" href="prodavnica.html">Prodavnica</a>
+      <a class="link" href="#paketi">Paketi</a>
+      <a class="link" href="o-marini.html">O meni</a>
+      <select class="lang" aria-label="Jezik / Language">
+        <option>SR</option><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>RU</option><option>PT</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<!-- 1 · HERO -->
+<style>
+.portrait-name{text-align:center;margin-top:22px}
+.portrait-name .plate{margin-top:0;justify-content:center}
+.portrait-role{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--golddk);opacity:.92;margin-top:8px}
+@media(max-width:560px){.portrait-name{margin-top:18px}.portrait-role{font-size:.66rem;letter-spacing:.1em}}
+</style>
+<section class="hero" style="padding:0">
+  <div class="frame"></div>
+  <div class="hero-math" aria-hidden="true"><span style="top:9%;left:5%">∫</span><span style="top:63%;left:8%">π</span><span style="top:31%;left:33%">√</span><span style="top:83%;left:28%">Σ</span><span style="top:14%;left:43%">∞</span><span style="top:52%;left:45%">Δ</span></div>
+  <svg class="corner tl" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
+  <svg class="corner tr" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
+  <svg class="corner br" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
+  <svg class="corner bl" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
+  <div class="wrap">
+    <div class="htxt">
+      <div class="slogan script goldtext">Uči sa Marinom</div>
+      <div class="eyebrow">Matematika · Fizika · Elektrotehnika</div>
+      <h1 style="margin-top:14px">Učim decu <span class="gold-underline">s ljubavlju</span> — i verujem u svako od njih.</h1>
+      <p class="lead">Svakom detetu prilazim strpljivo i nežno —<br>tu sam danju i noću, uvek spremna da objasnim još jednom, onako kako svako dete zaslužuje.</p>
+      <div class="hero-flourish" aria-hidden="true"><svg viewBox="0 0 220 14" fill="none"><defs><linearGradient id="hfSheen" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox" spreadMethod="pad"><stop offset="0" stop-color="#C6A05C"/><stop offset="0.4" stop-color="#C6A05C"/><stop offset="0.5" stop-color="#FFF7E2"/><stop offset="0.6" stop-color="#C6A05C"/><stop offset="1" stop-color="#C6A05C"/><animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="3.6s" repeatCount="indefinite"/></linearGradient></defs><path class="hf-line" pathLength="1" d="M6 7C70 4 150 4 214 7" stroke="url(#hfSheen)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="#paketi">Započni besplatno →</a>
+        <a class="btn btn-rose" href="o-marini.html">Upoznaj Marinu</a>
+      </div>
+      <div class="microtrust">Prvih <b>15 minuta je na poklon</b> — bez kartice i bez obaveza.</div>
+    </div>
+    <div class="portrait">
+      <div class="halo"></div>
+      <svg class="crown" viewBox="0 0 160 40" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M18 34 C 52 6 108 6 142 34"/></g><circle cx="80" cy="9" r="2.6" fill="currentColor"/><circle cx="18" cy="34" r="1.8" fill="currentColor"/><circle cx="142" cy="34" r="1.8" fill="currentColor"/></svg>
+      <div class="photo-wrap">
+        <div class="photo"><img class="ph" alt="dr Marina Bulat" style="object-position:center 40%" src="marina.jpg"></div>
+        <div class="sparkles" aria-hidden="true"><span style="top:4%;left:-3%"></span><span style="top:15%;right:-4%"></span><span style="top:60%;left:-5%"></span><span style="bottom:9%;right:-2%"></span><span style="top:-3%;right:34%"></span></div>
+      </div>
+      <div class="portrait-name">
+        <div class="plate">dr Marina Bulat</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · PAIN -->
+<section data-prij-banner="1" style="background:linear-gradient(180deg,#fff,#F7EAC9);border-top:1px solid #ECDAC5;border-bottom:1px solid #ECDAC5">
+<div style="max-width:640px;margin:0 auto;padding:48px 24px;text-align:center">
+<div style="color:#9C7838;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.72rem">MATHIA · prijemni</div>
+<h2 data-pt style="font-family:'Cormorant Garamond',serif;color:#432C37;font-size:clamp(2.3rem,5vw,3.1rem);font-weight:700;margin:.22em 0 .34em">Prijemni, rešen do detalja</h2>
+<p data-ps style="color:#5a474d;margin:0 auto 26px;max-width:620px;font-size:1.1rem;line-height:1.65"><b>Rešeni rokovi</b> po fakultetima i oblastima — tačno ono što te čeka na ispitu.</p>
+<a data-pc href="Prijemni-Fakulteti.html" style="display:inline-block;background:linear-gradient(180deg,#C6A05C,#9C7838);color:#fff;font-weight:800;padding:14px 32px;border-radius:100px;text-decoration:none;box-shadow:0 12px 28px -10px rgba(176,138,74,.6)">Pogledaj fakultete →</a>
+</div>
+</section>
+<section class="pain">
+  <div class="wrap">
+    <p class="q reveal">Telefon im ne izlazi iz ruke — a sveske ostaju prazne.</p>
+    <p class="q reveal">Svaki razgovor o školi završi se svađom.</p>
+    <p class="q reveal">A ocene, iz meseca u mesec, tiho klize nadole.</p>
+    <div class="big reveal">Šta ako telefon više nije problem — <em>već rešenje?</em></div>
+    <p class="q reveal" style="margin-top:22px;font-style:normal;opacity:.92">Ista ta ruka koja skroluje — <b>sada rešava, uči i napreduje.</b></p>
+  </div>
+</section>
+
+<!-- 3 · ŠTA JE MATHIA -->
+<section class="what" id="mathia">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="ksub">moja misija</div>
+      <h2>Učenje koje zaista želiš da otvoriš</h2>
+      <p>Čak i predmeti koje najčešće izbegavate — matematika, fizika, elektrotehnika — postaju jasni i razumljivi uz profesoricu koja objašnjava korak po korak.</p>
+    </div>
+    <div class="feat">
+      <div class="it reveal"><div class="ic">📲</div><h3>Uvek na dohvat ruke</h3><p>Profesorica i svi materijali — na telefonu, tabletu i računaru.</p></div>
+      <div class="it reveal"><div class="ic">🪜</div><h3>Teško postaje lako</h3><p>Najteže gradivo razloženo korak po korak, dok ne postane jasno.</p></div>
+      <div class="it reveal"><div class="ic">🎓</div><h3>Znanje sa izvora</h3><p>Lekcije i priručnici po proverenoj univerzitetskoj metodologiji.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · KAKO RADI -->
+<section data-plan-banner="1" style="background:linear-gradient(100deg,#fff,#F3E8F0 70%,#F7EAC9);border-top:1px solid #ECDAC5;border-bottom:1px solid #ECDAC5">
+<div style="max-width:640px;margin:0 auto;padding:48px 24px;text-align:center">
+<div style="color:#9C7838;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:.72rem">MATHIA · planeri</div>
+<h2 data-plt style="font-family:'Cormorant Garamond',serif;color:#432C37;font-size:clamp(2.3rem,5vw,3.1rem);font-weight:700;margin:.22em 0 .34em">Tvoj planer za celu godinu</h2>
+<p data-pls style="color:#5a474d;margin:0 auto 26px;max-width:640px;font-size:1.1rem;line-height:1.65"><b>Raspored, ciljevi i rokovi</b> na jednom mestu — za celu školsku godinu.</p>
+<a data-plc href="Planeri.html" style="display:inline-block;background:linear-gradient(180deg,#C6A05C,#9C7838);color:#fff;font-weight:800;padding:14px 32px;border-radius:100px;text-decoration:none;box-shadow:0 12px 28px -10px rgba(176,138,74,.6)">Izaberi planer →</a>
+</div>
+</section>
+<script>(function(){
+var T={sr:'Tvoj planer za celu godinu',en:'Your planner for the whole year',de:'Dein Planer für das ganze Jahr',fr:"Ton agenda pour toute l'année",es:'Tu agenda para todo el año',it:"La tua agenda per tutto l'anno",ru:'Твой планер на весь год',pt:'A tua agenda para o ano todo'};
+var S={sr:'Raspored, ciljevi i rokovi na jednom mestu — za celu školsku godinu.',en:'Fill in everything and keep it — university, high and primary school. Download anytime.',de:'Trage alles ein und behalte es — Uni, Ober- und Grundschule. Jederzeit herunterladen.',fr:'Remplis tout et garde-le — fac, lycée et primaire. Télécharge quand tu veux.',es:'Rellena todo y guárdalo — universidad, instituto y primaria. Descárgalo cuando quieras.',it:'Compila tutto e conservalo — università, superiori ed elementari. Scarica quando vuoi.',ru:'Заполняй всё и сохраняй — вуз, средняя и начальная школа. Скачивай в любой момент.',pt:'Preenche tudo e guarda — faculdade, secundária e primária. Descarrega quando quiseres.'};
+var C={sr:'Izaberi planer →',en:'Choose a planner →',de:'Planer wählen →',fr:"Choisir l'agenda →",es:'Elegir agenda →',it:"Scegli l'agenda →",ru:'Выбрать планер →',pt:'Escolher agenda →'};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&T[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return T[h]?h:'sr';}
+function ap(){var l=lng(),b=document.querySelector('[data-plan-banner]');if(!b)return;var t=b.querySelector('[data-plt]'),s=b.querySelector('[data-pls]'),c=b.querySelector('[data-plc]');if(t)t.textContent=T[l]||T.sr;if(s)s.textContent=S[l]||S.sr;if(c)c.textContent=C[l]||C.sr;}
+ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}setInterval(ap,1200);
+})();</script>
+<section class="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="ksub">jednostavno</div><h2>Kako radi</h2></div>
+    <div class="steps">
+      <div class="step reveal"><span class="num"></span><h3>Pošalji zadatak</h3><p>Pošalje pitanje ili sliku — Marina odmah odgovara.</p></div>
+      <div class="step reveal"><span class="num"></span><h3>Razumi postupak</h3><p>Vodi ga korak po korak i objašnjava zašto, ne samo šta.</p></div>
+      <div class="step reveal"><span class="num"></span><h3>Uvežbaj</h3><p>Vežba sličan zadatak, dok gradivo ne postane lako.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- · ZA UČENIKE -->
+<section class="student">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="ksub">za tebe, đače</div>
+      <h2>Učenje koje te ne plaši</h2>
+      <p class="stud-lead">Pitaj koliko god puta treba — niko te ne gleda, niko te ne žuri. Marina je strpljiva uvek: i danju, i <b>kasno uveče, pred kontrolni — kad ti pomoć najviše treba.</b></p>
+    </div>
+    <div class="badges">
+      <div class="badge reveal"><span class="em">📷</span><div class="bx"><h3>Slikaj zadatak</h3><p>Slikaš ga, a Marina ga rešava s tobom — korak po korak.</p></div></div>
+      <div class="badge reveal"><span class="em">💡</span><div class="bx"><h3>Razumite, ne pamtite</h3><p>Objašnjava odakle formula dolazi — znanje koje ostaje.</p></div></div>
+      <div class="badge reveal"><span class="em">📚</span><div class="bx"><h3>Skripte i priručnici</h3><p>Otključavaju se uz pretplatu na taj predmet.</p></div></div>
+      <div class="badge reveal"><span class="em">🔥</span><div class="bx"><h3>Niz dana</h3><p>Učiš svaki dan i gledaš kako tvoj niz raste.</p></div></div>
+      <div class="badge reveal"><span class="em">📊</span><div class="bx"><h3>Praćenje napretka</h3><p>Minuti učenja, savladane teme i niz dana — na jednom mestu.</p></div></div>
+      <div class="badge reveal"><span class="em">🌙</span><div class="bx"><h3>Uvek je tu</h3><p>Pred kontrolni ili kasno uveče — Marina je uvek tu.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · PROFESORICA KOJA PAMTI -->
+<section class="parent">
+  <div class="wrap">
+    <div class="pgrid">
+      <div class="reveal">
+        <div class="ksub">pamti, vodi i prati tvoj napredak</div>
+        <h2>Profesorica koja te pamti</h2>
+        <p class="dropcap">MathIA nije obična aplikacija. Profesorica pamti svaki tvoj korak — zna šta si savladao i šta ti sledeće treba — pa te vodi strpljivo, kao pravi privatni profesor. Napredak vidiš iz nedelje u nedelju, a učenje konačno dobija jasan plan.</p>
+        <div class="pchips">
+          <span>🧠 Pamti tvoje gradivo</span>
+          <span>🧭 Vodi te korak po korak</span>
+          <span>💡 Objašnjava i daje povratne informacije</span>
+          <span>📈 Prati tvoj napredak</span>
+        </div>
+      </div>
+      <div class="reveal" style="justify-self:center;display:flex;flex-direction:column;align-items:center;gap:18px">
+        <div style="width:344px;max-width:86vw;background:linear-gradient(180deg,#ffffff,#fffdf8);border:1px solid var(--bord);border-radius:26px;padding:20px 20px 22px;box-shadow:0 34px 66px -30px rgba(120,70,80,.55)">
+          <div style="display:flex;align-items:center;gap:12px;padding-bottom:15px;border-bottom:1px solid var(--bord)">
+            <span style="width:48px;height:48px;border-radius:50%;overflow:hidden;display:inline-flex;box-shadow:0 8px 18px -7px rgba(198,160,92,.85);flex:0 0 48px;border:2px solid var(--goldlt)"><img src="avatar.jpg" alt="Profesorica Marina" style="width:100%;height:100%;object-fit:cover;object-position:center 30%"></span>
+            <div style="line-height:1.25">
+              <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.34rem;color:var(--plum)">Profesorica</div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--rose-dk);font-weight:700"><span style="width:7px;height:7px;border-radius:50%;background:#46b46a;display:inline-block;box-shadow:0 0 0 3px rgba(70,180,106,.2)"></span> <span class="pf-status">Uvek dostupna</span></div>
+            </div>
+          </div>
+          <div class="pf-msg" style="background:var(--blush);border:1px solid #efd9d3;border-radius:16px 16px 16px 6px;padding:13px 15px;margin-top:15px;color:#5a3f45;font-size:.95rem;line-height:1.5">Prošli put smo radili <b style="color:var(--plum)">granične vrednosti</b> 👏 Danas predlažem <b style="color:var(--plum)">3 zadatka</b> za vežbu — pa onda prelazimo na <b style="color:var(--plum)">izvode</b>.</div>
+          <div style="margin-top:16px;background:var(--paper);border:1px solid var(--bord);border-radius:16px;padding:14px 15px">
+            <div style="font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:11px" class="pf-prog">Tvoj napredak</div>
+            <div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin-bottom:6px"><span class="pf-s1">📘 Analiza 1</span><span>62%</span></div>
+            <div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:62%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div>
+            <div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin:13px 0 6px"><span class="pf-s2">📐 Matematika</span><span>78%</span></div>
+            <div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:78%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div><div style="display:flex;justify-content:space-between;font-size:.86rem;color:var(--plum);font-weight:700;margin:13px 0 6px"><span>🔬 Fizika</span><span>45%</span></div><div style="height:9px;border-radius:6px;background:rgba(74,42,56,.10);overflow:hidden"><i style="display:block;height:100%;width:45%;background:linear-gradient(90deg,var(--goldlt),var(--gold))"></i></div><div style="display:flex;gap:14px;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid rgba(231,210,162,.5);font-size:.8rem;color:var(--muted,#90787E)"><span>🔥 Niz: <b style="color:var(--plum)">12 dana</b></span><span>⏱️ Ove nedelje: <b style="color:var(--plum)">3h 20min</b></span></div>
+            <div style="margin-top:13px;display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--bord);border-radius:100px;padding:6px 13px;font-size:.78rem;color:var(--plum);font-weight:700" class="pf-next">🎯 Sledeće: izvodi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · MARINA -->
+<section class="persona">
+  <div class="wrap">
+    <div class="persona-card reveal">
+      <div class="persona-badge">
+        <div class="ring"><img class="ph" alt="Marina" src="avatar.jpg"></div>
+        <div class="nm"><span class="script goldtext" style="font-size:2.2rem;line-height:1">Marina</span><small>tvoja profesorica</small></div>
+      </div>
+      <div class="persona-body">
+        <h2>Jedna profesorica. Jedno ime od poverenja.</h2>
+        <p>Tvoja profesorica za matematiku, fiziku i elektrotehniku — uvek ista, topla i pouzdana podrška, izgrađena na metodologiji dr Marine Bulat. Bez zbunjujućih likova: jedno lice koje dete prepoznaje i kome veruje.</p>
+        <ul class="checks">
+          <li><span class="ck">✓</span> Odgovara na pitanja 24/7</li>
+          <li><span class="ck">✓</span> Objašnjava korak po korak</li>
+          <li><span class="ck">✓</span> Rešava zadatke zajedno sa detetom</li>
+          <li><span class="ck">✓</span> Predlaže plan učenja</li>
+          <li><span class="ck">✓</span> Radi sa priručnicima platforme</li>
+          <li><span class="ck">✓</span> Čita zadatak sa fotografije</li>
+        </ul>
+        <div class="one-brand">Jedan lik. Jedno ime. Jedno poverenje.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · UTISCI -->
+<section class="tst">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="ksub">poverenje</div><h2>Šta kažu roditelji i učenici</h2></div>
+    <div class="reveal" style="max-width:640px;margin:0 auto 26px">
+      <a href="https://oceniprofesora.rs/profesori/marina-bulat" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:18px;justify-content:center;background:#fffcf6;border:1px solid #ECDAC5;border-radius:20px;padding:16px 22px;text-decoration:none;box-shadow:0 16px 40px -28px rgba(120,70,80,.5)">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;color:#C6A05C;font-size:2.4rem;line-height:1;white-space:nowrap">★ 5.0</div>
+        <div style="text-align:left;line-height:1.35">
+          <div style="font-weight:800;color:#432C37">Ocena 5,0 / 5 — 40 studentskih ocena</div>
+          <div style="color:#90787E;font-size:.86rem">Nezavisna platforma „Oceni profesora" · Fakultet tehničkih nauka, Novi Sad · <span style="color:#9C7838;font-weight:700">proveri ↗</span></div>
+        </div>
+      </a>
+    </div>
+    <div class="tgrid" id="tgrid">
+      <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Ćerka je prvi put rekla da joj je matematika — zabavna. Konačno razume, a ne samo prepiše.</p><div class="who">Mama učenice · <span>7. razred</span></div></div>
+      <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Više nema svađe oko telefona. Sada na njemu — uči. Ocene su krenule naviše.</p><div class="who">Roditelj · <span>srednja škola</span></div></div>
+      <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Kao da dete ima privatnog profesora koji je uvek tu, strpljiv i tačan. Vredno svakog dinara.</p><div class="who">Roditelj · <span>osnovna škola</span></div></div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:26px">
+      <a class="btn btn-ghost" href="utisci-posalji.html">Podelite i vi svoj utisak ✍</a>
+    </div>
+  </div>
+</section>
+
+<!-- · REČ MARINE -->
+<style>
+.mquote{background:linear-gradient(180deg,var(--paper),var(--blush));text-align:center;position:relative;overflow:hidden}
+.mquote .wrap{max-width:780px;position:relative;z-index:1}
+.mq-mark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(4.5rem,13vw,8rem);line-height:.55;color:var(--goldlt);opacity:.6;margin:0 0 -6px;user-select:none}
+.mquote .mq{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,4vw,2.55rem);color:var(--plum);max-width:26ch;margin:0 auto;line-height:1.38;letter-spacing:.004em;text-wrap:balance}
+.mquote .mq-vow{font-family:'Cormorant Garamond',serif;font-style:normal;font-weight:600;font-size:clamp(1.55rem,3.6vw,2.25rem);margin:22px auto 0;line-height:1.2;letter-spacing:.006em;text-wrap:balance;background:linear-gradient(100deg,#9C7838 0%,#C6A05C 22%,#E7D2A2 46%,#B58E43 70%,#9C7838 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.mq-sign{margin-top:36px;display:flex;flex-direction:column;align-items:center}
+.mq-flourish{display:block;width:min(184px,50vw);height:14px;margin-bottom:12px;color:var(--gold);opacity:.9}
+.mq-name{font-family:'Tangerine',cursive;font-weight:700;font-size:clamp(3.2rem,9vw,4.6rem);line-height:.9;letter-spacing:.02em;background:linear-gradient(100deg,#5E461E 0%,#856528 16%,#B58E43 34%,#E7D196 47%,#FFF6D6 51%,#E7D196 55%,#B58E43 64%,#856528 82%,#5E461E 100%);background-size:265% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 4s linear infinite}
+.mq-role{font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);margin-top:9px}
+@media(prefers-reduced-motion:reduce){.mq-name{animation:none}}
+</style>
+<section class="mquote">
+  <div class="wrap">
+    <div class="mq-mark" aria-hidden="true">“</div>
+    <p class="mq reveal">Verujem da svako dete može da razume — potrebni su mu samo strpljenje, jasna reč i malo topline.</p>
+    <p class="mq-vow reveal">Zato sam stvorila Mathiu.</p>
+    <div class="mq-sign reveal">
+      <svg class="mq-flourish" viewBox="0 0 200 14" fill="none" aria-hidden="true"><path d="M4 7C40 2 70 2 100 7c30 5 60 5 96 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="100" cy="7" r="2.4" fill="currentColor"/></svg>
+      <span class="mq-name">Marina</span>
+      <span class="mq-role">dr Marina Bulat · tvoja profesorica</span>
+    </div>
+  </div>
+</section>
+
+<!-- · PREDMETI I TESTOVI -->
+<style>
+/* Predmeti/testovi teaser (v2) */
+.subj-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 12px;max-width:760px;margin:8px auto 0}
+.schip{display:inline-flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;color:var(--plum);background:linear-gradient(180deg,#fff,var(--paper));border:1px solid var(--goldlt);border-radius:100px;padding:9px 16px;box-shadow:0 12px 26px -20px rgba(120,70,80,.5)}
+.subj-cta{display:flex;justify-content:center;margin:28px auto 0}
+.subj-bubble{display:inline-flex;align-items:center;gap:20px;max-width:100%;text-decoration:none;background:linear-gradient(120deg,#fffdf8,var(--champ));border:1.6px solid var(--gold);border-radius:22px;padding:18px 22px;box-shadow:0 26px 54px -34px rgba(120,70,80,.5);transition:transform .18s ease,box-shadow .18s ease}
+.subj-bubble:hover{transform:translateY(-3px);box-shadow:0 34px 64px -30px rgba(160,120,60,.55)}
+.subj-bubble .sb-tx{display:flex;flex-direction:column;gap:3px;text-align:left}
+.subj-bubble .sb-tx b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.32rem;color:var(--plum);line-height:1.1}
+.subj-bubble .sb-tx small{font-family:'Nunito',sans-serif;font-size:.82rem;color:#7a6169}
+.subj-bubble .sb-arrow{flex:0 0 auto;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#4a3812;background:linear-gradient(180deg,var(--goldlt),var(--gold));box-shadow:0 10px 22px -10px rgba(198,160,92,.9),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .18s ease}
+.subj-bubble:hover .sb-arrow{transform:translateX(3px)}
+
+/* aptitude block — distinct blush card */
+.apt{position:relative;max-width:860px;margin:42px auto 0;border-radius:24px;overflow:hidden;background:linear-gradient(160deg,#fff,var(--blush));border:1px solid var(--bord)}
+.apt-glow{position:absolute;top:-90px;right:-40px;width:320px;height:260px;background:radial-gradient(ellipse at center,rgba(198,160,92,.22),transparent 68%);pointer-events:none}
+.apt-in{position:relative;padding:30px 28px}
+.apt-eye{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--golddk)}
+.apt-h{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--plum);font-size:clamp(1.5rem,3.4vw,2rem);margin:10px 0 6px;line-height:1.12}
+.apt-p{color:#6a565e;font-size:.96rem;line-height:1.6;margin:0 0 20px;max-width:54ch}
+.apt-lvls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.apt-lvl{display:flex;flex-direction:column;gap:2px;text-decoration:none;text-align:center;background:#fffdf8;border:1.4px solid var(--goldlt);border-radius:16px;padding:16px 12px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.apt-lvl:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 22px 44px -26px rgba(160,120,60,.55)}
+.apt-lvl b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.16rem;color:var(--plum)}
+.apt-lvl small{font-family:'Nunito',sans-serif;font-size:.76rem;color:#8a7078}
+@media(max-width:560px){.apt-lvls{grid-template-columns:1fr}.subj-bubble{gap:14px;padding:16px 18px}.apt-in{padding:24px 20px}}
+</style>
+<section class="subjects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="ksub">sve na jednom mestu</div>
+      <h2 class="subj-h2">Predmeti i testovi</h2>
+      <p class="sub-lead">Preko 60 predmeta — od 5. razreda do fakulteta. Matematika, fizika, programiranje i elektrotehnika. Uz svaki paket biraš predmete, dobijaš klon-profesoricu za svaki i sve skripte.</p>
+    </div>
+
+    <div class="subj-chips reveal">
+      <span class="schip">🎒 Osnovna škola</span>
+      <span class="schip">📐 Srednja škola</span>
+      <span class="schip">🎓 Fakultet</span>
+      <span class="schip">💻 Programiranje</span>
+      <span class="schip">🔌 Elektronika i alati</span>
+      <span class="schip">🎯 Priprema za upis</span>
+    </div>
+
+    <div class="subj-cta reveal">
+      <a class="subj-bubble" href="predmeti.html">
+        <span class="sb-tx"><b>Pogledaj sve predmete</b><small>Cela biblioteka — predmeti, pripreme za upis i skripte</small></span>
+        <span class="sb-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="apt reveal">
+      <div class="apt-glow" aria-hidden="true"></div>
+      <div class="apt-in">
+        <div class="apt-eye">🧭 Test sklonosti</div>
+        <h3 class="apt-h">Nisi siguran šta ti leži?</h3>
+        <p class="apt-p">Kratak test predlaže oblast, predmete i način učenja — pre nego što doneseš odluku. Uradi ga za svoj nivo:</p>
+        <div class="apt-lvls">
+          <a class="apt-lvl apt-sred" href="test-sklonosti.html?nivo=sred"><b>Srednja škola</b><small>za osmake</small></a>
+          <a class="apt-lvl apt-visa" href="test-sklonosti.html?nivo=visa"><b>Viša škola</b><small>za maturante</small></a>
+          <a class="apt-lvl apt-fak" href="test-sklonosti.html?nivo=fak"><b>Fakultet</b><small>za maturante</small></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · PAKETI -->
+<section class="pack" id="paketi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="ksub">paketi</div>
+      <h2>Izaberite predmete</h2>
+      <p>Birate koliko predmeta dete uči — jedan, dva ili tri. Pristup Marini i pratećim skriptama je neograničen, 24 sata dnevno.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <h3>BASIC</h3>
+        <div class="sub">Jedan predmet</div>
+        <ul>
+          <li>Marina za <b>jedan predmet</b></li>
+          <li>Sve skripte i priručnici za taj predmet</li>
+          <li>Čet podrška 24/7</li>
+          <li>Neograničen pristup, bez dnevnog limita</li>
+        </ul>
+        <div class="price">4.990 <span>RSD / mesec</span></div>
+        <a class="btn btn-ghost" href="#" onclick="upOpen('Basic',4990,'basic');return false">Izaberi Basic</a>
+      </div>
+      <div class="tier feat-tier reveal">
+        <span class="badge-top">★ Najpopularnije</span>
+        <h3>GOLD</h3>
+        <div class="sub">Dva predmeta po izboru</div>
+        <ul>
+          <li>Marina za <b>dva predmeta</b></li>
+          <li>Sve skripte i priručnici za oba predmeta</li>
+          <li>Napredna podrška 24/7</li>
+          <li>Neograničen pristup, bez dnevnog limita</li>
+        </ul>
+        <div class="price">6.990 <span>RSD / mesec</span></div>
+        <a class="btn btn-gold" href="#" onclick="upOpen('Gold',6990,'gold');return false">Izaberi Gold</a>
+      </div>
+      <div class="tier reveal">
+        <h3>DIAMOND</h3>
+        <div class="sub">Tri predmeta po izboru</div>
+        <ul>
+          <li>Marina za <b>tri predmeta po izboru</b></li>
+          <li>Cela biblioteka skripti i priručnika</li>
+          <li>Pristup svim skriptama i priručnicima platforme</li>
+        </ul>
+        <div class="price">9.990 <span>RSD / mesec</span></div>
+        <a class="btn btn-rose" href="#" onclick="upOpen('Diamond',9990,'diamond');return false">Izaberi Diamond</a>
+      </div>
+    </div>
+  </div>
+<p style="text-align:center;max-width:620px;margin:20px auto 0;color:#9a8890;font-size:.82rem;font-style:italic;letter-spacing:.01em">Materijali se otvaraju uz aktivnu pretplatu na predmet i zaštićeni su autorskim pravima. &nbsp;·&nbsp; <a href="uslovi.html" style="color:#9C7838;font-style:normal;font-weight:600">Uslovi korišćenja</a></p></section>
+
+<!-- 9 · O MENI teaser -->
+<section class="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="seal reveal"><div class="ring"><img class="ph" alt="dr Marina Bulat" src="avatar.jpg"></div></div>
+      <div class="reveal">
+        <div class="eyebrow" style="color:var(--goldlt)">O meni</div>
+        <h2 style="margin-top:12px">Iza platforme stoji stvarna profesorica</h2>
+        <p>dr Marina Bulat predaje na Fakultetu tehničkih nauka u Novom Sadu. Doktor nauka elektrotehnike i računarstva i magistar primenjene matematike. Svoje znanje iz matematike, fizike i tehničkih nauka godinama prenosi studentima i učenicima, a sada i vašem detetu, kroz Mathia.</p>
+        <div class="chips">
+          <span class="chip"><b>10+</b> godina nastave</span>
+          <span class="chip"><b>100+</b> naučnih radova</span>
+          <span class="chip"><b>🎓</b> doktor nauka</span>
+          <span class="chip"><b>IEEE</b> član · Erasmus+</span>
+        </div>
+        <a class="btn btn-gold" href="o-marini.html">Saznaj više →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · FINAL -->
+<div class="ornament" aria-hidden="true"><span class="dot"></span><svg viewBox="0 0 300 20"><path d="M8 13 C 70 3 150 18 210 9 C 244 4 274 11 294 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="dot"></span><svg class="rev" viewBox="0 0 300 20"><path d="M8 13 C 70 3 150 18 210 9 C 244 4 274 11 294 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="dot"></span></div>
+<section class="final">
+  <div class="wrap">
+    <div class="final-eye eyebrow reveal">Poslednja reč</div>
+    <h2 class="reveal">Pretvorimo vreme na telefonu u vreme koje gradi budućnost.</h2>
+    <p class="reveal">Prvih 15 minuta je besplatno — bez kartice, bez obaveza. Samo vaše dete, zadatak i profesorica koja ne odustaje.</p>
+    <div class="row reveal">
+      <a class="btn btn-gold" href="#paketi">Rezerviši 15 besplatnih minuta →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ===== LUX FOOTER (v2) ===== */
+footer.mfoot{position:relative;background:linear-gradient(180deg,#3b2530 0%,#432C37 44%,#39222e 100%);color:#e8d9de;padding:0;margin-top:10px;overflow:hidden}
+footer.mfoot:before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(231,210,162,.6),transparent)}
+footer.mfoot .glow{position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:680px;height:360px;max-width:120%;background:radial-gradient(ellipse at center,rgba(198,160,92,.20),transparent 68%);pointer-events:none}
+footer.mfoot .wrap{position:relative;max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* crown */
+.mf-crown{text-align:center;padding:54px 0 28px}
+.mf-mono{width:58px;height:58px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.95rem;color:#4a3812;background:linear-gradient(180deg,#F0DCA6,#C6A05C);box-shadow:0 12px 28px -10px rgba(198,160,92,.85),inset 0 1px 0 rgba(255,255,255,.65)}
+footer.mfoot .flove{display:inline-block;font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(2.8rem,7.6vw,4.7rem);line-height:1.04;margin:0;padding:.02em .14em .12em;background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 26%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;-webkit-clip-path:inset(0 100% 0 0);clip-path:inset(0 100% 0 0);animation:mfWrite 2.6s cubic-bezier(.62,.02,.24,1) .3s forwards,foil 7s linear infinite}
+@keyframes mfWrite{to{-webkit-clip-path:inset(0 -.14em 0 0);clip-path:inset(0 -.14em 0 0)}}
+.mf-url{margin:16px 0 0}
+.mf-url a{color:#E7D2A2;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.06em;text-decoration:none;border-bottom:1px solid rgba(231,210,162,.35);padding-bottom:2px;transition:color .18s,border-color .18s}
+.mf-url a:hover{color:#fff;border-color:rgba(231,210,162,.85)}
+
+/* hairline rule */
+.mf-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0 32px}
+.mf-rule .ln{height:1px;width:min(190px,27vw);background:linear-gradient(90deg,transparent,rgba(198,160,92,.55))}
+.mf-rule .ln.r{transform:scaleX(-1)}
+.mf-rule .dm{width:6px;height:6px;transform:rotate(45deg);background:#C6A05C;box-shadow:0 0 12px rgba(198,160,92,.8)}
+
+/* contact */
+.mf-contact{text-align:center;margin:0 0 36px}
+.mf-eye{font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:rgba(231,210,162,.72);margin:0 0 15px}
+footer.mfoot .social{margin:0 auto}
+footer.mfoot .social a{background:rgba(255,252,246,.045);border:1px solid rgba(231,210,162,.26);color:#EFE2E7;box-shadow:none}
+footer.mfoot .social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;border-color:transparent;transform:translateY(-3px);box-shadow:0 18px 38px -20px rgba(0,0,0,.6)}
+
+/* fine print */
+.mf-fine{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:930px;margin:0 auto 30px}
+.mf-card{position:relative;background:rgba(255,252,246,.035);border:1px solid rgba(231,210,162,.16);border-radius:16px;padding:20px 22px}
+.mf-card .ic{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(231,210,162,.34);color:#E7D2A2;font-size:14px;margin-bottom:11px}
+.mf-h{font-family:'Cormorant Garamond',serif;font-weight:600;color:#F1E4D0;font-size:1.04rem;letter-spacing:.3px;margin:0 0 7px}
+.mf-p{color:rgba(232,217,222,.64);font-size:.775rem;line-height:1.62;margin:0}
+.mf-p b{color:#EAD6AC;font-weight:700}
+
+/* legal links */
+.mf-links{display:flex;flex-wrap:wrap;gap:9px 22px;justify-content:center;margin:0 0 24px}
+.mf-links a{color:rgba(231,210,162,.82);font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:600;text-decoration:none;transition:color .18s}
+.mf-links a:hover{color:#fff}
+
+/* payment */
+.mf-pay{text-align:center;margin:0 0 22px}
+.mf-pay .paycard{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:14px;padding:10px 18px;max-width:100%;box-shadow:0 20px 42px -26px rgba(0,0,0,.6)}
+.mf-pay .paycard img{width:min(430px,100%);height:auto;display:block}
+.mf-secure{font-family:'Nunito',sans-serif;font-size:.72rem;color:rgba(232,217,222,.5);max-width:640px;margin:13px auto 0;line-height:1.6}
+
+/* bottom bar */
+.mf-bar{border-top:1px solid rgba(231,210,162,.14);text-align:center;padding:22px 24px 30px}
+.mf-copy{font-family:'Cormorant Garamond',serif;font-size:1.06rem;letter-spacing:.1em;color:rgba(231,210,162,.82)}
+.mf-note{font-family:'Nunito',sans-serif;font-size:.72rem;font-style:italic;color:rgba(232,217,222,.42);max-width:560px;margin:9px auto 0;line-height:1.66}
+
+@media(prefers-reduced-motion:reduce){footer.mfoot .flove{-webkit-clip-path:none;clip-path:none;animation:foil 7s linear infinite}}
+@media(max-width:720px){.mf-fine{grid-template-columns:1fr;gap:14px}.mf-crown{padding:44px 0 24px}}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
+</style>
+
+<footer class="mfoot">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+
+    <div class="mf-crown">
+      <div class="mf-mono" aria-hidden="true">M</div>
+      <div class="flove script goldtext">Uči s ljubavlju</div>
+      <div class="mf-url"><a href="https://www.mathia.rs">www.mathia.rs</a></div>
+    </div>
+
+    <div class="mf-rule" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
+
+    <div class="mf-contact">
+      <p class="mf-eye mf-eye-contact">Kontakt i mreže</p>
+      <div class="social" data-social="1">
+        <a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>kontakt@mathia.rs</span></a><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a>
+      </div>
+    </div>
+
+    <div class="mf-fine">
+      <div class="mf-card">
+        <div class="ic" aria-hidden="true">&copy;</div>
+        <h3 class="mf-h mf-copyr-h">Autorska prava</h3>
+        <p class="mf-p mf-copyr-p">Sav sadržaj na Mathia platformi — tekstovi, lekcije, skripte, zadaci, dizajn, ilustracije i nastavna metodologija — zaštićen je autorskim pravom. <b>Kopiranje, umnožavanje, distribucija, preprodaja i plagiranje, u celini ili delimično, strogo su zabranjeni</b> bez pismene dozvole; neovlašćena upotreba povlači zakonsku odgovornost.</p>
+      </div>
+      <div class="mf-card">
+        <div class="ic" aria-hidden="true">✶</div>
+        <h3 class="mf-h mf-legal-h">Napomena</h3>
+        <p class="mf-p mf-legal-p">Mathia je obrazovna platforma namenjena svim uzrastima — za učenje i pripremu. Nije povezana niti u zvaničnom odnosu sa bilo kojom školom, fakultetom, univerzitetom ni državnom ustanovom. Nazivi ustanova i ispita navode se isključivo informativno. Priprema ne garantuje upis ni rezultat na ispitu.</p>
+      </div>
+    </div>
+
+    <div class="mf-links">
+      <a class="mf-lnk-uslovi" href="uslovi.html">Uslovi kupovine</a>
+      <a class="mf-lnk-rekl" href="reklamacije.html">Reklamacije i povraćaj</a>
+      <a class="mf-lnk-pov" href="povracaj.html">Povraćaj sredstava</a>
+      <a class="mf-lnk-priv" href="privatnost.html">Politika privatnosti</a>
+    </div>
+
+    <div class="mf-pay">
+      <div class="paycard"><img src="placanje-logos.png" alt="Raiffeisen, Visa, Mastercard, DinaCard, Visa Secure, Mastercard ID Check"></div>
+      <p class="mf-secure">Plaćanje karticom je zaštićeno 3-D Secure programom (Visa Secure i Mastercard ID Check). Podaci o kartici unose se isključivo na bezbednoj stranici banke. Sve cene su u dinarima (RSD).</p>
+    </div>
+
+  </div>
+
+  <div class="mf-bar">
+    <div class="mf-copy">© Mathia Edu · 2026</div>
+    <div class="mf-note">Sva prava zadržana. Sadržaj, dizajn i metodologija zaštićeni su autorskim pravima — zabranjeno je kopiranje, umnožavanje i distribucija bez pismene dozvole.</div>
+  </div>
+</footer>
+
+<script>
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+<script>
+(function(){
+  var M=[{s:`.mf-copyr-h`,i:-1,t:{en:`Copyright`,de:`Urheberrecht`,fr:`Droits d'auteur`,es:`Derechos de autor`,it:`Copyright`,ru:`Авторские права`,pt:`Direitos de autor`}},{s:`.mf-copyr-p`,i:-1,t:{en:`All content on the Mathia platform — texts, lessons, study notes, exercises, design, illustrations and teaching methodology — is protected by copyright. <b>Copying, reproduction, distribution, resale and plagiarism of the content, in whole or in part, are strictly prohibited</b> without prior written permission. Any unauthorized use or plagiarism carries legal liability.`,de:`Alle Inhalte der Mathia-Plattform — Texte, Lektionen, Skripte, Aufgaben, Design, Illustrationen und Lehrmethodik — sind urheberrechtlich geschützt. <b>Das Kopieren, Vervielfältigen, Verbreiten, der Weiterverkauf und das Plagiieren der Inhalte, ganz oder teilweise, sind strengstens untersagt</b> ohne vorherige schriftliche Genehmigung. Jede unbefugte Nutzung oder jedes Plagiat zieht rechtliche Haftung nach sich.`,fr:`Tout le contenu de la plateforme Mathia — textes, leçons, supports, exercices, design, illustrations et méthodologie pédagogique — est protégé par le droit d'auteur. <b>La copie, la reproduction, la distribution, la revente et le plagiat du contenu, en tout ou en partie, sont strictement interdits</b> sans autorisation écrite préalable. Toute utilisation non autorisée ou tout plagiat engage la responsabilité légale.`,es:`Todo el contenido de la plataforma Mathia — textos, lecciones, apuntes, ejercicios, diseño, ilustraciones y metodología docente — está protegido por derechos de autor. <b>Quedan estrictamente prohibidos la copia, reproducción, distribución, reventa y plagio del contenido, total o parcial,</b> sin autorización previa por escrito. Cualquier uso no autorizado o plagio conlleva responsabilidad legal.`,it:`Tutti i contenuti della piattaforma Mathia — testi, lezioni, dispense, esercizi, design, illustrazioni e metodologia didattica — sono protetti da copyright. <b>La copia, la riproduzione, la distribuzione, la rivendita e il plagio dei contenuti, in tutto o in parte, sono severamente vietati</b> senza previa autorizzazione scritta. Qualsiasi uso non autorizzato o plagio comporta responsabilità legale.`,ru:`Весь контент платформы Mathia — тексты, уроки, конспекты, задания, дизайн, иллюстрации и методика преподавания — защищён авторским правом. <b>Копирование, воспроизведение, распространение, перепродажа и плагиат контента, полностью или частично, строго запрещены</b> без предварительного письменного разрешения. Любое несанкционированное использование или плагиат влечёт юридическую ответственность.`,pt:`Todo o conteúdo da plataforma Mathia — textos, lições, apontamentos, exercícios, design, ilustrações e metodologia de ensino — está protegido por direitos de autor. <b>A cópia, reprodução, distribuição, revenda e plágio do conteúdo, no todo ou em parte, são estritamente proibidos</b> sem autorização prévia por escrito. Qualquer utilização não autorizada ou plágio acarreta responsabilidade legal.`}},{s:'.nav-r a.link',i:1,t:{en:`Subjects`,de:`Fächer`,fr:`Matières`,es:`Materias`,it:`Materie`,ru:`Предметы`,pt:`Matérias`}},{s:`.mf-legal-h`,i:-1,t:{en:`Disclaimer`,de:`Rechtlicher Hinweis`,fr:`Mentions légales`,es:`Aviso legal`,it:`Avviso legale`,ru:`Правовая оговорка`,pt:`Aviso legal`}},{s:`.mf-legal-p`,i:-1,t:{en:`Mathia is a general-purpose educational platform for learning and exam preparation. It is not affiliated with, nor in any official relationship with, any school, faculty, university or government institution. Names of institutions, faculties and exams are mentioned for informational purposes only — to describe the syllabus and preparation. Preparation on the platform does not guarantee enrolment or any specific exam result.`,de:`Mathia ist eine allgemeine Bildungsplattform zum Lernen und zur Prüfungsvorbereitung. Sie steht in keiner Verbindung und in keinem offiziellen Verhältnis zu Schulen, Fakultäten, Universitäten oder staatlichen Einrichtungen. Namen von Einrichtungen, Fakultäten und Prüfungen werden ausschließlich zu Informationszwecken genannt — zur Beschreibung des Stoffes und der Vorbereitung. Die Vorbereitung auf der Plattform garantiert weder die Einschreibung noch ein bestimmtes Prüfungsergebnis.`,fr:`Mathia est une plateforme éducative à caractère général, dédiée à l'apprentissage et à la préparation aux examens. Elle n'est ni affiliée ni en relation officielle avec une école, une faculté, une université ou une institution publique. Les noms d'institutions, de facultés et d'examens sont mentionnés à titre purement informatif — pour décrire le programme et la préparation. La préparation sur la plateforme ne garantit ni l'admission ni un résultat précis à l'examen.`,es:`Mathia es una plataforma educativa de carácter general, para el aprendizaje y la preparación de exámenes. No está afiliada ni mantiene relación oficial con ninguna escuela, facultad, universidad o institución pública. Los nombres de instituciones, facultades y exámenes se mencionan solo con fines informativos — para describir el temario y la preparación. La preparación en la plataforma no garantiza la admisión ni un resultado concreto en el examen.`,it:`Mathia è una piattaforma educativa di carattere generale, per l'apprendimento e la preparazione agli esami. Non è affiliata né ha alcun rapporto ufficiale con scuole, facoltà, università o istituzioni pubbliche. I nomi di istituzioni, facoltà ed esami sono citati solo a scopo informativo — per descrivere il programma e la preparazione. La preparazione sulla piattaforma non garantisce l'iscrizione né alcun risultato specifico all'esame.`,ru:`Mathia — образовательная платформа общего характера для обучения и подготовки к экзаменам. Она не связана и не состоит в официальных отношениях ни с одной школой, факультетом, университетом или государственным учреждением. Названия учреждений, факультетов и экзаменов приводятся исключительно в информационных целях — для описания программы и подготовки. Подготовка на платформе не гарантирует поступление или какой-либо конкретный результат на экзамене.`,pt:`Mathia é uma plataforma educativa de caráter geral, para aprendizagem e preparação para exames. Não está afiliada nem mantém qualquer relação oficial com escolas, faculdades, universidades ou instituições públicas. Os nomes de instituições, faculdades e exames são mencionados apenas para fins informativos — para descrever o programa e a preparação. A preparação na plataforma não garante a admissão nem qualquer resultado específico no exame.`}},{s:`.signature`,i:-1,t:{en:`Dr Marina Bulat`,de:`Dr. Marina Bulat`,fr:`Dr Marina Bulat`,es:`Dra. Marina Bulat`,it:`Dott.ssa Marina Bulat`,ru:`д-р Marina Bulat`,pt:`Dra. Marina Bulat`}},{s:'.mf-note',i:0,t:{en:`All rights reserved. Content, design and methodology are protected by copyright — copying, reproduction and distribution without written permission are prohibited.`,de:`Alle Rechte vorbehalten. Inhalte, Design und Methodik sind urheberrechtlich geschützt — Kopieren, Vervielfältigen und Verbreiten ohne schriftliche Genehmigung sind untersagt.`,fr:`Tous droits réservés. Le contenu, le design et la méthodologie sont protégés par le droit d'auteur — la copie, la reproduction et la distribution sans autorisation écrite sont interdites.`,es:`Todos los derechos reservados. El contenido, el diseño y la metodología están protegidos por derechos de autor — se prohíbe la copia, reproducción y distribución sin autorización por escrito.`,it:`Tutti i diritti riservati. Contenuti, design e metodologia sono protetti da copyright — è vietata la copia, la riproduzione e la distribuzione senza autorizzazione scritta.`,ru:`Все права защищены. Содержимое, дизайн и методология защищены авторским правом — копирование, воспроизведение и распространение без письменного разрешения запрещены.`,pt:`Todos os direitos reservados. O conteúdo, o design e a metodologia estão protegidos por direitos de autor — é proibida a cópia, reprodução e distribuição sem autorização escrita.`}},{s:`.bsub`,i:0,t:{en:`with Marina`,de:`mit Marina`,fr:`avec Marina`,es:`con Marina`,it:`con Marina`,ru:`с Мариной`,pt:`com Marina`}},
+    {s:'.nav-r a.link',i:0,t:{en:`What is Mathia`,de:`Was ist Mathia`,fr:`Qu'est-ce que Mathia`,es:`Qué es Mathia`,it:`Cos'è Mathia`,ru:`Что такое Mathia`,pt:`O que é Mathia`}},
+    {s:'.nav-r a.link',i:2,t:{en:`Shop`,de:`Shop`,fr:`Boutique`,es:`Tienda`,it:`Negozio`,ru:`Магазин`,pt:`Loja`}},
+    {s:'.nav-r a.link',i:3,t:{en:`Plans`,de:`Pakete`,fr:`Forfaits`,es:`Planes`,it:`Pacchetti`,ru:`Тарифы`,pt:`Planos`}},
+    {s:'.nav-r a.link',i:4,t:{en:`About me`,de:`Über mich`,fr:`À propos`,es:`Sobre mí`,it:`Chi sono`,ru:`Обо мне`,pt:`Sobre mim`}},
+    {s:'.slogan',i:-1,t:{en:`Learn with Marina`,de:`Lerne mit Marina`,fr:`Apprends avec Marina`,es:`Aprende con Marina`,it:`Impara con Marina`,ru:`Учись с Мариной`,pt:`Aprende com Marina`}},
+    {s:'.eyebrow',i:0,t:{en:`Mathematics · Physics · Electrical engineering`,de:`Mathematik · Physik · Elektrotechnik`,fr:`Mathématiques · Physique · Électrotechnique`,es:`Matemáticas · Física · Electrotecnia`,it:`Matematica · Fisica · Elettrotecnica`,ru:`Математика · Физика · Электротехника`,pt:`Matemática · Física · Eletrotécnica`}},
+    {s:'.hero h1',i:0,t:{en:`Turn your phone into <span class="gold-underline">the most powerful learning tool</span>.`,de:`Mach dein Handy zum <span class="gold-underline">stärksten Lernwerkzeug</span>.`,fr:`Transforme ton téléphone en <span class="gold-underline">l'outil d'apprentissage le plus puissant</span>.`,es:`Convierte tu teléfono en <span class="gold-underline">la herramienta de aprendizaje más poderosa</span>.`,it:`Trasforma il telefono nello <span class="gold-underline">strumento di apprendimento più potente</span>.`,ru:`Преврати телефон в <span class="gold-underline">самый мощный инструмент обучения</span>.`,pt:`Transforma o teu telemóvel na <span class="gold-underline">ferramenta de aprendizagem mais poderosa</span>.`}},
+    {s:'.lead',i:0,t:{en:`I built the first platform of its kind: you learn with me — a teacher always by your side — through the device you love most. Easy, clear, at your own pace. And your parents follow every step.`,de:`Ich habe die erste Plattform dieser Art geschaffen: Du lernst mit mir — einer Lehrerin, die immer für dich da ist — über das Gerät, das du am liebsten hast. Einfach, klar, in deinem Tempo. Und deine Eltern verfolgen jeden Fortschritt.`,fr:`J'ai créé la première plateforme de ce type : tu apprends avec moi — une professeure toujours à tes côtés — grâce à l'appareil que tu préfères. Simplement, clairement, à ton rythme. Et tes parents suivent chaque progrès.`,es:`He creado la primera plataforma de este tipo: aprendes conmigo — una profesora siempre a tu lado — a través del dispositivo que más te gusta. Fácil, claro y a tu ritmo. Y tus padres siguen cada avance.`,it:`Ho creato la prima piattaforma di questo tipo: impari con me — una professoressa sempre al tuo fianco — tramite il dispositivo che ami di più. Facile, chiaro, al tuo ritmo. E i tuoi genitori seguono ogni progresso.`,ru:`Я создала первую платформу такого рода: ты учишься со мной — преподавателем, который всегда рядом, — через устройство, которое любишь больше всего. Легко, понятно, в своём темпе. А твои родители видят каждый шаг.`,pt:`Criei a primeira plataforma deste tipo: aprendes comigo — uma professora sempre ao teu lado — através do aparelho que mais adoras. Fácil, claro e ao teu ritmo. E os teus pais acompanham cada progresso.`}},
+    {s:'.cta-row .btn-gold',i:0,t:{en:`Start free →`,de:`Kostenlos starten →`,fr:`Commencer gratuitement →`,es:`Empieza gratis →`,it:`Inizia gratis →`,ru:`Начать бесплатно →`,pt:`Começa grátis →`}},
+    {s:'.cta-row .btn-rose',i:0,t:{en:`Meet Marina`,de:`Marina kennenlernen`,fr:`Rencontrez Marina`,es:`Conoce a Marina`,it:`Conosci Marina`,ru:`Познакомьтесь с Мариной`,pt:`Conhece a Marina`}},
+    {s:'.microtrust',i:0,t:{en:`<b>15 minutes free</b> · no card · cancel anytime`,de:`<b>15 Minuten gratis</b> · ohne Karte · jederzeit kündbar`,fr:`<b>15 minutes gratuites</b> · sans carte · annulez quand vous voulez`,es:`<b>15 minutos gratis</b> · sin tarjeta · cancela cuando quieras`,it:`<b>15 minuti gratis</b> · senza carta · disdici quando vuoi`,ru:`<b>15 минут бесплатно</b> · без карты · отмена в любой момент`,pt:`<b>15 minutos grátis</b> · sem cartão · cancela quando quiseres`}},
+    {s:'.portrait .cap',i:0,t:{en:`(coming soon: your photo)`,de:`(bald: Ihr Foto)`,fr:`(bientôt : votre photo)`,es:`(pronto: tu foto)`,it:`(presto: la tua foto)`,ru:`(скоро: ваше фото)`,pt:`(em breve: a tua foto)`}},
+
+    {s:'.pain .q',i:0,t:{en:`Does your child never put the phone down?`,de:`Legt Ihr Kind das Handy nie aus der Hand?`,fr:`Votre enfant ne lâche-t-il jamais son téléphone ?`,es:`¿Su hijo no suelta el teléfono?`,it:`Vostro figlio non stacca mai gli occhi dal telefono?`,ru:`Ваш ребёнок не выпускает телефон из рук?`,pt:`O seu filho não larga o telemóvel?`}},
+    {s:'.pain .q',i:1,t:{en:`Does every talk about school end in an argument while the grades slowly slip?`,de:`Endet jedes Gespräch über die Schule im Streit, während die Noten langsam sinken?`,fr:`Chaque discussion sur l'école finit-elle en dispute, pendant que les notes baissent ?`,es:`¿Cada charla sobre la escuela acaba en discusión mientras las notas bajan?`,it:`Ogni discorso sulla scuola finisce in lite, mentre i voti calano?`,ru:`Каждый разговор о школе заканчивается ссорой, а оценки медленно падают?`,pt:`Cada conversa sobre a escola acaba em discussão e as notas vão caindo?`}},
+    {s:'.pain .big',i:0,t:{en:`What if I told you the phone is no longer the problem — <em>but the solution?</em>`,de:`Was, wenn ich Ihnen sage, dass das Handy nicht mehr das Problem ist — <em>sondern die Lösung?</em>`,fr:`Et si je vous disais que le téléphone n'est plus le problème — <em>mais la solution ?</em>`,es:`¿Y si le dijera que el teléfono ya no es el problema — <em>sino la solución?</em>`,it:`E se vi dicessi che il telefono non è più il problema — <em>ma la soluzione?</em>`,ru:`А что, если я скажу, что телефон больше не проблема — <em>а решение?</em>`,pt:`E se eu lhe dissesse que o telemóvel já não é o problema — <em>mas a solução?</em>`}},
+
+    {s:'.what .ksub',i:0,t:{en:`my mission`,de:`meine Mission`,fr:`ma mission`,es:`mi misión`,it:`la mia missione`,ru:`моя миссия`,pt:`a minha missão`}},
+    {s:'.what h2',i:0,t:{en:`Learning you actually want to open`,de:`Lernen, das du wirklich öffnen möchtest`,fr:`Un apprentissage que tu as vraiment envie d'ouvrir`,es:`Aprendizaje que de verdad quieres abrir`,it:`Un apprendimento che vuoi davvero aprire`,ru:`Учёба, которую ты действительно хочешь открыть`,pt:`Aprendizagem que realmente queres abrir`}},
+    {s:'.what .sec-head p',i:0,t:{en:`Through interactive lessons, animations and quizzes, even the subjects you avoid most — maths, physics, electrical engineering — become interesting and clear.`,de:`Durch interaktive Lektionen, Animationen und Quizze werden selbst die Fächer, die du am meisten meidest — Mathe, Physik, Elektrotechnik — interessant und verständlich.`,fr:`Grâce à des leçons interactives, des animations et des quiz, même les matières que tu évites le plus — maths, physique, électrotechnique — deviennent intéressantes et claires.`,es:`Con lecciones interactivas, animaciones y cuestionarios, incluso las materias que más evitas — matemáticas, física, electrotecnia — se vuelven interesantes y claras.`,it:`Con lezioni interattive, animazioni e quiz, anche le materie che eviti di più — matematica, fisica, elettrotecnica — diventano interessanti e chiare.`,ru:`Через интерактивные уроки, анимации и викторины даже предметы, которых ты избегаешь больше всего — математика, физика, электротехника — становятся интересными и понятными.`,pt:`Com lições interativas, animações e questionários, até as matérias que mais evitas — matemática, física, eletrotécnica — tornam-se interessantes e claras.`}},
+
+    {s:'.feat .it h3',i:0,t:{en:`Learn through the device they love`,de:`Lernen über das Lieblingsgerät`,fr:`Apprendre via l'appareil préféré`,es:`Aprende con su dispositivo favorito`,it:`Impara con il dispositivo preferito`,ru:`Учёба через любимое устройство`,pt:`Aprende pelo aparelho favorito`}},
+    {s:'.feat .it p',i:0,t:{en:`Interactive lessons, animations and quizzes — content that makes you want to open the app.`,de:`Interaktive Lektionen, Animationen und Quizze — Inhalte, für die du die App gern öffnest.`,fr:`Leçons interactives, animations et quiz — un contenu qui te donne envie d'ouvrir l'appli.`,es:`Lecciones interactivas, animaciones y cuestionarios — contenido que te dan ganas de abrir la app.`,it:`Lezioni interattive, animazioni e quiz — contenuti che ti fanno venire voglia di aprire l'app.`,ru:`Интерактивные уроки, анимации и викторины — то, ради чего сам открываешь приложение.`,pt:`Lições interativas, animações e questionários — conteúdo que te dá vontade de abrir a app.`}},
+    {s:'.feat .it h3',i:1,t:{en:`Hard becomes clear`,de:`Schweres wird klar`,fr:`Le difficile devient clair`,es:`Lo difícil se vuelve claro`,it:`Il difficile diventa chiaro`,ru:`Сложное становится понятным`,pt:`O difícil torna-se claro`}},
+    {s:'.feat .it p',i:1,t:{en:`Complex material broken down step by step, until it clicks — no cramming.`,de:`Komplexer Stoff Schritt für Schritt erklärt, bis es klick macht — ohne Pauken.`,fr:`Des notions complexes décomposées étape par étape, jusqu'au déclic — sans bachotage.`,es:`Material complejo explicado paso a paso, hasta que hace clic — sin empollar.`,it:`Argomenti complessi spiegati passo dopo passo, fino al clic — senza memorizzare a forza.`,ru:`Сложный материал разбирается шаг за шагом, пока не станет ясно — без зубрёжки.`,pt:`Matéria complexa explicada passo a passo, até fazer clique — sem decorar.`}},
+    {s:'.feat .it h3',i:2,t:{en:`Knowledge from the source`,de:`Wissen aus erster Hand`,fr:`Le savoir à la source`,es:`Conocimiento de la fuente`,it:`Sapere dalla fonte`,ru:`Знания из первоисточника`,pt:`Conhecimento na fonte`}},
+    {s:'.feat .it p',i:2,t:{en:`Lessons and handbooks based on dr Marina Bulat's methodology, proven in the classroom.`,de:`Lektionen und Handbücher nach der Methodik von dr Marina Bulat, im Unterricht erprobt.`,fr:`Leçons et manuels selon la méthodologie de dr Marina Bulat, éprouvés en classe.`,es:`Lecciones y manuales según la metodología de la dra. Marina Bulat, probados en el aula.`,it:`Lezioni e manuali secondo la metodologia della dott.ssa Marina Bulat, collaudati in aula.`,ru:`Уроки и пособия по методике д-р Марины Булат, проверенные в классе.`,pt:`Lições e manuais segundo a metodologia da dra. Marina Bulat, testados em sala de aula.`}},
+
+    {s:'.how .ksub',i:0,t:{en:`simple`,de:`ganz einfach`,fr:`tout simple`,es:`sencillo`,it:`semplice`,ru:`просто`,pt:`simples`}},
+    {s:'.how h2',i:0,t:{en:`How it works`,de:`So funktioniert's`,fr:`Comment ça marche`,es:`Cómo funciona`,it:`Come funziona`,ru:`Как это работает`,pt:`Como funciona`}},
+    {s:'.step h3',i:0,t:{en:`Send the task`,de:`Aufgabe senden`,fr:`Envoie l'exercice`,es:`Envía el ejercicio`,it:`Invia l'esercizio`,ru:`Отправь задачу`,pt:`Envia o exercício`}},
+    {s:'.step p',i:0,t:{en:`Your child types a question or photographs the task 📷 — Marina reads it instantly.`,de:`Ihr Kind tippt eine Frage oder fotografiert die Aufgabe 📷 — Marina liest sie sofort.`,fr:`L'enfant tape une question ou photographie l'exercice 📷 — Marina le lit aussitôt.`,es:`El niño escribe una pregunta o fotografía el ejercicio 📷 — Marina lo lee al instante.`,it:`Il bambino scrive una domanda o fotografa l'esercizio 📷 — Marina lo legge subito.`,ru:`Ребёнок печатает вопрос или фотографирует задачу 📷 — Марина сразу её читает.`,pt:`A criança escreve uma pergunta ou fotografa o exercício 📷 — a Marina lê de imediato.`}},
+    {s:'.step h3',i:1,t:{en:`Understand the steps`,de:`Den Weg verstehen`,fr:`Comprends la démarche`,es:`Entiende el proceso`,it:`Capisci il procedimento`,ru:`Пойми ход решения`,pt:`Compreende o processo`}},
+    {s:'.step p',i:1,t:{en:`She guides step by step and explains why, not just what.`,de:`Sie führt Schritt für Schritt und erklärt das Warum, nicht nur das Was.`,fr:`Elle guide pas à pas et explique le pourquoi, pas seulement le quoi.`,es:`Guía paso a paso y explica el porqué, no solo el qué.`,it:`Guida passo dopo passo e spiega il perché, non solo il cosa.`,ru:`Она ведёт шаг за шагом и объясняет почему, а не только что.`,pt:`Orienta passo a passo e explica o porquê, não só o quê.`}},
+    {s:'.step h3',i:2,t:{en:`Practice`,de:`Üben`,fr:`Entraîne-toi`,es:`Practica`,it:`Esercitati`,ru:`Потренируйся`,pt:`Pratica`}},
+    {s:'.step p',i:2,t:{en:`They get a similar task to reinforce it — until the material feels easy.`,de:`Es bekommt eine ähnliche Aufgabe zur Festigung — bis der Stoff leicht wird.`,fr:`Il reçoit un exercice similaire pour consolider — jusqu'à ce que ce soit facile.`,es:`Recibe un ejercicio similar para afianzar — hasta que la materia resulte fácil.`,it:`Riceve un esercizio simile per consolidare — finché la materia diventa facile.`,ru:`Получает похожую задачу для закрепления — пока материал не станет лёгким.`,pt:`Recebe um exercício semelhante para consolidar — até a matéria ficar fácil.`}},
+
+    {s:'.student .ksub',i:0,t:{en:`for you, student`,de:`für dich`,fr:`pour toi`,es:`para ti`,it:`per te`,ru:`тебе, ученик`,pt:`para ti`}},
+    {s:'.student h2',i:0,t:{en:`Learning that doesn't scare you`,de:`Lernen, das dir keine Angst macht`,fr:`Un apprentissage qui ne fait pas peur`,es:`Aprender sin miedo`,it:`Imparare senza paura`,ru:`Учёба, которая тебя не пугает`,pt:`Aprender sem medo`}},
+    {s:'.student .sec-head p',i:0,t:{en:`Ask as many times as you need — no one is watching, no one is rushing you. Marina is always patient: by day and late at night before a test.`,de:`Frag so oft du willst — niemand schaut zu, niemand drängt dich. Marina ist immer geduldig: tagsüber und spät abends vor dem Test.`,fr:`Pose tes questions autant de fois qu'il le faut — personne ne te regarde, personne ne te presse. Marina est toujours patiente : le jour comme tard le soir avant un contrôle.`,es:`Pregunta tantas veces como necesites — nadie te mira, nadie te apura. Marina siempre es paciente: de día y de noche antes del examen.`,it:`Chiedi quante volte vuoi — nessuno ti guarda, nessuno ti mette fretta. Marina è sempre paziente: di giorno e a tarda sera prima della verifica.`,ru:`Спрашивай сколько угодно — никто не смотрит, никто не торопит. Марина всегда терпелива: и днём, и поздно вечером перед контрольной.`,pt:`Pergunta as vezes que precisares — ninguém te observa, ninguém te apressa. A Marina é sempre paciente: de dia e tarde da noite antes do teste.`}},
+    {s:'.badge h3',i:0,t:{en:`Snap the task`,de:`Aufgabe fotografieren`,fr:`Photographie l'exercice`,es:`Fotografía el ejercicio`,it:`Fotografa l'esercizio`,ru:`Сфотографируй задачу`,pt:`Fotografa o exercício`}},
+    {s:'.badge p',i:0,t:{en:`Take a photo and Marina solves it with you — step by step.`,de:`Mach ein Foto und Marina löst es mit dir — Schritt für Schritt.`,fr:`Prends-le en photo et Marina le résout avec toi — étape par étape.`,es:`Hazle una foto y Marina lo resuelve contigo — paso a paso.`,it:`Scattala e Marina lo risolve con te — passo dopo passo.`,ru:`Сфотографируй — и Марина решит вместе с тобой, шаг за шагом.`,pt:`Tira uma foto e a Marina resolve contigo — passo a passo.`}},
+    {s:'.badge h3',i:1,t:{en:`Listen to the explanation`,de:`Erklärung anhören`,fr:`Écoute l'explication`,es:`Escucha la explicación`,it:`Ascolta la spiegazione`,ru:`Слушай объяснение`,pt:`Ouve a explicação`}},
+    {s:'.badge p',i:1,t:{en:`Turn on the voice and follow as Marina reads the solution.`,de:`Schalte die Stimme ein und folge, während Marina die Lösung vorliest.`,fr:`Active la voix et suis pendant que Marina lit la solution.`,es:`Activa la voz y sigue mientras Marina lee la solución.`,it:`Attiva la voce e segui mentre Marina legge la soluzione.`,ru:`Включи голос и следи, как Марина читает решение.`,pt:`Liga a voz e acompanha enquanto a Marina lê a solução.`}},
+    {s:'.badge h3',i:2,t:{en:`Quizzes and games`,de:`Quizze und Spiele`,fr:`Quiz et jeux`,es:`Cuestionarios y juegos`,it:`Quiz e giochi`,ru:`Викторины и игры`,pt:`Questionários e jogos`}},
+    {s:'.badge p',i:2,t:{en:`Learn as if playing — short, clear and fun.`,de:`Lernen wie im Spiel — kurz, klar und mit Spaß.`,fr:`Apprends comme en jouant — court, clair et amusant.`,es:`Aprende como jugando — corto, claro y divertido.`,it:`Impari come giocando — breve, chiaro e divertente.`,ru:`Учись как в игре — коротко, понятно и весело.`,pt:`Aprende como a brincar — curto, claro e divertido.`}},
+    {s:'.badge h3',i:3,t:{en:`Day streak`,de:`Tagesserie`,fr:`Série de jours`,es:`Racha de días`,it:`Serie di giorni`,ru:`Серия дней`,pt:`Sequência de dias`}},
+    {s:'.badge p',i:3,t:{en:`Study every day and watch your streak grow.`,de:`Lerne jeden Tag und sieh deine Serie wachsen.`,fr:`Travaille chaque jour et regarde ta série grandir.`,es:`Estudia cada día y mira crecer tu racha.`,it:`Studia ogni giorno e guarda crescere la tua serie.`,ru:`Учись каждый день и смотри, как растёт твоя серия.`,pt:`Estuda todos os dias e vê a tua sequência crescer.`}},
+    {s:'.badge h3',i:4,t:{en:`Badges and a diploma`,de:`Abzeichen und Diplom`,fr:`Badges et diplôme`,es:`Insignias y diploma`,it:`Distintivi e diploma`,ru:`Значки и диплом`,pt:`Distintivos e diploma`}},
+    {s:'.badge p',i:4,t:{en:`Collect badges and earn your progress diploma.`,de:`Sammle Abzeichen und verdiene dein Fortschrittsdiplom.`,fr:`Collectionne des badges et gagne ton diplôme de progression.`,es:`Reúne insignias y gana tu diploma de progreso.`,it:`Colleziona distintivi e conquista il tuo diploma di progresso.`,ru:`Собирай значки и получи свой диплом за прогресс.`,pt:`Junta distintivos e conquista o teu diploma de progresso.`}},
+    {s:'.badge h3',i:5,t:{en:`Always there`,de:`Immer da`,fr:`Toujours là`,es:`Siempre ahí`,it:`Sempre presente`,ru:`Всегда рядом`,pt:`Sempre presente`}},
+    {s:'.badge p',i:5,t:{en:`Before a test, late at night — no panic, Marina is awake.`,de:`Vor dem Test, spät abends — keine Panik, Marina ist wach.`,fr:`Avant un contrôle, tard le soir — pas de panique, Marina est réveillée.`,es:`Antes del examen, de madrugada — sin pánico, Marina está despierta.`,it:`Prima della verifica, a tarda notte — niente panico, Marina è sveglia.`,ru:`Перед контрольной, поздно ночью — без паники, Марина не спит.`,pt:`Antes do teste, tarde da noite — sem pânico, a Marina está acordada.`}},
+
+    {s:'.parent .ksub',i:0,t:{en:`remembers, guides and tracks your progress`,de:`merkt sich, führt und verfolgt deinen Fortschritt`,fr:`se souvient, te guide et suit ta progression`,es:`recuerda, te guía y sigue tu progreso`,it:`ricorda, ti guida e segue i tuoi progressi`,ru:`помнит, ведёт и следит за прогрессом`,pt:`lembra-se, guia-te e acompanha o teu progresso`}},
+    {s:'.parent h2',i:0,t:{en:`A teacher who remembers you`,de:`Eine Lehrerin, die sich an dich erinnert`,fr:`Une professeure qui se souvient de toi`,es:`Una profesora que te recuerda`,it:`Una professoressa che ti ricorda`,ru:`Преподаватель, который тебя помнит`,pt:`Uma professora que se lembra de ti`}},
+    {s:'.parent p',i:0,t:{en:`MathIA isn't an ordinary app. The teacher remembers every step you take — she knows what you've mastered and what you need next — and guides you patiently, like a real private tutor. You watch your progress grow week by week, and learning finally has a clear plan.`,de:`MathIA ist keine gewöhnliche App. Die Lehrerin merkt sich jeden deiner Schritte — sie weiß, was du beherrschst und was als Nächstes kommt — und führt dich geduldig, wie ein echter Privatlehrer. Deinen Fortschritt siehst du Woche für Woche, und das Lernen bekommt endlich einen klaren Plan.`,fr:`MathIA n'est pas une application ordinaire. La professeure se souvient de chacun de tes pas — elle sait ce que tu maîtrises et ce dont tu as besoin ensuite — et te guide patiemment, comme un vrai professeur particulier. Tu vois ta progression grandir semaine après semaine, et l'apprentissage a enfin un plan clair.`,es:`MathIA no es una aplicación común. La profesora recuerda cada paso que das — sabe lo que ya dominas y lo que necesitas a continuación — y te guía con paciencia, como un verdadero profesor particular. Ves tu progreso crecer semana a semana, y el aprendizaje por fin tiene un plan claro.`,it:`MathIA non è un'app qualunque. La professoressa ricorda ogni tuo passo — sa cosa hai imparato e cosa ti serve dopo — e ti guida con pazienza, come un vero insegnante privato. Vedi i tuoi progressi crescere settimana dopo settimana, e lo studio ha finalmente un piano chiaro.`,ru:`MathIA — не обычное приложение. Преподаватель помнит каждый твой шаг — знает, что ты уже освоил и что нужно дальше — и ведёт тебя терпеливо, как настоящий личный учитель. Ты видишь свой прогресс неделя за неделей, и учёба наконец обретает ясный план.`,pt:`O MathIA não é uma aplicação comum. A professora lembra-se de cada passo que dás — sabe o que já dominas e o que precisas a seguir — e guia-te com paciência, como um verdadeiro professor particular. Vês o teu progresso crescer semana após semana, e a aprendizagem tem finalmente um plano claro.`}},
+    {s:'.pchips span',i:0,t:{en:`🧠 Remembers your material`,de:`🧠 Merkt sich deinen Stoff`,fr:`🧠 Retient ton cours`,es:`🧠 Recuerda tu materia`,it:`🧠 Ricorda il tuo programma`,ru:`🧠 Помнит твой материал`,pt:`🧠 Lembra a tua matéria`}},
+    {s:'.pchips span',i:1,t:{en:`🧭 Guides you step by step`,de:`🧭 Führt dich Schritt für Schritt`,fr:`🧭 Te guide pas à pas`,es:`🧭 Te guía paso a paso`,it:`🧭 Ti guida passo dopo passo`,ru:`🧭 Ведёт тебя шаг за шагом`,pt:`🧭 Guia-te passo a passo`}},
+    {s:'.pchips span',i:2,t:{en:`💡 Gives a plan and advice`,de:`💡 Gibt Plan und Rat`,fr:`💡 Donne un plan et des conseils`,es:`💡 Da un plan y consejos`,it:`💡 Dà un piano e consigli`,ru:`💡 Даёт план и советы`,pt:`💡 Dá um plano e conselhos`}},
+    {s:'.pchips span',i:3,t:{en:`📈 Tracks your progress`,de:`📈 Verfolgt deinen Fortschritt`,fr:`📈 Suit ta progression`,es:`📈 Sigue tu progreso`,it:`📈 Segue i tuoi progressi`,ru:`📈 Следит за твоим прогрессом`,pt:`📈 Acompanha o teu progresso`}},
+    {s:'.pf-status',i:0,t:{en:`always online · remembers your material`,de:`immer erreichbar · merkt sich deinen Stoff`,fr:`toujours en ligne · se souvient de ton cours`,es:`siempre en línea · recuerda tu material`,it:`sempre online · ricorda il tuo programma`,ru:`всегда на связи · помнит твой материал`,pt:`sempre online · lembra-se da tua matéria`}},
+    {s:'.pf-msg',i:0,t:{en:`Last time we worked on <b style="color:var(--plum)">limits</b> 👏 Today I suggest <b style="color:var(--plum)">3 practice problems</b> — then we move on to <b style="color:var(--plum)">derivatives</b>.`,de:`Letztes Mal haben wir <b style="color:var(--plum)">Grenzwerte</b> geübt 👏 Heute schlage ich <b style="color:var(--plum)">3 Übungsaufgaben</b> vor — dann gehen wir zu <b style="color:var(--plum)">Ableitungen</b> über.`,fr:`La dernière fois, on a vu les <b style="color:var(--plum)">limites</b> 👏 Aujourd'hui je propose <b style="color:var(--plum)">3 exercices</b> — puis on passe aux <b style="color:var(--plum)">dérivées</b>.`,es:`La última vez vimos los <b style="color:var(--plum)">límites</b> 👏 Hoy propongo <b style="color:var(--plum)">3 ejercicios</b> — y luego pasamos a las <b style="color:var(--plum)">derivadas</b>.`,it:`L'ultima volta abbiamo fatto i <b style="color:var(--plum)">limiti</b> 👏 Oggi propongo <b style="color:var(--plum)">3 esercizi</b> — poi passiamo alle <b style="color:var(--plum)">derivate</b>.`,ru:`В прошлый раз мы проходили <b style="color:var(--plum)">пределы</b> 👏 Сегодня предлагаю <b style="color:var(--plum)">3 задачи</b> — затем перейдём к <b style="color:var(--plum)">производным</b>.`,pt:`Da última vez vimos os <b style="color:var(--plum)">limites</b> 👏 Hoje proponho <b style="color:var(--plum)">3 exercícios</b> — depois passamos às <b style="color:var(--plum)">derivadas</b>.`}},
+    {s:'.pf-prog',i:0,t:{en:`Your progress`,de:`Dein Fortschritt`,fr:`Ta progression`,es:`Tu progreso`,it:`I tuoi progressi`,ru:`Твой прогресс`,pt:`O teu progresso`}},
+    {s:'.pf-s1',i:0,t:{en:`📘 Analysis 1`,de:`📘 Analysis 1`,fr:`📘 Analyse 1`,es:`📘 Análisis 1`,it:`📘 Analisi 1`,ru:`📘 Анализ 1`,pt:`📘 Análise 1`}},
+    {s:'.pf-s2',i:0,t:{en:`📐 Mathematics`,de:`📐 Mathematik`,fr:`📐 Mathématiques`,es:`📐 Matemáticas`,it:`📐 Matematica`,ru:`📐 Математика`,pt:`📐 Matemática`}},
+    {s:'.pf-next',i:0,t:{en:`🎯 Next: derivatives`,de:`🎯 Als Nächstes: Ableitungen`,fr:`🎯 Ensuite : dérivées`,es:`🎯 Siguiente: derivadas`,it:`🎯 Prossimo: derivate`,ru:`🎯 Далее: производные`,pt:`🎯 A seguir: derivadas`}},
+    {s:'.pf-chip',i:0,t:{en:`🧠 Remembers your material`,de:`🧠 Merkt sich den Stoff`,fr:`🧠 Retient le cours`,es:`🧠 Recuerda la materia`,it:`🧠 Ricorda il programma`,ru:`🧠 Помнит материал`,pt:`🧠 Lembra a matéria`}},
+    {s:'.pf-chip',i:1,t:{en:`🧭 Guides step by step`,de:`🧭 Führt Schritt für Schritt`,fr:`🧭 Guide pas à pas`,es:`🧭 Guía paso a paso`,it:`🧭 Guida passo dopo passo`,ru:`🧭 Ведёт шаг за шагом`,pt:`🧭 Guia passo a passo`}},
+    {s:'.pf-chip',i:2,t:{en:`📈 Tracks progress`,de:`📈 Verfolgt den Fortschritt`,fr:`📈 Suit la progression`,es:`📈 Sigue el progreso`,it:`📈 Segue i progressi`,ru:`📈 Следит за прогрессом`,pt:`📈 Acompanha o progresso`}},
+    {s:'.phone .ttl',i:0,t:{en:`Progress · Ana`,de:`Fortschritt · Ana`,fr:`Progrès · Ana`,es:`Progreso · Ana`,it:`Progressi · Ana`,ru:`Прогресс · Аня`,pt:`Progresso · Ana`}},
+    {s:'.phone .lbl',i:0,t:{en:`<span>Mathematics</span><span>78%</span>`,de:`<span>Mathematik</span><span>78%</span>`,fr:`<span>Mathématiques</span><span>78%</span>`,es:`<span>Matemáticas</span><span>78%</span>`,it:`<span>Matematica</span><span>78%</span>`,ru:`<span>Математика</span><span>78%</span>`,pt:`<span>Matemática</span><span>78%</span>`}},
+    {s:'.phone .lbl',i:1,t:{en:`<span>Physics</span><span>54%</span>`,de:`<span>Physik</span><span>54%</span>`,fr:`<span>Physique</span><span>54%</span>`,es:`<span>Física</span><span>54%</span>`,it:`<span>Fisica</span><span>54%</span>`,ru:`<span>Физика</span><span>54%</span>`,pt:`<span>Física</span><span>54%</span>`}},
+    {s:'.phone .pill',i:0,t:{en:`❤️ Mastered: Linear equations`,de:`❤️ Gemeistert: Lineare Gleichungen`,fr:`❤️ Maîtrisé : Équations linéaires`,es:`❤️ Dominado: Ecuaciones lineales`,it:`❤️ Acquisito: Equazioni lineari`,ru:`❤️ Освоено: Линейные уравнения`,pt:`❤️ Dominado: Equações lineares`}},
+    {s:'.phone .pill',i:1,t:{en:`🕒 Studied today: 42 min`,de:`🕒 Heute gelernt: 42 Min`,fr:`🕒 Étudié aujourd'hui : 42 min`,es:`🕒 Hoy estudió: 42 min`,it:`🕒 Studiato oggi: 42 min`,ru:`🕒 Сегодня: 42 мин`,pt:`🕒 Estudou hoje: 42 min`}},
+    {s:'.phone .pill',i:2,t:{en:`🎯 Next: Quadratic function`,de:`🎯 Als Nächstes: Quadratische Funktion`,fr:`🎯 Suivant : Fonction du second degré`,es:`🎯 Siguiente: Función cuadrática`,it:`🎯 Prossimo: Funzione quadratica`,ru:`🎯 Далее: Квадратичная функция`,pt:`🎯 Seguinte: Função quadrática`}},
+
+    {s:'.persona-badge .nm small',i:0,t:{en:`your teacher`,de:`deine Lehrerin`,fr:`ta professeure`,es:`tu profesora`,it:`la tua professoressa`,ru:`твой преподаватель`,pt:`a tua professora`}},
+    {s:'.persona-body h2',i:0,t:{en:`One teacher. One name you can trust.`,de:`Eine Lehrerin. Ein Name, dem man vertraut.`,fr:`Une professeure. Un nom de confiance.`,es:`Una profesora. Un nombre de confianza.`,it:`Una professoressa. Un nome di fiducia.`,ru:`Один преподаватель. Одно имя, которому доверяешь.`,pt:`Uma professora. Um nome de confiança.`}},
+    {s:'.persona-body p',i:0,t:{en:`Your teacher for maths, physics and electrical engineering — always the same, warm and reliable support, built on dr Marina Bulat's methodology. No confusing characters: one face the child recognises and trusts.`,de:`Deine Lehrerin für Mathe, Physik und Elektrotechnik — immer dieselbe, warme und verlässliche Unterstützung, aufgebaut auf der Methodik von dr Marina Bulat. Keine verwirrenden Figuren: ein Gesicht, das das Kind erkennt und dem es vertraut.`,fr:`Ta professeure de maths, physique et électrotechnique — toujours la même, un soutien chaleureux et fiable, fondé sur la méthodologie de dr Marina Bulat. Pas de personnages déroutants : un seul visage que l'enfant reconnaît et en qui il a confiance.`,es:`Tu profesora de matemáticas, física y electrotecnia — siempre la misma, un apoyo cálido y fiable, basado en la metodología de la dra. Marina Bulat. Sin personajes confusos: una sola cara que el niño reconoce y en quien confía.`,it:`La tua professoressa di matematica, fisica ed elettrotecnica — sempre la stessa, un supporto caldo e affidabile, basato sulla metodologia della dott.ssa Marina Bulat. Nessun personaggio confuso: un solo volto che il bambino riconosce e di cui si fida.`,ru:`Твой преподаватель математики, физики и электротехники — всегда одна, тёплая и надёжная поддержка, основанная на методике д-р Марины Булат. Никаких запутанных персонажей: одно лицо, которое ребёнок узнаёт и которому доверяет.`,pt:`A tua professora de matemática, física e eletrotécnica — sempre a mesma, um apoio caloroso e fiável, baseado na metodologia da dra. Marina Bulat. Sem personagens confusas: um só rosto que a criança reconhece e em quem confia.`}},
+    {s:'.checks li',i:0,t:{en:`<span class="ck">✓</span> Answers questions 24/7`,de:`<span class="ck">✓</span> Beantwortet Fragen rund um die Uhr`,fr:`<span class="ck">✓</span> Répond aux questions 24/7`,es:`<span class="ck">✓</span> Responde preguntas 24/7`,it:`<span class="ck">✓</span> Risponde alle domande 24/7`,ru:`<span class="ck">✓</span> Отвечает на вопросы 24/7`,pt:`<span class="ck">✓</span> Responde a perguntas 24/7`}},
+    {s:'.checks li',i:1,t:{en:`<span class="ck">✓</span> Explains step by step`,de:`<span class="ck">✓</span> Erklärt Schritt für Schritt`,fr:`<span class="ck">✓</span> Explique étape par étape`,es:`<span class="ck">✓</span> Explica paso a paso`,it:`<span class="ck">✓</span> Spiega passo dopo passo`,ru:`<span class="ck">✓</span> Объясняет шаг за шагом`,pt:`<span class="ck">✓</span> Explica passo a passo`}},
+    {s:'.checks li',i:2,t:{en:`<span class="ck">✓</span> Solves tasks together with the child`,de:`<span class="ck">✓</span> Löst Aufgaben gemeinsam mit dem Kind`,fr:`<span class="ck">✓</span> Résout les exercices avec l'enfant`,es:`<span class="ck">✓</span> Resuelve ejercicios junto al niño`,it:`<span class="ck">✓</span> Risolve gli esercizi insieme al bambino`,ru:`<span class="ck">✓</span> Решает задачи вместе с ребёнком`,pt:`<span class="ck">✓</span> Resolve exercícios com a criança`}},
+    {s:'.checks li',i:3,t:{en:`<span class="ck">✓</span> Suggests a study plan`,de:`<span class="ck">✓</span> Schlägt einen Lernplan vor`,fr:`<span class="ck">✓</span> Propose un plan d'étude`,es:`<span class="ck">✓</span> Propone un plan de estudio`,it:`<span class="ck">✓</span> Propone un piano di studio`,ru:`<span class="ck">✓</span> Предлагает план обучения`,pt:`<span class="ck">✓</span> Sugere um plano de estudo`}},
+    {s:'.checks li',i:4,t:{en:`<span class="ck">✓</span> Works with the platform's handbooks`,de:`<span class="ck">✓</span> Arbeitet mit den Handbüchern der Plattform`,fr:`<span class="ck">✓</span> Utilise les manuels de la plateforme`,es:`<span class="ck">✓</span> Trabaja con los manuales de la plataforma`,it:`<span class="ck">✓</span> Usa i manuali della piattaforma`,ru:`<span class="ck">✓</span> Работает с пособиями платформы`,pt:`<span class="ck">✓</span> Usa os manuais da plataforma`}},
+    {s:'.checks li',i:5,t:{en:`<span class="ck">✓</span> Reads the task from a photo`,de:`<span class="ck">✓</span> Liest die Aufgabe vom Foto`,fr:`<span class="ck">✓</span> Lit l'exercice à partir d'une photo`,es:`<span class="ck">✓</span> Lee el ejercicio desde una foto`,it:`<span class="ck">✓</span> Legge l'esercizio da una foto`,ru:`<span class="ck">✓</span> Читает задачу с фотографии`,pt:`<span class="ck">✓</span> Lê o exercício a partir de uma foto`}},
+    {s:'.one-brand',i:0,t:{en:`One character. One name. One trust.`,de:`Eine Figur. Ein Name. Ein Vertrauen.`,fr:`Un visage. Un nom. Une confiance.`,es:`Una figura. Un nombre. Una confianza.`,it:`Un volto. Un nome. Una fiducia.`,ru:`Одно лицо. Одно имя. Одно доверие.`,pt:`Um rosto. Um nome. Uma confiança.`}},
+
+    {s:'.tst .ksub',i:0,t:{en:`trust`,de:`Vertrauen`,fr:`confiance`,es:`confianza`,it:`fiducia`,ru:`доверие`,pt:`confiança`}},
+    {s:'.tst h2',i:0,t:{en:`What parents and students say`,de:`Was Eltern und Schüler sagen`,fr:`Ce que disent parents et élèves`,es:`Lo que dicen padres y alumnos`,it:`Cosa dicono genitori e studenti`,ru:`Что говорят родители и ученики`,pt:`O que dizem pais e alunos`}},
+    {s:'.quote p',i:0,t:{en:`For the first time my daughter said maths is — fun. She finally understands instead of just copying.`,de:`Zum ersten Mal sagte meine Tochter, Mathe sei — lustig. Sie versteht endlich, statt nur abzuschreiben.`,fr:`Pour la première fois, ma fille a dit que les maths sont — amusantes. Elle comprend enfin au lieu de recopier.`,es:`Por primera vez mi hija dijo que las mates son — divertidas. Por fin entiende en vez de solo copiar.`,it:`Per la prima volta mia figlia ha detto che la matematica è — divertente. Finalmente capisce invece di copiare.`,ru:`Впервые дочь сказала, что математика — это весело. Наконец понимает, а не просто списывает.`,pt:`Pela primeira vez a minha filha disse que a matemática é — divertida. Finalmente percebe em vez de só copiar.`}},
+    {s:'.quote .who',i:0,t:{en:`Mother of a student · <span>7th grade</span>`,de:`Mutter einer Schülerin · <span>7. Klasse</span>`,fr:`Mère d'une élève · <span>5e</span>`,es:`Madre de una alumna · <span>7.º grado</span>`,it:`Mamma di una studentessa · <span>2ª media</span>`,ru:`Мама ученицы · <span>7 класс</span>`,pt:`Mãe de uma aluna · <span>7.º ano</span>`}},
+    {s:'.quote p',i:1,t:{en:`No more fights about the phone. Now they learn on it. Grades are going up.`,de:`Kein Streit mehr ums Handy. Jetzt wird darauf gelernt. Die Noten steigen.`,fr:`Fini les disputes pour le téléphone. Maintenant il apprend dessus. Les notes remontent.`,es:`Se acabaron las peleas por el teléfono. Ahora aprende en él. Las notas suben.`,it:`Basta litigi per il telefono. Ora ci impara. I voti salgono.`,ru:`Больше нет ссор из-за телефона. Теперь он на нём учится. Оценки пошли вверх.`,pt:`Acabaram as discussões por causa do telemóvel. Agora aprende nele. As notas estão a subir.`}},
+    {s:'.quote .who',i:1,t:{en:`Parent · <span>high school</span>`,de:`Elternteil · <span>Oberstufe</span>`,fr:`Parent · <span>lycée</span>`,es:`Padre · <span>secundaria</span>`,it:`Genitore · <span>scuola superiore</span>`,ru:`Родитель · <span>старшая школа</span>`,pt:`Pai/Mãe · <span>secundário</span>`}},
+    {s:'.quote p',i:2,t:{en:`It's like having a private tutor who is always there, patient and precise. Worth every dinar.`,de:`Wie ein Privatlehrer, der immer da ist, geduldig und präzise. Jeden Dinar wert.`,fr:`C'est comme un professeur particulier toujours présent, patient et précis. Vaut chaque dinar.`,es:`Es como un profesor particular siempre disponible, paciente y preciso. Vale cada dinar.`,it:`È come avere un insegnante privato sempre presente, paziente e preciso. Vale ogni dinaro.`,ru:`Как личный репетитор, который всегда рядом, терпеливый и точный. Стоит каждого динара.`,pt:`É como ter um explicador sempre presente, paciente e exato. Vale cada dinar.`}},
+    {s:'.quote .who',i:2,t:{en:`Parent · <span>primary school</span>`,de:`Elternteil · <span>Grundschule</span>`,fr:`Parent · <span>école primaire</span>`,es:`Padre · <span>primaria</span>`,it:`Genitore · <span>scuola primaria</span>`,ru:`Родитель · <span>начальная школа</span>`,pt:`Pai/Mãe · <span>ensino básico</span>`}},
+    {s:'.tst .note',i:0,t:{en:`(examples — replace with real user testimonials)`,de:`(Beispiele — durch echte Nutzerstimmen ersetzen)`,fr:`(exemples — à remplacer par de vrais témoignages)`,es:`(ejemplos — sustituir por testimonios reales)`,it:`(esempi — sostituire con testimonianze reali)`,ru:`(примеры — заменить реальными отзывами)`,pt:`(exemplos — substituir por testemunhos reais)`}},
+
+    {s:'.mq',i:0,t:{en:`"I believe every child can understand — all it takes is patience, a clear explanation and a little warmth. That's why I created Mathia."`,de:`„Ich glaube, dass jedes Kind verstehen kann — es braucht nur Geduld, eine klare Erklärung und etwas Wärme. Deshalb habe ich Mathia geschaffen."`,fr:`« Je crois que chaque enfant peut comprendre — il suffit de patience, d'une explication claire et d'un peu de chaleur. C'est pourquoi j'ai créé Mathia. »`,es:`«Creo que todo niño puede entender — solo hacen falta paciencia, una explicación clara y un poco de calidez. Por eso creé Mathia.»`,it:`«Credo che ogni bambino possa capire — bastano pazienza, una spiegazione chiara e un po' di calore. Per questo ho creato Mathia.»`,ru:`«Я верю, что каждый ребёнок способен понять — нужны лишь терпение, ясное объяснение и немного теплоты. Поэтому я и создала Mathia.»`,pt:`«Acredito que todas as crianças conseguem perceber — basta paciência, uma explicação clara e um pouco de carinho. Foi por isso que criei a Mathia.»`}},
+
+    {s:'.pack .ksub',i:0,t:{en:`plans`,de:`Pakete`,fr:`forfaits`,es:`planes`,it:`pacchetti`,ru:`тарифы`,pt:`planos`}},
+    {s:'.pack h2',i:0,t:{en:`Choose the subjects`,de:`Wählen Sie die Fächer`,fr:`Choisissez les matières`,es:`Elija las materias`,it:`Scegliete le materie`,ru:`Выберите предметы`,pt:`Escolha as matérias`}},
+    {s:'.pack .sec-head p',i:0,t:{en:`You choose how many subjects your child learns — one, two or three. Access to Marina and the accompanying notes is unlimited, 24 hours a day.`,de:`Sie wählen, wie viele Fächer Ihr Kind lernt — eines, zwei oder drei. Der Zugang zu Marina und den begleitenden Skripten ist unbegrenzt, rund um die Uhr.`,fr:`Vous choisissez combien de matières votre enfant étudie — une, deux ou trois. L'accès à Marina et aux supports est illimité, 24 h/24.`,es:`Elige cuántas materias estudia su hijo — una, dos o tres. El acceso a Marina y a los apuntes es ilimitado, 24 horas al día.`,it:`Scegliete quante materie studia vostro figlio — una, due o tre. L'accesso a Marina e alle dispense è illimitato, 24 ore su 24.`,ru:`Вы выбираете, сколько предметов изучает ребёнок — один, два или три. Доступ к Марине и материалам неограничен, 24 часа в сутки.`,pt:`Escolhe quantas matérias o seu filho estuda — uma, duas ou três. O acesso à Marina e aos materiais é ilimitado, 24 horas por dia.`}},
+    {s:'.badge-top',i:0,t:{en:`★ Most popular`,de:`★ Am beliebtesten`,fr:`★ Le plus populaire`,es:`★ Más popular`,it:`★ Più popolare`,ru:`★ Популярный`,pt:`★ Mais popular`}},
+    {s:'.tier .sub',i:0,t:{en:`One subject`,de:`Ein Fach`,fr:`Une matière`,es:`Una materia`,it:`Una materia`,ru:`Один предмет`,pt:`Uma matéria`}},
+    {s:'.tier .sub',i:1,t:{en:`Two subjects of your choice`,de:`Zwei Fächer nach Wahl`,fr:`Deux matières au choix`,es:`Dos materias a elegir`,it:`Due materie a scelta`,ru:`Два предмета на выбор`,pt:`Duas matérias à escolha`}},
+    {s:'.tier .sub',i:2,t:{en:`Three subjects of your choice + exclusive`,de:`Drei Fächer nach Wahl + exklusiv`,fr:`Trois matières au choix + exclusif`,es:`Tres materias a elegir + exclusivo`,it:`Tre materie a scelta + esclusivo`,ru:`Три предмета на выбор + эксклюзив`,pt:`Três matérias à escolha + exclusivo`}},
+    {s:'.tier ul li',i:0,t:{en:`Marina for <b>one subject</b>`,de:`Marina für <b>ein Fach</b>`,fr:`Marina pour <b>une matière</b>`,es:`Marina para <b>una materia</b>`,it:`Marina per <b>una materia</b>`,ru:`Марина по <b>одному предмету</b>`,pt:`Marina para <b>uma matéria</b>`}},
+    {s:'.tier ul li',i:1,t:{en:`All notes and handbooks for that subject`,de:`Alle Skripte und Handbücher für dieses Fach`,fr:`Tous les supports et manuels de cette matière`,es:`Todos los apuntes y manuales de esa materia`,it:`Tutte le dispense e i manuali di quella materia`,ru:`Все материалы и пособия по этому предмету`,pt:`Todos os materiais e manuais dessa matéria`}},
+    {s:'.tier ul li',i:2,t:{en:`Chat support 24/7`,de:`Chat-Support rund um die Uhr`,fr:`Assistance par chat 24/7`,es:`Soporte por chat 24/7`,it:`Supporto in chat 24/7`,ru:`Поддержка в чате 24/7`,pt:`Apoio por chat 24/7`}},
+    {s:'.tier ul li',i:3,t:{en:`Parent insight · unlimited access`,de:`Einblick für Eltern · unbegrenzter Zugang`,fr:`Suivi parental · accès illimité`,es:`Seguimiento para padres · acceso ilimitado`,it:`Controllo per i genitori · accesso illimitato`,ru:`Контроль для родителей · неограниченный доступ`,pt:`Acompanhamento dos pais · acesso ilimitado`}},
+    {s:'.tier ul li',i:4,t:{en:`Marina for <b>two subjects</b>`,de:`Marina für <b>zwei Fächer</b>`,fr:`Marina pour <b>deux matières</b>`,es:`Marina para <b>dos materias</b>`,it:`Marina per <b>due materie</b>`,ru:`Марина по <b>двум предметам</b>`,pt:`Marina para <b>duas matérias</b>`}},
+    {s:'.tier ul li',i:5,t:{en:`All notes and handbooks for both subjects`,de:`Alle Skripte und Handbücher für beide Fächer`,fr:`Tous les supports et manuels des deux matières`,es:`Todos los apuntes y manuales de ambas materias`,it:`Tutte le dispense e i manuali di entrambe le materie`,ru:`Все материалы и пособия по обоим предметам`,pt:`Todos os materiais e manuais de ambas as matérias`}},
+    {s:'.tier ul li',i:6,t:{en:`Advanced support 24/7`,de:`Erweiterter Support rund um die Uhr`,fr:`Assistance avancée 24/7`,es:`Soporte avanzado 24/7`,it:`Supporto avanzato 24/7`,ru:`Расширенная поддержка 24/7`,pt:`Apoio avançado 24/7`}},
+    {s:'.tier ul li',i:7,t:{en:`Parent insight · unlimited access`,de:`Einblick für Eltern · unbegrenzter Zugang`,fr:`Suivi parental · accès illimité`,es:`Seguimiento para padres · acceso ilimitado`,it:`Controllo per i genitori · accesso illimitato`,ru:`Контроль для родителей · неограниченный доступ`,pt:`Acompanhamento dos pais · acesso ilimitado`}},
+    {s:'.tier ul li',i:8,t:{en:`Marina for <b>three subjects of your choice</b>`,de:`Marina für <b>drei Fächer nach Wahl</b>`,fr:`Marina pour <b>trois matières au choix</b>`,es:`Marina para <b>tres materias a elegir</b>`,it:`Marina per <b>tre materie a scelta</b>`,ru:`Марина по <b>трём предметам на выбор</b>`,pt:`Marina para <b>três matérias à escolha</b>`}},
+    {s:'.tier ul li',i:9,t:{en:`The entire library of notes and handbooks`,de:`Die gesamte Bibliothek an Skripten und Handbüchern`,fr:`Toute la bibliothèque de supports et manuels`,es:`Toda la biblioteca de apuntes y manuales`,it:`L'intera biblioteca di dispense e manuali`,ru:`Вся библиотека материалов и пособий`,pt:`Toda a biblioteca de materiais e manuais`}},
+    {s:'.tier ul li',i:10,t:{en:`Personalised study plan · priority support`,de:`Individueller Lernplan · Prioritäts-Support`,fr:`Plan d'étude personnalisé · assistance prioritaire`,es:`Plan de estudio personalizado · soporte prioritario`,it:`Piano di studio personalizzato · supporto prioritario`,ru:`Персональный план обучения · приоритетная поддержка`,pt:`Plano de estudo personalizado · apoio prioritário`}},
+    {s:'.tier .btn',i:0,t:{en:`Choose Basic`,de:`Basic wählen`,fr:`Choisir Basic`,es:`Elegir Basic`,it:`Scegli Basic`,ru:`Выбрать Basic`,pt:`Escolher Basic`}},
+    {s:'.tier .btn',i:1,t:{en:`Choose Gold`,de:`Gold wählen`,fr:`Choisir Gold`,es:`Elegir Gold`,it:`Scegli Gold`,ru:`Выбрать Gold`,pt:`Escolher Gold`}},
+    {s:'.tier .btn',i:2,t:{en:`Choose Diamond`,de:`Diamond wählen`,fr:`Choisir Diamond`,es:`Elegir Diamond`,it:`Scegli Diamond`,ru:`Выбрать Diamond`,pt:`Escolher Diamond`}},
+    {s:'.tier .price span',i:0,t:{en:`RSD / month`,de:`RSD / Monat`,fr:`RSD / mois`,es:`RSD / mes`,it:`RSD / mese`,ru:`RSD / мес`,pt:`RSD / mês`}},
+    {s:'.tier .price span',i:1,t:{en:`RSD / month`,de:`RSD / Monat`,fr:`RSD / mois`,es:`RSD / mes`,it:`RSD / mese`,ru:`RSD / мес`,pt:`RSD / mês`}},
+    {s:'.tier .price span',i:2,t:{en:`RSD / month`,de:`RSD / Monat`,fr:`RSD / mois`,es:`RSD / mes`,it:`RSD / mese`,ru:`RSD / мес`,pt:`RSD / mês`}},
+
+    {s:'.eyebrow',i:1,t:{en:`About me`,de:`Über mich`,fr:`À propos`,es:`Sobre mí`,it:`Chi sono`,ru:`Обо мне`,pt:`Sobre mim`}},
+    {s:'.about h2',i:0,t:{en:`Behind the platform stands a real teacher`,de:`Hinter der Plattform steht eine echte Lehrerin`,fr:`Derrière la plateforme, une vraie professeure`,es:`Detrás de la plataforma hay una profesora real`,it:`Dietro la piattaforma c'è una vera professoressa`,ru:`За платформой стоит настоящий преподаватель`,pt:`Por trás da plataforma está uma verdadeira professora`}},
+    {s:'.about p',i:0,t:{en:`dr Marina Bulat teaches at the Faculty of Technical Sciences in Novi Sad. A doctor of science in electrical engineering and computing and a master of applied mathematics. For years she has passed her knowledge of mathematics, physics and technical sciences to students, and now to your child, through Mathia.`,de:`dr Marina Bulat lehrt an der Fakultät für Technische Wissenschaften in Novi Sad. Doktorin der Wissenschaften in Elektrotechnik und Informatik und Master der angewandten Mathematik. Seit Jahren gibt sie ihr Wissen in Mathematik, Physik und technischen Wissenschaften an Studierende weiter — und nun an Ihr Kind, über Mathia.`,fr:`dr Marina Bulat enseigne à la Faculté des sciences techniques de Novi Sad. Docteure en sciences en génie électrique et informatique et titulaire d'un master en mathématiques appliquées. Depuis des années, elle transmet son savoir en mathématiques, physique et sciences techniques aux étudiants, et désormais à votre enfant, grâce à Mathia.`,es:`La dra. Marina Bulat enseña en la Facultad de Ciencias Técnicas de Novi Sad. Doctora en ciencias en ingeniería eléctrica e informática y máster en matemáticas aplicadas. Durante años ha transmitido su saber en matemáticas, física y ciencias técnicas a los estudiantes, y ahora a su hijo, a través de Mathia.`,it:`La dott.ssa Marina Bulat insegna alla Facoltà di Scienze Tecniche di Novi Sad. Dottoressa di ricerca in ingegneria elettrica e informatica e magistrale in matematica applicata. Da anni trasmette il suo sapere di matematica, fisica e scienze tecniche agli studenti, e ora a vostro figlio, attraverso Mathia.`,ru:`Д-р Марина Булат преподаёт на Факультете технических наук в Нови-Саде. Доктор наук в области электротехники и вычислительной техники и магистр прикладной математики. Многие годы она передаёт свои знания по математике, физике и техническим наукам студентам, а теперь и вашему ребёнку — через Mathia.`,pt:`A dra. Marina Bulat ensina na Faculdade de Ciências Técnicas em Novi Sad. Doutora em ciências em engenharia elétrica e informática e mestre em matemática aplicada. Há anos transmite o seu conhecimento de matemática, física e ciências técnicas aos estudantes, e agora ao seu filho, através da Mathia.`}},
+    {s:'.about .chip',i:0,t:{en:`<b>10+</b> years of teaching`,de:`<b>10+</b> Jahre Lehre`,fr:`<b>10+</b> ans d'enseignement`,es:`<b>10+</b> años enseñando`,it:`<b>10+</b> anni di insegnamento`,ru:`<b>10+</b> лет преподавания`,pt:`<b>10+</b> anos a ensinar`}},
+    {s:'.about .chip',i:1,t:{en:`<b>100+</b> scientific papers`,de:`<b>100+</b> wissenschaftliche Arbeiten`,fr:`<b>100+</b> articles scientifiques`,es:`<b>100+</b> artículos científicos`,it:`<b>100+</b> articoli scientifici`,ru:`<b>100+</b> научных работ`,pt:`<b>100+</b> artigos científicos`}},
+    {s:'.about .chip',i:2,t:{en:`<b>🎓</b> doctor of science`,de:`<b>🎓</b> Doktorin der Wissenschaften`,fr:`<b>🎓</b> docteure en sciences`,es:`<b>🎓</b> doctora en ciencias`,it:`<b>🎓</b> dottore di ricerca`,ru:`<b>🎓</b> доктор наук`,pt:`<b>🎓</b> doutora em ciências`}},
+    {s:'.about .chip',i:3,t:{en:`<b>IEEE</b> member · Erasmus+`,de:`<b>IEEE</b>-Mitglied · Erasmus+`,fr:`membre <b>IEEE</b> · Erasmus+`,es:`miembro <b>IEEE</b> · Erasmus+`,it:`membro <b>IEEE</b> · Erasmus+`,ru:`член <b>IEEE</b> · Erasmus+`,pt:`membro <b>IEEE</b> · Erasmus+`}},
+    {s:'.about .btn',i:0,t:{en:`Learn more →`,de:`Mehr erfahren →`,fr:`En savoir plus →`,es:`Saber más →`,it:`Scopri di più →`,ru:`Узнать больше →`,pt:`Saber mais →`}},
+
+    {s:'.final h2',i:0,t:{en:`Let's turn time on the phone into time that builds a future.`,de:`Verwandeln wir Handyzeit in Zeit, die Zukunft schafft.`,fr:`Transformons le temps passé au téléphone en temps qui construit l'avenir.`,es:`Convirtamos el tiempo en el teléfono en tiempo que construye futuro.`,it:`Trasformiamo il tempo al telefono in tempo che costruisce il futuro.`,ru:`Превратим время в телефоне во время, которое строит будущее.`,pt:`Vamos transformar o tempo no telemóvel em tempo que constrói o futuro.`}},
+    {s:'.final p',i:0,t:{en:`The first 15 minutes are on us — no card, no obligation. Just your child, a task, and a teacher who doesn't give up.`,de:`Die ersten 15 Minuten gehen auf uns — ohne Karte, ohne Verpflichtung. Nur Ihr Kind, eine Aufgabe und eine Lehrerin, die nicht aufgibt.`,fr:`Les 15 premières minutes sont offertes — sans carte, sans engagement. Juste votre enfant, un exercice et une professeure qui n'abandonne pas.`,es:`Los primeros 15 minutos corren por nuestra cuenta — sin tarjeta, sin compromiso. Solo su hijo, un ejercicio y una profesora que no se rinde.`,it:`I primi 15 minuti li offriamo noi — senza carta, senza impegno. Solo vostro figlio, un esercizio e una professoressa che non molla.`,ru:`Первые 15 минут за наш счёт — без карты, без обязательств. Только ваш ребёнок, задача и преподаватель, который не сдаётся.`,pt:`Os primeiros 15 minutos são por nossa conta — sem cartão, sem compromisso. Só o seu filho, um exercício e uma professora que não desiste.`}},
+    {s:'.final .btn-gold',i:0,t:{en:`Claim your 15 free minutes →`,de:`Sichere dir 15 Gratis-Minuten →`,fr:`Réserve tes 15 minutes offertes →`,es:`Reserva tus 15 minutos gratis →`,it:`Prenota i tuoi 15 minuti gratis →`,ru:`Забронируй 15 бесплатных минут →`,pt:`Reserva os teus 15 minutos grátis →`}},
+
+    {s:'.tb-x',i:0,t:{en:`<span class="tb-orn">❦</span> Mathematics · Physics · Electrical engineering`,de:`<span class="tb-orn">❦</span> Mathematik · Physik · Elektrotechnik`,fr:`<span class="tb-orn">❦</span> Mathématiques · Physique · Électrotechnique`,es:`<span class="tb-orn">❦</span> Matemáticas · Física · Electrotecnia`,it:`<span class="tb-orn">❦</span> Matematica · Fisica · Elettrotecnica`,ru:`<span class="tb-orn">❦</span> Математика · Физика · Электротехника`,pt:`<span class="tb-orn">❦</span> Matemática · Física · Eletrotécnica`}},
+    {s:'.subjects .ksub',i:0,t:{en:`all in one place`,de:`alles an einem Ort`,fr:`tout au même endroit`,es:`todo en un solo lugar`,it:`tutto in un unico posto`,ru:`всё в одном месте`,pt:`tudo num só lugar`}},
+    {s:'.subjects h2',i:0,t:{en:`Subjects & tests`,de:`Fächer & Tests`,fr:`Matières et tests`,es:`Materias y tests`,it:`Materie e test`,ru:`Предметы и тесты`,pt:`Matérias e testes`}},
+    {s:'.sub-lead',i:0,t:{en:`Over 60 subjects — from grade 5 to university. Maths, physics, programming and electrical engineering. Every package lets you pick subjects, with a clone-teacher for each and all the study notes.`,de:`Über 60 Fächer — von der 5. Klasse bis zur Universität. Mathe, Physik, Programmierung und Elektrotechnik. In jedem Paket wählst du Fächer, mit einem Klon-Lehrer für jedes und allen Skripten.`,fr:`Plus de 60 matières — de la 5e à l'université. Maths, physique, programmation et électrotechnique. Chaque forfait te laisse choisir les matières, avec un professeur-clone pour chacune et tous les supports.`,es:`Más de 60 materias — de 5.º a la universidad. Matemáticas, física, programación y electrotecnia. Cada plan te deja elegir materias, con una profesora-clon para cada una y todos los apuntes.`,it:`Oltre 60 materie — dalla quinta all'università. Matematica, fisica, programmazione ed elettrotecnica. Ogni pacchetto ti fa scegliere le materie, con una clone-insegnante per ciascuna e tutte le dispense.`,ru:`Более 60 предметов — с 5 класса до университета. Математика, физика, программирование и электротехника. В каждом пакете ты выбираешь предметы, с клоном-преподавателем для каждого и всеми конспектами.`,pt:`Mais de 60 matérias — do 5.º ano à universidade. Matemática, física, programação e eletrotécnica. Cada plano deixa-te escolher matérias, com uma professora-clone para cada uma e todos os apontamentos.`}},
+    {s:'.lvl h3',i:0,t:{en:`Primary school`,de:`Grundschule`,fr:`École primaire`,es:`Primaria`,it:`Scuola primaria`,ru:`Начальная школа`,pt:`Ensino básico`}},
+    {s:'.lvl h3',i:1,t:{en:`High school`,de:`Gymnasium`,fr:`Lycée`,es:`Secundaria`,it:`Scuola superiore`,ru:`Средняя школа`,pt:`Ensino secundário`}},
+    {s:'.lvl h3',i:2,t:{en:`Entrance-exam prep`,de:`Vorbereitung auf die Aufnahmeprüfung`,fr:`Préparation au concours`,es:`Preparación para el examen de acceso`,it:`Preparazione al test d'ingresso`,ru:`Подготовка к вступительным`,pt:`Preparação para o exame de admissão`}},
+    {s:'.lvl h3',i:3,t:{en:`University`,de:`Universität`,fr:`Université`,es:`Universidad`,it:`Università`,ru:`Университет`,pt:`Universidade`}},
+    {s:'.lvl h3',i:4,t:{en:`Programming`,de:`Programmierung`,fr:`Programmation`,es:`Programación`,it:`Programmazione`,ru:`Программирование`,pt:`Programação`}},
+    {s:'.lvl h3',i:5,t:{en:`Electronics & tools`,de:`Elektronik & Tools`,fr:`Électronique et outils`,es:`Electrónica y herramientas`,it:`Elettronica e strumenti`,ru:`Электроника и инструменты`,pt:`Eletrónica e ferramentas`}},
+    {s:'.lvl .cap',i:0,t:{en:`grades 5–8`,de:`Klassen 5–8`,fr:`classes 5–8`,es:`cursos 5–8`,it:`classi 5–8`,ru:`5–8 классы`,pt:`5.º–8.º ano`}},
+    {s:'.lvl .cap',i:1,t:{en:`grades 1–4`,de:`Klassen 1–4`,fr:`classes 1–4`,es:`cursos 1–4`,it:`classi 1–4`,ru:`1–4 классы`,pt:`1.º–4.º ano`}},
+    {s:'.lvl .cap',i:2,t:{en:`from school to university`,de:`von der Schule bis zur Uni`,fr:`de l'école à la fac`,es:`de la escuela a la universidad`,it:`dalla scuola all'università`,ru:`от школы до вуза`,pt:`da escola à universidade`}},
+    {s:'.lvl .cap',i:3,t:{en:`engineering subjects`,de:`Ingenieurfächer`,fr:`matières d'ingénierie`,es:`asignaturas de ingeniería`,it:`materie ingegneristiche`,ru:`инженерные предметы`,pt:`disciplinas de engenharia`}},
+    {s:'.lvl .cap',i:4,t:{en:`from Scratch to SQL`,de:`von Scratch bis SQL`,fr:`de Scratch à SQL`,es:`de Scratch a SQL`,it:`da Scratch a SQL`,ru:`от Scratch до SQL`,pt:`de Scratch a SQL`}},
+    {s:'.lvl .cap',i:5,t:{en:`circuit design`,de:`Schaltungsentwurf`,fr:`conception de circuits`,es:`diseño de circuitos`,it:`progettazione di circuiti`,ru:`проектирование схем`,pt:`projeto de circuitos`}},
+
+    {s:'.final-eye',i:0,t:{en:`The last word`,de:`Ein letztes Wort`,fr:`Le mot de la fin`,es:`La última palabra`,it:`L'ultima parola`,ru:`Последнее слово`,pt:`A última palavra`}},
+    {s:'.mf-eye-contact',i:0,t:{en:`Contact & socials`,de:`Kontakt & Netzwerke`,fr:`Contact & réseaux`,es:`Contacto y redes`,it:`Contatti e social`,ru:`Контакты и соцсети`,pt:`Contacto e redes`}},
+    {s:'.mf-lnk-uslovi',i:0,t:{en:`Terms of purchase`,de:`Kaufbedingungen`,fr:`Conditions d'achat`,es:`Condiciones de compra`,it:`Condizioni d'acquisto`,ru:`Условия покупки`,pt:`Condições de compra`}},
+    {s:'.mf-lnk-rekl',i:0,t:{en:`Complaints & returns`,de:`Reklamationen & Rückgabe`,fr:`Réclamations & retours`,es:`Reclamaciones y devoluciones`,it:`Reclami e resi`,ru:`Жалобы и возврат`,pt:`Reclamações e devoluções`}},
+    {s:'.mf-lnk-pov',i:0,t:{en:`Refunds`,de:`Rückerstattungen`,fr:`Remboursements`,es:`Reembolsos`,it:`Rimborsi`,ru:`Возврат средств`,pt:`Reembolsos`}},
+    {s:'.mf-lnk-priv',i:0,t:{en:`Privacy policy`,de:`Datenschutz`,fr:`Confidentialité`,es:`Política de privacidad`,it:`Privacy`,ru:`Политика конфиденциальности`,pt:`Política de privacidade`}},
+    {s:'.mf-secure',i:0,t:{en:`Card payments are protected by 3-D Secure (Visa Secure and Mastercard ID Check). Card details are entered only on the bank's secure page. All prices are in dinars (RSD).`,de:`Kartenzahlungen sind durch 3-D Secure geschützt (Visa Secure und Mastercard ID Check). Kartendaten werden ausschließlich auf der sicheren Seite der Bank eingegeben. Alle Preise sind in Dinar (RSD).`,fr:`Les paiements par carte sont protégés par 3-D Secure (Visa Secure et Mastercard ID Check). Les données de la carte sont saisies uniquement sur la page sécurisée de la banque. Tous les prix sont en dinars (RSD).`,es:`Los pagos con tarjeta están protegidos por 3-D Secure (Visa Secure y Mastercard ID Check). Los datos de la tarjeta se introducen solo en la página segura del banco. Todos los precios están en dinares (RSD).`,it:`I pagamenti con carta sono protetti da 3-D Secure (Visa Secure e Mastercard ID Check). I dati della carta si inseriscono solo sulla pagina sicura della banca. Tutti i prezzi sono in dinari (RSD).`,ru:`Оплата картой защищена технологией 3-D Secure (Visa Secure и Mastercard ID Check). Данные карты вводятся только на защищённой странице банка. Все цены указаны в динарах (RSD).`,pt:`Os pagamentos com cartão são protegidos por 3-D Secure (Visa Secure e Mastercard ID Check). Os dados do cartão são introduzidos apenas na página segura do banco. Todos os preços são em dinares (RSD).`}},
+    {s:'.subj-h2',i:0,t:{en:`Subjects & tests`,de:`Fächer & Tests`,fr:`Matières & tests`,es:`Materias y tests`,it:`Materie e test`,ru:`Предметы и тесты`,pt:`Matérias e testes`}},
+    {s:'.subj-chips',i:0,t:{en:`<span class="schip">🎒 Primary school</span><span class="schip">📐 High school</span><span class="schip">🎓 University</span><span class="schip">💻 Programming</span><span class="schip">🔌 Electronics & tools</span><span class="schip">🎯 Entrance prep</span>`,de:`<span class="schip">🎒 Grundschule</span><span class="schip">📐 Oberschule</span><span class="schip">🎓 Universität</span><span class="schip">💻 Programmierung</span><span class="schip">🔌 Elektronik & Tools</span><span class="schip">🎯 Aufnahmevorbereitung</span>`,fr:`<span class="schip">🎒 Primaire</span><span class="schip">📐 Lycée</span><span class="schip">🎓 Université</span><span class="schip">💻 Programmation</span><span class="schip">🔌 Électronique & outils</span><span class="schip">🎯 Prépa concours</span>`,es:`<span class="schip">🎒 Primaria</span><span class="schip">📐 Secundaria</span><span class="schip">🎓 Universidad</span><span class="schip">💻 Programación</span><span class="schip">🔌 Electrónica y herramientas</span><span class="schip">🎯 Preparación de acceso</span>`,it:`<span class="schip">🎒 Elementari</span><span class="schip">📐 Superiori</span><span class="schip">🎓 Università</span><span class="schip">💻 Programmazione</span><span class="schip">🔌 Elettronica e strumenti</span><span class="schip">🎯 Preparazione ammissione</span>`,ru:`<span class="schip">🎒 Начальная школа</span><span class="schip">📐 Средняя школа</span><span class="schip">🎓 Университет</span><span class="schip">💻 Программирование</span><span class="schip">🔌 Электроника и инструменты</span><span class="schip">🎯 Подготовка к поступлению</span>`,pt:`<span class="schip">🎒 Ensino básico</span><span class="schip">📐 Secundário</span><span class="schip">🎓 Universidade</span><span class="schip">💻 Programação</span><span class="schip">🔌 Eletrónica e ferramentas</span><span class="schip">🎯 Preparação de admissão</span>`}},
+    {s:'.sb-tx',i:0,t:{en:`<b>See all subjects</b><small>The whole library — subjects, entrance prep and study notes</small>`,de:`<b>Alle Fächer ansehen</b><small>Die ganze Bibliothek — Fächer, Aufnahmevorbereitung und Skripte</small>`,fr:`<b>Voir toutes les matières</b><small>Toute la bibliothèque — matières, prépa concours et supports</small>`,es:`<b>Ver todas las materias</b><small>Toda la biblioteca — materias, preparación de acceso y apuntes</small>`,it:`<b>Vedi tutte le materie</b><small>Tutta la biblioteca — materie, preparazione ammissione e dispense</small>`,ru:`<b>Все предметы</b><small>Вся библиотека — предметы, подготовка к поступлению и конспекты</small>`,pt:`<b>Ver todas as matérias</b><small>Toda a biblioteca — matérias, preparação de admissão e apontamentos</small>`}},
+    {s:'.apt-eye',i:0,t:{en:`🧭 Aptitude test`,de:`🧭 Eignungstest`,fr:`🧭 Test d'aptitude`,es:`🧭 Test de aptitud`,it:`🧭 Test attitudinale`,ru:`🧭 Тест на склонности`,pt:`🧭 Teste de aptidão`}},
+    {s:'.apt-h',i:0,t:{en:`Not sure what suits you?`,de:`Unsicher, was zu dir passt?`,fr:`Tu ne sais pas ce qui te convient ?`,es:`¿No sabes qué te encaja?`,it:`Non sai cosa fa per te?`,ru:`Не знаешь, что тебе подходит?`,pt:`Não sabes o que te encaixa?`}},
+    {s:'.apt-p',i:0,t:{en:`A short test suggests a field, subjects and a way to study — before you decide. Take it for your level:`,de:`Ein kurzer Test schlägt Bereich, Fächer und Lernweise vor — bevor du entscheidest. Mach ihn für deine Stufe:`,fr:`Un court test propose un domaine, des matières et une façon d'étudier — avant de décider. Fais-le pour ton niveau :`,es:`Un test breve sugiere un área, materias y una forma de estudiar — antes de decidir. Hazlo para tu nivel:`,it:`Un breve test suggerisce un ambito, materie e un modo di studiare — prima di decidere. Fallo per il tuo livello:`,ru:`Короткий тест предложит область, предметы и способ учёбы — до того как решишь. Пройди для своего уровня:`,pt:`Um teste curto sugere uma área, matérias e um modo de estudar — antes de decidires. Fá-lo para o teu nível:`}},
+    {s:'.apt-sred',i:0,t:{en:`<b>High school</b><small>for 8th-graders</small>`,de:`<b>Oberschule</b><small>für die 8. Klasse</small>`,fr:`<b>Lycée</b><small>pour la 3e</small>`,es:`<b>Secundaria</b><small>para 8.º</small>`,it:`<b>Superiori</b><small>per la terza media</small>`,ru:`<b>Средняя школа</b><small>для 8 класса</small>`,pt:`<b>Secundário</b><small>para o 8.º ano</small>`}},
+    {s:'.apt-visa',i:0,t:{en:`<b>College</b><small>for graduates</small>`,de:`<b>Hochschule</b><small>für Abiturienten</small>`,fr:`<b>École supérieure</b><small>pour les bacheliers</small>`,es:`<b>Escuela superior</b><small>para bachilleres</small>`,it:`<b>Istituto superiore</b><small>per i diplomandi</small>`,ru:`<b>Колледж</b><small>для выпускников</small>`,pt:`<b>Escola superior</b><small>para finalistas</small>`}},
+    {s:'.apt-fak',i:0,t:{en:`<b>University</b><small>for graduates</small>`,de:`<b>Universität</b><small>für Abiturienten</small>`,fr:`<b>Université</b><small>pour les bacheliers</small>`,es:`<b>Universidad</b><small>para bachilleres</small>`,it:`<b>Università</b><small>per i diplomandi</small>`,ru:`<b>Университет</b><small>для выпускников</small>`,pt:`<b>Universidade</b><small>para finalistas</small>`}},
+    {s:'.flove',i:0,t:{en:`Learn with love`,de:`Mit Liebe lernen`,fr:`Apprendre avec amour`,es:`Aprender con amor`,it:`Imparare con amore`,ru:`Учиться с любовью`,pt:`Aprender com amor`}}
+  ];
+  function qsa(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
+  M.forEach(function(m){var e=qsa(m.s); if(m.i===-1){e.forEach(function(x){x.__sr=x.innerHTML;});} else if(e[m.i]){e[m.i].__sr=e[m.i].innerHTML;}});
+  function setLang(l){
+    M.forEach(function(m){var e=qsa(m.s);
+      function ap(x){ if(!x) return; x.innerHTML=(l==='sr')? x.__sr : (m.t[l]||x.__sr); }
+      if(m.i===-1){ e.forEach(ap); } else { ap(e[m.i]); }
+    });
+    document.documentElement.setAttribute('lang',l);
+    try{ window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l})); }catch(e){}
+  }
+  var sel=document.querySelector('.lang');
+  var saved='sr'; try{ saved=localStorage.getItem('mathia_lang')||'sr'; }catch(e){}
+  if(sel){
+    sel.value=saved.toUpperCase();
+    sel.addEventListener('change',function(){ var l=sel.value.toLowerCase(); setLang(l); try{ localStorage.setItem('mathia_lang',l); }catch(e){} });
+  }
+  setLang(saved);
+})();
+
+</script>
+<script>document.addEventListener("click",function(e){var h=e.target.closest&&e.target.closest(".lvl-head");if(h){h.parentElement.classList.toggle("open");}});</script>
+<!-- Profesorica · chat klon (opšti — bez slikanja, kao u index.html) -->
+<script src="https://project-y23je.vercel.app/widget.js?v=9"
+        data-api="https://project-y23je.vercel.app/api/chat"
+        data-mode="site" data-name="Profesorica"
+        data-avatar="avatar.jpg"
+        data-lang="sr" data-sub="tvoja profesorica" data-sub-en="your teacher"
+        data-hi="Zdravo! Ja sam Profesorica 👩‍🏫 Na ovoj strani odgovaram na opšta pitanja o platformi — šta MathIA nudi, kako rade paketi i prodavnica, i kako da počneš. Pitaj me slobodno!"
+        data-hi-en="Hi! I&#39;m Profesorica 👩‍🏫 On this page I answer general questions about the platform — what MathIA offers, how the plans and shop work, and how to get started. Ask me anything!"></script>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--i18nfix--><script>(function(){
+var NAV={en:'Try for free →',de:'Kostenlos testen →',fr:'Essaie gratuitement →',es:'Prueba gratis →',it:'Prova gratis →',ru:'Попробуй бесплатно →',pt:'Experimenta grátis →'};
+var SCR={en:'Open the notes',de:'Skript öffnen',fr:'Ouvrir le polycopié',es:'Abrir los apuntes',it:'Apri la dispensa',ru:'Открыть конспект',pt:'Abrir os apontamentos'};
+var it=[];
+document.querySelectorAll('.navcta').forEach(function(e){if(e.__o===undefined)e.__o=e.textContent;it.push([e,NAV]);});
+document.querySelectorAll('a,button').forEach(function(e){if((e.textContent||'').trim()==='Otvori skriptu'){if(e.__o===undefined)e.__o=e.textContent;it.push([e,SCR]);}});
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return (document.documentElement.lang||'sr').slice(0,2).toLowerCase();}
+function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}it.forEach(function(p){var e=p[0],m=p[1];e.textContent=(l==='sr'||!m[l])?e.__o:m[l];});}
+ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);
+try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
+setInterval(ap,800);})();</script>
+<!--prijnav--><script>(function(){
+var L={
+ nalog:{sr:'Moj nalog',en:'My account',de:'Mein Konto',fr:'Mon compte',es:'Mi cuenta',it:'Il mio account',ru:'\u041b\u0438\u0447\u043d\u044b\u0439 \u043a\u0430\u0431\u0438\u043d\u0435\u0442',pt:'Minha conta'},
+ home:{sr:'Po\u010detna',en:'Home',de:'Start',fr:'Accueil',es:'Inicio',it:'Home',ru:'\u0413\u043b\u0430\u0432\u043d\u0430\u044f',pt:'In\u00edcio'},
+ pj:{sr:'Prijemni',en:'Admissions',de:'Aufnahme',fr:'Concours',es:'Admisi\u00f3n',it:'Ammissione',ru:'\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435',pt:'Admiss\u00e3o'},
+ mm:{sr:'Mala matura',en:'High school',de:'Oberschule',fr:'Lyc\u00e9e',es:'Instituto',it:'Superiori',ru:'\u0421\u0440\u0435\u0434\u043d\u044f\u044f \u0448\u043a\u043e\u043b\u0430',pt:'Ensino m\u00e9dio'},
+ pl:{sr:'Planer',en:'Planner',de:'Planer',fr:'Agenda',es:'Agenda',it:'Agenda',ru:'\u041f\u043b\u0430\u043d\u0435\u0440',pt:'Agenda'},
+ predmeti:{sr:'Predmeti',en:'Subjects',de:'F\u00e4cher',fr:'Mati\u00e8res',es:'Asignaturas',it:'Materie',ru:'\u041f\u0440\u0435\u0434\u043c\u0435\u0442\u044b',pt:'Disciplinas'},
+ prodavnica:{sr:'Prodavnica',en:'Shop',de:'Shop',fr:'Boutique',es:'Tienda',it:'Negozio',ru:'\u041c\u0430\u0433\u0430\u0437\u0438\u043d',pt:'Loja'},
+ paketi:{sr:'Paketi',en:'Plans',de:'Pakete',fr:'Forfaits',es:'Planes',it:'Pacchetti',ru:'\u041f\u0430\u043a\u0435\u0442\u044b',pt:'Pacotes'},
+ omeni:{sr:'O meni',en:'About',de:'\u00dcber mich',fr:'\u00c0 propos',es:'Sobre m\u00ed',it:'Chi sono',ru:'\u041e\u0431\u043e \u043c\u043d\u0435',pt:'Sobre'},
+ mathia:{sr:'\u0160ta je Mathia',en:'What is Mathia',de:'Was ist Mathia',fr:'Qu\u2019est-ce que Mathia',es:'Qu\u00e9 es Mathia',it:'Cos\u2019\u00e8 Mathia',ru:'\u0427\u0442\u043e \u0442\u0430\u043a\u043e\u0435 Mathia',pt:'O que \u00e9 a Mathia'},
+ korpa:{sr:'Korpa',en:'Cart',de:'Warenkorb',fr:'Panier',es:'Carrito',it:'Carrello',ru:'\u041a\u043e\u0440\u0437\u0438\u043d\u0430',pt:'Carrinho'}
+};
+var BT={sr:'Prijemni, rešen do detalja',en:'Entrance exams by faculty',de:'Aufnahmepr\u00fcfung nach Fakult\u00e4t',fr:'Concours par facult\u00e9',es:'Examen por facultad',it:'Esame per facolt\u00e0',ru:'\u0412\u0441\u0442\u0443\u043f\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u043f\u043e \u0444\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u0443',pt:'Exame por faculdade'};
+var BS={sr:'Re\u0161i rokove i otkrij koji ti smer le\u017ei \u2014 tehni\u010dki i matemati\u010dki fakulteti.',en:'Solve past exams and find your track \u2014 technical and mathematical faculties.',de:'L\u00f6se Altklausuren und finde deine Richtung \u2014 technische und mathematische Fakult\u00e4ten.',fr:'Fais les annales et trouve ta fili\u00e8re \u2014 facult\u00e9s techniques et math\u00e9matiques.',es:'Resuelve ex\u00e1menes y encuentra tu rama \u2014 facultades t\u00e9cnicas y matem\u00e1ticas.',it:'Risolvi gli esami e trova il tuo indirizzo \u2014 facolt\u00e0 tecniche e matematiche.',ru:'\u0420\u0435\u0448\u0430\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u044b \u0438 \u043d\u0430\u0439\u0434\u0438 \u0441\u0432\u043e\u0451 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u2014 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0438 \u043c\u0430\u0442\u0435\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0444\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u044b.',pt:'Resolve provas e encontra a tua \u00e1rea \u2014 faculdades t\u00e9cnicas e matem\u00e1ticas.'};
+var BC={sr:'Pogledaj fakultete \u2192',en:'See faculties \u2192',de:'Fakult\u00e4ten ansehen \u2192',fr:'Voir les facult\u00e9s \u2192',es:'Ver facultades \u2192',it:'Vedi le facolt\u00e0 \u2192',ru:'\u0424\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u044b \u2192',pt:'Ver faculdades \u2192'};
+var BPT={sr:'Tvoj planer za celu godinu',en:'Your planner for the whole year',de:'Dein Planer f\u00fcr das ganze Jahr',fr:'Ton agenda pour toute l\u2019ann\u00e9e',es:'Tu agenda para todo el a\u00f1o',it:'La tua agenda per tutto l\u2019anno',ru:'\u0422\u0432\u043e\u0439 \u043f\u043b\u0430\u043d\u0435\u0440 \u043d\u0430 \u0432\u0435\u0441\u044c \u0433\u043e\u0434',pt:'A tua agenda para o ano todo'};
+var BPS={sr:'Raspored, ciljevi i rokovi na jednom mestu — za celu \u0161kolsku godinu.',en:'Fill in everything and keep it — university, high and primary school. Download anytime.',de:'Trage alles ein und behalte es — Uni, Ober- und Grundschule. Jederzeit herunterladen.',fr:'Remplis tout et garde-le — fac, lyc\u00e9e et primaire. T\u00e9l\u00e9charge quand tu veux.',es:'Rellena todo y gu\u00e1rdalo — universidad, instituto y primaria. Desc\u00e1rgalo cuando quieras.',it:'Compila tutto e conservalo — universit\u00e0, superiori ed elementari. Scarica quando vuoi.',ru:'\u0417\u0430\u043f\u043e\u043b\u043d\u044f\u0439 \u0432\u0441\u0451 \u0438 \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u0439 — \u0432\u0443\u0437, \u0441\u0440\u0435\u0434\u043d\u044f\u044f \u0438 \u043d\u0430\u0447\u0430\u043b\u044c\u043d\u0430\u044f \u0448\u043a\u043e\u043b\u0430.',pt:'Preenche tudo e guarda — faculdade, secund\u00e1ria e prim\u00e1ria.'};
+var BPC={sr:'Izaberi planer \u2192',en:'Choose a planner \u2192',de:'Planer w\u00e4hlen \u2192',fr:'Choisir l\u2019agenda \u2192',es:'Elegir agenda \u2192',it:'Scegli l\u2019agenda \u2192',ru:'\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u043f\u043b\u0430\u043d\u0435\u0440 \u2192',pt:'Escolher agenda \u2192'};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&L.pj[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return L.pj[h]?h:'sr';}
+function mk(href,cls,attr,txt){var a=document.createElement('a');a.href=href;if(cls)a.className=cls;a.setAttribute(attr,'1');a.textContent=txt;return a;}
+function ins(nav,ref,href,attr,txt){var ex=nav.querySelector('a['+attr+']');if(ex)return ex;var cls=ref?ref.className:'';var a=mk(href,cls,attr,txt);if(ref)ref.insertAdjacentElement('afterend',a);else nav.appendChild(a);return a;}
+function ensure(){var nav=document.querySelector('.nav-r');if(!nav)return;
+ if(!nav.querySelector('a[data-homenav]')){var cls=(nav.querySelector('a.link')||{}).className||'link';var hb=mk('index.html',cls,'data-homenav',L.home.sr);nav.insertBefore(hb,nav.firstChild);} if(!nav.querySelector('a[data-acctnav]')){var c2=(nav.querySelector('a.link')||{}).className||'link';var ab=mk('nalog.html',c2,'data-acctnav',L.nalog.sr);var cta=nav.querySelector('a.navcta');if(cta){nav.insertBefore(ab,cta);}else{nav.appendChild(ab);}}
+ 
+ 
+ 
+ }
+function stdLinks(nav,l){var ls=nav.querySelectorAll('a.link:not([data-i18n])');for(var i=0;i<ls.length;i++){var el=ls[i];if(el.hasAttribute('data-homenav')||el.hasAttribute('data-pjnav')||el.hasAttribute('data-mmnav')||el.hasAttribute('data-plnav'))continue;if(el.className&&el.className.indexOf('navcta')>=0)continue;var hr=el.getAttribute('href')||'',k=null;if(/nalog\.html/.test(hr))k='nalog';else if(/predmeti\.html/.test(hr))k='predmeti';else if(/prodavnica\.html/.test(hr))k='prodavnica';else if(/#paketi$/.test(hr))k='paketi';else if(/o-marini\.html/.test(hr))k='omeni';else if(/#mathia$/.test(hr))k='mathia';if(k)el.textContent=L[k][l]||L[k].sr;}}
+function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}var nav=document.querySelector('.nav-r');
+ var hb=document.querySelector('a[data-homenav]');if(hb)hb.textContent=L.home[l]||L.home.sr;
+ 
+ 
+ 
+ if(nav){stdLinks(nav,l);
+  var cb=nav.querySelector('.cart-btn');if(cb&&cb.firstChild&&cb.firstChild.nodeType===3&&!cb.hasAttribute('data-i18n'))cb.firstChild.textContent=(L.korpa[l]||L.korpa.sr)+' ';}
+ var bn=document.querySelector('[data-prij-banner]');if(bn){var t=bn.querySelector('[data-pt]'),s=bn.querySelector('[data-ps]'),c=bn.querySelector('[data-pc]');if(t)t.textContent=BT[l]||BT.sr;if(s)s.textContent=BS[l]||BS.sr;if(c)c.textContent=BC[l]||BC.sr;}
+ var pb=document.querySelector('[data-plan-banner]');if(pb){var t2=pb.querySelector('[data-plt]'),s2=pb.querySelector('[data-pls]'),c2=pb.querySelector('[data-plc]');if(t2)t2.textContent=BPT[l]||BPT.sr;if(s2)s2.textContent=BPS[l]||BPS.sr;if(c2)c2.textContent=BPC[l]||BPC.sr;}}
+ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:lng()}));}catch(e){}},_t);});addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}setInterval(function(){ensure();ap();},900);
+})();</script>
+
+<!--upsell--><style>
+.upscrim{position:fixed;inset:0;background:rgba(46,28,38,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:18px;z-index:99998;opacity:0;transition:opacity .22s ease}
+.upscrim.on{display:flex;opacity:1}
+.upmodal{background:var(--paper,#FBF6EE);border:1px solid var(--bord,#ECDAC5);border-radius:26px;max-width:560px;width:100%;overflow:hidden;transform:translateY(14px) scale(.98);transition:transform .26s cubic-bezier(.2,.8,.2,1);box-shadow:0 40px 90px -30px rgba(46,28,38,.6)}
+.upscrim.on .upmodal{transform:none}
+.uptop{background:linear-gradient(120deg,var(--plum,#432C37),var(--plum2,#5C3B49));color:#FBF6EE;padding:22px 26px}
+.upeye{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--goldlt,#E7D2A2)}
+.uph2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.7rem;margin:6px 0 0;color:#fff}
+.upp{margin:8px 0 0;color:#ecdde1;font-size:.95rem;line-height:1.5}
+.upbody{padding:22px 26px 26px}
+.upoffer{display:flex;gap:16px;align-items:center;background:var(--card,#fffcf6);border:1px solid var(--bord,#ECDAC5);border-radius:18px;padding:16px}
+.upico{flex:0 0 64px;height:64px;border-radius:16px;background:linear-gradient(145deg,#fff,var(--champ,#F7EAC9));border:1px solid var(--goldlt,#E7D2A2);display:flex;align-items:center;justify-content:center;font-size:2rem}
+.upt b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.32rem;color:var(--plum,#432C37);display:block;line-height:1.1}
+.upt span{font-size:.9rem;color:#6b585e}
+.uppr{margin-left:auto;text-align:right;white-space:nowrap}
+.uppr b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--golddk,#9C7838)}
+.uppr small{display:block;font-size:.72rem;color:var(--muted,#90787E);font-weight:700}
+.upfeats{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.upfeats span{font-size:.8rem;background:#fbf1de;border:1px solid var(--goldlt,#E7D2A2);color:#7a5f2f;border-radius:100px;padding:5px 11px;font-weight:700}
+.upact{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+.upskip{background:none;border:none;color:var(--muted,#90787E);font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;padding:6px;text-decoration:underline}
+.upnudge{text-align:center;font-size:.82rem;color:var(--muted,#90787E);margin-top:12px}
+html.upopen #zoi-btn,html.upopen #zoi-cta{display:none!important}
+@media(max-width:600px){
+.upscrim{padding:10px;align-items:flex-start}
+.upmodal{max-height:94vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.uptop{padding:18px 18px}
+.upbody{padding:18px 18px 22px}
+.upoffer{flex-direction:column;align-items:flex-start;gap:12px}
+.upico{flex:0 0 54px;height:54px;font-size:1.7rem}
+.uppr{margin-left:0;text-align:left}
+.uppr b{font-size:1.35rem}
+}
+</style>
+<div class="upscrim" id="upscrim">
+  <div class="upmodal" role="dialog" aria-modal="true" aria-label="Dodaj Planer uz paket">
+    <div class="uptop">
+      <div class="upeye" id="upplan">Paket Gold</div>
+      <h2 class="uph2">Još samo jedno 💛</h2>
+      <p class="upp">Dodaj <b>Mathia Student Planner</b> uz pretplatu — i imaš baš sve na jednom mestu, od prvog predavanja do odbrane diplome.</p>
+    </div>
+    <div class="upbody">
+      <div class="upoffer">
+        <div class="upico">📔</div>
+        <div class="upt"><b>Mathia Student Planner</b><span>Raspored, ispitni rokovi, fokus, navike i odbrojavanje do diplome.</span></div>
+        <div class="uppr"><b>+1.990</b><small>RSD jednokratno</small></div>
+      </div>
+      <div class="upfeats"><span>🗓️ Raspored</span><span>📝 Ispitni rokovi</span><span>🍅 Fokus</span><span>🌱 Navike</span><span>🎓 Do diplome</span></div>
+      <div class="upact">
+        <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="upChoose(true)">Da, dodaj Planer (+1.990 RSD) →</button>
+        <button class="upskip" onclick="upChoose(false)">Ne, hvala — samo pretplata</button>
+      </div>
+      <div class="upnudge">Planer se inače kupuje zasebno u Prodavnici za 1.990 RSD.</div>
+    </div>
+  </div>
+</div>
+<script>
+var UPSEL={name:'',price:0,id:''};
+function upOpen(name,price,id){document.documentElement.classList.add('upopen');UPSEL={name:name,price:price,id:id};var e=document.getElementById('upplan');if(e)e.textContent='Paket '+name;document.getElementById('upscrim').classList.add('on');}
+function upClose(){document.documentElement.classList.remove('upopen');document.getElementById('upscrim').classList.remove('on');}
+function upChoose(withPlanner){
+  var k={};try{k=JSON.parse(localStorage.getItem('mathia_korpa')||'{}');}catch(e){}
+  if(UPSEL.id)k[UPSEL.id]=(k[UPSEL.id]||0)+1;
+  if(withPlanner)k['PLANER-2026']=(k['PLANER-2026']||0)+1;
+  try{localStorage.setItem('mathia_korpa',JSON.stringify(k));}catch(e){}
+  location.href='prodavnica.html?korpa=1';
+}
+(function(){var s=document.getElementById('upscrim');if(s)s.addEventListener('click',function(e){if(e.target===this)upClose();});document.addEventListener('keydown',function(e){if(e.key==='Escape')upClose();});})();
+</script>
+
+<!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
+})();</script>
+<script>/*utisci*/(function(){
+  var SB="https://ibhirxltgeyecrjwymai.supabase.co";
+  var AK="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+  var grid=document.getElementById("tgrid");
+  if(!grid) return;
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  fetch(SB+"/rest/v1/mathia_utisci?odobreno=eq.true&select=ime,razred,tekst,zvezdice&order=kreirano.desc&limit=9",
+    {headers:{apikey:AK,Authorization:"Bearer "+AK}})
+  .then(function(r){return r.ok?r.json():null;})
+  .then(function(rows){
+    if(!rows||!rows.length) return; /* nema odobrenih — ostavi postojeće */
+    grid.innerHTML=rows.map(function(u){
+      var n=Math.max(1,Math.min(5,u.zvezdice||5));
+      var stars=new Array(n+1).join("★");
+      var who=esc(u.ime)+(u.razred?' · <span>'+esc(u.razred)+'</span>':'');
+      return '<div class="quote reveal"><div class="qm">\u201C</div><div class="stars">'+stars+'</div><p>'+esc(u.tekst)+'</p><div class="who">'+who+'</div></div>';
+    }).join("");
+    /* re-trigger reveal animacije ako postoje */
+    grid.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});
+  })
+  .catch(function(){});
+})();</script>
+<script>(function(){var g=document.getElementById('tgrid');if(!g)return;var i=0,paused=false;g.addEventListener('mouseenter',function(){paused=true;});g.addEventListener('mouseleave',function(){paused=false;});g.addEventListener('touchstart',function(){paused=true;},{passive:true});setInterval(function(){if(paused)return;var c=g.children;if(c.length<2)return;i=(i+1)%c.length;var el=c[i];g.scrollTo({left:el.offsetLeft-g.offsetLeft-20,behavior:'smooth'});},4500);})();</script>
+<script src="i18n-mathia.js"></script>
+<script>
+(function(){var h=document.querySelector('header');if(!h)return;var f=function(){h.classList.toggle('scrolled',(window.scrollY||window.pageYOffset||0)>8);};f();window.addEventListener('scroll',f,{passive:true});})();
+</script>
+</body>
+</html>
