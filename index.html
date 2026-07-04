@@ -729,49 +729,83 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="ksub">paketi</div>
-      <h2>Izaberite predmete</h2>
-      <p>Birate koliko predmeta dete uči — jedan, dva ili tri. Pristup Marini i pratećim skriptama je neograničen, 24 sata dnevno.</p>
+      <h2>Izaberi svoj paket</h2>
+      <p class="pak-lead">Biraš koliko predmeta dete uči — <b>jedan, dva ili tri</b>.<br>Pristup profesorici i svim materijalima je <b>neograničen, 0&#8211;24h</b>.</p>
     </div>
     <div class="tiers">
       <div class="tier reveal">
         <h3>BASIC</h3>
         <div class="sub">Jedan predmet</div>
-        <ul>
-          <li>Marina za <b>jedan predmet</b></li>
-          <li>Sve skripte i priručnici za taj predmet</li>
-          <li>Čet podrška 24/7</li>
-          <li>Neograničen pristup, bez dnevnog limita</li>
+        <div class="price">4.990 <span>RSD/mes</span></div>
+        <div class="perday">&#8776; 166 din dnevno</div>
+        <ul class="feats">
+          <li>Profesorica za <b>1 predmet</b></li>
+          <li>Sve skripte i priručnici</li>
+          <li>Podrška <b>0&#8211;24h</b></li>
+          <li>Bez dnevnog limita</li>
         </ul>
-        <div class="price">4.990 <span>RSD / mesec</span></div>
         <a class="btn btn-ghost" href="#" onclick="upOpen('Basic',4990,'basic');return false">Izaberi Basic</a>
       </div>
       <div class="tier feat-tier reveal">
-        <span class="badge-top">★ Najpopularnije</span>
+        <span class="badge-top">&#9733; Najpopularnije</span>
+        <span class="shine" aria-hidden="true"></span>
         <h3>GOLD</h3>
         <div class="sub">Dva predmeta po izboru</div>
-        <ul>
-          <li>Marina za <b>dva predmeta</b></li>
-          <li>Sve skripte i priručnici za oba predmeta</li>
-          <li>Napredna podrška 24/7</li>
-          <li>Neograničen pristup, bez dnevnog limita</li>
+        <div class="price">6.990 <span>RSD/mes</span></div>
+        <div class="perday">&#8776; 117 din po predmetu dnevno</div>
+        <ul class="feats">
+          <li>Profesorica za <b>2 predmeta</b></li>
+          <li>Sve skripte i priručnici</li>
+          <li>Napredna podrška <b>0&#8211;24h</b></li>
+          <li>Bez dnevnog limita</li>
         </ul>
-        <div class="price">6.990 <span>RSD / mesec</span></div>
         <a class="btn btn-gold" href="#" onclick="upOpen('Gold',6990,'gold');return false">Izaberi Gold</a>
       </div>
       <div class="tier reveal">
         <h3>DIAMOND</h3>
         <div class="sub">Tri predmeta po izboru</div>
-        <ul>
-          <li>Marina za <b>tri predmeta po izboru</b></li>
-          <li>Cela biblioteka skripti i priručnika</li>
-          <li>Pristup svim skriptama i priručnicima platforme</li>
+        <div class="price">9.990 <span>RSD/mes</span></div>
+        <div class="perday">&#8776; 111 din po predmetu dnevno</div>
+        <ul class="feats">
+          <li>Profesorica za <b>3 predmeta</b></li>
+          <li><b>Cela biblioteka</b> skripti i priručnika</li>
+          <li>Prioritetna podrška <b>0&#8211;24h</b></li>
+          <li>Bez dnevnog limita</li>
         </ul>
-        <div class="price">9.990 <span>RSD / mesec</span></div>
         <a class="btn btn-rose" href="#" onclick="upOpen('Diamond',9990,'diamond');return false">Izaberi Diamond</a>
       </div>
     </div>
+    <p class="pak-note">Prvih <b>15 minuta besplatno</b> &#183; bez kartice &#183; otkažeš kad želiš.</p>
   </div>
-<p style="text-align:center;max-width:620px;margin:20px auto 0;color:#9a8890;font-size:.82rem;font-style:italic;letter-spacing:.01em">Materijali se otvaraju uz aktivnu pretplatu na predmet i zaštićeni su autorskim pravima. &nbsp;·&nbsp; <a href="uslovi.html" style="color:#9C7838;font-style:normal;font-weight:600">Uslovi korišćenja</a></p></section>
+<style>
+  .pack .pak-lead{max-width:640px;margin:14px auto 0;font-size:1.06rem;line-height:1.65;color:#5a474d;text-align:center}
+  .pack .pak-lead b{color:#432C37}
+  .pack .tiers{display:grid;gap:22px;grid-template-columns:1fr;max-width:1080px;margin:50px auto 0}
+  @media(min-width:900px){.pack .tiers{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+  .pack .tier{position:relative;background:#FFFCF6;border:1px solid #EAD9C4;border-radius:24px;padding:36px 30px 32px;display:flex;flex-direction:column;text-align:center;transition:transform .2s ease,box-shadow .2s ease,border-color .2s;overflow:hidden}
+  .pack .tier:hover{transform:translateY(-6px);box-shadow:0 44px 74px -42px rgba(120,70,80,.5);border-color:#C6A05C}
+  .pack .tier h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;letter-spacing:.16em;color:#432C37;margin:0;font-weight:700}
+  .pack .tier .sub{color:#8B7681;font-size:.92rem;margin:4px 0 16px}
+  .pack .tier .price{font-family:'Cormorant Garamond',serif;font-size:2.7rem;font-weight:700;color:#432C37;line-height:1;font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
+  .pack .tier .price span{font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;color:#8B7681}
+  .pack .tier .perday{font-size:.82rem;color:#9C7838;font-weight:800;margin:8px 0 22px}
+  .pack .tier .feats{list-style:none;margin:0 0 24px;padding:0;text-align:left;flex:1}
+  .pack .tier .feats li{position:relative;padding:9px 0 9px 28px;font-size:.94rem;color:#4a3a40;border-bottom:1px solid rgba(156,120,56,.1)}
+  .pack .tier .feats li:last-child{border-bottom:none}
+  .pack .tier .feats li:before{content:"\2713";position:absolute;left:2px;top:9px;color:#C6A05C;font-weight:800}
+  .pack .tier .feats li b{color:#432C37}
+  .pack .tier .btn{width:100%;justify-content:center}
+  .pack .feat-tier{border:2px solid #C6A05C;box-shadow:0 44px 84px -46px rgba(156,120,56,.75)}
+  @media(min-width:900px){.pack .feat-tier{transform:scale(1.05)}.pack .feat-tier:hover{transform:scale(1.05) translateY(-6px)}}
+  .pack .badge-top{position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,#C6A05C,#9C7838);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.08em;padding:6px 20px;border-radius:0 0 12px 12px;white-space:nowrap;animation:badgeglow 2.6s ease-in-out infinite}
+  @keyframes badgeglow{0%,100%{box-shadow:0 4px 12px -4px rgba(156,120,56,.6)}50%{box-shadow:0 7px 22px -2px rgba(156,120,56,.95)}}
+  .pack .feat-tier .shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.55) 48%,transparent 64%);transform:translateX(-130%);animation:shinesweep 5s ease-in-out infinite}
+  @keyframes shinesweep{0%,55%{transform:translateX(-130%)}78%,100%{transform:translateX(130%)}}
+  .pack .pak-note{text-align:center;margin:30px auto 0;color:#8B7681;font-size:.94rem}
+  .pack .pak-note b{color:#9C7838}
+  @media(prefers-reduced-motion:reduce){.pack .badge-top{animation:none}.pack .feat-tier .shine{display:none}}
+</style>
+</section>
 
 <!-- 9 · O MENI teaser -->
 <section class="about">
