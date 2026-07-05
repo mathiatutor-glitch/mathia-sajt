@@ -1106,7 +1106,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
     <div class="sec-head reveal">
       <div class="ksub">sve na jednom mestu</div>
       <h2 class="subj-h2">Predmeti i testovi</h2>
-      <p class="sub-lead">Preko 60 predmeta — od 5. razreda do fakulteta. Matematika, fizika, programiranje i elektrotehnika. Uz svaki paket biraš predmete, dobijaš klon-profesoricu za svaki i sve skripte.</p>
+      <p class="sub-lead"><span>Preko 60 predmeta — od petog razreda do fakulteta.</span><span>Matematika, fizika, programiranje i elektrotehnika.</span><span>Biraš predmete, a uz svaki dobijaš profesoricu i sve skripte.</span></p>
     </div>
 
     <div class="subj-chips reveal">
@@ -1128,9 +1128,9 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
     <div class="apt reveal">
       <div class="apt-glow" aria-hidden="true"></div>
       <div class="apt-in">
-        <div class="apt-eye">🧭 Test sklonosti</div>
-        <h3 class="apt-h">Nisi siguran šta ti leži?</h3>
-        <p class="apt-p">Kratak test predlaže oblast, predmete i način učenja — pre nego što doneseš odluku. Uradi ga za svoj nivo:</p>
+        <div class="apt-eye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg> Test sklonosti</div>
+        <h3 class="apt-h">Nisi siguran gde da počneš?</h3>
+        <p class="apt-p"><span>Kratak test otkriva šta ti najbolje odgovara —</span><span>oblast, predmete i način učenja.</span><span>Uradi ga za svoj nivo:</span></p>
         <div class="apt-lvls">
           <a class="apt-lvl apt-sred" href="test-sklonosti.html?nivo=sred"><b>Srednja škola</b><small>za osmake</small></a>
           <a class="apt-lvl apt-visa" href="test-sklonosti.html?nivo=visa"><b>Viša škola</b><small>za maturante</small></a>
@@ -1142,12 +1142,24 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 </section>
 
 <!-- 8 · PAKETI -->
+<style>
+.sec-head p span{display:block}
+.sec-head p span+span{margin-top:3px}
+.apt-eye svg{width:16px;height:16px;vertical-align:-3px;margin-right:5px;color:var(--golddk)}
+.apt-p span{display:block}.apt-p span+span{margin-top:2px}
+.apt-lvl{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.3);box-shadow:0 16px 34px -28px rgba(120,70,80,.4);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+.apt-lvl:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 24px 44px -28px rgba(156,120,56,.5)}
+.apt-lvl b{font-family:'Cormorant Garamond',serif;font-size:1.32rem}
+.tier{overflow:visible}
+.tier.feat-tier::before{left:24px;right:24px;border-radius:2px}
+.about .chip svg{width:15px;height:15px;color:var(--golddk);vertical-align:-2px;margin-right:3px}
+</style>
 <section class="pack" id="paketi">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="ksub">paketi</div>
-      <h2>Jedan paket — cela profesorica uz vaše dete</h2>
-      <p>Birate samo koliko predmeta dete uči — jedan, dva ili tri. Sve ostalo je uključeno: neograničen pristup profesorici 0–24, sve skripte i priručnici, i strpljenje koje se ne troši. Bez skrivenih troškova. <b>Prvih 15 minuta je na poklon</b> — probajte pre nego što se odlučite.</p>
+      <h2>Jedan paket — cela profesorica, uvek uz tebe</h2>
+      <p><span>Biraš samo koliko predmeta učiš — jedan, dva ili tri.</span><span>Sve ostalo je uključeno: profesorica 0–24, sve skripte i priručnici.</span><span>Bez skrivenih troškova. <b>Prvih 15 minuta je na poklon.</b></span></p>
     </div>
     <div class="tiers">
       <div class="tier reveal">
@@ -1184,7 +1196,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
           <li>Sve što platforma nudi — bez ograničenja</li>
         </ul>
         <div class="price">9.990 <span>RSD / mesec</span></div>
-        <a class="btn btn-rose" href="#" onclick="upOpen('Diamond',9990,'diamond');return false">Izaberi Diamond</a>
+        <a class="btn btn-ghost" href="#" onclick="upOpen('Diamond',9990,'diamond');return false">Izaberi Diamond</a>
       </div>
     </div>
   </div>
@@ -1219,13 +1231,13 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
       <div class="reveal">
         <div class="eyebrow" style="color:var(--goldlt)">O meni</div>
         <h2 style="margin-top:12px">Iza svega — ljubav prema deci i znanju</h2>
-        <p>Verujem da je rad sa decom i u nauci najlepši poziv koji jedna žena može da ima. Svako dete zaslužuje toplinu, strpljenje i nekoga ko čvrsto veruje u njega. Godinama predajem s ljubavlju — matematiku, fiziku i tehniku — a Mathiu sam stvorila da ta ista ljubav bude uz tvoje dete uvek. Jer najlepše stvari u životu se dele: znanje, pažnja i vera u dobro.</p>
+        <p>Verujem da je rad sa decom i u nauci najlepši poziv koji jedna žena može da ima. Svako dete zaslužuje toplinu, strpljenje i nekoga ko čvrsto veruje u njega. Godinama predajem s ljubavlju — matematiku, fiziku i tehniku — a Mathiu sam stvorila da ta ista ljubav bude uz svako dete uvek. Jer najlepše stvari u životu se dele: znanje, pažnja i vera u dobro.</p>
         <div class="mabout-sign"><span class="script goldtext">Marina</span></div>
         <div class="chips">
           <span class="chip"><b>10+</b> godina nastave</span>
           <span class="chip"><b>100+</b> naučnih radova</span>
-          <span class="chip"><b>🎓</b> doktor nauka</span>
-          <span class="chip"><b>💛</b> s ljubavlju prema deci</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg> doktor nauka</span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.7 12 20 12 20z"/></svg> s ljubavlju prema deci</span>
         </div>
         <a class="btn btn-gold" href="o-marini.html">Upoznaj me →</a>
       </div>
@@ -1297,55 +1309,62 @@ html,body{overflow-x:hidden}
 .rule{margin-top:30px}
 </style>
 
+<style>
+.mfoot .wrap{max-width:1000px}
+.mf-cols{display:grid;gap:32px 42px;text-align:left;margin-top:4px}
+@media(min-width:720px){.mf-cols{grid-template-columns:1fr 1.15fr 1.4fr}}
+.mf-col-h{font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:rgba(231,210,162,.72);margin-bottom:15px}
+.mf-col a{display:block;color:#EAD9DE;font-family:'Cormorant Garamond',serif;font-size:1.16rem;font-weight:600;text-decoration:none;padding:5px 0;transition:color .16s ease,padding-left .16s ease}
+.mf-col a:hover{color:#FFF6E2;padding-left:6px}
+.mf-col-contact .social{margin:0;justify-content:flex-start}
+.mf-info{display:grid;gap:26px;margin:38px 0 0;padding-top:28px;border-top:1px solid rgba(231,210,162,.14);align-items:start;text-align:left}
+@media(min-width:720px){.mf-info{grid-template-columns:1fr auto}}
+.mf-info .mf-legal{margin:0}.mf-info .mf-legal .mf-p{text-align:left}
+.mf-info .mf-pay{margin:0;text-align:left}
+.mf-bar{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;max-width:1000px;margin:0 auto;padding:30px 24px 44px;text-align:center}
+.mf-bar .mf-rule{margin:0 0 2px}
+.mf-signoff{display:flex;flex-direction:column;align-items:center;line-height:1}
+.mf-sig-pre{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.06rem;color:rgba(231,210,162,.82)}
+.mf-bar .mf-copy{margin:0;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,210,162,.5)}.mf-bar .mf-sig{margin:2px 0 0;font-size:2.9rem}.mf-bar .mf-note{display:none}
+@media(max-width:719px){.mf-cols,.mf-info,.mf-info .mf-legal .mf-p,.mf-info .mf-pay{text-align:center}.mf-col-contact .social{justify-content:center}.mf-bar{justify-content:center;flex-direction:column;gap:8px;text-align:center}}
+</style>
 <footer class="mfoot">
   <div class="glow" aria-hidden="true"></div>
   <div class="wrap">
-
     <div class="mf-brand">
       <div class="mf-mono" aria-hidden="true">M</div>
       <div class="flove script goldtext">Uči s ljubavlju</div>
       <div class="mf-tag">Mathia · tvoja profesorica</div>
     </div>
-
-    <nav class="mf-nav">
-      <a href="predmeti.html">Predmeti</a>
-      <a href="prodavnica.html">Prodavnica</a>
-      <a href="#paketi">Paketi</a>
-      <a href="o-marini.html">O meni</a>
-    </nav>
-
     <div class="mf-rule" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
-
-    <div class="mf-contact">
-      <p class="mf-eye">Kontakt i mreže</p>
-      <div class="social" data-social="1">
+    <div class="mf-cols">
+      <div class="mf-col"><div class="mf-col-h">Platforma</div>
+        <a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="#paketi">Paketi</a><a href="o-marini.html">O meni</a>
+      </div>
+      <div class="mf-col"><div class="mf-col-h">Pravno</div>
+        <a href="uslovi.html">Uslovi kupovine</a><a href="reklamacije.html">Reklamacije i povraćaj</a><a href="povracaj.html">Povraćaj sredstava</a><a href="privatnost.html">Politika privatnosti</a>
+      </div>
+      <div class="mf-col mf-col-contact"><div class="mf-col-h">Kontakt i mreže</div>
+        <div class="social" data-social="1">
         <a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>kontakt@mathia.rs</span></a><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a>
       </div>
+      </div>
     </div>
-
-    <div class="mf-legal">
-      <p class="mf-p mf-copyr-p"><b>© 2026 Mathia Edu.</b> Sav sadržaj — tekstovi, lekcije, skripte, dizajn i metodologija — zaštićen je autorskim pravom; kopiranje, umnožavanje, distribucija i preprodaja bez pismene dozvole su zabranjeni.</p>
-      <p class="mf-p mf-legal-p">Mathia je obrazovna platforma za učenje i pripremu — nije povezana ni u zvaničnom odnosu sa školama, fakultetima ni ustanovama. Priprema ne garantuje upis ni rezultat na ispitu.</p>
+    <div class="mf-info">
+      <div class="mf-legal">
+        <p class="mf-p mf-copyr-p"><b>© 2026 Mathia Edu.</b> Sav sadržaj — tekstovi, lekcije, skripte, dizajn i metodologija — zaštićen je autorskim pravom; kopiranje, umnožavanje, distribucija i preprodaja bez pismene dozvole su zabranjeni.</p>
+        <p class="mf-p mf-legal-p">Mathia je obrazovna platforma za učenje i pripremu — nije povezana ni u zvaničnom odnosu sa školama, fakultetima ni ustanovama. Priprema ne garantuje upis ni rezultat na ispitu.</p>
+      </div>
+      <div class="mf-pay">
+        <div class="paycard"><img src="placanje-logos.png" alt="Raiffeisen, Visa, Mastercard, DinaCard, Visa Secure, Mastercard ID Check"></div>
+        <p class="mf-secure">Plaćanje karticom zaštićeno je 3-D Secure programom (Visa Secure i Mastercard ID Check). Podaci o kartici unose se isključivo na bezbednoj stranici banke. Cene su u dinarima (RSD).</p>
+      </div>
     </div>
-
-    <nav class="mf-links">
-      <a href="uslovi.html">Uslovi kupovine</a>
-      <a href="reklamacije.html">Reklamacije i povraćaj</a>
-      <a href="povracaj.html">Povraćaj sredstava</a>
-      <a href="privatnost.html">Politika privatnosti</a>
-    </nav>
-
-    <div class="mf-pay">
-      <div class="paycard"><img src="placanje-logos.png" alt="Raiffeisen, Visa, Mastercard, DinaCard, Visa Secure, Mastercard ID Check"></div>
-      <p class="mf-secure">Plaćanje karticom zaštićeno je 3-D Secure programom (Visa Secure i Mastercard ID Check). Podaci o kartici unose se isključivo na bezbednoj stranici banke. Cene su u dinarima (RSD).</p>
-    </div>
-
   </div>
-
   <div class="mf-bar">
-    <div class="mf-sig">Marina</div>
-    <div class="mf-copy">© Mathia Edu · 2026 · Sva prava zadržana</div>
-    <div class="mf-note">Sadržaj, dizajn i metodologija zaštićeni su autorskim pravima — zabranjeno je kopiranje, umnožavanje i distribucija bez pismene dozvole.</div>
+    <div class="mf-rule" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
+    <div class="mf-signoff"><span class="mf-sig-pre">Sa ljubavlju,</span><span class="mf-sig">Marina</span></div>
+    <span class="mf-copy">© Mathia Edu · 2026 · Sva prava zadržana</span>
   </div>
 </footer>
 
