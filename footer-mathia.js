@@ -42,6 +42,7 @@
     '.mfz-pay-h svg{width:15px;height:15px;color:#E7D2A2}' +
     '.mfz-legal{font-size:.7rem;color:rgba(232,217,222,.44);line-height:1.64;max-width:680px;margin:20px auto 0}' +
     '.mfz-bar{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:1000px;margin:0 auto;padding:30px 22px 44px;text-align:center;position:relative;z-index:2}' +
+    '#mfz.mfzmin{background:none}#mfz.mfzmin .mfz-bar{padding:16px 22px 20px}#mfz.mfzmin .mfz-rule{margin:0 0 8px}' +
     '.mfz-copy{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(231,210,162,.5)}' +
     '@media(max-width:719px){.mfz-cols,.mfz-info{text-align:center}.mfz-soc a{justify-content:center}}' +
     '@media(prefers-reduced-motion:reduce){.mfz-love,.mfz-h::after{animation:none}}';
@@ -71,7 +72,7 @@
 
     var ft = document.createElement("footer");
     ft.id = "mfz";
-    if (minMode) { ft.innerHTML = '<div class="mfz-bar"><div class="mfz-rule" aria-hidden="true"><span class="l"></span><span class="d"></span><span class="l r"></span></div><span class="mfz-copy">\u00A9 2026 Mathia Edu \u00B7 Sva prava zadr\u017eana</span></div>'; document.body.appendChild(ft); return; }
+    if (minMode) { ft.className="mfzmin"; ft.innerHTML = '<div class="mfz-bar"><div class="mfz-rule" aria-hidden="true"><span class="l"></span><span class="d"></span><span class="l r"></span></div><span class="mfz-copy">\u00A9 2026 Mathia Edu \u00B7 Sva prava zadr\u017eana</span></div>'; document.body.appendChild(ft); return; }
     ft.innerHTML =
       '<div class="mfz-wrap">' +
       '<div class="mfz-mono" aria-hidden="true">M</div>' +
