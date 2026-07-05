@@ -117,13 +117,26 @@
   .sec-head p{color:var(--muted);margin-top:13px;font-size:1.05rem}
 
   /* pain */
-  .pain{position:relative;overflow:hidden;text-align:center;color:#fff;padding:92px 0;background:linear-gradient(160deg,var(--plum2),var(--plum))}
-  .pain:after{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 50% -10%,rgba(231,210,162,.16),transparent)}
+  .pain{position:relative;overflow:hidden;text-align:center;color:#fff;padding:100px 0;background:linear-gradient(165deg,#4a2f3d 0%,#3a2531 50%,#2c1b26 100%)}
+  .pain:after{content:"";position:absolute;inset:0;background:radial-gradient(560px 340px at 50% -6%,rgba(231,210,162,.20),transparent)}
   .pain .wrap{position:relative;z-index:2;max-width:820px}
-  .pain .q{color:#ecdde1;font-size:clamp(1.3rem,2.7vw,1.72rem);line-height:1.46;margin:0 auto;max-width:46ch;font-family:'Cormorant Garamond',serif;font-style:italic}
-  .pain .q+.q{margin-top:16px}
-  .pain .big{margin-top:34px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.2;color:#fff}
-  .pain /*BOLDEM*/.big em{font-weight:800;font-style:normal;color:var(--goldlt)}
+  .pain-eye{font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:rgba(231,210,162,.58);margin:0 0 28px}
+  .pain .q{color:#e3d2d7;font-size:clamp(1.35rem,2.8vw,1.8rem);line-height:1.5;margin:0 auto;max-width:44ch;font-family:'Cormorant Garamond',serif;font-style:italic}
+  .pain .q+.q{margin-top:14px}
+  .pain-turn{display:flex;align-items:center;justify-content:center;gap:14px;margin:42px 0 30px}
+  .pain-turn .ln{height:1px;width:min(170px,26vw);background:linear-gradient(90deg,transparent,rgba(231,210,162,.55))}
+  .pain-turn .ln.r{transform:scaleX(-1)}
+  .pain-turn .dm{width:7px;height:7px;transform:rotate(45deg);background:#E7D2A2;box-shadow:0 0 14px rgba(231,210,162,.9)}
+  .pain .big{margin-top:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.2rem,5.6vw,3.4rem);line-height:1.18;color:#fff}
+  .pain .big em{font-weight:800;font-style:normal;color:var(--goldlt);text-shadow:0 0 28px rgba(231,210,162,.45)}
+  .pain-res{font-style:normal !important;color:#F4E9DF;margin-top:30px;max-width:46ch;font-size:clamp(1.2rem,2.5vw,1.55rem)}
+  .pain-res b{color:var(--goldlt);font-weight:700}
+  .pain .wrap .q:nth-child(2){transition-delay:.12s}
+  .pain .wrap .q:nth-child(3){transition-delay:.26s}
+  .pain .wrap .q:nth-child(4){transition-delay:.40s}
+  .pain .wrap .pain-turn{transition-delay:.54s}
+  .pain .wrap .big{transition-delay:.64s}
+  .pain .wrap .pain-res{transition-delay:.80s}
 
   /* features */
   .what{background:var(--card)}
@@ -736,11 +749,13 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
 
 <section class="pain">
   <div class="wrap">
-    <p class="q reveal">Telefon im ne izlazi iz ruke — a sveske ostaju prazne.</p>
-    <p class="q reveal">Svaki razgovor o školi završi se svađom.</p>
-    <p class="q reveal">A ocene, iz meseca u mesec, tiho klize nadole.</p>
-    <div class="big reveal">Šta ako telefon više nije problem — <em>već rešenje?</em></div>
-    <p class="q reveal" style="margin-top:22px;font-style:normal;opacity:.92">Ista ta ruka koja skroluje — <b>sada rešava, uči i napreduje.</b></p>
+    <p class="pain-eye reveal">Ako vam je ovo poznato…</p>
+    <p class="q reveal">Telefon mu ne izlazi iz ruke — a sveske ostaju prazne.</p>
+    <p class="q reveal">Svaki razgovor o školi završava se svađom.</p>
+    <p class="q reveal">I ocene, iz meseca u mesec, tiho klize nadole.</p>
+    <div class="pain-turn reveal" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
+    <div class="big reveal">Šta ako telefon više nije problem — <em>nego rešenje?</em></div>
+    <p class="q pain-res reveal">Ista ta ruka koja danima skroluje — uz Mathiu <b>rešava, razume i napreduje</b>.<br>Bez svađe, bez pritiska — uz profesoricu koja je uvek tu.</p>
   </div>
 </section>
 
