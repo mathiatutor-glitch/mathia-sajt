@@ -150,7 +150,7 @@
   };
   var CTA_TX = {sr:"Pitaj ",en:"Ask ",de:"Frag ",fr:"Demande à ",es:"Pregunta a ",it:"Chiedi a ",ru:"Спроси ",pt:"Pergunta à "};
   var SITE = {
-    sr:{sub:"tvoja profesorica", ph:"Napiši pitanje…", send:"Pošalji", hi:"Zdravo, drago mi je što si tu. 🌸 Ja sam Profesorica — tu sam da te provedem kroz Mathiu i odgovorim na sve što te zanima: predmeti, paketi, prijemni, kako da počneš. Pitaj slobodno — prvih 15 minuta je na poklon. 💛"},
+    sr:{sub:"tvoja profesorica", ph:"Napiši pitanje…", send:"Pošalji", hi:"Zdravo, tako mi je drago što si tu. 🌸 Ja sam Profesorica — tvoj vodič kroz Mathiu. Pitaj me sve što te zanima: koji predmet ti leži, kako biraš paket, kako da počneš. Kreni bez brige — prvih 15 minuta je moj poklon tebi. 💛"},
     en:{sub:"Your teacher", ph:"Type your question…", send:"Send", hi:"Hi! ❤️ I'm Profesorica, your guide through Mathia. I'll explain the material, help you choose the right plan, and prepare you for the entrance exams and enrolment at universities in Belgrade and Novi Sad. 💡 Every plan comes with an aptitude test — in just a few minutes you'll discover what suits you best and which programme is right for you. Ask me anything — your first 15 minutes are free! ✨"},
     de:{sub:"Deine Lehrerin", ph:"Schreib deine Frage…", send:"Senden", hi:"Hallo! ❤️ Ich bin Profesorica, deine Begleiterin durch Mathia. Ich erkläre dir den Stoff, helfe dir beim passenden Paket und bereite dich auf die Aufnahmeprüfungen und die Einschreibung an Universitäten in Belgrad und Novi Sad vor. 💡 Zu jedem Paket gehört ein Eignungstest — in wenigen Minuten findest du heraus, was dir liegt und welcher Studiengang zu dir passt. Frag mich alles — deine ersten 15 Minuten sind gratis! ✨"},
     fr:{sub:"Ta professeure", ph:"Écris ta question…", send:"Envoyer", hi:"Salut ! ❤️ Je suis Profesorica, ton guide sur Mathia. Je t'explique les cours, t'aide à choisir le bon forfait et te prépare aux concours d'entrée et à l'inscription dans les universités de Belgrade et Novi Sad. 💡 Chaque forfait inclut un test d'aptitude — en quelques minutes, tu découvres ce qui te convient et quelle filière est faite pour toi. Demande-moi ce que tu veux — tes 15 premières minutes sont offertes ! ✨"},
@@ -254,7 +254,7 @@
   var css =
     '@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap");' +
     "@keyframes zoiPulse{0%,100%{box-shadow:0 10px 30px rgba(156,120,56,.35),0 0 0 0 rgba(198,160,92,.45)}70%{box-shadow:0 12px 34px rgba(156,120,56,.4),0 0 0 12px rgba(198,160,92,0)}}@keyframes zoiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}#zoi-btn{position:fixed;right:20px;bottom:20px;width:74px;height:74px;border-radius:50%;border:2px solid #E7D2A2;cursor:pointer;z-index:2147483000;box-shadow:0 14px 32px -8px rgba(120,70,80,.5),0 0 0 4px rgba(251,246,238,.92),0 0 0 5px rgba(198,160,92,.5);background-position:center;background-size:cover;transition:transform .15s ease;animation:zoiPulse 2.8s ease-in-out infinite,zoiFloat 3.5s ease-in-out infinite}#zoi-btn:hover{animation-play-state:paused}@media(prefers-reduced-motion:reduce){#zoi-btn{animation:none}}" +
-    "#zoi-btn:hover{transform:scale(1.06)}#zoi-btn:after{content:'';position:absolute;right:3px;bottom:3px;width:14px;height:14px;border-radius:50%;background:#5FD98A;border:2.5px solid #fff;box-shadow:0 0 0 0 rgba(95,217,138,.7);animation:zoiLive 2.2s ease-out infinite}" +
+    "#zoi-btn:hover{transform:scale(1.06)}" +
     "#zoi-panel{position:fixed;right:20px;bottom:104px;width:404px;max-width:calc(100vw - 32px);height:620px;max-height:calc(100vh - 120px);background:#FBF5EA;border-radius:22px;overflow:hidden;display:none;flex-direction:column;z-index:2147483000;box-shadow:0 24px 60px rgba(64,42,52,.30);font-family:'Nunito',system-ui,sans-serif;border:1px solid #ECE0CC}" +
     "#zoi-panel.zoi-open{display:flex}" +
     "#zoi-cta{position:fixed;right:104px;bottom:40px;z-index:2147483000;background:linear-gradient(180deg,#FFFDF8,#F3E7CE);color:#432C37;font-family:'Nunito',system-ui,sans-serif;font-weight:800;font-size:13.5px;letter-spacing:.03em;padding:12px 19px;border-radius:100px;border:1px solid rgba(198,160,92,.55);box-shadow:0 14px 30px -10px rgba(120,70,80,.5),inset 0 1px 0 rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;animation:zoicta 2.4s ease-in-out infinite}" +
@@ -303,13 +303,13 @@
     "#zoi-prev img{width:38px;height:38px;border-radius:8px;object-fit:cover}" +
     "#zoi-prev button{margin-left:auto;border:none;background:#eee;border-radius:8px;cursor:pointer;padding:3px 8px}" +
     "#zoi-inrow{display:flex;gap:7px;align-items:flex-end}" +
-    "#zoi-ta{flex:1;min-width:0;resize:none;border:1px solid #E2D6BF;border-radius:13px;padding:9px 11px;font-family:inherit;font-size:14px;max-height:96px;outline:none;color:#3a3033}#zoi-ta::placeholder{color:#8a7a74;opacity:1}" +
+    "#zoi-ta{flex:1;min-width:0;resize:none;border:1px solid rgba(198,160,92,.35);border-radius:12px;padding:11px 13px;font-family:inherit;font-size:14px;max-height:96px;outline:none;color:#3E2D34;background:#fff}#zoi-ta::placeholder{color:#8a7a74;opacity:1}" +
     "#zoi-ta:focus{border-color:#C6A05C}" +
-    ".zoi-send{background:#9C7838;color:#fff;border:none;border-radius:13px;padding:0 14px;height:40px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;flex:none;white-space:nowrap}" +
-    ".zoi-tool{background:#FBF5EA;border:1px solid #CFE9E2;border-radius:13px;width:40px;height:40px;cursor:pointer;font-size:17px;flex:none}" +
+    ".zoi-send{background:linear-gradient(135deg,#D3B06A,#9C7838);color:#fff;border:none;border-radius:12px;padding:0 17px;height:40px;font-family:inherit;font-weight:800;font-size:14px;letter-spacing:.02em;cursor:pointer;flex:none;white-space:nowrap;box-shadow:0 8px 18px -8px rgba(156,120,56,.7);transition:transform .14s,box-shadow .14s}.zoi-send:hover{transform:translateY(-1px);box-shadow:0 12px 22px -8px rgba(156,120,56,.9)}" +
+    ".zoi-tool{background:#FBF5EA;border:1px solid rgba(198,160,92,.4);border-radius:12px;width:40px;height:40px;cursor:pointer;font-size:17px;flex:none;transition:background .14s,border-color .14s}.zoi-tool:hover{background:#F3E7CE;border-color:#C6A05C}" +
     ".zoi-typing{font-size:13px;color:#6b7873;font-style:italic;padding:2px 4px}" +
-    ".zoi-say{align-self:flex-end;flex:none;background:#FBF5EA;border:1px solid #CFE9E2;border-radius:8px;cursor:pointer;font-size:13px;line-height:1;padding:4px 7px;color:#9C7838}" +
-    ".zoi-say:hover{background:#E2F4EF;border-color:#C6A05C}" +
+    ".zoi-say{align-self:flex-end;flex:none;background:#FBF5EA;border:1px solid rgba(198,160,92,.4);border-radius:8px;cursor:pointer;font-size:13px;line-height:1;padding:4px 7px;color:#9C7838}" +
+    ".zoi-say:hover{background:#F3E7CE;border-color:#C6A05C}" +
     ".zoi-avfb{display:grid;place-items:center;background:linear-gradient(135deg,#9C7838,#C6A05C);color:#fff}" +
     "#zoi-btn.zoi-avfb{font-size:30px}" +
     "#zoi-head .zoi-headfb{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.7);font-size:20px}" +

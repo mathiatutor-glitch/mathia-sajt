@@ -118,11 +118,11 @@
 
   /* pain */
   .pain{position:relative;overflow:hidden;text-align:center;color:#fff;padding:110px 0;background:linear-gradient(165deg,#4a2f3d 0%,#38232f 50%,#281824 100%)}
-  .pain::before{background-image:var(--lux);background-size:120px 120px}
+  .pain::before{background:none}
   .pain:after{content:"";position:absolute;inset:0;background:radial-gradient(620px 380px at 50% -4%,rgba(231,210,162,.16),transparent);pointer-events:none}
   .pain .wrap{position:relative;z-index:2;max-width:840px}
   .pain-eye{font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.42em;text-transform:uppercase;color:rgba(231,210,162,.75);margin:0 0 34px;padding-left:.42em}
-  .pain .q{color:#F1E3E7;font-size:clamp(1.5rem,3.1vw,2rem);line-height:1.55;letter-spacing:.012em;margin:0 auto;max-width:42ch;font-family:'Cormorant Garamond',serif;font-style:italic}
+  .pain .q{color:#FAF1F3;font-weight:500;font-size:clamp(1.5rem,3.1vw,2rem);line-height:1.55;letter-spacing:.012em;margin:0 auto;max-width:42ch;font-family:'Cormorant Garamond',serif;font-style:italic;text-shadow:0 1px 16px rgba(0,0,0,.35)}
   .pain .q+.q{margin-top:20px}
   .pain-turn{display:flex;align-items:center;justify-content:center;gap:16px;margin:52px 0 40px}
   .pain-turn .ln{height:1px;width:min(190px,28vw);background:linear-gradient(90deg,transparent,rgba(231,210,162,.6))}
@@ -130,7 +130,7 @@
   .pain-turn .dm{width:8px;height:8px;transform:rotate(45deg);background:#E7D2A2;box-shadow:0 0 16px rgba(231,210,162,1)}
   .pain .big{margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.4rem,6vw,3.9rem);line-height:1.14;letter-spacing:.004em;color:#fff}
   .pain .big em{font-weight:800;font-style:normal;color:#F1D68A;text-shadow:0 0 36px rgba(231,210,162,.6)}
-  .pain-res{font-style:normal !important;color:#F7EDE3;margin:44px auto 0;max-width:40ch;font-size:clamp(1.25rem,2.6vw,1.62rem);line-height:1.62;text-wrap:balance}
+  .pain-res{font-style:normal !important;color:#FCF4EC;margin:44px auto 0;max-width:52ch;font-size:clamp(1.25rem,2.6vw,1.62rem);line-height:1.6;text-wrap:pretty;text-shadow:0 1px 16px rgba(0,0,0,.3)}.pain-res span{display:block}.pain-res span+span{margin-top:8px}
   .pain-res b{color:#F1D68A;font-weight:700}
   .pain .wrap .q:nth-child(2){transition-delay:.12s}
   .pain .wrap .q:nth-child(3){transition-delay:.26s}
@@ -756,7 +756,7 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
     <p class="q reveal">I ocene, iz meseca u mesec, tiho klize nadole.</p>
     <div class="pain-turn reveal" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
     <div class="big reveal">Šta ako telefon više nije problem — <em>nego rešenje?</em></div>
-    <p class="q pain-res reveal">Ista ta ruka koja danima skroluje — uz Mathiu <b>rešava, razume i napreduje</b>. Bez svađe, bez pritiska — uz profesoricu koja je uvek tu.</p>
+    <p class="q pain-res reveal"><span>Ista ta ruka koja danima skroluje — uz Mathiu <b>rešava, razume i napreduje</b>.</span><span>Bez svađe, bez pritiska — uz profesoricu koja je uvek tu.</span></p>
   </div>
 </section>
 
@@ -1410,12 +1410,12 @@ html,body{overflow-x:hidden}
 </script>
 <script>document.addEventListener("click",function(e){var h=e.target.closest&&e.target.closest(".lvl-head");if(h){h.parentElement.classList.toggle("open");}});</script>
 <!-- Profesorica · chat klon (opšti — bez slikanja, kao u index.html) -->
-<script src="https://project-y23je.vercel.app/widget.js?v=12"
+<script src="https://project-y23je.vercel.app/widget.js?v=13"
         data-api="https://project-y23je.vercel.app/api/chat"
         data-mode="site" data-name="Profesorica"
         data-avatar="avatar.jpg"
         data-lang="sr" data-sub="tvoja profesorica" data-sub-en="your teacher"
-        data-hi="Zdravo, drago mi je što si tu. 🌸 Ja sam Profesorica — tu sam da te provedem kroz Mathiu i odgovorim na sve što te zanima: predmeti, paketi, prijemni, kako da počneš. Pitaj slobodno — prvih 15 minuta je na poklon. 💛"
+        data-hi="Zdravo, tako mi je drago što si tu. 🌸 Ja sam Profesorica — tvoj vodič kroz Mathiu. Pitaj me sve što te zanima: koji predmet ti leži, kako biraš paket, kako da počneš. Kreni bez brige — prvih 15 minuta je moj poklon tebi. 💛"
         data-hi-en="Hello, I&#39;m so glad you&#39;re here. 🌸 I&#39;m your teacher — ask me anything about Mathia: how to begin, which subject suits you, how the plans and shop work. I&#39;m here for you, always."></script>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--i18nfix--><script>(function(){
 var NAV={en:'Try for free →',de:'Kostenlos testen →',fr:'Essaie gratuitement →',es:'Prueba gratis →',it:'Prova gratis →',ru:'Попробуй бесплатно →',pt:'Experimenta grátis →'};
