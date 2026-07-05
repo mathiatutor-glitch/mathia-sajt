@@ -953,6 +953,26 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 
 <!-- 6 · MARINA -->
 <div class="lux-div" aria-hidden="true"><span class="ln"></span><svg class="orn" viewBox="0 0 56 14" fill="currentColor"><circle cx="6" cy="7" r="1.4"/><path d="M17 7C21 4 23 5 25 7C23 9 21 10 17 7Z"/><path d="M28 2l4 5-4 5-4-5z"/><path d="M39 7C35 4 33 5 31 7C33 9 35 10 39 7Z"/><circle cx="50" cy="7" r="1.4"/></svg><span class="ln"></span></div>
+<style>
+/* Jedna profesorica — couture */
+.persona-card{box-shadow:0 44px 96px -40px rgba(67,44,55,.75),0 0 0 1px rgba(231,210,162,.12)}
+.persona-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),#FFF6D6,var(--gold),transparent);z-index:3}
+.persona-badge .ring{overflow:visible;background:none;animation:pring 6.5s ease-in-out infinite}
+@keyframes pring{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.persona-badge .ring .ph{width:100%;height:100%;object-fit:cover;object-position:center 28%;border-radius:50%}
+.persona-badge .ring::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:none;padding:3px;background:linear-gradient(135deg,#F0DCA6,#C6A05C 55%,#9C7838);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.persona-badge .ring::after{content:"";position:absolute;inset:-6px;border-radius:50%;box-shadow:0 0 36px -4px rgba(231,210,162,.55);pointer-events:none}
+.persona-badge .nm small{color:rgba(231,210,162,.88)}
+.persona-body h2{line-height:1.16}
+.persona .checks li{color:#f4ebee}
+.one-brand{position:relative;display:flex;align-items:center;justify-content:center;gap:15px;text-align:center;margin-top:30px}
+.one-brand::before,.one-brand::after{content:"";height:1px;width:min(64px,13vw);background:linear-gradient(90deg,transparent,rgba(231,210,162,.65))}
+.one-brand::after{transform:scaleX(-1)}
+/* čipovi levo — couture */
+.pchips span{padding:10px 17px;box-shadow:0 10px 20px -12px rgba(120,70,80,.4)}
+.pchips span svg{color:var(--golddk)}
+@media(prefers-reduced-motion:reduce){.persona-badge .ring{animation:none}}
+</style>
 <section class="persona">
   <div class="wrap">
     <div class="persona-card reveal">
