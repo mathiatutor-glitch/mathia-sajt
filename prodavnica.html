@@ -263,8 +263,8 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 
 <section class="sh-hero">
   <div class="wrap">
-    <div class="eyebrow">planer · prodavnica</div>
-    <h1>Cela godina<br>pod kontrolom</h1>
+    <div class="eyebrow">Mathia Planer</div>
+    <h1>Cela godina<br><span class="seal">pod kontrolom</span></h1>
     <p class="sh-lead">Raspored, ispiti, fokus i navike — na jednom prelepom mestu. Planer koji te vodi od prvog dana do diplome: mirno, sigurno, bez haosa.</p>
   </div>
 </section>
@@ -612,5 +612,12 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 .prod-stars span{color:var(--muted);font-size:.82rem;letter-spacing:0;font-weight:600}
 .prod-body>p{font-size:1.02rem;line-height:1.7}
 .feat-rows{gap:26px 40px}
+</style>
+<style>
+.sh-hero h1{line-height:1.12}
+.sh-hero h1 .seal{position:relative;display:inline-block;font-size:1.18em;font-weight:700;background:linear-gradient(100deg,#E7D2A2,#FFF6E0 35%,#C6A05C 70%,#E7D2A2);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:sealFoil 7s linear infinite;padding-bottom:.06em}
+.sh-hero h1 .seal::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.02em;height:.42em;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20200%2018%27%3E%3Cpath%20d%3D%27M4%2012%20C%2055%203%2C%20150%203%2C%20196%209%27%20stroke%3D%27%23E7D2A2%27%20stroke-width%3D%274%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27%2F%3E%3C%2Fsvg%3E") no-repeat center/100% 100%}
+@keyframes sealFoil{to{background-position:220% center}}
+@media(prefers-reduced-motion:reduce){.sh-hero h1 .seal{animation:none}}
 </style>
 </body></html>
