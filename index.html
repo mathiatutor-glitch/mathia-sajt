@@ -1345,9 +1345,11 @@ html,body{overflow-x:hidden}
       </div>
     <div class="mf-rule" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
     <div class="mf-fine"><a href="uslovi.html">Uslovi kupovine</a> · <a href="reklamacije.html">Reklamacije i povraćaj</a> · <a href="povracaj.html">Povraćaj sredstava</a> · <a href="privatnost.html">Politika privatnosti</a></div>
-    <div class="mf-pay2"><div class="paycard"><img src="placanje-logos.png" alt="Raiffeisen, Visa, Mastercard, DinaCard, Visa Secure, Mastercard ID Check"></div></div>
-    <p class="mf-legal2 mf-legal-p">Mathia je obrazovna platforma za učenje i pripremu — nije povezana ni u zvaničnom odnosu sa školama, fakultetima ni ustanovama. Priprema ne garantuje upis ni rezultat na ispitu.</p>
-    <div class="mf-copy2 mf-copyr-p">© 2026 Mathia Edu · Sva prava zadržana</div>
+    <p class="mf-legal2 mf-legal-p">Obrazovna platforma za učenje i pripremu · sav sadržaj zaštićen autorskim pravom · priprema ne garantuje upis ni rezultat.</p>
+    <div class="mf-bottom">
+      <span class="mf-copy2 mf-copyr-p">© 2026 Mathia Edu · Sva prava zadržana</span>
+      <span class="mf-pay3"><img src="placanje-logos.png" alt="Visa · Mastercard · DinaCard · 3-D Secure"></span>
+    </div>
   </div>
 </footer>
 
@@ -1834,6 +1836,14 @@ footer.mfoot .social a:hover .mf-ico{border-color:transparent;background:linear-
 .tier.feat-tier::before{background:linear-gradient(90deg,transparent,#C6A05C,#FFF6D6,#E7D2A2,#FFF6D6,#C6A05C,transparent);background-size:220% 100%;animation:diaT 5.5s linear infinite}
 @keyframes diaT{to{background-position:-220% 0}}
 @media(prefers-reduced-motion:reduce){.tier.feat-tier::before{animation:none}}
+</style>
+<style>
+.mf-legal2{font-size:.72rem;color:rgba(232,217,222,.5);max-width:none;white-space:normal;margin:14px auto 0;line-height:1.6;letter-spacing:.01em}
+@media(min-width:760px){.mf-legal2{white-space:nowrap}}
+.mf-bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 22px;padding:20px 0 42px}
+.mf-copy2{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(231,210,162,.5);padding:0}
+.mf-pay3{display:inline-flex;background:rgba(255,255,255,.9);border:1px solid rgba(198,160,92,.28);border-radius:8px;padding:5px 9px}
+.mf-pay3 img{height:15px;width:auto;display:block}
 </style>
 </body>
 </html>
