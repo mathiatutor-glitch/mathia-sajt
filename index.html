@@ -1353,6 +1353,7 @@ html,body{overflow-x:hidden}
     </div>
     <div class="mf-info">
       <div class="mf-pay">
+        <div class="mf-pay-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> Bezbedno plaćanje</div>
         <div class="paycard"><img src="placanje-logos.png" alt="Raiffeisen, Visa, Mastercard, DinaCard, Visa Secure, Mastercard ID Check"></div>
         <p class="mf-secure">Plaćanje karticom zaštićeno je 3-D Secure programom (Visa Secure i Mastercard ID Check). Podaci o kartici unose se isključivo na bezbednoj stranici banke. Cene su u dinarima (RSD).</p>
       </div>
@@ -1806,6 +1807,23 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 .mf-col-contact .social a .mf-ico svg{width:17px;height:17px;fill:currentColor}
 .mf-col-contact .social a:hover .mf-ico{border-color:transparent;background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-2px);box-shadow:0 10px 20px -8px rgba(198,160,92,.7)}
 @media(min-width:720px){.mf-col{position:relative}.mf-col:not(:last-child)::after{content:"";position:absolute;top:34px;bottom:6px;right:-21px;width:1px;background:linear-gradient(180deg,transparent,rgba(231,210,162,.2) 20%,rgba(231,210,162,.2) 80%,transparent)}}
+</style>
+<style>
+/* mreže — bez oblačića (viša specifičnost) */
+footer.mfoot .mf-col-contact .social a{background:none;border:none;box-shadow:none;padding:0}
+footer.mfoot .mf-col-contact .social a:hover{background:none;border:none;transform:none}
+/* linije ispod naslova — duže + svetlucave */
+.mf-col-h::after{width:46px;height:2px;background:linear-gradient(90deg,#9C7838,#FFF6D6,#C6A05C,#9C7838);background-size:220% 100%;animation:mfLineShine 5.5s linear infinite}
+@keyframes mfLineShine{to{background-position:-220% 0}}
+/* donji deo — profinjeno idejno rešenje */
+.mf-info{gap:30px;padding-top:36px}
+.mf-pay-head{display:inline-flex;align-items:center;gap:7px;font-family:'Nunito',sans-serif;font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:rgba(231,210,162,.72);margin-bottom:13px}
+.mf-pay-head svg{width:15px;height:15px;color:var(--goldlt)}
+.mf-info .mf-pay .paycard{background:rgba(255,255,255,.92);border:1px solid rgba(198,160,92,.32);border-radius:12px;padding:9px 15px;box-shadow:0 12px 26px -16px rgba(0,0,0,.55)}
+.mf-info .mf-pay .paycard img{height:21px}
+.mf-info .mf-pay .mf-secure{font-size:.66rem;color:rgba(232,217,222,.4);max-width:520px;margin:13px auto 0;line-height:1.62}
+.mf-info .mf-legal{border-top:1px solid rgba(231,210,162,.1);padding-top:26px;max-width:700px}
+.mf-info .mf-legal .mf-p{font-size:.7rem;color:rgba(232,217,222,.44);line-height:1.64}
 </style>
 </body>
 </html>
