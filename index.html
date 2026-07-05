@@ -1065,7 +1065,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
     <p class="mq reveal">Verujem da svako dete može da razume — potrebni su mu samo strpljenje, jasna reč i malo topline.</p>
     <p class="mq-vow reveal">Zato sam stvorila Mathiu.</p>
     <div class="mq-sign reveal">
-      <svg class="mq-flourish" viewBox="0 0 200 14" fill="none" aria-hidden="true"><path d="M4 7C40 2 70 2 100 7c30 5 60 5 96 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="100" cy="7" r="2.4" fill="currentColor"/></svg>
+      <span class="mq-dot" aria-hidden="true"></span>
       <span class="mq-name">Marina</span>
       <span class="mq-role">dr Marina Bulat · tvoja profesorica</span>
     </div>
@@ -1130,7 +1130,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
       <div class="apt-in">
         <div class="apt-eye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg> Test sklonosti</div>
         <h3 class="apt-h">Nisi siguran gde da počneš?</h3>
-        <p class="apt-p"><span>Kratak test otkriva šta ti najbolje odgovara —</span><span>oblast, predmete i način učenja.</span><span>Uradi ga za svoj nivo:</span></p>
+        <p class="apt-p"><span>Kratak test otkriva šta ti najbolje odgovara — oblast, predmete i način učenja.</span><span>Uradi ga za svoj nivo:</span></p>
         <div class="apt-lvls">
           <a class="apt-lvl apt-sred" href="test-sklonosti.html?nivo=sred"><b>Srednja škola</b><small>za osmake</small></a>
           <a class="apt-lvl apt-visa" href="test-sklonosti.html?nivo=visa"><b>Viša škola</b><small>za maturante</small></a>
@@ -1231,7 +1231,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
       <div class="reveal">
         <div class="eyebrow" style="color:var(--goldlt)">O meni</div>
         <h2 style="margin-top:12px">Iza svega — ljubav prema deci i znanju</h2>
-        <p>Verujem da je rad sa decom i u nauci najlepši poziv koji jedna žena može da ima. Svako dete zaslužuje toplinu, strpljenje i nekoga ko čvrsto veruje u njega. Godinama predajem s ljubavlju — matematiku, fiziku i tehniku — a Mathiu sam stvorila da ta ista ljubav bude uz svako dete uvek. Jer najlepše stvari u životu se dele: znanje, pažnja i vera u dobro.</p>
+        <p class="mabout-p"><span>Verujem da je rad sa decom i u nauci najlepši poziv koji jedna žena može da ima.</span><span>Svako dete zaslužuje toplinu, strpljenje i nekoga ko čvrsto veruje u njega.</span><span>Godinama predajem s ljubavlju — matematiku, fiziku i tehniku — a Mathiu sam stvorila da ta ljubav bude uz svako dete, uvek.</span><span>Jer najlepše stvari u životu se dele: znanje, pažnja i vera u dobro.</span></p>
         <div class="mabout-sign"><span class="script goldtext">Marina</span></div>
         <div class="chips">
           <span class="chip"><b>10+</b> godina nastave</span>
@@ -1363,8 +1363,7 @@ html,body{overflow-x:hidden}
   </div>
   <div class="mf-bar">
     <div class="mf-rule" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
-    <div class="mf-signoff"><span class="mf-sig-pre">Sa ljubavlju,</span><span class="mf-sig">Marina</span></div>
-    <span class="mf-copy">© Mathia Edu · 2026 · Sva prava zadržana</span>
+    <span class="mf-copy">© 2026 Mathia Edu · Sva prava zadržana</span>
   </div>
 </footer>
 
@@ -1742,5 +1741,34 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 <script>
 (function(){var c=document.querySelector(".pcard");if(!c)return;var done=false;var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;function run(){if(done)return;done=true;c.querySelectorAll(".pfill").forEach(function(f){requestAnimationFrame(function(){f.style.width=f.dataset.w+"%";});});c.querySelectorAll(".prow-v").forEach(function(v){var t=parseInt(v.dataset.v,10)||0;if(rm){v.textContent=t+"%";return;}var s0=performance.now();function step(n){var p=Math.min((n-s0)/1100,1);var e=1-Math.pow(1-p,3);v.textContent=Math.round(t*e)+"%";if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)run();});},{threshold:.3});io.observe(c);})();
 </script>
+<style>
+.mq-dot{display:block;width:7px;height:7px;transform:rotate(45deg);background:var(--gold);box-shadow:0 0 14px rgba(198,160,92,.85);margin:0 auto 16px}
+.about .mabout-p span{display:block}.about .mabout-p span+span{margin-top:11px}
+.about .mabout-sign{text-align:right;margin-top:20px}
+.mf-col-contact .social{flex-direction:column;align-items:flex-start;gap:5px}
+.mf-col-contact .social a{background:none;border:none;box-shadow:none;padding:5px 0;color:#EAD9DE}
+.mf-col-contact .social a:hover{background:none;border:none;transform:none;color:#FFF6E2;padding-left:6px}
+.mf-col-contact .social a svg{width:18px;height:18px}
+.mf-info .mf-pay .paycard{display:inline-flex;background:rgba(255,255,255,.94);border:1px solid rgba(198,160,92,.35);border-radius:14px;padding:10px 16px;box-shadow:0 14px 30px -16px rgba(0,0,0,.55)}
+.mf-info .mf-pay .paycard img{width:auto;height:24px;max-width:100%}
+.mf-bar .mf-copy{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(231,210,162,.5)}
+.apt-lvl{padding:22px 18px}
+.apt-lvl b::after{content:"";display:block;width:26px;height:2px;margin:9px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.apt-lvl small{color:var(--muted);font-size:.78rem;margin-top:8px;display:block}
+.tier{padding:34px 28px 30px}
+.tier .sub{color:var(--golddk);font-weight:800;letter-spacing:.04em;margin-top:4px}
+.tier ul{margin:22px 0}
+.tier ul li{font-size:.96rem;line-height:1.5}
+.tier .price{margin-top:auto;padding-top:20px;border-top:1px solid rgba(198,160,92,.22);font-size:2.3rem}
+.tier .price span{display:block;margin-top:2px}
+.tier .btn{margin-top:16px}
+</style>
+<style>
+.final{padding:106px 0}
+.final-eye{margin-bottom:18px}
+.final p{margin-top:16px}
+.final .row{margin-top:34px}
+.mquote{padding:92px 0}
+</style>
 </body>
 </html>
