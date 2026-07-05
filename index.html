@@ -875,7 +875,7 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
         <div style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;color:#C6A05C;font-size:2.4rem;line-height:1;white-space:nowrap">★ 5.0</div>
         <div style="text-align:left;line-height:1.35">
           <div style="font-weight:800;color:#432C37">Ocena 5,0 / 5 — 40 studentskih ocena</div>
-          <div style="color:#90787E;font-size:.86rem">Nezavisna platforma „Oceni profesora" · Fakultet tehničkih nauka, Novi Sad · <span style="color:#9C7838;font-weight:700">proveri ↗</span></div>
+          <div style="color:#90787E;font-size:.86rem">Nezavisna platforma „Oceni profesora“ · <span style="color:#9C7838;font-weight:700">proveri ocene ↗</span></div>
         </div>
       </a>
     </div>
@@ -990,18 +990,18 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="ksub">paketi</div>
-      <h2>Izaberite predmete</h2>
-      <p>Birate koliko predmeta dete uči — jedan, dva ili tri. Pristup Marini i pratećim skriptama je neograničen, 24 sata dnevno.</p>
+      <h2>Jedan paket — cela profesorica uz vaše dete</h2>
+      <p>Birate samo koliko predmeta dete uči — jedan, dva ili tri. Sve ostalo je uključeno: neograničen pristup profesorici 0–24, sve skripte i priručnici, i strpljenje koje se ne troši. Bez skrivenih troškova. <b>Prvih 15 minuta je na poklon</b> — probajte pre nego što se odlučite.</p>
     </div>
     <div class="tiers">
       <div class="tier reveal">
         <h3>BASIC</h3>
-        <div class="sub">Jedan predmet</div>
+        <div class="sub">Za jedan predmet</div>
         <ul>
-          <li>Marina za <b>jedan predmet</b></li>
+          <li>Marina za <b>jedan predmet</b> — uvek dostupna</li>
           <li>Sve skripte i priručnici za taj predmet</li>
-          <li>Čet podrška 24/7</li>
-          <li>Neograničen pristup, bez dnevnog limita</li>
+          <li>Neograničena pitanja, 0–24</li>
+          <li>Bez dnevnog limita, bez žurbe</li>
         </ul>
         <div class="price">4.990 <span>RSD / mesec</span></div>
         <a class="btn btn-ghost" href="#" onclick="upOpen('Basic',4990,'basic');return false">Izaberi Basic</a>
@@ -1009,23 +1009,23 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
       <div class="tier feat-tier reveal">
         <span class="badge-top">★ Najpopularnije</span>
         <h3>GOLD</h3>
-        <div class="sub">Dva predmeta po izboru</div>
+        <div class="sub">Za dva predmeta po izboru</div>
         <ul>
-          <li>Marina za <b>dva predmeta</b></li>
+          <li>Marina za <b>dva predmeta</b> po izboru</li>
           <li>Sve skripte i priručnici za oba predmeta</li>
-          <li>Napredna podrška 24/7</li>
-          <li>Neograničen pristup, bez dnevnog limita</li>
+          <li>Prioritetna podrška, 0–24</li>
+          <li>Neograničen pristup, bez limita</li>
         </ul>
         <div class="price">6.990 <span>RSD / mesec</span></div>
         <a class="btn btn-gold" href="#" onclick="upOpen('Gold',6990,'gold');return false">Izaberi Gold</a>
       </div>
       <div class="tier reveal">
         <h3>DIAMOND</h3>
-        <div class="sub">Tri predmeta po izboru</div>
+        <div class="sub">Za tri predmeta po izboru</div>
         <ul>
-          <li>Marina za <b>tri predmeta po izboru</b></li>
+          <li>Marina za <b>tri predmeta</b> po izboru</li>
           <li>Cela biblioteka skripti i priručnika</li>
-          <li>Pristup svim skriptama i priručnicima platforme</li>
+          <li>Sve što platforma nudi — bez ograničenja</li>
         </ul>
         <div class="price">9.990 <span>RSD / mesec</span></div>
         <a class="btn btn-rose" href="#" onclick="upOpen('Diamond',9990,'diamond');return false">Izaberi Diamond</a>
@@ -1055,21 +1055,23 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 
 <!-- 9 · O MENI teaser -->
 <div class="lux-div" aria-hidden="true"><span class="ln"></span><svg class="orn" viewBox="0 0 56 14" fill="currentColor"><circle cx="6" cy="7" r="1.4"/><path d="M17 7C21 4 23 5 25 7C23 9 21 10 17 7Z"/><path d="M28 2l4 5-4 5-4-5z"/><path d="M39 7C35 4 33 5 31 7C33 9 35 10 39 7Z"/><circle cx="50" cy="7" r="1.4"/></svg><span class="ln"></span></div>
+<style>.mabout-sign{margin:16px 0 6px}.mabout-sign .script{font-size:2.5rem;line-height:1}</style>
 <section class="about">
   <div class="wrap">
     <div class="about-grid">
       <div class="seal reveal"><div class="ring"><img class="ph" alt="dr Marina Bulat" src="avatar.jpg"></div></div>
       <div class="reveal">
         <div class="eyebrow" style="color:var(--goldlt)">O meni</div>
-        <h2 style="margin-top:12px">Iza platforme stoji stvarna profesorica</h2>
-        <p>dr Marina Bulat predaje na Fakultetu tehničkih nauka u Novom Sadu. Doktor nauka elektrotehnike i računarstva i magistar primenjene matematike. Svoje znanje iz matematike, fizike i tehničkih nauka godinama prenosi studentima i učenicima, a sada i vašem detetu, kroz Mathia.</p>
+        <h2 style="margin-top:12px">Iza svega — ljubav prema deci i znanju</h2>
+        <p>Verujem da je rad sa decom i u nauci najlepši poziv koji jedna žena može da ima. Svako dete zaslužuje toplinu, strpljenje i nekoga ko čvrsto veruje u njega. Godinama predajem s ljubavlju — matematiku, fiziku i tehniku — a Mathiu sam stvorila da ta ista ljubav bude uz tvoje dete uvek. Jer najlepše stvari u životu se dele: znanje, pažnja i vera u dobro.</p>
+        <div class="mabout-sign"><span class="script goldtext">Marina</span></div>
         <div class="chips">
           <span class="chip"><b>10+</b> godina nastave</span>
           <span class="chip"><b>100+</b> naučnih radova</span>
           <span class="chip"><b>🎓</b> doktor nauka</span>
-          <span class="chip"><b>IEEE</b> član · Erasmus+</span>
+          <span class="chip"><b>💛</b> s ljubavlju prema deci</span>
         </div>
-        <a class="btn btn-gold" href="o-marini.html">Saznaj više →</a>
+        <a class="btn btn-gold" href="o-marini.html">Upoznaj me →</a>
       </div>
     </div>
   </div>
@@ -1080,10 +1082,10 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 <section class="final">
   <div class="wrap">
     <div class="final-eye eyebrow reveal">Poslednja reč</div>
-    <h2 class="reveal">Pretvorimo vreme na telefonu u vreme koje gradi budućnost.</h2>
-    <p class="reveal">Prvih 15 minuta je besplatno — bez kartice, bez obaveza. Samo vaše dete, zadatak i profesorica koja ne odustaje.</p>
+    <h2 class="reveal">Neka vaše dete oseti — „Ja to mogu.“</h2>
+    <p class="reveal">Počnite danas: prvih 15 minuta je na poklon, bez kartice i bez obaveza. Samo vaše dete, jedan zadatak i profesorica koja ne odustaje — jer sve veliko počinje od jednog tihog „sad razumem“.</p>
     <div class="row reveal">
-      <a class="btn btn-gold" href="#paketi">Rezerviši 15 besplatnih minuta →</a>
+      <a class="btn btn-gold" href="#paketi">Započni besplatno →</a>
     </div>
   </div>
 </section>
@@ -1397,7 +1399,7 @@ html,body{overflow-x:hidden}
         data-mode="site" data-name="Profesorica"
         data-avatar="avatar.jpg"
         data-lang="sr" data-sub="tvoja profesorica" data-sub-en="your teacher"
-        data-hi="Zdravo, drago mi je što si tu. 🌸 Ja sam tvoja profesorica — pitaj me sve o Mathiji: kako da počneš, koji predmet ti leži, kako rade paketi i prodavnica. Tu sam za tebe, uvek."
+        data-hi="Zdravo, drago mi je što si tu. 🌸 Ja sam tvoja profesorica — tu sam s ljubavlju i strpljenjem, kad god ti zatreba. Pitaj me sve: koji predmet ti leži, kako da počneš, kako rade paketi. Prvih 15 minuta je na poklon. 💛"
         data-hi-en="Hello, I&#39;m so glad you&#39;re here. 🌸 I&#39;m your teacher — ask me anything about Mathia: how to begin, which subject suits you, how the plans and shop work. I&#39;m here for you, always."></script>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--i18nfix--><script>(function(){
 var NAV={en:'Try for free →',de:'Kostenlos testen →',fr:'Essaie gratuitement →',es:'Prueba gratis →',it:'Prova gratis →',ru:'Попробуй бесплатно →',pt:'Experimenta grátis →'};

@@ -150,7 +150,7 @@
   };
   var CTA_TX = {sr:"Pitaj ",en:"Ask ",de:"Frag ",fr:"Demande à ",es:"Pregunta a ",it:"Chiedi a ",ru:"Спроси ",pt:"Pergunta à "};
   var SITE = {
-    sr:{sub:"Tvoj vodič kroz Mathiu", ph:"Napiši pitanje…", send:"Pošalji", hi:"Zdravo! 👋 Ja sam Profesorica — Tvoj vodič kroz Mathiu. Pitaj me bilo šta: predmeti, paketi, prijemni. Prvih 15 minuta je besplatno."},
+    sr:{sub:"tvoja profesorica", ph:"Napiši pitanje…", send:"Pošalji", hi:"Zdravo, drago mi je što si tu. 🌸 Ja sam tvoja profesorica — tu sam s ljubavlju i strpljenjem, kad god ti zatreba. Pitaj me sve: koji predmet ti leži, kako da počneš, kako rade paketi. Prvih 15 minuta je na poklon. 💛"},
     en:{sub:"Your teacher", ph:"Type your question…", send:"Send", hi:"Hi! ❤️ I'm Profesorica, your guide through Mathia. I'll explain the material, help you choose the right plan, and prepare you for the entrance exams and enrolment at universities in Belgrade and Novi Sad. 💡 Every plan comes with an aptitude test — in just a few minutes you'll discover what suits you best and which programme is right for you. Ask me anything — your first 15 minutes are free! ✨"},
     de:{sub:"Deine Lehrerin", ph:"Schreib deine Frage…", send:"Senden", hi:"Hallo! ❤️ Ich bin Profesorica, deine Begleiterin durch Mathia. Ich erkläre dir den Stoff, helfe dir beim passenden Paket und bereite dich auf die Aufnahmeprüfungen und die Einschreibung an Universitäten in Belgrad und Novi Sad vor. 💡 Zu jedem Paket gehört ein Eignungstest — in wenigen Minuten findest du heraus, was dir liegt und welcher Studiengang zu dir passt. Frag mich alles — deine ersten 15 Minuten sind gratis! ✨"},
     fr:{sub:"Ta professeure", ph:"Écris ta question…", send:"Envoyer", hi:"Salut ! ❤️ Je suis Profesorica, ton guide sur Mathia. Je t'explique les cours, t'aide à choisir le bon forfait et te prépare aux concours d'entrée et à l'inscription dans les universités de Belgrade et Novi Sad. 💡 Chaque forfait inclut un test d'aptitude — en quelques minutes, tu découvres ce qui te convient et quelle filière est faite pour toi. Demande-moi ce que tu veux — tes 15 premières minutes sont offertes ! ✨"},
@@ -169,7 +169,7 @@
     ru:"Привет! ❤️ Я Profesorica, преподавательница по «{subj}». Спрашивай, фотографируй 📷 или диктуй 🎙️ задачу.",
     pt:"Olá! ❤️ Sou a Profesorica, tua professora de {subj}. Pergunta, fotografa 📷 ou dita 🎙️ o exercício."
   };
-  function ctaLabel(){ var nm=NAME; if((LANG==="sr"||LANG==="hr")&&/a$/.test(nm)) nm=nm.slice(0,-1)+"u"; return (CTA_TX[LANG]||CTA_TX.sr)+nm; }
+  function ctaLabel(){ var L={sr:"Pitaj me 🌸",hr:"Pitaj me 🌸",en:"Ask me 🌸",de:"Frag mich 🌸",fr:"Écris-moi 🌸",es:"Pregúntame 🌸",it:"Scrivimi 🌸",ru:"Спроси меня 🌸",pt:"Pergunta-me 🌸"}; return L[LANG]||L.sr; }
   var SUBJECTS = {
     "prijemni-matematika": { name: "Profesorica", sub: { sr: "profesorica · prijemni", en: "teacher · entrance exam" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za prijemni iz matematike. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for the math entrance exam. Type a problem or send a photo — we'll go step by step." } },
     "mala-matura": { name: "Profesorica", sub: { sr: "profesorica · mala matura", en: "teacher · grade-8 final" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za malu maturu iz matematike. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for the grade-8 math final. Type a problem or send a photo — we'll go step by step." } },
@@ -273,9 +273,9 @@
     ".zoi-row{display:flex;gap:8px;align-items:flex-end}" +
     ".zoi-row.zoi-me{flex-direction:row-reverse}" +
     ".zoi-av{width:26px;height:26px;border-radius:50%;object-fit:cover;flex:none}" +
-    ".zoi-bub{max-width:78%;min-width:0;padding:9px 12px;border-radius:15px;font-size:14.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:break-word;word-wrap:break-word;word-break:break-word;box-sizing:border-box}" +
-    ".zoi-zoi .zoi-bub{background:#fff;color:#27302d;border-bottom-left-radius:5px;box-shadow:0 2px 6px rgba(0,0,0,.05)}" +
-    ".zoi-me .zoi-bub{background:linear-gradient(160deg,#C6A05C,#9C7838);color:#fff;border-bottom-right-radius:5px}" +
+    ".zoi-bub{max-width:80%;min-width:0;padding:11px 14px;border-radius:18px;font-size:14.5px;line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word;word-wrap:break-word;word-break:break-word;box-sizing:border-box}" +
+    ".zoi-zoi .zoi-bub{background:#FFFDF8;color:#3E2D34;border:1px solid #EFE3CE;border-bottom-left-radius:6px;box-shadow:0 6px 16px -10px rgba(120,70,80,.35)}" +
+    ".zoi-me .zoi-bub{background:linear-gradient(160deg,#D3B06A,#9C7838);color:#fff;border-bottom-right-radius:6px;box-shadow:0 8px 18px -10px rgba(156,120,56,.6)}" +
     ".zoi-bub img{max-width:100%;border-radius:10px;margin-top:4px}" +
     ".zoi-bub pre,.zoi-bub code{white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;max-width:100%;overflow-x:auto;box-sizing:border-box}" +
     ".zoi-bub table{display:block;max-width:100%;overflow-x:auto}" +
