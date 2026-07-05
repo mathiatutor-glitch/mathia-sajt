@@ -118,7 +118,7 @@
 
   /* pain */
   .pain{position:relative;overflow:hidden;text-align:center;color:#fff;padding:74px 0;background:linear-gradient(165deg,#4a2f3d 0%,#38232f 50%,#281824 100%)}
-  .pain::before{background:none}
+  .pain::before{background-image:var(--lux);background-size:120px 120px}
   .pain:after{content:"";position:absolute;inset:0;background:radial-gradient(620px 380px at 50% -4%,rgba(231,210,162,.16),transparent);pointer-events:none}
   .pain .wrap{position:relative;z-index:2;max-width:980px}
   .pain-eye{font-family:'Nunito',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.42em;text-transform:uppercase;color:rgba(231,210,162,.78);margin:0 0 26px;padding-left:.42em}
@@ -130,7 +130,7 @@
   .pain-turn .dm{width:8px;height:8px;transform:rotate(45deg);background:#E7D2A2;box-shadow:0 0 16px rgba(231,210,162,1)}
   .pain .big{margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,4.4vw,3.05rem);line-height:1.16;letter-spacing:.004em;color:#fff}
   .pain .big em{font-weight:800;font-style:normal;color:#F1D68A;text-shadow:0 0 36px rgba(231,210,162,.6)}
-  .pain .pain-res{white-space:normal;font-style:normal;color:#FCF4EC;margin:26px auto 0;max-width:58ch;font-size:clamp(1.14rem,2.1vw,1.4rem);line-height:1.55;text-wrap:pretty;text-shadow:0 1px 16px rgba(0,0,0,.3)}.pain-res span{display:block}.pain-res span+span{margin-top:8px}
+  .pain .pain-res{white-space:normal;font-style:normal;color:#FCF4EC;margin:28px auto 0;max-width:none;font-size:clamp(1.12rem,1.9vw,1.32rem);line-height:1.5;text-shadow:0 1px 16px rgba(0,0,0,.3)}.pain .pain-res span{white-space:nowrap}.pain-res span{display:block}.pain-res span+span{margin-top:8px}
   .pain-res b{color:#F1D68A;font-weight:700}
   .pain .wrap .q:nth-child(2){transition-delay:.12s}
   .pain .wrap .q:nth-child(3){transition-delay:.26s}
@@ -138,7 +138,7 @@
   .pain .wrap .pain-turn{transition-delay:.54s}
   .pain .wrap .big{transition-delay:.64s}
   .pain .wrap .pain-res{transition-delay:.80s}
-  @media(max-width:880px){.pain .q{white-space:normal;font-size:clamp(1.2rem,3.2vw,1.55rem)}}
+  @media(max-width:880px){.pain .q{white-space:normal;font-size:clamp(1.2rem,3.2vw,1.55rem)}.pain .pain-res span{white-space:normal}.pain .pain-res{font-size:clamp(1.05rem,2.7vw,1.2rem)}}
 
   /* features */
   .what{background:var(--card)}
@@ -1411,12 +1411,12 @@ html,body{overflow-x:hidden}
 </script>
 <script>document.addEventListener("click",function(e){var h=e.target.closest&&e.target.closest(".lvl-head");if(h){h.parentElement.classList.toggle("open");}});</script>
 <!-- Profesorica · chat klon (opšti — bez slikanja, kao u index.html) -->
-<script src="https://project-y23je.vercel.app/widget.js?v=13"
+<script src="https://project-y23je.vercel.app/widget.js?v=14"
         data-api="https://project-y23je.vercel.app/api/chat"
         data-mode="site" data-name="Profesorica"
         data-avatar="avatar.jpg"
-        data-lang="sr" data-sub="tvoja profesorica" data-sub-en="your teacher"
-        data-hi="Zdravo, tako mi je drago što si tu. 🌸 Ja sam Profesorica — tvoj vodič kroz Mathiu. Pitaj me sve što te zanima: koji predmet ti leži, kako biraš paket, kako da počneš. Kreni bez brige — prvih 15 minuta je moj poklon tebi. 💛"
+        data-lang="sr" data-sub="Tvoja profesorica" data-sub-en="Your teacher"
+        data-hi="Zdravo, tako mi je drago što si tu. 🌸 Ja sam Profesorica, tvoj vodič kroz Mathiu — pitaj me sve: predmeti, paketi, prijemni, prvi koraci. Prvih 15 minuta je moj poklon tebi, da osetiš kako izgleda učenje s ljubavlju. 💛"
         data-hi-en="Hello, I&#39;m so glad you&#39;re here. 🌸 I&#39;m your teacher — ask me anything about Mathia: how to begin, which subject suits you, how the plans and shop work. I&#39;m here for you, always."></script>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--i18nfix--><script>(function(){
 var NAV={en:'Try for free →',de:'Kostenlos testen →',fr:'Essaie gratuitement →',es:'Prueba gratis →',it:'Prova gratis →',ru:'Попробуй бесплатно →',pt:'Experimenta grátis →'};
