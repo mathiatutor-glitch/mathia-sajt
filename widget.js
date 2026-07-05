@@ -169,7 +169,7 @@
     ru:"Привет! ❤️ Я Profesorica, преподавательница по «{subj}». Спрашивай, фотографируй 📷 или диктуй 🎙️ задачу.",
     pt:"Olá! ❤️ Sou a Profesorica, tua professora de {subj}. Pergunta, fotografa 📷 ou dita 🎙️ o exercício."
   };
-  function ctaLabel(){ var L={sr:"Tu sam za tebe 🌸",hr:"Tu sam za tebe 🌸",en:"I\u2019m here for you 🌸",de:"Ich bin für dich da 🌸",fr:"Je suis là pour toi 🌸",es:"Estoy aquí para ti 🌸",it:"Sono qui per te 🌸",ru:"Я здесь для тебя 🌸",pt:"Estou aqui para ti 🌸"}; return L[LANG]||L.sr; }
+  function ctaLabel(){ var L={sr:"Tu sam za tebe",hr:"Tu sam za tebe",en:"I\u2019m here for you",de:"Ich bin für dich da",fr:"Je suis là pour toi",es:"Estoy aquí para ti",it:"Sono qui per te",ru:"Я здесь для тебя",pt:"Estou aqui para ti"}; return L[LANG]||L.sr; }
   var SUBJECTS = {
     "prijemni-matematika": { name: "Profesorica", sub: { sr: "profesorica · prijemni", en: "teacher · entrance exam" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za prijemni iz matematike. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for the math entrance exam. Type a problem or send a photo — we'll go step by step." } },
     "mala-matura": { name: "Profesorica", sub: { sr: "profesorica · mala matura", en: "teacher · grade-8 final" }, hi: { sr: "Zdravo! Ja sam vaša profesorica za malu maturu iz matematike. Napišite zadatak ili pošaljite sliku — rešavamo korak po korak.", en: "Hi! I'm {name}, your teacher for the grade-8 math final. Type a problem or send a photo — we'll go step by step." } },
@@ -257,8 +257,8 @@
     "#zoi-btn:hover{transform:scale(1.06)}" +
     "#zoi-panel{position:fixed;right:20px;bottom:104px;width:404px;max-width:calc(100vw - 32px);height:620px;max-height:calc(100vh - 120px);background:#FBF5EA;border-radius:22px;overflow:hidden;display:none;flex-direction:column;z-index:2147483000;box-shadow:0 24px 60px rgba(64,42,52,.30);font-family:'Nunito',system-ui,sans-serif;border:1px solid #ECE0CC}" +
     "#zoi-panel.zoi-open{display:flex}" +
-    "#zoi-cta{position:fixed;right:104px;bottom:40px;z-index:2147483000;background:linear-gradient(180deg,#FFFDF8,#F3E7CE);color:#432C37;font-family:'Nunito',system-ui,sans-serif;font-weight:800;font-size:13.5px;letter-spacing:.03em;padding:12px 19px;border-radius:100px;border:1px solid rgba(198,160,92,.55);box-shadow:0 14px 30px -10px rgba(120,70,80,.5),inset 0 1px 0 rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;animation:zoicta 2.4s ease-in-out infinite}" +
-    "#zoi-cta:after{content:'';position:absolute;right:-7px;bottom:15px;border:7px solid transparent;border-left-color:#F3E7CE;border-right:0}" +
+    "#zoi-cta{position:fixed;right:106px;bottom:42px;z-index:2147483000;color:#43303A;font-family:'Nunito',system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;padding:13px 22px;border-radius:100px;border:1.5px solid transparent;background:linear-gradient(180deg,#FFFFFF,#F5EAD1) padding-box,linear-gradient(120deg,#E7D2A2,#B8923F) border-box;box-shadow:0 16px 34px -12px rgba(120,70,80,.55),inset 0 1px 0 rgba(255,255,255,.85);cursor:pointer;white-space:nowrap;animation:zoicta 2.4s ease-in-out infinite}" +
+    "#zoi-cta:after{content:'';position:absolute;right:-7px;bottom:16px;border:7px solid transparent;border-left-color:#F5EAD1;border-right:0}" +
     "#zoi-cta.zoi-hide{display:none}" +
     "@keyframes zoicta{0%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}" +
     "#zoi-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#9C7838,#C6A05C);color:#fff}" +

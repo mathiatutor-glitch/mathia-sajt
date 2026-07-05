@@ -121,7 +121,13 @@
   .pain::before{background-image:var(--lux);background-size:120px 120px}
   .pain:after{content:"";position:absolute;inset:0;background:radial-gradient(620px 380px at 50% -4%,rgba(231,210,162,.16),transparent);pointer-events:none}
   .pain .wrap{position:relative;z-index:2;max-width:980px}
-  .pain-eye{font-family:'Nunito',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.42em;text-transform:uppercase;color:rgba(231,210,162,.78);margin:0 0 26px;padding-left:.42em}
+  .pain-eye{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 0 30px;flex-wrap:wrap}
+  .pe-tx{font-family:'Nunito',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.42em;text-transform:uppercase;padding-left:.42em;background:linear-gradient(100deg,#B79343 0%,#C6A05C 34%,#FFF6D6 50%,#C6A05C 66%,#B79343 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:peShine 5s linear infinite}
+  @keyframes peShine{to{background-position:-220% center}}
+  .pe-ln{height:1px;width:min(130px,16vw);background:linear-gradient(90deg,transparent,rgba(231,210,162,.12) 38%,rgba(255,246,214,.95) 50%,rgba(231,210,162,.12) 62%,transparent);background-size:230% 100%;animation:peLine 3.4s linear infinite}
+  .pe-ln-r{transform:scaleX(-1)}
+  @keyframes peLine{to{background-position:-230% center}}
+  @media(prefers-reduced-motion:reduce){.pe-tx{animation:none;-webkit-text-fill-color:#E7D2A2;color:#E7D2A2}.pe-ln{animation:none;background:linear-gradient(90deg,transparent,rgba(231,210,162,.55))}}
   .pain .q{color:#FAF1F3;font-weight:500;font-size:clamp(1.3rem,2.25vw,1.72rem);line-height:1.5;letter-spacing:.01em;margin:0 auto;max-width:none;font-family:'Cormorant Garamond',serif;font-style:italic;white-space:nowrap;text-shadow:0 1px 16px rgba(0,0,0,.35)}
   .pain .q+.q{margin-top:12px}
   .pain-turn{display:flex;align-items:center;justify-content:center;gap:16px;margin:34px 0 26px}
@@ -751,7 +757,7 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
 
 <section class="pain">
   <div class="wrap">
-    <p class="pain-eye reveal">Ako vam je ovo poznato…</p>
+    <div class="pain-eye reveal"><span class="pe-ln" aria-hidden="true"></span><span class="pe-tx">Ako vam je ovo poznato…</span><span class="pe-ln pe-ln-r" aria-hidden="true"></span></div>
     <p class="q reveal">Telefon mu ne izlazi iz ruke — a sveske ostaju prazne.</p>
     <p class="q reveal">Svaki razgovor o školi završava se svađom.</p>
     <p class="q reveal">I ocene, iz meseca u mesec, tiho klize nadole.</p>
@@ -1411,7 +1417,7 @@ html,body{overflow-x:hidden}
 </script>
 <script>document.addEventListener("click",function(e){var h=e.target.closest&&e.target.closest(".lvl-head");if(h){h.parentElement.classList.toggle("open");}});</script>
 <!-- Profesorica · chat klon (opšti — bez slikanja, kao u index.html) -->
-<script src="https://project-y23je.vercel.app/widget.js?v=14"
+<script src="https://project-y23je.vercel.app/widget.js?v=15"
         data-api="https://project-y23je.vercel.app/api/chat"
         data-mode="site" data-name="Profesorica"
         data-avatar="avatar.jpg"
