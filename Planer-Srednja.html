@@ -34,7 +34,7 @@
   .navi{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:11px;cursor:pointer;color:#e9ddcf;font-weight:600;font-size:.88rem;transition:background .14s,transform .08s}
   .navi:hover{background:rgba(231,210,162,.1)}
   .navi.on{background:linear-gradient(100deg,rgba(198,160,92,.95),rgba(156,120,56,.9));color:#3a2a12;box-shadow:0 6px 16px -8px rgba(0,0,0,.5)}
-  .navi .ic{width:22px;text-align:center;font-size:1.02rem;flex:0 0 22px}
+  .navi .ic{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex:0 0 22px;color:inherit}.navi .ic svg{width:19px;height:19px}.card>h3 svg{width:22px;height:22px;vertical-align:-4px;margin-right:9px;color:var(--gold);flex:none}.top .mt .mt-ic{display:inline-flex;vertical-align:-5px;margin-right:9px;color:var(--gold)}.top .mt .mt-ic svg{width:25px;height:25px}.top{position:relative}.top::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#E7D2A2,#C6A05C,#FFF6D6,#C6A05C,#E7D2A2,transparent)}
   /* main */
   .main{padding:0 0 60px;min-width:0}
   .top{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -172,6 +172,7 @@ code{overflow-wrap:break-word}
 <div class="app">
   <aside class="side" id="side">
     <div class="brand">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;color:#E7D2A2;font-weight:800;font-size:.7rem;letter-spacing:.04em;text-decoration:none;margin-bottom:11px">← Mathia · Početna</a>
       <b>Mathia Planer</b>
       <span class="by">by Dr. Marina Bulat</span>
       <div style="margin-top:9px;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#E7D2A2;font-weight:800">Srednja škola</div>
@@ -311,39 +312,39 @@ const SUBJECT_CHECK=['Prvo predavanje','Preuzeo prezentacije','Vežbe','Projekat
 const PONETI=['olovka','sveska','digitron','lenjir','đačka knjižica','voda','pribor'];
 
 const SECTIONS=[
-  {id:'profil',grp:'Ja',ic:'🎓',t:'Naslovna',r:renderProfil},
-  {id:'vizija',grp:'Ja',ic:'🌟',t:'Vizija i ciljevi',r:renderVizija},
+  {id:'profil',grp:'Ja',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 7.5 4.5 5 5v13c2.5-.5 5.5 0 7 1.5 1.5-1.5 4.5-2 7-1.5V5c-2.5-.5-5.5 0-7 1.5z"/><path d="M12 6.5V19"/></svg>',t:'Naslovna',r:renderProfil},
+  {id:'vizija',grp:'Ja',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>',t:'Vizija i ciljevi',r:renderVizija},
 
-  {id:'godisnji',grp:'Godina',ic:'🗓️',t:'Godišnji pregled',r:renderGodisnji},
-  {id:'raspored',grp:'Godina',ic:'⏰',t:'Raspored časova',r:renderRaspored},
-  {id:'rok',grp:'Godina',ic:'📝',t:'Kontrolni i pismeni',r:renderRok},
-  {id:'sumarum',grp:'Godina',ic:'📊',t:'Sumarum godine',r:renderSumarum},
-  {id:'godine',grp:'Godina',ic:'🏛️',t:'Svi razredi',r:renderGodine},
-  {id:'diploma',grp:'Godina',ic:'🎓',t:'Matura — odbrojavanje',r:renderDiploma},
-  {id:'refleksija',grp:'Godina',ic:'🪞',t:'Godišnja refleksija',r:renderRefleksija},
+  {id:'godisnji',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M4 9h16M8 3v4M16 3v4"/></svg>',t:'Godišnji pregled',r:renderGodisnji},
+  {id:'raspored',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg>',t:'Raspored časova',r:renderRaspored},
+  {id:'rok',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 11l2 2 4-4"/></svg>',t:'Kontrolni i pismeni',r:renderRok},
+  {id:'sumarum',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="13" width="3" height="5" rx="1"/></svg>',t:'Sumarum godine',r:renderSumarum},
+  {id:'godine',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l8-5 8 5"/><path d="M6 9v9M10 9v9M14 9v9M18 9v9"/><path d="M3 20h18"/></svg>',t:'Svi razredi',r:renderGodine},
+  {id:'diploma',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg>',t:'Matura — odbrojavanje',r:renderDiploma},
+  {id:'refleksija',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.7 12 20 12 20z"/></svg>',t:'Godišnja refleksija',r:renderRefleksija},
 
-  {id:'predmeti',grp:'Predmeti',ic:'📚',t:'Moji predmeti',r:renderPredmeti},
+  {id:'predmeti',grp:'Predmeti',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg>',t:'Moji predmeti',r:renderPredmeti},
 
-  {id:'ucenje',grp:'Navike',ic:'📈',t:'Praćenje učenja',r:renderUcenje},
-  {id:'pomodoro',grp:'Navike',ic:'🍅',t:'Pomodoro',r:renderPomodoro},
-  {id:'habit',grp:'Navike',ic:'✅',t:'Habit tracker',r:renderHabit},
-  {id:'mood',grp:'Navike',ic:'😊',t:'Mood tracker',r:renderMood},
+  {id:'ucenje',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 15l4-4 3 2.5 6-6.5"/><path d="M15 6h3.5v3.5"/></svg>',t:'Praćenje učenja',r:renderUcenje},
+  {id:'pomodoro',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 13V8.5"/><path d="M9 2.6h6"/></svg>',t:'Pomodoro',r:renderPomodoro},
+  {id:'habit',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>',t:'Habit tracker',r:renderHabit},
+  {id:'mood',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.5 14.5a4 4 0 0 0 7 0"/></svg>',t:'Mood tracker',r:renderMood},
 
-  {id:'projekti',grp:'Život',ic:'🚀',t:'Projekti',r:renderProjekti},
-  {id:'bucket',grp:'Život',ic:'🪣',t:'Bucket list',r:renderBucket},
-  {id:'vision',grp:'Život',ic:'🖼️',t:'Vision board',r:renderVision},
+  {id:'projekti',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 1.5 4.5 4.5 4.5 8 0 2-1 4-2.5 5.5h-4C8.5 15 7.5 13 7.5 11c0-3.5 1.5-6.5 4.5-8z"/><circle cx="12" cy="9.5" r="1.4"/><path d="M9 17l-2 4M15 17l2 4"/></svg>',t:'Projekti',r:renderProjekti},
+  {id:'bucket',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.3 5.8.8-4.2 4 1 5.7L12 16.6 6.9 19.3l1-5.7-4.2-4 5.8-.8z"/></svg>',t:'Bucket list',r:renderBucket},
+  {id:'vision',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l4.5-4 3.5 3 3-2.5L20 17"/></svg>',t:'Vision board',r:renderVision},
 
-  {id:'stickers',grp:'Nagrade',ic:'✨',t:'Sticker book',r:renderStickers},
-  {id:'badges',grp:'Nagrade',ic:'🏅',t:'Bedževi',r:renderBadges},
+  {id:'stickers',grp:'Nagrade',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg>',t:'Sticker book',r:renderStickers},
+  {id:'badges',grp:'Nagrade',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="5"/><path d="M9 9.5 7 3h10l-2 6.5"/></svg>',t:'Bedževi',r:renderBadges},
 
-  {id:'vodic',grp:'Vodič',ic:'🧭',t:'Vodič dr Marine',r:renderVodic}
+  {id:'vodic',grp:'Vodič',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>',t:'Vodič dr Marine',r:renderVodic}
 ];
 
 function renderProfil(){
   const subs=DB.subjects||[];
   const avg=subs.length?Math.round(subs.reduce((a,s)=>a+(+s.napredak||0),0)/subs.length):0;
   const polozeno=subs.filter(s=>(s.poneti&&false)|| (s.checklist&&s.checklist['Položen ispit'])).length;
-  let h=card('🎓 Naslovna',
+  let h=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg> Naslovna',
     `<div class="grid2">
        ${field('Ime i prezime','profil.ime')}
        ${field('Škola','profil.fakultet')}
@@ -356,7 +357,7 @@ function renderProfil(){
      </div>
      <div style="margin-top:12px">${field('🎯 Cilj za ovu godinu','profil.cilj',{area:true,ph:'Šta želiš da postigneš ove godine?'})}</div>
      <div style="margin-top:12px">${field('Zašto učim?','profil.zasto',{area:true,ph:'Tvoja motivacija — pročitaj je kad bude teško.'})}</div>`);
-  h+=card('📌 Pregled na prvi pogled',
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l-1 6 4 3v2H6v-2l4-3z"/><path d="M12 16v5"/></svg> Pregled na prvi pogled',
     `<div class="grid3">
        <div class="stat"><span class="n">${subs.length}</span><span class="k">Predmeta</span></div>
        <div class="stat"><span class="n">${polozeno}</span><span class="k">Položeno</span></div>
@@ -366,7 +367,7 @@ function renderProfil(){
   return h;
 }
 function renderVizija(){
-  return card('🌟 Moji ciljevi',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg> Moji ciljevi',
     `<div class="grid2">
        ${field('Prosek koji želim','vizija.prosek')}
        ${field('Šta želim da upišem','vizija.espb')}
@@ -375,13 +376,13 @@ function renderVizija(){
      </div>`,'Postavi jasne ciljeve za ovu godinu i dalje. Vraćaj se ovde i ažuriraj ih.');
 }
 function renderCV(){
-  return card('📄 CV godine',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 12h6M9.5 15h5"/></svg> CV godine',
     field('Šta sam naučio ove godine','cv.naucio',{area:true,ph:'Veštine, alati, predmeti, projekti…'})+
     '<div style="margin-top:12px">'+field('Kratak CV / sažetak','cv.tekst',{area:true,ph:'Obrazovanje, iskustvo, veštine — sažeto na jednoj strani.'})+'</div>',
     'Jednom godišnje osveži — do mature imaš gotov CV.');
 }
 function renderPortfolio(){
-  return card('💼 Portfolio',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A2 2 0 0 1 10 3.5h4a2 2 0 0 1 2 2V7"/><path d="M3 12h18"/></svg> Portfolio',
     `<div class="grid2">
        ${field('GitHub','portfolio.github',{ph:'github.com/…'})}
        ${field('LinkedIn','portfolio.linkedin',{ph:'linkedin.com/in/…'})}
@@ -392,7 +393,7 @@ function renderPortfolio(){
      'Sve na jednom mestu — spremno za prijavu za posao ili master.');
 }
 function renderGodisnji(){
-  return card('🗓️ Godišnji pregled',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M4 9h16M8 3v4M16 3v4"/></svg> Godišnji pregled',
     tableEditor('godisnji',[
       {key:'naziv',label:'Događaj',def:''},
       {key:'kategorija',label:'Kategorija',sel:['Polugodište','Kontrolni','Pismeni','Raspust','Ekskurzija','Takmičenje','Priredba'],def:'Kontrolni'},
@@ -401,7 +402,7 @@ function renderGodisnji(){
     'Cela školska godina na jednom mestu — polugodišta, kontrolni, pismeni, raspusti, ekskurzije, takmičenja.');
 }
 function renderRaspored(){
-  return card('⏰ Raspored časova',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg> Raspored časova',
     field('Polugodište','rasporedSem')+
     '<div style="margin-top:12px">'+tableEditor('raspored',[
       {key:'dan',label:'Dan',sel:['Ponedeljak','Utorak','Sreda','Četvrtak','Petak','Subota','Nedelja'],def:'Ponedeljak'},
@@ -413,7 +414,7 @@ function renderRaspored(){
     ],'Dodaj termin')+'</div>');
 }
 function renderRok(){
-  return card('📝 Kontrolni i pismeni',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 11l2 2 4-4"/></svg> Kontrolni i pismeni',
     tableEditor('rok',[
       {key:'predmet',label:'Predmet',def:''},
       {key:'datum',label:'Datum',type:'date',def:''},
@@ -424,7 +425,7 @@ function renderRok(){
     ],'Dodaj ispit'),'Velika tabela celog roka — sve što ti treba na jednom mestu.');
 }
 function renderSumarum(){
-  return card('📊 Sumarum godine',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="13" width="3" height="5" rx="1"/></svg> Sumarum godine',
     `<div class="grid2">
        ${field('Urađene provere','sumarum.polozeno')}
        ${field('Prosek','sumarum.prosek')}
@@ -436,7 +437,7 @@ function renderSumarum(){
      <div style="margin-top:12px">${field('Šta menjam sledeće godine','sumarum.menjam',{area:true})}</div>`);
 }
 function renderGodine(){
-  return card('🏛️ Svi razredi',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l8-5 8 5"/><path d="M6 9v9M10 9v9M14 9v9M18 9v9"/><path d="M3 20h18"/></svg> Svi razredi',
     tableEditor('godine',[
       {key:'naziv',label:'Razred',def:''},
       {key:'prosek',label:'Prosek',def:''},
@@ -450,7 +451,7 @@ function renderDiploma(){
   let dani='';
   const dt=get('diploma.datum');
   if(dt){const d=Math.ceil((new Date(dt)-new Date())/86400000);dani=d>=0?`još <b>${d}</b> dana do cilja`:`cilj je prošao pre ${-d} dana`;}
-  return card('🎓 Matura — odbrojavanje',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg> Matura — odbrojavanje',
     `<div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center">
        <div class="ring" style="--p:${pct}"><div class="in"><b>${ost}</b><small style="color:var(--muted);font-weight:800">ispita ostalo</small></div></div>
        <div style="flex:1;min-width:220px">
@@ -465,7 +466,7 @@ function renderDiploma(){
      </div>`,'Vizuelni podsetnik koliko ti je ostalo. Svaki položen ispit pomeri brojač!');
 }
 function renderRefleksija(){
-  return card('🪞 Godišnja refleksija',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.7 12 20 12 20z"/></svg> Godišnja refleksija',
     field('Šta sam naučio/la?','refleksija.naucio',{area:true})+
     '<div style="margin-top:12px">'+field('Šta bih uradio/la drugačije?','refleksija.drugacije',{area:true})+'</div>'+
     '<div style="margin-top:12px">'+field('Čime sam najponosniji/ja?','refleksija.ponos',{area:true})+'</div>'+
@@ -479,11 +480,11 @@ function renderPredmeti(){
   let tabs='<div class="subtab">';
   subs.forEach((s,i)=>tabs+=`<span class="st ${i===DB.curSub?'on':''}" data-act="subsel" data-idx="${i}">${esc(s.name||'Predmet '+(i+1))}</span>`);
   tabs+=`<span class="st" data-act="subadd">+ Predmet</span></div>`;
-  if(!subs.length)return card('📚 Moji predmeti',tabs+'<div class="hint">Dodaj svoj prvi predmet da počneš. Za svaki predmet imaš: podatke, literaturu, checklist, kontrolnie, ispite, šta poneti, formula sheet, definicije, greške, pitanja i napredak.</div>');
+  if(!subs.length)return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg> Moji predmeti',tabs+'<div class="hint">Dodaj svoj prvi predmet da počneš. Za svaki predmet imaš: podatke, literaturu, checklist, kontrolnie, ispite, šta poneti, formula sheet, definicije, greške, pitanja i napredak.</div>');
   if(DB.curSub>=subs.length)DB.curSub=0;
   const i=DB.curSub, s=subs[i];
   const np=+s.napredak||0;
-  let h=card('📚 Moji predmeti',tabs+
+  let h=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg> Moji predmeti',tabs+
     `<div class="grid3">
        ${field('Naziv predmeta','subjects.'+i+'.name')}
        ${field('Profesor','subjects.'+i+'.prof')}
@@ -496,22 +497,22 @@ function renderPredmeti(){
      <div style="margin-top:14px">${field('📖 Literatura (knjige, skripte, prezentacije)','subjects.'+i+'.literatura',{area:true})}</div>
      <div style="text-align:right;margin-top:14px"><button class="tbtn danger" data-act="subdel" data-idx="${i}">🗑️ Obriši predmet</button></div>`);
 
-  h+=card('✅ Checklist obaveza',checklist('subjects.'+i+'.checklist',SUBJECT_CHECK));
-  h+=card('🧮 Kontrolnii',tableEditor('subjects.'+i+'.kontrolnii',[
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Checklist obaveza',checklist('subjects.'+i+'.checklist',SUBJECT_CHECK));
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h8"/></svg> Kontrolnii',tableEditor('subjects.'+i+'.kontrolnii',[
       {key:'naziv',label:'Kontrolni',def:''},{key:'datum',label:'Datum',type:'date',def:''},
       {key:'poeni',label:'Poeni',def:''},{key:'max',label:'Maks',def:''},{key:'napomena',label:'Napomena',def:''}
     ],'Dodaj kontrolni'));
-  h+=card('📝 Ispiti',tableEditor('subjects.'+i+'.ispiti',[
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 11l2 2 4-4"/></svg> Ispiti',tableEditor('subjects.'+i+'.ispiti',[
       {key:'rok',label:'Rok',def:''},{key:'ocena',label:'Ocena',def:''},
       {key:'poeni',label:'Poeni',def:''},{key:'komentar',label:'Komentar',def:''}
     ],'Dodaj ispit'));
-  h+=card('🎒 Šta poneti na kontrolni/ispit',checklist('subjects.'+i+'.poneti',PONETI));
-  h+=card('📐 Formula sheet',field('Najvažnije formule','subjects.'+i+'.formule',{area:true,ph:'Zapiši ključne formule…'}));
-  h+=card('💡 Najvažnije definicije',field('Definicije','subjects.'+i+'.definicije',{area:true}));
-  h+=card('⚠️ Najčešće greške',field('Na prošlom kontrolnom/pismenom sam pogrešio…','subjects.'+i+'.greske',{area:true}));
-  h+=card('❓ Pitanja profesoru',field('Lista pitanja','subjects.'+i+'.pitanja',{area:true}));
-  h+=card('🔁 Zadaci za ponovo','<div class="hint" style="margin-bottom:8px">Šta moraš ponovo da uradiš pre ispita.</div>'+field('','subjects.'+i+'.ponovo',{area:true}));
-  h+=card('📈 Moj napredak',
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9V8a4 4 0 0 1 8 0v1"/><rect x="5" y="9" width="14" height="11" rx="3"/><path d="M9 20v-4.5h6V20"/></svg> Šta poneti na kontrolni/ispit',checklist('subjects.'+i+'.poneti',PONETI));
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.5" width="18" height="7" rx="1"/><path d="M7 8.5v2.5M11 8.5v3.5M15 8.5v2.5M19 8.5v3.5"/></svg> Formula sheet',field('Najvažnije formule','subjects.'+i+'.formule',{area:true,ph:'Zapiši ključne formule…'}));
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18.5h5"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.8 10.6c.7.6.9 1.1 1 1.9h5.6c.1-.8.3-1.3 1-1.9A6 6 0 0 0 12 3z"/></svg> Najvažnije definicije',field('Definicije','subjects.'+i+'.definicije',{area:true}));
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 15H3z"/><path d="M12 10v4M12 17h.01"/></svg> Najčešće greške',field('Na prošlom kontrolnom/pismenom sam pogrešio…','subjects.'+i+'.greske',{area:true}));
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/><path d="M12 16.5h.01"/></svg> Pitanja profesoru',field('Lista pitanja','subjects.'+i+'.pitanja',{area:true}));
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l3 3-3 3"/><path d="M4 10V9a3 3 0 0 1 3-3h13"/><path d="M7 21l-3-3 3-3"/><path d="M20 14v1a3 3 0 0 1-3 3H4"/></svg> Zadaci za ponovo','<div class="hint" style="margin-bottom:8px">Šta moraš ponovo da uradiš pre ispita.</div>'+field('','subjects.'+i+'.ponovo',{area:true}));
+  h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 15l4-4 3 2.5 6-6.5"/><path d="M15 6h3.5v3.5"/></svg> Moj napredak',
     `<input type="range" min="0" max="100" step="5" value="${np}" data-path="subjects.${i}.napredak" data-act="range" style="width:100%">
      <div class="bar" style="margin-top:10px"><i style="width:${np}%"></i></div>
      <div class="hint" style="margin-top:6px">Napredak: <b>${np}%</b></div>`);
@@ -519,7 +520,7 @@ function renderPredmeti(){
 }
 
 function renderUcenje(){
-  return card('📈 Praćenje učenja',tableEditor('ucenje',[
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 15l4-4 3 2.5 6-6.5"/><path d="M15 6h3.5v3.5"/></svg> Praćenje učenja',tableEditor('ucenje',[
       {key:'datum',label:'Datum',type:'date',def:''},
       {key:'predmet',label:'Predmet',def:''},
       {key:'sati',label:'Sati',def:''},
@@ -532,7 +533,7 @@ function renderPomodoro(){
   const c=get('pomodoro.count')||0, m=get('pomodoro.minuta')||0;
   const mm=String(Math.floor(pLeft/60)).padStart(2,'0'),ss=String(pLeft%60).padStart(2,'0');
   const toms='🍅'.repeat(Math.min(c,10))+(c>10?' +'+(c-10):'');
-  return card('🍅 Pomodoro tracker',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 13V8.5"/><path d="M9 2.6h6"/></svg> Pomodoro tracker',
     `<div class="pomo">
        <div class="pill">${pMode==='rad'?'Fokus (25 min)':'Pauza (5 min)'}</div>
        <div class="time" id="ptime">${mm}:${ss}</div>
@@ -569,7 +570,7 @@ function renderHabit(){
   });
   h+='</div>';
   h+='<div style="margin-top:14px">'+tableEditor('habits',[{key:'name',label:'Navika',def:'Nova navika'}],'Dodaj naviku')+'</div>';
-  return card('✅ Habit tracker',h,'Označi svaki dan kad ispuniš naviku. Niz bez prekida je najbolji motivator.');
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Habit tracker',h,'Označi svaki dan kad ispuniš naviku. Niz bez prekida je najbolji motivator.');
 }
 const MOODS=['😢','😕','😐','🙂','😀'];
 function renderMood(){
@@ -577,12 +578,12 @@ function renderMood(){
   let h='<div style="display:flex;flex-wrap:wrap;gap:9px">';
   for(let i=0;i<14;i++){const v=m[i];h+=`<div class="moodc" data-act="mood" data-i="${i}" title="Dan ${i+1}">${v>=0?MOODS[v]:'·'}</div>`;}
   h+='</div><div class="hint" style="margin-top:10px">Klikni na krug da promeniš raspoloženje za taj dan (poslednje 2 nedelje).</div>';
-  return card('😊 Mood tracker',h);
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.5 14.5a4 4 0 0 0 7 0"/></svg> Mood tracker',h);
 }
 function renderFinansije(){
   const arr=get('finansije')||[];
   const sum=arr.reduce((a,r)=>a+(parseFloat((r.iznos||'').toString().replace(',','.'))||0),0);
-  return card('💸 Finansije',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9v6M18 9v6"/></svg> Finansije',
     tableEditor('finansije',[
       {key:'stavka',label:'Stavka',def:''},
       {key:'kategorija',label:'Kategorija',sel:['Školarina','Knjige','Kopirnica','Prevoz','Menza','Dom','Ostalo'],def:'Knjige'},
@@ -591,32 +592,32 @@ function renderFinansije(){
     `<div class="stat" style="margin-top:14px;max-width:240px"><span class="n">${sum.toLocaleString('sr-RS')}</span><span class="k">Ukupno</span></div>`);
 }
 function renderProjekti(){
-  return card('🚀 Projekti',tableEditor('projekti',[
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 1.5 4.5 4.5 4.5 8 0 2-1 4-2.5 5.5h-4C8.5 15 7.5 13 7.5 11c0-3.5 1.5-6.5 4.5-8z"/><circle cx="12" cy="9.5" r="1.4"/><path d="M9 17l-2 4M15 17l2 4"/></svg> Projekti',tableEditor('projekti',[
       {key:'naziv',label:'Naziv',def:''},{key:'opis',label:'Opis',area:true,def:''},
       {key:'deadline',label:'Rok',type:'date',def:''},
       {key:'status',label:'Status',sel:['Ideja','U toku','Pauziran','Završen'],def:'U toku'}
     ],'Dodaj projekat'));
 }
 function renderPraksa(){
-  return card('🏢 Praksa',tableEditor('praksa',[
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h.01M13 7h.01M9 11h.01M13 11h.01"/><path d="M10 21v-3h4v3"/></svg> Praksa',tableEditor('praksa',[
       {key:'firma',label:'Firma',def:''},{key:'mentor',label:'Mentor',def:''},
       {key:'kontakt',label:'Kontakt',def:''},{key:'zaduzenja',label:'Zaduženja',area:true,def:''}
     ],'Dodaj praksu'));
 }
 function renderKonf(){
-  return card('🎤 Konferencije',tableEditor('konferencije',[
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/></svg> Konferencije',tableEditor('konferencije',[
       {key:'naziv',label:'Naziv',def:''},{key:'mesto',label:'Mesto',def:''},
       {key:'datum',label:'Datum',type:'date',def:''},{key:'rad',label:'Rad koji prezentujem',def:''}
     ],'Dodaj konferenciju'));
 }
 function renderBucket(){
-  return card('🪣 Bucket list tokom škole',checklist('bucket',Object.keys(get('bucket')||{})),'Velike stvari koje želiš da uradiš dok studiraš.');
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.3 5.8.8-4.2 4 1 5.7L12 16.6 6.9 19.3l1-5.7-4.2-4 5.8-.8z"/></svg> Bucket list tokom škole',checklist('bucket',Object.keys(get('bucket')||{})),'Velike stvari koje želiš da uradiš dok studiraš.');
 }
 function renderVision(){
   const im=get('vision.imgs')||['','',''];
   let imgs='';
   im.forEach((u,i)=>{imgs+=`<div>${field('Slika '+(i+1)+' (URL)','vision.imgs.'+i)}${u?`<img class="vimg" src="${esc(u)}" alt="" onerror="this.style.display='none'">`:''}</div>`;});
-  return card('🖼️ Vision board',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l4.5-4 3.5 3 3-2.5L20 17"/></svg> Vision board',
     field('Moja vizija (reči, citati, ciljevi)','vision.note',{area:true,ph:'Kako izgleda tvoj uspeh?'})+
     '<div class="grid3" style="margin-top:14px">'+imgs+'</div>',
     'Zalepi slike i reči koje te inspirišu. Nalepi linkove slika.');
@@ -627,7 +628,7 @@ function renderStickers(){
   let pal='<div style="display:flex;flex-wrap:wrap;gap:10px">';
   STIK.forEach(e=>{const c=col[e]||0;pal+=`<div class="stik" data-act="stik" data-e="${e}">${e}${c?`<span class="cnt">${c}</span>`:''}</div>`;});
   pal+='</div>';
-  return card('✨ Sticker book',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg> Sticker book',
     '<div class="hint" style="margin-bottom:10px">Klikni stiker da ga „zalepiš" — sakupljaj ih kako napreduješ. 💛</div>'+pal+
     '<div style="margin-top:16px">'+field('Moja tabla stikera','stikTabla',{area:true,ph:'Slobodno ređaj emoji-je i beleške…'})+'</div>');
 }
@@ -636,10 +637,10 @@ function renderBadges(){
   let h='<div class="grid2">';
   bs.forEach((b,i)=>{h+=`<div class="badge ${b.on?'on':''}" data-act="badge" data-i="${i}"><span class="e">${b.e}</span><span><b>${esc(b.name)}</b><small>${b.on?'Osvojeno 🎉':'Klikni kad osvojiš'}</small></span></div>`;});
   h+='</div>';
-  return card('🏅 Achievement bedževi',h,'Svaki uspeh zaslužuje bedž. Klikni da ga osvojiš.');
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="5"/><path d="M9 9.5 7 3h10l-2 6.5"/></svg> Achievement bedževi',h,'Svaki uspeh zaslužuje bedž. Klikni da ga osvojiš.');
 }
 function renderVodic(){
-  return card('🧭 Vodič — dr Marina Bulat',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg> Vodič — dr Marina Bulat',
   `<div class="guide">
     <p style="font-style:italic;color:var(--muted)">Kratki saveti koje đaci retko čuju u školi — iz iskustva profesora i mentora.</p>
 
@@ -707,7 +708,7 @@ function buildNav(){
 function go(i){curIdx=i;document.querySelectorAll('.navi').forEach(n=>n.classList.toggle('on',+n.dataset.i===i));renderCurrent();window.scrollTo(0,0);}
 function renderCurrent(){
   const s=SECTIONS[curIdx];
-  document.getElementById('mtitle').textContent=s.ic+'  '+s.t;
+  document.getElementById('mtitle').innerHTML='<span class="mt-ic">'+s.ic+'</span> '+s.t;
   document.getElementById('content').innerHTML=s.r();
   document.querySelectorAll('#content textarea.t').forEach(autosize);
 }
