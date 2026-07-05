@@ -771,30 +771,42 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
 <style>
 .uline{background:linear-gradient(transparent 60%,rgba(198,160,92,.34) 60%);padding:0 .06em;border-radius:2px}
 .how .step p b{color:var(--golddk);font-weight:700}
-/* couture kartice — Moja misija */
-.feat .it{background:linear-gradient(180deg,#FFFFFF,#FDF8EF);border:1px solid rgba(198,160,92,.16);border-radius:22px;padding:38px 28px 32px;box-shadow:0 22px 48px -32px rgba(120,70,80,.38)}
+
+/* Moja misija — editorial, centrirano, glyph sa sjajem */
+.feat{gap:26px}
+.feat .it{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.22);border-radius:20px;padding:40px 30px 34px;text-align:center;box-shadow:0 22px 46px -30px rgba(120,70,80,.42);position:relative;overflow:hidden}
 .feat .it::before{display:none}
-.feat .it:hover{transform:translateY(-8px);box-shadow:0 42px 66px -34px rgba(120,70,80,.46);border-color:rgba(198,160,92,.45)}
+.feat .it:hover{transform:translateY(-7px);box-shadow:0 42px 66px -34px rgba(120,70,80,.48);border-color:rgba(198,160,92,.5)}
 .feat .it::after{content:"";position:absolute;top:-30%;left:-60%;width:42%;height:160%;background:linear-gradient(100deg,transparent,rgba(255,246,214,.5),transparent);transform:skewX(-16deg);transition:left .7s ease;pointer-events:none}
 .feat .it:hover::after{left:135%}
-.feat .it .ic{width:66px;height:66px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);border:none;position:relative;overflow:visible;color:#9C7838;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 14px 26px -12px rgba(198,160,92,.8)}
-.feat .it .ic::before,.badge .em::before{content:"";position:absolute;inset:-2px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#F0DCA6,#B8923F);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.feat .it .ic svg{width:30px;height:30px}
-.feat .it h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--plum);margin-bottom:7px;font-weight:600}
-.feat .it p{color:var(--muted);font-size:.98rem;line-height:1.6}
-/* couture bedževi — Za tebe đače */
-.badge{background:linear-gradient(180deg,#FFFFFF,#FDF8EF);border:1px solid rgba(198,160,92,.16);border-radius:20px;padding:24px 22px;box-shadow:0 20px 44px -32px rgba(120,70,80,.34)}
+.feat .it .ic{width:auto;height:auto;background:none;border:none;box-shadow:none;overflow:visible;position:static;margin:0 auto 16px;color:#B8923F;display:flex;justify-content:center}
+.feat .it .ic svg{width:34px;height:34px;filter:drop-shadow(0 5px 12px rgba(198,160,92,.6))}
+.feat .it h3{font-family:'Cormorant Garamond',serif;font-size:1.62rem;color:var(--plum);margin:0;font-weight:600;line-height:1.15}
+.feat .it h3::after{content:"";display:block;width:44px;height:2px;margin:13px auto 15px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
+.feat .it p{color:var(--muted);font-size:1rem;line-height:1.62;max-width:33ch;margin:0 auto}
+
+/* Za tebe đače — bedževi (medaljon) */
+.badge{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.18);border-radius:20px;padding:24px 22px;box-shadow:0 20px 44px -32px rgba(120,70,80,.34)}
 .badge:hover{transform:translateY(-6px);box-shadow:0 38px 60px -34px rgba(120,70,80,.44);border-color:rgba(198,160,92,.42)}
-.badge .em{position:relative;overflow:visible;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);border:none;color:#9C7838;box-shadow:0 12px 22px -12px rgba(198,160,92,.8)}
-.badge .em svg{width:26px;height:26px}
-.badge h3{font-family:'Cormorant Garamond',serif;font-size:1.34rem;font-weight:600}
+.badge .em{position:relative;overflow:visible;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);border:none;color:#9C7838;box-shadow:0 12px 22px -12px rgba(198,160,92,.8)}
+.badge .em::before{content:"";position:absolute;inset:-2px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#F0DCA6,#B8923F);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.badge .em svg{width:25px;height:25px}
+.badge .em::after{content:"✦";position:absolute;top:-5px;right:-3px;font-size:.66rem;color:#E7D2A2;text-shadow:0 0 8px rgba(231,210,162,.9);animation:medSpark 3.6s ease-in-out infinite;pointer-events:none}
+.badge h3{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-weight:600}
 .badge:hover .em{transform:scale(1.08) rotate(-4deg)}
-/* čipovi sa ikonicama — Profesorica koja pamti */
+@keyframes medSpark{0%,100%{opacity:.45;transform:scale(.82)}50%{opacity:1;transform:scale(1.12)}}
+
+/* čipovi */
 .pchips span{display:inline-flex;align-items:center;gap:8px}
 .pchips span svg{width:17px;height:17px;color:var(--golddk);flex:none}
-.feat .it .ic::after,.badge .em::after{content:"✦";position:absolute;top:-5px;right:-3px;font-size:.7rem;color:#E7D2A2;text-shadow:0 0 8px rgba(231,210,162,.9);animation:medSpark 3.6s ease-in-out infinite;pointer-events:none}
-@keyframes medSpark{0%,100%{opacity:.45;transform:scale(.82)}50%{opacity:1;transform:scale(1.12)}}
-@media(prefers-reduced-motion:reduce){.feat .it .ic::after,.badge .em::after{animation:none;opacity:.85}}
+
+/* Kako radi — jače */
+.how .step .num{width:48px;height:48px;font-size:1.38rem}
+.how .step .num{background:linear-gradient(180deg,#F3E1B2,#C6A05C)}
+.how .step h3{font-family:'Cormorant Garamond',serif;font-size:1.42rem;margin-top:6px}
+.how .steps::before{background:linear-gradient(90deg,var(--goldlt),var(--gold) 50%,var(--goldlt));background-size:200% 100%;animation:howLine 6.5s linear infinite}
+@keyframes howLine{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.badge .em::after,.how .steps::before{animation:none}.badge .em::after{opacity:.85}}
 </style>
 <section class="what" id="mathia">
   <div class="wrap">
@@ -807,12 +819,12 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
       <div class="it reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><line x1="10.4" y1="18.6" x2="13.6" y2="18.6"/></svg></div>
         <h3>Uvek pri ruci</h3>
-        <p>Profesorica i svi materijali — na telefonu, tabletu i računaru, kad god zatreba.</p>
+        <p>Profesorica i svi materijali, na svakom uređaju — kad god zatreba.</p>
       </div>
       <div class="it reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 19.5h5v-4.5h5v-4.5h5V6H21"/></svg></div>
         <h3>Teško postaje lako</h3>
-        <p>Najteže gradivo razloženo korak po korak — dok ne postane jasno i jednostavno.</p>
+        <p>Najteže gradivo, razloženo korak po korak — dok ne postane jednostavno.</p>
       </div>
       <div class="it reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/><path d="M21.5 8.5v4.4"/></svg></div>
