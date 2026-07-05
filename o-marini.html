@@ -373,6 +373,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
     <div class="portrait reveal">
       <div class="halo"></div>
       <div class="photo"><img class="ph" alt="dr Marina Bulat" src="marina.jpg"></div>
+      <span class="pspark s1" aria-hidden="true">✦</span><span class="pspark s2" aria-hidden="true">✦</span><span class="pspark s3" aria-hidden="true">✦</span>
     </div>
     <div class="reveal">
       <div class="eyebrow">O meni</div>
@@ -403,7 +404,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 
 <footer class="om-close" role="contentinfo">
   <div class="om-orn" aria-hidden="true"><span></span><i></i><span></span></div>
-  <p class="om-msg">Neka svaki tvoj dan bude korak ka svetlosti — uči, voli, budi zahvalan.<br>A ja ću biti tu, uz tebe, s ljubavlju.</p>
+  <p class="om-msg">Neka svaki tvoj dan bude korak ka svetlosti — uči, voli, budi zahvalan.<br>A ja ću biti tu, uz tebe — uvek.</p>
   <div class="om-signoff"><span class="om-pre">s ljubavlju,</span><span class="om-sig">Marina</span></div>
   <div class="om-copy">© 2026 Mathia Edu</div>
 </footer>
@@ -609,6 +610,17 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 .om-signoff{display:flex;flex-direction:column;align-items:center;line-height:1}.om-pre{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:rgba(231,210,162,.82);margin-bottom:2px}
 .om-copy{margin-top:22px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(231,210,162,.5)}
 @media(prefers-reduced-motion:reduce){.om-sig{animation:none}}
+</style>
+<style>
+.portrait{position:relative}
+.portrait .photo{position:relative;box-shadow:0 26px 60px -24px rgba(198,160,92,.7),0 0 0 6px #FBF6EE,0 0 0 7px rgba(198,160,92,.45)}
+.portrait .photo::after{content:"";position:absolute;inset:-3px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#F0DCA6,#C6A05C 40%,#FFF6E0 55%,#C6A05C 70%,#F0DCA6);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.pspark{position:absolute;color:#E7D2A2;opacity:.7;pointer-events:none;text-shadow:0 0 8px rgba(231,210,162,.85);animation:pspk 3.6s ease-in-out infinite}
+.pspark.s1{top:5%;right:9%;font-size:1.1rem}
+.pspark.s2{bottom:11%;left:1%;font-size:.82rem;animation-delay:1.6s}
+.pspark.s3{top:42%;right:-1%;font-size:.68rem;animation-delay:.8s}
+@keyframes pspk{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:.85;transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.pspark{animation:none}}
 </style>
 </body>
 </html>
