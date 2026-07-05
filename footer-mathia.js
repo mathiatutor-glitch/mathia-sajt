@@ -60,8 +60,12 @@
   function build() {
     if (document.getElementById("mfz")) return;
     try {
-      var olds = document.querySelectorAll("footer");
-      for (var i = 0; i < olds.length; i++) olds[i].style.display = "none";
+      var fs = document.querySelectorAll("footer");
+      for (var i = 0; i < fs.length; i++) {
+        if (fs[i].id === "mfz") continue;
+        if (fs[i].closest(".cart,.drawer,.korpa,[aria-modal],dialog,#korpa,#cart")) continue;
+        fs[i].style.display = "none"; break;
+      }
     } catch (e) {}
 
     var ft = document.createElement("footer");

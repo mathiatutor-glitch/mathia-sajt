@@ -50,8 +50,12 @@
     if (document.getElementById("mhead")) return;
     /* sakrij staro zaglavlje strane (da se ne dupliraju) */
     try {
-      var olds = document.querySelectorAll("header");
-      for (var i = 0; i < olds.length; i++) olds[i].style.display = "none";
+      var hs = document.querySelectorAll("header");
+      for (var i = 0; i < hs.length; i++) {
+        if (hs[i].id === "mhead") continue;
+        if (hs[i].closest(".cart,.drawer,.korpa,[aria-modal],dialog,#korpa,#cart")) continue;
+        hs[i].style.display = "none"; break;
+      }
     } catch (e) {}
 
     /* trenutni jezik */
