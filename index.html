@@ -770,9 +770,28 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
 <!-- 3 · ŠTA JE MATHIA -->
 <style>
 .uline{background:linear-gradient(transparent 60%,rgba(198,160,92,.34) 60%);padding:0 .06em;border-radius:2px}
-.feat .it .ic svg{width:28px;height:28px;display:block}
-.feat .it .ic{overflow:visible}
 .how .step p b{color:var(--golddk);font-weight:700}
+/* couture kartice — Moja misija */
+.feat .it{background:linear-gradient(180deg,#FFFFFF,#FDF8EF);border:1px solid rgba(198,160,92,.16);border-radius:22px;padding:38px 28px 32px;box-shadow:0 22px 48px -32px rgba(120,70,80,.38)}
+.feat .it::before{display:none}
+.feat .it:hover{transform:translateY(-8px);box-shadow:0 42px 66px -34px rgba(120,70,80,.46);border-color:rgba(198,160,92,.45)}
+.feat .it::after{content:"";position:absolute;top:-30%;left:-60%;width:42%;height:160%;background:linear-gradient(100deg,transparent,rgba(255,246,214,.5),transparent);transform:skewX(-16deg);transition:left .7s ease;pointer-events:none}
+.feat .it:hover::after{left:135%}
+.feat .it .ic{width:66px;height:66px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);border:none;position:relative;overflow:visible;color:#9C7838;display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 14px 26px -12px rgba(198,160,92,.8)}
+.feat .it .ic::before,.badge .em::before{content:"";position:absolute;inset:-2px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#F0DCA6,#B8923F);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.feat .it .ic svg{width:30px;height:30px}
+.feat .it h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;color:var(--plum);margin-bottom:7px;font-weight:600}
+.feat .it p{color:var(--muted);font-size:.98rem;line-height:1.6}
+/* couture bedževi — Za tebe đače */
+.badge{background:linear-gradient(180deg,#FFFFFF,#FDF8EF);border:1px solid rgba(198,160,92,.16);border-radius:20px;padding:24px 22px;box-shadow:0 20px 44px -32px rgba(120,70,80,.34)}
+.badge:hover{transform:translateY(-6px);box-shadow:0 38px 60px -34px rgba(120,70,80,.44);border-color:rgba(198,160,92,.42)}
+.badge .em{position:relative;overflow:visible;width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);border:none;color:#9C7838;box-shadow:0 12px 22px -12px rgba(198,160,92,.8)}
+.badge .em svg{width:26px;height:26px}
+.badge h3{font-family:'Cormorant Garamond',serif;font-size:1.34rem;font-weight:600}
+.badge:hover .em{transform:scale(1.08) rotate(-4deg)}
+/* čipovi sa ikonicama — Profesorica koja pamti */
+.pchips span{display:inline-flex;align-items:center;gap:8px}
+.pchips span svg{width:17px;height:17px;color:var(--golddk);flex:none}
 </style>
 <section class="what" id="mathia">
   <div class="wrap">
@@ -832,12 +851,12 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
       <p class="stud-lead">Pitaj koliko god puta treba — niko te ne gleda, niko te ne žuri. Marina je strpljiva uvek: i danju, i <b>kasno uveče, pred kontrolni — kad ti pomoć najviše treba.</b></p>
     </div>
     <div class="badges">
-      <div class="badge reveal"><span class="em">📷</span><div class="bx"><h3>Slikaj zadatak</h3><p>Slikaš ga, a Marina ga rešava s tobom — korak po korak.</p></div></div>
-      <div class="badge reveal"><span class="em">💡</span><div class="bx"><h3>Razumite, ne pamtite</h3><p>Objašnjava odakle formula dolazi — znanje koje ostaje.</p></div></div>
-      <div class="badge reveal"><span class="em">📚</span><div class="bx"><h3>Skripte i priručnici</h3><p>Otključavaju se uz pretplatu na taj predmet.</p></div></div>
-      <div class="badge reveal"><span class="em">🔥</span><div class="bx"><h3>Niz dana</h3><p>Učiš svaki dan i gledaš kako tvoj niz raste.</p></div></div>
-      <div class="badge reveal"><span class="em">📊</span><div class="bx"><h3>Praćenje napretka</h3><p>Minuti učenja, savladane teme i niz dana — na jednom mestu.</p></div></div>
-      <div class="badge reveal"><span class="em">🌙</span><div class="bx"><h3>Uvek je tu</h3><p>Pred kontrolni ili kasno uveče — Marina je uvek tu.</p></div></div>
+      <div class="badge reveal"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="18" height="13" rx="2.5"/><circle cx="12" cy="13" r="3.3"/><path d="M8.5 6.5l1-2h5l1 2"/></svg></span><div class="bx"><h3>Slikaj zadatak</h3><p>Slikaš ga, a Marina ga rešava s tobom — korak po korak.</p></div></div>
+      <div class="badge reveal"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18.5h5"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.8 10.6c.7.6.9 1.1 1 1.9h5.6c.1-.8.3-1.3 1-1.9A6 6 0 0 0 12 3z"/></svg></span><div class="bx"><h3>Razumite, ne pamtite</h3><p>Objašnjava odakle formula dolazi — znanje koje ostaje.</p></div></div>
+      <div class="badge reveal"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/><line x1="9" y1="11" x2="14" y2="11"/></svg></span><div class="bx"><h3>Skripte i priručnici</h3><p>Otključavaju se uz pretplatu na taj predmet.</p></div></div>
+      <div class="badge reveal"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8c.6 3 4.2 4.2 4.2 8.2a4.2 4.2 0 0 1-8.4 0c0-1.7 1-3 2.4-4 0 1.4.9 1.9 1.7 1.9-.1-1.6-.4-4 .1-6.1z"/></svg></span><div class="bx"><h3>Niz dana</h3><p>Učiš svaki dan i gledaš kako tvoj niz raste.</p></div></div>
+      <div class="badge reveal"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="6" rx="1"/><rect x="10.5" y="8" width="3" height="10" rx="1"/><rect x="15" y="5" width="3" height="13" rx="1"/></svg></span><div class="bx"><h3>Praćenje napretka</h3><p>Minuti učenja, savladane teme i niz dana — na jednom mestu.</p></div></div>
+      <div class="badge reveal"><span class="em"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13.5A8 8 0 1 1 10.5 4 6.5 6.5 0 0 0 20 13.5z"/></svg></span><div class="bx"><h3>Uvek je tu</h3><p>Pred kontrolni ili kasno uveče — Marina je uvek tu.</p></div></div>
     </div>
   </div>
 </section>
@@ -851,10 +870,10 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
         <h2>Profesorica koja te pamti</h2>
         <p class="dropcap">MathIA nije obična aplikacija. Profesorica pamti svaki tvoj korak — zna šta si savladao i šta ti sledeće treba — pa te vodi strpljivo, kao pravi privatni profesor. Napredak vidiš iz nedelje u nedelju, a učenje konačno dobija jasan plan.</p>
         <div class="pchips">
-          <span>🧠 Pamti tvoje gradivo</span>
-          <span>🧭 Vodi te korak po korak</span>
-          <span>💡 Objašnjava i daje povratne informacije</span>
-          <span>📈 Prati tvoj napredak</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10a1 1 0 0 1 1 1V21l-6-4-6 4V4.5a1 1 0 0 1 1-1z"/></svg> Pamti tvoje gradivo</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg> Vodi te korak po korak</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18.5h5"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.8 10.6c.7.6.9 1.1 1 1.9h5.6c.1-.8.3-1.3 1-1.9A6 6 0 0 0 12 3z"/></svg> Objašnjava i daje povratne informacije</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 15l4-4 3 2.5 6-6.5"/><path d="M15 6h3.5v3.5"/></svg> Prati tvoj napredak</span>
         </div>
       </div>
       <div class="reveal" style="justify-self:center;display:flex;flex-direction:column;align-items:center;gap:18px">
