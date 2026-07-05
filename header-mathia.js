@@ -26,7 +26,7 @@
     '@keyframes mhSlide{to{background-position:-220% 0}}' +
     '.mh-wrap{max-width:1120px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:16px;min-height:64px}' +
     '.mh-back{display:inline-flex;align-items:center;gap:6px;flex:none;border:1px solid rgba(198,160,92,.5);color:#9C7838;background:#fff;border-radius:100px;padding:8px 15px;font-weight:800;font-size:.8rem;letter-spacing:.02em;cursor:pointer;text-decoration:none;transition:border-color .16s,background .16s,transform .16s}' +
-    '.mh-back:hover{border-color:#C6A05C;background:#FBF3E2;transform:translateX(-2px)}' +
+    '.mh-back:hover{border-color:#C6A05C;background:#FBF3E2;transform:translateX(-2px)}.mh-backfab{position:fixed;top:76px;left:16px;z-index:8999;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(198,160,92,.55);color:#9C7838;background:rgba(255,253,248,.92);backdrop-filter:blur(6px);border-radius:100px;padding:8px 15px;font-family:Nunito,system-ui,sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.02em;text-decoration:none;box-shadow:0 12px 26px -14px rgba(120,70,80,.5);transition:transform .16s,background .16s,border-color .16s}.mh-backfab:hover{border-color:#C6A05C;background:#fff;transform:translateX(-2px)}@media(max-width:820px){.mh-backfab{top:68px;padding:7px 12px;font-size:.74rem}}' +
     '.mh-brand{display:flex;align-items:center;gap:11px;text-decoration:none}' +
     '.mh-brand img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #C6A05C;box-shadow:0 6px 16px -6px rgba(120,70,80,.5);flex:none;background:#FBF6EE}' +
     '.mh-bwrap{display:flex;flex-direction:column;line-height:1.05}' +
@@ -74,7 +74,6 @@
     h.id = "mhead";
     h.innerHTML =
       '<div class="mh-wrap">' +
-      '<a class="mh-back" id="mhBack" href="index.html" aria-label="Nazad">\u2190 Nazad</a>' +
       '<a class="mh-brand" href="index.html">' +
       '<img src="logo.png" alt="Mathia logo" onerror="this.style.display=\'none\'">' +
       '<span class="mh-bwrap"><span class="mh-mark">Mathia</span><span class="mh-sub">s Marinom</span></span>' +
@@ -88,6 +87,10 @@
       "</nav>" +
       "</div>";
     document.body.insertBefore(h, document.body.firstChild);
+    var fab = document.createElement("a");
+    fab.className = "mh-backfab"; fab.id = "mhBack"; fab.href = "index.html";
+    fab.setAttribute("aria-label","Nazad"); fab.innerHTML = "\u2190 Nazad";
+    document.body.appendChild(fab);
 
     /* "Nazad": prethodna strana ako smo sa sajta, inače početna */
     var back = document.getElementById("mhBack");

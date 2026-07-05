@@ -57,6 +57,7 @@
   var icYt = svg('<rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5z"/>');
   var icFb = svg('<path d="M14 8.5h2.2V5.4H14c-2 0-3.3 1.2-3.3 3.2v1.9H8.6v3.1h2.1V21h3.2v-7.4h2.2l.5-3.1h-2.7V8.9c0-.3.2-.4.5-.4z"/>');
 
+  var minMode = !!document.querySelector('script[src*="footer-mathia"][data-min]');
   function build() {
     if (document.getElementById("mfz")) return;
     try {
@@ -70,6 +71,7 @@
 
     var ft = document.createElement("footer");
     ft.id = "mfz";
+    if (minMode) { ft.innerHTML = '<div class="mfz-bar"><div class="mfz-rule" aria-hidden="true"><span class="l"></span><span class="d"></span><span class="l r"></span></div><span class="mfz-copy">\u00A9 2026 Mathia Edu \u00B7 Sva prava zadr\u017eana</span></div>'; document.body.appendChild(ft); return; }
     ft.innerHTML =
       '<div class="mfz-wrap">' +
       '<div class="mfz-mono" aria-hidden="true">M</div>' +
