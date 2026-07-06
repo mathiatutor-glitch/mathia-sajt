@@ -1691,7 +1691,7 @@ function upChoose(withPlanner){
   if(UPSEL.id)k[UPSEL.id]=(k[UPSEL.id]||0)+1;
   if(withPlanner)k['PLANER-2026']=(k['PLANER-2026']||0)+1;
   try{localStorage.setItem('mathia_korpa',JSON.stringify(k));}catch(e){}
-  location.href='prodavnica.html?korpa=1';
+  location.href='registracija.html?paket='+(UPSEL.id||'gold')+(withPlanner?'&planer=1':'');
 }
 (function(){var s=document.getElementById('upscrim');if(s)s.addEventListener('click',function(e){if(e.target===this)upClose();});document.addEventListener('keydown',function(e){if(e.key==='Escape')upClose();});})();
 </script>

@@ -225,7 +225,7 @@ document.getElementById('finish').addEventListener('click',function(){
   var name=document.getElementById('fName').value.trim();
   var last=document.getElementById('fLast').value.trim();
   var mail=document.getElementById('fMail').value.trim();
-  var user={ name:name, last:last, email:mail, paket:pkgKey, pkgLabel:pkg.label, subjects:selected, planner:null, created:Date.now(), progress:{} };
+  var wantsPlanner = qp("planer")==="1"; var user={ name:name, last:last, email:mail, paket:pkgKey, pkgLabel:pkg.label, subjects:selected, planner: wantsPlanner?"fakultet":null, plannerAdded: wantsPlanner, created:Date.now(), progress:{} };
   try{ localStorage.setItem('mathia_user', JSON.stringify(user)); }catch(e){}
   location.href='profil.html';
 });
