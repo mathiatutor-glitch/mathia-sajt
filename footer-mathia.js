@@ -83,8 +83,7 @@
       '<div class="mfz-wrap">' +
       '<div class="mfz-mono" aria-hidden="true">M</div>' +
       '<div class="mfz-love">U\u010di s ljubavlju</div>' +
-      '<div class="mfz-tag">Mathia \u00B7 tvoja profesorica</div>' +
-      '<nav class="mfz-nav"><a href="predmeti.html">Predmeti</a><span class="mfz-dot"></span><a href="prodavnica.html">Prodavnica</a><span class="mfz-dot"></span><a href="index.html#paketi">Paketi</a><span class="mfz-dot"></span><a href="o-marini.html">O meni</a></nav>' +
+      '<div class="mfz-tag">Mathia \u00B7 tvoja profesorica</div>'  +
       '<div class="mfz-soc">' +
       '<a href="mailto:kontakt@mathia.rs"><span class="i">' + icMail + '</span>Email</a>' +
       '<a href="https://instagram.com" target="_blank" rel="noopener"><span class="i">' + icIg + '</span>Instagram</a>' +

@@ -22,8 +22,14 @@ body{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fw
 body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%)}
 
 /* GOLD-SHIMMER — duže, presijavajuće zlatne linije */
-.sec h2::after,.sec-head h2::after,.sh-h2::after{width:120px!important;height:2px!important;background:linear-gradient(90deg,transparent,#C6A05C,#FFF6D6,#C6A05C,transparent)!important;background-size:200% auto!important;animation:goldShine 5s linear infinite!important;border-radius:2px}
+.sec h2::after,.sec-head h2::after,.sh-h2::after{width:210px!important;height:2px!important;background:linear-gradient(90deg,transparent,#C6A05C,#FFF6D6,#C6A05C,transparent)!important;background-size:200% auto!important;animation:goldShine 5s linear infinite!important;border-radius:2px}
 @keyframes goldShine{to{background-position:200% center}}
 
 /* HIDE-DUP-LANG — sakrij jezički prekidač iz starog/skrivenog zaglavlja (ostaje samo onaj u #mhead) */
 header:not(#mhead) select.lang,header:not(#mhead) .lang,body>select.lang{display:none!important}
+
+/* MARK-FOIL — istaknute reči kao elegantno zlatno pismo (bez markera/bloka) */
+.mark,.w-h2 .mark,.sh-h2 .mark,.gold-underline{background:linear-gradient(96deg,#9C7838,#E7D2A2 36%,#FFF7E2 52%,#E7D2A2 68%,#C6A05C)!important;background-size:100% auto;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;font-weight:700}
+.mark::before,.mark::after,.w-h2 .mark::before,.sh-h2 .mark::before,.gold-underline::before,.gold-underline::after{content:none!important;display:none!important}
+/* zlatni ukras u footeru duži */
+.mfz-rule,.mf-rule{max-width:340px!important}
