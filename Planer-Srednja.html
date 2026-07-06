@@ -167,6 +167,53 @@ code{overflow-wrap:break-word}
 <meta name="twitter:description" content="Digitalni planer za srednju školu. Planiranje, praćenje učenja, navike, ciljevi i vodič dr Marine.">
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
+<style>
+/* Luksuzni levi meni — po uzoru na prvu stranu */
+.side .brand b{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:1.55rem!important;font-weight:600!important;letter-spacing:.01em;background:linear-gradient(100deg,#9C7838,#E7D2A2 34%,#FFF7E2 50%,#E7D2A2 66%,#C6A05C);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;display:block;line-height:1.05;margin-top:2px}
+.side .brand .by{font-family:'Cormorant Garamond',serif!important;font-style:italic;font-size:1.02rem!important;color:rgba(231,210,162,.8)!important;letter-spacing:.01em}
+.side .brand{border-bottom:1px solid rgba(231,210,162,.22)}
+.side .brand::after{content:"";display:block;height:1px;margin-top:14px;background:linear-gradient(90deg,rgba(231,210,162,.5),transparent)}
+.side a:hover{color:#fff}
+</style>
+<style>
+.mpl-cover{margin:0 0 24px;border-radius:20px;position:relative;box-shadow:0 26px 54px -32px rgba(120,70,80,.55);overflow:hidden}
+.mpl-cover-in{padding:18px 20px 22px;position:relative;z-index:2}
+.mpl-cover-top{display:flex;align-items:center;justify-content:space-between}
+.mpl-cover-brand{font-family:'Nunito',sans-serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;font-weight:800}
+.mpl-theme{display:flex;gap:7px}
+.mt{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;box-shadow:0 0 0 1px rgba(198,160,92,.5)}
+.mt.on{box-shadow:0 0 0 2px #C6A05C}
+.mt.champ{background:linear-gradient(135deg,#FDF8EF,#EAD6A6)}
+.mt.plum{background:linear-gradient(135deg,#5C3B49,#2C1A25)}
+.mt.blush{background:linear-gradient(135deg,#F7E9E4,#E7C6BC)}
+.mpl-cover-center{text-align:center;padding:30px 18px 34px;position:relative;margin-top:10px}
+.mpl-cover-center::before{content:"";position:absolute;inset:6px;border:1px solid rgba(198,160,92,.5);border-radius:13px;pointer-events:none}
+.mpl-cover-center::after{content:"";position:absolute;inset:11px;border:1px solid rgba(198,160,92,.28);border-radius:9px;pointer-events:none}
+.mpl-mono{width:58px;height:58px;margin:0 auto 15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.8rem;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);color:#3a2530;box-shadow:0 12px 24px -8px rgba(198,160,92,.85)}
+.mpl-cover-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1.12}
+.mpl-cover-line{width:42px;height:2px;margin:13px auto;border-radius:2px;background:linear-gradient(90deg,transparent,#C6A05C,transparent)}
+.mpl-cover-sub{font-family:'Pinyon Script','Cormorant Garamond',cursive;font-size:1.5rem;font-style:italic}
+.mpl-cover[data-theme=champ]{background:linear-gradient(160deg,#FDF8EF,#F3E6C8 60%,#ECD9AC)}
+.mpl-cover[data-theme=champ] .mpl-cover-brand,.mpl-cover[data-theme=champ] .mpl-cover-name{color:#5C3B49}
+.mpl-cover[data-theme=champ] .mpl-cover-sub{color:#9C7838}
+.mpl-cover[data-theme=plum]{background:linear-gradient(160deg,#4A2A38,#2C1A25)}
+.mpl-cover[data-theme=plum] .mpl-cover-brand{color:#E7D2A2}
+.mpl-cover[data-theme=plum] .mpl-cover-name{color:#FBF6EE}
+.mpl-cover[data-theme=plum] .mpl-cover-sub{color:#E7D2A2}
+.mpl-cover[data-theme=plum] .mpl-cover-center::before{border-color:rgba(231,210,162,.45)}
+.mpl-cover[data-theme=plum] .mpl-cover-center::after{border-color:rgba(231,210,162,.22)}
+.mpl-cover[data-theme=blush]{background:linear-gradient(160deg,#F7E9E4,#F0D9D2 60%,#E7C6BC)}
+.mpl-cover[data-theme=blush] .mpl-cover-brand,.mpl-cover[data-theme=blush] .mpl-cover-name{color:#5C3B49}
+.mpl-cover[data-theme=blush] .mpl-cover-sub{color:#B5746C}
+</style>
+<style>
+.stk-board{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:12px}
+.stkc{background:#fffdf8;border:1px solid rgba(198,160,92,.28);border-radius:16px;padding:14px 8px;text-align:center;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s,opacity .15s,filter .15s;opacity:.42;filter:grayscale(.55)}
+.stkc:hover{transform:translateY(-3px);border-color:#C6A05C}
+.stkc.on{opacity:1;filter:none;background:radial-gradient(circle at 50% 20%,#FFFDF6,#F3E7CE);box-shadow:0 12px 24px -12px rgba(198,160,92,.8)}
+.stkc-e{font-size:1.9rem;line-height:1}
+.stkc-l{font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#9C7838;margin-top:6px}
+</style>
 </head>
 <body>
 <div class="app">
@@ -174,7 +221,7 @@ code{overflow-wrap:break-word}
     <div class="brand">
       <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;color:#E7D2A2;font-weight:800;font-size:.7rem;letter-spacing:.04em;text-decoration:none;margin-bottom:11px">← Mathia · Početna</a>
       <b>Mathia Planer</b>
-      <span class="by">by Dr. Marina Bulat</span>
+      <span class="by">tvoj planer za srednju školu</span>
       <div style="margin-top:9px;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#E7D2A2;font-weight:800">Srednja škola</div>
     </div>
     <nav id="nav"></nav>
@@ -194,7 +241,13 @@ code{overflow-wrap:break-word}
     </div>
     <div class="wrap">
       <div class="banner" id="banner"><span style="font-size:1.5rem">✨</span><span class="q" id="motiv"></span></div>
-      <div id="content"></div>
+      <div class="mpl-cover" id="mplCover" data-theme="champ">
+  <div class="mpl-cover-in">
+    <div class="mpl-cover-top"><span class="mpl-cover-brand">Mathia Planer</span><div class="mpl-theme"><button class="mt champ on" data-t="champ" aria-label="Šampanj"></button><button class="mt plum" data-t="plum" aria-label="Plum"></button><button class="mt blush" data-t="blush" aria-label="Blush"></button></div></div>
+    <div class="mpl-cover-center"><div class="mpl-mono">M</div><div class="mpl-cover-name">Planer za srednju školu</div><div class="mpl-cover-line"></div><div class="mpl-cover-sub">s ljubavlju · Mathia</div></div>
+  </div>
+</div>
+<div id="content"></div>
     </div>
   </main>
 </div>
@@ -318,7 +371,7 @@ const SECTIONS=[
   {id:'godisnji',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M4 9h16M8 3v4M16 3v4"/></svg>',t:'Godišnji pregled',r:renderGodisnji},
   {id:'raspored',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg>',t:'Raspored časova',r:renderRaspored},
   {id:'rok',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 11l2 2 4-4"/></svg>',t:'Kontrolni i pismeni',r:renderRok},
-  {id:'sumarum',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="13" width="3" height="5" rx="1"/></svg>',t:'Sumarum godine',r:renderSumarum},
+  {id:'sumarum',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="13" width="3" height="5" rx="1"/></svg>',t:'Rezime godine',r:renderSumarum},
   {id:'godine',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l8-5 8 5"/><path d="M6 9v9M10 9v9M14 9v9M18 9v9"/><path d="M3 20h18"/></svg>',t:'Svi razredi',r:renderGodine},
   {id:'diploma',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg>',t:'Matura — odbrojavanje',r:renderDiploma},
   {id:'refleksija',grp:'Godina',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.7 12 20 12 20z"/></svg>',t:'Godišnja refleksija',r:renderRefleksija},
@@ -327,14 +380,14 @@ const SECTIONS=[
 
   {id:'ucenje',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 15l4-4 3 2.5 6-6.5"/><path d="M15 6h3.5v3.5"/></svg>',t:'Praćenje učenja',r:renderUcenje},
   {id:'pomodoro',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 13V8.5"/><path d="M9 2.6h6"/></svg>',t:'Pomodoro',r:renderPomodoro},
-  {id:'habit',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>',t:'Habit tracker',r:renderHabit},
-  {id:'mood',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.5 14.5a4 4 0 0 0 7 0"/></svg>',t:'Mood tracker',r:renderMood},
+  {id:'habit',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>',t:'Navike',r:renderHabit},
+  {id:'mood',grp:'Navike',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.5 14.5a4 4 0 0 0 7 0"/></svg>',t:'Raspoloženje',r:renderMood},
 
   {id:'projekti',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 1.5 4.5 4.5 4.5 8 0 2-1 4-2.5 5.5h-4C8.5 15 7.5 13 7.5 11c0-3.5 1.5-6.5 4.5-8z"/><circle cx="12" cy="9.5" r="1.4"/><path d="M9 17l-2 4M15 17l2 4"/></svg>',t:'Projekti',r:renderProjekti},
-  {id:'bucket',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.3 5.8.8-4.2 4 1 5.7L12 16.6 6.9 19.3l1-5.7-4.2-4 5.8-.8z"/></svg>',t:'Bucket list',r:renderBucket},
-  {id:'vision',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l4.5-4 3.5 3 3-2.5L20 17"/></svg>',t:'Vision board',r:renderVision},
+  {id:'bucket',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.3 5.8.8-4.2 4 1 5.7L12 16.6 6.9 19.3l1-5.7-4.2-4 5.8-.8z"/></svg>',t:'Lista želja',r:renderBucket},
+  {id:'vision',grp:'Život',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l4.5-4 3.5 3 3-2.5L20 17"/></svg>',t:'Vizija i snovi',r:renderVision},
 
-  {id:'stickers',grp:'Nagrade',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg>',t:'Sticker book',r:renderStickers},
+  {id:'stickers',grp:'Nagrade',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg>',t:'Album stikera',r:renderStickers},
   {id:'badges',grp:'Nagrade',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="5"/><path d="M9 9.5 7 3h10l-2 6.5"/></svg>',t:'Bedževi',r:renderBadges},
 
   {id:'vodic',grp:'Vodič',ic:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>',t:'Vodič dr Marine',r:renderVodic}
@@ -382,7 +435,7 @@ function renderCV(){
     'Jednom godišnje osveži — do mature imaš gotov CV.');
 }
 function renderPortfolio(){
-  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A2 2 0 0 1 10 3.5h4a2 2 0 0 1 2 2V7"/><path d="M3 12h18"/></svg> Portfolio',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A2 2 0 0 1 10 3.5h4a2 2 0 0 1 2 2V7"/><path d="M3 12h18"/></svg> Moji radovi',
     `<div class="grid2">
        ${field('GitHub','portfolio.github',{ph:'github.com/…'})}
        ${field('LinkedIn','portfolio.linkedin',{ph:'linkedin.com/in/…'})}
@@ -425,7 +478,7 @@ function renderRok(){
     ],'Dodaj ispit'),'Velika tabela celog roka — sve što ti treba na jednom mestu.');
 }
 function renderSumarum(){
-  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="13" width="3" height="5" rx="1"/></svg> Sumarum godine',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="11" width="3" height="7" rx="1"/><rect x="10.5" y="7" width="3" height="11" rx="1"/><rect x="15" y="13" width="3" height="5" rx="1"/></svg> Rezime godine',
     `<div class="grid2">
        ${field('Urađene provere','sumarum.polozeno')}
        ${field('Prosek','sumarum.prosek')}
@@ -570,7 +623,7 @@ function renderHabit(){
   });
   h+='</div>';
   h+='<div style="margin-top:14px">'+tableEditor('habits',[{key:'name',label:'Navika',def:'Nova navika'}],'Dodaj naviku')+'</div>';
-  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Habit tracker',h,'Označi svaki dan kad ispuniš naviku. Niz bez prekida je najbolji motivator.');
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg> Navike',h,'Označi svaki dan kad ispuniš naviku. Niz bez prekida je najbolji motivator.');
 }
 const MOODS=['😢','😕','😐','🙂','😀'];
 function renderMood(){
@@ -578,8 +631,18 @@ function renderMood(){
   let h='<div style="display:flex;flex-wrap:wrap;gap:9px">';
   for(let i=0;i<14;i++){const v=m[i];h+=`<div class="moodc" data-act="mood" data-i="${i}" title="Dan ${i+1}">${v>=0?MOODS[v]:'·'}</div>`;}
   h+='</div><div class="hint" style="margin-top:10px">Klikni na krug da promeniš raspoloženje za taj dan (poslednje 2 nedelje).</div>';
-  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.5 14.5a4 4 0 0 0 7 0"/></svg> Mood tracker',h);
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9 10h.01M15 10h.01M8.5 14.5a4 4 0 0 0 7 0"/></svg> Raspoloženje',h);
 }
+function renderStickers(){
+  const STK=[['⭐','Odlično'],['🏆','Cilj'],['🔥','Niz'],['🎓','Položeno'],['🌸','Zahvalnost'],['💯','Sve tačno'],['📚','Pročitano'],['✅','Urađeno'],['🌙','Veče'],['☕','Pauza'],['🦋','Mir'],['💛','Ljubav']];
+  const got=DB.stickers||{}; let n=0; for(let i=0;i<STK.length;i++){if(got[i])n++;}
+  let h='<div class="hint" style="margin-bottom:14px">Sakupljeno: <b>'+n+' / '+STK.length+'</b>. Svaki završen zadatak zaslužuje stiker — klikni da ga zalepiš u svoju kolekciju!</div>';
+  h+='<div class="stk-board">';
+  for(let i=0;i<STK.length;i++){h+=`<div class="stkc${got[i]?' on':''}" data-act="stk" data-i="${i}"><div class="stkc-e">${STK[i][0]}</div><div class="stkc-l">${STK[i][1]}</div></div>`;}
+  h+='</div>';
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.5-4.2 3.8 1.3 5.6L12 20.5 6.9 23.8l1.3-5.6L4 14.4l5.6-.5z"/></svg> Stikeri',h);
+}
+
 function renderFinansije(){
   const arr=get('finansije')||[];
   const sum=arr.reduce((a,r)=>a+(parseFloat((r.iznos||'').toString().replace(',','.'))||0),0);
@@ -611,13 +674,13 @@ function renderKonf(){
     ],'Dodaj konferenciju'));
 }
 function renderBucket(){
-  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.3 5.8.8-4.2 4 1 5.7L12 16.6 6.9 19.3l1-5.7-4.2-4 5.8-.8z"/></svg> Bucket list tokom škole',checklist('bucket',Object.keys(get('bucket')||{})),'Velike stvari koje želiš da uradiš dok studiraš.');
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.5 5.3 5.8.8-4.2 4 1 5.7L12 16.6 6.9 19.3l1-5.7-4.2-4 5.8-.8z"/></svg> Lista želja tokom škole',checklist('bucket',Object.keys(get('bucket')||{})),'Velike stvari koje želiš da uradiš dok studiraš.');
 }
 function renderVision(){
   const im=get('vision.imgs')||['','',''];
   let imgs='';
   im.forEach((u,i)=>{imgs+=`<div>${field('Slika '+(i+1)+' (URL)','vision.imgs.'+i)}${u?`<img class="vimg" src="${esc(u)}" alt="" onerror="this.style.display='none'">`:''}</div>`;});
-  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l4.5-4 3.5 3 3-2.5L20 17"/></svg> Vision board',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l4.5-4 3.5 3 3-2.5L20 17"/></svg> Vizija i snovi',
     field('Moja vizija (reči, citati, ciljevi)','vision.note',{area:true,ph:'Kako izgleda tvoj uspeh?'})+
     '<div class="grid3" style="margin-top:14px">'+imgs+'</div>',
     'Zalepi slike i reči koje te inspirišu. Nalepi linkove slika.');
@@ -628,7 +691,7 @@ function renderStickers(){
   let pal='<div style="display:flex;flex-wrap:wrap;gap:10px">';
   STIK.forEach(e=>{const c=col[e]||0;pal+=`<div class="stik" data-act="stik" data-e="${e}">${e}${c?`<span class="cnt">${c}</span>`:''}</div>`;});
   pal+='</div>';
-  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg> Sticker book',
+  return card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></svg> Album stikera',
     '<div class="hint" style="margin-bottom:10px">Klikni stiker da ga „zalepiš" — sakupljaj ih kako napreduješ. 💛</div>'+pal+
     '<div style="margin-top:16px">'+field('Moja tabla stikera','stikTabla',{area:true,ph:'Slobodno ređaj emoji-je i beleške…'})+'</div>');
 }
@@ -684,7 +747,7 @@ function renderVodic(){
     <ul>
       <li>Sačuvaj svoje najbolje radove i projekte — to je tvoj ponos.</li>
       <li>Vodi LinkedIn ažurnim; dodaj veštine koje stvarno koristiš.</li>
-      <li>Čuvaj sertifikate i preporuke na jednom mestu (sekcija Portfolio).</li>
+      <li>Čuvaj sertifikate i preporuke na jednom mestu (sekcija Moji radovi).</li>
     </ul>
 
     <div class="banner" style="margin-top:18px"><span style="font-size:1.5rem">💛</span><span class="q">Disciplina pobeđuje motivaciju — a tvoj planer ti čuva disciplinu.</span></div>
@@ -727,7 +790,7 @@ document.getElementById('content').addEventListener('input',e=>{
 });
 document.getElementById('content').addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;
-  const act=b.dataset.act;
+  const act=b.dataset.act;if(act==='stk'){const si=+b.dataset.i;DB.stickers=DB.stickers||{};DB.stickers[si]=!DB.stickers[si];save();renderCurrent();return;}
   if(act==='add'){const arr=get(b.dataset.arr)||[];arr.push(JSON.parse(decodeURIComponent(b.dataset.tpl)));set(b.dataset.arr,arr);save();renderCurrent();}
   else if(act==='del'){const arr=get(b.dataset.arr)||[];arr.splice(+b.dataset.idx,1);save();renderCurrent();}
   else if(act==='chk'){const o=get(b.dataset.obj)||{};o[b.dataset.k]=!o[b.dataset.k];set(b.dataset.obj,o);save();renderCurrent();}
@@ -778,5 +841,12 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 },{capture:true});
 })();</script>
 <script src="i18n-mathia.js"></script>
+<script>
+(function(){var c=document.getElementById('mplCover');if(!c)return;var K='mathia_cover_theme';
+function set(t){c.setAttribute('data-theme',t);var b=c.querySelectorAll('.mt');for(var i=0;i<b.length;i++)b[i].classList.toggle('on',b[i].getAttribute('data-t')===t);try{localStorage.setItem(K,t);}catch(e){}}
+var sv='champ';try{sv=localStorage.getItem(K)||'champ';}catch(e){}set(sv);
+var bt=c.querySelectorAll('.mt');for(var i=0;i<bt.length;i++)bt[i].addEventListener('click',function(){set(this.getAttribute('data-t'));});
+})();
+</script>
 </body>
 </html>
