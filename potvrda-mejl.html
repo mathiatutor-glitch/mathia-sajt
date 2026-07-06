@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Potvrda pretplate · Mathia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme-mathia.css">
+<style>
+:root{--paper:#FBF6EE;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--rose:#CC8E86;--muted:#90787E;--ink:#3a2530}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.cf{max-width:560px;margin:0 auto;padding:130px 22px 90px;text-align:center}
+@media(max-width:560px){.cf{padding-top:104px}}
+.seal{width:96px;height:96px;margin:0 auto 26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);box-shadow:0 24px 50px -22px rgba(198,160,92,.9);position:relative;animation:pop .5s cubic-bezier(.2,.9,.3,1.4)}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.seal::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(198,160,92,.4)}
+.seal svg{width:46px;height:46px;color:#3a2530}
+.cf-eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:12px}
+.cf-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.1rem,6vw,3.1rem);font-weight:600;color:var(--plum);line-height:1.12;margin:0 0 14px}
+.cf-sub{color:var(--muted);max-width:440px;margin:0 auto 8px;font-size:1.05rem}
+.pkg-line{display:inline-flex;align-items:center;gap:10px;margin:18px 0 30px;font-family:'Cormorant Garamond',serif;font-weight:700;color:#3a2530;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid var(--gold);border-radius:100px;padding:9px 24px;font-size:1.05rem}
+.btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.02rem;border:none;border-radius:100px;padding:15px 36px;cursor:pointer;background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#3a2530;box-shadow:0 18px 34px -14px rgba(198,160,92,.9);text-decoration:none;display:inline-block;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.steps-mini{display:flex;justify-content:center;gap:8px;margin-top:34px;color:var(--muted);font-size:.84rem;flex-wrap:wrap}
+.steps-mini b{color:var(--golddk)}
+.mailcard{margin:38px auto 0;max-width:440px;text-align:left;background:#fff;border:1px solid rgba(198,160,92,.28);border-radius:16px;padding:18px 20px;box-shadow:0 24px 50px -40px rgba(120,70,80,.5);font-size:.9rem;color:#5a4a52}
+.mailcard .from{display:flex;align-items:center;gap:10px;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid rgba(198,160,92,.2)}
+.mailcard .av{width:34px;height:34px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;color:#3a2530;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C)}
+.mailcard .from b{color:var(--plum);display:block;font-size:.95rem}
+.mailcard .from span{color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<div class="cf">
+  <div class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+  <div class="cf-eyebrow" data-t="eyebrow">Mathia · potvrda</div>
+  <h1 class="cf-title" data-t="title">Pretplata je aktivna 🌸</h1>
+  <p class="cf-sub" data-t="sub">Sve je spremno. Napravi svoj nalog i izaberi predmete koje ćeš učiti — profesorica te već čeka.</p>
+  <div class="pkg-line"><span data-t="pkgW">Paket</span> <b id="pkg">Gold</b></div>
+  <div>
+    <a class="btn" id="goReg" href="registracija.html" data-t="cta">Napravi nalog →</a>
+  </div>
+
+  <div class="mailcard">
+    <div class="from"><span class="av">M</span><div><b data-t="mFrom">Mathia · tvoja profesorica</b><span data-t="mSubj">Dobrodošla — potvrdi svoj nalog</span></div></div>
+    <div data-t="mBody">Hvala ti na poverenju 💛 Klikni na dugme iznad da napraviš nalog, izabereš predmete i otključaš profesoricu 0–24h. Vidimo se u učionici!</div>
+  </div>
+
+  <div class="steps-mini"><b data-t="s1">✓ Plaćeno</b> · <b data-t="s2">✓ Mejl potvrđen</b> · <span data-t="s3">Napravi nalog</span></div>
+</div>
+
+<script src="header-mathia.js" defer></script>
+<script>
+var STR={
+ eyebrow:{sr:'Mathia · potvrda',en:'Mathia · confirmation',de:'Mathia · Bestätigung',fr:'Mathia · confirmation',es:'Mathia · confirmación',it:'Mathia · conferma',ru:'Mathia · подтверждение',pt:'Mathia · confirmação'},
+ title:{sr:'Pretplata je aktivna 🌸',en:'Your subscription is active 🌸',de:'Dein Abo ist aktiv 🌸',fr:'Ton abonnement est actif 🌸',es:'Tu suscripción está activa 🌸',it:'Il tuo abbonamento è attivo 🌸',ru:'Твоя подписка активна 🌸',pt:'A tua subscrição está ativa 🌸'},
+ sub:{sr:'Sve je spremno. Napravi svoj nalog i izaberi predmete koje ćeš učiti — profesorica te već čeka.',en:'Everything\u2019s ready. Create your account and choose the subjects you\u2019ll study — your teacher is already waiting.',de:'Alles bereit. Erstelle dein Konto und wähle deine Fächer \u2014 deine Lehrerin wartet schon.',fr:'Tout est prêt. Crée ton compte et choisis tes matières \u2014 ta professeure t\u2019attend déjà.',es:'Todo listo. Crea tu cuenta y elige las materias que estudiarás \u2014 tu profesora ya te espera.',it:'Tutto pronto. Crea il tuo account e scegli le materie \u2014 la tua insegnante ti aspetta già.',ru:'Всё готово. Создай аккаунт и выбери предметы \u2014 преподавательница уже ждёт.',pt:'Tudo pronto. Cria a tua conta e escolhe as disciplinas \u2014 a tua professora já espera por ti.'},
+ pkgW:{sr:'Paket',en:'Package',de:'Paket',fr:'Forfait',es:'Paquete',it:'Pacchetto',ru:'Пакет',pt:'Pacote'},
+ cta:{sr:'Napravi nalog →',en:'Create account →',de:'Konto erstellen →',fr:'Créer le compte →',es:'Crear cuenta →',it:'Crea account →',ru:'Создать аккаунт →',pt:'Criar conta →'},
+ mFrom:{sr:'Mathia · tvoja profesorica',en:'Mathia · your teacher',de:'Mathia · deine Lehrerin',fr:'Mathia · ta professeure',es:'Mathia · tu profesora',it:'Mathia · la tua insegnante',ru:'Mathia · твоя преподавательница',pt:'Mathia · a tua professora'},
+ mSubj:{sr:'Dobrodošla — potvrdi svoj nalog',en:'Welcome — confirm your account',de:'Willkommen — bestätige dein Konto',fr:'Bienvenue — confirme ton compte',es:'Bienvenida — confirma tu cuenta',it:'Benvenuta — conferma il tuo account',ru:'Добро пожаловать — подтверди аккаунт',pt:'Bem-vinda — confirma a tua conta'},
+ mBody:{sr:'Hvala ti na poverenju 💛 Klikni na dugme iznad da napraviš nalog, izabereš predmete i otključaš profesoricu 0–24h. Vidimo se u učionici!',en:'Thank you for your trust 💛 Click the button above to create your account, choose subjects and unlock the teacher 24/7. See you in the classroom!',de:'Danke für dein Vertrauen 💛 Klicke oben, um dein Konto zu erstellen, Fächer zu wählen und die Lehrerin rund um die Uhr freizuschalten. Bis im Klassenzimmer!',fr:'Merci pour ta confiance 💛 Clique sur le bouton ci-dessus pour créer ton compte, choisir tes matières et débloquer la professeure 24h/24. À bientôt en classe !',es:'Gracias por tu confianza 💛 Haz clic arriba para crear tu cuenta, elegir materias y desbloquear a la profesora 24/7. ¡Nos vemos en el aula!',it:'Grazie per la fiducia 💛 Clicca il pulsante sopra per creare l\u2019account, scegliere le materie e sbloccare l\u2019insegnante 24/7. Ci vediamo in classe!',ru:'Спасибо за доверие 💛 Нажми кнопку выше, чтобы создать аккаунт, выбрать предметы и открыть преподавательницу 24/7. Увидимся в классе!',pt:'Obrigada pela tua confiança 💛 Clica no botão acima para criar a conta, escolher disciplinas e desbloquear a professora 24/7. Vemo-nos na sala de aula!'},
+ s1:{sr:'✓ Plaćeno',en:'✓ Paid',de:'✓ Bezahlt',fr:'✓ Payé',es:'✓ Pagado',it:'✓ Pagato',ru:'✓ Оплачено',pt:'✓ Pago'},
+ s2:{sr:'✓ Mejl potvrđen',en:'✓ Email confirmed',de:'✓ E-Mail bestätigt',fr:'✓ E-mail confirmé',es:'✓ Correo confirmado',it:'✓ Email confermata',ru:'✓ Почта подтверждена',pt:'✓ Email confirmado'},
+ s3:{sr:'Napravi nalog',en:'Create account',de:'Konto erstellen',fr:'Créer le compte',es:'Crear cuenta',it:'Crea account',ru:'Создать аккаунт',pt:'Criar conta'}
+};
+var L=(function(){try{return (localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(e){return 'sr';}})();
+document.querySelectorAll('[data-t]').forEach(function(el){var k=el.getAttribute('data-t');if(STR[k])el.innerHTML=STR[k][L]||STR[k].sr;});
+// paket iz URL-a
+var pk=(new URLSearchParams(location.search).get('paket')||'gold').toLowerCase();
+var labels={basic:'Basic',gold:'Gold',diamond:'Diamond'};
+document.getElementById('pkg').textContent=labels[pk]||'Gold';
+document.getElementById('goReg').href='registracija.html?paket='+(labels[pk]?pk:'gold');
+</script>
+<script src="i18n-mathia.js" defer></script>
+</body>
+</html>
