@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moj nalog · Mathia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme-mathia.css">
+<style>
+:root{--paper:#FBF6EE;--paper2:#F5EADB;--plum:#432C37;--plum2:#5C3B49;--rose:#CC8E86;--rose-dk:#B5746C;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--muted:#90787E;--ink:#3a2530}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.pf{max-width:960px;margin:0 auto;padding:120px 22px 90px}
+@media(max-width:560px){.pf{padding-top:100px}}
+/* greeting */
+.pf-hi{text-align:center;margin-bottom:40px}
+.pf-eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:12px}
+.pf-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,3.4rem);font-weight:600;color:var(--plum);line-height:1.1;margin:0}
+.pf-name .wave{font-style:normal}
+.pf-meta{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+.pf-pkg{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;color:#3a2530;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid var(--gold);border-radius:100px;padding:6px 18px}
+.pf-edit{background:none;border:none;color:var(--muted);font-weight:700;font-size:.88rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:4px 6px}
+.pf-edit:hover{color:var(--plum)}
+.pf-edit svg{width:14px;height:14px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:46px}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.24);border-radius:18px;padding:20px 16px;text-align:center;box-shadow:0 20px 44px -38px rgba(120,70,80,.5)}
+.stat .v{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--plum);line-height:1}
+.stat .k{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-top:8px}
+/* section head */
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 20px;gap:10px;flex-wrap:wrap}
+.sec-h h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.2rem);color:var(--plum);font-weight:600;margin:0}
+.sec-h .note{color:var(--muted);font-size:.86rem}
+/* subject cards */
+.subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:52px}
+.scard{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.26);border-radius:20px;padding:24px;box-shadow:0 26px 54px -44px rgba(120,70,80,.55);display:flex;flex-direction:column}
+.scard-top{display:flex;align-items:flex-start;gap:13px;margin-bottom:16px}
+.scard-ic{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);box-shadow:0 10px 20px -12px rgba(198,160,92,.8)}
+.scard-ic svg{width:22px;height:22px}
+.scard-t{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--plum);font-weight:600;line-height:1.15}
+.scard-g{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-top:2px}
+.prog{margin:6px 0 18px}
+.prog-top{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);font-weight:700;margin-bottom:6px}
+.prog-top b{color:var(--golddk)}
+.bar{height:8px;border-radius:100px;background:rgba(198,160,92,.16);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,#C6A05C,#E7D2A2);box-shadow:0 0 10px rgba(198,160,92,.6)}
+.scard-foot{margin-top:auto;display:flex;gap:10px}
+.mini{flex:1;text-align:center;font-weight:800;font-size:.9rem;border-radius:100px;padding:11px 10px;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;border:1px solid transparent}
+.mini-gold{background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#3a2530;box-shadow:0 12px 24px -14px rgba(198,160,92,.9)}
+.mini-gold:hover{transform:translateY(-2px)}
+.mini-ghost{background:#fffdf8;color:var(--plum);border-color:rgba(198,160,92,.4)}
+.mini-ghost:hover{border-color:var(--gold)}
+/* badges */
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px;margin-bottom:52px}
+.badge{text-align:center;padding:8px}
+.badge .b-ic{width:64px;height:64px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F3E7CE);border:1px solid rgba(198,160,92,.4);box-shadow:0 14px 26px -14px rgba(198,160,92,.7)}
+.badge.locked .b-ic{filter:grayscale(1);opacity:.4;box-shadow:none}
+.badge .b-l{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.badge.earned .b-l{color:var(--golddk)}
+/* planner box */
+.plbox{background:linear-gradient(160deg,#4A2A38,#2C1A25);border-radius:24px;padding:34px;color:#F5E9DC;text-align:center;box-shadow:0 30px 70px -50px rgba(0,0,0,.7);margin-bottom:20px}
+.plbox h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;margin:0 0 8px;color:#fff}
+.plbox p{color:rgba(245,233,220,.8);max-width:440px;margin:0 auto 20px;font-size:.98rem}
+.plbox .btn-gold{background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#3a2530;font-weight:800;border:none;border-radius:100px;padding:13px 30px;cursor:pointer;text-decoration:none;display:inline-flex;box-shadow:0 16px 30px -14px rgba(198,160,92,.9)}
+.plbox .btn-gold:hover{transform:translateY(-2px)}
+/* lock/copyright note */
+.viewonly{display:flex;align-items:center;gap:9px;justify-content:center;color:var(--muted);font-size:.85rem;margin-top:12px}
+.viewonly svg{width:15px;height:15px;color:var(--golddk)}
+/* empty state */
+.empty{max-width:520px;margin:40px auto;text-align:center;background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.28);border-radius:24px;padding:44px 32px;box-shadow:0 30px 70px -55px rgba(120,70,80,.5)}
+.empty h2{font-family:'Cormorant Garamond',serif;color:var(--plum);font-size:2rem;font-weight:600;margin:0 0 10px}
+.empty p{color:var(--muted);margin:0 0 24px}
+.empty a{background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#3a2530;font-weight:800;border-radius:100px;padding:13px 30px;text-decoration:none;display:inline-block;box-shadow:0 16px 30px -14px rgba(198,160,92,.9)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="pf">
+  <!-- EMPTY STATE (no account yet) -->
+  <div class="empty hidden" id="empty">
+    <div class="pf-eyebrow">Mathia · nalog</div>
+    <h2>Ovde te čeka tvoja učionica</h2>
+    <p>Još nemaš nalog na ovom uređaju. Izaberi paket i napravi ga za par minuta — pa te profesorica dočeka imenom.</p>
+    <a href="index.html#paketi">Pogledaj pakete &rarr;</a>
+  </div>
+
+  <!-- PROFILE -->
+  <div id="profile" class="hidden">
+    <div class="pf-hi">
+      <div class="pf-eyebrow">Moj nalog</div>
+      <h1 class="pf-name">Zdravo, <span id="uName">prijatelju</span> <span class="wave">🌸</span></h1>
+      <div class="pf-meta">
+        <span class="pf-pkg" id="uPkg">Gold</span>
+        <button class="pf-edit" id="editName"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Promeni ime</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v" id="stTime">0h</div><div class="k">Vreme učenja</div></div>
+      <div class="stat"><div class="v" id="stStreak">0</div><div class="k">Niz (dana)</div></div>
+      <div class="stat"><div class="v" id="stSubj">0</div><div class="k">Predmeti</div></div>
+      <div class="stat"><div class="v" id="stBadge">0</div><div class="k">Bedževi</div></div>
+    </div>
+
+    <div class="sec-h">
+      <h2>Tvoji predmeti</h2>
+      <span class="note">Uđi u predmet ili pitaj profesoricu — 0–24h.</span>
+    </div>
+    <div class="subs" id="subs"></div>
+
+    <div class="sec-h"><h2>Bedževi</h2><span class="note">Sakupljaš ih kako napreduješ.</span></div>
+    <div class="badges" id="badges"></div>
+
+    <div class="sec-h"><h2>Tvoj planer</h2></div>
+    <div id="plannerArea"></div>
+
+    <div class="viewonly">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      Sadržaj predmeta je samo za pregled — zaštićen autorskim pravom. Jedino se planer može preuzeti.
+    </div>
+  </div>
+</div>
+
+<script src="header-mathia.js" defer></script>
+<script>
+function load(){ try{ return JSON.parse(localStorage.getItem('mathia_user')||'null'); }catch(e){ return null; } }
+function save(u){ try{ localStorage.setItem('mathia_user', JSON.stringify(u)); }catch(e){} }
+var U = load();
+
+var bookIc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M18 3v18"/></svg>';
+
+if(!U){
+  document.getElementById('empty').classList.remove('hidden');
+} else {
+  document.getElementById('profile').classList.remove('hidden');
+  U.progress = U.progress || {};
+  // greeting
+  var who = U.name ? U.name : (U.email ? U.email.split('@')[0] : 'prijatelju');
+  document.getElementById('uName').textContent = who;
+  document.getElementById('uPkg').textContent = 'Paket ' + (U.pkgLabel||'');
+
+  // stats (ilustrativno dok se ne poveže backend praćenja)
+  var subs = U.subjects||[];
+  var totalPct = 0;
+  subs.forEach(function(s){ if(U.progress[s.h]==null){ U.progress[s.h]=0; } totalPct += U.progress[s.h]; });
+  save(U);
+  var badgesEarned = 0;
+
+  // subject cards
+  var box=document.getElementById('subs'); var h='';
+  subs.forEach(function(s){
+    var pct = U.progress[s.h]||0;
+    h+='<div class="scard"><div class="scard-top"><span class="scard-ic">'+bookIc+'</span>'
+      +'<div><div class="scard-t">'+s.t+'</div><div class="scard-g">otključano</div></div></div>'
+      +'<div class="prog"><div class="prog-top"><span>Napredak</span><b>'+pct+'%</b></div>'
+      +'<div class="bar"><i style="width:'+pct+'%"></i></div></div>'
+      +'<div class="scard-foot"><a class="mini mini-gold" href="'+s.h+'">Uđi u predmet →</a>'
+      +'<a class="mini mini-ghost" href="'+s.h+'#chat">Pitaj profesoricu</a></div></div>';
+  });
+  box.innerHTML = h || '<p style="color:var(--muted)">Nema izabranih predmeta.</p>';
+
+  // stats fill
+  document.getElementById('stSubj').textContent = subs.length;
+  document.getElementById('stTime').textContent = (U.timeH||0)+'h';
+  document.getElementById('stStreak').textContent = (U.streak||0);
+
+  // badges
+  var BADGES=[
+    {e:'⭐',l:'Prvi korak',need:1},
+    {e:'🔥',l:'Niz 7 dana',need:7,streak:true},
+    {e:'📚',l:'Pola predmeta',need:50,avg:true},
+    {e:'🎓',l:'Predmet savladan',need:100,any:true},
+    {e:'💯',l:'Sve tačno',need:100,all:true},
+    {e:'🌸',l:'Zahvalnost',need:0}
+  ];
+  var avg = subs.length? Math.round(totalPct/subs.length):0;
+  var anyDone = subs.some(function(s){return (U.progress[s.h]||0)>=100;});
+  var allDone = subs.length>0 && subs.every(function(s){return (U.progress[s.h]||0)>=100;});
+  var bh='';
+  BADGES.forEach(function(b){
+    var earned=false;
+    if(b.streak) earned=(U.streak||0)>=b.need;
+    else if(b.avg) earned=avg>=b.need;
+    else if(b.any) earned=anyDone;
+    else if(b.all) earned=allDone;
+    else if(b.need===1) earned=(U.timeH||0)>0 || avg>0;
+    else if(b.need===0) earned=true;
+    if(earned) badgesEarned++;
+    bh+='<div class="badge '+(earned?'earned':'locked')+'"><div class="b-ic">'+b.e+'</div><div class="b-l">'+b.l+'</div></div>';
+  });
+  document.getElementById('badges').innerHTML=bh;
+  document.getElementById('stBadge').textContent=badgesEarned;
+
+  // planner
+  var pa=document.getElementById('plannerArea');
+  var plannerMap={osnovna:'Planer-Osnovna.html',srednja:'Planer-Srednja.html',fakultet:'Planer-Fakultet.html'};
+  if(U.planner && plannerMap[U.planner]){
+    pa.innerHTML='<div class="scard" style="max-width:420px"><div class="scard-top"><span class="scard-ic">'
+      +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>'
+      +'</span><div><div class="scard-t">Mathia Planer</div><div class="scard-g">tvoj planer</div></div></div>'
+      +'<div class="scard-foot"><a class="mini mini-gold" href="'+plannerMap[U.planner]+'">Otvori planer →</a></div></div>';
+  } else {
+    pa.innerHTML='<div class="plbox"><h3>Dodaj svoj planer</h3><p>Raspored, ciljevi, navike i stikeri — na jednom mestu, i jedino što kasnije možeš da preuzmeš.</p><a class="btn-gold" href="prodavnica.html">Izaberi planer →</a></div>';
+  }
+
+  // change name
+  document.getElementById('editName').addEventListener('click',function(){
+    var nn=prompt('Kako želiš da te oslovljavamo?', U.name||'');
+    if(nn!==null){ U.name=nn.trim(); save(U); document.getElementById('uName').textContent=U.name || (U.email?U.email.split('@')[0]:'prijatelju'); }
+  });
+}
+</script>
+<script src="i18n-mathia.js" defer></script>
+</body>
+</html>
