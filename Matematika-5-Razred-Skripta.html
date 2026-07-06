@@ -274,7 +274,19 @@ code{overflow-wrap:break-word}
     fetch("/api/me",{credentials:"include",headers:(function(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");var t=v&&(v.access_token||(v.session&&v.session.access_token));if(t)return{Authorization:"Bearer "+t};}}}catch(e){}return{};})()}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"Mathia · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"Mathia · mathia.rs");});
   });
 </script>
-  <script src="https://project-y23je.vercel.app/widget.js?v=9" data-api="https://project-y23je.vercel.app/api/chat" data-mode="subject" data-name="Profesorica" data-subj="Matematika za 5. razred osnovne škole" data-avatar="avatar.jpg" data-lang="sr" data-hi="Zdravo! Ja sam vaša profesorica Marina. Ovo su materijali — postavite pitanje, pošaljite sliku 📷 ili diktirajte 🎙️ zadatak." data-hi-en="Hi! ❤️ I'm Marina. These are the study materials — ask me anything, snap 📷 or dictate 🎙️."></script>
+  <script>
+(function(){
+  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
+  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
+  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "subject", "data-name": "Profesorica", "data-subj": "Matematika za 5. razred osnovne \u0161kole", "data-avatar": "avatar.jpg", "data-hi-en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
+  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam va\u0161a profesorica Marina. Ovo su materijali \u2014 postavite pitanje, po\u0161aljite sliku \ud83d\udcf7 ili diktirajte \ud83c\udf99\ufe0f zadatak.", "en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
+  var st=document.createElement("script"); st.src=SRC;
+  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
+  st.setAttribute("data-lang",L);
+  st.setAttribute("data-hi",HI[L]||HI.sr);
+  (document.body||document.documentElement).appendChild(st);
+})();
+</script>
 <script defer src="gate.js" data-subject="osn-mat-5"></script>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
 <!--protect--><style>
