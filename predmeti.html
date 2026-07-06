@@ -285,6 +285,10 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
     <div class="eyebrow" style="text-align:center" data-i18n="s_eyb">Sve na jednom mestu</div>
     <h2 data-i18n="s_h2">Svi predmeti</h2>
     <p style="text-align:center;max-width:680px;margin:0 auto 30px;color:#6a5a62" data-i18n="s_p">Od petog razreda do fakulteta. Uz svaki predmet ide Profesorica-klon koja te pamti, vodi korak po korak i prati tvoj napredak — 0–24h.</p>
+    <div class="top-subj">
+      <div class="ts-lbl">Najtraženiji predmeti</div>
+      <div class="ts-row"><a class="ts-card" href="predmet-analiza1.html"><span class="ts-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 5H7l5 7-5 7h10"/></svg></span><span>Matematička analiza 1</span></a><a class="ts-card" href="osnovna-matematika-8.html"><span class="ts-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h3M8 15h3M14 11l3 4M17 11l-3 4"/></svg></span><span>Matematika 8. razred</span></a><a class="ts-card" href="programiranje-python.html"><span class="ts-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 6l-2 12"/></svg></span><span>Python</span></a><a class="ts-card" href="priprema-prijemni.html"><span class="ts-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.3"/></svg></span><span>Priprema za prijemni</span></a></div>
+    </div>
     <div class="subj-tools">
       <label class="subj-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="subjSearch" type="text" placeholder="Pretraži predmete… (npr. fizika, algebra, Python)"></label>
       <p class="subj-how">Izaberi paket, pa u svom profilu biraš <b>1, 2 ili 3 predmeta</b> — koliko ti paket dozvoljava.</p>
@@ -509,6 +513,36 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 .hero-trust{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:center;margin-top:26px}
 .hero-trust span{display:inline-flex;align-items:center;gap:7px;color:rgba(231,210,162,.9);font-size:.82rem;font-weight:700}
 .hero-trust span::before{content:"";width:15px;height:15px;flex:none;background:no-repeat center/contain;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E7D2A2' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-11'/%3E%3C/svg%3E")}
+</style>
+<script>
+(function(){
+  var inp=document.getElementById('subjSearch'); if(!inp) return;
+  document.querySelectorAll('.subj-tab').forEach(function(t){
+    var pl=document.querySelector('.subj-panel[data-p="'+t.dataset.t+'"]');
+    if(pl){var c=document.createElement('span');c.className='subj-count';c.textContent=pl.querySelectorAll('.subj-grid a').length;t.appendChild(c);}
+  });
+  var wrap=document.querySelector('.subj-panels');
+  var empty=document.createElement('div');empty.className='subj-empty';empty.style.display='none';
+  empty.innerHTML='Nema predmeta za tu pretragu. Probaj drugu reč — ili nam javi koji predmet želiš.';
+  if(wrap&&wrap.parentNode)wrap.parentNode.insertBefore(empty,wrap.nextSibling);
+  inp.addEventListener('input',function(){
+    var q=inp.value.trim().toLowerCase(),vis=0;
+    document.querySelectorAll('.subj-grid a').forEach(function(a){if(a.style.display!=='none')vis++;});
+    empty.style.display=(q&&vis===0)?'block':'none';
+  });
+})();
+</script>
+<style>
+.top-subj{max-width:900px;margin:0 auto 24px;text-align:center}
+.ts-lbl{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:14px}
+.ts-row{display:flex;flex-wrap:wrap;gap:11px;justify-content:center}
+.ts-card{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.3);border-radius:100px;padding:10px 18px 10px 12px;color:var(--plum);font-weight:700;font-size:.94rem;text-decoration:none;box-shadow:0 12px 26px -20px rgba(120,70,80,.4);transition:transform .15s,box-shadow .15s,border-color .15s}
+.ts-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 20px 34px -22px rgba(198,160,92,.6)}
+.ts-ic{width:34px;height:34px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);box-shadow:0 8px 16px -10px rgba(198,160,92,.8)}
+.ts-ic svg{width:18px;height:18px}
+.subj-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;margin-left:8px;border-radius:100px;font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:800;background:rgba(198,160,92,.16);color:var(--golddk)}
+.subj-tab.on .subj-count{background:rgba(231,210,162,.22);color:#E7D2A2}
+.subj-empty{max-width:520px;margin:10px auto 0;text-align:center;color:var(--muted);font-size:1rem;background:#fffdf8;border:1px dashed rgba(198,160,92,.5);border-radius:16px;padding:26px 22px}
 </style>
 </body>
 </html>
