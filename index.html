@@ -530,7 +530,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 </style>
 <script>/*navham*/
 (function(){
- var ICON=[[/nalog\.html/,'\uD83D\uDC64'],[/#paketi|paketi/,'\u2726'],[/predmeti\.html/,'\uD83D\uDCDA'],[/prodavnica/,'\uD83D\uDED2'],[/test-sklonosti/,'\uD83E\uDDED'],[/o-marini|marina/,'\uD83C\uDF38'],[/index\.html/,'\uD83C\uDFE0']];
+ var ICON=[];
  var FLAG={SR:'\uD83C\uDDF7\uD83C\uDDF8',EN:'\uD83C\uDDEC\uD83C\uDDE7',DE:'\uD83C\uDDE9\uD83C\uDDEA',FR:'\uD83C\uDDEB\uD83C\uDDF7',ES:'\uD83C\uDDEA\uD83C\uDDF8',IT:'\uD83C\uDDEE\uD83C\uDDF9',RU:'\uD83C\uDDF7\uD83C\uDDFA',PT:'\uD83C\uDDF5\uD83C\uDDF9'};
  function iconFor(h){h=(h||'').toLowerCase();for(var i=0;i<ICON.length;i++){if(ICON[i][0].test(h))return ICON[i][1];}return '\u203A';}
  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -1129,13 +1129,13 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
     <div class="apt reveal">
       <div class="apt-glow" aria-hidden="true"></div>
       <div class="apt-in">
-        <div class="apt-eye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg> Test sklonosti</div>
-        <h3 class="apt-h">Nisi siguran gde da počneš?</h3>
-        <p class="apt-p">Kratak test otkriva oblast, predmete i način učenja koji ti najbolje odgovaraju. Uradi ga za svoj nivo:</p>
+        <div class="apt-eye"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg> Test sklonosti · besplatno</div>
+        <h3 class="apt-h">Otkrij svoj pravi put</h3>
+        <p class="apt-p">Kratak, besplatan test otkriva tvoje talente i oblasti, škole i fakultete koji ti najviše leže — moj mali poklon svakome ko traži svoj put. Izaberi nivo:</p>
         <div class="apt-lvls">
-          <a class="apt-lvl apt-sred" href="test-sklonosti.html?nivo=sred"><b>Srednja škola</b><small>za osmake</small></a>
-          <a class="apt-lvl apt-visa" href="test-sklonosti.html?nivo=visa"><b>Viša škola</b><small>za maturante</small></a>
-          <a class="apt-lvl apt-fak" href="test-sklonosti.html?nivo=fak"><b>Fakultet</b><small>za maturante</small></a>
+          <a class="apt-lvl apt-sred" href="test-sklonosti.html?nivo=srednja"><span class="apt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg></span><b>Srednja škola</b><small>za osnovce</small></a>
+          <a class="apt-lvl apt-visa" href="test-sklonosti.html?nivo=visa"><span class="apt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><b>Viša škola</b><small>strukovne studije</small></a>
+          <a class="apt-lvl apt-fak" href="test-sklonosti.html?nivo=fakultet"><span class="apt-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg></span><b>Fakultet</b><small>za maturante</small></a>
         </div>
       </div>
     </div>
@@ -1859,6 +1859,14 @@ footer.mfoot .social a{width:92px}
 .mf-bottom{flex-direction:column;gap:14px;align-items:center}
 .mf-pay3{order:2}
 .mf-copy2{order:1}
+</style>
+<style>
+.apt-lvl{display:flex;flex-direction:column;align-items:center;gap:5px}
+.apt-ic{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);position:relative;margin-bottom:5px;box-shadow:0 12px 22px -12px rgba(198,160,92,.8)}
+.apt-ic::before{content:"";position:absolute;inset:-2px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#F0DCA6,#B8923F);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.apt-ic svg{width:22px;height:22px}
+.apt-lvl b{color:var(--plum)}
+.apt-lvl.on .apt-ic,.apt-lvl:hover .apt-ic{background:rgba(231,210,162,.16);color:#E7D2A2}
 </style>
 </body>
 </html>
