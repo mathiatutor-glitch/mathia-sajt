@@ -174,7 +174,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 </style>
 <script>/*navham*/
 (function(){
- var ICON=[[/nalog\.html/,'\uD83D\uDC64'],[/#paketi|paketi/,'\u2726'],[/predmeti\.html/,'\uD83D\uDCDA'],[/prodavnica/,'\uD83D\uDED2'],[/test-sklonosti/,'\uD83E\uDDED'],[/o-marini|marina/,'\uD83C\uDF38'],[/index\.html/,'\uD83C\uDFE0']];
+ var ICON=[];
  var FLAG={SR:'\uD83C\uDDF7\uD83C\uDDF8',EN:'\uD83C\uDDEC\uD83C\uDDE7',DE:'\uD83C\uDDE9\uD83C\uDDEA',FR:'\uD83C\uDDEB\uD83C\uDDF7',ES:'\uD83C\uDDEA\uD83C\uDDF8',IT:'\uD83C\uDDEE\uD83C\uDDF9',RU:'\uD83C\uDDF7\uD83C\uDDFA',PT:'\uD83C\uDDF5\uD83C\uDDF9'};
  function iconFor(h){h=(h||'').toLowerCase();for(var i=0;i<ICON.length;i++){if(ICON[i][0].test(h))return ICON[i][1];}return '\u203A';}
  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -263,63 +263,56 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 
 <section class="sh-hero">
   <div class="wrap">
-    <div class="eyebrow">Mathia Planer</div>
-    <h1>Cela godina<br><span class="seal">pod kontrolom</span></h1>
-    <p class="sh-lead">Raspored, ispiti, fokus i navike — na jednom prelepom mestu. Planer koji te vodi od prvog dana do diplome: mirno, sigurno, bez haosa.</p>
+    <div class="eyebrow">Mathia · prodavnica</div>
+    <h1>Planer za svaki<br><span class="seal">život</span></h1>
+    <p class="sh-lead">Prelepi planeri za svaki uzrast i svaki život — osmišljeni da te vode, motivišu i raduju. Osnovna, srednja, fakultet i još mnogo toga.</p>
   </div>
 </section>
 
-<section class="sh-prod">
+<section class="sh-store">
   <div class="wrap">
-    <div class="prod">
-      <div class="prod-visual">
-        <div class="pvx-top"><span class="pvx-ava"><img src="avatar.jpg" alt="" onerror="this.style.display='none'"></span><div class="pvx-tt"><b>Mathia Planer</b><small><i class="pvx-live"></i> Do diplome · 3. godina</small></div><span class="pvx-pct">62%</span></div>
+    <div class="eyebrow" style="text-align:center">svi planeri</div>
+    <h2 class="sh-h2">Izaberi svoj planer</h2>
+    <p class="sh-store-sub">Prelepi planeri za svaki uzrast i svaki život — isprobaj demo, kupi jednom, tvoj zauvek.</p>
+    <div class="store-prev">
+      <div class="tablet"><div class="tcam" aria-hidden="true"></div><div class="tablet-screen"><div class="prod-visual" style="max-width:520px;margin:0 auto">
+        <div class="pvx-top"><span class="pvx-ava"><img src="avatar.jpg" alt="" onerror="this.style.display='none'"></span><div class="pvx-tt"><b>Mathia Planer</b><small><i class="pvx-live"></i> Tvoja godina</small></div><span class="pvx-pct">62%</span></div>
         <div class="pvx-body">
           <div class="pvx-lbl">Tvoj napredak</div>
-          <div class="pvx-item"><div class="pvx-row"><span>Analiza</span><b>72%</b></div><div class="pvx-bar"><i style="width:72%"></i></div></div>
-          <div class="pvx-item"><div class="pvx-row"><span>Matematika</span><b>88%</b></div><div class="pvx-bar"><i style="width:88%"></i></div></div>
-          <div class="pvx-item"><div class="pvx-row"><span>Fizika</span><b>54%</b></div><div class="pvx-bar"><i style="width:54%"></i></div></div>
+          <div class="pvx-item"><div class="pvx-row"><span>Ciljevi</span><b>72%</b></div><div class="pvx-bar"><i style="width:72%"></i></div></div>
+          <div class="pvx-item"><div class="pvx-row"><span>Predmeti</span><b>88%</b></div><div class="pvx-bar"><i style="width:88%"></i></div></div>
+          <div class="pvx-item"><div class="pvx-row"><span>Navike</span><b>54%</b></div><div class="pvx-bar"><i style="width:54%"></i></div></div>
           <div class="pvx-foot"><span>Niz: 12 dana</span><span>Ove nedelje: 3h 20min</span></div>
         </div>
-      </div>
-      <div class="prod-body">
-        <div class="tag">flagship · planer</div>
-        <h2>Student Success Planner</h2>
-        <div class="by">MathIA · originalni planer</div>
-        <div class="prod-stars">★★★★★ <b>5,0</b> <span>· 40 studenata</span></div>
-        <p>Sve što ti treba da godina prođe mirno i uspešno — na jednom prelepom mestu. Isprobaj demo odmah; uz nalog se planer čuva i prati online.</p>
-        <div class="price">1.990 <span>RSD</span> <small>· jednokratno · zauvek tvoje</small></div>
-        <div class="cta">
-          <button class="btn btn-gold" onclick="dodaj('PLANER-2026')">Dodaj u korpu →</button>
-          <a class="btn btn-ghost" href="Mathia-Student-Planner.html?demo=1" target="_blank" rel="noopener">Isprobaj demo →</a>
-        </div>
-        <div class="prod-trust"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg> Demo besplatno</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg> Trenutni pristup</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg> Bez skrivenih troškova</span></div>
-      </div>
+      </div></div></div>
+      <p class="store-prev-cap">Ovako izgleda svaki Mathia planer — prelep, jasan i tvoj. Isprobaj demo pre kupovine.</p>
+    </div>
+    <div class="stickers-hl">
+      <div class="stk-eyebrow">stikeri i nagrade</div>
+      <div class="sh-badges"><span class="stk">⭐<small>Odlično</small></span><span class="stk">🏆<small>Cilj</small></span><span class="stk">🔥<small>Niz</small></span><span class="stk">🎓<small>Položeno</small></span><span class="stk">🌸<small>Zahvalnost</small></span><span class="stk">💯<small>Sve tačno</small></span></div>
+      <p>Svaki završen zadatak otključava <b>stiker</b> — sakupljaj ih, gradi nizove i slavi svaki mali uspeh. Planer koji te nagrađuje i vraća svaki dan.</p>
+    </div>
+    <div class="pl-grid">
+      <div class="pl-card"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9V8a4 4 0 0 1 8 0v1"/><rect x="5" y="9" width="14" height="11" rx="3"/><path d="M9 20v-4.5h6V20"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Osnovna škola</span><span class="pl-sub">5–8. razred</span></span></div><div class="pl-body"><p class="pl-desc">Raspored, kontrolni, navike i mala matura — na jednom mestu.</p><div class="pl-foot"><span class="pl-price">1.490 <small>RSD</small></span><span class="pl-cta"><a class="pl-demo" href="Planer-Osnovna.html?demo=1" target="_blank" rel="noopener">Demo</a><button class="pl-buy" onclick="dodaj('PLANER-OSNOVNA')">Kupi →</button></span></div></div></div>
+      <div class="pl-card"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Srednja škola</span><span class="pl-sub">1–4. razred</span></span></div><div class="pl-body"><p class="pl-desc">Ispiti, rokovi, fokus i matura — cela srednja pod kontrolom.</p><div class="pl-foot"><span class="pl-price">1.490 <small>RSD</small></span><span class="pl-cta"><a class="pl-demo" href="Planer-Srednja.html?demo=1" target="_blank" rel="noopener">Demo</a><button class="pl-buy" onclick="dodaj('PLANER-SREDNJA')">Kupi →</button></span></div></div></div>
+      <div class="pl-card"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Fakultet</span><span class="pl-sub">studije do diplome</span></span></div><div class="pl-body"><p class="pl-desc">Semestri, ispitni rokovi, ESPB i put do diplome.</p><div class="pl-foot"><span class="pl-price">1.990 <small>RSD</small></span><span class="pl-cta"><a class="pl-demo" href="Planer-Fakultet.html?demo=1" target="_blank" rel="noopener">Demo</a><button class="pl-buy" onclick="dodaj('PLANER-2026')">Kupi →</button></span></div></div></div>
+      <div class="pl-card pl-is-soon"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-badge">Uskoro</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Planer za život</span><span class="pl-sub">svakodnevica</span></span></div><div class="pl-body"><p class="pl-desc">Ciljevi, navike, rutine i mir — za lep, uređen dan.</p><div class="pl-foot"><span class="pl-soon-t">Uskoro u ponudi</span></div></div></div>
+      <div class="pl-card pl-is-soon"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-badge">Uskoro</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A2 2 0 0 1 10 3.5h4a2 2 0 0 1 2 2V7"/><path d="M3 12h18"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Biznis planer</span><span class="pl-sub">preduzetnici</span></span></div><div class="pl-body"><p class="pl-desc">Projekti, ciljevi, sastanci i rast — jasno i staloženo.</p><div class="pl-foot"><span class="pl-soon-t">Uskoro u ponudi</span></div></div></div>
+      <div class="pl-card pl-is-soon"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-badge">Uskoro</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4.5 0-7.5-2.6-7.5-6.3 2.2 1.1 3.9 1 5.5-.2 0 2.2 1 3.8 2 4.3 1-.5 2-2.1 2-4.3 1.6 1.2 3.3 1.3 5.5.2C19.5 18.4 16.5 21 12 21z"/><path d="M12 21c0-3.2 0-6.4-2-8.6 2 .6 2.5 2.4 2.5 3.6 0-1.2.5-3 2.5-3.6-2 2.2-2 5.4-2 8.6z"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Wellness planer</span><span class="pl-sub">duša i telo</span></span></div><div class="pl-body"><p class="pl-desc">Zahvalnost, mir, san i zdravlje — nega tebe.</p><div class="pl-foot"><span class="pl-soon-t">Uskoro u ponudi</span></div></div></div>
+      <div class="pl-card pl-is-soon"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-badge">Uskoro</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="14.5" r="4.5"/><circle cx="15" cy="14.5" r="4.5"/><path d="M8 5l4 3 4-3"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Wedding planer</span><span class="pl-sub">venčanje</span></span></div><div class="pl-body"><p class="pl-desc">Rokovi, budžet, gosti i detalji — savršen dan bez stresa.</p><div class="pl-foot"><span class="pl-soon-t">Uskoro u ponudi</span></div></div></div>
+      <div class="pl-card pl-is-soon"><div class="pl-cover"><span class="pl-brand">Mathia Planer</span><span class="pl-badge">Uskoro</span><span class="pl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg></span><span class="pl-nm-wrap"><span class="pl-name">Priprema za prijemni</span><span class="pl-sub">intenzivno</span></span></div><div class="pl-body"><p class="pl-desc">Plan po nedeljama do prijemnog — bez panike.</p><div class="pl-foot"><span class="pl-soon-t">Uskoro u ponudi</span></div></div></div>
     </div>
   </div>
 </section>
 
-<section class="sh-quote">
+<section class="sh-why">
   <div class="wrap">
-    <div class="sq">
-      <div class="sq-mark">“</div>
-      <p>Konačno je sve na jednom mestu — prvi put osećam da imam kontrolu nad celom godinom. Prelepo je i jednostavno.</p>
-      <div class="sq-by">— Dunja · studentkinja</div>
-    </div>
-  </div>
-</section>
-
-<section class="sh-feat">
-  <div class="wrap">
-    <div class="eyebrow" style="text-align:center">sve uključeno</div>
-    <h2 class="sh-h2">Šta dobijaš</h2>
-    <div class="feat-rows">
-      <div class="frow"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></span><div><b>Planiranje i raspored</b><p>Godišnji pregled i nedeljni raspored — sve obaveze pod kontrolom.</p></div></div>
-      <div class="frow"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 11l2 2 4-4"/></svg></span><div><b>Ispiti i rokovi</b><p>Prijave, kolokvijumi, ispiti i bodovi — po svakom predmetu.</p></div></div>
-      <div class="frow"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 13V8.5"/><path d="M9 2.6h6"/></svg></span><div><b>Fokus i navike</b><p>Pomodoro tajmer, praćenje učenja, navike i raspoloženje.</p></div></div>
-      <div class="frow"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg></span><div><b>Predmeti A–Z</b><p>Literatura, formule, definicije, greške, pitanja i napredak.</p></div></div>
-      <div class="frow"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg></span><div><b>Put do diplome</b><p>Prsten odbrojavanja i sumarni pregled svih godina.</p></div></div>
-      <div class="frow"><span class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><div><b>Vodič dr Marine</b><p>Originalni saveti za organizaciju, fokus i ispite.</p></div></div>
+    <div class="eyebrow" style="text-align:center">Zašto baš Mathia planer</div>
+    <h2 class="sh-h2">Napravljen da ga zavoliš</h2>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 4v5M3 14h18"/></svg></span><b>Sve na jednom mestu</b><p>Raspored, ispiti, fokus, navike i predmeti — ništa se ne gubi i ništa ne zaboravljaš.</p></div>
+      <div class="why-card"><span class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.5-4.2 3.8 1.3 5.6L12 20.5 6.9 23.8l1.3-5.6L4 14.4l5.6-.5z"/></svg></span><b>Stikeri i nagrade</b><p>Svaki završen zadatak otključava stiker. Nizovi, bedževi i male proslave koje te vraćaju svaki dan.</p></div>
+      <div class="why-card"><span class="why-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-2 5 5 0 0 1 9 2c-2 4.5-9 9-9 9z"/></svg></span><b>Uz tebe — zauvek</b><p>Kupiš jednom i tvoj je zauvek. Čuva se online uz nalog, dostupan sa svakog uređaja.</p></div>
     </div>
   </div>
 </section>
@@ -360,7 +353,9 @@ const PROIZVODI = [
   { id:'basic',   naziv:'Paket Basic',   opis:'1 predmet · Profesorica 24/7 · skripte.',        cena:4990, tag:'pretplata', mesecno:true },
   { id:'gold',    naziv:'Paket Gold',    opis:'Do 3 predmeta · prioritet · sve skripte.',       cena:6990, tag:'pretplata', mesecno:true },
   { id:'diamond', naziv:'Paket Diamond', opis:'Svi predmeti · Marina uživo · svi materijali.', cena:9990, tag:'pretplata', mesecno:true },
-  { id:'PLANER-2026', naziv:'Mathia Student Planner', opis:'Kompletan planer za studije — online pristup uz nalog.', cena:1990, tag:'planer' },
+  { id:'PLANER-OSNOVNA', naziv:'Planer — Osnovna škola', opis:'Planer za 5–8. razred.', cena:1490, tag:'planer' },
+  { id:'PLANER-SREDNJA', naziv:'Planer — Srednja škola', opis:'Planer za srednju školu.', cena:1490, tag:'planer' },
+  { id:'PLANER-2026', naziv:'Planer — Fakultet', opis:'Planer za studije do diplome.', cena:1990, tag:'planer' },
 ];
 
 let korpa = {};
@@ -619,5 +614,107 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 .sh-hero h1 .seal::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.02em;height:.42em;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20200%2018%27%3E%3Cpath%20d%3D%27M4%2012%20C%2055%203%2C%20150%203%2C%20196%209%27%20stroke%3D%27%23E7D2A2%27%20stroke-width%3D%274%27%20fill%3D%27none%27%20stroke-linecap%3D%27round%27%2F%3E%3C%2Fsvg%3E") no-repeat center/100% 100%}
 @keyframes sealFoil{to{background-position:220% center}}
 @media(prefers-reduced-motion:reduce){.sh-hero h1 .seal{animation:none}}
+</style>
+<style>
+.sh-store{padding:56px 0 24px;text-align:center}
+.sh-store-sub{max-width:560px;margin:0 auto 40px;color:var(--muted);font-size:1rem}
+.pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px;max-width:1060px;margin:0 auto}
+.pl-card{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.22);border-radius:18px;overflow:hidden;box-shadow:0 24px 50px -34px rgba(120,70,80,.45);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;display:flex;flex-direction:column}
+.pl-card:hover{transform:translateY(-6px);box-shadow:0 40px 66px -36px rgba(120,70,80,.55);border-color:rgba(198,160,92,.5)}
+.pl-cover{position:relative;aspect-ratio:4/5;background:linear-gradient(165deg,#4A2A38,#2C1A25);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:26px 18px;color:#F0E4CC;text-align:center;overflow:hidden}
+.pl-cover::before{content:"";position:absolute;inset:12px;border-radius:10px;border:1px solid rgba(231,210,162,.3);pointer-events:none}
+.pl-cover::after{content:"";position:absolute;inset:0;background:radial-gradient(220px 130px at 50% 0,rgba(231,210,162,.16),transparent);pointer-events:none}
+.pl-brand{position:absolute;top:20px;left:0;right:0;font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(231,210,162,.75)}
+.pl-badge{position:absolute;top:16px;right:16px;background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;font-size:.56rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;border-radius:100px}
+.pl-ic{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#E7D2A2;border:1px solid rgba(231,210,162,.4);background:rgba(231,210,162,.08);z-index:1}
+.pl-ic svg{width:28px;height:28px}
+.pl-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:#FBF6EE;z-index:1;line-height:1.05}
+.pl-sub{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,228,204,.65);z-index:1}
+.pl-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
+.pl-desc{color:#6a5a62;font-size:.92rem;line-height:1.55;margin:0;flex:1}
+.pl-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pl-price{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.5rem;color:var(--golddk)}
+.pl-price small{font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:700;color:var(--muted);letter-spacing:.05em}
+.pl-cta{display:flex;align-items:center;gap:8px}
+.pl-demo{color:var(--golddk);font-weight:700;font-size:.82rem;text-decoration:none;border-bottom:1px solid rgba(198,160,92,.4)}
+.pl-buy{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;border:none;border-radius:100px;padding:9px 15px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;box-shadow:0 10px 22px -12px rgba(198,160,92,.85);transition:transform .15s}
+.pl-buy:hover{transform:translateY(-2px)}
+.pl-is-soon .pl-cover{background:linear-gradient(165deg,#3E2532,#241521);opacity:.96}
+.pl-soon-t{color:var(--muted);font-style:italic;font-size:.9rem}
+</style>
+<style>
+.pl-cover{background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2776%27%20height%3D%2776%27%20viewBox%3D%270%200%2076%2076%27%3E%3Cg%20fill%3D%27%23B0872F%27%20fill-opacity%3D%270.07%27%3E%3Cg%20transform%3D%27translate%2818%2C20%29%20scale%281%29%27%3E%3Cg%20transform%3D%27rotate%280%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%2872%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%28144%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%28216%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%28288%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Ccircle%20r%3D%271.2%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2856%2C58%29%20scale%281%29%27%3E%3Cg%20transform%3D%27rotate%280%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%2872%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%28144%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%28216%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27rotate%28288%29%27%3E%3Cpath%20d%3D%27M0%200C-2.4%20-3.2%20-2.4%20-7.2%200%20-8.8C2.4%20-7.2%202.4%20-3.2%200%200Z%27%2F%3E%3C%2Fg%3E%3Ccircle%20r%3D%271.2%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2854%2C18%29%20scale%282%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2818%2C58%29%20scale%282%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2838%2C38%29%20scale%281.3%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"), linear-gradient(160deg,#FDF8EF,#F4E7CB 58%,#ECD9AC)!important;background-size:76px 76px,100% 100%;color:#5C3B49}
+.pl-cover::before{content:"";position:absolute;inset:11px;border-radius:9px;border:1px solid rgba(198,160,92,.55);box-shadow:inset 0 0 0 3px rgba(255,255,255,.45);pointer-events:none}
+.pl-cover::after{content:"";position:absolute;inset:0;background:radial-gradient(200px 120px at 50% 8%,rgba(255,255,255,.5),transparent);pointer-events:none}
+.pl-brand{color:#9C7838;font-weight:800}
+.pl-ic{border:1px solid rgba(198,160,92,.5);background:rgba(255,255,255,.55);color:#9C7838;box-shadow:0 8px 18px -10px rgba(198,160,92,.7)}
+.pl-name{background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#B8923F 60%,#9C7838);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none}
+.pl-name::after{content:"";display:block;width:34px;height:2px;margin:8px auto 0;border-radius:2px;background:linear-gradient(90deg,transparent,#C6A05C,transparent)}
+.pl-sub{color:#B5746C}
+.pl-badge{box-shadow:0 8px 16px -8px rgba(198,160,92,.7)}
+.pl-is-soon .pl-cover{opacity:1;filter:saturate(.92)}
+.pl-is-soon .pl-cover::after{background:radial-gradient(200px 120px at 50% 8%,rgba(255,255,255,.5),transparent),linear-gradient(180deg,transparent,rgba(60,40,52,.05))}
+</style>
+<style>
+.store-prev{margin:0 auto 46px}
+.store-prev-cap{max-width:520px;margin:18px auto 0;color:var(--muted);font-style:italic;font-size:.98rem;text-align:center}
+/* čiste kartice tipova (bez lažne korice) */
+.pl-card{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.22);border-radius:18px;overflow:hidden;text-align:left}
+.pl-cover{aspect-ratio:auto!important;background:none!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:13px!important;padding:20px 20px 6px!important;text-align:left!important;color:var(--plum)!important}
+.pl-cover::before,.pl-cover::after{display:none!important}
+.pl-brand{display:none}
+.pl-ic{position:relative;width:50px;height:50px;flex:none;border:1px solid rgba(198,160,92,.4)!important;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE)!important;color:#9C7838!important;box-shadow:0 10px 20px -10px rgba(198,160,92,.8)!important}
+.pl-ic svg{width:25px;height:25px}
+.pl-nm-wrap{display:flex;flex-direction:column;min-width:0}
+.pl-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--plum)!important;-webkit-text-fill-color:currentColor!important;background:none!important;line-height:1.1;text-align:left}
+.pl-name::after{display:none}
+.pl-sub{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--golddk)!important;font-weight:800;text-align:left}
+.pl-badge{top:14px;right:14px}
+.pl-body{padding:8px 20px 20px}
+.pl-is-soon .pl-cover,.pl-is-soon .pl-ic{opacity:1;filter:none}
+</style>
+<style>
+.tablet{max-width:560px;margin:0 auto;background:linear-gradient(160deg,#2a1a22,#160d13);border-radius:28px;padding:24px 18px;position:relative;box-shadow:0 54px 100px -44px rgba(0,0,0,.65),inset 0 0 0 1px rgba(231,210,162,.16)}
+.tcam{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:rgba(231,210,162,.4);box-shadow:0 0 0 3px rgba(231,210,162,.08)}
+.tablet-screen{border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(231,210,162,.12)}
+.tablet-screen .prod-visual{margin:0!important;max-width:none!important;border-radius:14px}
+.stickers-hl{max-width:640px;margin:34px auto 44px;text-align:center}
+.stk-eyebrow{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:16px}
+.sh-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 20px;margin-bottom:18px}
+.stk{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:1.7rem;line-height:1}
+.stk small{font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.stk{width:74px;height:74px;justify-content:center;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F3E7CE);border:1px solid rgba(198,160,92,.4);box-shadow:0 14px 26px -14px rgba(198,160,92,.7)}
+.stickers-hl p{color:#6a5a62;font-size:1rem;max-width:520px;margin:0 auto}
+</style>
+<style>
+.sh-why{padding:20px 0 56px;text-align:center}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:920px;margin:0 auto}
+@media(max-width:720px){.why-grid{grid-template-columns:1fr}}
+.why-card{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.22);border-radius:18px;padding:28px 22px;box-shadow:0 20px 44px -34px rgba(120,70,80,.4);position:relative;overflow:hidden}
+.why-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.why-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);position:relative;box-shadow:0 12px 22px -12px rgba(198,160,92,.8)}
+.why-ic::before{content:"";position:absolute;inset:-2px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#F0DCA6,#B8923F);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.why-ic svg{width:26px;height:26px}
+.why-card b{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--plum);font-weight:600;display:block;margin-bottom:6px}
+.why-card p{color:#6a5a62;font-size:.94rem}
+</style>
+<style>
+.pl-cover{padding-right:80px!important;align-items:flex-start!important}
+.pl-nm-wrap{padding-top:4px}
+.pl-name{line-height:1.12}
+.pl-badge{top:16px;right:16px}
+</style>
+<style>
+.pl-cover{padding-right:98px!important}
+.pl-nm-wrap{min-width:0;max-width:100%}
+.pl-name{overflow-wrap:anywhere}
+.pl-badge{font-size:.52rem;padding:3px 8px}
+@media(max-width:420px){.pl-cover{padding-right:88px!important}.pl-name{font-size:1.35rem}}
+</style>
+<style>
+.sh-store{padding-top:44px}
+.store-prev{margin-top:6px}
+.tablet{margin-top:0}
+@media(max-width:600px){.sh-store{padding-top:34px}.store-prev{margin-bottom:36px}}
 </style>
 </body></html>

@@ -458,7 +458,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 </style>
 <script>/*navham*/
 (function(){
- var ICON=[[/nalog\.html/,'\uD83D\uDC64'],[/#paketi|paketi/,'\u2726'],[/predmeti\.html/,'\uD83D\uDCDA'],[/prodavnica/,'\uD83D\uDED2'],[/test-sklonosti/,'\uD83E\uDDED'],[/o-marini|marina/,'\uD83C\uDF38'],[/index\.html/,'\uD83C\uDFE0']];
+ var ICON=[];
  var FLAG={SR:'\uD83C\uDDF7\uD83C\uDDF8',EN:'\uD83C\uDDEC\uD83C\uDDE7',DE:'\uD83C\uDDE9\uD83C\uDDEA',FR:'\uD83C\uDDEB\uD83C\uDDF7',ES:'\uD83C\uDDEA\uD83C\uDDF8',IT:'\uD83C\uDDEE\uD83C\uDDF9',RU:'\uD83C\uDDF7\uD83C\uDDFA',PT:'\uD83C\uDDF5\uD83C\uDDF9'};
  function iconFor(h){h=(h||'').toLowerCase();for(var i=0;i<ICON.length;i++){if(ICON[i][0].test(h))return ICON[i][1];}return '\u203A';}
  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
