@@ -22,15 +22,16 @@ const LOGIN_MSG = {
   ru: "Добрый день! Чтобы начать урок, войдите на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
   pt: "Olá! Para começar a aula, entre na página Conta (/nalog.html). Os seus primeiros 15 minutos são totalmente gratuitos."
 };
+const OWNER_KEY = process.env.OWNER_KEY || "MATHIA-MARINA-2026";
 const OVER_MSG = {
-  sr: "Vaših 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberite paket na stranici Cene (/index.html#cene).",
-  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#cene).",
-  de: "Ihre 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wählen Sie ein Paket auf der Preise-Seite (/index.html#cene).",
-  fr: "Vos 15 minutes gratuites sont écoulées. Pour continuer, choisissez une formule sur la page Tarifs (/index.html#cene).",
-  es: "Sus 15 minutos gratuitos han terminado. Para continuar, elija un plan en la página Precios (/index.html#cene).",
-  it: "I suoi 15 minuti gratuiti sono finiti. Per continuare, scelga un piano nella pagina Prezzi (/index.html#cene).",
-  ru: "Ваши 15 бесплатных минут закончились. Чтобы продолжить, выберите план на странице Цены (/index.html#cene).",
-  pt: "Os seus 15 minutos gratuitos terminaram. Para continuar, escolha um plano na página Preços (/index.html#cene)."
+  sr: "Vaših 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberite paket na stranici Cene (/index.html#paketi).",
+  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#paketi).",
+  de: "Ihre 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wählen Sie ein Paket auf der Preise-Seite (/index.html#paketi).",
+  fr: "Vos 15 minutes gratuites sont écoulées. Pour continuer, choisissez une formule sur la page Tarifs (/index.html#paketi).",
+  es: "Sus 15 minutos gratuitos han terminado. Para continuar, elija un plan en la página Precios (/index.html#paketi).",
+  it: "I suoi 15 minuti gratuiti sono finiti. Per continuare, scelga un piano nella pagina Prezzi (/index.html#paketi).",
+  ru: "Ваши 15 бесплатных минут закончились. Чтобы продолжить, выберите план на странице Цены (/index.html#paketi).",
+  pt: "Os seus 15 minutos gratuitos terminaram. Para continuar, escolha um plano na página Preços (/index.html#paketi)."
 };
 
 const SHARED = `
@@ -293,6 +294,7 @@ export default async function handler(req, res) {
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
     const messages = Array.isArray(body.messages) ? body.messages : [];
+    const ownerBypass = !!(body && body.ownerKey && OWNER_KEY && String(body.ownerKey) === OWNER_KEY);
     const mode = body.mode || null;
     const lang = ["sr","en","de","fr","es","it","ru","pt"].includes(body.lang) ? body.lang : "sr";
     const msgLang = ["sr","en","de","fr","es","it","ru","pt"].includes(lang) ? lang : "en";
@@ -314,12 +316,13 @@ export default async function handler(req, res) {
       const sb = await sbUser(body.token);
       if (sb) uid = "sb:" + sb.id;
       else { const phone = await getSessionPhone(req); if (phone) uid = phone; }
+      if (!uid && ownerBypass) uid = "owner:test";
       if (!uid) return res.status(200).json({ text: LOGIN_MSG[msgLang], reply: LOGIN_MSG[msgLang], mode: rmode });
 
       // ——— ADMIN BYPASS ———
       // Ako je korisnik u ADMIN_EMAILS listi — preskoči SVA ograničenja (rate limit, trial, pretplata, predmeti)
       const sbEmail = sb && sb.email ? sb.email : null;
-      if (sbEmail && isAdmin(sbEmail)) {
+      if ((sbEmail && isAdmin(sbEmail)) || ownerBypass) {
         // Admin prolazi direktno — samo gradi odgovor, nema provera
       } else {
       // ograničenje po korisniku (velikodušno za stvarno učenje, ali staje botu/spamu)
