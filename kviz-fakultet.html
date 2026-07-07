@@ -365,7 +365,7 @@ code{overflow-wrap:break-word}
     <li><a href="#kviz" data-i18n="nav_test">Test</a></li>
     <li><a href="index.html#profesorice" data-i18n="nav_ment">Profesorke</a></li>
     <li><a href="index.html#materijali" data-i18n="nav_mat">Materijali</a></li>
-    <li><a href="index.html#cene" data-i18n="nav_cene">Cene</a></li>
+    <li><a href="index.html#paketi" data-i18n="nav_cene">Cene</a></li>
     <li><a href="nalog.html" data-i18n="nav_login">Prijava</a></li>
   </ul>
   <select class="lang" aria-label="Izbor jezika"><option>🌐 Srpski</option><option>English</option><option>Deutsch</option><option>Français</option><option>Español</option><option>Italiano</option><option>Русский</option><option>Português</option></select>
@@ -499,7 +499,7 @@ btn.addEventListener('click',function(){try{var raw=(window.__zoi||txt.textConte
  function setChips(arr){chips.innerHTML='';arr.forEach(function(c){var b=document.createElement('button');b.className='zchip';b.innerHTML=c.label;b.onclick=c.fn;chips.appendChild(b);});}
  function go(hash){closePanel();var el=document.querySelector(hash);if(el)el.scrollIntoView({behavior:'smooth'});}
  function ctaChips(){setChips([
-   {label:T('zc_cta_cene'),fn:function(){go('#cene');}},
+   {label:T('zc_cta_cene'),fn:function(){go('#paketi');}},
    {label:T('zc_cta_pred'),fn:function(){go('#predmeti');}}
  ]);}
  function startChips(){setChips([

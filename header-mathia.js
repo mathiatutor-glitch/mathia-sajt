@@ -1,4 +1,4 @@
-(function(){try{var q=new URLSearchParams(location.search);var k=q.get('pristup');if(k){var KEY='MATHIA-MARINA-2026';if(k.toLowerCase()==='off'){localStorage.removeItem('mathia_access');localStorage.removeItem('mathia_user');}else if(k===KEY){localStorage.setItem('mathia_access','full');}}}catch(e){}})();
+(function(){try{var q=new URLSearchParams(location.search);var k=q.get('pristup');if(k){var KEY='MATHIA-MARINA-2026';if(k.toLowerCase()==='off'){localStorage.removeItem('mathia_access');localStorage.removeItem('mathia_user');}else if(k===KEY){localStorage.setItem('mathia_access','full');localStorage.setItem('mathia_ok',KEY);}}}catch(e){}})();
 /* ============================================================
    MATHIA — zajedničko zaglavlje (APSOLUTNO identično prvoj strani)
    Dodaje se JEDNOM linijom:  <script src="header-mathia.js" defer></script>

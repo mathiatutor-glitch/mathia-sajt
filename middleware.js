@@ -2,7 +2,7 @@
 //  middleware.js — zaštita zaključanog sadržaja (Edge runtime, bez Next.js)
 //   -Skripta.html / -Formule.html  -> SAMO pretplatnici (plaćeni materijali)
 //   /kviz.html (test smerova)       -> pretplatnici ILI aktivan 15-min probni
-//  Ako nije prijavljen -> /prijava.html?next=...  ; ako nema pristup -> /index.html#cene
+//  Ako nije prijavljen -> /prijava.html?next=...  ; ako nema pristup -> /index.html#paketi
 // ============================================================
 import { verifyToken, COOKIE } from "./lib/auth.js";
 import { kvGet, kvSet } from "./lib/kv.js";
