@@ -60,6 +60,17 @@
   }
 
   async function status() {
+    // === VLASNIČKI PRISTUP ZA TESTIRANJE (localStorage / URL ključ) ===
+    try {
+      var _q = new URLSearchParams(location.search);
+      var _k = _q.get("pristup");
+      var OWNER_KEY = "MATHIA-MARINA-2026";
+      if (_k) {
+        if (String(_k).toLowerCase() === "off") { try{localStorage.removeItem("mathia_access");}catch(e){} }
+        else if (_k === OWNER_KEY) { try{localStorage.setItem("mathia_access","full");localStorage.setItem("mathia_ok",OWNER_KEY);}catch(e){} }
+      }
+      if (localStorage.getItem("mathia_access") === "full") return "owner";
+    } catch (e) {}
     var sb = null;
     try { if (SUPABASE_URL && SUPABASE_ANON && window.supabase) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON); } catch (e) {}
     if (!sb) return "free";

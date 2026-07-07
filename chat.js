@@ -16,8 +16,8 @@ const LOGIN_MSG = {
   en: "Hi. To start the lesson, please sign in with your phone number on the Sign-in page (/prijava.html). Your first 15 minutes are completely free."
 };
 const OVER_MSG = {
-  sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#cene).",
-  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#cene)."
+  sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#paketi).",
+  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#paketi)."
 };
 
 const SHARED = `
