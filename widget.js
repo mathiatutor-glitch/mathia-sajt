@@ -1160,7 +1160,7 @@
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode: MODE, lang: LANG, messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
+      body: JSON.stringify({ mode: MODE, lang: LANG, ownerKey: (function(){try{return localStorage.getItem("mathia_ok")||"";}catch(e){return "";}})(), messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
     })
       .then(function (r) { return r.json(); })
       .then(function (data) {
