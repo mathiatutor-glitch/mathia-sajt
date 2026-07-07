@@ -1,6 +1,6 @@
 /* Mathia PREVIEW — posetilac vidi samo isečak skripte/zbirke/formula; pretplatnik vidi sve */
 (function(){
-  try{ if(localStorage.getItem('mathia_user')) return; }catch(e){ return; }
+  try{ if(localStorage.getItem('mathia_user')||localStorage.getItem('mathia_access')==='full') return; }catch(e){ return; }
   function T(sr){
     var L='sr'; try{ L=(localStorage.getItem('mathia_lang')||'sr').toLowerCase(); }catch(e){}
     var D={
