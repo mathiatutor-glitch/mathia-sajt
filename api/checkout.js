@@ -9,7 +9,7 @@ import * as supa from '../lib/supabase.js';
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ greska: 'Samo POST' });
   try {
-    const { stavke, email, ime, predmeti } = req.body || {};
+    const { stavke, email, ime, predmeti, lang } = req.body || {};
     if (!Array.isArray(stavke) || stavke.length === 0) return res.status(400).json({ greska: 'Nema stavki' });
     if (!email) return res.status(400).json({ greska: 'Nedostaje email' });
 
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     // 4) URL za plaćanje — vodi na pay-start koji pravi potpisanu UPC formu.
     //    (SUCCESS_URL / FAILURE_URL / NOTIFY_URL se podešavaju na UPC Merchant portalu.)
     const base = process.env.APP_URL || `https://${req.headers.host}`;
-    const paymentUrl = `${base}/api/pay-start?order=${orderId}`;
+    const paymentUrl = `${base}/api/pay-start?order=${orderId}&lang=${encodeURIComponent(String(lang || 'sr').slice(0,2))}`;
 
     return res.status(200).json({ paymentUrl, orderId, iznos: ukupno });
   } catch (e) {

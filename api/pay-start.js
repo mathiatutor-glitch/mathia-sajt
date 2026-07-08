@@ -23,6 +23,7 @@ function escAttr(v) {
 export default async function handler(req, res) {
   try {
     const id = (req.query && req.query.order) || '';
+    const lang = String((req.query && req.query.lang) || 'sr').slice(0, 2).toLowerCase();
     if (!id) return res.status(400).send('Nedostaje porudžbina.');
     if (!upc.konfigurisan()) return res.status(503).send('Plaćanje trenutno nije podešeno.');
 
@@ -46,7 +47,7 @@ export default async function handler(req, res) {
       iznosRsd: p.iznos_rsd,
       opis,
       sd,
-      locale: 'sr',
+      locale: lang,
     });
 
     const inputs = Object.entries(fields)
