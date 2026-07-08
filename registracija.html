@@ -50,12 +50,12 @@ body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--
 .pick-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
 .pick-count{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--plum);font-weight:600}
 .pick-count b{color:var(--golddk)}
-.grp{margin-bottom:22px}
-.grp-h{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--golddk);margin-bottom:11px;padding-bottom:6px;border-bottom:1px solid rgba(198,160,92,.22)}
-.chips{display:flex;flex-wrap:wrap;gap:9px}
-.chip{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;font-weight:600;color:var(--plum);background:#fffdf8;border:1px solid rgba(198,160,92,.32);border-radius:100px;padding:9px 15px;cursor:pointer;transition:all .15s;user-select:none}
+.grp{margin-bottom:26px}
+.grp-h{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--golddk);margin-bottom:13px;padding-bottom:7px;border-bottom:1px solid rgba(198,160,92,.28)}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));gap:10px}
+.chip{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;color:var(--plum);background:#fffdf8;border:1px solid rgba(198,160,92,.3);border-radius:14px;padding:12px 14px;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s,background .15s;user-select:none;line-height:1.2}
 .chip:hover{border-color:var(--gold);transform:translateY(-1px)}
-.chip .ck{width:17px;height:17px;border-radius:50%;border:1.5px solid rgba(198,160,92,.5);display:flex;align-items:center;justify-content:center;flex:none}
+.chip .ck{width:19px;height:19px;border-radius:50%;border:1.5px solid rgba(198,160,92,.5);display:flex;align-items:center;justify-content:center;flex:none}
 .chip.sel{background:radial-gradient(circle at 30% 20%,#FFFDF6,#F3E7CE);border-color:var(--gold);box-shadow:0 8px 18px -10px rgba(198,160,92,.6)}
 .chip.sel .ck{background:var(--gold);border-color:var(--gold)}
 .chip.sel .ck::after{content:"";width:5px;height:9px;border:solid #3a2530;border-width:0 2px 2px 0;transform:rotate(45deg) translateY(-1px)}
