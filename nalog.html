@@ -231,6 +231,40 @@ img,svg,video,iframe,table{max-width:100%}
 pre{max-width:100%;overflow-x:auto}
 code{overflow-wrap:break-word}
 </style>
+<style>/* v6 nadogradnja: oznake, mobilna traka, plutajuća Profesorica */
+.feats{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.feat{font-size:.7rem;font-weight:800;color:#7a5f2f;background:#fbf1de;border:1px solid var(--goldlt);border-radius:100px;padding:3px 9px;white-space:nowrap}
+.pfab{position:fixed;right:22px;bottom:22px;z-index:120;width:62px;height:62px;border-radius:50%;border:none;cursor:pointer;overflow:hidden;
+  background:radial-gradient(circle at 34% 28%,#fff7e6,var(--goldlt) 46%,var(--gold));box-shadow:0 18px 34px -14px rgba(156,120,56,.9),inset 0 0 0 1px rgba(255,255,255,.4);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.pfab img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pfab .ping{position:absolute;inset:0;border-radius:50%;animation:pfping 2.6s ease-out infinite}
+@keyframes pfping{0%{box-shadow:0 0 0 0 rgba(198,160,92,.5)}70%{box-shadow:0 0 0 15px rgba(198,160,92,0)}100%{box-shadow:0 0 0 0 rgba(198,160,92,0)}}
+.botnav{display:none}
+@media(max-width:560px){
+  .side{display:none!important}
+  .content{padding-bottom:98px}
+  .botnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:110;background:linear-gradient(180deg,rgba(67,44,55,.97),var(--plum));backdrop-filter:blur(8px);padding:8px 6px calc(8px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.1)}
+  .botnav button{flex:1;background:none;border:none;color:#CBB4AB;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.6rem;font-weight:800;cursor:pointer;padding:5px 2px;border-radius:12px}
+  .botnav button .bi{font-size:1.2rem;line-height:1}
+  .botnav button.act{color:#F7EAC9}
+  .pfab{bottom:calc(80px + env(safe-area-inset-bottom));right:14px;width:56px;height:56px}
+}
+@media (prefers-reduced-motion:reduce){.pfab .ping{animation:none}}
+.goal{display:flex;align-items:center;gap:13px;padding:12px 0;border-bottom:1px solid var(--bord)}
+.goal:last-child{border-bottom:none}
+.goal .chk{width:23px;height:23px;border-radius:7px;flex:0 0 auto;border:1.5px solid var(--goldlt);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.78rem}
+.goal.done .chk{background:linear-gradient(150deg,var(--goldlt),var(--gold));border-color:var(--gold)}
+.goal .gt{flex:1;font-weight:700;color:var(--plum2);font-size:.94rem}
+.goal.done .gt{color:var(--muted);text-decoration:line-through}
+.goal .gm{font-size:.8rem;color:var(--golddk);font-weight:800;flex:0 0 auto}
+#dostignuca{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:12px}
+.badge{text-align:center;background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:14px 8px}
+.badge .em{width:46px;height:46px;margin:0 auto 7px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.45rem;background:radial-gradient(circle at 35% 28%,#fff,var(--champ));border:1px solid var(--goldlt)}
+.badge b{font-size:.76rem;color:var(--plum);display:block;line-height:1.15}
+.badge.lock{opacity:.5;filter:grayscale(.4)}
+.badge.lock .em{background:#f0e7d6;border-color:var(--bord)}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#432C37">
@@ -326,6 +360,12 @@ code{overflow-wrap:break-word}
           <div class="card stat hov"><span class="v">18 h</span><span class="l">Ovog meseca</span></div>
         </div>
 
+        <h3 class="sectitle">Ciljevi ove nedelje</h3>
+        <div class="card" id="ciljevi"></div>
+
+        <h3 class="sectitle">Dostignuća</h3>
+        <div id="dostignuca"></div>
+
         <h3 class="sectitle">Brzi pristup</h3>
         <div class="tiles">
           <div class="tile" onclick="openRes('Matematika 1','formule')"><div class="ti">📐</div><div><b>Priručnik formula</b><span>Sve formule na jednom mestu</span></div></div>
@@ -349,6 +389,9 @@ code{overflow-wrap:break-word}
         <p style="color:var(--muted);margin:6px 0 6px" id="subj-desc">Učitavam tvoj paket…</p>
         <button class="btn btn-gold" id="btn-pick-subj" onclick="openPickSubj()" style="margin-bottom:18px;display:none">+ Izaberi predmet</button>
         <div class="grid g3" id="all-subj"></div>
+
+        <h3 class="sectitle">Rokovi koji dolaze</h3>
+        <div class="card" id="rokovi"></div>
       </section>
 
       <!-- Modal za biranje predmeta -->
@@ -429,6 +472,21 @@ code{overflow-wrap:break-word}
 
     </div>
   </main>
+
+  <!-- Mobilna donja traka -->
+  <nav class="botnav">
+    <button class="act" onclick="botGo('home',0,this)"><span class="bi">🏠</span>Početna</button>
+    <button onclick="botGo('subj',1,this)"><span class="bi">📚</span>Predmeti</button>
+    <button onclick="botGo('mat',2,this)"><span class="bi">📐</span>Gradivo</button>
+    <button onclick="botGo('plan',3,this)"><span class="bi">📔</span>Planer</button>
+    <button onclick="botGo('stat',4,this)"><span class="bi">📊</span>Statistika</button>
+  </nav>
+  <!-- Plutajuća Profesorica (uvek prisutna) -->
+  <button class="pfab" onclick="openProf()" aria-label="Otvori Profesoricu"><span class="ping"></span><img src="marina.jpg" alt="" onerror="this.remove()">👩‍🏫</button>
+  <script>
+  function botGo(sec,idx,el){ try{ go(sec, document.querySelectorAll('.snav')[idx]); }catch(e){} document.querySelectorAll('.botnav button').forEach(function(b){b.classList.remove('act');}); if(el)el.classList.add('act'); }
+  function openProf(){ try{ go('prof', document.querySelectorAll('.snav')[5]); }catch(e){} document.querySelectorAll('.botnav button').forEach(function(b){b.classList.remove('act');}); }
+  </script>
 </div>
 
 <!-- MODAL -->
@@ -571,7 +629,7 @@ function closeRes(){ var s=$('scrim'); if(s)s.classList.remove('on'); }
 function ring(p){ var r=26,c=2*Math.PI*r,off=c*(1-p/100);
   return '<div class="ring"><svg width="62" height="62" viewBox="0 0 62 62"><circle cx="31" cy="31" r="'+r+'" stroke="#efe2cf" stroke-width="6" fill="none"/><circle class="rc" cx="31" cy="31" r="'+r+'" stroke="url(#ringg)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+c+'" data-off="'+off+'"/></svg><div class="pc">'+p+'%</div></div>'; }
 function subjCard(s){ var p=pct(s);
-  return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+nazivPredmeta(s.predmet)+'</div><div class="topic">'+(s.poslednja_tema?('Tema: '+s.poslednja_tema):'Spremno za početak')+'</div></div></div><div class="res"><a class="btn btn-ghost btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori predmet →</a></div></div>'; }
+  return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+nazivPredmeta(s.predmet)+'</div><div class="topic">'+(s.poslednja_tema?('Tema: '+s.poslednja_tema):'Spremno za početak')+'</div></div></div><div class="feats"><span class="feat">📘 Skripta</span><span class="feat">📐 Formule</span><span class="feat">📝 Zbirka</span><span class="feat">👩‍🏫 Profesorica</span></div><div class="res"><a class="btn btn-gold btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori predmet i Profesoricu →</a></div></div>'; }
 function emptyCard(msg,cta,href){ return '<div class="card" style="grid-column:1/-1;text-align:center;padding:28px"><p style="color:var(--muted);margin-bottom:14px">'+msg+'</p><a class="btn btn-gold" href="'+href+'">'+cta+'</a></div>'; }
 
 function editName(){
@@ -616,13 +674,26 @@ function render(){
   if(SUBJECTS.length){ var html=SUBJECTS.map(subjCard).join(''); hs.innerHTML=html; as.innerHTML=html; }
   else { var e=emptyCard('Još nisi započela nijedan predmet.','Izaberi predmet →','predmeti.html'); hs.innerHTML=e; as.innerHTML=e; }
   $('mat-list').innerHTML= SUBJECTS.length ? SUBJECTS.map(function(s){
-    return '<div class="card hov" style="margin-bottom:14px"><div class="matrow"><div class="mnm">'+nazivPredmeta(s.predmet)+'</div><a class="btn btn-gold btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori materijale →</a></div></div>'; }).join('')
+    return '<div class="card hov" style="margin-bottom:14px"><div class="matrow"><div class="mnm">'+nazivPredmeta(s.predmet)+'</div><a class="btn btn-gold btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori materijale →</a></div><div class="feats" style="margin-top:10px"><span class="feat">📘 Skripta</span><span class="feat">📐 Priručnik formula</span><span class="feat">📝 Zbirka zadataka</span></div></div>'; }).join('')
     : emptyCard('Materijali se otključavaju uz tvoje predmete.','Izaberi predmet →','predmeti.html');
   var owns=!!(PROFILE&&(PROFILE.planer===true||PROFILE.planer==='da'||PROFILE.planer===1));
   var pt=document.querySelector('#sec-plan .plan-hero .t');
   if(pt){ pt.innerHTML= owns
     ? '<b>Mathia Student Planner</b><span class="own">✓ U vlasništvu</span><p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-gold" href="Mathia-Student-Planner.html">Otvori planer →</a></div>'
     : '<b>Mathia Student Planner</b><p style="font-size:.92rem;color:#6b585e;margin:8px 0 0">Tvoj kompletan planer za studije — raspored, rokovi, fokus i navike. Dodaj ga uz nalog.</p><div style="margin-top:12px"><a class="btn btn-gold" href="prodavnica.html">Pogledaj u Prodavnici →</a></div>'; }
+  var _cil=$('ciljevi'); if(_cil){
+    if(!SUBJECTS.length){ _cil.innerHTML='<p style="color:var(--muted);margin:0">Započni predmet pa ću ti postaviti nedeljne ciljeve. 🌷</p>'; }
+    else{ var s0=SUBJECTS[0];
+      var g=[['Uči 3 dana zaredom', Math.min(bestNiz,3)+' / 3', bestNiz>=3],
+             ['Nastavi '+cap(s0.predmet), (s0.poslednja_tema?('tema: '+s0.poslednja_tema):'kreni'), false],
+             ['Uradi još jednu temu ove nedelje', teme+' urađeno', false]];
+      _cil.innerHTML=g.map(function(x){return '<div class="goal'+(x[2]?' done':'')+'"><span class="chk">'+(x[2]?'✓':'')+'</span><span class="gt">'+x[0]+'</span><span class="gm">'+x[1]+'</span></div>';}).join(''); } }
+  var _dos=$('dostignuca'); if(_dos){
+    var B=[['🌱','Prvi korak',SUBJECTS.length>0],['🔥',(bestNiz>=3?('Niz '+bestNiz+' dana'):'Niz 3 dana'),bestNiz>=3],
+           ['🎯','Marljiva · 10 tema',teme>=10],['🌙','Istrajnost · 7 dana',bestNiz>=7],
+           ['🏆','Šampion · 30 dana',bestNiz>=30],['💎','Majstor · 100 tema',teme>=100]];
+    _dos.innerHTML=B.map(function(x){return '<div class="badge'+(x[2]?'':' lock')+'"><div class="em">'+x[0]+'</div><b>'+x[1]+'</b></div>';}).join(''); }
+  var _rok=$('rokovi'); if(_rok){ _rok.innerHTML='<p style="color:var(--muted);margin:0">Još nemaš unetih rokova. Uz <b>planer</b> dodaješ ispite i kolokvijume, pa te Profesorica podseća na vreme. 🌷</p>'; }
   initChat(); setTimeout(fillRings,60);
 }
 function fillRings(){document.querySelectorAll('.ring .rc').forEach(function(c){c.style.transition='stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)';c.style.strokeDashoffset=c.getAttribute('data-off');});}
@@ -655,13 +726,13 @@ var SVI_PREDMETI = [
   { mode:"sr-mat-4",         naziv:"Matematika 4. razred",   url:"/Matematika-4-Razred-Formule.html" },
   { mode:"sr-fiz-1",         naziv:"Fizika (srednja)",       url:"/Fizika-1-Razred-Formule.html" },
   { mode:"sr-fiz-2",         naziv:"Fizika 2. razred",       url:"/Fizika-2-Razred-Formule.html" },
-  { mode:"os-mat-5",         naziv:"Matematika 5. razred",   url:"/predmet-analiza1.html" },
-  { mode:"os-mat-6",         naziv:"Matematika 6. razred",   url:"/predmet-analiza1.html" },
-  { mode:"os-mat-7",         naziv:"Matematika 7. razred",   url:"/predmet-analiza1.html" },
-  { mode:"os-mat-8",         naziv:"Matematika 8. razred",   url:"/predmet-analiza1.html" },
-  { mode:"os-fiz-6",         naziv:"Fizika 6. razred",       url:"/predmet-analiza1.html" },
-  { mode:"os-fiz-7",         naziv:"Fizika 7. razred",       url:"/predmet-analiza1.html" },
-  { mode:"os-fiz-8",         naziv:"Fizika 8. razred",       url:"/predmet-analiza1.html" },
+  { mode:"os-mat-5",         naziv:"Matematika 5. razred",   url:"/osnovna-matematika-5.html" },
+  { mode:"os-mat-6",         naziv:"Matematika 6. razred",   url:"/osnovna-matematika-6.html" },
+  { mode:"os-mat-7",         naziv:"Matematika 7. razred",   url:"/osnovna-matematika-7.html" },
+  { mode:"os-mat-8",         naziv:"Matematika 8. razred",   url:"/osnovna-matematika-8.html" },
+  { mode:"os-fiz-6",         naziv:"Fizika 6. razred",       url:"/osnovna-fizika-6.html" },
+  { mode:"os-fiz-7",         naziv:"Fizika 7. razred",       url:"/osnovna-fizika-7.html" },
+  { mode:"os-fiz-8",         naziv:"Fizika 8. razred",       url:"/osnovna-fizika-8.html" },
   { mode:"prijemni-matematika", naziv:"Prijemni ispit",      url:"/prijemni.html" },
   { mode:"fax-analiza1",     naziv:"Analiza 1",              url:"/predmet-analiza1.html" },
   { mode:"fax-analiza2",     naziv:"Analiza 2",              url:"/predmet-analiza2.html" },
@@ -675,12 +746,12 @@ var SVI_PREDMETI = [
   { mode:"fax-mehanika",     naziv:"Fizika i mehanika",      url:"/predmet-fizika-mehanika.html" },
   { mode:"fax-elektronika", naziv:"Uvod u elektroniku", url:"/predmet-uvod-u-elektroniku.html" },
   { mode:"fax-eds", naziv:"Elektrodistributivni sistemi", url:"/predmet-elektrodistributivni-sistemi.html" },
-  { mode:"osnovi-elektrotehnike-1", naziv:"Osnovi ETF 1",   url:"/predmet-analiza1.html" },
-  { mode:"osnovi-elektrotehnike-2", naziv:"Osnovi ETF 2",   url:"/predmet-analiza1.html" },
+  { mode:"osnovi-elektrotehnike-1", naziv:"Osnovi ETF 1",   url:"/predmet-osnovi-elektrotehnike-1.html" },
+  { mode:"osnovi-elektrotehnike-2", naziv:"Osnovi ETF 2",   url:"/predmet-osnovi-elektrotehnike-2.html" },
   { mode:"elektricne-masine-1", naziv:"El. mašine 1",       url:"/predmet-elektricne-masine-1.html" },
   { mode:"elektricne-masine-2", naziv:"El. mašine 2",       url:"/predmet-elektricne-masine-2.html" },
   { mode:"elektricne-masine-3", naziv:"El. mašine 3",       url:"/predmet-elektricne-masine-3.html" },
-  { mode:"sistemi-signali",  naziv:"Sistemi i signali",      url:"/predmet-analiza1.html" },
+  { mode:"sistemi-signali",  naziv:"Sistemi i signali",      url:"/predmet-sistemi-signali.html" },
   { mode:"elektromagnetika", naziv:"Elektromagnetika",       url:"/predmet-elektromagnetika.html" },
   { mode:"energetska-elektronika-1", naziv:"En. elektronika 1", url:"/predmet-energetska-elektronika-1.html" },
   { mode:"energetska-elektronika-2", naziv:"En. elektronika 2", url:"/predmet-energetska-elektronika-2.html" },
