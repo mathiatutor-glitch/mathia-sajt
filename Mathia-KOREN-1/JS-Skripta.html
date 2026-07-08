@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skripta — JavaScript (napredni) · Mathia</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#432c37; --gold:#9c7838; --cream:#fbf6ee; --soft:#6b6256; --line:#e7dcc4; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Nunito',system-ui,sans-serif;line-height:1.68;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+  header{background:linear-gradient(180deg,#fffcf6,#fbf6ee);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
+  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
+  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
+  .lead{color:var(--soft);max-width:600px;margin:.4em auto 0}
+  .toc{background:#fffcf6;border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:28px 0;box-shadow:0 4px 16px rgba(31,51,87,.05)}
+  .toc h2{font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin:.1em 0 .5em}
+  .toc ol{margin:0;padding-left:1.2em}
+  .toc li{margin:.3em 0}
+  .toc a{color:var(--navy);text-decoration:none;border-bottom:1px dotted #cdbd92}
+  .toc a:hover{color:var(--gold)}
+  .lesson{margin:34px 0;scroll-margin-top:14px}
+  .lesson-h{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line);padding-bottom:8px}
+  .lnum{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fbf6ee;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .lesson p{margin:.7em 0}
+  .lesson h3{margin:1.1em 0 .2em;font-size:1.06rem}
+  .code{background:#1e2733;color:#e9eef5;border-radius:12px;padding:14px 16px;margin:12px 0;overflow-x:auto;font-family:'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;font-size:.9rem;line-height:1.6;white-space:pre}
+  .code .c{color:#8aa0b3;font-style:italic}
+  .ex{background:#fbf6ea;border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px;margin:14px 0}
+  .ex .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8a6d24;font-weight:700}
+  .tip{background:#eef3ee;border-left:3px solid #7fae84;border-radius:8px;padding:12px 16px;margin:14px 0;color:#2f4f33}
+  .tip .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#5a8a60;font-weight:700}
+  details.try{background:#fffcf6;border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin:14px 0}
+  details.try summary{cursor:pointer;font-weight:700;color:var(--navy);padding:10px 0;list-style:none}
+  details.try summary::-webkit-details-marker{display:none}
+  details.try summary::before{content:"\270e  ";color:var(--gold)}
+  details.try[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
+  .sol{color:var(--soft)}
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
+  footer a{color:var(--gold);text-decoration:none;font-weight:600}
+  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
+  .wm span{position:absolute;font-size:.8rem;color:#432c37;transform:rotate(-30deg);white-space:nowrap}
+  main{position:relative;z-index:1}
+  .backtop{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--gold);text-decoration:none}
+</style>
+<style>
+/* ===== MATHIA LUXE THEME (global override) ===== */
+:root{
+  --navy:#432C37;--head:#432C37;--ink:#4f3b44;--soft:#8a7480;--muted:#8a7480;
+  --gold:#9C7838;--acc:#9C7838;--acc2:#7d5f2c;--gold-deep:#9C7838;--gold2:#E7D2A2;--accS:#E7D2A2;
+  --cream:#FBF6EE;--bg:#FBF6EE;--paper:#FBF6EE;--paper2:#F3E9D6;--card:#FFFCF6;
+  --line:#E7DBC4;
+  --cov1:#FDFAF3;--cov2:#FBF1E4;--cov3:#F6E7D6;
+  --zapBg1:#FFFAF0;--zapBg2:#FBEFD9;--zapBd:#E7D2A2;--zapH:#9C7838;
+  --stepBg:#F6EEDD;--stepBd:#E7D2A2;--stepNum1:#e7c97f;--stepNum2:#C6A05C;
+  --i1:#9C7838;--i2:#C6A05C;--i3:#B98E5A;
+}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif}
+a{color:#9C7838}
+.zchat,#zchat,.zlauncher,#zdot{display:none!important}
+</style>
+<style>
+/* community / social — luxe pills */
+.social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 16px;margin:30px auto 8px;max-width:600px;padding:0 16px}
+.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
+.social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(160,120,60,.6)}
+.social svg{width:20px;height:20px;fill:currentColor;flex:none}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
+</style>
+<link rel="icon" type="image/png" href="logo.png">
+<style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
+<script defer src="napredak.js"></script><!--napredaklog-->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#432C37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mathia">
+<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<!--pwa-->
+<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<link rel="canonical" href="https://mathia.rs/JS-Skripta.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MATHIA EDU">
+<meta property="og:locale" content="sr_RS">
+<meta property="og:title" content="Skripta — JavaScript (napredni) · Mathia">
+<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta property="og:url" content="https://mathia.rs/JS-Skripta.html">
+<meta property="og:image" content="https://mathia.rs/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Skripta — JavaScript (napredni) · Mathia">
+<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta name="twitter:image" content="https://mathia.rs/og.png">
+<!--seo-->
+</head>
+<body>
+<div class="wm" id="wm" aria-hidden="true"></div>
+<header><div class="wrap"><div class="brand"><img src="logo.png" alt="MathIA" style="width:32px;height:32px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:9px">Mathia</div><div class="eyebrow">skripta · programiranje</div><h1>JavaScript napredni — jezik u dubinu</h1><p class="lead">Nastavak na osnove sa „Veb" — fokus na sam jezik: funkcije, objekti, nizovi i asinhroni rad. Primeri koje probaš u konzoli pregledača. Marina je uz tebe. 💛</p></div></header>
+<main class="wrap" id="top">
+<nav class="toc"><h2>Šta sve učimo</h2><ol><li><a href="#l1">Funkcije, scope i closure</a></li><li><a href="#l2">Objekti, klase, prototipovi</a></li><li><a href="#l3">Metode nizova (map / filter / reduce)</a></li><li><a href="#l4">Destrukturiranje, spread / rest</a></li><li><a href="#l5">Asinhroni JS (Promise, async / await)</a></li><li><a href="#l6">fetch i moduli</a></li></ol></nav>
+<section class="lesson" id="l1"><div class="lesson-h"><span class="lnum">1</span> Funkcije, scope i closure</div><p>Funkcije pišeš klasično ili kao <b>strelaste</b>. <b>Scope</b> je gde promenljiva važi. <b>Closure</b> je funkcija koja pamti svoje okruženje.</p><div class="code">const saberi = (a, b) => a + b;   <span class="c"> strelasta </span>
+
+function brojac() {
+  let n = 0;
+  return () => ++n;   <span class="c"> closure: pamti n </span>
+}
+const c = brojac();
+c(); c();   <span class="c"> 1, pa 2 </span></div><div class="ex"><div class="tag">Rešen primer</div><p><code>brojac()</code> vraća funkciju koja pamti <code>n</code>. Svaki poziv <code>c()</code> uvećava isti <code>n</code> — to je closure. ✔️</p></div><div class="tip"><div class="tag">Marina kaže</div><p><code>let</code> i <code>const</code> imaju blok-scope (važe unutar <code>{}</code>). Izbegavaj <code>var</code> — pravi suptilne greške. 🌟</p></div><details class="try"><summary>Napiši strelastu funkciju koja vraća kvadrat.</summary><p class="sol"><code>const kv = x => x*x;</code></p></details><a class="backtop" href="#top">↑ na vrh</a></section><section class="lesson" id="l2"><div class="lesson-h"><span class="lnum">2</span> Objekti, klase, prototipovi</div><p><b>Objekat</b> su parovi ključ:vrednost. <b>Klasa</b> je šablon za objekte.</p><div class="code">const osoba = { ime: 'Ana', godine: 20 };
+osoba.ime;   <span class="c"> 'Ana' </span>
+
+class Pas {
+  constructor(ime){ this.ime = ime; }
+  laji(){ return this.ime + ' laje'; }
+}
+const p = new Pas('Reks');</div><div class="ex"><div class="tag">Rešen primer</div><p><code>new Pas('Reks')</code> pravi objekat; <code>p.laji()</code> vraća „Reks laje". <code>this</code> pokazuje na objekat. ✔️</p></div><div class="tip"><div class="tag">Marina kaže</div><p><code>this</code> zavisi od toga <b>kako</b> je funkcija pozvana. Strelaste funkcije ne menjaju <code>this</code> — zgodne u metodama. 💡</p></div><details class="try"><summary>Dodaj objektu osoba polje grad = „Niš".</summary><p class="sol"><code>osoba.grad = 'Niš';</code></p></details><a class="backtop" href="#top">↑ na vrh</a></section><section class="lesson" id="l3"><div class="lesson-h"><span class="lnum">3</span> Metode nizova (map / filter / reduce)</div><p><code>map</code> transformiše svaki element, <code>filter</code> zadrži one koji prolaze uslov, <code>reduce</code> sažme u jednu vrednost.</p><div class="code">const a = [1, 2, 3, 4];
+a.map(x => x*2);            <span class="c"> [2,4,6,8] </span>
+a.filter(x => x % 2 === 0); <span class="c"> [2,4] </span>
+a.reduce((z, x) => z + x, 0); <span class="c"> 10 (zbir) </span></div><div class="ex"><div class="tag">Rešen primer</div><p><code>a.filter(x=>x>2).map(x=>x*10)</code> → <b>[30, 40]</b>. Metode se lančaju. ✔️</p></div><div class="tip"><div class="tag">Marina kaže</div><p><code>map</code> i <code>filter</code> prave <b>novi</b> niz (ne menjaju original) — zato su sigurni i čitljivi. 🌟</p></div><details class="try"><summary>Od [1,2,3,4,5] uzmi parne i udvostruči.</summary><p class="sol"><code>a.filter(x=>x%2===0).map(x=>x*2)</code>.</p></details><a class="backtop" href="#top">↑ na vrh</a></section><section class="lesson" id="l4"><div class="lesson-h"><span class="lnum">4</span> Destrukturiranje, spread / rest</div><p><b>Destrukturiranje</b> izvlači vrednosti iz niza/objekta. <b>Spread</b> (<code>...</code>) širi, <b>rest</b> (<code>...</code>) skuplja.</p><div class="code">const [a, b] = [1, 2];          <span class="c"> a=1, b=2 </span>
+const { ime } = osoba;          <span class="c"> ime iz objekta </span>
+const spojeni = [...n1, ...n2];  <span class="c"> spread </span>
+function f(...args) { }          <span class="c"> rest: sve u niz </span></div><div class="ex"><div class="tag">Rešen primer</div><p><code>const {ime, godine} = osoba</code> izvlači oba polja odjednom. <code>[...[1,2], ...[3,4]]</code> = [1,2,3,4]. ✔️</p></div><div class="tip"><div class="tag">Marina kaže</div><p>Spread pravi plitku kopiju: <code>const kopija = [...niz]</code> — korisno da ne menjaš original. 💡</p></div><details class="try"><summary>Zameni vrednosti a i b jednom linijom.</summary><p class="sol"><code>[a, b] = [b, a];</code></p></details><a class="backtop" href="#top">↑ na vrh</a></section><section class="lesson" id="l5"><div class="lesson-h"><span class="lnum">5</span> Asinhroni JS (Promise, async / await)</div><p>JS ne čeka spore stvari (mreža) — koristi <b>Promise</b>. <code>async/await</code> piše asinhrono kao da je sinhrono.</p><div class="code">async function uzmi() {
+  try {
+    const odg = await fetch(url);
+    const data = await odg.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}</div><div class="ex"><div class="tag">Rešen primer</div><p><code>await</code> pauzira funkciju dok Promise ne završi, pa nastavi sa rezultatom. <code>try/catch</code> hvata grešku. ✔️</p></div><div class="tip"><div class="tag">Marina kaže</div><p><code>await</code> sme <b>samo</b> unutar <code>async</code> funkcije. Zaboraviš li <code>async</code>, dobićeš grešku. 🌟</p></div><details class="try"><summary>Šta async funkcija uvek vraća?</summary><p class="sol"><b>Promise</b>.</p></details><a class="backtop" href="#top">↑ na vrh</a></section><section class="lesson" id="l6"><div class="lesson-h"><span class="lnum">6</span> fetch i moduli</div><p><code>fetch</code> dohvata podatke sa mreže (vraća Promise). <b>Moduli</b> dele kod u fajlove sa <code>export</code>/<code>import</code>.</p><div class="code"><span class="c"> mat.js </span>
+export function saberi(a, b){ return a + b; }
+
+<span class="c"> main.js </span>
+import { saberi } from './mat.js';
+
+fetch('/api/podaci')
+  .then(r => r.json())
+  .then(d => console.log(d));</div><div class="ex"><div class="tag">Rešen primer</div><p><code>export</code> deli funkciju, <code>import</code> je uvozi. <code>fetch</code> vraća Promise koji razrešiš sa <code>.then</code> ili <code>await</code>. ✔️</p></div><div class="tip"><div class="tag">Marina kaže</div><p><code>fetch</code> ne baca grešku na 404 — proveri <code>odg.ok</code> pre čitanja. Česta zamka. 💡</p></div><details class="try"><summary>Kako uvoziš funkciju saberi iz mat.js?</summary><p class="sol"><code>import { saberi } from './mat.js';</code></p></details><a class="backtop" href="#top">↑ na vrh</a></section>
+</main>
+<footer>
+  <div class="wrap">
+    <p>✦ Mathia · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
+    <p style="opacity:.7">Ova skripta je deo Mathia pretplate. Molimo te da je ne deliš — pravljena je s puno pažnje baš za tebe.</p>
+  </div>
+<div style="text-align:center;margin:26px auto 0"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Nunito',sans-serif;font-weight:600;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)">← Mathia · Početna</a></div>
+<div class="social" data-social="1"><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a><a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>Email</span></a></div>
+<div class="mathia-copyr" style="text-align:center;padding:16px 20px 22px;font-family:'Nunito',sans-serif;font-size:.78rem;color:rgba(67,44,55,.55);letter-spacing:.02em">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    var wm=document.getElementById("wm");
+    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
+    fetch("/api/me",{credentials:"include",headers:(function(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");var t=v&&(v.access_token||(v.session&&v.session.access_token));if(t)return{Authorization:"Bearer "+t};}}}catch(e){}return{};})()}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"Mathia · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"Mathia · mathia.rs");});
+  });
+</script>
+  <script>
+(function(){
+  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
+  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
+  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "subject", "data-name": "Profesorica", "data-subj": "Programiranje (JavaScript)", "data-avatar": "avatar.jpg", "data-hi-en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
+  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam va\u0161a profesorica Marina. Ovo su materijali \u2014 postavite pitanje, po\u0161aljite sliku \ud83d\udcf7 ili diktirajte \ud83c\udf99\ufe0f zadatak.", "en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
+  var st=document.createElement("script"); st.src=SRC;
+  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
+  st.setAttribute("data-lang",L);
+  st.setAttribute("data-hi",HI[L]||HI.sr);
+  (document.body||document.documentElement).appendChild(st);
+})();
+</script>
+<script defer src="gate.js" data-subject="js"></script>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
+<!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
+})();</script>
+<script src="i18n-mathia.js"></script>
+</body>
+</html>

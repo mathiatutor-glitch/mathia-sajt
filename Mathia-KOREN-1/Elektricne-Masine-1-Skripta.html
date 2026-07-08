@@ -1,0 +1,172 @@
+<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathia — Električne mašine 1 · Skripta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.55}
+.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
+.cover{min-height:54vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
+.seal{width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:16px}
+.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
+.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,6vw,44px);margin:14px 0 8px;max-width:14em}
+.subtitle{color:#7a6b66;max-width:32em;margin:0 auto}
+.foot{margin-top:24px;font-size:12px;letter-spacing:.06em;color:#a89a93}
+.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:0 12px 28px rgba(67,44,55,.05)}
+.topic h2{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+.tnum{display:inline-flex;min-width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 14px Inter;flex:none}
+.box{border-radius:12px;padding:11px 14px;margin:9px 0}
+.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
+.primer{background:#fff;border:1px dashed var(--gold)}
+.bx-h{font-size:11.5px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:5px}
+.task{font-weight:600;margin-bottom:4px}
+.ans{font-size:14px;color:var(--golddk);margin-top:4px}
+.katex-display{margin:.4em 0}
+.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
+
+/* MATHIA fix: formule u okviru + hero bez preklapanja */
+html,body{overflow-x:hidden}
+.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
+.katex{max-width:100%}
+.katex{font-family:KaTeX_Main,"Times New Roman",serif}
+.scroll-h{position:static;bottom:auto;margin-top:22px}
+.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
+.rule{margin-top:30px}
+</style><style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
+<script defer src="napredak.js"></script><!--napredaklog-->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#432C37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mathia">
+<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<!--pwa-->
+<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<link rel="canonical" href="https://mathia.rs/Elektricne-Masine-1-Skripta.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MATHIA EDU">
+<meta property="og:locale" content="sr_RS">
+<meta property="og:title" content="Mathia — Električne mašine 1 · Skripta">
+<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta property="og:url" content="https://mathia.rs/Elektricne-Masine-1-Skripta.html">
+<meta property="og:image" content="https://mathia.rs/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mathia — Električne mašine 1 · Skripta">
+<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta name="twitter:image" content="https://mathia.rs/og.png">
+<!--seo-->
+</head>
+<body>
+<select class="lang" id="lang" aria-label="Jezik / Language">
+<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+
+<div class="cover">
+<div class="seal">▷ ⎓ Ω</div>
+<div class="brandline">MATHIA</div>
+<div class="kind" data-i18n="kind">skripta · sažeto</div>
+<h1 data-i18n="name">Električne mašine 1</h1>
+<p class="subtitle" data-i18n="sub">Sažeto, sa ključnim pravilima i zadacima zatvorenog tipa.</p>
+<div class="foot">uči s ljubavlju · mathia.rs</div>
+</div>
+
+<div class="page">
+<section class="topic"><h2><span class="tnum">1</span> <span>Magnetni fluks</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\Phi=B\cdot A$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Magnetni fluks zavisi od… a) napona b) gustine polja i površine c) otpora d) frekvencije</div><div class="ans">b) gustine polja i površine.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">2</span> <span>Magnetopobudna sila</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\mathcal{F}=N\,I$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">MMS se računa kao… a) N/I b) N·I c) I/N d) N+I</div><div class="ans">b) N·I.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">3</span> <span>Faradejev zakon</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$e=-N\dfrac{d\Phi}{dt}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">EMS se indukuje kada se fluks… a) ne menja b) menja u vremenu c) jednak nuli d) konstantan</div><div class="ans">b) menja u vremenu.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">4</span> <span>Prenosni odnos</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\dfrac{U_1}{U_2}=\dfrac{N_1}{N_2}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$N_1=200,N_2=100,U_1=200$ V → $U_2$? a) 400 b) 100 c) 200 d) 50</div><div class="ans">b) 100 V.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">5</span> <span>Struje transformatora</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\dfrac{I_1}{I_2}=\dfrac{N_2}{N_1}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Ako je $N_1>N_2$, struja $I_1$ je… a) veća od $I_2$ b) manja c) jednaka d) nula</div><div class="ans">b) manja.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">6</span> <span>Prividna snaga</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$S=U_1 I_1=U_2 I_2$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Kod idealnog trafoa snaga ulaza i izlaza je… a) različita b) jednaka c) nula d) dvostruka</div><div class="ans">b) jednaka.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">7</span> <span>Indukovana EMS</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$E=4{,}44\,f\,N\,\Phi_m$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">EMS raste ako… a) f opada b) f raste c) N=0 d) Φ=0</div><div class="ans">b) f raste.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">8</span> <span>Gubici u bakru</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$P_{Cu}=I^2 R$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Gubici u bakru sa strujom rastu… a) linearno b) sa kvadratom c) ne zavise d) obrnuto</div><div class="ans">b) sa kvadratom.</div></div></section>
+
+<section class="topic"><h2><span class="tnum">9</span> <span>Stepen korisnog dejstva</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\eta=\dfrac{P_2}{P_2+P_{gub}}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$P_2=900$ W, gubici $100$ W → η? a) 0,8 b) 0,9 c) 1 d) 0,5</div><div class="ans">b) 0,9.</div></div></section>
+</div>
+<div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
+
+<script>
+(function(){
+  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
+  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
+  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "elektricne-masine-1", "data-name": "Profesorica", "data-subj": "Elektri\u010dne ma\u0161ine 1"};
+  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "", "en": ""};
+  var st=document.createElement("script"); st.src=SRC;
+  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
+  st.setAttribute("data-lang",L);
+  st.setAttribute("data-hi",HI[L]||HI.sr);
+  (document.body||document.documentElement).appendChild(st);
+})();
+</script>
+<script defer src="gate.js" data-subject="elektricne-masine-1"></script>
+<script>
+var I18N={
+kind:{en:"study notes · concise",de:"Skript · kompakt",fr:"fiches · synthèse",es:"apuntes · resumen",it:"appunti · sintesi",ru:"конспект · кратко",pt:"resumo · conciso"},
+name:{"en": "Electrical machines 1", "de": "Elektrische Maschinen 1", "fr": "Machines électriques 1", "es": "Máquinas eléctricas 1", "it": "Macchine elettriche 1", "ru": "Электрические машины 1", "pt": "Máquinas elétricas 1"},
+sub:{en:"Concise, with key rules and multiple-choice practice.",de:"Kompakt, mit Kernregeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec règles clés et QCM.",es:"Resumen, con reglas clave y preguntas tipo test.",it:"Sintesi, con regole chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми правилами и тестовыми заданиями.",pt:"Resumo, com regras-chave e perguntas de escolha múltipla."},
+formule:{en:"KEY",de:"WICHTIG",fr:"CLÉ",es:"CLAVE",it:"CHIAVE",ru:"ГЛАВНОЕ",pt:"CHAVE"},
+primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
+function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
+document.getElementById("lang").onchange=function(){apply(this.value)};
+function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
+window.addEventListener("load",rk);
+</script>
+<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
+<!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
+})();</script>
+<script src="i18n-mathia.js"></script>
+</body></html>

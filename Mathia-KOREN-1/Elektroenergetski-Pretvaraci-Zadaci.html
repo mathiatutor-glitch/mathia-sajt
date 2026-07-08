@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathia — Elektroenergetski pretvarači — zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+:root{
+  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
+  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
+  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Cormorant Garamond',serif;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
+.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
+.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
+h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
+.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
+.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
+.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
+.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.chip.soon{opacity:.5}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
+.intro b{font-family:var(--hf)}
+.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
+.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
+.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
+.zad-n.solved{background:var(--good)}
+.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
+.opcije{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
+.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
+.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
+.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
+.opt.correct{background:#edf6ee;border-color:var(--good)}
+.opt.wrong{background:#fbeeed;border-color:var(--bad)}
+.opt.correct .opt-l{background:var(--good);color:#fff}
+.opt.wrong .opt-l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.opt[disabled]:hover{transform:none;background:#fffdf8}
+.opt.correct[disabled]:hover{background:#edf6ee}
+.opt.wrong[disabled]:hover{background:#fbeeed}
+.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
+.feedback.ok{color:var(--good)}
+.feedback.no{color:var(--bad)}
+.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
+.reveal-btn:hover{background:var(--acc);color:#fff}
+.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
+.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
+.rstep+.rstep{border-top:1px solid #f3ead9}
+.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
+.katex{white-space:nowrap;font-size:1.02em}
+.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
+.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+</style>
+<style>/*fit2*/
+html,body{max-width:100%;overflow-x:hidden}
+*{box-sizing:border-box}
+body{overflow-wrap:break-word}
+img,svg,video,iframe,table{max-width:100%}
+pre{max-width:100%;overflow-x:auto}
+code{overflow-wrap:break-word}
+</style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#432C37">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mathia">
+<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<!--pwa-->
+<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<link rel="canonical" href="https://mathia.rs/Elektroenergetski-Pretvaraci-Zadaci.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MATHIA EDU">
+<meta property="og:locale" content="sr_RS">
+<meta property="og:title" content="Mathia — Elektroenergetski pretvarači — zadaci">
+<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta property="og:url" content="https://mathia.rs/Elektroenergetski-Pretvaraci-Zadaci.html">
+<meta property="og:image" content="https://mathia.rs/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mathia — Elektroenergetski pretvarači — zadaci">
+<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
+<meta name="twitter:image" content="https://mathia.rs/og.png">
+<!--seo-->
+</head>
+<body>
+<div class="cover">
+  <div class="brandline">MATHIA</div>
+  <div class="eyebrow">Elektrotehnika · Vežba</div>
+  <h1>Elektroenergetski pretvarači — zadaci</h1>
+  <p class="sub">Vežba po oblastima: elektromehaničko pretvaranje, obrtno polje i mašine, transformator, energetski pretvarači, pogoni i stepen korisnog dejstva. Probaj sam, pa otkrij rešenje.</p>
+  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
+</div>
+
+<div class="page">
+  <div class="chips" id="roksel">
+    <span class="chip active" data-y="pre">Elektromehaničko pretvaranje</span>
+    <span class="chip" data-y="mas">Obrtno polje i mašine</span>
+    <span class="chip" data-y="tra">Transformator</span>
+    <span class="chip" data-y="pret">Pretvarači</span>
+    <span class="chip" data-y="pog">Pogoni i η</span>
+  </div>
+  <div class="intro"><b id="rok-label">Oblast: Elektromehaničko pretvaranje</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+
+  <div class="prog-wrap">
+    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div id="lista"></div>
+  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <div class="foot" id="rok-foot">MATHIA · Elektromehaničko pretvaranje · uči s ljubavlju · mathia.rs</div>
+</div>
+
+<script>
+// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
+// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
+const A=[{"n": 1, "t": "Električni motor pretvara:", "o": ["električnu u mehaničku energiju", "mehaničku u električnu", "naizmeničnu u jednosmernu", "jednosmernu u naizmeničnu", "toplotu u svetlost"], "c": 0, "r": ["Motorni režim.", ""]}, {"n": 2, "t": "Električni generator pretvara:", "o": ["električnu u mehaničku", "mehaničku u električnu energiju", "AC u DC", "DC u AC", "napon u silu"], "c": 1, "r": ["Generatorski režim.", ""]}, {"n": 3, "t": "Mehanička snaga na vratilu je:", "o": ["$P=\\dfrac{M}{\\omega}$", "$P=M+\\omega$", "$P=M\\,\\omega$", "$P=M\\,\\omega^2$", "$P=\\dfrac{\\omega}{M}$"], "c": 2, "r": ["Moment puta ugaona brzina.", ""]}, {"n": 4, "t": "Za $M=5$ Nm i $\\omega=20$ rad/s, snaga je:", "o": ["$25\\ \\text{W}$", "$4\\ \\text{W}$", "$0\\ \\text{W}$", "$100\\ \\text{W}$", "$200\\ \\text{W}$"], "c": 3, "r": ["$5\\cdot 20$.", ""]}];
+const B=[{"n": 1, "t": "Obrtno magnetno polje stvara:", "o": ["trofazni sistem struja", "jednofazni izvor", "baterija", "dioda", "otpornik"], "c": 0, "r": ["Teslin princip.", ""]}, {"n": 2, "t": "Sinhrona brzina obrtnog polja je:", "o": ["$n_s=\\dfrac{p}{60 f}$", "$n_s=\\dfrac{60\\,f}{p}$", "$n_s=60 f p$", "$n_s=\\dfrac{f}{p}$", "$n_s=60 f$"], "c": 1, "r": ["$p$ = broj pari polova.", ""]}, {"n": 3, "t": "Asinhrona mašina u pogonu ima klizanje:", "o": ["jednako nuli", "manje od nule", "veće od nule", "jednako jedinici", "beskonačno"], "c": 2, "r": ["Rotor zaostaje za poljem.", ""]}, {"n": 4, "t": "Sinhrona mašina ima klizanje:", "o": ["veće od nule", "manje od nule", "jednako jedinici", "jednako nuli", "promenljivo"], "c": 3, "r": ["Rotor ide u korak sa poljem.", ""]}];
+const C=[{"n": 1, "t": "Transformator menja:", "o": ["napon (i struju)", "frekvenciju", "smer obrtanja", "broj faza uvek", "snagu naviše"], "c": 0, "r": ["Naponski pretvarač.", ""]}, {"n": 2, "t": "Transformator NE menja:", "o": ["napon", "frekvenciju", "struju", "impedansu", "broj navojaka"], "c": 1, "r": ["$f$ ostaje ista.", ""]}, {"n": 3, "t": "Prenosni odnos idealnog transformatora je:", "o": ["$\\dfrac{U_1}{U_2}=\\dfrac{N_2}{N_1}$", "$U_1 U_2=N_1 N_2$", "$\\dfrac{U_1}{U_2}=\\dfrac{N_1}{N_2}$", "$U_1=N_1$", "$U_1=U_2$"], "c": 2, "r": ["Naponi ~ navojci.", ""]}, {"n": 4, "t": "Transformator radi samo sa:", "o": ["jednosmernom strujom (DC)", "bilo kakvom strujom", "samo trofaznom", "naizmeničnom strujom (AC)", "bez ikakve struje"], "c": 3, "r": ["Treba promenljiv fluks.", ""]}];
+const D=[{"n": 1, "t": "Ispravljač pretvara:", "o": ["naizmeničnu u jednosmernu (AC→DC)", "DC→AC", "DC→DC", "AC→AC", "silu u napon"], "c": 0, "r": ["Ispravljanje.", ""]}, {"n": 2, "t": "Invertor pretvara:", "o": ["AC→DC", "jednosmernu u naizmeničnu (DC→AC)", "DC→DC", "AC→AC", "napon u struju"], "c": 1, "r": ["Inverter.", ""]}, {"n": 3, "t": "Čoper pretvara:", "o": ["AC→DC", "DC→AC", "jednosmernu u jednosmernu (DC→DC)", "AC→AC", "napon u silu"], "c": 2, "r": ["Menja nivo DC napona.", ""]}, {"n": 4, "t": "Srednji napon idealnog jednofaznog mosnog ispravljača je:", "o": ["$U_{dc}=\\dfrac{U_m}{\\pi}$", "$U_{dc}=U_m$", "$U_{dc}=\\dfrac{U_m}{2}$", "$U_{dc}=\\dfrac{2U_m}{\\pi}$", "$U_{dc}=0$"], "c": 3, "r": ["Punotalasno ispravljanje.", ""]}];
+const E=[{"n": 1, "t": "Električni pogon čine:", "o": ["motor, pretvarač i upravljanje", "samo motor", "samo kabl", "samo prekidač", "samo transformator"], "c": 0, "r": ["Celina koja pokreće radnu mašinu.", ""]}, {"n": 2, "t": "Stepen korisnog dejstva je:", "o": ["$\\eta=\\dfrac{P_{ul}}{P_{izl}}$", "$\\eta=\\dfrac{P_{izl}}{P_{ul}}$", "$\\eta=P_{izl}-P_{ul}$", "$\\eta=P_{izl}\\,P_{ul}$", "$\\eta=P_{ul}$"], "c": 1, "r": ["Izlaz / ulaz.", ""]}, {"n": 3, "t": "Stepen korisnog dejstva je uvek:", "o": ["veći od 1", "jednak 0", "manji ili jednak 1", "negativan", "jednak 2"], "c": 2, "r": ["Ne može preko 100%.", ""]}, {"n": 4, "t": "Za $P_{izl}=900$ W i $P_{ul}=1000$ W, η iznosi:", "o": ["$111\\%$", "$10\\%$", "$100\\%$", "$90\\%$", "$9\\%$"], "c": 3, "r": ["$900/1000$.", ""]}];
+
+const EXAMS={
+  'pre':{label:'Elektromehaničko pretvaranje', z:A},
+  'mas':{label:'Obrtno polje i mašine', z:B},
+  'tra':{label:'Transformator', z:C},
+  'pret':{label:'Pretvarači', z:D},
+  'pog':{label:'Pogoni i η', z:E}
+};
+let YEAR='pre';
+let ZADACI=EXAMS[YEAR].z;
+let KEY='mathia_ep_'+YEAR;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+let stanje=load();
+
+function updateProgress(){
+  const n=Object.values(stanje).filter(v=>v==='ok').length;
+  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
+  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
+}
+
+function render(){
+  const lista=document.getElementById('lista');
+  ZADACI.forEach(z=>{
+    const solved=stanje[z.n]==='ok';
+    const card=document.createElement('div'); card.className='zad';
+    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
+    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
+    card.innerHTML=`
+      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
+      <div class="zad-q">${z.t}</div>
+      <div class="opcije">${opts}</div>
+      <button class="reveal-btn">Prikaži rešenje ✦</button>
+      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
+    // option clicks
+    const optEls=card.querySelectorAll('.opt');
+    optEls.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        if(card.dataset.done) return;
+        const i=+btn.dataset.i;
+        optEls.forEach(b=>b.setAttribute('disabled','')); 
+        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
+        if(i!==z.c) btn.classList.add('wrong');
+        card.dataset.done='1';
+        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
+        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
+        const fb=document.createElement('div');
+        fb.className='feedback '+(i===z.c?'ok':'no');
+        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
+        card.querySelector('.opcije').after(fb);
+        updateProgress();
+      });
+    });
+    card.querySelector('.reveal-btn').addEventListener('click',e=>{
+      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
+      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
+      if(!r.hidden) fitFormulas(r);
+    });
+    lista.appendChild(card);
+  });
+  updateProgress();
+}
+
+document.getElementById('reset').addEventListener('click',()=>{
+  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
+});
+
+function fitFormulas(root){
+  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
+    var avail=box.clientWidth; if(avail<=0) return;
+    box.querySelectorAll('.katex').forEach(function(k){
+      k.style.fontSize=''; var size=1.02, g=0;
+      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
+    });
+  });
+}
+function typeset(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+  fitFormulas();
+}
+var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
+function go(){ render(); typeset(); }
+function switchYear(y){
+  if(!EXAMS[y]||y===YEAR) return;
+  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_ep_'+YEAR; stanje=load();
+  document.getElementById('lista').innerHTML='';
+  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
+  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
+  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Elektromehaničko pretvaranje · uči s ljubavlju · mathia.rs';
+  render(); typeset();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
+if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
+</script>
+
+<!--protect--><style>
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+img,svg,picture{-webkit-user-drag:none;user-drag:none}
+</style>
+<script>(function(){
+['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
+document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
+ if(k==='f12'){e.preventDefault();}
+ if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
+},{capture:true});
+})();</script>
+<script src="i18n-mathia.js"></script>
+</body>
+</html>
