@@ -571,7 +571,7 @@ function closeRes(){ var s=$('scrim'); if(s)s.classList.remove('on'); }
 function ring(p){ var r=26,c=2*Math.PI*r,off=c*(1-p/100);
   return '<div class="ring"><svg width="62" height="62" viewBox="0 0 62 62"><circle cx="31" cy="31" r="'+r+'" stroke="#efe2cf" stroke-width="6" fill="none"/><circle class="rc" cx="31" cy="31" r="'+r+'" stroke="url(#ringg)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+c+'" data-off="'+off+'"/></svg><div class="pc">'+p+'%</div></div>'; }
 function subjCard(s){ var p=pct(s);
-  return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+cap(s.predmet)+'</div><div class="topic">'+(s.poslednja_tema?('Tema: '+s.poslednja_tema):'Spremno za početak')+'</div></div></div><div class="res"><a class="btn btn-ghost btn-sm" href="'+pageFor(s.predmet)+'">Otvori predmet →</a></div></div>'; }
+  return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+nazivPredmeta(s.predmet)+'</div><div class="topic">'+(s.poslednja_tema?('Tema: '+s.poslednja_tema):'Spremno za početak')+'</div></div></div><div class="res"><a class="btn btn-ghost btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori predmet →</a></div></div>'; }
 function emptyCard(msg,cta,href){ return '<div class="card" style="grid-column:1/-1;text-align:center;padding:28px"><p style="color:var(--muted);margin-bottom:14px">'+msg+'</p><a class="btn btn-gold" href="'+href+'">'+cta+'</a></div>'; }
 
 function editName(){
@@ -616,7 +616,7 @@ function render(){
   if(SUBJECTS.length){ var html=SUBJECTS.map(subjCard).join(''); hs.innerHTML=html; as.innerHTML=html; }
   else { var e=emptyCard('Još nisi započela nijedan predmet.','Izaberi predmet →','predmeti.html'); hs.innerHTML=e; as.innerHTML=e; }
   $('mat-list').innerHTML= SUBJECTS.length ? SUBJECTS.map(function(s){
-    return '<div class="card hov" style="margin-bottom:14px"><div class="matrow"><div class="mnm">'+cap(s.predmet)+'</div><a class="btn btn-gold btn-sm" href="'+pageFor(s.predmet)+'">Otvori materijale →</a></div></div>'; }).join('')
+    return '<div class="card hov" style="margin-bottom:14px"><div class="matrow"><div class="mnm">'+nazivPredmeta(s.predmet)+'</div><a class="btn btn-gold btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori materijale →</a></div></div>'; }).join('')
     : emptyCard('Materijali se otključavaju uz tvoje predmete.','Izaberi predmet →','predmeti.html');
   var owns=!!(PROFILE&&(PROFILE.planer===true||PROFILE.planer==='da'||PROFILE.planer===1));
   var pt=document.querySelector('#sec-plan .plan-hero .t');
@@ -634,8 +634,8 @@ function drawStats(){
   var wk=$('wk');
   if(SUBJECTS.length){
     var mx=Math.max.apply(null,SUBJECTS.map(function(s){return +s.minuta_ukupno||0;}).concat([1]));
-    wk.innerHTML=SUBJECTS.map(function(s){var m=+s.minuta_ukupno||0;return '<div class="d"><div class="col" data-h="'+Math.round(m/mx*100)+'"></div><div class="dl">'+cap(s.predmet).slice(0,7)+'</div></div>';}).join('');
-    $('prog').innerHTML=SUBJECTS.map(function(s){var p=pct(s);return '<div class="prow"><div class="pn">'+cap(s.predmet)+'</div><div class="bar"><i data-w="'+p+'"></i></div><div class="pv">'+p+'%</div></div>';}).join('');
+    wk.innerHTML=SUBJECTS.map(function(s){var m=+s.minuta_ukupno||0;return '<div class="d"><div class="col" data-h="'+Math.round(m/mx*100)+'"></div><div class="dl">'+nazivPredmeta(s.predmet).slice(0,7)+'</div></div>';}).join('');
+    $('prog').innerHTML=SUBJECTS.map(function(s){var p=pct(s);return '<div class="prow"><div class="pn">'+nazivPredmeta(s.predmet)+'</div><div class="bar"><i data-w="'+p+'"></i></div><div class="pv">'+p+'%</div></div>';}).join('');
     var best=0;SUBJECTS.forEach(function(s){best=Math.max(best,+s.serija||0);});
     var sl=document.querySelector('#sec-stat .card:last-child .legend'); if(sl)sl.textContent=best?('Najduži niz: '+best+' dana'):'Počni svoj niz već danas';
     var st='';for(var i=0;i<7;i++){st+='<div class="dot'+(i<best?' on':'')+'">'+(i<best?'🔥':'·')+'</div>';}
@@ -673,7 +673,8 @@ var SVI_PREDMETI = [
   { mode:"fax-kola",         naziv:"Električna kola",        url:"/predmet-elektricna-kola.html" },
   { mode:"fax-merenja",      naziv:"Električna merenja",     url:"/predmet-elektricna-merenja.html" },
   { mode:"fax-mehanika",     naziv:"Fizika i mehanika",      url:"/predmet-fizika-mehanika.html" },
-  { mode:"fax-elektronika",  naziv:"Elektronika",            url:"/predmet-elektrotehnika.html" },
+  { mode:"fax-elektronika", naziv:"Uvod u elektroniku", url:"/predmet-uvod-u-elektroniku.html" },
+  { mode:"fax-eds", naziv:"Elektrodistributivni sistemi", url:"/predmet-elektrodistributivni-sistemi.html" },
   { mode:"osnovi-elektrotehnike-1", naziv:"Osnovi ETF 1",   url:"/predmet-analiza1.html" },
   { mode:"osnovi-elektrotehnike-2", naziv:"Osnovi ETF 2",   url:"/predmet-analiza1.html" },
   { mode:"elektricne-masine-1", naziv:"El. mašine 1",       url:"/predmet-elektricne-masine-1.html" },
@@ -687,13 +688,18 @@ var SVI_PREDMETI = [
   { mode:"prog-cpp",         naziv:"C++",                    url:"/CPP-Skripta.html" },
   { mode:"prog-java",        naziv:"Java",                   url:"/Java-Skripta.html" },
   { mode:"prog-js",          naziv:"JavaScript",             url:"/JS-Skripta.html" },
-  { mode:"prog-c",           naziv:"C",                      url:"/C-Skripta.html" },
-  { mode:"prog-ts",          naziv:"TypeScript",             url:"/TS-Skripta.html" },
+  { mode:"prog-c",           naziv:"C",                      url:"/programiranje-c.html" },
+  { mode:"prog-ts",          naziv:"TypeScript",             url:"/programiranje-ts.html" },
   { mode:"prog-sql",         naziv:"SQL",                    url:"/SQL-Skripta.html" },
   { mode:"el-ltspice",       naziv:"LTspice",                url:"/LTSpice-Skripta.html" },
   { mode:"el-kicad",         naziv:"KiCad",                  url:"/KiCad-Skripta.html" },
   { mode:"el-cadence",       naziv:"Cadence",                url:"/elektronika-cadence.html" },
 ];
+  var MAPA_PREDMETA={}; try{SVI_PREDMETI.forEach(function(p){MAPA_PREDMETA[p.mode]=p;});}catch(e){}
+  function nazivPredmeta(k){return (MAPA_PREDMETA[k]&&MAPA_PREDMETA[k].naziv)||cap(k);}
+  function urlPredmeta(k){return (MAPA_PREDMETA[k]&&MAPA_PREDMETA[k].url)||pageFor(k);}
+
+
 var pickedSubj = [];
 
 function openPickSubj(){
