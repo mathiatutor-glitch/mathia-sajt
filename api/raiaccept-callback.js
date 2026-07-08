@@ -41,9 +41,36 @@ function posalji(res, f, action, reason) {
   return res.status(200).send(odgovorUPC(f, action, reason));
 }
 
+// Robusno čitanje tela: UPC šalje application/x-www-form-urlencoded.
+// Na Verselu req.body ume da bude objekat, string ili Buffer — pokrivamo sve.
+function _readRaw(req) {
+  return new Promise(function (resolve) {
+    try {
+      var d = ''; req.on('data', function (c) { d += c; });
+      req.on('end', function () { resolve(d); });
+      req.on('error', function () { resolve(''); });
+    } catch (e) { resolve(''); }
+  });
+}
+async function _parseBody(req) {
+  var b = req.body;
+  if (b && typeof b === 'object' && !Buffer.isBuffer(b) && Object.keys(b).length) return b;
+  var raw = '';
+  if (typeof b === 'string') raw = b;
+  else if (Buffer.isBuffer(b)) raw = b.toString('utf8');
+  if (!raw) { try { raw = await _readRaw(req); } catch (e) {} }
+  if (raw) {
+    var t = raw.trim();
+    if (t.charAt(0) === '{') { try { return JSON.parse(t); } catch (e) {} }
+    try { return Object.fromEntries(new URLSearchParams(raw)); } catch (e) {}
+  }
+  return (b && typeof b === 'object') ? b : {};
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
-  const f = req.body || {};
+  const f = await _parseBody(req);
+  console.log('upc-callback: primljeno', { keys: Object.keys(f).join(','), OrderID: f.OrderID, SD: f.SD, TranCode: f.TranCode, TotalAmount: f.TotalAmount });
 
   // 1) Da li poziv zaista dolazi od UPC-a? (RSA-SHA1 potpis, UPC sertifikat)
   if (!upc.proveriOdgovor(f)) {
