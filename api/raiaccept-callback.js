@@ -74,6 +74,7 @@ export default async function handler(req, res) {
 
   // 1) Da li poziv zaista dolazi od UPC-a? (RSA-SHA1 potpis, UPC sertifikat)
   if (!upc.proveriOdgovor(f)) {
+    try { console.warn('upc-callback: LOS POTPIS (detalji)', JSON.stringify(upc.proveriOdgovorInfo(f))); } catch (e) {}
     console.warn('upc-callback: LOS POTPIS', { OrderID: f.OrderID, SD: f.SD });
     return posalji(res, f, 'reverse', 'bad signature');
   }
