@@ -382,7 +382,7 @@ function nacrtajGrid(){
       <button class="btn btn-gold" onclick="dodaj('${p.id}')">Dodaj u korpu</button>
     </div>`).join('');
 }
-function dodaj(id){ korpa[id] = (korpa[id]||0) + 1; sacuvaj(); osveziKorpu(); otvori(); }
+function dodaj(id){ korpa[id] = (korpa[id]||0) + 1; sacuvaj(); try{ osveziKorpu(); }catch(e){ console.warn('korpa render:', e); } otvori(); }
 function promeni(id, d){ korpa[id] = (korpa[id]||0) + d; if(korpa[id]<=0) delete korpa[id]; sacuvaj(); osveziKorpu(); }
 
 function osveziKorpu(){
@@ -394,7 +394,7 @@ function osveziKorpu(){
   if(!ids.length){ body.innerHTML = '<div class="prazno">Korpa je prazna.</div>'; document.getElementById('tot').textContent = '0 RSD'; return; }
   let total = 0;
   body.innerHTML = ids.map(id=>{
-    const p = PROIZVODI.find(x=>x.id===id); const iznos = p.cena*korpa[id]; total += iznos;
+    const p = PROIZVODI.find(x=>x.id===id); if(!p){ return ''; } const iznos = p.cena*korpa[id]; total += iznos;
     return `<div class="kp-item"><div class="ime">${p.naziv}${id.indexOf('PLANER')===0?` <span style="color:#9C7838;font-weight:700;font-size:.8rem">· korica: ${korica}</span>`:''}</div>
       <div class="q"><button onclick="promeni('${id}',-1)">−</button>${korpa[id]}<button onclick="promeni('${id}',1)">+</button></div>
       <div class="kp-cena">${din(iznos)}${p.mesecno?' /mes':''}</div></div>`;
@@ -424,7 +424,7 @@ async function plati(){
   }catch(e){ msg.textContent = 'Naplata još nije povezana (čekamo ključeve banke).'; }
 }
 
-osveziKorpu(); markKorica(); if(location.search.indexOf('korpa=1')>=0){try{otvori();}catch(e){}}
+try{ osveziKorpu(); }catch(e){} markKorica(); if(location.search.indexOf('korpa=1')>=0){try{otvori();}catch(e){}}
 </script>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
 <!--prijnav--><script>(function(){
