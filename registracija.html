@@ -51,7 +51,7 @@ body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--
 .pick-count{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--plum);font-weight:600}
 .pick-count b{color:var(--golddk)}
 .grp{margin-bottom:26px}
-.grp-h{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--golddk);margin-bottom:13px;padding-bottom:7px;border-bottom:1px solid rgba(198,160,92,.28)}
+.grp-h{font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--plum);margin-bottom:13px;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#F4E7CB,rgba(244,231,203,.25));border-left:4px solid var(--gold)}
 .chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:9px}
 .chip{display:flex;align-items:center;gap:9px;font-size:.88rem;font-weight:700;color:var(--plum);background:linear-gradient(150deg,#fff,#FBF3E4);border:1px solid rgba(198,160,92,.45);border-radius:13px;padding:11px 13px;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s,background .15s;user-select:none;line-height:1.2;box-shadow:0 2px 6px -4px rgba(156,120,56,.4)}
 .chip:hover{border-color:var(--gold);transform:translateY(-1px)}
@@ -133,7 +133,7 @@ body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--
       </div>
       <div class="reg-foot">
         <button class="btn-back" id="back2">&larr; Nazad</button>
-        <button class="btn btn-gold" id="finish">Kreiraj nalog &rarr;</button>
+        <button class="btn btn-gold" id="finish">Idi na plaćanje &rarr;</button>
       </div>
     </div>
   </div>
@@ -218,6 +218,9 @@ function buildReview(){
   var userIc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>';
   var h='<div class="rev-item"><span class="rev-ic">'+userIc+'</span><div><div class="rev-k">Nalog</div><div class="rev-v">'+who+'</div></div></div>';
   h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Paket '+pkg.label+'</div><div class="rev-v">'+selected.map(function(s){return s.t;}).join(' · ')+'</div></div></div>';
+  var CENE={basic:4990,gold:6990,diamond:9990}; var cena=CENE[pkgKey]||0; var pl=(qp('planer')==='1'); if(pl)cena+=1990;
+  var kor=''; try{kor=localStorage.getItem('mathia_korica')||'';}catch(e){}
+  h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Za naplatu</div><div class="rev-v" style="font-family:\'Cormorant Garamond\',serif;font-size:1.35rem;color:var(--golddk);font-weight:700">'+cena.toLocaleString('sr-RS')+' RSD'+(pl?' <span style=\'font-size:.8rem;color:#90787E\'>(uklj. planer'+(kor?', korica '+kor:'')+')</span>':'')+'</div></div></div>';
   document.getElementById('review').innerHTML=h;
 }
 
@@ -225,9 +228,20 @@ document.getElementById('finish').addEventListener('click',function(){
   var name=document.getElementById('fName').value.trim();
   var last=document.getElementById('fLast').value.trim();
   var mail=document.getElementById('fMail').value.trim();
-  var wantsPlanner = qp("planer")==="1"; var user={ name:name, last:last, email:mail, paket:pkgKey, pkgLabel:pkg.label, subjects:selected, planner: wantsPlanner?"fakultet":null, plannerAdded: wantsPlanner, created:Date.now(), progress:{} };
-  try{ localStorage.setItem('mathia_user', JSON.stringify(user)); }catch(e){}
-  location.href='profil.html';
+  if(!mail || mail.indexOf('@')<0){ alert('Za plaćanje i račun nam treba tvoj imejl — vrati se na 1. korak i upiši ga.'); go(1); return; }
+  var wantsPlanner = qp('planer')==='1';
+  // upamti izbor da se posle plaćanja poveže sa nalogom
+  try{ localStorage.setItem('mathia_reg', JSON.stringify({ name:name, last:last, email:mail, paket:pkgKey, pkgLabel:pkg.label, subjects:selected, plannerAdded:wantsPlanner, created:Date.now() })); }catch(e){}
+  var stavke=[{ id:'MATHIA-'+pkgKey.toUpperCase(), kolicina:1 }];
+  if(wantsPlanner) stavke.push({ id:'PLANER-FAKULTET', kolicina:1 });
+  var korica='Šampanj'; try{ korica=localStorage.getItem('mathia_korica')||'Šampanj'; }catch(e){}
+  var lang='sr'; try{ var _l=localStorage.getItem('mathia_lang'); if(_l) lang=_l.slice(0,2).toLowerCase(); }catch(e){}
+  var btn=this; btn.disabled=true; btn.textContent='Pripremam plaćanje…';
+  fetch('/api/checkout',{ method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ stavke:stavke, email:mail, predmeti:selected.map(function(s){return s.t;}), korica:korica, lang:lang }) })
+   .then(function(r){ return r.json(); })
+   .then(function(data){ if(data && data.paymentUrl){ location.href=data.paymentUrl; } else { btn.disabled=false; btn.textContent='Idi na plaćanje →'; alert(data && data.greska ? data.greska : 'Naplata trenutno nije dostupna. Pokušaj ubrzo.'); } })
+   .catch(function(){ btn.disabled=false; btn.textContent='Idi na plaćanje →'; alert('Naplata trenutno nije povezana. Pokušaj ubrzo.'); });
 });
 </script>
 <script src="i18n-mathia.js" defer></script>
