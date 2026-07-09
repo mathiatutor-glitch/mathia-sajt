@@ -232,7 +232,7 @@ document.getElementById('finish').addEventListener('click',function(){
   var wantsPlanner = qp('planer')==='1';
   // upamti izbor da se posle plaćanja poveže sa nalogom
   try{ localStorage.setItem('mathia_reg', JSON.stringify({ name:name, last:last, email:mail, paket:pkgKey, pkgLabel:pkg.label, subjects:selected, plannerAdded:wantsPlanner, created:Date.now() })); }catch(e){}
-  var stavke=[{ id:'MATHIA-'+pkgKey.toUpperCase(), kolicina:1 }];
+  var stavke=[{ id: pkgKey, kolicina:1 }];
   if(wantsPlanner) stavke.push({ id:'PLANER-FAKULTET', kolicina:1 });
   var korica='Šampanj'; try{ korica=localStorage.getItem('mathia_korica')||'Šampanj'; }catch(e){}
   var lang='sr'; try{ var _l=localStorage.getItem('mathia_lang'); if(_l) lang=_l.slice(0,2).toLowerCase(); }catch(e){}
