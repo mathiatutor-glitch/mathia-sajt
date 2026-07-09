@@ -247,6 +247,12 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
 <link rel="stylesheet" href="theme-mathia.css">
+<style>
+.cp-cover{cursor:pointer;position:relative;transition:transform .15s,box-shadow .15s;outline:2px solid transparent;outline-offset:3px;border-radius:12px}
+.cp-cover:hover{transform:translateY(-2px)}
+.cp-cover.sel{outline-color:var(--gold,#C6A05C);box-shadow:0 10px 22px -12px rgba(156,120,56,.85)}
+.cp-cover.sel::after{content:"✓";position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:linear-gradient(150deg,#E7D2A2,#C6A05C);color:#fff;font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px -3px rgba(156,120,56,.9)}
+</style>
 </head>
 <body>
 
@@ -295,9 +301,9 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
     <div class="cover-pick">
       <div class="cp-lbl">izaberi svoju koricu</div>
       <div class="cp-row">
-        <div class="cp-cover cp-champ"><span class="cp-m">M</span><b>Šampanj</b></div>
-        <div class="cp-cover cp-plum"><span class="cp-m">M</span><b>Plum</b></div>
-        <div class="cp-cover cp-blush"><span class="cp-m">M</span><b>Blush</b></div>
+        <div class="cp-cover cp-champ" data-k="Šampanj" onclick="izaberiKoricu(this)"><span class="cp-m">M</span><b>Šampanj</b></div>
+        <div class="cp-cover cp-plum" data-k="Plum" onclick="izaberiKoricu(this)"><span class="cp-m">M</span><b>Plum</b></div>
+        <div class="cp-cover cp-blush" data-k="Blush" onclick="izaberiKoricu(this)"><span class="cp-m">M</span><b>Blush</b></div>
       </div>
       <p class="cp-note">Svaki planer dolazi sa tri prelepe korice — biraš temu koja je tvoja.</p>
     </div>
@@ -361,6 +367,10 @@ let korpa = {};
 try { korpa = JSON.parse(localStorage.getItem('mathia_korpa') || '{}'); } catch(e){ korpa = {}; }
 const din = n => n.toLocaleString('sr-RS') + ' RSD';
 const sacuvaj = () => { try{ localStorage.setItem('mathia_korpa', JSON.stringify(korpa)); }catch(e){} };
+let korica = 'Šampanj';
+try { korica = localStorage.getItem('mathia_korica') || 'Šampanj'; } catch(e){}
+function izaberiKoricu(el){ korica = el.getAttribute('data-k')||'Šampanj'; try{localStorage.setItem('mathia_korica',korica);}catch(e){} markKorica(); osveziKorpu(); }
+function markKorica(){ document.querySelectorAll('.cp-cover').forEach(function(c){ c.classList.toggle('sel',(c.getAttribute('data-k')||'')===korica); }); }
 
 function nacrtajGrid(){
   document.getElementById('grid').innerHTML = PROIZVODI.filter(p=>p.tag!=='pretplata').map(p => `
@@ -385,7 +395,7 @@ function osveziKorpu(){
   let total = 0;
   body.innerHTML = ids.map(id=>{
     const p = PROIZVODI.find(x=>x.id===id); const iznos = p.cena*korpa[id]; total += iznos;
-    return `<div class="kp-item"><div class="ime">${p.naziv}</div>
+    return `<div class="kp-item"><div class="ime">${p.naziv}${id.indexOf('PLANER')===0?` <span style="color:#9C7838;font-weight:700;font-size:.8rem">· korica: ${korica}</span>`:''}</div>
       <div class="q"><button onclick="promeni('${id}',-1)">−</button>${korpa[id]}<button onclick="promeni('${id}',1)">+</button></div>
       <div class="kp-cena">${din(iznos)}${p.mesecno?' /mes':''}</div></div>`;
   }).join('');
@@ -406,7 +416,7 @@ async function plati(){
   try{
     const r = await fetch('/api/checkout', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ stavke, email, lang: (function(){try{var _l=localStorage.getItem('mathia_lang');return _l?_l.slice(0,2).toLowerCase():'sr';}catch(e){return 'sr';}})() })
+      body: JSON.stringify({ stavke, email, korica, lang: (function(){try{var _l=localStorage.getItem('mathia_lang');return _l?_l.slice(0,2).toLowerCase():'sr';}catch(e){return 'sr';}})() })
     });
     const data = await r.json();
     if(r.ok && data.paymentUrl){ location.href = data.paymentUrl; }
@@ -414,7 +424,7 @@ async function plati(){
   }catch(e){ msg.textContent = 'Naplata još nije povezana (čekamo ključeve banke).'; }
 }
 
-osveziKorpu(); if(location.search.indexOf('korpa=1')>=0){try{otvori();}catch(e){}}
+osveziKorpu(); markKorica(); if(location.search.indexOf('korpa=1')>=0){try{otvori();}catch(e){}}
 </script>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
 <!--prijnav--><script>(function(){

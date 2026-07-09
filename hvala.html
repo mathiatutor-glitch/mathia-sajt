@@ -53,6 +53,8 @@
   var o = new URLSearchParams(location.search).get('porudzbina');
   if(o){ document.getElementById('ord').textContent = 'Broj porudžbine: ' + o; }
 </script>
+
+<script>(function(){try{var l=(localStorage.getItem('mathia_lang')||'sr').slice(0,2).toLowerCase();if(l!=='en')return;document.documentElement.lang='en';document.title='Thank you — Mathia';var q=function(s){return document.querySelector(s);};if(q('h1'))q('h1').textContent='Thank you for your purchase!';if(q('.lead'))q('.lead').textContent='Your payment was received successfully. Your access is activated, and the fiscal receipt and confirmation are on their way to your e-mail.';var b=document.querySelectorAll('main .btn');if(b[0])b[0].textContent='Go to my account';if(b[1])b[1].textContent='Home';var mu=document.querySelectorAll('main .muted.small');if(mu.length)mu[mu.length-1].innerHTML='If the receipt does not arrive within a few minutes, please check your spam folder or contact us at <a href="mailto:kontakt@mathia.rs">kontakt@mathia.rs</a>.';var od=document.getElementById('ord');if(od&&od.textContent){var n=od.textContent.replace(/[^0-9A-Za-z]+/g,' ').trim().split(' ').pop();od.textContent='Order number: '+n;}}catch(e){}})();</script>
 <script src="i18n-mathia.js"></script>
 </body>
 </html>
