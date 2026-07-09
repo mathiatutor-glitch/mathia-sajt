@@ -590,6 +590,21 @@ async function loadData(){
   PROFILE=null; SUBJECTS=[]; if(!sb||!USER) return;
   try{ var pr=await sb.from('mathia_profil').select('*').eq('user_id',USER.id).maybeSingle(); PROFILE=(pr&&pr.data)?pr.data:null; }catch(e){}
   try{ var np=await sb.from('mathia_napredak').select('*').eq('user_id',USER.id).order('azurirano',{ascending:false}); SUBJECTS=(np&&np.data)?np.data:[]; }catch(e){ SUBJECTS=[]; }
+  // Prava pretplata (izvor istine posle plaćanja)
+  try{
+    var mail=(USER&&USER.email)?USER.email:null;
+    if(mail){
+      var ps=await sb.from('pretplate').select('*').eq('kupac_email',mail).eq('status','aktivna').order('created_at',{ascending:false}).limit(1);
+      var pret=(ps&&ps.data&&ps.data[0])?ps.data[0]:null;
+      if(pret){
+        PROFILE=PROFILE||{};
+        if(pret.paket) PROFILE.paket=pret.paket;
+        if(pret.predmeti) PROFILE.predmeti=pret.predmeti;
+        PROFILE.istice=pret.istice||null;
+        PROFILE.pretplata_aktivna=true;
+      }
+    }
+  }catch(e){}
 }
 function showLogin(){ $('login').style.display='flex'; $('app').classList.remove('on');
   STEP='email'; EMAIL=''; var c=$('f-code'); if(c)c.style.display='none';
@@ -608,6 +623,7 @@ function fullName(){ return (PROFILE&&PROFILE.ime)?PROFILE.ime:((USER&&USER.emai
 function firstName(){ var n=(PROFILE&&PROFILE.ime)?PROFILE.ime:((USER&&USER.email)?USER.email.split('@')[0]:'ti'); return (''+n).trim().split(/\s+/)[0]; }
 function initials(){ var p=fullName().split(/[\s@.]+/).filter(Boolean); return (((p[0]||'')[0]||'')+((p[1]||'')[0]||'')).toUpperCase()||'M'; }
 function cap(s){ s=(''+s).replace(/[-_]/g,' ').trim(); return s.charAt(0).toUpperCase()+s.slice(1); }
+function formatDatum(d){ try{ var t=new Date(d); if(isNaN(t))return ''; return ('0'+t.getDate()).slice(-2)+'.'+('0'+(t.getMonth()+1)).slice(-2)+'.'+t.getFullYear()+'.'; }catch(e){ return ''; } }
 function pageFor(k){ k=(''+k); return 'predmet-'+(k==='fax-verovatnoca'?'verovatnoca':k)+'.html'; }
 function pct(s){ if(s.obaveze&&s.obaveze.length){var d=s.obaveze.filter(function(o){return o.g;}).length;return Math.round(d/s.obaveze.length*100);}
   if(typeof s.procenat==='number')return Math.max(0,Math.min(100,Math.round(s.procenat)));
@@ -648,9 +664,10 @@ function render(){
   document.querySelector('.uchip .av').textContent=initials();
   $('hello-nm').textContent=firstName()+' 👋';
   var paket=(PROFILE&&PROFILE.paket)?(''+PROFILE.paket):'';
-  document.querySelector('#sec-home .pill').textContent= paket?('💎 '+cap(paket)+' paket — aktivan'):'✦ Tvoj nalog';
+  var istekTxt=(PROFILE&&PROFILE.istice&&formatDatum(PROFILE.istice))?(' · do '+formatDatum(PROFILE.istice)):'';
+  document.querySelector('#sec-home .pill').textContent= paket?('💎 '+cap(paket)+' paket — aktivan'+istekTxt):'✦ Tvoj nalog';
   var pbB=document.querySelector('.plan-badge b'),pbS=document.querySelector('.plan-badge span');
-  if(pbB)pbB.textContent= paket?(cap(paket)+' paket'):'Moj nalog'; if(pbS)pbS.textContent= paket?'Aktivna pretplata':'Mathia';
+  if(pbB)pbB.textContent= paket?(cap(paket)+' paket'):'Moj nalog'; if(pbS)pbS.textContent= paket?('Aktivna pretplata'+istekTxt):'Mathia';
   $('misao').textContent='„'+MISLI[Math.floor(Math.random()*MISLI.length)]+'"';
   var totalMin=0,bestNiz=0,teme=0;
   SUBJECTS.forEach(function(s){ totalMin+=(+s.minuta_ukupno||0); bestNiz=Math.max(bestNiz,(+s.serija||0)); if(s.obaveze)teme+=s.obaveze.filter(function(o){return o.g;}).length; });
