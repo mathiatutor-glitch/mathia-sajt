@@ -204,22 +204,23 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
 <link rel="stylesheet" href="theme-mathia.css">
-<style>/* v9 — luksuzniji, elegantniji hero stranice predmeta */
-.hero{background:
-   radial-gradient(760px 400px at 84% -10%,rgba(231,210,162,.22),transparent 64%),
-   linear-gradient(152deg,#522F3F 0%,#3B2431 54%,#261621 100%);
-  padding:66px 0 82px}
+<style>/* v10 — svetli, editorial, luksuzni hero (usklađen sa Proverom znanja) */
+.hero{position:relative;overflow:hidden;color:var(--plum);padding:58px 0 74px;
+  background:
+   radial-gradient(720px 400px at 84% -14%,rgba(198,160,92,.20),transparent 60%),
+   linear-gradient(168deg,#FCF8F0 0%,#F6ECD8 58%,#EFE3CC 100%)}
+.hero:before{background:radial-gradient(560px 300px at 14% 6%,rgba(255,255,255,.72),transparent 60%)}
 .hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(231,210,162,.55),transparent)}
-.hero .back{opacity:.86;letter-spacing:.05em;font-size:.8rem;margin-bottom:20px}
-.hero .eyebrow{font-size:.72rem;letter-spacing:.42em;opacity:.94}
-.hero h1{font-size:clamp(2.7rem,7vw,4.4rem);font-weight:600;letter-spacing:.004em;margin:14px 0 18px}
-.hero .lead{font-size:1.12rem;line-height:1.72;max-width:600px;color:#ecdee1}
+  background:linear-gradient(90deg,transparent,rgba(198,160,92,.55),transparent)}
+.hero .back{color:var(--golddk);opacity:.92;font-weight:700;letter-spacing:.05em;font-size:.8rem;margin-bottom:20px}
+.hero .eyebrow{color:var(--golddk);font-size:.72rem;letter-spacing:.42em;opacity:1}
+.hero h1{color:var(--plum);font-size:clamp(2.7rem,7vw,4.4rem);font-weight:600;letter-spacing:.004em;margin:14px 0 18px}
+.hero .lead{color:#6d5860;font-size:1.12rem;line-height:1.72;max-width:600px}
 .hero .row{margin-top:34px;gap:14px}
 .hero .btn-gold{padding:15px 32px;font-size:.95rem;
-  box-shadow:0 18px 44px -16px rgba(198,160,92,.95),inset 0 1px 0 rgba(255,255,255,.45)}
-.hero .btn-ghost-l{padding:15px 28px;border-color:rgba(231,210,162,.5);letter-spacing:.02em}
-.hero .btn-ghost-l:hover{background:rgba(231,210,162,.16)}
+  box-shadow:0 18px 44px -16px rgba(198,160,92,.9),inset 0 1px 0 rgba(255,255,255,.6)}
+.hero .btn-ghost-l{padding:15px 28px;color:var(--plum);border-color:rgba(67,44,55,.26);letter-spacing:.02em}
+.hero .btn-ghost-l:hover{background:rgba(67,44,55,.05);border-color:var(--plum)}
 .materijali{padding-top:66px}
 .materijali h2{font-size:clamp(2rem,4.8vw,2.7rem)}
 </style>
