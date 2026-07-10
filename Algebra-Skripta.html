@@ -48,6 +48,25 @@ img,svg,video,iframe,table{max-width:100%}
 pre{max-width:100%;overflow-x:auto}
 code{overflow-wrap:break-word}
 </style>
+<style>/* v2 redizajn skripte — uže, elegantnije, uredni primeri */
+.page{max-width:720px !important;margin:0 auto;padding:8px 22px 74px}
+.cover{min-height:auto;padding:58px 22px 26px}
+.cover h1{margin-top:12px}
+.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 24px;margin:16px 0;box-shadow:0 16px 38px rgba(67,44,55,.06)}
+.topic h2{font-size:24px;margin:0 0 14px}
+.box{margin:10px 0}
+.box.zapamti{background:linear-gradient(180deg,#FCF7EC,#FBF6EE);border:1px solid var(--goldlt);border-radius:14px;padding:14px 16px}
+.box.zapamti .katex-display{margin:.3em 0}
+.box.primer{background:#fff;border:1px dashed var(--gold);border-radius:14px;padding:16px 18px}
+.bx-h{margin-bottom:9px}
+.q{font-weight:700;font-size:15.5px;color:var(--plum);margin:2px 0 12px;line-height:1.5}
+.opts{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:opt}
+.opts li{position:relative;padding:10px 14px 10px 42px;border:1px solid var(--goldlt);border-radius:11px;background:#fffdf9;font-size:14.5px;color:#5a4a52;line-height:1.4}
+.opts li::before{counter-increment:opt;content:counter(opt,lower-alpha) ")";position:absolute;left:15px;top:10px;font-weight:800;color:var(--golddk)}
+.opts li.correct{border-color:var(--gold);background:#FBF6EE;color:var(--plum);font-weight:600}
+.opts li.correct::after{content:"✓";position:absolute;right:14px;top:10px;color:var(--golddk);font-weight:800}
+.ans{font-size:13.5px;color:var(--golddk);margin-top:11px;font-weight:600}
+</style>
 <script defer src="napredak.js"></script><!--napredaklog-->
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#432C37">
@@ -90,40 +109,40 @@ code{overflow-wrap:break-word}
 
 <div class="page">
 <section class="topic"><h2><span class="tnum">1</span> <span>Stepeni i koreni</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$a^m a^n=a^{m+n},\ (a^m)^n=a^{mn}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">2³ · 2² = ?  a) 2⁵=32  b) 2⁶  c) 2¹  d) 4⁵</div><div class="ans">a) 32.</div></div></section>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\begin{aligned}a^m\cdot a^n&=a^{m+n}\\(a^m)^n&=a^{mn}\end{aligned}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Koliko je $2^3\cdot 2^2$?</div><ul class="opts"><li class="correct">$2^5=32$</li><li>$2^6$</li><li>$2^1$</li><li>$4^5$</li></ul><div class="ans">Tačno: <b>a)</b> $2^5=32$.</div></div></section>
 
 <section class="topic"><h2><span class="tnum">2</span> <span>Formule množenja</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$(a\pm b)^2=a^2\pm2ab+b^2$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(a + b)² = ?  a) a²+b²  b) a²+2ab+b²  c) a²−b²  d) 2a+2b</div><div class="ans">b).</div></div></section>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$(a\pm b)^2=a^2\pm 2ab+b^2$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Čemu je jednako $(a+b)^2$?</div><ul class="opts"><li>$a^2+b^2$</li><li class="correct">$a^2+2ab+b^2$</li><li>$a^2-b^2$</li><li>$2a+2b$</li></ul><div class="ans">Tačno: <b>b)</b> $a^2+2ab+b^2$.</div></div></section>
 
 <section class="topic"><h2><span class="tnum">3</span> <span>Kvadratna jednačina</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Nule x² − 5x + 6?  a) {1,6}  b) {2,3}  c) {−2,−3}  d) {5,6}</div><div class="ans">b) {2,3}.</div></div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Koje su nule jednačine $x^2-5x+6=0$?</div><ul class="opts"><li>$\{1,6\}$</li><li class="correct">$\{2,3\}$</li><li>$\{-2,-3\}$</li><li>$\{5,6\}$</li></ul><div class="ans">Tačno: <b>b)</b> $\{2,3\}$.</div></div></section>
 
 <section class="topic"><h2><span class="tnum">4</span> <span>Vietove formule</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$x_1+x_2=-\tfrac{b}{a},\ x_1x_2=\tfrac{c}{a}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Zbir nula za x² − 5x + 6?  a) 5  b) −5  c) 6  d) −6</div><div class="ans">a) 5.</div></div></section>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\begin{aligned}x_1+x_2&=-\frac{b}{a}\\x_1\cdot x_2&=\frac{c}{a}\end{aligned}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Koliki je zbir nula jednačine $x^2-5x+6=0$?</div><ul class="opts"><li class="correct">$5$</li><li>$-5$</li><li>$6$</li><li>$-6$</li></ul><div class="ans">Tačno: <b>a)</b> $x_1+x_2=5$.</div></div></section>
 
 <section class="topic"><h2><span class="tnum">5</span> <span>Nejednačine</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\text{množenje negativnim}\Rightarrow\text{znak se okreće}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">−2x < 6 →  a) x<−3  b) x>−3  c) x<3  d) x>3</div><div class="ans">b) x > −3.</div></div></section>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO PRAVILO</div>$$\text{množenje negativnim brojem}\ \Rightarrow\ \text{znak se okreće}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Reši nejednačinu $-2x<6$.</div><ul class="opts"><li>$x<-3$</li><li class="correct">$x>-3$</li><li>$x<3$</li><li>$x>3$</li></ul><div class="ans">Tačno: <b>b)</b> $x>-3$.</div></div></section>
 
-<section class="topic"><h2><span class="tnum">6</span> <span>Polinomi (Bezu)</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P(a)=0\iff(x-a)\mid P(x)$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(x−1) deli koji polinom?  a) x²+1  b) x²−1  c) x²+x+1  d) x²+2</div><div class="ans">b) x²−1.</div></div></section>
+<section class="topic"><h2><span class="tnum">6</span> <span>Polinomi (Bezuov stav)</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P(a)=0\iff (x-a)\mid P(x)$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Koji polinom je deljiv sa $(x-1)$?</div><ul class="opts"><li>$x^2+1$</li><li class="correct">$x^2-1$</li><li>$x^2+x+1$</li><li>$x^2+2$</li></ul><div class="ans">Tačno: <b>b)</b> $x^2-1$ &nbsp;(jer je $P(1)=0$).</div></div></section>
 
 <section class="topic"><h2><span class="tnum">7</span> <span>Racionalni izrazi</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\frac{a}{b}\pm\frac{c}{d}=\frac{ad\pm bc}{bd}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">1/2 + 1/3 = ?  a) 2/5  b) 5/6  c) 1/6  d) 2/6</div><div class="ans">b) 5/6.</div></div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Koliko je $\dfrac{1}{2}+\dfrac{1}{3}$?</div><ul class="opts"><li>$\frac{2}{5}$</li><li class="correct">$\frac{5}{6}$</li><li>$\frac{1}{6}$</li><li>$\frac{2}{6}$</li></ul><div class="ans">Tačno: <b>b)</b> $\dfrac{5}{6}$.</div></div></section>
 
 <section class="topic"><h2><span class="tnum">8</span> <span>Logaritmi</span></h2>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\log_a(xy)=\log_a x+\log_a y,\ \log_a x^k=k\log_a x$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">log₂ 8 = ?  a) 2  b) 3  c) 4  d) 8</div><div class="ans">b) 3.</div></div></section>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\begin{aligned}\log_a(xy)&=\log_a x+\log_a y\\\log_a x^k&=k\log_a x\end{aligned}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Koliko je $\log_2 8$?</div><ul class="opts"><li>$2$</li><li class="correct">$3$</li><li>$4$</li><li>$8$</li></ul><div class="ans">Tačno: <b>b)</b> $3$ &nbsp;(jer je $2^3=8$).</div></div></section>
 
 <section class="topic"><h2><span class="tnum">9</span> <span>Apsolutna vrednost</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$|x|=a\Rightarrow x=\pm a$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">|x| = 5 →  a) 5  b) −5  c) ±5  d) 0</div><div class="ans">c) ±5.</div></div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Reši jednačinu $|x|=5$.</div><ul class="opts"><li>$5$</li><li>$-5$</li><li class="correct">$\pm 5$</li><li>$0$</li></ul><div class="ans">Tačno: <b>c)</b> $x=\pm 5$.</div></div></section>
 </div>
 <div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
