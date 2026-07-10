@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathia — Algebra — zadaci</title>
+<title>Mathia — Algebra · Provera znanja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -78,6 +78,26 @@ img,svg,video,iframe,table{max-width:100%}
 pre{max-width:100%;overflow-x:auto}
 code{overflow-wrap:break-word}
 </style>
+<style>/* v2 redizajn — kompaktno, meni + strelica, centrirano, vidljiv reset */
+.topbar{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 24px;background:rgba(251,246,238,.96);border-bottom:1px solid var(--line)}
+.tb-back{font-weight:700;font-size:.9rem;color:var(--acc2);text-decoration:none;white-space:nowrap}
+.tb-back:hover{color:var(--acc)}
+.tb-brand{font-family:var(--hf);font-weight:700;font-size:1.3rem;letter-spacing:.1em;color:var(--ink);text-decoration:none}
+.tb-nav{display:flex;gap:20px}
+.tb-nav a{font-weight:600;font-size:.85rem;color:var(--muted);text-decoration:none;letter-spacing:.03em}
+.tb-nav a:hover{color:var(--acc2)}
+@media(max-width:560px){.tb-brand{display:none}.tb-nav{gap:14px}}
+.cover{min-height:auto!important;padding:44px 24px 34px!important}
+.brandline{display:none}
+.eyebrow{margin-bottom:10px}
+h1{font-size:clamp(1.9rem,5vw,2.9rem)!important;margin-bottom:12px}
+.sub{font-size:.98rem;max-width:520px}
+.page{padding-top:26px!important}
+.zad-q{text-align:center!important;font-size:1.05rem;margin-bottom:18px}
+.reset{display:block;width:fit-content;margin:28px auto 0;background:#fff8ee;border:1.5px solid var(--accS);color:var(--acc2);text-decoration:none;font-family:var(--hf);font-weight:700;font-size:.95rem;padding:10px 22px;border-radius:999px;cursor:pointer;transition:.15s}
+.reset:hover{border-color:var(--acc);background:#fff;color:var(--acc)}
+.foot{margin-top:22px}
+</style>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#432C37">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -105,11 +125,19 @@ code{overflow-wrap:break-word}
 <!--seo-->
 </head>
 <body>
+<header class="topbar">
+  <a class="tb-back" href="predmet-algebra.html">← Algebra</a>
+  <a class="tb-brand" href="index.html">Mathia</a>
+  <nav class="tb-nav">
+    <a href="predmeti.html">Predmeti</a>
+    <a href="Algebra-Skripta.html">Skripta</a>
+    <a href="nalog.html">Moj nalog</a>
+  </nav>
+</header>
 <div class="cover">
-  <div class="brandline">MATHIA</div>
-  <div class="eyebrow">Tematska oblast · Vežba</div>
-  <h1>Algebra — zadaci</h1>
-  <p class="sub">Vežba po oblastima: polinomi, kvadratne jednačine, sistemi jednačina, nejednačine, faktorizacija i kompleksni brojevi. Probaj sam, pa otkrij rešenje korak po korak.</p>
+  <div class="eyebrow">Algebra · vežbaj i proveri se</div>
+  <h1>Provera znanja</h1>
+  <p class="sub">Reši zadatke po oblastima, pa otkrij rešenje korak po korak. Napredak se pamti na ovom uređaju.</p>
   <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
 </div>
 
@@ -121,7 +149,7 @@ code{overflow-wrap:break-word}
     <span class="chip" data-y="nej">Nejednačine</span>
     <span class="chip" data-y="fak">Faktorizacija</span>
   </div>
-  <div class="intro"><b id="rok-label">Oblast: Polinomi</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
+  <div class="intro"><b id="rok-label">Tema: Polinomi</b> · izaberi odgovor, pa se proveri.</div>
 
   <div class="prog-wrap">
     <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
@@ -129,7 +157,7 @@ code{overflow-wrap:break-word}
   </div>
 
   <div id="lista"></div>
-  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
+  <button class="reset" id="reset">↺ Resetuj napredak</button>
   <div class="foot" id="rok-foot">MATHIA · Polinomi · uči s ljubavlju · mathia.rs</div>
 </div>
 
