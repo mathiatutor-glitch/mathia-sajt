@@ -204,6 +204,25 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
 <link rel="stylesheet" href="theme-mathia.css">
+<style>/* v9 — luksuzniji, elegantniji hero stranice predmeta */
+.hero{background:
+   radial-gradient(760px 400px at 84% -10%,rgba(231,210,162,.22),transparent 64%),
+   linear-gradient(152deg,#522F3F 0%,#3B2431 54%,#261621 100%);
+  padding:66px 0 82px}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(231,210,162,.55),transparent)}
+.hero .back{opacity:.86;letter-spacing:.05em;font-size:.8rem;margin-bottom:20px}
+.hero .eyebrow{font-size:.72rem;letter-spacing:.42em;opacity:.94}
+.hero h1{font-size:clamp(2.7rem,7vw,4.4rem);font-weight:600;letter-spacing:.004em;margin:14px 0 18px}
+.hero .lead{font-size:1.12rem;line-height:1.72;max-width:600px;color:#ecdee1}
+.hero .row{margin-top:34px;gap:14px}
+.hero .btn-gold{padding:15px 32px;font-size:.95rem;
+  box-shadow:0 18px 44px -16px rgba(198,160,92,.95),inset 0 1px 0 rgba(255,255,255,.45)}
+.hero .btn-ghost-l{padding:15px 28px;border-color:rgba(231,210,162,.5);letter-spacing:.02em}
+.hero .btn-ghost-l:hover{background:rgba(231,210,162,.16)}
+.materijali{padding-top:66px}
+.materijali h2{font-size:clamp(2rem,4.8vw,2.7rem)}
+</style>
 </head>
 <body>
 <header>
@@ -407,6 +426,15 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 },{capture:true});
 })();</script>
 <script src="i18n-mathia.js"></script>
+<script>(function(){try{
+  var owner = localStorage.getItem('mathia_access')==='full';
+  var mu=null; try{ mu=JSON.parse(localStorage.getItem('mathia_user')||'null'); }catch(e){}
+  var subscribed = owner || (mu && (mu.owner || (mu.subjects&&mu.subjects.length)));
+  if(subscribed){
+    var b=document.querySelector('.hero .btn-gold');
+    if(b){ b.textContent='Uči Algebru →'; b.setAttribute('href','Algebra-Skripta.html'); }
+  }
+}catch(e){}})();</script>
 <script src="header-mathia.js" defer></script>
 </body>
 </html>

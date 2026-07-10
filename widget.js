@@ -279,10 +279,14 @@
     ".zoi-bub img{max-width:100%;border-radius:10px;margin-top:4px}" +
     ".zoi-bub pre,.zoi-bub code{white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;max-width:100%;overflow-x:auto;box-sizing:border-box}" +
     ".zoi-bub table{display:block;max-width:100%;overflow-x:auto}" +
-    ".zoi-tbl{border-collapse:collapse;margin:8px 0;font-size:.92em;border:1px solid #E2D6BF;border-radius:8px;overflow:hidden}" +
-    ".zoi-tbl th,.zoi-tbl td{border:1px solid #E8DDC8;padding:5px 9px;text-align:left;vertical-align:top}" +
-    ".zoi-tbl th{background:#F3EAD9;font-weight:700;color:#3a2a30;white-space:nowrap}" +
+    ".zoi-tbl{border-collapse:collapse;width:100%;margin:10px 0;font-size:.9em;border:1px solid #E7DCC6;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px -8px rgba(120,70,80,.25)}" +
+    ".zoi-tbl th,.zoi-tbl td{border-bottom:1px solid #EFE6D3;border-right:1px solid #EFE6D3;padding:7px 11px;text-align:left;vertical-align:top;line-height:1.4}" +
+    ".zoi-tbl th:last-child,.zoi-tbl td:last-child{border-right:0}" +
+    ".zoi-tbl tbody tr:last-child td{border-bottom:0}" +
+    ".zoi-tbl th{background:linear-gradient(180deg,#F5ECDA,#F0E4CD);font-weight:800;color:#5b3f2b;white-space:normal;letter-spacing:.01em}" +
     ".zoi-tbl tbody tr:nth-child(even) td{background:#FBF7EF}" +
+    ".zoi-bub .zoi-h{display:block;font-weight:800;color:#6b4a2f;font-size:1.03em;letter-spacing:.005em;margin:11px 0 3px}" +
+    ".zoi-bub .zoi-h:first-child{margin-top:0}" +
     ".zoi-bub pre.zoi-code{background:#2c2230;color:#f4ecdf;border-radius:10px;padding:10px 12px;margin:7px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84em;line-height:1.5;overflow-x:auto;white-space:pre;max-width:100%}" +
     ".zoi-bub pre.zoi-code code{white-space:pre;background:none;border:0;padding:0;color:inherit;font-family:inherit;font-size:inherit}" +
     ".zoi-bub pre.zoi-code[data-lang]:before{content:attr(data-lang);display:block;color:#c6a05c;font-size:.78em;font-family:'Nunito',sans-serif;margin:-2px 0 6px;text-transform:uppercase;letter-spacing:.04em}" +
@@ -544,13 +548,15 @@
     s = s.replace(/\[([^\]]+)\]\((#[\w-]+|[\w.\/-]+\.html(?:#[\w-]+)?)\)/g, '<a href="$2" style="color:#157f6e;font-weight:700;text-decoration:underline">$1</a>');
     s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     s = s.replace(/__([^_]+)__/g, "<strong>$1</strong>");
-    s = s.replace(/^[ \t]*#{1,6}\s*(.+?)\s*$/gm, "<strong>$1</strong>");
+    s = s.replace(/^[ \t]*#{1,6}\s*(.+?)\s*$/gm, '<b class="zoi-h">$1</b>');
     s = s.replace(/^[ \t]*[\*\-\+]\s+/gm, "• ");
     s = s.replace(/\*([^*\n]+)\*/g, "$1");
     s = s.replace(/\*/g, "");
     s = s.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>").replace(/\^(-?\d+|[A-Za-z])/g, "<sup>$1</sup>");
     s = s.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>").replace(/_(\d+)/g, "<sub>$1</sub>");
     s = mdTables(s);
+    s = s.replace(/\n*(<table[\s\S]*?<\/table>)\n*/g, "$1");
+    s = s.replace(/[ \t]*\n?(<b class="zoi-h">[^<]*<\/b>)\n?/g, "$1");
     s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; var src=String(oo[0]).replace(/(^|[^\\])%/g,"$1\\%").replace(/(\d),(\d)/g,"$1{,}$2"); return '<span class="kx" data-d="'+oo[1]+'">'+esc(src)+'</span>'; });
     s = s.replace(/\u0002C(\d+)\u0002/g, function(_m,i){ return '<code class="zoi-ic">'+esc(codes[i])+'</code>'; });
     return s;
