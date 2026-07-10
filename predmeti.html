@@ -554,5 +554,20 @@ h1,h2,h3,.hero h1,.sec h2{-webkit-hyphens:none;hyphens:none;overflow-wrap:normal
 /* Oznaka razreda jasnija (gold pill) */
 .subj-cap{display:inline-block;font-family:"Nunito",sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--golddk);background:rgba(198,160,92,.14);border:1px solid rgba(198,160,92,.3);border-radius:100px;padding:6px 16px;margin:0 auto 22px}
 </style>
+<style>/* v10 — svetli editorial hero (usklađen sa stranicama predmeta) */
+.hero{position:relative;overflow:hidden;color:var(--plum);padding:56px 0 66px;
+  background:radial-gradient(720px 400px at 84% -14%,rgba(198,160,92,.20),transparent 60%),
+  linear-gradient(168deg,#FCF8F0 0%,#F6ECD8 58%,#EFE3CC 100%)}
+.hero:before{background:radial-gradient(560px 300px at 14% 6%,rgba(255,255,255,.72),transparent 60%)}
+.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,160,92,.55),transparent)}
+.hero .eyebrow{color:var(--golddk)}
+.hero h1{color:var(--plum);font-weight:600}
+.hero .lead{color:#6d5860}
+.hero .lead b{color:var(--golddk)!important}
+.hero .btn-ghost-l{color:var(--plum);border-color:rgba(67,44,55,.26)}
+.hero .btn-ghost-l:hover{background:rgba(67,44,55,.05);border-color:var(--plum)}
+.hero-trust span{color:#8a6d54}
+.hero-trust span::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239C7838' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-11'/%3E%3C/svg%3E")}
+</style>
 </body>
 </html>
