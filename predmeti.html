@@ -706,5 +706,43 @@ header{border-bottom:1px solid rgba(198,160,92,.20);box-shadow:0 1px 0 rgba(255,
 .subj-panels{border-top-color:rgba(198,160,92,.22)}
 .subj-panel{border-bottom-color:rgba(198,160,92,.2)}
 </style>
+<style>/* v16 — razdvojene mekane kartice kategorija + zlatni medaljon ikonice + topliji tekst */
+.subj-panels{border-top:none;max-width:1040px}
+.subj-panel{border:1px solid rgba(198,160,92,.24);border-radius:16px;margin-bottom:12px;background:linear-gradient(180deg,#FFFFFF,#FDF9F1);box-shadow:0 14px 32px -28px rgba(120,70,80,.45);overflow:hidden;transition:box-shadow .2s ease,border-color .2s ease}
+.subj-panel:hover{border-color:rgba(198,160,92,.42);box-shadow:0 20px 40px -28px rgba(120,70,80,.5)}
+.subj-panel.open{border-color:rgba(198,160,92,.42);box-shadow:0 22px 46px -28px rgba(120,70,80,.5)}
+.subj-cap{padding:17px 22px;gap:14px}
+.subj-panel.open .subj-cap{border-bottom:1px solid rgba(198,160,92,.16)}
+.cap-ic{flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F3E6C6);box-shadow:0 6px 14px -8px rgba(198,160,92,.7)}
+.cap-ic svg{width:17px;height:17px}
+.subj-cap b{color:#3f2a34}
+.subj-cap>span:not(.cap-count):not(.cap-chev){color:#a9843f}
+.subj-grid{padding:16px 22px 24px}
+.subj-panel.open .subj-grid{padding-top:16px}
+@media(max-width:560px){.subj-cap{padding:15px 16px}.subj-grid{padding:14px 16px 20px}}
+</style>
+<script>
+(function(){
+  var panels=document.querySelectorAll('.subj-panel');
+  panels.forEach(function(p){
+    var cap=p.querySelector('.subj-cap'); if(!cap||cap.querySelector('.cap-ic'))return;
+    var tab=document.querySelector('.subj-tab[data-t="'+p.getAttribute('data-p')+'"]');
+    var svg=tab&&tab.querySelector('svg');
+    if(svg){var w=document.createElement('span');w.className='cap-ic';w.setAttribute('aria-hidden','true');w.innerHTML=svg.outerHTML;cap.insertBefore(w,cap.firstChild);}
+  });
+})();
+
+</script>
+<style>/* v17 — jače razdvajanje kartica + slađa cela strana */
+#predmeti{background:linear-gradient(180deg,#FCF7EC 0%,#FBF6EE 42%)}
+.subj-panels{max-width:1060px}
+.subj-panel{position:relative;margin-bottom:16px;border-radius:18px;box-shadow:0 18px 42px -30px rgba(120,70,80,.5)}
+.subj-panel::after{content:"";position:absolute;left:0;top:16px;bottom:16px;width:3px;border-radius:0 3px 3px 0;background:linear-gradient(180deg,#E7D2A2,#C6A05C);opacity:0;transition:opacity .22s ease}
+.subj-panel:hover::after,.subj-panel.open::after{opacity:1}
+.subj-panel.open{background:linear-gradient(180deg,#FFFFFF,#FBF3E6)}
+.subj-cap{padding:18px 24px}
+.cap-ic{width:36px;height:36px;box-shadow:0 8px 18px -8px rgba(198,160,92,.85)}
+@media(max-width:560px){.subj-cap{padding:15px 16px}}
+</style>
 </body>
 </html>
