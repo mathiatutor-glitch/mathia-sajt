@@ -15,6 +15,12 @@ export const config = {
 export default async function middleware(req) {
   const url = new URL(req.url);
   const cookie = req.headers.get("cookie") || "";
+
+  // 0) VLASNIČKI PRISTUP: kolačić postavljen preko pristup.html -> pun pristup svuda
+  const OWNER_KEY = "MATHIA-MARINA-2026";
+  const om = cookie.match(/(?:^|;\s*)mathia_owner=([^;]+)/);
+  if (om && decodeURIComponent(om[1]) === OWNER_KEY) return undefined;
+
   const m = cookie.match(new RegExp("(?:^|;\\s*)" + COOKIE + "=([^;]+)"));
   const phone = m ? await verifyToken(m[1]) : null;
 

@@ -66,13 +66,14 @@ var ALLSUBS = [{"h": "osnovna-matematika-5.html", "t": "Matematika 5. razred"}, 
 function grant(){
   try{
     localStorage.setItem('mathia_access','full'); localStorage.setItem('mathia_ok', KEY);
+    document.cookie = 'mathia_owner=' + KEY + '; path=/; max-age=31536000; SameSite=Lax';
     var u={ name:'Marina', last:'Bulat', email:'', paket:'diamond', pkgLabel:'Vlasnik', owner:true,
             subjects:ALLSUBS.map(function(s){return {h:s.h,t:s.t};}),
             planner:'fakultet', plannerAdded:true, created:Date.now(), progress:{} };
     localStorage.setItem('mathia_user', JSON.stringify(u));
   }catch(e){}
 }
-function revoke(){ try{ localStorage.removeItem('mathia_access'); localStorage.removeItem('mathia_ok'); localStorage.removeItem('mathia_user'); }catch(e){} }
+function revoke(){ try{ localStorage.removeItem('mathia_access'); localStorage.removeItem('mathia_ok'); localStorage.removeItem('mathia_user'); document.cookie='mathia_owner=; path=/; max-age=0; SameSite=Lax'; }catch(e){} }
 function show(id){ ['askView','okView','offView'].forEach(function(v){document.getElementById(v).classList.toggle('hidden', v!==id);}); }
 
 var q=new URLSearchParams(location.search);
