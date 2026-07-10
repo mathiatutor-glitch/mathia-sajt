@@ -265,6 +265,34 @@ code{overflow-wrap:break-word}
 .badge.lock{opacity:.5;filter:grayscale(.4)}
 .badge.lock .em{background:#f0e7d6;border-color:var(--bord)}
 </style>
+<style>/* v7 premium redizajn naloga */
+/* klikabilni čipovi predmeta */
+.feat{cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:background .15s,border-color .15s,transform .12s}
+a.feat:hover,button.feat:hover{background:#f6e6cc;border-color:var(--gold);transform:translateY(-1px)}
+button.feat{font-family:inherit;line-height:1}
+/* kartice materijala sa direktnim ulazima */
+.matcard{background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:20px 22px;margin-bottom:16px;box-shadow:0 18px 42px -34px rgba(67,44,55,.55);transition:box-shadow .2s,border-color .2s}
+.matcard:hover{border-color:var(--goldlt);box-shadow:0 24px 50px -32px rgba(67,44,55,.5)}
+.matlinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}
+.matlink{display:flex;align-items:center;gap:12px;background:linear-gradient(162deg,#fff,#fbf3e4);border:1px solid var(--bord);border-radius:16px;padding:13px 15px;text-decoration:none;transition:transform .16s,box-shadow .16s,border-color .16s}
+.matlink:hover{transform:translateY(-3px);box-shadow:0 18px 32px -20px rgba(156,120,56,.7);border-color:var(--goldlt)}
+.matlink .mi{width:42px;height:42px;flex:0 0 auto;border-radius:12px;background:radial-gradient(circle at 34% 28%,#fff,var(--champ));border:1px solid var(--goldlt);display:flex;align-items:center;justify-content:center;font-size:1.28rem}
+.matlink .mt b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.12rem;color:var(--plum);line-height:1.08}
+.matlink .mt i{font-style:normal;font-size:.75rem;color:var(--muted)}
+@media(max-width:760px){.matlinks{grid-template-columns:1fr}}
+/* elegantniji akcenti */
+.card.stat{position:relative;overflow:hidden;background:linear-gradient(165deg,#fffdf8,#fbf3e6)}
+.card.stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent)}
+.card.stat .v{font-size:2.15rem}
+.hello h2{font-size:2.3rem}
+.sectitle{font-size:1.5rem}
+.subj{border-radius:22px}
+.subj .nm{font-size:1.34rem}
+.snav.act{box-shadow:0 12px 22px -10px rgba(198,160,92,.85)}
+.plan-hero{border-radius:22px}
+.plan-hero .cover{box-shadow:0 20px 36px -18px rgba(67,44,55,.75)}
+.resume{border-radius:22px}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#432C37">
@@ -368,9 +396,9 @@ code{overflow-wrap:break-word}
 
         <h3 class="sectitle">Brzi pristup</h3>
         <div class="tiles">
-          <div class="tile" onclick="openRes('Matematika 1','formule')"><div class="ti">📐</div><div><b>Priručnik formula</b><span>Sve formule na jednom mestu</span></div></div>
-          <div class="tile" onclick="openRes('Matematika 1','zbirka')"><div class="ti">📝</div><div><b>Zbirka zadataka</b><span>Vežbaj po temama</span></div></div>
-          <div class="tile" onclick="go('plan',document.querySelectorAll('.snav')[3])"><div class="ti">📔</div><div><b>Moj planer</b><span>Raspored i rokovi</span></div></div>
+          <div class="tile" onclick="quickMat('formule')"><div class="ti">📐</div><div><b>Priručnik formula</b><span>Sve formule na jednom mestu</span></div></div>
+          <div class="tile" onclick="quickMat('zbirka')"><div class="ti">📝</div><div><b>Zbirka zadataka</b><span>Vežbaj po temama</span></div></div>
+          <div class="tile" onclick="location.href='Mathia-Student-Planner.html'"><div class="ti">📔</div><div><b>Moj planer</b><span>Raspored i rokovi</span></div></div>
         </div>
 
         <h3 class="sectitle">Nastavi gde smo stali</h3>
@@ -425,7 +453,7 @@ code{overflow-wrap:break-word}
             <span class="own">✓ U vlasništvu — uključen u Gold paket</span>
             <p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p>
             <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-              <button class="btn btn-gold" onclick="alert('Pregled — otvara planer uz nalog')">Otvori planer →</button>
+              <a class="btn btn-gold" href="Mathia-Student-Planner.html">Otvori planer →</a>
               </div>
           </div>
         </div>
@@ -644,9 +672,34 @@ function closeRes(){ var s=$('scrim'); if(s)s.classList.remove('on'); }
 /* RENDER */
 function ring(p){ var r=26,c=2*Math.PI*r,off=c*(1-p/100);
   return '<div class="ring"><svg width="62" height="62" viewBox="0 0 62 62"><circle cx="31" cy="31" r="'+r+'" stroke="#efe2cf" stroke-width="6" fill="none"/><circle class="rc" cx="31" cy="31" r="'+r+'" stroke="url(#ringg)" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+c+'" data-off="'+off+'"/></svg><div class="pc">'+p+'%</div></div>'; }
-function subjCard(s){ var p=pct(s);
-  return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+nazivPredmeta(s.predmet)+'</div><div class="topic">'+(s.poslednja_tema?('Tema: '+s.poslednja_tema):'Spremno za početak')+'</div></div></div><div class="feats"><span class="feat">📘 Skripta</span><span class="feat">📐 Formule</span><span class="feat">📝 Zbirka</span><span class="feat">👩‍🏫 Profesorica</span></div><div class="res"><a class="btn btn-gold btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori predmet i Profesoricu →</a></div></div>'; }
+/* Objedinjen izvor: prvo PRETPLAĆENI predmeti (izvor istine), pa napredak kao rezerva */
+function _progRow(entry){ if(!entry)return null; for(var i=0;i<SUBJECTS.length;i++){ var pr=resolvePredmet(SUBJECTS[i].predmet); if(pr&&pr.mode===entry.mode) return SUBJECTS[i]; } return null; }
+function mojiPredmeti(){
+  var out=[];
+  var pretplaceni=(PROFILE&&PROFILE.predmeti)?PROFILE.predmeti:null;
+  if(typeof pretplaceni==='string'){ try{ pretplaceni=JSON.parse(pretplaceni); }catch(e){ pretplaceni=pretplaceni.split(',').map(function(s){return s.trim();}).filter(Boolean); } }
+  if(pretplaceni && !Array.isArray(pretplaceni)) pretplaceni=null;
+  if(pretplaceni && !pretplaceni.length) pretplaceni=null;
+  if(pretplaceni){
+    pretplaceni.forEach(function(x){ var e=resolvePredmet(x); var r=_progRow(e);
+      out.push({key:(e?e.mode:x), entry:e, naziv:displayNaziv(x), topic:(r&&r.poslednja_tema)?r.poslednja_tema:'', p:r?pct(r):0, row:r}); });
+  } else {
+    SUBJECTS.forEach(function(r){ var e=resolvePredmet(r.predmet);
+      out.push({key:(e?e.mode:r.predmet), entry:e, naziv:nazivPredmeta(r.predmet), topic:r.poslednja_tema||'', p:pct(r), row:r}); });
+  }
+  return out;
+}
+function subjCard(it){ var p=it.p||0, k=it.key;
+  return '<div class="subj"><div class="hd">'+ring(p)+'<div><div class="nm">'+it.naziv+'</div><div class="topic">'+(it.topic?('Tema: '+it.topic):'Spremno za početak')+'</div></div></div>'
+    +'<div class="feats">'
+      +'<a class="feat" href="'+matURL(k,'skripta')+'">📘 Skripta</a>'
+      +'<a class="feat" href="'+matURL(k,'formule')+'">📐 Formule</a>'
+      +'<a class="feat" href="'+matURL(k,'zbirka')+'">📝 Zbirka</a>'
+      +'<button class="feat" type="button" onclick="openProf()">👩‍🏫 Profesorica</button>'
+    +'</div>'
+    +'<div class="res"><a class="btn btn-gold btn-sm" href="'+urlPredmeta(k)+'">Otvori predmet →</a></div></div>'; }
 function emptyCard(msg,cta,href){ return '<div class="card" style="grid-column:1/-1;text-align:center;padding:28px"><p style="color:var(--muted);margin-bottom:14px">'+msg+'</p><a class="btn btn-gold" href="'+href+'">'+cta+'</a></div>'; }
+function quickMat(tip){ var l=mojiPredmeti(); if(l.length){ location.href=matURL(l[0].key,tip); } else { location.href='predmeti.html'; } }
 
 function editName(){
   var cur=(PROFILE&&PROFILE.ime)?PROFILE.ime:'';
@@ -669,17 +722,18 @@ function render(){
   var pbB=document.querySelector('.plan-badge b'),pbS=document.querySelector('.plan-badge span');
   if(pbB)pbB.textContent= paket?(cap(paket)+' paket'):'Moj nalog'; if(pbS)pbS.textContent= paket?('Aktivna pretplata'+istekTxt):'Mathia';
   $('misao').textContent='„'+MISLI[Math.floor(Math.random()*MISLI.length)]+'"';
+  var MP=mojiPredmeti();
   var totalMin=0,bestNiz=0,teme=0;
   SUBJECTS.forEach(function(s){ totalMin+=(+s.minuta_ukupno||0); bestNiz=Math.max(bestNiz,(+s.serija||0)); if(s.obaveze)teme+=s.obaveze.filter(function(o){return o.g;}).length; });
   var sv=document.querySelectorAll('#sec-home .stat .v'), sl=document.querySelectorAll('#sec-home .stat .l');
-  var stats=[[SUBJECTS.length,'Predmeti'],[Math.round(totalMin/60)+' h','Vreme učenja'],[bestNiz+(bestNiz?' 🔥':''),'Najduži niz'],[teme,'Urađene teme']];
+  var stats=[[MP.length,'Predmeti'],[Math.round(totalMin/60)+' h','Vreme učenja'],[bestNiz+(bestNiz?' 🔥':''),'Najduži niz'],[teme,'Urađene teme']];
   for(var i=0;i<sv.length&&i<4;i++){ sv[i].textContent=stats[i][0]; if(sl[i])sl[i].textContent=stats[i][1]; }
   var rc=document.querySelector('#sec-home .resume'), rh=rc?rc.previousElementSibling:null;
-  if(SUBJECTS.length){ var s0=SUBJECTS[0]; rc.style.display=''; if(rh)rh.style.display='';
+  if(MP.length){ var s0=MP[0]; rc.style.display=''; if(rh)rh.style.display='';
     rc.querySelector('.ic').textContent='📘';
-    rc.querySelector('.t b').textContent=cap(s0.predmet);
-    rc.querySelector('.t span').textContent=(s0.poslednja_tema?('Tema: '+s0.poslednja_tema):'Nastavi učenje');
-    var rb=rc.querySelector('.btn'); if(rb)rb.outerHTML='<a class="btn btn-gold" href="'+pageFor(s0.predmet)+'">Nastavite →</a>';
+    rc.querySelector('.t b').textContent=s0.naziv;
+    rc.querySelector('.t span').textContent=(s0.topic?('Tema: '+s0.topic):'Nastavi učenje — tvoja Profesorica te čeka');
+    var rb=rc.querySelector('.btn'); if(rb)rb.outerHTML='<a class="btn btn-gold" href="'+matURL(s0.key,'skripta')+'">Nastavite →</a>';
   } else { if(rc)rc.style.display='none'; if(rh)rh.style.display='none'; }
   var hs=$('home-subj'),as=$('all-subj');
   // Opis predmeta i dugme prema paketu
@@ -688,25 +742,30 @@ function render(){
   var desc=$('subj-desc'); var btn=$('btn-pick-subj');
   if(desc) desc.textContent = paket ? (cap(paket)+' paket pokriva do '+limit+(limit===1?' predmet':' predmeta')+' — sa svim lekcijama, zbirkama i formulama.') : 'Odaberi paket da otključaš predmete.';
   if(btn) btn.style.display = paket ? '' : 'none';
-  if(SUBJECTS.length){ var html=SUBJECTS.map(subjCard).join(''); hs.innerHTML=html; as.innerHTML=html; }
-  else { var e=emptyCard('Još nisi započela nijedan predmet.','Izaberi predmet →','predmeti.html'); hs.innerHTML=e; as.innerHTML=e; }
-  $('mat-list').innerHTML= SUBJECTS.length ? SUBJECTS.map(function(s){
-    return '<div class="card hov" style="margin-bottom:14px"><div class="matrow"><div class="mnm">'+nazivPredmeta(s.predmet)+'</div><a class="btn btn-gold btn-sm" href="'+urlPredmeta(s.predmet)+'">Otvori materijale →</a></div><div class="feats" style="margin-top:10px"><span class="feat">📘 Skripta</span><span class="feat">📐 Priručnik formula</span><span class="feat">📝 Zbirka zadataka</span></div></div>'; }).join('')
-    : emptyCard('Materijali se otključavaju uz tvoje predmete.','Izaberi predmet →','predmeti.html');
-  var owns=!!(PROFILE&&(PROFILE.planer===true||PROFILE.planer==='da'||PROFILE.planer===1));
+  if(MP.length){ var html=MP.map(subjCard).join(''); hs.innerHTML=html; as.innerHTML=html; }
+  else { var e=emptyCard('Još nisi izabrala nijedan predmet uz svoj paket.','Izaberi predmet →','predmeti.html'); hs.innerHTML=e; as.innerHTML=e; }
+  $('mat-list').innerHTML= MP.length ? MP.map(function(it){ var k=it.key;
+    return '<div class="matcard"><div class="matrow"><div class="mnm">'+it.naziv+'</div><a class="btn btn-ghost btn-sm" href="'+urlPredmeta(k)+'">Stranica predmeta →</a></div>'
+      +'<div class="matlinks">'
+        +'<a class="matlink" href="'+matURL(k,'skripta')+'"><span class="mi">📘</span><span class="mt"><b>Skripta</b><i>Teorija, korak po korak</i></span></a>'
+        +'<a class="matlink" href="'+matURL(k,'formule')+'"><span class="mi">📐</span><span class="mt"><b>Priručnik formula</b><i>Sve formule na jednom mestu</i></span></a>'
+        +'<a class="matlink" href="'+matURL(k,'zbirka')+'"><span class="mi">📝</span><span class="mt"><b>Zbirka zadataka</b><i>Vežbaj po temama</i></span></a>'
+      +'</div></div>'; }).join('')
+    : emptyCard('Materijali se otključavaju čim izabereš predmet uz svoj paket.','Izaberi predmet →','predmeti.html');
+  var owns=!!(PROFILE&&(PROFILE.planer===true||PROFILE.planer==='da'||PROFILE.planer===1||PROFILE.pretplata_aktivna));
   var pt=document.querySelector('#sec-plan .plan-hero .t');
   if(pt){ pt.innerHTML= owns
     ? '<b>Mathia Student Planner</b><span class="own">✓ U vlasništvu</span><p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-gold" href="Mathia-Student-Planner.html">Otvori planer →</a></div>'
     : '<b>Mathia Student Planner</b><p style="font-size:.92rem;color:#6b585e;margin:8px 0 0">Tvoj kompletan planer za studije — raspored, rokovi, fokus i navike. Dodaj ga uz nalog.</p><div style="margin-top:12px"><a class="btn btn-gold" href="prodavnica.html">Pogledaj u Prodavnici →</a></div>'; }
   var _cil=$('ciljevi'); if(_cil){
-    if(!SUBJECTS.length){ _cil.innerHTML='<p style="color:var(--muted);margin:0">Započni predmet pa ću ti postaviti nedeljne ciljeve. 🌷</p>'; }
-    else{ var s0=SUBJECTS[0];
+    if(!MP.length){ _cil.innerHTML='<p style="color:var(--muted);margin:0">Izaberi predmet pa ću ti postaviti nedeljne ciljeve. 🌷</p>'; }
+    else{ var s0=MP[0];
       var g=[['Uči 3 dana zaredom', Math.min(bestNiz,3)+' / 3', bestNiz>=3],
-             ['Nastavi '+cap(s0.predmet), (s0.poslednja_tema?('tema: '+s0.poslednja_tema):'kreni'), false],
+             ['Nastavi '+s0.naziv, (s0.topic?('tema: '+s0.topic):'kreni'), false],
              ['Uradi još jednu temu ove nedelje', teme+' urađeno', false]];
       _cil.innerHTML=g.map(function(x){return '<div class="goal'+(x[2]?' done':'')+'"><span class="chk">'+(x[2]?'✓':'')+'</span><span class="gt">'+x[0]+'</span><span class="gm">'+x[1]+'</span></div>';}).join(''); } }
   var _dos=$('dostignuca'); if(_dos){
-    var B=[['🌱','Prvi korak',SUBJECTS.length>0],['🔥',(bestNiz>=3?('Niz '+bestNiz+' dana'):'Niz 3 dana'),bestNiz>=3],
+    var B=[['🌱','Prvi korak',MP.length>0],['🔥',(bestNiz>=3?('Niz '+bestNiz+' dana'):'Niz 3 dana'),bestNiz>=3],
            ['🎯','Marljiva · 10 tema',teme>=10],['🌙','Istrajnost · 7 dana',bestNiz>=7],
            ['🏆','Šampion · 30 dana',bestNiz>=30],['💎','Majstor · 100 tema',teme>=100]];
     _dos.innerHTML=B.map(function(x){return '<div class="badge'+(x[2]?'':' lock')+'"><div class="em">'+x[0]+'</div><b>'+x[1]+'</b></div>';}).join(''); }
@@ -719,17 +778,18 @@ function fillRings(){document.querySelectorAll('.ring .rc').forEach(function(c){
 function drawStats(){
   var h4=document.querySelectorAll('#sec-stat .card h4'); if(h4[0])h4[0].textContent='Vreme učenja po predmetu';
   var leg=document.querySelector('#sec-stat .legend'); if(leg)leg.textContent='Ukupno minuta po predmetu';
-  var wk=$('wk');
-  if(SUBJECTS.length){
-    var mx=Math.max.apply(null,SUBJECTS.map(function(s){return +s.minuta_ukupno||0;}).concat([1]));
-    wk.innerHTML=SUBJECTS.map(function(s){var m=+s.minuta_ukupno||0;return '<div class="d"><div class="col" data-h="'+Math.round(m/mx*100)+'"></div><div class="dl">'+nazivPredmeta(s.predmet).slice(0,7)+'</div></div>';}).join('');
-    $('prog').innerHTML=SUBJECTS.map(function(s){var p=pct(s);return '<div class="prow"><div class="pn">'+nazivPredmeta(s.predmet)+'</div><div class="bar"><i data-w="'+p+'"></i></div><div class="pv">'+p+'%</div></div>';}).join('');
+  var wk=$('wk'); var MP=mojiPredmeti();
+  if(MP.length){
+    var mins=MP.map(function(it){return (it.row&&+it.row.minuta_ukupno)||0;});
+    var mx=Math.max.apply(null,mins.concat([1]));
+    wk.innerHTML=MP.map(function(it,idx){var m=mins[idx];return '<div class="d"><div class="col" data-h="'+Math.round(m/mx*100)+'"></div><div class="dl">'+it.naziv.slice(0,8)+'</div></div>';}).join('');
+    $('prog').innerHTML=MP.map(function(it){var p=it.p||0;return '<div class="prow"><div class="pn">'+it.naziv+'</div><div class="bar"><i data-w="'+p+'"></i></div><div class="pv">'+p+'%</div></div>';}).join('');
     var best=0;SUBJECTS.forEach(function(s){best=Math.max(best,+s.serija||0);});
     var sl=document.querySelector('#sec-stat .card:last-child .legend'); if(sl)sl.textContent=best?('Najduži niz: '+best+' dana'):'Počni svoj niz već danas';
     var st='';for(var i=0;i<7;i++){st+='<div class="dot'+(i<best?' on':'')+'">'+(i<best?'🔥':'·')+'</div>';}
     $('streak').innerHTML=st;
     setTimeout(function(){document.querySelectorAll('#sec-stat .wk .col').forEach(function(c){c.style.height=c.getAttribute('data-h')+'%';});document.querySelectorAll('#sec-stat .bar > i').forEach(function(x){x.style.width=x.getAttribute('data-w')+'%';});},40);
-  } else { wk.innerHTML='<p style="color:var(--muted)">Statistika se pojavljuje čim počneš da učiš.</p>'; $('prog').innerHTML=''; $('streak').innerHTML=''; }
+  } else { wk.innerHTML='<p style="color:var(--muted)">Statistika se pojavljuje čim izabereš predmet i počneš da učiš.</p>'; $('prog').innerHTML=''; $('streak').innerHTML=''; }
 }
 
 /* CHAT */
@@ -751,7 +811,7 @@ var SVI_PREDMETI = [
   { mode:"os-fiz-7",         naziv:"Fizika 7. razred",       url:"/osnovna-fizika-7.html" },
   { mode:"os-fiz-8",         naziv:"Fizika 8. razred",       url:"/osnovna-fizika-8.html" },
   { mode:"prijemni-matematika", naziv:"Prijemni ispit",      url:"/prijemni.html" },
-  { mode:"fax-analiza1",     naziv:"Analiza 1",              url:"/predmet-analiza1.html" },
+  { mode:"fax-analiza1",     naziv:"Analiza 1",              url:"/predmet-analiza1.html", skripta:"/Analiza-1-Skripta.html", formule:"/Analiza-1-Formule.html", zbirka:"/Analiza-1-Zadaci.html", alias:["matematicka analiza 1","analiza 1"] },
   { mode:"fax-analiza2",     naziv:"Analiza 2",              url:"/predmet-analiza2.html" },
   { mode:"fax-linearna",     naziv:"Linearna algebra",       url:"/predmet-linearna-algebra.html" },
   { mode:"fax-verovatnoca",  naziv:"Verovatnoća",            url:"/predmet-verovatnoca-statistika.html" },
@@ -761,7 +821,7 @@ var SVI_PREDMETI = [
   { mode:"fax-kola",         naziv:"Električna kola",        url:"/predmet-elektricna-kola.html" },
   { mode:"fax-merenja",      naziv:"Električna merenja",     url:"/predmet-elektricna-merenja.html" },
   { mode:"fax-mehanika",     naziv:"Fizika i mehanika",      url:"/predmet-fizika-mehanika.html" },
-  { mode:"fax-elektronika", naziv:"Uvod u elektroniku", url:"/predmet-uvod-u-elektroniku.html" },
+  { mode:"fax-elektronika", naziv:"Uvod u elektroniku", url:"/predmet-uvod-u-elektroniku.html", skripta:"/Uvod-u-Elektroniku-Skripta.html", formule:"/Uvod-u-Elektroniku-Formule.html", zbirka:"/Uvod-u-Elektroniku-Zadaci.html", alias:["uvod u elektroniku"] },
   { mode:"fax-eds", naziv:"Elektrodistributivni sistemi", url:"/predmet-elektrodistributivni-sistemi.html" },
   { mode:"osnovi-elektrotehnike-1", naziv:"Osnovi ETF 1",   url:"/predmet-osnovi-elektrotehnike-1.html" },
   { mode:"osnovi-elektrotehnike-2", naziv:"Osnovi ETF 2",   url:"/predmet-osnovi-elektrotehnike-2.html" },
@@ -784,8 +844,30 @@ var SVI_PREDMETI = [
   { mode:"el-cadence",       naziv:"Cadence",                url:"/elektronika-cadence.html" },
 ];
   var MAPA_PREDMETA={}; try{SVI_PREDMETI.forEach(function(p){MAPA_PREDMETA[p.mode]=p;});}catch(e){}
-  function nazivPredmeta(k){return (MAPA_PREDMETA[k]&&MAPA_PREDMETA[k].naziv)||cap(k);}
-  function urlPredmeta(k){return (MAPA_PREDMETA[k]&&MAPA_PREDMETA[k].url)||pageFor(k);}
+  function _norm(s){ return (''+s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,''); }
+  // Prepozna predmet iz mod-ključa ILI punog naslova iz pretplate ("Matematička analiza 1")
+  function resolvePredmet(x){
+    if(x==null) return null;
+    if(typeof x==='object'){ x = x.mode||x.predmet||x.naziv||x.id||''; }
+    if(MAPA_PREDMETA[x]) return MAPA_PREDMETA[x];
+    var n=_norm(x); if(!n) return null;
+    var best=null;
+    for(var i=0;i<SVI_PREDMETI.length;i++){ var p=SVI_PREDMETI[i];
+      if(_norm(p.mode)===n || _norm(p.naziv)===n) return p;
+      if(p.alias){ for(var a=0;a<p.alias.length;a++){ if(_norm(p.alias[a])===n) return p; } }
+    }
+    for(var j=0;j<SVI_PREDMETI.length;j++){ var q=SVI_PREDMETI[j]; var nn=_norm(q.naziv);
+      if(nn.length>=4 && (n.indexOf(nn)>=0 || nn.indexOf(n)>=0)) { best=q; break; }
+      if(q.alias){ for(var b=0;b<q.alias.length;b++){ var na=_norm(q.alias[b]); if(na.length>=4 && (n.indexOf(na)>=0||na.indexOf(n)>=0)){ best=q; break; } } if(best) break; }
+    }
+    return best;
+  }
+  function nazivPredmeta(k){ if(k&&typeof k==='object'&&k.naziv&&!MAPA_PREDMETA[k]) return k.naziv; var p=resolvePredmet(k); return (p&&p.naziv)|| (typeof k==='string'?cap(k):'Predmet'); }
+  function urlPredmeta(k){ var p=resolvePredmet(k); return (p&&p.url)|| (typeof k==='string'?pageFor(k):'predmeti.html'); }
+  // Direktne strane materijala (bez ikakvog zida). Ako nema eksplicitno — vodi na stranu predmeta.
+  function matURL(k,tip){ var p=resolvePredmet(k); if(!p) return 'predmeti.html'; return (p[tip]||p.url||'predmeti.html'); }
+  // Naziv koji korisnik vidi: ako je iz pretplate stigao pun naslov, poštuj ga; inače lepo ime iz mape
+  function displayNaziv(x){ if(typeof x==='string' && !MAPA_PREDMETA[x] && /[a-zA-ZšđčćžŠĐČĆŽ]{3,}\s/.test(x)) return x.trim(); return nazivPredmeta(x); }
 
 
 var pickedSubj = [];
