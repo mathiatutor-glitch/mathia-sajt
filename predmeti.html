@@ -569,5 +569,39 @@ h1,h2,h3,.hero h1,.sec h2{-webkit-hyphens:none;hyphens:none;overflow-wrap:normal
 .hero-trust span{color:#8a6d54}
 .hero-trust span::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239C7838' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-11'/%3E%3C/svg%3E")}
 </style>
+<style>/* v11 — opšte dizajnersko podizanje: traka, dugmad, spisak, naslovi, kartice */
+/* naslovna traka (sticky) */
+header{border-bottom:1px solid rgba(198,160,92,.20);box-shadow:0 1px 0 rgba(255,255,255,.55),0 12px 32px -26px rgba(120,70,80,.4)}
+.nav-r>a:not(.navcta){letter-spacing:.02em}
+.navcta{background:linear-gradient(135deg,#D3B06A,#9C7838)!important;box-shadow:0 10px 22px -10px rgba(156,120,56,.65),inset 0 1px 0 rgba(255,255,255,.4)!important;padding:10px 20px!important}
+.navcta:hover{box-shadow:0 14px 28px -10px rgba(156,120,56,.8)!important}
+/* dugmad */
+.btn{padding:15px 30px;font-size:.94rem;letter-spacing:.03em}
+.btn-gold{background:linear-gradient(180deg,#F0DCA6,#C6A05C);color:#4a3812;box-shadow:0 16px 38px -14px rgba(198,160,92,.9),inset 0 1px 0 rgba(255,255,255,.65)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 22px 46px -16px rgba(198,160,92,1),inset 0 1px 0 rgba(255,255,255,.7)}
+.btn-ghost{border-color:rgba(198,160,92,.55);color:var(--plum)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--gold);background:rgba(198,160,92,.06)}
+/* naslovi sekcija */
+.sec h2,.w-h2{font-size:clamp(1.95rem,4.6vw,2.75rem);letter-spacing:.004em;line-height:1.12}
+.eyebrow{letter-spacing:.36em}
+/* spisak — tabovi */
+.subj-tabs{gap:11px;margin-bottom:30px}
+.subj-tab{padding:10px 20px;font-size:1.12rem;border-color:rgba(198,160,92,.4);box-shadow:0 8px 20px -18px rgba(120,70,80,.4)}
+.subj-tab:hover{border-color:var(--gold);background:#FBF3E2;transform:translateY(-1px)}
+.subj-tab.on{background:linear-gradient(180deg,#5A3746,#3A2330);box-shadow:0 16px 32px -14px rgba(90,55,70,.7)}
+.subj-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;margin-left:8px;border-radius:100px;background:rgba(198,160,92,.18);color:var(--golddk);font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:800}
+.subj-tab.on .subj-count{background:rgba(231,210,162,.28);color:#F7EAC9}
+/* spisak — kartice predmeta */
+.subj-grid{gap:13px}
+.subj-grid a{padding:15px 17px;border:1px solid rgba(198,160,92,.26);border-radius:15px;background:linear-gradient(180deg,#FFFFFF,#FCF7EC);font-weight:600;font-size:.97rem;box-shadow:0 12px 28px -24px rgba(120,70,80,.45)}
+.subj-grid a::before{width:8px;height:8px;box-shadow:0 0 0 3px rgba(198,160,92,.12)}
+.subj-grid a:hover{transform:translateY(-4px);border-color:var(--gold);color:var(--golddk);box-shadow:0 26px 46px -26px rgba(120,70,80,.55)}
+/* pretraga */
+.subj-search{padding:13px 22px;border-color:rgba(198,160,92,.45)}
+/* kartice puteva i testova */
+.why .card{border-radius:18px}
+.tcard{border-radius:18px;transition:transform .16s ease,box-shadow .16s ease;box-shadow:0 18px 40px -30px rgba(120,70,80,.5)}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 30px 54px -30px rgba(120,70,80,.6)}
+</style>
 </body>
 </html>
