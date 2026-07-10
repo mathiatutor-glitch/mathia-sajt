@@ -252,8 +252,9 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
   </div>
 </header>
 
-<section class="hero">
+<section class="hero hero-grand">
   <div class="wrap">
+    <div class="hero-orn" aria-hidden="true"><i></i><span>&#10022;</span><i></i></div>
     <div class="eyebrow" data-i18n="h_eyb">Predmeti i putevi</div>
     <h1 data-i18n="h_h1">Nađi svoj put</h1>
     <p class="lead" data-i18n="h_lead">Najvažnije pitanje nije koji zadatak da rešiš — već <b style="color:#fff">ko želiš da postaneš</b>. Zato prvo otkrivamo kuda ideš, a onda biramo tačno one predmete koji te vode tamo — bez lutanja i izgubljenog vremena.</p>
@@ -602,6 +603,30 @@ header{border-bottom:1px solid rgba(198,160,92,.20);box-shadow:0 1px 0 rgba(255,
 .why .card{border-radius:18px}
 .tcard{border-radius:18px;transition:transform .16s ease,box-shadow .16s ease;box-shadow:0 18px 40px -30px rgba(120,70,80,.5)}
 .tcard:hover{transform:translateY(-4px);box-shadow:0 30px 54px -30px rgba(120,70,80,.6)}
+</style>
+<style>/* v12 — veličanstven raširen hero (masthead) + editorial organizacija predmeta */
+/* HERO — grand masthead */
+.hero-grand{text-align:center;padding:clamp(60px,9vw,96px) 0 clamp(56px,8vw,86px)}
+.hero-grand .wrap{max-width:940px}
+.hero-orn{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 22px;color:var(--gold)}
+.hero-orn i{display:block;height:1px;width:clamp(42px,10vw,96px);background:linear-gradient(90deg,transparent,rgba(198,160,92,.85))}
+.hero-orn i:last-child{background:linear-gradient(90deg,rgba(198,160,92,.85),transparent)}
+.hero-orn span{font-size:1rem;letter-spacing:.1em;transform:translateY(-1px)}
+.hero-grand .eyebrow{color:var(--golddk);letter-spacing:.46em;font-size:.72rem;margin-bottom:22px}
+.hero-grand h1{font-size:clamp(3.1rem,9.2vw,6.2rem);font-weight:600;letter-spacing:.006em;line-height:1.02;margin:0 0 24px;color:var(--plum)}
+.hero-grand .lead{max-width:700px;margin:0 auto;font-size:clamp(1.1rem,1.55vw,1.28rem);line-height:1.78;color:#6d5860}
+.hero-grand .row{justify-content:center;margin-top:38px;gap:14px}
+.hero-grand .hero-trust{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0;margin-top:42px;padding:13px 12px;border:1px solid rgba(198,160,92,.32);border-radius:100px;background:rgba(255,255,255,.55);box-shadow:0 18px 40px -30px rgba(120,70,80,.5)}
+.hero-grand .hero-trust span{position:relative;padding:2px 26px;color:#7a6558;font-size:.86rem;font-weight:700;letter-spacing:.02em}
+.hero-grand .hero-trust span::before{display:none}
+.hero-grand .hero-trust span+span::after{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:15px;background:rgba(198,160,92,.5)}
+@media(max-width:560px){.hero-grand .hero-trust{border:none;background:none;box-shadow:none;padding:0}.hero-grand .hero-trust span{padding:3px 16px}.hero-grand .hero-trust span+span::after{display:none}}
+/* SEKCIJA PREDMETI — editorial */
+#predmeti .eyebrow{color:var(--golddk)}
+#predmeti h2{font-size:clamp(2.2rem,5vw,3.1rem);letter-spacing:.005em}
+.subj-tabs{border-bottom:1px solid rgba(198,160,92,.22);padding-bottom:26px;margin-bottom:6px}
+.subj-cap{font-size:1.28rem;margin:26px 0 26px;color:var(--golddk)}
+.subj-panel.on{padding-top:4px}
 </style>
 </body>
 </html>
