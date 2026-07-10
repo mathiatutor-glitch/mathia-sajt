@@ -93,10 +93,44 @@ code{overflow-wrap:break-word}
 <meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
+<style>/* v3 — uskladi sa 'Provera znanja': nav, centrirano, veće opcije, lep futer */
+.topbar{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 24px;background:rgba(251,246,238,.96);border-bottom:1px solid var(--goldlt)}
+.tb-back{font-weight:700;font-size:.9rem;color:var(--golddk);text-decoration:none;white-space:nowrap}
+.tb-back:hover{color:var(--gold)}
+.tb-brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;letter-spacing:.1em;color:var(--plum);text-decoration:none}
+.tb-nav{display:flex;align-items:center;gap:18px}
+.tb-nav>a{font-weight:600;font-size:.85rem;color:#8a7a74;text-decoration:none;letter-spacing:.03em}
+.tb-nav>a:hover{color:var(--golddk)}
+.lang{position:static!important;top:auto!important;right:auto!important;padding:5px 10px!important;font-size:.76rem!important;border-width:1.5px!important;background:#fff!important}
+@media(max-width:560px){.tb-brand{display:none}.tb-nav{gap:12px}.tb-nav>a{font-size:.8rem}}
+.cover{min-height:auto;padding:46px 22px 30px}
+.seal{width:86px;height:86px;font-size:22px;margin-bottom:14px}
+.kind{margin-top:7px}
+.cover h1{margin:14px 0 8px}
+.q{text-align:center;font-size:1.06rem;margin:2px 0 16px}
+.opts{gap:9px}
+.opts li{display:flex;align-items:center;gap:13px;padding:12px 16px;font-size:1.02rem;border:1.5px solid var(--goldlt);border-radius:13px;background:#fffdf9;color:#5a4a52}
+.opts li::before{counter-increment:opt;content:counter(opt,upper-alpha);position:static;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#f3e7cf;color:var(--golddk);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;flex:none}
+.opts li.correct{border-color:var(--gold);background:#FBF6EE;color:var(--plum);font-weight:600}
+.opts li.correct::before{background:var(--gold);color:#fff}
+.opts li.correct::after{content:"✓";margin-left:auto;color:var(--golddk);font-weight:800}
+.opts li .katex{font-size:1em}
+.ans{text-align:center;margin-top:14px;font-size:.95rem}
+.foot2{font-size:.9rem;color:#8a7a74;padding:24px 0 40px;border-top:1px solid var(--goldlt);margin-top:28px}
+</style>
 </head>
 <body>
-<select class="lang" id="lang" aria-label="Jezik / Language">
+<header class="topbar">
+  <a class="tb-back" href="predmet-algebra.html">← Algebra</a>
+  <a class="tb-brand" href="index.html">Mathia</a>
+  <nav class="tb-nav">
+    <a href="predmeti.html">Predmeti</a>
+    <a href="Algebra-Zadaci.html">Provera znanja</a>
+    <a href="nalog.html">Moj nalog</a>
+    <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+  </nav>
+</header>
 
 <div class="cover">
 <div class="seal">x ± √</div>
@@ -126,7 +160,7 @@ code{overflow-wrap:break-word}
 
 <section class="topic"><h2><span class="tnum">5</span> <span>Nejednačine</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO PRAVILO</div>$$\text{množenje negativnim brojem}\ \Rightarrow\ \text{znak se okreće}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Reši nejednačinu $-2x<6$.</div><ul class="opts"><li>$x<-3$</li><li class="correct">$x>-3$</li><li>$x<3$</li><li>$x>3$</li></ul><div class="ans">Tačno: <b>b)</b> $x>-3$.</div></div></section>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Reši nejednačinu $-2x \lt 6$.</div><ul class="opts"><li>$x \lt -3$</li><li class="correct">$x \gt -3$</li><li>$x \lt 3$</li><li>$x \gt 3$</li></ul><div class="ans">Tačno: <b>b)</b> $x \gt -3$.</div></div></section>
 
 <section class="topic"><h2><span class="tnum">6</span> <span>Polinomi (Bezuov stav)</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$P(a)=0\iff (x-a)\mid P(x)$$</div>

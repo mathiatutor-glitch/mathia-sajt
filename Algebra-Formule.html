@@ -89,10 +89,40 @@ code{overflow-wrap:break-word}
 <meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
+<style>/* v3 — uskladi sa 'Provera znanja': nav, usko, kompaktno, lep futer */
+.topbar{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 24px;background:rgba(251,246,238,.96);border-bottom:1px solid var(--goldlt)}
+.tb-back{font-weight:700;font-size:.9rem;color:var(--golddk);text-decoration:none;white-space:nowrap}
+.tb-back:hover{color:var(--gold)}
+.tb-brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;letter-spacing:.1em;color:var(--plum);text-decoration:none}
+.tb-nav{display:flex;align-items:center;gap:18px}
+.tb-nav>a{font-weight:600;font-size:.85rem;color:#8a7a74;text-decoration:none;letter-spacing:.03em}
+.tb-nav>a:hover{color:var(--golddk)}
+.lang{position:static!important;top:auto!important;right:auto!important;padding:5px 10px!important;font:700 .76rem Inter,sans-serif!important;border-width:1.5px!important}
+@media(max-width:560px){.tb-brand{display:none}.tb-nav{gap:12px}.tb-nav>a{font-size:.8rem}}
+.page{max-width:720px!important;margin:0 auto;padding:8px 22px 20px}
+.cover{min-height:auto!important;padding:46px 22px 30px!important}
+.seal{width:86px;height:86px;font-size:22px;margin-bottom:14px}
+.cover h1{margin:14px 0 8px;font-size:clamp(28px,5.5vw,40px)}
+.topic{padding:22px 24px;margin:16px 0}
+.topic h2{font-size:24px;margin:0 0 12px}
+.box.zapamti{background:linear-gradient(180deg,#FCF7EC,#FBF6EE)}
+.box.primer .task{text-align:center;font-weight:700;color:var(--plum);margin-bottom:6px;font-size:1.04rem}
+.box.primer .katex-display{margin:.25em 0}
+.foot2{font-size:.9rem;color:#8a7a74;padding:24px 0 40px;border-top:1px solid var(--goldlt);margin-top:28px}
+</style>
 </head>
 <body>
-<select class="lang" id="lang" aria-label="Jezik / Language">
+<header class="topbar">
+  <a class="tb-back" href="predmet-algebra.html">← Algebra</a>
+  <a class="tb-brand" href="index.html">Mathia</a>
+  <nav class="tb-nav">
+    <a href="predmeti.html">Predmeti</a>
+    <a href="Algebra-Zadaci.html">Provera znanja</a>
+    <a href="nalog.html">Moj nalog</a>
+    <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+  </nav>
+</header>
 
 <div class="cover">
 <div class="seal">x ± √</div>
@@ -126,8 +156,8 @@ code{overflow-wrap:break-word}
 
 <section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Nejednačine</span></h2>
 <p data-i18n="e5">Pri množenju ili deljenju negativnim brojem znak nejednakosti se okreće.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} a<b \\[8pt] c<0\ \Rightarrow\ ac>bc \end{gathered}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$-2x<6</div>$$x>-3$$</div></section>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$a \lt b,\ c \lt 0\ \Rightarrow\ ac \gt bc$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$-2x \lt 6$</div>$$x \gt -3$$</div></section>
 
 <section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Polinomi (Bezuova teorema)</span></h2>
 <p data-i18n="e6">Broj a je nula polinoma akko je polinom deljiv sa (x − a).</p>
@@ -146,7 +176,7 @@ code{overflow-wrap:break-word}
 
 <section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Apsolutna vrednost</span></h2>
 <p data-i18n="e9">Rastojanje od nule — zato daje dva slučaja.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} |x|=a\Rightarrow x=\pm a \\[8pt] |x|<a\Rightarrow -a<x<a \end{gathered}$$</div>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} |x|=a\Rightarrow x=\pm a \\[8pt] |x| \lt a\Rightarrow -a \lt x \lt a \end{gathered}$$</div>
 <div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$|x|=5$</div>$$x=\pm5$$</div></section>
 </div>
 <div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
