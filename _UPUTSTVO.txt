@@ -1,0 +1,29 @@
+MATHIA — ŠTA POSTAVITI (upload)
+================================
+
+1) U KORENI (root) FOLDER repozitorijuma — prevuci i ZAMENI (overwrite)
+   sve fajlove iz ovog foldera OSIM foldera "api":
+
+   • Strane predmeta (34): predmet-algebra.html + ostali predmet-*.html
+       - predmet-algebra.html = NOVA premium verzija (kao Analiza 1)
+       - ostali predmeti = novi svetli hero
+   • Algebra materijali: Algebra-Skripta.html, Algebra-Formule.html, Algebra-Zadaci.html
+   • widget.js       (lepši ispis u četu)
+   • middleware.js   (vlasnički pristup zaključanom)
+   • prijava.html    (podrazumevani jezik: srpski)
+   • pristup.html    (vlasnički kolačić)
+   • index.html, uslovi.html, registracija.html   (lektura teksta)
+
+2) U FOLDER "api":
+   • api/chat.js  ->  zameni postojeći api/chat.js   (ekavica za Profesoricu)
+
+3) REDEPLOY:
+   Kad se commit-uje na GitHub, Vercel sam pokrene redeploy.
+   (Bitno za: widget.js, middleware.js, prijava.html, api/chat.js)
+
+4) POSLE DEPLOYA — otvori JEDNOM, u pretraživaču u kom radiš:
+   https://mathia.rs/pristup.html?kljuc=MATHIA-MARINA-2026
+   -> uključuje pun vlasnički pristup; Skripta i Priručnik formula se otvaraju.
+
+Napomena: Provera znanja je otvorena svima; Skripta i Priručnik formula
+su plaćeni (posetioca vode na ponudu — to je tako i treba).

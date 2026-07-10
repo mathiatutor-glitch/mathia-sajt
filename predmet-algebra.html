@@ -537,6 +537,7 @@ window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.de
 <script src="header-mathia.js" defer></script>
 <script>(function(){try{
   var owner=localStorage.getItem('mathia_access')==='full';
+  if(owner){ try{ document.cookie='mathia_owner=MATHIA-MARINA-2026; path=/; max-age=31536000; SameSite=Lax'; }catch(e){} }
   var mu=null;try{mu=JSON.parse(localStorage.getItem('mathia_user')||'null');}catch(e){}
   if(owner||(mu&&(mu.owner||(mu.subjects&&mu.subjects.length)))){
     var b=document.querySelector('.finale .btn-gold');
