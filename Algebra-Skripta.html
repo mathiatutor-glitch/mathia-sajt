@@ -120,6 +120,10 @@ code{overflow-wrap:break-word}
 </style>
 </head>
 <body>
+<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Nunito',system-ui,sans-serif"><a href="predmet-algebra.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Algebra</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Algebra · Skripta</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
+
+
+
 <header class="topbar">
   <a class="tb-back" href="predmet-algebra.html">← Algebra</a>
   <a class="tb-brand" href="index.html">Mathia</a>
@@ -178,6 +182,35 @@ code{overflow-wrap:break-word}
 <section class="topic"><h2><span class="tnum">9</span> <span>Apsolutna vrednost</span></h2>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$|x|=a\Rightarrow x=\pm a$$</div>
 <div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="q">Reši jednačinu $|x|=5$.</div><ul class="opts"><li>$5$</li><li>$-5$</li><li class="correct">$\pm 5$</li><li>$0$</li></ul><div class="ans">Tačno: <b>c)</b> $x=\pm 5$.</div></div></section>
+<section class="topic"><div style="text-align:center;padding:26px 0 6px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:700;color:#432C37;letter-spacing:.02em">Linearna algebra</span><div style="width:64px;height:2px;background:linear-gradient(90deg,transparent,#C6A05C,transparent);margin:12px auto 0"></div></div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span>Množenje matrica</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$(AB)_{ij}=\sum_k a_{ik}b_{kj}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(m×n)(n×p) daje matricu…  a) m×p  b) n×n  c) m×n  d) p×m</div><div class="ans">a) m×p.</div></div></section>
+<section class="topic"><h2><span class="tnum">2</span> <span>Determinanta</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$\begin{vmatrix}1&2\\3&4\end{vmatrix}=\ ?$  a) −2  b) 2  c) 10  d) −10</div><div class="ans">a) −2.</div></div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span>Inverzna matrica</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$A^{-1}\ \text{postoji}\iff \det A\neq0$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Inverzna 2×2 postoji ako…  a) det=0  b) det≠0  c) kvadratna  d) simetrična</div><div class="ans">b) det ≠ 0.</div></div></section>
+<section class="topic"><h2><span class="tnum">4</span> <span>Kramerovo pravilo</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$x_i=\tfrac{\det A_i}{\det A}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Kramer: xᵢ = ?  a) det A  b) det Aᵢ / det A  c) 1/det A  d) Aᵢ</div><div class="ans">b).</div></div></section>
+<section class="topic"><h2><span class="tnum">5</span> <span>Rang</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\operatorname{rang}=\#\text{nezavisnih vrsta}$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Rang je…  a) broj redova  b) broj nezavisnih vrsta  c) det  d) 0</div><div class="ans">b) broj nezavisnih vrsta.</div></div></section>
+<section class="topic"><h2><span class="tnum">6</span> <span>Skalarni proizvod</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\vec a\cdot\vec b=a_1b_1+a_2b_2+a_3b_3$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(1,2,3)·(4,5,6) = ?  a) 32  b) 30  c) 28  d) 15</div><div class="ans">a) 32.</div></div></section>
+<section class="topic"><h2><span class="tnum">7</span> <span>Ortogonalnost</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNO</div>$$\vec a\perp\vec b\iff \vec a\cdot\vec b=0$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">(1,0)·(0,1) = ?  a) 1  b) 0  c) −1  d) 2</div><div class="ans">b) 0 (ortogonalni).</div></div></section>
+<section class="topic"><h2><span class="tnum">8</span> <span>Vektorski proizvod</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$|\vec a\times\vec b|=|\vec a||\vec b|\sin\theta$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">|a×b| = ?  a) |a||b|cosθ  b) |a||b|sinθ  c) a·b  d) 0</div><div class="ans">b) |a||b|sinθ.</div></div></section>
+<section class="topic"><h2><span class="tnum">9</span> <span>Sopstvene vrednosti</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">KLJUČNE FORMULE</div>$$\det(A-\lambda I)=0$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">Sopstvene vrednosti se traže iz…  a) det(A−λI)=0  b) A=0  c) det A=1  d) tr A=0</div><div class="ans">a) det(A−λI)=0.</div></div></section>
+
 </div>
 <div class="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 

@@ -112,6 +112,10 @@ code{overflow-wrap:break-word}
 </style>
 </head>
 <body>
+<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Nunito',system-ui,sans-serif"><a href="predmet-algebra.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Algebra</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Algebra · Priručnik formula</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
+
+
+
 <header class="topbar">
   <a class="tb-back" href="predmet-algebra.html">← Algebra</a>
   <a class="tb-brand" href="index.html">Mathia</a>
@@ -179,6 +183,34 @@ code{overflow-wrap:break-word}
 <p data-i18n="e9">Rastojanje od nule — zato daje dva slučaja.</p>
 <div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} |x|=a\Rightarrow x=\pm a \\[8pt] |x| \lt a\Rightarrow -a \lt x \lt a \end{gathered}$$</div>
 <div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$|x|=5$</div>$$x=\pm5$$</div></section>
+<section class="topic"><div style="text-align:center;padding:26px 0 6px"><span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.9rem;font-weight:700;color:#432C37;letter-spacing:.02em">Linearna algebra</span><div style="width:64px;height:2px;background:linear-gradient(90deg,transparent,#C6A05C,transparent);margin:12px auto 0"></div></div></section>
+<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Matrice — operacije</span></h2>
+<p data-i18n="e1">Sabiranje i množenje skalarom rade se po elementima.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} (A+B)_{ij}=a_{ij}+b_{ij} \\[8pt] (\alpha A)_{ij}=\alpha\,a_{ij} \end{gathered}$$</div></section>
+<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Množenje matrica</span></h2>
+<p data-i18n="e2">Element je skalarni proizvod vrste i kolone; dimenzije: (m×n)(n×p) = m×p.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$(AB)_{ij}=\sum_{k}a_{ik}b_{kj}$$</div></section>
+<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Determinanta</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\det\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q3">det [[1,2],[3,4]] ?</div>$$1\cdot4-2\cdot3=-2$$</div></section>
+<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Inverzna matrica (2×2)</span></h2>
+<p data-i18n="e4">Postoji samo ako je determinanta različita od nule.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$A^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$$</div></section>
+<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Sistemi — Kramerovo pravilo</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$x_i=\frac{\det A_i}{\det A}\quad(\det A\neq0)$$</div></section>
+<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Rang matrice</span></h2>
+<p data-i18n="e6">Broj linearno nezavisnih vrsta (ili kolona).</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\operatorname{rang}(A)=\#\{\text{nezavisne vrste}\}$$</div></section>
+<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Skalarni proizvod</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\vec a\cdot\vec b=a_1b_1+a_2b_2+a_3b_3=|\vec a||\vec b|\cos\theta$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q7">(1,2,3)·(4,5,6) ?</div>$$4+10+18=32$$</div></section>
+<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Vektorski proizvod</span></h2>
+<p data-i18n="e8">Daje vektor normalan na oba; intenzitet je površina paralelograma.</p>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$|\vec a\times\vec b|=|\vec a||\vec b|\sin\theta$$</div></section>
+<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Sopstvene vrednosti</span></h2>
+<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\det(A-\lambda I)=0$$</div>
+<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q9">Sopstvene vrednosti diag(2, 3)?</div>$$\lambda=2,\ \lambda=3$$</div></section>
+
 </div>
 <div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
 
