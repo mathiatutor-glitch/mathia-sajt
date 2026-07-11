@@ -76,6 +76,10 @@ code{overflow-wrap:break-word}
 <!--seo-->
 </head>
 <body>
+<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Nunito',system-ui,sans-serif"><a href="predmet-kompleksna-analiza.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Kompleksna analiza</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Kompleksna analiza · Skripta</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
+
+
+
 <select class="lang" id="lang" aria-label="Jezik / Language">
 <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 
@@ -146,8 +150,8 @@ var I18N={
 kind:{en:"study notes · concise",de:"Skript · kompakt",fr:"fiches · synthèse",es:"apuntes · resumen",it:"appunti · sintesi",ru:"конспект · кратко",pt:"resumo · conciso"},
 name:{en:"Complex analysis",de:"Funktionentheorie",fr:"Analyse complexe",es:"Análisis complejo",it:"Analisi complessa",ru:"Комплексный анализ",pt:"Análise complexa"},
 sub:{en:"Concise, with key formulas and multiple-choice practice.",de:"Kompakt, mit Kernformeln und Multiple-Choice-Aufgaben.",fr:"Synthèse, avec formules clés et QCM.",es:"Resumen, con fórmulas clave y preguntas tipo test.",it:"Sintesi, con formule chiave e quiz a risposta multipla.",ru:"Кратко, с ключевыми формулами и тестовыми заданиями.",pt:"Resumo, com fórmulas-chave e perguntas de escolha múltipla."},
-formule:{en:"KEY FORMULAS",de:"KERNFORMELN",fr:"FORMULES CLÉS",es:"FÓRMULAS CLAVE",it:"FORMULE CHIAVE",ru:"КЛЮЧЕВЫЕ ФОРМУЛЫ",pt:"FÓRMULAS-CHAVE"},
-primer:{en:"EXAMPLE",de:"BEISPIEL",fr:"EXEMPLE",es:"EJEMPLO",it:"ESEMPIO",ru:"ПРИМЕР",pt:"EXEMPLO"}};
+
+};
 document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
 function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l}
 document.getElementById("lang").onchange=function(){apply(this.value)};
