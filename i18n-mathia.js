@@ -809,3 +809,5 @@
   window.addEventListener('mathia:lang',ap);
   try{new MutationObserver(function(){ap();}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});var _dt;new MutationObserver(function(){clearTimeout(_dt);_dt=setTimeout(ap,50);}).observe(document.body||document.documentElement,{childList:true,subtree:true});}catch(e){}
 })();
+
+;(function(){/*jezik-select-sync*/function sy(){try{var l=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();var ss=document.querySelectorAll('+select[aria-label="Jezik"]+');for(var i=0;i<ss.length;i++)ss[i].value=l;}catch(e){}}if(document.readyState!=="loading")sy();else document.addEventListener("DOMContentLoaded",sy);window.addEventListener("mathia:lang",sy);window.addEventListener("storage",function(e){if(!e||e.key==="mathia_lang")sy();});})();
