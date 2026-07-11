@@ -293,6 +293,41 @@ button.feat{font-family:inherit;line-height:1}
 .plan-hero .cover{box-shadow:0 20px 36px -18px rgba(67,44,55,.75)}
 .resume{border-radius:22px}
 </style>
+<style>/* v8 planer — pregledan i nežan raspored učenja */
+.pl-goal{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:linear-gradient(120deg,rgba(198,160,92,.14),transparent),var(--card);border-radius:22px}
+.pl-count{width:98px;height:98px;border-radius:22px;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--plum),var(--plum2));color:#fff;box-shadow:0 18px 34px -18px rgba(67,44,55,.75)}
+.pl-count b{font-family:'Cormorant Garamond',serif;font-size:2.1rem;line-height:1}
+.pl-count span{font-size:.68rem;letter-spacing:.14em;opacity:.85;margin-top:2px}
+.pl-goal .gt{min-width:0;flex:1}
+.pl-goal .g1{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--plum);line-height:1.1}
+.pl-goal .g2{color:var(--muted);font-size:.9rem;margin-top:2px}
+.pl-chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.pl-chip{font-size:.75rem;font-weight:800;color:var(--golddk);background:#fff;border:1px solid var(--goldlt);border-radius:100px;padding:4px 12px;cursor:pointer}
+.pl-chip:hover{background:#f6e6cc}
+.pl-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
+.pl-day{border:1px solid var(--bord);border-radius:14px;min-height:118px;padding:9px;background:#fff}
+.pl-day .dh{font-size:.72rem;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+.pl-day.today{border-color:var(--gold);box-shadow:0 0 0 2px rgba(198,160,92,.25);background:linear-gradient(180deg,#fffdf6,#fbf3e4)}
+.pl-day.today .dh{color:var(--golddk)}
+.pl-blk{font-size:.74rem;font-weight:700;border-radius:9px;padding:6px 8px;margin-bottom:5px;line-height:1.25;color:#4a3410}
+.pl-b1{background:var(--champ);border:1px solid var(--goldlt)}
+.pl-b2{background:#f7e6e3;border:1px solid #ecccc6;color:#8a4f48}
+.pl-b3{background:#ece3ea;border:1px solid #dcc9d5;color:#5C3B49}
+.pl-two{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px;margin-top:16px}
+.pl-todo{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--bord)}
+.pl-todo:last-child{border-bottom:none}
+.pl-chk{width:22px;height:22px;border-radius:7px;border:1.6px solid var(--goldlt);flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.74rem;cursor:pointer;background:#fff}
+.pl-todo.done .pl-chk{background:linear-gradient(150deg,var(--goldlt),var(--gold));border-color:var(--gold)}
+.pl-todo .tt{flex:1;font-weight:700;color:var(--plum2);font-size:.9rem;overflow-wrap:break-word}
+.pl-todo.done .tt{color:var(--muted);text-decoration:line-through}
+.pl-todo .tg{font-size:.75rem;color:var(--golddk);font-weight:800;flex:0 0 auto}
+.pl-mini{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:4px}
+.pl-mini .mc{aspect-ratio:1;border-radius:8px;background:#f2e7d4;display:flex;align-items:center;justify-content:center;font-size:.74rem;color:#b09a72;font-weight:700}
+.pl-mini .mc.has{background:linear-gradient(160deg,#ffe1a3,var(--gold));color:#5a3f10}
+.pl-mini .mc.goal{outline:2px solid var(--rose);color:var(--plum);background:#fff}
+.pl-note{font-size:.8rem;color:var(--muted);margin-top:10px}
+@media(max-width:760px){.pl-two{grid-template-columns:1fr}.pl-week{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#432C37">
@@ -445,18 +480,108 @@ button.feat{font-family:inherit;line-height:1}
       <!-- PLANER -->
       <section class="sec" id="sec-plan">
         <h2 style="font-size:1.8rem;color:var(--plum)">Moj planer</h2>
-        <p style="color:var(--muted);margin:6px 0 18px">Mathia Student Planner — uvek uz tvoj nalog.</p>
+        <p style="color:var(--muted);margin:6px 0 18px">Šta učiš i kada — cilj, nedeljni raspored i zadaci za danas, povezani sa tvojim predmetima.</p>
+
+        <!-- CILJ + ODBROJAVANJE -->
+        <div class="card pl-goal">
+          <div class="pl-count"><b id="pl-count-num">—</b><span>DANA</span></div>
+          <div class="gt">
+            <div class="g1" id="pl-goal-title">Postavi svoj cilj 🌷</div>
+            <div class="g2" id="pl-goal-sub">Npr. „Prijemni za fakultet do juna" — pa ti pravimo raspored do tog roka.</div>
+            <div class="pl-chips" id="pl-goal-chips">
+              <span class="pl-chip">＋ Postavi cilj</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEDELJNI PREGLED -->
+        <h3 class="sectitle">Ova nedelja</h3>
+        <div class="card">
+          <div class="pl-week" id="pl-week"></div>
+          <p class="pl-note">Primer rasporeda — čim postaviš cilj i predmete, planer sam raspoređuje teme do roka.</p>
+        </div>
+
+        <div class="pl-two">
+          <!-- DANAS -->
+          <div class="card">
+            <h4 style="font-size:1.2rem;color:var(--plum);margin-bottom:2px">Danas <span id="pl-today-name" style="color:var(--golddk)"></span></h4>
+            <div class="legend" style="margin-bottom:8px">Zadaci za danas</div>
+            <div id="pl-todos">
+              <div class="pl-todo done"><span class="pl-chk" onclick="this.parentNode.classList.toggle('done')">✓</span><span class="tt">Prijemni: trigonometrijske jednačine (10 zadataka)</span><span class="tg">45 min</span></div>
+              <div class="pl-todo"><span class="pl-chk" onclick="this.parentNode.classList.toggle('done')"></span><span class="tt">Analiza 1: Tejlorov red — teorija + primer</span><span class="tg">40 min</span></div>
+              <div class="pl-todo"><span class="pl-chk" onclick="this.parentNode.classList.toggle('done')"></span><span class="tt">Provera: mini-kviz iz limesa</span><span class="tg">15 min</span></div>
+            </div>
+            <div style="margin-top:13px;display:flex;gap:9px;flex-wrap:wrap">
+              <a class="btn btn-gold btn-sm" href="Mathia-Student-Planner.html">▶ Fokus-tajmer</a>
+              <button class="btn btn-ghost btn-sm" onclick="location.href='Mathia-Student-Planner.html'">＋ Dodaj zadatak</button>
+            </div>
+          </div>
+          <!-- MESEC -->
+          <div class="card">
+            <h4 style="font-size:1.2rem;color:var(--plum);margin-bottom:2px" id="pl-month-name">Mesec</h4>
+            <div class="legend" style="margin-bottom:8px">Dani učenja i rok</div>
+            <div class="pl-mini" id="pl-mini"></div>
+            <div class="pl-note">🟡 dan učenja · <span style="outline:2px solid var(--rose);border-radius:4px;padding:0 5px">rok</span> tvoj cilj</div>
+          </div>
+        </div>
+
+        <!-- PUN PLANER -->
+        <h3 class="sectitle">Pun planer</h3>
         <div class="card plan-hero">
           <div class="cover">📔</div>
           <div class="t">
             <b>Mathia Student Planner</b>
-            <span class="own">✓ U vlasništvu — uključen u Gold paket</span>
+            <span class="own" id="pl-own">✓ Uz tvoj nalog</span>
             <p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p>
             <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
               <a class="btn btn-gold" href="Mathia-Student-Planner.html">Otvori planer →</a>
-              </div>
+            </div>
           </div>
         </div>
+
+        <script>/* Planer — živi delovi (datum, odbrojavanje, mesec). Bezbedno, samostalno. */
+        (function(){
+          try{
+            var DANI=['Ned','Pon','Uto','Sre','Čet','Pet','Sub'];
+            var MESECI=['Januar','Februar','Mart','April','Maj','Jun','Jul','Avgust','Septembar','Oktobar','Novembar','Decembar'];
+            var now=new Date();
+            // primer rasporeda po danima (Pon–Ned); zameniće ga mathia_planer
+            var plan=[
+              [{t:'Merenja · OPA',c:'pl-b3'}],
+              [{t:'Analiza 1 · limesi',c:'pl-b1'},{t:'Prijemni · kvadr.',c:'pl-b2'}],
+              [{t:'Analiza 1 · izvodi',c:'pl-b1'}],
+              [{t:'Prijemni · trig.',c:'pl-b2'},{t:'Analiza 1 · Tejlor',c:'pl-b1'}],
+              [{t:'Merenja · diode',c:'pl-b3'}],
+              [{t:'Probni test',c:'pl-b2'}],
+              []
+            ];
+            var wk=document.getElementById('pl-week');
+            if(wk){ var todayIdx=(now.getDay()+6)%7; var html='';
+              for(var i=0;i<7;i++){ var isT=(i===todayIdx);
+                html+='<div class="pl-day'+(isT?' today':'')+'"><div class="dh">'+['Pon','Uto','Sre','Čet','Pet','Sub','Ned'][i]+(isT?' · danas':'')+'</div>';
+                plan[i].forEach(function(b){ html+='<div class="pl-blk '+b.c+'">'+b.t+'</div>'; });
+                html+='</div>'; }
+              wk.innerHTML=html;
+            }
+            var tn=document.getElementById('pl-today-name'); if(tn) tn.textContent='· '+DANI[now.getDay()];
+            // cilj: primer rok = 15. jun sledeće/ove godine (ako je prošao, sledeća godina)
+            var rok=new Date(now.getFullYear(),5,15); if(rok<now) rok=new Date(now.getFullYear()+1,5,15);
+            var dana=Math.max(0,Math.ceil((rok-now)/86400000));
+            var cn=document.getElementById('pl-count-num'); if(cn) cn.textContent=dana;
+            // mesec: mini-kalendar tekućeg meseca, danas + par primer-dana + rok ako je u mesecu
+            var mm=document.getElementById('pl-mini'), mnm=document.getElementById('pl-month-name');
+            if(mnm) mnm.textContent=MESECI[now.getMonth()]+'.';
+            if(mm){ var dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(); var td=now.getDate(); var mh='';
+              for(var d=1;d<=dim;d++){ var cls='mc';
+                // primer: svaki dan do danas na koji je „bilo učenja" (parni ili blizu danas)
+                if(d<=td && (d%2===0 || d===td)) cls+=' has';
+                if(rok.getMonth()===now.getMonth() && rok.getFullYear()===now.getFullYear() && d===rok.getDate()) cls+=' goal';
+                mh+='<div class="'+cls+'">'+d+'</div>'; }
+              mm.innerHTML=mh;
+            }
+          }catch(e){}
+        })();
+        </script>
       </section>
 
       <!-- STATS -->
