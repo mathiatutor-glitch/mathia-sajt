@@ -513,7 +513,7 @@ button.feat{font-family:inherit;line-height:1}
             </div>
             <div style="margin-top:13px;display:flex;gap:9px;flex-wrap:wrap">
               <a class="btn btn-gold btn-sm" href="Mathia-Student-Planner.html">▶ Fokus-tajmer</a>
-              <button class="btn btn-ghost btn-sm" onclick="location.href='Mathia-Student-Planner.html'">＋ Dodaj zadatak</button>
+              <button class="btn btn-ghost btn-sm" onclick="dodajZadatak()">＋ Dodaj zadatak</button>
             </div>
           </div>
           <!-- MESEC -->
@@ -539,48 +539,77 @@ button.feat{font-family:inherit;line-height:1}
           </div>
         </div>
 
-        <script>/* Planer — živi delovi (datum, odbrojavanje, mesec). Bezbedno, samostalno. */
-        (function(){
+        <script>/* Planer — živi (mathia_planer): cilj, nedelja, danas, mesec. */
+        function _plIsoToday(){ var d=new Date(); return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+        function _plIso(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+        function _plEsc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+        function _plDatum(iso){ try{ var p=(''+iso).split('-'); return p[2]+'. '+p[1]+'. '+p[0]+'.'; }catch(e){ return iso; } }
+        function _plName(k){ if(!k)return ''; try{ if(typeof nazivPredmeta==='function') return nazivPredmeta(k); }catch(e){} return k; }
+        function _plPredmetiIzPretplate(){ try{ var pr=(typeof PROFILE!=='undefined'&&PROFILE&&PROFILE.predmeti)||[]; if(typeof pr==='string'){ try{pr=JSON.parse(pr);}catch(e){ pr=pr.split(',').map(function(s){return s.trim();}).filter(Boolean); } } return Array.isArray(pr)?pr:[]; }catch(e){ return []; } }
+        function planerSave(){
+          if(!sb||!USER){ return Promise.resolve(); }
+          var P=PLANER||{};
+          return sb.from('mathia_planer').upsert({ user_id:USER.id, cilj_naziv:P.cilj_naziv||null, cilj_datum:P.cilj_datum||null, cilj_predmeti:P.cilj_predmeti||[], stavke:P.stavke||[] },{onConflict:'user_id'});
+        }
+        function postaviCilj(){
+          if(!USER){ alert('Prvo se prijavi.'); return; }
+          var naziv=window.prompt('Naziv cilja (npr. „Prijemni FTN"):',(PLANER&&PLANER.cilj_naziv)||''); if(naziv===null)return; naziv=(''+naziv).trim(); if(!naziv)return;
+          var datum=window.prompt('Rok — datum u formatu GGGG-MM-DD (npr. 2026-06-15):',(PLANER&&PLANER.cilj_datum)||''); if(datum===null)return; datum=(''+datum).trim();
+          if(!/^\d{4}-\d{2}-\d{2}$/.test(datum)){ alert('Datum mora biti u formatu GGGG-MM-DD.'); return; }
+          if(!PLANER)PLANER={stavke:[],cilj_predmeti:[]};
+          PLANER.cilj_naziv=naziv; PLANER.cilj_datum=datum;
+          if(!PLANER.cilj_predmeti||!PLANER.cilj_predmeti.length) PLANER.cilj_predmeti=_plPredmetiIzPretplate();
+          planerSave().then(function(r){ if(r&&r.error){ alert('Čuvanje nije uspelo: '+r.error.message); return; } renderPlaner(); }).catch(function(){ alert('Čuvanje cilja nije uspelo.'); });
+        }
+        function dodajZadatak(){
+          if(!USER){ alert('Prvo se prijavi.'); return; }
+          if(!PLANER||!PLANER.cilj_naziv){ postaviCilj(); return; }
+          var tema=window.prompt('Šta učiš danas? (tema):',''); if(tema===null)return; tema=(''+tema).trim(); if(!tema)return;
+          var min=window.prompt('Koliko minuta?','40'); if(min===null)return; min=parseInt(min,10)||0;
+          var pr=PLANER.cilj_predmeti||[]; var predmet=pr.length?pr[0]:'';
+          PLANER.stavke=PLANER.stavke||[]; PLANER.stavke.push({dan:_plIsoToday(),predmet:predmet,tema:tema,min:min,gotovo:false});
+          planerSave().then(function(){ renderPlaner(); });
+        }
+        function togglePlanTask(i){ if(!PLANER||!PLANER.stavke||!PLANER.stavke[i])return; PLANER.stavke[i].gotovo=!PLANER.stavke[i].gotovo; planerSave().then(function(){ renderPlaner(); }); }
+        function renderPlaner(){
           try{
-            var DANI=['Ned','Pon','Uto','Sre','Čet','Pet','Sub'];
-            var MESECI=['Januar','Februar','Mart','April','Maj','Jun','Jul','Avgust','Septembar','Oktobar','Novembar','Decembar'];
-            var now=new Date();
-            // primer rasporeda po danima (Pon–Ned); zameniće ga mathia_planer
-            var plan=[
-              [{t:'Merenja · OPA',c:'pl-b3'}],
-              [{t:'Analiza 1 · limesi',c:'pl-b1'},{t:'Prijemni · kvadr.',c:'pl-b2'}],
-              [{t:'Analiza 1 · izvodi',c:'pl-b1'}],
-              [{t:'Prijemni · trig.',c:'pl-b2'},{t:'Analiza 1 · Tejlor',c:'pl-b1'}],
-              [{t:'Merenja · diode',c:'pl-b3'}],
-              [{t:'Probni test',c:'pl-b2'}],
-              []
-            ];
-            var wk=document.getElementById('pl-week');
-            if(wk){ var todayIdx=(now.getDay()+6)%7; var html='';
-              for(var i=0;i<7;i++){ var isT=(i===todayIdx);
-                html+='<div class="pl-day'+(isT?' today':'')+'"><div class="dh">'+['Pon','Uto','Sre','Čet','Pet','Sub','Ned'][i]+(isT?' · danas':'')+'</div>';
-                plan[i].forEach(function(b){ html+='<div class="pl-blk '+b.c+'">'+b.t+'</div>'; });
+            var DANI=['Ned','Pon','Uto','Sre','Čet','Pet','Sub'], MESECI=['Januar','Februar','Mart','April','Maj','Jun','Jul','Avgust','Septembar','Oktobar','Novembar','Decembar'];
+            var now=new Date(); var P=PLANER||{}; var stavke=Array.isArray(P.stavke)?P.stavke:[];
+            var titleEl=$('pl-goal-title'), subEl=$('pl-goal-sub'), cnt=$('pl-count-num'), chips=$('pl-goal-chips');
+            if(P.cilj_naziv && P.cilj_datum){
+              var rok=new Date(P.cilj_datum+'T00:00:00'); var dana=Math.max(0,Math.ceil((rok-now)/86400000));
+              if(cnt)cnt.textContent=dana; if(titleEl)titleEl.textContent=P.cilj_naziv;
+              if(subEl)subEl.textContent='Rok: '+_plDatum(P.cilj_datum)+' · '+((P.cilj_predmeti&&P.cilj_predmeti.length)?(P.cilj_predmeti.length+' predmeta'):'dodaj predmete');
+              if(chips)chips.innerHTML=(P.cilj_predmeti||[]).map(function(k){return '<span class="pl-chip">'+_plEsc(_plName(k))+'</span>';}).join('')+'<span class="pl-chip" onclick="postaviCilj()">✎ izmeni cilj</span>';
+            } else {
+              if(cnt)cnt.textContent='—'; if(titleEl)titleEl.textContent='Postavi svoj cilj 🌷';
+              if(subEl)subEl.textContent='Npr. „Prijemni za fakultet do juna" — pa ti pravimo raspored do tog roka.';
+              if(chips)chips.innerHTML='<span class="pl-chip" onclick="postaviCilj()">＋ Postavi cilj</span>';
+            }
+            var wk=$('pl-week');
+            if(wk){ var monday=new Date(now); monday.setDate(now.getDate()-((now.getDay()+6)%7)); var lab=['Pon','Uto','Sre','Čet','Pet','Sub','Ned']; var html='';
+              for(var i=0;i<7;i++){ var d=new Date(monday); d.setDate(monday.getDate()+i); var ds=_plIso(d); var isT=(ds===_plIsoToday());
+                html+='<div class="pl-day'+(isT?' today':'')+'"><div class="dh">'+lab[i]+(isT?' · danas':'')+'</div>';
+                stavke.filter(function(s){return s.dan===ds;}).forEach(function(s){ var nm=_plName(s.predmet); html+='<div class="pl-blk pl-b1">'+(nm?('<b>'+_plEsc(nm)+'</b>'+(s.tema?' · ':'')):'')+_plEsc(s.tema||'')+'</div>'; });
                 html+='</div>'; }
               wk.innerHTML=html;
             }
-            var tn=document.getElementById('pl-today-name'); if(tn) tn.textContent='· '+DANI[now.getDay()];
-            // cilj: primer rok = 15. jun sledeće/ove godine (ako je prošao, sledeća godina)
-            var rok=new Date(now.getFullYear(),5,15); if(rok<now) rok=new Date(now.getFullYear()+1,5,15);
-            var dana=Math.max(0,Math.ceil((rok-now)/86400000));
-            var cn=document.getElementById('pl-count-num'); if(cn) cn.textContent=dana;
-            // mesec: mini-kalendar tekućeg meseca, danas + par primer-dana + rok ako je u mesecu
-            var mm=document.getElementById('pl-mini'), mnm=document.getElementById('pl-month-name');
-            if(mnm) mnm.textContent=MESECI[now.getMonth()]+'.';
-            if(mm){ var dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(); var td=now.getDate(); var mh='';
-              for(var d=1;d<=dim;d++){ var cls='mc';
-                // primer: svaki dan do danas na koji je „bilo učenja" (parni ili blizu danas)
-                if(d<=td && (d%2===0 || d===td)) cls+=' has';
-                if(rok.getMonth()===now.getMonth() && rok.getFullYear()===now.getFullYear() && d===rok.getDate()) cls+=' goal';
-                mh+='<div class="'+cls+'">'+d+'</div>'; }
+            var tn=$('pl-today-name'); if(tn)tn.textContent='· '+DANI[now.getDay()];
+            var td=$('pl-todos');
+            if(td){ var today=_plIsoToday(); var idxs=[]; stavke.forEach(function(s,i){ if(s.dan===today)idxs.push(i); });
+              if(idxs.length){ td.innerHTML=idxs.map(function(i){ var s=stavke[i]; var nm=_plName(s.predmet);
+                  return '<div class="pl-todo'+(s.gotovo?' done':'')+'"><span class="pl-chk" onclick="togglePlanTask('+i+')">'+(s.gotovo?'✓':'')+'</span><span class="tt">'+(nm?('<b>'+_plEsc(nm)+':</b> '):'')+_plEsc(s.tema||'')+'</span><span class="tg">'+(s.min?(s.min+' min'):'')+'</span></div>'; }).join('');
+              } else { td.innerHTML='<p style="color:var(--muted);margin:0">Nema zadataka za danas. <a href="javascript:void(0)" onclick="dodajZadatak()" style="color:var(--golddk);font-weight:800">＋ Dodaj zadatak</a></p>'; }
+            }
+            var mm=$('pl-mini'), mnm=$('pl-month-name'); if(mnm)mnm.textContent=MESECI[now.getMonth()]+'.';
+            if(mm){ var dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(); var mprefix=_plIsoToday().slice(0,7); var have={};
+              stavke.forEach(function(s){ if(s.dan&&(''+s.dan).slice(0,7)===mprefix) have[parseInt((''+s.dan).slice(8,10),10)]=1; });
+              var goalDay=(P.cilj_datum&&(''+P.cilj_datum).slice(0,7)===mprefix)?parseInt((''+P.cilj_datum).slice(8,10),10):null;
+              var mh=''; for(var dd=1;dd<=dim;dd++){ var cls='mc'; if(have[dd])cls+=' has'; if(dd===goalDay)cls+=' goal'; mh+='<div class="'+cls+'">'+dd+'</div>'; }
               mm.innerHTML=mh;
             }
           }catch(e){}
-        })();
+        }
         </script>
       </section>
 
@@ -656,7 +685,7 @@ var SB_URL="https://ibhirxltgeyecrjwymai.supabase.co";
 var SB_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
 var sb=null; try{ if(window.supabase) sb=window.supabase.createClient(SB_URL,SB_ANON); }catch(e){}
 
-var USER=null, PROFILE=null, SUBJECTS=[], STEP='email', EMAIL='';
+var USER=null, PROFILE=null, SUBJECTS=[], PLANER=null, STEP='email', EMAIL='';
 var MISLI=[
  'Svaki rešen zadatak je korak bliže cilju — idemo polako, ali sigurno.',
  'Ne moraš da znaš sve odjednom. Dovoljno je da danas naučiš jednu stvar više.',
@@ -740,9 +769,10 @@ async function boot(){
   } else { showLogin(); }
 }
 async function loadData(){
-  PROFILE=null; SUBJECTS=[]; if(!sb||!USER) return;
+  PROFILE=null; SUBJECTS=[]; PLANER=null; if(!sb||!USER) return;
   try{ var pr=await sb.from('mathia_profil').select('*').eq('user_id',USER.id).maybeSingle(); PROFILE=(pr&&pr.data)?pr.data:null; }catch(e){}
   try{ var np=await sb.from('mathia_napredak').select('*').eq('user_id',USER.id).order('azurirano',{ascending:false}); SUBJECTS=(np&&np.data)?np.data:[]; }catch(e){ SUBJECTS=[]; }
+  try{ var pl=await sb.from('mathia_planer').select('*').eq('user_id',USER.id).maybeSingle(); PLANER=(pl&&pl.data)?pl.data:null; }catch(e){ PLANER=null; }
   // Prava pretplata (izvor istine posle plaćanja)
   try{
     var mail=(USER&&USER.email)?USER.email:null;
@@ -789,7 +819,7 @@ function go(sec,btn){ document.querySelectorAll('.sec').forEach(function(x){x.cl
   var el=$('sec-'+sec); if(el)el.classList.add('on');
   document.querySelectorAll('.snav').forEach(function(b){b.classList.remove('act');}); if(btn)btn.classList.add('act');
   $('ptitle').textContent=TITLES[sec]||'';
-  if(sec==='stat')drawStats(); if(sec==='home'||sec==='subj')setTimeout(fillRings,30); window.scrollTo(0,0);
+  if(sec==='stat')drawStats(); if(sec==='home'||sec==='subj')setTimeout(fillRings,30); if(sec==='plan')renderPlaner(); window.scrollTo(0,0);
 }
 function openRes(){ go('mat', document.querySelectorAll('.snav')[2]); }
 function closeRes(){ var s=$('scrim'); if(s)s.classList.remove('on'); }
