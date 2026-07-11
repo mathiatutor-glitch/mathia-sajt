@@ -11,7 +11,7 @@ import {
 } from "../lib/user.js";
 import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 import { sbUser } from "../lib/sbauth.js";
-import { aktivnePretplate } from "../lib/supabase.js";
+import { aktivnePretplate, beleziNapredak } from "../lib/supabase.js";
 
 const LOGIN_MSG = {
   sr: "Zdravo! Da bismo započeli čas, prijavite se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
@@ -312,10 +312,11 @@ export default async function handler(req, res) {
 
     // "site" (vodič na naslovnoj) je otvoren svima; SVI ostali modovi traže prijavu telefonom.
     let uid = null;
+    let sbId = null;   // Supabase auth id (za mathia_napredak)
     if (rmode !== "site") {
       // identitet: prvo Supabase (email) nalog, pa stari telefon-login kao rezerva
       const sb = await sbUser(body.token);
-      if (sb) uid = "sb:" + sb.id;
+      if (sb) { uid = "sb:" + sb.id; sbId = sb.id; }
       else { const phone = await getSessionPhone(req); if (phone) uid = phone; }
       if (!uid && ownerBypass) uid = "owner:test";
       if (!uid) return res.status(200).json({ text: LOGIN_MSG[msgLang], reply: LOGIN_MSG[msgLang], mode: rmode });
@@ -449,6 +450,20 @@ export default async function handler(req, res) {
       .map((b) => b.text)
       .join("\n")
       .trim() || "…";
+
+    // Napredak: zabeleži pitanje u mathia_napredak (prsteni/statistika u nalogu). Best-effort.
+    if (sbId && rmode && rmode !== "site") {
+      try {
+        let tema = null;
+        for (let i = messages.length - 1; i >= 0; i--) {
+          const m = messages[i];
+          if (m && m.role === "user" && typeof m.content === "string") {
+            tema = m.content.replace(/\s+/g, " ").trim().slice(0, 120); break;
+          }
+        }
+        await beleziNapredak(sbId, rmode, tema);
+      } catch (e) {}
+    }
 
     return res.status(200).json({ text, reply: text, mode: rmode, progress });
   } catch (e) {
