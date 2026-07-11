@@ -11,6 +11,7 @@ import {
 } from "../lib/user.js";
 import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 import { sbUser } from "../lib/sbauth.js";
+import { aktivnePretplate } from "../lib/supabase.js";
 
 const LOGIN_MSG = {
   sr: "Zdravo! Da bismo započeli čas, prijavite se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
@@ -332,29 +333,58 @@ export default async function handler(req, res) {
 
       const u = await getUser(uid);
 
-      if (!isSubscribed(u)) {
+      // ——— PRETPLATA: izvor istine je Supabase tabela "pretplate" (isto kao gate.js) ———
+      // Naplata KV polje subscribedUntil postavlja samo ako uspe admin-lookup po emailu;
+      // zato ovde uvek proverimo i tabelu, priznamo aktivnu pretplatu i LENJO sinhronizujemo
+      // rok u KV nalog (da se widget/profil slažu i da se sam „izleči" propušteni upis).
+      let pretplacen = isSubscribed(u);   // KV: admin/test ili već sinhronizovano
+      let pokrivaPredmet = pretplacen;    // KV pretplata ne vezuje predmet → pun pristup
+      if (sbEmail) {
+        try {
+          const rows = await aktivnePretplate(sbEmail);
+          if (rows.length) {
+            let maxIstice = 0;
+            const covered = new Set();
+            for (const r of rows) {
+              const t = r.istice ? Date.parse(r.istice) : (Date.now() + 30 * 24 * 3600 * 1000);
+              if (t > maxIstice) maxIstice = t;
+              for (const p of (Array.isArray(r.predmeti) ? r.predmeti : [])) {
+                String(p).split(",").forEach((x) => {
+                  const id = x.trim();
+                  if (id) { covered.add(id); covered.add(resolveMode(id)); }
+                });
+              }
+            }
+            if (maxIstice > (u.subscribedUntil || 0)) u.subscribedUntil = maxIstice;  // sinhronizacija
+            pretplacen = isSubscribed(u);
+            pokrivaPredmet = covered.has(mode) || covered.has(rmode);
+          }
+        } catch (e) { /* tiho — padamo na KV/probu */ }
+      }
+
+      if (pretplacen) {
+        // Pretplatnik — BEZ ijednog pomena „15 min". Samo proveri da paket pokriva ovaj predmet.
+        if (sbEmail && !pokrivaPredmet) {
+          const LOCKED_MSG = {
+            sr: "Ovaj predmet nije u tvom paketu. Dodaj ga na stranici Nalog (/nalog.html) da nastaviš čas ovde.",
+            en: "This subject isn't in your plan. Add it on the Account page (/nalog.html) to continue the lesson here.",
+            de: "Dieses Fach ist nicht in deinem Paket. Füge es auf der Konto-Seite (/nalog.html) hinzu, um hier fortzufahren.",
+            fr: "Cette matière n'est pas dans ton forfait. Ajoute-la sur la page Compte (/nalog.html) pour continuer ici.",
+            es: "Esta asignatura no está en tu plan. Añádela en la página Cuenta (/nalog.html) para continuar aquí.",
+            it: "Questa materia non è nel tuo piano. Aggiungila nella pagina Account (/nalog.html) per continuare qui.",
+            ru: "Этот предмет не входит в ваш план. Добавьте его на странице Аккаунт (/nalog.html), чтобы продолжить здесь.",
+            pt: "Esta disciplina não está no seu plano. Adicione-a na página Conta (/nalog.html) para continuar aqui.",
+          };
+          await saveUser(u);  // sačuvaj sinhronizovan rok pre izlaska
+          return res.status(200).json({ text: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, reply: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, mode: rmode });
+        }
+        // pun pristup — nastavljamo na gejmifikaciju
+      } else {
+        // ——— PROBA: 15 minuta za sve (vreme kreće od prvog pitanja) ———
         const tnow = computeTrial(u);
         if (tnow.expired) return res.status(200).json({ text: OVER_MSG[msgLang], reply: OVER_MSG[msgLang], mode: rmode });
         if (!u.trialStartedAt) u.trialStartedAt = Date.now();
         u.trialQuestions = (u.trialQuestions || 0) + 1;
-      } else if (rmode !== "site") {
-        const izabrani = u.predmeti || [];
-        const PAKETI_LIMIT = { basic: 1, gold: 2, diamond: 3 };
-        const limit = PAKETI_LIMIT[u.plan] || 1;
-        if (izabrani.length === 0) {
-          const PICK_MSG = {
-            sr: `Zdravo! Pre nego što počnemo, molimo vas da izaberete ${limit === 1 ? "predmet koji" : limit + " predmeta koje"} želite da učite uz vaš ${u.plan || ""} paket. Posetite stranicu Nalog (/nalog.html) i izaberite predmete — zatim se vratite ovde.`,
-            en: `Hello! Before we start, please choose ${limit === 1 ? "the subject you" : limit + " subjects you"} want to study. Go to Account (/nalog.html) and select your subjects — then come back here.`,
-          };
-          return res.status(200).json({ text: PICK_MSG[msgLang] || PICK_MSG.sr, mode: rmode });
-        }
-        if (izabrani.length > 0 && !izabrani.includes(rmode)) {
-          const LOCKED_MSG = {
-            sr: `Ovaj predmet nije obuhvaćen vašim planom. Vaš ${u.plan || ""} paket pokriva ${limit} predmet${limit > 1 ? "a" : ""}. Promenite predmete na stranici Nalog (/nalog.html).`,
-            en: `This subject is not included in your plan. Your ${u.plan || ""} package covers ${limit} subject${limit > 1 ? "s" : ""}. Change subjects on the Account page (/nalog.html).`,
-          };
-          return res.status(200).json({ text: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, mode: rmode });
-        }
       }
 
       // gejmifikacija: zvezdice + niz + bedževi (i za pretplaćene i za probne)
