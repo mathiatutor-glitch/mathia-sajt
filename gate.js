@@ -201,9 +201,9 @@
 
     loadSb(function () {
       status().then(function (st) {
-        if (st === "owner") return;               // vlasnik: pun pristup
+        if (st === "owner") return;               // vlasnik: pun pristup, bez zaštite
+        protect();                                // ZAŠTITA na SVIM sadržajnim stranama (skripta, zadaci, priručnik, klon…)
         if (script) {                             // SKRIPTA
-          protect();
           if (st !== "subscribed") previewLock();
           return;
         }
