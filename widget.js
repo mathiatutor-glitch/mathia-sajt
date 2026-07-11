@@ -453,11 +453,22 @@
     return out;
   }
 
+  function hasFullAccess() {
+    try { return localStorage.getItem("mathia_access") === "full" || !!localStorage.getItem("mathia_ok"); }
+    catch (e) { return false; }
+  }
+  function stripTrial(s) {
+    // ukloni rečenicu koja pominje "15" (probne minute) za korisnike sa punim pristupom
+    try { return String(s).replace(/([.!?…]|^)[^.!?…]*\b15\b[^.!?…]*[.!?…]?\s*$/u, "$1").trim(); }
+    catch (e) { return s; }
+  }
   function greet() {
     msgsEl.innerHTML = "";
     // Ako memorija već učitana i ima poruka — ne prikazuj standardni pozdrav ponovo
     if (MEM_LOADED && history.length > 0) return;
-    addBub("zoi", modeHi(t()));
+    var g = modeHi(t());
+    if (hasFullAccess()) g = stripTrial(g);
+    addBub("zoi", g);
   }
 
   async function initMemory() {
