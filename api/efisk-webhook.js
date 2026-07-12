@@ -21,21 +21,21 @@ export default async function handler(req, res) {
     // 1) sirovo telo (potrebno za tačan HMAC)
     const raw = await readRaw(req);
 
-    // 2) potpis iz hedera
-    const sig = req.headers['x-signature']
-             || req.headers['x-efisk-signature']
-             || req.headers['x-webhook-signature'] || '';
-
-    // 3) izračunaj i uporedi (sha256)
-    const calc = crypto
-      .createHmac('sha256', process.env.EFISK_WEBHOOK_SECRET || '')
-      .update(raw)
-      .digest('hex');
-
-    if (!sig || !safeEq(String(sig).replace(/^sha256=/, ''), calc)) {
-      res.status(401).json({ error: 'Neispravan potpis' });
-      return;
+    // 2) ZAŠTITA: tajna preko query parametra ?key=  (eFiskalizacija DEMO nema potpis),
+    //    ili preko HMAC potpisa u hederu (ako ga provajder šalje).
+    const secret = process.env.EFISK_WEBHOOK_SECRET || '';
+    const qkey = (req.query && (req.query.key || req.query.secret)) || '';
+    let ovlascen = false;
+    if (secret && String(qkey) === secret) {
+      ovlascen = true;                        // query ključ se poklapa (?key=...)
+    } else if (secret) {
+      const sig = req.headers['x-signature'] || req.headers['x-efisk-signature'] || req.headers['x-webhook-signature'] || '';
+      if (sig) {
+        const calc = crypto.createHmac('sha256', secret).update(raw).digest('hex');
+        if (safeEq(String(sig).replace(/^sha256=/, ''), calc)) ovlascen = true;
+      }
     }
+    if (!ovlascen) { res.status(401).json({ error: 'Neispravan ključ' }); return; }
 
     // 4) događaj
     const evt = JSON.parse(raw || '{}');
