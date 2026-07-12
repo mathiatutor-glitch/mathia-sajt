@@ -8,7 +8,7 @@
 <title>Trigonometrija koju možeš da vidiš — MATHIA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
  --paper:#FBF7EF; --paper2:#F5ECDD; --ink:#40323A; --plum:#3E2A34; --plum2:#6A5560;
@@ -144,6 +144,29 @@ table.nv .inf{font-size:1.05rem;color:var(--muted);font-family:var(--sans);font-
 .g-fb{margin-top:16px;min-height:26px;font-weight:800;display:flex;align-items:center;gap:14px}
 .g-good{color:var(--tg)}.g-bad{color:var(--sin)}
 .g-next{padding:9px 16px}
+
+/* ——— fina tipografija + slatka dugmad + efekti ——— */
+:root{--serif:'Fraunces',Georgia,serif}
+*{font-variant-numeric:lining-nums}
+.fbox,.vc .val,table.nv td,.frac,.rad,.deg,.rad2,.al,.g-opt,.g-q,.qopt .ans{font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1,"tnum" 1}
+p.tx{max-width:64ch;text-wrap:pretty}
+h1,h2.sec,.trig-quote{text-wrap:balance}
+.btn{transition:transform .16s ease,box-shadow .16s ease,border-color .16s,background .16s}
+.btn:hover{transform:translateY(-2px)}
+.btn.on:hover{box-shadow:0 16px 30px -14px rgba(177,138,70,.75)}
+.chip{transition:transform .14s,border-color .14s,background .14s}
+.chip:hover{transform:translateY(-1px)}
+.g-opt{transition:transform .15s,border-color .15s,background .15s,box-shadow .15s}
+.g-opt:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(120,80,30,.5)}
+.qopt{transition:transform .14s,border-color .14s,background .14s,box-shadow .14s}
+.qopt:hover{transform:translateX(3px);box-shadow:0 12px 24px -16px rgba(120,80,30,.5)}
+.trig-quote{font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,4.2vw,2.5rem);margin:12px 0 10px;line-height:1.1;
+ background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 30%,#FFF7E2 50%,#E7D2A2 70%,#C6A05C 100%);background-size:220% auto;
+ -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:trigFoil 7s linear infinite}
+@keyframes trigFoil{to{background-position:220% center}}
+.quiz-head h3{position:relative}
+.quiz-head h3::after{content:"";position:absolute;left:0;bottom:-4px;width:34px;height:2px;background:linear-gradient(90deg,var(--gold),var(--goldlt));border-radius:2px}
+@media(prefers-reduced-motion:reduce){.trig-quote{animation:none}}
 </style>
 </head>
 <body>
@@ -286,7 +309,7 @@ table.nv .inf{font-size:1.05rem;color:var(--muted);font-family:var(--sans);font-
 
   <div class="card reveal" style="margin-top:44px;text-align:center;background:linear-gradient(150deg,#fffdf9,var(--champ));border-color:var(--goldlt)">
     <div class="eyebrow" style="justify-content:center">Mathia</div>
-    <p style="font-family:var(--serif);font-size:1.5rem;color:var(--plum);margin:10px 0 6px">„Sada konačno razumem trigonometriju."</p>
+    <p class="trig-quote">„Sada konačno razumem trigonometriju."</p>
     <p class="tx reveal" style="margin:0 auto;max-width:560px">Ovako Mathia objašnjava — vizuelno, strpljivo, do suštine. Želiš ovakvo objašnjenje za svaki predmet, uz profesoricu koja ti je uz rame 24/7?</p>
     <a href="index.html#paketi" class="btn on" style="display:inline-block;margin-top:16px;text-decoration:none;padding:12px 22px">Probaj Mathia besplatno →</a>
   </div>
