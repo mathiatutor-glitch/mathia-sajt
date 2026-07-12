@@ -71,7 +71,7 @@ h1{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:clamp(2.
   <div id="hub">
     <div class="eyebrow">Mathia · Pronađi svoj smer</div>
     <h1>Pronađi svoj smer</h1>
-    <p class="lead">Pronađi svoj smer. Tri kratka, besplatna testa ti pomažu da otkriješ koja škola, koji fakultet i koji način učenja ti najviše odgovaraju.</p>
+    <p class="lead">Kratki, besplatni testovi ti pomažu da otkriješ koja škola, koji fakultet i koji način učenja ti najviše odgovaraju.</p>
     <div class="gold-rule"></div>
     <span class="freebadge">Besplatno · bez registracije</span>
     <div class="cards" id="cards"></div>
@@ -271,8 +271,9 @@ h1{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:clamp(2.
  var cur=null, answers={};
  var cardsBox=$('cards');
  var CARDS=[
-   {ic:'🧭',meta:'7 pitanja · ~2 min',title:'Koja srednja škola je za tebe?',sub:'Za osnovce — otkrij koja srednja škola ti najviše odgovara.',href:'mathia_kviz_srednja.html'},
-   {ic:'🎓',meta:'9 pitanja · ~3 min',title:'Koji fakultet i smer?',sub:'Za srednjoškolce — test sklonosti za izbor fakulteta i smera.',href:'Test-Sklonosti-Fakultet.html'},
+   {ic:'🧭',meta:'~3 min · besplatno',title:'Koja srednja škola je za tebe?',sub:'Za osnovce — otkrij talente i školu koja ti leži.',href:'test-sklonosti.html?nivo=srednja'},
+   {ic:'🏫',meta:'~3 min · besplatno',title:'Viša ili strukovna škola?',sub:'Za maturante koje zanimaju strukovne studije.',href:'test-sklonosti.html?nivo=visa'},
+   {ic:'🎓',meta:'~3 min · besplatno',title:'Koji fakultet je za tebe?',sub:'Za maturante — smer i oblast koja ti odgovara.',href:'test-sklonosti.html?nivo=fakultet'},
    {ic:'🌱',meta:'7 pitanja · ~2 min',title:'Kakav si tip učenika?',sub:'Otkrij svoj stil učenja i uči pametnije.',test:'tip'}
  ];
  CARDS.forEach(function(cd){var d=document.createElement('div');d.className='tcard';
@@ -315,5 +316,8 @@ h1{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:clamp(2.
  $('other').onclick=function(){show('hub');};
 })();
 </script>
+
+<script src="header-mathia.js" defer></script>
+<script src="i18n-mathia.js" defer></script>
 </body>
 </html>
