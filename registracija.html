@@ -237,7 +237,15 @@ document.getElementById('finish').addEventListener('click',function(){
   // upamti izbor da se posle plaćanja poveže sa nalogom
   try{ localStorage.setItem('mathia_reg', JSON.stringify({ name:name, last:last, email:mail, paket:pkgKey, pkgLabel:pkg.label, subjects:selected, plannerAdded:wantsPlanner, created:Date.now() })); }catch(e){}
   var stavke=[{ id: pkgKey, kolicina:1 }];
-  if(wantsPlanner) stavke.push({ id:'PLANER-FAKULTET', kolicina:1 });
+  if(wantsPlanner){
+    var GRP={}; SUBS.forEach(function(x){ GRP[x.t]=x.g; });
+    var gset=selected.map(function(s){ return GRP[s.t]||''; });
+    var planId='PLANER-FAKULTET';
+    if(gset.indexOf('Fakultet')>=0||gset.indexOf('Programiranje')>=0||gset.indexOf('Elektronika i alati')>=0){ planId='PLANER-FAKULTET'; }
+    else if(gset.indexOf('Srednja škola')>=0||gset.indexOf('Priprema za prijemne ispite')>=0){ planId='PLANER-SREDNJA'; }
+    else if(gset.indexOf('Osnovna škola')>=0){ planId='PLANER-OSNOVNA'; }
+    stavke.push({ id:planId, kolicina:1 });
+  }
   var korica='Šampanj'; try{ korica=localStorage.getItem('mathia_korica')||'Šampanj'; }catch(e){}
   var lang='sr'; try{ var _l=localStorage.getItem('mathia_lang'); if(_l) lang=_l.slice(0,2).toLowerCase(); }catch(e){}
   var btn=this; btn.disabled=true; btn.textContent='Pripremam plaćanje…';
