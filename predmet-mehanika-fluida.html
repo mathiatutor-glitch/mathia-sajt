@@ -26,7 +26,7 @@ ul.teme{list-style:none;margin:0;padding:0}
 .tm:before{content:"";position:absolute;left:4px;top:16px;width:9px;height:9px;border-radius:50%;background:linear-gradient(160deg,var(--goldlt),var(--gold))}
 .note{background:linear-gradient(120deg,#fff,var(--champ));border:1px solid var(--goldlt);border-radius:16px;padding:16px 18px;margin-top:22px;color:var(--plum2)}
 .note b{color:var(--golddk)}
-</style>
+.mat{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}@media(max-width:560px){.mat{grid-template-columns:1fr}}.matbtn{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:16px 18px;box-shadow:0 12px 30px -24px rgba(67,44,55,.5);transition:transform .15s,border-color .15s}.matbtn:hover{transform:translateY(-2px);border-color:var(--gold)}.matbtn b{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--plum)}.matbtn span{color:var(--muted);font-size:.85rem;font-weight:700}</style>
 </head>
 <body>
 <div class="wrap">
@@ -46,7 +46,7 @@ ul.teme{list-style:none;margin:0;padding:0}
       <li class="tm">Režim strujanja — Rejnoldsov broj, laminarno i turbulentno</li>
     </ul>
   </div>
-  <div class="note">👩‍🏫 <b>Profesorica</b> objašnjava svaku temu i rešava zadatke — otvori chat u donjem uglu, pošalji zadatak (može i slika) ili pitanje, i rešavate zajedno korak po korak.</div>
+  <h2 class="sect">Materijali</h2><div class="mat"><a class="matbtn" href="skripta-mehanika-fluida.html"><b>Skripta</b><span>Teorija i metode</span></a><a class="matbtn" href="formule-mehanika-fluida.html"><b>Formule</b><span>Sažet pregled</span></a><a class="matbtn" href="zadaci-mehanika-fluida.html"><b>Zadaci</b><span>Rešeni primeri</span></a></div><div class="note">👩‍🏫 <b>Profesorica</b> objašnjava svaku temu i rešava zadatke — otvori chat u donjem uglu, pošalji zadatak (može i slika) ili pitanje, i rešavate zajedno korak po korak.</div>
 </div>
 <script defer src="gate.js" data-subject="fax-mehanika-fluida"></script>
 <script>(function(){var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();var st=document.createElement("script");st.src="https://project-y23je.vercel.app/widget.js?v=9";st.setAttribute("data-api","https://project-y23je.vercel.app/api/chat");st.setAttribute("data-mode","fax-mehanika-fluida");st.setAttribute("data-name","Profesorica");st.setAttribute("data-sub","Mehanika fluida");st.setAttribute("data-lang",L);st.setAttribute("data-hi","Zdravo! Ja sam Profesorica — vodič kroz predmet Mehanika fluida. Pošalji zadatak ili pitanje (može i slika), pa rešavamo zajedno, korak po korak.");(document.body||document.documentElement).appendChild(st);})();</script>
