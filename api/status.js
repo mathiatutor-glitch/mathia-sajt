@@ -5,6 +5,11 @@
 // (OWNER_KEY, default MATHIA-MARINA-2026) ili ADMIN_SECRET-om.
 // ──────────────────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-owner-key');
+  if (req.method === 'OPTIONS') { res.status(204).end(); return; }
+
   const key = (req.query && req.query.key) || req.headers['x-owner-key'] || '';
   const OWNER = process.env.OWNER_KEY || 'MATHIA-MARINA-2026';
   const ADMIN = process.env.ADMIN_SECRET || '';
