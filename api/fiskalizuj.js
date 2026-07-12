@@ -21,8 +21,15 @@ const PAKETI = {
   diamond: { naziv: 'Diamond', cena: 9990, kod: 'MATHIA-DIAMOND', predmeti: 3 }
 };
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') { res.status(405).json({ error: 'Samo POST' }); return; }
+
+  // BEZBEDNOST: legacy/ručni (admin) endpoint — zaključan iza ADMIN_SECRET.
+  // PRAVA naplata ide kroz /api/checkout → /api/raiaccept-callback (proveren potpis banke),
+  // NIKAD ovde. Bez tačnog x-admin-secret hedera vraćamo 403.
+  if (!process.env.ADMIN_SECRET || req.headers['x-admin-secret'] !== process.env.ADMIN_SECRET) {
+    res.status(403).json({ error: 'Zabranjeno' }); return;
+  }
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
@@ -114,4 +121,4 @@ module.exports = async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: 'Greška na serveru', detail: String(e) });
   }
-};
+}

@@ -99,10 +99,12 @@ export default async function handler(req, res) {
       return posalji(res, f, 'approve', 'already processed');
     }
 
-    // (soft) provera iznosa: TotalAmount je u parama
+    // TVRDA provera iznosa: TotalAmount (u parama) mora TAČNO da se poklopi sa porudžbinom.
+    // Ako se ne poklapa — NE aktiviramo pretplatu (potvrdimo prijem UPC-u, za ručnu proveru).
     const ocekivano = Math.round(Number(porudzbina.iznos_rsd) * 100);
     if (String(f.TotalAmount) !== String(ocekivano)) {
-      console.warn('upc-callback: iznos se ne poklapa', { primljeno: f.TotalAmount, ocekivano, OrderID: f.OrderID });
+      console.warn('upc-callback: IZNOS SE NE POKLAPA — NE aktiviram', { primljeno: f.TotalAmount, ocekivano, OrderID: f.OrderID, SD: f.SD });
+      return posalji(res, f, 'approve', 'amount mismatch - manual review');
     }
 
     const { detaljno, predmeti } = porudzbina.stavke;
