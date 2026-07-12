@@ -367,7 +367,7 @@ button.feat{font-family:inherit;line-height:1}
     <h2 id="ltitle">Prijavi se</h2>
     <p class="sub" id="lsub">Dobrodošli nazad.</p>
     <div class="field" id="f-email"><label>E-mail</label><input id="in-mail" type="email" autocomplete="email" placeholder="ti@primer.rs" onkeydown="if(event.key==='Enter')auth()"></div>
-    <div class="field" id="f-code" style="display:none"><label>Kod iz mejla (6 cifara)</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456" onkeydown="if(event.key==='Enter')auth()"></div>
+    <div class="field" id="f-code" style="display:none"><label>Kod iz mejla</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="12345678" onkeydown="if(event.key==='Enter')auth()"></div>
     <div class="field" id="f-name" style="display:none">
       <label>Kako ti je ime? 🌷</label>
       <input id="in-name" type="text" autocomplete="given-name" placeholder="npr. Ana" onkeydown="if(event.key==='Enter')saveName()">
@@ -707,7 +707,7 @@ async function auth(){
       if(r.error){ setMsg(r.error.message||'Greška pri slanju. Pokušaj ponovo.',true); btn.disabled=false; return; }
       EMAIL=em; STEP='code'; $('f-code').style.display='block'; try{$('in-code').focus();}catch(e){}
       btn.textContent='Potvrdi kod →'; btn.disabled=false;
-      setMsg('Poslali smo ti šestocifreni kod na '+em+'. Upiši ga ispod.');
+      setMsg('Poslali smo ti kod na '+em+'. Upiši ga ispod.');
     }catch(e){ setMsg('Greška pri slanju. Pokušaj ponovo.',true); btn.disabled=false; }
   } else {
     var code=(($('in-code').value)||'').trim();

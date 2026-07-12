@@ -2,6 +2,8 @@
    Prevodi tekstualne čvorove koji se TAČNO poklapaju sa srpskim izvorom. Bezbedno: čuva original, vraća na 'sr'. */
 (function(){
   var D = {
+    "Kod iz mejla":{"en": "Code from email", "de": "Code aus der E-Mail", "fr": "Code de l'e-mail", "es": "Código del correo", "it": "Codice dall'email", "ru": "Код из письма", "pt": "Código do email"},
+
     "01 · SMER":{"en": "01 · DIRECTION", "de": "01 · RICHTUNG", "fr": "01 · SENS", "es": "01 · SENTIDO", "it": "01 · VERSO", "ru": "01 · НАПРАВЛЕНИЕ", "pt": "01 · SENTIDO"},
     "02 · RADIJANI":{"en": "02 · RADIANS", "de": "02 · BOGENMASS", "fr": "02 · RADIANS", "es": "02 · RADIANES", "it": "02 · RADIANTI", "ru": "02 · РАДИАНЫ", "pt": "02 · RADIANOS"},
     "02b · UGLOVI":{"en": "02b · ANGLES", "de": "02b · WINKEL", "fr": "02b · ANGLES", "es": "02b · ÁNGULOS", "it": "02b · ANGOLI", "ru": "02b · УГЛЫ", "pt": "02b · ÂNGULOS"},
