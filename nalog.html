@@ -1137,8 +1137,30 @@ function reply(k){var t=(''+k).toLowerCase();
   if(t.indexOf('stat')>=0||t.indexOf('napre')>=0){ if(SUBJECTS.length)return 'Imaš '+SUBJECTS.length+' predmeta u toku, najviše si radila '+cap(SUBJECTS[0].predmet)+'. Samo nastavi — ide ti! 💛'; return 'Čim počneš predmet, ovde ću ti pratiti napredak i bodriti te. 💛'; }
   return 'Tu sam za tebe — pitaj me pojam, traži zadatak ili plan učenja. Idemo zajedno. 💛';
 }
-function ask(k){var lbl={objasni:'Objasni mi pojam',zad:'Daj mi zadatak',plan:'Plan učenja',stat:'Kako napredujem?'}[k]||k; me(lbl); typing(function(){bot(reply(k));});}
-function send(){var i=$('cin');var v=i.value.trim();if(!v)return;me(v);i.value='';typing(function(){bot(reply(v));});}
+/* Profesorica u nalogu — pravi AI preko /api/chat (uz lokalni bot kao rezervu). */
+var CHAT_MSGS=[];
+function chatMode(){ try{ var MP=mojiPredmeti(); if(MP.length&&MP[0].key) return MP[0].key; }catch(e){} return 'site'; }
+async function chatToken(){ try{ var s=await sb.auth.getSession(); return (s&&s.data&&s.data.session)?s.data.session.access_token:null; }catch(e){ return null; } }
+function _fmtBot(t){ t=(''+t).replace(/\n?\[\[PITANJA\]\][\s\S]*$/,''); return esc(t).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>').trim(); }
+function _pitanja(t){ var m=(''+t).match(/\[\[PITANJA\]\]([^\n]*)/); if(!m)return []; return m[1].split('||').map(function(s){return s.trim();}).filter(Boolean).slice(0,3); }
+async function sendText(v){
+  v=(''+v).trim(); if(!v)return;
+  me(v); CHAT_MSGS.push({role:'user',content:v});
+  var m=$('msgs'); var tp=document.createElement('div'); tp.className='typing'; tp.innerHTML='<i></i><i></i><i></i>'; m.appendChild(tp); m.scrollTop=m.scrollHeight;
+  try{
+    var tok=await chatToken();
+    var lang='sr'; try{ lang=localStorage.getItem('mathia_lang')||'sr'; }catch(e){}
+    var r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:chatMode(),lang:lang,token:tok,messages:CHAT_MSGS.slice(-12),userName:(PROFILE&&PROFILE.ime)||firstName()})});
+    var d=await r.json(); var txt=(d&&(d.text||d.reply))||'';
+    if(tp.parentNode)m.removeChild(tp);
+    if(txt){ bot(_fmtBot(txt)); CHAT_MSGS.push({role:'assistant',content:txt});
+      var qs=_pitanja(txt); if(qs.length){ $('chips').innerHTML=qs.map(function(q){return '<button onclick="ask2(this)">'+esc(q)+'</button>';}).join(''); }
+    } else { bot(reply(v)); }
+  }catch(e){ if(tp.parentNode)m.removeChild(tp); bot(reply(v)); }
+}
+function ask2(btn){ sendText(btn.textContent||''); }
+function ask(k){var lbl={objasni:'Objasni mi pojam',zad:'Daj mi zadatak',plan:'Napravi mi plan učenja',stat:'Kako napredujem?'}[k]||k; sendText(lbl);}
+function send(){var i=$('cin');var v=i.value.trim();if(!v)return;i.value='';sendText(v);}
 
 boot();
 </script>
