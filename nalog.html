@@ -703,11 +703,11 @@ async function auth(){
     if(!em || em.indexOf('@')<0){ setMsg('Unesi ispravan e-mail.',true); return; }
     btn.disabled=true; setMsg('Šaljem ti mejl…');
     try{
-      var r=await sb.auth.signInWithOtp({email:em, options:{shouldCreateUser:true, emailRedirectTo:location.origin+location.pathname}});
+      var r=await sb.auth.signInWithOtp({email:em, options:{shouldCreateUser:true}});
       if(r.error){ setMsg(r.error.message||'Greška pri slanju. Pokušaj ponovo.',true); btn.disabled=false; return; }
       EMAIL=em; STEP='code'; $('f-code').style.display='block'; try{$('in-code').focus();}catch(e){}
       btn.textContent='Potvrdi kod →'; btn.disabled=false;
-      setMsg('Poslali smo ti mejl na '+em+'. Klikni link u njemu — ili upiši kod ispod.');
+      setMsg('Poslali smo ti šestocifreni kod na '+em+'. Upiši ga ispod.');
     }catch(e){ setMsg('Greška pri slanju. Pokušaj ponovo.',true); btn.disabled=false; }
   } else {
     var code=(($('in-code').value)||'').trim();
