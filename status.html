@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#432C37">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="MATHIA — status sistema (interno).">
+<title>Status sistema — MATHIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FBF6EE;--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--ok:#4F8A6B;--bad:#C0603F;--warn:#B07A1E}
+*{box-sizing:border-box}body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;background:radial-gradient(1000px 500px at 85% -10%,#FCEFD6,transparent 60%),var(--paper);line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding:34px 20px 80px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font-size:2.2rem;margin:0}
+.eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+.sub{color:var(--muted);margin:4px 0 20px}
+.keybar{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.keybar input{flex:1;min-width:180px;border:1.5px solid var(--bord);border-radius:12px;padding:11px 14px;font:inherit;background:#fff}
+.btn{border:none;border-radius:12px;padding:11px 18px;font:inherit;font-weight:800;cursor:pointer;background:linear-gradient(160deg,var(--goldlt),var(--gold));color:#4a3410}
+.grp{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:6px 18px;margin-bottom:14px}
+.grp h2{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--plum);margin:14px 0 4px}
+.row{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid var(--bord)}
+.row:last-child{border-bottom:none}
+.dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto;background:#d8cdbb}
+.dot.ok{background:var(--ok)}.dot.bad{background:var(--bad)}.dot.warn{background:var(--warn)}
+.row .l{flex:1;font-weight:700;color:var(--plum2)}
+.row .v{font-size:.82rem;font-weight:800;color:var(--muted)}
+.v.ok{color:var(--ok)}.v.bad{color:var(--bad)}.v.warn{color:var(--warn)}
+.msg{margin:10px 0;color:var(--bad);font-weight:700}
+.legend{font-size:.8rem;color:var(--muted);margin-top:8px}
+.summary{background:linear-gradient(120deg,#fff,#F7EAC9);border:1px solid var(--goldlt);border-radius:16px;padding:14px 18px;margin-bottom:18px;font-weight:800;color:var(--plum)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">MATHIA · interno</div>
+  <h1>Status sistema</h1>
+  <p class="sub">Da li su sve integracije povezane. Prikazuje samo da/ne — nikad tajne.</p>
+  <div class="keybar">
+    <input id="key" type="password" placeholder="Vlasnički ključ (OWNER_KEY)">
+    <button class="btn" onclick="load()">Proveri</button>
+  </div>
+  <div id="msg" class="msg"></div>
+  <div id="out"></div>
+  <div class="legend">🟢 podešeno · 🔴 nedostaje · 🟡 test/staging (prebaci na produkciju pre naplate)</div>
+</div>
+<script>
+var GROUPS=[
+ ["AI — Profesorica",{"ANTHROPIC (Opus)":["ai","anthropic"]}],
+ ["Baza — Supabase",{"URL":["baza","url"],"service_key":["baza","service_key"],"anon_key":["baza","anon_key"]}],
+ ["Admin / app",{"ADMIN_EMAILS":["admin","admin_emails"],"ADMIN_SECRET":["admin","admin_secret"],"APP_URL":["admin","app_url"]}],
+ ["Plaćanje — UPC",{"Merchant ID":["placanje_upc","merchant_id"],"Terminal ID":["placanje_upc","terminal_id"],"Privatni ključ":["placanje_upc","private_key"],"UPC sertifikat":["placanje_upc","server_cert"],"Gateway = produkcija":["placanje_upc","produkcija","prod"]}],
+ ["Fiskalizacija — ESIR",{"API ključ":["fiskalizacija_esir","api_key"],"API secret":["fiskalizacija_esir","api_secret"],"Webhook secret":["fiskalizacija_esir","webhook_secret"],"URL = produkcija":["fiskalizacija_esir","produkcija","prod"]}],
+ ["Mejl — Resend",{"API ključ":["mejl_resend","api_key"],"Pošiljalac":["mejl_resend","from"]}],
+ ["Telefon-login (SMS)",{"Infobip ključ":["sms_telefon","infobip_key"],"Infobip sender":["sms_telefon","infobip_sender"],"SESSION_SECRET":["sms_telefon","session_secret"]}],
+ ["Rate-limit / gejmifikacija",{"KV / Upstash":["kv_ratelimit","configured"]}]
+];
+function dig(o,p){try{return p.reduce(function(a,k){return a[k];},o);}catch(e){return undefined;}}
+function load(){
+  var k=document.getElementById('key').value.trim();
+  if(!k){document.getElementById('msg').textContent='Unesi vlasnički ključ.';return;}
+  try{localStorage.setItem('mathia_status_key',k);}catch(e){}
+  document.getElementById('msg').textContent='Proveravam…';
+  fetch('/api/status?key='+encodeURIComponent(k)).then(function(r){
+    if(r.status===403){throw new Error('Pogrešan ključ.');}
+    return r.json();
+  }).then(function(d){
+    document.getElementById('msg').textContent='';
+    var html='',okCount=0,total=0,missing=0;
+    GROUPS.forEach(function(g){
+      html+='<div class="grp"><h2>'+g[0]+'</h2>';
+      Object.keys(g[1]).forEach(function(label){
+        var path=g[1][label];var isProd=path[2]==='prod';
+        var val=dig(d,[path[0],path[1]]);
+        var cls,txt;
+        if(isProd){ cls=val?'ok':'warn'; txt=val?'produkcija':'TEST/staging'; if(!val)missing++; }
+        else { cls=val?'ok':'bad'; txt=val?'podešeno':'nedostaje'; }
+        total++; if(val)okCount++; if(!val&&!isProd)missing++;
+        html+='<div class="row"><span class="dot '+cls+'"></span><span class="l">'+label+'</span><span class="v '+cls+'">'+txt+'</span></div>';
+      });
+      html+='</div>';
+    });
+    var sumCls = missing===0?'ok':'bad';
+    var sum = missing===0 ? '✓ Sve je podešeno za rad.' : ('⚠ Fali/ nije produkcija: '+missing+' stavki — pogledaj crvene/žute ispod.');
+    document.getElementById('out').innerHTML='<div class="summary">'+sum+'</div>'+html;
+  }).catch(function(e){document.getElementById('msg').textContent=e.message||'Greška.';});
+}
+try{var sk=localStorage.getItem('mathia_status_key');if(sk){document.getElementById('key').value=sk;load();}}catch(e){}
+</script>
+</body>
+</html>
