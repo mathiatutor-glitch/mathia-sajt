@@ -178,6 +178,14 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 @keyframes mkAur{to{transform:translate3d(0,28px,0) scale(1.06)}}
 .eyebrow::before{content:"\25C8";margin-right:9px;color:var(--gold);font-size:.82em;vertical-align:1px;opacity:.9}
 @media(prefers-reduced-motion:reduce){body::before{animation:none}}
+
+/* ——— moderni kompaktni odgovori ——— */
+.qopts{display:flex;flex-wrap:wrap;gap:10px}
+.qopt{display:inline-flex;padding:10px 16px;min-width:60px;justify-content:center;border-radius:999px;box-shadow:0 8px 18px -14px rgba(120,80,30,.5)}
+.qopt .kbd{width:22px;height:22px;border-radius:7px;font-size:.74rem}
+.qopt .ans{font-size:1.05rem}
+.g-opts{display:flex;flex-wrap:wrap;gap:10px}
+.g-opt{min-height:auto;padding:13px 18px;min-width:66px;flex:0 0 auto;font-size:1.35rem;border-radius:16px}
 </style>
 </head>
 <body>
@@ -443,9 +451,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
  // ——— tabela ———
  var order=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360];
  var th='<thead><tr><th class="ang">Ugao</th><th class="ang" style="text-align:center;padding-left:8px">rad</th><th class="s colS">sin(α)</th><th class="c colC">cos(α)</th><th class="t colT">tg(α)</th><th class="g colG">ctg(α)</th></tr></thead>';
- function cell(t,cls){return '<td class="'+cls+'">'+(t==='nd'?'<span class="inf">±∞</span>':tok(t))+'</td>';}
+ function infOf(d,fi){var dd=((d%360)+360)%360; if(fi===2){return (Math.abs(dd-90)<1)?'+∞':'−∞';} return (Math.abs(dd-180)<1)?'−∞':'+∞';}
+ function cell(t,cls,d,fi){return '<td class="'+cls+'">'+(t==='nd'?'<span class="inf">'+infOf(d,fi)+'</span>':tok(t))+'</td>';}
  var rws='<tbody>'+order.map(function(d){var e=EX[d%360]||EX[0];var f=RAD[d];var radc=f[1]===1?f[0]:fr(f[0],f[1]);
-   return '<tr data-d="'+d+'"><td class="ang">'+d+'°</td><td class="radc">'+radc+'</td>'+cell(e[0],'colS')+cell(e[1],'colC')+cell(e[2],'colT')+cell(e[3],'colG')+'</tr>';}).join('')+'</tbody>';
+   return '<tr data-d="'+d+'"><td class="ang">'+d+'°</td><td class="radc">'+radc+'</td>'+cell(e[0],'colS',d,0)+cell(e[1],'colC',d,1)+cell(e[2],'colT',d,2)+cell(e[3],'colG',d,3)+'</tr>';}).join('')+'</tbody>';
  $('tbl').innerHTML=th+rws;
  [].forEach.call($('tbl').querySelectorAll('tr[data-d]'),function(tr){tr.onclick=function(){var d=+tr.dataset.d%360;playing=false;playIcon();idx=nearestIdx(d);base=0;angle=d;phase='pause';$('nums').classList.remove('dim');
    [].forEach.call($('tbl').querySelectorAll('tr[data-d]'),function(x){x.style.background='';});tr.style.background='rgba(198,161,98,.13)';
