@@ -761,6 +761,47 @@ section::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:n
 .promo-btn:hover::after{left:135%}
 </style>
 
+<section class="mko-sec">
+<style>
+.mko-sec{padding:40px 0 8px}
+.mko-sec .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mko-cap{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:#B18A46;font-weight:800;text-align:center;margin-bottom:20px}
+.mko-clouds{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:720px){.mko-clouds{grid-template-columns:1fr}}
+.mko-cloud{position:relative;border-radius:30px;padding:30px 30px;text-decoration:none;color:#3E2A34;overflow:hidden;border:1px solid #E7D6B0;box-shadow:0 36px 74px -48px rgba(120,80,30,.55);transition:transform .22s ease,box-shadow .22s ease;display:flex;flex-direction:column}
+.mko-cloud.a{background:radial-gradient(130% 150% at 12% 0%,#FFFDF9 0,#F4ECDA 60%,#EFE4CC 100%)}
+.mko-cloud.b{background:radial-gradient(130% 150% at 88% 0%,#FFFDF9 0,#F1ECDD 58%,#EADFC8 100%)}
+.mko-cloud:hover{transform:translateY(-6px);box-shadow:0 48px 90px -48px rgba(120,80,30,.62)}
+.mko-cloud .mko-shine{position:absolute;top:-45%;right:-18%;width:58%;height:130%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(8deg);opacity:.55;pointer-events:none}
+.mko-badge{width:66px;height:66px;border-radius:20px;background:linear-gradient(160deg,#F6EDD8,#E7D6B0);display:flex;align-items:center;justify-content:center;color:#B18A46;box-shadow:0 12px 26px -12px rgba(150,110,40,.6);margin-bottom:16px}
+.mko-k{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#C6A162;font-weight:800}
+.mko-cloud h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:2.15rem;line-height:1.05;color:#3E2A34;margin:5px 0 9px}
+.mko-cloud p{color:#6A5560;font-size:1.02rem;margin:0 0 20px;max-width:32ch;flex:1}
+.mko-go{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-weight:800;color:#4a3410;background:linear-gradient(160deg,#E7D6B0,#C6A162);border-radius:13px;padding:12px 20px;font-size:.94rem}
+</style>
+<div class="wrap">
+  <div class="mko-cap reveal">Besplatno, bez prijave · odmah</div>
+  <div class="mko-clouds">
+    <a class="mko-cloud a reveal" href="trigonometrija.html">
+      <span class="mko-shine"></span>
+      <div class="mko-badge"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 12l7-3M12 12V3"/></svg></div>
+      <div class="mko-k">Besplatna lekcija</div>
+      <h3>Konačno razumeš trigonometriju</h3>
+      <p>Bez bubanja — pomeriš tačku po kružnici i sve se sklopi.</p>
+      <span class="mko-go">Isprobaj →</span>
+    </a>
+    <a class="mko-cloud b reveal" href="testiraj-se.html">
+      <span class="mko-shine"></span>
+      <div class="mko-badge"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5L12 21l-5-2.3 1-5.5-4-3.9 5.5-.8z"/></svg></div>
+      <div class="mko-k">Besplatan test</div>
+      <h3>Otkrij šta da upišeš</h3>
+      <p>Škola, fakultet, tvoj smer — kratak test i topao, jasan rezultat.</p>
+      <span class="mko-go">Otkrij →</span>
+    </a>
+  </div>
+</div>
+</section>
+
 <section class="pain">
   <div class="wrap">
     <div class="pain-eye reveal"><span class="pe-ln" aria-hidden="true"></span><span class="pe-tx">Ako vam je ovo poznato…</span><span class="pe-ln pe-ln-r" aria-hidden="true"></span></div>

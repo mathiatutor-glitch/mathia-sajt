@@ -21,8 +21,6 @@
     ["index.html", "Početna"],
     ["predmeti.html", "Predmeti"],
     ["prodavnica.html", "Prodavnica"],
-    ["vizuelne-lekcije.html", "Vizuelne lekcije"],
-    ["testiraj-se.html", "Pronađi svoj smer"],
     ["index.html#paketi", "Paketi"],
     ["o-marini.html", "O meni"],
     ["nalog.html", "Moj nalog"]

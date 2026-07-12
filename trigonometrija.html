@@ -118,6 +118,32 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
 .js .reveal{opacity:0;transform:translateY(18px)}
 .reveal.in{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
 @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}}
+table.nv{width:100%;border-collapse:separate;border-spacing:0;min-width:520px}
+table.nv th{font-family:var(--serif);font-size:1.05rem;font-weight:700;padding:14px 8px 12px;text-align:center}
+table.nv th.ang{text-align:left;padding-left:18px;color:var(--gold);font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+table.nv th.s{color:var(--sin)}table.nv th.c{color:var(--cos)}table.nv th.t{color:var(--tg)}table.nv th.g{color:var(--ctg)}
+table.nv td{padding:14px 8px;text-align:center;font-family:var(--serif);font-size:1.3rem;color:var(--plum);border-top:1px solid var(--hair)}
+table.nv td.ang{text-align:left;padding-left:18px;font-weight:800;font-size:1.05rem;font-family:var(--sans);color:var(--plum2)}
+table.nv td.radc{color:var(--plum2);font-size:1.3rem}
+table.nv tbody tr{cursor:pointer;transition:background .15s}
+table.nv tbody tr:hover{background:linear-gradient(90deg,rgba(198,161,98,.11),transparent)}
+table.nv tbody tr:hover td.ang{color:var(--gold)}
+table.nv .colS{background:rgba(182,94,126,.055)}table.nv .colC{background:rgba(76,127,166,.055)}table.nv .colT{background:rgba(94,138,91,.055)}table.nv .colG{background:rgba(181,138,68,.06)}
+table.nv .inf{font-size:1.05rem;color:var(--muted);font-family:var(--sans);font-weight:800}
+.g-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:16px}
+.g-q{font-family:var(--serif);font-size:1.55rem;color:var(--plum)}
+.g-q b{color:var(--gold)}
+.g-sc{font-size:.82rem;font-weight:800;color:var(--muted)}
+.g-sc b{color:var(--plum)}
+.g-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+@media(max-width:560px){.g-opts{grid-template-columns:repeat(2,1fr)}}
+.g-opt{border:1.5px solid var(--bord);background:#fffdf9;border-radius:15px;padding:18px 8px;font-family:var(--serif);font-size:1.45rem;color:var(--plum);cursor:pointer;transition:.15s;min-height:66px;display:flex;align-items:center;justify-content:center}
+.g-opt:hover{border-color:var(--gold2);transform:translateY(-2px)}
+.g-opt.ok{border-color:var(--tg);background:rgba(94,138,91,.1)}
+.g-opt.no{border-color:var(--sin);background:rgba(182,94,126,.09)}
+.g-fb{margin-top:16px;min-height:26px;font-weight:800;display:flex;align-items:center;gap:14px}
+.g-good{color:var(--tg)}.g-bad{color:var(--sin)}
+.g-next{padding:9px 16px}
 </style>
 </head>
 <body>
@@ -229,16 +255,16 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
   <div class="card reveal"><div class="fbox" id="f_ident"></div></div>
 
   <h2 class="sec reveal"><span class="n">06 · TANGENS</span>tg(α)</h2>
-  <p class="tx reveal">Tangens je odnos sinusa i kosinusa; geometrijski je dužina na <span class="hl-tg" style="font-weight:800">uspravnoj tangenti</span> u tački (1, 0). Kad se približavamo 90° ili 270°, vrednost teži +∞ ili −∞, a na tim uglovima <b>nije definisan</b> jer je cos(α) = 0.</p>
+  <p class="tx reveal">Tangens je odnos sinusa i kosinusa; geometrijski je dužina na <span class="hl-tg" style="font-weight:800">uspravnoj tangenti</span> u tački (1, 0). Kad se približavamo 90° ili 270°, vrednost neograničeno raste — teži ka <b>+∞ ili −∞</b> — jer se cos(α) približava nuli.</p>
   <div class="card reveal"><div class="fbox" id="f_tg"></div></div>
 
   <h2 class="sec reveal"><span class="n">07 · KOTANGENS</span>ctg(α)</h2>
-  <p class="tx reveal">Kotangens je recipročan tangensu; geometrijski je dužina na <span class="hl-ctg" style="font-weight:800">vodoravnoj tangenti</span> u tački (0, 1). Na 0°, 180° i 360° <b>nije definisan</b> jer je sin(α) = 0.</p>
+  <p class="tx reveal">Kotangens je recipročan tangensu; geometrijski je dužina na <span class="hl-ctg" style="font-weight:800">vodoravnoj tangenti</span> u tački (0, 1). Na 0°, 180° i 360° vrednost teži ka <b>+∞ ili −∞</b> jer se sin(α) približava nuli.</p>
   <div class="card reveal"><div class="fbox" id="f_ctg"></div></div>
 
   <h2 class="sec reveal"><span class="n">08 · TABELA</span>Karakteristične vrednosti</h2>
   <p class="tx reveal">Klikni bilo koji red — tačka mirno ode na taj ugao.</p>
-  <div class="card reveal" style="padding:8px 12px;overflow-x:auto"><table id="tbl" style="width:100%;border-collapse:collapse;min-width:480px"></table></div>
+  <div class="card reveal" style="padding:8px 12px;overflow-x:auto"><table id="tbl" class="nv"></table></div>
 
   <h2 class="sec reveal"><span class="n">09 · ZNACI</span>Znaci po kvadrantima</h2>
   <p class="tx reveal">Izaberi kvadrant:</p>
@@ -250,7 +276,11 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
   <div class="ctrls" id="fnToggles" style="margin-bottom:14px"></div>
   <div class="card reveal" style="padding:14px"><svg class="csvg" id="graph" viewBox="0 0 900 300" role="img" aria-label="Grafici trigonometrijskih funkcija"></svg></div>
 
-  <h2 class="sec reveal"><span class="n">11 · PROVERI SE</span>Kratak kviz</h2>
+  <h2 class="sec reveal"><span class="n">11 · IZAZOV</span>Pogodi vrednost</h2>
+  <p class="tx reveal">Klikni tačan odgovor — gradi niz i skupljaj poene. Koliko dugo možeš bez greške?</p>
+  <div class="card reveal" id="game"></div>
+
+  <h2 class="sec reveal"><span class="n">12 · PROVERI SE</span>Kratak kviz</h2>
   <p class="tx reveal">Bez prijave — samo proveri da li si razumeo/la.</p>
   <div class="card reveal" id="quiz"></div>
 
@@ -278,14 +308,14 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
  function exAt(deg){var r=Math.round(deg);if(Math.abs(deg-r)>0.5)return null;return EX[((r%360)+360)%360]||null;}
  function dec(x){return Math.abs(x)<1e-4?'0':(Math.round(x*100)/100).toString();}
  function quadTxt(deg){deg=((deg%360)+360)%360;
-   if(Math.abs(deg)<.5||Math.abs(deg-360)<.5)return 'na osi · pozitivan deo x-ose';
-   if(Math.abs(deg-90)<.5)return 'na osi · vrh (y = 1)';
-   if(Math.abs(deg-180)<.5)return 'na osi · negativan deo x-ose';
-   if(Math.abs(deg-270)<.5)return 'na osi · dno (y = −1)';
-   if(deg<90)return 'I kvadrant';
-   if(deg<180)return 'II kvadrant';
-   if(deg<270)return 'III kvadrant';
-   return 'IV kvadrant';}
+   if(Math.abs(deg)<.5||Math.abs(deg-360)<.5)return GT('na osi · pozitivan deo x-ose');
+   if(Math.abs(deg-90)<.5)return GT('na osi · vrh (y = 1)');
+   if(Math.abs(deg-180)<.5)return GT('na osi · negativan deo x-ose');
+   if(Math.abs(deg-270)<.5)return GT('na osi · dno (y = −1)');
+   if(deg<90)return GT('I kvadrant');
+   if(deg<180)return GT('II kvadrant');
+   if(deg<270)return GT('III kvadrant');
+   return GT('IV kvadrant');}
 
  // ——— geometrija ———
  var P=$('P'),rad=$('rad'),arc=$('arc'),arcLbl=$('arcLbl'),cosSeg=$('cosSeg'),sinSeg=$('sinSeg'),dropV=$('dropV'),dropH=$('dropH'),tgSeg=$('tgSeg'),ctgSeg=$('ctgSeg');
@@ -311,8 +341,8 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
    $('deg').textContent=Math.round(deg)+'°'; $('rad2').innerHTML=radHTML(deg); $('quad').textContent=quadTxt(deg);
    setVal('vsin',ex?ex[0]:null,dec(s)); setVal('vcos',ex?ex[1]:null,dec(c));
    var tv=Math.abs(c)<1e-3?null:s/c, cv=Math.abs(s)<1e-3?null:c/s;
-   if(tv===null)$('vtg').innerHTML='<span class="nd">nije definisano · → +∞ / −∞</span>'; else setVal('vtg',ex?ex[2]:null,dec(tv));
-   if(cv===null)$('vctg').innerHTML='<span class="nd">nije definisano · → +∞ / −∞</span>'; else setVal('vctg',ex?ex[3]:null,dec(cv));
+   if(tv===null)$('vtg').innerHTML='<span class="nd">→ +∞ / −∞</span>'; else setVal('vtg',ex?ex[2]:null,dec(tv));
+   if(cv===null)$('vctg').innerHTML='<span class="nd">→ +∞ / −∞</span>'; else setVal('vctg',ex?ex[3]:null,dec(cv));
    markChips(deg);
  }
 
@@ -339,7 +369,7 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
  $('play').onclick=function(){playing=!playing; if(playing){idx=nearestIdx(((angle%360)+360)%360);base=0;angle=D0[idx];phase='pause';t0=now();$('nums').classList.remove('dim');nums(angle);} playIcon();};
  function jump(step){playing=false;playIcon();idx=((nearestIdx(((angle%360)+360)%360)+step)%16+16)%16;base=0;angle=D0[idx];phase='pause';$('nums').classList.remove('dim');geo(angle);nums(angle);}
  $('prev').onclick=function(){jump(-1);}; $('next').onclick=function(){jump(1);};
- $('dir').onclick=function(){dir*=-1;this.textContent='Smer: '+(dir>0?'pozitivan':'negativan');};
+ $('dir').onclick=function(){dir*=-1;this.textContent=(dir>0?GT('Smer: pozitivan'):GT('Smer: negativan'));};
  $('unit').onclick=function(){var r=$('nums').classList.toggle('radfirst');}; // vizuelno oba prikazana
  $('spd').oninput=function(){speed=+this.value;};
  // chips
@@ -378,12 +408,10 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
 
  // ——— tabela ———
  var order=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360];
- var th='<tr style="text-align:left"><th style="padding:10px 12px;font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)">Ugao</th>'+
-   ['rad','sin(α)','cos(α)','tg(α)','ctg(α)'].map(function(x){return '<th style="font-family:var(--sans);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">'+x+'</th>';}).join('')+'</tr>';
- function cell(t){return t==='nd'?'<span style="color:var(--muted);font-size:.8rem">nije def.</span>':'<span style="font-family:var(--serif);font-size:1.15rem">'+tok(t)+'</span>';}
- var rws=order.map(function(d){var e=EX[d%360]||EX[0];var f=RAD[d];var radc=f[1]===1?f[0]:fr(f[0],f[1]);
-   return '<tr data-d="'+d+'" style="border-top:1px solid var(--hair);cursor:pointer"><td style="padding:10px 12px;font-weight:800">'+d+'°</td>'+
-     '<td style="font-family:var(--serif);font-size:1.1rem">'+radc+'</td><td>'+cell(e[0])+'</td><td>'+cell(e[1])+'</td><td>'+cell(e[2])+'</td><td>'+cell(e[3])+'</td></tr>';}).join('');
+ var th='<thead><tr><th class="ang">Ugao</th><th class="ang" style="text-align:center;padding-left:8px">rad</th><th class="s colS">sin(α)</th><th class="c colC">cos(α)</th><th class="t colT">tg(α)</th><th class="g colG">ctg(α)</th></tr></thead>';
+ function cell(t,cls){return '<td class="'+cls+'">'+(t==='nd'?'<span class="inf">±∞</span>':tok(t))+'</td>';}
+ var rws='<tbody>'+order.map(function(d){var e=EX[d%360]||EX[0];var f=RAD[d];var radc=f[1]===1?f[0]:fr(f[0],f[1]);
+   return '<tr data-d="'+d+'"><td class="ang">'+d+'°</td><td class="radc">'+radc+'</td>'+cell(e[0],'colS')+cell(e[1],'colC')+cell(e[2],'colT')+cell(e[3],'colG')+'</tr>';}).join('')+'</tbody>';
  $('tbl').innerHTML=th+rws;
  [].forEach.call($('tbl').querySelectorAll('tr[data-d]'),function(tr){tr.onclick=function(){var d=+tr.dataset.d%360;playing=false;playIcon();idx=nearestIdx(d);base=0;angle=d;phase='pause';$('nums').classList.remove('dim');
    [].forEach.call($('tbl').querySelectorAll('tr[data-d]'),function(x){x.style.background='';});tr.style.background='rgba(198,161,98,.13)';
@@ -421,31 +449,32 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
  buildGraph();
 
  // ——— kviz ———
+ function buildQuiz(){
  var Q=[
   {q:'Koliko radijana ima ugao od 60°?',o:[fr('π','3'),fr('π','6'),fr('2π','3')],c:0,e:'60° = 60/180 · π = π/3.'},
   {q:'U kom kvadrantu je cos(α) negativan, a sin(α) pozitivan?',o:['I','II','III'],c:1,e:'To je II kvadrant (gore levo).'},
   {q:'Koliko je sin(30°)?',o:[fr('1','2'),fr('√3','2'),'1'],c:0,e:'sin(30°) = 1/2.'},
-  {q:'Za koje uglove tg(α) nije definisan?',o:['0°, 180°','90°, 270°','45°, 135°'],c:1,e:'Tamo je cos(α) = 0, pa tg(α) teži +∞ ili −∞.'},
+  {q:'Za koje uglove tg(α) teži ka +∞ ili −∞?',o:['0°, 180°','90°, 270°','45°, 135°'],c:1,e:'Tamo je cos(α) = 0, pa tg(α) teži +∞ ili −∞.'},
   {q:'Koji pozitivan ugao odgovara uglu −60°?',o:['300°','240°','120°'],c:0,e:'−60° + 360° = 300°.'}
  ];
  var KB=['a','b','c','d'],answered=0,correct=0;
- var qh='<div class="quiz-wrap"><div class="quiz-head"><h3>Proveri se</h3><span class="meter" id="qmeter">0 / '+Q.length+'</span></div>';
- Q.forEach(function(it,i){qh+='<div class="qitem"><p class="qq">'+(i+1)+'. '+it.q+'</p><div class="qopts" data-q="'+i+'">'+
+ var qh='<div class="quiz-wrap"><div class="quiz-head"><h3>'+GT('Proveri se')+'</h3><span class="meter" id="qmeter">0 / '+Q.length+'</span></div>';
+ Q.forEach(function(it,i){qh+='<div class="qitem"><p class="qq">'+(i+1)+'. '+GT(it.q)+'</p><div class="qopts" data-q="'+i+'">'+
    it.o.map(function(o,j){return '<button class="qopt" data-j="'+j+'"><span class="kbd">'+KB[j]+'</span><span class="ans">'+o+'</span></button>';}).join('')+
    '</div><div class="qexp" data-e="'+i+'"></div></div>';});
- qh+='<div class="qresult" id="qresult"><div class="sc" id="qsc"></div><div class="msg" id="qmsg"></div><a href="index.html#paketi" class="btn on" style="text-decoration:none;display:inline-block;padding:11px 20px">Želim ovakva objašnjenja — probaj Mathia →</a></div></div>';
+ qh+='<div class="qresult" id="qresult"><div class="sc" id="qsc"></div><div class="msg" id="qmsg"></div><a href="index.html#paketi" class="btn on" style="text-decoration:none;display:inline-block;padding:11px 20px">'+GT('Želim ovakva objašnjenja — probaj Mathia →')+'</a></div></div>';
  $('quiz').innerHTML=qh;
  [].forEach.call($('quiz').querySelectorAll('.qopts'),function(box){var i=+box.dataset.q,done=false;
    [].forEach.call(box.querySelectorAll('.qopt'),function(b){b.onclick=function(){if(done)return;done=true;var ok=(+b.dataset.j===Q[i].c);
      [].forEach.call(box.querySelectorAll('.qopt'),function(x){x.classList.add('lock');if(+x.dataset.j===Q[i].c)x.classList.add('correct');});
      if(!ok)b.classList.add('wrong');
      var ex=$('quiz').querySelector('.qexp[data-e="'+i+'"]');ex.style.display='block';
-     ex.innerHTML=(ok?'<b style="color:var(--tg)">Tačno. </b>':'<b style="color:var(--sin)">Nije tačno. </b>')+Q[i].e;
+     ex.innerHTML=(ok?'<b style="color:var(--tg)">'+GT('Tačno. ')+'</b>':'<b style="color:var(--sin)">'+GT('Nije tačno. ')+'</b>')+GT(Q[i].e);
      answered++;if(ok)correct++;$('qmeter').textContent=answered+' / '+Q.length;
-     if(answered===Q.length){var r=$('qresult');r.style.display='block';$('qsc').textContent=correct+' / '+Q.length+' tačno';
-       $('qmsg').textContent=correct===Q.length?'Savršeno! Trigonometrija ti leži.':(correct>=3?'Odlično — još malo vežbe i tu si.':'Dobar početak — Mathia te vodi do kraja.');}
+     if(answered===Q.length){var r=$('qresult');r.style.display='block';$('qsc').textContent=correct+' / '+Q.length+' '+GT('tačno');
+       $('qmsg').textContent=correct===Q.length?GT('Savršeno! Trigonometrija ti leži.'):(correct>=3?GT('Odlično — još malo vežbe i tu si.'):GT('Dobar početak — Mathia te vodi do kraja.'));}
    };});});
-
+ }
  // mini uglovi
  [].forEach.call(document.querySelectorAll('.ugsvg'),function(sv){var deg=+sv.dataset.deg,vx=46,vy=54,L=40,rad=deg*Math.PI/180;
    if(deg>=360){sv.innerHTML='<circle cx="46" cy="54" r="30" fill="none" stroke="var(--gold)" stroke-width="2.2"/><circle cx="46" cy="54" r="2.6" fill="var(--plum)"/>';return;}
@@ -453,8 +482,77 @@ p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
    var sq=(Math.abs(deg-90)<1)?'<rect x="46" y="42" width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="1.5"/>':'<path d="M '+(vx+aR)+' '+vy+' A '+aR+' '+aR+' 0 '+lg+' 0 '+bx.toFixed(1)+' '+by.toFixed(1)+'" fill="none" stroke="var(--gold)" stroke-width="1.7"/>';
    sv.innerHTML='<line x1="46" y1="54" x2="86" y2="54" stroke="var(--plum)" stroke-width="2.2"/><line x1="46" y1="54" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'" stroke="var(--plum)" stroke-width="2.2"/>'+sq+'<circle cx="46" cy="54" r="2.6" fill="var(--plum)"/>';});
 
+ // ——— IZAZOV: pogodi vrednost ———
+ function LANG(){try{return (localStorage.getItem('mathia_lang')||'sr').slice(0,2).toLowerCase();}catch(e){return 'sr';}}
+ var GTR={
+  'Koliko je':{en:'How much is',de:'Wie viel ist',fr:'Combien fait',es:'¿Cuánto es',it:'Quanto vale',ru:'Сколько равно',pt:'Quanto é'},
+  'Poeni':{en:'Points',de:'Punkte',fr:'Points',es:'Puntos',it:'Punti',ru:'Очки',pt:'Pontos'},
+  'Niz':{en:'Streak',de:'Serie',fr:'Série',es:'Racha',it:'Serie',ru:'Серия',pt:'Sequência'},
+  'Rekord':{en:'Best',de:'Rekord',fr:'Record',es:'Récord',it:'Record',ru:'Рекорд',pt:'Recorde'},
+  'Bravo! +10':{en:'Nice! +10',de:'Super! +10',fr:'Bravo ! +10',es:'¡Bien! +10',it:'Bravo! +10',ru:'Отлично! +10',pt:'Boa! +10'},
+  'Skoro! Tačno je označeno.':{en:'Close! The right one is marked.',de:'Fast! Die richtige ist markiert.',fr:'Presque ! La bonne est indiquée.',es:'¡Casi! La correcta está marcada.',it:'Quasi! Quella giusta è evidenziata.',ru:'Почти! Правильный отмечен.',pt:'Quase! A correta está marcada.'},
+  'Dalje →':{en:'Next →',de:'Weiter →',fr:'Suivant →',es:'Siguiente →',it:'Avanti →',ru:'Дальше →',pt:'Seguinte →'},
+  'Smer: pozitivan':{en:'Direction: positive',de:'Richtung: positiv',fr:'Sens : positif',es:'Sentido: positivo',it:'Verso: positivo',ru:'Направление: положит.',pt:'Sentido: positivo'},
+  'Smer: negativan':{en:'Direction: negative',de:'Richtung: negativ',fr:'Sens : négatif',es:'Sentido: negativo',it:'Verso: negativo',ru:'Направление: отрицат.',pt:'Sentido: negativo'},
+  'I kvadrant':{en:'Quadrant I',de:'I. Quadrant',fr:'Quadrant I',es:'Cuadrante I',it:'Quadrante I',ru:'I квадрант',pt:'Quadrante I'},
+  'II kvadrant':{en:'Quadrant II',de:'II. Quadrant',fr:'Quadrant II',es:'Cuadrante II',it:'Quadrante II',ru:'II квадрант',pt:'Quadrante II'},
+  'III kvadrant':{en:'Quadrant III',de:'III. Quadrant',fr:'Quadrant III',es:'Cuadrante III',it:'Quadrante III',ru:'III квадрант',pt:'Quadrante III'},
+  'IV kvadrant':{en:'Quadrant IV',de:'IV. Quadrant',fr:'Quadrant IV',es:'Cuadrante IV',it:'Quadrante IV',ru:'IV квадрант',pt:'Quadrante IV'},
+  'na osi · pozitivan deo x-ose':{en:'on the axis · positive x-axis',de:'auf der Achse · positive x-Achse',fr:'sur l\'axe · demi-axe x positif',es:'en el eje · semieje x positivo',it:'sull\'asse · semiasse x positivo',ru:'на оси · положит. часть оси x',pt:'no eixo · semieixo x positivo'},
+  'na osi · vrh (y = 1)':{en:'on the axis · top (y = 1)',de:'auf der Achse · oben (y = 1)',fr:'sur l\'axe · sommet (y = 1)',es:'en el eje · arriba (y = 1)',it:'sull\'asse · in alto (y = 1)',ru:'на оси · вершина (y = 1)',pt:'no eixo · topo (y = 1)'},
+  'na osi · negativan deo x-ose':{en:'on the axis · negative x-axis',de:'auf der Achse · negative x-Achse',fr:'sur l\'axe · demi-axe x négatif',es:'en el eje · semieje x negativo',it:'sull\'asse · semiasse x negativo',ru:'на оси · отрицат. часть оси x',pt:'no eixo · semieixo x negativo'},
+  'na osi · dno (y = −1)':{en:'on the axis · bottom (y = −1)',de:'auf der Achse · unten (y = −1)',fr:'sur l\'axe · bas (y = −1)',es:'en el eje · abajo (y = −1)',it:'sull\'asse · in basso (y = −1)',ru:'на оси · низ (y = −1)',pt:'no eixo · fundo (y = −1)'},
+  'Proveri se':{en:'Check yourself',de:'Teste dich',fr:'Teste-toi',es:'Ponte a prueba',it:'Mettiti alla prova',ru:'Проверь себя',pt:'Testa-te'},
+  'Tačno. ':{en:'Correct. ',de:'Richtig. ',fr:'Correct. ',es:'Correcto. ',it:'Giusto. ',ru:'Верно. ',pt:'Correto. '},
+  'Nije tačno. ':{en:'Not quite. ',de:'Nicht ganz. ',fr:'Pas tout à fait. ',es:'No exactamente. ',it:'Non proprio. ',ru:'Не совсем. ',pt:'Não é bem assim. '},
+  'tačno':{en:'correct',de:'richtig',fr:'correct',es:'correctas',it:'giuste',ru:'верно',pt:'certas'},
+  'Želim ovakva objašnjenja — probaj Mathia →':{en:'I want explanations like this — try Mathia →',de:'Ich will solche Erklärungen — probier Mathia →',fr:'Je veux des explications comme ça — essaie Mathia →',es:'Quiero explicaciones así — prueba Mathia →',it:'Voglio spiegazioni così — prova Mathia →',ru:'Хочу такие объяснения — попробуй Mathia →',pt:'Quero explicações assim — experimenta Mathia →'},
+  'Savršeno! Trigonometrija ti leži.':{en:'Perfect! Trigonometry suits you.',de:'Perfekt! Trigonometrie liegt dir.',fr:'Parfait ! La trigonométrie te va bien.',es:'¡Perfecto! La trigonometría se te da.',it:'Perfetto! La trigonometria fa per te.',ru:'Отлично! Тригонометрия тебе даётся.',pt:'Perfeito! A trigonometria dá-se contigo.'},
+  'Odlično — još malo vežbe i tu si.':{en:'Great — a little more practice and you\'re there.',de:'Super — noch etwas Übung und du hast es.',fr:'Super — encore un peu d\'entraînement et c\'est bon.',es:'Genial — un poco más de práctica y lo tienes.',it:'Ottimo — ancora un po\' di pratica e ci sei.',ru:'Отлично — ещё немного практики и всё получится.',pt:'Ótimo — mais um pouco de prática e chegas lá.'},
+  'Dobar početak — Mathia te vodi do kraja.':{en:'Good start — Mathia takes you the rest of the way.',de:'Guter Anfang — Mathia bringt dich ans Ziel.',fr:'Bon début — Mathia t\'accompagne jusqu\'au bout.',es:'Buen comienzo — Mathia te lleva hasta el final.',it:'Buon inizio — Mathia ti porta fino in fondo.',ru:'Хорошее начало — Mathia доведёт до конца.',pt:'Bom começo — a Mathia leva-te até ao fim.'},
+  'Koliko radijana ima ugao od 60°?':{en:'How many radians is a 60° angle?',de:'Wie viele Bogenmaß hat ein 60°-Winkel?',fr:'Combien de radians fait un angle de 60° ?',es:'¿Cuántos radianes tiene un ángulo de 60°?',it:'Quanti radianti ha un angolo di 60°?',ru:'Сколько радиан в угле 60°?',pt:'Quantos radianos tem um ângulo de 60°?'},
+  'U kom kvadrantu je cos(α) negativan, a sin(α) pozitivan?':{en:'In which quadrant is cos(α) negative and sin(α) positive?',de:'In welchem Quadranten ist cos(α) negativ und sin(α) positiv?',fr:'Dans quel quadrant cos(α) est négatif et sin(α) positif ?',es:'¿En qué cuadrante es cos(α) negativo y sin(α) positivo?',it:'In quale quadrante cos(α) è negativo e sin(α) positivo?',ru:'В каком квадранте cos(α) отрицателен, а sin(α) положителен?',pt:'Em que quadrante é cos(α) negativo e sin(α) positivo?'},
+  'Koliko je sin(30°)?':{en:'What is sin(30°)?',de:'Was ist sin(30°)?',fr:'Combien fait sin(30°) ?',es:'¿Cuánto es sin(30°)?',it:'Quanto vale sin(30°)?',ru:'Чему равен sin(30°)?',pt:'Quanto é sin(30°)?'},
+  'Za koje uglove tg(α) teži ka +∞ ili −∞?':{en:'For which angles does tg(α) tend to +∞ or −∞?',de:'Für welche Winkel strebt tg(α) gegen +∞ oder −∞?',fr:'Pour quels angles tg(α) tend vers +∞ ou −∞ ?',es:'¿Para qué ángulos tg(α) tiende a +∞ o −∞?',it:'Per quali angoli tg(α) tende a +∞ o −∞?',ru:'При каких углах tg(α) стремится к +∞ или −∞?',pt:'Para que ângulos tg(α) tende para +∞ ou −∞?'},
+  'Koji pozitivan ugao odgovara uglu −60°?':{en:'Which positive angle equals −60°?',de:'Welcher positive Winkel entspricht −60°?',fr:'Quel angle positif correspond à −60° ?',es:'¿Qué ángulo positivo corresponde a −60°?',it:'Quale angolo positivo corrisponde a −60°?',ru:'Какой положительный угол соответствует −60°?',pt:'Que ângulo positivo corresponde a −60°?'},
+  '60° = 60/180 · π = π/3.':{en:'60° = 60/180 · π = π/3.',de:'60° = 60/180 · π = π/3.',fr:'60° = 60/180 · π = π/3.',es:'60° = 60/180 · π = π/3.',it:'60° = 60/180 · π = π/3.',ru:'60° = 60/180 · π = π/3.',pt:'60° = 60/180 · π = π/3.'},
+  'To je II kvadrant (gore levo).':{en:'That is Quadrant II (top left).',de:'Das ist der II. Quadrant (oben links).',fr:'C\'est le quadrant II (en haut à gauche).',es:'Es el cuadrante II (arriba a la izquierda).',it:'È il quadrante II (in alto a sinistra).',ru:'Это II квадрант (вверху слева).',pt:'É o quadrante II (canto superior esquerdo).'},
+  'sin(30°) = 1/2.':{en:'sin(30°) = 1/2.',de:'sin(30°) = 1/2.',fr:'sin(30°) = 1/2.',es:'sin(30°) = 1/2.',it:'sin(30°) = 1/2.',ru:'sin(30°) = 1/2.',pt:'sin(30°) = 1/2.'},
+  'Tamo je cos(α) = 0, pa tg(α) teži +∞ ili −∞.':{en:'There cos(α) = 0, so tg(α) tends to +∞ or −∞.',de:'Dort ist cos(α) = 0, daher strebt tg(α) gegen +∞ oder −∞.',fr:'Là cos(α) = 0, donc tg(α) tend vers +∞ ou −∞.',es:'Allí cos(α) = 0, así que tg(α) tiende a +∞ o −∞.',it:'Lì cos(α) = 0, quindi tg(α) tende a +∞ o −∞.',ru:'Там cos(α) = 0, поэтому tg(α) стремится к +∞ или −∞.',pt:'Aí cos(α) = 0, então tg(α) tende para +∞ ou −∞.'},
+  '−60° + 360° = 300°.':{en:'−60° + 360° = 300°.',de:'−60° + 360° = 300°.',fr:'−60° + 360° = 300°.',es:'−60° + 360° = 300°.',it:'−60° + 360° = 300°.',ru:'−60° + 360° = 300°.',pt:'−60° + 360° = 300°.'}
+ };
+ function GT(x){var l=LANG();if(l==='sr')return x;var e=GTR[x];return e&&e[l]?e[l]:x;}
+ var gScore=0,gStreak=0,gBest=0; try{gBest=+localStorage.getItem('mathia_trig_best')||0;}catch(e){}
+ var gA=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330], gFns=[['sin',0],['cos',1],['tg',2],['ctg',3]];
+ var gWrap=$('game'), gCur=null;
+ function gk(v){return JSON.stringify(v);}
+ function newChallenge(){
+   var a,fn,val,tr=0;
+   do{ a=gA[Math.floor(Math.random()*gA.length)]; fn=gFns[Math.floor(Math.random()*4)]; val=(EX[a%360]||EX[0])[fn[1]]; tr++; }while(val==='nd'&&tr<50);
+   gCur={a:a,fn:fn,val:val};
+   var opts=[val], pool=[], seen={}; seen[gk(val)]=1;
+   gA.forEach(function(x){ gFns.forEach(function(g){ var v=(EX[x%360]||EX[0])[g[1]]; if(v!=='nd')pool.push(v); }); });
+   var guard=0;
+   while(opts.length<4 && guard<300){ guard++; var c=pool[Math.floor(Math.random()*pool.length)]; if(c&&!seen[gk(c)]){seen[gk(c)]=1;opts.push(c);} }
+   for(var i=opts.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t2=opts[i];opts[i]=opts[j];opts[j]=t2;}
+   gWrap.innerHTML='<div class="g-top"><div class="g-q">'+GT('Koliko je')+' <b>'+fn[0]+'('+a+'°)</b>?</div>'+
+     '<div class="g-sc">'+GT('Poeni')+': <b>'+gScore+'</b> · '+GT('Niz')+': <b>'+gStreak+'</b> · '+GT('Rekord')+': <b>'+gBest+'</b></div></div>'+
+     '<div class="g-opts">'+opts.map(function(o,i){return '<button class="g-opt" data-i="'+i+'">'+tok(o)+'</button>';}).join('')+'</div><div class="g-fb" id="gfb"></div>';
+   gCur.opts=opts;
+   [].forEach.call(gWrap.querySelectorAll('.g-opt'),function(b){b.onclick=function(){var chosen=opts[+b.dataset.i],ok=(gk(chosen)===gk(val));
+     [].forEach.call(gWrap.querySelectorAll('.g-opt'),function(x){x.disabled=true; if(gk(opts[+x.dataset.i])===gk(val))x.classList.add('ok');});
+     if(ok){gScore+=10;gStreak++; if(gStreak>gBest){gBest=gStreak; try{localStorage.setItem('mathia_trig_best',gBest);}catch(e){}} $('gfb').innerHTML='<span class="g-good">'+GT('Bravo! +10')+'</span>'; setTimeout(newChallenge,950);}
+     else{gStreak=0; b.classList.add('no'); $('gfb').innerHTML='<span class="g-bad">'+GT('Skoro! Tačno je označeno.')+'</span><button class="btn g-next">'+GT('Dalje →')+'</button>'; gWrap.querySelector('.g-next').onclick=newChallenge;}
+   };});
+ }
+ newChallenge();
+ buildQuiz();
+ function applyLangTrig(){ newChallenge(); buildQuiz(); nums(angle); var db=$('dir'); if(db)db.textContent=(dir>0?GT('Smer: pozitivan'):GT('Smer: negativan')); }
+ window.addEventListener('mathia:lang',applyLangTrig);
+ window.addEventListener('storage',function(e){ if(!e||e.key==='mathia_lang')applyLangTrig(); });
+
  // start
- geo(0); nums(0); markChips(0); playIcon(); loop();
+ geo(0); nums(0); markChips(0); playIcon(); try{$('dir').textContent=(dir>0?GT('Smer: pozitivan'):GT('Smer: negativan'));}catch(e){} loop();
 })();
 </script>
 <script>(function(){var els=document.querySelectorAll('.reveal');
