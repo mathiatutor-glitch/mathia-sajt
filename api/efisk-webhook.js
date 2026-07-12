@@ -12,9 +12,9 @@
 //  (npr. x-signature / x-efisk-signature). Dole pokrivamo oba uobičajena.
 // ============================================================================
 
-const crypto = require('crypto');
+import crypto from 'node:crypto';
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') { res.status(405).end(); return; }
 
   try {
@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: 'Greška na serveru' });
   }
-};
+}
 
 function readRaw(req) {
   return new Promise((resolve) => {
