@@ -66,6 +66,17 @@ h1{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:clamp(2.
 *{font-variant-numeric:lining-nums}
 h1,h2,h3{text-wrap:balance}
 p,.lead{text-wrap:pretty}
+
+/* ——— dizajnerski potpis: aurora + ◈ motiv ——— */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ background:
+  radial-gradient(38% 44% at 16% 20%,rgba(198,160,92,.16),transparent 70%),
+  radial-gradient(42% 50% at 86% 14%,rgba(182,94,126,.10),transparent 72%),
+  radial-gradient(48% 56% at 70% 90%,rgba(76,127,166,.09),transparent 72%);
+ animation:mkAur 22s ease-in-out infinite alternate}
+@keyframes mkAur{to{transform:translate3d(0,28px,0) scale(1.06)}}
+.eyebrow::before{content:"\25C8";margin-right:9px;color:var(--gold);font-size:.82em;vertical-align:1px;opacity:.9}
+@media(prefers-reduced-motion:reduce){body::before{animation:none}}
 </style>
 </head>
 <body>

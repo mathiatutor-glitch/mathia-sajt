@@ -60,6 +60,11 @@
     '.mh-backfab{position:fixed;left:16px;bottom:16px;z-index:8999;display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(198,160,92,.55);color:#9C7838;background:rgba(255,253,248,.94);backdrop-filter:blur(6px);border-radius:100px;padding:9px 15px;font-family:Nunito,sans-serif;font-weight:800;font-size:.76rem;text-decoration:none;box-shadow:0 14px 30px -14px rgba(120,70,80,.55)}' +
     '.mh-backfab:hover{border-color:#C6A05C;background:#fff}' +
     '@keyframes mhSlide{to{background-position:-220% 0}}@keyframes mhFoil{to{background-position:230% center}}' +
+    /* ——— site-wide dizajnerski potpis (prefinjeni detalji na svakoj strani) ——— */
+    '::selection{background:rgba(198,160,92,.28);color:#3E2A34}' +
+    'html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}' +
+    '::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-thumb{background:linear-gradient(#D8B871,#9C7838);border-radius:10px;border:3px solid rgba(251,246,238,.92)}::-webkit-scrollbar-track{background:transparent}' +
+    'a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #C6A05C;outline-offset:2px;border-radius:6px}' +
     '@media(prefers-reduced-motion:reduce){#mhead::before,#mhead .bmark{animation:none}.mh-panel{transition:none}}';
   var st = document.createElement("style");
   st.textContent = css;
