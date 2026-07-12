@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3E2A34">
+<meta name="description" content="Testiraj se za šta si — besplatni testovi sklonosti i usmerenja. Pronađi svoj smer: koja srednja škola, koji fakultet, kakav si tip učenika. Bez registracije.">
+<title>Pronađi svoj smer — MATHIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FBF6EE;--paper2:#F4EADB;--ink:#3A2A32;--plum:#3E2A34;--plum2:#5C3B49;--gold:#B4893F;--gold2:#C6A05C;--goldlt:#E7D2A2;--champ:#F7EAC9;--muted:#8B7680;--bord:#E7D8C2;--card:#FFFDF8;--line:#EADFC9;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Nunito',system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.62;background:radial-gradient(1200px 620px at 82% -8%,#FCEFD6 0,transparent 58%),radial-gradient(900px 500px at 8% 108%,#F3E7CF 0,transparent 55%),var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.wrap{max-width:920px;margin:0 auto;padding:26px 20px 90px}
+a.back{display:inline-block;color:var(--gold);font-weight:800;text-decoration:none;font-size:.82rem;margin-bottom:8px}
+.eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:800}
+h1{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:clamp(2.1rem,5.5vw,3.3rem);line-height:1.03;margin:.12em 0 .16em}
+.lead{color:var(--muted);max-width:620px;font-size:1.02rem;margin:0}
+.gold-rule{width:66px;height:2px;background:linear-gradient(90deg,var(--gold),var(--goldlt));border-radius:2px;margin:20px 0 26px}
+/* kompas kartice */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.cards{grid-template-columns:1fr}}
+.tcard{background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:24px 22px;box-shadow:0 26px 60px -46px rgba(80,52,20,.7);display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:.18s;position:relative;overflow:hidden}
+.tcard:hover{transform:translateY(-3px);border-color:var(--gold)}
+.tcard .ic{width:52px;height:52px;border-radius:15px;background:linear-gradient(160deg,var(--champ),var(--goldlt));display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:6px}
+.tcard h3{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:1.5rem;margin:0}
+.tcard p{color:var(--muted);font-size:.9rem;margin:0;flex:1}
+.tcard .go{color:var(--gold);font-weight:800;font-size:.86rem;margin-top:8px}
+.tcard .meta{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gold2)}
+.freebadge{display:inline-block;background:linear-gradient(160deg,var(--goldlt),var(--gold2));color:#4a3410;font-weight:800;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:5px 12px;margin-bottom:18px}
+/* test view */
+.hidden{display:none}
+.qhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.qhead h2{font-family:var(--serif);color:var(--plum);font-size:1.7rem;margin:0}
+.prog{height:7px;background:var(--line);border-radius:999px;overflow:hidden;margin:10px 0 20px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .3s}
+.qcard{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:18px 20px;margin-bottom:14px;box-shadow:0 18px 44px -42px rgba(80,52,20,.7)}
+.qcard .qq{font-weight:800;color:var(--plum);margin:0 0 12px;font-size:1.05rem}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;border:1.5px solid var(--bord);background:#fffdf8;border-radius:13px;padding:12px 14px;font:inherit;font-weight:600;color:var(--plum2);cursor:pointer;transition:.14s}
+.opt:hover{border-color:var(--gold2)}
+.opt.sel{border-color:var(--gold);background:linear-gradient(160deg,#fffdf8,var(--champ));color:var(--plum);font-weight:800}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.btn{border:1px solid var(--bord);background:#fffdf8;color:var(--plum);border-radius:12px;padding:11px 18px;font:inherit;font-weight:800;cursor:pointer;transition:.15s}
+.btn:hover{border-color:var(--gold)}
+.btn.gold{background:linear-gradient(160deg,var(--goldlt),var(--gold2));border-color:var(--gold);color:#4a3410}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+/* result */
+.result{background:linear-gradient(150deg,#fffdf8,var(--champ));border:1.4px solid var(--goldlt);border-radius:24px;padding:30px 26px;text-align:center;box-shadow:0 40px 80px -54px rgba(120,80,30,.6)}
+.result .rk{font-size:.74rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.result h2{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:2.1rem;margin:6px 0 4px}
+.result .desc{color:var(--plum2);max-width:560px;margin:8px auto 0}
+.reco{background:#fffdf8;border:1px solid var(--bord);border-radius:16px;padding:14px 18px;margin:20px auto 0;max-width:560px;text-align:left}
+.reco b{color:var(--gold)}
+.reco .subs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.reco a{text-decoration:none;background:var(--paper);border:1px solid var(--bord);border-radius:999px;padding:6px 13px;font-weight:800;font-size:.82rem;color:var(--plum)}
+.reco a:hover{border-color:var(--gold)}
+.bars{max-width:560px;margin:18px auto 0;text-align:left}
+.bar{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:.82rem;font-weight:800;color:var(--plum2)}
+.bar .track{flex:1;height:9px;background:var(--line);border-radius:999px;overflow:hidden}
+.bar .fill{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:999px}
+.foot-note{font-size:.78rem;color:var(--muted);margin-top:22px;text-align:center;font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← Mathia</a>
+  <div id="hub">
+    <div class="eyebrow">Mathia · Pronađi svoj smer</div>
+    <h1>Pronađi svoj smer</h1>
+    <p class="lead">Pronađi svoj smer. Tri kratka, besplatna testa ti pomažu da otkriješ koja škola, koji fakultet i koji način učenja ti najviše odgovaraju.</p>
+    <div class="gold-rule"></div>
+    <span class="freebadge">Besplatno · bez registracije</span>
+    <div class="cards" id="cards"></div>
+    <p class="foot-note">Rezultat je smernica, ne presuda — služi da lakše razmišljaš o svom putu. 💛</p>
+  </div>
+
+  <div id="test" class="hidden">
+    <a class="back" href="#" id="toHub">← Svi testovi</a>
+    <div class="qhead"><h2 id="tTitle"></h2><span class="meta" id="tCount" style="font-weight:800;color:var(--gold2)"></span></div>
+    <div class="prog"><i id="prog"></i></div>
+    <div id="questions"></div>
+    <div class="btnrow"><button class="btn gold" id="seeRes" disabled>Vidi rezultat →</button></div>
+  </div>
+
+  <div id="resultView" class="hidden">
+    <a class="back" href="#" id="toHub2">← Svi testovi</a>
+    <div class="result" id="resultBox"></div>
+    <div class="btnrow" style="justify-content:center;margin-top:16px"><button class="btn" id="again">↻ Uradi ponovo</button><button class="btn gold" id="other">Drugi test →</button></div>
+  </div>
+</div>
+<script>
+(function(){
+ var $=function(i){return document.getElementById(i);};
+ // ——— sadržaj testova ———
+ var W=function(o){return o;};
+ var TESTS={
+  sklonosti:{
+   title:"Test sklonosti", sub:"Za osnovce — koja srednja škola ti odgovara?", ic:"🧭", meta:"7 pitanja · ~2 min",
+   cats:{TEH:"Tehnika i IT",PRIR:"Prirodne nauke i medicina",DRU:"Društveno-jezički",EKO:"Ekonomija i biznis",UMET:"Umetnost i dizajn"},
+   qs:[
+    {q:"Šta bi radije radio/la u slobodno vreme?",a:[
+      {t:"Sklapam i rastavljam uređaje, pravim nešto",w:{TEH:2}},
+      {t:"Posmatram prirodu, eksperimentišem, brinem o drugima",w:{PRIR:2}},
+      {t:"Čitam, pišem, učim jezike, debatujem",w:{DRU:2}},
+      {t:"Organizujem, vodim računa o novcu, prodajem",w:{EKO:2}},
+      {t:"Crtam, sviram, dizajniram",w:{UMET:2}}]},
+    {q:"Koji predmet ti ide najlakše?",a:[
+      {t:"Matematika, fizika, tehničko",w:{TEH:2}},
+      {t:"Biologija, hemija",w:{PRIR:2}},
+      {t:"Srpski, istorija, strani jezici",w:{DRU:2}},
+      {t:"Matematika, ali volim „poslovno“",w:{EKO:2}},
+      {t:"Likovno, muzičko",w:{UMET:2}}]},
+    {q:"Kad rešavaš problem, ti…",a:[
+      {t:"tražiš kako nešto radi i napraviš rešenje",w:{TEH:2}},
+      {t:"istražuješ i proveravaš činjenice",w:{PRIR:2}},
+      {t:"razgovaraš i ubeđuješ argumentima",w:{DRU:2}},
+      {t:"gledaš plan i isplativost",w:{EKO:2}},
+      {t:"smišljaš originalnu ideju",w:{UMET:2}}]},
+    {q:"Posao iz snova?",a:[
+      {t:"Inženjer ili programer",w:{TEH:2}},
+      {t:"Lekar, biolog, farmaceut",w:{PRIR:2}},
+      {t:"Profesor, pravnik, novinar",w:{DRU:2}},
+      {t:"Ekonomista, preduzetnik, menadžer",w:{EKO:2}},
+      {t:"Dizajner, arhitekta, umetnik",w:{UMET:2}}]},
+    {q:"Šta te najviše motiviše?",a:[
+      {t:"Da napravim nešto što radi",w:{TEH:2}},
+      {t:"Da razumem svet i pomognem",w:{PRIR:2}},
+      {t:"Da izrazim ideje rečima",w:{DRU:2}},
+      {t:"Da vodim uspešan projekat",w:{EKO:2}},
+      {t:"Da stvorim nešto lepo",w:{UMET:2}}]},
+    {q:"Omiljeni tip zadatka?",a:[
+      {t:"Logički / tehnički",w:{TEH:2}},
+      {t:"Eksperiment / analiza",w:{PRIR:2}},
+      {t:"Esej / rasprava",w:{DRU:2}},
+      {t:"Tabela, budžet, plan",w:{EKO:2}},
+      {t:"Crtež / kompozicija",w:{UMET:2}}]},
+    {q:"U grupnom projektu tvoja uloga je…",a:[
+      {t:"onaj koji sklopi/napravi",w:{TEH:2}},
+      {t:"onaj koji istraži",w:{PRIR:2}},
+      {t:"onaj koji priča i piše",w:{DRU:2}},
+      {t:"onaj koji organizuje",w:{EKO:2}},
+      {t:"onaj koji dizajnira",w:{UMET:2}}]}
+   ],
+   res:{
+    TEH:{title:"Tehnički tip 🔧",desc:"Voliš da razumeš kako stvari rade i da praviš rešenja. Odgovaraju ti tehnička škola ili gimnazija (prirodno-matematički smer), a kasnije tehnika i IT.",reco:[{t:"Matematika 8",href:"osnovna-matematika-8.html"},{t:"Fizika 8",href:"osnovna-fizika-8.html"},{t:"Scratch / programiranje",href:"programiranje-scratch.html"}]},
+    PRIR:{title:"Istraživački tip 🔬",desc:"Voliš da istražuješ, eksperimentišeš i pomažeš. Odgovaraju ti gimnazija (prirodno-matematički) ili medicinska škola.",reco:[{t:"Matematika 8",href:"osnovna-matematika-8.html"},{t:"Fizika 8",href:"osnovna-fizika-8.html"},{t:"Mala matura",href:"mala-matura.html"}]},
+    DRU:{title:"Društveni tip 📚",desc:"Voliš reči, jezike i ideje. Odgovaraju ti gimnazija (društveno-jezički) ili pravno-birotehnička škola. Ne zaboravi da i tu matematika za malu maturu vredi.",reco:[{t:"Mala matura",href:"mala-matura.html"},{t:"Matematika 8",href:"osnovna-matematika-8.html"}]},
+    EKO:{title:"Preduzetnički tip 📊",desc:"Voliš organizaciju, planove i brojeve u akciji. Odgovara ti ekonomska škola ili gimnazija.",reco:[{t:"Matematika 8",href:"osnovna-matematika-8.html"},{t:"Mala matura",href:"mala-matura.html"}]},
+    UMET:{title:"Kreativni tip 🎨",desc:"Voliš da stvaraš i izražavaš se. Odgovaraju ti umetnička škola, dizajn ili arhitektonsko-tehnički smer.",reco:[{t:"Matematika 8",href:"osnovna-matematika-8.html"},{t:"Mala matura",href:"mala-matura.html"}]}
+   }
+  },
+
+  usmerenje:{
+   title:"Test usmerenja", sub:"Za srednjoškolce — koji fakultet / smer?", ic:"🎓", meta:"7 pitanja · ~2 min",
+   cats:{ETF:"Tehnika i IT",PMF:"Matematika i fizika",MED:"Medicina i biomed",DRU:"Društvo i humanistika",EKO:"Ekonomija i biznis",ARH:"Arhitektura i dizajn"},
+   qs:[
+    {q:"Šta te najviše privlači?",a:[
+      {t:"Elektronika, mašine, računari",w:{ETF:2}},
+      {t:"Čista matematika i fizika, kako svet radi",w:{PMF:2}},
+      {t:"Ljudsko telo, zdravlje, život",w:{MED:2}},
+      {t:"Ljudi, društvo, jezik, pravo",w:{DRU:2}},
+      {t:"Tržište, novac, poslovanje",w:{EKO:2}},
+      {t:"Prostor, oblik, dizajn",w:{ARH:2}}]},
+    {q:"Koji predmeti ti idu najbolje?",a:[
+      {t:"Matematika + fizika + informatika",w:{ETF:2,PMF:1}},
+      {t:"Matematika + fizika (teorijski)",w:{PMF:2}},
+      {t:"Biologija + hemija",w:{MED:2}},
+      {t:"Jezici + istorija + sociologija",w:{DRU:2}},
+      {t:"Matematika + ekonomija",w:{EKO:2}},
+      {t:"Matematika + likovno/nacrtna",w:{ARH:2}}]},
+    {q:"Idealan zadatak?",a:[
+      {t:"Napraviti uređaj ili program",w:{ETF:2}},
+      {t:"Rešiti tešku matematičku/fizičku teoremu",w:{PMF:2}},
+      {t:"Postaviti dijagnozu / razumeti organizam",w:{MED:2}},
+      {t:"Napisati argumentovan esej ili analizu",w:{DRU:2}},
+      {t:"Napraviti biznis plan i budžet",w:{EKO:2}},
+      {t:"Osmisliti enterijer ili zgradu",w:{ARH:2}}]},
+    {q:"Gde se vidiš za 10 godina?",a:[
+      {t:"Inženjer / softver inženjer",w:{ETF:2}},
+      {t:"Istraživač, profesor, analitičar",w:{PMF:2}},
+      {t:"Lekar, farmaceut, biotehnolog",w:{MED:2}},
+      {t:"Pravnik, psiholog, novinar, prevodilac",w:{DRU:2}},
+      {t:"Menadžer, preduzetnik, bankar",w:{EKO:2}},
+      {t:"Arhitekta, dizajner",w:{ARH:2}}]},
+    {q:"Šta ti je zabavnije?",a:[
+      {t:"Da nešto proradi posle mnogo pokušaja",w:{ETF:2}},
+      {t:"Elegantno rešenje i dokaz",w:{PMF:2}},
+      {t:"Da pomognem konkretnom čoveku",w:{MED:2}},
+      {t:"Dobra rasprava i ubeđivanje",w:{DRU:2}},
+      {t:"Dobar dogovor i profit",w:{EKO:2}},
+      {t:"Lepa, funkcionalna forma",w:{ARH:2}}]},
+    {q:"Koji alat bi radije koristio/la?",a:[
+      {t:"Kompajler, lemilica, osciloskop",w:{ETF:2}},
+      {t:"Papir, olovka, dokaz",w:{PMF:2}},
+      {t:"Mikroskop, laboratorija",w:{MED:2}},
+      {t:"Knjiga, tekst, govornica",w:{DRU:2}},
+      {t:"Tabela, grafikon, kalkulator",w:{EKO:2}},
+      {t:"Skica, 3D model",w:{ARH:2}}]},
+    {q:"Tvoja super-moć u učenju je…",a:[
+      {t:"Praktično, ‘uradi pa vidi’",w:{ETF:2}},
+      {t:"Apstraktno i logičko",w:{PMF:2}},
+      {t:"Pamćenje detalja i sistema",w:{MED:2}},
+      {t:"Reč, argument, kontekst",w:{DRU:2}},
+      {t:"Strategija i brojevi",w:{EKO:2}},
+      {t:"Vizuelno i prostorno",w:{ARH:2}}]}
+   ],
+   res:{
+    ETF:{title:"Inženjer / IT tip 💻",desc:"Odgovaraju ti Elektrotehnika, Mašinstvo, Računarstvo (FTN, ETF). Osnov su ti matematika, fizika i programiranje.",reco:[{t:"Matematička analiza 1",href:"predmet-analiza1.html"},{t:"Teorija el. kola",href:"predmet-elektrotehnika.html"},{t:"Python",href:"programiranje-python.html"}]},
+    PMF:{title:"Matematičar / fizičar 🧠",desc:"Odgovaraju ti PMF, matematika, fizika, teorijske nauke. Voliš dokaze i suštinu.",reco:[{t:"Matematička analiza 1",href:"predmet-analiza1.html"},{t:"Linearna algebra",href:"predmet-linearna-algebra.html"},{t:"Verovatnoća i statistika",href:"predmet-verovatnoca.html"}]},
+    MED:{title:"Medicinski tip 🩺",desc:"Odgovaraju ti Medicina, Farmacija, Biologija, biomedicinsko inženjerstvo. Uz biologiju i hemiju, dobra matematika i fizika ti pomažu na prijemnom.",reco:[{t:"Mehanika (fizika)",href:"predmet-fizika-mehanika.html"},{t:"Verovatnoća i statistika",href:"predmet-verovatnoca.html"}]},
+    DRU:{title:"Društveno-humanistički tip ⚖️",desc:"Odgovaraju ti Pravo, FPN, psihologija, filologija, novinarstvo. Ipak, statistika i logika te izdvajaju.",reco:[{t:"Verovatnoća i statistika",href:"predmet-verovatnoca.html"},{t:"Diskretna matematika",href:"predmet-diskretna-matematika.html"}]},
+    EKO:{title:"Ekonomsko-poslovni tip 📈",desc:"Odgovaraju ti Ekonomija, FON, poslovne studije. Ključne su ti matematika, statistika i operaciona istraživanja.",reco:[{t:"Matematička analiza 1",href:"predmet-analiza1.html"},{t:"Verovatnoća i statistika",href:"predmet-verovatnoca.html"},{t:"Operaciona istraživanja",href:"predmet-operaciona-istrazivanja.html"}]},
+    ARH:{title:"Arhitekta / dizajner 📐",desc:"Odgovaraju ti Arhitektura i dizajn. Prostorno mišljenje uz matematiku i mehaniku je tvoja baza.",reco:[{t:"Matematička analiza 1",href:"predmet-analiza1.html"},{t:"Mehanika",href:"predmet-fizika-mehanika.html"}]}
+   }
+  },
+
+  tip:{
+   title:"Kakav si tip učenika", sub:"Otkrij svoj stil učenja i uči pametnije", ic:"🌱", meta:"7 pitanja · ~2 min",
+   cats:{VIZ:"Vizuelni",AUD:"Auditivni",KIN:"Praktični",LOG:"Logički"},
+   qs:[
+    {q:"Najlakše zapamtiš gradivo kada…",a:[
+      {t:"vidiš crtež, šemu ili boju",w:{VIZ:2}},
+      {t:"neko ti objasni naglas",w:{AUD:2}},
+      {t:"sam/a uradiš zadatak",w:{KIN:2}},
+      {t:"razumeš logiku i ‘zašto’",w:{LOG:2}}]},
+    {q:"Kad učiš, najviše ti pomaže…",a:[
+      {t:"markeri, mape uma, dijagrami",w:{VIZ:2}},
+      {t:"da pričaš sebi ili slušaš",w:{AUD:2}},
+      {t:"primeri i vežbanje",w:{KIN:2}},
+      {t:"korak-po-korak izvođenje",w:{LOG:2}}]},
+    {q:"Nova formula ti ‘legne’ kada…",a:[
+      {t:"vidiš je na grafiku/slici",w:{VIZ:2}},
+      {t:"ponoviš je naglas",w:{AUD:2}},
+      {t:"odmah je primeniš na zadatku",w:{KIN:2}},
+      {t:"vidiš odakle se izvodi",w:{LOG:2}}]},
+    {q:"Na času najviše voliš…",a:[
+      {t:"table pune šema i boja",w:{VIZ:2}},
+      {t:"kad profesor priča i objašnjava",w:{AUD:2}},
+      {t:"da sam/a nešto uradiš",w:{KIN:2}},
+      {t:"jasnu strukturu i redosled",w:{LOG:2}}]},
+    {q:"Kad zapneš na zadatku…",a:[
+      {t:"nacrtam ga",w:{VIZ:2}},
+      {t:"pričam ga naglas",w:{AUD:2}},
+      {t:"probam više puta dok ne ‘klikne’",w:{KIN:2}},
+      {t:"razbijem ga na manje korake",w:{LOG:2}}]},
+    {q:"Šta te lakše drži fokusiranim/om?",a:[
+      {t:"vizuelno, uredno gradivo",w:{VIZ:2}},
+      {t:"objašnjenje glasom",w:{AUD:2}},
+      {t:"aktivnost i pauze",w:{KIN:2}},
+      {t:"jasan cilj i plan",w:{LOG:2}}]},
+    {q:"Idealna skripta za tebe je…",a:[
+      {t:"puna slika i boja",w:{VIZ:2}},
+      {t:"kao razgovor, objašnjeno",w:{AUD:2}},
+      {t:"puna rešenih zadataka",w:{KIN:2}},
+      {t:"sažeta, logična, po koracima",w:{LOG:2}}]}
+   ],
+   res:{
+    VIZ:{title:"Vizuelni učenik 👁️",desc:"Pamtiš očima — slike, boje, šeme. Koristi mape uma, boji formule i gledaj animacije (npr. naša trigonometrija!).",reco:[{t:"Trigonometrija — animacija",href:"trigonometrija.html"},{t:"Skripte sa slikama",href:"predmeti.html"}]},
+    AUD:{title:"Auditivni učenik 👂",desc:"Najbolje učiš slušajući i pričajući. Objašnjavaj gradivo naglas — Profesorica (klon) ti objasni svaki korak razgovorom.",reco:[{t:"Pričaj sa Profesoricom",href:"nalog.html"},{t:"Predmeti",href:"predmeti.html"}]},
+    KIN:{title:"Praktični učenik ✋",desc:"Učiš radeći. Kreni od zadataka — rešavaj mnogo, uz odmah povratnu informaciju od klona.",reco:[{t:"Rešeni zadaci",href:"predmeti.html"},{t:"Vežbaj sa Profesoricom",href:"nalog.html"}]},
+    LOG:{title:"Logički učenik 🧩",desc:"Voliš strukturu i ‘zašto’. Prati izvođenja korak-po-korak i planiraj učenje — Mathia planer ti drži sistem.",reco:[{t:"Mathia planer",href:"prodavnica.html"},{t:"Skripte po koracima",href:"predmeti.html"}]}
+   }
+  }
+ };
+
+ // ——— render hub ———
+ var cur=null, answers={};
+ var cardsBox=$('cards');
+ var CARDS=[
+   {ic:'🧭',meta:'7 pitanja · ~2 min',title:'Koja srednja škola je za tebe?',sub:'Za osnovce — otkrij koja srednja škola ti najviše odgovara.',href:'mathia_kviz_srednja.html'},
+   {ic:'🎓',meta:'9 pitanja · ~3 min',title:'Koji fakultet i smer?',sub:'Za srednjoškolce — test sklonosti za izbor fakulteta i smera.',href:'Test-Sklonosti-Fakultet.html'},
+   {ic:'🌱',meta:'7 pitanja · ~2 min',title:'Kakav si tip učenika?',sub:'Otkrij svoj stil učenja i uči pametnije.',test:'tip'}
+ ];
+ CARDS.forEach(function(cd){var d=document.createElement('div');d.className='tcard';
+   d.innerHTML='<div class="ic" style="font-size:1.7rem">'+cd.ic+'</div><span class="meta">'+cd.meta+'</span><h3>'+cd.title+'</h3><p>'+cd.sub+'</p><span class="go">'+(cd.href?'Otvori test →':'Počni test →')+'</span>';
+   d.onclick=function(){ if(cd.href){location.href=cd.href;} else {startTest(cd.test);} };cardsBox.appendChild(d);});
+
+ function show(id){['hub','test','resultView'].forEach(function(v){$(v).classList.toggle('hidden',v!==id);});window.scrollTo({top:0,behavior:'smooth'});}
+ function startTest(k){cur=k;answers={};var T=TESTS[k];$('tTitle').textContent=T.title;
+   var box=$('questions');box.innerHTML='';
+   T.qs.forEach(function(qo,qi){var c=document.createElement('div');c.className='qcard';
+     var h='<p class="qq">'+(qi+1)+'. '+qo.q+'</p><div class="opts">';
+     qo.a.forEach(function(op,oi){h+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'">'+op.t+'</button>';});
+     h+='</div>';c.innerHTML=h;box.appendChild(c);});
+   [].forEach.call(box.querySelectorAll('.opt'),function(b){b.onclick=function(){var qi=+b.dataset.q;
+     [].forEach.call(box.querySelectorAll('.opt[data-q="'+qi+'"]'),function(x){x.classList.remove('sel');});
+     b.classList.add('sel');answers[qi]=+b.dataset.o;updateProg();};});
+   updateProg();show('test');
+ }
+ function updateProg(){var T=TESTS[cur];var n=Object.keys(answers).length,tot=T.qs.length;
+   $('prog').style.width=(n/tot*100)+'%';$('tCount').textContent=n+' / '+tot;
+   $('seeRes').disabled=(n<tot);}
+ $('seeRes').onclick=function(){var T=TESTS[cur];var score={};Object.keys(T.cats).forEach(function(c){score[c]=0;});
+   T.qs.forEach(function(qo,qi){var w=qo.a[answers[qi]].w;for(var c in w)score[c]=(score[c]||0)+w[c];});
+   var best=null,bv=-1;Object.keys(score).forEach(function(c){if(score[c]>bv){bv=score[c];best=c;}});
+   showResult(best,score);};
+ function showResult(code,score){var T=TESTS[cur];var r=T.res[code];
+   var max=Math.max.apply(null,Object.keys(score).map(function(c){return score[c];}))||1;
+   var bars=Object.keys(score).sort(function(a,b){return score[b]-score[a];}).map(function(c){
+     return '<div class="bar"><span style="min-width:150px">'+T.cats[c]+'</span><span class="track"><span class="fill" style="width:'+(score[c]/max*100)+'%"></span></span></div>';}).join('');
+   var subs=r.reco.map(function(s){return '<a href="'+s.href+'">'+s.t+'</a>';}).join('');
+   $('resultBox').innerHTML='<div class="rk">Tvoj rezultat</div><h2>'+r.title+'</h2><p class="desc">'+r.desc+'</p>'+
+     '<div class="bars">'+bars+'</div>'+
+     '<div class="reco"><b>Mathia ti preporučuje:</b><div class="subs">'+subs+'</div></div>'+
+     '<a href="index.html#paketi" class="btn gold" style="display:inline-block;margin-top:20px;text-decoration:none">Probaj Mathia besplatno →</a>';
+   show('resultView');
+ }
+ $('toHub').onclick=function(e){e.preventDefault();show('hub');};
+ $('toHub2').onclick=function(e){e.preventDefault();show('hub');};
+ $('again').onclick=function(){startTest(cur);};
+ $('other').onclick=function(){show('hub');};
+})();
+</script>
+</body>
+</html>

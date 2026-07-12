@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3E2A34">
+<meta name="description" content="Trigonometrija koju konačno možeš da vidiš — jedinična kružnica, uglovi, radijani i funkcije sin(α), cos(α), tg(α), ctg(α). Besplatno, bez prijave.">
+<title>Trigonometrija koju možeš da vidiš — MATHIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --paper:#FBF7EF; --paper2:#F5ECDD; --ink:#40323A; --plum:#3E2A34; --plum2:#6A5560;
+ --gold:#B18A46; --gold2:#C6A162; --goldlt:#E7D6B0; --champ:#F6EDD8;
+ --muted:#9A8B92; --bord:#EADFCB; --hair:#F0E7D6; --card:#FFFDF9;
+ --sin:#B65E7E; --cos:#4C7FA6; --tg:#5E8A5B; --ctg:#B58A44;
+ --serif:'Cormorant Garamond',Georgia,serif; --sans:'Nunito',system-ui,sans-serif;
+ --sh:0 30px 70px -50px rgba(90,60,25,.55);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.65;font-size:16px;
+ background:radial-gradient(1200px 640px at 84% -10%,#FCF1DC 0,transparent 60%),var(--paper);
+ -webkit-font-smoothing:antialiased;overflow-x:hidden}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.wrap{max-width:940px;margin:0 auto;padding:26px 22px 96px}
+a.back{display:inline-block;color:var(--gold);font-weight:700;text-decoration:none;font-size:.8rem;letter-spacing:.02em;margin-bottom:10px}
+.eyebrow{font-size:.7rem;letter-spacing:.36em;text-transform:uppercase;color:var(--gold);font-weight:800}
+h1{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:clamp(2.2rem,5.4vw,3.5rem);line-height:1.04;margin:.14em 0 .18em;letter-spacing:.3px}
+.lead{color:var(--plum2);max-width:600px;font-size:1.05rem;margin:0}
+.rule{width:58px;height:2px;background:linear-gradient(90deg,var(--gold),var(--goldlt));border-radius:2px;margin:22px 0 4px}
+/* konzistentna tipografija sekcija */
+h2.sec{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:1.9rem;line-height:1.1;margin:56px 0 4px;letter-spacing:.3px}
+h2.sec .n{display:block;font-family:var(--sans);font-size:.72rem;font-weight:800;letter-spacing:.26em;color:var(--gold);margin-bottom:7px}
+p.tx{color:var(--plum2);margin:12px 0;font-size:1.02rem;max-width:660px}
+.card{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:22px 24px;box-shadow:var(--sh)}
+/* ——— matematika (bez CDN, sopstveni prikaz) ——— */
+.mf{font-family:var(--serif);font-style:normal;font-weight:600;letter-spacing:.2px}
+.mv{font-family:var(--serif);font-style:italic}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.02;margin:0 2px}
+.fr .fn2{padding:0 8px 3px}
+.fr .fd{padding:3px 8px 0;border-top:2px solid currentColor}
+.rad{display:inline-flex;align-items:flex-start;white-space:nowrap}
+.rad .sq{transform:translateY(-.03em)}
+.rad .ov{border-top:1.7px solid currentColor;padding:1px 3px 0 2px;margin-left:-1px;line-height:1}
+.fbox{font-family:var(--serif);font-size:1.5rem;color:var(--plum);text-align:center;line-height:1.5}
+.fbox .op{color:var(--gold);margin:0 .28em}
+.hl-sin{color:var(--sin)} .hl-cos{color:var(--cos)} .hl-tg{color:var(--tg)} .hl-ctg{color:var(--ctg)}
+/* ——— HERO ——— */
+.hero{display:grid;grid-template-columns:1.04fr .96fr;gap:22px;align-items:start;margin-top:24px}
+@media(max-width:780px){.hero{grid-template-columns:1fr}}
+.stage{background:linear-gradient(178deg,#FFFDF9,#FAF2E2);border:1px solid var(--goldlt);border-radius:26px;padding:16px;position:relative;box-shadow:var(--sh)}
+.stage::after{content:"";position:absolute;inset:9px;border:1px solid rgba(177,138,70,.22);border-radius:19px;pointer-events:none}
+.csvg{width:100%;height:auto;display:block;touch-action:none;user-select:none}
+.legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:.82rem;font-weight:700}
+.legend span{display:inline-flex;align-items:center;gap:6px;color:var(--plum2)}
+.legend i{width:11px;height:11px;border-radius:50%}
+.panel{display:flex;flex-direction:column;gap:14px}
+.read{background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:20px 22px;box-shadow:var(--sh)}
+.nums{transition:opacity .35s}
+.nums.dim{opacity:.32}
+.angrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;min-height:52px}
+.angrow .al{font-family:var(--serif);font-style:italic;font-size:2.5rem;color:var(--plum);line-height:.8}
+.angrow .eq{font-family:var(--serif);font-size:1.7rem;color:var(--gold);font-weight:600}
+.angrow .deg{font-family:var(--serif);font-size:2.5rem;font-weight:700;color:var(--plum);line-height:.8}
+.angrow .rad2{font-family:var(--serif);font-size:1.55rem;color:var(--plum2)}
+.quad{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:10px;min-height:1em}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:12px}
+.vc{border:1px solid var(--bord);border-left-width:4px;border-radius:15px;padding:11px 14px;background:#fffdf9}
+.vc.s{border-left-color:var(--sin)} .vc.c{border-left-color:var(--cos)} .vc.t{border-left-color:var(--tg)} .vc.g{border-left-color:var(--ctg)}
+.vc .lbl{display:block;font-family:var(--serif);font-size:1.12rem;line-height:1;margin-bottom:5px}
+.vc.s .lbl{color:var(--sin)} .vc.c .lbl{color:var(--cos)} .vc.t .lbl{color:var(--tg)} .vc.g .lbl{color:var(--ctg)}
+.vc .val{font-family:var(--serif);font-size:1.66rem;font-weight:700;color:var(--plum);min-height:2rem;display:flex;align-items:center}
+.vc .val .fr{font-size:1.24rem}
+.vc em{display:block;font-style:normal;font-weight:800;font-size:.66rem;letter-spacing:.02em;text-transform:none;color:var(--muted);margin-top:5px}
+.nd{font-size:.76rem;font-weight:800;color:var(--muted)}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--bord);background:#fffdf9;color:var(--plum);border-radius:12px;padding:9px 14px;font:inherit;font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s}
+.btn:hover{border-color:var(--gold)}
+.btn.on{background:linear-gradient(160deg,var(--goldlt),var(--gold2));border-color:var(--gold);color:#4a3410}
+.iconbtn{min-width:42px;text-align:center}
+.speed{display:flex;align-items:center;gap:10px;font-size:.78rem;font-weight:800;color:var(--muted)}
+.speed input{accent-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--bord);background:#fff;border-radius:999px;padding:5px 11px;font:inherit;font-weight:700;font-size:.74rem;cursor:pointer;color:var(--plum2)}
+.chip:hover{border-color:var(--gold)}
+.chip.act{background:linear-gradient(160deg,var(--goldlt),var(--gold2));border-color:var(--gold);color:#4a3410;font-weight:800}
+
+/* ——— kviz ——— */
+.quiz-wrap{padding:4px 2px}
+.quiz-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
+.quiz-head h3{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:1.5rem;margin:0}
+.quiz-head .meter{font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.qitem{padding:18px 0;border-top:1px solid var(--hair)}
+.qitem:first-child{border-top:none;padding-top:6px}
+.qq{font-weight:800;color:var(--plum);margin:0 0 12px;font-size:1.06rem}
+.qopts{display:grid;gap:9px}
+.qopt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--bord);background:#fffdf9;border-radius:14px;padding:11px 15px;cursor:pointer;transition:.15s;text-align:left;font:inherit}
+.qopt:hover{border-color:var(--gold2);transform:translateX(2px)}
+.qopt .kbd{width:27px;height:27px;border-radius:9px;background:var(--champ);color:var(--gold);font-weight:800;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex:none}
+.qopt .ans{font-family:var(--serif);font-size:1.14rem;color:var(--plum)}
+.qopt.correct{border-color:var(--tg);background:rgba(94,138,91,.09)}
+.qopt.correct .kbd{background:var(--tg);color:#fff}
+.qopt.wrong{border-color:var(--sin);background:rgba(182,94,126,.08)}
+.qopt.wrong .kbd{background:var(--sin);color:#fff}
+.qopt.lock{cursor:default}.qopt.lock:hover{transform:none}
+.qexp{display:none;margin-top:11px;font-size:.94rem;color:var(--plum2);background:var(--paper2);border-left:3px solid var(--gold2);border-radius:0 12px 12px 0;padding:11px 15px}
+.qresult{display:none;margin-top:22px;text-align:center;background:linear-gradient(150deg,#fffdf9,var(--champ));border:1px solid var(--goldlt);border-radius:18px;padding:22px}
+.qresult .sc{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--plum)}
+.qresult .msg{color:var(--plum2);margin:4px 0 14px}
+.uglovi{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:640px){.uglovi{grid-template-columns:repeat(2,1fr)}}
+.ug{text-align:center}
+.ug .ugsvg{width:100%;height:auto;max-width:112px}
+.ug b{display:block;font-family:var(--serif);color:var(--plum);font-size:1.15rem;margin-top:6px}
+.ug span{display:block;font-size:.74rem;color:var(--muted);font-weight:700}
+.js .reveal{opacity:0;transform:translateY(18px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
+@media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add("js");</script>
+<div class="wrap">
+  <a class="back" href="vizuelne-lekcije.html">← Vizuelne lekcije</a>
+  <div class="eyebrow">Mathia · interaktivna lekcija</div>
+  <h1>Trigonometrija koju konačno možeš da vidiš</h1>
+  <p class="lead">Bez učenja napamet. Gledaj kako iz položaja tačke na kružnici nastaju sin(α), cos(α), tg(α) i ctg(α) — mirno, korak po korak.</p>
+  <div class="rule"></div>
+
+  <section class="hero" aria-label="Interaktivna jedinična kružnica">
+    <div class="stage">
+      <svg class="csvg" id="circ" viewBox="0 0 440 460" role="img" aria-label="Jedinična kružnica sa pokretnom tačkom">
+        <defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#cbb797"/></marker></defs>
+        <line x1="34" y1="230" x2="410" y2="230" stroke="#d7c8ab" stroke-width="1.1" marker-end="url(#ah)"/>
+        <line x1="220" y1="416" x2="220" y2="44" stroke="#d7c8ab" stroke-width="1.1" marker-end="url(#ah)"/>
+        <text x="398" y="223" font-size="12" fill="#a99a80" font-style="italic">x</text>
+        <text x="228" y="56" font-size="12" fill="#a99a80" font-style="italic">y</text>
+        <line id="tgAxis" x1="360" y1="90" x2="360" y2="370" stroke="var(--tg)" stroke-width="1" stroke-dasharray="2 6" opacity=".4"/>
+        <line id="ctgAxis" x1="80" y1="90" x2="380" y2="90" stroke="var(--ctg)" stroke-width="1" stroke-dasharray="2 6" opacity=".4"/>
+        <circle cx="220" cy="230" r="140" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
+        <path id="arc" fill="rgba(177,138,70,.13)" stroke="var(--gold)" stroke-width="1.5"/>
+        <text id="arcLbl" font-family="Cormorant Garamond" font-style="italic" font-size="19" fill="var(--gold)">α</text>
+        <line id="dropV" stroke="var(--sin)" stroke-width="1" stroke-dasharray="3 4" opacity=".55"/>
+        <line id="dropH" stroke="var(--cos)" stroke-width="1" stroke-dasharray="3 4" opacity=".55"/>
+        <line id="cosSeg" stroke="var(--cos)" stroke-width="5" stroke-linecap="round"/>
+        <line id="sinSeg" stroke="var(--sin)" stroke-width="5" stroke-linecap="round"/>
+        <line id="tgSeg" stroke="var(--tg)" stroke-width="4" stroke-linecap="round"/>
+        <line id="ctgSeg" stroke="var(--ctg)" stroke-width="4" stroke-linecap="round"/>
+        <line id="rad" x1="220" y1="230" x2="360" y2="230" stroke="var(--plum)" stroke-width="2.2"/>
+        <circle id="P" cx="360" cy="230" r="8" fill="var(--plum)" stroke="#fff" stroke-width="2.5" style="cursor:grab"/>
+        <text x="205" y="246" font-size="12" fill="#9a8890" font-style="italic">O</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:var(--sin)"></i>sin(α)</span>
+        <span><i style="background:var(--cos)"></i>cos(α)</span>
+        <span><i style="background:var(--tg)"></i>tg(α)</span>
+        <span><i style="background:var(--ctg)"></i>ctg(α)</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="read">
+        <div class="nums" id="nums">
+          <div class="angrow"><span class="al">α</span><span class="eq">=</span><span class="deg" id="deg">0°</span><span class="eq">=</span><span class="rad2" id="rad2">0</span></div>
+          <div class="quad" id="quad">na osi · pozitivan deo x-ose</div>
+          <div class="vgrid">
+            <div class="vc s"><span class="lbl">sin(α)</span><div class="val" id="vsin">0</div><em>uspravna projekcija</em></div>
+            <div class="vc c"><span class="lbl">cos(α)</span><div class="val" id="vcos">1</div><em>vodoravna projekcija</em></div>
+            <div class="vc t"><span class="lbl">tg(α)</span><div class="val" id="vtg">0</div><em>sin(α) / cos(α)</em></div>
+            <div class="vc g"><span class="lbl">ctg(α)</span><div class="val" id="vctg">—</div><em>cos(α) / sin(α)</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="ctrls">
+        <button class="btn on iconbtn" id="play">❚❚</button>
+        <button class="btn iconbtn" id="prev" title="Prethodni ugao">‹</button>
+        <button class="btn iconbtn" id="next" title="Sledeći ugao">›</button>
+        <button class="btn" id="dir">Smer: pozitivan</button>
+        <button class="btn" id="unit">°/rad</button>
+      </div>
+      <div class="speed">Tempo <input id="spd" type="range" min="1" max="6" value="3"></div>
+      <div class="chips" id="chips"></div>
+    </div>
+  </section>
+
+  <h2 class="sec reveal"><span class="n">01 · SMER</span>Pozitivan i negativan smer</h2>
+  <p class="tx reveal">Ugao merimo od pozitivnog dela x-ose. Kad se poluprečnik okreće suprotno od kazaljke na satu, ugao je <b>pozitivan</b>; u smeru kazaljke je <b>negativan</b>. Isti položaj poluprečnika opisuje beskonačno mnogo uglova.</p>
+  <div class="card reveal"><div class="fbox" id="f_smer"></div></div>
+
+  <h2 class="sec reveal"><span class="n">02 · RADIJANI</span>Pretvaranje stepeni u radijane</h2>
+  <p class="tx reveal">Ceo krug je 360° = 2π, a ispružen ugao 180° = π. Izaberi ugao i vidi razlomak:</p>
+  <div class="card reveal">
+    <div class="chips" id="convChips" style="justify-content:center;margin-bottom:16px"></div>
+    <div class="fbox" id="convOut" style="min-height:56px"></div>
+    <div style="border-top:1px solid var(--hair);margin:18px 0"></div>
+    <div class="fbox" id="f_conv" style="font-size:1.25rem"></div>
+  </div>
+
+  <h2 class="sec reveal"><span class="n">02b · UGLOVI</span>Vrste uglova</h2>
+  <p class="tx reveal">Prema veličini, uglove delimo ovako:</p>
+  <div class="card reveal"><div class="uglovi">
+    <div class="ug"><svg class="ugsvg" data-deg="50" viewBox="0 0 92 74"></svg><b>Oštar</b><span>manji od 90°</span></div>
+    <div class="ug"><svg class="ugsvg" data-deg="90" viewBox="0 0 92 74"></svg><b>Prav</b><span>tačno 90°</span></div>
+    <div class="ug"><svg class="ugsvg" data-deg="135" viewBox="0 0 92 74"></svg><b>Tup</b><span>između 90° i 180°</span></div>
+    <div class="ug"><svg class="ugsvg" data-deg="180" viewBox="0 0 92 74"></svg><b>Opružen</b><span>tačno 180°</span></div>
+    <div class="ug"><svg class="ugsvg" data-deg="360" viewBox="0 0 92 74"></svg><b>Pun</b><span>tačno 360°</span></div>
+  </div></div>
+
+  <h2 class="sec reveal"><span class="n">02c · RADIJAN</span>Šta je zapravo radijan?</h2>
+  <p class="tx reveal">Radijan je prirodna mera ugla: <b>jedan radijan</b> je ugao pri kome je dužina luka jednaka poluprečniku. Zato ceo krug (obim 2πr) ima tačno 2π radijana.</p>
+  <div class="card reveal"><div class="fbox" style="font-size:1.3rem;line-height:1.9">
+    1 rad<span class="op">=</span>luk = poluprečnik<span class="op">≈</span>57,3°<br>
+    pola kruga<span class="op">=</span>π<span class="op">≈</span>3,14 poluprečnika<br>
+    pun krug<span class="op">=</span>2π<span class="op">≈</span>6,28 poluprečnika
+  </div></div>
+
+  <h2 class="sec reveal"><span class="n">03 · KOSINUS</span>cos(α) je vodoravna projekcija</h2>
+  <p class="tx reveal"><span class="hl-cos" style="font-weight:800">cos(α)</span> je x-koordinata tačke na kružnici. Uvek je između −1 i 1. Pozitivan u I i IV kvadrantu, negativan u II i III, nula na y-osi.</p>
+  <div class="card reveal"><div class="fbox" id="f_cos"></div></div>
+
+  <h2 class="sec reveal"><span class="n">04 · SINUS</span>sin(α) je uspravna projekcija</h2>
+  <p class="tx reveal"><span class="hl-sin" style="font-weight:800">sin(α)</span> je y-koordinata tačke. Uvek je između −1 i 1. Pozitivan u I i II kvadrantu, negativan u III i IV, nula na x-osi.</p>
+  <div class="card reveal"><div class="fbox" id="f_sin"></div></div>
+
+  <h2 class="sec reveal"><span class="n">05 · TROUGAO</span>Pitagora u kružnici</h2>
+  <p class="tx reveal">Poluprečnik (dužine 1) je hipotenuza pravouglog trougla čije su katete cos(α) i sin(α). Odatle sledi osnovni identitet:</p>
+  <div class="card reveal"><div class="fbox" id="f_ident"></div></div>
+
+  <h2 class="sec reveal"><span class="n">06 · TANGENS</span>tg(α)</h2>
+  <p class="tx reveal">Tangens je odnos sinusa i kosinusa; geometrijski je dužina na <span class="hl-tg" style="font-weight:800">uspravnoj tangenti</span> u tački (1, 0). Kad se približavamo 90° ili 270°, vrednost teži +∞ ili −∞, a na tim uglovima <b>nije definisan</b> jer je cos(α) = 0.</p>
+  <div class="card reveal"><div class="fbox" id="f_tg"></div></div>
+
+  <h2 class="sec reveal"><span class="n">07 · KOTANGENS</span>ctg(α)</h2>
+  <p class="tx reveal">Kotangens je recipročan tangensu; geometrijski je dužina na <span class="hl-ctg" style="font-weight:800">vodoravnoj tangenti</span> u tački (0, 1). Na 0°, 180° i 360° <b>nije definisan</b> jer je sin(α) = 0.</p>
+  <div class="card reveal"><div class="fbox" id="f_ctg"></div></div>
+
+  <h2 class="sec reveal"><span class="n">08 · TABELA</span>Karakteristične vrednosti</h2>
+  <p class="tx reveal">Klikni bilo koji red — tačka mirno ode na taj ugao.</p>
+  <div class="card reveal" style="padding:8px 12px;overflow-x:auto"><table id="tbl" style="width:100%;border-collapse:collapse;min-width:480px"></table></div>
+
+  <h2 class="sec reveal"><span class="n">09 · ZNACI</span>Znaci po kvadrantima</h2>
+  <p class="tx reveal">Izaberi kvadrant:</p>
+  <div class="chips" id="quadChips" style="margin-bottom:14px"></div>
+  <div class="card reveal"><div class="fbox" id="quadOut" style="font-size:1.3rem"></div></div>
+
+  <h2 class="sec reveal"><span class="n">10 · GRAFICI</span>Kako kružnica pravi grafik</h2>
+  <p class="tx reveal">Dok tačka putuje po kružnici, njena koordinata se „razmotava" u grafik. Izaberi funkcije:</p>
+  <div class="ctrls" id="fnToggles" style="margin-bottom:14px"></div>
+  <div class="card reveal" style="padding:14px"><svg class="csvg" id="graph" viewBox="0 0 900 300" role="img" aria-label="Grafici trigonometrijskih funkcija"></svg></div>
+
+  <h2 class="sec reveal"><span class="n">11 · PROVERI SE</span>Kratak kviz</h2>
+  <p class="tx reveal">Bez prijave — samo proveri da li si razumeo/la.</p>
+  <div class="card reveal" id="quiz"></div>
+
+  <div class="card reveal" style="margin-top:44px;text-align:center;background:linear-gradient(150deg,#fffdf9,var(--champ));border-color:var(--goldlt)">
+    <div class="eyebrow" style="justify-content:center">Mathia</div>
+    <p style="font-family:var(--serif);font-size:1.5rem;color:var(--plum);margin:10px 0 6px">„Sada konačno razumem trigonometriju."</p>
+    <p class="tx reveal" style="margin:0 auto;max-width:560px">Ovako Mathia objašnjava — vizuelno, strpljivo, do suštine. Želiš ovakvo objašnjenje za svaki predmet, uz profesoricu koja ti je uz rame 24/7?</p>
+    <a href="index.html#paketi" class="btn on" style="display:inline-block;margin-top:16px;text-decoration:none;padding:12px 22px">Probaj Mathia besplatno →</a>
+  </div>
+</div>
+<script>
+(function(){
+ var PI=Math.PI, R=140, CX=220, CY=230;
+ var $=function(i){return document.getElementById(i);};
+ // ——— sopstveni prikaz matematike ———
+ function radify(x){return String(x).replace(/√(\d+)/g,'<span class="rad"><span class="sq">√</span><span class="ov">$1</span></span>');}
+ function fr(n,d){return '<span class="fr"><span class="fn2">'+radify(n)+'</span><span class="fd">'+radify(d)+'</span></span>';}
+ function op(s){return '<span class="op">'+s+'</span>';}
+ function FN(n,cls){return '<span class="'+(cls||'')+'"><span class="mf">'+n+'</span>(<span class="mv">α</span>)</span>';}
+ function F(n,d){return ['f',n,d];}
+ function tok(t){if(Array.isArray(t))return fr(t[1],t[2]);return radify(t);}
+ var RAD={0:['0',1],30:['π',6],45:['π',4],60:['π',3],90:['π',2],120:['2π',3],135:['3π',4],150:['5π',6],180:['π',1],210:['7π',6],225:['5π',4],240:['4π',3],270:['3π',2],300:['5π',3],315:['7π',4],330:['11π',6],360:['2π',1]};
+ function radHTML(d){d=Math.round(d)%360;if(d in RAD){var f=RAD[d];return f[1]===1?f[0]:fr(f[0],f[1]);}return '≈ '+(Math.round(d/180*PI*100)/100);}
+ var EX={0:['0','1','0','nd'],30:[F('1','2'),F('√3','2'),F('√3','3'),'√3'],45:[F('√2','2'),F('√2','2'),'1','1'],60:[F('√3','2'),F('1','2'),'√3',F('√3','3')],90:['1','0','nd','0'],120:[F('√3','2'),F('−1','2'),'−√3',F('−√3','3')],135:[F('√2','2'),F('−√2','2'),'−1','−1'],150:[F('1','2'),F('−√3','2'),F('−√3','3'),'−√3'],180:['0','−1','0','nd'],210:[F('−1','2'),F('−√3','2'),F('√3','3'),'√3'],225:[F('−√2','2'),F('−√2','2'),'1','1'],240:[F('−√3','2'),F('−1','2'),'√3',F('√3','3')],270:['−1','0','nd','0'],300:[F('−√3','2'),F('1','2'),'−√3',F('−√3','3')],315:[F('−√2','2'),F('√2','2'),'−1','−1'],330:[F('−1','2'),F('√3','2'),F('−√3','3'),'−√3']};
+ function exAt(deg){var r=Math.round(deg);if(Math.abs(deg-r)>0.5)return null;return EX[((r%360)+360)%360]||null;}
+ function dec(x){return Math.abs(x)<1e-4?'0':(Math.round(x*100)/100).toString();}
+ function quadTxt(deg){deg=((deg%360)+360)%360;
+   if(Math.abs(deg)<.5||Math.abs(deg-360)<.5)return 'na osi · pozitivan deo x-ose';
+   if(Math.abs(deg-90)<.5)return 'na osi · vrh (y = 1)';
+   if(Math.abs(deg-180)<.5)return 'na osi · negativan deo x-ose';
+   if(Math.abs(deg-270)<.5)return 'na osi · dno (y = −1)';
+   if(deg<90)return 'I kvadrant';
+   if(deg<180)return 'II kvadrant';
+   if(deg<270)return 'III kvadrant';
+   return 'IV kvadrant';}
+
+ // ——— geometrija ———
+ var P=$('P'),rad=$('rad'),arc=$('arc'),arcLbl=$('arcLbl'),cosSeg=$('cosSeg'),sinSeg=$('sinSeg'),dropV=$('dropV'),dropH=$('dropH'),tgSeg=$('tgSeg'),ctgSeg=$('ctgSeg');
+ function geo(deg){
+   var ang=deg*PI/180, c=Math.cos(ang), s=Math.sin(ang), px=CX+R*c, py=CY-R*s;
+   P.setAttribute('cx',px);P.setAttribute('cy',py);rad.setAttribute('x2',px);rad.setAttribute('y2',py);
+   cosSeg.setAttribute('x1',CX);cosSeg.setAttribute('y1',CY);cosSeg.setAttribute('x2',px);cosSeg.setAttribute('y2',CY);
+   sinSeg.setAttribute('x1',CX);sinSeg.setAttribute('y1',CY);sinSeg.setAttribute('x2',CX);sinSeg.setAttribute('y2',py);
+   dropV.setAttribute('x1',px);dropV.setAttribute('y1',py);dropV.setAttribute('x2',px);dropV.setAttribute('y2',CY);
+   dropH.setAttribute('x1',px);dropH.setAttribute('y1',py);dropH.setAttribute('x2',CX);dropH.setAttribute('y2',py);
+   var dd=((deg%360)+360)%360, large=dd>180?1:0;
+   arc.setAttribute('d','M '+(CX+42)+' '+CY+' A 42 42 0 '+large+' 0 '+(CX+42*Math.cos(dd*PI/180))+' '+(CY-42*Math.sin(dd*PI/180)));
+   arcLbl.setAttribute('x',CX+62*Math.cos(dd*PI/360));arcLbl.setAttribute('y',CY-62*Math.sin(dd*PI/360)+6);
+   var tv=Math.abs(c)<1e-3?null:s/c;
+   if(tv!==null){var ty=Math.max(92,Math.min(368,CY-R*tv));tgSeg.setAttribute('opacity','1');tgSeg.setAttribute('x1',360);tgSeg.setAttribute('y1',CY);tgSeg.setAttribute('x2',360);tgSeg.setAttribute('y2',ty);}else tgSeg.setAttribute('opacity','0');
+   var cv=Math.abs(s)<1e-3?null:c/s;
+   if(cv!==null){var cx=Math.max(82,Math.min(378,CX+R*cv));ctgSeg.setAttribute('opacity','1');ctgSeg.setAttribute('x1',CX);ctgSeg.setAttribute('y1',90);ctgSeg.setAttribute('x2',cx);ctgSeg.setAttribute('y2',90);}else ctgSeg.setAttribute('opacity','0');
+   drawCursor(dd);
+ }
+ function setVal(id,t,d){var el=$(id);if(t&&t!=='nd')el.innerHTML=tok(t);else el.textContent=d;}
+ function nums(deg){
+   deg=((deg%360)+360)%360; var ex=exAt(deg), ang=deg*PI/180, s=Math.sin(ang), c=Math.cos(ang);
+   $('deg').textContent=Math.round(deg)+'°'; $('rad2').innerHTML=radHTML(deg); $('quad').textContent=quadTxt(deg);
+   setVal('vsin',ex?ex[0]:null,dec(s)); setVal('vcos',ex?ex[1]:null,dec(c));
+   var tv=Math.abs(c)<1e-3?null:s/c, cv=Math.abs(s)<1e-3?null:c/s;
+   if(tv===null)$('vtg').innerHTML='<span class="nd">nije definisano · → +∞ / −∞</span>'; else setVal('vtg',ex?ex[2]:null,dec(tv));
+   if(cv===null)$('vctg').innerHTML='<span class="nd">nije definisano · → +∞ / −∞</span>'; else setVal('vctg',ex?ex[3]:null,dec(cv));
+   markChips(deg);
+ }
+
+ // ——— mirna animacija (staje na uglovima) ———
+ var D0=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330];
+ var idx=0, base=0, angle=0, dir=1, playing=true, speed=3;
+ var phase='pause', t0=(window.performance&&performance.now?performance.now():Date.now()), fromD=0, toD=0;
+ function now(){return (window.performance&&performance.now?performance.now():Date.now());}
+ function Tmove(){return 1000/(speed/3);} function Tpause(){return 1150/(speed/3);}
+ function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;}
+ function startMove(){var ni=idx+dir, nb=base; if(ni>=16){ni=0;nb=base+1;} else if(ni<0){ni=15;nb=base-1;}
+   fromD=D0[idx]+base*360; toD=D0[ni]+nb*360; idx=ni; base=nb; phase='move'; t0=now(); $('nums').classList.add('dim');}
+ function loop(){
+   if(playing){
+     if(phase==='move'){var p=(now()-t0)/Tmove(); if(p>=1){angle=toD; geo(angle); $('nums').classList.remove('dim'); nums(angle); phase='pause'; t0=now();}
+       else{angle=fromD+(toD-fromD)*ease(p); geo(angle);}}
+     else{ if(now()-t0>Tpause()) startMove(); }
+   }
+   requestAnimationFrame(loop);
+ }
+ function nearestIdx(deg){deg=((deg%360)+360)%360;var b=0,bd=1e9;for(var i=0;i<16;i++){var dd=Math.abs(deg-D0[i]);dd=Math.min(dd,360-dd);if(dd<bd){bd=dd;b=i;}}return b;}
+ function playIcon(){$('play').innerHTML=playing?'❚❚':'▶';$('play').classList.toggle('on',playing);}
+ // kontrole
+ $('play').onclick=function(){playing=!playing; if(playing){idx=nearestIdx(((angle%360)+360)%360);base=0;angle=D0[idx];phase='pause';t0=now();$('nums').classList.remove('dim');nums(angle);} playIcon();};
+ function jump(step){playing=false;playIcon();idx=((nearestIdx(((angle%360)+360)%360)+step)%16+16)%16;base=0;angle=D0[idx];phase='pause';$('nums').classList.remove('dim');geo(angle);nums(angle);}
+ $('prev').onclick=function(){jump(-1);}; $('next').onclick=function(){jump(1);};
+ $('dir').onclick=function(){dir*=-1;this.textContent='Smer: '+(dir>0?'pozitivan':'negativan');};
+ $('unit').onclick=function(){var r=$('nums').classList.toggle('radfirst');}; // vizuelno oba prikazana
+ $('spd').oninput=function(){speed=+this.value;};
+ // chips
+ var chipBox=$('chips');
+ D0.forEach(function(d){var b=document.createElement('button');b.className='chip';b.dataset.d=d;b.textContent=d+'°';
+   b.onclick=function(){playing=false;playIcon();idx=D0.indexOf(d);base=0;angle=d;phase='pause';$('nums').classList.remove('dim');geo(d);nums(d);};chipBox.appendChild(b);});
+ function markChips(deg){var d=Math.round(deg)%360;[].forEach.call(chipBox.children,function(b){b.classList.toggle('act',+b.dataset.d===d);});}
+ // drag
+ var dragging=false, svg=$('circ');
+ function toAng(e){var r=svg.getBoundingClientRect();var cx=e.touches?e.touches[0].clientX:e.clientX,cy=e.touches?e.touches[0].clientY:e.clientY;
+   var x=(cx-r.left)/r.width*440, y=(cy-r.top)/r.height*460; angle=Math.atan2(CY-y,x-CX)*180/PI;}
+ svg.addEventListener('pointerdown',function(e){dragging=true;playing=false;playIcon();P.style.cursor='grabbing';$('nums').classList.remove('dim');toAng(e);geo(angle);nums(angle);e.preventDefault();});
+ window.addEventListener('pointermove',function(e){if(dragging){toAng(e);geo(angle);nums(angle);}});
+ window.addEventListener('pointerup',function(){dragging=false;P.style.cursor='grab';});
+
+ // ——— sekcijske formule ———
+ $('f_smer').innerHTML='−30°'+op('=')+'330°'+'<span style="display:inline-block;width:26px"></span>'+'α + 360°·k'+op('=')+'α + 2kπ,<span style="color:var(--muted);font-size:.8em">&nbsp;&nbsp;k ∈ ℤ</span>';
+ (function(){function line(fnHTML,pairs){var h=fnHTML;return h;}
+   var cosv=[['0°','1'],['30°','√3|2'],['45°','√2|2'],['60°','1|2'],['90°','0']];
+   var sinv=[['0°','0'],['30°','1|2'],['45°','√2|2'],['60°','√3|2'],['90°','1']];
+   function build(fn,arr){return arr.map(function(p){var v=p[1].indexOf('|')>=0?fr(p[1].split('|')[0],p[1].split('|')[1]):radify(p[1]);
+     return '<span style="display:inline-block;margin:6px 12px"><span class="mf">'+fn+'</span>('+p[0]+')'+op('=')+v+'</span>';}).join('');}
+   $('f_cos').innerHTML=build('cos',cosv); $('f_sin').innerHTML=build('sin',sinv);
+ })();
+ $('f_ident').innerHTML='<span class="mf">sin</span><sup>2</sup>(<span class="mv">α</span>)'+op('+')+'<span class="mf">cos</span><sup>2</sup>(<span class="mv">α</span>)'+op('=')+'1';
+ $('f_tg').innerHTML=FN('tg','hl-tg')+op('=')+fr(FN('sin'),FN('cos'));
+ $('f_ctg').innerHTML=FN('ctg','hl-ctg')+op('=')+fr(FN('cos'),FN('sin'))+op('=')+fr('1',FN('tg'));
+ $('f_conv').innerHTML='<span class="mv">α</span><sub style="font-size:.6em">rad</sub>'+op('=')+'<span class="mv">α</span>°'+op('·')+fr('π','180')+'<span style="display:inline-block;width:30px"></span>'+'<span class="mv">α</span>°'+op('=')+'<span class="mv">α</span><sub style="font-size:.6em">rad</sub>'+op('·')+fr('180','π');
+
+ // ——— konverzija ———
+ var convChips=$('convChips');
+ [0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360].forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d+'°';b.onclick=function(){showConv(d);[].forEach.call(convChips.children,function(x){x.classList.remove('act');});b.classList.add('act');};convChips.appendChild(b);});
+ function showConv(d){var f=RAD[d];var res=f?(f[1]===1?f[0]:fr(f[0],f[1])):('≈ '+(Math.round(d/180*PI*100)/100));
+   $('convOut').innerHTML=d+'°'+op('=')+fr(String(d),'180')+op('·')+'π'+op('=')+res;}
+ showConv(30); convChips.children[1].classList.add('act');
+
+ // ——— tabela ———
+ var order=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360];
+ var th='<tr style="text-align:left"><th style="padding:10px 12px;font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)">Ugao</th>'+
+   ['rad','sin(α)','cos(α)','tg(α)','ctg(α)'].map(function(x){return '<th style="font-family:var(--sans);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)">'+x+'</th>';}).join('')+'</tr>';
+ function cell(t){return t==='nd'?'<span style="color:var(--muted);font-size:.8rem">nije def.</span>':'<span style="font-family:var(--serif);font-size:1.15rem">'+tok(t)+'</span>';}
+ var rws=order.map(function(d){var e=EX[d%360]||EX[0];var f=RAD[d];var radc=f[1]===1?f[0]:fr(f[0],f[1]);
+   return '<tr data-d="'+d+'" style="border-top:1px solid var(--hair);cursor:pointer"><td style="padding:10px 12px;font-weight:800">'+d+'°</td>'+
+     '<td style="font-family:var(--serif);font-size:1.1rem">'+radc+'</td><td>'+cell(e[0])+'</td><td>'+cell(e[1])+'</td><td>'+cell(e[2])+'</td><td>'+cell(e[3])+'</td></tr>';}).join('');
+ $('tbl').innerHTML=th+rws;
+ [].forEach.call($('tbl').querySelectorAll('tr[data-d]'),function(tr){tr.onclick=function(){var d=+tr.dataset.d%360;playing=false;playIcon();idx=nearestIdx(d);base=0;angle=d;phase='pause';$('nums').classList.remove('dim');
+   [].forEach.call($('tbl').querySelectorAll('tr[data-d]'),function(x){x.style.background='';});tr.style.background='rgba(198,161,98,.13)';
+   geo(d);nums(d);window.scrollTo({top:0,behavior:'smooth'});};});
+
+ // ——— kvadranti ———
+ var QD={I:['+','+','+','+'],II:['+','−','−','−'],III:['−','−','+','+'],IV:['−','+','−','−']};
+ var qC=$('quadChips');
+ ['I','II','III','IV'].forEach(function(q){var b=document.createElement('button');b.className='chip';b.textContent=q+' kvadrant';
+   b.onclick=function(){[].forEach.call(qC.children,function(x){x.classList.remove('act');});b.classList.add('act');var v=QD[q];
+     $('quadOut').innerHTML='<b style="font-family:var(--serif);font-size:1.3rem;color:var(--plum)">'+q+' kvadrant</b><br><br>'+
+     '<span class="hl-sin" style="font-weight:800">sin(α) '+v[0]+'</span>&nbsp;&nbsp; <span class="hl-cos" style="font-weight:800">cos(α) '+v[1]+'</span>&nbsp;&nbsp; <span class="hl-tg" style="font-weight:800">tg(α) '+v[2]+'</span>&nbsp;&nbsp; <span class="hl-ctg" style="font-weight:800">ctg(α) '+v[3]+'</span>';};qC.appendChild(b);});
+ qC.children[0].click();
+
+ // ——— grafici ———
+ var G=$('graph'),gx0=44,gx1=884,gyc=150,amp=80,tgAmp=26;
+ var fnOn={sin:true,cos:true,tg:false,ctg:false},COL={sin:'var(--sin)',cos:'var(--cos)',tg:'var(--tg)',ctg:'var(--ctg)'};
+ var tB=$('fnToggles');
+ ['sin','cos','tg','ctg'].forEach(function(fn){var b=document.createElement('button');b.className='btn'+(fnOn[fn]?' on':'');b.textContent=fn+'(α)';b.onclick=function(){fnOn[fn]=!fnOn[fn];this.classList.toggle('on',fnOn[fn]);buildGraph();};tB.appendChild(b);});
+ function xOf(d){return gx0+(d/360)*(gx1-gx0);}
+ function valOf(fn,a){var c=Math.cos(a),s=Math.sin(a);if(fn==='sin')return s;if(fn==='cos')return c;if(fn==='tg')return Math.abs(c)<1e-3?null:s/c;return Math.abs(s)<1e-3?null:c/s;}
+ function yOf(fn,v){var a=(fn==='tg'||fn==='ctg')?tgAmp:amp;return gyc-a*Math.max(-3,Math.min(3,v));}
+ function buildGraph(){var svg='<line x1="'+gx0+'" y1="'+gyc+'" x2="'+gx1+'" y2="'+gyc+'" stroke="#d7c8ab" stroke-width="1"/>';
+   [0,90,180,270,360].forEach(function(d){var x=xOf(d);svg+='<line x1="'+x+'" y1="34" x2="'+x+'" y2="266" stroke="var(--hair)" stroke-width="1"/><text x="'+x+'" y="286" font-size="11" fill="#a99a80" text-anchor="middle">'+d+'°</text>';});
+   if(fnOn.tg)[90,270].forEach(function(d){var x=xOf(d);svg+='<line x1="'+x+'" y1="34" x2="'+x+'" y2="266" stroke="var(--tg)" stroke-dasharray="3 5" stroke-width="1" opacity=".5"/>';});
+   if(fnOn.ctg)[0,180,360].forEach(function(d){var x=xOf(d);svg+='<line x1="'+x+'" y1="34" x2="'+x+'" y2="266" stroke="var(--ctg)" stroke-dasharray="3 5" stroke-width="1" opacity=".45"/>';});
+   ['sin','cos','tg','ctg'].forEach(function(fn){if(!fnOn[fn])return;var d='',pen=false;
+     for(var deg=0;deg<=360;deg+=1){var v=valOf(fn,deg*PI/180);if(v===null||Math.abs(v)>3.2){pen=false;continue;}var x=xOf(deg),y=yOf(fn,v);d+=(pen?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';pen=true;}
+     svg+='<path d="'+d+'" fill="none" stroke="'+COL[fn]+'" stroke-width="2.4"/>';});
+   svg+='<line id="gcur" x1="'+gx0+'" y1="30" x2="'+gx0+'" y2="270" stroke="var(--gold)" stroke-width="1.5"/><g id="gdots"></g>';
+   G.innerHTML=svg;}
+ function drawCursor(deg){if(!G.firstChild)return;var cur=$('gcur');if(!cur)return;var x=xOf(((deg%360)+360)%360);cur.setAttribute('x1',x);cur.setAttribute('x2',x);
+   var dots='';['sin','cos','tg','ctg'].forEach(function(fn){if(!fnOn[fn])return;var v=valOf(fn,deg*PI/180);if(v===null||Math.abs(v)>3.2)return;dots+='<circle cx="'+x+'" cy="'+yOf(fn,v).toFixed(1)+'" r="4.5" fill="'+COL[fn]+'" stroke="#fff" stroke-width="1.5"/>';});
+   $('gdots').innerHTML=dots;}
+ buildGraph();
+
+ // ——— kviz ———
+ var Q=[
+  {q:'Koliko radijana ima ugao od 60°?',o:[fr('π','3'),fr('π','6'),fr('2π','3')],c:0,e:'60° = 60/180 · π = π/3.'},
+  {q:'U kom kvadrantu je cos(α) negativan, a sin(α) pozitivan?',o:['I','II','III'],c:1,e:'To je II kvadrant (gore levo).'},
+  {q:'Koliko je sin(30°)?',o:[fr('1','2'),fr('√3','2'),'1'],c:0,e:'sin(30°) = 1/2.'},
+  {q:'Za koje uglove tg(α) nije definisan?',o:['0°, 180°','90°, 270°','45°, 135°'],c:1,e:'Tamo je cos(α) = 0, pa tg(α) teži +∞ ili −∞.'},
+  {q:'Koji pozitivan ugao odgovara uglu −60°?',o:['300°','240°','120°'],c:0,e:'−60° + 360° = 300°.'}
+ ];
+ var KB=['a','b','c','d'],answered=0,correct=0;
+ var qh='<div class="quiz-wrap"><div class="quiz-head"><h3>Proveri se</h3><span class="meter" id="qmeter">0 / '+Q.length+'</span></div>';
+ Q.forEach(function(it,i){qh+='<div class="qitem"><p class="qq">'+(i+1)+'. '+it.q+'</p><div class="qopts" data-q="'+i+'">'+
+   it.o.map(function(o,j){return '<button class="qopt" data-j="'+j+'"><span class="kbd">'+KB[j]+'</span><span class="ans">'+o+'</span></button>';}).join('')+
+   '</div><div class="qexp" data-e="'+i+'"></div></div>';});
+ qh+='<div class="qresult" id="qresult"><div class="sc" id="qsc"></div><div class="msg" id="qmsg"></div><a href="index.html#paketi" class="btn on" style="text-decoration:none;display:inline-block;padding:11px 20px">Želim ovakva objašnjenja — probaj Mathia →</a></div></div>';
+ $('quiz').innerHTML=qh;
+ [].forEach.call($('quiz').querySelectorAll('.qopts'),function(box){var i=+box.dataset.q,done=false;
+   [].forEach.call(box.querySelectorAll('.qopt'),function(b){b.onclick=function(){if(done)return;done=true;var ok=(+b.dataset.j===Q[i].c);
+     [].forEach.call(box.querySelectorAll('.qopt'),function(x){x.classList.add('lock');if(+x.dataset.j===Q[i].c)x.classList.add('correct');});
+     if(!ok)b.classList.add('wrong');
+     var ex=$('quiz').querySelector('.qexp[data-e="'+i+'"]');ex.style.display='block';
+     ex.innerHTML=(ok?'<b style="color:var(--tg)">Tačno. </b>':'<b style="color:var(--sin)">Nije tačno. </b>')+Q[i].e;
+     answered++;if(ok)correct++;$('qmeter').textContent=answered+' / '+Q.length;
+     if(answered===Q.length){var r=$('qresult');r.style.display='block';$('qsc').textContent=correct+' / '+Q.length+' tačno';
+       $('qmsg').textContent=correct===Q.length?'Savršeno! Trigonometrija ti leži.':(correct>=3?'Odlično — još malo vežbe i tu si.':'Dobar početak — Mathia te vodi do kraja.');}
+   };});});
+
+ // mini uglovi
+ [].forEach.call(document.querySelectorAll('.ugsvg'),function(sv){var deg=+sv.dataset.deg,vx=46,vy=54,L=40,rad=deg*Math.PI/180;
+   if(deg>=360){sv.innerHTML='<circle cx="46" cy="54" r="30" fill="none" stroke="var(--gold)" stroke-width="2.2"/><circle cx="46" cy="54" r="2.6" fill="var(--plum)"/>';return;}
+   var ex=vx+L*Math.cos(rad),ey=vy-L*Math.sin(rad),aR=17,bx=vx+aR*Math.cos(rad),by=vy-aR*Math.sin(rad),lg=deg>180?1:0;
+   var sq=(Math.abs(deg-90)<1)?'<rect x="46" y="42" width="12" height="12" fill="none" stroke="var(--gold)" stroke-width="1.5"/>':'<path d="M '+(vx+aR)+' '+vy+' A '+aR+' '+aR+' 0 '+lg+' 0 '+bx.toFixed(1)+' '+by.toFixed(1)+'" fill="none" stroke="var(--gold)" stroke-width="1.7"/>';
+   sv.innerHTML='<line x1="46" y1="54" x2="86" y2="54" stroke="var(--plum)" stroke-width="2.2"/><line x1="46" y1="54" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'" stroke="var(--plum)" stroke-width="2.2"/>'+sq+'<circle cx="46" cy="54" r="2.6" fill="var(--plum)"/>';});
+
+ // start
+ geo(0); nums(0); markChips(0); playIcon(); loop();
+})();
+</script>
+<script>(function(){var els=document.querySelectorAll('.reveal');
+ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+ [].forEach.call(els,function(el){io.observe(el);});setTimeout(function(){[].forEach.call(document.querySelectorAll('.reveal:not(.in)'),function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in');});},60);}
+ else{[].forEach.call(els,function(el){el.classList.add('in');});}
+ setTimeout(function(){[].forEach.call(document.querySelectorAll('.reveal:not(.in)'),function(el){el.classList.add('in');});},1600);
+})();</script>
+</body></html>

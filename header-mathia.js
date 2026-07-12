@@ -68,6 +68,8 @@
       '<div class="nav-r">' +
       '<a class="link" href="predmeti.html">Predmeti</a>' +
       '<a class="link" href="prodavnica.html">Prodavnica</a>' +
+      '<a class="link" href="vizuelne-lekcije.html">Vizuelne lekcije</a>' +
+      '<a class="link" href="testiraj-se.html">Pronađi svoj smer</a>' +
       '<a class="link" href="index.html#paketi">Paketi</a>' +
       '<a class="link" href="o-marini.html">O meni</a>' +
       '<select class="lang" aria-label="Jezik / Language">' + opts + "</select>" +
