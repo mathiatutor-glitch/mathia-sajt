@@ -11,7 +11,7 @@ import {
 } from "../lib/user.js";
 import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 import { sbUser } from "../lib/sbauth.js";
-import { aktivnePretplate, beleziNapredak } from "../lib/supabase.js";
+import { aktivnePretplate, beleziNapredak, poslednjeTeme } from "../lib/supabase.js";
 
 const LOGIN_MSG = {
   sr: "Zdravo! Da bismo započeli čas, prijavite se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
@@ -439,6 +439,17 @@ export default async function handler(req, res) {
           + "Kada zaglavi, ohrabri ga po imenu. "
           + "Ti si Marina — topla, strpljiva, uvek uz korisnika. Pamtiš ko je i šta uči.";
       }
+      // „Gde smo stali" — poslednje teme iz mathia_napredak, da se klon prirodno nadoveže.
+      try {
+        if (sbId) {
+          const teme = await poslednjeTeme(sbId, 4);
+          if (teme && teme.length) {
+            const opis = teme.map(t => t.tema + (t.predmet ? " (" + t.predmet + ")" : "")).join("; ");
+            personalCtx += "\n\nGDE STE STALI: učenik je nedavno radio/pitao — " + opis + "."
+              + " Ako je relevantno za trenutno pitanje, prirodno se nadoveži i po potrebi ponudi da nastavite odatle ili predloži sledeći korak/zadatak. Ne forsiraj ako je učenik pokrenuo novu temu.";
+          }
+        }
+      } catch (e) {}
     }
     // Sistemski prompt (klon + uputstva za formule) je VELIK i isti za svaku poruku →
     // keširamo ga (ponovljeni ulaz je do 90% jeftiniji). Personalni deo (ime, predmeti…)
