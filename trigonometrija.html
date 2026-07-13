@@ -15,10 +15,12 @@
  --gold:#B18A46; --gold2:#C6A162; --goldlt:#E7D6B0; --champ:#F6EDD8;
  --muted:#9A8B92; --bord:#EADFCB; --hair:#F0E7D6; --card:#FFFDF9;
  --sin:#B65E7E; --cos:#4C7FA6; --tg:#5E8A5B; --ctg:#B58A44;
- --serif:'Cormorant Garamond',Georgia,serif; --sans:'Nunito',system-ui,sans-serif;
+ --serif:'Fraunces',Georgia,'Times New Roman',serif; --sans:'Nunito',system-ui,sans-serif;
  --sh:0 30px 70px -50px rgba(90,60,25,.55);
 }
 *{box-sizing:border-box}
+/* dosledni, elegantni brojevi u celoj matematici (Fraunces lining figures) */
+.mf,.mv,.fbox,.angrow .al,.angrow .eq,.angrow .deg,.angrow .rad2,.vc .lbl,.vc .val,.qopt .ans,.qresult .sc,.ug b{font-variant-numeric:lining-nums proportional-nums}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.65;font-size:16px;
  background:radial-gradient(1200px 640px at 84% -10%,#FCF1DC 0,transparent 60%),var(--paper);
