@@ -55,3 +55,14 @@ input:focus-visible, [tabindex]:focus-visible{
 ::-webkit-scrollbar{ width:11px; height:11px; }
 ::-webkit-scrollbar-thumb{ background:#E7D2A2; border-radius:999px; border:3px solid transparent; background-clip:content-box; }
 ::-webkit-scrollbar-thumb:hover{ background:#C6A05C; background-clip:content-box; }
+
+/* — suptilni, bezbedni prelazi (ne menjaju raspored) — */
+a, button, .btn, select, [role="button"], .tile, .card{
+  transition: transform .16s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease,
+              background-color .2s ease, color .2s ease, border-color .2s ease, filter .2s ease;
+}
+button:hover, .btn:hover, [role="button"]:hover{ filter:brightness(1.03) saturate(1.02); }
+button:active, .btn:active, [role="button"]:active{ transform: translateY(1px); }
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
+}
