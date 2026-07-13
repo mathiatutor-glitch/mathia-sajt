@@ -1,0 +1,57 @@
+/* ==========================================================================
+   MATHIA — jedinstveni tipografski i stilski sloj (učitava se POSLEDNJI).
+   Cilj: svaka strana istog, prefinjenog izgleda — jedan naslovni font
+   (Fraunces), jedan tekstualni (Nunito), pravi (lining) brojevi svuda,
+   i sitne poliranja. Ne dira KaTeX (matematika ostaje u svom fontu).
+   Idempotentno: uključuje se preko <link href="mathia-type.css"> pred </head>.
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
+/* — pravi brojevi svuda (rešava „1" koje je izgledalo kao rimsko „I") — */
+:root{ --mathia-serif:'Fraunces',Georgia,'Times New Roman',serif;
+       --mathia-sans:'Nunito',system-ui,-apple-system,'Segoe UI',Arial,sans-serif; }
+html{ -webkit-text-size-adjust:100%; }
+body{ font-variant-numeric: lining-nums proportional-nums; }
+
+/* — telo teksta: jedinstven sans (ne dira KaTeX ni ikonske fontove) — */
+body, p, li, dd, dt, blockquote, figcaption, label, input, textarea, select,
+button, .subtitle, .lead, .tnum, .bx-h, .kind, .brandline, .foot, .foot2{
+  font-family: var(--mathia-sans) !important;
+}
+
+/* — naslovi i „pečati": jedinstven serif (Fraunces), sa lining brojevima — */
+h1, h2, h3, h4, .cover h1, .topic h2, .seal, .quote, .display,
+[class*="title"], [class*="Title"], [class*="hero"] [class*="head"]{
+  font-family: var(--mathia-serif) !important;
+  font-variant-numeric: lining-nums;
+  letter-spacing:.002em;
+}
+
+/* — KaTeX ostaje netaknut (osiguranje) — */
+.katex, .katex *{ font-family: KaTeX_Main, KaTeX_Math, 'Times New Roman', serif !important; }
+.katex .mord.text, .katex .text{ font-variant-numeric: normal; }
+
+/* — jezički prekidač: isti, čist izgled na svakoj strani — */
+select.lang, .lang{
+  font-family: var(--mathia-sans) !important;
+  font-weight:700; letter-spacing:.01em;
+}
+
+/* — sitna poliranja koja podižu utisak (bezbedna, globalna) — */
+*{ text-rendering: optimizeLegibility; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+::selection{ background:#E7D2A2; color:#432C37; }
+html{ scroll-behavior:smooth; }
+a{ text-underline-offset:2px; }
+button, .btn, [role="button"]{ letter-spacing:.005em; }
+img{ image-rendering:auto; }
+
+/* — fokus prsten (pristupačnost + doima se dovršeno) — */
+a:focus-visible, button:focus-visible, select:focus-visible,
+input:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid #C6A05C; outline-offset:2px; border-radius:6px;
+}
+
+/* — tanka, elegantna traka za skrol (webkit) — */
+::-webkit-scrollbar{ width:11px; height:11px; }
+::-webkit-scrollbar-thumb{ background:#E7D2A2; border-radius:999px; border:3px solid transparent; background-clip:content-box; }
+::-webkit-scrollbar-thumb:hover{ background:#C6A05C; background-clip:content-box; }

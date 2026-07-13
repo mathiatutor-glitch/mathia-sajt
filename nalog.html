@@ -354,6 +354,7 @@ button.feat{font-family:inherit;line-height:1}
 <meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
+<link rel="stylesheet" href="mathia-type.css">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6A05C"/><stop offset="1" stop-color="#9C7838"/></linearGradient></defs></svg>
@@ -433,7 +434,7 @@ button.feat{font-family:inherit;line-height:1}
         <div class="tiles">
           <div class="tile" onclick="quickMat('formule')"><div class="ti">📐</div><div><b>Priručnik formula</b><span>Sve formule na jednom mestu</span></div></div>
           <div class="tile" onclick="quickMat('zbirka')"><div class="ti">📝</div><div><b>Zbirka zadataka</b><span>Vežbaj po temama</span></div></div>
-          <div class="tile" onclick="location.href='Mathia-Student-Planner.html'"><div class="ti">📔</div><div><b>Moj planer</b><span>Raspored i rokovi</span></div></div>
+          <div class="tile" id="pl-quick" onclick="goPlaner()"><div class="ti">📔</div><div><b>Moj planer</b><span>Raspored i rokovi</span></div></div>
         </div>
 
         <h3 class="sectitle">Nastavi gde smo stali</h3>
@@ -530,11 +531,11 @@ button.feat{font-family:inherit;line-height:1}
         <div class="card plan-hero">
           <div class="cover">📔</div>
           <div class="t">
-            <b>Mathia Student Planner</b>
+            <b id="pl-title">Mathia Student Planner</b>
             <span class="own" id="pl-own">✓ Uz tvoj nalog</span>
-            <p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p>
+            <p id="pl-desc" style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p>
             <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn btn-gold" href="Mathia-Student-Planner.html">Otvori planer →</a>
+              <a class="btn btn-gold" id="pl-open" href="Mathia-Student-Planner.html">Otvori planer →</a>
             </div>
           </div>
         </div>
@@ -546,6 +547,35 @@ button.feat{font-family:inherit;line-height:1}
         function _plDatum(iso){ try{ var p=(''+iso).split('-'); return p[2]+'. '+p[1]+'. '+p[0]+'.'; }catch(e){ return iso; } }
         function _plName(k){ if(!k)return ''; try{ if(typeof nazivPredmeta==='function') return nazivPredmeta(k); }catch(e){} return k; }
         function _plPredmetiIzPretplate(){ try{ var pr=(typeof PROFILE!=='undefined'&&PROFILE&&PROFILE.predmeti)||[]; if(typeof pr==='string'){ try{pr=JSON.parse(pr);}catch(e){ pr=pr.split(',').map(function(s){return s.trim();}).filter(Boolean); } } return Array.isArray(pr)?pr:[]; }catch(e){ return []; } }
+        /* Planer po UZRASTU: bira pravi planer prema pretplaćenim predmetima.
+           osn-* / mala-matura → osnovna; sr-* / priprema-srednja → srednja; ostalo → fakultet. */
+        function planerZaNivo(){
+          var pr=_plPredmetiIzPretplate();
+          var c={osnovna:0,srednja:0,fakultet:0};
+          pr.forEach(function(k){ k=(''+k).toLowerCase().trim();
+            if(/^osn-/.test(k)||k==='mala-matura') c.osnovna++;
+            else if(/^sr-/.test(k)||k==='priprema-srednja') c.srednja++;
+            else if(k) c.fakultet++;
+          });
+          var lvl=null,best=0;
+          ['osnovna','srednja','fakultet'].forEach(function(L){ if(c[L]>best){best=c[L];lvl=L;} });
+          var M={
+            osnovna:{href:'Planer-Osnovna.html',naziv:'Planer za osnovnu školu',ic:'🎒',opis:'Časovi, kontrolni, mala matura, navike, raspoloženje, stikeri i bedževi.'},
+            srednja:{href:'Planer-Srednja.html',naziv:'Planer za srednju školu',ic:'📐',opis:'Kontrolni i pismeni, matura (odbrojavanje), razredi, raspored, navike i ciljevi.'},
+            fakultet:{href:'Mathia-Student-Planner.html',naziv:'Mathia Student Planner',ic:'🎓',opis:'Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.'}
+          };
+          if(!lvl) return {href:'Planeri.html',naziv:'Izaberi planer',ic:'📔',opis:'Izaberi planer za svoj uzrast — osnovna, srednja škola ili fakultet.'};
+          return M[lvl];
+        }
+        function goPlaner(){ try{ location.href=planerZaNivo().href; }catch(e){ location.href='Planeri.html'; } }
+        function updatePlanerLinks(){
+          try{ var p=planerZaNivo();
+            var o=document.getElementById('pl-open'); if(o){ o.setAttribute('href',p.href); o.textContent=(p.href==='Planeri.html'?'Izaberi planer →':'Otvori planer →'); }
+            var t=document.getElementById('pl-title'); if(t) t.textContent=p.naziv;
+            var d=document.getElementById('pl-desc'); if(d) d.textContent=p.opis;
+            var cov=document.querySelector('.plan-hero .cover'); if(cov) cov.textContent=p.ic;
+          }catch(e){}
+        }
         function planerSave(){
           if(!sb||!USER){ return Promise.resolve(); }
           var P=PLANER||{};
@@ -573,6 +603,7 @@ button.feat{font-family:inherit;line-height:1}
         function togglePlanTask(i){ if(!PLANER||!PLANER.stavke||!PLANER.stavke[i])return; PLANER.stavke[i].gotovo=!PLANER.stavke[i].gotovo; planerSave().then(function(){ renderPlaner(); }); }
         function renderPlaner(){
           try{
+            updatePlanerLinks();
             var DANI=['Ned','Pon','Uto','Sre','Čet','Pet','Sub'], MESECI=['Januar','Februar','Mart','April','Maj','Jun','Jul','Avgust','Septembar','Oktobar','Novembar','Decembar'];
             var now=new Date(); var P=PLANER||{}; var stavke=Array.isArray(P.stavke)?P.stavke:[];
             var titleEl=$('pl-goal-title'), subEl=$('pl-goal-sub'), cnt=$('pl-count-num'), chips=$('pl-goal-chips');
