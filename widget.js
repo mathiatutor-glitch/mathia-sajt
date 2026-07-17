@@ -1113,13 +1113,13 @@
       if (rr.ok) {
         var arr = await rr.json();
         if (arr && arr[0] && arr[0].poruke && arr[0].poruke.length > 0) {
-          history = arr[0].poruke.slice(-MAX_PORUKA);
+          history = bezSistemskih(arr[0].poruke).slice(-MAX_PORUKA);
           // Prikaži prethodne poruke u četu
           history.forEach(function(m) {
             if (m.role === "user") addBub("me", m.content, null);
             else if (m.role === "assistant") addBub("zoi", m.content);
           });
-          imaRazgovor = true;
+          imaRazgovor = history.length > 0;
         }
       }
 
@@ -1130,11 +1130,47 @@
     } catch(e) { /* tiho — memorija nije kritična */ }
   }
 
+  /* Sistemske poruke (zakljucan predmet, isteklo, prijavi se, zastoj) NISU deo casa.
+     Ranije su se cuvale u istoriju, pa bi ucenik koji predmet KUPI i dalje video
+     „Ovaj predmet nije u tvom paketu" na vrhu razgovora kad se vrati. Gore od toga:
+     te poruke su se slale nazad modelu kao njegove ranije reci.
+     Filtriramo ih i pri cuvanju i pri ucitavanju (zbog vec sacuvanih razgovora). */
+  var SISTEMSKE = [
+    /nije u tvom paketu/i, /isn't in your plan/i, /nicht in deinem Paket/i, /pas dans ton forfait/i,
+    /no est\u00e1 en tu plan/i, /non \u00e8 nel tuo piano/i, /\u043d\u0435 \u0432\u0445\u043e\u0434\u0438\u0442 \u0432 \u0442\u0432\u043e\u0439 \u043f\u0430\u043a\u0435\u0442/i, /n\u00e3o est\u00e1 no teu plano/i,
+    /besplatnih minuta je isteklo/i, /free 15 minutes are up/i, /kostenlosen Minuten sind vorbei/i,
+    /minutes gratuites sont \u00e9coul\u00e9es/i, /minutos gratuitos han terminado/i, /minuti gratuiti sono finiti/i,
+    /\u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0445 \u043c\u0438\u043d\u0443\u0442 \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u043b\u0438\u0441\u044c/i, /minutos gratuitos terminaram/i,
+    /prijavi se na stranici Nalog/i, /sign in on the Account page/i, /Konto-Seite/i, /page Compte/i,
+    /p\u00e1gina Cuenta/i, /pagina Account/i, /\u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435 \u0410\u043a\u043a\u0430\u0443\u043d\u0442/i, /p\u00e1gina Conta/i,
+    /pitanja stizu prebrzo|pitanja sti\u017eu prebrzo/i, /questions are coming in too fast/i,
+    /tehnickog zastoja|tehni\u010dkog zastoja/i, /technical hiccup/i
+  ];
+  function jeSistemska(t) {
+    t = String(t || "");
+    if (t.length > 400) return false;              // pravi odgovor je duzi — ne diramo ga
+    for (var i = 0; i < SISTEMSKE.length; i++) if (SISTEMSKE[i].test(t)) return true;
+    return false;
+  }
+  function bezSistemskih(arr) {
+    if (!arr || !arr.length) return arr || [];
+    var out = [];
+    for (var i = 0; i < arr.length; i++) {
+      var m = arr[i];
+      if (m && m.role === "assistant" && jeSistemska(m.content)) {
+        if (out.length && out[out.length - 1].role === "user") out.pop();  // i pitanje koje je izazvalo poruku
+        continue;
+      }
+      out.push(m);
+    }
+    return out;
+  }
+
   async function memSave() {
     if (!MEM_USER || !MEM_USER.id || ISSITE || MEM_SAVING) return;
     MEM_SAVING = true;
     try {
-      var poruke = history.slice(-MAX_PORUKA);
+      var poruke = bezSistemskih(history).slice(-MAX_PORUKA);
       var payload = JSON.stringify({ user_id: MEM_USER.id, predmet: MEM_KEY, poruke: poruke, azurirano: new Date().toISOString() });
       await sbApiFetch("/rest/v1/mathia_razgovori", {
         method: "POST",
