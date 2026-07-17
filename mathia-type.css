@@ -24,15 +24,26 @@ h1, h2, h3, h4, .cover h1, .topic h2, .seal, .quote, .display,
 [class*="title"], [class*="Title"], [class*="hero"] [class*="head"]{
   font-family: var(--mathia-serif) !important;
   font-variant-numeric: lining-nums;
-  letter-spacing:-.004em;      /* Spectral je uzi — mrvica negativnog reda deluje sabranije */
-  line-height:1.16;
+  letter-spacing:-.003em;
+  line-height:1.28;            /* 1.16 je bilo preusko — naslovi su se lepili */
 }
-/* Inter ima velike brojeve i sirok razmak — malo stegnuto deluje uredjenije */
-body, p, li{ letter-spacing:-.003em; }
+/* Tekst treba da diše: Spectral/Inter na gustom rasporedu deluju zbijeno */
+body, p, li{ letter-spacing:0; line-height:1.65; }
+p{ margin-block: .85em; }
+li{ margin-block: .35em; }
+h1,h2,h3,h4{ margin-block-start: 1.4em; margin-block-end: .5em; }
 
-/* — KaTeX ostaje netaknut (osiguranje) — */
-.katex, .katex *{ font-family: KaTeX_Main, KaTeX_Math, 'Times New Roman', serif !important; }
-.katex .mord.text, .katex .text{ font-variant-numeric: normal; }
+/* — KaTeX: NE DIRAJ font-family. —————————————————————————————
+   Ranije je ovde stajalo `.katex, .katex * { font-family: ... !important }`
+   kao tobožnja zaštita. To je zapravo LOMILO matematiku: KaTeX koristi
+   KaTeX_Size1–Size4 za velike znake (∫, ∑, zagrade), pa ih je taj !important
+   gazio u KaTeX_Main — integral bi dobio pogrešnu veličinu i granice bi mu
+   pobegle. KaTeX sam zna svoje fontove; naša globalna pravila ga ionako ne
+   pogađaju jer katex.css postavlja font-family direktno na svoje spanove.
+   Ovde ostaje samo ono što je bezbedno i potrebno. */
+.katex, .katex *{ font-variant-numeric: normal !important; }   /* lining-nums sa body ne sme u formule */
+.katex-display{ margin: 1.1em 0; }                              /* formula u bloku diše */
+.katex-display > .katex{ white-space: normal; }                 /* duge formule smeju da se prelome */
 
 /* — jezički prekidač: isti, čist izgled na svakoj strani — */
 select.lang, .lang{
