@@ -407,7 +407,14 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
   var q = new URLSearchParams(location.search);
   var next = q.get("next");
   if(!next) return;
-  try{ if(sessionStorage.getItem("mathia_sb_retry")==="1") return; }catch(e){ return; }
+  /* Zastita od petlje — po CILJU i sa rokom, ne jednom za celu posetu.
+     Ranije je ovde stajala jedna zastavica za celu posetu: oporavak bi odradio jednom
+     i zakljucao se, pa bi ucenik pri sledecem isteku tokena ostao zaglavljen na prijavi. */
+  var _k = "mathia_sb_retry:" + next;
+  try{
+    var _pre = parseInt(sessionStorage.getItem(_k) || "0", 10);
+    if (_pre && (Date.now() - _pre) < 20000) return;   // isti cilj pokusan pre <20s -> stvarno petlja
+  }catch(e){ return; }
   var imaSesiju=false;
   try{
     for(var i=0;i<localStorage.length;i++){
@@ -426,7 +433,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
       var sec = (location.protocol==="https:") ? "; Secure" : "";
       document.cookie = "mathia_sb=" + encodeURIComponent(ses.access_token)
         + "; path=/; max-age=" + Math.max(60, Math.min(ost,3600)) + "; SameSite=Lax" + sec;
-      try{ sessionStorage.setItem("mathia_sb_retry","1"); }catch(e){}
+      try{ sessionStorage.setItem(_k, String(Date.now())); }catch(e){}
       location.replace(next);
     });
   }catch(e){}
