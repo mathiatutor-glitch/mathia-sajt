@@ -8,18 +8,18 @@
 <title>Trigonometrija koju možeš da vidiš — MATHIA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
  --paper:#FBF7EF; --paper2:#F5ECDD; --ink:#40323A; --plum:#3E2A34; --plum2:#6A5560;
  --gold:#B18A46; --gold2:#C6A162; --goldlt:#E7D6B0; --champ:#F6EDD8;
  --muted:#9A8B92; --bord:#EADFCB; --hair:#F0E7D6; --card:#FFFDF9;
  --sin:#B65E7E; --cos:#4C7FA6; --tg:#5E8A5B; --ctg:#B58A44;
- --serif:'Fraunces',Georgia,'Times New Roman',serif; --sans:'Nunito',system-ui,sans-serif;
+ --serif:'Spectral',Georgia,'Times New Roman',serif; --sans:'Inter',system-ui,sans-serif;
  --sh:0 30px 70px -50px rgba(90,60,25,.55);
 }
 *{box-sizing:border-box}
-/* dosledni, elegantni brojevi u celoj matematici (Fraunces lining figures) */
+/* dosledni, elegantni brojevi u celoj matematici (Spectral lining figures) */
 .mf,.mv,.fbox,.angrow .al,.angrow .eq,.angrow .deg,.angrow .rad2,.vc .lbl,.vc .val,.qopt .ans,.qresult .sc,.ug b{font-variant-numeric:lining-nums proportional-nums}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.65;font-size:16px;
@@ -148,7 +148,7 @@ table.nv .inf{font-size:1.05rem;color:var(--muted);font-family:var(--sans);font-
 .g-next{padding:9px 16px}
 
 /* ——— fina tipografija + slatka dugmad + efekti ——— */
-:root{--serif:'Fraunces',Georgia,serif}
+:root{--serif:'Spectral',Georgia,serif}
 *{font-variant-numeric:lining-nums}
 .fbox,.vc .val,table.nv td,.frac,.rad,.deg,.rad2,.al,.g-opt,.g-q,.qopt .ans{font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1,"tnum" 1}
 p.tx{max-width:64ch;text-wrap:pretty}
@@ -223,7 +223,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
         <line id="ctgAxis" x1="80" y1="90" x2="380" y2="90" stroke="var(--ctg)" stroke-width="1" stroke-dasharray="2 6" opacity=".4"/>
         <circle cx="220" cy="230" r="140" fill="none" stroke="var(--gold)" stroke-width="1.6"/>
         <path id="arc" fill="rgba(177,138,70,.13)" stroke="var(--gold)" stroke-width="1.5"/>
-        <text id="arcLbl" font-family="Cormorant Garamond" font-style="italic" font-size="19" fill="var(--gold)">α</text>
+        <text id="arcLbl" font-family="Spectral" font-style="italic" font-size="19" fill="var(--gold)">α</text>
         <line id="dropV" stroke="var(--sin)" stroke-width="1" stroke-dasharray="3 4" opacity=".55"/>
         <line id="dropH" stroke="var(--cos)" stroke-width="1" stroke-dasharray="3 4" opacity=".55"/>
         <line id="cosSeg" stroke="var(--cos)" stroke-width="5" stroke-linecap="round"/>
