@@ -8,12 +8,12 @@
 <meta name="description" content="Besplatan test sklonosti — otkrij koji smer, škola i fakultet ti najviše leže.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{--paper:#FBF6EE;--paper2:#F5EADB;--blush:#F4E3DD;--rose:#CC8E86;--rose-dk:#B5746C;--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:840px}
   *{box-sizing:border-box}
-  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
-  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.12;margin:0}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Spectral',Georgia,serif;font-weight:600;line-height:1.12;margin:0}
   p{margin:0}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
   .eyebrow{font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--golddk);font-weight:800}
@@ -46,7 +46,7 @@
   .lv-ic{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);position:relative;margin-bottom:6px;box-shadow:0 12px 22px -12px rgba(198,160,92,.8)}
   .lv-ic::before{content:"";position:absolute;inset:-2px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#F0DCA6,#B8923F);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
   .lv-ic svg{width:23px;height:23px}
-  .lvl b{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;display:block;color:var(--plum)}
+  .lvl b{font-family:'Spectral',serif;font-size:1.35rem;font-weight:600;display:block;color:var(--plum)}
   .lvl .lv-s{font-size:.82rem;color:var(--muted)}
   .lvl.on b{color:#fff}.lvl.on .lv-s{color:rgba(231,210,162,.8)}.lvl.on .lv-ic{background:rgba(231,210,162,.16);color:#E7D2A2}
   .fld{margin:8px 0 22px}
@@ -57,7 +57,7 @@
   .prog{height:6px;border-radius:6px;background:rgba(198,160,92,.16);overflow:hidden;margin-bottom:8px}
   .prog i{display:block;height:100%;background:linear-gradient(90deg,var(--goldlt),var(--gold));width:0;transition:width .3s}
   .qnum{font-size:.78rem;color:var(--muted);font-weight:700;margin-bottom:18px;letter-spacing:.04em}
-  .qtext{font-family:'Fraunces',serif;font-size:clamp(1.5rem,3.6vw,2rem);color:var(--plum);margin-bottom:26px;line-height:1.25}
+  .qtext{font-family:'Spectral',serif;font-size:clamp(1.5rem,3.6vw,2rem);color:var(--plum);margin-bottom:26px;line-height:1.25}
   .opts{display:grid;gap:11px}
   .opt{border:1.5px solid rgba(198,160,92,.32);background:#fffdf8;border-radius:14px;padding:15px 20px;text-align:left;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--plum);font-weight:600;transition:all .14s;display:flex;align-items:center;gap:12px}
   .opt:hover{border-color:var(--gold);background:#FBF3E2;transform:translateX(3px)}
@@ -70,7 +70,7 @@
   .rep-type .lead{color:#6a5a62;max-width:580px;margin:0 auto;font-size:1.06rem}
   .rep-sec{margin-top:34px}
   .rep-sec .sh{text-align:center;margin-bottom:20px}
-  .rep-sec h3{font-family:'Fraunces',serif;font-size:1.7rem;color:var(--plum)}
+  .rep-sec h3{font-family:'Spectral',serif;font-size:1.7rem;color:var(--plum)}
   .bar-row{margin-bottom:13px}
   .bar-top{display:flex;justify-content:space-between;font-size:.9rem;font-weight:700;color:var(--plum);margin-bottom:5px}
   .bar-top span:last-child{color:var(--golddk)}
@@ -83,10 +83,10 @@
   .opt-card:hover{transform:translateY(-3px);box-shadow:0 32px 56px -34px rgba(120,70,80,.5);border-color:rgba(198,160,92,.5)}
   .opt-card.best{border-color:rgba(198,160,92,.55);box-shadow:0 30px 60px -30px rgba(198,160,92,.5)}
   .oc-top{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:9px}
-  .oc-name{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--plum);font-weight:600;line-height:1.1}
+  .oc-name{font-family:'Spectral',serif;font-size:1.4rem;color:var(--plum);font-weight:600;line-height:1.1}
   .oc-badge{display:inline-block;font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#4a3812;background:linear-gradient(160deg,#E7D2A2,#C6A05C);border-radius:100px;padding:3px 8px;margin-left:8px;vertical-align:middle}
-  .oc-pct{font-family:'Fraunces',serif;font-weight:700;font-size:1.7rem;color:var(--golddk);flex:none}
-  .oc-pct small{font-family:'Nunito',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;text-align:right;margin-top:-4px}
+  .oc-pct{font-family:'Spectral',serif;font-weight:700;font-size:1.7rem;color:var(--golddk);flex:none}
+  .oc-pct small{font-family:'Inter',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;text-align:right;margin-top:-4px}
   .oc-bar{height:7px;border-radius:5px;background:rgba(198,160,92,.14);overflow:hidden;margin-bottom:11px}
   .oc-bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--goldlt),var(--gold));width:0;transition:width .8s ease}
   .oc-why{color:#6a5a62;font-size:.94rem}

@@ -9,20 +9,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme-mathia.css">
 <style>
 :root{--paper:#FBF6EE;--paper2:#F5EADB;--plum:#432C37;--plum2:#5C3B49;--rose:#CC8E86;--rose-dk:#B5746C;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--muted:#90787E;--ink:#3a2530}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
 .reg-wrap{max-width:760px;margin:0 auto;padding:120px 22px 90px}
 .reg-eyebrow{text-align:center;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:12px}
-.reg-title{text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(2.1rem,5.5vw,3.1rem);font-weight:600;color:var(--plum);line-height:1.12;margin:0 0 10px}
+.reg-title{text-align:center;font-family:'Spectral',serif;font-size:clamp(2.1rem,5.5vw,3.1rem);font-weight:600;color:var(--plum);line-height:1.12;margin:0 0 10px}
 .reg-sub{text-align:center;color:var(--muted);max-width:520px;margin:0 auto 34px;font-size:1.03rem}
 /* step ribbon */
 .steps{display:flex;align-items:center;justify-content:center;gap:0;margin:0 auto 40px;max-width:440px}
 .step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;position:relative}
-.step .dot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.1rem;background:#fff;border:1.5px solid rgba(198,160,92,.4);color:var(--muted);transition:all .3s;z-index:2}
+.step .dot{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;font-size:1.1rem;background:#fff;border:1.5px solid rgba(198,160,92,.4);color:var(--muted);transition:all .3s;z-index:2}
 .step.on .dot{background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);border-color:var(--gold);color:#3a2530;box-shadow:0 10px 22px -10px rgba(198,160,92,.8)}
 .step.done .dot{background:var(--plum);border-color:var(--plum);color:var(--goldlt)}
 .step .lbl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted)}
@@ -38,13 +38,13 @@ body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 /* package seal */
 .pkg-seal{display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:26px}
-.pkg-badge{font-family:'Cormorant Garamond',serif;font-weight:700;letter-spacing:.02em;font-size:1.05rem;color:#3a2530;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid var(--gold);border-radius:100px;padding:8px 22px;box-shadow:0 12px 26px -14px rgba(198,160,92,.7)}
+.pkg-badge{font-family:'Spectral',serif;font-weight:700;letter-spacing:.02em;font-size:1.05rem;color:#3a2530;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid var(--gold);border-radius:100px;padding:8px 22px;box-shadow:0 12px 26px -14px rgba(198,160,92,.7)}
 .pkg-note{color:var(--muted);font-size:.95rem}
 .pkg-note b{color:var(--plum)}
 /* fields */
 .field{margin-bottom:18px}
 .field label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--golddk);margin-bottom:7px}
-.field input{width:100%;font-family:'Nunito',sans-serif;font-size:1rem;color:var(--ink);background:#fffdf8;border:1px solid rgba(198,160,92,.4);border-radius:14px;padding:13px 16px;transition:border-color .16s,box-shadow .16s}
+.field input{width:100%;font-family:'Inter',sans-serif;font-size:1rem;color:var(--ink);background:#fffdf8;border:1px solid rgba(198,160,92,.4);border-radius:14px;padding:13px 16px;transition:border-color .16s,box-shadow .16s}
 .field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px rgba(231,210,162,.35)}
 .field-row{display:flex;gap:14px}
 .field-row .field{flex:1}
@@ -52,7 +52,7 @@ body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--
 .or{text-align:center;color:var(--muted);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin:10px 0}
 /* subjects picker */
 .pick-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
-.pick-count{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--plum);font-weight:600}
+.pick-count{font-family:'Spectral',serif;font-size:1.15rem;color:var(--plum);font-weight:600}
 .pick-count b{color:var(--golddk)}
 .grp{margin-bottom:26px}
 .grp-h{font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--plum);margin-bottom:13px;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#F4E7CB,rgba(244,231,203,.25));border-left:4px solid var(--gold)}
@@ -69,10 +69,10 @@ body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--
 .rev-item:last-child{border-bottom:none}
 .rev-ic{width:34px;height:34px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE)}
 .rev-k{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:800}
-.rev-v{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--plum);font-weight:600}
+.rev-v{font-family:'Spectral',serif;font-size:1.25rem;color:var(--plum);font-weight:600}
 /* buttons */
 .reg-foot{display:flex;align-items:center;justify-content:space-between;margin-top:30px;gap:14px}
-.btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.98rem;border-radius:100px;padding:13px 30px;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s,opacity .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn{font-family:'Inter',sans-serif;font-weight:800;font-size:.98rem;border-radius:100px;padding:13px 30px;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s,opacity .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 .btn-gold{background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#3a2530;box-shadow:0 16px 30px -14px rgba(198,160,92,.9)}
 .btn-gold:hover{transform:translateY(-2px)}
 .btn-gold[disabled]{opacity:.45;pointer-events:none;box-shadow:none}
@@ -231,7 +231,7 @@ function buildReview(){
   h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Paket '+pkg.label+'</div><div class="rev-v">'+selected.map(function(s){return s.t;}).join(' · ')+'</div></div></div>';
   var CENE={basic:4990,gold:6990,diamond:9990}; var cena=CENE[pkgKey]||0; var pl=(qp('planer')==='1'); if(pl)cena+=1990;
   var kor=''; try{kor=localStorage.getItem('mathia_korica')||'';}catch(e){}
-  h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Za naplatu</div><div class="rev-v" style="font-family:\'Cormorant Garamond\',serif;font-size:1.35rem;color:var(--golddk);font-weight:700">'+cena.toLocaleString('sr-RS')+' RSD'+(pl?' <span style=\'font-size:.8rem;color:#90787E\'>(uklj. planer'+(kor?', korica '+kor:'')+')</span>':'')+'</div></div></div>';
+  h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Za naplatu</div><div class="rev-v" style="font-family:\'Spectral\',serif;font-size:1.35rem;color:var(--golddk);font-weight:700">'+cena.toLocaleString('sr-RS')+' RSD'+(pl?' <span style=\'font-size:.8rem;color:#90787E\'>(uklj. planer'+(kor?', korica '+kor:'')+')</span>':'')+'</div></div></div>';
   document.getElementById('review').innerHTML=h;
 }
 
