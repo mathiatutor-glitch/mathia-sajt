@@ -8,24 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme-mathia.css">
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 <style>
 :root{--paper:#FBF6EE;--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--rose:#CC8E86;--muted:#90787E;--ink:#3a2530}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
 main{max-width:820px;margin:0 auto;padding:40px 22px 90px}
 .topnav{max-width:820px;margin:0 auto;padding:22px 22px 0}
 .back{color:var(--golddk);font-weight:700;text-decoration:none;font-size:.92rem}
 .back:hover{color:var(--plum)}
 .doc-eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin:24px 0 10px}
-h1.doc{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,2.9rem);font-weight:600;color:var(--plum);line-height:1.12;margin:0 0 12px}
+h1.doc{font-family:'Spectral',serif;font-size:clamp(2rem,5vw,2.9rem);font-weight:600;color:var(--plum);line-height:1.12;margin:0 0 12px}
 .doc-lead{color:var(--muted);font-size:1.08rem;margin:0 0 30px;max-width:640px}
 .topic{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.26);border-radius:20px;padding:28px 30px;margin:0 0 22px;box-shadow:0 26px 54px -46px rgba(120,70,80,.55)}
-.topic h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--plum);font-weight:600;margin:0 0 6px}
-.topic h3{font-family:'Nunito',sans-serif;font-size:1rem;color:var(--golddk);font-weight:800;letter-spacing:.02em;margin:22px 0 8px}
+.topic h2{font-family:'Spectral',serif;font-size:1.7rem;color:var(--plum);font-weight:600;margin:0 0 6px}
+.topic h3{font-family:'Inter',sans-serif;font-size:1rem;color:var(--golddk);font-weight:800;letter-spacing:.02em;margin:22px 0 8px}
 .topic p{margin:0 0 14px}
 .fx{background:rgba(231,210,162,.16);border:1px solid rgba(198,160,92,.3);border-left:3px solid var(--gold);border-radius:12px;padding:14px 18px;margin:14px 0;overflow-x:auto}
 .fx .lbl{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:4px}
@@ -46,7 +46,7 @@ table.tbl td{padding:8px 11px;border-bottom:1px solid rgba(198,160,92,.16)}
 <link rel="stylesheet" href="mathia-type.css">
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Nunito',system-ui,sans-serif"><a href="predmet-elektrodistributivni-sistemi.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Elektrodistributivni sistemi</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Elektrodistributivni sistemi · Provera znanja</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
+<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="predmet-elektrodistributivni-sistemi.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Elektrodistributivni sistemi</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Elektrodistributivni sistemi · Provera znanja</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
 
 
 
