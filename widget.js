@@ -433,13 +433,46 @@
     }
   }
 
+  /* Dugmad za nastavak su GO TEKST — ne prolaze kroz fmt(), pa se LaTeX u njima video sirov
+     (npr. „Koliko je P(H_3|A)?"). Ovde ga pretvaramo u citljive znake: indeksi i stepeni u
+     Unicode, grcka slova, razlomci u a/b. Ono sto pise na dugmetu je i ono sto se posalje. */
+  var _SUB = {"0":"\u2080","1":"\u2081","2":"\u2082","3":"\u2083","4":"\u2084","5":"\u2085","6":"\u2086","7":"\u2087","8":"\u2088","9":"\u2089","n":"\u2099","i":"\u1D62","k":"\u2096","x":"\u2093","j":"\u2C7C","a":"\u2090","t":"\u209C"};
+  var _SUP = {"0":"\u2070","1":"\u00B9","2":"\u00B2","3":"\u00B3","4":"\u2074","5":"\u2075","6":"\u2076","7":"\u2077","8":"\u2078","9":"\u2079","n":"\u207F","i":"\u2071"};
+  var _GRC = {alpha:"\u03B1",beta:"\u03B2",gamma:"\u03B3",delta:"\u03B4",lambda:"\u03BB",mu:"\u03BC",sigma:"\u03C3",pi:"\u03C0",theta:"\u03B8",varphi:"\u03C6",phi:"\u03C6",rho:"\u03C1",omega:"\u03C9",Omega:"\u03A9",Delta:"\u0394",Sigma:"\u03A3"};
+  function chipLabel(x){
+    var t = String(x || "");
+    t = t.replace(/\${1,2}/g, "");
+    t = t.replace(/\\(left|right|displaystyle|textstyle|limits|quad|qquad)\b/g, " ").replace(/\\[!,;:]/g, " ");
+    t = t.replace(/\\(operatorname|text|mathrm|mathbf|mathit)\{([^{}]*)\}/g, "$2");
+    // sqrt PRE frac — inace \frac{\sigma}{\sqrt{n}} ostane neprepoznat zbog ugnezdenih zagrada
+    for (var q = 0; q < 3; q++) t = t.replace(/\\sqrt\{([^{}]*)\}/g, "\u221A($1)");
+    for (var w = 0; w < 3; w++) t = t.replace(/\\frac\{([^{}]*)\}\{([^{}]*)\}/g, "$1/$2");
+    t = t.replace(/\\binom\{([^{}]*)\}\{([^{}]*)\}/g, "C($1,$2)");
+    t = t.replace(/\\mid\b/g, "|").replace(/\\vert\b/g, "|");
+    t = t.replace(/\\to\b/g, "\u2192").replace(/\\infty\b/g, "\u221E");
+    t = t.replace(/\\cdot\b/g, "\u00B7").replace(/\\times\b/g, "\u00D7").replace(/\\pm\b/g, "\u00B1");
+    t = t.replace(/\\(le|leq)\b/g, "\u2264").replace(/\\(ge|geq)\b/g, "\u2265").replace(/\\neq\b/g, "\u2260");
+    t = t.replace(/\\(in|cup|cap|sum|int|approx|equiv)\b/g, function(_m,g){
+      return {"in":"\u2208","cup":"\u222A","cap":"\u2229","sum":"\u2211","int":"\u222B","approx":"\u2248","equiv":"\u2261"}[g]; });
+    t = t.replace(/\\(lim|log|ln|sin|cos|tg|ctg|min|max|det)(?![A-Za-z])/g, "$1");
+    t = t.replace(/\\([A-Za-z]+)/g, function(_m,g){ return _GRC[g] || ""; });   // nepoznato -> izbaci, ne ostavljaj ime
+    t = t.replace(/_\{([^{}]*)\}/g, function(_m,g){ return g.split("").map(function(c){ return _SUB[c] || c; }).join(""); });
+    t = t.replace(/_([0-9A-Za-z])/g, function(_m,c){ return _SUB[c] || ("_" + c); });
+    t = t.replace(/\^\{([^{}]*)\}/g, function(_m,g){ return g.split("").map(function(c){ return _SUP[c] || c; }).join(""); });
+    t = t.replace(/\^([0-9A-Za-z])/g, function(_m,c){ return _SUP[c] || ("^" + c); });
+    t = t.replace(/[{}]/g, "").replace(/\s{2,}/g, " ").trim();
+    return t;
+  }
+
+
   function setChips(list){
     chipsEl.innerHTML = "";
     if (!list || !list.length) return;
     list.forEach(function (c) {
       var b = document.createElement("button");
-      b.className = "zoi-chip"; b.textContent = c;
-      b.onclick = function () { taEl.value = c; send(); };
+      var lep = chipLabel(c);
+      b.className = "zoi-chip"; b.textContent = lep;
+      b.onclick = function () { taEl.value = lep; send(); };   // salje se ono sto pise
       chipsEl.appendChild(b);
     });
   }
@@ -568,6 +601,11 @@
     s = mdTables(s);
     s = s.replace(/\n*(<table[\s\S]*?<\/table>)\n*/g, "$1");
     s = s.replace(/[ \t]*\n?(<b class="zoi-h">[^<]*<\/b>)\n?/g, "$1");
+    /* Blok-formula ima svoj margin (.8em). U pre-wrap mehuricu dobijala je JOS I prelome
+       reda oko sebe, pa se razmak udvostrucavao — otud „negde previse". Skidamo prelome;
+       razmak ostaje jedan, iz CSS-a. */
+    s = s.replace(/[ \t]*\n+(<span class="kx" data-d="1">[^<]*<\/span>)\n+[ \t]*/g, "$1");
+    s = s.replace(/^\n+(<span class="kx" data-d="1">)/g, "$1").replace(/(<\/span>)\n+$/g, "$1");
     s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; var src=String(oo[0]).replace(/(^|[^\\])%/g,"$1\\%").replace(/(\d),(\d)/g,"$1{,}$2"); return '<span class="kx" data-d="'+oo[1]+'">'+esc(src)+'</span>'; });
     s = s.replace(/\u0002C(\d+)\u0002/g, function(_m,i){ return '<code class="zoi-ic">'+esc(codes[i])+'</code>'; });
     return s;

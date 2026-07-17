@@ -1,80 +1,78 @@
-# Ispravke — 39 strana + 3 fajla
+# Sve ispravke — 39 strana + 3 fajla
 
-`api/chat.js` u folder **api/**, sve ostalo u **koren**.
-`mathia-dict.js` (3,9 MB) **postavi SAM** — on ti nikad nije prošao u grupi.
+`api/chat.js` u folder **api/**, ostalo u **koren**.
+`mathia-dict.js` (3,9 MB) **postavi SAM** — nikad ti nije prošao u grupi.
 
----
-
-## ⚠ Prvo ovo: ono zbrkano ispod formula NIJE na tvom sajtu
-
-Ono što si videla (`n→∞lim (1 + n1)n = ex→0lim xsin x…`) je **pregled fajla u Claude
-aplikaciji**, koji ne učitava KaTeX stilove sa interneta. Bez njih MathML — koji je inače
-nevidljiv, služi čitačima ekrana — ispliva kao tekst i sve se zgusne.
-
-**Provereno uživo na `mathia.rs/Analiza-1-Formule.html`:**
-- `katex.min.css` učitan ✓
-- MathML skriven (visina 1px) ✓
-- zbrkanog teksta nema ✓
-- svih 12 formula uredno ✓
-
-Uporedila sam i strukturu pre/posle mojih izmena: **identična** (12 katex, 12 mathml, 12 html).
-Nisam je ja napravila, i nije stvarna.
-
-**Kad proveravaš izgled — otvaraj sajt u pregledaču, ne pregled fajla.**
+Ovaj folder zamenjuje `MATHIA-SVI-PREDMETI`, `MATHIA-KLON-R` i `MATHIA-ISPRAVKE`.
 
 ---
 
-## Šta jeste popravljeno
+## `H_3` na dugmadima — našla sam
 
-### 1. `tg` umesto `tan` — 10 strana
+Dugmad za nastavak (`[[PITANJA]]`) su **goli tekst** — ne prolaze kroz obradu koja
+u poruci pretvara `H_3` u H₃. Zato se LaTeX video sirov.
 
-Kod nas se piše **tg** i **ctg**, ne `tan`/`cot`. KaTeX nema `\tg` ugrađen, pa je urađeno
-preko `\operatorname{tg}` — renderuje se uspravno, kako i treba za oznaku funkcije.
+Rešeno na **dva mesta**, jer je model nedosledan:
 
-Pogođeno: Analiza 1, Prijemni, Prijemni matematika, Srednja matematika, Matematika 2,
-Osnovi elektrotehnike 2, Električne mašine 2, Tematski zadaci, Materijali ET.
+1. **`widget.js`** — dugmad se čiste pre prikaza: indeksi i stepeni u Unicode (`H_3`→H₃,
+   `x^2`→x²), grčka slova (`\alpha`→α), razlomci (`\frac{\sigma}{\sqrt{n}}`→σ/√(n)),
+   `\binom{5}{2}`→C(5,2), `\mid`→`|`. Ono što piše na dugmetu je i ono što se pošalje.
+   Testirano na 11 slučajeva, sve tačno.
+2. **`api/chat.js`** — klonu je rečeno da u dugmadima **ne koristi LaTeX**, sa primerima.
 
-### 2. Puni nazivi umesto skraćenica
+> Zašto oba: testirala sam uživo i klon je ovog puta napisao čista dugmad
+> („Reši ceo primer", „Nacrtaj stablo"). Ali na tvojoj slici je isti klon napisao `P(H_3|A)`.
+> Nedosledan je — pa uputstvo smanjuje pojavu, a čišćenje u kodu hvata ostatak.
 
-- „Lopital i Tejlor" → **„Lopitalovo pravilo i Tejlorova formula"**
-- „Bajes i nezavisnost" → **„Bajesova formula i nezavisnost"**
+## Razmaci u četu — uzrok
 
-Pripremila sam i mapu za ostale ako se pojave: Tales i Pitagora, Vijet, Kramer, Gaus,
-Tejlor i Makloren.
+Mehurić koristi `white-space: pre-wrap`, što znači da **model svojim prelomima reda
+doslovno određuje razmak**. Dva prazna reda = rupa, jedan = zbijeno. Otud „negde premali,
+negde previše".
 
-### 3. Skraćenice u razlomcima (Matematika 2) — nisi ovo tražila, ali je isti problem
+Gore od toga: blok-formula ima svoj razmak iz CSS-a (`margin: .8em`), a u `pre-wrap`
+dobijala je **još i prelome reda oko sebe** → dupla rupa.
+Provereno uživo: klon stavlja **4 prazna reda oko formula** u tipičnom odgovoru.
 
-Stajalo je:
-```
-sin = nasuprot/hip      cos = naleg./hip      tan = nasuprot/naleg.
-```
-Skraćeno **i iskošeno kao promenljive**, jer nije bilo u `\text{}` — pa je `hip` izgledalo
-kao proizvod h·i·p.
+Rešeno na oba kraja:
+- **`widget.js`** — prelomi oko blok-formule se skidaju; razmak ostaje jedan, iz CSS-a
+  (isto se već radilo za naslove)
+- **`api/chat.js`** — klonu je zadata konvencija: tačno jedan prazan red između pasusa,
+  nijedan unutar liste, nijedan oko formule i naslova, bez vodoravnih linija
 
-Sada: **naspramna kateta / hipotenuza**, **nalegla kateta / hipotenuza**, uspravno.
+## Ostalo u paketu
 
-### 4. `widget.js` — skroler kod bloka sa kodom
+**`tg` umesto `tan`** — 10 strana. Kod nas se piše tg i ctg. Preko `\operatorname{tg}` da bude uspravno.
 
-`white-space: pre` znači „nikad ne prelamaj red" → vodoravna traka u uskom panelu.
-Sada `pre-wrap` + uvučen nastavak reda. Trake nema.
+**Puni nazivi** — „Lopital i Tejlor" → **„Lopitalovo pravilo i Tejlorova formula"**,
+„Bajes i nezavisnost" → „Bajesova formula i nezavisnost".
 
-### 5. `api/chat.js` — R klon
+**Skraćenice u razlomcima (Matematika 2)** — nisi tražila, isti problem:
+stajalo je `sin = nasuprot/hip`, iskošeno kao promenljive (`hip` je izgledalo kao h·i·p).
+Sada **naspramna kateta / hipotenuza**, uspravno.
 
-676 → **4.178 znakova**. Ceo `d/p/q/r` sistem na svakoj raspodeli, intervali poverenja,
-svi testovi, ANOVA, regresija sa čitanjem `summary(lm)` red po red, dijagnostika, simulacija.
-Sa naglaskom da **`pnorm` zamenjuje tablicu Φ**.
-Plus spisak tipičnih grešaka i uputstvo da drži redove koda kratkim.
+**Zbijene formule** — 33 strane, 238 blokova ponovo renderovano sa razmakom.
+
+**Skroler kod bloka sa kodom** — `white-space: pre` → `pre-wrap` + uvučen nastavak reda.
+
+**R klon** — 676 → 4.178 znakova. Ceo `d/p/q/r` sistem, testovi, ANOVA, regresija,
+`pnorm` kao zamena za tablicu Φ, spisak tipičnih grešaka.
 
 ---
 
 ## Provereno
 
-- **tagovi u balansu** na svih 39 izmenjenih strana
-- **0 zaostalih** `\tan` / `\cot` na celom sajtu
-- **0 skraćenica** u razlomcima
-- matrice nisu dirane
+- tagovi u balansu na svih 39 strana
+- 0 zaostalih `\tan` / `\cot`, 0 skraćenica u razlomcima
+- 0 zbijenih formula na celom sajtu
+- čišćenje dugmadi: 11/11 tačno
+
+## Podsetnik
+
+**Ono zbrkano ispod formula NIJE na tvom sajtu** — to je pregled fajla u Claude aplikaciji,
+koji ne učitava KaTeX stilove. Provereno uživo: stilovi učitani, MathML skriven, sve uredno.
+**Za proveru izgleda otvaraj sajt u pregledaču, ne pregled fajla.**
 
 ## Ostaje
 
 **Naplata** — čeka se sertifikat od UPC-a.
-**Rečnik** — postavi sam, i dalje je star na sajtu.
