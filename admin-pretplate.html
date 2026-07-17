@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Pretplate — MATHIA admin</title>
+<link rel="stylesheet" href="mathia-type.css">
+<style>
+:root{--gold:#C6A05C;--golddk:#A6803C;--ink:#432C37;--muted:#90787E;--line:#E8DDD5;--bg:#FDFBF7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:26px 18px 70px}
+h1{font-family:'Fraunces',Georgia,serif;margin:0 0 4px;font-size:1.9rem}
+.sub{color:var(--muted);margin:0 0 22px;font-size:.94rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
+.card h2{font-family:'Fraunces',Georgia,serif;font-size:1.16rem;margin:0 0 12px}
+label{display:block;font-size:.83rem;color:var(--muted);margin:10px 0 4px;font-weight:700}
+input,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+.row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+@media(max-width:720px){.row{grid-template-columns:1fr}}
+.btn{background:var(--gold);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--golddk)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{padding:6px 11px;font-size:.82rem;border-radius:8px}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-warn{background:#fff;color:#A33;border:1px solid #E8C5C5}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.74rem;font-weight:700}
+.ok{background:#E8F5E9;color:#2E7D32}.no{background:#FFEBEE;color:#C62828}.wait{background:#FFF8E1;color:#F57F17}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:10px;background:#FDFCFA}
+.chip{display:flex;align-items:center;gap:7px;font-size:.84rem;padding:5px 7px;border-radius:8px;cursor:pointer}
+.chip:hover{background:#FFF8EC}
+.chip input{width:auto;margin:0}
+.grp-h{grid-column:1/-1;font-weight:800;font-size:.76rem;color:var(--golddk);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 2px}
+.msg{padding:11px 14px;border-radius:10px;margin:12px 0;font-size:.9rem;display:none}
+.msg.err{background:#FFEBEE;color:#C62828;display:block}
+.msg.ok{background:#E8F5E9;color:#2E7D32;display:block}
+#gate{max-width:420px;margin:70px auto;text-align:center}
+.hid{display:none}
+.count{font-size:.78rem;color:var(--muted);margin-top:6px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.78rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div id="gate" class="card">
+  <h1>Pretplate</h1>
+  <p class="sub" id="gate-msg">Proveravam prijavu…</p>
+  <a class="btn" href="nalog.html" id="gate-btn" style="display:none;text-decoration:none">Prijavi se →</a>
+</div>
+
+<div class="wrap hid" id="app">
+  <h1>Pretplate</h1>
+  <p class="sub">Ručno aktiviranje za kupce koji plate <b>na račun (IPS QR)</b> — te uplate ne stižu do baze same.</p>
+
+  <div class="card">
+    <h2>Aktiviraj kupca</h2>
+    <div class="row">
+      <div><label>E-mail kupca</label><input id="f-email" type="email" placeholder="kupac@primer.com" autocomplete="off"></div>
+      <div><label>Paket</label><select id="f-paket">
+        <option value="basic">Basic — 1 predmet</option>
+        <option value="gold" selected>Gold — 2 predmeta</option>
+        <option value="diamond">Diamond — 3 predmeta</option>
+      </select></div>
+      <div><label>Trajanje (dana)</label><input id="f-dana" type="number" value="30" min="1" max="400"></div>
+    </div>
+    <label>Predmeti <span id="f-count" class="count"></span></label>
+    <div class="chips" id="f-subs"></div>
+    <div class="msg" id="f-msg"></div>
+    <div style="margin-top:14px"><button class="btn" id="f-go">Aktiviraj pretplatu</button></div>
+  </div>
+
+  <div class="card">
+    <h2>Aktivne i istekle pretplate <span id="p-n" class="count"></span></h2>
+    <div style="overflow:auto"><table id="t-pret">
+      <thead><tr><th>E-mail</th><th>Paket</th><th>Predmeti</th><th>Status</th><th>Ističe</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>Porudžbine <span id="o-n" class="count"></span></h2>
+    <p class="sub" style="margin:-6px 0 12px">Samo kartične kupovine prave porudžbinu. Uplate na račun se ovde <b>ne vide</b>.</p>
+    <div style="overflow:auto"><table id="t-ord">
+      <thead><tr><th>E-mail</th><th>Iznos</th><th>Status</th><th>Predmeti</th><th>Kada</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>Nalozi bez pretplate <span id="n-n" class="count"></span></h2>
+    <p class="sub" style="margin:-6px 0 12px">Registrovali su se ali nemaju aktivnu pretplatu — možda čekaju ručno otključavanje.</p>
+    <div style="overflow:auto"><table id="t-nal">
+      <thead><tr><th>E-mail</th><th>Registrovan</th><th>Poslednja prijava</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+var API="/api/admin-pretplate";
+var SUBS=[{"h": "osnovna-matematika-5.html", "t": "Matematika 5. razred", "g": "Osnovna škola"}, {"h": "osnovna-matematika-6.html", "t": "Matematika 6. razred", "g": "Osnovna škola"}, {"h": "osnovna-matematika-7.html", "t": "Matematika 7. razred", "g": "Osnovna škola"}, {"h": "osnovna-matematika-8.html", "t": "Matematika 8. razred", "g": "Osnovna škola"}, {"h": "osnovna-fizika-6.html", "t": "Fizika 6. razred", "g": "Osnovna škola"}, {"h": "osnovna-fizika-7.html", "t": "Fizika 7. razred", "g": "Osnovna škola"}, {"h": "osnovna-fizika-8.html", "t": "Fizika 8. razred", "g": "Osnovna škola"}, {"h": "mala-matura.html", "t": "Mala matura", "g": "Osnovna škola"}, {"h": "srednja-matematika-1.html", "t": "Matematika 1. razred", "g": "Srednja škola"}, {"h": "srednja-matematika-2.html", "t": "Matematika 2. razred", "g": "Srednja škola"}, {"h": "srednja-matematika-3.html", "t": "Matematika 3. razred", "g": "Srednja škola"}, {"h": "srednja-matematika-4.html", "t": "Matematika 4. razred", "g": "Srednja škola"}, {"h": "srednja-fizika-1.html", "t": "Fizika 1. razred", "g": "Srednja škola"}, {"h": "srednja-fizika-2.html", "t": "Fizika 2. razred", "g": "Srednja škola"}, {"h": "srednja-fizika-3.html", "t": "Fizika 3. razred", "g": "Srednja škola"}, {"h": "srednja-fizika-4.html", "t": "Fizika 4. razred", "g": "Srednja škola"}, {"h": "predmet-priprema-srednja.html", "t": "Priprema – srednja škola", "g": "Priprema za prijemne ispite"}, {"h": "predmet-priprema-visa.html", "t": "Priprema – viša škola", "g": "Priprema za prijemne ispite"}, {"h": "predmet-priprema-fakultet.html", "t": "Priprema za upis na fakultet", "g": "Priprema za prijemne ispite"}, {"h": "prijemni-ftn.html", "t": "Prijemni iz matematike", "g": "Priprema za prijemne ispite"}, {"h": "prijemni.html", "t": "Prijemni: matematika sa logikom", "g": "Priprema za prijemne ispite"}, {"h": "prijemni.html", "t": "Prijemni: test sklonosti", "g": "Priprema za prijemne ispite"}, {"h": "prijemni.html", "t": "Rešeni rokovi 2012–2025", "g": "Priprema za prijemne ispite"}, {"h": "predmet-algebra.html", "t": "Algebra", "g": "Fakultet"}, {"h": "predmet-analiza1.html", "t": "Matematička analiza 1", "g": "Fakultet"}, {"h": "predmet-analiza2.html", "t": "Matematička analiza 2", "g": "Fakultet"}, {"h": "predmet-linearna-algebra.html", "t": "Linearna algebra", "g": "Fakultet"}, {"h": "predmet-diskretna-matematika.html", "t": "Diskretna matematika", "g": "Fakultet"}, {"h": "predmet-kompleksna-analiza.html", "t": "Kompleksna analiza", "g": "Fakultet"}, {"h": "predmet-verovatnoca.html", "t": "Verovatnoća i statistika", "g": "Fakultet"}, {"h": "predmet-operaciona-istrazivanja.html", "t": "Operaciona istraživanja", "g": "Fakultet"}, {"h": "predmet-elektrotehnika.html", "t": "Teorija električnih kola", "g": "Fakultet"}, {"h": "predmet-elektricna-merenja.html", "t": "Električna merenja", "g": "Fakultet"}, {"h": "predmet-uvod-u-elektroniku.html", "t": "Uvod u elektroniku", "g": "Fakultet"}, {"h": "predmet-elektrodistributivni-sistemi.html", "t": "Elektrodistributivni sistemi", "g": "Fakultet"}, {"h": "predmet-osnovi-elektrotehnike-1.html", "t": "Osnovi elektrotehnike 1", "g": "Fakultet"}, {"h": "predmet-osnovi-elektrotehnike-2.html", "t": "Osnovi elektrotehnike 2", "g": "Fakultet"}, {"h": "predmet-elektromagnetika.html", "t": "Elektromagnetika", "g": "Fakultet"}, {"h": "predmet-sistemi-signali.html", "t": "Sistemi i signali", "g": "Fakultet"}, {"h": "predmet-merenja-nev.html", "t": "Merenja neelektričnih veličina", "g": "Fakultet"}, {"h": "predmet-energetska-elektronika-1.html", "t": "Energetska elektronika 1", "g": "Fakultet"}, {"h": "predmet-energetska-elektronika-2.html", "t": "Energetska elektronika 2", "g": "Fakultet"}, {"h": "predmet-elektricne-masine-1.html", "t": "Električne mašine 1", "g": "Fakultet"}, {"h": "predmet-elektricne-masine-2.html", "t": "Električne mašine 2", "g": "Fakultet"}, {"h": "predmet-elektricne-masine-3.html", "t": "Električne mašine 3", "g": "Fakultet"}, {"h": "predmet-elektroenergetski-pretvaraci.html", "t": "Elektroenergetski pretvarači", "g": "Fakultet"}, {"h": "predmet-fizika-mehanika.html", "t": "Mehanika", "g": "Fakultet"}, {"h": "predmet-oop.html", "t": "Objektno orijentisano programiranje", "g": "Fakultet"}, {"h": "predmet-baze-podataka-1.html", "t": "Baze podataka 1", "g": "Fakultet"}, {"h": "predmet-baze-podataka-2.html", "t": "Baze podataka 2", "g": "Fakultet"}, {"h": "predmet-web-programiranje.html", "t": "Web programiranje", "g": "Fakultet"}, {"h": "predmet-labview.html", "t": "LabVIEW", "g": "Fakultet"}, {"h": "predmet-ltspice.html", "t": "LTSpice", "g": "Fakultet"}, {"h": "predmet-pspice.html", "t": "PSpice", "g": "Fakultet"}, {"h": "programiranje-python.html", "t": "Python", "g": "Programiranje"}, {"h": "programiranje-cpp.html", "t": "C++", "g": "Programiranje"}, {"h": "programiranje-csharp.html", "t": "C#", "g": "Programiranje"}, {"h": "programiranje-java.html", "t": "Java", "g": "Programiranje"}, {"h": "programiranje-js.html", "t": "JavaScript", "g": "Programiranje"}, {"h": "programiranje-ts.html", "t": "TypeScript", "g": "Programiranje"}, {"h": "programiranje-kotlin.html", "t": "Kotlin", "g": "Programiranje"}, {"h": "programiranje-swift.html", "t": "Swift", "g": "Programiranje"}, {"h": "programiranje-go.html", "t": "Go", "g": "Programiranje"}, {"h": "programiranje-php.html", "t": "PHP", "g": "Programiranje"}, {"h": "programiranje-c.html", "t": "C", "g": "Programiranje"}, {"h": "programiranje-pascal.html", "t": "Pascal", "g": "Programiranje"}, {"h": "programiranje-r.html", "t": "R", "g": "Programiranje"}, {"h": "programiranje-sql.html", "t": "SQL", "g": "Programiranje"}, {"h": "programiranje-web.html", "t": "Veb (HTML, CSS, JS)", "g": "Programiranje"}, {"h": "programiranje-algoritmi.html", "t": "Algoritmi i strukture", "g": "Programiranje"}, {"h": "programiranje-matlab.html", "t": "MATLAB", "g": "Programiranje"}, {"h": "programiranje-scratch.html", "t": "Scratch", "g": "Programiranje"}, {"h": "programiranje-arduino.html", "t": "Arduino", "g": "Programiranje"}, {"h": "elektronika-kicad.html", "t": "KiCad", "g": "Elektronika i alati"}, {"h": "elektronika-cadence.html", "t": "Cadence", "g": "Elektronika i alati"}, {"h": "predmet-ltspice.html", "t": "LTSpice", "g": "Elektronika i alati"}, {"h": "predmet-mehanika-fluida.html", "t": "Mehanika fluida", "g": "Fakultet"}, {"h": "predmet-termodinamika.html", "t": "Termodinamika", "g": "Fakultet"}, {"h": "predmet-materijali-et.html", "t": "Materijali u elektrotehnici", "g": "Fakultet"}, {"h": "predmet-impulsna-elektronika.html", "t": "Impulsna elektronika", "g": "Fakultet"}, {"h": "predmet-digitalna-elektronika.html", "t": "Digitalna elektronika", "g": "Fakultet"}, {"h": "predmet-elektronika-pojacavaci.html", "t": "Elektronika — pojačavači", "g": "Fakultet"}];
+var T2K={"Matematika 5. razred":"osn-mat-5","Matematika 6. razred":"osn-mat-6","Matematika 7. razred":"osn-mat-7","Matematika 8. razred":"osn-mat-8","Fizika 6. razred":"osn-fiz-6","Fizika 7. razred":"osn-fiz-7","Fizika 8. razred":"osn-fiz-8","Mala matura":"mala-matura","Matematika 1. razred":"sr-mat-1","Matematika 2. razred":"sr-mat-2","Matematika 3. razred":"sr-mat-3","Matematika 4. razred":"sr-mat-4","Fizika 1. razred":"sr-fiz-1","Fizika 2. razred":"sr-fiz-2","Fizika 3. razred":"sr-fiz-3","Fizika 4. razred":"sr-fiz-4","Algebra":"algebra","Matematička analiza 1":"analiza1","Matematička analiza 2":"analiza2","Linearna algebra":"linearna-algebra","Diskretna matematika":"diskretna-matematika","Kompleksna analiza":"kompleksna-analiza","Verovatnoća i statistika":"verovatnoca","Operaciona istraživanja":"operaciona","Teorija električnih kola":"elektrotehnika","Električna merenja":"elektricna-merenja","Uvod u elektroniku":"uvod-u-elektroniku","Elektrodistributivni sistemi":"elektrodistributivni-sistemi","Osnovi elektrotehnike 1":"osnovi-elektrotehnike","Osnovi elektrotehnike 2":"osnovi-elektrotehnike","Elektromagnetika":"elektromagnetika","Sistemi i signali":"sistemi-signali","Merenja neelektričnih veličina":"elektricna-merenja","Energetska elektronika 1":"energetska-elektronika-1","Energetska elektronika 2":"energetska-elektronika-2","Električne mašine 1":"elektricne-masine","Električne mašine 2":"elektricne-masine","Električne mašine 3":"elektricne-masine","Elektroenergetski pretvarači":"elektroenergetski-pretvaraci","Mehanika":"mehanika","Objektno orijentisano programiranje":"cpp","Baze podataka 1":"fax-bazepodataka","Baze podataka 2":"fax-bazepodataka","Web programiranje":"web","Python":"python","C++":"cpp","C#":"csharp","Java":"java","JavaScript":"js","TypeScript":"js","Kotlin":"kotlin","Swift":"cpp","Go":"algoritmi","PHP":"web","C":"cpp","Pascal":"pascal","R":"r","SQL":"fax-bazepodataka","Veb (HTML, CSS, JS)":"web","Algoritmi i strukture":"algoritmi","MATLAB":"matlab","Scratch":"scratch","Arduino":"arduino","KiCad":"kicad","Cadence":"cadence","Priprema – srednja škola":"priprema-srednja","Priprema – viša škola":"priprema-visa","Priprema za upis na fakultet":"priprema-fakultet","Prijemni iz matematike":"prijemni-ftn","Prijemni: matematika sa logikom":"prijemni","Prijemni: test sklonosti":"prijemni","Rešeni rokovi 2012–2025":"prijemni","LabVIEW":"labview","LTSpice":"ltspice","PSpice":"pspice","Mehanika fluida":"fax-mehanika-fluida","Termodinamika":"fax-termodinamika","Materijali u elektrotehnici":"fax-materijali-et","Impulsna elektronika":"fax-impulsna-elektronika","Digitalna elektronika":"fax-digitalna-elektronika","Elektronika — pojačavači":"fax-elektronika-pojacavaci"};
+var GRP_ORDER=["Osnovna škola", "Srednja škola", "Priprema za prijemne ispite", "Fakultet", "Programiranje", "Elektronika i alati"];
+var LIMIT={basic:1,gold:2,diamond:3};
+var TOKEN=null, DATA=null, picked=[];
+
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function dat(s){ if(!s) return "—"; try{ return new Date(s).toLocaleDateString("sr-RS"); }catch(e){ return "—"; } }
+function sbToken(){
+  try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i);
+    if(k && /^sb-.*-auth-token$/.test(k)){ var raw=localStorage.getItem(k); if(!raw) continue;
+      var v=JSON.parse(raw);
+      var t=v && (v.access_token || (v.currentSession&&v.currentSession.access_token) || (v.session&&v.session.access_token));
+      if(t) return t; } } }catch(e){}
+  return null;
+}
+function msg(el,txt,kind){ var e=$(el); e.textContent=txt; e.className="msg "+(kind||""); }
+
+/* ——— birač predmeta ——— */
+function renderSubs(){
+  var by={}; SUBS.forEach(function(s){ (by[s.g]=by[s.g]||[]).push(s); });
+  var h="", seen={};
+  GRP_ORDER.forEach(function(g){
+    if(!by[g]) return;
+    h+='<div class="grp-h">'+esc(g)+'</div>';
+    by[g].forEach(function(s){
+      var k=T2K[s.t]||s.t;
+      if(seen[k+"|"+s.t]) return; seen[k+"|"+s.t]=1;
+      h+='<label class="chip"><input type="checkbox" value="'+esc(k)+'" data-t="'+esc(s.t)+'">'+esc(s.t)+'</label>';
+    });
+  });
+  $("f-subs").innerHTML=h;
+  $("f-subs").addEventListener("change",function(e){
+    if(e.target.tagName!=="INPUT") return;
+    var lim=LIMIT[$("f-paket").value]||1;
+    var on=[].slice.call($("f-subs").querySelectorAll("input:checked"));
+    if(on.length>lim){ e.target.checked=false; msg("f-msg","Paket pokriva "+lim+" predmet(a). Skini neki pa dodaj novi.","err"); return; }
+    msg("f-msg","","");
+    updCount();
+  });
+  $("f-paket").addEventListener("change",function(){
+    [].slice.call($("f-subs").querySelectorAll("input:checked")).forEach(function(i){i.checked=false;});
+    updCount();
+  });
+  updCount();
+}
+function updCount(){
+  var lim=LIMIT[$("f-paket").value]||1;
+  var n=$("f-subs").querySelectorAll("input:checked").length;
+  $("f-count").textContent="— izabrano "+n+" od "+lim;
+}
+function pickedKeys(){ return [].slice.call($("f-subs").querySelectorAll("input:checked")).map(function(i){return i.value;}); }
+
+/* ——— učitavanje ——— */
+async function load(){
+  var r=await fetch(API,{headers:{Authorization:"Bearer "+TOKEN}});
+  var j=await r.json();
+  if(!j.ok){ msg("f-msg",j.error||"Greška.","err"); return; }
+  DATA=j; render();
+}
+function render(){
+  var pr=DATA.pretplate||[], od=DATA.porudzbine||[], na=DATA.nalozi||[];
+  var sada=new Date();
+
+  $("p-n").textContent="— "+pr.length;
+  $("t-pret").querySelector("tbody").innerHTML = pr.length ? pr.map(function(p){
+    var vazi=(p.status==="aktivna") && (!p.istice || new Date(p.istice)>sada);
+    var pm=Array.isArray(p.predmeti)?p.predmeti:[];
+    return '<tr><td>'+esc(p.kupac_email)+'</td><td>'+esc(p.paket||"—")+'</td>'
+      +'<td>'+(pm.length?'<span class="mono">'+esc(pm.join(", "))+'</span>':'<span class="pill no">prazno</span>')+'</td>'
+      +'<td><span class="pill '+(vazi?"ok":"no")+'">'+(vazi?"aktivna":"istekla")+'</span></td>'
+      +'<td>'+dat(p.istice)+'</td>'
+      +'<td style="white-space:nowrap">'
+        +'<button class="btn btn-sm btn-ghost" data-ext="'+esc(p.id)+'">+30 dana</button> '
+        +(vazi?'<button class="btn btn-sm btn-warn" data-can="'+esc(p.id)+'">Ukini</button>':'')
+      +'</td></tr>';
+  }).join("") : '<tr><td colspan="6" style="color:var(--muted)">Nema pretplata.</td></tr>';
+
+  $("o-n").textContent="— "+od.length;
+  $("t-ord").querySelector("tbody").innerHTML = od.length ? od.map(function(o){
+    var st=o.status==="placeno"?"ok":(o.status==="na_cekanju"?"wait":"no");
+    var pm=(o.stavke&&o.stavke.predmeti)||null;
+    return '<tr><td>'+esc(o.kupac_email)+'</td><td>'+(o.iznos_rsd||0).toLocaleString("sr-RS")+'</td>'
+      +'<td><span class="pill '+st+'">'+esc(o.status)+'</span></td>'
+      +'<td>'+(pm&&pm.length?'<span class="mono">'+esc([].concat(pm).join(", "))+'</span>':'<span class="pill no">null</span>')+'</td>'
+      +'<td>'+dat(o.created_at)+'</td></tr>';
+  }).join("") : '<tr><td colspan="5" style="color:var(--muted)">Nema porudžbina.</td></tr>';
+
+  var imaPret={}; pr.forEach(function(p){ if(p.status==="aktivna"&&(!p.istice||new Date(p.istice)>sada)) imaPret[String(p.kupac_email).toLowerCase()]=1; });
+  var bez=na.filter(function(u){ return u.email && !imaPret[String(u.email).toLowerCase()]; });
+  $("n-n").textContent="— "+bez.length;
+  $("t-nal").querySelector("tbody").innerHTML = bez.length ? bez.map(function(u){
+    return '<tr><td>'+esc(u.email)+'</td><td>'+dat(u.kreiran)+'</td><td>'+dat(u.poslednja)+'</td>'
+      +'<td><button class="btn btn-sm btn-ghost" data-fill="'+esc(u.email)+'">Aktiviraj →</button></td></tr>';
+  }).join("") : '<tr><td colspan="4" style="color:var(--muted)">Svi registrovani imaju pretplatu.</td></tr>';
+}
+
+/* ——— akcije ——— */
+async function post(payload){
+  var r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+TOKEN},body:JSON.stringify(payload)});
+  return r.json();
+}
+document.addEventListener("click", async function(e){
+  var b=e.target.closest("button"); if(!b) return;
+
+  if(b.id==="f-go"){
+    var email=$("f-email").value.trim(), paket=$("f-paket").value, dana=parseInt($("f-dana").value,10)||30;
+    var pm=pickedKeys();
+    if(!email||email.indexOf("@")<1){ msg("f-msg","Unesi ispravan e-mail.","err"); return; }
+    if(!pm.length){ msg("f-msg","Izaberi bar jedan predmet.","err"); return; }
+    b.disabled=true; msg("f-msg","Aktiviram…","");
+    var j=await post({akcija:"aktiviraj",email:email,paket:paket,predmeti:pm,dana:dana});
+    b.disabled=false;
+    if(!j.ok){ msg("f-msg",j.error||"Greška.","err"); return; }
+    msg("f-msg",j.poruka||"Gotovo.","ok");
+    $("f-email").value=""; [].slice.call($("f-subs").querySelectorAll("input:checked")).forEach(function(i){i.checked=false;}); updCount();
+    load();
+  }
+  if(b.dataset.ext){ b.disabled=true; var j=await post({akcija:"produzi",id:b.dataset.ext,dana:30}); if(!j.ok)alert(j.error); load(); }
+  if(b.dataset.can){ if(!confirm("Ukinuti ovu pretplatu?"))return; b.disabled=true; var j2=await post({akcija:"ukini",id:b.dataset.can}); if(!j2.ok)alert(j2.error); load(); }
+  if(b.dataset.fill){ $("f-email").value=b.dataset.fill; window.scrollTo({top:0,behavior:"smooth"}); $("f-email").focus(); }
+});
+
+/* ——— start ——— */
+(async function(){
+  TOKEN=sbToken();
+  if(!TOKEN){ $("gate-msg").textContent="Nisi prijavljena. Prijavi se svojim admin nalogom pa se vrati ovde."; $("gate-btn").style.display="inline-block"; return; }
+  var r=await fetch(API,{headers:{Authorization:"Bearer "+TOKEN}});
+  if(r.status===401){ $("gate-msg").textContent="Prijava je istekla. Prijavi se ponovo."; $("gate-btn").style.display="inline-block"; return; }
+  if(r.status===403){ $("gate-msg").textContent="Ovaj nalog nije admin. Dodaj svoj e-mail u ADMIN_EMAILS na Vercelu."; return; }
+  var j=await r.json();
+  if(!j.ok){ $("gate-msg").textContent=j.error||"Greška."; return; }
+  DATA=j;
+  $("gate").classList.add("hid"); $("app").classList.remove("hid");
+  renderSubs(); render();
+})();
+</script>
+</body>
+</html>

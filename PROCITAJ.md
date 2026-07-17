@@ -1,65 +1,102 @@
-# HITNA POPRAVKA — naplata
+# HITNA POPRAVKA — naplata, pristup, klonovi
 
-**10 fajlova.** Postavi na GitHub u koren (Add file → Upload files → prevuci sve).
-Ovi fajlovi su noviji od onih u `MATHIA-PREVOD-FINAL-*` — ako postavljaš oba, **ove postavi POSLE**.
+**17 fajlova.** Postavi na GitHub: koren + folder `api/`.
+Noviji su od `MATHIA-PREVOD-FINAL-*` — ako postavljaš oba, **ove postavi POSLE**.
 
-## Šta je bilo pokvareno
+---
 
-**1. Strana sa cenama je vodila na pogrešan paket.**
-`cenovnik.html` je linkovao `placanje.html?plan=basic`, a `placanje.html` čita `?paket`.
-Rezultat: kupac klikne **Basic (4.990)** → dobije stranu **„Plaćanje · Gold — 6.990 RSD"**.
-Isto i za Diamond. Samo Gold je slučajno radio, jer je gold podrazumevana vrednost.
-Provereno uživo na www.mathia.rs pre popravke.
+## 1. Naplata je bila slomljena u lancu
 
-**2. Plaćanje karticom je bilo isključeno.**
-`KARTICA_AKTIVNA = false` → dugme neaktivno, poruka „biće uskoro dostupno — za sada
-koristi IPS QR ili uplatu na račun". Svaka prava uplata je išla na račun, a taj put
-ne pravi porudžbinu ni pretplatu. Zato Danice nema u bazi iako je platila.
+**Strana sa cenama vodila na pogrešan paket.** `cenovnik.html` je slao `?plan=basic`,
+a `placanje.html` čita `?paket`. Kupac klikne **Basic 4.990** → dobije **„Plaćanje · Gold — 6.990 RSD"**.
+Isto i Diamond. Samo Gold je radio, jer je gold podrazumevana vrednost.
+*Provereno uživo na sajtu pre popravke.*
 
-**3. Strana za plaćanje nikad nije pitala koje predmete kupac hoće.**
-`placanje.html` šalje `predmeti: null` u `/api/checkout`. I da je kartica radila,
-pretplata bi nastala prazna.
+**Kartica je bila isključena.** `KARTICA_AKTIVNA = false` → jedini put je bio IPS QR /
+uplata na račun, a taj put ne pravi ni porudžbinu ni pretplatu. **Zato Danice nema u bazi.**
 
-**4. Nalog nije prepoznavao pretplatu ako se mejl razlikuje u velikim/malim slovima.**
-`nalog.html` je koristio `.eq()`, server `.ilike()`. `Danica@` ≠ `danica@`.
+**Nikad se nije pitalo koje predmete kupac hoće.** `placanje.html` šalje `predmeti: null`.
 
-## Šta je popravljeno
+**Nalog nije prepoznavao pretplatu** ako se mejl razlikuje u velikim/malim slovima
+(`.eq()` umesto `.ilike()`).
+
+## 2. Pretplatnici nisu mogli da uđu u ono što su platili
+
+`gate.js` je tražio **tačan** ključ, a kupovina upisuje drugi oblik. Server (`api/chat.js`)
+to već rešava kroz `ALIASES` mapu i deljenje po zarezu — `gate.js` nije imao ništa od toga.
+**Devet strana je bilo zaključano za ljude koji su ih platili:**
+
+| strana | tražila | kupovina daje |
+|---|---|---|
+| Verovatnoća (3) | `fax-verovatnoca` | `verovatnoca` |
+| Prijemni (2) | `prijemni,prijemni-ftn` | `prijemni` |
+| Srednja Matematika (2) | `sr-mat-1,…,sr-mat-4` | `sr-mat-1` |
+| Trigonometrija (2) | `trigonometrija` | — (nije se moglo kupiti) |
+
+`gate.js` sad koristi **istu ALIASES mapu** (povučena iz `api/chat.js`, jedan izvor istine)
+i podržava liste sa zarezom. Provereno sa 11 testova: 8 strana otključano, sve zabrane i dalje drže.
+
+Takođe: `marina.bulat@gmail.com` dodat u `OWNER_EMAILS` (ranije samo `mathia.tutor@gmail.com`).
+
+## 3. Klonovi — srpski
+
+Uputstvo za ekavicu je dobro i stiže do **svih 81 klona** (`SHARED` + klon + jezik).
+Ijekavski oblici postoje samo kao negativni primeri. Tu nije bilo greške.
+
+Ali sistemske poruke su **mešale persiranje i ti-oblik**:
+„Da bismo započeli čas, **prijavite se**" vs. „Ovaj predmet nije u **tvom** paketu."
+Persiranje je bilo na svih 8 jezika (`Sie`, `vous`, `usted`, `Lei`, `вы`, `você`).
+**Svih 47 poruka prebačeno na topli „ti"**, portugalski na evropski `tu`.
+`BUSY` poruka je postojala samo na 2 jezika — dopunjena na svih 8.
+
+---
+
+## Šta je promenjeno
 
 | fajl | izmena |
 |---|---|
-| `cenovnik.html` | dugmad → `registracija.html?paket=basic\|gold\|diamond` |
-| `placanje.html` | `KARTICA_AKTIVNA = true`; `getPaket()` prihvata i `?paket` i `?plan` |
-| `registracija.html` | dodata opcija „uplatom na račun (IPS QR)", nosi `?paket=` |
-| `nalog.html` | `.eq('kupac_email')` → `.ilike('kupac_email')` |
-| 6 predmetnih strana | `placanje.html?paket=` → `registracija.html?paket=` |
+| `cenovnik.html` | dugmad → `registracija.html?paket=…` |
+| `placanje.html` | `KARTICA_AKTIVNA = true`; `getPaket()` prima `?paket` i `?plan` |
+| `registracija.html` | dodata opcija „uplatom na račun (IPS QR)" sa tačnim paketom |
+| `nalog.html` | `.eq` → `.ilike` (mejl) |
+| `gate.js` | ALIASES + liste sa zarezom + `.ilike` + Marina kao vlasnik + paywall → registracija |
+| `api/chat.js` | sve poruke na „ti", 8 jezika |
+| `Trigonometrija-*` (2) | gate uklonjen — **besplatna izložbena strana** |
+| `admin-pretplate.html` + `api/admin-pretplate.js` | **novo** — ručno aktiviranje |
+| 6 predmetnih strana | linkovi → `registracija.html?paket=` |
 
-Novi tok: **cenovnik → registracija (bira predmete) → kartica → pretplata se aktivira sama.**
-`placanje.html` ostaje za uplatu na račun, sad sa tačnim paketom.
+---
 
-## ⚠ ODMAH POSLE UPLOADA — test karticom
+## ⚠ ODMAH POSLE UPLOADA — dva testa
 
-Kartica je sad **uključena i prava**. Uradi probnu kupovinu svojom karticom:
+### A) Test karticom (kartica je sad PRAVA)
 
-1. `mathia.rs/cenovnik.html` → **Basic** → proveri da piše **Basic 4.990** (ne Gold)
-2. Izaberi 1 predmet → Idi na plaćanje → plati pravom karticom
-3. Proveri u Supabase:
+1. `mathia.rs/cenovnik.html` → **Basic** → mora da piše **Basic 4.990** (ne Gold)
+2. Izaberi 1 predmet → plati svojom karticom
+3. Provera:
 
 ```sql
-select kupac_email, paket, predmeti, status, istice from pretplate
-order by created_at desc limit 3;
-select kupac_email, iznos_rsd, status, stavke->>'predmeti' from porudzbine
-order by created_at desc limit 3;
+select kupac_email, paket, predmeti, status, istice from pretplate order by created_at desc limit 3;
+select kupac_email, iznos_rsd, status, stavke->>'predmeti' from porudzbine order by created_at desc limit 3;
 select broj_racuna, created_at from fiskalni_racuni order by created_at desc limit 3;
 ```
 
-Treba da vidiš: pretplatu sa **tvojim izabranim predmetom**, porudžbinu `placeno`,
-i fiskalni račun sa PFR brojem.
+Treba: pretplata **sa tvojim predmetom**, porudžbina `placeno`, fiskalni račun sa PFR brojem.
 
-**Ako nešto pukne:** u `placanje.html` vrati `KARTICA_AKTIVNA = false` i postavi ponovo —
-kupci se vraćaju na uplatu na račun dok ne rešimo.
+**Ako pukne:** vrati `KARTICA_AKTIVNA = false` u `placanje.html` i postavi ponovo (posao od minut).
+
+### B) Admin strana
+
+`mathia.rs/admin-pretplate.html` — prijavi se svojim admin nalogom.
+Vidiš pretplate, porudžbine i **naloge bez pretplate** (tu je Danica).
+Klik „Aktiviraj →" popuni mejl, izaberi paket + predmete → **Aktiviraj**.
+
+**Uslov:** tvoj mejl mora biti u `ADMIN_EMAILS` na Vercelu. Ako nije, strana će ti to reći.
+
+---
 
 ## Ostaje nerešeno
 
-Uplata na račun i dalje **ne otključava nalog automatski** — nema veze između izvoda
-i baze. Dok se to ne reši, svakog takvog kupca aktiviraš ručno
-(`HITNO-aktiviraj-Danicu.sql` je šablon).
+**Uplata na račun i dalje ne otključava nalog sama.** Nema veze između izvoda i baze.
+Svakog takvog kupca aktiviraš kroz admin stranu. Ako želiš da se i to automatizuje,
+treba integracija sa bankom (izvod) — to je zaseban posao.

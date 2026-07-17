@@ -19,9 +19,9 @@
   /* ====== CONFIG ====== */
   var SUPABASE_URL  = "https://ibhirxltgeyecrjwymai.supabase.co";
   var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
-  var OWNER_EMAILS  = ["mathia.tutor@gmail.com"];        // vlasnik — bez ograničenja
+  var OWNER_EMAILS  = ["mathia.tutor@gmail.com","marina.bulat@gmail.com"];  // vlasnik — bez ograničenja
   var FREE_MIN      = 15;                                 // besplatno minuta (obične stranice)
-  var PAY_URL       = "placanje.html";
+  var PAY_URL       = "registracija.html";   // bira predmete pa vodi na karticu
   var LOGIN_URL     = "nalog.html";
   var PLANS = [
     { id:"basic",   naziv:"Basic",   din:4990, predmeta:1 },
@@ -29,6 +29,13 @@
     { id:"diamond", naziv:"Diamond", din:9990, predmeta:3 }
   ];
   /* ==================== */
+
+  /* ALIASES — MORA da odgovara mapi u api/chat.js (jedan izvor istine).
+     Bez ovoga strana zakljuca pretplatnika kome je kupovina upisala
+     drugi oblik kljuca (npr. kupi "verovatnoca", strana trazi "fax-verovatnoca"). */
+  var ALIASES = { matura: "mala-matura", ftn: "prijemni-matematika", "prijemni-ftn": "prijemni-matematika", prijemni: "prijemni-matematika", naslovna: "site", home: "site", analiza1: "fax-analiza1", analiza2: "fax-analiza2", "diskretna-matematika": "fax-diskretna", "kompleksna-analiza": "fax-kompleksna", "linearna-algebra": "fax-linearna", "fax-merenja": "elektricna-merenja", "merenja-nev": "elektricna-merenja", algoritmi: "prog-algoritmi", arduino: "prog-arduino", cpp: "prog-cpp", csharp: "prog-csharp", cadence: "el-cadence", "osn-fiz-6": "os-fiz-6", "osn-fiz-7": "os-fiz-7", "osn-fiz-8": "os-fiz-8", js: "prog-js", java: "prog-java", kicad: "el-kicad", kotlin: "prog-kotlin", ltspice: "el-ltspice", matlab: "prog-matlab", "osn-mat-5": "os-mat-5", "osn-mat-6": "os-mat-6", "osn-mat-7": "os-mat-7", "osn-mat-8": "os-mat-8", mehanika: "fax-mehanika", operaciona: "fax-operaciona", pascal: "prog-pascal", python: "prog-python", r: "prog-r", sql: "fax-bazepodataka", "prog-sql": "fax-bazepodataka", scratch: "prog-scratch", elektrotehnika: "fax-kola", "uvod-u-elektroniku": "fax-elektronika", web: "prog-web", verovatnoca: "fax-verovatnoca", matematika: "trigonometrija", "priprema-fakultet": "prijemni-matematika", "priprema-srednja": "mala-matura", "priprema-visa": "prijemni-visa", "prijemni-visa-ns": "prijemni-visa", "osnovi-elektrotehnike-1": "osnovi-elektrotehnike", "osnovi-elektrotehnike-2": "osnovi-elektrotehnike", "elektricne-masine-1": "elektricne-masine", "elektricne-masine-2": "elektricne-masine", "elektricne-masine-3": "elektricne-masine", "baze-podataka": "fax-bazepodataka", "baze-podataka-1": "fax-bazepodataka", "baze-podataka-2": "fax-bazepodataka" };
+  function rez(k){ k=String(k||"").trim(); return ALIASES[k] || k; }
+  function kljucevi(str){ return String(str||"").split(",").map(function(x){return rez(x);}).filter(Boolean); }
 
   var me = document.currentScript;
   if (!me) { var ss = document.querySelectorAll('script[data-subject]'); me = ss[ss.length - 1]; }
@@ -80,12 +87,17 @@
     if (user) {
       try {
         var r = await sb.from("pretplate").select("*")
-          .eq("kupac_email", user.email).eq("status", "aktivna");
+          .ilike("kupac_email", user.email).eq("status", "aktivna");
         var rows = (r && r.data) || [];
+        var trazi = kljucevi(SUBJECT);            // strana moze da navede vise kljuceva ("a,b,c")
         for (var i = 0; i < rows.length; i++) {
           var row = rows[i];
           var vazi = !row.istice || new Date(row.istice) > new Date();
-          var pokriva = Array.isArray(row.predmeti) && row.predmeti.indexOf(SUBJECT) > -1;
+          var kupljeno = [];
+          (Array.isArray(row.predmeti) ? row.predmeti : []).forEach(function(p){
+            kljucevi(p).forEach(function(k){ kupljeno.push(k); });
+          });
+          var pokriva = trazi.some(function(t){ return kupljeno.indexOf(t) > -1; });
           if (vazi && pokriva) return "subscribed";
         }
       } catch (e) {}
@@ -95,7 +107,7 @@
 
   function plansHTML() {
     return PLANS.map(function (p) {
-      return '<a href="' + PAY_URL + '?plan=' + p.id + '&predmet=' + encodeURIComponent(SUBJECT) +
+      return '<a href="' + PAY_URL + '?paket=' + p.id + '&predmet=' + encodeURIComponent(kljucevi(SUBJECT)[0] || SUBJECT) +
         '" style="display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid #E7D2A2;border-radius:14px;padding:13px 16px;margin:8px 0;text-decoration:none;color:#432C37;transition:.15s" ' +
         'onmouseover="this.style.borderColor=\'#C6A05C\'" onmouseout="this.style.borderColor=\'#E7D2A2\'">' +
         '<span><b style="font-family:Cormorant Garamond,serif;font-size:19px">' + p.naziv + '</b><br><small style="color:#8a7a74">' + p.predmeta + (p.predmeta === 1 ? ' predmet' : ' predmeta') + '</small></span>' +
