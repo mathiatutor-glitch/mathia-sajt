@@ -8,12 +8,12 @@
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
   :root{ --navy:#432c37; --gold:#9c7838; --goldD:#9c7838; --cream:#fbf6ee; --soft:#6b6256; --line:#e7dcc4; }
   *{box-sizing:border-box}
-  body{margin:0;background:#f0e9dc;color:var(--navy);font-family:'Nunito',system-ui,sans-serif;line-height:1.6;padding:24px 14px}
+  body{margin:0;background:#f0e9dc;color:var(--navy);font-family:'Inter',system-ui,sans-serif;line-height:1.6;padding:24px 14px}
   .controls{max-width:720px;margin:0 auto 18px;text-align:center}
   .controls input{font:inherit;font-size:1rem;padding:11px 14px;border:1px solid #d8cbb0;border-radius:12px;width:min(360px,90%);text-align:center}
   .controls .btns{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -30,25 +30,25 @@
       border:2px solid var(--gold)}
   .diploma::after{content:"";position:absolute;inset:10px;border:1px solid #e3cd95;border-radius:12px;pointer-events:none}
   .d-brand{text-align:center;font-size:.74rem;letter-spacing:.34em;color:var(--gold);font-weight:700;text-transform:uppercase}
-  .d-title{text-align:center;font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;margin:.15em 0 0}
+  .d-title{text-align:center;font-family:'Spectral',serif;font-size:2.2rem;font-weight:700;margin:.15em 0 0}
   .d-sub{text-align:center;color:var(--soft);font-style:italic;margin:.1em 0 1.1em}
-  .d-name{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--navy);
+  .d-name{text-align:center;font-family:'Spectral',serif;font-size:1.9rem;font-weight:700;color:var(--navy);
           border-bottom:2px dotted #d8c186;display:inline-block;padding:0 18px 4px;margin:0 auto}
   .d-name-wrap{text-align:center;margin:.2em 0 1em}
   .d-text{text-align:center;max-width:520px;margin:0 auto;color:#4a4636}
   .d-stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:20px 0 8px}
   .stat{background:#fffcf6;border:1px solid var(--line);border-radius:14px;padding:12px 18px;min-width:104px;text-align:center}
-  .stat .n{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--goldD)}
+  .stat .n{font-family:'Spectral',serif;font-size:1.5rem;font-weight:700;color:var(--goldD)}
   .stat .l{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
   .d-badges{text-align:center;font-size:1.5rem;margin:6px 0 0;min-height:1.6em}
   .d-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px;gap:16px}
   .d-seal{width:78px;height:78px;border-radius:50%;background:radial-gradient(circle at 40% 35%, #f0d99b, #9c7838);
           display:flex;align-items:center;justify-content:center;flex-direction:column;color:#3a2c08;
           font-weight:700;box-shadow:0 3px 10px rgba(155,116,32,.4);flex:none}
-  .d-seal .m{font-family:'Cormorant Garamond',serif;font-size:1.5rem;line-height:1}
+  .d-seal .m{font-family:'Spectral',serif;font-size:1.5rem;line-height:1}
   .d-seal .t{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
   .d-sign{text-align:right;flex:1}
-  .d-sign .line{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--navy);border-top:1px solid #d8c186;padding-top:6px;display:inline-block}
+  .d-sign .line{font-family:'Spectral',serif;font-style:italic;font-size:1.05rem;color:var(--navy);border-top:1px solid #d8c186;padding-top:6px;display:inline-block}
   .d-sign .role{font-size:.74rem;color:var(--soft)}
   .d-date{text-align:center;color:var(--soft);font-size:.82rem;margin-top:14px}
   @media(max-width:560px){ .d-title{font-size:1.7rem} .d-name{font-size:1.5rem} }
@@ -65,14 +65,14 @@
   --stepBg:#F6EEDD;--stepBd:#E7D2A2;--stepNum1:#e7c97f;--stepNum2:#C6A05C;
   --i1:#9C7838;--i2:#C6A05C;--i3:#B98E5A;
 }
-h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif}
+h1,h2,h3,h4{font-family:'Spectral',Georgia,serif}
 a{color:#9C7838}
 .zchat,#zchat,.zlauncher,#zdot{display:none!important}
 </style>
 <style>
 /* community / social — luxe pills */
 .social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 16px;margin:30px auto 8px;max-width:600px;padding:0 16px}
-.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
+.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
 .social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(160,120,60,.6)}
 .social svg{width:20px;height:20px;fill:currentColor;flex:none}
 
@@ -207,7 +207,7 @@ code{overflow-wrap:break-word}
   (document.body||document.documentElement).appendChild(st);
 })();
 </script>
-<div class="mathia-copyr" style="text-align:center;padding:16px 20px 22px;font-family:'Nunito',sans-serif;font-size:.78rem;color:rgba(67,44,55,.55);letter-spacing:.02em">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
+<div class="mathia-copyr" style="text-align:center;padding:16px 20px 22px;font-family:'Inter',sans-serif;font-size:.78rem;color:rgba(67,44,55,.55);letter-spacing:.02em">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
 <script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--protect--><style>
 body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
 input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
