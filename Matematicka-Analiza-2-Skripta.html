@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mathia — Matematička analiza 2 · Skripta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
@@ -12,15 +12,15 @@
 body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.55}
 .lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
 .cover{min-height:54vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
-.seal{width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:16px}
+.seal{width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Spectral',serif;font-size:27px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:16px}
 .brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
 .kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
-.cover h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(28px,6vw,44px);margin:14px 0 8px;max-width:14em}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(28px,6vw,44px);margin:14px 0 8px;max-width:14em}
 .subtitle{color:#7a6b66;max-width:32em;margin:0 auto}
 .foot{margin-top:24px;font-size:12px;letter-spacing:.06em;color:#a89a93}
 .page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
 .topic{background:#fff;border:1px solid var(--goldlt);border-radius:16px;padding:18px 20px;margin:14px 0;box-shadow:0 12px 28px rgba(67,44,55,.05)}
-.topic h2{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:700;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
+.topic h2{font-family:'Spectral',serif;font-size:23px;font-weight:700;margin:0 0 8px;display:flex;align-items:baseline;gap:10px}
 .tnum{display:inline-flex;min-width:28px;height:28px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 14px Inter;flex:none}
 .box{border-radius:12px;padding:11px 14px;margin:9px 0}
 .zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
@@ -77,7 +77,7 @@ code{overflow-wrap:break-word}
 <link rel="stylesheet" href="mathia-type.css">
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Nunito',system-ui,sans-serif"><a href="predmet-analiza2.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Matematička analiza 2</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Matematička analiza 2 · Skripta</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
+<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="predmet-analiza2.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Matematička analiza 2</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Matematička analiza 2 · Skripta</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
 
 
 
