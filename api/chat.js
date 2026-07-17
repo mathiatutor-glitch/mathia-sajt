@@ -14,25 +14,25 @@ import { sbUser } from "../lib/sbauth.js";
 import { aktivnePretplate, beleziNapredak, poslednjeTeme } from "../lib/supabase.js";
 
 const LOGIN_MSG = {
-  sr: "Zdravo! Da bismo započeli čas, prijavite se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
-  en: "Hello! To start the lesson, please sign in on the Account page (/nalog.html). Your first 15 minutes are completely free.",
-  de: "Hallo! Um die Stunde zu beginnen, melden Sie sich auf der Konto-Seite (/nalog.html) an. Ihre ersten 15 Minuten sind völlig kostenlos.",
-  fr: "Bonjour ! Pour commencer le cours, connectez-vous sur la page Compte (/nalog.html). Vos 15 premières minutes sont entièrement gratuites.",
-  es: "¡Hola! Para empezar la clase, inicie sesión en la página Cuenta (/nalog.html). Sus primeros 15 minutos son totalmente gratuitos.",
-  it: "Buongiorno! Per iniziare la lezione, acceda nella pagina Account (/nalog.html). I suoi primi 15 minuti sono completamente gratuiti.",
-  ru: "Добрый день! Чтобы начать урок, войдите на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
-  pt: "Olá! Para começar a aula, entre na página Conta (/nalog.html). Os seus primeiros 15 minutos são totalmente gratuitos."
+  sr: "Zdravo! Da počnemo čas, prijavi se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
+  en: "Hi! To start the lesson, sign in on the Account page (/nalog.html). Your first 15 minutes are completely free.",
+  de: "Hallo! Um die Stunde zu beginnen, melde dich auf der Konto-Seite (/nalog.html) an. Deine ersten 15 Minuten sind völlig kostenlos.",
+  fr: "Bonjour ! Pour commencer le cours, connecte-toi sur la page Compte (/nalog.html). Tes 15 premières minutes sont entièrement gratuites.",
+  es: "¡Hola! Para empezar la clase, inicia sesión en la página Cuenta (/nalog.html). Tus primeros 15 minutos son totalmente gratuitos.",
+  it: "Ciao! Per iniziare la lezione, accedi nella pagina Account (/nalog.html). I tuoi primi 15 minuti sono completamente gratuiti.",
+  ru: "Привет! Чтобы начать урок, войди на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
+  pt: "Olá! Para começares a aula, entra na página Conta (/nalog.html). Os teus primeiros 15 minutos são totalmente gratuitos."
 };
 const OWNER_KEY = process.env.OWNER_KEY || "MATHIA-MARINA-2026";
 const OVER_MSG = {
-  sr: "Vaših 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberite paket na stranici Cene (/index.html#paketi).",
+  sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#paketi).",
   en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#paketi).",
-  de: "Ihre 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wählen Sie ein Paket auf der Preise-Seite (/index.html#paketi).",
-  fr: "Vos 15 minutes gratuites sont écoulées. Pour continuer, choisissez une formule sur la page Tarifs (/index.html#paketi).",
-  es: "Sus 15 minutos gratuitos han terminado. Para continuar, elija un plan en la página Precios (/index.html#paketi).",
-  it: "I suoi 15 minuti gratuiti sono finiti. Per continuare, scelga un piano nella pagina Prezzi (/index.html#paketi).",
-  ru: "Ваши 15 бесплатных минут закончились. Чтобы продолжить, выберите план на странице Цены (/index.html#paketi).",
-  pt: "Os seus 15 minutos gratuitos terminaram. Para continuar, escolha um plano na página Preços (/index.html#paketi)."
+  de: "Deine 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wähle ein Paket auf der Preise-Seite (/index.html#paketi).",
+  fr: "Tes 15 minutes gratuites sont écoulées. Pour continuer, choisis une formule sur la page Tarifs (/index.html#paketi).",
+  es: "Tus 15 minutos gratuitos han terminado. Para continuar, elige un plan en la página Precios (/index.html#paketi).",
+  it: "I tuoi 15 minuti gratuiti sono finiti. Per continuare, scegli un piano nella pagina Prezzi (/index.html#paketi).",
+  ru: "Твои 15 бесплатных минут закончились. Чтобы продолжить, выбери пакет на странице Цены (/index.html#paketi).",
+  pt: "Os teus 15 minutos gratuitos terminaram. Para continuares, escolhe um plano na página Preços (/index.html#paketi)."
 };
 
 const SHARED = `
@@ -282,14 +282,14 @@ function buildSystem(mode, lang) {
 
 // ——— ograničenje brzine (anti-spam; štiti od nepotrebnog troška na AI-u) ———
 const RL_MSG = {
-  sr: "Samo trenutak — pitanja pristižu previše brzo. Sačekajte koji sekund i pokušajte ponovo.",
+  sr: "Samo trenutak — pitanja stižu prebrzo. Sačekaj koji sekund pa pokušaj ponovo.",
   en: "Just a moment — questions are coming in too fast. Wait a few seconds and try again.",
-  de: "Einen Moment — die Fragen kommen zu schnell. Warten Sie ein paar Sekunden und versuchen Sie es erneut.",
-  fr: "Un instant — les questions arrivent trop vite. Attendez quelques secondes et réessayez.",
-  es: "Un momento — llegan preguntas demasiado rápido. Espere unos segundos e inténtelo de nuevo.",
-  it: "Un attimo — le domande arrivano troppo in fretta. Attenda qualche secondo e riprovi.",
-  ru: "Минутку — вопросы приходят слишком быстро. Подождите несколько секунд и попробуйте снова.",
-  pt: "Um momento — as perguntas chegam rápido demais. Aguarde alguns segundos e tente novamente."
+  de: "Einen Moment — die Fragen kommen zu schnell. Warte ein paar Sekunden und versuche es erneut.",
+  fr: "Un instant — les questions arrivent trop vite. Attends quelques secondes et réessaie.",
+  es: "Un momento — llegan preguntas demasiado rápido. Espera unos segundos e inténtalo de nuevo.",
+  it: "Un attimo — le domande arrivano troppo in fretta. Aspetta qualche secondo e riprova.",
+  ru: "Минутку — вопросы приходят слишком быстро. Подожди несколько секунд и попробуй снова.",
+  pt: "Um momento — as perguntas chegam rápido demais. Espera alguns segundos e tenta de novo."
 };
 // ——— identitet preko Supabase (email) naloga ———
 
@@ -399,8 +399,8 @@ export default async function handler(req, res) {
             fr: "Cette matière n'est pas dans ton forfait. Ajoute-la sur la page Compte (/nalog.html) pour continuer ici.",
             es: "Esta asignatura no está en tu plan. Añádela en la página Cuenta (/nalog.html) para continuar aquí.",
             it: "Questa materia non è nel tuo piano. Aggiungila nella pagina Account (/nalog.html) per continuare qui.",
-            ru: "Этот предмет не входит в ваш план. Добавьте его на странице Аккаунт (/nalog.html), чтобы продолжить здесь.",
-            pt: "Esta disciplina não está no seu plano. Adicione-a na página Conta (/nalog.html) para continuar aqui.",
+            ru: "Этот предмет не входит в твой пакет. Добавь его на странице Аккаунт (/nalog.html), чтобы продолжить здесь.",
+            pt: "Esta disciplina não está no teu plano. Adiciona-a na página Conta (/nalog.html) para continuares aqui.",
           };
           await saveUser(u);  // sačuvaj sinhronizovan rok pre izlaska
           return res.status(200).json({ text: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, reply: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, mode: rmode });
@@ -506,7 +506,16 @@ export default async function handler(req, res) {
   } catch (e) {
     console.error("chat.js greška:", (e && e.message) || e);
     var mlang = (typeof msgLang !== "undefined" && msgLang) ? msgLang : "sr";
-    var BUSY = { sr: "Izvinite, došlo je do kratkog tehničkog zastoja. Pokušajte ponovo za koji trenutak.", en: "Sorry, a brief technical hiccup occurred. Please try again in a moment." };
+    var BUSY = {
+      sr: "Izvini, došlo je do kratkog tehničkog zastoja. Pokušaj ponovo za koji trenutak.",
+      en: "Sorry, a brief technical hiccup. Try again in a moment.",
+      de: "Entschuldige, eine kurze technische Störung. Versuche es gleich noch einmal.",
+      fr: "Désolée, une brève panne technique. Réessaie dans un instant.",
+      es: "Lo siento, un pequeño fallo técnico. Inténtalo de nuevo en un momento.",
+      it: "Scusa, un breve intoppo tecnico. Riprova tra un istante.",
+      ru: "Извини, небольшой технический сбой. Попробуй ещё раз через минутку.",
+      pt: "Desculpa, houve uma pequena falha técnica. Tenta de novo daqui a pouco."
+    };
     return res.status(200).json({ text: BUSY[mlang] || BUSY.sr, reply: BUSY[mlang] || BUSY.sr });
   }
 }
