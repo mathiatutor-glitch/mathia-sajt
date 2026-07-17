@@ -277,7 +277,7 @@
     ".zoi-zoi .zoi-bub{background:linear-gradient(180deg,#FFFFFF,#FFFBF2);color:#3E2D34;border:1px solid rgba(198,160,92,.22);border-bottom-left-radius:7px;box-shadow:0 10px 24px -14px rgba(120,70,80,.4),0 1px 2px rgba(120,70,80,.05)}" +
     ".zoi-me .zoi-bub{background:linear-gradient(155deg,#DCBD79,#A67C3C);color:#fff;border-bottom-right-radius:7px;box-shadow:0 12px 26px -12px rgba(120,80,30,.55),inset 0 1px 0 rgba(255,255,255,.4)}" +
     ".zoi-bub img{max-width:100%;border-radius:10px;margin-top:4px}" +
-    ".zoi-bub pre,.zoi-bub code{white-space:pre-wrap;overflow-wrap:break-word;max-width:100%;overflow-x:auto;box-sizing:border-box}" +
+    ".zoi-bub pre,.zoi-bub code{white-space:pre-wrap;overflow-wrap:break-word;max-width:100%;box-sizing:border-box}" +
     ".zoi-bub table{display:block;max-width:100%;overflow-x:auto}" +
     ".zoi-tbl{border-collapse:collapse;width:100%;margin:10px 0;font-size:.9em;border:1px solid #E7DCC6;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px -8px rgba(120,70,80,.25)}" +
     ".zoi-tbl th,.zoi-tbl td{border-bottom:1px solid #EFE6D3;border-right:1px solid #EFE6D3;padding:7px 11px;text-align:left;vertical-align:top;line-height:1.4}" +
@@ -287,7 +287,7 @@
     ".zoi-tbl tbody tr:nth-child(even) td{background:#FBF7EF}" +
     ".zoi-bub .zoi-h{display:block;font-weight:800;color:#6b4a2f;font-size:1.03em;letter-spacing:.005em;margin:15px 0 5px}" +
     ".zoi-bub .zoi-h:first-child{margin-top:0}" +
-    ".zoi-bub pre.zoi-code{background:#2c2230;color:#f4ecdf;border-radius:10px;padding:10px 12px;margin:7px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84em;line-height:1.5;overflow-x:auto;white-space:pre;max-width:100%}" +
+    ".zoi-bub pre.zoi-code{background:#2c2230;color:#f4ecdf;border-radius:10px;padding:12px 14px;margin:9px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84em;line-height:1.6;max-width:100%;white-space:pre-wrap;overflow-wrap:break-word;padding-left:2.1em;text-indent:-1.1em}" +
     ".zoi-bub pre.zoi-code code{white-space:pre;background:none;border:0;padding:0;color:inherit;font-family:inherit;font-size:inherit}" +
     ".zoi-bub pre.zoi-code[data-lang]:before{content:attr(data-lang);display:block;color:#c6a05c;font-size:.78em;font-family:'Nunito',sans-serif;margin:-2px 0 6px;text-transform:uppercase;letter-spacing:.04em}" +
     ".zoi-bub .zoi-codewrap{position:relative}" +
