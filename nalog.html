@@ -748,6 +748,7 @@ async function auth(){
       var v=await sb.auth.verifyOtp({email:EMAIL, token:code, type:'email'});
       if(v.error){ setMsg('Pogrešan ili istekao kod.',true); btn.disabled=false; return; }
       USER=(v.data&&v.data.user)?v.data.user:((v.data&&v.data.session)?v.data.session.user:null);
+      await sbCookieSync();          // bez ovoga skripte i formule ostaju zakljucane
       btn.disabled=false; await loadData();
       // Ako je novi korisnik (nema ime u profilu) — pitaj ime
       var imaIme = PROFILE && PROFILE.ime && PROFILE.ime.trim().length > 0;
@@ -769,7 +770,7 @@ async function auth(){
     }catch(e){ setMsg('Pogrešan ili istekao kod.',true); btn.disabled=false; }
   }
 }
-async function logout(){ try{ if(sb) await sb.auth.signOut(); }catch(e){} USER=null;PROFILE=null;SUBJECTS=[]; var m=$('msgs'); if(m){m.innerHTML='';delete m.dataset.init;} showLogin(); }
+async function logout(){ try{ if(sb) await sb.auth.signOut(); }catch(e){} sbCookieClear(); USER=null;PROFILE=null;SUBJECTS=[]; var m=$('msgs'); if(m){m.innerHTML='';delete m.dataset.init;} showLogin(); }
 
 async function saveName(){
   var ime=($('in-name').value||'').trim();
@@ -800,6 +801,7 @@ async function boot(){
   } else { showLogin(); }
 }
 async function loadData(){
+  sbCookieSync();   // token traje ~1h — osvezi kolacic pri svakom ulasku
   PROFILE=null; SUBJECTS=[]; PLANER=null; if(!sb||!USER) return;
   try{ var pr=await sb.from('mathia_profil').select('*').eq('user_id',USER.id).maybeSingle(); PROFILE=(pr&&pr.data)?pr.data:null; }catch(e){}
   try{ var np=await sb.from('mathia_napredak').select('*').eq('user_id',USER.id).order('azurirano',{ascending:false}); SUBJECTS=(np&&np.data)?np.data:[]; }catch(e){ SUBJECTS=[]; }
@@ -1171,6 +1173,28 @@ function reply(k){var t=(''+k).toLowerCase();
 /* Profesorica u nalogu — pravi AI preko /api/chat (uz lokalni bot kao rezervu). */
 var CHAT_MSGS=[];
 function chatMode(){ try{ var MP=mojiPredmeti(); if(MP.length&&MP[0].key) return MP[0].key; }catch(e){} return 'site'; }
+/* MOST KA middleware-u: Supabase cuva sesiju u localStorage, a middleware (server)
+   vidi samo kolacice. Bez ovoga pretplatnik sa mejlom ne moze da otvori -Skripta/-Formule.
+   Kolacic nosi Supabase access_token; server ga proverava kod Supabase-a — ne veruje mu na rec. */
+function sbCookieSet(tok, maxAge){
+  try{
+    var sec = (location.protocol === 'https:') ? '; Secure' : '';
+    document.cookie = 'mathia_sb=' + encodeURIComponent(tok) + '; path=/; max-age=' + (maxAge||3600) + '; SameSite=Lax' + sec;
+  }catch(e){}
+}
+function sbCookieClear(){ try{ document.cookie = 'mathia_sb=; path=/; max-age=0; SameSite=Lax'; }catch(e){} }
+async function sbCookieSync(){
+  try{
+    if(!sb) return;
+    var s = await sb.auth.getSession();
+    var ses = s && s.data && s.data.session;
+    if(ses && ses.access_token){
+      var ostalo = ses.expires_at ? (ses.expires_at - Math.floor(Date.now()/1000)) : 3600;
+      sbCookieSet(ses.access_token, Math.max(60, Math.min(ostalo, 3600)));
+    } else { sbCookieClear(); }
+  }catch(e){}
+}
+
 async function chatToken(){ try{ var s=await sb.auth.getSession(); return (s&&s.data&&s.data.session)?s.data.session.access_token:null; }catch(e){ return null; } }
 function _fmtBot(t){ t=(''+t).replace(/\n?\[\[PITANJA\]\][\s\S]*$/,''); return esc(t).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>').trim(); }
 function _pitanja(t){ var m=(''+t).match(/\[\[PITANJA\]\]([^\n]*)/); if(!m)return []; return m[1].split('||').map(function(s){return s.trim();}).filter(Boolean).slice(0,3); }
