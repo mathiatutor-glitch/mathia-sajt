@@ -1267,11 +1267,14 @@
   // ——— vidljiv prekidač jezika + Nazad/Početna na stranama koje nemaju svoj meni ———
   (function () {
     try {
-      var imaMeni = document.querySelector('select.lang, header nav, .mathia-topnav, nav.main');
+      /* Strane koriste #mtopbar kao svoju traku (193 strane). Ranije ovde nije bio naveden,
+         pa je klon mislio da strana nema meni i ubacivao svoj — na 147 strana su se videla
+         dva seta dugmadi i dva prekidaca jezika. */
+      var imaMeni = document.querySelector('select.lang, select[aria-label="Jezik"], header nav, .mathia-topnav, nav.main, #mtopbar, .mtopbar');
       if (document.getElementById('mathia-langbar')) return;  // već ubačen
 
       // Prekidač jezika (gore desno) — samo ako strana nema svoj
-      if (!document.querySelector('select.lang')) {
+      if (!document.querySelector('select.lang, select[aria-label="Jezik"]')) {
         var wrap = document.createElement('div');
         wrap.id = 'mathia-langbar';
         wrap.style.cssText = 'position:fixed;top:10px;right:12px;z-index:2147483000;';
