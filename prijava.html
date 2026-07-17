@@ -396,6 +396,42 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
 },{capture:true});
 })();</script>
+<!-- OPORAVAK SUPABASE SESIJE ------------------------------------------------
+     Ako je ucenik prijavljen mejlom, a kolacic za middleware je istekao (token
+     traje ~1h), middleware ga posalje ovde — gde se trazi TELEFON, sto je pogresna
+     prijava za njega. Ovde mu obnovimo sesiju, upisemo svez kolacic i vratimo ga
+     tamo gde je posao. Zastita od petlje: pokusavamo najvise jednom po poseti. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search);
+  var next = q.get("next");
+  if(!next) return;
+  try{ if(sessionStorage.getItem("mathia_sb_retry")==="1") return; }catch(e){ return; }
+  var imaSesiju=false;
+  try{
+    for(var i=0;i<localStorage.length;i++){
+      if(/^sb-.*-auth-token$/.test(localStorage.key(i))){ imaSesiju=true; break; }
+    }
+  }catch(e){}
+  if(!imaSesiju) return;
+  var URL_="https://ibhirxltgeyecrjwymai.supabase.co";
+  var ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+  try{
+    var sb = window.supabase.createClient(URL_, ANON);
+    sb.auth.getSession().then(function(r){          // sam obnovi token ako je istekao
+      var ses = r && r.data && r.data.session;
+      if(!ses || !ses.access_token) return;
+      var ost = ses.expires_at ? (ses.expires_at - Math.floor(Date.now()/1000)) : 3600;
+      var sec = (location.protocol==="https:") ? "; Secure" : "";
+      document.cookie = "mathia_sb=" + encodeURIComponent(ses.access_token)
+        + "; path=/; max-age=" + Math.max(60, Math.min(ost,3600)) + "; SameSite=Lax" + sec;
+      try{ sessionStorage.setItem("mathia_sb_retry","1"); }catch(e){}
+      location.replace(next);
+    });
+  }catch(e){}
+})();
+</script>
 <script src="i18n-mathia.js"></script>
 </body>
 </html>
