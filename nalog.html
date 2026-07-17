@@ -810,14 +810,34 @@ async function loadData(){
   try{
     var mail=(USER&&USER.email)?USER.email:null;
     if(mail){
-      var ps=await sb.from('pretplate').select('*').ilike('kupac_email',mail).eq('status','aktivna').order('created_at',{ascending:false}).limit(1);
-      var pret=(ps&&ps.data&&ps.data[0])?ps.data[0]:null;
-      if(pret){
+      /* SVE aktivne pretplate, ne samo najnovija.
+         Ranije je stajalo .limit(1) — ko dokupi drugi paket video bi samo noviji,
+         a stariji (sa svojim predmetima) bi mu nestao sa naloga. */
+      var ps=await sb.from('pretplate').select('*').ilike('kupac_email',mail).eq('status','aktivna').order('created_at',{ascending:false});
+      var redovi=(ps&&ps.data)?ps.data:[];
+      var sada=new Date();
+      redovi=redovi.filter(function(r){ return !r.istice || new Date(r.istice)>sada; });
+      if(redovi.length){
         PROFILE=PROFILE||{};
-        if(pret.paket) PROFILE.paket=pret.paket;
-        if(pret.predmeti) PROFILE.predmeti=pret.predmeti;
-        PROFILE.istice=pret.istice||null;
-        PROFILE.pretplata_aktivna=true;
+        var LIM={basic:1,gold:2,diamond:3}, RANG={basic:1,gold:2,diamond:3};
+        var svi=[], ukupno=0, najdalje=null, najjaci=null;
+        redovi.forEach(function(r){
+          var pm=r.predmeti;
+          if(typeof pm==='string'){ try{ pm=JSON.parse(pm); }catch(e){ pm=String(pm).split(',').map(function(x){return x.trim();}); } }
+          (Array.isArray(pm)?pm:[]).forEach(function(k){
+            String(k).split(',').forEach(function(x){ x=x.trim(); if(x && svi.indexOf(x)<0) svi.push(x); });
+          });
+          var pk=String(r.paket||'').toLowerCase();
+          ukupno += (LIM[pk]||1);
+          if(!najjaci || (RANG[pk]||0) > (RANG[najjaci]||0)) najjaci=pk;
+          if(r.istice && (!najdalje || new Date(r.istice)>new Date(najdalje))) najdalje=r.istice;
+        });
+        PROFILE.paket = najjaci || PROFILE.paket;
+        PROFILE.predmeti = svi;
+        PROFILE.limit = ukupno;             // zbir svih paketa, ne samo jednog
+        PROFILE.paketa = redovi.length;     // koliko aktivnih pretplata
+        PROFILE.istice = najdalje;
+        PROFILE.pretplata_aktivna = true;
       }
     }
   }catch(e){}
@@ -926,7 +946,7 @@ function render(){
   var hs=$('home-subj'),as=$('all-subj');
   // Opis predmeta i dugme prema paketu
   var paket=(PROFILE&&PROFILE.paket)||'';
-  var limit=PAKET_LIMIT[paket]||1;
+  var limit=(PROFILE&&PROFILE.limit)?PROFILE.limit:(PAKET_LIMIT[paket]||1);
   var desc=$('subj-desc'); var btn=$('btn-pick-subj');
   if(desc) desc.textContent = paket ? (cap(paket)+' paket pokriva do '+limit+(limit===1?' predmet':' predmeta')+' — sa svim lekcijama, zbirkama i formulama.') : 'Odaberi paket da otključaš predmete.';
   if(btn) btn.style.display = paket ? '' : 'none';
@@ -1110,7 +1130,7 @@ var pickedSubj = [];
 
 function openPickSubj(){
   var paket = (PROFILE&&PROFILE.paket)||'basic';
-  var limit = PAKET_LIMIT[paket]||1;
+  var limit = (PROFILE&&PROFILE.limit)?PROFILE.limit:(PAKET_LIMIT[paket]||1);
   pickedSubj = (PROFILE&&PROFILE.predmeti)? [].concat(PROFILE.predmeti) : [];
   $('modal-title').textContent = 'Izaberi predmete';
   $('modal-desc').textContent = 'Tvoj ' + paket + ' paket pokriva ' + limit + (limit===1?' predmet':' predmeta') + '. Izaberi koje hoćeš.';
