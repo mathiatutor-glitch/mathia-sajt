@@ -2662,7 +2662,7 @@ var qrcode = function() {
     account: '000000000000000000',        // <-- tvoj poslovni račun (18 cifara, bez crtica)
     name:    'Mathia Edu, Novi Sad'        // <-- tačan naziv primaoca
   };
-  const KARTICA_AKTIVNA = false;          // <-- prebaci na true kad UPC test proradi (i Vercel env varijable postavljene)
+  const KARTICA_AKTIVNA = true;          // <-- prebaci na true kad UPC test proradi (i Vercel env varijable postavljene)
   /* =============================================== */
 
   const PAKETI = {
@@ -2687,7 +2687,9 @@ var qrcode = function() {
     var u=new URLSearchParams(location.search).get('lang'); if(u) l=u.toLowerCase();
     return I18N[l]?l:'sr';
   }
-  function getPaket(){ var p=new URLSearchParams(location.search).get('paket'); return PAKETI[p]?p:'gold'; }
+  function getPaket(){ var q=new URLSearchParams(location.search);
+    var p=q.get('paket')||q.get('plan');            // podrzi oba naziva
+    return PAKETI[p]?p:'gold'; }
   function fmtRsd(n){ return n.toLocaleString('sr-RS')+' RSD'; }
   function svrhaTxt(p){ return ('Mathia '+p.naziv).slice(0,35); }
 

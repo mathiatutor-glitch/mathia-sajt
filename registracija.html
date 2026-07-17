@@ -140,6 +140,10 @@ body{margin:0;font-family:'Nunito',sans-serif;color:var(--ink);background:var(--
         <button class="btn-back" id="back2">&larr; Nazad</button>
         <button class="btn btn-gold" id="finish">Idi na plaćanje &rarr;</button>
       </div>
+      <div style="text-align:center;margin-top:12px">
+        <a id="bank-link" href="placanje.html" style="font-size:.86rem;color:#90787E;text-decoration:underline;text-underline-offset:2px">Radije bih uplatom na račun (IPS QR) →</a>
+        <div style="font-size:.78rem;color:#A99;margin-top:5px">Uplata na račun se ne otključava automatski — javi nam se posle uplate.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -153,6 +157,8 @@ var PKG = {basic:{n:1,label:'Basic'}, gold:{n:2,label:'Gold'}, diamond:{n:3,labe
 function qp(k){return new URLSearchParams(location.search).get(k);}
 var pkgKey = (qp('paket')||'gold').toLowerCase(); if(!PKG[pkgKey]) pkgKey='gold';
 var pkg = PKG[pkgKey];
+(function(){ var bl=document.getElementById('bank-link');
+  if(bl) bl.setAttribute('href','placanje.html?paket='+pkgKey); })();
 var MAX = pkg.n;
 var selected = [];
 
