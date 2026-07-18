@@ -194,8 +194,37 @@ code{overflow-wrap:break-word}
   </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 "use strict";
+/* ---------------- CLOUD (nalog) ---------------- */
+var SB_URL="https://ibhirxltgeyecrjwymai.supabase.co";
+var SB_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+var _sb=null, _uid=null, _cloudT=null;
+function sbToken(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k));var t=v&&(v.access_token||(v.session&&v.session.access_token)||(v.currentSession&&v.currentSession.access_token));if(t)return t;}}}catch(e){}return null;}
+async function cloudInit(){
+  try{
+    if(!window.supabase)return false;
+    _sb=window.supabase.createClient(SB_URL,SB_ANON);
+    var u=await _sb.auth.getUser(); _uid=u&&u.data&&u.data.user?u.data.user.id:null;
+    return !!_uid;
+  }catch(e){return false;}
+}
+async function cloudLoad(){
+  if(!_sb||!_uid)return null;
+  try{
+    var r=await _sb.from("mathia_planer").select("stavke,updated_at").eq("user_id",_uid).maybeSingle();
+    if(r&&r.data&&r.data.stavke)return r.data.stavke;
+  }catch(e){}
+  return null;
+}
+function cloudSave(){
+  if(!_sb||!_uid)return;
+  clearTimeout(_cloudT);
+  _cloudT=setTimeout(function(){
+    try{ _sb.from("mathia_planer").upsert({user_id:_uid,stavke:DB,updated_at:new Date().toISOString()},{onConflict:"user_id"}).then(function(){},function(){}); }catch(e){}
+  },900);
+}
 /* ---------------- storage ---------------- */
 const KEY='mathia_student_planner_v1';
 let DB={};
@@ -257,7 +286,7 @@ function get(p){let o=DB;for(const seg of String(p).split('.')){if(o==null)retur
 function set(p,v){const segs=String(p).split('.');let o=DB;for(let i=0;i<segs.length-1;i++){const s=segs[i];if(o[s]==null)o[s]=/^\d+$/.test(segs[i+1])?[]:{};o=o[s];}o[segs[segs.length-1]]=v;}
 let saveT=null;
 function flag(t){const e=document.getElementById('savetxt');e.textContent=t;}
-function save(){store.save(DB);flag('Čuvam…');clearTimeout(saveT);saveT=setTimeout(()=>flag('Sačuvano'),500);}
+function save(){store.save(DB);cloudSave();flag('Čuvam…');clearTimeout(saveT);saveT=setTimeout(()=>flag(_uid?'Sačuvano u nalog':'Sačuvano'),500);}
 
 /* ---------------- helpers ---------------- */
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -765,6 +794,16 @@ function resetAll(){if(confirm('Obrisati SVE podatke i početi iznova? Ovo se ne
 (function init(){
   DB=store.load();
   DB=DB?migrate(DB):defaults();
+  /* Posle lokalnog prikaza, povuci iz naloga da radi na svakom uredjaju. */
+  (async function(){
+    try{
+      var ok=await cloudInit();
+      if(!ok)return;
+      var cloud=await cloudLoad();
+      if(cloud){ DB=migrate(cloud); try{store.save(DB);}catch(e){} if(typeof renderCurrent==="function")renderCurrent(); flag("Sačuvano u nalog"); }
+      else { cloudSave(); }   /* prvi put: prenesi lokalno u nalog */
+    }catch(e){}
+  })();
   store.save(DB);
   buildNav();rotateMotiv();go(0);
   setInterval(rotateMotiv,16000);
