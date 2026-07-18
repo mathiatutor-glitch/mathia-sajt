@@ -120,12 +120,13 @@
   .guide ul{margin:0 0 10px;padding-left:20px;color:#4a3f4a}
   .guide li{margin:3px 0}
   .miniad{display:none}
+  .scrim{display:none}   /* na desktopu ne sme u grid — inace pojede sadrzajnu kolonu */
   @media(max-width:860px){
     .app{grid-template-columns:1fr}
     .side{position:fixed;left:0;top:0;width:84%;max-width:300px;transform:translateX(-103%);transition:transform .22s;z-index:60;box-shadow:0 0 60px rgba(0,0,0,.4)}
     .side.open{transform:none}
     .miniad{display:inline-flex}
-    .scrim{position:fixed;inset:0;background:rgba(20,12,18,.4);z-index:55;opacity:0;pointer-events:none;transition:.2s}
+    .scrim{display:block;position:fixed;inset:0;background:rgba(20,12,18,.4);z-index:55;opacity:0;pointer-events:none;transition:.2s}
     .scrim.on{opacity:1;pointer-events:auto}
   }
   @media print{
