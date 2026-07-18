@@ -201,6 +201,7 @@ code{overflow-wrap:break-word}
 /* ---------------- CLOUD (nalog) ---------------- */
 var SB_URL="https://ibhirxltgeyecrjwymai.supabase.co";
 var SB_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+var PLAN_NIVO="fakultet";
 var _sb=null, _uid=null, _cloudT=null;
 function sbToken(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k));var t=v&&(v.access_token||(v.session&&v.session.access_token)||(v.currentSession&&v.currentSession.access_token));if(t)return t;}}}catch(e){}return null;}
 async function cloudInit(){
@@ -214,16 +215,20 @@ async function cloudInit(){
 async function cloudLoad(){
   if(!_sb||!_uid)return null;
   try{
-    var r=await _sb.from("mathia_planer").select("stavke,updated_at").eq("user_id",_uid).maybeSingle();
-    if(r&&r.data&&r.data.stavke)return r.data.stavke;
+    var r=await _sb.from("mathia_planer").select("stavke").eq("user_id",_uid).maybeSingle();
+    var st=r&&r.data&&r.data.stavke?r.data.stavke:null;
+    if(st&&st[PLAN_NIVO])return st[PLAN_NIVO];
   }catch(e){}
   return null;
 }
 function cloudSave(){
   if(!_sb||!_uid)return;
   clearTimeout(_cloudT);
-  _cloudT=setTimeout(function(){
-    try{ _sb.from("mathia_planer").upsert({user_id:_uid,stavke:DB,updated_at:new Date().toISOString()},{onConflict:"user_id"}).then(function(){},function(){}); }catch(e){}
+  _cloudT=setTimeout(async function(){
+    try{ var r=await _sb.from("mathia_planer").select("stavke").eq("user_id",_uid).maybeSingle();
+      var st=(r&&r.data&&r.data.stavke)||{}; st[PLAN_NIVO]=DB;
+      await _sb.from("mathia_planer").upsert({user_id:_uid,stavke:st,updated_at:new Date().toISOString()},{onConflict:"user_id"});
+    }catch(e){}
   },900);
 }
 /* ---------------- storage ---------------- */
@@ -795,6 +800,7 @@ function resetAll(){if(confirm('Obrisati SVE podatke i početi iznova? Ovo se ne
 (function init(){
   DB=store.load();
   DB=DB?migrate(DB):defaults();
+  (async function(){try{var ok=await cloudInit();if(!ok)return;var c=await cloudLoad();if(c){DB=migrate(c);try{store.save(DB);}catch(e){}if(typeof renderCurrent==="function")renderCurrent();flag("Sačuvano u nalog");}else{cloudSave();}}catch(e){}})();
   /* Posle lokalnog prikaza, povuci iz naloga da radi na svakom uredjaju. */
   (async function(){
     try{

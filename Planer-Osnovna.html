@@ -120,12 +120,13 @@
   .guide ul{margin:0 0 10px;padding-left:20px;color:#4a3f4a}
   .guide li{margin:3px 0}
   .miniad{display:none}
+  .scrim{display:none}   /* desktop: van grida, inace pojede sadrzajnu kolonu */
   @media(max-width:860px){
     .app{grid-template-columns:1fr}
     .side{position:fixed;left:0;top:0;width:84%;max-width:300px;transform:translateX(-103%);transition:transform .22s;z-index:60;box-shadow:0 0 60px rgba(0,0,0,.4)}
     .side.open{transform:none}
     .miniad{display:inline-flex}
-    .scrim{position:fixed;inset:0;background:rgba(20,12,18,.4);z-index:55;opacity:0;pointer-events:none;transition:.2s}
+    .scrim{display:block;position:fixed;inset:0;background:rgba(20,12,18,.4);z-index:55;opacity:0;pointer-events:none;transition:.2s}
     .scrim.on{opacity:1;pointer-events:auto}
   }
   @media print{
@@ -249,8 +250,17 @@ code{overflow-wrap:break-word}
   </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 "use strict";
+/* ---------------- CLOUD (nalog) ---------------- */
+var SB_URL="https://ibhirxltgeyecrjwymai.supabase.co";
+var SB_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+var PLAN_NIVO="osnovna";
+var _sb=null,_uid=null,_cloudT=null;
+async function cloudInit(){try{if(!window.supabase)return false;_sb=window.supabase.createClient(SB_URL,SB_ANON);var u=await _sb.auth.getUser();_uid=u&&u.data&&u.data.user?u.data.user.id:null;return !!_uid;}catch(e){return false;}}
+async function cloudLoad(){if(!_sb||!_uid)return null;try{var r=await _sb.from("mathia_planer").select("stavke").eq("user_id",_uid).maybeSingle();var st=r&&r.data&&r.data.stavke?r.data.stavke:null;if(st&&st[PLAN_NIVO])return st[PLAN_NIVO];}catch(e){}return null;}
+function cloudSave(){if(!_sb||!_uid)return;clearTimeout(_cloudT);_cloudT=setTimeout(async function(){try{var r=await _sb.from("mathia_planer").select("stavke").eq("user_id",_uid).maybeSingle();var st=(r&&r.data&&r.data.stavke)||{};st[PLAN_NIVO]=DB;await _sb.from("mathia_planer").upsert({user_id:_uid,stavke:st,updated_at:new Date().toISOString()},{onConflict:"user_id"});}catch(e){}},900);}
 /* ---------------- storage ---------------- */
 const KEY='mathia_planner_osnovna_v1';
 let DB={};
@@ -312,7 +322,7 @@ function get(p){let o=DB;for(const seg of String(p).split('.')){if(o==null)retur
 function set(p,v){const segs=String(p).split('.');let o=DB;for(let i=0;i<segs.length-1;i++){const s=segs[i];if(o[s]==null)o[s]=/^\d+$/.test(segs[i+1])?[]:{};o=o[s];}o[segs[segs.length-1]]=v;}
 let saveT=null;
 function flag(t){const e=document.getElementById('savetxt');e.textContent=t;}
-function save(){store.save(DB);flag('Čuvam…');clearTimeout(saveT);saveT=setTimeout(()=>flag('Sačuvano'),500);}
+function save(){store.save(DB);cloudSave();flag('Čuvam…');clearTimeout(saveT);saveT=setTimeout(()=>flag(_uid?'Sačuvano u nalog':'Sačuvano'),500);}
 
 /* ---------------- helpers ---------------- */
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -816,6 +826,7 @@ function resetAll(){if(confirm('Obrisati SVE podatke i početi iznova? Ovo se ne
 (function init(){
   DB=store.load();
   DB=DB?migrate(DB):defaults();
+  (async function(){try{var ok=await cloudInit();if(!ok)return;var c=await cloudLoad();if(c){DB=migrate(c);try{store.save(DB);}catch(e){}if(typeof renderCurrent==="function")renderCurrent();flag("Sačuvano u nalog");}else{cloudSave();}}catch(e){}})();
   store.save(DB);
   buildNav();rotateMotiv();go(0);
   setInterval(rotateMotiv,16000);
