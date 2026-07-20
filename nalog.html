@@ -396,6 +396,46 @@ button.feat{font-family:inherit;line-height:1}
 .ob-tx span{font-size:12.5px;color:#A99B92}
 #ob-card .ob-go{display:inline-block;background:#432C37;color:#F3E9DA;border:0;text-decoration:none;font-weight:600;font-size:14px;padding:13px 34px;border-radius:100px;cursor:pointer;font-family:inherit}
 #ob-card .ob-skip{display:block;margin-top:14px;color:#B3A79E;font-size:12.5px;background:none;border:0;cursor:pointer}
+
+/* ——— ŽIVOT (v3): elegantne animacije i sjaj na nalogu, usklađeno sa sajtom ——— */
+@keyframes na-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes na-fade{from{opacity:0}to{opacity:1}}
+@keyframes na-sheen{0%{transform:translateX(-120%)}60%,100%{transform:translateX(240%)}}
+/* sekcije se meko pojave pri prelasku */
+#app .sec.on{animation:na-fade .5s ease both}
+/* kartice se blago podignu na ulazu, stepenovano */
+#app .card,#app .matcard{animation:na-rise .6s cubic-bezier(.22,.61,.36,1) both}
+#app .card:nth-child(2){animation-delay:.05s}
+#app .card:nth-child(3){animation-delay:.10s}
+#app .card:nth-child(4){animation-delay:.15s}
+#app .card:nth-child(5){animation-delay:.20s}
+#app .card:nth-child(6){animation-delay:.25s}
+/* mek hover-lift na karticama i materijalima */
+#app .card,#app .matcard{transition:transform .32s cubic-bezier(.22,.61,.36,1),box-shadow .32s ease,border-color .32s ease}
+#app .card.hov:hover,#app .matcard:hover,#app .card.resume:hover{
+  transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(67,44,55,.42);border-color:var(--goldlt)}
+/* tanka zlatna nit oživi vrh kartice na hover */
+#app .card.hov,#app .matcard{position:relative;overflow:hidden}
+#app .card.hov::after,#app .matcard::after{content:"";position:absolute;left:0;top:0;height:2px;width:100%;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease}
+#app .card.hov:hover::after,#app .matcard:hover::after{transform:scaleX(1)}
+/* aktivna stavka u meniju — zlatni akcenat levo */
+#app .snav{position:relative;transition:background .2s ease,color .2s ease}
+#app .snav.act::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:3px;background:var(--gold)}
+#app .snav:hover{background:rgba(255,255,255,.06)}
+/* zlatna dugmad: suptilan prelaz sjaja samo na hover */
+#app .btn-gold{position:relative;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}
+#app .btn-gold:hover{transform:translateY(-1px)}
+#app .btn-gold::before{content:"";position:absolute;top:0;left:0;width:34%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,247,225,.4),transparent);transform:translateX(-120%);pointer-events:none}
+#app .btn-gold:hover::before{animation:na-sheen 1s ease}
+/* prsteni i trake progresa — mek fokus prelaz je već tu; dodaj nežan hover na stat */
+#app .card.stat:hover{transform:translateY(-3px);box-shadow:0 18px 36px -24px rgba(156,120,56,.5)}
+/* poštuj želju za manje pokreta */
+@media (prefers-reduced-motion:reduce){
+  #app .sec.on,#app .card,#app .matcard,#app .btn-gold::before{animation:none!important}
+  #app .card.hov:hover,#app .matcard:hover,#app .card.stat:hover,#app .card.resume:hover{transform:none}
+}
 </style>
 </head>
 <body>
