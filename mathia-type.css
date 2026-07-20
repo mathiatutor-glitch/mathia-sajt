@@ -117,17 +117,31 @@ h1,h2{letter-spacing:-.004em}
    LUKSUZNI HEADER — CEO SAJT (sve strane dele klase .nav/.brand/.bmark/.link).
    Konzervativno: NE smanjuje, samo podiže na „skupo". Ne dira hamburger meni.
    ========================================================================== */
-header{border-bottom:1px solid rgba(198,160,92,.30)!important;background:rgba(251,246,238,.9)!important;
-  -webkit-backdrop-filter:blur(10px)!important;backdrop-filter:blur(10px)!important;
-  box-shadow:0 8px 26px -22px rgba(120,70,80,.5)!important}
-.nav{min-height:76px!important}
-.brand{gap:14px!important;align-items:center!important}
-.bav{width:52px!important;height:52px!important;border-radius:50%!important;object-fit:cover!important;
-  border:2px solid #C6A05C!important;box-shadow:0 5px 16px rgba(60,30,45,.25),0 0 0 4px rgba(231,210,162,.22)!important}
-.brand .bmark,.bmark{font-size:1.5rem!important;letter-spacing:.1em!important}
-.bsub{font-size:.6rem!important;letter-spacing:.36em!important;margin-top:3px!important}
-.nav-r{gap:30px!important}
-.nav-r a.link,.nav-r .link{font-family:var(--mathia-sans)!important;font-size:.92rem!important;
-  font-weight:500!important;letter-spacing:.02em!important;text-transform:none!important;color:#5C3B49!important}
+header{border-bottom:1px solid rgba(198,160,92,.32)!important;background:rgba(251,246,238,.9)!important;
+  -webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;overflow:visible!important;
+  box-shadow:0 10px 30px -24px rgba(120,70,80,.55)!important}
+.nav{min-height:78px!important}
+/* — LOGO KAO PEČAT: velik, viri preko donje linije headera — */
+.brand{gap:17px!important;align-items:center!important;position:relative!important}
+.bav{width:66px!important;height:66px!important;border-radius:50%!important;object-fit:cover!important;
+  border:3px solid #C6A05C!important;position:relative!important;z-index:6!important;transform:translateY(13px)!important;
+  box-shadow:0 12px 26px -8px rgba(60,30,45,.5),0 0 0 6px rgba(231,210,162,.16),inset 0 0 0 1px rgba(255,255,255,.18)!important}
+.brand .bmark,.bmark{font-size:1.56rem!important;letter-spacing:.09em!important}
+.bsub{font-size:.62rem!important;letter-spacing:.38em!important;margin-top:3px!important}
+/* — MENI: otmen, prozračan; zlatni „◆" separatori uklonjeni radi čistoće — */
+.nav-r{gap:34px!important}
+.nav-r a.link,.nav-r .link{font-family:var(--mathia-sans)!important;font-size:.95rem!important;
+  font-weight:500!important;letter-spacing:.03em!important;text-transform:none!important;color:#4A2F3B!important}
+.nav-r a.link::before{content:none!important}
 .nav-r a.link:hover,.nav-r .link:hover{color:#9C7838!important}
-.nav-r a.link::after,.nav-r .link::after{background:linear-gradient(90deg,#C6A05C,#E7D2A2)!important;border-radius:2px!important}
+.nav-r a.link::after,.nav-r .link::after{left:50%!important;right:auto!important;transform:translateX(-50%)!important;
+  bottom:-6px!important;height:1.5px!important;width:0!important;
+  background:linear-gradient(90deg,#C6A05C,#E7D2A2)!important;border-radius:2px!important;transition:width .28s ease!important}
+.nav-r a.link:hover::after,.nav-r .link:hover::after{width:100%!important;right:auto!important}
+/* pečat i header — mera na telefonu (da ne bude prevelik / da ne viri previše) */
+@media(max-width:600px){
+  .nav{min-height:64px!important}
+  .bav{width:52px!important;height:52px!important;border-width:2.5px!important;transform:translateY(9px)!important}
+  .brand .bmark,.bmark{font-size:1.28rem!important}
+  .brand{gap:12px!important}
+}
