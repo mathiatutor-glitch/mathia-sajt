@@ -702,33 +702,46 @@ a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visib
   border:1.5px solid var(--gold)!important;box-shadow:0 10px 26px -18px rgba(120,70,80,.5)!important}
 .btn-rose:hover,.hero .cta-row .btn-rose:hover{background:#FBF3E2!important;border-color:var(--gold)!important;color:var(--plum)!important;transform:translateY(-2px)}
 
-/* ——— GLAVNI MENI: slimlji i mirniji ——— */
-.nav{min-height:50px!important}
-.nav-r{gap:18px!important}
-.bav{width:34px!important;height:34px!important}
-.bmark{font-size:1.12rem!important;letter-spacing:.1em!important}
-.nav-r a.link{font-size:.8rem!important}
+/* ——— GLAVNI MENI: raskošan i skup (NE manji) ——— */
+header{background:rgba(251,246,238,.92)!important;border-bottom:1px solid rgba(198,160,92,.32)!important;
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 24px -20px rgba(120,70,80,.45)!important}
+.nav{min-height:70px!important;gap:18px!important}
+.nav-r{gap:30px!important}
+.bav{width:44px!important;height:44px!important;border:2px solid var(--gold)!important;
+  box-shadow:0 4px 14px rgba(124,58,71,.22),0 0 0 4px rgba(231,210,162,.28)!important}
+.brand .bmark,.bmark{font-size:1.4rem!important;letter-spacing:.16em!important}
+.bsub{font-size:.62rem!important;letter-spacing:.34em!important;margin-top:2px!important}
+.nav-r a.link{font-family:var(--mathia-sans)!important;font-size:.76rem!important;font-weight:600!important;
+  letter-spacing:.18em!important;text-transform:uppercase!important;color:var(--plum2)!important;padding:8px 0!important}
+.nav-r a.link::after{bottom:-4px!important;height:1.5px!important;background:linear-gradient(90deg,#C6A05C,#E7D2A2)!important;border-radius:2px!important}
+.nav-r a.link:hover{color:var(--golddk)!important}
+.nav .lang{font-size:.72rem!important;letter-spacing:.12em!important}
 
 /* ——— MARININ POTPIS: prefinjeniji, sa tankim zlatnim potezom ——— */
-.mabout-sign .script{font-size:2.9rem!important;letter-spacing:.01em}
+.mabout-sign .script{font-size:3rem!important;letter-spacing:.01em}
 .mabout-sign{position:relative}
-.mabout-sign::after{content:"";display:block;width:66px;height:2px;margin:7px 0 0 auto;
+.mabout-sign::after{content:"";display:block;width:72px;height:2px;margin:8px 0 0 auto;
   background:linear-gradient(90deg,transparent,#C6A05C);border-radius:2px}
 
-/* ——— FUTER: manji i lepši (manje svega) ——— */
-.mfoot .glow{opacity:.45!important}
-.mfoot .wrap{padding-top:44px!important;padding-bottom:0!important}
-.mfoot .flove{font-size:clamp(1.7rem,4.5vw,2.35rem)!important;margin-bottom:2px!important}
-.mfoot .mf-tag{opacity:.82;font-size:.8rem!important}
-.mfoot .social{gap:14px!important;margin-bottom:2px!important}
+/* ——— FUTER: skup i raskošan (NE manji); „Uči s ljubavlju" u JEDAN red ——— */
+.mfoot{background:linear-gradient(180deg,#3d2732 0%,#432C37 42%,#2f1d26 100%)!important}
+.mfoot .glow{opacity:.7!important}
+.mfoot .wrap{padding-top:64px!important;padding-bottom:0!important}
+.mfoot .flove{font-size:clamp(2.1rem,6vw,3.4rem)!important;white-space:nowrap!important;margin-bottom:6px!important;
+  letter-spacing:.01em!important}
+.mfoot .mf-tag{font-size:.9rem!important;letter-spacing:.05em!important;opacity:.9;color:#d8c3ca!important}
+.mfoot .social{gap:20px!important;margin:24px auto 6px!important}
 .mfoot .social a{width:auto!important}
 .mfoot .social a span:not(.mf-ico){display:none!important}
-.mfoot .social a .mf-ico{width:36px!important;height:36px!important}
-.mfoot .social a .mf-ico svg{width:16px!important;height:16px!important}
-.mfoot .mf-rule{margin:18px auto 16px!important}
-.mfoot .mf-fine{font-size:.72rem!important}
-.mfoot .mf-legal2{font-size:.68rem!important;opacity:.8}
-.mfoot .mf-bottom{padding-bottom:18px!important}
+.mfoot .social a .mf-ico{width:46px!important;height:46px!important;border:1px solid rgba(231,210,162,.4)!important;
+  background:rgba(255,252,246,.04)!important}
+.mfoot .social a .mf-ico svg{width:19px!important;height:19px!important}
+.mfoot .social a:hover .mf-ico{border-color:var(--gold)!important;background:rgba(231,210,162,.12)!important}
+.mfoot .mf-rule{margin:30px auto 22px!important}
+.mfoot .mf-fine{font-size:.8rem!important;letter-spacing:.02em}
+.mfoot .mf-fine a:hover{color:var(--goldlt)!important}
+.mfoot .mf-legal2{font-size:.74rem!important;opacity:.72}
+.mfoot .mf-bottom{padding-bottom:26px!important}
 </style>
 </head>
 <body>
@@ -781,7 +794,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visib
       <div class="halo"></div>
       <svg class="crown" viewBox="0 0 160 40" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M18 34 C 52 6 108 6 142 34"/></g><circle cx="80" cy="9" r="2.6" fill="currentColor"/><circle cx="18" cy="34" r="1.8" fill="currentColor"/><circle cx="142" cy="34" r="1.8" fill="currentColor"/></svg>
       <div class="photo-wrap">
-        <div class="photo"><img class="ph" alt="dr Marina Bulat" style="object-position:center 40%" src="marina.jpg"></div>
+        <div class="photo"><img class="ph" alt="dr Marina Bulat" style="object-position:center 22%" src="marina-hero.jpg"></div>
         <div class="sparkles" aria-hidden="true"><span style="top:4%;left:-3%"></span><span style="top:15%;right:-4%"></span><span style="top:60%;left:-5%"></span><span style="bottom:9%;right:-2%"></span><span style="top:-3%;right:34%"></span></div>
       </div>
       <div class="portrait-name">
