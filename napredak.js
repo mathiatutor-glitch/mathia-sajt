@@ -4,6 +4,34 @@
 (function () {
   if (window.__napredakLog) return; window.__napredakLog = true;
 
+  /* ——— Sakrij marketinški „Započni besplatno" pretplatniku/vlasniku ———
+     Nezavisno od praćenja napretka. Paying kupac ne treba da vidi „probaj besplatno".
+     Radi na SVAKOJ strani koja ima taj CTA (predmet strane); neplaćeni ga i dalje vide. */
+  (function(){
+    var HAS = document.querySelector('[data-i18n="ctaBtn"],[data-i18n="ctaSub"]');
+    if(!HAS) return;
+    function sakrij(){
+      document.querySelectorAll('[data-i18n="ctaBtn"],[data-i18n="ctaSub"]').forEach(function(el){ el.style.display='none'; });
+      try{ document.body.classList.add('pretplacen'); }catch(e){}
+    }
+    var owner=false;
+    try{ owner = localStorage.getItem('mathia_access')==='full' || !!localStorage.getItem('mathia_ok'); }catch(e){}
+    if(owner){ sakrij(); return; }
+    function go(){
+      var U="https://ibhirxltgeyecrjwymai.supabase.co",A="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+      var sb; try{ sb=window.supabase.createClient(U, A); }catch(e){ return; }
+      sb.auth.getUser().then(function(res){
+        var u=res&&res.data&&res.data.user; if(!u||!u.email) return;
+        sb.from('pretplate').select('istice,status').ilike('kupac_email',u.email).eq('status','aktivna')
+          .then(function(r){ var rows=(r&&r.data)||[]; var sada=new Date();
+            if(rows.some(function(x){ return !x.istice||new Date(x.istice)>sada; })) sakrij(); })
+          .catch(function(){});
+      }).catch(function(){});
+    }
+    if(window.supabase&&window.supabase.createClient){ go(); }
+    else{ var sc=document.createElement('script'); sc.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"; sc.onload=go; sc.onerror=function(){}; document.head.appendChild(sc); }
+  })();
+
   var SB_URL = "https://ibhirxltgeyecrjwymai.supabase.co";
   var SB_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
 
