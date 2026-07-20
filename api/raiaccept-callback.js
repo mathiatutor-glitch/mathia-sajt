@@ -151,6 +151,17 @@ export default async function handler(req, res) {
         sta: detaljno.map(function (s) { return s.naziv + ' x' + s.kolicina; }).join(', '),
         pristupLink,
       });
+      // Dobrodoslica (kako da pocne) — samo za pakete; ne rusimo tok ako pukne
+      if (porudzbina.tip === 'paket') {
+        try {
+          var _ime = (porudzbina.kupac_ime || '').trim().split(/\s+/)[0] || '';
+          var _pk = (detaljno[0] && detaljno[0].sifra ? detaljno[0].sifra.replace(/^(MATHIA-|PKT-)/i, '') : '');
+          _pk = _pk ? _pk.charAt(0).toUpperCase() + _pk.slice(1).toLowerCase() : '';
+          await mail.posaljiDobrodoslicu({ to: email, ime: _ime, paket: _pk, pristupLink });
+        } catch (e2) {
+          console.error('upc-callback: dobrodoslica nije poslata', e2.message);
+        }
+      }
     } catch (e) {
       console.error('upc-callback: slanje mejla nije uspelo', e.message);
     }
