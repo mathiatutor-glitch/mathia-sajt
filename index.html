@@ -702,20 +702,11 @@ a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visib
   border:1.5px solid var(--gold)!important;box-shadow:0 10px 26px -18px rgba(120,70,80,.5)!important}
 .btn-rose:hover,.hero .cta-row .btn-rose:hover{background:#FBF3E2!important;border-color:var(--gold)!important;color:var(--plum)!important;transform:translateY(-2px)}
 
-/* ——— GLAVNI MENI: raskošan i skup (NE manji) ——— */
-header{background:rgba(251,246,238,.92)!important;border-bottom:1px solid rgba(198,160,92,.32)!important;
-  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 24px -20px rgba(120,70,80,.45)!important}
-.nav{min-height:70px!important;gap:18px!important}
-.nav-r{gap:30px!important}
-.bav{width:44px!important;height:44px!important;border:2px solid var(--gold)!important;
-  box-shadow:0 4px 14px rgba(124,58,71,.22),0 0 0 4px rgba(231,210,162,.28)!important}
-.brand .bmark,.bmark{font-size:1.4rem!important;letter-spacing:.16em!important}
-.bsub{font-size:.62rem!important;letter-spacing:.34em!important;margin-top:2px!important}
-.nav-r a.link{font-family:var(--mathia-sans)!important;font-size:.76rem!important;font-weight:600!important;
-  letter-spacing:.18em!important;text-transform:uppercase!important;color:var(--plum2)!important;padding:8px 0!important}
-.nav-r a.link::after{bottom:-4px!important;height:1.5px!important;background:linear-gradient(90deg,#C6A05C,#E7D2A2)!important;border-radius:2px!important}
-.nav-r a.link:hover{color:var(--golddk)!important}
-.nav .lang{font-size:.72rem!important;letter-spacing:.12em!important}
+/* ——— HERO: „s ljubavlju" nikad da se ne prelomi + uravnotežen naslov ——— */
+.hero h1{text-wrap:balance}
+.hero h1 .gold-underline{white-space:nowrap}
+.nav .lang{font-size:.74rem!important;letter-spacing:.1em!important}
+/* (luksuzni header je u mathia-type.css — isti na celom sajtu) */
 
 /* ——— MARININ POTPIS: prefinjeniji, sa tankim zlatnim potezom ——— */
 .mabout-sign .script{font-size:3rem!important;letter-spacing:.01em}
@@ -723,25 +714,33 @@ header{background:rgba(251,246,238,.92)!important;border-bottom:1px solid rgba(1
 .mabout-sign::after{content:"";display:block;width:72px;height:2px;margin:8px 0 0 auto;
   background:linear-gradient(90deg,transparent,#C6A05C);border-radius:2px}
 
-/* ——— FUTER: skup i raskošan (NE manji); „Uči s ljubavlju" u JEDAN red ——— */
-.mfoot{background:linear-gradient(180deg,#3d2732 0%,#432C37 42%,#2f1d26 100%)!important}
-.mfoot .glow{opacity:.7!important}
-.mfoot .wrap{padding-top:64px!important;padding-bottom:0!important}
-.mfoot .flove{font-size:clamp(2.1rem,6vw,3.4rem)!important;white-space:nowrap!important;margin-bottom:6px!important;
+/* ——— FUTER: sofisticiran i „skup" (zlatna nit na vrhu, prefinjeni detalji) ——— */
+.mfoot{background:linear-gradient(180deg,#402833 0%,#33202b 55%,#281820 100%)!important;position:relative}
+.mfoot::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(198,160,92,.6) 25%,rgba(231,210,162,.85) 50%,rgba(198,160,92,.6) 75%,transparent)}
+.mfoot .glow{opacity:.5!important}
+.mfoot .wrap{padding-top:58px!important;padding-bottom:0!important}
+.mfoot .mf-mono{border:1px solid rgba(231,210,162,.55)!important;color:#E7D2A2!important;
+  box-shadow:0 0 0 5px rgba(231,210,162,.07)!important}
+.mfoot .flove{font-size:clamp(1.9rem,5vw,2.8rem)!important;white-space:nowrap!important;margin:16px 0 6px!important;
   letter-spacing:.01em!important}
-.mfoot .mf-tag{font-size:.9rem!important;letter-spacing:.05em!important;opacity:.9;color:#d8c3ca!important}
-.mfoot .social{gap:20px!important;margin:24px auto 6px!important}
+.mfoot .mf-tag{font-size:.72rem!important;letter-spacing:.22em!important;text-transform:uppercase!important;
+  color:#c9b3ba!important;opacity:.9}
+.mfoot .mf-nav2{margin-top:22px!important}
+.mfoot .mf-nav2 a{font-family:var(--mathia-sans)!important;font-size:.9rem!important;letter-spacing:.01em!important;color:#EAD9DE!important}
+.mfoot .mf-nav2 a:hover{color:#E7D2A2!important}
+.mfoot .social{gap:18px!important;margin:26px auto 6px!important}
 .mfoot .social a{width:auto!important}
 .mfoot .social a span:not(.mf-ico){display:none!important}
-.mfoot .social a .mf-ico{width:46px!important;height:46px!important;border:1px solid rgba(231,210,162,.4)!important;
-  background:rgba(255,252,246,.04)!important}
-.mfoot .social a .mf-ico svg{width:19px!important;height:19px!important}
-.mfoot .social a:hover .mf-ico{border-color:var(--gold)!important;background:rgba(231,210,162,.12)!important}
-.mfoot .mf-rule{margin:30px auto 22px!important}
+.mfoot .social a .mf-ico{width:44px!important;height:44px!important;border:1px solid rgba(231,210,162,.38)!important;
+  background:rgba(255,252,246,.03)!important;transition:border-color .2s ease,background .2s ease}
+.mfoot .social a .mf-ico svg{width:18px!important;height:18px!important}
+.mfoot .social a:hover .mf-ico{border-color:#C6A05C!important;background:rgba(231,210,162,.12)!important}
+.mfoot .mf-rule{margin:32px auto 22px!important}
 .mfoot .mf-fine{font-size:.8rem!important;letter-spacing:.02em}
-.mfoot .mf-fine a:hover{color:var(--goldlt)!important}
-.mfoot .mf-legal2{font-size:.74rem!important;opacity:.72}
-.mfoot .mf-bottom{padding-bottom:26px!important}
+.mfoot .mf-fine a:hover{color:#E7D2A2!important}
+.mfoot .mf-legal2{font-size:.74rem!important;opacity:.68}
+.mfoot .mf-bottom{padding-bottom:28px!important}
 </style>
 </head>
 <body>
