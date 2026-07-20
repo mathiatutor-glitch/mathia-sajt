@@ -80,3 +80,29 @@ button:active, .btn:active, [role="button"]:active{ transform: translateY(1px); 
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
 }
+
+/* ==========================================================================
+   PREMIUM HARMONIZE v2 (uravnoteženo) — „nalog" osećaj na CELOM sajtu.
+   Aditivno i bezbedno: samo hover-život, zlatni akcenti i sjaj dugmadi.
+   Ne menja raspored, ne dodaje overflow na kartice (badge-top viri van njih),
+   ne menja boju dugmadi. Reduced-motion je već ugašen globalno gore.
+   ========================================================================== */
+
+/* — kartice: nežan lift + topla zlatna ivica + tanka zlatna nit na vrhu (hover) — */
+.card,.tile,.quote,.step,.tier,.plan,.product,.matcard,.pcard,.tcard{
+  transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s ease,border-color .3s ease;
+}
+.card:hover,.tile:hover,.quote:hover,.step:hover,.tier:hover,.plan:hover,.product:hover,.matcard:hover,.pcard:hover,.tcard:hover{
+  transform:translateY(-4px);
+  box-shadow:0 22px 44px -28px rgba(67,44,55,.40), inset 0 2px 0 rgba(198,160,92,.85);
+  border-color:#E7D2A2;
+}
+
+/* — zlatna dugmad: lagani lift na hover; postojeći sjaj (::after) na stranama
+   koje ga imaju NE diramo — samo ujednačimo osećaj dizanja — */
+.btn-gold{transition:transform .2s ease,box-shadow .22s ease,filter .2s ease}
+.btn-gold:hover{transform:translateY(-2px)}
+
+/* — čipovi/pilule: dosledan mek zlatni hover — */
+.schips span,.chip,.pill,.schip{transition:border-color .2s ease,background-color .2s ease}
+.schips span:hover,.chip:hover,.schip:hover{border-color:#E7D2A2;background:#FBF3E2}
