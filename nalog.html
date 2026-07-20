@@ -375,6 +375,28 @@ button.feat{font-family:inherit;line-height:1}
 .btn-gold:hover{filter:brightness(1.12)}
 .subjcard,.matcard{box-shadow:none !important;border:1px solid #F0E7DA !important;border-radius:14px !important}
 </style>
+<style>
+/* ——— PODSETNIK ZA OBNOVU ——— */
+#obnova{display:none;align-items:center;gap:14px;background:#FBF3E4;border:1px solid #EAD9B6;border-radius:14px;padding:13px 18px;margin:0 0 18px}
+#obnova.on{display:flex}
+#obnova .on-tx{flex:1;min-width:0;font-size:13.5px;color:#7A5E2E}
+#obnova .on-tx b{color:#432C37}
+#obnova a{background:#432C37;color:#F3E9DA;text-decoration:none;font-weight:600;font-size:13px;padding:9px 18px;border-radius:100px;white-space:nowrap}
+/* ——— DOBRODOSLICA (prvi put) ——— */
+#ob-ovl{position:fixed;inset:0;z-index:9000;background:rgba(45,28,38,.42);display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px)}
+#ob-ovl.on{display:flex}
+#ob-card{max-width:440px;width:100%;background:#FDFBF7;border:1px solid #ECE2D3;border-radius:20px;padding:40px 36px;text-align:center;box-shadow:0 40px 80px -40px rgba(60,30,45,.55)}
+#ob-card .ob-mark{font-family:'Spectral',Georgia,serif;font-size:14px;letter-spacing:5px;color:#432C37;text-transform:uppercase}
+#ob-card h3{font-family:'Spectral',Georgia,serif;font-size:1.6rem;color:#3E2A34;margin:22px 0 6px;font-weight:600}
+#ob-card .ob-sub{color:#7A6B66;font-size:14px;margin:0 0 26px;line-height:1.6}
+#ob-steps{display:flex;flex-direction:column;gap:12px;text-align:left;margin:0 0 28px}
+.ob-step{display:flex;align-items:center;gap:14px}
+.ob-num{flex:0 0 30px;width:30px;height:30px;border-radius:50%;border:1px solid #E7D2A2;color:#9C7838;font-family:'Spectral',serif;font-weight:600;display:flex;align-items:center;justify-content:center;font-size:14px}
+.ob-tx b{display:block;font-size:14px;color:#3E2A34;font-weight:600}
+.ob-tx span{font-size:12.5px;color:#A99B92}
+#ob-card .ob-go{display:inline-block;background:#432C37;color:#F3E9DA;border:0;text-decoration:none;font-weight:600;font-size:14px;padding:13px 34px;border-radius:100px;cursor:pointer;font-family:inherit}
+#ob-card .ob-skip{display:block;margin-top:14px;color:#B3A79E;font-size:12.5px;background:none;border:0;cursor:pointer}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6A05C"/><stop offset="1" stop-color="#9C7838"/></linearGradient></defs></svg>
@@ -435,7 +457,8 @@ button.feat{font-family:inherit;line-height:1}
           <button type="button" onclick="editName()" style="background:none;border:none;color:var(--golddk,#9C7838);font:inherit;font-size:.82rem;cursor:pointer;padding:2px 0;text-decoration:underline">✎ izmeni ime</button>
           <span class="pill">💎 Gold paket · aktivan do 28. 07. 2026.</span>
         </div>
-        <div class="misao"><span class="q">🌷</span><p id="misao"></p></div>
+        <div id="obnova"><span class="on-tx">Tvoja pretplata ističe <b id="ob-datum"></b>. Napredak ti je sačuvan — nastavljaš gde si stala.</span><a href="prodavnica.html">Produži →</a></div>
+      <div class="misao"><span class="q">🌷</span><p id="misao"></p></div>
 
         <div class="grid g4" style="margin-top:18px">
           <div class="card stat hov"><span class="v">24</span><span class="l">Završene lekcije</span></div>
@@ -940,6 +963,28 @@ function editName(){
   }).catch(function(){ alert('Čuvanje imena nije uspelo. Pokušaj ponovo.'); });
 }
 
+function obKljuc(){ try{ return 'mathia_ob_v1_'+((USER&&USER.id)||'x'); }catch(e){ return 'mathia_ob_v1_x'; } }
+function obZatvori(){ var o=$('ob-ovl'); if(o)o.classList.remove('on'); try{ localStorage.setItem(obKljuc(),'1'); }catch(e){} }
+function obKreni(){ obZatvori(); try{ var mp=mojiPredmeti(); if(mp&&mp.length){ location.href=urlPredmeta(mp[0].key); return; } }catch(e){} go('subj',document.querySelectorAll('.snav')[1]); }
+function obnovaMozda(){
+  try{
+    if(!(PROFILE&&PROFILE.istice)) return;
+    var d=new Date(PROFILE.istice); if(isNaN(d)) return;
+    var dana=Math.ceil((d-new Date())/86400000);
+    if(dana>7 || dana<0) return;             // samo kad je <=7 dana do isteka
+    var el=$('obnova'); var dt=$('ob-datum');
+    if(dt) dt.textContent=formatDatum(PROFILE.istice)+' (za '+dana+(dana===1?' dan':' dana')+')';
+    if(el) el.classList.add('on');
+  }catch(e){}
+}
+function obMozda(){
+  try{ if(localStorage.getItem(obKljuc())) return; }catch(e){ return; }
+  if(!(PROFILE&&PROFILE.pretplata_aktivna)) return;   // samo pretplatnicima
+  var t=$('ob-title'), sub=$('ob-sub');
+  if(t) t.textContent='Dobrodošla, '+firstName();
+  if(sub){ var pk=(PROFILE&&PROFILE.paket)?(cap(PROFILE.paket)+' paket'):'Tvoj paket'; sub.textContent=pk+' je aktivan. Evo kako da počneš.'; }
+  var o=$('ob-ovl'); if(o) o.classList.add('on');
+}
 function render(){
   document.querySelector('.uchip .nm').textContent=fullName();
   document.querySelector('.uchip .av').textContent=initials();
@@ -999,6 +1044,7 @@ function render(){
     _dos.innerHTML=B.map(function(x){return '<div class="badge'+(x[2]?'':' lock')+'"><div class="em">'+x[0]+'</div><b>'+x[1]+'</b></div>';}).join(''); }
   var _rok=$('rokovi'); if(_rok){ _rok.innerHTML='<p style="color:var(--muted);margin:0">Još nemaš unetih rokova. Uz <b>planer</b> dodaješ ispite i kolokvijume, pa te Profesorica podseća na vreme. 🌷</p>'; }
   initChat(); setTimeout(fillRings,60);
+  setTimeout(obMozda,400); obnovaMozda();
 }
 function fillRings(){document.querySelectorAll('.ring .rc').forEach(function(c){c.style.transition='stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)';c.style.strokeDashoffset=c.getAttribute('data-off');});}
 
@@ -1272,6 +1318,20 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
  if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
 },{capture:true});
 })();</script>
+<div id="ob-ovl" role="dialog" aria-modal="true">
+  <div id="ob-card">
+    <div class="ob-mark">Mathia</div>
+    <h3 id="ob-title">Dobrodošla</h3>
+    <p class="ob-sub" id="ob-sub">Tvoj paket je aktivan. Evo kako da počneš.</p>
+    <div id="ob-steps">
+      <div class="ob-step"><div class="ob-num">1</div><div class="ob-tx"><b>Otvori predmet</b><span>Skripta, formule, zbirka — sve na jednom mestu.</span></div></div>
+      <div class="ob-step"><div class="ob-num">2</div><div class="ob-tx"><b>Pitaj Profesoricu</b><span>Dostupna 0–24h. Pošalji zadatak ili sliku, vodi te korak po korak.</span></div></div>
+      <div class="ob-step"><div class="ob-num">3</div><div class="ob-tx"><b>Prati napredak</b><span>Pamti gde si stala i vraća te tačno tamo.</span></div></div>
+    </div>
+    <button class="ob-go" onclick="obKreni()">Otvori prvi predmet →</button>
+    <button class="ob-skip" onclick="obZatvori()">Razgledaću sama</button>
+  </div>
+</div>
 <script src="i18n-mathia.js"></script>
 </body>
 </html>
