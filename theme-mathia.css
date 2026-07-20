@@ -33,3 +33,42 @@ header:not(#mhead) select.lang,header:not(#mhead) .lang,body>select.lang{display
 .mark::before,.mark::after,.w-h2 .mark::before,.sh-h2 .mark::before,.gold-underline::before,.gold-underline::after{content:none!important;display:none!important}
 /* zlatni ukras u footeru duži */
 .mfz-rule,.mf-rule{max-width:340px!important}
+
+/* ============================================================
+   MINIMAL REFINE (v2) — smiruje temu na luksuzni minimalizam.
+   Učitava se POSLEDNJI: gasi animacije/presijavanja, ravna kartice,
+   više vazduha, tiša tipografija. Manje je više.
+   ============================================================ */
+/* bez animiranih sjajeva */
+.btn-gold::after{display:none!important;animation:none!important}
+.sec h2::after,.sec-head h2::after,.sh-h2::after{animation:none!important;background:#E7D2A2!important;width:48px!important;height:2px!important}
+body::after{display:none!important}
+.hero::after{background:radial-gradient(560px 300px at 50% -10%,rgba(231,210,162,.10),transparent)!important}
+
+/* ravne, tihe kartice — bez preliva i teških senki */
+.card,.topic,.step,.grp,.tier,.plan,.item,.product,.panel,.finale,.mat,.matcard,.material{
+  background:#FDFBF7!important;background-image:none!important;
+  border:1px solid #EFE6D7!important;box-shadow:none!important}
+/* ukrasni prelivi -> mirno (ali NE diramo klon zoi-*) */
+.rule,.dot,.corner{background:#E7D2A2!important;background-image:none!important}
+.band,.finale{background:#FBF7EF!important;background-image:none!important}
+.card::before,.topic::before,.step::before,.grp::before,.tier::before{display:none!important}
+.card:hover,.topic:hover,.step:hover,.grp:hover,.tier:hover,.item:hover,.product:hover{
+  transform:none!important;box-shadow:0 14px 30px -22px rgba(120,70,80,.45)!important;
+  border-color:#E7D2A2!important}
+
+/* foil tekst -> mirno tamno; zadrži eleganciju bez šarenila */
+.mark,.w-h2 .mark,.sh-h2 .mark,.gold-underline{
+  background:none!important;-webkit-text-fill-color:#432C37!important;color:#432C37!important;font-weight:600!important}
+
+/* hero tipografija: mirnija, manje razmaknuta */
+.eyebrow{letter-spacing:.22em!important;color:#B3A79E!important;font-weight:700!important;font-size:.72rem!important}
+.factsbar,.band{background:#FBF7EF!important;border-color:#EFE6D7!important}
+.lead{color:#7A6B66!important}
+
+/* dugmad: tamna, bez sjaja (kao na nalogu) */
+.btn-gold,a.btn-gold,.btn.btn-gold,.hero .btn-gold,.finale .btn-gold{background:#432C37!important;background-image:none!important;color:#F3E9DA!important;box-shadow:none!important;font-weight:600!important}
+.btn-gold:hover,a.btn-gold:hover,.btn.btn-gold:hover{filter:brightness(1.12)}
+
+/* pozadinski matematički simboli još suptilniji */
+.mathfog{opacity:.5!important}
