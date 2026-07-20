@@ -14,6 +14,8 @@
     for(var i=0;i<nl.length;i++){
       var node=nl[i], p=node.parentNode; if(!p)continue;
       var tg=p.nodeName; if(tg==='SCRIPT'||tg==='STYLE'||tg==='TEXTAREA')continue;
+      /* Klon (Profesorica) sam piše na ciljnom jeziku — rečnik ga NIKADA ne sme dirati */
+      if(p.closest&&p.closest('#zoi-panel,#zoi-btn,.zoi-cta,[data-noi18n]'))continue;
       if(node.__mi)continue;
       var key=((node.__o!==undefined?node.__o:node.nodeValue)||'').trim(); if(key.length<2)continue;
       var m=D[key]; if(!m)continue;

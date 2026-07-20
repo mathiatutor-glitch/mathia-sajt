@@ -572,7 +572,7 @@
     s = String(s);
     s = s.replace(/\$\$([\s\S]+?)\$\$/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
-    s = s.replace(/\$([^\$\n]+?)\$/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    s = s.replace(/\$([^\s$][^$\n]*?[^\s$]|[^\s$])\$/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\(([\s\S]+?)\\\)/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     // sigurnosna mreza: goli \begin{...}...\end{...} bez $$ — iscrtaj ga kao display formulu
     s = s.replace(/\\begin\{(aligned|align\*?|cases|dcases|pmatrix|bmatrix|Bmatrix|vmatrix|Vmatrix|matrix|smallmatrix|array|gathered|gather\*?|split|equation\*?)\}([\s\S]*?)\\end\{\1\}/g, function(_m,env,bodyx){ var mp={"align":"aligned","align*":"aligned","gather":"gathered","gather*":"gathered","equation":"","equation*":""}; var e=mp.hasOwnProperty(env)?mp[env]:env; var tex=e?("\\begin{"+e+"}"+bodyx+"\\end{"+e+"}"):bodyx; math.push([tex,1]); return "\u0001K"+(math.length-1)+"\u0001"; });

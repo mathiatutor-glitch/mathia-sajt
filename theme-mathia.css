@@ -72,3 +72,78 @@ body::after{display:none!important}
 
 /* pozadinski matematički simboli još suptilniji */
 .mathfog{opacity:.5!important}
+
+/* ============================================================
+   SJAJ + ŽIVOT (v3) — elegantne animacije i suptilan sjaj.
+   Vraća „život" ravnim stranicama, ali mirno i otmeno.
+   Ne dira klon (.zoi-*). Poštuje prefers-reduced-motion.
+   ============================================================ */
+
+/* — ulazne animacije: sekcije i kartice se blago podignu i pojave — */
+@keyframes mia-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes mia-fade{from{opacity:0}to{opacity:1}}
+@keyframes mia-sheen{0%{transform:translateX(-120%)}60%,100%{transform:translateX(220%)}}
+@keyframes mia-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes mia-underline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+.hero,.factsbar,.band,.panel,.finale,.card,.topic,.step,.grp,.tier,.plan,.item,.product,.mat,.matcard,.material,.rule{
+  animation:mia-rise .7s cubic-bezier(.22,.61,.36,1) both}
+/* blago stepenovanje da ne ulete sve odjednom */
+.card:nth-child(2),.topic:nth-child(2),.step:nth-child(2),.grp:nth-child(2){animation-delay:.06s}
+.card:nth-child(3),.topic:nth-child(3),.step:nth-child(3),.grp:nth-child(3){animation-delay:.12s}
+.card:nth-child(4),.topic:nth-child(4),.step:nth-child(4),.grp:nth-child(4){animation-delay:.18s}
+.card:nth-child(5),.topic:nth-child(5),.step:nth-child(5){animation-delay:.24s}
+.card:nth-child(6),.topic:nth-child(6),.step:nth-child(6){animation-delay:.30s}
+
+/* — kartice: mek prelaz i topliji „lift" na hover (nežno, otmeno) — */
+.card,.topic,.step,.grp,.tier,.item,.product,.mat,.matcard,.material{
+  transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease,border-color .35s ease!important}
+.card:hover,.topic:hover,.step:hover,.grp:hover,.tier:hover,.item:hover,.product:hover,.mat:hover,.matcard:hover,.material:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:0 22px 44px -26px rgba(120,70,80,.42)!important;
+  border-color:#E7D2A2!important}
+
+/* tanka zlatna nit koja „oživi" pri vrhu kartice na hover */
+.card,.topic,.step,.grp,.tier{position:relative;overflow:hidden}
+.card::after,.topic::after,.step::after{
+  content:"";position:absolute;left:0;top:0;height:2px;width:100%;
+  background:linear-gradient(90deg,transparent,#C6A05C,transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform .5s ease;opacity:.9;display:block!important}
+.card:hover::after,.topic:hover::after,.step:hover::after{transform:scaleX(1)}
+
+/* — zlatna dugmad: suptilan sjaj koji prelete SAMO na hover — */
+.btn-gold,a.btn-gold,.btn.btn-gold{position:relative;overflow:hidden;
+  transition:filter .25s ease,transform .25s ease,box-shadow .25s ease!important}
+.btn-gold:hover,a.btn-gold:hover,.btn.btn-gold:hover{
+  transform:translateY(-1px);box-shadow:0 14px 30px -16px rgba(67,44,55,.55)!important}
+.btn-gold::before,a.btn-gold::before,.btn.btn-gold::before{
+  content:"";position:absolute;top:0;left:0;width:34%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,247,225,.35),transparent);
+  transform:translateX(-120%);pointer-events:none}
+.btn-gold:hover::before,a.btn-gold:hover::before,.btn.btn-gold:hover::before{
+  animation:mia-sheen 1.05s ease}
+
+/* — naslovi: tanka zlatna linija koja se „iscrta" ispod glavnog H1/H2 — */
+.hero h1,.hero .w-h2,.sh-h2,.band h2,.panel h2{position:relative}
+.hero h1::after,.sh-h2::after{
+  content:"";position:absolute;left:0;bottom:-10px;height:2px;width:64px;
+  background:linear-gradient(90deg,#C6A05C,transparent);
+  transform-origin:left;animation:mia-underline .9s .35s cubic-bezier(.22,.61,.36,1) both}
+
+/* — pozadinski matematički motiv: jedva primetno lebdi (živ, ne statičan) — */
+.mathfog{animation:mia-float 9s ease-in-out infinite}
+
+/* — zlatni akcenti (rule/dot) dobiju blag, spor sjaj — */
+.rule{background:linear-gradient(90deg,transparent,#E7D2A2 20%,#C6A05C 50%,#E7D2A2 80%,transparent)!important;
+  background-size:200% 100%!important;animation:mia-fade 1.2s both}
+
+/* — meki fokus prsten (pristupačnost + otmenost) — */
+a:focus-visible,button:focus-visible,.card:focus-visible{
+  outline:2px solid #C6A05C;outline-offset:3px;border-radius:10px}
+
+/* poštuj želju za manje pokreta */
+@media (prefers-reduced-motion:reduce){
+  .hero,.factsbar,.band,.panel,.finale,.card,.topic,.step,.grp,.tier,.plan,.item,.product,.mat,.matcard,.material,.rule,
+  .hero h1::after,.sh-h2::after,.mathfog,.btn-gold::before{animation:none!important}
+  .card:hover,.topic:hover,.step:hover{transform:none!important}
+}
