@@ -106,3 +106,9 @@ button:active, .btn:active, [role="button"]:active{ transform: translateY(1px); 
 /* — čipovi/pilule: dosledan mek zlatni hover — */
 .schips span,.chip,.pill,.schip{transition:border-color .2s ease,background-color .2s ease}
 .schips span:hover,.chip:hover,.schip:hover{border-color:#E7D2A2;background:#FBF3E2}
+
+/* ——— LUKSUZ v3: prozračno, elegantno, savršeno na svim uređajima ——— */
+img{max-width:100%}
+hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(198,160,92,.45),transparent);margin:2.2rem 0}
+blockquote{font-family:var(--mathia-serif);font-style:italic;color:#5C3B49;border-left:2px solid #C6A05C;padding-left:1.1rem;margin:1.4rem 0}
+h1,h2{letter-spacing:-.004em}
