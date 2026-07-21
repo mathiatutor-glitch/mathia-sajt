@@ -47,7 +47,13 @@
     }catch(e){}
   }
   function activate(){ loadDict(function(){ harvest(document.body); startObserver(); }); }
-  function onLang(){ if(lng()!=='sr'){ activate(); } else if(D){ ap(); } }
+  function onLang(){
+    if(lng()!=='sr'){
+      // Prvi put: učitaj rečnik, poberi i prevedi. Svaki sledeći put (npr. EN -> DE):
+      // rečnik i čvorovi su već tu, pa SAMO ponovo primeni tekući jezik (ap), da se ne zaglavi na prethodnom.
+      loadDict(function(){ if(!started){ harvest(document.body); startObserver(); } else { ap(); } });
+    } else if(D){ ap(); }
+  }
   if(document.readyState==='loading')addEventListener('DOMContentLoaded',onLang);else onLang();
   addEventListener('storage',function(e){if(e.key==='mathia_lang')onLang();});
   window.addEventListener('mathia:lang',onLang);
