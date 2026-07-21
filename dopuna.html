@@ -36,23 +36,43 @@
 </head>
 <body>
   <div class="card">
-    <div class="eyebrow">Mathia · Dopuna</div>
-    <h1>Nastavi sa Profesoricom</h1>
+    <div class="eyebrow" id="eye">Mathia · Dopuna</div>
+    <h1 id="h1">Nastavi sa Profesoricom</h1>
     <p id="sub">48 sati razgovora s Profesoricom za ovaj predmet.</p>
     <div class="price">1.990 <small>RSD</small></div>
-    <div class="meta">Traje 48h · samo Profesorica (ne i skripte/formule)</div>
+    <div class="meta" id="meta">Traje 48h · samo Profesorica (ne i skripte/formule)</div>
     <button class="btn" id="go">Plati i nastavi →</button>
     <div class="spin" id="spin"></div>
     <div class="err" id="err"></div>
-    <p class="fine">Bezbedno plaćanje karticom preko banke. Na računu se iskazuje kao „Planer".</p>
-    <a class="back" href="javascript:history.back()">← Nazad</a>
+    <p class="fine" id="fine">Bezbedno plaćanje karticom preko banke. Na računu se iskazuje kao „Planer".</p>
+    <a class="back" id="back" href="javascript:history.back()">← Nazad</a>
   </div>
 
 <script>
 (function(){
+  var T = {
+    sr:{eye:"Mathia · Dopuna",h1:"Nastavi sa Profesoricom",sub:"48 sati razgovora s Profesoricom za ovaj predmet.",meta:"Traje 48h · samo Profesorica (ne i skripte/formule)",go:"Plati i nastavi →",fine:"Bezbedno plaćanje karticom preko banke. Na računu se iskazuje kao „Planer".",back:"← Nazad",retry:"Pokušaj ponovo →",opening:"Otvaramo plaćanje…",noSubj:"Nedostaje predmet. Vrati se u razgovor pa ponovo klikni na dopunu.",errGen:"Nešto nije u redu. Pokušaj ponovo za koji minut.",errNet:"Nema veze sa serverom. Proveri internet pa pokušaj ponovo."},
+    en:{eye:"Mathia · Top-up",h1:"Continue with Profesorica",sub:"48 hours of chat with Profesorica for this subject.",meta:"Lasts 48h · Profesorica only (not scripts/formulas)",go:"Pay and continue →",fine:"Secure card payment via the bank. Appears on the receipt as “Planer”.",back:"← Back",retry:"Try again →",opening:"Opening payment…",noSubj:"Subject missing. Go back to the chat and click the top-up again.",errGen:"Something went wrong. Try again in a minute.",errNet:"No connection to the server. Check your internet and try again."},
+    de:{eye:"Mathia · Aufladung",h1:"Weiter mit Profesorica",sub:"48 Stunden Gespräch mit Profesorica für dieses Fach.",meta:"Dauert 48 Std. · nur Profesorica (nicht Skripte/Formeln)",go:"Bezahlen und weiter →",fine:"Sichere Kartenzahlung über die Bank. Erscheint auf dem Beleg als „Planer“.",back:"← Zurück",retry:"Erneut versuchen →",opening:"Zahlung wird geöffnet…",noSubj:"Fach fehlt. Geh zurück zum Chat und klicke erneut auf die Aufladung.",errGen:"Etwas ist schiefgelaufen. Versuch es in einer Minute erneut.",errNet:"Keine Verbindung zum Server. Prüfe dein Internet und versuch es erneut."},
+    fr:{eye:"Mathia · Recharge",h1:"Continue avec Profesorica",sub:"48 heures d'échange avec Profesorica pour cette matière.",meta:"Dure 48h · Profesorica seulement (pas les cours/formules)",go:"Payer et continuer →",fine:"Paiement sécurisé par carte via la banque. Apparaît sur le reçu comme « Planer ».",back:"← Retour",retry:"Réessayer →",opening:"Ouverture du paiement…",noSubj:"Matière manquante. Retourne au chat et reclique sur la recharge.",errGen:"Une erreur s'est produite. Réessaie dans une minute.",errNet:"Pas de connexion au serveur. Vérifie ta connexion et réessaie."},
+    es:{eye:"Mathia · Recarga",h1:"Continúa con Profesorica",sub:"48 horas de conversación con Profesorica para esta asignatura.",meta:"Dura 48h · solo Profesorica (no apuntes/fórmulas)",go:"Pagar y continuar →",fine:"Pago seguro con tarjeta a través del banco. Aparece en el recibo como «Planer».",back:"← Atrás",retry:"Intentar de nuevo →",opening:"Abriendo el pago…",noSubj:"Falta la asignatura. Vuelve al chat y pulsa de nuevo la recarga.",errGen:"Algo salió mal. Inténtalo de nuevo en un minuto.",errNet:"Sin conexión con el servidor. Revisa tu internet e inténtalo de nuevo."},
+    it:{eye:"Mathia · Ricarica",h1:"Continua con Profesorica",sub:"48 ore di conversazione con Profesorica per questa materia.",meta:"Dura 48h · solo Profesorica (non dispense/formule)",go:"Paga e continua →",fine:"Pagamento sicuro con carta tramite la banca. Sulla ricevuta appare come «Planer».",back:"← Indietro",retry:"Riprova →",opening:"Apertura pagamento…",noSubj:"Materia mancante. Torna alla chat e clicca di nuovo sulla ricarica.",errGen:"Qualcosa è andato storto. Riprova tra un minuto.",errNet:"Nessuna connessione al server. Controlla la rete e riprova."},
+    ru:{eye:"Mathia · Пополнение",h1:"Продолжи с Profesorica",sub:"48 часов общения с Profesorica по этому предмету.",meta:"Действует 48ч · только Profesorica (без конспектов/формул)",go:"Оплатить и продолжить →",fine:"Безопасная оплата картой через банк. В чеке отображается как «Planer».",back:"← Назад",retry:"Попробовать снова →",opening:"Открываем оплату…",noSubj:"Не указан предмет. Вернись в чат и снова нажми на пополнение.",errGen:"Что-то пошло не так. Попробуй через минуту.",errNet:"Нет связи с сервером. Проверь интернет и попробуй снова."},
+    pt:{eye:"Mathia · Recarga",h1:"Continua com a Profesorica",sub:"48 horas de conversa com a Profesorica para esta disciplina.",meta:"Dura 48h · só a Profesorica (não apontamentos/fórmulas)",go:"Pagar e continuar →",fine:"Pagamento seguro por cartão através do banco. Aparece no recibo como «Planer».",back:"← Voltar",retry:"Tentar de novo →",opening:"A abrir o pagamento…",noSubj:"Falta a disciplina. Volta ao chat e clica novamente na recarga.",errGen:"Algo correu mal. Tenta de novo daqui a um minuto.",errNet:"Sem ligação ao servidor. Verifica a internet e tenta de novo."}
+  };
   function q(id){ return document.getElementById(id); }
-  function subject(){ return decodeURIComponent((location.hash||'').replace(/^#/,'')).trim(); }
   function lang(){ try{ return (localStorage.getItem('mathia_lang')||'sr').slice(0,2).toLowerCase(); }catch(e){ return 'sr'; } }
+  function tr(){ return T[lang()] || T.sr; }
+  var t = tr();
+
+  // primeni jezik na vidljive tekstove
+  (function applyLang(){
+    q('eye').textContent = t.eye; q('h1').textContent = t.h1; q('sub').textContent = t.sub;
+    q('meta').textContent = t.meta; q('go').textContent = t.go; q('fine').textContent = t.fine; q('back').textContent = t.back;
+    try{ document.documentElement.lang = (lang()==='sr') ? 'sr-Latn' : lang(); }catch(e){}
+  })();
+
+  function subject(){ return decodeURIComponent((location.hash||'').replace(/^#/,'')).trim(); }
   function sbToken(){
     try{
       for(var i=0;i<localStorage.length;i++){
@@ -60,22 +80,22 @@
         if(k && /^sb-.*-auth-token$/.test(k)){
           var raw=localStorage.getItem(k); if(!raw) continue;
           var v=JSON.parse(raw);
-          var t=v && (v.access_token || (v.currentSession && v.currentSession.access_token) || (v.session && v.session.access_token));
-          if(t) return t;
+          var tk=v && (v.access_token || (v.currentSession && v.currentSession.access_token) || (v.session && v.session.access_token));
+          if(tk) return tk;
         }
       }
     }catch(e){}
     return '';
   }
-  function showErr(msg){ var e=q('err'); e.textContent=msg; e.style.display='block'; q('spin').style.display='none'; q('go').disabled=false; q('go').textContent='Pokušaj ponovo →'; }
+  function showErr(msg){ var e=q('err'); e.textContent=msg; e.style.display='block'; q('spin').style.display='none'; q('go').disabled=false; q('go').textContent=t.retry; }
 
   var pred = subject();
-  if(!pred){ showErr('Nedostaje predmet. Vrati se u razgovor pa ponovo klikni na dopunu.'); q('go').disabled=true; }
+  if(!pred){ showErr(t.noSubj); q('go').disabled=true; }
 
   async function start(){
     var tok = sbToken();
     if(!tok){ location.href = 'nalog.html?next=' + encodeURIComponent('dopuna.html#'+pred); return; }
-    q('go').disabled=true; q('go').textContent='Otvaramo plaćanje…'; q('spin').style.display='block'; q('err').style.display='none';
+    q('go').disabled=true; q('go').textContent=t.opening; q('spin').style.display='block'; q('err').style.display='none';
     try{
       var r = await fetch('/api/pass-start', {
         method:'POST', headers:{'Content-Type':'application/json'},
@@ -83,9 +103,9 @@
       });
       var j = await r.json().catch(function(){ return {}; });
       if(r.status===401){ location.href = 'nalog.html?next=' + encodeURIComponent('dopuna.html#'+pred); return; }
-      if(!r.ok || !j.paymentUrl){ showErr(j.greska || 'Nešto nije u redu. Pokušaj ponovo za koji minut.'); return; }
+      if(!r.ok || !j.paymentUrl){ showErr(j.greska || t.errGen); return; }
       location.href = j.paymentUrl;   // → pay-start → banka
-    }catch(e){ showErr('Nema veze sa serverom. Proveri internet pa pokušaj ponovo.'); }
+    }catch(e){ showErr(t.errNet); }
   }
 
   q('go').addEventListener('click', start);
