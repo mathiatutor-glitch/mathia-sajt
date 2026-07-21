@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Moja kontrolna tabla · Mathia</title>
+<style>
+:root{--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;
+  --paper:#FBF6EE;--card:#FFFDF8;--bord:#ECDAC5;--ink:#3E2A34;--muted:#8A7A80;
+  --ok:#3B8f6e;--wait:#B98A2E;--work:#5B7CC2;--serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{background:rgba(251,246,238,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.3);box-shadow:0 8px 26px -22px rgba(120,70,80,.5);position:sticky;top:0;z-index:20}
+.hd{display:flex;align-items:center;gap:14px;min-height:72px}
+.hd .seal{width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:#0f1b2e;color:var(--goldlt);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:.7rem;letter-spacing:.02em;flex:none}
+.hd b{font-family:var(--serif);font-weight:600;font-size:1.25rem;color:var(--plum);letter-spacing:.02em}
+.hd span{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--golddk);font-weight:700;display:block;margin-top:1px}
+.hd .sp{flex:1}
+.hd a{font-size:.82rem;color:var(--golddk);font-weight:600;text-decoration:none;border:1px solid var(--goldlt);border-radius:100px;padding:8px 15px}
+.hd a:hover{background:var(--champ)}
+h2{font-family:var(--serif);font-weight:600;color:var(--plum);font-size:1.5rem;margin:44px 0 4px}
+.sub{color:var(--muted);font-size:.92rem;margin:0 0 18px}
+.eyebrow{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--golddk);font-weight:700;margin-top:40px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:18px 0}
+.stat{background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:18px 20px}
+.stat .v{font-family:var(--serif);font-weight:600;font-size:2rem;color:var(--plum);line-height:1}
+.stat .l{font-size:.8rem;color:var(--muted);font-weight:600;margin-top:6px}
+
+.card{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:6px 6px;overflow:hidden;margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{text-align:left;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--golddk);font-weight:700;padding:14px 14px 10px}
+td{padding:12px 14px;border-top:1px solid #F0E7DA;vertical-align:top}
+tr:hover td{background:#FDFBF7}
+.amt{font-family:var(--serif);font-weight:600;color:var(--plum);white-space:nowrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap}
+.pill.ok{background:#E4F3EC;color:var(--ok)}
+.pill.wait{background:#FBF0DA;color:var(--wait)}
+.pill.no{background:#F6E7E5;color:#B5746C}
+.muted{color:var(--muted)}
+.empty{padding:22px;text-align:center;color:var(--muted)}
+
+/* status funkcionalnosti */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:16px}
+.fcol{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:20px 22px}
+.fcol h3{font-family:var(--serif);font-weight:600;color:var(--plum);font-size:1.12rem;margin:0 0 14px;display:flex;align-items:center;gap:9px}
+.fcol h3 i{width:30px;height:30px;border-radius:9px;background:var(--champ);color:var(--golddk);display:flex;align-items:center;justify-content:center;font-size:1rem;font-style:normal}
+.fitem{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-top:1px solid #F3EBDE}
+.fitem:first-of-type{border-top:none}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;margin-top:7px}
+.dot.ok{background:var(--ok)}.dot.wait{background:var(--wait)}.dot.work{background:var(--work)}
+.fitem .ft{flex:1;min-width:0}
+.fitem .ft b{font-weight:600;font-size:.92rem;color:var(--ink);display:block}
+.fitem .ft small{color:var(--muted);font-size:.8rem}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:.8rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+
+.how{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:22px 24px;margin-top:16px}
+.how p{margin:0 0 12px;font-size:.92rem}
+.how b{color:var(--plum)}
+footer{text-align:center;color:var(--muted);font-size:.78rem;padding:50px 0 40px}
+.note{background:#FBF3E2;border:1px solid var(--goldlt);border-radius:14px;padding:16px 18px;color:#7A5E2E;font-size:.9rem;margin-top:16px}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <div class="seal">MathIA</div>
+  <div><b>Moja kontrolna tabla</b><span>Mathia · privatno</span></div>
+  <div class="sp"></div>
+  <a href="admin-pretplate.html">Aktiviraj kupca →</a>
+  <a href="nalog.html">Nalog</a>
+</div></header>
+
+<div class="wrap">
+
+  <div class="eyebrow">Uplate i pretplate</div>
+  <h2>Pregled prihoda</h2>
+  <p class="sub" id="pay-sub">Učitavam žive podatke…</p>
+
+  <div class="stats" id="stats"></div>
+
+  <h2 style="font-size:1.15rem;margin-top:28px">Uplate</h2>
+  <div class="card"><div id="pay-tbl"><div class="empty">Učitavam…</div></div></div>
+
+  <h2 style="font-size:1.15rem;margin-top:28px">Aktivne pretplate</h2>
+  <div class="card"><div id="sub-tbl"><div class="empty">Učitavam…</div></div></div>
+
+  <h2 style="font-size:1.15rem;margin-top:28px">Nalozi bez pretplate (potencijalni kupci)</h2>
+  <div class="card"><div id="na-tbl"><div class="empty">Učitavam…</div></div></div>
+
+  <h2 style="font-size:1.15rem;margin-top:28px">Najprodavaniji predmeti</h2>
+  <div class="card"><div id="top-tbl"><div class="empty">Učitavam…</div></div></div>
+
+  <div class="eyebrow">Funkcionalnost sajta</div>
+  <h2>Šta radi, šta je na čekanju</h2>
+  <p class="sub">Živa evidencija — ažurira se kako napredujemo.</p>
+  <div class="legend">
+    <span><i class="dot ok"></i> Radi</span>
+    <span><i class="dot work"></i> U toku</span>
+    <span><i class="dot wait"></i> Na čekanju</span>
+  </div>
+  <div class="fgrid" id="fgrid"></div>
+
+  <div class="eyebrow">Kako sajt radi</div>
+  <h2>Ukratko o mehanici</h2>
+  <div class="how">
+    <p><b>Naplata.</b> Kupac izabere paket → plati karticom (Raiffeisen / UPC, produkcija) → banka potvrdi → sajt automatski otključa predmete, izda fiskalni račun (eFiskalizacija) i pošalje mejl (račun + dobrodošlica). Novac se sleže na račun za 1–2 radna dana.</p>
+    <p><b>Klonovi (Profesorica).</b> Svaki predmet ima svog klona koji zna baš to gradivo, odgovara na 8 jezika, piše matematiku, kôd, crta grafike, i pamti razgovor sa pretplatnikom.</p>
+    <p><b>Pretplata i pristup.</b> Posle uplate pretplatnik u „Moj nalog" vidi svoje predmete, materijale (skripta/formule/zbirka) i planer. Pristup traje do datuma isteka; podsetnik za obnovu stiže automatski.</p>
+    <p><b>Prevod.</b> Ceo sajt (tekst, meni, futer, dugmad) prevodi se u trenutku kada posetilac izabere jezik; klonovi odgovaraju isključivo na tom jeziku. Formule i kôd ostaju univerzalni.</p>
+    <p><b>Ručna aktivacija.</b> Ako nekome treba da ručno dodeliš pristup (npr. bez online uplate), to radiš na strani <a href="admin-pretplate.html" style="color:var(--golddk)">Aktiviraj kupca</a>.</p>
+  </div>
+
+  <div class="note" id="auth-note" style="display:none"></div>
+
+</div>
+
+<footer>Mathia · kontrolna tabla · samo za tebe · nije indeksirana</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ——— STATUS FUNKCIONALNOSTI (lako se menja) ——— */
+var STATUS=[
+ {g:"Naplata i fiskalizacija", ic:"₪", items:[
+   ["Kartično plaćanje (Raiffeisen / UPC)","ok","Produkcija · RSA-SHA512 · testirano"],
+   ["eFiskalizacija (fiskalni računi)","ok","Automatski PFR broj + QR"],
+   ["Auto-otključavanje predmeta posle uplate","ok",""],
+   ["Mejl: fiskalni račun + dobrodošlica","ok",""],
+   ["Podsetnik za obnovu pretplate","ok","7 dana pre isteka"],
+   ["Ručna aktivacija kupca (admin)","ok","Strana Aktiviraj kupca"],
+ ]},
+ {g:"Klonovi (Profesorica)", ic:"❝", items:[
+   ["Poseban klon na svakom predmetu","ok","83+ klonova, tačno gradivo"],
+   ["Odgovara na 8 jezika","ok",""],
+   ["Matematika, kôd, grafici, crteži","ok","KaTeX + crtanje"],
+   ["Tačno ime/predmet (bez „klon klona“)","ok","Ispravljeno na 108 strana"],
+   ["Bez duplog „profesorica“, strelica se ne lomi","ok",""],
+ ]},
+ {g:"Prevod (7 jezika)", ic:"⌘", items:[
+   ["Rečnik 10.000+ unosa","ok",""],
+   ["Dinamički prevod pri izboru jezika","ok",""],
+   ["Meni, futer, dugmad prevedeni","ok",""],
+ ]},
+ {g:"Dizajn i strane", ic:"◆", items:[
+   ["Vrhunski futer (početna)","ok","Brend-lokap, CTA, monogram"],
+   ["Zajednički luksuzni header (pečat)","work","Na 17 glavnih strana; širi se na sve"],
+   ["Predmeti — kategorije + predmeti","ok",""],
+   ["Prodavnica — planer-kartice","ok",""],
+   ["Trigonometrija, test sklonosti","ok",""],
+   ["Moj nalog + dobrodošlica","ok",""],
+   ["Planeri (osnovna/srednja/fakultet)","ok","Cloud čuvanje po nivou"],
+ ]},
+ {g:"Na čekanju / sledeće", ic:"…", items:[
+   ["Header na svih ~90 preostalih strana","wait","Čeka tvoju potvrdu izgleda"],
+   ["Dorada ostalih strana po potrebi","wait",""],
+   ["Živo testiranje svih klonova po jeziku","wait","Predlog: kratka lista pitanja"],
+ ]},
+];
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function el(id){return document.getElementById(id);}
+function renderStatus(){
+  el("fgrid").innerHTML=STATUS.map(function(c){
+    return '<div class="fcol"><h3><i>'+esc(c.ic)+'</i>'+esc(c.g)+'</h3>'+
+      c.items.map(function(it){
+        return '<div class="fitem"><span class="dot '+it[1]+'"></span><span class="ft"><b>'+esc(it[0])+'</b>'+(it[2]?'<small>'+esc(it[2])+'</small>':'')+'</span></div>';
+      }).join('')+'</div>';
+  }).join('');
+}
+renderStatus();
+
+/* ——— ŽIVE UPLATE (isti sigurni admin API kao admin-pretplate) ——— */
+function dat(s){ if(!s) return "—"; try{ return new Date(s).toLocaleString("sr-RS",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"}); }catch(e){ return "—"; } }
+function din(n){ n=Number(n)||0; return n.toLocaleString("sr-RS")+" RSD"; }
+function statusPill(s){ s=(s||"").toLowerCase();
+  if(/plac|plaćeno|placeno|uspe|aktiv/.test(s)) return '<span class="pill ok">'+esc(s||"plaćeno")+'</span>';
+  if(/ceka|čeka|pending|obrada/.test(s)) return '<span class="pill wait">'+esc(s)+'</span>';
+  if(!s) return '<span class="pill wait">—</span>';
+  return '<span class="pill no">'+esc(s)+'</span>';
+}
+function predmetiTxt(stavke){
+  try{ if(!stavke) return "—"; var d=(typeof stavke==="string")?JSON.parse(stavke):stavke;
+    var arr=d.detaljno||d.predmeti||d; if(Array.isArray(arr)) return arr.map(function(x){return x.naziv||x.t||x;}).join(", ");
+    return "—"; }catch(e){ return "—"; }
+}
+function sbToken(){
+  try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i);
+    if(k && /^sb-.*-auth-token$/.test(k)){ var v=JSON.parse(localStorage.getItem(k)||"{}");
+      var t=v && (v.access_token||(v.currentSession&&v.currentSession.access_token)||(v.session&&v.session.access_token));
+      if(t) return t; } } }catch(e){} return null;
+}
+async function loadPay(){
+  var TOKEN=sbToken();
+  if(!TOKEN){ authMsg("Da vidiš žive uplate, prijavi se kao vlasnik na stranici Nalog, pa se vrati ovde."); return; }
+  try{
+    var r=await fetch("/api/admin-pretplate",{headers:{Authorization:"Bearer "+TOKEN}});
+    var j=await r.json();
+    if(!j.ok){ authMsg(j.error||"Nemam pristup podacima (prijavi se kao vlasnik)."); return; }
+    renderPay(j.porudzbine||[], j.pretplate||[], j.nalozi||[]);
+  }catch(e){ authMsg("Greška pri učitavanju uplata: "+e.message); }
+}
+function authMsg(t){
+  el("auth-note").style.display="block"; el("auth-note").innerHTML=esc(t)+' &nbsp;<a href="nalog.html" style="color:#7A5E2E;font-weight:700">Prijava →</a>';
+  el("pay-sub").textContent="Uplate se prikazuju kad se prijaviš kao vlasnik.";
+  el("pay-tbl").innerHTML='<div class="empty">—</div>'; el("sub-tbl").innerHTML='<div class="empty">—</div>'; var nt=el("na-tbl"); if(nt)nt.innerHTML='<div class="empty">—</div>'; var tt=el("top-tbl"); if(tt)tt.innerHTML='<div class="empty">—</div>';
+  el("stats").innerHTML="";
+}
+function mesecKey(d){ try{return new Date(d).toISOString().slice(0,7);}catch(e){return "";} }
+function renderPay(od, pr, na){
+  na = na || [];
+  var placene=od.filter(function(o){return /plac|placeno|plaćeno|uspe/i.test(o.status||"");});
+  var prihod=placene.reduce(function(a,o){return a+(Number(o.iznos_rsd)||0);},0);
+  var sada=new Date();
+  var aktivne=pr.filter(function(p){ if((p.status||"").toLowerCase().indexOf("aktiv")<0 && p.status) return false; try{return new Date(p.istice)>=sada;}catch(e){return true;} });
+  el("pay-sub").textContent="Podaci uživo iz baze · osveženo "+new Date().toLocaleTimeString("sr-RS");
+  var mk=new Date().toISOString().slice(0,7);
+  var prihodMesec=placene.filter(function(o){return mesecKey(o.created_at)===mk;}).reduce(function(a,o){return a+(Number(o.iznos_rsd)||0);},0);
+  var prosek=placene.length?Math.round(prihod/placene.length):0;
+  var registrovani=na.length+aktivne.length;
+  el("stats").innerHTML=
+    '<div class="stat"><div class="v">'+din(prihod)+'</div><div class="l">Ukupan prihod (plaćeno)</div></div>'+
+    '<div class="stat"><div class="v">'+din(prihodMesec)+'</div><div class="l">Prihod ovog meseca</div></div>'+
+    '<div class="stat"><div class="v">'+aktivne.length+'</div><div class="l">Aktivnih pretplata</div></div>'+
+    '<div class="stat"><div class="v">'+placene.length+'</div><div class="l">Uspešnih uplata</div></div>'+
+    '<div class="stat"><div class="v">'+din(prosek)+'</div><div class="l">Prosečna uplata</div></div>'+
+    '<div class="stat"><div class="v">'+registrovani+'</div><div class="l">Registrovanih naloga</div></div>';
+  // nalozi bez pretplate
+  el("na-tbl").innerHTML = na.length ? '<table><thead><tr><th>E-mail</th><th>Registrovan</th><th>Poslednja prijava</th></tr></thead><tbody>'+
+    na.map(function(n){return '<tr><td>'+esc(n.email||n.kupac_email||"—")+'</td><td class="muted">'+dat(n.created_at||n.registrovan)+'</td><td class="muted">'+dat(n.last_sign_in_at||n.poslednja_prijava)+'</td></tr>';}).join('')+
+    '</tbody></table>' : '<div class="empty">Svi nalozi imaju pretplatu (ili još nema registracija bez pretplate).</div>';
+  // najprodavaniji predmeti
+  var brojac={};
+  placene.forEach(function(o){ var t=predmetiTxt(o.stavke); if(!t||t==="—")return; t.split(", ").forEach(function(x){ x=x.trim(); if(x) brojac[x]=(brojac[x]||0)+1; }); });
+  var top=Object.keys(brojac).map(function(k){return [k,brojac[k]];}).sort(function(a,b){return b[1]-a[1];}).slice(0,12);
+  el("top-tbl").innerHTML = top.length ? '<table><thead><tr><th>Predmet</th><th>Broj kupovina</th></tr></thead><tbody>'+
+    top.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td class="amt">'+r[1]+'</td></tr>';}).join('')+'</tbody></table>' : '<div class="empty">Još nema podataka o prodaji.</div>';
+  // tabela uplata (najnovije prvo)
+  var sorted=od.slice().sort(function(a,b){return new Date(b.created_at||0)-new Date(a.created_at||0);});
+  el("pay-tbl").innerHTML = sorted.length ? '<table><thead><tr><th>Kada</th><th>Iznos</th><th>Kupac</th><th>Predmeti</th><th>Status</th></tr></thead><tbody>'+
+    sorted.map(function(o){return '<tr><td class="muted">'+dat(o.created_at)+'</td><td class="amt">'+din(o.iznos_rsd)+'</td><td>'+esc(o.kupac_ime||o.kupac_email||"—")+'<br><small class="muted">'+esc(o.kupac_email||"")+'</small></td><td class="muted">'+esc(predmetiTxt(o.stavke))+'</td><td>'+statusPill(o.status)+'</td></tr>';}).join('')+
+    '</tbody></table>' : '<div class="empty">Još nema porudžbina.</div>';
+  // aktivne pretplate
+  el("sub-tbl").innerHTML = aktivne.length ? '<table><thead><tr><th>Kupac</th><th>Paket</th><th>Ističe</th><th>Status</th></tr></thead><tbody>'+
+    aktivne.map(function(p){return '<tr><td>'+esc(p.kupac_email||"—")+'</td><td>'+esc((p.paket||"").toUpperCase())+'</td><td class="muted">'+dat(p.istice)+'</td><td>'+statusPill(p.status||"aktivna")+'</td></tr>';}).join('')+
+    '</tbody></table>' : '<div class="empty">Nema aktivnih pretplata trenutno.</div>';
+}
+loadPay();
+</script>
+</body>
+</html>
