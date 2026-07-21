@@ -75,7 +75,7 @@
         '<nav class="mh-nav">' + links + '<a class="mh-acct" href="nalog.html">Moj nalog</a></nav>' +
         '<div class="mh-right">' +
           '<label class="mh-langwrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>' +
-            '<select class="mh-lang" aria-label="Jezik / Language">' + opts + '</select></label>' +
+            '<select class="mh-lang lang" aria-label="Jezik">' + opts + '</select></label>' +
           '<a class="mh-cta" href="nalog.html">Moj nalog</a>' +
           '<button class="mh-burger" type="button" aria-label="Meni"><span></span><span></span><span></span></button>' +
         '</div>' +
@@ -85,19 +85,22 @@
     if (old && old.parentNode) old.parentNode.replaceChild(mh, old);
     else document.body.insertBefore(mh, document.body.firstChild);
 
-    // — čišćenje: ukloni SVE druge <header>-e i zalutale jezik-biraче (da nema duplikata) —
-    try {
-      var hs = document.querySelectorAll("header");
-      for (var i = 0; i < hs.length; i++) { if (hs[i] !== mh && hs[i].parentNode) hs[i].parentNode.removeChild(hs[i]); }
-      var strays = document.querySelectorAll('select.lang, select[aria-label*="Jezik"], select[aria-label*="Language"], .langsel, .lang-switch');
-      for (var k = 0; k < strays.length; k++) {
-        var el = strays[k];
-        if (mh.contains(el)) continue;
-        if (el.closest && el.closest("#zoi-panel")) continue;   // ne diraj klon
-        var wrap = (el.closest && el.closest(".langwrap,.lang-wrap,.topbar-lang")) || el;
-        if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
-      }
-    } catch (e) {}
+    // — čišćenje: ukloni SVE druge <header>-e i zalutale jezik-biraче (i plutajuće koji se dodaju kasnije) —
+    function sweep(){
+      try {
+        var hs = document.querySelectorAll("header");
+        for (var i = 0; i < hs.length; i++) { if (hs[i] !== mh && hs[i].parentNode) hs[i].parentNode.removeChild(hs[i]); }
+        var strays = document.querySelectorAll('select.lang, select[aria-label*="Jezik"], select[aria-label*="Language"], .langsel, .lang-switch');
+        for (var k = 0; k < strays.length; k++) {
+          var el = strays[k];
+          if (mh.contains(el)) continue;
+          if (el.closest && el.closest("#zoi-panel")) continue;   // ne diraj klon
+          var wrap = (el.closest && el.closest(".mh-langwrap,.langwrap,.lang-wrap,.topbar-lang")) || el;
+          if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+        }
+      } catch (e) {}
+    }
+    sweep(); setTimeout(sweep, 300); setTimeout(sweep, 900); setTimeout(sweep, 2000);
 
     var burger = mh.querySelector(".mh-burger");
     burger.addEventListener("click", function(){ mh.classList.toggle("open"); });
