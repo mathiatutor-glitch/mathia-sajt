@@ -1373,5 +1373,42 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
   </div>
 </div>
 <script src="i18n-mathia.js"></script>
+<style id="mnp-theme">
+/* Lična boja korisnika (izabrana korica planera) primenjena na nalog */
+.plan-hero .cover[data-theme=champ]{background:linear-gradient(160deg,#FDF8EF,#F3E6C8 60%,#ECD9AC)!important;color:#9C7838!important}
+.plan-hero .cover[data-theme=plum]{background:linear-gradient(160deg,#4A2A38,#2C1A25)!important;color:#E7D2A2!important}
+.plan-hero .cover[data-theme=blush]{background:linear-gradient(160deg,#F7E9E4,#F0D9D2 60%,#E7C6BC)!important;color:#B5746C!important}
+.mnp-yours{display:block;margin-top:8px;font-size:.84rem;color:var(--mnp-acc,#9C7838);font-weight:700;letter-spacing:.01em}
+.mnp-yours::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mnp-acc,#9C7838);margin-right:8px;vertical-align:middle;box-shadow:0 0 0 3px rgba(198,160,92,.16)}
+</style>
+<script>
+(function(){
+  var TH={champ:{acc:"#9C7838"},plum:{acc:"#B58A3C"},blush:{acc:"#B5746C"}};
+  function theme(){
+    try{
+      var t=localStorage.getItem("mathia_cover_theme");
+      if(t && TH[t]) return t;
+      var kor=(localStorage.getItem("mathia_korica")||"").toLowerCase();
+      if(/plum|šljiva|sljiva/.test(kor)) return "plum";
+      if(/blush|roze|roza/.test(kor)) return "blush";
+    }catch(e){}
+    return "champ";
+  }
+  function firstNm(){ try{ var n=localStorage.getItem("mathia_ime")||""; return (n.trim().split(/\s+/)[0]||""); }catch(e){ return ""; } }
+  function apply(){
+    var th=theme();
+    try{ document.documentElement.style.setProperty("--mnp-acc", (TH[th]||TH.champ).acc); }catch(e){}
+    var cov=document.querySelector(".plan-hero .cover"); if(cov) cov.setAttribute("data-theme", th);
+    var hello=document.querySelector(".hello");
+    if(hello && !document.getElementById("mnp-yours")){
+      var nm=firstNm();
+      var s=document.createElement("span"); s.id="mnp-yours"; s.className="mnp-yours";
+      s.textContent = nm ? ("Ovo je tvoj kutak, "+nm+" — sve tvoje je ovde, sačuvano i spremno.") : "Ovo je tvoj kutak — sve tvoje je ovde, sačuvano i spremno.";
+      hello.appendChild(s);
+    }
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", apply); else apply();
+})();
+</script>
 </body>
 </html>
