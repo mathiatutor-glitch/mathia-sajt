@@ -372,9 +372,11 @@ export default async function handler(req, res) {
       // rok u KV nalog (da se widget/profil slažu i da se sam „izleči" propušteni upis).
       let pretplacen = isSubscribed(u);   // KV: admin/test ili već sinhronizovano
       let pokrivaPredmet = pretplacen;    // KV pretplata ne vezuje predmet → pun pristup
+      let _dbgRows = -1, _dbgErr = "";
       if (sbEmail) {
         try {
           const rows = await aktivnePretplate(sbEmail);
+          _dbgRows = rows.length;
           if (rows.length) {
             let maxIstice = 0;
             const covered = new Set();
@@ -392,8 +394,14 @@ export default async function handler(req, res) {
             pretplacen = isSubscribed(u);
             pokrivaPredmet = covered.has(mode) || covered.has(rmode);
           }
-        } catch (e) { /* tiho — padamo na KV/probu */ }
+        } catch (e) { _dbgErr = e.message || String(e); }
       }
+      // ——— DIJAGNOSTIKA pretplate (vidljivo u Vercel logu: Functions → chat) ———
+      console.log("CHAT-SUB", JSON.stringify({
+        uid, sbEmail: sbEmail || null, hasSb: !!sb,
+        aktivnihPretplata: _dbgRows, greskaUpita: _dbgErr || null,
+        pretplacen, pokrivaPredmet, mode, rmode, subscribedUntil: u.subscribedUntil || null
+      }));
 
       if (pretplacen) {
         // Pretplatnik — BEZ ijednog pomena „15 min". Samo proveri da paket pokriva ovaj predmet.
