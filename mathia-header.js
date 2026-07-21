@@ -85,6 +85,20 @@
     if (old && old.parentNode) old.parentNode.replaceChild(mh, old);
     else document.body.insertBefore(mh, document.body.firstChild);
 
+    // — čišćenje: ukloni SVE druge <header>-e i zalutale jezik-biraче (da nema duplikata) —
+    try {
+      var hs = document.querySelectorAll("header");
+      for (var i = 0; i < hs.length; i++) { if (hs[i] !== mh && hs[i].parentNode) hs[i].parentNode.removeChild(hs[i]); }
+      var strays = document.querySelectorAll('select.lang, select[aria-label*="Jezik"], select[aria-label*="Language"], .langsel, .lang-switch');
+      for (var k = 0; k < strays.length; k++) {
+        var el = strays[k];
+        if (mh.contains(el)) continue;
+        if (el.closest && el.closest("#zoi-panel")) continue;   // ne diraj klon
+        var wrap = (el.closest && el.closest(".langwrap,.lang-wrap,.topbar-lang")) || el;
+        if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+      }
+    } catch (e) {}
+
     var burger = mh.querySelector(".mh-burger");
     burger.addEventListener("click", function(){ mh.classList.toggle("open"); });
 
