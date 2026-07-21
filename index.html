@@ -742,6 +742,34 @@ a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visib
 .mfoot .mf-fine a:hover{color:#E7D2A2!important}
 .mfoot .mf-legal2{font-size:.66rem!important;opacity:.6;margin-top:6px!important}
 .mfoot .mf-bottom{padding-bottom:18px!important;padding-top:8px!important}
+
+/* ——— FUTER: dizajnerski raspored na desktopu (brend · meni · mreže) ——— */
+@media(min-width:768px){
+  .mfoot .wrap{display:grid!important;grid-template-columns:1.35fr 1fr auto!important;
+    column-gap:50px!important;row-gap:14px!important;align-items:start!important;text-align:left!important;
+    padding-top:42px!important;max-width:1000px!important}
+  .mfoot .mf-brand{grid-column:1!important;grid-row:1!important;text-align:left!important;margin:0!important}
+  .mfoot .mf-mono{margin:0 0 12px 0!important}
+  .mfoot .flove{margin:0 0 3px 0!important;white-space:nowrap!important}
+  .mfoot .mf-tag{display:block!important}
+  .mfoot .mf-nav2{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;
+    gap:11px!important;align-items:flex-start!important;margin:2px 0 0!important}
+  .mfoot .social{grid-column:3!important;grid-row:1!important;justify-content:flex-end!important;margin:2px 0 0!important}
+  .mfoot .mf-rule{grid-column:1/-1!important;grid-row:2!important;margin:12px 0 8px!important}
+  .mfoot .mf-fine{grid-column:1/3!important;grid-row:3!important;text-align:left!important;margin:0!important}
+  .mfoot .mf-bottom{grid-column:3!important;grid-row:3!important;justify-self:end!important;align-self:center!important;padding:0!important}
+  .mfoot .mf-legal2{grid-column:1/-1!important;grid-row:4!important;text-align:left!important;margin:6px 0 0!important}
+}
+
+/* ——— MISIJA: kreativan potpis — avatar i „Marina" JEDNO UZ DRUGO, uloga ispod ——— */
+.mquote .mq-vow{margin-top:16px!important}
+.mquote .mq-sign{display:flex!important;flex-wrap:wrap!important;align-items:center!important;
+  justify-content:center!important;gap:2px 20px!important;margin-top:26px!important}
+.mquote .mq-av,.mquote .mq-av img{width:76px!important;height:76px!important}
+.mq-name{font-size:clamp(2.6rem,6vw,3.6rem)!important;margin:0!important;line-height:.9!important}
+.mq-role{flex-basis:100%!important;text-align:center!important;margin-top:9px!important;
+  font-size:.68rem!important;letter-spacing:.26em!important}
+@media(max-width:520px){.mquote .mq-sign{gap:2px 12px!important}.mquote .mq-av,.mquote .mq-av img{width:60px!important;height:60px!important}}
 </style>
 </head>
 <body>
