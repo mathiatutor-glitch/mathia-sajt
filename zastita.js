@@ -33,7 +33,7 @@
     var svg =
       "<svg xmlns='http://www.w3.org/2000/svg' width='340' height='200'>" +
       "<text x='0' y='100' transform='rotate(-24 170 100)' " +
-      "font-family='Arial, sans-serif' font-size='15' fill='rgba(31,51,87,0.10)' " +
+      "font-family='Arial, sans-serif' font-size='14' fill='rgba(31,51,87,0.055)' " +
       "font-weight='700'>" + txt.replace(/&/g,"&amp;").replace(/</g,"&lt;") + "</text></svg>";
     var url = "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 
