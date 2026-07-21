@@ -220,7 +220,20 @@
     document.documentElement.style.overflow = "hidden";
   }
 
+  /* Sakrij belešku „otključava se pretplatom" (i pokaži [data-gate-sub]) čim je korisnik
+     vlasnik ili pretplaćen na OVAJ predmet. Za landing strane koristi se data-note-only="1":
+     samo ova provera, BEZ katanca/zaštite (to su marketinške strane, ne zaključavaju se). */
+  function applyPaidUI() {
+    try { document.querySelectorAll('.note[data-i18n="mNote"], [data-gate-free]').forEach(function (n) { n.style.display = "none"; }); } catch (e) {}
+    try { document.querySelectorAll('[data-gate-sub]').forEach(function (n) { n.hidden = false; n.style.display = ""; }); } catch (e) {}
+  }
+  var NOTE_ONLY = !!(me && me.getAttribute("data-note-only") === "1");
+
   function start() {
+    if (NOTE_ONLY) {
+      loadSb(function () { status().then(function (st) { if (st === "owner" || st === "subscribed") applyPaidUI(); }); });
+      return;
+    }
     var script = isScriptPage();
     if (!SUBJECT && !script) return;
 
