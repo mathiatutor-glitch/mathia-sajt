@@ -714,52 +714,37 @@ a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visib
 .mabout-sign::after{content:"";display:block;width:72px;height:2px;margin:8px 0 0 auto;
   background:linear-gradient(90deg,transparent,#C6A05C);border-radius:2px}
 
-/* ——— FUTER: sofisticiran i „skup" (zlatna nit na vrhu, prefinjeni detalji) ——— */
-.mfoot{background:linear-gradient(180deg,#402833 0%,#33202b 55%,#281820 100%)!important;position:relative}
-.mfoot::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+/* ——— FUTER v2: dizajnerske imenovane kolone (Stranice · Pravno · Prati nas) ——— */
+.mfoot2{background:linear-gradient(180deg,#402833,#33202b 60%,#281820)!important;position:relative;color:#e8d9de;margin-top:24px}
+.mfoot2::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(198,160,92,.6) 25%,rgba(231,210,162,.85) 50%,rgba(198,160,92,.6) 75%,transparent)}
-.mfoot .glow{opacity:.4!important}
-.mfoot .wrap{padding-top:30px!important;padding-bottom:0!important;max-width:940px!important}
-.mfoot .mf-mono{width:46px!important;height:46px!important;font-size:1.35rem!important;margin:0 auto 10px!important;
-  border:1px solid rgba(231,210,162,.55)!important;color:#E7D2A2!important;
-  box-shadow:0 0 0 4px rgba(231,210,162,.07),0 8px 20px -10px rgba(0,0,0,.5)!important}
-.mfoot .flove{font-size:clamp(1.4rem,3.4vw,1.85rem)!important;white-space:nowrap!important;margin:6px 0 3px!important;
-  letter-spacing:.01em!important}
-.mfoot .mf-tag{font-size:.66rem!important;letter-spacing:.2em!important;text-transform:uppercase!important;
-  color:#c9b3ba!important;opacity:.85}
-.mfoot .mf-nav2{margin-top:14px!important}
-.mfoot .mf-nav2 a{font-family:var(--mathia-sans)!important;font-size:.84rem!important;letter-spacing:.01em!important;color:#EAD9DE!important}
-.mfoot .mf-nav2 a:hover{color:#E7D2A2!important}
-.mfoot .social{gap:13px!important;margin:16px auto 4px!important}
-.mfoot .social a{width:auto!important}
-.mfoot .social a span:not(.mf-ico){display:none!important}
-.mfoot .social a .mf-ico{width:36px!important;height:36px!important;border:1px solid rgba(231,210,162,.35)!important;
-  background:rgba(255,252,246,.03)!important;transition:border-color .2s ease,background .2s ease}
-.mfoot .social a .mf-ico svg{width:15px!important;height:15px!important}
-.mfoot .social a:hover .mf-ico{border-color:#C6A05C!important;background:rgba(231,210,162,.12)!important}
-.mfoot .mf-rule{margin:18px auto 14px!important}
-.mfoot .mf-fine{font-size:.72rem!important;letter-spacing:.02em}
-.mfoot .mf-fine a:hover{color:#E7D2A2!important}
-.mfoot .mf-legal2{font-size:.66rem!important;opacity:.6;margin-top:6px!important}
-.mfoot .mf-bottom{padding-bottom:18px!important;padding-top:8px!important}
-
-/* ——— FUTER: dizajnerski raspored na desktopu (brend · meni · mreže) ——— */
-@media(min-width:768px){
-  .mfoot .wrap{display:grid!important;grid-template-columns:1.35fr 1fr auto!important;
-    column-gap:50px!important;row-gap:14px!important;align-items:start!important;text-align:left!important;
-    padding-top:42px!important;max-width:1000px!important}
-  .mfoot .mf-brand{grid-column:1!important;grid-row:1!important;text-align:left!important;margin:0!important}
-  .mfoot .mf-mono{margin:0 0 12px 0!important}
-  .mfoot .flove{margin:0 0 3px 0!important;white-space:nowrap!important}
-  .mfoot .mf-tag{display:block!important}
-  .mfoot .mf-nav2{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;
-    gap:11px!important;align-items:flex-start!important;margin:2px 0 0!important}
-  .mfoot .social{grid-column:3!important;grid-row:1!important;justify-content:flex-end!important;margin:2px 0 0!important}
-  .mfoot .mf-rule{grid-column:1/-1!important;grid-row:2!important;margin:12px 0 8px!important}
-  .mfoot .mf-fine{grid-column:1/3!important;grid-row:3!important;text-align:left!important;margin:0!important}
-  .mfoot .mf-bottom{grid-column:3!important;grid-row:3!important;justify-self:end!important;align-self:center!important;padding:0!important}
-  .mfoot .mf-legal2{grid-column:1/-1!important;grid-row:4!important;text-align:left!important;margin:6px 0 0!important}
-}
+.mfoot2 .glow{opacity:.4!important}
+.mfoot2 .social,.mfoot2 .mf-rule,.mfoot2 .mf-fine,.mfoot2 .mf-legal2,.mfoot2 .mf-bottom{display:none!important}
+.mfoot2 .mfx-grid{display:grid;grid-template-columns:1.7fr 1fr 1.25fr 1.05fr;gap:44px;
+  max-width:1050px;margin:0 auto;padding:50px 26px 28px;text-align:left;position:relative}
+.mfoot2 .mfx-seal{width:46px;height:46px;border-radius:50%;border:1px solid rgba(231,210,162,.55);
+  box-shadow:0 0 0 4px rgba(231,210,162,.07);display:flex;align-items:center;justify-content:center;
+  color:#E7D2A2;font-family:'Spectral',serif;font-size:1.35rem;margin-bottom:12px}
+.mfoot2 .mfx-love{font-family:'Pinyon Script',cursive;font-size:1.75rem;line-height:1;margin-bottom:6px;
+  background:linear-gradient(100deg,#9C7838,#E7D2A2 50%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mfoot2 .mfx-about{font-size:.82rem;line-height:1.65;color:#c2adb4;max-width:290px;margin:0}
+.mfoot2 .mfx-h{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:#E7D2A2;margin-bottom:14px;font-weight:600}
+.mfoot2 .mfx-col a{display:block;font-size:.87rem;color:#e6d6db;margin:10px 0;text-decoration:none;transition:color .2s ease,padding-left .2s ease}
+.mfoot2 .mfx-col a:hover{color:#E7D2A2;padding-left:3px}
+.mfoot2 .mfx-soc{display:flex;gap:11px}
+.mfoot2 .mfx-soc a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(231,210,162,.35);
+  display:flex;align-items:center;justify-content:center;color:#EAD9DE;transition:border-color .2s ease,background .2s ease}
+.mfoot2 .mfx-soc a:hover{border-color:#C6A05C;background:rgba(231,210,162,.12)}
+.mfoot2 .mfx-soc svg{width:17px;height:17px;fill:currentColor}
+.mfoot2 .mfx-mail{display:inline-block;margin-top:14px;font-size:.82rem;color:#c9b3ba;text-decoration:none;
+  border-bottom:1px solid rgba(231,210,162,.3);padding-bottom:1px}
+.mfoot2 .mfx-mail:hover{color:#E7D2A2;border-color:#C6A05C}
+.mfoot2 .mfx-bottom{max-width:1050px;margin:0 auto;padding:16px 26px 26px;border-top:1px solid rgba(231,210,162,.14);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.72rem;color:#a98f98}
+.mfoot2 .mfx-disc{opacity:.68;flex:1;min-width:220px;text-align:center}
+.mfoot2 .mfx-pay img{height:22px;opacity:.92;display:block}
+@media(max-width:860px){.mfoot2 .mfx-grid{grid-template-columns:1fr 1fr;gap:30px 40px}.mfoot2 .mfx-brand{grid-column:1/-1}.mfoot2 .mfx-about{max-width:520px}}
+@media(max-width:520px){.mfoot2 .mfx-grid{grid-template-columns:1fr;text-align:center;gap:26px}.mfoot2 .mfx-seal,.mfoot2 .mfx-soc{margin-left:auto;margin-right:auto}.mfoot2 .mfx-about{margin:0 auto}.mfoot2 .mfx-bottom{justify-content:center;text-align:center}}
 
 /* ——— MISIJA: kreativan potpis — avatar i „Marina" JEDNO UZ DRUGO, uloga ispod ——— */
 .mquote .mq-vow{margin-top:16px!important}
@@ -1463,18 +1448,46 @@ html,body{overflow-x:hidden}
 .mf-bar .mf-copy{margin:0;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,210,162,.5)}.mf-bar .mf-sig{margin:2px 0 0;font-size:2.9rem}.mf-bar .mf-note{display:none}
 @media(max-width:719px){.mf-cols,.mf-info,.mf-info .mf-legal .mf-p,.mf-info .mf-pay{text-align:center}.mf-col-contact .social{justify-content:center}.mf-bar{justify-content:center;flex-direction:column;gap:8px;text-align:center}}
 </style>
-<footer class="mfoot">
+<footer class="mfoot mfoot2">
   <div class="glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="mf-brand">
-      <div class="mf-mono" aria-hidden="true">M</div>
-      <div class="flove script goldtext">Uči s ljubavlju</div>
-      <div class="mf-tag">Mathia · tvoja profesorica</div>
+  <div class="wrap mfx-grid">
+    <div class="mfx-brand">
+      <div class="mfx-seal" aria-hidden="true">M</div>
+      <div class="mfx-love">Uči s ljubavlju</div>
+      <p class="mfx-about">Privatna škola matematike, fizike i elektrotehnike — online, od 5. razreda do fakulteta. Uz tebe 0–24h.</p>
     </div>
-    <nav class="mf-nav2">
-      <a href="predmeti.html">Predmeti</a><span class="mf-dot"></span><a href="prodavnica.html">Prodavnica</a><span class="mf-dot"></span><a href="#paketi">Paketi</a><span class="mf-dot"></span><a href="o-marini.html">O meni</a>
+    <nav class="mfx-col">
+      <div class="mfx-h">Stranice</div>
+      <a href="predmeti.html">Predmeti</a>
+      <a href="prodavnica.html">Prodavnica</a>
+      <a href="index.html#paketi">Paketi i cene</a>
+      <a href="o-marini.html">O meni</a>
+      <a href="nalog.html">Moj nalog</a>
     </nav>
-    <div class="social" data-social="1">
+    <nav class="mfx-col">
+      <div class="mfx-h">Pravno</div>
+      <a href="uslovi.html">Uslovi kupovine</a>
+      <a href="reklamacije.html">Reklamacije i povraćaj</a>
+      <a href="povracaj.html">Povraćaj sredstava</a>
+      <a href="privatnost.html">Politika privatnosti</a>
+    </nav>
+    <div class="mfx-col mfx-follow">
+      <div class="mfx-h">Prati nas</div>
+      <div class="mfx-soc">
+        <a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg></a>
+        <a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2z"/></svg></a>
+        <a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+        <a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
+      </div>
+      <a class="mfx-mail" href="mailto:kontakt@mathia.rs">kontakt@mathia.rs</a>
+    </div>
+  </div>
+  <div class="wrap mfx-bottom">
+    <span class="mfx-copy">© 2026 Mathia Edu · Sva prava zadržana</span>
+    <span class="mfx-disc">Obrazovna platforma · sadržaj zaštićen autorskim pravom · priprema ne garantuje upis ni rezultat.</span>
+    <span class="mfx-pay"><img src="placanje-logos.png" alt="Visa · Mastercard · DinaCard · 3-D Secure"></span>
+  </div>
+  <div class="social" data-social="1" hidden>
         <a href="mailto:kontakt@mathia.rs" aria-label="Email"><span class="mf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg></span><span>Email</span></a><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><span class="mf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg></span><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><span class="mf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></span><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><span class="mf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></span><span>Facebook</span></a>
       </div>
     <div class="mf-rule" aria-hidden="true"><span class="ln"></span><span class="dm"></span><span class="ln r"></span></div>
