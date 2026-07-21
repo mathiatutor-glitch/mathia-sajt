@@ -30,8 +30,13 @@
       ".mh .mh-nav a:hover::after,.mh .mh-nav a.on::after{width:100%}" +
       ".mh .mh-acct{display:none}" +
       ".mh .mh-right{display:flex;align-items:center;gap:14px;flex:none}" +
-      ".mh .mh-lang{font-family:'Inter',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.08em;color:#7A5E2E;background:#fff;border:1px solid #D9C08A;border-radius:100px;padding:6px 11px;cursor:pointer}" +
+      ".mh .mh-langwrap{display:inline-flex;align-items:center;gap:7px;border:1px solid #D9C08A;border-radius:100px;padding:6px 12px;background:#fff;color:#7A5E2E;cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease}" +
+      ".mh .mh-langwrap:hover{border-color:#C6A05C;box-shadow:0 6px 16px -10px rgba(156,120,56,.6)}" +
+      ".mh .mh-langwrap svg{width:15px;height:15px;color:#9C7838;flex:none}" +
+      ".mh .mh-lang{font-family:'Inter',sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.08em;color:#7A5E2E;background:none;border:none;padding:0 2px 0 0;cursor:pointer;-webkit-appearance:none;appearance:none}" +
+      ".mh .mh-lang:focus{outline:none}" +
       ".mh .mh-cta{background:#432C37;color:#F3E9DA;font-weight:600;font-size:.86rem;padding:10px 20px;border-radius:100px;text-decoration:none;white-space:nowrap;box-shadow:0 12px 24px -14px rgba(67,44,55,.55);transition:filter .2s ease,transform .2s ease}" +
+      ".mh .mh-cta::after{content:' \\2192';font-weight:600}" +
       ".mh .mh-cta:hover{filter:brightness(1.14);transform:translateY(-1px)}" +
       ".mh .mh-burger{display:none;width:34px;height:30px;background:none;border:none;cursor:pointer;position:relative;flex:none}" +
       ".mh .mh-burger span{position:absolute;left:4px;right:4px;height:2.5px;background:#432C37;border-radius:3px;transition:.28s}" +
@@ -69,8 +74,9 @@
           '<span class="mh-wm"><b>Mathia</b><i>s Marinom</i></span></a>' +
         '<nav class="mh-nav">' + links + '<a class="mh-acct" href="nalog.html">Moj nalog</a></nav>' +
         '<div class="mh-right">' +
-          '<select class="mh-lang" aria-label="Jezik">' + opts + '</select>' +
-          '<a class="mh-cta" href="nalog.html">Moj nalog →</a>' +
+          '<label class="mh-langwrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>' +
+            '<select class="mh-lang" aria-label="Jezik / Language">' + opts + '</select></label>' +
+          '<a class="mh-cta" href="nalog.html">Moj nalog</a>' +
           '<button class="mh-burger" type="button" aria-label="Meni"><span></span><span></span><span></span></button>' +
         '</div>' +
       '</div>';
