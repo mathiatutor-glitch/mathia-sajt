@@ -236,4 +236,5 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 <script src="i18n-mathia.js"></script>
 <style>/*title-fit*/.title{letter-spacing:.5px}.frame{overflow:hidden}@media(max-width:560px){.title{font-size:clamp(30px,8.4vw,52px)}}</style>
 <script>/*title-fit*/(function(){function ft(){var t=document.querySelector('.title');if(!t)return;t.style.fontSize='';var fs=parseFloat(getComputedStyle(t).fontSize),g=0;while(t.scrollWidth>t.clientWidth+1&&fs>22&&g<90){fs-=1.5;t.style.fontSize=fs+'px';g++;}}if(document.readyState!=='loading')ft();else addEventListener('DOMContentLoaded',ft);addEventListener('load',ft);if(document.fonts&&document.fonts.ready)try{document.fonts.ready.then(ft)}catch(e){}var tt;addEventListener('resize',function(){clearTimeout(tt);tt=setTimeout(ft,120);});})();</script>
+<style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
 </body></html>
