@@ -42,6 +42,21 @@
       ".mh .mh-burger span{position:absolute;left:4px;right:4px;height:2.5px;background:#432C37;border-radius:3px;transition:.28s}" +
       ".mh .mh-burger span:nth-child(1){top:7px}.mh .mh-burger span:nth-child(2){top:14px}.mh .mh-burger span:nth-child(3){top:21px}" +
       ".mh.open .mh-burger span:nth-child(1){top:14px;transform:rotate(45deg)}.mh.open .mh-burger span:nth-child(2){opacity:0}.mh.open .mh-burger span:nth-child(3){top:14px;transform:rotate(-45deg)}" +
+      /* srednje širine (900–1180px): postepeno stišnjavanje da meni NIJE zgusnut pre nego pređe u hamburger */
+      "@media(max-width:1180px){" +
+        ".mh .mh-in{gap:16px;padding:0 20px}" +
+        ".mh .mh-nav{gap:20px}" +
+        ".mh .mh-nav a{font-size:.9rem}" +
+        ".mh .mh-seal{width:66px;height:66px;transform:translateY(12px)}" +
+        ".mh .mh-wm b{font-size:1.5rem}" +
+        ".mh .mh-cta{padding:10px 15px;font-size:.82rem}" +
+        ".mh .mh-langwrap{padding:6px 10px}" +
+      "}" +
+      "@media(max-width:1000px){" +
+        ".mh .mh-nav{gap:14px}" +
+        ".mh .mh-nav a{font-size:.85rem}" +
+        ".mh .mh-wm i{letter-spacing:.28em}" +
+      "}" +
       "@media(max-width:900px){" +
         ".mh .mh-in{min-height:66px;gap:12px}" +
         ".mh .mh-seal{width:56px;height:56px;transform:translateY(10px);border-width:2.5px}" +
@@ -68,6 +83,7 @@
 
     var mh = document.createElement("header");
     mh.className = "mh";
+    mh.id = "mhead";   // VAŽNO: theme-mathia.css sakriva "select.lang" u svakom header-u OSIM #mhead → bez ovoga se globus-birač jezika ne vidi
     mh.innerHTML =
       '<div class="mh-in">' +
         '<a class="mh-brand" href="index.html"><span class="mh-seal" aria-hidden="true"></span>' +
