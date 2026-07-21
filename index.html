@@ -764,6 +764,24 @@ a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visib
   .mfoot2 .mfx-bottom{flex-direction:column;text-align:center;gap:16px;padding:24px 26px 50px}
 }
 
+/* ——— FUTER v3+: premium sjaj, oreol i ornament ——— */
+@keyframes mfShine{0%{background-position:0% 50%}100%{background-position:220% 50%}}
+@keyframes mfShimmer{0%{background-position:-40% 0}100%{background-position:140% 0}}
+.mfoot2::after{content:"";position:absolute;top:-70px;left:5%;width:580px;height:380px;max-width:64%;background:radial-gradient(closest-side,rgba(198,160,92,.13),transparent);pointer-events:none;z-index:0}
+.mfoot2::before{background-size:220% 100%!important;animation:mfShimmer 9s linear infinite}
+.mfoot2 .mfx-word{background-size:220% auto!important;animation:mfShine 7s linear infinite}
+.mfoot2 .mfx-love{background-size:220% auto!important;animation:mfShine 8.5s linear infinite}
+.mfoot2 .mfx-rule{overflow:visible}
+.mfoot2 .mfx-rule::after{content:"\2726";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#C6A05C;background:#33212b;padding:0 16px;font-size:.72rem}
+.mfoot2 .mfx-soc a{transition:border-color .22s ease,background .22s ease,transform .25s ease}
+.mfoot2 .mfx-soc a:hover{transform:translateY(-3px)}
+.mfoot2 .mfx-btn{position:relative;overflow:hidden}
+.mfoot2 .mfx-btn::after{content:"";position:absolute;top:0;left:0;width:34%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,247,225,.4),transparent);transform:translateX(-140%);pointer-events:none}
+.mfoot2 .mfx-btn:hover::after{transform:translateX(420%);transition:transform .7s ease}
+.mfoot2 .mfx-seal{transition:box-shadow .3s ease}
+.mfoot2 .mfx-lockup:hover .mfx-seal{box-shadow:0 0 0 6px rgba(231,210,162,.12),0 16px 34px -12px rgba(0,0,0,.6)}
+@media(prefers-reduced-motion:reduce){.mfoot2::before,.mfoot2 .mfx-word,.mfoot2 .mfx-love{animation:none!important}}
+
 /* ——— MISIJA: kreativan potpis — avatar i „Marina" JEDNO UZ DRUGO, uloga ispod ——— */
 .mquote .mq-vow{margin-top:16px!important}
 .mquote .mq-sign{display:flex!important;flex-wrap:wrap!important;align-items:center!important;
