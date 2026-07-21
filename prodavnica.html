@@ -254,6 +254,23 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 .cp-cover.sel::after{content:"✓";position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;background:linear-gradient(150deg,#E7D2A2,#C6A05C);color:#fff;font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px -3px rgba(156,120,56,.9)}
 </style>
 <link rel="stylesheet" href="mathia-type.css">
+<style>
+/* ——— PRODAVNICA: premium planer-kartice ——— */
+.pl-card{transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s ease,border-color .3s ease!important}
+.pl-card:hover{transform:translateY(-5px)!important;box-shadow:0 30px 56px -34px rgba(67,44,55,.55)!important;border-color:#E7D2A2!important}
+.pl-cover{position:relative}
+.pl-cover::after{content:"";position:absolute;inset:8px;border:1px solid rgba(231,210,162,.3);border-radius:12px;pointer-events:none}
+.pl-buy{background:#432C37!important;background-image:none!important;color:#F3E9DA!important;border:none!important;
+  box-shadow:0 12px 24px -14px rgba(67,44,55,.6)!important;padding:11px 22px!important;font-weight:600!important;transition:transform .2s,filter .2s!important}
+.pl-buy:hover{filter:brightness(1.14)!important;transform:translateY(-1px)!important}
+.pl-price{color:#432C37!important;font-size:1.7rem!important}
+.pl-demo{color:#9C7838!important;font-weight:600!important}
+.pl-demo:hover{color:#432C37!important}
+/* srednja kartica — istaknuta */
+.pl-card:nth-of-type(2){border:2px solid #C6A05C!important}
+.pl-card:nth-of-type(2)::before{content:"Najpopularnije";position:absolute;top:14px;right:14px;z-index:4;
+  background:#C6A05C;color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:100px}
+</style>
 </head>
 <body>
 
