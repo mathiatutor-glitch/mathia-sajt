@@ -105,6 +105,7 @@
         var trazi = kljucevi(SUBJECT);            // strana moze da navede vise kljuceva ("a,b,c")
         for (var i = 0; i < rows.length; i++) {
           var row = rows[i];
+          if (row.tip === "klon") continue;   // dopuna (48h) otključava SAMO klon — skripte/formule ostaju za pun paket
           var vazi = !row.istice || new Date(row.istice) > new Date();
           var kupljeno = [];
           (Array.isArray(row.predmeti) ? row.predmeti : []).forEach(function(p){
