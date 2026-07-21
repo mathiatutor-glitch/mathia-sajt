@@ -34,6 +34,18 @@ const OVER_MSG = {
   ru: "Твои 15 бесплатных минут закончились. Чтобы продолжить, выбери пакет на странице Цены (/index.html#paketi).",
   pt: "Os teus 15 minutos gratuitos terminaram. Para continuares, escolhe um plano na página Preços (/index.html#paketi)."
 };
+// Dopuna (48h, samo klon) — kratka doplata da se nastavi odmah. „__P__" se menja ključem predmeta.
+const PASS_CTA = {
+  sr: " Ili nastavi ODMAH — 48h samo sa Profesoricom za ovaj predmet: [Dopuna 1.990 din →](dopuna.html#__P__)",
+  en: " Or keep going NOW — 48h with Profesorica for this subject only: [Top-up RSD 1,990 →](dopuna.html#__P__)",
+  de: " Oder mach JETZT weiter — 48 Std. nur mit Profesorica für dieses Fach: [Aufladung 1.990 RSD →](dopuna.html#__P__)",
+  fr: " Ou continue MAINTENANT — 48h avec Profesorica pour cette matière : [Recharge 1 990 RSD →](dopuna.html#__P__)",
+  es: " O sigue AHORA — 48h solo con Profesorica para esta asignatura: [Recarga 1.990 RSD →](dopuna.html#__P__)",
+  it: " Oppure continua ORA — 48h solo con Profesorica per questa materia: [Ricarica 1.990 RSD →](dopuna.html#__P__)",
+  ru: " Или продолжи СЕЙЧАС — 48ч только с Profesorica по этому предмету: [Пополнение 1 990 RSD →](dopuna.html#__P__)",
+  pt: " Ou continua AGORA — 48h só com a Profesorica para esta disciplina: [Recarga 1.990 RSD →](dopuna.html#__P__)"
+};
+function passCta(lang, pred) { return (PASS_CTA[lang] || PASS_CTA.sr).replace("__P__", encodeURIComponent(pred)); }
 
 const SHARED = `
 Ti si topla, strpljiva i stručna AI profesorka na platformi MathIA. Učiš jednog po jednog učenika, korak po korak. METOD: vodi učenika potpitanjima, ne sipaš gotovo rešenje; pokaži „odakle formula dolazi" (intuicija i kratko izvođenje), proveri razumevanje sa „probaj sad ti" na sličnom koraku, i na kraju daj 1–2 zadatka za samostalnu vežbu. STIL ISPRAVLJANJA I OHRABRIVANJA, prema situaciji: kad učenik odustaje — ohrabri i razloži na manji, lakši korak; kad greši zbog brzine — bez kritike, usmeri da uspori i proveri taj korak; kad ponavlja istu grešku — imenuj obrazac i daj pravilo/proveru da je izbegne; kad traži samo gotov odgovor — ne daješ rešenje naprečac, već ga vodiš kroz ključni korak da sam dođe; kad uradi dobro (i kad je moglo kraće) — pohvali, pa pokaži i kraći, elegantniji put; kad pita „da li je ovo na prijemnom" — odgovori iskreno koliko je tipično i koliko da uloži u tu temu; kad uči formulu napamet — objasni odakle dolazi da je razume, ne samo da je pamti.
@@ -417,13 +429,14 @@ export default async function handler(req, res) {
             pt: "Esta disciplina não está no teu plano. Adiciona-a na página Conta (/nalog.html) para continuares aqui.",
           };
           await saveUser(u);  // sačuvaj sinhronizovan rok pre izlaska
-          return res.status(200).json({ text: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, reply: LOCKED_MSG[msgLang] || LOCKED_MSG.sr, mode: rmode });
+          const _lt = (LOCKED_MSG[msgLang] || LOCKED_MSG.sr) + passCta(msgLang, rmode);
+          return res.status(200).json({ text: _lt, reply: _lt, mode: rmode, offer: "pass48" });
         }
         // pun pristup — nastavljamo na gejmifikaciju
       } else {
         // ——— PROBA: 15 minuta za sve (vreme kreće od prvog pitanja) ———
         const tnow = computeTrial(u);
-        if (tnow.expired) return res.status(200).json({ text: OVER_MSG[msgLang], reply: OVER_MSG[msgLang], mode: rmode });
+        if (tnow.expired) { const _ot = OVER_MSG[msgLang] + passCta(msgLang, rmode); return res.status(200).json({ text: _ot, reply: _ot, mode: rmode, offer: "pass48" }); }
         if (!u.trialStartedAt) u.trialStartedAt = Date.now();
         u.trialQuestions = (u.trialQuestions || 0) + 1;
       }

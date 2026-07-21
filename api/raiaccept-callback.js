@@ -143,6 +143,18 @@ export default async function handler(req, res) {
       }
     }
 
+    // 4b) Dopuna (48h, samo klon) — kratka "klon" pretplata za taj predmet
+    if (porudzbina.tip === 'klon') {
+      try {
+        const sati = (detaljno[0] && detaljno[0].trajanjeSati) || 48;
+        const istice = await supa.aktivirajPretplatu({ email, paket: 'klon48', predmeti, sati, tip: 'klon' });
+        pristupLink += '?dopuna=' + sati + 'h';
+        console.log('upc-callback: dopuna klon aktivirana', { email, predmeti, istice: istice.toISOString() });
+      } catch (e) {
+        console.error('upc-callback: dopuna (klon) nije aktivirana', e.message);
+      }
+    }
+
     // 5) Mejl kupcu (ako pukne, ne rusimo - placanje i aktivacija su prosli)
     try {
       await mail.posaljiRacun({
