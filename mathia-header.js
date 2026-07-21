@@ -88,19 +88,29 @@
     // — čišćenje: ukloni SVE druge <header>-e i zalutale jezik-biraче (i plutajuće koji se dodaju kasnije) —
     function sweep(){
       try {
+        // 1) ukloni sve DRUGE <header>-e (zadrži samo moj)
         var hs = document.querySelectorAll("header");
         for (var i = 0; i < hs.length; i++) { if (hs[i] !== mh && hs[i].parentNode) hs[i].parentNode.removeChild(hs[i]); }
-        var strays = document.querySelectorAll('select.lang, select[aria-label*="Jezik"], select[aria-label*="Language"], .langsel, .lang-switch');
-        for (var k = 0; k < strays.length; k++) {
-          var el = strays[k];
-          if (mh.contains(el)) continue;
-          if (el.closest && el.closest("#zoi-panel")) continue;   // ne diraj klon
-          var wrap = (el.closest && el.closest(".mh-langwrap,.langwrap,.lang-wrap,.topbar-lang")) || el;
-          if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+        // 2) ukloni SVAKI jezik-birač koji NIJE u mom headeru (i nije klon)
+        var ss = document.querySelectorAll("select");
+        for (var k = 0; k < ss.length; k++) {
+          var el = ss[k];
+          if (mh.contains(el)) continue;                          // MOJ globus — zaštićen
+          if (el.closest && el.closest("#zoi-panel")) continue;   // klon — ne diraj
+          var al = (el.getAttribute("aria-label") || "") + " " + (el.getAttribute("title") || "");
+          var isLang = el.classList.contains("lang") || /jezik|language|sprache|langue|idioma|lingua|язык/i.test(al);
+          if (!isLang && el.options && el.options.length >= 5) {
+            var t = ((el.options[0] && el.options[0].text) || "") + ((el.options[1] && el.options[1].text) || "");
+            if (/^(SR|EN|DE|FR|ES|IT|RU|PT)/i.test(t.trim())) isLang = true;
+          }
+          if (isLang) {
+            var wrap = (el.closest && el.closest(".mh-langwrap,.langwrap,.lang-wrap,.topbar-lang")) || el;
+            if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+          }
         }
       } catch (e) {}
     }
-    sweep(); setTimeout(sweep, 300); setTimeout(sweep, 900); setTimeout(sweep, 2000);
+    sweep(); setTimeout(sweep, 250); setTimeout(sweep, 700); setTimeout(sweep, 1600); setTimeout(sweep, 3000);
 
     var burger = mh.querySelector(".mh-burger");
     burger.addEventListener("click", function(){ mh.classList.toggle("open"); });
