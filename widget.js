@@ -620,7 +620,19 @@
        Mehur je white-space:normal, pa nema više varljivih praznina. */
     (function(){
       var lines = s.split("\n"), blocks = [], para = [];
-      function flush(){ if (para.length){ blocks.push('<div class="zoi-p">' + para.join("<br>") + '</div>'); para = []; } }
+      function flush(){
+        if (!para.length) return;
+        // Nastavak rečenice (slučajan prelom modela) spoji RAZMAKOM da se ne lomi na neprirodnom mestu;
+        // tvrd prelom (<br>) samo pred stavkom nabrajanja (• ili "1.") — tako tekst teče prirodno.
+        var html = "";
+        for (var pi = 0; pi < para.length; pi++){
+          var pl = para[pi];
+          var itemLine = /^(•|\d+[.)])\s/.test(pl);
+          html += (pi === 0) ? pl : ((itemLine ? "<br>" : " ") + pl);
+        }
+        blocks.push('<div class="zoi-p">' + html + '</div>');
+        para = [];
+      }
       function isHead(l){ return /^<b class="zoi-h">[\s\S]*?<\/b>$/.test(l); }
       function isTbl(l){ return /^<table[\s\S]*<\/table>$/.test(l); }
       function isDisp(l){ return /^<span class="kx" data-d="1">[\s\S]*?<\/span>$/.test(l); }
