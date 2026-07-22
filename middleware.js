@@ -15,6 +15,14 @@ export const config = {
 
 export default async function middleware(req) {
   const url = new URL(req.url);
+
+  // ——— PREVIEW MODEL za materijale ———
+  // Skripte/formule se UVEK učitaju (bez preusmeravanja na prijavu). gate.js na klijentu
+  // prikazuje PREVIEW (prvi deo vidljiv, ostalo zaključano „pretplati se") za nepretplaćene,
+  // a pun sadržaj za pretplatnike/admina. Middleware ovde gejtuje SAMO kviz (test smerova).
+  const _isKviz = url.pathname === "/kviz.html" || url.pathname.endsWith("/kviz.html");
+  if (!_isKviz) return undefined;
+
   const cookie = req.headers.get("cookie") || "";
 
   // 0) VLASNIČKI/ADMIN PRISTUP ide isključivo preko Supabase prijave (mejl) — vidi 0b.
