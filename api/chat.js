@@ -14,25 +14,25 @@ import { sbUser } from "../lib/sbauth.js";
 import { aktivnePretplate, beleziNapredak, poslednjeTeme } from "../lib/supabase.js";
 
 const LOGIN_MSG = {
-  sr: "Zdravo! Da počnemo čas, prijavi se na stranici Nalog (/nalog.html). Prvih 15 minuta je potpuno besplatno.",
-  en: "Hi! To start the lesson, sign in on the Account page (/nalog.html). Your first 15 minutes are completely free.",
-  de: "Hallo! Um die Stunde zu beginnen, melde dich auf der Konto-Seite (/nalog.html) an. Deine ersten 15 Minuten sind völlig kostenlos.",
-  fr: "Bonjour ! Pour commencer le cours, connecte-toi sur la page Compte (/nalog.html). Tes 15 premières minutes sont entièrement gratuites.",
-  es: "¡Hola! Para empezar la clase, inicia sesión en la página Cuenta (/nalog.html). Tus primeros 15 minutos son totalmente gratuitos.",
-  it: "Ciao! Per iniziare la lezione, accedi nella pagina Account (/nalog.html). I tuoi primi 15 minuti sono completamente gratuiti.",
-  ru: "Привет! Чтобы начать урок, войди на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
-  pt: "Olá! Para começares a aula, entra na página Conta (/nalog.html). Os teus primeiros 15 minutos são totalmente gratuitos."
+  sr: "Zdravo! Prvih 15 minuta je na poklon. Da ti sačuvam napredak, prijavi se → [Nalog](nalog.html).",
+  en: "Hi! Your first 15 minutes are on the house. To save your progress, sign in → [Account](nalog.html).",
+  de: "Hallo! Deine ersten 15 Minuten sind geschenkt. Um deinen Fortschritt zu speichern, melde dich an → [Konto](nalog.html).",
+  fr: "Bonjour ! Tes 15 premières minutes sont offertes. Pour sauvegarder ta progression, connecte-toi → [Compte](nalog.html).",
+  es: "¡Hola! Tus primeros 15 minutos son gratis. Para guardar tu progreso, inicia sesión → [Cuenta](nalog.html).",
+  it: "Ciao! I tuoi primi 15 minuti sono in regalo. Per salvare i progressi, accedi → [Account](nalog.html).",
+  ru: "Привет! Первые 15 минут — в подарок. Чтобы сохранить прогресс, войди → [Аккаунт](nalog.html).",
+  pt: "Olá! Os teus primeiros 15 minutos são grátis. Para guardares o progresso, entra → [Conta](nalog.html)."
 };
 const OWNER_KEY = process.env.OWNER_KEY || "";   // više NEMA javnog podrazumevanog ključa; admin = prijavljen vlasnički mejl (isAdmin)
 const OVER_MSG = {
-  sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#paketi).",
-  en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#paketi).",
-  de: "Deine 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wähle ein Paket auf der Preise-Seite (/index.html#paketi).",
-  fr: "Tes 15 minutes gratuites sont écoulées. Pour continuer, choisis une formule sur la page Tarifs (/index.html#paketi).",
-  es: "Tus 15 minutos gratuitos han terminado. Para continuar, elige un plan en la página Precios (/index.html#paketi).",
-  it: "I tuoi 15 minuti gratuiti sono finiti. Per continuare, scegli un piano nella pagina Prezzi (/index.html#paketi).",
-  ru: "Твои 15 бесплатных минут закончились. Чтобы продолжить, выбери пакет на странице Цены (/index.html#paketi).",
-  pt: "Os teus 15 minutos gratuitos terminaram. Para continuares, escolhe um plano na página Preços (/index.html#paketi)."
+  sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket → [Cene](index.html#paketi).",
+  en: "Your free 15 minutes are up. To keep going, choose a plan → [Pricing](index.html#paketi).",
+  de: "Deine 15 kostenlosen Minuten sind vorbei. Um weiterzumachen, wähle ein Paket → [Preise](index.html#paketi).",
+  fr: "Tes 15 minutes gratuites sont écoulées. Pour continuer, choisis une formule → [Tarifs](index.html#paketi).",
+  es: "Tus 15 minutos gratuitos han terminado. Para continuar, elige un plan → [Precios](index.html#paketi).",
+  it: "I tuoi 15 minuti gratuiti sono finiti. Per continuare, scegli un piano → [Prezzi](index.html#paketi).",
+  ru: "Твои 15 бесплатных минут закончились. Чтобы продолжить, выбери пакет → [Цены](index.html#paketi).",
+  pt: "Os teus 15 minutos gratuitos terminaram. Para continuares, escolhe um plano → [Preços](index.html#paketi)."
 };
 // Dopuna (48h, samo klon) — kratka doplata da se nastavi odmah. „__P__" se menja ključem predmeta.
 const PASS_CTA = {
@@ -363,6 +363,9 @@ export default async function handler(req, res) {
       if (sb) { uid = "sb:" + sb.id; sbId = sb.id; }
       else { const phone = await getSessionPhone(req); if (phone) uid = phone; }
       if (!uid && ownerBypass) uid = "owner:test";
+      // ANONIMNA PROBA: nov posetilac (bez prijave) dobija 15 min ODMAH, vezanih za uređaj (deviceId iz widgeta).
+      // Tek po isteku traži pretplatu. (Ako nema ni deviceId — tek onda blaga poruka za prijavu.)
+      if (!uid && body.deviceId) uid = "dev:" + String(body.deviceId).replace(/[^\w-]/g, "").slice(0, 64);
       if (!uid) return res.status(200).json({ text: LOGIN_MSG[msgLang], reply: LOGIN_MSG[msgLang], mode: rmode });
 
       // ——— ADMIN BYPASS ———
@@ -419,14 +422,14 @@ export default async function handler(req, res) {
         // Pretplatnik — BEZ ijednog pomena „15 min". Samo proveri da paket pokriva ovaj predmet.
         if (sbEmail && !pokrivaPredmet) {
           const LOCKED_MSG = {
-            sr: "Ovaj predmet nije u tvom paketu. Dodaj ga na stranici Nalog (/nalog.html) da nastaviš čas ovde.",
-            en: "This subject isn't in your plan. Add it on the Account page (/nalog.html) to continue the lesson here.",
-            de: "Dieses Fach ist nicht in deinem Paket. Füge es auf der Konto-Seite (/nalog.html) hinzu, um hier fortzufahren.",
-            fr: "Cette matière n'est pas dans ton forfait. Ajoute-la sur la page Compte (/nalog.html) pour continuer ici.",
-            es: "Esta asignatura no está en tu plan. Añádela en la página Cuenta (/nalog.html) para continuar aquí.",
-            it: "Questa materia non è nel tuo piano. Aggiungila nella pagina Account (/nalog.html) per continuare qui.",
-            ru: "Этот предмет не входит в твой пакет. Добавь его на странице Аккаунт (/nalog.html), чтобы продолжить здесь.",
-            pt: "Esta disciplina não está no teu plano. Adiciona-a na página Conta (/nalog.html) para continuares aqui.",
+            sr: "Ovaj predmet nije u tvom paketu. Dodaj ga na stranici Nalog da nastaviš čas ovde.",
+            en: "This subject isn't in your plan. Add it on the Account page to continue the lesson here.",
+            de: "Dieses Fach ist nicht in deinem Paket. Füge es auf der Konto-Seite hinzu, um hier fortzufahren.",
+            fr: "Cette matière n'est pas dans ton forfait. Ajoute-la sur la page Compte pour continuer ici.",
+            es: "Esta asignatura no está en tu plan. Añádela en la página Cuenta para continuar aquí.",
+            it: "Questa materia non è nel tuo piano. Aggiungila nella pagina Account per continuare qui.",
+            ru: "Этот предмет не входит в твой пакет. Добавь его на странице Аккаунт, чтобы продолжить здесь.",
+            pt: "Esta disciplina não está no teu plano. Adiciona-a na página Conta para continuares aqui.",
           };
           await saveUser(u);  // sačuvaj sinhronizovan rok pre izlaska
           const _lt = (LOCKED_MSG[msgLang] || LOCKED_MSG.sr) + passCta(msgLang, rmode);
