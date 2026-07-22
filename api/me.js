@@ -24,7 +24,11 @@ export default async function handler(req, res) {
     const u = await getUser(uid);
 
     if (req.method === "POST") {
-      if (body && body.goal) { setGoal(u, body.goal); await saveUser(u); }
+      let dirty = false;
+      if (body && body.goal) { setGoal(u, body.goal); dirty = true; }
+      // Boja korice/planera — čuva se uz profil da ostane ista na svim uređajima
+      if (body && typeof body.tema === "string" && /^[a-z0-9_-]{2,20}$/i.test(body.tema)) { u.tema = body.tema.toLowerCase(); dirty = true; }
+      if (dirty) await saveUser(u);
     } else if (req.method !== "GET") {
       return res.status(405).json({ ok: false, error: "Method not allowed" });
     }

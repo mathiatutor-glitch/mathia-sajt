@@ -23,7 +23,7 @@ const LOGIN_MSG = {
   ru: "Привет! Чтобы начать урок, войди на странице Аккаунт (/nalog.html). Первые 15 минут совершенно бесплатны.",
   pt: "Olá! Para começares a aula, entra na página Conta (/nalog.html). Os teus primeiros 15 minutos são totalmente gratuitos."
 };
-const OWNER_KEY = process.env.OWNER_KEY || "MATHIA-MARINA-2026";
+const OWNER_KEY = process.env.OWNER_KEY || "";   // više NEMA javnog podrazumevanog ključa; admin = prijavljen vlasnički mejl (isAdmin)
 const OVER_MSG = {
   sr: "Tvojih 15 besplatnih minuta je isteklo. Da nastavimo zajedno, izaberi paket na stranici Cene (/index.html#paketi).",
   en: "Your free 15 minutes are up. To keep going, choose a plan on the Pricing page (/index.html#paketi).",

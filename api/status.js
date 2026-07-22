@@ -2,7 +2,7 @@
 // ──────────────────────────────────────────────────────────────────────────
 // Vlasnički pregled: da li su sve integracije PODEŠENE (env postavljen).
 // Vraća SAMO true/false — NIKAD vrednosti tajni. Zaključano vlasničkim ključem
-// (OWNER_KEY, default MATHIA-MARINA-2026) ili ADMIN_SECRET-om.
+// (preko OWNER_KEY ili ADMIN_SECRET iz env-a).
 // ──────────────────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,9 +11,10 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') { res.status(204).end(); return; }
 
   const key = (req.query && req.query.key) || req.headers['x-owner-key'] || '';
-  const OWNER = process.env.OWNER_KEY || 'MATHIA-MARINA-2026';
+  const OWNER = process.env.OWNER_KEY || '';      // bez javnog podrazumevanog ključa
   const ADMIN = process.env.ADMIN_SECRET || '';
-  if (String(key) !== String(OWNER) && !(ADMIN && String(key) === String(ADMIN))) {
+  const ok = (OWNER && String(key) === String(OWNER)) || (ADMIN && String(key) === String(ADMIN));
+  if (!ok) {
     res.status(403).json({ error: 'Zabranjeno' });
     return;
   }
