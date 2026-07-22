@@ -543,17 +543,6 @@ window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.de
 })();
 </script>
 <script src="i18n-mathia.js"></script>
-<script>(function(){try{
-  var owner=localStorage.getItem('mathia_access')==='full';
-  if(owner){ try{ document.cookie='mathia_owner=MATHIA-MARINA-2026; path=/; max-age=31536000; SameSite=Lax'; }catch(e){} }
-  var mu=null;try{mu=JSON.parse(localStorage.getItem('mathia_user')||'null');}catch(e){}
-  if(owner||(mu&&(mu.owner||(mu.subjects&&mu.subjects.length)))){
-    var b=document.querySelector('.finale .btn-gold');
-    if(b){b.textContent='Uči Algebru \u2192';b.setAttribute('href','Algebra-Skripta.html');}
-    var f=document.querySelector('.finale .fine'); if(f) f.style.display='none';
-  }
-}catch(e){}})();</script>
-
 <script defer src="gate.js" data-subject="algebra" data-note-only="1"></script>
 </body>
 </html>

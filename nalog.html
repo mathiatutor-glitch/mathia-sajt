@@ -1407,7 +1407,26 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
       hello.appendChild(s);
     }
   }
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", apply); else apply();
+  // ——— sinhronizacija boje sa profilom (baza) → ista na svim uređajima ———
+  function sbTok(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i); if(k&&/^sb-.*-auth-token$/.test(k)){ var v=JSON.parse(localStorage.getItem(k)||"{}"); var t=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)||(v.session&&v.session.access_token)); if(t) return t; } } }catch(e){} return ""; }
+  function syncTheme(){
+    var tok=sbTok(); if(!tok) return;
+    try{
+      fetch("/api/me",{headers:{Authorization:"Bearer "+tok}}).then(function(r){return r.ok?r.json():null;}).then(function(d){
+        var serverTema = d && d.profile && d.profile.tema;
+        var localTema = (function(){try{return localStorage.getItem("mathia_cover_theme");}catch(e){return null;}})();
+        if(serverTema && TH[serverTema]){
+          // baza ima boju → primeni je i uskladi lokalno
+          if(serverTema!==localTema){ try{localStorage.setItem("mathia_cover_theme",serverTema);}catch(e){} apply(); }
+        } else if(localTema && TH[localTema]){
+          // baza još nema, a lokalno postoji → sačuvaj u profil (da se pamti svuda)
+          fetch("/api/me",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok},body:JSON.stringify({token:tok,tema:localTema})}).catch(function(){});
+        }
+      }).catch(function(){});
+    }catch(e){}
+  }
+  function boot(){ apply(); syncTheme(); }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();
 </script>
 </body>

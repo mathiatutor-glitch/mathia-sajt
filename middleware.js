@@ -17,10 +17,9 @@ export default async function middleware(req) {
   const url = new URL(req.url);
   const cookie = req.headers.get("cookie") || "";
 
-  // 0) VLASNIČKI PRISTUP: kolačić postavljen preko pristup.html -> pun pristup svuda
-  const OWNER_KEY = "MATHIA-MARINA-2026";
-  const om = cookie.match(/(?:^|;\s*)mathia_owner=([^;]+)/);
-  if (om && decodeURIComponent(om[1]) === OWNER_KEY) return undefined;
+  // 0) VLASNIČKI/ADMIN PRISTUP ide isključivo preko Supabase prijave (mejl) — vidi 0b.
+  //    (Uklonjen je stari kolačić „mathia_owner" sa javnim ključem: ključ je bio vidljiv u
+  //     gate.js pa je svako mogao da sebi da pun pristup. Sada admin = prijavljen vlasnički mejl.)
 
   // 0b) SUPABASE PRIJAVA (mejl) — glavni put od kad se pretplata kupuje preko registracija.html.
   //     nalog.html upiše token u kolačić mathia_sb; ovde ga proveravamo kod Supabase-a.

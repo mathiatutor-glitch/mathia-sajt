@@ -13,7 +13,7 @@
  *   GLAVNI PREKIDAČ: CFG.ACCESS_ON = false (difolt) → sajt radi normalno (samo anti-kopiranje).
  *   Kad backend (SMS + naplata) proradi → stavi ACCESS_ON = true i poveži hooks (dole označeni).
  * ───────────────────────────────────────────────────────────────────────────── */
-(function(){try{var q=new URLSearchParams(location.search);var k=q.get("pristup");if(k==="MATHIA-MARINA-2026"){localStorage.setItem("mathia_access","full");localStorage.setItem("mathia_ok",k);}if(localStorage.getItem("mathia_access")==="full")return;}catch(e){}
+(function(){try{var q=new URLSearchParams(location.search);var k=q.get("pristup");if(localStorage.getItem("mathia_access")==="full")return;}catch(e){}
   "use strict";
 
   /* ───────── PODEŠAVANJA ───────── */

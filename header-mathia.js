@@ -1,4 +1,4 @@
-(function(){try{var q=new URLSearchParams(location.search);var k=q.get('pristup');if(k){var KEY='MATHIA-MARINA-2026';if(k.toLowerCase()==='off'){localStorage.removeItem('mathia_access');localStorage.removeItem('mathia_user');}else if(k===KEY){localStorage.setItem('mathia_access','full');localStorage.setItem('mathia_ok',KEY);}}}catch(e){}})();
+(function(){try{var q=new URLSearchParams(location.search);var k=q.get('pristup');if(k){var KEY='__disabled__'+Math.random();/* test-pristup ukinut, vlasnik=prijava mejlom */if(k.toLowerCase()==='off'){localStorage.removeItem('mathia_access');localStorage.removeItem('mathia_user');}else if(k===KEY){localStorage.setItem('mathia_access','full');localStorage.setItem('mathia_ok',KEY);}}}catch(e){}})();
 /* ============================================================
    MATHIA — jedinstveni meni (zaglavlje) za CEO sajt.
    Ubaci JEDNOM:  <script src="header-mathia.js" defer></script>
