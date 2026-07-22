@@ -1263,6 +1263,14 @@
     }catch(e){}
     return null;
   }
+  // Trajni ID uređaja — da anonimni posetilac dobije svojih 15 min bez prijave (proba vezana za uređaj).
+  function devId(){
+    try{
+      var d = localStorage.getItem("mathia_dev");
+      if(!d){ d = "d" + Date.now().toString(36) + Math.random().toString(36).slice(2,12); localStorage.setItem("mathia_dev", d); }
+      return d;
+    }catch(e){ return ""; }
+  }
   function send() {
     var txt = (taEl.value || "").trim();
     if (!txt && !attachment) return;
@@ -1289,7 +1297,7 @@
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode: MODE, lang: LANG, ownerKey: (function(){try{return localStorage.getItem("mathia_ok")||"";}catch(e){return "";}})(), messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
+      body: JSON.stringify({ mode: MODE, lang: LANG, deviceId: devId(), messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
     })
       .then(function (r) { return r.json(); })
       .then(function (data) {
