@@ -302,7 +302,7 @@
     ".zoi-bub .zoi-copy{position:absolute;top:7px;right:8px;background:#43384a;color:#e9ddc8;border:1px solid #5a4d63;border-radius:7px;font:600 11px 'Nunito',sans-serif;padding:3px 9px;cursor:pointer;opacity:.85;z-index:2}" +
     ".zoi-bub .zoi-copy:hover{opacity:1;background:#52465c}" +
     ".zoi-bub code.zoi-ic{background:#F1E7D6;border:1px solid #E2D6BF;border-radius:6px;padding:1px 5px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;white-space:pre-wrap}" +
-    ".zoi-bub .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;margin:.15em 0;padding-bottom:3px}.zoi-bub .katex-display>.katex{white-space:normal}" +
+    ".zoi-bub .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;margin:.15em 0;padding-bottom:3px}.zoi-bub .katex-display>.katex{white-space:nowrap}.zoi-bub .katex-display{text-align:left}" +
     ".zoi-bub .zoi-disp .katex-display{margin:.05em 0}" +
     ".zoi-bub .katex{max-width:100%;white-space:nowrap}" +
     ".zoi-bub .kx-fallback{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em;color:#5a4a50}" +
@@ -672,6 +672,15 @@
       try { window.katex.render(src, el, {displayMode: el.getAttribute("data-d")==="1", throwOnError:true, errorColor:"#9C7838"}); }
       catch(e){ el.textContent = texToText(src); el.className += " kx-fallback"; }
       el.setAttribute("data-done","1");
+    }
+    try{ fitDisp(root); setTimeout(function(){ fitDisp(root); }, 160); }catch(e){}
+  }
+  function fitDisp(root){
+    if(!root||!root.querySelectorAll) return;
+    var ds = root.querySelectorAll(".katex-display");
+    for (var i=0;i<ds.length;i++){ var d=ds[i]; d.style.fontSize="";
+      var k=d.querySelector(".katex")||d; var avail=d.clientWidth, need=k.scrollWidth;
+      if(need>1 && avail>1 && need>avail+1){ var r=Math.max(avail/need, 0.5); d.style.fontSize=(r*100).toFixed(1)+"%"; }
     }
   }
 
