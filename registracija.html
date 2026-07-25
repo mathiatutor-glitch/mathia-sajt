@@ -260,7 +260,7 @@ document.getElementById('finish').addEventListener('click',function(){
   fetch('/api/checkout',{ method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ stavke:stavke, email:mail, predmeti:selected.map(function(s){return (typeof T2K!=="undefined"&&T2K[s.t])||s.t;}), korica:korica, lang:lang }) })
    .then(function(r){ return r.json(); })
-   .then(function(data){ if(data && data.paymentUrl){ location.href=data.paymentUrl; } else { btn.disabled=false; btn.textContent='Idi na plaćanje →'; alert(data && data.greska ? data.greska : 'Naplata trenutno nije dostupna. Pokušaj ubrzo.'); } })
+   .then(function(data){ if(data && data.paymentUrl){ try{ if(window.fbq) fbq('track','InitiateCheckout'); }catch(e){} location.href=data.paymentUrl; } else { btn.disabled=false; btn.textContent='Idi na plaćanje →'; alert(data && data.greska ? data.greska : 'Naplata trenutno nije dostupna. Pokušaj ubrzo.'); } })
    .catch(function(){ btn.disabled=false; btn.textContent='Idi na plaćanje →'; alert('Naplata trenutno nije povezana. Pokušaj ubrzo.'); });
 });
 </script>
