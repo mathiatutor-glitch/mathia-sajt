@@ -292,3 +292,85 @@ window.__MATHIA_DICT__={"Tu sam za tebe — svakog dana.":{"en": "I'm here for y
 
   });
 })();
+
+
+/* MATHIA — dopuna rečnika: teme srednjoškolske matematike (tačan plan po razredima). */
+(function(){
+  var D=(window.__MATHIA_DICT__=window.__MATHIA_DICT__||{});
+  Object.assign(D,{
+    "Logika i skupovi":{"en":"Logic and sets","de":"Logik und Mengen","fr":"Logique et ensembles","es":"Lógica y conjuntos","it":"Logica e insiemi","ru":"Логика и множества","pt":"Lógica e conjuntos"},
+    "Realni brojevi":{"en":"Real numbers","de":"Reelle Zahlen","fr":"Nombres réels","es":"Números reales","it":"Numeri reali","ru":"Действительные числа","pt":"Números reais"},
+    "Linearna funkcija":{"en":"Linear function","de":"Lineare Funktion","fr":"Fonction linéaire","es":"Función lineal","it":"Funzione lineare","ru":"Линейная функция","pt":"Função linear"},
+    "Podudarnost":{"en":"Congruence","de":"Kongruenz","fr":"Congruence","es":"Congruencia","it":"Congruenza","ru":"Конгруэнтность","pt":"Congruência"},
+    "Racionalni algebarski izrazi":{"en":"Rational algebraic expressions","de":"Rationale algebraische Ausdrücke","fr":"Expressions algébriques rationnelles","es":"Expresiones algebraicas racionales","it":"Espressioni algebriche razionali","ru":"Рациональные алгебраические выражения","pt":"Expressões algébricas racionais"},
+    "Trigonometrija pravouglog trougla":{"en":"Right-triangle trigonometry","de":"Trigonometrie am rechtwinkligen Dreieck","fr":"Trigonométrie du triangle rectangle","es":"Trigonometría del triángulo rectángulo","it":"Trigonometria del triangolo rettangolo","ru":"Тригонометрия прямоугольного треугольника","pt":"Trigonometria do triângulo retângulo"},
+    "Stepenovanje i korenovanje":{"en":"Powers and roots","de":"Potenzen und Wurzeln","fr":"Puissances et racines","es":"Potencias y raíces","it":"Potenze e radici","ru":"Степени и корни","pt":"Potências e raízes"},
+    "Kvadratna jednačina i funkcija":{"en":"Quadratic equation and function","de":"Quadratische Gleichung und Funktion","fr":"Équation et fonction du second degré","es":"Ecuación y función cuadrática","it":"Equazione e funzione quadratica","ru":"Квадратное уравнение и функция","pt":"Equação e função quadrática"},
+    "Eksponencijalna i logaritamska funkcija":{"en":"Exponential and logarithmic function","de":"Exponential- und Logarithmusfunktion","fr":"Fonction exponentielle et logarithmique","es":"Función exponencial y logarítmica","it":"Funzione esponenziale e logaritmica","ru":"Показательная и логарифмическая функция","pt":"Função exponencial e logarítmica"},
+    "Trigonometrijske funkcije":{"en":"Trigonometric functions","de":"Trigonometrische Funktionen","fr":"Fonctions trigonométriques","es":"Funciones trigonométricas","it":"Funzioni trigonometriche","ru":"Тригонометрические функции","pt":"Funções trigonométricas"},
+    "Sličnost":{"en":"Similarity","de":"Ähnlichkeit","fr":"Similitude","es":"Semejanza","it":"Similitudine","ru":"Подобие","pt":"Semelhança"},
+    "Kvadratne nejednačine":{"en":"Quadratic inequalities","de":"Quadratische Ungleichungen","fr":"Inéquations du second degré","es":"Inecuaciones cuadráticas","it":"Disequazioni di secondo grado","ru":"Квадратные неравенства","pt":"Inequações quadráticas"},
+    "Matematička indukcija":{"en":"Mathematical induction","de":"Vollständige Induktion","fr":"Raisonnement par récurrence","es":"Inducción matemática","it":"Induzione matematica","ru":"Математическая индукция","pt":"Indução matemática"},
+    "Trigonometrijske jednačine":{"en":"Trigonometric equations","de":"Trigonometrische Gleichungen","fr":"Équations trigonométriques","es":"Ecuaciones trigonométricas","it":"Equazioni trigonometriche","ru":"Тригонометрические уравнения","pt":"Equações trigonométricas"},
+    "Poliedri":{"en":"Polyhedra","de":"Polyeder","fr":"Polyèdres","es":"Poliedros","it":"Poliedri","ru":"Многогранники","pt":"Poliedros"},
+    "Obrtna tela":{"en":"Solids of revolution","de":"Rotationskörper","fr":"Solides de révolution","es":"Cuerpos de revolución","it":"Solidi di rotazione","ru":"Тела вращения","pt":"Sólidos de revolução"},
+    "Izvod funkcije":{"en":"Derivative of a function","de":"Ableitung einer Funktion","fr":"Dérivée d'une fonction","es":"Derivada de una función","it":"Derivata di una funzione","ru":"Производная функции","pt":"Derivada de uma função"},
+    "Primene izvoda":{"en":"Applications of derivatives","de":"Anwendungen der Ableitung","fr":"Applications de la dérivée","es":"Aplicaciones de la derivada","it":"Applicazioni della derivata","ru":"Приложения производной","pt":"Aplicações da derivada"},
+    "Ispitivanje funkcija":{"en":"Curve sketching","de":"Kurvendiskussion","fr":"Étude de fonctions","es":"Estudio de funciones","it":"Studio di funzione","ru":"Исследование функций","pt":"Estudo de funções"},
+    "Integral":{"en":"Integral","de":"Integral","fr":"Intégrale","es":"Integral","it":"Integrale","ru":"Интеграл","pt":"Integral"},
+    "Kombinatorika i verovatnoća":{"en":"Combinatorics and probability","de":"Kombinatorik und Wahrscheinlichkeit","fr":"Combinatoire et probabilités","es":"Combinatoria y probabilidad","it":"Calcolo combinatorio e probabilità","ru":"Комбинаторика и вероятность","pt":"Combinatória e probabilidade"},
+    "Iskazi, skupovne operacije":{"en":"Statements, set operations","de":"Aussagen, Mengenoperationen","fr":"Propositions, opérations sur les ensembles","es":"Proposiciones, operaciones con conjuntos","it":"Proposizioni, operazioni tra insiemi","ru":"Высказывания, операции над множествами","pt":"Proposições, operações com conjuntos"},
+    "Apsolutna vrednost, intervali":{"en":"Absolute value, intervals","de":"Betrag, Intervalle","fr":"Valeur absolue, intervalles","es":"Valor absoluto, intervalos","it":"Valore assoluto, intervalli","ru":"Модуль, интервалы","pt":"Valor absoluto, intervalos"},
+    "Grafik i jednačine":{"en":"Graph and equations","de":"Graph und Gleichungen","fr":"Graphe et équations","es":"Gráfica y ecuaciones","it":"Grafico ed equazioni","ru":"График и уравнения","pt":"Gráfico e equações"},
+    "Uvod u geometriju, trouglovi":{"en":"Intro to geometry, triangles","de":"Einführung in die Geometrie, Dreiecke","fr":"Introduction à la géométrie, triangles","es":"Introducción a la geometría, triángulos","it":"Introduzione alla geometria, triangoli","ru":"Введение в геометрию, треугольники","pt":"Introdução à geometria, triângulos"},
+    "Polinomi i razlomljeni izrazi":{"en":"Polynomials and rational expressions","de":"Polynome und Bruchterme","fr":"Polynômes et expressions fractionnaires","es":"Polinomios y expresiones fraccionarias","it":"Polinomi ed espressioni frazionarie","ru":"Многочлены и дробные выражения","pt":"Polinómios e expressões fracionárias"},
+    "sin, cos, tg":{"en":"sin, cos, tan","de":"sin, cos, tan","fr":"sin, cos, tan","es":"sen, cos, tan","it":"sen, cos, tan","ru":"sin, cos, tg","pt":"sen, cos, tan"},
+    "Operacije i osobine":{"en":"Operations and properties","de":"Rechenregeln und Eigenschaften","fr":"Opérations et propriétés","es":"Operaciones y propiedades","it":"Operazioni e proprietà","ru":"Операции и свойства","pt":"Operações e propriedades"},
+    "Diskriminanta, Vietove formule":{"en":"Discriminant, Vieta's formulas","de":"Diskriminante, Satz von Vieta","fr":"Discriminant, formules de Viète","es":"Discriminante, fórmulas de Vieta","it":"Discriminante, formule di Viète","ru":"Дискриминант, формулы Виета","pt":"Discriminante, fórmulas de Viète"},
+    "Grafici i jednačine":{"en":"Graphs and equations","de":"Graphen und Gleichungen","fr":"Graphes et équations","es":"Gráficas y ecuaciones","it":"Grafici ed equazioni","ru":"Графики и уравнения","pt":"Gráficos e equações"},
+    "Identiteti i jednačine":{"en":"Identities and equations","de":"Identitäten und Gleichungen","fr":"Identités et équations","es":"Identidades y ecuaciones","it":"Identità ed equazioni","ru":"Тождества и уравнения","pt":"Identidades e equações"},
+    "Sličnost trouglova":{"en":"Similar triangles","de":"Ähnliche Dreiecke","fr":"Triangles semblables","es":"Triángulos semejantes","it":"Triangoli simili","ru":"Подобные треугольники","pt":"Triângulos semelhantes"},
+    "Znak kvadratnog trinoma":{"en":"Sign of the quadratic trinomial","de":"Vorzeichen des quadratischen Trinoms","fr":"Signe du trinôme du second degré","es":"Signo del trinomio cuadrático","it":"Segno del trinomio di secondo grado","ru":"Знак квадратного трёхчлена","pt":"Sinal do trinómio do segundo grau"},
+    "Aritmetički i geometrijski":{"en":"Arithmetic and geometric","de":"Arithmetisch und geometrisch","fr":"Arithmétiques et géométriques","es":"Aritméticas y geométricas","it":"Aritmetiche e geometriche","ru":"Арифметические и геометрические","pt":"Aritméticas e geométricas"},
+    "Dokazivanje tvrđenja":{"en":"Proving statements","de":"Aussagen beweisen","fr":"Démontrer des propositions","es":"Demostración de proposiciones","it":"Dimostrare proposizioni","ru":"Доказательство утверждений","pt":"Demonstração de proposições"},
+    "Jednačine i nejednačine":{"en":"Equations and inequalities","de":"Gleichungen und Ungleichungen","fr":"Équations et inéquations","es":"Ecuaciones e inecuaciones","it":"Equazioni e disequazioni","ru":"Уравнения и неравенства","pt":"Equações e inequações"},
+    "Prava i krive drugog reda":{"en":"Line and second-order curves","de":"Gerade und Kurven zweiter Ordnung","fr":"Droite et coniques","es":"Recta y cónicas","it":"Retta e coniche","ru":"Прямая и кривые второго порядка","pt":"Reta e cónicas"},
+    "Prizma i piramida":{"en":"Prism and pyramid","de":"Prisma und Pyramide","fr":"Prisme et pyramide","es":"Prisma y pirámide","it":"Prisma e piramide","ru":"Призма и пирамида","pt":"Prisma e pirâmide"},
+    "Valjak, kupa, lopta":{"en":"Cylinder, cone, sphere","de":"Zylinder, Kegel, Kugel","fr":"Cylindre, cône, sphère","es":"Cilindro, cono, esfera","it":"Cilindro, cono, sfera","ru":"Цилиндр, конус, шар","pt":"Cilindro, cone, esfera"},
+    "Limesi i neprekidnost":{"en":"Limits and continuity","de":"Grenzwerte und Stetigkeit","fr":"Limites et continuité","es":"Límites y continuidad","it":"Limiti e continuità","ru":"Пределы и непрерывность","pt":"Limites e continuidade"},
+    "Pravila izvođenja":{"en":"Differentiation rules","de":"Ableitungsregeln","fr":"Règles de dérivation","es":"Reglas de derivación","it":"Regole di derivazione","ru":"Правила дифференцирования","pt":"Regras de derivação"},
+    "Ekstremi i tok funkcije":{"en":"Extrema and behavior","de":"Extremstellen und Verlauf","fr":"Extremums et variations","es":"Extremos y variación","it":"Estremi e andamento","ru":"Экстремумы и поведение функции","pt":"Extremos e variação"},
+    "Kompletan tok i grafik":{"en":"Full analysis and graph","de":"Vollständige Kurvendiskussion und Graph","fr":"Étude complète et graphe","es":"Estudio completo y gráfica","it":"Studio completo e grafico","ru":"Полное исследование и график","pt":"Estudo completo e gráfico"},
+    "Neodređeni i određeni":{"en":"Indefinite and definite","de":"Unbestimmt und bestimmt","fr":"Indéfinie et définie","es":"Indefinida y definida","it":"Indefinito e definito","ru":"Неопределённый и определённый","pt":"Indefinido e definido"},
+    "Permutacije, kombinacije":{"en":"Permutations, combinations","de":"Permutationen, Kombinationen","fr":"Permutations, combinaisons","es":"Permutaciones, combinaciones","it":"Permutazioni, combinazioni","ru":"Перестановки, комбинации","pt":"Permutações, combinações"}
+  });
+})();
+
+
+/* MATHIA — dopuna rečnika: teme srednje matematike (usklađeno sa klon-programom). */
+(function(){
+  var D=(window.__MATHIA_DICT__=window.__MATHIA_DICT__||{});
+  Object.assign(D,{
+    "Linearne jednačine i sistemi":{"en":"Linear equations and systems","de":"Lineare Gleichungen und Systeme","fr":"Équations linéaires et systèmes","es":"Ecuaciones lineales y sistemas","it":"Equazioni lineari e sistemi","ru":"Линейные уравнения и системы","pt":"Equações lineares e sistemas"},
+    "Polinomi":{"en":"Polynomials","de":"Polynome","fr":"Polynômes","es":"Polinomios","it":"Polinomi","ru":"Многочлены","pt":"Polinómios"},
+    "Podudarnost i vektori":{"en":"Congruence and vectors","de":"Kongruenz und Vektoren","fr":"Congruence et vecteurs","es":"Congruencia y vectores","it":"Congruenza e vettori","ru":"Конгруэнтность и векторы","pt":"Congruência e vetores"},
+    "Stepen i koren":{"en":"Powers and roots","de":"Potenzen und Wurzeln","fr":"Puissances et racines","es":"Potencias y raíces","it":"Potenze e radici","ru":"Степени и корни","pt":"Potências e raízes"},
+    "Iracionalne jednačine":{"en":"Irrational equations","de":"Wurzelgleichungen","fr":"Équations irrationnelles","es":"Ecuaciones irracionales","it":"Equazioni irrazionali","ru":"Иррациональные уравнения","pt":"Equações irracionais"},
+    "Trigonometrija trougla":{"en":"Triangle trigonometry","de":"Trigonometrie am Dreieck","fr":"Trigonométrie du triangle","es":"Trigonometría del triángulo","it":"Trigonometria del triangolo","ru":"Тригонометрия треугольника","pt":"Trigonometria do triângulo"},
+    "Trigonometrijski identiteti":{"en":"Trigonometric identities","de":"Trigonometrische Identitäten","fr":"Identités trigonométriques","es":"Identidades trigonométricas","it":"Identità trigonometriche","ru":"Тригонометрические тождества","pt":"Identidades trigonométricas"},
+    "Nizovi i redovi":{"en":"Sequences and series","de":"Folgen und Reihen","fr":"Suites et séries","es":"Sucesiones y series","it":"Successioni e serie","ru":"Последовательности и ряды","pt":"Sucessões e séries"},
+    "Rešenja i grafik":{"en":"Solutions and graph","de":"Lösungen und Graph","fr":"Solutions et graphe","es":"Soluciones y gráfica","it":"Soluzioni e grafico","ru":"Решения и график","pt":"Soluções e gráfico"},
+    "Osobine i racionalisanje":{"en":"Properties and rationalizing","de":"Eigenschaften und Rationalisieren","fr":"Propriétés et rationalisation","es":"Propiedades y racionalización","it":"Proprietà e razionalizzazione","ru":"Свойства и рационализация","pt":"Propriedades e racionalização"},
+    "Rastavljanje na činioce":{"en":"Factoring","de":"Faktorisierung","fr":"Factorisation","es":"Factorización","it":"Scomposizione in fattori","ru":"Разложение на множители","pt":"Fatorização"},
+    "Geometrija u ravni":{"en":"Plane geometry","de":"Ebene Geometrie","fr":"Géométrie plane","es":"Geometría plana","it":"Geometria piana","ru":"Планиметрия","pt":"Geometria plana"},
+    "Racionalisanje imenioca":{"en":"Rationalizing the denominator","de":"Nenner rational machen","fr":"Rationalisation du dénominateur","es":"Racionalización del denominador","it":"Razionalizzazione del denominatore","ru":"Рационализация знаменателя","pt":"Racionalização do denominador"},
+    "Znak trinoma":{"en":"Sign of the trinomial","de":"Vorzeichen des Trinoms","fr":"Signe du trinôme","es":"Signo del trinomio","it":"Segno del trinomio","ru":"Знак трёхчлена","pt":"Sinal do trinómio"},
+    "Smena i provera":{"en":"Substitution and checking","de":"Substitution und Probe","fr":"Substitution et vérification","es":"Sustitución y comprobación","it":"Sostituzione e verifica","ru":"Замена и проверка","pt":"Substituição e verificação"},
+    "Sinusna i kosinusna teorema":{"en":"Law of sines and cosines","de":"Sinus- und Kosinussatz","fr":"Loi des sinus et des cosinus","es":"Teorema del seno y del coseno","it":"Teorema dei seni e del coseno","ru":"Теоремы синусов и косинусов","pt":"Lei dos senos e dos cossenos"},
+    "Jedinična kružnica, grafici":{"en":"Unit circle, graphs","de":"Einheitskreis, Graphen","fr":"Cercle trigonométrique, graphes","es":"Círculo unitario, gráficas","it":"Circonferenza unitaria, grafici","ru":"Единичная окружность, графики","pt":"Círculo unitário, gráficos"},
+    "Adicione formule":{"en":"Addition formulas","de":"Additionstheoreme","fr":"Formules d'addition","es":"Fórmulas de adición","it":"Formule di addizione","ru":"Формулы сложения","pt":"Fórmulas de adição"},
+    "Opšte rešenje":{"en":"General solution","de":"Allgemeine Lösung","fr":"Solution générale","es":"Solución general","it":"Soluzione generale","ru":"Общее решение","pt":"Solução geral"},
+    "Prava, kružnica, konike":{"en":"Line, circle, conics","de":"Gerade, Kreis, Kegelschnitte","fr":"Droite, cercle, coniques","es":"Recta, circunferencia, cónicas","it":"Retta, circonferenza, coniche","ru":"Прямая, окружность, конические сечения","pt":"Reta, circunferência, cónicas"},
+    "Tok i grafik":{"en":"Behavior and graph","de":"Verlauf und Graph","fr":"Variations et graphe","es":"Variación y gráfica","it":"Andamento e grafico","ru":"Поведение и график","pt":"Variação e gráfico"}
+  });
+})();
