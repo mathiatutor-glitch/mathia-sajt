@@ -68,3 +68,11 @@
     fbq('track','PageView');
   }catch(e){}
 })();
+;(function(){/* sticky-fix: overflow-x:hidden na html/body lomi position:sticky (header).
+   overflow-x:clip sprečava horizontalni skrol ali NE lomi sticky. Ne dira menu-lock. */
+  try{
+    var s=document.createElement('style');
+    s.textContent='html,body{overflow-x:clip!important}html.navham-lock,body.navham-lock{overflow:hidden!important}';
+    (document.head||document.documentElement).appendChild(s);
+  }catch(e){}
+})();
