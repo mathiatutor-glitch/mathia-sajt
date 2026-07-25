@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MATHIA — Kontrolna tabla</title>
+<link rel="icon" href="/icon-192.png">
+<style>
+  :root{--paper:#FBF6EE;--card:#FFFFFF;--plum:#432C37;--plum2:#5C3B49;--gold:#B9902F;--goldsoft:#C6A05C;
+    --line:#EADFCB;--ink:#3a2d31;--mut:#8a7a80;--green:#4E8A5B;--rose:#CC8E86;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
+    background:radial-gradient(720px 420px at 88% -8%,rgba(198,160,92,.10),transparent 60%),var(--paper);
+    color:var(--ink);padding:24px 16px 70px;line-height:1.5}
+  .wrap{max-width:1020px;margin:0 auto}
+  header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .brand{font-family:Georgia,'Times New Roman',serif;letter-spacing:.3em;color:var(--plum);font-size:23px;font-weight:600}
+  .brand small{display:block;letter-spacing:.02em;color:var(--mut);font-size:12.5px;margin-top:3px;font-family:inherit}
+  .tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .status{font-size:12.5px;font-weight:700;padding:6px 12px;border-radius:100px;background:#EAF3EC;color:var(--green);border:1px solid #CDE6D4}
+  button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--plum);
+    font-weight:700;font-size:13px;padding:8px 14px;border-radius:100px}
+  button.gold{background:linear-gradient(180deg,#E7D2A2,#C6A05C);border:none;color:#43301a}
+  .updated{color:var(--mut);font-size:12px}
+  .rule{height:2px;background:linear-gradient(90deg,var(--goldsoft),#E7D2A2 40%,transparent);border-radius:2px;margin:14px 0 22px}
+  .gate{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;text-align:center;max-width:520px;margin:30px auto}
+  .gate h2{font-family:Georgia,serif;color:var(--plum);margin-bottom:8px}
+  .gate p{color:var(--mut);font-size:14px;margin-bottom:16px}
+  .gate a{display:inline-block;background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#43301a;text-decoration:none;font-weight:800;padding:11px 20px;border-radius:100px}
+  h2.sec{font-family:Georgia,serif;color:var(--plum);font-size:18px;font-weight:600;margin:28px 0 12px;display:flex;gap:9px;align-items:center}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 17px;box-shadow:0 10px 24px -20px rgba(90,50,60,.5)}
+  .kpi .lab{color:var(--mut);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .kpi .val{font-family:Georgia,serif;color:var(--plum);font-size:38px;font-weight:600;margin-top:4px;line-height:1}
+  .kpi .sub{color:var(--mut);font-size:12.5px;margin-top:7px}
+  .kpi .val small{font-size:18px;color:var(--goldsoft)}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.split{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 17px}
+  .panel h3{font-size:14px;color:var(--plum);margin-bottom:12px;font-weight:800}
+  .bar{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:13.5px}
+  .bar .nm{width:120px;flex:0 0 120px;color:var(--ink)}
+  .bar .tr{flex:1;height:12px;background:#F2E7D4;border-radius:100px;overflow:hidden}
+  .bar .fl{height:100%;background:linear-gradient(90deg,var(--goldsoft),#E7D2A2);border-radius:100px}
+  .bar .nu{width:42px;text-align:right;font-weight:700;color:var(--plum)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:8px 8px;border-bottom:1px solid #F0E6D5}
+  th{color:var(--mut);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  td.r,th.r{text-align:right}
+  .pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:100px;background:#F2E7D4;color:#7a5f22}
+  .pill.ok{background:#EAF3EC;color:var(--green)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+  a.lnk{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;text-decoration:none;color:inherit;transition:.12s}
+  a.lnk:hover{border-color:var(--goldsoft);transform:translateY(-2px)}
+  a.lnk .ct{font-weight:700;color:var(--plum);font-size:14px}
+  a.lnk .cd{color:var(--mut);font-size:12px;margin-top:5px}
+  .err{background:#FCEEEC;border:1px solid #F0C9C3;color:#9c4436;padding:12px 14px;border-radius:12px;font-size:13.5px;margin:14px 0}
+  .foot{color:var(--mut);font-size:12px;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">MATHIA<small>Kontrolna tabla · uživo iz tvoje baze</small></div>
+    <div class="tools">
+      <span class="status" id="siteStatus">● sajt online</span>
+      <span class="updated" id="upd"></span>
+      <button class="gold" id="refresh">Osveži</button>
+    </div>
+  </header>
+  <div class="rule"></div>
+
+  <div id="gate" class="gate" style="display:none">
+    <h2>Prijava potrebna</h2>
+    <p>Ova tabla prikazuje tvoje žive podatke i vidljiva je samo tebi (admin). Prijavi se svojim mejlom, pa se vrati na ovu stranicu.</p>
+    <a href="/nalog.html">Prijavi se →</a>
+  </div>
+
+  <div id="app" style="display:none">
+    <div id="errbox"></div>
+
+    <h2 class="sec">💛 Ključne brojke</h2>
+    <div class="kpis" id="kpis"></div>
+
+    <div class="split" style="margin-top:14px">
+      <div class="panel">
+        <h3>Aktivne pretplate po paketu</h3>
+        <div id="byPaket"></div>
+      </div>
+      <div class="panel">
+        <h3>Prihod (poslednjih 30 dana)</h3>
+        <div id="revBox"></div>
+      </div>
+    </div>
+
+    <h2 class="sec">🧾 Poslednje porudžbine</h2>
+    <div class="panel" style="padding:6px 10px">
+      <table id="tOrders"><thead><tr>
+        <th>Datum</th><th>Kupac</th><th>Stavka</th><th class="r">Iznos</th><th>Status</th>
+      </tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+
+  <h2 class="sec">🔗 Brojke i alati koji nemaju API (otvara se u novom tabu)</h2>
+  <div class="grid">
+    <a class="lnk" href="https://business.facebook.com/latest/insights" target="_blank" rel="noopener"><div class="ct">👁️ Posetioci & doseg</div><div class="cd">Meta Business Suite → Insights</div></a>
+    <a class="lnk" href="https://adsmanager.facebook.com" target="_blank" rel="noopener"><div class="ct">📣 Reklame</div><div class="cd">Ads Manager — klikovi, cena po kliku</div></a>
+    <a class="lnk" href="https://business.facebook.com/events_manager2" target="_blank" rel="noopener"><div class="ct">🎯 Piksel</div><div class="cd">Events Manager — registracije</div></a>
+    <a class="lnk" href="https://efiskalizacija.cloud" target="_blank" rel="noopener"><div class="ct">🧾 Fiskalni računi</div><div class="cd">eFiskalizacija.cloud</div></a>
+    <a class="lnk" href="https://www.raiffeisenbank.rs" target="_blank" rel="noopener"><div class="ct">💳 Uplate na račun</div><div class="cd">Raiffeisen bankarstvo</div></a>
+    <a class="lnk" href="/admin-pretplate.html" target="_blank" rel="noopener"><div class="ct">👥 Admin pretplata</div><div class="cd">Ručno aktiviranje / izmene</div></a>
+    <a class="lnk" href="https://facebook.com/profile.php?id=61590694855391" target="_blank" rel="noopener"><div class="ct">f Facebook</div><div class="cd">MATHIA stranica</div></a>
+    <a class="lnk" href="https://instagram.com/mathia.ai" target="_blank" rel="noopener"><div class="ct">◎ Instagram</div><div class="cd">@mathia.ai</div></a>
+    <a class="lnk" href="https://vercel.com/dashboard" target="_blank" rel="noopener"><div class="ct">△ Vercel</div><div class="cd">Hosting / deploy</div></a>
+  </div>
+
+  <div class="foot">Podaci uživo iz baze (pretplate, nalozi, porudžbine). Brojke koje zahtevaju Metu/banku otvaraju se u svom alatu. · MATHIA</div>
+</div>
+
+<script>
+var API="/api/admin-pretplate", TOKEN=null;
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function sbToken(){ try{ for(var i=0;i<localStorage.length;i++){ var k=localStorage.key(i);
+  if(k&&/^sb-.*-auth-token$/.test(k)){ var raw=localStorage.getItem(k); if(!raw)continue; var v=JSON.parse(raw);
+    var t=v&&(v.access_token||(v.currentSession&&v.currentSession.access_token)||(v.session&&v.session.access_token)); if(t)return t; } } }catch(e){} return null; }
+function dinar(n){ n=Math.round(n||0); return n.toLocaleString("sr-RS")+" din"; }
+function dat(s){ if(!s)return "—"; try{ return new Date(s).toLocaleDateString("sr-RS",{day:"2-digit",month:"2-digit"}); }catch(e){ return "—"; } }
+function daysAgo(s){ if(!s)return 1e9; return (Date.now()-new Date(s).getTime())/864e5; }
+var PAID=/plac|plać|uspe|paid|realiz|aktiv|zavr/i;
+
+async function load(){
+  TOKEN=sbToken();
+  if(!TOKEN){ $("gate").style.display="block"; $("app").style.display="none"; return; }
+  try{
+    var r=await fetch(API,{headers:{Authorization:"Bearer "+TOKEN}});
+    if(r.status===401||r.status===403){ $("gate").style.display="block"; $("app").style.display="none"; return; }
+    var j=await r.json();
+    if(!j.ok){ throw new Error(j.error||"Greška."); }
+    $("gate").style.display="none"; $("app").style.display="block"; $("errbox").innerHTML="";
+    render(j);
+    var d=new Date(); $("upd").textContent="ažurirano "+d.toLocaleTimeString("sr-RS",{hour:"2-digit",minute:"2-digit"});
+  }catch(e){
+    $("app").style.display="block";
+    $("errbox").innerHTML='<div class="err">Ne mogu da učitam podatke: '+esc(e.message||e)+'. Probaj „Osveži" ili se prijavi ponovo.</div>';
+  }
+}
+
+function render(j){
+  var pr=j.pretplate||[], od=j.porudzbine||[], na=j.nalozi||[], sada=new Date();
+  // aktivne pretplate
+  var aktivne=pr.filter(function(p){ return (p.status==="aktivna")&&(!p.istice||new Date(p.istice)>sada); });
+  var puni=aktivne.filter(function(p){ return String(p.tip||"")!=="klon"; });
+  var klon=aktivne.filter(function(p){ return String(p.tip||"")==="klon"; });
+  var byP={basic:0,gold:0,diamond:0};
+  puni.forEach(function(p){ var k=String(p.paket||"").toLowerCase(); if(byP[k]!=null)byP[k]++; });
+  // nalozi
+  var n7=na.filter(function(u){return daysAgo(u.kreiran)<=7;}).length;
+  var n30=na.filter(function(u){return daysAgo(u.kreiran)<=30;}).length;
+  // porudžbine / prihod
+  var paid=od.filter(function(o){ return PAID.test(String(o.status||"")); });
+  var rev=function(list){ return list.reduce(function(s,o){ return s+(Number(o.iznos_rsd)||0); },0); };
+  var p7=paid.filter(function(o){return daysAgo(o.created_at)<=7;});
+  var p30=paid.filter(function(o){return daysAgo(o.created_at)<=30;});
+
+  // KPI kartice
+  var kp=[
+    {lab:"Registrovani nalozi", val:na.length, sub:"+"+n7+" u 7 dana · +"+n30+" u 30"},
+    {lab:"Aktivne pretplate", val:aktivne.length, sub:puni.length+" pun paket · "+klon.length+" klon-dopuna"},
+    {lab:"Porudžbine (30 dana)", val:p30.length, sub:"ukupno prikazano: "+od.length},
+    {lab:"Prihod (30 dana)", val:dinar(rev(p30)), sub:"7 dana: "+dinar(rev(p7)), big:true}
+  ];
+  $("kpis").innerHTML=kp.map(function(k){
+    var v=k.big?'<div class="val" style="font-size:26px">'+esc(k.val)+'</div>':'<div class="val">'+esc(k.val)+'</div>';
+    return '<div class="kpi"><div class="lab">'+esc(k.lab)+'</div>'+v+'<div class="sub">'+esc(k.sub)+'</div></div>';
+  }).join("");
+
+  // po paketu (bar)
+  var maxP=Math.max(1,byP.basic,byP.gold,byP.diamond,klon.length);
+  function bar(nm,nu){ return '<div class="bar"><span class="nm">'+nm+'</span><span class="tr"><span class="fl" style="width:'+(nu/maxP*100)+'%"></span></span><span class="nu">'+nu+'</span></div>'; }
+  $("byPaket").innerHTML=bar("Basic",byP.basic)+bar("Gold",byP.gold)+bar("Diamond",byP.diamond)+bar("Klon-dopuna",klon.length);
+
+  // prihod 30 dana
+  $("revBox").innerHTML='<div class="kpi" style="border:none;box-shadow:none;padding:0">'+
+    '<div class="val" style="font-size:34px">'+esc(dinar(rev(p30)))+'</div>'+
+    '<div class="sub">'+p30.length+' plaćenih porudžbina · prosek '+dinar(p30.length?rev(p30)/p30.length:0)+'</div></div>';
+
+  // tabela porudžbina
+  $("tOrders").querySelector("tbody").innerHTML = od.length ? od.slice(0,20).map(function(o){
+    var st=String(o.status||"—"), ok=PAID.test(st);
+    var stavka=""; try{ var s=typeof o.stavke==="string"?JSON.parse(o.stavke):o.stavke; if(Array.isArray(s)&&s[0])stavka=s[0].naziv||s[0].id||""; }catch(e){}
+    return '<tr><td>'+dat(o.created_at)+'</td><td>'+esc(o.kupac_ime||o.kupac_email||"—")+'</td><td>'+esc(stavka||o.tip||"—")+
+      '</td><td class="r">'+dinar(o.iznos_rsd)+'</td><td><span class="pill '+(ok?"ok":"")+'">'+esc(st)+'</span></td></tr>';
+  }).join("") : '<tr><td colspan="5" style="color:var(--mut);padding:16px">Još nema porudžbina.</td></tr>';
+}
+
+$("refresh").addEventListener("click",load);
+load();
+</script>
+</body>
+</html>
