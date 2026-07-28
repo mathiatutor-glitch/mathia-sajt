@@ -7,7 +7,7 @@
 <link rel="icon" href="/icon-192.png">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
 <style>
-  :root{--paper:#FBF6EE;--card:#FFFFFF;--plum:#432C37;--plum2:#5C3B49;--gold:#B9902F;--goldsoft:#C6A05C;
+  :root{--paper:#FBF6EE;--card:#FFFFFF;--plum:#432C37;--gold:#B9902F;--goldsoft:#C6A05C;
     --line:#EADFCB;--ink:#3a2d31;--mut:#8a7a80;--green:#4E8A5B;--rose:#CC8E86;}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;
@@ -45,23 +45,20 @@
   td.r,th.r{text-align:right}
   .pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:100px;background:#F2E7D4;color:#7a5f22}
   .pill.ok{background:#EAF3EC;color:var(--green)}
-  .logform{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;align-items:end}
-  .logform .fld label{display:block;font-size:11.5px;color:var(--mut);font-weight:700;margin-bottom:4px}
-  .logform input{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 10px;font:inherit;font-size:14px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
   a.lnk{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:inherit;transition:.12s}
   a.lnk:hover{border-color:var(--goldsoft);transform:translateY(-2px)}
   a.lnk .ct{font-weight:700;color:var(--plum);font-size:13.5px}
   a.lnk .cd{color:var(--mut);font-size:11.5px;margin-top:4px}
   .err{background:#FCEEEC;border:1px solid #F0C9C3;color:#9c4436;padding:12px 14px;border-radius:12px;font-size:13.5px;margin:14px 0}
-  .hint{color:var(--mut);font-size:12.5px;margin:-6px 0 12px}
+  .note{background:#FBF4E7;border:1px solid #EEDFC2;color:#7a5f22;padding:10px 13px;border-radius:12px;font-size:12.5px;margin:10px 0}
   .foot{color:var(--mut);font-size:12px;text-align:center;margin-top:30px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand">MATHIA<small>Kontrolna tabla · uživo + trend</small></div>
+    <div class="brand">MATHIA<small>Kontrolna tabla · sve uživo, automatski</small></div>
     <div class="tools">
       <span class="status" id="siteStatus">● sajt online</span>
       <span class="updated" id="upd"></span>
@@ -79,10 +76,15 @@
   <div id="app" style="display:none">
     <div id="errbox"></div>
 
-    <h2 class="sec">💛 Ključne brojke (uživo iz baze)</h2>
-    <div class="kpis" id="kpis"></div>
+    <h2 class="sec">💛 Poslovanje (uživo iz baze)</h2>
+    <div class="kpis" id="kpisDB"></div>
 
-    <h2 class="sec">📈 Trend</h2>
+    <h2 class="sec">👁️ Posetioci sajta (automatski brojač)</h2>
+    <div id="visNote"></div>
+    <div class="kpis" id="kpisVis"></div>
+    <div class="panel" style="margin-top:14px"><h3>Posete — poslednjih 30 dana</h3><div class="chartbox"><canvas id="cVis"></canvas></div></div>
+
+    <h2 class="sec">📈 Trend poslovanja</h2>
     <div class="cards">
       <div class="panel"><h3>Prihod — poslednjih 30 dana</h3><div class="chartbox"><canvas id="cRev"></canvas></div></div>
       <div class="panel"><h3>Registracije — poslednjih 30 dana</h3><div class="chartbox"><canvas id="cReg"></canvas></div></div>
@@ -93,30 +95,10 @@
     </div>
   </div>
 
-  <h2 class="sec">✍️ Ručno praćenje (mreže, reklame, posetioci)</h2>
-  <div class="hint">Ovo su brojke bez API-ja. Otvoriš alat (dole), pročitaš broj, upišeš ovde — tabla pamti i crta trend. Dovoljno jednom nedeljno.</div>
-  <div class="panel">
-    <div class="logform">
-      <div class="fld"><label>IG pratioci</label><input id="l_ig" type="number" inputmode="numeric" placeholder="npr. 120"></div>
-      <div class="fld"><label>FB pratioci</label><input id="l_fb" type="number" inputmode="numeric" placeholder="npr. 45"></div>
-      <div class="fld"><label>Posetioci sajta (nedeljno)</label><input id="l_vis" type="number" inputmode="numeric" placeholder="npr. 300"></div>
-      <div class="fld"><label>Reklama potrošeno (€)</label><input id="l_spend" type="number" inputmode="decimal" placeholder="npr. 35"></div>
-      <div class="fld"><label>Klikova na reklamu</label><input id="l_clk" type="number" inputmode="numeric" placeholder="npr. 210"></div>
-      <div class="fld"><button class="gold" id="logSave" style="width:100%">Sačuvaj unos</button></div>
-    </div>
-  </div>
-  <div class="cards" style="margin-top:14px">
-    <div class="panel"><h3>Pratioci — trend (IG i FB)</h3><div class="chartbox"><canvas id="cFoll"></canvas></div></div>
-    <div class="panel"><h3>Reklama i posetioci — trend</h3><div class="chartbox"><canvas id="cMkt"></canvas></div></div>
-  </div>
-  <div class="panel" style="margin-top:14px;padding:6px 10px">
-    <table id="tLog"><thead><tr><th>Datum</th><th class="r">IG</th><th class="r">FB</th><th class="r">Posete</th><th class="r">€ reklama</th><th class="r">Klik</th><th></th></tr></thead><tbody></tbody></table>
-  </div>
-
-  <h2 class="sec">🔗 Alati (otvara se u novom tabu)</h2>
+  <h2 class="sec">🔗 Meta i banka (nemaju API — otvara se u novom tabu)</h2>
   <div class="grid">
-    <a class="lnk" href="https://business.facebook.com/latest/insights" target="_blank" rel="noopener"><div class="ct">👁️ Posetioci & doseg</div><div class="cd">Meta Business Suite</div></a>
-    <a class="lnk" href="https://adsmanager.facebook.com" target="_blank" rel="noopener"><div class="ct">📣 Reklame</div><div class="cd">Ads Manager</div></a>
+    <a class="lnk" href="https://business.facebook.com/latest/insights" target="_blank" rel="noopener"><div class="ct">📣 Doseg & pratioci</div><div class="cd">Business Suite → Insights</div></a>
+    <a class="lnk" href="https://adsmanager.facebook.com" target="_blank" rel="noopener"><div class="ct">📊 Reklame</div><div class="cd">Ads Manager</div></a>
     <a class="lnk" href="https://business.facebook.com/events_manager2" target="_blank" rel="noopener"><div class="ct">🎯 Piksel</div><div class="cd">Events Manager</div></a>
     <a class="lnk" href="https://efiskalizacija.cloud" target="_blank" rel="noopener"><div class="ct">🧾 Fiskalni računi</div><div class="cd">eFiskalizacija</div></a>
     <a class="lnk" href="https://www.raiffeisenbank.rs" target="_blank" rel="noopener"><div class="ct">💳 Uplate</div><div class="cd">Raiffeisen</div></a>
@@ -126,11 +108,11 @@
     <a class="lnk" href="https://vercel.com/dashboard" target="_blank" rel="noopener"><div class="ct">△ Vercel</div><div class="cd">Hosting</div></a>
   </div>
 
-  <div class="foot">Žive brojke iz baze + tvoj dnevnik trenda (čuva se na ovom uređaju). · MATHIA · mathia.rs</div>
+  <div class="foot">Sve brojke se povlače automatski (baza + sopstveni brojač poseta). Samo osveži stranicu. · MATHIA</div>
 </div>
 
 <script>
-var API="/api/admin-pretplate", TOKEN=null, CH={};
+var API="/api/admin-pretplate", STATS="/api/stats", TOKEN=null, CH={};
 var GOLD="#C6A05C", PLUM="#432C37", ROSE="#CC8E86", GREEN="#4E8A5B", GRID="#EFE5D3";
 function $(i){return document.getElementById(i);}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
@@ -143,32 +125,27 @@ function daysAgo(s){ if(!s)return 1e9; return (Date.now()-new Date(s).getTime())
 function keyd(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
 function last30(){ var a=[],t=new Date();t.setHours(0,0,0,0); for(var i=29;i>=0;i--){var d=new Date(t);d.setDate(t.getDate()-i);a.push(d);} return a; }
 var PAID=/plac|plać|uspe|paid|realiz|aktiv|zavr/i;
-
-Chart.defaults.font.family="-apple-system,Inter,sans-serif";
-Chart.defaults.color="#8a7a80";
+Chart.defaults.font.family="-apple-system,Inter,sans-serif"; Chart.defaults.color="#8a7a80";
 
 function mkLine(id,labels,sets){ if(CH[id])CH[id].destroy();
   CH[id]=new Chart($(id),{type:"line",data:{labels:labels,datasets:sets},
     options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},
       plugins:{legend:{display:sets.length>1,labels:{boxWidth:12,font:{size:11}}}},
-      scales:{x:{grid:{display:false},ticks:{maxTicksLimit:7,font:{size:10}}},y:{grid:{color:GRID},beginAtZero:true,ticks:{font:{size:10}}}}}});
-}
+      scales:{x:{grid:{display:false},ticks:{maxTicksLimit:7,font:{size:10}}},y:{grid:{color:GRID},beginAtZero:true,ticks:{font:{size:10}}}}}}); }
 function mkBar(id,labels,data,color){ if(CH[id])CH[id].destroy();
   CH[id]=new Chart($(id),{type:"bar",data:{labels:labels,datasets:[{data:data,backgroundColor:color||GOLD,borderRadius:6}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{maxTicksLimit:8,font:{size:10}}},y:{grid:{color:GRID},beginAtZero:true,ticks:{font:{size:10},precision:0}}}}});
-}
+      scales:{x:{grid:{display:false},ticks:{maxTicksLimit:8,font:{size:10}}},y:{grid:{color:GRID},beginAtZero:true,ticks:{font:{size:10},precision:0}}}}}); }
 function mkDough(id,labels,data){ if(CH[id])CH[id].destroy();
   CH[id]=new Chart($(id),{type:"doughnut",data:{labels:labels,datasets:[{data:data,backgroundColor:[GOLD,PLUM,ROSE,"#9BB59C"],borderWidth:0}]},
-    options:{responsive:true,maintainAspectRatio:false,cutout:"62%",plugins:{legend:{position:"right",labels:{boxWidth:12,font:{size:11}}}}}});
-}
+    options:{responsive:true,maintainAspectRatio:false,cutout:"62%",plugins:{legend:{position:"right",labels:{boxWidth:12,font:{size:11}}}}}}); }
 
 async function load(){
   TOKEN=sbToken();
-  if(!TOKEN){ $("gate").style.display="block"; $("app").style.display="none"; renderLog(); return; }
+  if(!TOKEN){ $("gate").style.display="block"; $("app").style.display="none"; return; }
   try{
     var r=await fetch(API,{headers:{Authorization:"Bearer "+TOKEN}});
-    if(r.status===401||r.status===403){ $("gate").style.display="block"; $("app").style.display="none"; renderLog(); return; }
+    if(r.status===401||r.status===403){ $("gate").style.display="block"; $("app").style.display="none"; return; }
     var j=await r.json(); if(!j.ok) throw new Error(j.error||"Greška.");
     $("gate").style.display="none"; $("app").style.display="block"; $("errbox").innerHTML="";
     renderDB(j);
@@ -177,7 +154,12 @@ async function load(){
     $("app").style.display="block";
     $("errbox").innerHTML='<div class="err">Ne mogu da učitam bazu: '+esc(e.message||e)+'. Probaj „Osveži".</div>';
   }
-  renderLog();
+  // posetioci (odvojeni endpoint)
+  try{
+    var rv=await fetch(STATS,{headers:{Authorization:"Bearer "+TOKEN}});
+    var jv=await rv.json();
+    if(jv.ok) renderVis(jv);
+  }catch(e){ /* tiho */ }
 }
 
 function renderDB(j){
@@ -193,14 +175,13 @@ function renderDB(j){
   var p7=paid.filter(function(o){return daysAgo(o.created_at)<=7;});
   var p30=paid.filter(function(o){return daysAgo(o.created_at)<=30;});
 
-  $("kpis").innerHTML=[
+  $("kpisDB").innerHTML=[
     {l:"Registrovani nalozi",v:na.length,s:"+"+n7+" u 7 dana · +"+n30+" u 30"},
     {l:"Aktivne pretplate",v:aktivne.length,s:puni.length+" pun paket · "+klon.length+" klon-dopuna"},
     {l:"Porudžbine (30 dana)",v:p30.length,s:"prikazano ukupno: "+od.length},
     {l:"Prihod (30 dana)",v:dinar(rev(p30)),s:"7 dana: "+dinar(rev(p7)),big:true}
   ].map(function(k){return '<div class="kpi"><div class="lab">'+esc(k.l)+'</div><div class="val"'+(k.big?' style="font-size:25px"':'')+'>'+esc(k.v)+'</div><div class="sub">'+esc(k.s)+'</div></div>';}).join("");
 
-  // trend serije
   var days=last30(), lab=days.map(dm);
   var revMap={}, regMap={};
   days.forEach(function(d){revMap[keyd(d)]=0;regMap[keyd(d)]=0;});
@@ -216,36 +197,18 @@ function renderDB(j){
   }).join(""):'<tr><td colspan="4" style="color:#8a7a80;padding:14px">Još nema porudžbina.</td></tr>';
 }
 
-/* ——— ručni dnevnik (localStorage) ——— */
-var LKEY="mathia_tabla_log";
-function logGet(){ try{return JSON.parse(localStorage.getItem(LKEY)||"[]");}catch(e){return [];} }
-function logSet(a){ try{localStorage.setItem(LKEY,JSON.stringify(a));}catch(e){} }
-function num(id){ var v=parseFloat($(id).value); return isNaN(v)?null:v; }
-$("logSave").addEventListener("click",function(){
-  var e={d:keyd(new Date()),ig:num("l_ig"),fb:num("l_fb"),vis:num("l_vis"),spend:num("l_spend"),clk:num("l_clk")};
-  if(e.ig==null&&e.fb==null&&e.vis==null&&e.spend==null&&e.clk==null){ return; }
-  var a=logGet(); var i=a.findIndex(function(x){return x.d===e.d;});
-  if(i>=0){ ["ig","fb","vis","spend","clk"].forEach(function(k){ if(e[k]!=null)a[i][k]=e[k]; }); } else a.push(e);
-  a.sort(function(x,y){return x.d<y.d?-1:1;}); logSet(a);
-  ["l_ig","l_fb","l_vis","l_spend","l_clk"].forEach(function(id){$(id).value="";});
-  renderLog();
-});
-function renderLog(){
-  var a=logGet();
-  var lab=a.map(function(x){return x.d.slice(5);});
-  mkLine("cFoll",lab,[
-    {label:"IG",data:a.map(function(x){return x.ig;}),borderColor:ROSE,backgroundColor:"rgba(204,142,134,.12)",fill:true,tension:.3,spanGaps:true,pointRadius:2},
-    {label:"FB",data:a.map(function(x){return x.fb;}),borderColor:PLUM,backgroundColor:"rgba(67,44,55,.08)",fill:true,tension:.3,spanGaps:true,pointRadius:2}
-  ]);
-  mkLine("cMkt",lab,[
-    {label:"Posetioci",data:a.map(function(x){return x.vis;}),borderColor:GREEN,tension:.3,spanGaps:true,pointRadius:2},
-    {label:"€ reklama",data:a.map(function(x){return x.spend;}),borderColor:GOLD,tension:.3,spanGaps:true,pointRadius:2},
-    {label:"Klikova",data:a.map(function(x){return x.clk;}),borderColor:ROSE,tension:.3,spanGaps:true,pointRadius:2}
-  ]);
-  $("tLog").querySelector("tbody").innerHTML= a.length? a.slice().reverse().map(function(x){
-    return '<tr><td>'+esc(x.d)+'</td><td class="r">'+(x.ig==null?"—":x.ig)+'</td><td class="r">'+(x.fb==null?"—":x.fb)+'</td><td class="r">'+(x.vis==null?"—":x.vis)+'</td><td class="r">'+(x.spend==null?"—":x.spend)+'</td><td class="r">'+(x.clk==null?"—":x.clk)+'</td><td class="r"><button data-d="'+esc(x.d)+'" class="del" style="padding:3px 9px;font-size:11px">×</button></td></tr>';
-  }).join(""):'<tr><td colspan="7" style="color:#8a7a80;padding:12px">Još nema unosa. Upiši prvi gore i klikni „Sačuvaj unos".</td></tr>';
-  [].slice.call(document.querySelectorAll("#tLog .del")).forEach(function(b){ b.addEventListener("click",function(){ var d=b.dataset.d; logSet(logGet().filter(function(x){return x.d!==d;})); renderLog(); }); });
+function renderVis(j){
+  if(j.kv===false){ $("visNote").innerHTML='<div class="note">Brojač poseta se aktivira nakon uploada (api/hit.js + i18n-mathia.js). Prve posete će se pojaviti kroz nekoliko minuta.</div>'; }
+  else $("visNote").innerHTML="";
+  var days=(j.days||[]);
+  var sum=function(n){ return days.slice(-n).reduce(function(s,x){return s+(x.v||0);},0); };
+  $("kpisVis").innerHTML=[
+    {l:"Posete danas",v:(days.length?days[days.length-1].v:0)},
+    {l:"Posete (7 dana)",v:sum(7)},
+    {l:"Jedinstvenih (7 dana)",v:j.u7||0},
+    {l:"Pregleda ukupno",v:j.total||0}
+  ].map(function(k){return '<div class="kpi"><div class="lab">'+esc(k.l)+'</div><div class="val">'+esc(Number(k.v).toLocaleString("sr-RS"))+'</div></div>';}).join("");
+  mkLine("cVis",days.map(function(x){return x.d.slice(5);}),[{label:"Posete",data:days.map(function(x){return x.v;}),borderColor:GREEN,backgroundColor:"rgba(78,138,91,.14)",fill:true,tension:.3,pointRadius:0}]);
 }
 
 $("refresh").addEventListener("click",load);

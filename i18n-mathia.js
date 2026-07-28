@@ -76,3 +76,12 @@
     (document.head||document.documentElement).appendChild(s);
   }catch(e){}
 })();
+;(function(){/* brojač poseta (self-hosted preko /api/hit) — bez ličnih podataka */
+  try{
+    var p=location.pathname||"";
+    if(/tabla\.html|admin-|prijava|nalog\.html/i.test(p)) return; // ne broji admin/prijave
+    var K="mathia_dev", dev=null;
+    try{ dev=localStorage.getItem(K); if(!dev){ dev=Date.now().toString(36)+Math.random().toString(36).slice(2,10); localStorage.setItem(K,dev); } }catch(e){}
+    fetch("/api/hit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({dev:dev||"",path:p}),keepalive:true}).catch(function(){});
+  }catch(e){}
+})();
