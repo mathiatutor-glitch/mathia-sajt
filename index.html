@@ -18,7 +18,7 @@
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%),var(--lux);background-size:auto,auto,120px 120px;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);background-color:var(--paper);background-image:radial-gradient(ellipse 55% 45% at 18% 12%,rgba(231,210,162,.22),transparent 62%),radial-gradient(ellipse 50% 40% at 88% 82%,rgba(204,142,134,.14),transparent 60%),var(--lux);background-size:auto,auto,120px 120px;background-attachment:fixed;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
   h1,h2,h3{font-family:'Spectral',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
   p{margin:0}
   a{color:inherit;text-decoration:none}
@@ -489,7 +489,7 @@ header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;ba
 @media(max-width:760px){.navcta{padding:8px 14px !important}}
 </style>
 <style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
+html,body{max-width:100%;overflow-x:clip}
 *{box-sizing:border-box}
 body{overflow-wrap:break-word}
 img,svg,video,iframe,table{max-width:100%}
@@ -1142,6 +1142,17 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
 @keyframes pkTw{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:.85;transform:scale(1.12)}}
 @media(prefers-reduced-motion:reduce){.persona-card::after,.persona-card .pk{animation:none}}
 </style>
+<style>
+/* IG-stil recenzije — avatar, verifikacija, zvezdice (bez novog teksta) */
+.tst .quote{padding-top:24px}
+.tst .quote .qhead{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.tst .quote .qav{width:44px;height:44px;flex:0 0 44px;border-radius:50%;background:linear-gradient(160deg,#EBD9A6,#C6A05C);display:grid;place-items:center;box-shadow:0 0 0 2px #fff,0 0 0 3px #E7D2A2,0 8px 18px -8px rgba(120,70,80,.5);color:#4A2A38;font-family:'Spectral',serif;font-weight:700;font-size:17px}
+.tst .quote .qmeta{flex:1;min-width:0}
+.tst .quote .who{margin-top:0!important}
+.tst .quote .qmeta .stars{margin:3px 0 0!important;font-size:.82rem!important}
+.tst .quote .qver{margin-left:auto;width:22px;height:22px;flex:0 0 22px;border-radius:50%;background:#EAF5EF;color:#2FA06E;display:grid;place-items:center;font-size:12px;font-weight:900;box-shadow:0 0 0 2px #fff}
+.tst .quote .qm{display:none}
+</style>
 <section class="tst">
   <div class="wrap">
     <div class="sec-head reveal"><div class="ksub">poverenje</div><h2>Šta kažu roditelji i učenici</h2></div>
@@ -1156,9 +1167,9 @@ ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});win
       </a>
     </div>
     <div class="tgrid" id="tgrid">
-      <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Ćerka je prvi put rekla da joj je matematika — zabavna. Konačno razume, a ne samo prepiše.</p><div class="who">Mama učenice · <span>7. razred</span></div></div>
-      <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Više nema svađe oko telefona. Sada na njemu — uči. Ocene su krenule naviše.</p><div class="who">Roditelj · <span>srednja škola</span></div></div>
-      <div class="quote reveal"><div class="qm">“</div><div class="stars">★★★★★</div><p>Kao da dete ima privatnog profesora koji je uvek tu, strpljiv i tačan. Vredno svakog dinara.</p><div class="who">Roditelj · <span>osnovna škola</span></div></div>
+      <div class="quote reveal"><div class="qhead"><div class="qav" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="#4A2A38"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/></svg></div><div class="qmeta"><div class="who">Mama učenice · <span>7. razred</span></div><div class="stars">★★★★★</div></div><div class="qver" title="Verifikovan utisak" aria-hidden="true">✓</div></div><p>Ćerka je prvi put rekla da joj je matematika — zabavna. Konačno razume, a ne samo prepiše.</p></div>
+      <div class="quote reveal"><div class="qhead"><div class="qav" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="#4A2A38"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/></svg></div><div class="qmeta"><div class="who">Roditelj · <span>srednja škola</span></div><div class="stars">★★★★★</div></div><div class="qver" title="Verifikovan utisak" aria-hidden="true">✓</div></div><p>Više nema svađe oko telefona. Sada na njemu — uči. Ocene su krenule naviše.</p></div>
+      <div class="quote reveal"><div class="qhead"><div class="qav" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="#4A2A38"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/></svg></div><div class="qmeta"><div class="who">Roditelj · <span>osnovna škola</span></div><div class="stars">★★★★★</div></div><div class="qver" title="Verifikovan utisak" aria-hidden="true">✓</div></div><p>Kao da dete ima privatnog profesora koji je uvek tu, strpljiv i tačan. Vredno svakog dinara.</p></div>
     </div>
     <div class="reveal" style="text-align:center;margin-top:26px">
       <a class="btn btn-ghost" href="utisci-posalji.html">Podelite i vi svoj utisak ✍</a>
@@ -1419,7 +1430,7 @@ footer.mfoot .social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);
 @media(max-width:640px){.mf-brand{padding:48px 0 4px}.mf-nav{gap:8px 20px}.mf-nav a{font-size:1.1rem}}
 
 /* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
+html,body{overflow-x:clip}
 .page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
 .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
 .katex{max-width:100%}
@@ -1854,7 +1865,8 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
       var n=Math.max(1,Math.min(5,u.zvezdice||5));
       var stars=new Array(n+1).join("★");
       var who=esc(u.ime)+(u.razred?' · <span>'+esc(u.razred)+'</span>':'');
-      return '<div class="quote reveal"><div class="qm">\u201C</div><div class="stars">'+stars+'</div><p>'+esc(u.tekst)+'</p><div class="who">'+who+'</div></div>';
+      var initial=esc(String(u.ime||'\u2605').trim().charAt(0).toUpperCase()||'\u2605');
+      return '<div class="quote reveal"><div class="qhead"><div class="qav">'+initial+'</div><div class="qmeta"><div class="who">'+who+'</div><div class="stars">'+stars+'</div></div><div class="qver" title="Verifikovan utisak" aria-hidden="true">\u2713</div></div><p>'+esc(u.tekst)+'</p></div>';
     }).join("");
     /* re-trigger reveal animacije ako postoje */
     grid.querySelectorAll(".reveal").forEach(function(el){el.classList.add("in");});
