@@ -58,8 +58,10 @@
   .back:hover{gap:14px}.back:hover .arw{transform:translateX(-3px);border-color:var(--gold)}
   .tright{display:flex;align-items:center;gap:16px}
   .lang{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--plum);background:var(--card);border:1px solid var(--bord);border-radius:100px;padding:6px 12px;cursor:pointer}
-  .brandmark{font-family:var(--serif);font-weight:700;letter-spacing:.16em;font-size:.82rem;color:var(--golddk);text-transform:uppercase;text-decoration:none;white-space:nowrap}
-  .brandmark b{color:var(--gold);margin:0 .1em}
+  .brandmark{font-family:var(--serif);font-weight:700;letter-spacing:.16em;font-size:.82rem;text-transform:uppercase;text-decoration:none;white-space:nowrap;background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:brandFoil 9s linear infinite}
+  @keyframes brandFoil{to{background-position:230% center}}
+  @media(prefers-reduced-motion:reduce){.brandmark{animation:none}}
+  .brandmark b{color:var(--gold);-webkit-text-fill-color:var(--gold);margin:0 .1em}
   @media(max-width:620px){.brandmark{display:none}}
 
   /* HERO — editorijalni, levo + info kartica desno */
