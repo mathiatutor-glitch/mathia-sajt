@@ -364,21 +364,88 @@
 
 <main>
 
-  <header class="hero">
-    <div class="wrap">
-      <div class="eyebrow rv" data-i18n="eyebrow">Fakultet &#183; Matematika</div>
-      <h1 class="rv" data-i18n="h1">Algebra</h1>
-      <p class="lead rv" data-i18n="lead">Od stepena i polinoma do matrica i sopstvenih vrednosti — klasična i linearna algebra na jednom mestu.</p>
-    </div>
-  </header>
-  <div class="factsbar">
-    <div class="wrap rv">
-      <ul class="facts">
-        <li><span data-i18n="fL1">Nivo</span><b data-i18n="fV1">Fakultet</b></li>
-        <li><span data-i18n="fL2">Oblasti</span><b data-i18n="fV2">9 celina</b></li>
-        <li><span data-i18n="fL3">Materijali</span><b data-i18n="fV3">Skripta &#183; Formule &#183; Vežba</b></li>
-        <li><span data-i18n="fL4">Profesorica</span><b data-i18n="fV4">Dostupna 0&#8211;24h</b></li>
-      </ul>
+  <style>
+  .igwrap{max-width:520px;margin:24px auto 0;padding:0 16px}
+  .igcard{background:#fff;border:1px solid #EFE1C8;border-radius:26px;box-shadow:0 40px 84px -46px rgba(70,40,55,.5);overflow:hidden}
+  .igtop{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid #F3EAD8}
+  .igtop .u{display:flex;align-items:center;gap:6px;font-weight:800;color:var(--plum);font-size:14px}
+  .igtop .u .vf{color:#3BA776;font-size:13px}
+  .igtop .more{color:var(--golddk);font-size:18px;letter-spacing:1px}
+  .igbody{padding:18px 18px 6px}
+  .igrow{display:flex;align-items:center;gap:22px}
+  .igav{position:relative;flex:0 0 auto;width:90px;height:90px;border-radius:50%}
+  .igav::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#E7D2A2,#C6A05C,#9C7838,#F4E2A6,#C6A05C,#E7D2A2);animation:igspin 7s linear infinite}
+  .igav>span{position:absolute;inset:3px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 3px #FCF9F3;font-family:var(--serif);font-size:38px}
+  .igav>span i{font-style:italic;background:linear-gradient(100deg,#9C7838,#E7D2A2 45%,#FFF7E2 52%,#C6A05C);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:igfoil 4.2s linear infinite}
+  .igstats{flex:1;display:flex;justify-content:space-around;text-align:center;gap:6px}
+  .igstats .st b{display:block;font-family:var(--serif);font-size:19px;color:var(--plum);font-weight:700;line-height:1.1}
+  .igstats .st span{font-size:11px;color:var(--muted);font-weight:700}
+  .igname{font-weight:800;color:var(--plum);font-size:15px;margin-top:12px}
+  .igcat{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--golddk);margin:2px 0 5px}
+  .igbio{font-size:13.5px;color:#5a474d;line-height:1.5}
+  .igbtns{display:flex;gap:8px;margin-top:14px}
+  .igbtns a{flex:1;text-align:center;font-weight:800;font-size:13.5px;padding:10px;border-radius:12px;text-decoration:none;transition:transform .15s ease}
+  .igbtns a:active{transform:scale(.98)}
+  .igbtns .b1{background:linear-gradient(160deg,#E4C578,#C6A05C);color:#3a2410;box-shadow:0 10px 22px -8px rgba(160,120,40,.5)}
+  .igbtns .b2{background:#FBF7EF;border:1px solid #E7D8BE;color:#7a5f22}
+  .ighl{display:flex;gap:16px;overflow-x:auto;padding:16px 18px 12px;scrollbar-width:none}
+  .ighl::-webkit-scrollbar{display:none}
+  .ighl a{text-align:center;flex:0 0 auto;text-decoration:none}
+  .ighl .c{width:58px;height:58px;border-radius:50%;padding:2px;background:conic-gradient(from 160deg,#EBD9A6,#C6A05C,#EBD9A6)}
+  .ighl .c>span{width:100%;height:100%;border-radius:50%;background:#FBF7EF;display:grid;place-items:center;color:var(--golddk)}
+  .ighl .c svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .ighl .lb{font-size:10.5px;color:#6f5f57;margin-top:6px;font-weight:700;max-width:72px;line-height:1.2}
+  .igtabs{display:flex;justify-content:center;gap:44px;border-top:1px solid #F3EAD8;padding:11px 0 9px;color:#c8b48f}
+  .igtabs .on{color:var(--plum)}
+  .igtabs svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+  .igfeed{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:0 3px 3px}
+  .igfeed a{position:relative;aspect-ratio:1;border-radius:8px;display:grid;place-items:center;color:#fff;font-family:var(--serif);font-size:15px;font-weight:600;text-align:center;padding:8px;line-height:1.2;text-decoration:none;overflow:hidden;transition:transform .18s ease}
+  .igfeed a .wm{position:absolute;right:-8px;bottom:-16px;font-size:66px;opacity:.15;font-style:italic;pointer-events:none;line-height:1}
+  .igfeed a .tx{position:relative;z-index:1}
+  .igfeed a:hover{transform:scale(1.03)}
+  .igfeed a:hover .wm{opacity:.24}
+  @keyframes igspin{to{transform:rotate(360deg)}}
+  @keyframes igfoil{to{background-position:220% center}}
+  @media(prefers-reduced-motion:reduce){.igav::before,.igav>span i{animation:none}}
+  @media(max-width:560px){.igrow{gap:14px}.igav{width:80px;height:80px}.igav>span{font-size:33px}}
+  </style>
+  <div class="igwrap rv">
+    <div class="igcard">
+      <div class="igtop"><div class="u">mathia.rs&nbsp;·&nbsp;<span data-i18n="h1">Algebra</span> <span class="vf" title="Verifikovano">&#10003;</span></div><div class="more" aria-hidden="true">&#183;&#183;&#183;</div></div>
+      <div class="igbody">
+        <div class="igrow">
+          <div class="igav"><span><i>x</i></span></div>
+          <div class="igstats">
+            <div class="st"><b data-i18n="fV2">9 celina</b><span data-i18n="fL2">Oblasti</span></div>
+            <div class="st"><b>3</b><span data-i18n="fL3">Materijali</span></div>
+            <div class="st"><b>24/7</b><span data-i18n="fL4">Profesorica</span></div>
+          </div>
+        </div>
+        <div class="igname" data-i18n="h1">Algebra</div>
+        <div class="igcat" data-i18n="eyebrow">Fakultet &#183; Matematika</div>
+        <div class="igbio" data-i18n="lead">Od stepena i polinoma do matrica i sopstvenih vrednosti — klasična i linearna algebra na jednom mestu.</div>
+        <div class="igbtns">
+          <a class="b1" href="index.html#paketi" data-i18n="ctaBtn">Započni besplatno &#8594;</a>
+          <a class="b2" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;" data-i18n="pfBtn">Pitaj Profesoricu &#8594;</a>
+        </div>
+      </div>
+      <div class="ighl">
+        <a href="#cover"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M4 12c0-2.1 1.5-3.6 3.4-3.6S10.8 10 12 12s2.7 3.6 4.6 3.6S20 14.1 20 12s-1.5-3.6-3.4-3.6S13.2 10 12 12s-2.7 3.6-4.6 3.6S4 14.1 4 12Z"/></svg></span></div><div class="lb" data-i18n="c1t">Stepeni</div></a>
+        <a href="#cover"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 15.5c4.5 0 4.5-9 9-9s4.5 9 9 9"/></svg></span></div><div class="lb" data-i18n="c2t">Formule</div></a>
+        <a href="#cover"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 18C9 18 15 12 20 4"/><path d="M6 13.5 20 18"/></svg></span></div><div class="lb" data-i18n="c3t">Kvadratne</div></a>
+        <a href="#cover"><div class="c"><span><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m20 20-5-5"/></svg></span></div><div class="lb" data-i18n="c5t">Polinomi</div></a>
+        <a href="#cover"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 18C8.5 18 13.5 6 21 6"/><path d="M3 13h18" stroke-dasharray="2.4 2.6"/></svg></span></div><div class="lb" data-i18n="c6t">Logaritmi</div></a>
+      </div>
+      <div class="igtabs">
+        <span class="on" title="Materijali"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <span title="Vežba"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></span>
+        <span title="Sačuvano"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span>
+      </div>
+      <div class="igfeed">
+        <a href="Algebra-Skripta.html" style="background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#E7D2A2"><span class="wm">&#8721;</span><span class="tx" data-i18n="mS">Skripta</span></a>
+        <a href="Algebra-Formule.html" style="background:linear-gradient(160deg,#B58E43,#9C7838)"><span class="wm">&#960;</span><span class="tx" data-i18n="mF">Formule</span></a>
+        <a href="Algebra-Zadaci.html" style="background:linear-gradient(160deg,#CC8E86,#B5726A)"><span class="wm">&#8730;</span><span class="tx" data-i18n="mV">Zadaci</span></a>
+      </div>
     </div>
   </div>
 
@@ -400,7 +467,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="cover">
     <div class="wrap">
       <div class="sec-head">
         <div class="sec-eyebrow" data-i18n="secCover">Gradivo</div>
