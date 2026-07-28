@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebra — koncept stranice | MATHIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FBF6EE;--paper2:#FCF9F3;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--rose:#CC8E86;--ink:#5a474d;--muted:#9a8a80;--line:#EADFC9;--serif:'Spectral',serif;--sans:'Nunito',system-ui,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);color:var(--plum);background:
+    radial-gradient(900px 500px at 85% -8%,rgba(198,160,92,.14),transparent 60%),
+    radial-gradient(700px 600px at -10% 108%,rgba(204,142,134,.10),transparent 60%),
+    linear-gradient(170deg,var(--paper2),#F3E9D6)}
+  a{color:inherit}
+  .col{max-width:620px;margin:0 auto;padding:0 16px}
+
+  /* TOPBAR */
+  .top{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;height:62px;padding:0 16px;background:rgba(251,246,238,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .top .bk{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;color:var(--plum);text-decoration:none;box-shadow:0 6px 16px -10px rgba(70,40,55,.4);transition:transform .15s}
+  .top .bk:hover{transform:translateX(-2px)}
+  .top .bk svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .bmark{font-family:var(--serif);font-weight:700;letter-spacing:.30em;font-size:15px;text-transform:uppercase;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:230% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:foil 9s linear infinite;text-decoration:none}
+  .bmark b{-webkit-text-fill-color:var(--gold);color:var(--gold)}
+  .top .lg{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:100px;padding:8px 13px;font-size:12px;font-weight:800;color:#7a5f22}
+  .top .lg svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}
+
+  /* PROFILE */
+  .card{background:#fff;border:1px solid #EFE1C8;border-radius:26px;box-shadow:0 40px 84px -48px rgba(70,40,55,.5)}
+  .prof{margin-top:26px;padding:26px 24px 22px}
+  .prow{display:flex;align-items:center;gap:24px}
+  .av{position:relative;width:96px;height:96px;flex:0 0 auto;border-radius:50%}
+  .av::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,#E7D2A2,#C6A05C,#9C7838,#F4E2A6,#C6A05C,#E7D2A2);animation:spin 8s linear infinite}
+  .av>span{position:absolute;inset:4px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 3px var(--paper2);font-family:var(--serif);font-size:42px}
+  .av i{font-style:italic;background:linear-gradient(100deg,#9C7838,#E7D2A2 45%,#FFF7E2 52%,#C6A05C);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:foil 4.4s linear infinite}
+  .stats{flex:1;display:flex;justify-content:space-around;text-align:center;gap:8px}
+  .stats b{display:block;font-family:var(--serif);font-size:22px;font-weight:700;line-height:1}
+  .stats span{font-size:11px;color:var(--muted);font-weight:700;margin-top:4px;display:block}
+  .pname{display:flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--serif);font-size:26px;font-weight:700}
+  .pname .vf{width:19px;height:19px;border-radius:50%;background:#EAF5EF;color:#2FA06E;display:grid;place-items:center;font-size:11px;font-weight:900}
+  .pcat{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--golddk);margin:4px 0 8px}
+  .pbio{font-size:14px;color:var(--ink);line-height:1.55}
+  .pbtns{display:flex;gap:10px;margin-top:16px}
+  .btn{flex:1;text-align:center;font-weight:800;font-size:14px;padding:12px;border-radius:13px;text-decoration:none;transition:transform .15s,box-shadow .15s;border:0;cursor:pointer;font-family:var(--sans)}
+  .btn:hover{transform:translateY(-2px)}
+  .b1{background:linear-gradient(160deg,#E4C578,#C6A05C);color:#3a2410;box-shadow:0 12px 26px -8px rgba(160,120,40,.5)}
+  .b2{background:var(--paper2);border:1px solid #E7D8BE;color:#7a5f22}
+
+  /* SECTION HEAD */
+  .sh{text-align:center;margin:40px 0 18px}
+  .sh .eb{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--golddk)}
+  .sh h2{font-family:var(--serif);font-size:25px;font-weight:700;margin:6px 0 0}
+  .sh .rl{width:54px;height:2px;margin:12px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+  /* CELINE (highlights) */
+  .cel{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 8px;scrollbar-width:none}
+  .cel::-webkit-scrollbar{display:none}
+  .cel a{flex:0 0 auto;text-align:center;text-decoration:none;transition:transform .16s}
+  .cel a:hover{transform:translateY(-3px)}
+  .cel .c{width:66px;height:66px;border-radius:50%;padding:2px;background:conic-gradient(from 150deg,#EBD9A6,#C6A05C,#9C7838,#EBD9A6)}
+  .cel .c>span{width:100%;height:100%;border-radius:50%;background:#FBF7EF;display:grid;place-items:center;color:var(--golddk);font-family:var(--serif);font-size:19px}
+  .cel .c svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .cel .lb{font-size:11px;color:#6f5f57;font-weight:700;margin-top:7px;max-width:74px;line-height:1.2}
+
+  /* GRADIVO grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .tp{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #EFE1C8;border-radius:16px;padding:14px;box-shadow:0 16px 36px -30px rgba(70,40,55,.5);transition:transform .15s,box-shadow .15s}
+  .tp:hover{transform:translateY(-3px);box-shadow:0 24px 44px -28px rgba(120,70,80,.4)}
+  .tp .tk{flex:0 0 auto;width:40px;height:40px;border-radius:12px;background:linear-gradient(160deg,#FBF1DA,#F1E0BE);display:grid;place-items:center;color:var(--golddk)}
+  .tp .tk svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .tp h3{margin:0;font-family:var(--serif);font-size:15px;font-weight:600;line-height:1.2}
+  .tp p{margin:3px 0 0;font-size:12px;color:var(--muted);line-height:1.35}
+
+  /* MATERIJALI */
+  .mats{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:520px){.mats{grid-template-columns:repeat(3,1fr)}}
+  .mat{position:relative;display:block;text-decoration:none;border-radius:20px;padding:22px 20px 20px;color:#fff;overflow:hidden;box-shadow:0 22px 46px -26px rgba(70,40,55,.55);transition:transform .16s}
+  .mat:hover{transform:translateY(-4px)}
+  .mat .mi{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.16);display:grid;place-items:center;margin-bottom:12px}
+  .mat .mi svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .mat h3{margin:0;font-family:var(--serif);font-size:18px;font-weight:600}
+  .mat p{margin:6px 0 12px;font-size:12.5px;opacity:.85;line-height:1.4}
+  .mat .go{font-weight:800;font-size:12.5px;opacity:.95}
+  .mat .wm{position:absolute;right:-10px;bottom:-18px;font-family:var(--serif);font-style:italic;font-size:80px;opacity:.13;line-height:1}
+  .m1{background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#F0E1C0}
+  .m2{background:linear-gradient(160deg,#B58E43,#8A6A2C)}
+  .m3{background:linear-gradient(160deg,#CC8E86,#A9635B)}
+  .note{text-align:center;font-size:12px;color:var(--muted);font-style:italic;margin-top:16px}
+
+  /* KAKO UČI */
+  .steps{display:grid;grid-template-columns:1fr;gap:10px}
+  .step{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid #EFE1C8;border-radius:16px;padding:14px 16px;box-shadow:0 16px 36px -32px rgba(70,40,55,.5)}
+  .step .n{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:linear-gradient(160deg,#EBD9A6,#C6A05C);color:#4A2A38;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:15px}
+  .step h3{margin:0;font-family:var(--serif);font-size:15.5px;font-weight:600}
+  .step p{margin:2px 0 0;font-size:12.5px;color:var(--muted);line-height:1.4}
+
+  /* NAPREDAK + PROFESORICA */
+  .duo{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:560px){.duo{grid-template-columns:1fr 1fr}}
+  .pan{background:#fff;border:1px solid #EFE1C8;border-radius:20px;padding:20px;box-shadow:0 22px 46px -32px rgba(70,40,55,.5)}
+  .pan .lbl{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--golddk)}
+  .pan h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:6px 0 4px}
+  .pan .sub{font-size:12.5px;color:var(--muted);line-height:1.45;margin:0 0 14px}
+  .bar{margin:10px 0}
+  .bar .r{display:flex;justify-content:space-between;font-size:12px;font-weight:700;margin-bottom:5px}
+  .bar .t{height:8px;border-radius:100px;background:#F1E6D2;overflow:hidden}
+  .bar .t i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,#E7D2A2,#C6A05C)}
+  .who{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+  .who .a{width:46px;height:46px;border-radius:50%;background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#E7D2A2;display:grid;place-items:center;font-family:var(--serif);font-size:20px;font-style:italic}
+  .who b{font-size:14px}.who span{display:block;font-size:11.5px;color:var(--muted)}
+  .avail{margin-left:auto;font-size:11px;font-weight:800;color:#2FA06E}
+  .qc{background:var(--paper2);border:1px solid var(--line);border-radius:13px;padding:11px 13px;font-size:13px;color:var(--ink);font-style:italic;margin-bottom:8px}
+
+  /* FINALE */
+  .fin{margin:44px 0 30px;text-align:center;padding:36px 24px;background:linear-gradient(160deg,#4A2A38,#2C1A25);border-radius:26px;color:#F0E1C0;box-shadow:0 40px 80px -40px rgba(60,25,40,.6)}
+  .fin .orn{color:var(--goldlt);font-size:22px}
+  .fin h2{font-family:var(--serif);font-size:28px;font-weight:600;margin:8px 0 4px;color:#fff}
+  .fin .k{font-family:var(--serif);font-style:italic;font-size:20px;background:linear-gradient(100deg,#E7D2A2,#FFF7E2 50%,#C6A05C);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .fin p{font-size:13.5px;opacity:.85;max-width:44ch;margin:14px auto 18px;line-height:1.55}
+  .fin .b1{display:inline-block;padding:13px 30px}
+  .fin .fine{font-size:11.5px;opacity:.7;margin-top:12px}
+
+  footer{text-align:center;padding:26px 16px 40px;color:var(--muted);font-size:12px}
+  footer .bmark{font-size:13px}
+
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes foil{to{background-position:220% center}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}.stats b{font-size:19px}.av{width:84px;height:84px}.av>span{font-size:36px}}
+  @media(prefers-reduced-motion:reduce){.av::before,.av i,.bmark{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="bk" href="predmeti.html" title="Svi predmeti"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></a>
+  <a class="bmark" href="index.html">MATHIA<b>·</b>EDU</a>
+  <span class="lg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg> SR</span>
+</div>
+
+<div class="col">
+
+  <!-- PROFIL -->
+  <div class="card prof">
+    <div class="prow">
+      <div class="av"><span><i>x</i></span></div>
+      <div class="stats">
+        <div><b>9</b><span>celina</span></div>
+        <div><b>3</b><span>materijala</span></div>
+        <div><b>24/7</b><span>Profesorica</span></div>
+      </div>
+    </div>
+    <div class="pname">Algebra <span class="vf" title="Zvaničan materijal">✓</span></div>
+    <div class="pcat">Fakultet · Matematika</div>
+    <div class="pbio">Od stepena i polinoma do matrica i sopstvenih vrednosti — klasična i linearna algebra, objašnjene korak po korak, na jednom mestu. 🌷</div>
+    <div class="pbtns">
+      <a class="btn b1" href="index.html#paketi">Započni besplatno →</a>
+      <a class="btn b2" href="#profesorica">Pitaj Profesoricu</a>
+    </div>
+  </div>
+
+  <!-- CELINE -->
+  <div class="sh"><div class="eb">Celine</div><h2>Kroz šta ćeš proći</h2><div class="rl"></div></div>
+  <div class="cel">
+    <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M4 12c0-2.1 1.5-3.6 3.4-3.6S10.8 10 12 12s2.7 3.6 4.6 3.6S20 14.1 20 12"/></svg></span></div><div class="lb">Stepeni</div></a>
+    <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 15.5c4.5 0 4.5-9 9-9s4.5 9 9 9"/></svg></span></div><div class="lb">Formule</div></a>
+    <a href="#gradivo"><div class="c"><span>x²</span></div><div class="lb">Kvadratne</div></a>
+    <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg></span></div><div class="lb">Matrice</div></a>
+    <a href="#gradivo"><div class="c"><span>λ</span></div><div class="lb">Sopstvene</div></a>
+    <a href="#gradivo"><div class="c"><span>log</span></div><div class="lb">Logaritmi</div></a>
+  </div>
+
+  <!-- GRADIVO -->
+  <div class="sh" id="gradivo"><div class="eb">Gradivo</div><h2>Šta pokrivamo</h2><div class="rl"></div></div>
+  <div class="grid">
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 12c0-2.1 1.5-3.6 3.4-3.6S10.8 10 12 12s2.7 3.6 4.6 3.6S20 14.1 20 12"/></svg></span><div><h3>Stepeni i koreni</h3><p>Pravila stepena i korenovanje</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M3 15.5c4.5 0 4.5-9 9-9s4.5 9 9 9"/></svg></span><div><h3>Formule množenja</h3><p>Kvadrat binoma i razlika kvadrata</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M3 18C9 18 15 12 20 4"/><path d="M6 13.5 20 18"/></svg></span><div><h3>Kvadratne jednačine</h3><p>Diskriminanta i Vietove formule</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M3 13c3 0 3.2-7 5.5-7s3 13 5.5 13 3-7 6-7"/></svg></span><div><h3>Nejednačine</h3><p>Znak se okreće pri množenju negativnim</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m20 20-5-5"/></svg></span><div><h3>Polinomi</h3><p>Bezuova teorema i deljivost</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M3 18C8.5 18 13.5 6 21 6"/></svg></span><div><h3>Logaritmi</h3><p>Pravila logaritama i modul</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 4v16"/></svg></span><div><h3>Matrice</h3><p>Operacije, inverz i rang</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 14h16"/><path d="M8 5l-2 3 2 3"/></svg></span><div><h3>Sistemi jednačina</h3><p>Gauss i Cramer</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M5 19L19 5"/><path d="M15 5h4v4"/></svg></span><div><h3>Sopstvene vrednosti</h3><p>Računanje i značenje</p></div></div>
+    <div class="tp"><span class="tk"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h3v3H8zM13 13h3v3h-3z"/></svg></span><div><h3>Dijagonalizacija</h3><p>Kada i kako dijagonalizovati</p></div></div>
+  </div>
+
+  <!-- MATERIJALI -->
+  <div class="sh"><div class="eb">Materijali</div><h2>Sve za ovaj predmet</h2><div class="rl"></div></div>
+  <div class="mats">
+    <a class="mat m1" href="Algebra-Skripta.html"><span class="wm">∑</span><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M8 3v15"/></svg></span><h3>Skripta</h3><p>Teorija korak po korak, sa rešenim primerima.</p><span class="go">Otvori skriptu →</span></a>
+    <a class="mat m2" href="Algebra-Formule.html"><span class="wm">π</span><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 8h16M9 8v10M15 8v10"/></svg></span><h3>Formule</h3><p>Sve ključne formule, spremne pred ispit.</p><span class="go">Otvori formule →</span></a>
+    <a class="mat m3" href="Algebra-Zadaci.html"><span class="wm">√</span><span class="mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg></span><h3>Zadaci</h3><p>Rešavaj i proveri koliko si savladao.</p><span class="go">Proveri se →</span></a>
+  </div>
+  <p class="note">Prvu stranu vidiš besplatno · ceo sadržaj se otključava pretplatom na ovaj predmet.</p>
+
+  <!-- KAKO UČI -->
+  <div class="sh"><div class="eb">Kako uči Mathia</div><h2>Jasan put od pitanja do sigurnosti</h2><div class="rl"></div></div>
+  <div class="steps">
+    <div class="step"><span class="n">I</span><div><h3>Razumi</h3><p>Profesorica objasni suštinu — zašto, ne samo kako.</p></div></div>
+    <div class="step"><span class="n">II</span><div><h3>Nauči</h3><p>Skripta i formule složene pregledno, korak po korak.</p></div></div>
+    <div class="step"><span class="n">III</span><div><h3>Vežbaj</h3><p>Rešavaš zadatke uz vođenje, sopstvenim tempom.</p></div></div>
+    <div class="step"><span class="n">IV</span><div><h3>Proveri</h3><p>Kratke provere pokažu šta znaš, a šta još treba.</p></div></div>
+    <div class="step"><span class="n">V</span><div><h3>Napreduj</h3><p>Pratiš napredak i uvek znaš svoj sledeći korak.</p></div></div>
+  </div>
+
+  <!-- NAPREDAK + PROFESORICA -->
+  <div class="sh" id="profesorica"><div class="eb">Uz tebe</div><h2>Profesorica koja te prati i pamti</h2><div class="rl"></div></div>
+  <div class="duo">
+    <div class="pan">
+      <div class="lbl">Tvoj napredak</div>
+      <h3>Uvek znaš dokle si stigao</h3>
+      <p class="sub">Mathia pamti svaku temu koju si prešao — vidiš procenat savladanog i tačno šta sledi.</p>
+      <div class="bar"><div class="r"><span>Stepeni i koreni</span><span>72%</span></div><div class="t"><i style="width:72%"></i></div></div>
+      <div class="bar"><div class="r"><span>Kvadratne jednačine</span><span>48%</span></div><div class="t"><i style="width:48%"></i></div></div>
+      <div class="bar"><div class="r"><span>Logaritmi</span><span>20%</span></div><div class="t"><i style="width:20%"></i></div></div>
+    </div>
+    <div class="pan">
+      <div class="who"><span class="a">x</span><div><b>Profesorica</b><span>za Algebru</span></div><span class="avail">● 0–24h</span></div>
+      <div class="qc">„Objasni kako se rešava kvadratna jednačina."</div>
+      <div class="qc">„Rastavi na činioce x² − 5x + 6."</div>
+      <a class="btn b1" style="display:block;margin-top:12px" href="index.html#paketi">Pitaj Profesoricu →</a>
+    </div>
+  </div>
+
+  <!-- FINALE -->
+  <div class="fin">
+    <div class="orn">✦</div>
+    <h2>Algebra</h2>
+    <div class="k">konačno jasna</div>
+    <p>Počni s pitanjem koje te muči — Profesorica te vodi ostatak puta.</p>
+    <a class="btn b1" href="index.html#paketi">Započni besplatno →</a>
+    <div class="fine">Prvih 15 minuta je besplatno — bez kartice, bez obaveza.</div>
+  </div>
+
+</div>
+
+<footer>
+  <a class="bmark" href="index.html">MATHIA<b>·</b>EDU</a>
+  <div style="margin-top:8px">Matematika · Fizika · Elektrotehnika — uz Profesoricu, 24/7.</div>
+</footer>
+
+</body>
+</html>
