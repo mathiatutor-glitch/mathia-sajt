@@ -51,9 +51,15 @@
   .sh .eb{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--golddk)}
   .sh h2{font-family:var(--serif);font-size:25px;font-weight:700;margin:6px 0 0}
   .sh .rl{width:54px;height:2px;margin:12px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .sh .eb::before{content:"\2726";display:block;color:var(--gold);font-size:14px;line-height:1;margin-bottom:9px;opacity:.6}
+  .prof{position:relative;overflow:hidden}
+  .prof .cn{position:absolute;width:26px;height:26px;border:1.5px solid var(--goldlt);opacity:.75;pointer-events:none}
+  .prof .cn.tl{top:13px;left:13px;border-right:0;border-bottom:0;border-radius:8px 0 0 0}
+  .prof .cn.tr{top:13px;right:13px;border-left:0;border-bottom:0;border-radius:0 8px 0 0}
+  .av{box-shadow:0 0 0 7px rgba(198,160,92,.07)}
 
   /* CELINE (highlights) */
-  .cel{display:flex;gap:16px;overflow-x:auto;padding:6px 2px 8px;scrollbar-width:none}
+  .cel{display:flex;justify-content:center;gap:18px;overflow-x:auto;padding:6px 2px 8px;scrollbar-width:none}
   .cel::-webkit-scrollbar{display:none}
   .cel a{flex:0 0 auto;text-align:center;text-decoration:none;transition:transform .16s}
   .cel a:hover{transform:translateY(-3px)}
@@ -120,8 +126,18 @@
   .fin .b1{display:inline-block;padding:13px 30px}
   .fin .fine{font-size:11.5px;opacity:.7;margin-top:12px}
 
-  footer{text-align:center;padding:26px 16px 40px;color:var(--muted);font-size:12px}
-  footer .bmark{font-size:13px}
+  footer{text-align:center;padding:32px 16px 48px;border-top:1px solid var(--line);margin-top:16px}
+  footer .fo{color:var(--gold);font-size:14px;opacity:.6;margin-bottom:11px}
+  footer .bmark{font-size:14px}
+  footer .ft-tag{color:var(--muted);font-size:12.5px;margin-top:9px}
+  footer .ft-links{margin-top:16px;font-size:12.5px;font-weight:800}
+  footer .ft-links a{color:var(--golddk);text-decoration:none}
+  footer .ft-links span{color:var(--goldlt);margin:0 9px}
+  footer .ft-soc{margin-top:16px;display:flex;justify-content:center;gap:13px}
+  footer .ft-soc a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--golddk);box-shadow:0 8px 18px -12px rgba(70,40,55,.5);transition:transform .15s}
+  footer .ft-soc a:hover{transform:translateY(-2px)}
+  footer .ft-soc svg{width:17px;height:17px;fill:currentColor}
+  footer .ft-copy{color:#b3a794;font-size:11px;margin-top:17px;letter-spacing:.02em}
 
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes foil{to{background-position:220% center}}
@@ -141,6 +157,7 @@
 
   <!-- PROFIL -->
   <div class="card prof">
+    <span class="cn tl"></span><span class="cn tr"></span>
     <div class="prow">
       <div class="av"><span><i>x</i></span></div>
       <div class="stats">
@@ -235,8 +252,16 @@
 </div>
 
 <footer>
+  <div class="fo">&#10022;</div>
   <a class="bmark" href="index.html">MATHIA<b>·</b>EDU</a>
-  <div style="margin-top:8px">Matematika · Fizika · Elektrotehnika — uz Profesoricu, 24/7.</div>
+  <div class="ft-tag">Matematika · Fizika · Elektrotehnika — uz Profesoricu, 24/7.</div>
+  <div class="ft-links"><a href="index.html">Početna</a><span>·</span><a href="predmeti.html">Predmeti</a><span>·</span><a href="index.html#paketi">Paketi</a><span>·</span><a href="o-meni.html">O meni</a></div>
+  <div class="ft-soc">
+    <a href="https://www.instagram.com" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.42.4.68.8.9 1.4.17.4.36 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2-.22.6-.48 1-.9 1.4-.4.42-.8.68-1.4.9-.4.17-1 .36-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42-.6-.22-1-.48-1.4-.9-.42-.4-.68-.8-.9-1.4-.17-.4-.36-1-.42-2.2C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.4-.42.8-.68 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.32-.43.17-.74.37-1.06.7-.32.32-.53.63-.7 1.06-.12.3-.28.8-.32 1.7C3.25 8.5 3.24 8.9 3.24 12s0 3.5.07 4.7c.04.9.2 1.4.32 1.7.17.43.37.74.7 1.06.32.32.63.53 1.06.7.3.12.8.28 1.7.32 1.2.06 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.32.43-.17.74-.37 1.06-.7.32-.32.53-.63.7-1.06.12-.3.28-.8.32-1.7.06-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.04-.9-.2-1.4-.32-1.7a2.9 2.9 0 0 0-.7-1.06 2.9 2.9 0 0 0-1.06-.7c-.3-.12-.8-.28-1.7-.32C15.5 4 15.1 4 12 4Zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06Zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86Zm5.14-.15a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15Z"/></svg></a>
+    <a href="https://www.facebook.com" title="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.13-2.45-.13-2.4 0-4.05 1.47-4.05 4.17v2.33H7.5V13h2.55v8h3.45Z"/></svg></a>
+    <a href="https://www.youtube.com" title="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2s-.2-1.4-.8-2c-.75-.8-1.6-.8-2-.85C15.95 4.1 12 4.1 12 4.1s-3.95 0-6.8.25c-.4.05-1.25.05-2 .85-.6.6-.8 2-.8 2S2.2 8.8 2.2 10.5v1.6c0 1.65.2 3.3.2 3.3s.2 1.4.8 2c.75.8 1.75.75 2.2.85 1.6.15 6.6.2 6.6.2s3.95 0 6.8-.25c.4-.05 1.25-.05 2-.85.6-.6.8-2 .8-2s.2-1.65.2-3.3v-1.6c0-1.65-.2-3.3-.2-3.3ZM10 14.6V9.4l4.2 2.6-4.2 2.6Z"/></svg></a>
+  </div>
+  <div class="ft-copy">© 2026 Mathia Edu · Sva prava zadržana</div>
 </footer>
 
 </body>
