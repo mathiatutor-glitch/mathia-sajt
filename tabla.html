@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{--paper:#F7F1E7;--card:#FFFFFF;--plum:#432C37;--plum2:#5C3B49;--gold:#B08A34;--goldsoft:#C6A05C;--goldlt:#E7D2A2;
-    --line:#ECE1CE;--ink:#3d2f34;--mut:#9a8a8f;--green:#4E8A5B;--rose:#CC8E86;--blue:#5B7C99;}
+    --line:#ECE1CE;--ink:#3d2f34;--mut:#7a6a60;--green:#4E8A5B;--rose:#CC8E86;--blue:#5B7C99;}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     background:radial-gradient(900px 500px at 90% -10%,rgba(198,160,92,.12),transparent 60%),radial-gradient(700px 500px at -10% 110%,rgba(204,142,134,.08),transparent 60%),var(--paper);
@@ -17,17 +17,18 @@
   .wrap{max-width:1080px;margin:0 auto}
 
   /* HERO HEADER */
-  .hero{background:linear-gradient(150deg,#4A2A38,#2C1A25);border-radius:20px;padding:22px 26px;position:relative;overflow:hidden;
-    box-shadow:0 24px 50px -26px rgba(60,25,40,.6);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .hero{background:#fff;border:1px solid #EFE1C8;border-radius:22px;padding:24px 26px;position:relative;overflow:hidden;
+    box-shadow:0 30px 64px -40px rgba(70,40,55,.5);display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
   .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 88% -20%,rgba(231,210,162,.18),transparent 60%);pointer-events:none}
   .hero .htitle{position:relative}
-  .hero .wm{font-family:'Spectral',Georgia,serif;letter-spacing:.32em;color:var(--goldlt);font-size:15px;font-weight:600}
-  .hero h1{font-family:'Spectral',serif;color:#FBF6EE;font-size:27px;font-weight:600;margin-top:2px;letter-spacing:.01em}
+  .hero .wm{font-family:'Spectral',serif;letter-spacing:.30em;font-size:14px;font-weight:700;text-transform:uppercase;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:230% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:tfoil 9s linear infinite}
+  .hero h1{font-family:'Spectral',serif;color:#432C37;font-size:28px;font-weight:700;margin-top:5px;letter-spacing:.01em}
   .hero .htools{position:relative;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-  .chip{font-size:12px;font-weight:700;padding:7px 13px;border-radius:100px;background:rgba(255,255,255,.1);color:#E7D2A2;border:1px solid rgba(231,210,162,.28)}
-  .chip.on{background:rgba(120,200,140,.16);color:#BFE6C9;border-color:rgba(120,200,140,.35)}
-  .updated{color:rgba(231,210,162,.7);font-size:12px}
-  button.ref{font:inherit;cursor:pointer;border:none;background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#43301a;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;box-shadow:0 6px 14px -6px rgba(160,120,40,.6)}
+  .chip{font-size:12px;font-weight:800;padding:7px 13px;border-radius:100px;background:#F3E7D2;color:#7a5f22;border:1px solid #E7D8BE}
+  .chip.on{background:#E7F1E9;color:#2F7A4E;border-color:#BFE0C9}
+  .updated{color:#9a8a80;font-size:12px}
+  button.ref{font:inherit;cursor:pointer;border:none;background:linear-gradient(160deg,#E4C578,#C6A05C);color:#3a2410;font-weight:800;font-size:13px;padding:10px 18px;border-radius:100px;box-shadow:0 10px 22px -8px rgba(160,120,40,.5)}
+  @keyframes tfoil{to{background-position:230% center}}
 
   .gate{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px;text-align:center;max-width:520px;margin:40px auto;box-shadow:0 20px 40px -28px rgba(90,50,60,.4)}
   .gate h2{font-family:'Spectral',serif;color:var(--plum);margin-bottom:8px;font-size:22px}
@@ -69,11 +70,11 @@
   .pill.ok{background:#E7F1E9;color:var(--green)}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
-  a.lnk{display:flex;gap:11px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit;transition:.13s;box-shadow:0 10px 22px -20px rgba(90,50,60,.5)}
+  a.lnk{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;text-decoration:none;color:inherit;transition:.13s;box-shadow:0 10px 22px -20px rgba(90,50,60,.5)}
   a.lnk:hover{border-color:var(--goldsoft);transform:translateY(-2px)}
   a.lnk .li{width:34px;height:34px;flex:0 0 34px;border-radius:10px;display:grid;place-items:center;font-size:17px;background:#F5EAD6}
-  a.lnk .ct{font-weight:700;color:var(--plum);font-size:13.5px}
-  a.lnk .cd{color:var(--mut);font-size:11.5px;margin-top:2px}
+  a.lnk .ct{display:block;font-weight:800;color:var(--plum);font-size:13.5px}
+  a.lnk .cd{display:block;color:var(--mut);font-size:11.5px;margin-top:3px;line-height:1.35}
 
   .err{background:#FCEEEC;border:1px solid #F0C9C3;color:#9c4436;padding:12px 14px;border-radius:12px;font-size:13.5px;margin:14px 0}
   .note{background:#FBF4E7;border:1px solid #EEDFC2;color:#7a5f22;padding:11px 14px;border-radius:12px;font-size:12.5px;margin:10px 0}
@@ -84,7 +85,7 @@
 <div class="wrap">
   <div class="hero">
     <div class="htitle">
-      <div class="wm">M A T H I A</div>
+      <div class="wm">&#10022; MATHIA EDU</div>
       <h1>Adminski portal</h1>
     </div>
     <div class="htools">
