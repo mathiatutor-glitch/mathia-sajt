@@ -1,0 +1,11 @@
+FINAL — SERIJA 2 (MATERIJALI): FINAL-2A-MATERIJALI
+=================================
+Sve stranice materijala (skripte / formule / provere znanja) usklađene
+sa novim stilom:
+• Svetao, premium header (presijavajuća MATHIA linija, zlatni pečat)
+• Krem-zlatni hero, čitljiv tekst
+• Svetao footer
+• KaTeX (formule), kviz, gate (pretplata) i klon — NETAKNUTI (samo izgled)
+
+UPLOAD: prevuci sve fajlove iz OVOG foldera (i iz drugog, 2A/2B) u koren
+Vercel projekta (zamena istoimenih). Ukupno ~178 materijalnih strana u dve serije.
