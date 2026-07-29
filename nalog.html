@@ -444,48 +444,22 @@ button.feat{font-family:inherit;line-height:1}
 
 <!-- LOGIN -->
 <div id="login">
-  <style>
-  #login{background:radial-gradient(720px 470px at 82% -12%,rgba(198,160,92,.20),transparent 60%),radial-gradient(620px 520px at -12% 112%,rgba(204,142,134,.13),transparent 60%),linear-gradient(160deg,#FCF9F3,#F0E2CB)!important;flex-direction:column;align-items:center;justify-content:center}
-  #login .lcard{background:#fff;border:1px solid #EFE1C8;border-radius:26px;box-shadow:0 44px 90px -44px rgba(70,40,55,.55);padding:36px 34px 28px;max-width:410px;width:100%;text-align:center;box-sizing:border-box}
-  #login .lav{width:64px;height:64px;border-radius:50%;background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#E7D2A2;display:grid;place-items:center;font-family:'Spectral',serif;font-weight:700;font-size:27px;margin:0 auto 16px;box-shadow:0 14px 28px -10px rgba(60,25,40,.55)}
-  #login .lmark{font-family:'Spectral',serif!important;letter-spacing:.34em!important;font-size:15px!important;font-weight:700;background:linear-gradient(100deg,#A97C2E 0%,#C6A05C 22%,#F4E2A6 42%,#FFF7DA 50%,#F4E2A6 58%,#C6A05C 78%,#A97C2E 100%)!important;background-size:220% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;filter:none!important;animation:mathiaShine 3.6s linear infinite}
-  @keyframes mathiaShine{to{background-position:220% center}}
-  @media (prefers-reduced-motion:reduce){#login .lmark{animation:none;background-position:50% center!important}}
-  #login .script{color:#9a8a80!important;font-size:12.5px!important;font-style:normal!important;margin-top:3px;letter-spacing:.02em}
-  #login #ltitle{font-family:'Spectral',serif;color:#432C37;font-size:27px;margin:18px 0 5px;font-weight:700}
-  #login .sub{color:#8a7a80;font-size:14px;margin:0 0 24px;line-height:1.5}
-  #login .field{text-align:left;margin-bottom:10px}
-  #login .field label{display:none}
-  #login .field input{border:1px solid #EFE3CC;border-radius:12px;padding:14px 15px;font-size:14.5px;background:#FBF7EF;width:100%;box-sizing:border-box;transition:.15s}
-  #login .field input::placeholder{color:#b6a898}
-  #login .field input:focus{border-color:#C6A05C;outline:none;background:#fff;box-shadow:0 0 0 3px rgba(198,160,92,.16)}
-  #login #f-name > div{color:#9a8a80!important}
-  #login .btn-gold{border-radius:12px!important;padding:13px!important;font-size:15px!important;font-weight:800!important;margin-top:4px;box-shadow:0 12px 24px -8px rgba(160,120,40,.5)}
-  #login .lnote{color:#a89a92;font-size:11.5px;margin-top:14px;line-height:1.5}
-  #login #lmsg{text-align:center}
-  #login .lcard2{background:#fff;border:1px solid #EFE1C8;border-radius:18px;box-shadow:0 22px 54px -34px rgba(70,40,55,.5);padding:17px 18px;max-width:410px;width:100%;text-align:center;margin:14px auto 0;box-sizing:border-box}
-  #login .lcard2 .l2a{display:block;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:#b0a498;font-weight:800;margin-bottom:6px}
-  #login .lcard2 .l2b{display:block;font-size:14px;color:#6f5f57;line-height:1.45}
-  #login .lcard2 b{color:#9C7838;font-weight:800}
-  </style>
   <div class="lcard">
-    <div class="lav">M</div>
     <div class="lmark foil">MATHIA</div>
-    <div class="script">Tvoj prostor za učenje</div>
+    <div class="script">Vaš prostor za učenje</div>
     <h2 id="ltitle">Prijavi se</h2>
     <p class="sub" id="lsub">Dobrodošli nazad.</p>
-    <div class="field" id="f-email"><label>E-mail</label><input id="in-mail" type="email" autocomplete="email" placeholder="E-adresa" onkeydown="if(event.key==='Enter')auth()"></div>
-    <div class="field" id="f-code" style="display:none"><label>Kod iz mejla</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="Kod iz mejla" onkeydown="if(event.key==='Enter')auth()"></div>
+    <div class="field" id="f-email"><label>E-mail</label><input id="in-mail" type="email" autocomplete="email" placeholder="ti@primer.rs" onkeydown="if(event.key==='Enter')auth()"></div>
+    <div class="field" id="f-code" style="display:none"><label>Kod iz mejla</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="12345678" onkeydown="if(event.key==='Enter')auth()"></div>
     <div class="field" id="f-name" style="display:none">
       <label>Kako ti je ime? 🌷</label>
-      <input id="in-name" type="text" autocomplete="given-name" placeholder="Tvoje ime (npr. Ana)" onkeydown="if(event.key==='Enter')saveName()">
+      <input id="in-name" type="text" autocomplete="given-name" placeholder="npr. Ana" onkeydown="if(event.key==='Enter')saveName()">
       <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Koristićemo ga za personalizovanu komunikaciju.</div>
     </div>
     <button class="btn btn-gold" style="width:100%" onclick="auth()" id="lbtn">Pošaljite mi kod →</button>
     <div id="lmsg" style="min-height:18px;font-size:.84rem;color:var(--golddk);margin-top:10px"></div>
-    <div class="lnote">🔒 Prijava bez lozinke — poslaćemo vam kod na e-adresu.</div>
+    <div class="lnote">Prijava bez lozinke — poslaćemo vam link i kod na e-adresu.</div>
   </div>
-  <div class="lcard2"><span class="l2a">Prvi put na MATHIA?</span><span class="l2b"><b>Samo unesi mejl</b> — nalog se napravi sam. 🌷</span></div>
 </div>
 
 <!-- APP -->
