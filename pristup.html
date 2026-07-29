@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#432C37">
-<meta name="description" content="MATHIA EDU — Pristup · Mathia: online časovi i AI-asistent za matematiku, fiziku, programiranje i pripremu za fakultet, sa dr Marinom Bulat.">
+<meta name="description" content="MATHIA EDU — Pristup · Mathia: online časovi i AI-asistent za matematiku, fiziku, programiranje i pripremu za fakultet, sa dr Marinom.">
 <title>Pristup · Mathia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +76,7 @@ function grant(){
   try{
     localStorage.setItem('mathia_access','full'); localStorage.setItem('mathia_ok', KEY);
     document.cookie = 'mathia_owner=' + KEY + '; path=/; max-age=31536000; SameSite=Lax';
-    var u={ name:'Marina', last:'Bulat', email:'', paket:'diamond', pkgLabel:'Vlasnik', owner:true,
+    var u={ name:'Marina', last:'', email:'', paket:'diamond', pkgLabel:'Vlasnik', owner:true,
             subjects:ALLSUBS.map(function(s){return {h:s.h,t:s.t};}),
             planner:'fakultet', plannerAdded:true, created:Date.now(), progress:{} };
     localStorage.setItem('mathia_user', JSON.stringify(u));
