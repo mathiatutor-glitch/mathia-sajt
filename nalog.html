@@ -943,7 +943,7 @@ function adminUI(){
   if(!isAdminUser()) return;
   if(!document.getElementById('admPortalBtn')){
     var b=document.createElement('a'); b.id='admPortalBtn'; b.href='/tabla.html';
-    b.innerHTML='🎛️ Adminski portal';
+    b.innerHTML='📊 Kontrolna tabla';
     b.style.cssText='position:fixed;right:16px;bottom:16px;z-index:9000;background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#43301a;font-weight:800;text-decoration:none;padding:11px 16px;border-radius:100px;box-shadow:0 12px 26px -8px rgba(160,120,40,.6);font-size:13px;font-family:inherit';
     document.body.appendChild(b);
   }
@@ -952,21 +952,33 @@ function adminUI(){
 }
 function showAdminChooser(){
   var ex=document.getElementById('admChooser'); if(ex){ ex.style.display='flex'; return; }
+  if(!document.getElementById('admChooserStyle')){
+    var st=document.createElement('style'); st.id='admChooserStyle';
+    st.textContent='#admChooser .adm-card{transition:transform .16s ease,box-shadow .16s ease}#admChooser .adm-card:hover{transform:translateY(-5px)}#admChooser .adm-card:hover .adm-go{gap:12px}@media(max-width:640px){#admChooser .adm-grid{grid-template-columns:1fr!important}}';
+    document.head.appendChild(st);
+  }
   var o=document.createElement('div'); o.id='admChooser';
-  o.style.cssText='position:fixed;inset:0;z-index:9500;background:rgba(40,23,33,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px';
-  o.innerHTML='<div style="background:#fff;border-radius:22px;max-width:520px;width:100%;padding:30px 26px;box-shadow:0 30px 60px -20px rgba(40,20,30,.5);text-align:center;font-family:inherit">'+
-    '<div style="font-family:Georgia,serif;letter-spacing:.3em;color:#9C7838;font-size:13px">M A T H I A</div>'+
-    '<h2 style="font-family:Georgia,serif;color:#432C37;margin:8px 0 4px;font-size:23px">Dobrodošla, '+firstName()+' 👋</h2>'+
-    '<p style="color:#8a7a80;font-size:14px;margin:0 0 20px">Gde želiš da uđeš?</p>'+
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">'+
-      '<a href="/tabla.html" style="text-decoration:none;background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#FBF6EE;border-radius:16px;padding:24px 14px;display:block">'+
-        '<div style="font-size:30px">🎛️</div><div style="font-weight:800;margin-top:8px">Adminski portal</div><div style="color:#E7D2A2;font-size:12px;margin-top:4px">Statistika · posete · prihod</div></a>'+
-      '<a href="#" id="admGoSite" style="text-decoration:none;background:#F5EAD6;color:#432C37;border-radius:16px;padding:24px 14px;display:block;border:1px solid #E7D2A2">'+
-        '<div style="font-size:30px">🌐</div><div style="font-weight:800;margin-top:8px">Uđi na sajt</div><div style="color:#8a7a80;font-size:12px;margin-top:4px">Sve otvoreno, kao vlasnik</div></a>'+
-    '</div></div>';
+  o.style.cssText='position:fixed;inset:0;z-index:99999;background:radial-gradient(900px 520px at 82% -12%,rgba(198,160,92,.20),transparent 60%),radial-gradient(700px 500px at -10% 110%,rgba(204,142,134,.12),transparent 60%),linear-gradient(160deg,#FCF8F0,#F0E2CB);display:flex;align-items:center;justify-content:center;padding:26px;font-family:inherit;overflow:auto';
+  function card(href,ico,title,sub,bg,fg,accent){
+    return '<a class="adm-card" href="'+href+'" style="text-decoration:none;background:'+bg+';color:'+fg+';border-radius:22px;padding:36px 26px;display:block;box-shadow:0 26px 54px -24px rgba(60,25,40,.5);text-align:left">'+
+      '<div style="width:60px;height:60px;border-radius:16px;display:grid;place-items:center;font-size:28px;background:rgba(255,255,255,.14);margin-bottom:18px">'+ico+'</div>'+
+      '<div style="font-family:Georgia,serif;font-size:24px;font-weight:600">'+title+'</div>'+
+      '<div style="font-size:13.5px;opacity:.82;margin-top:8px;line-height:1.5">'+sub+'</div>'+
+      '<div class="adm-go" style="display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-weight:800;font-size:14px;color:'+accent+';transition:gap .16s">Uđi →</div></a>';
+  }
+  o.innerHTML='<div style="max-width:780px;width:100%;text-align:center">'+
+    '<div style="font-family:Georgia,serif;letter-spacing:.38em;color:#B08A34;font-size:17px">M A T H I A</div>'+
+    '<h2 style="font-family:Georgia,serif;color:#432C37;margin:14px 0 6px;font-size:32px">Dobrodošla, '+firstName()+' 👋</h2>'+
+    '<p style="color:#8a7a80;font-size:15px;margin:0 0 30px">Gde želiš da uđeš danas?</p>'+
+    '<div class="adm-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">'+
+      card('/index.html','🌐','Uđi na sajt','Sve otvoreno — svi predmeti i klonovi, kao vlasnik.','linear-gradient(160deg,#4A2A38,#2A1822)','#FBF6EE','#E7D2A2')+
+      card('/tabla.html','📊','Kontrolna tabla','Statistika, posetioci i prihod — uživo, na jednom mestu.','linear-gradient(160deg,#E7D2A2,#C29F55)','#43301a','#6b4e18')+
+    '</div>'+
+    '<a href="#" id="admGoNalog" style="display:inline-block;margin-top:24px;color:#9C7838;font-size:13.5px;text-decoration:none;font-weight:700">Pogledaj korisnički nalog →</a>'+
+  '</div>';
   document.body.appendChild(o);
-  var gs=document.getElementById('admGoSite');
-  if(gs) gs.addEventListener('click',function(e){ e.preventDefault(); try{sessionStorage.setItem('mathia_admin_choice','1');}catch(_){} o.style.display='none'; });
+  var gn=document.getElementById('admGoNalog');
+  if(gn) gn.addEventListener('click',function(e){ e.preventDefault(); try{sessionStorage.setItem('mathia_admin_choice','1');}catch(_){} o.style.display='none'; });
 }
 
 /* HELPERS */
