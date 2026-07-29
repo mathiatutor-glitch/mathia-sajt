@@ -3,11 +3,15 @@
    različit od srpskog. Srpski posetioci ne vuku ništa dodatno.
    Posmatrač obrađuje SAMO novo-dodate čvorove (ne re-skenira celu stranu). */
 (function(){
-  var D=null, nodes=[], loading=false;
+  /* D = ravan rečnik SAMO za tekući jezik (ključ = srpski tekst -> prevod).
+     Učitava se po jeziku (mathia-dict-<jezik>.js, ~0.85MB) umesto celog
+     rečnika od 4.2MB. Srpski posetioci ne vuku ništa. Već učitani jezici se
+     keširaju (window.__MD__), pa je svako naredno prebacivanje trenutno. */
+  var D=null, nodes=[], curLang='sr', started=false, loading={};
   function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return (document.documentElement.lang||'sr').slice(0,2).toLowerCase();}
   function harvest(root){
-    if(!D||!root)return;
-    var l=lng(), nl;
+    if(!root)return;
+    var nl;
     if(root.nodeType===3){nl=[root];}
     else if(root.nodeType===1){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false),n,arr=[];while(n=w.nextNode())arr.push(n);nl=arr;}
     else return;
@@ -18,23 +22,24 @@
       if(p.closest&&p.closest('#zoi-panel,#zoi-btn,.zoi-cta,[data-noi18n]'))continue;
       if(node.__mi)continue;
       var key=((node.__o!==undefined?node.__o:node.nodeValue)||'').trim(); if(key.length<2)continue;
-      var m=D[key]; if(!m)continue;
+      if(!D||!D[key])continue;               /* prati samo čvorove prevodive u tekućem rečniku */
       if(node.__o===undefined)node.__o=node.nodeValue;
-      node.__mi=1; nodes.push([node,m,key]);
-      if(l!=='sr'&&m[l])node.nodeValue=node.__o.replace(key,m[l]);
+      node.__mi=1; nodes.push([node,key]);
+      if(curLang!=='sr')node.nodeValue=node.__o.replace(key,D[key]);
     }
   }
-  function ap(){var l=lng();for(var i=0;i<nodes.length;i++){var n=nodes[i][0],m=nodes[i][1],k=nodes[i][2];var v=(l==='sr'||!m[l])?n.__o:n.__o.replace(k,m[l]);if(n.nodeValue!==v)n.nodeValue=v;}}
-  function loadDict(cb){
-    if(D){cb&&cb();return;}
-    if(window.__MATHIA_DICT__){D=window.__MATHIA_DICT__;cb&&cb();return;}
-    if(loading)return; loading=true;
-    var s=document.createElement('script'); s.src='mathia-dict.js'; s.async=true;
-    s.onload=function(){D=window.__MATHIA_DICT__||{}; loading=false; cb&&cb();};
-    s.onerror=function(){loading=false;};
+  function ap(){for(var i=0;i<nodes.length;i++){var n=nodes[i][0],k=nodes[i][1];var t=(D&&D[k]);var v=(curLang==='sr'||!t)?n.__o:n.__o.replace(k,t);if(n.nodeValue!==v)n.nodeValue=v;}}
+  function loadLang(l,cb){
+    if(l==='sr'){cb&&cb(null);return;}
+    var cache=window.__MD__;
+    if(cache&&cache[l]){cb&&cb(cache[l]);return;}
+    if(loading[l])return; loading[l]=true;
+    var s=document.createElement('script'); s.src='mathia-dict-'+l+'.js'; s.async=true;
+    s.onload=function(){loading[l]=false; cb&&cb((window.__MD__||{})[l]);};
+    s.onerror=function(){loading[l]=false;};
     (document.head||document.documentElement).appendChild(s);
   }
-  var started=false, pending=[], _dt;
+  var pending=[], _dt;
   function flush(){var q=pending;pending=[];for(var i=0;i<q.length;i++)harvest(q[i]);}
   function startObserver(){
     if(started)return; started=true;
@@ -42,17 +47,18 @@
       new MutationObserver(function(muts){
         if(!D)return;
         for(var i=0;i<muts.length;i++){var an=muts[i].addedNodes;for(var j=0;j<an.length;j++)pending.push(an[j]);}
-        if(pending.length){clearTimeout(_dt);_dt=setTimeout(flush,150);}
+        if(pending.length){clearTimeout(_dt);_dt=setTimeout(flush,200);}
       }).observe(document.body||document.documentElement,{childList:true,subtree:true});
     }catch(e){}
   }
-  function activate(){ loadDict(function(){ harvest(document.body); startObserver(); }); }
   function onLang(){
-    if(lng()!=='sr'){
-      // Prvi put: učitaj rečnik, poberi i prevedi. Svaki sledeći put (npr. EN -> DE):
-      // rečnik i čvorovi su već tu, pa SAMO ponovo primeni tekući jezik (ap), da se ne zaglavi na prethodnom.
-      loadDict(function(){ if(!started){ harvest(document.body); startObserver(); } else { ap(); } });
-    } else if(D){ ap(); }
+    var l=lng(); curLang=l;
+    if(l==='sr'){ ap(); return; }             /* vrati original (ako je nešto ubrano) */
+    loadLang(l,function(dict){
+      if(dict)D=dict;
+      if(!started){ harvest(document.body); startObserver(); }
+      else { ap(); }
+    });
   }
   if(document.readyState==='loading')addEventListener('DOMContentLoaded',onLang);else onLang();
   addEventListener('storage',function(e){if(e.key==='mathia_lang')onLang();});
