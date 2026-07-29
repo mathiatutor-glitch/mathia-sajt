@@ -444,22 +444,48 @@ button.feat{font-family:inherit;line-height:1}
 
 <!-- LOGIN -->
 <div id="login">
+  <style>
+  #login{background:radial-gradient(720px 470px at 82% -12%,rgba(198,160,92,.20),transparent 60%),radial-gradient(620px 520px at -12% 112%,rgba(204,142,134,.13),transparent 60%),linear-gradient(160deg,#FCF9F3,#F0E2CB)!important;flex-direction:column;align-items:center;justify-content:center}
+  #login .lcard{background:#fff;border:1px solid #EFE1C8;border-radius:26px;box-shadow:0 44px 90px -44px rgba(70,40,55,.55);padding:36px 34px 28px;max-width:410px;width:100%;text-align:center;box-sizing:border-box}
+  #login .lav{width:64px;height:64px;border-radius:50%;background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#E7D2A2;display:grid;place-items:center;font-family:'Spectral',serif;font-weight:700;font-size:27px;margin:0 auto 16px;box-shadow:0 14px 28px -10px rgba(60,25,40,.55)}
+  #login .lmark{font-family:'Spectral',serif!important;letter-spacing:.34em!important;font-size:15px!important;font-weight:700;background:linear-gradient(100deg,#A97C2E 0%,#C6A05C 22%,#F4E2A6 42%,#FFF7DA 50%,#F4E2A6 58%,#C6A05C 78%,#A97C2E 100%)!important;background-size:220% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;filter:none!important;animation:mathiaShine 3.6s linear infinite}
+  @keyframes mathiaShine{to{background-position:220% center}}
+  @media (prefers-reduced-motion:reduce){#login .lmark{animation:none;background-position:50% center!important}}
+  #login .script{color:#9a8a80!important;font-size:12.5px!important;font-style:normal!important;margin-top:3px;letter-spacing:.02em}
+  #login #ltitle{font-family:'Spectral',serif;color:#432C37;font-size:27px;margin:18px 0 5px;font-weight:700}
+  #login .sub{color:#8a7a80;font-size:14px;margin:0 0 24px;line-height:1.5}
+  #login .field{text-align:left;margin-bottom:10px}
+  #login .field label{display:none}
+  #login .field input{border:1px solid #EFE3CC;border-radius:12px;padding:14px 15px;font-size:14.5px;background:#FBF7EF;width:100%;box-sizing:border-box;transition:.15s}
+  #login .field input::placeholder{color:#b6a898}
+  #login .field input:focus{border-color:#C6A05C;outline:none;background:#fff;box-shadow:0 0 0 3px rgba(198,160,92,.16)}
+  #login #f-name > div{color:#9a8a80!important}
+  #login .btn-gold{border-radius:12px!important;padding:13px!important;font-size:15px!important;font-weight:800!important;margin-top:4px;box-shadow:0 12px 24px -8px rgba(160,120,40,.5)}
+  #login .lnote{color:#a89a92;font-size:11.5px;margin-top:14px;line-height:1.5}
+  #login #lmsg{text-align:center}
+  #login .lcard2{background:#fff;border:1px solid #EFE1C8;border-radius:18px;box-shadow:0 22px 54px -34px rgba(70,40,55,.5);padding:17px 18px;max-width:410px;width:100%;text-align:center;margin:14px auto 0;box-sizing:border-box}
+  #login .lcard2 .l2a{display:block;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:#b0a498;font-weight:800;margin-bottom:6px}
+  #login .lcard2 .l2b{display:block;font-size:14px;color:#6f5f57;line-height:1.45}
+  #login .lcard2 b{color:#9C7838;font-weight:800}
+  </style>
   <div class="lcard">
+    <div class="lav">M</div>
     <div class="lmark foil">MATHIA</div>
-    <div class="script">Vaš prostor za učenje</div>
+    <div class="script">Tvoj prostor za učenje</div>
     <h2 id="ltitle">Prijavi se</h2>
     <p class="sub" id="lsub">Dobrodošli nazad.</p>
-    <div class="field" id="f-email"><label>E-mail</label><input id="in-mail" type="email" autocomplete="email" placeholder="ti@primer.rs" onkeydown="if(event.key==='Enter')auth()"></div>
-    <div class="field" id="f-code" style="display:none"><label>Kod iz mejla</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="12345678" onkeydown="if(event.key==='Enter')auth()"></div>
+    <div class="field" id="f-email"><label>E-mail</label><input id="in-mail" type="email" autocomplete="email" placeholder="E-adresa" onkeydown="if(event.key==='Enter')auth()"></div>
+    <div class="field" id="f-code" style="display:none"><label>Kod iz mejla</label><input id="in-code" inputmode="numeric" autocomplete="one-time-code" placeholder="Kod iz mejla" onkeydown="if(event.key==='Enter')auth()"></div>
     <div class="field" id="f-name" style="display:none">
       <label>Kako ti je ime? 🌷</label>
-      <input id="in-name" type="text" autocomplete="given-name" placeholder="npr. Ana" onkeydown="if(event.key==='Enter')saveName()">
+      <input id="in-name" type="text" autocomplete="given-name" placeholder="Tvoje ime (npr. Ana)" onkeydown="if(event.key==='Enter')saveName()">
       <div style="font-size:.8rem;color:var(--muted);margin-top:4px">Koristićemo ga za personalizovanu komunikaciju.</div>
     </div>
     <button class="btn btn-gold" style="width:100%" onclick="auth()" id="lbtn">Pošaljite mi kod →</button>
     <div id="lmsg" style="min-height:18px;font-size:.84rem;color:var(--golddk);margin-top:10px"></div>
-    <div class="lnote">Prijava bez lozinke — poslaćemo vam link i kod na e-adresu.</div>
+    <div class="lnote">🔒 Prijava bez lozinke — poslaćemo vam kod na e-adresu.</div>
   </div>
+  <div class="lcard2"><span class="l2a">Prvi put na MATHIA?</span><span class="l2b"><b>Samo unesi mejl</b> — nalog se napravi sam. 🌷</span></div>
 </div>
 
 <!-- APP -->
@@ -491,6 +517,40 @@ button.feat{font-family:inherit;line-height:1}
 
       <!-- HOME -->
       <section class="sec on" id="sec-home">
+        <style>
+        #sec-home>*:not(#home-new){display:none!important}
+        #home-new .hn-top{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+        #home-new .hn-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#E7D2A2;display:grid;place-items:center;font-family:'Spectral',serif;font-weight:700;font-size:20px}
+        #home-new .hn-name{font-family:'Spectral',serif;font-size:23px;font-weight:600;color:#432C37;line-height:1}
+        #home-new .hn-paket{color:#9C7838;font-size:12px;font-weight:800;margin-top:2px}
+        #home-new .hn-stories{display:flex;gap:16px;overflow-x:auto;padding:4px 2px 14px;border-bottom:1px solid #F1E9DA;margin-bottom:16px}
+        #home-new .hn-st{text-align:center;flex:0 0 auto}
+        #home-new .hn-st .ring{width:64px;height:64px;border-radius:50%;padding:2.5px}
+        #home-new .hn-st .inner{width:100%;height:100%;border-radius:50%;background:#fff;display:grid;place-items:center;font-family:'Spectral',serif;font-weight:700;font-size:14px;color:#432C37}
+        #home-new .hn-st .lab{font-size:11px;color:#9a8a80;margin-top:6px;font-weight:700}
+        #home-new .hn-quote{text-align:center;font-family:'Spectral',serif;font-style:italic;color:#5C3B49;font-size:16.5px;line-height:1.5;margin:6px auto 20px;max-width:520px}
+        #home-new .hn-post{background:#fff;border:1px solid #EFE6D6;border-radius:20px;overflow:hidden;margin-bottom:20px;box-shadow:0 16px 34px -26px rgba(90,50,60,.4)}
+        #home-new .hn-posthd{display:flex;align-items:center;gap:11px;padding:13px 16px}
+        #home-new .hn-postav{width:36px;height:36px;border-radius:50%;color:#F7E9DD;display:grid;place-items:center;font-family:'Spectral',serif;font-weight:700;font-size:14px}
+        #home-new .hn-hero{height:154px;background:radial-gradient(320px 170px at 76% 18%,rgba(231,195,106,.32),transparent 60%),linear-gradient(150deg,#462836,#281620);display:flex;align-items:center;justify-content:center}
+        #home-new .hn-postft{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 16px}
+        #home-new .hn-cta{background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#43301a;font-weight:800;font-size:13px;padding:10px 20px;border-radius:100px;text-decoration:none;white-space:nowrap}
+        #home-new .hn-sect{font-family:'Spectral',serif;font-size:17px;color:#432C37;font-weight:600;margin:0 0 12px}
+        #home-new .hn-feed{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+        #home-new .hn-card{background:#fff;border:1px solid #EFE6D6;border-radius:18px;overflow:hidden}
+        #home-new .hn-card .hd{height:60px}
+        #home-new .hn-card .bd{padding:11px 14px}
+        #home-new .hn-card .nm{font-family:'Spectral',serif;font-weight:600;font-size:14px;color:#432C37}
+        #home-new .hn-card .mt{font-size:11.5px;color:#9a8a80;margin:5px 0 6px}
+        #home-new .hn-bar{height:5px;background:#F0E4CD;border-radius:100px;overflow:hidden}
+        #home-new .hn-badges{display:flex;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid #EFE6D6;border-radius:18px;padding:14px 16px}
+        #home-new .hn-bg{text-align:center;flex:1;min-width:70px}
+        #home-new .hn-bg .em{font-size:24px}
+        #home-new .hn-bg .bl{font-size:10.5px;color:#8a7a80;margin-top:3px}
+        #home-new .hn-bg.lock{opacity:.38}
+        @media(max-width:520px){#home-new .hn-feed{grid-template-columns:1fr}}
+        </style>
+        <div id="home-new"></div>
         <div class="hello">
           <div class="script">Zdravo,</div>
           <h2 id="hello-nm">Ana 👋</h2>
@@ -803,7 +863,14 @@ var USER=null, PROFILE=null, SUBJECTS=[], PLANER=null, STEP='email', EMAIL='';
 var MISLI=[
  'Svaki rešen zadatak je korak bliže cilju — idemo polako, ali sigurno.',
  'Ne moraš da znaš sve odjednom. Dovoljno je da danas naučiš jednu stvar više.',
- 'Disciplina danas je sloboda sutra. Tu sam uz tebe na svakom koraku.'
+ 'Disciplina danas je sloboda sutra. Tu sam uz tebe na svakom koraku.',
+ 'Ono što je nekad delovalo teško — sad ti već ide.',
+ 'Male navike prave velike razlike. Samo nastavi.',
+ 'Svaka tema koju savladaš ostaje tvoja zauvek.',
+ 'Danas jedan zadatak više nego juče. To je sve što treba.',
+ 'Kad razumeš zašto, formula se pamti sama.',
+ 'Nije važno koliko brzo — važno je da ne staneš.',
+ 'Ponosna sam na tebe što si opet tu. Idemo dalje. 🌷'
 ];
 function $(id){return document.getElementById(id);}
 function setMsg(m,err){var e=$('lmsg'); if(e){e.textContent=m||''; e.style.color=err?'#B5746C':'var(--golddk)';}}
@@ -1129,6 +1196,44 @@ function render(){
   var _rok=$('rokovi'); if(_rok){ _rok.innerHTML='<p style="color:var(--muted);margin:0">Još nemaš unetih rokova. Uz <b>planer</b> dodaješ ispite i kolokvijume, pa te Profesorica podseća na vreme. 🌷</p>'; }
   initChat(); setTimeout(fillRings,60);
   setTimeout(obMozda,400); obnovaMozda();
+  try{ renderHome(); }catch(_e){}
+}
+function renderHome(){
+  var host=$('home-new'); if(!host) return;
+  var e=function(s){return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+  var MP=mojiPredmeti();
+  var bestNiz=0,totalMin=0,teme=0;
+  SUBJECTS.forEach(function(s){ totalMin+=(+s.minuta_ukupno||0); bestNiz=Math.max(bestNiz,(+s.serija||0)); if(s.obaveze)teme+=s.obaveze.filter(function(o){return o.g;}).length; });
+  var overall=MP.length?Math.round(MP.reduce(function(a,it){return a+(it.p||0);},0)/MP.length):0;
+  var quote=MISLI[Math.floor(Math.random()*MISLI.length)];
+  var paket=(PROFILE&&PROFILE.paket)?cap(PROFILE.paket):'';
+  var istek=(PROFILE&&PROFILE.istice&&formatDatum(PROFILE.istice))?(' · do '+formatDatum(PROFILE.istice)):'';
+  var COL=['#5C3B49','#6E9E76','#9E8CA0','#B98F86','#8AA9C6','#C67F76'];
+  var st='<div class="hn-st"><div class="ring" style="background:conic-gradient(from 220deg,#E7C36A,#DDA06E,#CC8E86,#8a5a6b,#E7C36A)"><div class="inner" style="padding:2.5px"><div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#E7D2A2;display:grid;place-items:center;font-family:Spectral,serif;font-weight:700;font-size:18px">'+e(initials())+'</div></div></div><div class="lab">Ti · '+overall+'%</div></div>';
+  MP.slice(0,6).forEach(function(it,i){ var p=Math.max(0,Math.min(100,it.p||0)); var c=COL[i%COL.length];
+    var nm=it.naziv.length>9?it.naziv.slice(0,8)+'…':it.naziv;
+    st+='<div class="hn-st"><div class="ring" style="background:conic-gradient('+c+' '+p+'%,#EEE3CE 0)"><div class="inner">'+p+'%</div></div><div class="lab">'+e(nm)+'</div></div>'; });
+  st+='<div class="hn-st"><div class="ring" style="border:1.5px solid #DCC79C;display:grid;place-items:center;color:#C6A05C;font-size:26px">＋</div><div class="lab">Cilj</div></div>';
+  var cont;
+  if(MP.length){ var s0=MP[0];
+    var off=(283*(1-overall/100)).toFixed(0);
+    cont='<div class="hn-post"><div class="hn-posthd"><div class="hn-postav" style="background:linear-gradient(135deg,#5C3B49,#8a5a6b)">'+e((s0.naziv||'?')[0])+'</div><div style="flex:1"><div style="font-weight:800;font-size:13.5px;color:#432C37">'+e(s0.naziv)+'</div><div style="font-size:11.5px;color:#9a8a90">Nastavi gde si stao'+(s0.topic?(' · '+e(s0.topic)):'')+'</div></div></div>'+
+      '<div class="hn-hero"><svg width="112" height="112" viewBox="0 0 112 112"><circle cx="56" cy="56" r="45" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="8"/><circle cx="56" cy="56" r="45" fill="none" stroke="#E7C36A" stroke-width="8" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="'+off+'" transform="rotate(-90 56 56)"/><text x="56" y="52" text-anchor="middle" font-family="Spectral,serif" font-size="28" font-weight="700" fill="#FBF6EE">'+overall+'%</text><text x="56" y="70" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" font-weight="800" fill="#F2E1AB" letter-spacing="1.4">PREĐENO GRADIVA</text></svg></div>'+
+      '<div class="hn-postft"><div style="font-size:12.5px;color:#8a7a80">'+teme+' tema · <b style="color:#432C37">niz '+bestNiz+' dana</b> · '+Math.round(totalMin/60)+'h</div><a class="hn-cta" href="'+matURL(s0.key,'skripta')+'">Nastavi</a></div></div>';
+  } else {
+    cont='<div class="hn-post" style="padding:24px 20px;text-align:center"><div style="font-family:Spectral,serif;font-size:19px;color:#432C37;margin-bottom:6px">Dobrodošla! 🌷</div><div style="color:#8a7a80;font-size:13.5px;margin-bottom:15px">Izaberi predmet uz svoj paket pa počinjemo.</div><a class="hn-cta" href="predmeti.html">Izaberi predmet</a></div>';
+  }
+  var feed='';
+  MP.forEach(function(it,i){ var p=Math.max(0,Math.min(100,it.p||0)); var c=COL[i%COL.length];
+    feed+='<div class="hn-card"><div class="hd" style="background:linear-gradient(135deg,'+c+','+c+'bb)"></div><div class="bd"><div class="nm">'+e(it.naziv)+'</div><div class="mt">'+p+'% pređeno</div><div class="hn-bar"><i style="display:block;height:100%;width:'+p+'%;background:'+c+';border-radius:100px"></i></div></div></div>'; });
+  var B=[['🌱','Prvi korak',MP.length>0],['🔥',(bestNiz>=3?('Niz '+bestNiz):'Niz 3'),bestNiz>=3],['📘','10 tema',teme>=10],['🌙','7 dana',bestNiz>=7],['🏆','Šampion',bestNiz>=30],['💎','Majstor',teme>=100]];
+  var badges=B.map(function(x){return '<div class="hn-bg'+(x[2]?'':' lock')+'"><div class="em">'+x[0]+'</div><div class="bl">'+e(x[1])+'</div></div>';}).join('');
+  host.innerHTML='<div class="hn-top"><div class="hn-av">'+e(initials())+'</div><div style="flex:1"><div class="hn-name">'+e(firstName())+' 👋</div><div class="hn-paket">'+(paket?(paket+' paket'+istek):'Tvoj nalog')+'</div></div></div>'+
+    '<div class="hn-stories">'+st+'</div>'+
+    '<div class="hn-quote">'+e(quote)+'</div>'+
+    cont+
+    (feed?'<div class="hn-sect">Tvoji predmeti</div><div class="hn-feed">'+feed+'</div>':'')+
+    '<div class="hn-sect" style="margin-top:20px">Dostignuća</div><div class="hn-badges">'+badges+'</div>';
 }
 function fillRings(){document.querySelectorAll('.ring .rc').forEach(function(c){c.style.transition='stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)';c.style.strokeDashoffset=c.getAttribute('data-off');});}
 
