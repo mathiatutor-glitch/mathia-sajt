@@ -15,6 +15,7 @@
 // ============================================================
 import { sbUser, tokenFromReq } from "../lib/sbauth.js";
 import { isAdmin } from "../lib/user.js";
+import { kvCmd } from "../lib/kv.js";
 
 const SB_URL = process.env.SUPABASE_URL || "https://ibhirxltgeyecrjwymai.supabase.co";
 const SB_SERVICE = process.env.SUPABASE_SERVICE_KEY || "";
@@ -72,7 +73,15 @@ export default async function handler(req, res) {
           nalozi = (j.users || []).map((u) => ({ email: u.email, kreiran: u.created_at, poslednja: u.last_sign_in_at }));
         }
       } catch (e) { /* nije kriticno */ }
-      return res.status(200).json({ ok: true, pretplate, porudzbine, nalozi, limit: LIMIT });
+      // KV: prijave kroz „probaj besplatno" (broj + poslednjih 50)
+      let signups = { total: 0, recent: [] };
+      try {
+        const c = await kvCmd(["GET", "mathia:stats:signups"]);
+        signups.total = parseInt(c, 10) || 0;
+        const log = await kvCmd(["LRANGE", "mathia:log:signups", "0", "49"]);
+        signups.recent = (Array.isArray(log) ? log : []).map(function (x) { try { return JSON.parse(x); } catch (e) { return null; } }).filter(Boolean);
+      } catch (e) {}
+      return res.status(200).json({ ok: true, pretplate, porudzbine, nalozi, limit: LIMIT, signups });
     }
 
     if (req.method === "POST") {
