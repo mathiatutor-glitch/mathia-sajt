@@ -317,9 +317,9 @@
     "#zoi-prev button{margin-left:auto;border:none;background:#eee;border-radius:8px;cursor:pointer;padding:3px 8px}" +
     "#zoi-inrow{display:flex;gap:7px;align-items:flex-end}" +
     "#zoi-ta{flex:1;min-width:0;resize:none;border:1px solid rgba(198,160,92,.35);border-radius:12px;padding:11px 13px;font-family:inherit;font-size:14px;max-height:96px;outline:none;color:#3E2D34;background:#fff}#zoi-ta::placeholder{color:#8a7a74;opacity:1}" +
-    "#zoi-ta:focus{border-color:#C6A05C}" +
+    "#zoi-ta:focus{border-color:#B01E48;box-shadow:0 0 0 2px rgba(176,30,72,.14)}" +
     ".zoi-send{position:relative;overflow:hidden;background:linear-gradient(135deg,#D3B06A,#9C7838);color:#fff;border:none;border-radius:12px;padding:0 17px;height:40px;font-family:inherit;font-weight:800;font-size:14px;letter-spacing:.02em;cursor:pointer;flex:none;white-space:nowrap;box-shadow:0 8px 18px -8px rgba(156,120,56,.7);transition:transform .14s,box-shadow .14s}.zoi-send:hover{transform:translateY(-1px);box-shadow:0 12px 22px -8px rgba(156,120,56,.9)}.zoi-send:after{content:'';position:absolute;top:0;left:-60%;width:38%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);pointer-events:none;animation:zoiSweep 6.5s ease-in-out infinite}@keyframes zoiSweep{0%{left:-60%}42%{left:135%}100%{left:135%}}" +
-    ".zoi-tool{background:#FBF5EA;border:1px solid rgba(198,160,92,.4);border-radius:12px;width:40px;height:40px;cursor:pointer;font-size:17px;flex:none;transition:background .14s,border-color .14s}.zoi-tool:hover{background:#F3E7CE;border-color:#C6A05C}" +
+    ".zoi-tool{background:#FBF5EA;border:1px solid rgba(198,160,92,.4);border-radius:12px;width:40px;height:40px;cursor:pointer;font-size:17px;flex:none;transition:background .14s,border-color .14s}.zoi-tool:hover{background:#FBEAEF;border-color:#B01E48}" +
     ".zoi-typing{font-size:13px;color:#6b7873;font-style:italic;padding:2px 4px}" +
     ".zoi-say{align-self:flex-end;flex:none;background:#FBF5EA;border:1px solid rgba(198,160,92,.4);border-radius:8px;cursor:pointer;font-size:13px;line-height:1;padding:4px 7px;color:#9C7838}" +
     ".zoi-say:hover{background:#F3E7CE;border-color:#C6A05C}" +
@@ -469,6 +469,9 @@
     t = t.replace(/_([0-9A-Za-z])/g, function(_m,c){ return _SUB[c] || ("_" + c); });
     t = t.replace(/\^\{([^{}]*)\}/g, function(_m,g){ return g.split("").map(function(c){ return _SUP[c] || c; }).join(""); });
     t = t.replace(/\^([0-9A-Za-z])/g, function(_m,c){ return _SUP[c] || ("^" + c); });
+    t = t.replace(/\bZ([0-9]+)\b/g, function(_m,d){ return "ℤ"+d.replace(/[0-9]/g,function(x){return _SUB[x]||x;}); });
+    t = t.replace(/\b([0-9])Z\b/g, "$1ℤ");
+    t = t.replace(/\bR\^?([0-9])\b/g, function(_m,d){ return "ℝ"+(_SUP[d]||d); });
     t = t.replace(/[{}]/g, "").replace(/\s{2,}/g, " ").trim();
     return t;
   }
