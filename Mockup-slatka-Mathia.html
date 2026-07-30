@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mathia — slatki stil (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EE; --card:#FCF9F3; --plum:#432C37; --plum2:#6B4A57;
+    --gold:#C6A05C; --goldlt:#E7D2A2; --rasp:#B01E48; --rasp-d:#8E1338;
+    --rose:#F4C4D2; --lav:#EDE6F6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Nunito',system-ui,sans-serif;color:var(--plum);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:26px;
+    background:
+      radial-gradient(120% 90% at 20% 0%, #F3E7F4 0%, transparent 55%),
+      radial-gradient(120% 90% at 90% 10%, #FBE7DE 0%, transparent 50%),
+      linear-gradient(180deg,#EFE6F6 0%,#F6ECE6 60%,#FBF3EC 100%);
+    overflow:hidden;position:relative;
+  }
+  .petal{position:fixed;top:-24px;font-size:16px;pointer-events:none;opacity:.75;animation:fall linear infinite;z-index:0}
+  @keyframes fall{to{transform:translateY(108vh) rotate(320deg)}}
+  .badge{
+    position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;margin:0 auto 20px;
+    background:linear-gradient(180deg,var(--rasp),var(--rasp-d));color:#fff;font-weight:800;font-size:12px;
+    letter-spacing:.12em;text-transform:uppercase;padding:9px 18px;border-radius:100px;
+    box-shadow:0 12px 26px -12px rgba(176,30,72,.7)
+  }
+  .wrap{width:100%;max-width:440px;position:relative;z-index:2;text-align:center}
+  .card{
+    background:var(--card);border-radius:30px;padding:34px 30px 30px;text-align:center;
+    box-shadow:0 40px 90px -40px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset;
+    border:1px solid rgba(231,210,162,.5)
+  }
+  .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800}
+  .ic{width:56px;height:56px;border-radius:18px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);
+    display:flex;align-items:center;justify-content:center;font-size:26px;margin:16px auto 12px;
+    box-shadow:0 10px 22px -12px rgba(198,160,92,.8)}
+  h1{font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(1.9rem,7vw,2.4rem);line-height:1.08;color:var(--plum)}
+  h1 em{font-style:italic;color:var(--rasp)}
+  .sub{color:var(--plum2);font-size:15px;margin:10px auto 22px;max-width:330px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  .opt{background:#fff;border:1.5px solid #EFE4D4;border-radius:18px;padding:14px 6px 12px;cursor:pointer;
+    transition:transform .15s ease,border-color .15s ease,box-shadow .2s ease;user-select:none}
+  .opt:hover{transform:translateY(-3px);border-color:var(--goldlt);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
+  .opt .em{font-size:24px;display:block;margin-bottom:6px}
+  .opt .lb{font-size:12.5px;font-weight:700;color:var(--plum)}
+  .opt.on{background:linear-gradient(160deg,var(--rasp),var(--rasp-d));border-color:transparent;
+    box-shadow:0 16px 30px -14px rgba(176,30,72,.7)}
+  .opt.on .lb{color:#fff}
+  .row{display:flex;align-items:center;gap:12px;margin-top:22px}
+  .ghost{background:transparent;border:1.5px solid #E4D6C4;color:var(--plum2);border-radius:100px;
+    padding:14px 20px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
+  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;
+    color:#fff;cursor:pointer;background:linear-gradient(160deg,var(--rasp),var(--rasp-d));
+    box-shadow:0 18px 34px -14px rgba(176,30,72,.75);transition:transform .12s ease}
+  .cta:active{transform:scale(.98)}
+  .mini{margin-top:16px;font-size:12px;color:var(--plum2);opacity:.8}
+  .mini b{color:var(--rasp)}
+  .conf{position:fixed;top:-10px;width:10px;height:14px;border-radius:2px;z-index:5;pointer-events:none}
+  .hide{display:none}
+  .done .em2{font-size:40px}
+  .plan{display:flex;flex-direction:column;gap:10px;margin:18px 0 4px;text-align:left}
+  .plan .pill{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #EFE4D4;border-radius:14px;padding:12px 14px;font-weight:700;color:var(--plum);font-size:14px}
+  .plan .pill span{font-size:18px}
+</style>
+</head>
+<body>
+<span class="badge">💛 Napravljeno s ljubavlju</span>
+
+<div class="wrap">
+  <!-- STEP 1 -->
+  <div class="card" id="step1">
+    <div class="eyebrow">Korak 1 od 2</div>
+    <div class="ic">📚</div>
+    <h1>Šta danas <em>učimo?</em></h1>
+    <p class="sub">Najvažnija odluka dana. Biraj mudro — a ja ostalo sređujem. 💫</p>
+    <div class="grid" id="grid">
+      <div class="opt on" data-l="Matematika"><span class="em">📐</span><span class="lb">Matematika</span></div>
+      <div class="opt" data-l="Fizika"><span class="em">⚛️</span><span class="lb">Fizika</span></div>
+      <div class="opt" data-l="Programiranje"><span class="em">💻</span><span class="lb">Programiranje</span></div>
+      <div class="opt" data-l="Hemija"><span class="em">🧪</span><span class="lb">Hemija</span></div>
+      <div class="opt" data-l="Elektronika"><span class="em">🔌</span><span class="lb">Elektronika</span></div>
+      <div class="opt" data-l="Ti biraš"><span class="em">✨</span><span class="lb">Ti biraš</span></div>
+    </div>
+    <div class="row">
+      <button class="ghost">← Nazad</button>
+      <button class="cta" id="go">Napravi mi plan →</button>
+    </div>
+    <p class="mini">15 minuta je <b>na poklon</b> · bez kartice · otkaži kad želiš</p>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="card done hide" id="done">
+    <div class="eyebrow">Spremni smo</div>
+    <div class="ic em2">🎉</div>
+    <h1>Krećemo, <em>zajedno!</em></h1>
+    <p class="sub">Tvoj plan je spreman. Profesorica te čeka kad god zapneš — danju ili noću.</p>
+    <div class="plan">
+      <div class="pill"><span>📘</span> <span id="dsub">Matematika</span> · prvi čas</div>
+      <div class="pill"><span>⏰</span> 15 minuta, tvojim tempom</div>
+      <div class="pill"><span>💬</span> Mathia — tvoja profesorica, 24/7</div>
+    </div>
+    <div class="row">
+      <button class="cta" onclick="location.reload()">Počni prvi čas →</button>
+    </div>
+    <p class="mini">Uči s ljubavlju · <b>Mathia</b></p>
+  </div>
+</div>
+
+<script>
+  var P=['🌸','💗','🌷','✿','❀'];
+  for(var i=0;i<14;i++){var s=document.createElement('span');s.className='petal';s.textContent=P[i%P.length];
+    s.style.left=(Math.random()*100)+'vw';s.style.fontSize=(11+Math.random()*14)+'px';
+    s.style.animationDuration=(7+Math.random()*7)+'s';s.style.animationDelay=(-Math.random()*8)+'s';document.body.appendChild(s);}
+
+  var sel='Matematika';
+  document.getElementById('grid').addEventListener('click',function(e){
+    var o=e.target.closest('.opt');if(!o)return;
+    document.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});
+    o.classList.add('on');sel=o.getAttribute('data-l');
+  });
+
+  function confetti(){
+    var C=['#B01E48','#C6A05C','#E7D2A2','#F4C4D2','#8E1338'];
+    for(var i=0;i<80;i++){(function(){
+      var d=document.createElement('div');d.className='conf';
+      d.style.left=(Math.random()*100)+'vw';d.style.background=C[i%C.length];
+      d.style.transform='rotate('+(Math.random()*360)+'deg)';
+      var dur=1500+Math.random()*1400;
+      d.animate([{transform:'translateY(-10px) rotate(0)',opacity:1},
+        {transform:'translateY(105vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],
+        {duration:dur,easing:'cubic-bezier(.2,.6,.3,1)'});
+      document.body.appendChild(d);setTimeout(function(){d.remove()},dur);
+    })();}
+  }
+
+  document.getElementById('go').addEventListener('click',function(){
+    document.getElementById('dsub').textContent=sel;
+    document.getElementById('step1').classList.add('hide');
+    document.getElementById('done').classList.remove('hide');
+    confetti();
+  });
+</script>
+</body>
+</html>
