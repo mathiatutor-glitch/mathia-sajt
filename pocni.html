@@ -8,206 +8,214 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --cream:#FBF6EE;--card:#FCF9F3;--plum:#432C37;--plum2:#6B4A57;
-    --gold:#C6A05C;--goldlt:#E7D2A2;--rasp:#B01E48;--rasp-d:#8E1338;
-  }
+  :root{--cream:#FBF6EE;--card:#FCF9F3;--plum:#432C37;--plum2:#6B4A57;--gold:#C6A05C;--goldlt:#E7D2A2;--rasp:#B01E48;--rasp-d:#8E1338}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:'Nunito',system-ui,sans-serif;color:var(--plum);min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
-    background:
-      radial-gradient(120% 90% at 18% 0%,#F3E7F4 0%,transparent 55%),
-      radial-gradient(120% 90% at 92% 8%,#FBE7DE 0%,transparent 50%),
-      linear-gradient(180deg,#EFE6F6 0%,#F6ECE6 60%,#FBF3EC 100%);
-    overflow-x:hidden;position:relative
-  }
+  body{font-family:'Nunito',system-ui,sans-serif;color:var(--plum);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
+    background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#EFE6F6 0,#F6ECE6 60%,#FBF3EC 100%);overflow-x:hidden;position:relative}
   .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-  .orb{position:absolute;border-radius:50%;filter:blur(48px);opacity:.55;will-change:transform}
-  .orb.a{width:360px;height:360px;background:#EBB6CF;top:-90px;left:-70px;animation:drift1 19s ease-in-out infinite}
-  .orb.b{width:320px;height:320px;background:#F2D39A;bottom:-90px;right:-60px;animation:drift2 23s ease-in-out infinite}
-  .orb.c{width:280px;height:280px;background:#CFB9EE;top:42%;right:16%;animation:drift3 27s ease-in-out infinite}
-  .orb.d{width:220px;height:220px;background:#F6C6B0;top:12%;left:24%;animation:drift1 25s ease-in-out infinite}
-  @keyframes drift1{50%{transform:translate(42px,32px) scale(1.09)}}
-  @keyframes drift2{50%{transform:translate(-38px,-30px) scale(1.11)}}
-  @keyframes drift3{50%{transform:translate(26px,-36px) scale(1.06)}}
-  @media(prefers-reduced-motion:reduce){.orb,.petal{animation:none}}
+  .orb{position:absolute;border-radius:50%;filter:blur(48px);opacity:.55}
+  .orb.a{width:360px;height:360px;background:#EBB6CF;top:-90px;left:-70px;animation:d1 19s ease-in-out infinite}
+  .orb.b{width:320px;height:320px;background:#F2D39A;bottom:-90px;right:-60px;animation:d2 23s ease-in-out infinite}
+  .orb.c{width:280px;height:280px;background:#CFB9EE;top:42%;right:16%;animation:d3 27s ease-in-out infinite}
+  .orb.d{width:220px;height:220px;background:#F6C6B0;top:12%;left:24%;animation:d1 25s ease-in-out infinite}
+  @keyframes d1{50%{transform:translate(42px,32px) scale(1.09)}}@keyframes d2{50%{transform:translate(-38px,-30px) scale(1.11)}}@keyframes d3{50%{transform:translate(26px,-36px) scale(1.06)}}
   .petal{position:fixed;top:-24px;pointer-events:none;opacity:.7;animation:fall linear infinite;z-index:0}
   @keyframes fall{to{transform:translateY(110vh) rotate(320deg)}}
-  .top{position:relative;z-index:3;display:flex;align-items:center;gap:10px;margin-bottom:20px}
-  .mark{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);
-    display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;color:#3A2530}
+  @media(prefers-reduced-motion:reduce){.orb,.petal{animation:none}}
+  .top{position:relative;z-index:3;display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .mark{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;color:#3A2530}
   .top a{color:var(--plum2);text-decoration:none;font-weight:700;font-size:13px}
   .wrap{width:100%;max-width:460px;position:relative;z-index:2}
-  .card{background:var(--card);border-radius:30px;padding:30px 28px 26px;text-align:center;
-    border:1px solid rgba(231,210,162,.5);
-    box-shadow:0 40px 90px -42px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset}
+  .card{background:var(--card);border-radius:30px;padding:30px 28px 26px;text-align:center;border:1px solid rgba(231,210,162,.5);box-shadow:0 40px 90px -42px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset}
   .dots{display:flex;gap:7px;justify-content:center;margin-bottom:4px}
   .dots i{width:26px;height:5px;border-radius:6px;background:#E9DCC8;transition:.3s}
   .dots i.on{background:linear-gradient(90deg,var(--gold),var(--rasp))}
   .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-top:14px}
-  .ic{width:54px;height:54px;border-radius:17px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);
-    display:flex;align-items:center;justify-content:center;font-size:25px;margin:14px auto 10px;
-    box-shadow:0 10px 22px -12px rgba(198,160,92,.8)}
+  .ic{width:54px;height:54px;border-radius:17px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);display:flex;align-items:center;justify-content:center;font-size:25px;margin:14px auto 10px;box-shadow:0 10px 22px -12px rgba(198,160,92,.8)}
   h1{font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,6.4vw,2.3rem);line-height:1.1;color:var(--plum)}
   h1 em{font-style:italic;color:var(--rasp)}
   .sub{color:var(--plum2);font-size:14.5px;margin:9px auto 20px;max-width:340px;line-height:1.5}
-  .grid{display:grid;gap:11px}
-  .g3{grid-template-columns:repeat(3,1fr)}
-  .g2{grid-template-columns:repeat(2,1fr)}
-  .opt{background:#fff;border:1.5px solid #EFE4D4;border-radius:18px;padding:15px 8px 13px;cursor:pointer;
-    transition:transform .14s ease,border-color .14s ease,box-shadow .2s ease;user-select:none}
+  .grid{display:grid;gap:11px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+  .opt{background:#fff;border:1.5px solid #EFE4D4;border-radius:18px;padding:15px 8px 13px;cursor:pointer;transition:transform .14s,border-color .14s,box-shadow .2s;user-select:none}
   .opt:hover{transform:translateY(-3px);border-color:var(--goldlt);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
-  .opt .em{font-size:24px;display:block;margin-bottom:6px}
-  .opt .lb{font-size:13px;font-weight:700;color:var(--plum)}
-  .opt.on{background:linear-gradient(160deg,var(--rasp),var(--rasp-d));border-color:transparent;
-    box-shadow:0 16px 30px -14px rgba(176,30,72,.7)}
+  .opt .em{font-size:24px;display:block;margin-bottom:6px}.opt .lb{font-size:13px;font-weight:700;color:var(--plum)}
+  .opt.on{background:linear-gradient(160deg,var(--rasp),var(--rasp-d));border-color:transparent;box-shadow:0 16px 30px -14px rgba(176,30,72,.7)}
   .opt.on .lb{color:#fff}
+  .field{margin-top:14px;text-align:left;animation:in .3s ease both}
+  .field label{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:7px}
+  .selwrap{position:relative}
+  .selwrap::after{content:"▾";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--rasp);font-size:14px;pointer-events:none}
+  select.sel{width:100%;appearance:none;-webkit-appearance:none;background:#fff;border:1.5px solid #EFE4D4;border-radius:16px;padding:15px 42px 15px 15px;font-family:'Nunito';font-weight:700;font-size:15px;color:var(--plum);cursor:pointer}
+  select.sel:focus{outline:none;border-color:var(--goldlt);box-shadow:0 0 0 3px rgba(231,210,162,.5)}
   .row{display:flex;align-items:center;gap:12px;margin-top:22px}
-  .ghost{background:transparent;border:1.5px solid #E4D6C4;color:var(--plum2);border-radius:100px;
-    padding:15px 20px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
+  .ghost{background:transparent;border:1.5px solid #E4D6C4;color:var(--plum2);border-radius:100px;padding:15px 20px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
   .ghost[disabled]{opacity:0;pointer-events:none}
-  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;
-    color:#fff;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(160deg,var(--rasp),var(--rasp-d));
-    box-shadow:0 18px 34px -14px rgba(176,30,72,.75);transition:transform .12s ease}
-  .cta:active{transform:scale(.98)}
-  .mini{margin-top:15px;font-size:12px;color:var(--plum2);opacity:.85}
-  .mini b{color:var(--rasp)}
+  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;color:#fff;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--rasp),var(--rasp-d));box-shadow:0 18px 34px -14px rgba(176,30,72,.75);transition:transform .12s}
+  .cta:active{transform:scale(.98)}.cta.off{opacity:.5;pointer-events:none;filter:grayscale(.2)}
+  .mini{margin-top:15px;font-size:12px;color:var(--plum2);opacity:.85}.mini b{color:var(--rasp)}
   .plan{display:flex;flex-direction:column;gap:9px;margin:16px 0 4px;text-align:left}
   .plan .pill{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #EFE4D4;border-radius:14px;padding:12px 14px;font-weight:700;color:var(--plum);font-size:14px}
   .plan .pill span{font-size:18px}
-  .step{animation:in .35s ease both}
-  @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .hide{display:none}
-  .conf{position:fixed;top:-10px;width:10px;height:14px;border-radius:2px;z-index:6;pointer-events:none}
+  .step{animation:in .35s ease both}@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .hide{display:none}.conf{position:fixed;top:-10px;width:10px;height:14px;border-radius:2px;z-index:6;pointer-events:none}
 </style>
 </head>
 <body>
 <div class="bgfx" id="bgfx"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span><span class="orb d"></span></div>
 <div class="top"><span class="mark">M</span><a href="index.html">← nazad na Mathiu</a></div>
 
-<div class="wrap">
-  <div class="card">
-    <div class="dots"><i class="on" id="d0"></i><i id="d1"></i><i id="d2"></i></div>
+<div class="wrap"><div class="card">
+  <div class="dots"><i class="on" id="d0"></i><i id="d1"></i><i id="d2"></i></div>
 
-    <!-- STEP 0: nivo -->
-    <div class="step" id="s0">
-      <div class="eyebrow">Korak 1 od 3</div>
-      <div class="ic">🎒</div>
-      <h1>Ko danas <em>uči?</em></h1>
-      <p class="sub">Da tvoj plan bude taman po meri. Bez brige — sve ostalo sređujem ja. 💛</p>
-      <div class="grid g3" data-k="nivo">
-        <div class="opt" data-v="Osnovna škola"><span class="em">🎒</span><span class="lb">Osnovna škola</span></div>
-        <div class="opt" data-v="Srednja škola"><span class="em">📐</span><span class="lb">Srednja škola</span></div>
-        <div class="opt" data-v="Fakultet"><span class="em">🎓</span><span class="lb">Fakultet</span></div>
-      </div>
-      <div class="row"><button class="ghost" disabled>← Nazad</button><button class="cta nx">Dalje →</button></div>
-      <p class="mini">15 minuta je <b>na poklon</b> · bez kartice · otkaži kad želiš</p>
+  <!-- STEP 0: nivo -->
+  <div class="step" id="s0">
+    <div class="eyebrow">Korak 1 od 3</div>
+    <div class="ic">🎒</div>
+    <h1>Ko danas <em>uči?</em></h1>
+    <p class="sub">Da tvoj plan bude taman po meri. Bez brige — sve ostalo sređujem ja. 💛</p>
+    <div class="grid g3" data-k="nivo">
+      <div class="opt" data-v="Osnovna škola"><span class="em">🎒</span><span class="lb">Osnovna škola</span></div>
+      <div class="opt" data-v="Srednja škola"><span class="em">📐</span><span class="lb">Srednja škola</span></div>
+      <div class="opt" data-v="Fakultet"><span class="em">🎓</span><span class="lb">Fakultet</span></div>
     </div>
-
-    <!-- STEP 1: predmet -->
-    <div class="step hide" id="s1">
-      <div class="eyebrow">Korak 2 od 3</div>
-      <div class="ic">📚</div>
-      <h1>Šta danas <em>učimo?</em></h1>
-      <p class="sub">Najvažnija odluka dana. Biraj mudro — profesorica te čeka. ✨</p>
-      <div class="grid g3" data-k="predmet">
-        <div class="opt" data-v="Matematika"><span class="em">📐</span><span class="lb">Matematika</span></div>
-        <div class="opt" data-v="Fizika"><span class="em">⚛️</span><span class="lb">Fizika</span></div>
-        <div class="opt" data-v="Programiranje"><span class="em">💻</span><span class="lb">Programiranje</span></div>
-        <div class="opt" data-v="Hemija"><span class="em">🧪</span><span class="lb">Hemija</span></div>
-        <div class="opt" data-v="Elektronika"><span class="em">🔌</span><span class="lb">Elektronika</span></div>
-        <div class="opt" data-v="Ti biraš"><span class="em">🌟</span><span class="lb">Ti biraš</span></div>
-      </div>
-      <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Dalje →</button></div>
-    </div>
-
-    <!-- STEP 2: cilj -->
-    <div class="step hide" id="s2">
-      <div class="eyebrow">Korak 3 od 3</div>
-      <div class="ic">🎯</div>
-      <h1>Za šta se <em>spremamo?</em></h1>
-      <p class="sub">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
-      <div class="grid g2" data-k="cilj">
-        <div class="opt" data-v="Kontrolni i pismeni"><span class="em">✍️</span><span class="lb">Kontrolni i pismeni</span></div>
-        <div class="opt" data-v="Prijemni ispit"><span class="em">🎯</span><span class="lb">Prijemni ispit</span></div>
-        <div class="opt" data-v="Matura"><span class="em">🎓</span><span class="lb">Matura</span></div>
-        <div class="opt" data-v="Samo želim da razumem"><span class="em">💡</span><span class="lb">Da razumem gradivo</span></div>
-      </div>
-      <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Napravi mi plan →</button></div>
-    </div>
-
-    <!-- SUCCESS -->
-    <div class="step hide" id="s3">
-      <div class="eyebrow">Spremni smo</div>
-      <div class="ic" style="font-size:34px">🎉</div>
-      <h1>Krećemo, <em>zajedno!</em></h1>
-      <p class="sub">Tvoj plan je spreman. Profesorica te čeka kad god zapneš — danju ili noću.</p>
-      <div class="plan">
-        <div class="pill"><span>🧑‍🎓</span> <span id="rNivo">—</span></div>
-        <div class="pill"><span>📘</span> <span id="rPredmet">—</span> · prvi čas</div>
-        <div class="pill"><span>🎯</span> Cilj: <span id="rCilj">—</span></div>
-      </div>
-      <div class="row"><a class="cta" id="startBtn" href="prijava.html">Počni besplatno →</a></div>
-      <p class="mini">Uči s ljubavlju · <b>Mathia</b></p>
-    </div>
-
+    <div class="row"><button class="ghost" disabled>← Nazad</button><button class="cta nx off" data-need="nivo">Dalje →</button></div>
+    <p class="mini">15 minuta je <b>na poklon</b> · bez kartice · otkaži kad želiš</p>
   </div>
-</div>
+
+  <!-- STEP 1: predmet + godina (kaskadno) -->
+  <div class="step hide" id="s1">
+    <div class="eyebrow">Korak 2 od 3</div>
+    <div class="ic">📚</div>
+    <h1>Šta danas <em>učimo?</em></h1>
+    <p class="sub" id="s1sub">Izaberi predmet — pa ćemo tačnu godinu.</p>
+    <div id="subjArea"></div>
+    <div id="yearArea" class="hide"></div>
+    <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx off" data-need="predmetGodina">Dalje →</button></div>
+  </div>
+
+  <!-- STEP 2: cilj -->
+  <div class="step hide" id="s2">
+    <div class="eyebrow">Korak 3 od 3</div>
+    <div class="ic">🎯</div>
+    <h1>Za šta se <em>spremamo?</em></h1>
+    <p class="sub">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
+    <div class="grid g2" data-k="cilj">
+      <div class="opt" data-v="Kontrolni i pismeni"><span class="em">✍️</span><span class="lb">Kontrolni i pismeni</span></div>
+      <div class="opt" data-v="Prijemni ispit"><span class="em">🎯</span><span class="lb">Prijemni ispit</span></div>
+      <div class="opt" data-v="Novo gradivo"><span class="em">📚</span><span class="lb">Novo gradivo</span></div>
+      <div class="opt" data-v="Da razumem gradivo"><span class="em">💡</span><span class="lb">Da razumem</span></div>
+    </div>
+    <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx off" data-need="cilj">Napravi mi plan →</button></div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="step hide" id="s3">
+    <div class="eyebrow">Spremni smo</div>
+    <div class="ic" style="font-size:34px">🎉</div>
+    <h1>Krećemo, <em>zajedno!</em></h1>
+    <p class="sub">Tvoj plan je spreman. Profesorica te čeka kad god zapneš — danju ili noću.</p>
+    <div class="plan">
+      <div class="pill"><span>🧑‍🎓</span> <span id="rNivo">—</span></div>
+      <div class="pill"><span>📘</span> <span id="rPredmet">—</span></div>
+      <div class="pill"><span>🎯</span> Cilj: <span id="rCilj">—</span></div>
+    </div>
+    <div class="row"><a class="cta" id="startBtn" href="prijava.html">Počni besplatno →</a></div>
+    <p class="mini">Uči s ljubavlju · <b>Mathia</b></p>
+  </div>
+
+</div></div>
 
 <script>
   var P=['🌸','💗','🌷','✿','❀'];
-  for(var i=0;i<14;i++){var s=document.createElement('span');s.className='petal';s.textContent=P[i%P.length];
-    s.style.left=(Math.random()*100)+'vw';s.style.fontSize=(11+Math.random()*13)+'px';
-    s.style.animationDuration=(7+Math.random()*7)+'s';s.style.animationDelay=(-Math.random()*8)+'s';document.body.appendChild(s);}
-
+  for(var i=0;i<14;i++){var s=document.createElement('span');s.className='petal';s.textContent=P[i%P.length];s.style.left=(Math.random()*100)+'vw';s.style.fontSize=(11+Math.random()*13)+'px';s.style.animationDuration=(7+Math.random()*7)+'s';s.style.animationDelay=(-Math.random()*8)+'s';document.body.appendChild(s);}
   var bg=document.getElementById('bgfx'),px=0,py=0,tx=0,ty=0;
   addEventListener('mousemove',function(e){tx=(e.clientX/innerWidth-.5)*26;ty=(e.clientY/innerHeight-.5)*26;});
-  addEventListener('deviceorientation',function(e){if(e.gamma!=null){tx=Math.max(-26,Math.min(26,e.gamma))* .7;ty=Math.max(-26,Math.min(26,e.beta-40))*.5;}});
+  addEventListener('deviceorientation',function(e){if(e.gamma!=null){tx=Math.max(-26,Math.min(26,e.gamma))*.7;ty=Math.max(-26,Math.min(26,e.beta-40))*.5;}});
   (function loop(){px+=(tx-px)*.06;py+=(ty-py)*.06;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();
 
-  var step=0, pick={}, steps=['s0','s1','s2','s3'];
-  function show(n){
-    steps.forEach(function(id,i){document.getElementById(id).classList.toggle('hide',i!==n);});
-    for(var d=0;d<3;d++)document.getElementById('d'+d).classList.toggle('on',d<=Math.min(n,2));
-    step=n;window.scrollTo({top:0,behavior:'smooth'});
+  function range(a,b){var r=[];for(var i=a;i<=b;i++)r.push(i+'. razred');return r;}
+  var DATA={
+    'Osnovna škola':{mode:'cards',subs:[
+      {v:'Matematika',e:'📐',years:range(1,8)},
+      {v:'Fizika',e:'⚛️',years:range(6,8)}
+    ]},
+    'Srednja škola':{mode:'cards',subs:[
+      {v:'Matematika',e:'📐',years:range(1,4)},
+      {v:'Fizika',e:'⚛️',years:range(1,4)},
+      {v:'Hemija',e:'🧪',years:range(1,4)},
+      {v:'Programiranje',e:'💻',years:range(1,4)},
+      {v:'Elektronika',e:'🔌',years:range(1,4)}
+    ]},
+    'Fakultet':{mode:'list',years:['1. godina','2. godina','3. godina','4. godina','Master'],subs:[
+      'Matematička analiza 1','Matematička analiza 2','Linearna algebra','Verovatnoća i statistika',
+      'Diskretna matematika','Numerička analiza','Programiranje','Algoritmi i strukture podataka',
+      'Objektno programiranje','Osnovi elektrotehnike 1','Osnovi elektrotehnike 2','Elektronika',
+      'Digitalna elektronika','Signali i sistemi','Elektromagnetika','Teorija kola','Fizika 1','Fizika 2'
+    ]}
+  };
+
+  var step=0,pick={},steps=['s0','s1','s2','s3'];
+  function refreshCta(){
+    var cur=document.getElementById(steps[step]);var b=cur.querySelector('.nx');if(!b)return;
+    var need=b.getAttribute('data-need');var ok=false;
+    if(need==='nivo')ok=!!pick.nivo;
+    else if(need==='predmetGodina')ok=!!pick.predmet&&!!pick.godina;
+    else if(need==='cilj')ok=!!pick.cilj;
+    b.classList.toggle('off',!ok);
   }
-  document.querySelectorAll('.grid').forEach(function(g){
-    g.addEventListener('click',function(e){
-      var o=e.target.closest('.opt');if(!o)return;
-      g.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});
-      o.classList.add('on');pick[g.getAttribute('data-k')]=o.getAttribute('data-v');
-    });
+  function show(n){steps.forEach(function(id,i){document.getElementById(id).classList.toggle('hide',i!==n);});for(var d=0;d<3;d++)document.getElementById('d'+d).classList.toggle('on',d<=Math.min(n,2));step=n;refreshCta();window.scrollTo({top:0,behavior:'smooth'});}
+
+  function yearField(years){
+    pick.godina=null;
+    var opts='<option value="" disabled selected>Izaberi godinu…</option>'+years.map(function(y){return '<option value="'+y+'">'+y+'</option>';}).join('');
+    return '<div class="field"><label>'+(pick.nivo==='Fakultet'?'Godina studija':'Razred')+'</label><div class="selwrap"><select class="sel" id="yearSel">'+opts+'</select></div></div>';
+  }
+  function bindYear(){
+    var y=document.getElementById('yearSel');if(!y)return;
+    y.addEventListener('change',function(){pick.godina=this.value;refreshCta();});
+  }
+  function renderSubject(){
+    var d=DATA[pick.nivo],sa=document.getElementById('subjArea'),ya=document.getElementById('yearArea');
+    pick.predmet=null;pick.godina=null;ya.classList.add('hide');ya.innerHTML='';
+    document.getElementById('s1sub').textContent=(d.mode==='list'?'Otvori listu i izaberi predmet — pa godinu studija.':'Izaberi predmet — pa ćemo tačnu godinu.');
+    if(d.mode==='cards'){
+      sa.innerHTML='<div class="grid '+(d.subs.length>2?'g3':'g2')+'">'+d.subs.map(function(s,i){return '<div class="opt" data-i="'+i+'"><span class="em">'+s.e+'</span><span class="lb">'+s.v+'</span></div>';}).join('')+'</div>';
+      sa.querySelectorAll('.opt').forEach(function(o){o.addEventListener('click',function(){
+        sa.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});o.classList.add('on');
+        var s=d.subs[+o.getAttribute('data-i')];pick.predmet=s.v;
+        ya.innerHTML=yearField(s.years);ya.classList.remove('hide');bindYear();refreshCta();
+      });});
+    } else {
+      var opts='<option value="" disabled selected>Izaberi predmet…</option>'+d.subs.map(function(s){return '<option value="'+s+'">'+s+'</option>';}).join('');
+      sa.innerHTML='<div class="field"><label>Predmet</label><div class="selwrap"><select class="sel" id="subjSel">'+opts+'</select></div></div>';
+      document.getElementById('subjSel').addEventListener('change',function(){
+        pick.predmet=this.value;ya.innerHTML=yearField(d.years);ya.classList.remove('hide');bindYear();refreshCta();
+      });
+    }
+  }
+
+  document.querySelectorAll('.grid[data-k]').forEach(function(g){
+    g.addEventListener('click',function(e){var o=e.target.closest('.opt');if(!o)return;
+      g.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});o.classList.add('on');
+      pick[g.getAttribute('data-k')]=o.getAttribute('data-v');refreshCta();});
   });
   document.querySelectorAll('.pv').forEach(function(b){b.addEventListener('click',function(){show(step-1)});});
   document.querySelectorAll('.nx').forEach(function(b){b.addEventListener('click',function(){
-    var cur=document.getElementById(steps[step]);var g=cur.querySelector('.grid');
-    if(g && !g.querySelector('.opt.on')){g.animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:260});return;}
+    if(b.classList.contains('off'))return;
+    if(step===0){renderSubject();show(1);return;}
     if(step===2){
-      document.getElementById('rNivo').textContent=pick.nivo||'—';
-      document.getElementById('rPredmet').textContent=pick.predmet||'—';
-      document.getElementById('rCilj').textContent=pick.cilj||'—';
+      document.getElementById('rNivo').textContent=pick.nivo;
+      document.getElementById('rPredmet').textContent=pick.predmet+' · '+pick.godina;
+      document.getElementById('rCilj').textContent=pick.cilj;
       try{localStorage.setItem('mathia_onboarding',JSON.stringify(pick));}catch(e){}
-      var q='?nivo='+encodeURIComponent(pick.nivo||'')+'&predmet='+encodeURIComponent(pick.predmet||'')+'&cilj='+encodeURIComponent(pick.cilj||'');
+      var q='?nivo='+encodeURIComponent(pick.nivo)+'&predmet='+encodeURIComponent(pick.predmet)+'&godina='+encodeURIComponent(pick.godina)+'&cilj='+encodeURIComponent(pick.cilj);
       document.getElementById('startBtn').href='prijava.html'+q;
       show(3);confetti();return;
     }
     show(step+1);
   });});
 
-  function confetti(){
-    var C=['#B01E48','#C6A05C','#E7D2A2','#F4C4D2','#8E1338'];
-    for(var i=0;i<90;i++){(function(){
-      var d=document.createElement('div');d.className='conf';
-      d.style.left=(Math.random()*100)+'vw';d.style.background=C[i%C.length];
-      var dur=1600+Math.random()*1500;
-      d.animate([{transform:'translateY(-10px) rotate(0)',opacity:1},
-        {transform:'translateY(108vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],
-        {duration:dur,easing:'cubic-bezier(.2,.6,.3,1)'});
-      document.body.appendChild(d);setTimeout(function(){d.remove()},dur);
-    })();}
-  }
+  function confetti(){var C=['#B01E48','#C6A05C','#E7D2A2','#F4C4D2','#8E1338'];for(var i=0;i<90;i++){(function(){var d=document.createElement('div');d.className='conf';d.style.left=(Math.random()*100)+'vw';d.style.background=C[i%C.length];var dur=1600+Math.random()*1500;d.animate([{transform:'translateY(-10px) rotate(0)',opacity:1},{transform:'translateY(108vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],{duration:dur,easing:'cubic-bezier(.2,.6,.3,1)'});document.body.appendChild(d);setTimeout(function(){d.remove()},dur);})();}}
 </script>
 </body>
 </html>
