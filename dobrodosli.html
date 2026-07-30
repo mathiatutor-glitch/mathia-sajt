@@ -10,36 +10,25 @@
 <style>
   :root{--cream:#FBF6EE;--card:#FCF9F3;--plum:#432C37;--plum2:#6B4A57;--gold:#C6A05C;--goldlt:#E7D2A2;--rasp:#B01E48;--rasp-d:#8E1338}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Nunito',system-ui,sans-serif;color:var(--plum);min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
-    background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#EFE6F6 0,#F6ECE6 60%,#FBF3EC 100%);
-    overflow-x:hidden;position:relative}
-  .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-  .orb{position:absolute;border-radius:50%;filter:blur(48px);opacity:.55}
-  .orb.a{width:360px;height:360px;background:#EBB6CF;top:-90px;left:-70px;animation:d1 19s ease-in-out infinite}
-  .orb.b{width:320px;height:320px;background:#F2D39A;bottom:-90px;right:-60px;animation:d2 23s ease-in-out infinite}
-  .orb.c{width:280px;height:280px;background:#CFB9EE;top:42%;right:16%;animation:d3 27s ease-in-out infinite}
-  .orb.d{width:220px;height:220px;background:#F6C6B0;top:12%;left:24%;animation:d1 25s ease-in-out infinite}
-  @keyframes d1{50%{transform:translate(42px,32px) scale(1.09)}}
-  @keyframes d2{50%{transform:translate(-38px,-30px) scale(1.11)}}
-  @keyframes d3{50%{transform:translate(26px,-36px) scale(1.06)}}
-  .petal{position:fixed;top:-24px;pointer-events:none;opacity:.7;animation:fall linear infinite;z-index:0}
-  @keyframes fall{to{transform:translateY(110vh) rotate(320deg)}}
-  @media(prefers-reduced-motion:reduce){.orb,.petal{animation:none}}
+  body{font-family:'Nunito',system-ui,sans-serif;color:var(--plum);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
+    background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#EFE6F6 0,#F6ECE6 60%,#FBF3EC 100%);overflow-x:hidden;position:relative}
+  .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+  .floater{position:fixed;top:-30px;pointer-events:none;font-family:'Spectral',Georgia,serif;font-weight:600;animation:fall linear infinite;z-index:0}
+  @keyframes fall{to{transform:translateY(113vh) rotate(160deg)}}
+  .spark{position:fixed;pointer-events:none;color:#E7D2A2;z-index:0;animation:tw 4.5s ease-in-out infinite;text-shadow:0 0 8px rgba(231,210,162,.85)}
+  @keyframes tw{0%,100%{opacity:.12;transform:scale(.6)}50%{opacity:.95;transform:scale(1.15)}}
+  @media(prefers-reduced-motion:reduce){.floater,.spark{animation:none}}
   .top{position:relative;z-index:3;display:flex;align-items:center;gap:10px;margin-bottom:18px}
-  .mark{width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;color:#3A2530;box-shadow:0 6px 14px -8px rgba(198,160,92,.9)}
   .backpill{display:inline-flex;align-items:baseline;gap:8px;background:rgba(255,255,255,.72);border:1px solid rgba(231,210,162,.75);border-radius:100px;padding:8px 20px;text-decoration:none;color:var(--plum);font-weight:700;font-size:13.5px;box-shadow:0 10px 22px -16px rgba(120,70,80,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .15s,box-shadow .2s}
   .backpill:hover{transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(120,70,80,.75)}
   .backpill .chev{color:var(--gold);font-weight:800;align-self:center}
-  .mw{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:700;font-size:1.32em;letter-spacing:.01em;
-    background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:220% auto;
-    -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:mwFoil 8s linear infinite}
+  .mw{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:700;font-size:1.32em;letter-spacing:.01em;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:mwFoil 8s linear infinite}
   @keyframes mwFoil{to{background-position:220% center}}
   .wrap{width:100%;max-width:470px;position:relative;z-index:2}
   .card{background:var(--card);border-radius:30px;padding:30px 28px 26px;text-align:center;border:1px solid rgba(231,210,162,.5);box-shadow:0 40px 90px -42px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset}
   .dots{display:flex;gap:7px;justify-content:center;margin-bottom:4px}
   .dots i{width:24px;height:5px;border-radius:6px;background:#E9DCC8;transition:.3s}
-  .dots i.on{background:linear-gradient(90deg,var(--gold),var(--rasp))}
+  .dots i.on{background:linear-gradient(90deg,#EAD3A0,#C6A05C)}
   .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-top:12px}
   .ic{width:56px;height:56px;border-radius:17px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);display:flex;align-items:center;justify-content:center;font-size:27px;margin:14px auto 10px;box-shadow:0 10px 22px -12px rgba(198,160,92,.8)}
   h1{font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,6.4vw,2.35rem);line-height:1.1;color:var(--plum)}
@@ -47,34 +36,25 @@
   .sub{color:var(--plum2);font-size:14.5px;margin:9px auto 18px;max-width:350px;line-height:1.55}
   .lastpill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #EFE4D4;border-radius:100px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--plum2);margin-bottom:6px}
   .lastpill b{color:var(--rasp)}
-  .grid{display:grid;gap:11px}
-  .g2{grid-template-columns:repeat(2,1fr)}
-  .g3{grid-template-columns:repeat(3,1fr)}
+  .grid{display:grid;gap:11px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
   .opt{background:#fff;border:1.5px solid #EFE4D4;border-radius:18px;padding:15px 8px 13px;cursor:pointer;transition:transform .14s,border-color .14s,box-shadow .2s;user-select:none}
   .opt:hover{transform:translateY(-3px);border-color:var(--goldlt);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
-  .opt .em{font-size:23px;display:block;margin-bottom:6px}
-  .opt .lb{font-size:12.5px;font-weight:700;color:var(--plum)}
+  .opt .em{font-size:23px;display:block;margin-bottom:6px}.opt .lb{font-size:12.5px;font-weight:700;color:var(--plum)}
   .opt.on{background:linear-gradient(160deg,#F0DCA8,#C6A05C);border-color:transparent;box-shadow:0 16px 30px -14px rgba(198,160,92,.75)}
   .opt.on .lb{color:#3A2530}
   .row{display:flex;align-items:center;gap:12px;margin-top:20px}
   .ghost{background:transparent;border:1.5px solid #E4D6C4;color:var(--plum2);border-radius:100px;padding:15px 20px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
   .ghost[disabled]{display:none}
-  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;color:#fff;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--rasp),var(--rasp-d));box-shadow:0 18px 34px -14px rgba(176,30,72,.75);transition:transform .12s}
+  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;color:#3A2530;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#F0DCA8,#C6A05C);box-shadow:0 18px 34px -14px rgba(198,160,92,.8);transition:transform .12s}
   .cta:active{transform:scale(.98)}
-  .mini{margin-top:14px;font-size:12px;color:var(--plum2);opacity:.85}
-  .mini b{color:var(--rasp)}
-  .step{animation:in .35s ease both}
-  @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .hide{display:none}
-  .conf{position:fixed;top:-10px;width:10px;height:14px;border-radius:2px;z-index:6;pointer-events:none}
-  /* landing */
+  .mini{margin-top:14px;font-size:12px;color:var(--plum2);opacity:.85}.mini b{color:var(--rasp)}
+  .step{animation:in .35s ease both}@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .hide{display:none}.conf{position:fixed;top:-10px;width:10px;height:14px;border-radius:2px;z-index:6;pointer-events:none}
   .tiles{display:flex;flex-direction:column;gap:10px;margin:16px 0 4px;text-align:left}
   .tile{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #EFE4D4;border-radius:16px;padding:13px 15px}
   .tile .te{width:40px;height:40px;border-radius:12px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
-  .tile .tt{font-weight:800;color:var(--plum);font-size:14.5px}
-  .tile .td{font-size:12.5px;color:var(--plum2)}
-  .tile.go{cursor:pointer;transition:transform .14s,box-shadow .2s}
-  .tile.go:hover{transform:translateY(-2px);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
+  .tile .tt{font-weight:800;color:var(--plum);font-size:14.5px}.tile .td{font-size:12.5px;color:var(--plum2)}
+  .tile.go{cursor:pointer;transition:transform .14s,box-shadow .2s}.tile.go:hover{transform:translateY(-2px);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
   .tile .arr{margin-left:auto;color:var(--rasp);font-weight:800}
   .qa{display:flex;gap:10px;margin-top:10px}
   .qa a{flex:1;text-decoration:none;text-align:center;background:#fff;border:1.5px solid #EFE4D4;border-radius:14px;padding:12px 8px;font-weight:800;font-size:13px;color:var(--plum)}
@@ -84,28 +64,26 @@
 </head>
 <body>
 <div class="bgfx" id="bgfx"></div>
-<div class="top"><a class="backpill" href="index.html"><span class="chev">←</span> Nazad na <span class="mw">Mathia</span></a></div>
+<div class="top"><a class="backpill" href="index.html"><span class="chev">←</span> <span id="bkTxt">Nazad na</span> <span class="mw">Mathia</span></a></div>
 
 <div class="wrap"><div class="card">
   <div class="dots"><i class="on" id="d0"></i><i id="d1"></i><i id="d2"></i></div>
 
-  <!-- WELCOME -->
   <div class="step" id="s0">
-    <div class="eyebrow">Dobrodošli nazad</div>
+    <div class="eyebrow" id="wEye">Dobrodošli nazad</div>
     <div class="ic">💛</div>
-    <h1>Lepo je videti te <em>ponovo!</em></h1>
-    <p class="lastpill" id="lastPill">Poslednji put: <b id="lastTopic">Trigonometrija</b> · nastavi gde si stao</p>
-    <p class="sub">Drago nam je što si opet tu.<br>Hajde da za par klikova nastavimo tvoju priču — tvojim tempom.</p>
-    <div class="row"><button class="ghost" disabled>← Nazad</button><button class="cta nx">Hajde 💫</button></div>
-    <p class="mini">Tvoja profesorica te čeka · <b>uvek tu</b></p>
+    <h1 id="wH">Lepo je videti te <em>ponovo!</em></h1>
+    <p class="lastpill"><span id="wLast">Poslednji put:</span> <b id="lastTopic">Trigonometrija</b> <span id="wCont">· nastavi gde si stao</span></p>
+    <p class="sub" id="wSub">Drago nam je što si opet tu.<br>Hajde da za par klikova nastavimo tvoju priču — tvojim tempom.</p>
+    <div class="row"><button class="ghost" disabled>← Nazad</button><button class="cta nx" id="wBtn">Hajde 💫</button></div>
+    <p class="mini" id="wMini">Tvoja profesorica te čeka · <b>uvek tu</b></p>
   </div>
 
-  <!-- MOOD -->
   <div class="step hide" id="s1">
-    <div class="eyebrow">Korak 1 od 3</div>
+    <div class="eyebrow" id="e0">Korak 1 od 3</div>
     <div class="ic">🌸</div>
-    <h1>Kako se danas <em>osećaš?</em></h1>
-    <p class="sub">Da znam kojim tempom da idemo.<br>Nema pogrešnog odgovora. 💛</p>
+    <h1 id="mH">Kako se danas <em>osećaš?</em></h1>
+    <p class="sub" id="mSub">Da znam kojim tempom da idemo.<br>Nema pogrešnog odgovora. 💛</p>
     <div class="grid g2" data-k="mood">
       <div class="opt" data-v="Puna energije" data-m="fire"><span class="em">🔥</span><span class="lb">Puna energije</span></div>
       <div class="opt" data-v="Smireno" data-m="calm"><span class="em">😌</span><span class="lb">Smireno</span></div>
@@ -115,12 +93,11 @@
     <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Dalje →</button></div>
   </div>
 
-  <!-- GOAL -->
   <div class="step hide" id="s2">
-    <div class="eyebrow">Korak 2 od 3</div>
+    <div class="eyebrow" id="e1">Korak 2 od 3</div>
     <div class="ic">🎯</div>
-    <h1>Šta je danas <em>cilj?</em></h1>
-    <p class="sub">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
+    <h1 id="gH">Šta je danas <em>cilj?</em></h1>
+    <p class="sub" id="gSub">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
     <div class="grid g2" data-k="cilj">
       <div class="opt" data-v="Kontrolni i pismeni"><span class="em">✍️</span><span class="lb">Kontrolni / pismeni</span></div>
       <div class="opt" data-v="Prijemni ispit"><span class="em">🎯</span><span class="lb">Prijemni ispit</span></div>
@@ -132,12 +109,11 @@
     <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Dalje →</button></div>
   </div>
 
-  <!-- SUBJECT -->
   <div class="step hide" id="s3">
-    <div class="eyebrow">Korak 3 od 3</div>
+    <div class="eyebrow" id="e2">Korak 3 od 3</div>
     <div class="ic">📚</div>
-    <h1>Koji predmet <em>radimo?</em></h1>
-    <p class="sub">Biraj mudro — sve ostalo sređujem ja. ✨</p>
+    <h1 id="sH">Koji predmet <em>radimo?</em></h1>
+    <p class="sub" id="sSub">Biraj mudro — sve ostalo sređujem ja. ✨</p>
     <div class="grid g3" data-k="predmet">
       <div class="opt" data-v="Matematika"><span class="em">📐</span><span class="lb">Matematika</span></div>
       <div class="opt" data-v="Fizika"><span class="em">⚛️</span><span class="lb">Fizika</span></div>
@@ -149,49 +125,89 @@
     <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Napravi mi plan →</button></div>
   </div>
 
-  <!-- LANDING -->
   <div class="step hide" id="s4">
-    <div class="eyebrow">Tvoj plan za danas</div>
+    <div class="eyebrow" id="lEye">Tvoj plan za danas</div>
     <div class="ic" style="font-size:34px">🎉</div>
     <h1 id="hello">Spremni smo, <em>zajedno!</em></h1>
     <p class="sub" id="moodLine">Idemo korak po korak — ja sam tu uz tebe.</p>
     <div class="tiles">
       <div class="tile go" id="contBtn"><span class="te">📘</span><div><div class="tt" id="contTitle">Nastavi: Trigonometrija</div><div class="td" id="contSub">Predmet · cilj za danas</div></div><span class="arr">→</span></div>
-      <div class="tile"><span class="te">🔥</span><div><div class="tt">3 dana zaredom</div><div class="td">Samo nastavi — mali koraci prave velike rezultate.</div></div></div>
+      <div class="tile"><span class="te">🔥</span><div><div class="tt" id="streakT">3 dana zaredom</div><div class="td" id="streakD">Samo nastavi — mali koraci prave velike rezultate.</div></div></div>
     </div>
     <div class="qa">
-      <a href="index.html">💬 Pitaj profesoricu</a>
-      <a href="predmeti.html">📘 Materijali</a>
+      <a href="index.html" id="qaAsk">💬 Pitaj profesoricu</a>
+      <a href="predmeti.html" id="qaMat">📘 Materijali</a>
     </div>
-    <div class="nudge" id="nudge">✨ Otključaj <b>sve predmete i profesoricu 24/7</b> — <a href="prijava.html">Počni besplatno →</a></div>
-    <p class="mini">Uči s ljubavlju · <b>Mathia</b></p>
+    <div class="nudge"><span id="nudgeTx">✨ Otključaj <b>sve predmete i profesoricu 24/7</b> —</span> <a href="prijava.html" id="nudgeBtn">Počni besplatno →</a></div>
+    <p class="mini" id="footMini">Uči s ljubavlju · <b>Mathia</b></p>
   </div>
 
 </div></div>
 
 <script>
-  var P=['🌸','💗','🌷','✿','❀'];
-  for(var i=0;i<14;i++){var s=document.createElement('span');s.className='petal';s.textContent=P[i%P.length];s.style.left=(Math.random()*100)+'vw';s.style.fontSize=(11+Math.random()*13)+'px';s.style.animationDuration=(7+Math.random()*7)+'s';s.style.animationDelay=(-Math.random()*8)+'s';document.body.appendChild(s);}
+  var MATH=['∑','π','√','∫','∞','θ','Δ','∂','×','÷','≈','½','x²','∮','π','√','sin'];
+  for(var i=0;i<18;i++){var f=document.createElement('span');f.className='floater';var h=Math.random()<0.16;f.textContent=h?'♥':MATH[Math.floor(Math.random()*MATH.length)];f.style.left=(Math.random()*100)+'vw';f.style.fontSize=(h?14+Math.random()*8:16+Math.random()*20)+'px';f.style.color=h?'rgba(176,30,72,.26)':'rgba(156,120,56,.30)';f.style.animationDuration=(17+Math.random()*16)+'s';f.style.animationDelay=(-Math.random()*22)+'s';document.body.appendChild(f);}
+  var SPK=['✦','✧','⋆'];
+  for(var j=0;j<13;j++){var sp=document.createElement('span');sp.className='spark';sp.textContent=SPK[j%3];sp.style.left=(Math.random()*100)+'vw';sp.style.top=(Math.random()*96)+'vh';sp.style.fontSize=(9+Math.random()*13)+'px';sp.style.animationDuration=(3.5+Math.random()*4)+'s';sp.style.animationDelay=(-Math.random()*6)+'s';document.body.appendChild(sp);}
   var bg=document.getElementById('bgfx'),px=0,py=0,tx=0,ty=0;
-  addEventListener('mousemove',function(e){tx=(e.clientX/innerWidth-.5)*26;ty=(e.clientY/innerHeight-.5)*26;});
-  addEventListener('deviceorientation',function(e){if(e.gamma!=null){tx=Math.max(-26,Math.min(26,e.gamma))*.7;ty=Math.max(-26,Math.min(26,e.beta-40))*.5;}});
-  (function loop(){px+=(tx-px)*.06;py+=(ty-py)*.06;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();
+  addEventListener('mousemove',function(e){tx=(e.clientX/innerWidth-.5)*16;ty=(e.clientY/innerHeight-.5)*16;});
+  (function loop(){px+=(tx-px)*.035;py+=(ty-py)*.035;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();
 
-  try{var prev=JSON.parse(localStorage.getItem('mathia_onboarding')||'{}');if(prev.predmet){document.getElementById('lastTopic').textContent=prev.predmet;}}catch(e){}
+  var L=(function(){try{var s=(localStorage.getItem('mathia_lang')||'sr').slice(0,2).toLowerCase();return ['sr','en','de','fr','es','it','ru','pt'].indexOf(s)>=0?s:'sr';}catch(e){return 'sr';}})();
+
+  var T={
+    sr:{back:'Nazad na',korak:'Korak',od:'od',wEye:'Dobrodošli nazad',wH:'Lepo je videti te <em>ponovo!</em>',wLast:'Poslednji put:',wCont:'· nastavi gde si stao',wSub:'Drago nam je što si opet tu.<br>Hajde da za par klikova nastavimo tvoju priču — tvojim tempom.',wBtn:'Hajde 💫',wMini:'Tvoja profesorica te čeka · <b>uvek tu</b>',mH:'Kako se danas <em>osećaš?</em>',mSub:'Da znam kojim tempom da idemo.<br>Nema pogrešnog odgovora. 💛',gH:'Šta je danas <em>cilj?</em>',gSub:'Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.',sH:'Koji predmet <em>radimo?</em>',sSub:'Biraj mudro — sve ostalo sređujem ja. ✨',next:'Dalje →',plan:'Napravi mi plan →',back2:'← Nazad',lEye:'Tvoj plan za danas',hello:'Spremni smo, <em>zajedno!</em>',helloN:'Idemo, <em>{n}!</em>',cont:'Nastavi:',streakT:'3 dana zaredom',streakD:'Samo nastavi — mali koraci prave velike rezultate.',qaAsk:'💬 Pitaj profesoricu',qaMat:'📘 Materijali',nudge:'✨ Otključaj <b>sve predmete i profesoricu 24/7</b> —',pocni:'Počni besplatno →',foot:'Uči s ljubavlju · <b>Mathia</b>'},
+    en:{back:'Back to',korak:'Step',od:'of',wEye:'Welcome back',wH:'Great to see you <em>again!</em>',wLast:'Last time:',wCont:'· continue where you left off',wSub:'We\'re so glad you\'re back.<br>Let\'s pick up your story in a couple of taps — at your pace.',wBtn:'Let\'s go 💫',wMini:'Your teacher is waiting · <b>always here</b>',mH:'How do you <em>feel</em> today?',mSub:'So I know the pace to take.<br>There\'s no wrong answer. 💛',gH:'What\'s today\'s <em>goal?</em>',gSub:'Tell me the goal, and we\'ll make a plan that leads right to it.',sH:'Which subject are we <em>doing?</em>',sSub:'Choose wisely — I\'ll handle the rest. ✨',next:'Next →',plan:'Make my plan →',back2:'← Back',lEye:'Your plan for today',hello:'We\'re ready, <em>together!</em>',helloN:'Let\'s go, <em>{n}!</em>',cont:'Continue:',streakT:'3 days in a row',streakD:'Just keep going — small steps make big results.',qaAsk:'💬 Ask your teacher',qaMat:'📘 Materials',nudge:'✨ Unlock <b>all subjects and your teacher 24/7</b> —',pocni:'Start free →',foot:'Learn with love · <b>Mathia</b>'},
+    de:{back:'Zurück zu',korak:'Schritt',od:'von',wEye:'Willkommen zurück',wH:'Schön, dich <em>wiederzusehen!</em>',wLast:'Letztes Mal:',wCont:'· mach weiter, wo du warst',wSub:'Schön, dass du wieder da bist.<br>Machen wir mit ein paar Klicks weiter — in deinem Tempo.',wBtn:'Los geht\'s 💫',wMini:'Deine Lehrerin wartet · <b>immer da</b>',mH:'Wie <em>fühlst</em> du dich heute?',mSub:'Damit ich das Tempo kenne.<br>Es gibt keine falsche Antwort. 💛',gH:'Was ist heute das <em>Ziel?</em>',gSub:'Sag mir das Ziel, und wir machen einen Plan, der genau dorthin führt.',sH:'Welches Fach <em>machen</em> wir?',sSub:'Wähle mit Bedacht — den Rest übernehme ich. ✨',next:'Weiter →',plan:'Plan erstellen →',back2:'← Zurück',lEye:'Dein Plan für heute',hello:'Wir sind bereit, <em>zusammen!</em>',helloN:'Los, <em>{n}!</em>',cont:'Weiter:',streakT:'3 Tage in Folge',streakD:'Mach einfach weiter — kleine Schritte, große Ergebnisse.',qaAsk:'💬 Frag deine Lehrerin',qaMat:'📘 Materialien',nudge:'✨ Schalte <b>alle Fächer und deine Lehrerin rund um die Uhr</b> frei —',pocni:'Kostenlos starten →',foot:'Mit Liebe lernen · <b>Mathia</b>'},
+    fr:{back:'Retour à',korak:'Étape',od:'sur',wEye:'Bon retour',wH:'Content de te <em>revoir !</em>',wLast:'Dernière fois :',wCont:'· reprends où tu t\'es arrêté',wSub:'On est ravis de te revoir.<br>Reprenons ton histoire en deux clics — à ton rythme.',wBtn:'C\'est parti 💫',wMini:'Ta professeure t\'attend · <b>toujours là</b>',mH:'Comment te <em>sens-tu</em> ?',mSub:'Pour que je connaisse le rythme.<br>Il n\'y a pas de mauvaise réponse. 💛',gH:'Quel est le <em>but</em> aujourd\'hui ?',gSub:'Dis-moi le but, et on fera un plan qui y mène droit.',sH:'Quelle matière <em>fait-on ?</em>',sSub:'Choisis bien — je m\'occupe du reste. ✨',next:'Suivant →',plan:'Créer mon plan →',back2:'← Retour',lEye:'Ton plan pour aujourd\'hui',hello:'On est prêts, <em>ensemble !</em>',helloN:'Allons-y, <em>{n} !</em>',cont:'Continuer :',streakT:'3 jours d\'affilée',streakD:'Continue — de petits pas, de grands résultats.',qaAsk:'💬 Demande à ta professeure',qaMat:'📘 Ressources',nudge:'✨ Débloque <b>toutes les matières et ta professeure 24h/24</b> —',pocni:'Commencer gratuitement →',foot:'Apprendre avec amour · <b>Mathia</b>'},
+    es:{back:'Volver a',korak:'Paso',od:'de',wEye:'Bienvenido de nuevo',wH:'¡Qué bueno <em>verte!</em>',wLast:'La última vez:',wCont:'· sigue donde lo dejaste',wSub:'Nos alegra que hayas vuelto.<br>Retomemos tu historia en un par de clics — a tu ritmo.',wBtn:'¡Vamos! 💫',wMini:'Tu profesora te espera · <b>siempre aquí</b>',mH:'¿Cómo te <em>sientes</em> hoy?',mSub:'Para saber a qué ritmo ir.<br>No hay respuesta incorrecta. 💛',gH:'¿Cuál es el <em>objetivo</em> hoy?',gSub:'Dime el objetivo y haremos un plan que lleve justo a él.',sH:'¿Qué materia <em>hacemos?</em>',sSub:'Elige bien — del resto me encargo yo. ✨',next:'Siguiente →',plan:'Crear mi plan →',back2:'← Atrás',lEye:'Tu plan de hoy',hello:'¡Estamos listos, <em>juntos!</em>',helloN:'¡Vamos, <em>{n}!</em>',cont:'Continúa:',streakT:'3 días seguidos',streakD:'Sigue así — pasos pequeños, grandes resultados.',qaAsk:'💬 Pregunta a tu profesora',qaMat:'📘 Materiales',nudge:'✨ Desbloquea <b>todas las materias y tu profesora 24/7</b> —',pocni:'Empezar gratis →',foot:'Aprender con amor · <b>Mathia</b>'},
+    it:{back:'Torna a',korak:'Passo',od:'di',wEye:'Bentornato',wH:'Che bello <em>rivederti!</em>',wLast:'L\'ultima volta:',wCont:'· riprendi da dove eri',wSub:'Siamo felici che tu sia tornato.<br>Riprendiamo la tua storia in due clic — al tuo ritmo.',wBtn:'Andiamo 💫',wMini:'La tua insegnante ti aspetta · <b>sempre qui</b>',mH:'Come ti <em>senti</em> oggi?',mSub:'Così so con che ritmo andare.<br>Non c\'è risposta sbagliata. 💛',gH:'Qual è l\'<em>obiettivo</em> oggi?',gSub:'Dimmi l\'obiettivo e faremo un piano che porta proprio lì.',sH:'Quale materia <em>facciamo?</em>',sSub:'Scegli con cura — al resto penso io. ✨',next:'Avanti →',plan:'Crea il mio piano →',back2:'← Indietro',lEye:'Il tuo piano per oggi',hello:'Siamo pronti, <em>insieme!</em>',helloN:'Andiamo, <em>{n}!</em>',cont:'Continua:',streakT:'3 giorni di fila',streakD:'Continua — piccoli passi, grandi risultati.',qaAsk:'💬 Chiedi alla tua insegnante',qaMat:'📘 Materiali',nudge:'✨ Sblocca <b>tutte le materie e la tua insegnante 24/7</b> —',pocni:'Inizia gratis →',foot:'Imparare con amore · <b>Mathia</b>'},
+    ru:{back:'Назад в',korak:'Шаг',od:'из',wEye:'С возвращением',wH:'Рады видеть тебя <em>снова!</em>',wLast:'В прошлый раз:',wCont:'· продолжи с того места',wSub:'Мы рады, что ты вернулся.<br>Продолжим твою историю за пару кликов — в твоём темпе.',wBtn:'Идём 💫',wMini:'Преподавательница ждёт · <b>всегда рядом</b>',mH:'Как ты себя <em>чувствуешь?</em>',mSub:'Чтобы я знала, каким темпом идти.<br>Нет неправильных ответов. 💛',gH:'Какая сегодня <em>цель?</em>',gSub:'Скажи цель, и мы составим план, который ведёт прямо к ней.',sH:'Какой предмет <em>берём?</em>',sSub:'Выбирай с умом — остальное беру на себя. ✨',next:'Далее →',plan:'Составить план →',back2:'← Назад',lEye:'Твой план на сегодня',hello:'Мы готовы, <em>вместе!</em>',helloN:'Идём, <em>{n}!</em>',cont:'Продолжи:',streakT:'3 дня подряд',streakD:'Просто продолжай — маленькие шаги дают большие результаты.',qaAsk:'💬 Спроси преподавательницу',qaMat:'📘 Материалы',nudge:'✨ Открой <b>все предметы и преподавательницу 24/7</b> —',pocni:'Начать бесплатно →',foot:'Учиться с любовью · <b>Mathia</b>'},
+    pt:{back:'Voltar à',korak:'Passo',od:'de',wEye:'Bem-vindo de volta',wH:'Que bom <em>ver-te!</em>',wLast:'Da última vez:',wCont:'· continua de onde paraste',wSub:'Ficamos felizes por teres voltado.<br>Vamos retomar a tua história em dois cliques — ao teu ritmo.',wBtn:'Vamos 💫',wMini:'A tua professora espera · <b>sempre aqui</b>',mH:'Como te <em>sentes</em> hoje?',mSub:'Para eu saber o ritmo.<br>Não há resposta errada. 💛',gH:'Qual é o <em>objetivo</em> hoje?',gSub:'Diz-me o objetivo e faremos um plano que leva mesmo até lá.',sH:'Que disciplina <em>fazemos?</em>',sSub:'Escolhe bem — do resto trato eu. ✨',next:'Seguinte →',plan:'Criar o meu plano →',back2:'← Voltar',lEye:'O teu plano para hoje',hello:'Estamos prontos, <em>juntos!</em>',helloN:'Vamos, <em>{n}!</em>',cont:'Continua:',streakT:'3 dias seguidos',streakD:'Continua — pequenos passos, grandes resultados.',qaAsk:'💬 Pergunta à tua professora',qaMat:'📘 Materiais',nudge:'✨ Desbloqueia <b>todas as disciplinas e a tua professora 24/7</b> —',pocni:'Começar grátis →',foot:'Aprender com amor · <b>Mathia</b>'}
+  };
+  var MOOD={'Puna energije':{en:'Full of energy',de:'Voller Energie',fr:'Plein d\'énergie',es:'Con energía',it:'Pieno di energia',ru:'Полон энергии',pt:'Cheio de energia'},'Smireno':{en:'Calm',de:'Ruhig',fr:'Calme',es:'Tranquilo',it:'Tranquillo',ru:'Спокойно',pt:'Calmo'},'Malo pod stresom':{en:'A bit stressed',de:'Etwas gestresst',fr:'Un peu stressé',es:'Algo estresado',it:'Un po\' stressato',ru:'Немного в стрессе',pt:'Um pouco em stress'},'Umorno':{sr:'Pomalo umorno',en:'A little tired',de:'Etwas müde',fr:'Un peu fatigué',es:'Algo cansado',it:'Un po\' stanco',ru:'Немного устал',pt:'Um pouco cansado'}};
+  var CILJ={'Kontrolni i pismeni':{sr:'Kontrolni / pismeni',en:'Tests / written',de:'Klassenarbeiten',fr:'Contrôles',es:'Controles',it:'Verifiche',ru:'Контрольные',pt:'Testes'},'Prijemni ispit':{en:'Entrance exam',de:'Aufnahmeprüfung',fr:'Concours',es:'Examen de acceso',it:'Test d\'ingresso',ru:'Вступительный',pt:'Exame de acesso'},'Novo gradivo':{en:'New material',de:'Neuer Stoff',fr:'Nouveau cours',es:'Materia nueva',it:'Nuova materia',ru:'Новый материал',pt:'Matéria nova'},'Ponavljanje':{en:'Revision',de:'Wiederholung',fr:'Révision',es:'Repaso',it:'Ripasso',ru:'Повторение',pt:'Revisão'},'Samo 15 minuta':{en:'Just 15 minutes',de:'Nur 15 Minuten',fr:'Juste 15 minutes',es:'Solo 15 minutos',it:'Solo 15 minuti',ru:'Всего 15 минут',pt:'Só 15 minutos'},'Domaći':{en:'Homework',de:'Hausaufgaben',fr:'Devoirs',es:'Deberes',it:'Compiti',ru:'Домашка',pt:'Trabalho de casa'}};
+  var SUBJ={'Matematika':{en:'Mathematics',de:'Mathematik',fr:'Mathématiques',es:'Matemáticas',it:'Matematica',ru:'Математика',pt:'Matemática'},'Fizika':{en:'Physics',de:'Physik',fr:'Physique',es:'Física',it:'Fisica',ru:'Физика',pt:'Física'},'Programiranje':{en:'Programming',de:'Programmierung',fr:'Programmation',es:'Programación',it:'Programmazione',ru:'Программирование',pt:'Programação'},'Hemija':{en:'Chemistry',de:'Chemie',fr:'Chimie',es:'Química',it:'Chimica',ru:'Химия',pt:'Química'},'Elektronika':{en:'Electronics',de:'Elektronik',fr:'Électronique',es:'Electrónica',it:'Elettronica',ru:'Электроника',pt:'Eletrónica'},'Ti biraš':{en:'You choose',de:'Du wählst',fr:'Tu choisis',es:'Tú eliges',it:'Scegli tu',ru:'Ты выбираешь',pt:'Tu escolhes'}};
+  var LINES={
+    sr:{fire:'Vidim tu energiju! Idemo da je iskoristimo. 💪',calm:'Baš lepo. Mirno i sigurno, korak po korak. 🌿',stress:'Diši. Krećemo polako — ja sam tu uz tebe. 💛',tired:'Bez pritiska. Samo 15 minuta, tvojim tempom. 🌙',def:'Idemo korak po korak — ja sam tu uz tebe.'},
+    en:{fire:'I see that energy! Let\'s use it. 💪',calm:'Lovely. Calm and steady, step by step. 🌿',stress:'Breathe. We\'ll go slowly — I\'m here with you. 💛',tired:'No pressure. Just 15 minutes, at your pace. 🌙',def:'Step by step — I\'m here with you.'},
+    de:{fire:'Diese Energie sehe ich! Nutzen wir sie. 💪',calm:'Schön. Ruhig und sicher, Schritt für Schritt. 🌿',stress:'Atme. Wir gehen langsam — ich bin bei dir. 💛',tired:'Kein Druck. Nur 15 Minuten, in deinem Tempo. 🌙',def:'Schritt für Schritt — ich bin bei dir.'},
+    fr:{fire:'Je vois cette énergie ! Utilisons-la. 💪',calm:'Parfait. Calme et sûr, pas à pas. 🌿',stress:'Respire. On y va doucement — je suis là. 💛',tired:'Sans pression. Juste 15 minutes, à ton rythme. 🌙',def:'Pas à pas — je suis là avec toi.'},
+    es:{fire:'¡Veo esa energía! Vamos a usarla. 💪',calm:'Qué bien. Con calma y seguridad, paso a paso. 🌿',stress:'Respira. Iremos despacio — estoy contigo. 💛',tired:'Sin presión. Solo 15 minutos, a tu ritmo. 🌙',def:'Paso a paso — estoy contigo.'},
+    it:{fire:'Vedo quell\'energia! Usiamola. 💪',calm:'Che bello. Con calma e sicurezza, passo passo. 🌿',stress:'Respira. Andiamo piano — sono qui con te. 💛',tired:'Nessuna pressione. Solo 15 minuti, al tuo ritmo. 🌙',def:'Passo passo — sono qui con te.'},
+    ru:{fire:'Вижу эту энергию! Используем её. 💪',calm:'Прекрасно. Спокойно и уверенно, шаг за шагом. 🌿',stress:'Дыши. Пойдём медленно — я рядом. 💛',tired:'Без давления. Всего 15 минут, в твоём темпе. 🌙',def:'Шаг за шагом — я рядом.'},
+    pt:{fire:'Vejo essa energia! Vamos usá-la. 💪',calm:'Que bom. Com calma e segurança, passo a passo. 🌿',stress:'Respira. Vamos devagar — estou aqui contigo. 💛',tired:'Sem pressão. Só 15 minutos, ao teu ritmo. 🌙',def:'Passo a passo — estou aqui contigo.'}
+  };
+  function trMap(map,key){ if(L==='sr')return (map[key]&&map[key].sr)||key; var m=map[key]; return (m&&m[L])||key; }
+
+  function setH(id,html){var el=document.getElementById(id);if(el)el.innerHTML=html;}
+  function apply(){var t=T[L];
+    ['bkTxt|back','wEye|wEye','wH|wH','wLast|wLast','wCont|wCont','wSub|wSub','wBtn|wBtn','wMini|wMini','mH|mH','mSub|mSub','gH|gH','gSub|gSub','sH|sH','sSub|sSub','lEye|lEye','qaAsk|qaAsk','qaMat|qaMat','nudgeTx|nudge','nudgeBtn|pocni','footMini|foot','streakT|streakT','streakD|streakD'].forEach(function(p){var a=p.split('|');setH(a[0],t[a[1]]);});
+    setH('e0',t.korak+' 1 '+t.od+' 3');setH('e1',t.korak+' 2 '+t.od+' 3');setH('e2',t.korak+' 3 '+t.od+' 3');
+    document.querySelectorAll('.pv').forEach(function(b){b.textContent=t.back2;});
+    document.querySelectorAll('#s1 .nx,#s2 .nx').forEach(function(b){b.textContent=t.next;});
+    document.querySelector('#s3 .nx').textContent=t.plan;
+    document.querySelectorAll('#s1 .opt').forEach(function(o){o.querySelector('.lb').textContent=trMap(MOOD,o.getAttribute('data-v'));});
+    document.querySelectorAll('#s2 .opt').forEach(function(o){o.querySelector('.lb').textContent=trMap(CILJ,o.getAttribute('data-v'));});
+    document.querySelectorAll('#s3 .opt').forEach(function(o){o.querySelector('.lb').textContent=trMap(SUBJ,o.getAttribute('data-v'));});
+    document.documentElement.lang=L;
+  }
+
+  try{var prev=JSON.parse(localStorage.getItem('mathia_onboarding')||'{}');if(prev.predmet){document.getElementById('lastTopic').textContent=(L==='sr'?prev.predmet:(trMap(SUBJ,prev.predmet)||prev.predmet));}}catch(e){}
   var name='';try{name=localStorage.getItem('mathia_name')||'';}catch(e){}
 
   var step=0,pick={},steps=['s0','s1','s2','s3','s4'];
   function show(n){steps.forEach(function(id,i){document.getElementById(id).classList.toggle('hide',i!==n);});for(var d=0;d<3;d++)document.getElementById('d'+d).classList.toggle('on',d<=Math.min(Math.max(n-1,0),2));step=n;window.scrollTo({top:0,behavior:'smooth'});}
   document.querySelectorAll('.grid').forEach(function(g){g.addEventListener('click',function(e){var o=e.target.closest('.opt');if(!o)return;g.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});o.classList.add('on');pick[g.getAttribute('data-k')]=o.getAttribute('data-v');if(o.getAttribute('data-m'))pick.moodKey=o.getAttribute('data-m');});});
   document.querySelectorAll('.pv').forEach(function(b){b.addEventListener('click',function(){show(step-1)});});
-  var lines={fire:'Vidim tu energiju! Idemo da je iskoristimo. 💪',calm:'Baš lepo. Mirno i sigurno, korak po korak. 🌿',stress:'Diši. Krećemo polako — ja sam tu uz tebe. 💛',tired:'Bez pritiska. Samo 15 minuta, tvojim tempom. 🌙'};
   document.querySelectorAll('.nx').forEach(function(b){b.addEventListener('click',function(){
     if(step>=1&&step<=3){var g=document.getElementById(steps[step]).querySelector('.grid');if(g&&!g.querySelector('.opt.on')){g.animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:260});return;}}
-    if(step===3){
-      document.getElementById('hello').innerHTML=(name?('Idemo, <em>'+name+'!</em>'):'Spremni smo, <em>zajedno!</em>');
-      document.getElementById('moodLine').textContent=lines[pick.moodKey]||'Idemo korak po korak — ja sam tu uz tebe.';
-      document.getElementById('contTitle').textContent='Nastavi: '+(pick.predmet||'Trigonometrija');
-      document.getElementById('contSub').textContent=(pick.predmet||'Predmet')+' · '+(pick.cilj||'cilj za danas');
+    if(step===3){var t=T[L];
+      document.getElementById('hello').innerHTML=(name?t.helloN.replace('{n}',name):t.hello);
+      document.getElementById('moodLine').textContent=LINES[L][pick.moodKey]||LINES[L].def;
+      var pl=trMap(SUBJ,pick.predmet)||'';var cl=trMap(CILJ,pick.cilj)||'';
+      document.getElementById('contTitle').textContent=t.cont+' '+(pl||document.getElementById('lastTopic').textContent);
+      document.getElementById('contSub').textContent=(pl||'')+(cl?' · '+cl:'');
       var sub=(pick.predmet||'').toLowerCase();
       var map={'matematika':'predmet-matematika.html','fizika':'predmet-fizika.html','programiranje':'predmeti.html','hemija':'predmeti.html','elektronika':'predmeti.html'};
       document.getElementById('contBtn').onclick=function(){location.href=(map[sub]||'predmeti.html');};
@@ -202,6 +218,8 @@
   });});
 
   function confetti(){var C=['#B01E48','#C6A05C','#E7D2A2','#F4C4D2','#8E1338'];for(var i=0;i<90;i++){(function(){var d=document.createElement('div');d.className='conf';d.style.left=(Math.random()*100)+'vw';d.style.background=C[i%C.length];var dur=1600+Math.random()*1500;d.animate([{transform:'translateY(-10px) rotate(0)',opacity:1},{transform:'translateY(108vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],{duration:dur,easing:'cubic-bezier(.2,.6,.3,1)'});document.body.appendChild(d);setTimeout(function(){d.remove()},dur);})();}}
+
+  if(L!=='sr')apply();
 </script>
 </body>
 </html>

@@ -13,19 +13,12 @@
   body{font-family:'Nunito',system-ui,sans-serif;color:var(--plum);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
     background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#EFE6F6 0,#F6ECE6 60%,#FBF3EC 100%);overflow-x:hidden;position:relative}
   .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
-  .orb{position:absolute;border-radius:50%;filter:blur(52px);opacity:.5}
-  .orb.a{width:380px;height:380px;background:#EFD9A0;top:-100px;left:-80px;animation:d1 34s ease-in-out infinite}
-  .orb.b{width:340px;height:340px;background:#F3E3B4;bottom:-100px;right:-70px;animation:d2 40s ease-in-out infinite}
-  .orb.c{width:260px;height:260px;background:#E9C7D4;top:44%;right:14%;animation:d3 44s ease-in-out infinite;opacity:.36}
-  .orb.d{width:300px;height:300px;background:#E6D8C0;top:10%;left:22%;animation:d1 38s ease-in-out infinite}
-  @keyframes d1{50%{transform:translate(28px,22px) scale(1.05)}}@keyframes d2{50%{transform:translate(-26px,-20px) scale(1.06)}}@keyframes d3{50%{transform:translate(16px,-24px) scale(1.04)}}
   .floater{position:fixed;top:-30px;pointer-events:none;font-family:'Spectral',Georgia,serif;font-weight:600;animation:fall linear infinite;z-index:0}
   @keyframes fall{to{transform:translateY(113vh) rotate(160deg)}}
   .spark{position:fixed;pointer-events:none;color:#E7D2A2;z-index:0;animation:tw 4.5s ease-in-out infinite;text-shadow:0 0 8px rgba(231,210,162,.85)}
   @keyframes tw{0%,100%{opacity:.12;transform:scale(.6)}50%{opacity:.95;transform:scale(1.15)}}
-  @media(prefers-reduced-motion:reduce){.orb,.floater,.spark{animation:none}}
+  @media(prefers-reduced-motion:reduce){.floater,.spark{animation:none}}
   .top{position:relative;z-index:3;display:flex;align-items:center;gap:10px;margin-bottom:18px}
-  .mark{width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;color:#3A2530;box-shadow:0 6px 14px -8px rgba(198,160,92,.9)}
   .backpill{display:inline-flex;align-items:baseline;gap:8px;background:rgba(255,255,255,.72);border:1px solid rgba(231,210,162,.75);border-radius:100px;padding:8px 20px;text-decoration:none;color:var(--plum);font-weight:700;font-size:13.5px;box-shadow:0 10px 22px -16px rgba(120,70,80,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .15s,box-shadow .2s}
   .backpill:hover{transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(120,70,80,.75)}
   .backpill .chev{color:var(--gold);font-weight:800;align-self:center}
@@ -70,43 +63,40 @@
 </head>
 <body>
 <div class="bgfx" id="bgfx"></div>
-<div class="top"><a class="backpill" href="index.html"><span class="chev">←</span> Nazad na <span class="mw">Mathia</span></a></div>
+<div class="top"><a class="backpill" href="index.html"><span class="chev">←</span> <span id="bkTxt">Nazad na</span> <span class="mw">Mathia</span></a></div>
 
 <div class="wrap"><div class="card">
   <div class="dots"><i class="on" id="d0"></i><i id="d1"></i><i id="d2"></i></div>
 
-  <!-- STEP 0: nivo -->
   <div class="step" id="s0">
     <div class="eyebrow" id="e0">Korak 1 od 3</div>
     <div class="ic">🎒</div>
-    <h1>Ko danas <em>uči?</em></h1>
-    <p class="sub">Da tvoj plan bude taman po meri.<br>Bez brige — sve ostalo sređujem ja. 💛</p>
+    <h1 id="h0">Ko danas <em>uči?</em></h1>
+    <p class="sub" id="sub0">Da tvoj plan bude taman po meri.<br>Bez brige — sve ostalo sređujem ja. 💛</p>
     <div class="grid g3" data-k="nivo">
       <div class="opt" data-v="Osnovna škola"><span class="em">🎒</span><span class="lb">Osnovna škola</span></div>
       <div class="opt" data-v="Srednja škola"><span class="em">📐</span><span class="lb">Srednja škola</span></div>
       <div class="opt" data-v="Fakultet"><span class="em">🎓</span><span class="lb">Fakultet</span></div>
     </div>
-    <div class="row"><button class="ghost" disabled>← Nazad</button><button class="cta nx off" data-need="nivo">Dalje →</button></div>
-    <p class="mini">15 minuta je <b>na poklon</b> · bez kartice · otkaži kad želiš</p>
+    <div class="row"><button class="ghost" disabled>← Nazad</button><button class="cta nx off s0nx" data-need="nivo">Dalje →</button></div>
+    <p class="mini" id="mini0">15 minuta je <b>na poklon</b> · bez kartice · otkaži kad želiš</p>
   </div>
 
-  <!-- STEP 1: predmet (+razred za đake) -->
   <div class="step hide" id="s1">
     <div class="eyebrow" id="e1">Korak 2 od 3</div>
     <div class="ic">📚</div>
-    <h1>Šta danas <em>učimo?</em></h1>
+    <h1 id="h1e">Šta danas <em>učimo?</em></h1>
     <p class="sub" id="s1sub">Izaberi predmet.</p>
     <div id="subjArea"></div>
     <div id="yearArea" class="hide"></div>
     <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx off" id="s1next">Dalje →</button></div>
   </div>
 
-  <!-- STEP 2: cilj (samo za đake) -->
   <div class="step hide" id="s2">
     <div class="eyebrow" id="e2">Korak 3 od 3</div>
     <div class="ic">🎯</div>
-    <h1>Šta danas <em>spremamo?</em></h1>
-    <p class="sub">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
+    <h1 id="h2e">Šta danas <em>spremamo?</em></h1>
+    <p class="sub" id="sub2">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
     <div class="grid g2" data-k="cilj">
       <div class="opt" data-v="Kontrolni i pismeni"><span class="em">✍️</span><span class="lb">Kontrolni / pismeni</span></div>
       <div class="opt" data-v="Matura / završni ispit"><span class="em">🎓</span><span class="lb">Matura / završni</span></div>
@@ -116,38 +106,51 @@
     <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx off" data-need="cilj">Napravi mi plan →</button></div>
   </div>
 
-  <!-- SUCCESS -->
   <div class="step hide" id="s3">
-    <div class="eyebrow">Spremni smo</div>
+    <div class="eyebrow" id="celEye">Spremni smo</div>
     <div class="ic" style="font-size:34px">🎉</div>
-    <h1>Krećemo, <em>zajedno!</em></h1>
-    <p class="sub">Tvoj plan je spreman.<br>Profesorica te čeka kad god zapneš — danju ili noću.</p>
+    <h1 id="celH">Krećemo, <em>zajedno!</em></h1>
+    <p class="sub" id="celSub">Tvoj plan je spreman.<br>Profesorica te čeka kad god zapneš — danju ili noću.</p>
     <div class="plan">
       <div class="pill"><span>🧑‍🎓</span> <span id="rNivo">—</span></div>
       <div class="pill"><span>📘</span> <span id="rPredmet">—</span></div>
-      <div class="pill" id="rCiljPill"><span>🎯</span> Cilj: <span id="rCilj">—</span></div>
+      <div class="pill" id="rCiljPill"><span>🎯</span> <span id="celCiljLbl">Cilj:</span> <span id="rCilj">—</span></div>
     </div>
     <div class="row"><a class="cta" id="startBtn" href="prijava.html">Počni besplatno →</a></div>
-    <p class="mini">Uči s ljubavlju · <b>Mathia</b></p>
+    <p class="mini" id="footMini">Uči s ljubavlju · <b>Mathia</b></p>
   </div>
 
 </div></div>
 
 <script>
   var MATH=['∑','π','√','∫','∞','θ','Δ','∂','×','÷','≈','½','x²','∮','π','√','sin'];
-  for(var i=0;i<18;i++){var f=document.createElement('span');f.className='floater';var h=Math.random()<0.16;
-    f.textContent=h?'♥':MATH[Math.floor(Math.random()*MATH.length)];
-    f.style.left=(Math.random()*100)+'vw';f.style.fontSize=(h?14+Math.random()*8:16+Math.random()*20)+'px';
-    f.style.color=h?'rgba(176,30,72,.26)':'rgba(156,120,56,.30)';
-    f.style.animationDuration=(17+Math.random()*16)+'s';f.style.animationDelay=(-Math.random()*22)+'s';document.body.appendChild(f);}
+  for(var i=0;i<18;i++){var f=document.createElement('span');f.className='floater';var h=Math.random()<0.16;f.textContent=h?'♥':MATH[Math.floor(Math.random()*MATH.length)];f.style.left=(Math.random()*100)+'vw';f.style.fontSize=(h?14+Math.random()*8:16+Math.random()*20)+'px';f.style.color=h?'rgba(176,30,72,.26)':'rgba(156,120,56,.30)';f.style.animationDuration=(17+Math.random()*16)+'s';f.style.animationDelay=(-Math.random()*22)+'s';document.body.appendChild(f);}
   var SP=['✦','✧','⋆'];
-  for(var j=0;j<13;j++){var sp=document.createElement('span');sp.className='spark';sp.textContent=SP[j%3];
-    sp.style.left=(Math.random()*100)+'vw';sp.style.top=(Math.random()*96)+'vh';
-    sp.style.fontSize=(9+Math.random()*13)+'px';sp.style.animationDuration=(3.5+Math.random()*4)+'s';sp.style.animationDelay=(-Math.random()*6)+'s';document.body.appendChild(sp);}
+  for(var j=0;j<13;j++){var sp=document.createElement('span');sp.className='spark';sp.textContent=SP[j%3];sp.style.left=(Math.random()*100)+'vw';sp.style.top=(Math.random()*96)+'vh';sp.style.fontSize=(9+Math.random()*13)+'px';sp.style.animationDuration=(3.5+Math.random()*4)+'s';sp.style.animationDelay=(-Math.random()*6)+'s';document.body.appendChild(sp);}
   var bg=document.getElementById('bgfx'),px=0,py=0,tx=0,ty=0;
   addEventListener('mousemove',function(e){tx=(e.clientX/innerWidth-.5)*16;ty=(e.clientY/innerHeight-.5)*16;});
-  addEventListener('deviceorientation',function(e){if(e.gamma!=null){tx=Math.max(-16,Math.min(16,e.gamma))*.5;ty=Math.max(-16,Math.min(16,e.beta-40))*.4;}});
   (function loop(){px+=(tx-px)*.035;py+=(ty-py)*.035;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();
+
+  var L=(function(){try{var s=(localStorage.getItem('mathia_lang')||'sr').slice(0,2).toLowerCase();return ['sr','en','de','fr','es','it','ru','pt'].indexOf(s)>=0?s:'sr';}catch(e){return 'sr';}})();
+
+  var T={
+    sr:{back:'Nazad na',korak:'Korak',od:'od',h0:'Ko danas <em>uči?</em>',sub0:'Da tvoj plan bude taman po meri.<br>Bez brige — sve ostalo sređujem ja. 💛',h1:'Šta danas <em>učimo?</em>',s1c:'Izaberi predmet — pa razred.',s1l:'Otvori listu i izaberi predmet.',h2:'Šta danas <em>spremamo?</em>',sub2:'Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.',lblR:'Razred',lblP:'Predmet',phR:'Izaberi razred…',phP:'Izaberi predmet…',next:'Dalje →',plan:'Napravi mi plan →',back2:'← Nazad',mini:'15 minuta je <b>na poklon</b> · bez kartice · otkaži kad želiš',celE:'Spremni smo',celH:'Krećemo, <em>zajedno!</em>',celS:'Tvoj plan je spreman.<br>Profesorica te čeka kad god zapneš — danju ili noću.',cilj:'Cilj:',pocni:'Počni besplatno →',foot:'Uči s ljubavlju · <b>Mathia</b>'},
+    en:{back:'Back to',korak:'Step',od:'of',h0:'Who is <em>learning</em> today?',sub0:'So your plan fits just right.<br>Don\'t worry — I\'ll handle the rest. 💛',h1:'What are we <em>studying?</em>',s1c:'Pick a subject — then the grade.',s1l:'Open the list and pick a subject.',h2:'What are we <em>preparing for?</em>',sub2:'Tell me the goal, and we\'ll make a plan that leads right to it.',lblR:'Grade',lblP:'Subject',phR:'Choose a grade…',phP:'Choose a subject…',next:'Next →',plan:'Make my plan →',back2:'← Back',mini:'15 minutes are <b>a gift</b> · no card · cancel anytime',celE:'We\'re ready',celH:'Let\'s go, <em>together!</em>',celS:'Your plan is ready.<br>Your teacher is waiting whenever you get stuck — day or night.',cilj:'Goal:',pocni:'Start free →',foot:'Learn with love · <b>Mathia</b>'},
+    de:{back:'Zurück zu',korak:'Schritt',od:'von',h0:'Wer <em>lernt</em> heute?',sub0:'Damit dein Plan genau passt.<br>Keine Sorge — den Rest übernehme ich. 💛',h1:'Was <em>lernen</em> wir?',s1c:'Wähle ein Fach — dann die Klasse.',s1l:'Öffne die Liste und wähle ein Fach.',h2:'Worauf <em>bereiten</em> wir uns vor?',sub2:'Sag mir das Ziel, und wir machen einen Plan, der genau dorthin führt.',lblR:'Klasse',lblP:'Fach',phR:'Klasse wählen…',phP:'Fach wählen…',next:'Weiter →',plan:'Plan erstellen →',back2:'← Zurück',mini:'15 Minuten sind <b>geschenkt</b> · keine Karte · jederzeit kündbar',celE:'Wir sind bereit',celH:'Los geht\'s, <em>zusammen!</em>',celS:'Dein Plan ist fertig.<br>Deine Lehrerin wartet, wann immer du nicht weiterkommst — Tag und Nacht.',cilj:'Ziel:',pocni:'Kostenlos starten →',foot:'Mit Liebe lernen · <b>Mathia</b>'},
+    fr:{back:'Retour à',korak:'Étape',od:'sur',h0:'Qui <em>apprend</em> aujourd\'hui ?',sub0:'Pour que ton plan soit parfait.<br>Ne t\'inquiète pas — je m\'occupe du reste. 💛',h1:'Qu\'est-ce qu\'on <em>étudie ?</em>',s1c:'Choisis une matière — puis la classe.',s1l:'Ouvre la liste et choisis une matière.',h2:'On se <em>prépare</em> à quoi ?',sub2:'Dis-moi le but, et on fera un plan qui y mène droit.',lblR:'Classe',lblP:'Matière',phR:'Choisir une classe…',phP:'Choisir une matière…',next:'Suivant →',plan:'Créer mon plan →',back2:'← Retour',mini:'15 minutes <b>offertes</b> · sans carte · annulable à tout moment',celE:'On est prêts',celH:'Allons-y, <em>ensemble !</em>',celS:'Ton plan est prêt.<br>Ta professeure t\'attend dès que tu bloques — jour et nuit.',cilj:'But :',pocni:'Commencer gratuitement →',foot:'Apprendre avec amour · <b>Mathia</b>'},
+    es:{back:'Volver a',korak:'Paso',od:'de',h0:'¿Quién <em>aprende</em> hoy?',sub0:'Para que tu plan encaje perfecto.<br>Tranqui — del resto me encargo yo. 💛',h1:'¿Qué <em>estudiamos?</em>',s1c:'Elige una materia — y luego el curso.',s1l:'Abre la lista y elige una materia.',h2:'¿Para qué nos <em>preparamos?</em>',sub2:'Dime el objetivo y haremos un plan que lleve justo a él.',lblR:'Curso',lblP:'Materia',phR:'Elige un curso…',phP:'Elige una materia…',next:'Siguiente →',plan:'Crear mi plan →',back2:'← Atrás',mini:'15 minutos <b>de regalo</b> · sin tarjeta · cancela cuando quieras',celE:'Estamos listos',celH:'¡Vamos, <em>juntos!</em>',celS:'Tu plan está listo.<br>Tu profesora te espera siempre que te atasques — de día o de noche.',cilj:'Objetivo:',pocni:'Empezar gratis →',foot:'Aprender con amor · <b>Mathia</b>'},
+    it:{back:'Torna a',korak:'Passo',od:'di',h0:'Chi <em>impara</em> oggi?',sub0:'Così il tuo piano è su misura.<br>Non preoccuparti — al resto penso io. 💛',h1:'Cosa <em>studiamo?</em>',s1c:'Scegli una materia — poi la classe.',s1l:'Apri la lista e scegli una materia.',h2:'A cosa ci <em>prepariamo?</em>',sub2:'Dimmi l\'obiettivo e faremo un piano che porta proprio lì.',lblR:'Classe',lblP:'Materia',phR:'Scegli la classe…',phP:'Scegli la materia…',next:'Avanti →',plan:'Crea il mio piano →',back2:'← Indietro',mini:'15 minuti <b>in regalo</b> · senza carta · disdici quando vuoi',celE:'Siamo pronti',celH:'Andiamo, <em>insieme!</em>',celS:'Il tuo piano è pronto.<br>La tua insegnante ti aspetta ogni volta che ti blocchi — giorno e notte.',cilj:'Obiettivo:',pocni:'Inizia gratis →',foot:'Imparare con amore · <b>Mathia</b>'},
+    ru:{back:'Назад в',korak:'Шаг',od:'из',h0:'Кто сегодня <em>учится?</em>',sub0:'Чтобы план был точно по тебе.<br>Не волнуйся — остальное беру на себя. 💛',h1:'Что сегодня <em>учим?</em>',s1c:'Выбери предмет — потом класс.',s1l:'Открой список и выбери предмет.',h2:'К чему <em>готовимся?</em>',sub2:'Скажи цель, и мы составим план, который ведёт прямо к ней.',lblR:'Класс',lblP:'Предмет',phR:'Выбери класс…',phP:'Выбери предмет…',next:'Далее →',plan:'Составить план →',back2:'← Назад',mini:'15 минут <b>в подарок</b> · без карты · отмена в любой момент',celE:'Мы готовы',celH:'Идём, <em>вместе!</em>',celS:'Твой план готов.<br>Преподавательница ждёт, как только застрянешь — днём и ночью.',cilj:'Цель:',pocni:'Начать бесплатно →',foot:'Учиться с любовью · <b>Mathia</b>'},
+    pt:{back:'Voltar à',korak:'Passo',od:'de',h0:'Quem <em>aprende</em> hoje?',sub0:'Para o teu plano ficar à medida.<br>Não te preocupes — do resto trato eu. 💛',h1:'O que <em>estudamos?</em>',s1c:'Escolhe uma disciplina — depois o ano.',s1l:'Abre a lista e escolhe uma disciplina.',h2:'Para que nos <em>preparamos?</em>',sub2:'Diz-me o objetivo e faremos um plano que leva mesmo até lá.',lblR:'Ano',lblP:'Disciplina',phR:'Escolhe um ano…',phP:'Escolhe uma disciplina…',next:'Seguinte →',plan:'Criar o meu plano →',back2:'← Voltar',mini:'15 minutos <b>oferta</b> · sem cartão · cancela quando quiseres',celE:'Estamos prontos',celH:'Vamos, <em>juntos!</em>',celS:'O teu plano está pronto.<br>A tua professora espera-te sempre que ficares preso — de dia ou de noite.',cilj:'Objetivo:',pocni:'Começar grátis →',foot:'Aprender com amor · <b>Mathia</b>'}
+  };
+  var LVL={'Osnovna škola':{en:'Primary school',de:'Grundschule',fr:'École primaire',es:'Primaria',it:'Scuola primaria',ru:'Начальная школа',pt:'Escola básica'},'Srednja škola':{en:'High school',de:'Oberschule',fr:'Lycée',es:'Secundaria',it:'Scuola superiore',ru:'Средняя школа',pt:'Secundário'},'Fakultet':{en:'University',de:'Universität',fr:'Université',es:'Universidad',it:'Università',ru:'Университет',pt:'Universidade'}};
+  var SUBJ={'Matematika':{en:'Mathematics',de:'Mathematik',fr:'Mathématiques',es:'Matemáticas',it:'Matematica',ru:'Математика',pt:'Matemática'},'Fizika':{en:'Physics',de:'Physik',fr:'Physique',es:'Física',it:'Fisica',ru:'Физика',pt:'Física'}};
+  var CILJ={'Kontrolni i pismeni':{lb:{sr:'Kontrolni / pismeni',en:'Tests / written exams',de:'Klassenarbeiten / Klausuren',fr:'Contrôles / devoirs',es:'Controles / exámenes',it:'Verifiche / compiti',ru:'Контрольные / письменные',pt:'Testes / provas'}},'Matura / završni ispit':{lb:{sr:'Matura / završni',en:'Final exam',de:'Abschlussprüfung',fr:'Examen final',es:'Examen final',it:'Esame finale',ru:'Выпускной экзамен',pt:'Exame final'}},'Prijemni ispit':{lb:{sr:'Prijemni ispit',en:'Entrance exam',de:'Aufnahmeprüfung',fr:'Concours d\'entrée',es:'Examen de acceso',it:'Test d\'ingresso',ru:'Вступительный',pt:'Exame de acesso'}},'Da razumem gradivo':{lb:{sr:'Da razumem gradivo',en:'To understand it',de:'Den Stoff verstehen',fr:'Comprendre le cours',es:'Entender la materia',it:'Capire la materia',ru:'Понять материал',pt:'Perceber a matéria'}}};
+  var FAK={'Matematička analiza 1':{en:'Mathematical Analysis 1',de:'Mathematische Analysis 1',fr:'Analyse mathématique 1',es:'Análisis matemático 1',it:'Analisi matematica 1',ru:'Математический анализ 1',pt:'Análise matemática 1'},'Matematička analiza 2':{en:'Mathematical Analysis 2',de:'Mathematische Analysis 2',fr:'Analyse mathématique 2',es:'Análisis matemático 2',it:'Analisi matematica 2',ru:'Математический анализ 2',pt:'Análise matemática 2'},'Linearna algebra':{en:'Linear Algebra',de:'Lineare Algebra',fr:'Algèbre linéaire',es:'Álgebra lineal',it:'Algebra lineare',ru:'Линейная алгебра',pt:'Álgebra linear'},'Verovatnoća i statistika':{en:'Probability and Statistics',de:'Wahrscheinlichkeit und Statistik',fr:'Probabilités et statistiques',es:'Probabilidad y estadística',it:'Probabilità e statistica',ru:'Теория вероятностей и статистика',pt:'Probabilidade e estatística'},'Diskretna matematika':{en:'Discrete Mathematics',de:'Diskrete Mathematik',fr:'Mathématiques discrètes',es:'Matemática discreta',it:'Matematica discreta',ru:'Дискретная математика',pt:'Matemática discreta'},'Numerička analiza':{en:'Numerical Analysis',de:'Numerische Analysis',fr:'Analyse numérique',es:'Análisis numérico',it:'Analisi numerica',ru:'Численный анализ',pt:'Análise numérica'},'Programiranje':{en:'Programming',de:'Programmierung',fr:'Programmation',es:'Programación',it:'Programmazione',ru:'Программирование',pt:'Programação'},'Algoritmi i strukture podataka':{en:'Algorithms and Data Structures',de:'Algorithmen und Datenstrukturen',fr:'Algorithmes et structures de données',es:'Algoritmos y estructuras de datos',it:'Algoritmi e strutture dati',ru:'Алгоритмы и структуры данных',pt:'Algoritmos e estruturas de dados'},'Objektno programiranje':{en:'Object-oriented Programming',de:'Objektorientierte Programmierung',fr:'Programmation orientée objet',es:'Programación orientada a objetos',it:'Programmazione a oggetti',ru:'Объектно-ориентированное программирование',pt:'Programação orientada a objetos'},'Osnovi elektrotehnike 1':{en:'Fundamentals of Electrical Engineering 1',de:'Grundlagen der Elektrotechnik 1',fr:'Bases de l\'électrotechnique 1',es:'Fundamentos de electrotecnia 1',it:'Fondamenti di elettrotecnica 1',ru:'Основы электротехники 1',pt:'Fundamentos de eletrotecnia 1'},'Osnovi elektrotehnike 2':{en:'Fundamentals of Electrical Engineering 2',de:'Grundlagen der Elektrotechnik 2',fr:'Bases de l\'électrotechnique 2',es:'Fundamentos de electrotecnia 2',it:'Fondamenti di elettrotecnica 2',ru:'Основы электротехники 2',pt:'Fundamentos de eletrotecnia 2'},'Elektronika':{en:'Electronics',de:'Elektronik',fr:'Électronique',es:'Electrónica',it:'Elettronica',ru:'Электроника',pt:'Eletrónica'},'Digitalna elektronika':{en:'Digital Electronics',de:'Digitale Elektronik',fr:'Électronique numérique',es:'Electrónica digital',it:'Elettronica digitale',ru:'Цифровая электроника',pt:'Eletrónica digital'},'Signali i sistemi':{en:'Signals and Systems',de:'Signale und Systeme',fr:'Signaux et systèmes',es:'Señales y sistemas',it:'Segnali e sistemi',ru:'Сигналы и системы',pt:'Sinais e sistemas'},'Elektromagnetika':{en:'Electromagnetics',de:'Elektromagnetik',fr:'Électromagnétisme',es:'Electromagnetismo',it:'Elettromagnetismo',ru:'Электромагнетизм',pt:'Eletromagnetismo'},'Teorija kola':{en:'Circuit Theory',de:'Schaltungstheorie',fr:'Théorie des circuits',es:'Teoría de circuitos',it:'Teoria dei circuiti',ru:'Теория цепей',pt:'Teoria dos circuitos'},'Fizika 1':{en:'Physics 1',de:'Physik 1',fr:'Physique 1',es:'Física 1',it:'Fisica 1',ru:'Физика 1',pt:'Física 1'},'Fizika 2':{en:'Physics 2',de:'Physik 2',fr:'Physique 2',es:'Física 2',it:'Fisica 2',ru:'Физика 2',pt:'Física 2'}};
+
+  function trMap(map,key){ if(L==='sr')return key; var m=map[key]; return (m&&(m.lb?m.lb[L]:m[L]))||key; }
+  function trCilj(key){ if(L==='sr')return CILJ[key].lb.sr; return CILJ[key].lb[L]||key; }
+  function yr(canon){ var n=parseInt(canon,10)||canon; if(L==='sr')return canon; var f={en:'Grade '+n,de:n+'. Klasse',fr:'Année '+n,es:'Curso '+n,it:'Classe '+n,ru:n+'-й класс',pt:n+'º ano'}; return f[L]||canon; }
 
   var DATA={
     'Osnovna škola':{mode:'cards',goal:true,years:['5. razred','6. razred','7. razred','8. razred'],subs:[{v:'Matematika',e:'📐'},{v:'Fizika',e:'⚛️'}]},
@@ -155,38 +158,37 @@
     'Fakultet':{mode:'list',goal:false,subs:['Matematička analiza 1','Matematička analiza 2','Linearna algebra','Verovatnoća i statistika','Diskretna matematika','Numerička analiza','Programiranje','Algoritmi i strukture podataka','Objektno programiranje','Osnovi elektrotehnike 1','Osnovi elektrotehnike 2','Elektronika','Digitalna elektronika','Signali i sistemi','Elektromagnetika','Teorija kola','Fizika 1','Fizika 2']}
   };
 
+  function setH(id,html){var el=document.getElementById(id);if(el)el.innerHTML=html;}
+  function apply(){
+    var t=T[L];
+    setH('bkTxt',t.back);setH('h0',t.h0);setH('sub0',t.sub0);setH('mini0',t.mini);
+    setH('h1e',t.h1);setH('h2e',t.h2);setH('sub2',t.sub2);
+    setH('celEye',t.celE);setH('celH',t.celH);setH('celSub',t.celS);setH('celCiljLbl',t.cilj);setH('footMini',t.foot);
+    document.querySelector('.s0nx').textContent=t.next;
+    document.querySelector('#s2 .nx').textContent=t.plan;
+    document.querySelectorAll('.pv').forEach(function(b){b.textContent=t.back2;});
+    document.getElementById('startBtn').textContent=t.pocni;
+    document.querySelectorAll('#s0 .opt').forEach(function(o){o.querySelector('.lb').textContent=trMap(LVL,o.getAttribute('data-v'));});
+    document.querySelectorAll('#s2 .opt').forEach(function(o){o.querySelector('.lb').textContent=trCilj(o.getAttribute('data-v'));});
+    document.documentElement.lang=L;
+  }
+
   var pick={},current=0;
   function cfg(){return DATA[pick.nivo]||null;}
   function isFak(){return pick.nivo==='Fakultet';}
   function stepsCount(){return (pick.nivo && !cfg().goal)?2:3;}
-
-  function setProgress(){
-    var N=stepsCount();
-    document.getElementById('d2').style.display=(N<3?'none':'');
-    document.getElementById('e0').textContent='Korak 1 od '+N;
-    document.getElementById('e1').textContent='Korak 2 od '+N;
-    document.getElementById('e2').textContent='Korak 3 od '+N;
-  }
+  function setProgress(){var N=stepsCount();var t=T[L];document.getElementById('d2').style.display=(N<3?'none':'');document.getElementById('e0').textContent=t.korak+' 1 '+t.od+' '+N;document.getElementById('e1').textContent=t.korak+' 2 '+t.od+' '+N;document.getElementById('e2').textContent=t.korak+' 3 '+t.od+' '+N;}
   function markDots(idx){var N=stepsCount();for(var d=0;d<3;d++){var el=document.getElementById('d'+d);el.classList.toggle('on',d<=Math.min(idx,N-1));}}
   function showId(id,idx){['s0','s1','s2','s3'].forEach(function(x){document.getElementById(x).classList.toggle('hide',x!==id);});current=idx;markDots(idx);window.scrollTo({top:0,behavior:'smooth'});}
+  function refreshCta(){var b0=document.querySelector('#s0 .nx');if(b0)b0.classList.toggle('off',!pick.nivo);var b1=document.getElementById('s1next');if(b1){var ok=isFak()?!!pick.predmet:(!!pick.predmet&&!!pick.godina);b1.classList.toggle('off',!ok);b1.textContent=isFak()?T[L].plan:T[L].next;}var b2=document.querySelector('#s2 .nx');if(b2)b2.classList.toggle('off',!pick.cilj);}
 
-  function refreshCta(){
-    var b0=document.querySelector('#s0 .nx');if(b0)b0.classList.toggle('off',!pick.nivo);
-    var b1=document.getElementById('s1next');if(b1){var ok=isFak()?!!pick.predmet:(!!pick.predmet&&!!pick.godina);b1.classList.toggle('off',!ok);b1.textContent=isFak()?'Napravi mi plan →':'Dalje →';}
-    var b2=document.querySelector('#s2 .nx');if(b2)b2.classList.toggle('off',!pick.cilj);
-  }
-
-  function yearField(years){
-    pick.godina=null;
-    var opts='<option value="" disabled selected>Izaberi razred…</option>'+years.map(function(y){return '<option value="'+y+'">'+y+'</option>';}).join('');
-    return '<div class="field"><label>Razred</label><div class="selwrap"><select class="sel" id="yearSel">'+opts+'</select></div></div>';
-  }
+  function yearField(years){pick.godina=null;var opts='<option value="" disabled selected>'+T[L].phR+'</option>'+years.map(function(y){return '<option value="'+y+'">'+yr(y)+'</option>';}).join('');return '<div class="field"><label>'+T[L].lblR+'</label><div class="selwrap"><select class="sel" id="yearSel">'+opts+'</select></div></div>';}
   function renderSubject(){
     var d=cfg(),sa=document.getElementById('subjArea'),ya=document.getElementById('yearArea');
     pick.predmet=null;pick.godina=null;ya.classList.add('hide');ya.innerHTML='';
-    document.getElementById('s1sub').textContent=(d.mode==='list'?'Otvori listu i izaberi predmet.':'Izaberi predmet — pa razred.');
+    document.getElementById('s1sub').textContent=(d.mode==='list'?T[L].s1l:T[L].s1c);
     if(d.mode==='cards'){
-      sa.innerHTML='<div class="grid g2">'+d.subs.map(function(s,i){return '<div class="opt" data-i="'+i+'"><span class="em">'+s.e+'</span><span class="lb">'+s.v+'</span></div>';}).join('')+'</div>';
+      sa.innerHTML='<div class="grid g2">'+d.subs.map(function(s,i){return '<div class="opt" data-i="'+i+'"><span class="em">'+s.e+'</span><span class="lb">'+trMap(SUBJ,s.v)+'</span></div>';}).join('')+'</div>';
       sa.querySelectorAll('.opt').forEach(function(o){o.addEventListener('click',function(){
         sa.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});o.classList.add('on');
         pick.predmet=d.subs[+o.getAttribute('data-i')].v;
@@ -195,17 +197,17 @@
         refreshCta();
       });});
     } else {
-      var opts='<option value="" disabled selected>Izaberi predmet…</option>'+d.subs.map(function(s){return '<option value="'+s+'">'+s+'</option>';}).join('');
-      sa.innerHTML='<div class="field"><label>Predmet</label><div class="selwrap"><select class="sel" id="subjSel">'+opts+'</select></div></div>';
+      var opts='<option value="" disabled selected>'+T[L].phP+'</option>'+d.subs.map(function(s){return '<option value="'+s+'">'+trMap(FAK,s)+'</option>';}).join('');
+      sa.innerHTML='<div class="field"><label>'+T[L].lblP+'</label><div class="selwrap"><select class="sel" id="subjSel">'+opts+'</select></div></div>';
       document.getElementById('subjSel').addEventListener('change',function(){pick.predmet=this.value;refreshCta();});
     }
   }
 
   function finish(){
-    document.getElementById('rNivo').textContent=pick.nivo;
-    document.getElementById('rPredmet').textContent=isFak()?pick.predmet:(pick.predmet+' · '+pick.godina);
+    document.getElementById('rNivo').textContent=trMap(LVL,pick.nivo);
+    document.getElementById('rPredmet').textContent=isFak()?trMap(FAK,pick.predmet):(trMap(SUBJ,pick.predmet)+' · '+yr(pick.godina));
     if(isFak()){document.getElementById('rCiljPill').style.display='none';}
-    else{document.getElementById('rCiljPill').style.display='';document.getElementById('rCilj').textContent=pick.cilj;}
+    else{document.getElementById('rCiljPill').style.display='';document.getElementById('rCilj').textContent=trCilj(pick.cilj);}
     try{localStorage.setItem('mathia_onboarding',JSON.stringify(pick));}catch(e){}
     var q='?nivo='+encodeURIComponent(pick.nivo||'')+'&predmet='+encodeURIComponent(pick.predmet||'')+(isFak()?'':('&godina='+encodeURIComponent(pick.godina||'')+'&cilj='+encodeURIComponent(pick.cilj||'')));
     document.getElementById('startBtn').href='prijava.html'+q;
@@ -219,15 +221,14 @@
       if(g.getAttribute('data-k')==='nivo')setProgress();
       refreshCta();});
   });
-  document.querySelectorAll('.pv').forEach(function(b){b.addEventListener('click',function(){
-    if(current===2)showId('s1',1);else if(current===1)showId('s0',0);
-  });});
-
+  document.querySelectorAll('.pv').forEach(function(b){b.addEventListener('click',function(){if(current===2)showId('s1',1);else if(current===1)showId('s0',0);});});
   document.querySelector('#s0 .nx').addEventListener('click',function(){if(this.classList.contains('off'))return;setProgress();renderSubject();refreshCta();showId('s1',1);});
   document.getElementById('s1next').addEventListener('click',function(){if(this.classList.contains('off'))return;if(isFak())finish();else showId('s2',2);});
   document.querySelector('#s2 .nx').addEventListener('click',function(){if(this.classList.contains('off'))return;finish();});
 
   function confetti(){var C=['#B01E48','#C6A05C','#E7D2A2','#F4C4D2','#8E1338'];for(var i=0;i<90;i++){(function(){var d=document.createElement('div');d.className='conf';d.style.left=(Math.random()*100)+'vw';d.style.background=C[i%C.length];var dur=1600+Math.random()*1500;d.animate([{transform:'translateY(-10px) rotate(0)',opacity:1},{transform:'translateY(108vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],{duration:dur,easing:'cubic-bezier(.2,.6,.3,1)'});document.body.appendChild(d);setTimeout(function(){d.remove()},dur);})();}}
+
+  if(L!=='sr')apply();
 </script>
 </body>
 </html>
