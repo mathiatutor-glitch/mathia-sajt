@@ -2,7 +2,7 @@
 //  api/auth/verify.js — POST {phone, code} -> {ok:true} + postavlja sesiju (cookie)
 // ============================================================
 import { normPhone, phoneValid } from "../../lib/phone.js";
-import { kvGet, kvSet, kvDel, kvConfigured } from "../../lib/kv.js";
+import { kvGet, kvSet, kvDel, kvConfigured, kvCmd } from "../../lib/kv.js";
 import { getUser } from "../../lib/user.js";
 import { createToken, cookieHeader } from "../../lib/auth.js";
 
@@ -24,7 +24,16 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Pogrešan kod." });
     }
     await kvDel("otp:" + phone);
+    const _existed = await kvGet("user:" + phone);
     await getUser(phone); // kreiraj nalog ako ne postoji (čuva probni period zauvek)
+    if (!_existed) {
+      // NOVA prijava kroz „probaj besplatno" — beleži za admin/monitoring
+      try {
+        await kvCmd(["INCR", "mathia:stats:signups"]);
+        await kvCmd(["LPUSH", "mathia:log:signups", JSON.stringify({ phone, ts: Date.now() })]);
+        await kvCmd(["LTRIM", "mathia:log:signups", "0", "999"]);
+      } catch (e) {}
+    }
 
     const token = await createToken(phone);
     res.setHeader("Set-Cookie", cookieHeader(token));
