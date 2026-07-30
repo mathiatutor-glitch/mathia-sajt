@@ -130,8 +130,59 @@ code{overflow-wrap:break-word}
 <meta name="twitter:image" content="https://mathia.rs/og.png">
 <!--seo-->
 <link rel="stylesheet" href="mathia-type.css">
+<style>/* ===== SWEET RESKIN (malina/zlato/krem — usklađeno sa pocni.html) ===== */
+  body{font-family:'Nunito','Inter',sans-serif!important;background:
+    radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),
+    radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),
+    linear-gradient(180deg,#EFE6F6 0,#F6ECE6 60%,#FBF3EC 100%)!important}
+  .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+  .bgfx .orb{position:absolute;border-radius:50%;filter:blur(52px);opacity:.5}
+  .bgfx .orb.a{width:380px;height:380px;background:#EFD9A0;top:-100px;left:-80px;animation:od1 34s ease-in-out infinite}
+  .bgfx .orb.b{width:340px;height:340px;background:#F3E3B4;bottom:-100px;right:-70px;animation:od2 40s ease-in-out infinite}
+  .bgfx .orb.c{width:260px;height:260px;background:#E9C7D4;top:44%;right:14%;animation:od3 44s ease-in-out infinite;opacity:.36}
+  .bgfx .orb.d{width:300px;height:300px;background:#E6D8C0;top:10%;left:22%;animation:od1 38s ease-in-out infinite}
+  @keyframes od1{50%{transform:translate(28px,22px) scale(1.05)}}@keyframes od2{50%{transform:translate(-26px,-20px) scale(1.06)}}@keyframes od3{50%{transform:translate(16px,-24px) scale(1.04)}}
+  .floater{position:fixed;top:-30px;pointer-events:none;font-family:'Spectral',Georgia,serif;font-weight:600;animation:ofall linear infinite;z-index:0}
+  @keyframes ofall{to{transform:translateY(113vh) rotate(160deg)}}
+  .spark{position:fixed;pointer-events:none;color:#E7D2A2;z-index:0;animation:otw 4.5s ease-in-out infinite;text-shadow:0 0 8px rgba(231,210,162,.85)}
+  @keyframes otw{0%,100%{opacity:.12;transform:scale(.6)}50%{opacity:.95;transform:scale(1.15)}}
+  @media(prefers-reduced-motion:reduce){.bgfx .orb,.floater,.spark{animation:none}}
+  .brand,.card,.social,.foot,.rule{position:relative;z-index:2}
+  .brand{font-family:'Spectral',serif!important;color:#432C37!important;text-transform:none!important;letter-spacing:.02em!important;font-size:2rem!important;margin-bottom:2px!important}
+  .brand b{color:#C6A05C!important}
+  .brand small{color:#9C7838!important;letter-spacing:.34em!important;text-transform:uppercase!important;font-weight:600!important;font-size:.52rem!important}
+  .card{background:#FCF9F3!important;border:1px solid rgba(231,210,162,.6)!important;border-radius:30px!important;
+    box-shadow:0 40px 90px -42px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset!important;padding:34px 30px 30px!important}
+  .card h1{font-family:'Spectral',Georgia,serif!important;color:#432C37!important;font-weight:700!important}
+  .sub{color:#6B4A57!important}
+  .lang{background:rgba(255,255,255,.72)!important;border:1px solid rgba(231,210,162,.85)!important;color:#9C7838!important;font-weight:800!important;border-radius:100px!important}
+  label{color:#6B4A57!important}
+  .field{background:#fff!important;border:1.5px solid #EFE4D4!important;border-radius:16px!important}
+  .field:focus-within{border-color:#C6A05C!important;box-shadow:0 0 0 3px rgba(231,210,162,.45)!important}
+  .field .cc,.card input{color:#432C37!important}
+  .btn{background:linear-gradient(160deg,#F0DCA8,#C6A05C)!important;color:#3A2530!important;border-radius:100px!important;
+    box-shadow:0 18px 34px -14px rgba(198,160,92,.8)!important;font-weight:800!important;font-family:'Nunito',sans-serif!important;padding:16px!important}
+  .btn:hover{transform:translateY(-2px)!important;box-shadow:0 22px 40px -14px rgba(198,160,92,.9)!important}
+  .btn:disabled{opacity:.5!important;box-shadow:none!important;transform:none!important}
+  .consent a{color:#B01E48!important}
+  .trial{background:linear-gradient(160deg,#FBEFD8,#F6E3C2)!important;border:1px solid #EAD3A6!important;border-radius:16px!important;color:#6B4A2A!important}
+  .trial b{color:#B01E48!important}
+  .ob-big{background:#fff!important;border:1.5px solid #EFE4D4!important;border-radius:18px!important}
+  .ob-big:hover{border-color:#C6A05C!important;transform:translateY(-2px)!important}
+  .ob-big b{font-family:'Spectral',serif!important;color:#432C37!important}
+  .ob-card{background:#fff!important;border:1.5px solid #EFE4D4!important;border-radius:18px!important}
+  .ob-card:hover{border-color:#C6A05C!important}
+  .resend b,.back{color:#B01E48!important}
+</style>
 </head>
 <body>
+<div class="bgfx" id="bgfx"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span><span class="orb d"></span></div>
+<script>(function(){
+  var MATH=['∑','π','√','∫','∞','θ','Δ','∂','×','÷','≈','½','x²','∮','π','√','sin'];
+  for(var i=0;i<16;i++){var f=document.createElement('span');f.className='floater';var h=Math.random()<0.16;f.textContent=h?'♥':MATH[Math.floor(Math.random()*MATH.length)];f.style.left=(Math.random()*100)+'vw';f.style.fontSize=(h?14+Math.random()*8:16+Math.random()*20)+'px';f.style.color=h?'rgba(176,30,72,.24)':'rgba(156,120,56,.28)';f.style.animationDuration=(17+Math.random()*16)+'s';f.style.animationDelay=(-Math.random()*22)+'s';document.body.appendChild(f);}
+  var SP=['✦','✧','⋆'];for(var j=0;j<12;j++){var s=document.createElement('span');s.className='spark';s.textContent=SP[j%3];s.style.left=(Math.random()*100)+'vw';s.style.top=(Math.random()*96)+'vh';s.style.fontSize=(9+Math.random()*13)+'px';s.style.animationDuration=(3.5+Math.random()*4)+'s';s.style.animationDelay=(-Math.random()*6)+'s';document.body.appendChild(s);}
+  var bg=document.getElementById('bgfx'),px=0,py=0,tx=0,ty=0;if(bg){addEventListener('mousemove',function(e){tx=(e.clientX/innerWidth-.5)*16;ty=(e.clientY/innerHeight-.5)*16;});(function loop(){px+=(tx-px)*.035;py+=(ty-py)*.035;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();}
+})();</script>
   <div class="brand">Math<b>IA</b><small>Privatni profesor</small></div>
 
   <div class="card">
