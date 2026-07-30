@@ -22,6 +22,16 @@
       linear-gradient(180deg,#EFE6F6 0%,#F6ECE6 60%,#FBF3EC 100%);
     overflow-x:hidden;position:relative
   }
+  .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .orb{position:absolute;border-radius:50%;filter:blur(48px);opacity:.55;will-change:transform}
+  .orb.a{width:360px;height:360px;background:#EBB6CF;top:-90px;left:-70px;animation:drift1 19s ease-in-out infinite}
+  .orb.b{width:320px;height:320px;background:#F2D39A;bottom:-90px;right:-60px;animation:drift2 23s ease-in-out infinite}
+  .orb.c{width:280px;height:280px;background:#CFB9EE;top:42%;right:16%;animation:drift3 27s ease-in-out infinite}
+  .orb.d{width:220px;height:220px;background:#F6C6B0;top:12%;left:24%;animation:drift1 25s ease-in-out infinite}
+  @keyframes drift1{50%{transform:translate(42px,32px) scale(1.09)}}
+  @keyframes drift2{50%{transform:translate(-38px,-30px) scale(1.11)}}
+  @keyframes drift3{50%{transform:translate(26px,-36px) scale(1.06)}}
+  @media(prefers-reduced-motion:reduce){.orb,.petal{animation:none}}
   .petal{position:fixed;top:-24px;pointer-events:none;opacity:.7;animation:fall linear infinite;z-index:0}
   @keyframes fall{to{transform:translateY(110vh) rotate(320deg)}}
   .top{position:relative;z-index:3;display:flex;align-items:center;gap:10px;margin-bottom:20px}
@@ -74,6 +84,7 @@
 </style>
 </head>
 <body>
+<div class="bgfx" id="bgfx"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span><span class="orb d"></span></div>
 <div class="top"><span class="mark">M</span><a href="index.html">← nazad na Mathiu</a></div>
 
 <div class="wrap">
@@ -150,6 +161,11 @@
   for(var i=0;i<14;i++){var s=document.createElement('span');s.className='petal';s.textContent=P[i%P.length];
     s.style.left=(Math.random()*100)+'vw';s.style.fontSize=(11+Math.random()*13)+'px';
     s.style.animationDuration=(7+Math.random()*7)+'s';s.style.animationDelay=(-Math.random()*8)+'s';document.body.appendChild(s);}
+
+  var bg=document.getElementById('bgfx'),px=0,py=0,tx=0,ty=0;
+  addEventListener('mousemove',function(e){tx=(e.clientX/innerWidth-.5)*26;ty=(e.clientY/innerHeight-.5)*26;});
+  addEventListener('deviceorientation',function(e){if(e.gamma!=null){tx=Math.max(-26,Math.min(26,e.gamma))* .7;ty=Math.max(-26,Math.min(26,e.beta-40))*.5;}});
+  (function loop(){px+=(tx-px)*.06;py+=(ty-py)*.06;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();
 
   var step=0, pick={}, steps=['s0','s1','s2','s3'];
   function show(n){
