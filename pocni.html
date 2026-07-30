@@ -23,8 +23,10 @@
   @keyframes fall{to{transform:translateY(110vh) rotate(320deg)}}
   @media(prefers-reduced-motion:reduce){.orb,.petal{animation:none}}
   .top{position:relative;z-index:3;display:flex;align-items:center;gap:10px;margin-bottom:18px}
-  .mark{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;color:#3A2530}
-  .top a{color:var(--plum2);text-decoration:none;font-weight:700;font-size:13px}
+  .mark{width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;color:#3A2530;box-shadow:0 6px 14px -8px rgba(198,160,92,.9)}
+  .backpill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.72);border:1px solid rgba(231,210,162,.75);border-radius:100px;padding:6px 17px 6px 6px;text-decoration:none;color:var(--plum);font-weight:800;font-size:13px;box-shadow:0 10px 22px -16px rgba(120,70,80,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .15s,box-shadow .2s}
+  .backpill:hover{transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(120,70,80,.75)}
+  .backpill .chev{color:var(--rasp);font-weight:800;margin:0 -2px 0 -1px}
   .wrap{width:100%;max-width:460px;position:relative;z-index:2}
   .card{background:var(--card);border-radius:30px;padding:30px 28px 26px;text-align:center;border:1px solid rgba(231,210,162,.5);box-shadow:0 40px 90px -42px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset}
   .dots{display:flex;gap:7px;justify-content:center;margin-bottom:4px}
@@ -49,7 +51,7 @@
   select.sel:focus{outline:none;border-color:var(--goldlt);box-shadow:0 0 0 3px rgba(231,210,162,.5)}
   .row{display:flex;align-items:center;gap:12px;margin-top:22px}
   .ghost{background:transparent;border:1.5px solid #E4D6C4;color:var(--plum2);border-radius:100px;padding:15px 20px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
-  .ghost[disabled]{opacity:0;pointer-events:none}
+  .ghost[disabled]{display:none}
   .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;color:#fff;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--rasp),var(--rasp-d));box-shadow:0 18px 34px -14px rgba(176,30,72,.75);transition:transform .12s}
   .cta:active{transform:scale(.98)}.cta.off{opacity:.5;pointer-events:none;filter:grayscale(.2)}
   .mini{margin-top:15px;font-size:12px;color:var(--plum2);opacity:.85}.mini b{color:var(--rasp)}
@@ -62,7 +64,7 @@
 </head>
 <body>
 <div class="bgfx" id="bgfx"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span><span class="orb d"></span></div>
-<div class="top"><span class="mark">M</span><a href="index.html">← nazad na Mathiu</a></div>
+<div class="top"><a class="backpill" href="index.html"><span class="mark">M</span><span class="chev">←</span> Nazad na Mathiu</a></div>
 
 <div class="wrap"><div class="card">
   <div class="dots"><i class="on" id="d0"></i><i id="d1"></i><i id="d2"></i></div>
@@ -72,7 +74,7 @@
     <div class="eyebrow">Korak 1 od 3</div>
     <div class="ic">🎒</div>
     <h1>Ko danas <em>uči?</em></h1>
-    <p class="sub">Da tvoj plan bude taman po meri. Bez brige — sve ostalo sređujem ja. 💛</p>
+    <p class="sub">Da tvoj plan bude taman po meri.<br>Bez brige — sve ostalo sređujem ja. 💛</p>
     <div class="grid g3" data-k="nivo">
       <div class="opt" data-v="Osnovna škola"><span class="em">🎒</span><span class="lb">Osnovna škola</span></div>
       <div class="opt" data-v="Srednja škola"><span class="em">📐</span><span class="lb">Srednja škola</span></div>
@@ -113,7 +115,7 @@
     <div class="eyebrow">Spremni smo</div>
     <div class="ic" style="font-size:34px">🎉</div>
     <h1>Krećemo, <em>zajedno!</em></h1>
-    <p class="sub">Tvoj plan je spreman. Profesorica te čeka kad god zapneš — danju ili noću.</p>
+    <p class="sub">Tvoj plan je spreman.<br>Profesorica te čeka kad god zapneš — danju ili noću.</p>
     <div class="plan">
       <div class="pill"><span>🧑‍🎓</span> <span id="rNivo">—</span></div>
       <div class="pill"><span>📘</span> <span id="rPredmet">—</span></div>
