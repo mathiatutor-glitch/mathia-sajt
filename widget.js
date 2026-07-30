@@ -266,7 +266,7 @@
     "#zoi-head{display:flex;align-items:center;gap:11px;padding:14px 15px;background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27120%27%20height%3D%27120%27%20viewBox%3D%270%200%20120%20120%27%3E%3Cg%20fill%3D%27%23FFFFFF%27%20fill-opacity%3D%270.16%27%3E%3Cg%20transform%3D%27translate%2820%2C24%29%20scale%282.2%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2888%2C16%29%20scale%281.6%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2860%2C60%29%20scale%282.6%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%28104%2C74%29%20scale%281.8%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2832%2C92%29%20scale%281.8%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'),linear-gradient(135deg,#C4A05E 0%,#D9BE82 55%,#CBAA6C 100%);background-size:120px 120px,auto;color:#fff;text-shadow:0 1px 2px rgba(120,84,30,.32)}" +
     "#zoi-head img{width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,246,214,.9);box-shadow:0 0 0 1px rgba(160,120,50,.5),0 4px 10px -4px rgba(0,0,0,.4);object-fit:cover}" +
     "#zoi-head .zoi-name{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:22px;line-height:1;letter-spacing:.01em}" +
-    "#zoi-head .zoi-sub{font-size:11.5px;opacity:.95;margin-top:3px;display:inline-flex;align-items:center}#zoi-head .zoi-sub:before{content:'';width:7px;height:7px;border-radius:50%;background:#5FD98A;margin-right:7px;box-shadow:0 0 0 0 rgba(95,217,138,.7);animation:zoiLive 2.2s ease-out infinite}@keyframes zoiLive{0%{box-shadow:0 0 0 0 rgba(95,217,138,.55)}70%{box-shadow:0 0 0 7px rgba(95,217,138,0)}100%{box-shadow:0 0 0 0 rgba(95,217,138,0)}}" +
+    "#zoi-head .zoi-sub{font-size:11.5px;opacity:.95;margin-top:3px;display:block;max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}#zoi-head .zoi-sub:before{content:'';display:inline-block;vertical-align:middle;width:7px;height:7px;border-radius:50%;background:#5FD98A;margin-right:7px;box-shadow:0 0 0 0 rgba(95,217,138,.7);animation:zoiLive 2.2s ease-out infinite}@keyframes zoiLive{0%{box-shadow:0 0 0 0 rgba(95,217,138,.55)}70%{box-shadow:0 0 0 7px rgba(95,217,138,0)}100%{box-shadow:0 0 0 0 rgba(95,217,138,0)}}" +
     "#zoi-head .zoi-sp{flex:1}" +
     "#zoi-lang{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:100px;font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.02em;padding:5px 10px;cursor:pointer;transition:background .16s}#zoi-lang:hover{background:rgba(255,255,255,.3)}" +
     "#zoi-lang option{color:#432C37}" +
@@ -275,9 +275,15 @@
     ".zoi-row{display:flex;gap:8px;align-items:flex-end}" +
     ".zoi-row.zoi-me{flex-direction:row-reverse}" +
     ".zoi-av{width:26px;height:26px;border-radius:50%;object-fit:cover;flex:none}" +
-    ".zoi-bub{max-width:80%;min-width:0;padding:14px 17px;border-radius:20px;font-size:14.5px;line-height:1.62;white-space:pre-wrap;overflow-wrap:break-word;box-sizing:border-box}" +
+    ".zoi-bub{max-width:80%;min-width:0;padding:14px 17px;border-radius:20px;font-size:14.5px;line-height:1.62;white-space:normal;overflow-wrap:break-word;box-sizing:border-box}" +
+    ".zoi-me .zoi-bub{white-space:pre-wrap}" +
+    /* ujednačen vertikalni ritam: svaki blok ima JEDAN isti razmak */
+    ".zoi-bub .zoi-p{margin:.62em 0 0;line-height:1.6}" +
+    ".zoi-bub .zoi-disp{margin:.62em 0 0}" +
+    ".zoi-bub .zoi-p:first-child,.zoi-bub .zoi-disp:first-child,.zoi-bub .zoi-seg:first-child .zoi-p:first-child{margin-top:0}" +
+    ".zoi-bub>div:not(:first-child){margin-top:.62em}" +
     ".zoi-zoi .zoi-bub{background:linear-gradient(180deg,#FFFFFF,#FFFBF2);color:#3E2D34;border:1px solid rgba(198,160,92,.22);border-bottom-left-radius:7px;box-shadow:0 10px 24px -14px rgba(120,70,80,.4),0 1px 2px rgba(120,70,80,.05)}" +
-    ".zoi-me .zoi-bub{background:linear-gradient(155deg,#DCBD79,#A67C3C);color:#fff;border-bottom-right-radius:7px;box-shadow:0 12px 26px -12px rgba(120,80,30,.55),inset 0 1px 0 rgba(255,255,255,.4)}" +
+    ".zoi-me .zoi-bub{background:linear-gradient(155deg,#CC5E7E,#B01E48);color:#fff;border-bottom-right-radius:7px;box-shadow:0 12px 26px -12px rgba(176,30,72,.5),inset 0 1px 0 rgba(255,255,255,.35)}" +
     ".zoi-bub img{max-width:100%;border-radius:10px;margin-top:4px}" +
     ".zoi-bub pre,.zoi-bub code{white-space:pre-wrap;overflow-wrap:break-word;max-width:100%;box-sizing:border-box}" +
     ".zoi-bub table{display:block;max-width:100%;overflow-x:auto}" +
@@ -287,7 +293,7 @@
     ".zoi-tbl tbody tr:last-child td{border-bottom:0}" +
     ".zoi-tbl th{background:linear-gradient(180deg,#F5ECDA,#F0E4CD);font-weight:800;color:#5b3f2b;white-space:normal;letter-spacing:.01em}" +
     ".zoi-tbl tbody tr:nth-child(even) td{background:#FBF7EF}" +
-    ".zoi-bub .zoi-h{display:block;font-weight:800;color:#6b4a2f;font-size:1.03em;letter-spacing:.005em;margin:15px 0 5px}" +
+    ".zoi-bub .zoi-h{display:block;font-weight:800;color:#6b4a2f;font-size:1.03em;letter-spacing:.005em;margin:.95em 0 .1em}" +
     ".zoi-bub .zoi-h:first-child{margin-top:0}" +
     ".zoi-bub pre.zoi-code{background:#2c2230;color:#f4ecdf;border-radius:10px;padding:12px 14px;margin:9px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84em;line-height:1.6;max-width:100%;white-space:pre-wrap;overflow-wrap:break-word;padding-left:2.1em;text-indent:-1.1em}" +
     ".zoi-bub pre.zoi-code code{white-space:pre;background:none;border:0;padding:0;color:inherit;font-family:inherit;font-size:inherit}" +
@@ -296,7 +302,8 @@
     ".zoi-bub .zoi-copy{position:absolute;top:7px;right:8px;background:#43384a;color:#e9ddc8;border:1px solid #5a4d63;border-radius:7px;font:600 11px 'Nunito',sans-serif;padding:3px 9px;cursor:pointer;opacity:.85;z-index:2}" +
     ".zoi-bub .zoi-copy:hover{opacity:1;background:#52465c}" +
     ".zoi-bub code.zoi-ic{background:#F1E7D6;border:1px solid #E2D6BF;border-radius:6px;padding:1px 5px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;white-space:pre-wrap}" +
-    ".zoi-bub .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;margin:.8em 0;padding-bottom:3px}.zoi-bub .katex-display>.katex{white-space:normal}" +
+    ".zoi-bub .katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;margin:.15em 0;padding-bottom:3px}.zoi-bub .katex-display>.katex{white-space:nowrap}.zoi-bub .katex-display{text-align:left}" +
+    ".zoi-bub .zoi-disp .katex-display{margin:.05em 0}" +
     ".zoi-bub .katex{max-width:100%;white-space:nowrap}" +
     ".zoi-bub .kx-fallback{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95em;color:#5a4a50}" +
     ".zoi-bub a{overflow-wrap:break-word;word-break:break-word}" +
@@ -602,15 +609,43 @@
     s = s.replace(/\^\{([^}]+)\}/g, "<sup>$1</sup>").replace(/\^(-?\d+|[A-Za-z])/g, "<sup>$1</sup>");
     s = s.replace(/_\{([^}]+)\}/g, "<sub>$1</sub>").replace(/_(\d+)/g, "<sub>$1</sub>");
     s = mdTables(s);
-    s = s.replace(/\n*(<table[\s\S]*?<\/table>)\n*/g, "$1");
-    s = s.replace(/[ \t]*\n?(<b class="zoi-h">[^<]*<\/b>)\n?/g, "$1");
-    /* Blok-formula ima svoj margin (.8em). U pre-wrap mehuricu dobijala je JOS I prelome
-       reda oko sebe, pa se razmak udvostrucavao — otud „negde previse". Skidamo prelome;
-       razmak ostaje jedan, iz CSS-a. */
-    s = s.replace(/[ \t]*\n+(<span class="kx" data-d="1">[^<]*<\/span>)\n+[ \t]*/g, "$1");
-    s = s.replace(/^\n+(<span class="kx" data-d="1">)/g, "$1").replace(/(<\/span>)\n+$/g, "$1");
+    // (razmaci se sada rešavaju blokovima na kraju, ne preko pre-wrap praznina)
     s = s.replace(/\u0001K(\d+)\u0001/g, function(_m,i){ var oo=math[i]; var src=String(oo[0]).replace(/(^|[^\\])%/g,"$1\\%").replace(/(\d),(\d)/g,"$1{,}$2"); return '<span class="kx" data-d="'+oo[1]+'">'+esc(src)+'</span>'; });
     s = s.replace(/\u0002C(\d+)\u0002/g, function(_m,i){ return '<code class="zoi-ic">'+esc(codes[i])+'</code>'; });
+    /* ——— slaganje u BLOKOVE (ujednačen razmak) ———
+       Ranije: white-space:pre-wrap + margini blokova → praznine su se sabirale
+       neravnomerno (negde tesno, negde duplo), a naslov se lepio uz sledeću
+       rečenicu ("pola rečenice ispod"). Sada svaki pasus / naslov / formula /
+       tabela postaje SVOJ blok sa jednim, jednakim razmakom iz CSS-a.
+       Mehur je white-space:normal, pa nema više varljivih praznina. */
+    (function(){
+      var lines = s.split("\n"), blocks = [], para = [];
+      function flush(){
+        if (!para.length) return;
+        // Nastavak rečenice (slučajan prelom modela) spoji RAZMAKOM da se ne lomi na neprirodnom mestu;
+        // tvrd prelom (<br>) samo pred stavkom nabrajanja (• ili "1.") — tako tekst teče prirodno.
+        var html = "";
+        for (var pi = 0; pi < para.length; pi++){
+          var pl = para[pi];
+          var itemLine = /^(•|\d+[.)])\s/.test(pl);
+          html += (pi === 0) ? pl : ((itemLine ? "<br>" : " ") + pl);
+        }
+        blocks.push('<div class="zoi-p">' + html + '</div>');
+        para = [];
+      }
+      function isHead(l){ return /^<b class="zoi-h">[\s\S]*?<\/b>$/.test(l); }
+      function isTbl(l){ return /^<table[\s\S]*<\/table>$/.test(l); }
+      function isDisp(l){ return /^<span class="kx" data-d="1">[\s\S]*?<\/span>$/.test(l); }
+      for (var li = 0; li < lines.length; li++){
+        var ln = lines[li].replace(/^[ \t]+|[ \t]+$/g, "");
+        if (ln === ""){ flush(); continue; }
+        if (isTbl(ln) || isHead(ln)){ flush(); blocks.push(ln); continue; }
+        if (isDisp(ln)){ flush(); blocks.push('<div class="zoi-disp">' + ln + '</div>'); continue; }
+        para.push(ln);
+      }
+      flush();
+      s = blocks.join("");
+    })();
     return s;
   }
   function texToText(t){
@@ -637,6 +672,15 @@
       try { window.katex.render(src, el, {displayMode: el.getAttribute("data-d")==="1", throwOnError:true, errorColor:"#9C7838"}); }
       catch(e){ el.textContent = texToText(src); el.className += " kx-fallback"; }
       el.setAttribute("data-done","1");
+    }
+    try{ fitDisp(root); setTimeout(function(){ fitDisp(root); }, 160); }catch(e){}
+  }
+  function fitDisp(root){
+    if(!root||!root.querySelectorAll) return;
+    var ds = root.querySelectorAll(".katex-display");
+    for (var i=0;i<ds.length;i++){ var d=ds[i]; d.style.fontSize="";
+      var k=d.querySelector(".katex")||d; var avail=d.clientWidth, need=k.scrollWidth;
+      if(need>1 && avail>1 && need>avail+1){ var r=Math.max(avail/need, 0.5); d.style.fontSize=(r*100).toFixed(1)+"%"; }
     }
   }
 
@@ -1228,6 +1272,14 @@
     }catch(e){}
     return null;
   }
+  // Trajni ID uređaja — da anonimni posetilac dobije svojih 15 min bez prijave (proba vezana za uređaj).
+  function devId(){
+    try{
+      var d = localStorage.getItem("mathia_dev");
+      if(!d){ d = "d" + Date.now().toString(36) + Math.random().toString(36).slice(2,12); localStorage.setItem("mathia_dev", d); }
+      return d;
+    }catch(e){ return ""; }
+  }
   function send() {
     var txt = (taEl.value || "").trim();
     if (!txt && !attachment) return;
@@ -1254,7 +1306,7 @@
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode: MODE, lang: LANG, ownerKey: (function(){try{return localStorage.getItem("mathia_ok")||"";}catch(e){return "";}})(), messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
+      body: JSON.stringify({ mode: MODE, lang: LANG, deviceId: devId(), messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
     })
       .then(function (r) { return r.json(); })
       .then(function (data) {
