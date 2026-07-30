@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dobrodošli nazad — Mathia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FBF6EE;--card:#FCF9F3;--plum:#432C37;--plum2:#6B4A57;--gold:#C6A05C;--goldlt:#E7D2A2;--rasp:#B01E48;--rasp-d:#8E1338}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',system-ui,sans-serif;color:var(--plum);min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
+    background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#EFE6F6 0,#F6ECE6 60%,#FBF3EC 100%);
+    overflow-x:hidden;position:relative}
+  .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .orb{position:absolute;border-radius:50%;filter:blur(48px);opacity:.55}
+  .orb.a{width:360px;height:360px;background:#EBB6CF;top:-90px;left:-70px;animation:d1 19s ease-in-out infinite}
+  .orb.b{width:320px;height:320px;background:#F2D39A;bottom:-90px;right:-60px;animation:d2 23s ease-in-out infinite}
+  .orb.c{width:280px;height:280px;background:#CFB9EE;top:42%;right:16%;animation:d3 27s ease-in-out infinite}
+  .orb.d{width:220px;height:220px;background:#F6C6B0;top:12%;left:24%;animation:d1 25s ease-in-out infinite}
+  @keyframes d1{50%{transform:translate(42px,32px) scale(1.09)}}
+  @keyframes d2{50%{transform:translate(-38px,-30px) scale(1.11)}}
+  @keyframes d3{50%{transform:translate(26px,-36px) scale(1.06)}}
+  .petal{position:fixed;top:-24px;pointer-events:none;opacity:.7;animation:fall linear infinite;z-index:0}
+  @keyframes fall{to{transform:translateY(110vh) rotate(320deg)}}
+  @media(prefers-reduced-motion:reduce){.orb,.petal{animation:none}}
+  .top{position:relative;z-index:3;display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .mark{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-weight:700;color:#3A2530}
+  .top a{color:var(--plum2);text-decoration:none;font-weight:700;font-size:13px}
+  .wrap{width:100%;max-width:470px;position:relative;z-index:2}
+  .card{background:var(--card);border-radius:30px;padding:30px 28px 26px;text-align:center;border:1px solid rgba(231,210,162,.5);box-shadow:0 40px 90px -42px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset}
+  .dots{display:flex;gap:7px;justify-content:center;margin-bottom:4px}
+  .dots i{width:24px;height:5px;border-radius:6px;background:#E9DCC8;transition:.3s}
+  .dots i.on{background:linear-gradient(90deg,var(--gold),var(--rasp))}
+  .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-top:12px}
+  .ic{width:56px;height:56px;border-radius:17px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);display:flex;align-items:center;justify-content:center;font-size:27px;margin:14px auto 10px;box-shadow:0 10px 22px -12px rgba(198,160,92,.8)}
+  h1{font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,6.4vw,2.35rem);line-height:1.1;color:var(--plum)}
+  h1 em{font-style:italic;color:var(--rasp)}
+  .sub{color:var(--plum2);font-size:14.5px;margin:9px auto 18px;max-width:350px;line-height:1.55}
+  .lastpill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #EFE4D4;border-radius:100px;padding:8px 14px;font-size:13px;font-weight:700;color:var(--plum2);margin-bottom:6px}
+  .lastpill b{color:var(--rasp)}
+  .grid{display:grid;gap:11px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .opt{background:#fff;border:1.5px solid #EFE4D4;border-radius:18px;padding:15px 8px 13px;cursor:pointer;transition:transform .14s,border-color .14s,box-shadow .2s;user-select:none}
+  .opt:hover{transform:translateY(-3px);border-color:var(--goldlt);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
+  .opt .em{font-size:23px;display:block;margin-bottom:6px}
+  .opt .lb{font-size:12.5px;font-weight:700;color:var(--plum)}
+  .opt.on{background:linear-gradient(160deg,var(--rasp),var(--rasp-d));border-color:transparent;box-shadow:0 16px 30px -14px rgba(176,30,72,.7)}
+  .opt.on .lb{color:#fff}
+  .row{display:flex;align-items:center;gap:12px;margin-top:20px}
+  .ghost{background:transparent;border:1.5px solid #E4D6C4;color:var(--plum2);border-radius:100px;padding:15px 20px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
+  .ghost[disabled]{opacity:0;pointer-events:none}
+  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;color:#fff;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--rasp),var(--rasp-d));box-shadow:0 18px 34px -14px rgba(176,30,72,.75);transition:transform .12s}
+  .cta:active{transform:scale(.98)}
+  .mini{margin-top:14px;font-size:12px;color:var(--plum2);opacity:.85}
+  .mini b{color:var(--rasp)}
+  .step{animation:in .35s ease both}
+  @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .hide{display:none}
+  .conf{position:fixed;top:-10px;width:10px;height:14px;border-radius:2px;z-index:6;pointer-events:none}
+  /* landing */
+  .tiles{display:flex;flex-direction:column;gap:10px;margin:16px 0 4px;text-align:left}
+  .tile{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #EFE4D4;border-radius:16px;padding:13px 15px}
+  .tile .te{width:40px;height:40px;border-radius:12px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+  .tile .tt{font-weight:800;color:var(--plum);font-size:14.5px}
+  .tile .td{font-size:12.5px;color:var(--plum2)}
+  .tile.go{cursor:pointer;transition:transform .14s,box-shadow .2s}
+  .tile.go:hover{transform:translateY(-2px);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
+  .tile .arr{margin-left:auto;color:var(--rasp);font-weight:800}
+  .qa{display:flex;gap:10px;margin-top:10px}
+  .qa a{flex:1;text-decoration:none;text-align:center;background:#fff;border:1.5px solid #EFE4D4;border-radius:14px;padding:12px 8px;font-weight:800;font-size:13px;color:var(--plum)}
+  .nudge{margin-top:14px;background:linear-gradient(160deg,#FBEFD8,#F6E3C2);border:1px solid #EAD3A6;border-radius:16px;padding:14px;font-size:13.5px;color:#6B4A2A;font-weight:700}
+  .nudge a{color:var(--rasp);font-weight:800;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="bgfx" id="bgfx"><span class="orb a"></span><span class="orb b"></span><span class="orb c"></span><span class="orb d"></span></div>
+<div class="top"><span class="mark">M</span><a href="index.html">← Mathia</a></div>
+
+<div class="wrap"><div class="card">
+  <div class="dots"><i class="on" id="d0"></i><i id="d1"></i><i id="d2"></i></div>
+
+  <!-- WELCOME -->
+  <div class="step" id="s0">
+    <div class="eyebrow">Dobrodošli nazad</div>
+    <div class="ic">💛</div>
+    <h1>Lepo je videti te <em>ponovo!</em></h1>
+    <p class="lastpill" id="lastPill">Poslednji put: <b id="lastTopic">Trigonometrija</b> · nastavi gde si stao</p>
+    <p class="sub">Drago nam je što si opet tu. Hajde da za par klikova nastavimo tvoju priču — tvojim tempom.</p>
+    <div class="row"><button class="ghost" disabled>← Nazad</button><button class="cta nx">Hajde 💫</button></div>
+    <p class="mini">Tvoja profesorica te čeka · <b>uvek tu</b></p>
+  </div>
+
+  <!-- MOOD -->
+  <div class="step hide" id="s1">
+    <div class="eyebrow">Korak 1 od 3</div>
+    <div class="ic">🌸</div>
+    <h1>Kako se danas <em>osećaš?</em></h1>
+    <p class="sub">Da znam kojim tempom da idemo. Nema pogrešnog odgovora. 💛</p>
+    <div class="grid g2" data-k="mood">
+      <div class="opt" data-v="Puna energije" data-m="fire"><span class="em">🔥</span><span class="lb">Puna energije</span></div>
+      <div class="opt" data-v="Smireno" data-m="calm"><span class="em">😌</span><span class="lb">Smireno</span></div>
+      <div class="opt" data-v="Malo pod stresom" data-m="stress"><span class="em">😅</span><span class="lb">Malo pod stresom</span></div>
+      <div class="opt" data-v="Umorno" data-m="tired"><span class="em">😴</span><span class="lb">Pomalo umorno</span></div>
+    </div>
+    <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Dalje →</button></div>
+  </div>
+
+  <!-- GOAL -->
+  <div class="step hide" id="s2">
+    <div class="eyebrow">Korak 2 od 3</div>
+    <div class="ic">🎯</div>
+    <h1>Šta je danas <em>cilj?</em></h1>
+    <p class="sub">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
+    <div class="grid g2" data-k="cilj">
+      <div class="opt" data-v="Kontrolni i pismeni"><span class="em">✍️</span><span class="lb">Kontrolni / pismeni</span></div>
+      <div class="opt" data-v="Prijemni ispit"><span class="em">🎯</span><span class="lb">Prijemni ispit</span></div>
+      <div class="opt" data-v="Novo gradivo"><span class="em">📚</span><span class="lb">Novo gradivo</span></div>
+      <div class="opt" data-v="Ponavljanje"><span class="em">🔁</span><span class="lb">Ponavljanje</span></div>
+      <div class="opt" data-v="Samo 15 minuta"><span class="em">💫</span><span class="lb">Samo 15 minuta</span></div>
+      <div class="opt" data-v="Domaći"><span class="em">📝</span><span class="lb">Domaći</span></div>
+    </div>
+    <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Dalje →</button></div>
+  </div>
+
+  <!-- SUBJECT -->
+  <div class="step hide" id="s3">
+    <div class="eyebrow">Korak 3 od 3</div>
+    <div class="ic">📚</div>
+    <h1>Koji predmet <em>radimo?</em></h1>
+    <p class="sub">Biraj mudro — sve ostalo sređujem ja. ✨</p>
+    <div class="grid g3" data-k="predmet">
+      <div class="opt" data-v="Matematika"><span class="em">📐</span><span class="lb">Matematika</span></div>
+      <div class="opt" data-v="Fizika"><span class="em">⚛️</span><span class="lb">Fizika</span></div>
+      <div class="opt" data-v="Programiranje"><span class="em">💻</span><span class="lb">Programiranje</span></div>
+      <div class="opt" data-v="Hemija"><span class="em">🧪</span><span class="lb">Hemija</span></div>
+      <div class="opt" data-v="Elektronika"><span class="em">🔌</span><span class="lb">Elektronika</span></div>
+      <div class="opt" data-v="Ti biraš"><span class="em">🌟</span><span class="lb">Ti biraš</span></div>
+    </div>
+    <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx">Napravi mi plan →</button></div>
+  </div>
+
+  <!-- LANDING -->
+  <div class="step hide" id="s4">
+    <div class="eyebrow">Tvoj plan za danas</div>
+    <div class="ic" style="font-size:34px">🎉</div>
+    <h1 id="hello">Spremni smo, <em>zajedno!</em></h1>
+    <p class="sub" id="moodLine">Idemo korak po korak — ja sam tu uz tebe.</p>
+    <div class="tiles">
+      <div class="tile go" id="contBtn"><span class="te">📘</span><div><div class="tt" id="contTitle">Nastavi: Trigonometrija</div><div class="td" id="contSub">Predmet · cilj za danas</div></div><span class="arr">→</span></div>
+      <div class="tile"><span class="te">🔥</span><div><div class="tt">3 dana zaredom</div><div class="td">Samo nastavi — mali koraci prave velike rezultate.</div></div></div>
+    </div>
+    <div class="qa">
+      <a href="index.html">💬 Pitaj profesoricu</a>
+      <a href="predmeti.html">📘 Materijali</a>
+    </div>
+    <div class="nudge" id="nudge">✨ Otključaj <b>sve predmete i profesoricu 24/7</b> — <a href="prijava.html">Počni besplatno →</a></div>
+    <p class="mini">Uči s ljubavlju · <b>Mathia</b></p>
+  </div>
+
+</div></div>
+
+<script>
+  var P=['🌸','💗','🌷','✿','❀'];
+  for(var i=0;i<14;i++){var s=document.createElement('span');s.className='petal';s.textContent=P[i%P.length];s.style.left=(Math.random()*100)+'vw';s.style.fontSize=(11+Math.random()*13)+'px';s.style.animationDuration=(7+Math.random()*7)+'s';s.style.animationDelay=(-Math.random()*8)+'s';document.body.appendChild(s);}
+  var bg=document.getElementById('bgfx'),px=0,py=0,tx=0,ty=0;
+  addEventListener('mousemove',function(e){tx=(e.clientX/innerWidth-.5)*26;ty=(e.clientY/innerHeight-.5)*26;});
+  addEventListener('deviceorientation',function(e){if(e.gamma!=null){tx=Math.max(-26,Math.min(26,e.gamma))*.7;ty=Math.max(-26,Math.min(26,e.beta-40))*.5;}});
+  (function loop(){px+=(tx-px)*.06;py+=(ty-py)*.06;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();
+
+  try{var prev=JSON.parse(localStorage.getItem('mathia_onboarding')||'{}');if(prev.predmet){document.getElementById('lastTopic').textContent=prev.predmet;}}catch(e){}
+  var name='';try{name=localStorage.getItem('mathia_name')||'';}catch(e){}
+
+  var step=0,pick={},steps=['s0','s1','s2','s3','s4'];
+  function show(n){steps.forEach(function(id,i){document.getElementById(id).classList.toggle('hide',i!==n);});for(var d=0;d<3;d++)document.getElementById('d'+d).classList.toggle('on',d<=Math.min(Math.max(n-1,0),2));step=n;window.scrollTo({top:0,behavior:'smooth'});}
+  document.querySelectorAll('.grid').forEach(function(g){g.addEventListener('click',function(e){var o=e.target.closest('.opt');if(!o)return;g.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});o.classList.add('on');pick[g.getAttribute('data-k')]=o.getAttribute('data-v');if(o.getAttribute('data-m'))pick.moodKey=o.getAttribute('data-m');});});
+  document.querySelectorAll('.pv').forEach(function(b){b.addEventListener('click',function(){show(step-1)});});
+  var lines={fire:'Vidim tu energiju! Idemo da je iskoristimo. 💪',calm:'Baš lepo. Mirno i sigurno, korak po korak. 🌿',stress:'Diši. Krećemo polako — ja sam tu uz tebe. 💛',tired:'Bez pritiska. Samo 15 minuta, tvojim tempom. 🌙'};
+  document.querySelectorAll('.nx').forEach(function(b){b.addEventListener('click',function(){
+    if(step>=1&&step<=3){var g=document.getElementById(steps[step]).querySelector('.grid');if(g&&!g.querySelector('.opt.on')){g.animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:260});return;}}
+    if(step===3){
+      document.getElementById('hello').innerHTML=(name?('Idemo, <em>'+name+'!</em>'):'Spremni smo, <em>zajedno!</em>');
+      document.getElementById('moodLine').textContent=lines[pick.moodKey]||'Idemo korak po korak — ja sam tu uz tebe.';
+      document.getElementById('contTitle').textContent='Nastavi: '+(pick.predmet||'Trigonometrija');
+      document.getElementById('contSub').textContent=(pick.predmet||'Predmet')+' · '+(pick.cilj||'cilj za danas');
+      var sub=(pick.predmet||'').toLowerCase();
+      var map={'matematika':'predmet-matematika.html','fizika':'predmet-fizika.html','programiranje':'predmeti.html','hemija':'predmeti.html','elektronika':'predmeti.html'};
+      document.getElementById('contBtn').onclick=function(){location.href=(map[sub]||'predmeti.html');};
+      try{localStorage.setItem('mathia_onboarding',JSON.stringify(pick));}catch(e){}
+      show(4);confetti();return;
+    }
+    show(step+1);
+  });});
+
+  function confetti(){var C=['#B01E48','#C6A05C','#E7D2A2','#F4C4D2','#8E1338'];for(var i=0;i<90;i++){(function(){var d=document.createElement('div');d.className='conf';d.style.left=(Math.random()*100)+'vw';d.style.background=C[i%C.length];var dur=1600+Math.random()*1500;d.animate([{transform:'translateY(-10px) rotate(0)',opacity:1},{transform:'translateY(108vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],{duration:dur,easing:'cubic-bezier(.2,.6,.3,1)'});document.body.appendChild(d);setTimeout(function(){d.remove()},dur);})();}}
+</script>
+</body>
+</html>
