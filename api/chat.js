@@ -12,6 +12,7 @@ import {
 import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
 import { sbUser } from "../lib/sbauth.js";
 import { aktivnePretplate, beleziNapredak, poslednjeTeme } from "../lib/supabase.js";
+import { scopeFor } from "../lib/klon-znanje.js";
 
 const LOGIN_MSG = {
   sr: "Zdravo! Prvih 15 minuta je na poklon. Da ti sačuvam napredak, prijavi se → [Nalog](nalog.html).",
@@ -296,10 +297,11 @@ function langDirective(lang) {
   const name = LANG_NAME[lang] || LANG_NAME.sr;
   return "\n\nUPUTSTVO O JEZIKU: ceo odgovor napisi iskljucivo na " + name + ". Sva objasnjenja, koraci, primeri i komentari u kodu na tom jeziku. Ako ucenik pise na drugom jeziku, predji na taj jezik.";
 }
-function buildSystem(mode, lang) {
+function buildSystem(mode, lang, scope) {
   const key = resolveMode(mode);
   const base = (key && CLONES[key]) ? (SHARED + "\n\n" + CLONES[key]) : (SHARED + "\n\n" + PICK);
-  return base + langDirective(lang);
+  const gradivo = scope ? ("\n\nGRADIVO OVOG PREDMETA (mapa tema — vodi učenika kroz njih, objašnjavaj svojim rečima, ne prepisuj tuđe materijale):\n" + scope) : "";
+  return base + gradivo + langDirective(lang);
 }
 
 // ——— ograničenje brzine (anti-spam; štiti od nepotrebnog troška na AI-u) ———
@@ -456,7 +458,7 @@ export default async function handler(req, res) {
       } // kraj else (nije admin)
     }
 
-    const system = buildSystem(mode, lang);
+    const system = buildSystem(mode, lang, scopeFor(body.sub));
     const userName = body.userName || null;
     const userPredmeti = body.userPredmeti || [];
     let personalCtx = "";
