@@ -36,7 +36,7 @@
   .ic{width:54px;height:54px;border-radius:17px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);display:flex;align-items:center;justify-content:center;font-size:25px;margin:14px auto 10px;box-shadow:0 10px 22px -12px rgba(198,160,92,.8)}
   h1{font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,6.4vw,2.3rem);line-height:1.1;color:var(--plum)}
   h1 em{font-style:italic;color:var(--rasp)}
-  .sub{color:var(--plum2);font-size:14.5px;margin:9px auto 20px;max-width:340px;line-height:1.5}
+  .sub{color:var(--plum2);font-size:14.5px;margin:9px auto 20px;max-width:350px;line-height:1.55}
   .grid{display:grid;gap:11px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
   .opt{background:#fff;border:1.5px solid #EFE4D4;border-radius:18px;padding:15px 8px 13px;cursor:pointer;transition:transform .14s,border-color .14s,box-shadow .2s;user-select:none}
   .opt:hover{transform:translateY(-3px);border-color:var(--goldlt);box-shadow:0 14px 24px -16px rgba(150,90,60,.5)}
@@ -71,7 +71,7 @@
 
   <!-- STEP 0: nivo -->
   <div class="step" id="s0">
-    <div class="eyebrow">Korak 1 od 3</div>
+    <div class="eyebrow" id="e0">Korak 1 od 3</div>
     <div class="ic">🎒</div>
     <h1>Ko danas <em>uči?</em></h1>
     <p class="sub">Da tvoj plan bude taman po meri.<br>Bez brige — sve ostalo sređujem ja. 💛</p>
@@ -84,28 +84,28 @@
     <p class="mini">15 minuta je <b>na poklon</b> · bez kartice · otkaži kad želiš</p>
   </div>
 
-  <!-- STEP 1: predmet + godina (kaskadno) -->
+  <!-- STEP 1: predmet (+razred za đake) -->
   <div class="step hide" id="s1">
-    <div class="eyebrow">Korak 2 od 3</div>
+    <div class="eyebrow" id="e1">Korak 2 od 3</div>
     <div class="ic">📚</div>
     <h1>Šta danas <em>učimo?</em></h1>
-    <p class="sub" id="s1sub">Izaberi predmet — pa ćemo tačnu godinu.</p>
+    <p class="sub" id="s1sub">Izaberi predmet.</p>
     <div id="subjArea"></div>
     <div id="yearArea" class="hide"></div>
-    <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx off" data-need="predmetGodina">Dalje →</button></div>
+    <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx off" id="s1next">Dalje →</button></div>
   </div>
 
-  <!-- STEP 2: cilj -->
+  <!-- STEP 2: cilj (samo za đake) -->
   <div class="step hide" id="s2">
-    <div class="eyebrow">Korak 3 od 3</div>
+    <div class="eyebrow" id="e2">Korak 3 od 3</div>
     <div class="ic">🎯</div>
-    <h1>Za šta se <em>spremamo?</em></h1>
+    <h1>Šta danas <em>spremamo?</em></h1>
     <p class="sub">Reci mi cilj, pa da napravimo plan koji vodi tačno do njega.</p>
     <div class="grid g2" data-k="cilj">
-      <div class="opt" data-v="Kontrolni i pismeni"><span class="em">✍️</span><span class="lb">Kontrolni i pismeni</span></div>
+      <div class="opt" data-v="Kontrolni i pismeni"><span class="em">✍️</span><span class="lb">Kontrolni / pismeni</span></div>
+      <div class="opt" data-v="Matura / završni ispit"><span class="em">🎓</span><span class="lb">Matura / završni</span></div>
       <div class="opt" data-v="Prijemni ispit"><span class="em">🎯</span><span class="lb">Prijemni ispit</span></div>
-      <div class="opt" data-v="Novo gradivo"><span class="em">📚</span><span class="lb">Novo gradivo</span></div>
-      <div class="opt" data-v="Da razumem gradivo"><span class="em">💡</span><span class="lb">Da razumem</span></div>
+      <div class="opt" data-v="Da razumem gradivo"><span class="em">💡</span><span class="lb">Da razumem gradivo</span></div>
     </div>
     <div class="row"><button class="ghost pv">← Nazad</button><button class="cta nx off" data-need="cilj">Napravi mi plan →</button></div>
   </div>
@@ -119,7 +119,7 @@
     <div class="plan">
       <div class="pill"><span>🧑‍🎓</span> <span id="rNivo">—</span></div>
       <div class="pill"><span>📘</span> <span id="rPredmet">—</span></div>
-      <div class="pill"><span>🎯</span> Cilj: <span id="rCilj">—</span></div>
+      <div class="pill" id="rCiljPill"><span>🎯</span> Cilj: <span id="rCilj">—</span></div>
     </div>
     <div class="row"><a class="cta" id="startBtn" href="prijava.html">Počni besplatno →</a></div>
     <p class="mini">Uči s ljubavlju · <b>Mathia</b></p>
@@ -135,87 +135,83 @@
   addEventListener('deviceorientation',function(e){if(e.gamma!=null){tx=Math.max(-26,Math.min(26,e.gamma))*.7;ty=Math.max(-26,Math.min(26,e.beta-40))*.5;}});
   (function loop(){px+=(tx-px)*.06;py+=(ty-py)*.06;bg.style.transform='translate('+px.toFixed(1)+'px,'+py.toFixed(1)+'px)';requestAnimationFrame(loop);})();
 
-  function range(a,b){var r=[];for(var i=a;i<=b;i++)r.push(i+'. razred');return r;}
   var DATA={
-    'Osnovna škola':{mode:'cards',subs:[
-      {v:'Matematika',e:'📐',years:range(1,8)},
-      {v:'Fizika',e:'⚛️',years:range(6,8)}
-    ]},
-    'Srednja škola':{mode:'cards',subs:[
-      {v:'Matematika',e:'📐',years:range(1,4)},
-      {v:'Fizika',e:'⚛️',years:range(1,4)},
-      {v:'Hemija',e:'🧪',years:range(1,4)},
-      {v:'Programiranje',e:'💻',years:range(1,4)},
-      {v:'Elektronika',e:'🔌',years:range(1,4)}
-    ]},
-    'Fakultet':{mode:'list',years:['1. godina','2. godina','3. godina','4. godina','Master'],subs:[
-      'Matematička analiza 1','Matematička analiza 2','Linearna algebra','Verovatnoća i statistika',
-      'Diskretna matematika','Numerička analiza','Programiranje','Algoritmi i strukture podataka',
-      'Objektno programiranje','Osnovi elektrotehnike 1','Osnovi elektrotehnike 2','Elektronika',
-      'Digitalna elektronika','Signali i sistemi','Elektromagnetika','Teorija kola','Fizika 1','Fizika 2'
-    ]}
+    'Osnovna škola':{mode:'cards',goal:true,years:['5. razred','6. razred','7. razred','8. razred'],subs:[{v:'Matematika',e:'📐'},{v:'Fizika',e:'⚛️'}]},
+    'Srednja škola':{mode:'cards',goal:true,years:['1. razred','2. razred','3. razred','4. razred'],subs:[{v:'Matematika',e:'📐'},{v:'Fizika',e:'⚛️'}]},
+    'Fakultet':{mode:'list',goal:false,subs:['Matematička analiza 1','Matematička analiza 2','Linearna algebra','Verovatnoća i statistika','Diskretna matematika','Numerička analiza','Programiranje','Algoritmi i strukture podataka','Objektno programiranje','Osnovi elektrotehnike 1','Osnovi elektrotehnike 2','Elektronika','Digitalna elektronika','Signali i sistemi','Elektromagnetika','Teorija kola','Fizika 1','Fizika 2']}
   };
 
-  var step=0,pick={},steps=['s0','s1','s2','s3'];
-  function refreshCta(){
-    var cur=document.getElementById(steps[step]);var b=cur.querySelector('.nx');if(!b)return;
-    var need=b.getAttribute('data-need');var ok=false;
-    if(need==='nivo')ok=!!pick.nivo;
-    else if(need==='predmetGodina')ok=!!pick.predmet&&!!pick.godina;
-    else if(need==='cilj')ok=!!pick.cilj;
-    b.classList.toggle('off',!ok);
+  var pick={},current=0;
+  function cfg(){return DATA[pick.nivo]||null;}
+  function isFak(){return pick.nivo==='Fakultet';}
+  function stepsCount(){return (pick.nivo && !cfg().goal)?2:3;}
+
+  function setProgress(){
+    var N=stepsCount();
+    document.getElementById('d2').style.display=(N<3?'none':'');
+    document.getElementById('e0').textContent='Korak 1 od '+N;
+    document.getElementById('e1').textContent='Korak 2 od '+N;
+    document.getElementById('e2').textContent='Korak 3 od '+N;
   }
-  function show(n){steps.forEach(function(id,i){document.getElementById(id).classList.toggle('hide',i!==n);});for(var d=0;d<3;d++)document.getElementById('d'+d).classList.toggle('on',d<=Math.min(n,2));step=n;refreshCta();window.scrollTo({top:0,behavior:'smooth'});}
+  function markDots(idx){var N=stepsCount();for(var d=0;d<3;d++){var el=document.getElementById('d'+d);el.classList.toggle('on',d<=Math.min(idx,N-1));}}
+  function showId(id,idx){['s0','s1','s2','s3'].forEach(function(x){document.getElementById(x).classList.toggle('hide',x!==id);});current=idx;markDots(idx);window.scrollTo({top:0,behavior:'smooth'});}
+
+  function refreshCta(){
+    var b0=document.querySelector('#s0 .nx');if(b0)b0.classList.toggle('off',!pick.nivo);
+    var b1=document.getElementById('s1next');if(b1){var ok=isFak()?!!pick.predmet:(!!pick.predmet&&!!pick.godina);b1.classList.toggle('off',!ok);b1.textContent=isFak()?'Napravi mi plan →':'Dalje →';}
+    var b2=document.querySelector('#s2 .nx');if(b2)b2.classList.toggle('off',!pick.cilj);
+  }
 
   function yearField(years){
     pick.godina=null;
-    var opts='<option value="" disabled selected>Izaberi godinu…</option>'+years.map(function(y){return '<option value="'+y+'">'+y+'</option>';}).join('');
-    return '<div class="field"><label>'+(pick.nivo==='Fakultet'?'Godina studija':'Razred')+'</label><div class="selwrap"><select class="sel" id="yearSel">'+opts+'</select></div></div>';
-  }
-  function bindYear(){
-    var y=document.getElementById('yearSel');if(!y)return;
-    y.addEventListener('change',function(){pick.godina=this.value;refreshCta();});
+    var opts='<option value="" disabled selected>Izaberi razred…</option>'+years.map(function(y){return '<option value="'+y+'">'+y+'</option>';}).join('');
+    return '<div class="field"><label>Razred</label><div class="selwrap"><select class="sel" id="yearSel">'+opts+'</select></div></div>';
   }
   function renderSubject(){
-    var d=DATA[pick.nivo],sa=document.getElementById('subjArea'),ya=document.getElementById('yearArea');
+    var d=cfg(),sa=document.getElementById('subjArea'),ya=document.getElementById('yearArea');
     pick.predmet=null;pick.godina=null;ya.classList.add('hide');ya.innerHTML='';
-    document.getElementById('s1sub').textContent=(d.mode==='list'?'Otvori listu i izaberi predmet — pa godinu studija.':'Izaberi predmet — pa ćemo tačnu godinu.');
+    document.getElementById('s1sub').textContent=(d.mode==='list'?'Otvori listu i izaberi predmet.':'Izaberi predmet — pa razred.');
     if(d.mode==='cards'){
-      sa.innerHTML='<div class="grid '+(d.subs.length>2?'g3':'g2')+'">'+d.subs.map(function(s,i){return '<div class="opt" data-i="'+i+'"><span class="em">'+s.e+'</span><span class="lb">'+s.v+'</span></div>';}).join('')+'</div>';
+      sa.innerHTML='<div class="grid g2">'+d.subs.map(function(s,i){return '<div class="opt" data-i="'+i+'"><span class="em">'+s.e+'</span><span class="lb">'+s.v+'</span></div>';}).join('')+'</div>';
       sa.querySelectorAll('.opt').forEach(function(o){o.addEventListener('click',function(){
         sa.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});o.classList.add('on');
-        var s=d.subs[+o.getAttribute('data-i')];pick.predmet=s.v;
-        ya.innerHTML=yearField(s.years);ya.classList.remove('hide');bindYear();refreshCta();
+        pick.predmet=d.subs[+o.getAttribute('data-i')].v;
+        ya.innerHTML=yearField(d.years);ya.classList.remove('hide');
+        document.getElementById('yearSel').addEventListener('change',function(){pick.godina=this.value;refreshCta();});
+        refreshCta();
       });});
     } else {
       var opts='<option value="" disabled selected>Izaberi predmet…</option>'+d.subs.map(function(s){return '<option value="'+s+'">'+s+'</option>';}).join('');
       sa.innerHTML='<div class="field"><label>Predmet</label><div class="selwrap"><select class="sel" id="subjSel">'+opts+'</select></div></div>';
-      document.getElementById('subjSel').addEventListener('change',function(){
-        pick.predmet=this.value;ya.innerHTML=yearField(d.years);ya.classList.remove('hide');bindYear();refreshCta();
-      });
+      document.getElementById('subjSel').addEventListener('change',function(){pick.predmet=this.value;refreshCta();});
     }
+  }
+
+  function finish(){
+    document.getElementById('rNivo').textContent=pick.nivo;
+    document.getElementById('rPredmet').textContent=isFak()?pick.predmet:(pick.predmet+' · '+pick.godina);
+    if(isFak()){document.getElementById('rCiljPill').style.display='none';}
+    else{document.getElementById('rCiljPill').style.display='';document.getElementById('rCilj').textContent=pick.cilj;}
+    try{localStorage.setItem('mathia_onboarding',JSON.stringify(pick));}catch(e){}
+    var q='?nivo='+encodeURIComponent(pick.nivo||'')+'&predmet='+encodeURIComponent(pick.predmet||'')+(isFak()?'':('&godina='+encodeURIComponent(pick.godina||'')+'&cilj='+encodeURIComponent(pick.cilj||'')));
+    document.getElementById('startBtn').href='prijava.html'+q;
+    showId('s3',3);confetti();
   }
 
   document.querySelectorAll('.grid[data-k]').forEach(function(g){
     g.addEventListener('click',function(e){var o=e.target.closest('.opt');if(!o)return;
       g.querySelectorAll('.opt').forEach(function(x){x.classList.remove('on')});o.classList.add('on');
-      pick[g.getAttribute('data-k')]=o.getAttribute('data-v');refreshCta();});
+      pick[g.getAttribute('data-k')]=o.getAttribute('data-v');
+      if(g.getAttribute('data-k')==='nivo')setProgress();
+      refreshCta();});
   });
-  document.querySelectorAll('.pv').forEach(function(b){b.addEventListener('click',function(){show(step-1)});});
-  document.querySelectorAll('.nx').forEach(function(b){b.addEventListener('click',function(){
-    if(b.classList.contains('off'))return;
-    if(step===0){renderSubject();show(1);return;}
-    if(step===2){
-      document.getElementById('rNivo').textContent=pick.nivo;
-      document.getElementById('rPredmet').textContent=pick.predmet+' · '+pick.godina;
-      document.getElementById('rCilj').textContent=pick.cilj;
-      try{localStorage.setItem('mathia_onboarding',JSON.stringify(pick));}catch(e){}
-      var q='?nivo='+encodeURIComponent(pick.nivo)+'&predmet='+encodeURIComponent(pick.predmet)+'&godina='+encodeURIComponent(pick.godina)+'&cilj='+encodeURIComponent(pick.cilj);
-      document.getElementById('startBtn').href='prijava.html'+q;
-      show(3);confetti();return;
-    }
-    show(step+1);
+  document.querySelectorAll('.pv').forEach(function(b){b.addEventListener('click',function(){
+    if(current===2)showId('s1',1);else if(current===1)showId('s0',0);
   });});
+
+  document.querySelector('#s0 .nx').addEventListener('click',function(){if(this.classList.contains('off'))return;setProgress();renderSubject();refreshCta();showId('s1',1);});
+  document.getElementById('s1next').addEventListener('click',function(){if(this.classList.contains('off'))return;if(isFak())finish();else showId('s2',2);});
+  document.querySelector('#s2 .nx').addEventListener('click',function(){if(this.classList.contains('off'))return;finish();});
 
   function confetti(){var C=['#B01E48','#C6A05C','#E7D2A2','#F4C4D2','#8E1338'];for(var i=0;i<90;i++){(function(){var d=document.createElement('div');d.className='conf';d.style.left=(Math.random()*100)+'vw';d.style.background=C[i%C.length];var dur=1600+Math.random()*1500;d.animate([{transform:'translateY(-10px) rotate(0)',opacity:1},{transform:'translateY(108vh) rotate('+(360+Math.random()*360)+'deg)',opacity:.9}],{duration:dur,easing:'cubic-bezier(.2,.6,.3,1)'});document.body.appendChild(d);setTimeout(function(){d.remove()},dur);})();}}
 </script>
