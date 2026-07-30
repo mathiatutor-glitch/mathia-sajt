@@ -4,6 +4,7 @@
 (function () {
   var NAV = [
     ["index.html", "Početna"],
+    ["pocni.html", "Počni besplatno"],
     ["predmeti.html", "Predmeti"],
     ["prodavnica.html", "Prodavnica"],
     ["index.html#paketi", "Paketi"],
