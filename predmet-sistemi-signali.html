@@ -345,6 +345,19 @@
 </style>
 <link rel="stylesheet" href="theme-mathia.css">
 <link rel="stylesheet" href="mathia-type.css">
+<style id="px-predmet-slatki">
+/* Slatki stil: bez ljubičaste, malina umesto plum, živa zlatna dugmad */
+.ig-mat.m1{background:linear-gradient(160deg,#B01E48,#8E1338)!important}
+.ig-fin{background:linear-gradient(160deg,#B01E48,#8E1338)!important}
+.ig-b1,.ig-fin .b1{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxShim 7s linear infinite;transition:transform .16s}
+@keyframes pxShim{to{background-position:-240% center}}
+.ig-b1:hover,.ig-fin .b1:hover{transform:translateY(-2px)!important}
+.ig-b1::after,.ig-fin .b1::after{content:"";position:absolute;top:0;left:-75%;width:48%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0}
+.ig-b1:hover::after,.ig-fin .b1:hover::after{opacity:1;animation:pxSheenP .85s ease}
+@keyframes pxSheenP{to{left:160%}}
+.ig-bk{color:#5A1024!important}
+@media(prefers-reduced-motion:reduce){.ig-b1,.ig-fin .b1{animation:none}}
+</style>
 </head>
 <body>
 
