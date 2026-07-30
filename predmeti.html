@@ -308,6 +308,17 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 .px-search input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(198,160,92,.14)}
 .px-mag{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:16px;height:16px;border:2px solid var(--gold);border-radius:50%}
 .px-mag:after{content:"";position:absolute;right:-6px;bottom:-4px;width:7px;height:2px;background:var(--gold);transform:rotate(45deg);border-radius:2px}
+.px-clear{position:absolute;right:13px;top:50%;transform:translateY(-50%);border:0;background:#F3E7D0;color:var(--malinadk);width:26px;height:26px;border-radius:50%;font-size:17px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center;padding:0}
+.px-clear:hover{background:var(--goldsoft)}
+.px-clear.show{display:flex}
+@keyframes pxTw{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.12)}}
+@keyframes pxFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.px-orn span{display:inline-block;animation:pxTw 3.2s ease-in-out infinite}
+.px-hero:before{animation:pxFloat 7s ease-in-out infinite}
+.px-hero:after{animation:pxFloat 8s ease-in-out infinite 1s}
+.px-cta .px-spk{animation:pxTw 3s ease-in-out infinite}
+.px-cta .px-spk.b{animation-delay:1.2s}
+@media(prefers-reduced-motion:reduce){.px-orn span,.px-hero:before,.px-hero:after,.px-cta .px-spk{animation:none}}
 .px-stepno{display:flex;align-items:center;gap:10px;margin:22px 2px 12px}
 .px-b{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldsoft));color:#4a3712;font-family:'Spectral',serif;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex:none}
 .px-t{font-family:'Nunito',sans-serif;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--golddk)}
@@ -394,7 +405,7 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
     <h2 class="px-h2" data-i18n="s_h2">Svi <span class="px-m">predmeti</span></h2>
     <p class="px-sec-s" data-i18n="px_catdesc">Biraš u dva koraka — prvo nivo, pa predmet. Ili ukucaj naziv i skoči pravo na njega.</p>
 
-    <div class="px-search"><span class="px-mag"></span><input id="px-q" type="text" placeholder="Pretraži predmet…"></div>
+    <div class="px-search"><span class="px-mag"></span><input id="px-q" type="text" placeholder="Pretraži predmet…"><button type="button" class="px-clear" id="px-clear" aria-label="Očisti">×</button></div>
 
     <div class="px-stepno"><span class="px-b">1</span><span class="px-t" data-i18n="px_step1">Izaberi nivo</span></div>
     <div class="px-levels">
@@ -914,7 +925,10 @@ header{border-bottom:1px solid rgba(198,160,92,.20);box-shadow:0 1px 0 rgba(255,
     if(v){ levels.forEach(function(x){x.classList.remove('on');}); search(v); }
     else { levels.forEach(function(x){x.classList.toggle('on',x.dataset.c===active);}); showLevel(); }
   }
-  if(q)q.addEventListener('input',onInput);
+  var clr=document.getElementById('px-clear');
+  function toggleClear(){ if(clr)clr.classList.toggle('show', !!(q&&q.value.trim())); }
+  if(clr)clr.addEventListener('click',function(){ q.value=''; toggleClear(); onInput(); q.focus(); });
+  if(q)q.addEventListener('input',function(){ toggleClear(); onInput(); });
   function applyPh(){ if(q&&phSpan)q.setAttribute('placeholder',phSpan.textContent); }
   function relocalize(){ applyPh(); if(!q||!q.value.trim())setCap(); }
   applyPh(); showLevel();
