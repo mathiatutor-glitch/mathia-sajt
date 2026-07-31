@@ -47,6 +47,12 @@ export default async function middleware(req) {
   if (isAsset(path)) return undefined;
   if (PUBLIC.has(path)) return undefined;
 
+  // Predmet-strane su VIDLJIVE (posetilac može da pregleda katalog i svaki predmet).
+  // Klon (chat) i materijali se i dalje otključavaju tek kroz „probaj besplatno":
+  // to gate-uje api/chat.js (15-min probni / pretplata), ne middleware.
+  const subjectPage = /^(predmet-|programiranje-|osnovna-|srednja-|prijemni-|elektronika-|mala-matura)/.test(path);
+  if (subjectPage) return undefined;
+
   // SIGURNOSNI PREKIDAČ: SITE_LOCK=0 -> ne zaključavaj (samo stari kviz-gate)
   const lockOn = (process.env.SITE_LOCK ?? "1") !== "0";
   if (!lockOn) {
