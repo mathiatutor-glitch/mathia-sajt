@@ -127,6 +127,18 @@
 .lvl:hover .lv-ic,.lvl.on .lv-ic,.lvl.sel .lv-ic,.lvl.active .lv-ic{background:#432C37!important;color:#F7EAC9!important}
 .rep-sec .card{position:relative}
 </style>
+<style id="px-test-slatki">
+/* Test sklonosti — slatki stil (kao „Probaj besplatno") */
+.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxTShim 7s linear infinite;transition:transform .16s}
+@keyframes pxTShim{to{background-position:-240% center}}
+.btn-gold:hover{transform:translateY(-2px)}
+.lvl{transition:transform .14s,border-color .14s,box-shadow .14s;cursor:pointer}
+.lvl:hover{transform:translateY(-3px)}
+.lvl.on{border-color:#C6A05C!important;box-shadow:0 16px 34px -20px rgba(166,128,60,.5)!important}
+.opt{transition:transform .12s,border-color .12s}
+.opt:hover{border-color:#C6A05C!important;transform:translateY(-1px)}
+.eyebrow{color:#B01E48!important}
+</style>
 </head>
 <body>
 
@@ -335,5 +347,20 @@
 </script>
 <script src="header-mathia.js" defer></script>
 <script src="i18n-mathia.js" defer></script>
+<script src="mathia-header.js" defer></script>
+<script id="px-test-fix">
+/* Klik na nivo odmah pokreće test (kao besplatno tok) — rešava „dugme ne radi". */
+(function(){
+  try{
+    var lvls=document.querySelectorAll('.lvl');
+    var startBtn=document.getElementById('startBtn');
+    lvls.forEach(function(b){
+      b.addEventListener('click',function(){
+        setTimeout(function(){ if(startBtn) startBtn.click(); },140);
+      });
+    });
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
