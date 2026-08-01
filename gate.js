@@ -90,9 +90,23 @@
     if (user && user.email && OWNER_EMAILS.indexOf(user.email.toLowerCase()) > -1) return "owner";
     if (user) {
       try {
-        var r = await sb.from("pretplate").select("*")
-          .ilike("kupac_email", user.email).eq("status", "aktivna");
-        var rows = (r && r.data) || [];
+        // Normalizacija mejla: mala slova, za Gmail/Googlemail ignoriši tačke i "+tag"
+        // (Gmail te adrese tretira kao istu). NE spaja različit raspored slova.
+        var _norm = function (e) {
+          e = String(e || "").trim().toLowerCase();
+          var at = e.indexOf("@"); if (at < 0) return e;
+          var loc = e.slice(0, at), dom = e.slice(at + 1);
+          var pl = loc.indexOf("+"); if (pl > -1) loc = loc.slice(0, pl);
+          if (dom === "gmail.com" || dom === "googlemail.com") loc = loc.replace(/\./g, "");
+          return loc + "@" + dom;
+        };
+        var _mine = _norm(user.email);
+        var _lower = String(user.email || "").trim().toLowerCase();
+        var _cands = [_lower]; if (_mine !== _lower) _cands.push(_mine);
+        var _or = _cands.map(function (c) { return "kupac_email.ilike." + c.replace(/[,()]/g, ""); }).join(",");
+        var r = await sb.from("pretplate").select("*").or(_or).eq("status", "aktivna");
+        // Sigurnosna provera: prihvati samo redove čiji je mejl NORMALIZOVANO identičan.
+        var rows = ((r && r.data) || []).filter(function (rw) { return _norm(rw.kupac_email) === _mine; });
         var trazi = kljucevi(SUBJECT);            // strana moze da navede vise kljuceva ("a,b,c")
         for (var i = 0; i < rows.length; i++) {
           var row = rows[i];
