@@ -30,6 +30,10 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .f .eq{font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.14rem;color:var(--ink);white-space:nowrap;overflow-x:auto}
 .lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
 .lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
 .rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
 .pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -60,30 +64,30 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 
   <div class="grp">
     <h2>Poznati limesi</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Sinus</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> (sin x)/x = 1</span></div>
-    <div class="f"><span class="lbl">Broj e</span><span class="eq"><span class="lim">lim<span class="und">x→∞</span></span> (1 + 1/x)<sup>x</sup> = e</span></div>
-    <div class="f"><span class="lbl">Logaritam</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> ln(1+x)/x = 1</span></div>
-    <div class="f"><span class="lbl">Eksponencijal</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> (e<sup>x</sup> − 1)/x = 1</span></div>
-    <div class="f"><span class="lbl">Lopital (0/0, ∞/∞)</span><span class="eq">lim f/g = lim f′/g′</span></div>
+    <div class="f"><span class="lbl">Sinus</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">sin x</span><span class="den">x</span></span> = 1</span></div>
+    <div class="f"><span class="lbl">Broj e</span><span class="eq"><span class="lim">lim<span class="und">x→∞</span></span> (1 + <span class="frac"><span class="num">1</span><span class="den">x</span></span>)<sup>x</sup> = e</span></div>
+    <div class="f"><span class="lbl">Logaritam</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">ln(1+x)</span><span class="den">x</span></span> = 1</span></div>
+    <div class="f"><span class="lbl">Eksponencijal</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">e<sup>x</sup> − 1</span><span class="den">x</span></span> = 1</span></div>
+    <div class="f"><span class="lbl">Lopitalovo pravilo</span><span class="eq">lim <span class="frac"><span class="num">f</span><span class="den">g</span></span> = lim <span class="frac"><span class="num">f′</span><span class="den">g′</span></span></span></div>
   </div>
 
   <div class="grp">
     <h2>Izvodi (tablica)</h2><div class="rule"></div>
     <div class="f"><span class="lbl">Stepen</span><span class="eq">(x<sup>n</sup>)′ = n · x<sup>n−1</sup></span></div>
-    <div class="f"><span class="lbl">Koren</span><span class="eq">(√<span class="rt">x</span>)′ = 1/(2√<span class="rt">x</span>)</span></div>
+    <div class="f"><span class="lbl">Koren</span><span class="eq">(√<span class="rt">x</span>)′ = <span class="frac"><span class="num">1</span><span class="den">2√<span class="rt">x</span></span></span></span></div>
     <div class="f"><span class="lbl">Eksponencijal</span><span class="eq">(e<sup>x</sup>)′ = e<sup>x</sup></span></div>
-    <div class="f"><span class="lbl">Logaritam</span><span class="eq">(ln x)′ = 1/x</span></div>
+    <div class="f"><span class="lbl">Logaritam</span><span class="eq">(ln x)′ = <span class="frac"><span class="num">1</span><span class="den">x</span></span></span></div>
     <div class="f"><span class="lbl">Sinus / kosinus</span><span class="eq">(sin x)′ = cos x &nbsp; (cos x)′ = −sin x</span></div>
-    <div class="f"><span class="lbl">Tangens</span><span class="eq">(tg x)′ = 1/cos² x</span></div>
+    <div class="f"><span class="lbl">Tangens</span><span class="eq">(tg x)′ = <span class="frac"><span class="num">1</span><span class="den">cos² x</span></span></span></div>
     <div class="f"><span class="lbl">Proizvod</span><span class="eq">(u · v)′ = u′v + uv′</span></div>
-    <div class="f"><span class="lbl">Količnik</span><span class="eq">(u/v)′ = (u′v − uv′)/v²</span></div>
+    <div class="f"><span class="lbl">Količnik</span><span class="eq">(<span class="frac"><span class="num">u</span><span class="den">v</span></span>)′ = <span class="frac"><span class="num">u′v − uv′</span><span class="den">v²</span></span></span></div>
     <div class="f"><span class="lbl">Složena funkcija</span><span class="eq">(f(g))′ = f′(g) · g′</span></div>
   </div>
 
   <div class="grp">
     <h2>Integrali (tablica)</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Stepen</span><span class="eq">∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C</span></div>
-    <div class="f"><span class="lbl">Recipročna</span><span class="eq">∫ (1/x) dx = ln|x| + C</span></div>
+    <div class="f"><span class="lbl">Stepen</span><span class="eq">∫ x<sup>n</sup> dx = <span class="frac"><span class="num">x<sup>n+1</sup></span><span class="den">n+1</span></span> + C</span></div>
+    <div class="f"><span class="lbl">Recipročna</span><span class="eq">∫ <span class="frac"><span class="num">1</span><span class="den">x</span></span> dx = ln|x| + C</span></div>
     <div class="f"><span class="lbl">Eksponencijal</span><span class="eq">∫ e<sup>x</sup> dx = e<sup>x</sup> + C</span></div>
     <div class="f"><span class="lbl">Sinus / kosinus</span><span class="eq">∫ sin x dx = −cos x + C &nbsp; ∫ cos x dx = sin x + C</span></div>
     <div class="f"><span class="lbl">Parcijalna</span><span class="eq">∫ u dv = u · v − ∫ v du</span></div>

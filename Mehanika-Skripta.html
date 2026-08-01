@@ -36,6 +36,10 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
 /* jedna formula = jedan red, bez prelamanja, koren preko celog izraza */
 .fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:12px 0;padding:12px 16px;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;white-space:nowrap;overflow-x:auto}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
 .rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .step{font-family:'Spectral','Cambria Math',Georgia,serif;white-space:nowrap;overflow-x:auto;display:block;margin:4px 0}
 b,strong{color:var(--ink)}
@@ -104,13 +108,13 @@ b,strong{color:var(--ink)}
 
     <div class="box primer"><div class="bx-h">Rešen primer — reakcije proste grede</div>
       Greda dužine L = 4 m (A zglobni, B cilindrični), sila F = 200 N na sredini.
-      <span class="step"><b>1)</b> ∑ M<sub>A</sub> = 0 &nbsp;→&nbsp; V<sub>B</sub> · L − F · (L/2) = 0 &nbsp;→&nbsp; V<sub>B</sub> = F/2 = 100 N</span>
+      <span class="step"><b>1)</b> ∑ M<sub>A</sub> = 0 &nbsp;→&nbsp; V<sub>B</sub> · L − F · <span class="frac"><span class="num">L</span><span class="den">2</span></span> = 0 &nbsp;→&nbsp; V<sub>B</sub> = <span class="frac"><span class="num">F</span><span class="den">2</span></span> = 100 N</span>
       <span class="step"><b>2)</b> ∑ F<sub>y</sub> = 0 &nbsp;→&nbsp; V<sub>A</sub> + V<sub>B</sub> − F = 0 &nbsp;→&nbsp; V<sub>A</sub> = 100 N</span>
       <span class="step"><b>3)</b> ∑ F<sub>x</sub> = 0 &nbsp;→&nbsp; H<sub>A</sub> = 0</span>
     </div>
 
     <h3>Težište i trenje</h3>
-    <span class="fx">x<sub>C</sub> = (∑ m<sub>i</sub> x<sub>i</sub>) / (∑ m<sub>i</sub>)</span>
+    <span class="fx">x<sub>C</sub> = <span class="frac"><span class="num">∑ m<sub>i</sub> x<sub>i</sub></span><span class="den">∑ m<sub>i</sub></span></span></span>
     <span class="fx">F<sub>tr</sub> ≤ μ · N</span>
   </section>
 
@@ -118,8 +122,8 @@ b,strong{color:var(--ink)}
   <section class="topic">
     <h2><span class="n">2.</span>Kinematika</h2><div class="rule"></div>
     <p><b>Brzina</b> je izvod položaja, <b>ubrzanje</b> je izvod brzine:</p>
-    <span class="fx">v = dr / dt</span>
-    <span class="fx">a = dv / dt = d²r / dt²</span>
+    <span class="fx">v = <span class="frac"><span class="num">dr</span><span class="den">dt</span></span></span>
+    <span class="fx">a = <span class="frac"><span class="num">dv</span><span class="den">dt</span></span> = <span class="frac"><span class="num">d²r</span><span class="den">dt²</span></span></span>
 
     <h3>Ravnomerno ubrzano pravolinijsko kretanje</h3>
     <span class="fx">v = v<sub>0</sub> + a · t</span>
@@ -128,12 +132,12 @@ b,strong{color:var(--ink)}
 
     <h3>Krivolinijsko kretanje</h3>
     <p>Ubrzanje se deli na <b>tangencijalno</b> (menja intenzitet) i <b>normalno</b> (centripetalno, menja pravac):</p>
-    <span class="fx">a<sub>t</sub> = dv / dt</span>
-    <span class="fx">a<sub>n</sub> = v² / R</span>
+    <span class="fx">a<sub>t</sub> = <span class="frac"><span class="num">dv</span><span class="den">dt</span></span></span>
+    <span class="fx">a<sub>n</sub> = <span class="frac"><span class="num">v²</span><span class="den">R</span></span></span>
     <span class="fx">a = √<span class="rt">a<sub>t</sub>² + a<sub>n</sub>²</span></span>
 
     <h3>Rotacija krutog tela oko ose</h3>
-    <span class="fx">ω = dφ / dt &nbsp;&nbsp; ε = dω / dt</span>
+    <span class="fx">ω = <span class="frac"><span class="num">dφ</span><span class="den">dt</span></span> &nbsp;&nbsp; ε = <span class="frac"><span class="num">dω</span><span class="den">dt</span></span></span>
     <span class="fx">v = ω · r &nbsp;&nbsp; a<sub>t</sub> = ε · r &nbsp;&nbsp; a<sub>n</sub> = ω² · r</span>
 
     <div class="box zapamti"><div class="bx-h">Zapamti</div>
@@ -158,7 +162,7 @@ b,strong{color:var(--ink)}
     <span class="fx">A = F · s · cos α</span>
     <span class="fx">E<sub>k</sub> = ½ · m · v²</span>
     <span class="fx">E<sub>p</sub> = m · g · h</span>
-    <span class="fx">P = A / t = F · v</span>
+    <span class="fx">P = <span class="frac"><span class="num">A</span><span class="den">t</span></span> = F · v</span>
     <p><b>Održanje mehaničke energije</b> (bez trenja): E<sub>k</sub> + E<sub>p</sub> = const. Trenje smanjuje mehaničku energiju.</p>
 
     <h3>Impuls i količina kretanja</h3>
@@ -174,8 +178,8 @@ b,strong{color:var(--ink)}
 
     <h3>Harmonijske oscilacije</h3>
     <span class="fx">x(t) = A · sin(ω · t + φ<sub>0</sub>)</span>
-    <span class="fx">T = 2π · √<span class="rt">m / k</span> &nbsp;&nbsp; (opruga)</span>
-    <span class="fx">T = 2π · √<span class="rt">l / g</span> &nbsp;&nbsp; (klatno)</span>
+    <span class="fx">T = 2π · √<span class="rt"><span class="frac"><span class="num">m</span><span class="den">k</span></span></span> &nbsp;&nbsp; (opruga)</span>
+    <span class="fx">T = 2π · √<span class="rt"><span class="frac"><span class="num">l</span><span class="den">g</span></span></span> &nbsp;&nbsp; (klatno)</span>
 
     <div class="box primer"><div class="bx-h">Rešen primer — nagib bez trenja</div>
       Telo klizi niz gladak nagib ugla α:

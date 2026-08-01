@@ -29,6 +29,10 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .zad .sol{background:linear-gradient(180deg,#FFF7FA,#FBEEF2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .zad .sol .h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.7rem;color:var(--malina);margin-bottom:6px}
 .step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:5px 0}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
 .rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
 .pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -91,7 +95,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
     <div class="z-h"><span class="z-n">4</span><span class="z-t">II Njutnov zakon sa zatezanjem</span></div>
     <p class="q">m<sub>1</sub> = 3 kg (visi) i m<sub>2</sub> = 2 kg (na glatkom stolu) povezani su preko kotura. Ubrzanje i zatezanje? (g = 10)</p>
     <div class="sol"><div class="h">Rešenje</div>
-      <span class="step">a = (m<sub>1</sub> · g) / (m<sub>1</sub> + m<sub>2</sub>) = 30 / 5 = 6 m/s²</span>
+      <span class="step">a = <span class="frac"><span class="num">m<sub>1</sub> · g</span><span class="den">m<sub>1</sub> + m<sub>2</sub></span></span> = <span class="frac"><span class="num">30</span><span class="den">5</span></span> = 6 m/s²</span>
       <span class="step">T = m<sub>2</sub> · a = 2 · 6 = 12 N</span>
     </div>
   </div>
@@ -110,7 +114,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
     <p class="q">Kolica m<sub>1</sub> = 2 kg, v<sub>1</sub> = 3 m/s spoje se sa mirnim kolicima m<sub>2</sub> = 1 kg. Zajednička brzina?</p>
     <div class="sol"><div class="h">Rešenje</div>
       <span class="step">m<sub>1</sub> · v<sub>1</sub> = (m<sub>1</sub> + m<sub>2</sub>) · v</span>
-      <span class="step">v = (2 · 3) / 3 = 2 m/s</span>
+      <span class="step">v = <span class="frac"><span class="num">2 · 3</span><span class="den">3</span></span> = 2 m/s</span>
     </div>
   </div>
 

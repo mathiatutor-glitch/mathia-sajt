@@ -36,6 +36,10 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:12px 0;padding:12px 16px;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;white-space:nowrap;overflow-x:auto}
 .lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
 .lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
 .rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;white-space:nowrap;overflow-x:auto;margin:5px 0}
 b,strong{color:var(--ink)}
@@ -83,20 +87,20 @@ b,strong{color:var(--ink)}
     <span class="fx"><span class="lim">lim<span class="und">n→∞</span></span> a<sub>n</sub> = L</span>
 
     <h3>Granična vrednost funkcije</h3>
-    <p>Slično, funkcija f teži ka L kad x → a. Kod neodređenih oblika (0/0, ∞/∞) koristimo poznate limese i pravila.</p>
-    <span class="fx"><span class="lim">lim<span class="und">x→0</span></span> (sin x)/x = 1</span>
-    <span class="fx"><span class="lim">lim<span class="und">x→∞</span></span> (1 + 1/x)<sup>x</sup> = e</span>
+    <p>Slično, funkcija f teži ka L kad x → a. Kod neodređenih oblika (<span class="frac"><span class="num">0</span><span class="den">0</span></span>, <span class="frac"><span class="num">∞</span><span class="den">∞</span></span>) koristimo poznate limese i pravila.</p>
+    <span class="fx"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">sin x</span><span class="den">x</span></span> = 1</span>
+    <span class="fx"><span class="lim">lim<span class="und">x→∞</span></span> (1 + <span class="frac"><span class="num">1</span><span class="den">x</span></span>)<sup>x</sup> = e</span>
 
     <h3>Neprekidnost</h3>
     <p>Funkcija je <b>neprekidna</b> u tački a ako je <span class="lim">lim<span class="und">x→a</span></span> f(x) = f(a) (nema „prekida", „skoka" ni „rupe").</p>
 
     <div class="box zapamti"><div class="bx-h">Zapamti</div>
-      Kod oblika 0/0 ili ∞/∞ prvo pokušaj sređivanje (skraćivanje, racionalisanje), pa poznate limese;
-      ako ne ide — koristi <b>Lopitalovo pravilo</b> (izvod brojioca / izvod imenioca).
+      Kod oblika <span class="frac"><span class="num">0</span><span class="den">0</span></span> ili <span class="frac"><span class="num">∞</span><span class="den">∞</span></span> prvo pokušaj sređivanje (skraćivanje, racionalisanje), pa poznate limese;
+      ako ne ide — koristi <b>Lopitalovo pravilo</b> (izvod brojioca podeljen izvodom imenioca).
     </div>
 
     <div class="box primer"><div class="bx-h">Rešen primer — limes</div>
-      <span class="step"><span class="lim">lim<span class="und">x→2</span></span> (x² − 4)/(x − 2) = <span class="lim">lim<span class="und">x→2</span></span> ( (x−2)(x+2) )/(x−2)</span>
+      <span class="step"><span class="lim">lim<span class="und">x→2</span></span> <span class="frac"><span class="num">x² − 4</span><span class="den">x − 2</span></span> = <span class="lim">lim<span class="und">x→2</span></span> <span class="frac"><span class="num">(x−2)(x+2)</span><span class="den">x−2</span></span></span>
       <span class="step">= <span class="lim">lim<span class="und">x→2</span></span> (x + 2) = 4</span>
     </div>
   </section>
@@ -105,12 +109,12 @@ b,strong{color:var(--ink)}
   <section class="topic">
     <h2><span class="n">2.</span>Izvodi i primena</h2><div class="rule"></div>
     <p><b>Izvod</b> meri brzinu promene funkcije (nagib tangente):</p>
-    <span class="fx">f′(x) = <span class="lim">lim<span class="und">h→0</span></span> ( f(x+h) − f(x) )/h</span>
+    <span class="fx">f′(x) = <span class="lim">lim<span class="und">h→0</span></span> <span class="frac"><span class="num">f(x+h) − f(x)</span><span class="den">h</span></span></span>
 
     <h3>Pravila diferenciranja</h3>
     <span class="fx">(u ± v)′ = u′ ± v′</span>
     <span class="fx">(u · v)′ = u′v + uv′</span>
-    <span class="fx">(u/v)′ = (u′v − uv′)/v²</span>
+    <span class="fx">(<span class="frac"><span class="num">u</span><span class="den">v</span></span>)′ = <span class="frac"><span class="num">u′v − uv′</span><span class="den">v²</span></span></span>
     <span class="fx">složena: (f(g(x)))′ = f′(g(x)) · g′(x)</span>
 
     <h3>Ispitivanje toka funkcije</h3>
@@ -133,8 +137,8 @@ b,strong{color:var(--ink)}
   <section class="topic">
     <h2><span class="n">3.</span>Integralni račun</h2><div class="rule"></div>
     <p><b>Neodređeni integral</b> je „obrnut" izvodu (primitivna funkcija):</p>
-    <span class="fx">∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C &nbsp; (n ≠ −1)</span>
-    <span class="fx">∫ (1/x) dx = ln|x| + C</span>
+    <span class="fx">∫ x<sup>n</sup> dx = <span class="frac"><span class="num">x<sup>n+1</sup></span><span class="den">n+1</span></span> + C &nbsp; (n ≠ −1)</span>
+    <span class="fx">∫ <span class="frac"><span class="num">1</span><span class="den">x</span></span> dx = ln|x| + C</span>
     <span class="fx">∫ e<sup>x</sup> dx = e<sup>x</sup> + C</span>
 
     <h3>Tehnike</h3>
@@ -146,7 +150,7 @@ b,strong{color:var(--ink)}
     <p>Primene: <b>površina</b> ispod krive, <b>zapremina</b> obrtnog tela, dužina luka.</p>
 
     <div class="box primer"><div class="bx-h">Rešen primer — određeni integral</div>
-      <span class="step">∫<sub>0</sub><sup>2</sup> x dx = [ x²/2 ]<sub>0</sub><sup>2</sup> = 4/2 − 0 = 2</span>
+      <span class="step">∫<sub>0</sub><sup>2</sup> x dx = [ <span class="frac"><span class="num">x²</span><span class="den">2</span></span> ]<sub>0</sub><sup>2</sup> = <span class="frac"><span class="num">4</span><span class="den">2</span></span> − 0 = 2</span>
     </div>
   </section>
 
@@ -155,16 +159,16 @@ b,strong{color:var(--ink)}
     <h2><span class="n">4.</span>Diferencijalne jednačine</h2><div class="rule"></div>
     <p><b>Diferencijalna jednačina</b> povezuje funkciju i njene izvode. Najprostiji tip su <b>jednačine sa
     razdvojenim promenljivama</b>:</p>
-    <span class="fx">dy/dx = f(x) · g(y) &nbsp;→&nbsp; ∫ dy/g(y) = ∫ f(x) dx</span>
+    <span class="fx"><span class="frac"><span class="num">dy</span><span class="den">dx</span></span> = f(x) · g(y) &nbsp;→&nbsp; ∫ <span class="frac"><span class="num">dy</span><span class="den">g(y)</span></span> = ∫ f(x) dx</span>
 
     <div class="box primer"><div class="bx-h">Rešen primer — razdvajanje promenljivih</div>
-      <span class="step">dy/dx = x · y</span>
-      <span class="step">∫ dy/y = ∫ x dx &nbsp;→&nbsp; ln|y| = x²/2 + C</span>
+      <span class="step"><span class="frac"><span class="num">dy</span><span class="den">dx</span></span> = x · y</span>
+      <span class="step">∫ <span class="frac"><span class="num">dy</span><span class="den">y</span></span> = ∫ x dx &nbsp;→&nbsp; ln|y| = <span class="frac"><span class="num">x²</span><span class="den">2</span></span> + C</span>
       <span class="step">y = C · e<sup>x²/2</sup></span>
     </div>
 
     <div class="box zapamti"><div class="bx-h">Zapamti — kako rešiti zadatak</div>
-      1) Prepoznaj tip (limes, izvod, integral, ODJ). 2) Za limes — sredi pa poznati limes/Lopital.
+      1) Prepoznaj tip (limes, izvod, integral, ODJ). 2) Za limes — sredi pa poznati limes ili Lopitalovo pravilo.
       3) Za tok funkcije — idi redom (domen → f′ → f″ → grafik). 4) Za integral — smena ili parcijalna.
       5) Proveri rezultat (npr. izvedi nazad).
     </div>
