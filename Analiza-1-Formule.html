@@ -15,7 +15,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
 .tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
 .tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
-.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer}
 .cover{text-align:center;padding:56px 22px 30px}
 .cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
 .cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.4vw,2.9rem);color:var(--ink);margin:12px 0 6px}
@@ -34,9 +34,6 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .frac>span{display:block;line-height:1.12;padding:0 .45em}
 .frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
 .frac .den{padding-top:.06em}
-.efr{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;font-size:.92em;margin:0 .05em}
-.efr>span{display:block;line-height:1.02;padding:0 .18em}
-.efr .num{border-bottom:1px solid currentColor}
 .rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
 .pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -52,49 +49,51 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <body>
 
 <header class="topbar">
-  <a class="tb-back" href="predmet-analiza1.html">← Analiza 1</a>
+  <a class="tb-back" href="predmet-analiza1.html" data-i18n="back">← Analiza 1</a>
   <a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a>
-  <span class="tb-lang">SR</span>
+  <select class="tb-lang" id="langsel" aria-label="Jezik / Language">
+    <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option>
+  </select>
 </header>
 
 <div class="cover">
-  <div class="eyebrow">Formule · Podsetnik</div>
-  <h1>Analiza 1 — formule</h1>
-  <div class="sub">Poznati limesi, izvodi, integrali i pravila.</div>
+  <div class="eyebrow" data-i18n="eyebrow">Formule · Podsetnik</div>
+  <h1 data-i18n="title">Analiza 1 — formule</h1>
+  <div class="sub" data-i18n="sub">Poznati limesi, izvodi, integrali i pravila.</div>
 </div>
 
 <div class="wrap">
 
   <div class="grp">
-    <h2>Poznati limesi</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Sinus</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">sin x</span><span class="den">x</span></span> = 1</span></div>
-    <div class="f"><span class="lbl">Broj e</span><span class="eq"><span class="lim">lim<span class="und">x→∞</span></span> (1 + <span class="frac"><span class="num">1</span><span class="den">x</span></span>)<sup>x</sup> = e</span></div>
-    <div class="f"><span class="lbl">Logaritam</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">ln(1+x)</span><span class="den">x</span></span> = 1</span></div>
-    <div class="f"><span class="lbl">Eksponencijal</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">e<sup>x</sup> − 1</span><span class="den">x</span></span> = 1</span></div>
-    <div class="f"><span class="lbl">Lopitalovo pravilo</span><span class="eq">lim <span class="frac"><span class="num">f</span><span class="den">g</span></span> = lim <span class="frac"><span class="num">f′</span><span class="den">g′</span></span></span></div>
+    <h2 data-i18n="g_lim">Poznati limesi</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="l_sin">Sinus</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">sin x</span><span class="den">x</span></span> = 1</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_e">Broj e</span><span class="eq"><span class="lim">lim<span class="und">x→∞</span></span> (1 + <span class="frac"><span class="num">1</span><span class="den">x</span></span>)<sup>x</sup> = e</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_log">Logaritam</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">ln(1+x)</span><span class="den">x</span></span> = 1</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_exp">Eksponencijal</span><span class="eq"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">e<sup>x</sup> − 1</span><span class="den">x</span></span> = 1</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_lop">Lopitalovo pravilo</span><span class="eq">lim <span class="frac"><span class="num">f</span><span class="den">g</span></span> = lim <span class="frac"><span class="num">f′</span><span class="den">g′</span></span></span></div>
   </div>
 
   <div class="grp">
-    <h2>Izvodi (tablica)</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Stepen</span><span class="eq">(x<sup>n</sup>)′ = n · x<sup>n−1</sup></span></div>
-    <div class="f"><span class="lbl">Koren</span><span class="eq">(√<span class="rt">x</span>)′ = <span class="frac"><span class="num">1</span><span class="den">2√<span class="rt">x</span></span></span></span></div>
-    <div class="f"><span class="lbl">Eksponencijal</span><span class="eq">(e<sup>x</sup>)′ = e<sup>x</sup></span></div>
-    <div class="f"><span class="lbl">Logaritam</span><span class="eq">(ln x)′ = <span class="frac"><span class="num">1</span><span class="den">x</span></span></span></div>
-    <div class="f"><span class="lbl">Sinus i kosinus</span><span class="eq">(sin x)′ = cos x &nbsp; (cos x)′ = −sin x</span></div>
-    <div class="f"><span class="lbl">Tangens</span><span class="eq">(tg x)′ = <span class="frac"><span class="num">1</span><span class="den">cos² x</span></span></span></div>
-    <div class="f"><span class="lbl">Proizvod</span><span class="eq">(u · v)′ = u′v + uv′</span></div>
-    <div class="f"><span class="lbl">Količnik</span><span class="eq">(<span class="frac"><span class="num">u</span><span class="den">v</span></span>)′ = <span class="frac"><span class="num">u′v − uv′</span><span class="den">v²</span></span></span></div>
-    <div class="f"><span class="lbl">Složena funkcija</span><span class="eq">(f(g))′ = f′(g) · g′</span></div>
+    <h2 data-i18n="g_der">Izvodi (tablica)</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="l_pow">Stepen</span><span class="eq">(x<sup>n</sup>)′ = n · x<sup>n−1</sup></span></div>
+    <div class="f"><span class="lbl" data-i18n="l_root">Koren</span><span class="eq">(√<span class="rt">x</span>)′ = <span class="frac"><span class="num">1</span><span class="den">2√<span class="rt">x</span></span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="l_exp">Eksponencijal</span><span class="eq">(e<sup>x</sup>)′ = e<sup>x</sup></span></div>
+    <div class="f"><span class="lbl" data-i18n="l_log">Logaritam</span><span class="eq">(ln x)′ = <span class="frac"><span class="num">1</span><span class="den">x</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="l_sincos">Sinus i kosinus</span><span class="eq">(sin x)′ = cos x &nbsp; (cos x)′ = −sin x</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_tan">Tangens</span><span class="eq">(tg x)′ = <span class="frac"><span class="num">1</span><span class="den">cos² x</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="l_prod">Proizvod</span><span class="eq">(u · v)′ = u′v + uv′</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_quot">Količnik</span><span class="eq">(<span class="frac"><span class="num">u</span><span class="den">v</span></span>)′ = <span class="frac"><span class="num">u′v − uv′</span><span class="den">v²</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="l_comp">Složena funkcija</span><span class="eq">(f(g))′ = f′(g) · g′</span></div>
   </div>
 
   <div class="grp">
-    <h2>Integrali (tablica)</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Stepen</span><span class="eq">∫ x<sup>n</sup> dx = <span class="frac"><span class="num">x<sup>n+1</sup></span><span class="den">n+1</span></span> + C</span></div>
-    <div class="f"><span class="lbl">Recipročna</span><span class="eq">∫ <span class="frac"><span class="num">1</span><span class="den">x</span></span> dx = ln|x| + C</span></div>
-    <div class="f"><span class="lbl">Eksponencijal</span><span class="eq">∫ e<sup>x</sup> dx = e<sup>x</sup> + C</span></div>
-    <div class="f"><span class="lbl">Sinus i kosinus</span><span class="eq">∫ sin x dx = −cos x + C &nbsp; ∫ cos x dx = sin x + C</span></div>
-    <div class="f"><span class="lbl">Parcijalna</span><span class="eq">∫ u dv = u · v − ∫ v du</span></div>
-    <div class="f"><span class="lbl">Njutn–Lajbnic</span><span class="eq">∫<sub>a</sub><sup>b</sup> f dx = F(b) − F(a)</span></div>
+    <h2 data-i18n="g_int">Integrali (tablica)</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="l_pow">Stepen</span><span class="eq">∫ x<sup>n</sup> dx = <span class="frac"><span class="num">x<sup>n+1</sup></span><span class="den">n+1</span></span> + C</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_recip">Recipročna</span><span class="eq">∫ <span class="frac"><span class="num">1</span><span class="den">x</span></span> dx = ln|x| + C</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_exp">Eksponencijal</span><span class="eq">∫ e<sup>x</sup> dx = e<sup>x</sup> + C</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_sincos">Sinus i kosinus</span><span class="eq">∫ sin x dx = −cos x + C &nbsp; ∫ cos x dx = sin x + C</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_parts">Parcijalna</span><span class="eq">∫ u dv = u · v − ∫ v du</span></div>
+    <div class="f"><span class="lbl" data-i18n="l_nl">Njutn–Lajbnic</span><span class="eq">∫<sub>a</sub><sup>b</sup> f dx = F(b) − F(a)</span></div>
   </div>
 
 </div>
@@ -102,19 +101,72 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <footer class="pf">
   <div class="orn">✦</div>
   <div class="word">MATHIA</div>
-  <p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
+  <p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
   <nav class="links">
-    <a href="predmet-analiza1.html">Analiza 1</a>
-    <a href="predmeti.html">Predmeti</a>
-    <a href="prodavnica.html">Prodavnica</a>
-    <a href="index.html#paketi">Paketi</a>
-    <a href="o-marini.html">O meni</a>
-    <a href="uslovi.html">Uslovi</a>
-    <a href="privatnost.html">Privatnost</a>
+    <a href="predmet-analiza1.html" data-i18n="subj">Analiza 1</a>
+    <a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a>
+    <a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a>
+    <a href="index.html#paketi" data-i18n="nav_plans">Paketi</a>
+    <a href="o-marini.html" data-i18n="nav_about">O meni</a>
+    <a href="uslovi.html" data-i18n="nav_terms">Uslovi</a>
+    <a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a>
   </nav>
   <div class="rule"></div>
-  <div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
+  <div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
 </footer>
+
+<script>
+(function(){
+  var T={
+    back:{sr:"← Analiza 1",en:"← Calculus 1",de:"← Analysis 1",fr:"← Analyse 1",es:"← Cálculo 1",it:"← Analisi 1",ru:"← Анализ 1",pt:"← Cálculo 1"},
+    subj:{sr:"Analiza 1",en:"Calculus 1",de:"Analysis 1",fr:"Analyse 1",es:"Cálculo 1",it:"Analisi 1",ru:"Анализ 1",pt:"Cálculo 1"},
+    eyebrow:{sr:"Formule · Podsetnik",en:"Formulas · Reference",de:"Formeln · Übersicht",fr:"Formules · Aide-mémoire",es:"Fórmulas · Resumen",it:"Formule · Prontuario",ru:"Формулы · Справочник",pt:"Fórmulas · Resumo"},
+    title:{sr:"Analiza 1 — formule",en:"Calculus 1 — formulas",de:"Analysis 1 — Formeln",fr:"Analyse 1 — formules",es:"Cálculo 1 — fórmulas",it:"Analisi 1 — formule",ru:"Анализ 1 — формулы",pt:"Cálculo 1 — fórmulas"},
+    sub:{sr:"Poznati limesi, izvodi, integrali i pravila.",en:"Common limits, derivatives, integrals and rules.",de:"Bekannte Grenzwerte, Ableitungen, Integrale und Regeln.",fr:"Limites usuelles, dérivées, intégrales et règles.",es:"Límites conocidos, derivadas, integrales y reglas.",it:"Limiti notevoli, derivate, integrali e regole.",ru:"Известные пределы, производные, интегралы и правила.",pt:"Limites conhecidos, derivadas, integrais e regras."},
+    g_lim:{sr:"Poznati limesi",en:"Common limits",de:"Bekannte Grenzwerte",fr:"Limites usuelles",es:"Límites conocidos",it:"Limiti notevoli",ru:"Известные пределы",pt:"Limites conhecidos"},
+    g_der:{sr:"Izvodi (tablica)",en:"Derivatives (table)",de:"Ableitungen (Tabelle)",fr:"Dérivées (table)",es:"Derivadas (tabla)",it:"Derivate (tabella)",ru:"Производные (таблица)",pt:"Derivadas (tabela)"},
+    g_int:{sr:"Integrali (tablica)",en:"Integrals (table)",de:"Integrale (Tabelle)",fr:"Intégrales (table)",es:"Integrales (tabla)",it:"Integrali (tabella)",ru:"Интегралы (таблица)",pt:"Integrais (tabela)"},
+    l_sin:{sr:"Sinus",en:"Sine",de:"Sinus",fr:"Sinus",es:"Seno",it:"Seno",ru:"Синус",pt:"Seno"},
+    l_e:{sr:"Broj e",en:"Number e",de:"Zahl e",fr:"Nombre e",es:"Número e",it:"Numero e",ru:"Число e",pt:"Número e"},
+    l_log:{sr:"Logaritam",en:"Logarithm",de:"Logarithmus",fr:"Logarithme",es:"Logaritmo",it:"Logaritmo",ru:"Логарифм",pt:"Logaritmo"},
+    l_exp:{sr:"Eksponencijal",en:"Exponential",de:"Exponentialfunktion",fr:"Exponentielle",es:"Exponencial",it:"Esponenziale",ru:"Экспонента",pt:"Exponencial"},
+    l_lop:{sr:"Lopitalovo pravilo",en:"L'Hôpital's rule",de:"Regel von L'Hôpital",fr:"Règle de L'Hôpital",es:"Regla de L'Hôpital",it:"Regola di L'Hôpital",ru:"Правило Лопиталя",pt:"Regra de L'Hôpital"},
+    l_pow:{sr:"Stepen",en:"Power",de:"Potenz",fr:"Puissance",es:"Potencia",it:"Potenza",ru:"Степень",pt:"Potência"},
+    l_root:{sr:"Koren",en:"Root",de:"Wurzel",fr:"Racine",es:"Raíz",it:"Radice",ru:"Корень",pt:"Raiz"},
+    l_sincos:{sr:"Sinus i kosinus",en:"Sine and cosine",de:"Sinus und Kosinus",fr:"Sinus et cosinus",es:"Seno y coseno",it:"Seno e coseno",ru:"Синус и косинус",pt:"Seno e cosseno"},
+    l_tan:{sr:"Tangens",en:"Tangent",de:"Tangens",fr:"Tangente",es:"Tangente",it:"Tangente",ru:"Тангенс",pt:"Tangente"},
+    l_prod:{sr:"Proizvod",en:"Product",de:"Produkt",fr:"Produit",es:"Producto",it:"Prodotto",ru:"Произведение",pt:"Produto"},
+    l_quot:{sr:"Količnik",en:"Quotient",de:"Quotient",fr:"Quotient",es:"Cociente",it:"Quoziente",ru:"Частное",pt:"Quociente"},
+    l_comp:{sr:"Složena funkcija",en:"Composite function",de:"Verkettete Funktion",fr:"Fonction composée",es:"Función compuesta",it:"Funzione composta",ru:"Сложная функция",pt:"Função composta"},
+    l_recip:{sr:"Recipročna",en:"Reciprocal",de:"Kehrwert",fr:"Inverse (1/x)",es:"Recíproca",it:"Reciproca",ru:"Обратная (1/x)",pt:"Recíproca"},
+    l_parts:{sr:"Parcijalna",en:"By parts",de:"Partielle Integration",fr:"Par parties",es:"Por partes",it:"Per parti",ru:"По частям",pt:"Por partes"},
+    l_nl:{sr:"Njutn–Lajbnic",en:"Newton–Leibniz",de:"Newton–Leibniz",fr:"Newton–Leibniz",es:"Newton–Leibniz",it:"Newton–Leibniz",ru:"Ньютон–Лейбниц",pt:"Newton–Leibniz"},
+    tagline:{sr:"Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.",en:"Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.",de:"Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.",fr:"Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.",es:"Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.",it:"Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.",ru:"Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.",pt:"Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."},
+    nav_subjects:{sr:"Predmeti",en:"Subjects",de:"Fächer",fr:"Matières",es:"Asignaturas",it:"Materie",ru:"Предметы",pt:"Disciplinas"},
+    nav_store:{sr:"Prodavnica",en:"Store",de:"Shop",fr:"Boutique",es:"Tienda",it:"Negozio",ru:"Магазин",pt:"Loja"},
+    nav_plans:{sr:"Paketi",en:"Plans",de:"Pakete",fr:"Formules",es:"Planes",it:"Piani",ru:"Тарифы",pt:"Planos"},
+    nav_about:{sr:"O meni",en:"About me",de:"Über mich",fr:"À propos",es:"Sobre mí",it:"Chi sono",ru:"Обо мне",pt:"Sobre mim"},
+    nav_terms:{sr:"Uslovi",en:"Terms",de:"AGB",fr:"Conditions",es:"Términos",it:"Termini",ru:"Условия",pt:"Termos"},
+    nav_privacy:{sr:"Privatnost",en:"Privacy",de:"Datenschutz",fr:"Confidentialité",es:"Privacidad",it:"Privacy",ru:"Конфиденциальность",pt:"Privacidade"},
+    copy:{sr:"© 2026 Mathia Edu · Sva prava zadržana.",en:"© 2026 Mathia Edu · All rights reserved.",de:"© 2026 Mathia Edu · Alle Rechte vorbehalten.",fr:"© 2026 Mathia Edu · Tous droits réservés.",es:"© 2026 Mathia Edu · Todos los derechos reservados.",it:"© 2026 Mathia Edu · Tutti i diritti riservati.",ru:"© 2026 Mathia Edu · Все права защищены.",pt:"© 2026 Mathia Edu · Todos os direitos reservados."}
+  };
+  var LANGS=["sr","en","de","fr","es","it","ru","pt"];
+  function apply(l){
+    if(LANGS.indexOf(l)<0)l="sr";
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var k=el.getAttribute("data-i18n"); if(T[k]&&T[k][l])el.textContent=T[k][l];
+    });
+    var sel=document.getElementById("langsel"); if(sel)sel.value=l;
+    try{localStorage.setItem("mathia_lang",l);}catch(e){}
+  }
+  var start="sr"; try{start=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();}catch(e){}
+  apply(start);
+  var sel=document.getElementById("langsel");
+  if(sel)sel.addEventListener("change",function(){apply(this.value);});
+  window.addEventListener("mathia:lang",function(){try{apply((localStorage.getItem("mathia_lang")||"sr").toLowerCase());}catch(e){}});
+})();
+</script>
 
 </body>
 </html>
