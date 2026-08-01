@@ -34,6 +34,9 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .frac>span{display:block;line-height:1.12;padding:0 .45em}
 .frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
 .frac .den{padding-top:.06em}
+.efr{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;font-size:.92em;margin:0 .05em}
+.efr>span{display:block;line-height:1.02;padding:0 .18em}
+.efr .num{border-bottom:1px solid currentColor}
 .rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
 .pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -77,7 +80,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
     <div class="f"><span class="lbl">Koren</span><span class="eq">(√<span class="rt">x</span>)′ = <span class="frac"><span class="num">1</span><span class="den">2√<span class="rt">x</span></span></span></span></div>
     <div class="f"><span class="lbl">Eksponencijal</span><span class="eq">(e<sup>x</sup>)′ = e<sup>x</sup></span></div>
     <div class="f"><span class="lbl">Logaritam</span><span class="eq">(ln x)′ = <span class="frac"><span class="num">1</span><span class="den">x</span></span></span></div>
-    <div class="f"><span class="lbl">Sinus / kosinus</span><span class="eq">(sin x)′ = cos x &nbsp; (cos x)′ = −sin x</span></div>
+    <div class="f"><span class="lbl">Sinus i kosinus</span><span class="eq">(sin x)′ = cos x &nbsp; (cos x)′ = −sin x</span></div>
     <div class="f"><span class="lbl">Tangens</span><span class="eq">(tg x)′ = <span class="frac"><span class="num">1</span><span class="den">cos² x</span></span></span></div>
     <div class="f"><span class="lbl">Proizvod</span><span class="eq">(u · v)′ = u′v + uv′</span></div>
     <div class="f"><span class="lbl">Količnik</span><span class="eq">(<span class="frac"><span class="num">u</span><span class="den">v</span></span>)′ = <span class="frac"><span class="num">u′v − uv′</span><span class="den">v²</span></span></span></div>
@@ -89,7 +92,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
     <div class="f"><span class="lbl">Stepen</span><span class="eq">∫ x<sup>n</sup> dx = <span class="frac"><span class="num">x<sup>n+1</sup></span><span class="den">n+1</span></span> + C</span></div>
     <div class="f"><span class="lbl">Recipročna</span><span class="eq">∫ <span class="frac"><span class="num">1</span><span class="den">x</span></span> dx = ln|x| + C</span></div>
     <div class="f"><span class="lbl">Eksponencijal</span><span class="eq">∫ e<sup>x</sup> dx = e<sup>x</sup> + C</span></div>
-    <div class="f"><span class="lbl">Sinus / kosinus</span><span class="eq">∫ sin x dx = −cos x + C &nbsp; ∫ cos x dx = sin x + C</span></div>
+    <div class="f"><span class="lbl">Sinus i kosinus</span><span class="eq">∫ sin x dx = −cos x + C &nbsp; ∫ cos x dx = sin x + C</span></div>
     <div class="f"><span class="lbl">Parcijalna</span><span class="eq">∫ u dv = u · v − ∫ v du</span></div>
     <div class="f"><span class="lbl">Njutn–Lajbnic</span><span class="eq">∫<sub>a</sub><sup>b</sup> f dx = F(b) − F(a)</span></div>
   </div>

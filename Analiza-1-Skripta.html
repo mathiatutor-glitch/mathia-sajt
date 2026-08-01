@@ -40,6 +40,9 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .frac>span{display:block;line-height:1.12;padding:0 .45em}
 .frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
 .frac .den{padding-top:.06em}
+.efr{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;font-size:.92em;margin:0 .05em}
+.efr>span{display:block;line-height:1.02;padding:0 .18em}
+.efr .num{border-bottom:1px solid currentColor}
 .rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;white-space:nowrap;overflow-x:auto;margin:5px 0}
 b,strong{color:var(--ink)}
@@ -87,7 +90,7 @@ b,strong{color:var(--ink)}
     <span class="fx"><span class="lim">lim<span class="und">n→∞</span></span> a<sub>n</sub> = L</span>
 
     <h3>Granična vrednost funkcije</h3>
-    <p>Slično, funkcija f teži ka L kad x → a. Kod neodređenih oblika (<span class="frac"><span class="num">0</span><span class="den">0</span></span>, <span class="frac"><span class="num">∞</span><span class="den">∞</span></span>) koristimo poznate limese i pravila.</p>
+    <p>Slično, funkcija f teži ka L kad x → a. Kod neodređenih oblika („0/0", „∞/∞") koristimo poznate limese i pravila.</p>
     <span class="fx"><span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">sin x</span><span class="den">x</span></span> = 1</span>
     <span class="fx"><span class="lim">lim<span class="und">x→∞</span></span> (1 + <span class="frac"><span class="num">1</span><span class="den">x</span></span>)<sup>x</sup> = e</span>
 
@@ -95,7 +98,7 @@ b,strong{color:var(--ink)}
     <p>Funkcija je <b>neprekidna</b> u tački a ako je <span class="lim">lim<span class="und">x→a</span></span> f(x) = f(a) (nema „prekida", „skoka" ni „rupe").</p>
 
     <div class="box zapamti"><div class="bx-h">Zapamti</div>
-      Kod oblika <span class="frac"><span class="num">0</span><span class="den">0</span></span> ili <span class="frac"><span class="num">∞</span><span class="den">∞</span></span> prvo pokušaj sređivanje (skraćivanje, racionalisanje), pa poznate limese;
+      Kod oblika „0/0" ili „∞/∞" prvo pokušaj sređivanje (skraćivanje, racionalisanje), pa poznate limese;
       ako ne ide — koristi <b>Lopitalovo pravilo</b> (izvod brojioca podeljen izvodom imenioca).
     </div>
 
@@ -164,7 +167,7 @@ b,strong{color:var(--ink)}
     <div class="box primer"><div class="bx-h">Rešen primer — razdvajanje promenljivih</div>
       <span class="step"><span class="frac"><span class="num">dy</span><span class="den">dx</span></span> = x · y</span>
       <span class="step">∫ <span class="frac"><span class="num">dy</span><span class="den">y</span></span> = ∫ x dx &nbsp;→&nbsp; ln|y| = <span class="frac"><span class="num">x²</span><span class="den">2</span></span> + C</span>
-      <span class="step">y = C · e<sup>x²/2</sup></span>
+      <span class="step">y = C · e<sup><span class="efr"><span class="num">x²</span><span class="den">2</span></span></sup></span>
     </div>
 
     <div class="box zapamti"><div class="bx-h">Zapamti — kako rešiti zadatak</div>
