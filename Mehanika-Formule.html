@@ -23,11 +23,13 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif}
 .grp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:18px 0;box-shadow:0 16px 40px -30px rgba(120,40,60,.4)}
 .grp h2{font-family:'Spectral',serif;color:var(--ink);font-size:1.35rem;margin:0 0 4px}
-.grp .rule{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 12px}
-.f{display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px dashed #EFE1DC;flex-wrap:wrap}
+.grp .rule{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.f{display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:center;padding:11px 0;border-bottom:1px dashed #EFE1DC}
 .f:last-child{border-bottom:0}
-.f .lbl{min-width:180px;font-weight:700;color:var(--ink2)}
-.f .eq{flex:1;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.1rem;color:var(--ink);overflow-x:auto}
+@media(max-width:560px){.f{grid-template-columns:1fr;gap:2px}}
+.f .lbl{font-weight:700;color:var(--ink2)}
+.f .eq{font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.14rem;color:var(--ink);white-space:nowrap;overflow-x:auto}
+.rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
 .pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
 .pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
@@ -57,33 +59,47 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 
   <div class="grp">
     <h2>Statika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Komponente sile</span><span class="eq">F<sub>x</sub> = F·cos α &nbsp; , &nbsp; F<sub>y</sub> = F·sin α</span></div>
-    <div class="f"><span class="lbl">Rezultanta</span><span class="eq">R = √(R<sub>x</sub>² + R<sub>y</sub>²)</span></div>
-    <div class="f"><span class="lbl">Moment sile</span><span class="eq">M = F·d &nbsp; [N·m]</span></div>
-    <div class="f"><span class="lbl">Ravnoteža</span><span class="eq">∑F<sub>x</sub> = 0 , &nbsp; ∑F<sub>y</sub> = 0 , &nbsp; ∑M = 0</span></div>
+    <div class="f"><span class="lbl">Komponenta sile (x)</span><span class="eq">F<sub>x</sub> = F · cos α</span></div>
+    <div class="f"><span class="lbl">Komponenta sile (y)</span><span class="eq">F<sub>y</sub> = F · sin α</span></div>
+    <div class="f"><span class="lbl">Rezultanta</span><span class="eq">R = √<span class="rt">F<sub>x</sub>² + F<sub>y</sub>²</span></span></div>
+    <div class="f"><span class="lbl">Moment sile</span><span class="eq">M = F · d &nbsp; (N · m)</span></div>
+    <div class="f"><span class="lbl">Ravnoteža sila (x)</span><span class="eq">∑ F<sub>x</sub> = 0</span></div>
+    <div class="f"><span class="lbl">Ravnoteža sila (y)</span><span class="eq">∑ F<sub>y</sub> = 0</span></div>
+    <div class="f"><span class="lbl">Ravnoteža momenata</span><span class="eq">∑ M = 0</span></div>
     <div class="f"><span class="lbl">Težište</span><span class="eq">x<sub>C</sub> = (∑ m<sub>i</sub> x<sub>i</sub>) / (∑ m<sub>i</sub>)</span></div>
-    <div class="f"><span class="lbl">Trenje</span><span class="eq">F<sub>tr</sub> ≤ μ·N</span></div>
+    <div class="f"><span class="lbl">Trenje</span><span class="eq">F<sub>tr</sub> ≤ μ · N</span></div>
   </div>
 
   <div class="grp">
     <h2>Kinematika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Brzina, ubrzanje</span><span class="eq">v = dr/dt , &nbsp; a = dv/dt</span></div>
-    <div class="f"><span class="lbl">Ravnomerno ubrzano</span><span class="eq">v = v<sub>0</sub> + a·t , &nbsp; s = v<sub>0</sub>·t + ½·a·t² , &nbsp; v² = v<sub>0</sub>² + 2·a·s</span></div>
-    <div class="f"><span class="lbl">Krivolinijsko</span><span class="eq">a<sub>t</sub> = dv/dt , &nbsp; a<sub>n</sub> = v²/R , &nbsp; a = √(a<sub>t</sub>² + a<sub>n</sub>²)</span></div>
-    <div class="f"><span class="lbl">Rotacija</span><span class="eq">ω = dφ/dt , &nbsp; ε = dω/dt</span></div>
-    <div class="f"><span class="lbl">Tačka pri rotaciji</span><span class="eq">v = ω·r , &nbsp; a<sub>t</sub> = ε·r , &nbsp; a<sub>n</sub> = ω²·r</span></div>
+    <div class="f"><span class="lbl">Brzina</span><span class="eq">v = dr / dt</span></div>
+    <div class="f"><span class="lbl">Ubrzanje</span><span class="eq">a = dv / dt</span></div>
+    <div class="f"><span class="lbl">Ravnomerno ubrzano — brzina</span><span class="eq">v = v<sub>0</sub> + a · t</span></div>
+    <div class="f"><span class="lbl">Ravnomerno ubrzano — put</span><span class="eq">s = v<sub>0</sub> · t + ½ · a · t²</span></div>
+    <div class="f"><span class="lbl">Bez vremena</span><span class="eq">v² = v<sub>0</sub>² + 2 · a · s</span></div>
+    <div class="f"><span class="lbl">Tangencijalno ubrzanje</span><span class="eq">a<sub>t</sub> = dv / dt</span></div>
+    <div class="f"><span class="lbl">Normalno ubrzanje</span><span class="eq">a<sub>n</sub> = v² / R</span></div>
+    <div class="f"><span class="lbl">Ukupno ubrzanje</span><span class="eq">a = √<span class="rt">a<sub>t</sub>² + a<sub>n</sub>²</span></span></div>
+    <div class="f"><span class="lbl">Ugaona brzina / ubrzanje</span><span class="eq">ω = dφ / dt &nbsp; ε = dω / dt</span></div>
+    <div class="f"><span class="lbl">Tačka pri rotaciji</span><span class="eq">v = ω · r &nbsp; a<sub>t</sub> = ε · r &nbsp; a<sub>n</sub> = ω² · r</span></div>
   </div>
 
   <div class="grp">
     <h2>Dinamika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">II Njutnov zakon</span><span class="eq">F = m·a</span></div>
-    <div class="f"><span class="lbl">Rad, snaga</span><span class="eq">A = F·s·cos α , &nbsp; P = A/t = F·v</span></div>
-    <div class="f"><span class="lbl">Energije</span><span class="eq">E<sub>k</sub> = ½·m·v² , &nbsp; E<sub>p</sub> = m·g·h</span></div>
+    <div class="f"><span class="lbl">II Njutnov zakon</span><span class="eq">F = m · a</span></div>
+    <div class="f"><span class="lbl">Rad</span><span class="eq">A = F · s · cos α</span></div>
+    <div class="f"><span class="lbl">Snaga</span><span class="eq">P = A / t = F · v</span></div>
+    <div class="f"><span class="lbl">Kinetička energija</span><span class="eq">E<sub>k</sub> = ½ · m · v²</span></div>
+    <div class="f"><span class="lbl">Potencijalna energija</span><span class="eq">E<sub>p</sub> = m · g · h</span></div>
     <div class="f"><span class="lbl">Održanje energije</span><span class="eq">E<sub>k</sub> + E<sub>p</sub> = const</span></div>
-    <div class="f"><span class="lbl">Impuls</span><span class="eq">p = m·v , &nbsp; F·Δt = Δp</span></div>
-    <div class="f"><span class="lbl">Rotacija tela</span><span class="eq">M = J·ε , &nbsp; E<sub>rot</sub> = ½·J·ω² , &nbsp; L = J·ω</span></div>
-    <div class="f"><span class="lbl">Moment inercije</span><span class="eq">J<sub>tačka</sub> = m·r² , &nbsp; J<sub>disk</sub> = ½·m·R²</span></div>
-    <div class="f"><span class="lbl">Oscilacije</span><span class="eq">T = 2π·√(m/k) , &nbsp; T = 2π·√(l/g)</span></div>
+    <div class="f"><span class="lbl">Količina kretanja</span><span class="eq">p = m · v</span></div>
+    <div class="f"><span class="lbl">Impuls sile</span><span class="eq">F · Δt = Δp</span></div>
+    <div class="f"><span class="lbl">Moment (rotacija)</span><span class="eq">M = J · ε</span></div>
+    <div class="f"><span class="lbl">Energija rotacije</span><span class="eq">E<sub>rot</sub> = ½ · J · ω²</span></div>
+    <div class="f"><span class="lbl">Moment inercije (tačka)</span><span class="eq">J = m · r²</span></div>
+    <div class="f"><span class="lbl">Moment inercije (disk)</span><span class="eq">J = ½ · m · R²</span></div>
+    <div class="f"><span class="lbl">Period — opruga</span><span class="eq">T = 2π · √<span class="rt">m / k</span></span></div>
+    <div class="f"><span class="lbl">Period — klatno</span><span class="eq">T = 2π · √<span class="rt">l / g</span></span></div>
   </div>
 
 </div>
