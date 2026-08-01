@@ -16,7 +16,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
 .tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
 .tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
-.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer}
 .cover{text-align:center;padding:56px 22px 30px}
 .cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
 .cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2.2rem,6vw,3.2rem);color:var(--ink);margin:12px 0 6px}
@@ -48,62 +48,62 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <body>
 
 <header class="topbar">
-  <a class="tb-back" href="predmet-fizika-mehanika.html">← Mehanika</a>
+  <a class="tb-back" href="predmet-fizika-mehanika.html" data-i18n="back">← Mehanika</a>
   <a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a>
-  <span class="tb-lang">SR</span>
+  <select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 </header>
 
 <div class="cover">
-  <div class="eyebrow">Formule · Podsetnik</div>
-  <h1>Mehanika — formule</h1>
-  <div class="sub">Sve ključne formule na jednom mestu, po celinama.</div>
+  <div class="eyebrow" data-i18n="eyebrow">Formule · Podsetnik</div>
+  <h1 data-i18n="title">Mehanika — formule</h1>
+  <div class="sub" data-i18n="sub">Sve ključne formule na jednom mestu, po celinama.</div>
 </div>
 
 <div class="wrap">
 
   <div class="grp">
-    <h2>Statika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Komponenta sile (x)</span><span class="eq">F<sub>x</sub> = F · cos α</span></div>
-    <div class="f"><span class="lbl">Komponenta sile (y)</span><span class="eq">F<sub>y</sub> = F · sin α</span></div>
-    <div class="f"><span class="lbl">Rezultanta</span><span class="eq">R = √<span class="rt">F<sub>x</sub>² + F<sub>y</sub>²</span></span></div>
-    <div class="f"><span class="lbl">Moment sile</span><span class="eq">M = F · d &nbsp; (N · m)</span></div>
-    <div class="f"><span class="lbl">Ravnoteža sila (x)</span><span class="eq">∑ F<sub>x</sub> = 0</span></div>
-    <div class="f"><span class="lbl">Ravnoteža sila (y)</span><span class="eq">∑ F<sub>y</sub> = 0</span></div>
-    <div class="f"><span class="lbl">Ravnoteža momenata</span><span class="eq">∑ M = 0</span></div>
-    <div class="f"><span class="lbl">Težište</span><span class="eq">x<sub>C</sub> = <span class="frac"><span class="num">∑ m<sub>i</sub> x<sub>i</sub></span><span class="den">∑ m<sub>i</sub></span></span></span></div>
-    <div class="f"><span class="lbl">Trenje</span><span class="eq">F<sub>tr</sub> ≤ μ · N</span></div>
+    <h2 data-i18n="g_stat">Statika</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="k1">Komponenta sile (x)</span><span class="eq">F<sub>x</sub> = F · cos α</span></div>
+    <div class="f"><span class="lbl" data-i18n="k2">Komponenta sile (y)</span><span class="eq">F<sub>y</sub> = F · sin α</span></div>
+    <div class="f"><span class="lbl" data-i18n="k3">Rezultanta</span><span class="eq">R = √<span class="rt">F<sub>x</sub>² + F<sub>y</sub>²</span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k4">Moment sile</span><span class="eq">M = F · d &nbsp; (N · m)</span></div>
+    <div class="f"><span class="lbl" data-i18n="k5">Ravnoteža sila (x)</span><span class="eq">∑ F<sub>x</sub> = 0</span></div>
+    <div class="f"><span class="lbl" data-i18n="k6">Ravnoteža sila (y)</span><span class="eq">∑ F<sub>y</sub> = 0</span></div>
+    <div class="f"><span class="lbl" data-i18n="k7">Ravnoteža momenata</span><span class="eq">∑ M = 0</span></div>
+    <div class="f"><span class="lbl" data-i18n="k8">Težište</span><span class="eq">x<sub>C</sub> = <span class="frac"><span class="num">∑ m<sub>i</sub> x<sub>i</sub></span><span class="den">∑ m<sub>i</sub></span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k9">Trenje</span><span class="eq">F<sub>tr</sub> ≤ μ · N</span></div>
   </div>
 
   <div class="grp">
-    <h2>Kinematika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Brzina</span><span class="eq">v = <span class="frac"><span class="num">dr</span><span class="den">dt</span></span></span></div>
-    <div class="f"><span class="lbl">Ubrzanje</span><span class="eq">a = <span class="frac"><span class="num">dv</span><span class="den">dt</span></span></span></div>
-    <div class="f"><span class="lbl">Ravnomerno ubrzano — brzina</span><span class="eq">v = v<sub>0</sub> + a · t</span></div>
-    <div class="f"><span class="lbl">Ravnomerno ubrzano — put</span><span class="eq">s = v<sub>0</sub> · t + ½ · a · t²</span></div>
-    <div class="f"><span class="lbl">Bez vremena</span><span class="eq">v² = v<sub>0</sub>² + 2 · a · s</span></div>
-    <div class="f"><span class="lbl">Tangencijalno ubrzanje</span><span class="eq">a<sub>t</sub> = <span class="frac"><span class="num">dv</span><span class="den">dt</span></span></span></div>
-    <div class="f"><span class="lbl">Normalno ubrzanje</span><span class="eq">a<sub>n</sub> = <span class="frac"><span class="num">v²</span><span class="den">R</span></span></span></div>
-    <div class="f"><span class="lbl">Ukupno ubrzanje</span><span class="eq">a = √<span class="rt">a<sub>t</sub>² + a<sub>n</sub>²</span></span></div>
-    <div class="f"><span class="lbl">Ugaona brzina i ubrzanje</span><span class="eq">ω = <span class="frac"><span class="num">dφ</span><span class="den">dt</span></span> &nbsp; ε = <span class="frac"><span class="num">dω</span><span class="den">dt</span></span></span></div>
-    <div class="f"><span class="lbl">Tačka pri rotaciji</span><span class="eq">v = ω · r &nbsp; a<sub>t</sub> = ε · r &nbsp; a<sub>n</sub> = ω² · r</span></div>
+    <h2 data-i18n="g_kin">Kinematika</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="k10">Brzina</span><span class="eq">v = <span class="frac"><span class="num">dr</span><span class="den">dt</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k11">Ubrzanje</span><span class="eq">a = <span class="frac"><span class="num">dv</span><span class="den">dt</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k12">Ravnomerno ubrzano — brzina</span><span class="eq">v = v<sub>0</sub> + a · t</span></div>
+    <div class="f"><span class="lbl" data-i18n="k13">Ravnomerno ubrzano — put</span><span class="eq">s = v<sub>0</sub> · t + ½ · a · t²</span></div>
+    <div class="f"><span class="lbl" data-i18n="k14">Bez vremena</span><span class="eq">v² = v<sub>0</sub>² + 2 · a · s</span></div>
+    <div class="f"><span class="lbl" data-i18n="k15">Tangencijalno ubrzanje</span><span class="eq">a<sub>t</sub> = <span class="frac"><span class="num">dv</span><span class="den">dt</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k16">Normalno ubrzanje</span><span class="eq">a<sub>n</sub> = <span class="frac"><span class="num">v²</span><span class="den">R</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k17">Ukupno ubrzanje</span><span class="eq">a = √<span class="rt">a<sub>t</sub>² + a<sub>n</sub>²</span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k18">Ugaona brzina i ubrzanje</span><span class="eq">ω = <span class="frac"><span class="num">dφ</span><span class="den">dt</span></span> &nbsp; ε = <span class="frac"><span class="num">dω</span><span class="den">dt</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k19">Tačka pri rotaciji</span><span class="eq">v = ω · r &nbsp; a<sub>t</sub> = ε · r &nbsp; a<sub>n</sub> = ω² · r</span></div>
   </div>
 
   <div class="grp">
-    <h2>Dinamika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">II Njutnov zakon</span><span class="eq">F = m · a</span></div>
-    <div class="f"><span class="lbl">Rad</span><span class="eq">A = F · s · cos α</span></div>
-    <div class="f"><span class="lbl">Snaga</span><span class="eq">P = <span class="frac"><span class="num">A</span><span class="den">t</span></span> = F · v</span></div>
-    <div class="f"><span class="lbl">Kinetička energija</span><span class="eq">E<sub>k</sub> = ½ · m · v²</span></div>
-    <div class="f"><span class="lbl">Potencijalna energija</span><span class="eq">E<sub>p</sub> = m · g · h</span></div>
-    <div class="f"><span class="lbl">Održanje energije</span><span class="eq">E<sub>k</sub> + E<sub>p</sub> = const</span></div>
-    <div class="f"><span class="lbl">Količina kretanja</span><span class="eq">p = m · v</span></div>
-    <div class="f"><span class="lbl">Impuls sile</span><span class="eq">F · Δt = Δp</span></div>
-    <div class="f"><span class="lbl">Moment (rotacija)</span><span class="eq">M = J · ε</span></div>
-    <div class="f"><span class="lbl">Energija rotacije</span><span class="eq">E<sub>rot</sub> = ½ · J · ω²</span></div>
-    <div class="f"><span class="lbl">Moment inercije (tačka)</span><span class="eq">J = m · r²</span></div>
-    <div class="f"><span class="lbl">Moment inercije (disk)</span><span class="eq">J = ½ · m · R²</span></div>
-    <div class="f"><span class="lbl">Period — opruga</span><span class="eq">T = 2π · √<span class="rt"><span class="frac"><span class="num">m</span><span class="den">k</span></span></span></span></div>
-    <div class="f"><span class="lbl">Period — klatno</span><span class="eq">T = 2π · √<span class="rt"><span class="frac"><span class="num">l</span><span class="den">g</span></span></span></span></div>
+    <h2 data-i18n="g_din">Dinamika</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="k20">II Njutnov zakon</span><span class="eq">F = m · a</span></div>
+    <div class="f"><span class="lbl" data-i18n="k21">Rad</span><span class="eq">A = F · s · cos α</span></div>
+    <div class="f"><span class="lbl" data-i18n="k22">Snaga</span><span class="eq">P = <span class="frac"><span class="num">A</span><span class="den">t</span></span> = F · v</span></div>
+    <div class="f"><span class="lbl" data-i18n="k23">Kinetička energija</span><span class="eq">E<sub>k</sub> = ½ · m · v²</span></div>
+    <div class="f"><span class="lbl" data-i18n="k24">Potencijalna energija</span><span class="eq">E<sub>p</sub> = m · g · h</span></div>
+    <div class="f"><span class="lbl" data-i18n="k25">Održanje energije</span><span class="eq">E<sub>k</sub> + E<sub>p</sub> = const</span></div>
+    <div class="f"><span class="lbl" data-i18n="k26">Količina kretanja</span><span class="eq">p = m · v</span></div>
+    <div class="f"><span class="lbl" data-i18n="k27">Impuls sile</span><span class="eq">F · Δt = Δp</span></div>
+    <div class="f"><span class="lbl" data-i18n="k28">Moment (rotacija)</span><span class="eq">M = J · ε</span></div>
+    <div class="f"><span class="lbl" data-i18n="k29">Energija rotacije</span><span class="eq">E<sub>rot</sub> = ½ · J · ω²</span></div>
+    <div class="f"><span class="lbl" data-i18n="k30">Moment inercije (tačka)</span><span class="eq">J = m · r²</span></div>
+    <div class="f"><span class="lbl" data-i18n="k31">Moment inercije (disk)</span><span class="eq">J = ½ · m · R²</span></div>
+    <div class="f"><span class="lbl" data-i18n="k32">Period — opruga</span><span class="eq">T = 2π · √<span class="rt"><span class="frac"><span class="num">m</span><span class="den">k</span></span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="k33">Period — klatno</span><span class="eq">T = 2π · √<span class="rt"><span class="frac"><span class="num">l</span><span class="den">g</span></span></span></span></div>
   </div>
 
 </div>
@@ -111,19 +111,31 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <footer class="pf">
   <div class="orn">✦</div>
   <div class="word">MATHIA</div>
-  <p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
+  <p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
   <nav class="links">
-    <a href="predmet-fizika-mehanika.html">Mehanika</a>
-    <a href="predmeti.html">Predmeti</a>
-    <a href="prodavnica.html">Prodavnica</a>
-    <a href="index.html#paketi">Paketi</a>
-    <a href="o-marini.html">O meni</a>
-    <a href="uslovi.html">Uslovi</a>
-    <a href="privatnost.html">Privatnost</a>
+    <a href="predmet-fizika-mehanika.html" data-i18n="subj">Mehanika</a>
+    <a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a>
+    <a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a>
+    <a href="index.html#paketi" data-i18n="nav_plans">Paketi</a>
+    <a href="o-marini.html" data-i18n="nav_about">O meni</a>
+    <a href="uslovi.html" data-i18n="nav_terms">Uslovi</a>
+    <a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a>
   </nav>
   <div class="rule"></div>
-  <div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
+  <div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
 </footer>
 
+
+<script>
+(function(){
+  var T={"back": {"sr": "← Mehanika", "en": "← Mechanics", "de": "← Mechanik", "fr": "← Mécanique", "es": "← Mecánica", "it": "← Meccanica", "ru": "← Механика", "pt": "← Mecânica"}, "subj": {"sr": "Mehanika", "en": "Mechanics", "de": "Mechanik", "fr": "Mécanique", "es": "Mecánica", "it": "Meccanica", "ru": "Механика", "pt": "Mecânica"}, "eyebrow": {"sr": "Formule · Podsetnik", "en": "Formulas · Reference", "de": "Formeln · Übersicht", "fr": "Formules · Aide-mémoire", "es": "Fórmulas · Resumen", "it": "Formule · Prontuario", "ru": "Формулы · Справочник", "pt": "Fórmulas · Resumo"}, "title": {"sr": "Mehanika — formule", "en": "Mechanics — formulas", "de": "Mechanik — Formeln", "fr": "Mécanique — formules", "es": "Mecánica — fórmulas", "it": "Meccanica — formule", "ru": "Механика — формулы", "pt": "Mecânica — fórmulas"}, "sub": {"sr": "Sve ključne formule na jednom mestu, po celinama.", "en": "All key formulas in one place, by topic.", "de": "Alle wichtigen Formeln an einem Ort, nach Themen.", "fr": "Toutes les formules clés au même endroit, par thème.", "es": "Todas las fórmulas clave en un solo lugar, por temas.", "it": "Tutte le formule chiave in un posto, per argomenti.", "ru": "Все ключевые формулы в одном месте, по темам.", "pt": "Todas as fórmulas-chave num só lugar, por temas."}, "g_stat": {"sr": "Statika", "en": "Statics", "de": "Statik", "fr": "Statique", "es": "Estática", "it": "Statica", "ru": "Статика", "pt": "Estática"}, "g_kin": {"sr": "Kinematika", "en": "Kinematics", "de": "Kinematik", "fr": "Cinématique", "es": "Cinemática", "it": "Cinematica", "ru": "Кинематика", "pt": "Cinemática"}, "g_din": {"sr": "Dinamika", "en": "Dynamics", "de": "Dynamik", "fr": "Dynamique", "es": "Dinámica", "it": "Dinamica", "ru": "Динамика", "pt": "Dinâmica"}, "k1": {"sr": "Komponenta sile (x)", "en": "Force component (x)", "de": "Kraftkomponente (x)", "fr": "Composante de la force (x)", "es": "Componente de la fuerza (x)", "it": "Componente della forza (x)", "ru": "Компонента силы (x)", "pt": "Componente da força (x)"}, "k2": {"sr": "Komponenta sile (y)", "en": "Force component (y)", "de": "Kraftkomponente (y)", "fr": "Composante de la force (y)", "es": "Componente de la fuerza (y)", "it": "Componente della forza (y)", "ru": "Компонента силы (y)", "pt": "Componente da força (y)"}, "k3": {"sr": "Rezultanta", "en": "Resultant", "de": "Resultierende", "fr": "Résultante", "es": "Resultante", "it": "Risultante", "ru": "Равнодействующая", "pt": "Resultante"}, "k4": {"sr": "Moment sile", "en": "Moment of force", "de": "Kraftmoment", "fr": "Moment de la force", "es": "Momento de la fuerza", "it": "Momento della forza", "ru": "Момент силы", "pt": "Momento da força"}, "k5": {"sr": "Ravnoteža sila (x)", "en": "Force balance (x)", "de": "Kräftegleichgewicht (x)", "fr": "Équilibre des forces (x)", "es": "Equilibrio de fuerzas (x)", "it": "Equilibrio delle forze (x)", "ru": "Равновесие сил (x)", "pt": "Equilíbrio de forças (x)"}, "k6": {"sr": "Ravnoteža sila (y)", "en": "Force balance (y)", "de": "Kräftegleichgewicht (y)", "fr": "Équilibre des forces (y)", "es": "Equilibrio de fuerzas (y)", "it": "Equilibrio delle forze (y)", "ru": "Равновесие сил (y)", "pt": "Equilíbrio de forças (y)"}, "k7": {"sr": "Ravnoteža momenata", "en": "Moment balance", "de": "Momentengleichgewicht", "fr": "Équilibre des moments", "es": "Equilibrio de momentos", "it": "Equilibrio dei momenti", "ru": "Равновесие моментов", "pt": "Equilíbrio de momentos"}, "k8": {"sr": "Težište", "en": "Centre of mass", "de": "Schwerpunkt", "fr": "Centre de gravité", "es": "Centro de gravedad", "it": "Baricentro", "ru": "Центр масс", "pt": "Centro de massa"}, "k9": {"sr": "Trenje", "en": "Friction", "de": "Reibung", "fr": "Frottement", "es": "Fricción", "it": "Attrito", "ru": "Трение", "pt": "Atrito"}, "k10": {"sr": "Brzina", "en": "Velocity", "de": "Geschwindigkeit", "fr": "Vitesse", "es": "Velocidad", "it": "Velocità", "ru": "Скорость", "pt": "Velocidade"}, "k11": {"sr": "Ubrzanje", "en": "Acceleration", "de": "Beschleunigung", "fr": "Accélération", "es": "Aceleración", "it": "Accelerazione", "ru": "Ускорение", "pt": "Aceleração"}, "k12": {"sr": "Ravnomerno ubrzano — brzina", "en": "Uniform acceleration — velocity", "de": "Gleichmäßig beschleunigt — Geschwindigkeit", "fr": "Uniformément accéléré — vitesse", "es": "Uniformemente acelerado — velocidad", "it": "Uniformemente accelerato — velocità", "ru": "Равноускоренное — скорость", "pt": "Uniformemente acelerado — velocidade"}, "k13": {"sr": "Ravnomerno ubrzano — put", "en": "Uniform acceleration — distance", "de": "Gleichmäßig beschleunigt — Weg", "fr": "Uniformément accéléré — distance", "es": "Uniformemente acelerado — distancia", "it": "Uniformemente accelerato — spazio", "ru": "Равноускоренное — путь", "pt": "Uniformemente acelerado — distância"}, "k14": {"sr": "Bez vremena", "en": "Without time", "de": "Ohne Zeit", "fr": "Sans le temps", "es": "Sin el tiempo", "it": "Senza il tempo", "ru": "Без времени", "pt": "Sem o tempo"}, "k15": {"sr": "Tangencijalno ubrzanje", "en": "Tangential acceleration", "de": "Tangentialbeschleunigung", "fr": "Accélération tangentielle", "es": "Aceleración tangencial", "it": "Accelerazione tangenziale", "ru": "Тангенциальное ускорение", "pt": "Aceleração tangencial"}, "k16": {"sr": "Normalno ubrzanje", "en": "Normal acceleration", "de": "Normalbeschleunigung", "fr": "Accélération normale", "es": "Aceleración normal", "it": "Accelerazione normale", "ru": "Нормальное ускорение", "pt": "Aceleração normal"}, "k17": {"sr": "Ukupno ubrzanje", "en": "Total acceleration", "de": "Gesamtbeschleunigung", "fr": "Accélération totale", "es": "Aceleración total", "it": "Accelerazione totale", "ru": "Полное ускорение", "pt": "Aceleração total"}, "k18": {"sr": "Ugaona brzina i ubrzanje", "en": "Angular velocity and acceleration", "de": "Winkelgeschwindigkeit und -beschleunigung", "fr": "Vitesse et accélération angulaires", "es": "Velocidad y aceleración angular", "it": "Velocità e accelerazione angolare", "ru": "Угловая скорость и ускорение", "pt": "Velocidade e aceleração angular"}, "k19": {"sr": "Tačka pri rotaciji", "en": "Point in rotation", "de": "Punkt bei Rotation", "fr": "Point en rotation", "es": "Punto en rotación", "it": "Punto in rotazione", "ru": "Точка при вращении", "pt": "Ponto em rotação"}, "k20": {"sr": "II Njutnov zakon", "en": "Newton's second law", "de": "2. Newtonsches Gesetz", "fr": "Deuxième loi de Newton", "es": "Segunda ley de Newton", "it": "Seconda legge di Newton", "ru": "Второй закон Ньютона", "pt": "Segunda lei de Newton"}, "k21": {"sr": "Rad", "en": "Work", "de": "Arbeit", "fr": "Travail", "es": "Trabajo", "it": "Lavoro", "ru": "Работа", "pt": "Trabalho"}, "k22": {"sr": "Snaga", "en": "Power", "de": "Leistung", "fr": "Puissance", "es": "Potencia", "it": "Potenza", "ru": "Мощность", "pt": "Potência"}, "k23": {"sr": "Kinetička energija", "en": "Kinetic energy", "de": "Kinetische Energie", "fr": "Énergie cinétique", "es": "Energía cinética", "it": "Energia cinetica", "ru": "Кинетическая энергия", "pt": "Energia cinética"}, "k24": {"sr": "Potencijalna energija", "en": "Potential energy", "de": "Potentielle Energie", "fr": "Énergie potentielle", "es": "Energía potencial", "it": "Energia potenziale", "ru": "Потенциальная энергия", "pt": "Energia potencial"}, "k25": {"sr": "Održanje energije", "en": "Conservation of energy", "de": "Energieerhaltung", "fr": "Conservation de l'énergie", "es": "Conservación de la energía", "it": "Conservazione dell'energia", "ru": "Сохранение энергии", "pt": "Conservação da energia"}, "k26": {"sr": "Količina kretanja", "en": "Momentum", "de": "Impuls", "fr": "Quantité de mouvement", "es": "Cantidad de movimiento", "it": "Quantità di moto", "ru": "Импульс", "pt": "Quantidade de movimento"}, "k27": {"sr": "Impuls sile", "en": "Impulse of force", "de": "Kraftstoß", "fr": "Impulsion de la force", "es": "Impulso de la fuerza", "it": "Impulso della forza", "ru": "Импульс силы", "pt": "Impulso da força"}, "k28": {"sr": "Moment (rotacija)", "en": "Moment (rotation)", "de": "Moment (Rotation)", "fr": "Moment (rotation)", "es": "Momento (rotación)", "it": "Momento (rotazione)", "ru": "Момент (вращение)", "pt": "Momento (rotação)"}, "k29": {"sr": "Energija rotacije", "en": "Rotational energy", "de": "Rotationsenergie", "fr": "Énergie de rotation", "es": "Energía de rotación", "it": "Energia di rotazione", "ru": "Энергия вращения", "pt": "Energia de rotação"}, "k30": {"sr": "Moment inercije (tačka)", "en": "Moment of inertia (point)", "de": "Trägheitsmoment (Punkt)", "fr": "Moment d'inertie (point)", "es": "Momento de inercia (punto)", "it": "Momento d'inerzia (punto)", "ru": "Момент инерции (точка)", "pt": "Momento de inércia (ponto)"}, "k31": {"sr": "Moment inercije (disk)", "en": "Moment of inertia (disk)", "de": "Trägheitsmoment (Scheibe)", "fr": "Moment d'inertie (disque)", "es": "Momento de inercia (disco)", "it": "Momento d'inerzia (disco)", "ru": "Момент инерции (диск)", "pt": "Momento de inércia (disco)"}, "k32": {"sr": "Period — opruga", "en": "Period — spring", "de": "Periode — Feder", "fr": "Période — ressort", "es": "Período — resorte", "it": "Periodo — molla", "ru": "Период — пружина", "pt": "Período — mola"}, "k33": {"sr": "Period — klatno", "en": "Period — pendulum", "de": "Periode — Pendel", "fr": "Période — pendule", "es": "Período — péndulo", "it": "Periodo — pendolo", "ru": "Период — маятник", "pt": "Período — pêndulo"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}};
+  var LANGS=["sr","en","de","fr","es","it","ru","pt"];
+  function apply(l){if(LANGS.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(T[k]&&T[k][l])el.textContent=T[k][l];});var sel=document.getElementById("langsel");if(sel)sel.value=l;try{localStorage.setItem("mathia_lang",l);}catch(e){}}
+  var start="sr";try{start=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();}catch(e){}
+  apply(start);
+  var sel=document.getElementById("langsel");if(sel)sel.addEventListener("change",function(){apply(this.value);});
+  window.addEventListener("mathia:lang",function(){try{apply((localStorage.getItem("mathia_lang")||"sr").toLowerCase());}catch(e){}});
+})();
+</script>
 </body>
 </html>

@@ -15,7 +15,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 .topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
 .tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
 .tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
-.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer}
 .cover{text-align:center;padding:56px 22px 30px}
 .cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
 .cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.4vw,2.9rem);color:var(--ink);margin:12px 0 6px}
@@ -52,79 +52,79 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <body>
 
 <header class="topbar">
-  <a class="tb-back" href="predmet-analiza1.html">← Analiza 1</a>
+  <a class="tb-back" href="predmet-analiza1.html" data-i18n="back">← Analiza 1</a>
   <a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a>
-  <span class="tb-lang">SR</span>
+  <select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 </header>
 
 <div class="cover">
-  <div class="eyebrow">Zadaci · Rešeni</div>
-  <h1>Analiza 1 — zadaci</h1>
-  <div class="sub">Tipični zadaci sa detaljnim postupkom.</div>
+  <div class="eyebrow" data-i18n="eyebrow">Zadaci · Rešeni</div>
+  <h1 data-i18n="title">Analiza 1 — zadaci</h1>
+  <div class="sub" data-i18n="sub">Tipični zadaci sa detaljnim postupkom.</div>
 </div>
 
 <div class="wrap">
 
   <div class="zad">
-    <div class="z-h"><span class="z-n">1</span><span class="z-t">Limes (oblik „0/0")</span></div>
-    <p class="q">Izračunaj <span class="lim">lim<span class="und">x→3</span></span> <span class="frac"><span class="num">x² − 9</span><span class="den">x − 3</span></span>.</p>
-    <div class="sol"><div class="h">Rešenje</div>
+    <div class="z-h"><span class="z-n">1</span><span class="z-t" data-i18n="zt1">Limes (oblik „0/0")</span></div>
+    <p class="q"><span data-i18n="q_calc">Izračunaj</span> <span class="lim">lim<span class="und">x→3</span></span> <span class="frac"><span class="num">x² − 9</span><span class="den">x − 3</span></span>.</p>
+    <div class="sol"><div class="h" data-i18n="sol">Rešenje</div>
       <span class="step">= <span class="lim">lim<span class="und">x→3</span></span> <span class="frac"><span class="num">(x−3)(x+3)</span><span class="den">x−3</span></span></span>
       <span class="step">= <span class="lim">lim<span class="und">x→3</span></span> (x + 3) = 6</span>
     </div>
   </div>
 
   <div class="zad">
-    <div class="z-h"><span class="z-n">2</span><span class="z-t">Limes — Lopitalovo pravilo</span></div>
-    <p class="q">Izračunaj <span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">e<sup>x</sup> − 1</span><span class="den">x</span></span>.</p>
-    <div class="sol"><div class="h">Rešenje</div>
-      <span class="step">Oblik „0/0" → Lopitalovo pravilo: <span class="frac"><span class="num">(e<sup>x</sup>)′</span><span class="den">(x)′</span></span> = e<sup>x</sup></span>
+    <div class="z-h"><span class="z-n">2</span><span class="z-t" data-i18n="zt2">Limes — Lopitalovo pravilo</span></div>
+    <p class="q"><span data-i18n="q_calc">Izračunaj</span> <span class="lim">lim<span class="und">x→0</span></span> <span class="frac"><span class="num">e<sup>x</sup> − 1</span><span class="den">x</span></span>.</p>
+    <div class="sol"><div class="h" data-i18n="sol">Rešenje</div>
+      <span class="step"><span data-i18n="s_form">Oblik</span> „0/0" → <span data-i18n="s_lop">Lopitalovo pravilo</span>: <span class="frac"><span class="num">(e<sup>x</sup>)′</span><span class="den">(x)′</span></span> = e<sup>x</sup></span>
       <span class="step"><span class="lim">lim<span class="und">x→0</span></span> e<sup>x</sup> = 1</span>
     </div>
   </div>
 
   <div class="zad">
-    <div class="z-h"><span class="z-n">3</span><span class="z-t">Izvod složene funkcije</span></div>
-    <p class="q">Nađi izvod funkcije f(x) = sin(3x² + 1).</p>
-    <div class="sol"><div class="h">Rešenje</div>
+    <div class="z-h"><span class="z-n">3</span><span class="z-t" data-i18n="zt3">Izvod složene funkcije</span></div>
+    <p class="q"><span data-i18n="q_deriv">Nađi izvod funkcije</span> f(x) = sin(3x² + 1).</p>
+    <div class="sol"><div class="h" data-i18n="sol">Rešenje</div>
       <span class="step">f′(x) = cos(3x² + 1) · (3x² + 1)′</span>
       <span class="step">= cos(3x² + 1) · 6x</span>
     </div>
   </div>
 
   <div class="zad">
-    <div class="z-h"><span class="z-n">4</span><span class="z-t">Ekstremi funkcije</span></div>
-    <p class="q">Odredi ekstreme funkcije f(x) = x³ − 3x.</p>
-    <div class="sol"><div class="h">Rešenje</div>
+    <div class="z-h"><span class="z-n">4</span><span class="z-t" data-i18n="zt4">Ekstremi funkcije</span></div>
+    <p class="q"><span data-i18n="q_extr">Odredi ekstreme funkcije</span> f(x) = x³ − 3x.</p>
+    <div class="sol"><div class="h" data-i18n="sol">Rešenje</div>
       <span class="step">f′(x) = 3x² − 3 = 0 &nbsp;→&nbsp; x = −1 i x = 1</span>
-      <span class="step">f″(x) = 6x: &nbsp; f″(−1) = −6 &lt; 0 → maksimum, f(−1) = 2</span>
-      <span class="step">f″(1) = 6 &gt; 0 → minimum, f(1) = −2</span>
+      <span class="step">f″(x) = 6x: &nbsp; f″(−1) = −6 &lt; 0 → <span data-i18n="s_max">maksimum</span>, f(−1) = 2</span>
+      <span class="step">f″(1) = 6 &gt; 0 → <span data-i18n="s_min">minimum</span>, f(1) = −2</span>
     </div>
   </div>
 
   <div class="zad">
-    <div class="z-h"><span class="z-n">5</span><span class="z-t">Neodređeni integral (smena)</span></div>
-    <p class="q">Izračunaj ∫ 2x · e<sup>x²</sup> dx.</p>
-    <div class="sol"><div class="h">Rešenje</div>
-      <span class="step">Smena: t = x², dt = 2x dx</span>
+    <div class="z-h"><span class="z-n">5</span><span class="z-t" data-i18n="zt5">Neodređeni integral (smena)</span></div>
+    <p class="q"><span data-i18n="q_calc">Izračunaj</span> ∫ 2x · e<sup>x²</sup> dx.</p>
+    <div class="sol"><div class="h" data-i18n="sol">Rešenje</div>
+      <span class="step"><span data-i18n="s_subst">Smena</span>: t = x², dt = 2x dx</span>
       <span class="step">∫ e<sup>t</sup> dt = e<sup>t</sup> + C = e<sup>x²</sup> + C</span>
     </div>
   </div>
 
   <div class="zad">
-    <div class="z-h"><span class="z-n">6</span><span class="z-t">Određeni integral (površina)</span></div>
-    <p class="q">Izračunaj površinu ispod krive y = x² na [0, 3].</p>
-    <div class="sol"><div class="h">Rešenje</div>
+    <div class="z-h"><span class="z-n">6</span><span class="z-t" data-i18n="zt6">Određeni integral (površina)</span></div>
+    <p class="q"><span data-i18n="q_area">Izračunaj površinu ispod krive</span> y = x² <span data-i18n="q_on">na</span> [0, 3].</p>
+    <div class="sol"><div class="h" data-i18n="sol">Rešenje</div>
       <span class="step">P = ∫<sub>0</sub><sup>3</sup> x² dx = [ <span class="frac"><span class="num">x³</span><span class="den">3</span></span> ]<sub>0</sub><sup>3</sup></span>
       <span class="step">= <span class="frac"><span class="num">27</span><span class="den">3</span></span> − 0 = 9</span>
     </div>
   </div>
 
   <div class="zad">
-    <div class="z-h"><span class="z-n">7</span><span class="z-t">Diferencijalna jednačina</span></div>
-    <p class="q">Reši jednačinu <span class="frac"><span class="num">dy</span><span class="den">dx</span></span> = 2x · y.</p>
-    <div class="sol"><div class="h">Rešenje</div>
-      <span class="step">Razdvajanje: ∫ <span class="frac"><span class="num">dy</span><span class="den">y</span></span> = ∫ 2x dx</span>
+    <div class="z-h"><span class="z-n">7</span><span class="z-t" data-i18n="zt7">Diferencijalna jednačina</span></div>
+    <p class="q"><span data-i18n="q_solve">Reši jednačinu</span> <span class="frac"><span class="num">dy</span><span class="den">dx</span></span> = 2x · y.</p>
+    <div class="sol"><div class="h" data-i18n="sol">Rešenje</div>
+      <span class="step"><span data-i18n="s_sep">Razdvajanje</span>: ∫ <span class="frac"><span class="num">dy</span><span class="den">y</span></span> = ∫ 2x dx</span>
       <span class="step">ln|y| = x² + C</span>
       <span class="step">y = C · e<sup>x²</sup></span>
     </div>
@@ -135,19 +135,41 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <footer class="pf">
   <div class="orn">✦</div>
   <div class="word">MATHIA</div>
-  <p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
+  <p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
   <nav class="links">
-    <a href="predmet-analiza1.html">Analiza 1</a>
-    <a href="predmeti.html">Predmeti</a>
-    <a href="prodavnica.html">Prodavnica</a>
-    <a href="index.html#paketi">Paketi</a>
-    <a href="o-marini.html">O meni</a>
-    <a href="uslovi.html">Uslovi</a>
-    <a href="privatnost.html">Privatnost</a>
+    <a href="predmet-analiza1.html" data-i18n="subj">Analiza 1</a>
+    <a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a>
+    <a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a>
+    <a href="index.html#paketi" data-i18n="nav_plans">Paketi</a>
+    <a href="o-marini.html" data-i18n="nav_about">O meni</a>
+    <a href="uslovi.html" data-i18n="nav_terms">Uslovi</a>
+    <a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a>
   </nav>
   <div class="rule"></div>
-  <div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
+  <div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
 </footer>
+
+
+<script>
+(function(){
+  var T={"back": {"sr": "← Analiza 1", "en": "← Calculus 1", "de": "← Analysis 1", "fr": "← Analyse 1", "es": "← Cálculo 1", "it": "← Analisi 1", "ru": "← Анализ 1", "pt": "← Cálculo 1"}, "subj": {"sr": "Analiza 1", "en": "Calculus 1", "de": "Analysis 1", "fr": "Analyse 1", "es": "Cálculo 1", "it": "Analisi 1", "ru": "Анализ 1", "pt": "Cálculo 1"}, "eyebrow": {"sr": "Zadaci · Rešeni", "en": "Problems · Solved", "de": "Aufgaben · Gelöst", "fr": "Exercices · Résolus", "es": "Ejercicios · Resueltos", "it": "Esercizi · Risolti", "ru": "Задачи · С решениями", "pt": "Exercícios · Resolvidos"}, "title": {"sr": "Analiza 1 — zadaci", "en": "Calculus 1 — problems", "de": "Analysis 1 — Aufgaben", "fr": "Analyse 1 — exercices", "es": "Cálculo 1 — ejercicios", "it": "Analisi 1 — esercizi", "ru": "Анализ 1 — задачи", "pt": "Cálculo 1 — exercícios"}, "sub": {"sr": "Tipični zadaci sa detaljnim postupkom.", "en": "Typical problems with detailed solutions.", "de": "Typische Aufgaben mit ausführlichem Lösungsweg.", "fr": "Exercices types avec solutions détaillées.", "es": "Ejercicios típicos con solución detallada.", "it": "Esercizi tipici con procedimento dettagliato.", "ru": "Типичные задачи с подробным решением.", "pt": "Exercícios típicos com resolução detalhada."}, "zt1": {"sr": "Limes (oblik „0/0”)", "en": "Limit (form „0/0”)", "de": "Grenzwert (Form „0/0”)", "fr": "Limite (forme „0/0”)", "es": "Límite (forma „0/0”)", "it": "Limite (forma „0/0”)", "ru": "Предел (вид „0/0”)", "pt": "Limite (forma „0/0”)"}, "zt2": {"sr": "Limes — Lopitalovo pravilo", "en": "Limit — L'Hôpital's rule", "de": "Grenzwert — Regel von L'Hôpital", "fr": "Limite — règle de L'Hôpital", "es": "Límite — regla de L'Hôpital", "it": "Limite — regola di L'Hôpital", "ru": "Предел — правило Лопиталя", "pt": "Limite — regra de L'Hôpital"}, "zt3": {"sr": "Izvod složene funkcije", "en": "Derivative of a composite function", "de": "Ableitung einer verketteten Funktion", "fr": "Dérivée d'une fonction composée", "es": "Derivada de una función compuesta", "it": "Derivata di una funzione composta", "ru": "Производная сложной функции", "pt": "Derivada de função composta"}, "zt4": {"sr": "Ekstremi funkcije", "en": "Extrema of a function", "de": "Extremwerte einer Funktion", "fr": "Extrema d'une fonction", "es": "Extremos de una función", "it": "Estremi di una funzione", "ru": "Экстремумы функции", "pt": "Extremos de uma função"}, "zt5": {"sr": "Neodređeni integral (smena)", "en": "Indefinite integral (substitution)", "de": "Unbestimmtes Integral (Substitution)", "fr": "Intégrale indéfinie (substitution)", "es": "Integral indefinida (sustitución)", "it": "Integrale indefinito (sostituzione)", "ru": "Неопределённый интеграл (замена)", "pt": "Integral indefinida (substituição)"}, "zt6": {"sr": "Određeni integral (površina)", "en": "Definite integral (area)", "de": "Bestimmtes Integral (Fläche)", "fr": "Intégrale définie (aire)", "es": "Integral definida (área)", "it": "Integrale definito (area)", "ru": "Определённый интеграл (площадь)", "pt": "Integral definida (área)"}, "zt7": {"sr": "Diferencijalna jednačina", "en": "Differential equation", "de": "Differentialgleichung", "fr": "Équation différentielle", "es": "Ecuación diferencial", "it": "Equazione differenziale", "ru": "Дифференциальное уравнение", "pt": "Equação diferencial"}, "sol": {"sr": "Rešenje", "en": "Solution", "de": "Lösung", "fr": "Solution", "es": "Solución", "it": "Soluzione", "ru": "Решение", "pt": "Solução"}, "q_calc": {"sr": "Izračunaj", "en": "Calculate", "de": "Berechne", "fr": "Calcule", "es": "Calcula", "it": "Calcola", "ru": "Вычисли", "pt": "Calcula"}, "q_deriv": {"sr": "Nađi izvod funkcije", "en": "Find the derivative of the function", "de": "Bestimme die Ableitung der Funktion", "fr": "Trouve la dérivée de la fonction", "es": "Halla la derivada de la función", "it": "Trova la derivata della funzione", "ru": "Найди производную функции", "pt": "Encontra a derivada da função"}, "q_extr": {"sr": "Odredi ekstreme funkcije", "en": "Find the extrema of the function", "de": "Bestimme die Extremwerte der Funktion", "fr": "Détermine les extrema de la fonction", "es": "Determina los extremos de la función", "it": "Determina gli estremi della funzione", "ru": "Найди экстремумы функции", "pt": "Determina os extremos da função"}, "q_area": {"sr": "Izračunaj površinu ispod krive", "en": "Calculate the area under the curve", "de": "Berechne die Fläche unter der Kurve", "fr": "Calcule l'aire sous la courbe", "es": "Calcula el área bajo la curva", "it": "Calcola l'area sotto la curva", "ru": "Вычисли площадь под кривой", "pt": "Calcula a área sob a curva"}, "q_on": {"sr": "na", "en": "on", "de": "auf", "fr": "sur", "es": "en", "it": "su", "ru": "на", "pt": "em"}, "q_solve": {"sr": "Reši jednačinu", "en": "Solve the equation", "de": "Löse die Gleichung", "fr": "Résous l'équation", "es": "Resuelve la ecuación", "it": "Risolvi l'equazione", "ru": "Реши уравнение", "pt": "Resolve a equação"}, "s_form": {"sr": "Oblik", "en": "Form", "de": "Form", "fr": "Forme", "es": "Forma", "it": "Forma", "ru": "Вид", "pt": "Forma"}, "s_lop": {"sr": "Lopitalovo pravilo", "en": "L'Hôpital's rule", "de": "Regel von L'Hôpital", "fr": "Règle de L'Hôpital", "es": "Regla de L'Hôpital", "it": "Regola di L'Hôpital", "ru": "Правило Лопиталя", "pt": "Regra de L'Hôpital"}, "s_subst": {"sr": "Smena", "en": "Substitution", "de": "Substitution", "fr": "Substitution", "es": "Sustitución", "it": "Sostituzione", "ru": "Замена", "pt": "Substituição"}, "s_max": {"sr": "maksimum", "en": "maximum", "de": "Maximum", "fr": "maximum", "es": "máximo", "it": "massimo", "ru": "максимум", "pt": "máximo"}, "s_min": {"sr": "minimum", "en": "minimum", "de": "Minimum", "fr": "minimum", "es": "mínimo", "it": "minimo", "ru": "минимум", "pt": "mínimo"}, "s_sep": {"sr": "Razdvajanje", "en": "Separation of variables", "de": "Trennung der Variablen", "fr": "Séparation des variables", "es": "Separación de variables", "it": "Separazione delle variabili", "ru": "Разделение переменных", "pt": "Separação de variáveis"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}};
+  var LANGS=["sr","en","de","fr","es","it","ru","pt"];
+  function apply(l){
+    if(LANGS.indexOf(l)<0)l="sr";
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var k=el.getAttribute("data-i18n"); if(T[k]&&T[k][l])el.textContent=T[k][l];
+    });
+    var sel=document.getElementById("langsel"); if(sel)sel.value=l;
+    try{localStorage.setItem("mathia_lang",l);}catch(e){}
+  }
+  var start="sr"; try{start=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();}catch(e){}
+  apply(start);
+  var sel=document.getElementById("langsel");
+  if(sel)sel.addEventListener("change",function(){apply(this.value);});
+  window.addEventListener("mathia:lang",function(){try{apply((localStorage.getItem("mathia_lang")||"sr").toLowerCase());}catch(e){}});
+})();
+</script>
 
 </body>
 </html>
