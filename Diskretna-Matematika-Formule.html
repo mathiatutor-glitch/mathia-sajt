@@ -46,46 +46,46 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <body>
 
 <header class="topbar">
-  <a class="tb-back" href="predmet-diskretna-matematika.html">← Diskretna</a>
+  <a class="tb-back" href="predmet-diskretna-matematika.html" data-i18n="back">← Diskretna</a>
   <a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a>
-  <span class="tb-lang">SR</span>
+  <select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 </header>
 
 <div class="cover">
-  <div class="eyebrow">Formule · Podsetnik</div>
-  <h1>Diskretna — formule</h1>
-  <div class="sub">Sve ključne formule na jednom mestu, po celinama.</div>
+  <div class="eyebrow" data-i18n="eyebrow">Formule · Podsetnik</div>
+  <h1 data-i18n="title">Diskretna — formule</h1>
+  <div class="sub" data-i18n="sub">Sve ključne formule na jednom mestu, po celinama.</div>
 </div>
 
 <div class="wrap">
 
   <div class="grp">
-    <h2>Logika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Implikacija</span><span class="eq">p → q ≡ ¬p ∨ q</span></div>
-    <div class="f"><span class="lbl">Kontrapozicija</span><span class="eq">p → q ≡ ¬q → ¬p</span></div>
-    <div class="f"><span class="lbl">De Morgan (∧)</span><span class="eq">¬(p ∧ q) ≡ ¬p ∨ ¬q</span></div>
-    <div class="f"><span class="lbl">De Morgan (∨)</span><span class="eq">¬(p ∨ q) ≡ ¬p ∧ ¬q</span></div>
-    <div class="f"><span class="lbl">Negacija ∀</span><span class="eq">¬(∀x P(x)) ≡ ∃x ¬P(x)</span></div>
-    <div class="f"><span class="lbl">Negacija ∃</span><span class="eq">¬(∃x P(x)) ≡ ∀x ¬P(x)</span></div>
+    <h2 data-i18n="g1">Logika</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="l1">Implikacija</span><span class="eq">p → q ≡ ¬p ∨ q</span></div>
+    <div class="f"><span class="lbl" data-i18n="l2">Kontrapozicija</span><span class="eq">p → q ≡ ¬q → ¬p</span></div>
+    <div class="f"><span class="lbl" data-i18n="l3">De Morgan (∧)</span><span class="eq">¬(p ∧ q) ≡ ¬p ∨ ¬q</span></div>
+    <div class="f"><span class="lbl" data-i18n="l4">De Morgan (∨)</span><span class="eq">¬(p ∨ q) ≡ ¬p ∧ ¬q</span></div>
+    <div class="f"><span class="lbl" data-i18n="l5">Negacija ∀</span><span class="eq">¬(∀x P(x)) ≡ ∃x ¬P(x)</span></div>
+    <div class="f"><span class="lbl" data-i18n="l6">Negacija ∃</span><span class="eq">¬(∃x P(x)) ≡ ∀x ¬P(x)</span></div>
   </div>
 
   <div class="grp">
-    <h2>Skupovi i kombinatorika</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Broj podskupova</span><span class="eq">|P(A)| = 2<sup>n</sup></span></div>
-    <div class="f"><span class="lbl">Permutacije</span><span class="eq">P(n) = n!</span></div>
-    <div class="f"><span class="lbl">Varijacije</span><span class="eq">V(n, k) = <span class="frac"><span class="num">n!</span><span class="den">(n − k)!</span></span></span></div>
-    <div class="f"><span class="lbl">Kombinacije</span><span class="eq">C(n, k) = <span class="frac"><span class="num">n!</span><span class="den">k!(n − k)!</span></span></span></div>
-    <div class="f"><span class="lbl">Varijacije s ponavljanjem</span><span class="eq">V̄(n, k) = n<sup>k</sup></span></div>
-    <div class="f"><span class="lbl">Binomna teorema</span><span class="eq">(a + b)<sup>n</sup> = ∑<sub>k=0</sub><sup>n</sup> C(n, k) · a<sup>n−k</sup> · b<sup>k</sup></span></div>
-    <div class="f"><span class="lbl">Uključenje-isključenje</span><span class="eq">|A ∪ B| = |A| + |B| − |A ∩ B|</span></div>
+    <h2 data-i18n="g2">Skupovi i kombinatorika</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="l7">Broj podskupova</span><span class="eq">|P(A)| = 2<sup>n</sup></span></div>
+    <div class="f"><span class="lbl" data-i18n="l8">Permutacije</span><span class="eq">P(n) = n!</span></div>
+    <div class="f"><span class="lbl" data-i18n="l9">Varijacije</span><span class="eq">V(n, k) = <span class="frac"><span class="num">n!</span><span class="den">(n − k)!</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="l10">Kombinacije</span><span class="eq">C(n, k) = <span class="frac"><span class="num">n!</span><span class="den">k!(n − k)!</span></span></span></div>
+    <div class="f"><span class="lbl" data-i18n="l11">Varijacije s ponavljanjem</span><span class="eq">V̄(n, k) = n<sup>k</sup></span></div>
+    <div class="f"><span class="lbl" data-i18n="l12">Binomna teorema</span><span class="eq">(a + b)<sup>n</sup> = ∑<sub>k=0</sub><sup>n</sup> C(n, k) · a<sup>n−k</sup> · b<sup>k</sup></span></div>
+    <div class="f"><span class="lbl" data-i18n="l13">Uključenje-isključenje</span><span class="eq">|A ∪ B| = |A| + |B| − |A ∩ B|</span></div>
   </div>
 
   <div class="grp">
-    <h2>Teorija grafova</h2><div class="rule"></div>
-    <div class="f"><span class="lbl">Lema o rukovanju</span><span class="eq">∑ deg(v) = 2 · |E|</span></div>
-    <div class="f"><span class="lbl">Broj grana stabla</span><span class="eq">|E| = n − 1</span></div>
-    <div class="f"><span class="lbl">Ojlerova formula (planarni)</span><span class="eq">V − E + F = 2</span></div>
-    <div class="f"><span class="lbl">Maks. grana (prost graf)</span><span class="eq">|E| ≤ <span class="frac"><span class="num">n(n − 1)</span><span class="den">2</span></span></span></div>
+    <h2 data-i18n="g3">Teorija grafova</h2><div class="rule"></div>
+    <div class="f"><span class="lbl" data-i18n="l14">Lema o rukovanju</span><span class="eq">∑ deg(v) = 2 · |E|</span></div>
+    <div class="f"><span class="lbl" data-i18n="l15">Broj grana stabla</span><span class="eq">|E| = n − 1</span></div>
+    <div class="f"><span class="lbl" data-i18n="l16">Ojlerova formula (planarni)</span><span class="eq">V − E + F = 2</span></div>
+    <div class="f"><span class="lbl" data-i18n="l17">Maks. grana (prost graf)</span><span class="eq">|E| ≤ <span class="frac"><span class="num">n(n − 1)</span><span class="den">2</span></span></span></div>
   </div>
 
 </div>
@@ -93,19 +93,23 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-heigh
 <footer class="pf">
   <div class="orn">✦</div>
   <div class="word">MATHIA</div>
-  <p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
+  <p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p>
   <nav class="links">
-    <a href="predmet-diskretna-matematika.html">Diskretna</a>
-    <a href="predmeti.html">Predmeti</a>
-    <a href="prodavnica.html">Prodavnica</a>
-    <a href="index.html#paketi">Paketi</a>
-    <a href="o-marini.html">O meni</a>
-    <a href="uslovi.html">Uslovi</a>
-    <a href="privatnost.html">Privatnost</a>
+    <a href="predmet-diskretna-matematika.html" data-i18n="subj">Diskretna</a>
+    <a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a>
+    <a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a>
+    <a href="index.html#paketi" data-i18n="nav_plans">Paketi</a>
+    <a href="o-marini.html" data-i18n="nav_about">O meni</a>
+    <a href="uslovi.html" data-i18n="nav_terms">Uslovi</a>
+    <a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a>
   </nav>
   <div class="rule"></div>
-  <div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
+  <div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div>
 </footer>
 
+
+<script>
+(function(){var T={"back": {"sr": "← Diskretna", "en": "← Discrete math", "de": "← Diskrete Mathematik", "fr": "← Maths discrètes", "es": "← Matemática discreta", "it": "← Matematica discreta", "ru": "← Дискретная математика", "pt": "← Matemática discreta"}, "subj": {"sr": "Diskretna", "en": "Discrete mathematics", "de": "Diskrete Mathematik", "fr": "Mathématiques discrètes", "es": "Matemática discreta", "it": "Matematica discreta", "ru": "Дискретная математика", "pt": "Matemática discreta"}, "eyebrow": {"sr": "Formule · Podsetnik", "en": "Formulas · Reference", "de": "Formeln · Übersicht", "fr": "Formules · Aide-mémoire", "es": "Fórmulas · Resumen", "it": "Formule · Prontuario", "ru": "Формулы · Справочник", "pt": "Fórmulas · Resumo"}, "title": {"sr": "Diskretna — formule", "en": "Discrete math — formulas", "de": "Diskrete Mathematik — Formeln", "fr": "Maths discrètes — formules", "es": "Matemática discreta — fórmulas", "it": "Matematica discreta — formule", "ru": "Дискретная математика — формулы", "pt": "Matemática discreta — fórmulas"}, "sub": {"sr": "Sve ključne formule na jednom mestu, po celinama.", "en": "All key formulas in one place, by topic.", "de": "Alle wichtigen Formeln an einem Ort, nach Themen.", "fr": "Toutes les formules clés au même endroit, par thème.", "es": "Todas las fórmulas clave en un solo lugar, por temas.", "it": "Tutte le formule chiave in un posto, per argomenti.", "ru": "Все ключевые формулы в одном месте, по темам.", "pt": "Todas as fórmulas-chave num só lugar, por temas."}, "g1": {"sr": "Logika", "en": "Logic", "de": "Logik", "fr": "Logique", "es": "Lógica", "it": "Logica", "ru": "Логика", "pt": "Lógica"}, "g2": {"sr": "Skupovi i kombinatorika", "en": "Sets and combinatorics", "de": "Mengen und Kombinatorik", "fr": "Ensembles et combinatoire", "es": "Conjuntos y combinatoria", "it": "Insiemi e combinatoria", "ru": "Множества и комбинаторика", "pt": "Conjuntos e combinatória"}, "g3": {"sr": "Teorija grafova", "en": "Graph theory", "de": "Graphentheorie", "fr": "Théorie des graphes", "es": "Teoría de grafos", "it": "Teoria dei grafi", "ru": "Теория графов", "pt": "Teoria de grafos"}, "l1": {"sr": "Implikacija", "en": "Implication", "de": "Implikation", "fr": "Implication", "es": "Implicación", "it": "Implicazione", "ru": "Импликация", "pt": "Implicação"}, "l2": {"sr": "Kontrapozicija", "en": "Contrapositive", "de": "Kontraposition", "fr": "Contraposée", "es": "Contrarrecíproca", "it": "Contronominale", "ru": "Контрапозиция", "pt": "Contrapositiva"}, "l3": {"sr": "De Morgan (∧)", "en": "De Morgan (∧)", "de": "De Morgan (∧)", "fr": "De Morgan (∧)", "es": "De Morgan (∧)", "it": "De Morgan (∧)", "ru": "Де Морган (∧)", "pt": "De Morgan (∧)"}, "l4": {"sr": "De Morgan (∨)", "en": "De Morgan (∨)", "de": "De Morgan (∨)", "fr": "De Morgan (∨)", "es": "De Morgan (∨)", "it": "De Morgan (∨)", "ru": "Де Морган (∨)", "pt": "De Morgan (∨)"}, "l5": {"sr": "Negacija ∀", "en": "Negation of ∀", "de": "Negation von ∀", "fr": "Négation de ∀", "es": "Negación de ∀", "it": "Negazione di ∀", "ru": "Отрицание ∀", "pt": "Negação de ∀"}, "l6": {"sr": "Negacija ∃", "en": "Negation of ∃", "de": "Negation von ∃", "fr": "Négation de ∃", "es": "Negación de ∃", "it": "Negazione di ∃", "ru": "Отрицание ∃", "pt": "Negação de ∃"}, "l7": {"sr": "Broj podskupova", "en": "Number of subsets", "de": "Anzahl der Teilmengen", "fr": "Nombre de sous-ensembles", "es": "Número de subconjuntos", "it": "Numero di sottoinsiemi", "ru": "Число подмножеств", "pt": "Número de subconjuntos"}, "l8": {"sr": "Permutacije", "en": "Permutations", "de": "Permutationen", "fr": "Permutations", "es": "Permutaciones", "it": "Permutazioni", "ru": "Перестановки", "pt": "Permutações"}, "l9": {"sr": "Varijacije", "en": "Variations", "de": "Variationen", "fr": "Arrangements", "es": "Variaciones", "it": "Disposizioni", "ru": "Размещения", "pt": "Arranjos"}, "l10": {"sr": "Kombinacije", "en": "Combinations", "de": "Kombinationen", "fr": "Combinaisons", "es": "Combinaciones", "it": "Combinazioni", "ru": "Сочетания", "pt": "Combinações"}, "l11": {"sr": "Varijacije s ponavljanjem", "en": "Variations with repetition", "de": "Variationen mit Wiederholung", "fr": "Arrangements avec répétition", "es": "Variaciones con repetición", "it": "Disposizioni con ripetizione", "ru": "Размещения с повторениями", "pt": "Arranjos com repetição"}, "l12": {"sr": "Binomna teorema", "en": "Binomial theorem", "de": "Binomischer Lehrsatz", "fr": "Théorème du binôme", "es": "Teorema del binomio", "it": "Teorema binomiale", "ru": "Биномиальная теорема", "pt": "Teorema binomial"}, "l13": {"sr": "Uključenje-isključenje", "en": "Inclusion–exclusion", "de": "Inklusion–Exklusion", "fr": "Inclusion–exclusion", "es": "Inclusión–exclusión", "it": "Inclusione–esclusione", "ru": "Включения–исключения", "pt": "Inclusão–exclusão"}, "l14": {"sr": "Lema o rukovanju", "en": "Handshaking lemma", "de": "Handschlaglemma", "fr": "Lemme des poignées de main", "es": "Lema del apretón de manos", "it": "Lemma delle strette di mano", "ru": "Лемма о рукопожатиях", "pt": "Lema dos apertos de mão"}, "l15": {"sr": "Broj grana stabla", "en": "Number of tree edges", "de": "Anzahl der Baumkanten", "fr": "Nombre d'arêtes d'un arbre", "es": "Número de aristas del árbol", "it": "Numero di archi dell'albero", "ru": "Число рёбер дерева", "pt": "Número de arestas da árvore"}, "l16": {"sr": "Ojlerova formula (planarni)", "en": "Euler's formula (planar)", "de": "Eulersche Formel (planar)", "fr": "Formule d'Euler (planaire)", "es": "Fórmula de Euler (planar)", "it": "Formula di Eulero (planare)", "ru": "Формула Эйлера (планарный)", "pt": "Fórmula de Euler (planar)"}, "l17": {"sr": "Maks. grana (prost graf)", "en": "Max. edges (simple graph)", "de": "Max. Kanten (einfacher Graph)", "fr": "Max. d'arêtes (graphe simple)", "es": "Máx. aristas (grafo simple)", "it": "Max. archi (grafo semplice)", "ru": "Макс. рёбер (простой граф)", "pt": "Máx. arestas (grafo simples)"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}};var LANGS=["sr","en","de","fr","es","it","ru","pt"];function apply(l){if(LANGS.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(T[k]&&T[k][l])el.textContent=T[k][l];});var sel=document.getElementById("langsel");if(sel)sel.value=l;try{localStorage.setItem("mathia_lang",l);}catch(e){}}var start="sr";try{start=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();}catch(e){}apply(start);var sel=document.getElementById("langsel");if(sel)sel.addEventListener("change",function(){apply(this.value);});window.addEventListener("mathia:lang",function(){try{apply((localStorage.getItem("mathia_lang")||"sr").toLowerCase());}catch(e){}});})();
+</script>
 </body>
 </html>
