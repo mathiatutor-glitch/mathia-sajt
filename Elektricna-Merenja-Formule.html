@@ -1,242 +1,59 @@
-<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mathia — Električna merenja · Formule</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
-.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
-.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
-.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Spectral',serif;font-size:28px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
-.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
-.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
-.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
-.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
-.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
-.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
-.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
-.topic h2{font-family:'Spectral',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
-.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
-.topic p{margin:6px 0 12px}
-.box{border-radius:14px;padding:13px 15px;margin:12px 0}
-.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
-.primer{background:#fff;border:1px dashed var(--gold)}
-.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
-.task{font-weight:600;margin-bottom:6px}
-.katex-display{margin:.5em 0}
-.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
-</style><style>
-.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
-.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
-.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
-.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
-.cover{min-height:68vh;padding:74px 24px 50px}
-.brandline{letter-spacing:.42em}
-.kind{margin-top:10px}
-.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
-.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
-.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.foot{margin-top:30px}
-@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
-@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
-
-/* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
-.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
-.katex{max-width:100%}
-.katex{font-family:KaTeX_Main,"Times New Roman",serif}
-.scroll-h{position:static;bottom:auto;margin-top:22px}
-.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
-.rule{margin-top:30px}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<script defer src="napredak.js"></script><!--napredaklog-->
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Elektricna-Merenja-Formule.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Mathia — Električna merenja · Formule">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Elektricna-Merenja-Formule.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathia — Električna merenja · Formule">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
+.rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
+.lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
+.lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:5px 0}
+.grp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:18px 0;box-shadow:0 16px 40px -30px rgba(120,40,60,.4)}
+.grp h2{font-family:'Spectral',serif;color:var(--ink);font-size:1.35rem;margin:0 0 4px}
+.grp .rule{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.f{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:11px 0;border-bottom:1px dashed #EFE1DC}
+.f:last-child{border-bottom:0}
+@media(max-width:560px){.f{grid-template-columns:1fr;gap:2px}}
+.f .lbl{font-weight:700;color:var(--ink2)}
+.f .eq{font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.14rem;color:var(--ink);white-space:nowrap;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="predmet-elektricna-merenja.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Električna merenja</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Električna merenja · Priručnik formula</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<select class="lang" id="lang" aria-label="Jezik / Language">
-<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
-
-<div class="cover">
-<div class="seal">Ω ∿ V</div>
-<div class="brandline">MATHIA</div>
-<div class="kind" data-i18n="kind">formule · priručnik</div>
-<h1 data-i18n="name">Električna merenja</h1>
-<p class="subtitle" data-i18n="sub">Ključne formule i veličine, sa kratkim primerom uz svaku.</p>
-<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
-</div>
-
-<div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Osnovne veličine i jedinice</span></h2>
-<p data-i18n="e1">Napon <em>U</em> (V) meri se u voltima, struja <em>I</em> (A) u amperima, otpor <em>R</em> (Ω) u omima, snaga <em>P</em> (W) u vatima.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\begin{gathered} U\;(\mathrm{V}) \\[8pt] I\;(\mathrm{A}) \\[8pt] R\;(\Omega) \\[8pt] P\;(\mathrm{W}) \end{gathered}$$</div></section>
-
-<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Omov zakon</span></h2>
-<p data-i18n="e2">Struja kroz otpornik srazmerna je naponu, a obrnuto srazmerna otporu.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$U=R\,I\qquad I=\frac{U}{R}\qquad R=\frac{U}{I}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$U=12\text{ V},\ R=4\,\Omega\Rightarrow I=\;?$</div>$$I=\frac{12}{4}=3\ \text{A}$$</div></section>
-
-<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Snaga i energija</span></h2>
-<p data-i18n="e3">Snaga je proizvod napona i struje; energija je snaga puta vreme.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$P=U I=I^2R=\frac{U^2}{R}\qquad W=P\,t$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$U=10\text{ V},\ I=2\text{ A}\Rightarrow P=\;?$</div>$$P=10\cdot2=20\ \text{W}$$</div></section>
-
-<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Veze otpornika</span></h2>
-<p data-i18n="e4">U rednoj vezi otpori se sabiraju; u paralelnoj se sabiraju recipročne vrednosti.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$R_s=R_1+R_2+\dots\qquad \frac{1}{R_p}=\frac{1}{R_1}+\frac{1}{R_2}+\dots$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q4"><em>R</em>₁ = <em>R</em>₂ = 10 Ω. Redno i paralelno?</div>$$R_s=20\ \Omega,\qquad R_p=5\ \Omega$$</div></section>
-
-<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Merni instrumenti</span></h2>
-<p data-i18n="e5">Ampermetar se vezuje redno (kroz njega teče struja), voltmetar paralelno (meri pad napona). Idealni instrumenti ne troše ništa.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div><div class="i18m" data-i18n="m1">$$\begin{gathered} \text{ampermetar redno} \\[8pt] R_A\to0\qquad \text{voltmetar paralelno} \\[8pt] R_V\to\infty \end{gathered}$$</div></div></section>
-
-<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Merne greške</span></h2>
-<p data-i18n="e6">Apsolutna greška je razlika izmerene i tačne vrednosti; relativna se izražava u procentima.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div><div class="i18m" data-i18n="m2">$$\Delta=x_{izm}-x_{tač}\qquad \delta=\frac{\Delta}{x_{tač}}\cdot100\%$$</div></div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q6">Izmereno 102, tačno 100 → δ?</div>$$\delta=\frac{2}{100}\cdot100\%=2\%$$</div></section>
-
-<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Naizmenična struja</span></h2>
-<p data-i18n="e7">Efektivna (RMS) vrednost povezuje naizmenični signal sa istosmernim po snazi; frekvencija je broj perioda u sekundi.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$U_{ef}=\frac{U_m}{\sqrt2}\qquad f=\frac{1}{T}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$U_m=311\text{ V}\Rightarrow U_{ef}\approx\;?$</div>$$U_{ef}\approx\frac{311}{1{,}41}\approx220\ \text{V}$$</div></section>
-
-<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Vitstonov most</span></h2>
-<p data-i18n="e8">U ravnoteži (galvanometar pokazuje nulu) važi odnos otpora u granama.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\frac{R_1}{R_2}=\frac{R_3}{R_4}\ \Rightarrow\ R_x=R_3\frac{R_2}{R_1}$$</div></section>
-
-<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Otpornost provodnika</span></h2>
-<p data-i18n="e9">Otpor zavisi od specifične otpornosti materijala, dužine i poprečnog preseka.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$R=\rho\,\frac{l}{S}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task" data-i18n="q9">Dvostruka dužina, isti presek → otpor?</div>$$R'=2R$$</div></section>
-</div>
-<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
-
-<script>
-(function(){
-  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
-  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
-  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "elektricna-merenja", "data-name": "Profesorica", "data-subj": "Elektri\u010dna merenja"};
-  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "", "en": ""};
-  var st=document.createElement("script"); st.src=SRC;
-  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
-  st.setAttribute("data-lang",L);
-  st.setAttribute("data-hi",HI[L]||HI.sr);
-  (document.body||document.documentElement).appendChild(st);
-})();
-</script>
-<script defer src="gate.js" data-subject="elektricna-merenja"></script>
-<script>
-var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "name": {"en": "Electrical measurements", "de": "Elektrische Messtechnik", "fr": "Mesures électriques", "es": "Mediciones eléctricas", "it": "Misure elettriche", "ru": "Электрические измерения", "pt": "Medições elétricas"}, "sub": {"en": "Key formulas and quantities, each with a short example.", "de": "Wichtige Formeln und Größen, jeweils mit kurzem Beispiel.", "fr": "Formules et grandeurs essentielles, chacune avec un court exemple.", "es": "Fórmulas y magnitudes clave, cada una con un breve ejemplo.", "it": "Formule e grandezze chiave, ognuna con un breve esempio.", "ru": "Ключевые формулы и величины, каждая с кратким примером.", "pt": "Fórmulas e grandezas-chave, cada uma com um breve exemplo."}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "t1": {"en": "Basic quantities and units", "de": "Grundgrößen und Einheiten", "fr": "Grandeurs et unités de base", "es": "Magnitudes y unidades básicas", "it": "Grandezze e unità di base", "ru": "Основные величины и единицы", "pt": "Grandezas e unidades básicas"}, "t2": {"en": "Ohm's law", "de": "Ohmsches Gesetz", "fr": "Loi d'Ohm", "es": "Ley de Ohm", "it": "Legge di Ohm", "ru": "Закон Ома", "pt": "Lei de Ohm"}, "t3": {"en": "Power and energy", "de": "Leistung und Energie", "fr": "Puissance et énergie", "es": "Potencia y energía", "it": "Potenza ed energia", "ru": "Мощность и энергия", "pt": "Potência e energia"}, "t4": {"en": "Resistor connections", "de": "Widerstandsschaltungen", "fr": "Associations de résistances", "es": "Conexiones de resistencias", "it": "Collegamenti di resistori", "ru": "Соединения резисторов", "pt": "Associações de resistores"}, "t5": {"en": "Measuring instruments", "de": "Messgeräte", "fr": "Instruments de mesure", "es": "Instrumentos de medida", "it": "Strumenti di misura", "ru": "Измерительные приборы", "pt": "Instrumentos de medição"}, "t6": {"en": "Measurement errors", "de": "Messfehler", "fr": "Erreurs de mesure", "es": "Errores de medición", "it": "Errori di misura", "ru": "Погрешности измерений", "pt": "Erros de medição"}, "t7": {"en": "Alternating current", "de": "Wechselstrom", "fr": "Courant alternatif", "es": "Corriente alterna", "it": "Corrente alternata", "ru": "Переменный ток", "pt": "Corrente alternada"}, "t8": {"en": "Wheatstone bridge", "de": "Wheatstonesche Brücke", "fr": "Pont de Wheatstone", "es": "Puente de Wheatstone", "it": "Ponte di Wheatstone", "ru": "Мост Уитстона", "pt": "Ponte de Wheatstone"}, "t9": {"en": "Resistance of a conductor", "de": "Widerstand eines Leiters", "fr": "Résistance d'un conducteur", "es": "Resistencia de un conductor", "it": "Resistenza di un conduttore", "ru": "Сопротивление проводника", "pt": "Resistência de um condutor"}, "e1": {"en": "Voltage U (V) is measured in volts, current I (A) in amperes, resistance R (Ω) in ohms, power P (W) in watts.", "de": "Spannung U (V) wird in Volt gemessen, Strom I (A) in Ampere, Widerstand R (Ω) in Ohm, Leistung P (W) in Watt.", "fr": "La tension U (V) se mesure en volts, le courant I (A) en ampères, la résistance R (Ω) en ohms, la puissance P (W) en watts.", "es": "La tensión U (V) se mide en voltios, la corriente I (A) en amperios, la resistencia R (Ω) en ohmios, la potencia P (W) en vatios.", "it": "La tensione U (V) si misura in volt, la corrente I (A) in ampere, la resistenza R (Ω) in ohm, la potenza P (W) in watt.", "ru": "Напряжение U (В) измеряется в вольтах, ток I (А) в амперах, сопротивление R (Ω) в омах, мощность P (Вт) в ваттах.", "pt": "A tensão U (V) mede-se em volts, a corrente I (A) em amperes, a resistência R (Ω) em ohms, a potência P (W) em watts."}, "e2": {"en": "The current through a resistor is proportional to the voltage and inversely proportional to the resistance.", "de": "Der Strom durch einen Widerstand ist proportional zur Spannung und umgekehrt proportional zum Widerstand.", "fr": "Le courant dans une résistance est proportionnel à la tension et inversement proportionnel à la résistance.", "es": "La corriente por una resistencia es proporcional a la tensión e inversamente proporcional a la resistencia.", "it": "La corrente in un resistore è proporzionale alla tensione e inversamente proporzionale alla resistenza.", "ru": "Ток через резистор пропорционален напряжению и обратно пропорционален сопротивлению.", "pt": "A corrente num resistor é proporcional à tensão e inversamente proporcional à resistência."}, "e3": {"en": "Power is the product of voltage and current; energy is power times time.", "de": "Leistung ist das Produkt aus Spannung und Strom; Energie ist Leistung mal Zeit.", "fr": "La puissance est le produit de la tension et du courant ; l'énergie est la puissance multipliée par le temps.", "es": "La potencia es el producto de tensión y corriente; la energía es potencia por tiempo.", "it": "La potenza è il prodotto di tensione e corrente; l'energia è potenza per tempo.", "ru": "Мощность — произведение напряжения и тока; энергия — мощность на время.", "pt": "A potência é o produto da tensão e da corrente; a energia é potência vezes tempo."}, "e4": {"en": "In series, resistances add; in parallel, the reciprocals add.", "de": "In Reihe addieren sich die Widerstände; parallel addieren sich die Kehrwerte.", "fr": "En série, les résistances s'additionnent ; en parallèle, ce sont les inverses qui s'additionnent.", "es": "En serie, las resistencias se suman; en paralelo, se suman los inversos.", "it": "In serie le resistenze si sommano; in parallelo si sommano i reciproci.", "ru": "При последовательном соединении сопротивления складываются; при параллельном складываются обратные величины.", "pt": "Em série, as resistências somam-se; em paralelo, somam-se os inversos."}, "e5": {"en": "An ammeter is connected in series (current flows through it), a voltmeter in parallel (it measures the voltage drop). Ideal instruments consume nothing.", "de": "Ein Amperemeter wird in Reihe geschaltet (der Strom fließt hindurch), ein Voltmeter parallel (es misst den Spannungsabfall). Ideale Instrumente verbrauchen nichts.", "fr": "Un ampèremètre se branche en série (le courant le traverse), un voltmètre en parallèle (il mesure la chute de tension). Les instruments idéaux ne consomment rien.", "es": "El amperímetro se conecta en serie (la corriente pasa por él), el voltímetro en paralelo (mide la caída de tensión). Los instrumentos ideales no consumen nada.", "it": "L'amperometro si collega in serie (la corrente lo attraversa), il voltmetro in parallelo (misura la caduta di tensione). Gli strumenti ideali non consumano nulla.", "ru": "Амперметр включается последовательно (через него течёт ток), вольтметр — параллельно (измеряет падение напряжения). Идеальные приборы ничего не потребляют.", "pt": "O amperímetro liga-se em série (a corrente passa por ele), o voltímetro em paralelo (mede a queda de tensão). Os instrumentos ideais não consomem nada."}, "e6": {"en": "The absolute error is the difference between measured and true value; the relative error is expressed as a percentage.", "de": "Der absolute Fehler ist die Differenz zwischen gemessenem und wahrem Wert; der relative Fehler wird in Prozent angegeben.", "fr": "L'erreur absolue est la différence entre la valeur mesurée et la valeur vraie ; l'erreur relative s'exprime en pourcentage.", "es": "El error absoluto es la diferencia entre el valor medido y el verdadero; el relativo se expresa en porcentaje.", "it": "L'errore assoluto è la differenza tra valore misurato e valore vero; quello relativo si esprime in percentuale.", "ru": "Абсолютная погрешность — разность измеренного и истинного значения; относительная выражается в процентах.", "pt": "O erro absoluto é a diferença entre o valor medido e o verdadeiro; o relativo expressa-se em percentagem."}, "e7": {"en": "The RMS value relates an AC signal to a DC one in terms of power; frequency is the number of periods per second.", "de": "Der Effektivwert (RMS) verknüpft ein Wechselsignal leistungsmäßig mit einem Gleichsignal; die Frequenz ist die Anzahl der Perioden pro Sekunde.", "fr": "La valeur efficace (RMS) relie un signal alternatif à un signal continu en termes de puissance ; la fréquence est le nombre de périodes par seconde.", "es": "El valor eficaz (RMS) relaciona una señal alterna con una continua en cuanto a potencia; la frecuencia es el número de periodos por segundo.", "it": "Il valore efficace (RMS) collega un segnale alternato a uno continuo in termini di potenza; la frequenza è il numero di periodi al secondo.", "ru": "Действующее (RMS) значение связывает переменный сигнал с постоянным по мощности; частота — число периодов в секунду.", "pt": "O valor eficaz (RMS) relaciona um sinal alternado a um contínuo em termos de potência; a frequência é o número de períodos por segundo."}, "e8": {"en": "At balance (the galvanometer reads zero), the ratio of the branch resistances holds.", "de": "Im Gleichgewicht (das Galvanometer zeigt null) gilt das Verhältnis der Zweigwiderstände.", "fr": "À l'équilibre (le galvanomètre indique zéro), le rapport des résistances des branches est vérifié.", "es": "En equilibrio (el galvanómetro marca cero) se cumple la relación de las resistencias de las ramas.", "it": "All'equilibrio (il galvanometro segna zero) vale il rapporto delle resistenze dei rami.", "ru": "В равновесии (гальванометр показывает ноль) выполняется соотношение сопротивлений ветвей.", "pt": "No equilíbrio (o galvanômetro marca zero) vale a relação das resistências dos ramos."}, "e9": {"en": "Resistance depends on the material's resistivity, the length and the cross-section.", "de": "Der Widerstand hängt vom spezifischen Widerstand des Materials, der Länge und dem Querschnitt ab.", "fr": "La résistance dépend de la résistivité du matériau, de la longueur et de la section.", "es": "La resistencia depende de la resistividad del material, la longitud y la sección.", "it": "La resistenza dipende dalla resistività del materiale, dalla lunghezza e dalla sezione.", "ru": "Сопротивление зависит от удельного сопротивления материала, длины и площади поперечного сечения.", "pt": "A resistência depende da resistividade do material, do comprimento e da seção transversal."}, "q4": {"en": "R₁ = R₂ = 10 Ω. Series and parallel?", "de": "R₁ = R₂ = 10 Ω. Reihe und parallel?", "fr": "R₁ = R₂ = 10 Ω. Série et parallèle ?", "es": "R₁ = R₂ = 10 Ω. ¿Serie y paralelo?", "it": "R₁ = R₂ = 10 Ω. Serie e parallelo?", "ru": "R₁ = R₂ = 10 Ω. Последовательно и параллельно?", "pt": "R₁ = R₂ = 10 Ω. Série e paralelo?"}, "q6": {"en": "Measured 102, true 100 → δ?", "de": "Gemessen 102, wahr 100 → δ?", "fr": "Mesuré 102, vrai 100 → δ ?", "es": "Medido 102, verdadero 100 → δ?", "it": "Misurato 102, vero 100 → δ?", "ru": "Измерено 102, истинное 100 → δ?", "pt": "Medido 102, verdadeiro 100 → δ?"}, "q9": {"en": "Double the length, same cross-section → resistance?", "de": "Doppelte Länge, gleicher Querschnitt → Widerstand?", "fr": "Longueur doublée, même section → résistance ?", "es": "Doble longitud, misma sección → ¿resistencia?", "it": "Lunghezza doppia, stessa sezione → resistenza?", "ru": "Двойная длина, то же сечение → сопротивление?", "pt": "Comprimento dobrado, mesma seção → resistência?"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"},"m1": {"en": "$$\\begin{gathered} \\text{ammeter in series} \\\\[8pt] R_A\\to0\\qquad \\text{voltmeter in parallel} \\\\[8pt] R_V\\to\\infty \\end{gathered}$$", "de": "$$\\begin{gathered} \\text{Amperemeter in Reihe} \\\\[8pt] R_A\\to0\\qquad \\text{Voltmeter parallel} \\\\[8pt] R_V\\to\\infty \\end{gathered}$$", "fr": "$$\\begin{gathered} \\text{ampèremètre en série} \\\\[8pt] R_A\\to0\\qquad \\text{voltmètre en parallèle} \\\\[8pt] R_V\\to\\infty \\end{gathered}$$", "es": "$$\\begin{gathered} \\text{amperímetro en serie} \\\\[8pt] R_A\\to0\\qquad \\text{voltímetro en paralelo} \\\\[8pt] R_V\\to\\infty \\end{gathered}$$", "it": "$$\\begin{gathered} \\text{amperometro in serie} \\\\[8pt] R_A\\to0\\qquad \\text{voltmetro in parallelo} \\\\[8pt] R_V\\to\\infty \\end{gathered}$$", "ru": "$$\\begin{gathered} \\text{амперметр последовательно} \\\\[8pt] R_A\\to0\\qquad \\text{вольтметр параллельно} \\\\[8pt] R_V\\to\\infty \\end{gathered}$$", "pt": "$$\\begin{gathered} \\text{amperímetro em série} \\\\[8pt] R_A\\to0\\qquad \\text{voltímetro em paralelo} \\\\[8pt] R_V\\to\\infty \\end{gathered}$$"},"m2": {"en": "$$\\Delta=x_{meas}-x_{true}\\qquad \\delta=\\frac{\\Delta}{x_{true}}\\cdot100\\%$$", "de": "$$\\Delta=x_{gem}-x_{wahr}\\qquad \\delta=\\frac{\\Delta}{x_{wahr}}\\cdot100\\%$$", "fr": "$$\\Delta=x_{mes}-x_{vrai}\\qquad \\delta=\\frac{\\Delta}{x_{vrai}}\\cdot100\\%$$", "es": "$$\\Delta=x_{med}-x_{verd}\\qquad \\delta=\\frac{\\Delta}{x_{verd}}\\cdot100\\%$$", "it": "$$\\Delta=x_{mis}-x_{vero}\\qquad \\delta=\\frac{\\Delta}{x_{vero}}\\cdot100\\%$$", "ru": "$$\\Delta=x_{\\text{изм}}-x_{\\text{ист}}\\qquad \\delta=\\frac{\\Delta}{x_{\\text{ист}}}\\cdot100\\%$$", "pt": "$$\\Delta=x_{med}-x_{verd}\\qquad \\delta=\\frac{\\Delta}{x_{verd}}\\cdot100\\%$$"}};
-document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
-function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l;try{rk()}catch(_){}}
-document.getElementById("lang").onchange=function(){apply(this.value)};
-function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
-window.addEventListener("load",rk);
-</script>
-<script>
-(function(){
- function fit(){
-  var ds=document.querySelectorAll('.katex-display');
-  for(var i=0;i<ds.length;i++){
-   var el=ds[i];el.style.fontSize='';
-   var p=100,n=0;
-   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
-  }
- }
- window.addEventListener('load',function(){setTimeout(fit,60);});
- window.addEventListener('resize',function(){setTimeout(fit,80);});
-})();
-</script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
-<script>/*LANG-ON-LOAD*/(function(){try{var sv=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();var sel=document.getElementById("lang");if(sel)sel.value=sv;if(sv!=="sr"&&typeof apply==="function"){document.querySelectorAll("[data-i18n]").forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML});apply(sv);}}catch(e){}})();</script>
-</body></html>
+<header class="topbar"><a class="tb-back" href="predmet-elektricna-merenja.html">← Električna merenja</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><span class="tb-lang">SR</span></header>
+<div class="cover"><div class="eyebrow">Formule · Podsetnik</div><h1>Električna merenja — formule</h1><div class="sub">Sve ključne formule na jednom mestu, po celinama.</div></div>
+<div class="wrap"><div class="grp"><h2>Greške i opseg</h2><div class="rule"></div><div class="f"><span class="lbl">Apsolutna greška</span><span class="eq">Δx = x<sub>izm</sub> − x<sub>tačno</sub></span></div><div class="f"><span class="lbl">Relativna greška</span><span class="eq">δ = <span class="frac"><span class="num">Δx</span><span class="den">x</span></span> · 100%</span></div><div class="f"><span class="lbl">Shunt</span><span class="eq">R<sub>s</sub> = <span class="frac"><span class="num">R<sub>A</sub></span><span class="den">n − 1</span></span></span></div><div class="f"><span class="lbl">Vitstonov most</span><span class="eq">R<sub>1</sub> R<sub>4</sub> = R<sub>2</sub> R<sub>3</sub></span></div></div></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="predmet-elektricna-merenja.html">Električna merenja</a><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi</a><a href="o-marini.html">O meni</a><a href="uslovi.html">Uslovi</a><a href="privatnost.html">Privatnost</a></nav><div class="rule"></div><div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+</body>
+</html>

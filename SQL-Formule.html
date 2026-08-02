@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mathia — Energetska elektronika 1 · Zadaci</title>
+<title>Mathia — Baze podataka · Formule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -40,19 +40,20 @@ b,strong{color:var(--ink)}
 .pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
 .pf .copy{color:var(--muted);font-size:.76rem}
 .step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:5px 0}
-.zad{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:18px 0;box-shadow:0 16px 40px -30px rgba(120,40,60,.4)}
-.zad .z-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.zad .z-n{width:30px;height:30px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldsoft));color:#4a3712;font-family:'Spectral',serif;font-weight:700;display:flex;align-items:center;justify-content:center}
-.zad .z-t{font-family:'Spectral',serif;font-weight:700;color:var(--ink)}
-.zad .q{color:#4a3a40;margin:2px 0 10px}
-.zad .sol{background:linear-gradient(180deg,#FFF7FA,#FBEEF2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-.zad .sol .h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.7rem;color:var(--malina);margin-bottom:6px}
+.grp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:18px 0;box-shadow:0 16px 40px -30px rgba(120,40,60,.4)}
+.grp h2{font-family:'Spectral',serif;color:var(--ink);font-size:1.35rem;margin:0 0 4px}
+.grp .rule{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.f{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:11px 0;border-bottom:1px dashed #EFE1DC}
+.f:last-child{border-bottom:0}
+@media(max-width:560px){.f{grid-template-columns:1fr;gap:2px}}
+.f .lbl{font-weight:700;color:var(--ink2)}
+.f .eq{font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.14rem;color:var(--ink);white-space:nowrap;overflow-x:auto}
 </style>
 </head>
 <body>
-<header class="topbar"><a class="tb-back" href="predmet-energetska-elektronika-1.html">← Energetska elektronika 1</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><span class="tb-lang">SR</span></header>
-<div class="cover"><div class="eyebrow">Zadaci · Rešeni</div><h1>Energetska elektronika 1 — zadaci</h1><div class="sub">Tipični zadaci sa detaljnim postupkom.</div></div>
-<div class="wrap"><div class="zad"><div class="z-h"><span class="z-n">1</span><span class="z-t">Srednji napon</span></div><p class="q">Jednofazni pun most, amplituda U<sub>m</sub> = 314 V. Nađi U<sub>dc</sub>.</p><div class="sol"><div class="h">Rešenje</div><span class="step">U<sub>dc</sub> = <span class="frac"><span class="num">2 · 314</span><span class="den">π</span></span> ≈ 200 V</span></div></div><div class="zad"><div class="z-h"><span class="z-n">2</span><span class="z-t">Efektivna vrednost</span></div><p class="q">Amplituda sinusa U<sub>m</sub> = 311 V. Efektivna?</p><div class="sol"><div class="h">Rešenje</div><span class="step">U<sub>ef</sub> = <span class="frac"><span class="num">311</span><span class="den">√<span class="rt">2</span></span></span> ≈ 220 V</span></div></div><div class="zad"><div class="z-h"><span class="z-n">3</span><span class="z-t">Poluperiodni</span></div><p class="q">U<sub>m</sub> = 100 V. Srednja vrednost poluperiodnog?</p><div class="sol"><div class="h">Rešenje</div><span class="step">U<sub>dc</sub> = <span class="frac"><span class="num">100</span><span class="den">π</span></span> ≈ 31,8 V</span></div></div></div>
-<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="predmet-energetska-elektronika-1.html">Energetska elektronika 1</a><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi</a><a href="o-marini.html">O meni</a><a href="uslovi.html">Uslovi</a><a href="privatnost.html">Privatnost</a></nav><div class="rule"></div><div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<header class="topbar"><a class="tb-back" href="predmet-baze-podataka.html">← Baze podataka</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><span class="tb-lang">SR</span></header>
+<div class="cover"><div class="eyebrow">Formule · Podsetnik</div><h1>Baze podataka — formule</h1><div class="sub">Sve ključne formule na jednom mestu, po celinama.</div></div>
+<div class="wrap"><div class="grp"><h2>SQL — podsetnik</h2><div class="rule"></div><div class="f"><span class="lbl">Izbor</span><span class="eq">SELECT kol FROM t WHERE uslov</span></div><div class="f"><span class="lbl">Spajanje</span><span class="eq">JOIN t2 ON t.id = t2.fk</span></div><div class="f"><span class="lbl">Agregacija</span><span class="eq">GROUP BY kol HAVING …</span></div><div class="f"><span class="lbl">Sortiranje</span><span class="eq">ORDER BY kol DESC</span></div><div class="f"><span class="lbl">Brojanje</span><span class="eq">COUNT(*), SUM, AVG, MAX, MIN</span></div></div></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="predmet-baze-podataka.html">Baze podataka</a><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi</a><a href="o-marini.html">O meni</a><a href="uslovi.html">Uslovi</a><a href="privatnost.html">Privatnost</a></nav><div class="rule"></div><div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
 </body>
 </html>

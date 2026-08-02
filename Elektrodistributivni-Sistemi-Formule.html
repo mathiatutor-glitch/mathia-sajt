@@ -1,116 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#432C37">
-<meta name="description" content="MATHIA EDU — Formule: online časovi i AI-asistent za matematiku, fiziku, programiranje i pripremu za fakultet, sa dr Marinom.">
-<title>Formule — Mathia</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathia — Elektrodistributivni sistemi · Formule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="theme-mathia.css">
-<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#FBF6EE;--plum:#432C37;--plum2:#5C3B49;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--rose:#CC8E86;--muted:#90787E;--ink:#3a2530}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
-main{max-width:820px;margin:0 auto;padding:40px 22px 90px}
-.topnav{max-width:820px;margin:0 auto;padding:22px 22px 0}
-.back{color:var(--golddk);font-weight:700;text-decoration:none;font-size:.92rem}
-.back:hover{color:var(--plum)}
-.doc-eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin:24px 0 10px}
-h1.doc{font-family:'Spectral',serif;font-size:clamp(2rem,5vw,2.9rem);font-weight:600;color:var(--plum);line-height:1.12;margin:0 0 12px}
-.doc-lead{color:var(--muted);font-size:1.08rem;margin:0 0 30px;max-width:640px}
-.topic{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.26);border-radius:20px;padding:28px 30px;margin:0 0 22px;box-shadow:0 26px 54px -46px rgba(120,70,80,.55)}
-.topic h2{font-family:'Spectral',serif;font-size:1.7rem;color:var(--plum);font-weight:600;margin:0 0 6px}
-.topic h3{font-family:'Inter',sans-serif;font-size:1rem;color:var(--golddk);font-weight:800;letter-spacing:.02em;margin:22px 0 8px}
-.topic p{margin:0 0 14px}
-.fx{background:rgba(231,210,162,.16);border:1px solid rgba(198,160,92,.3);border-left:3px solid var(--gold);border-radius:12px;padding:14px 18px;margin:14px 0;overflow-x:auto}
-.fx .lbl{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:4px}
-ul.clean{margin:8px 0 14px;padding-left:0;list-style:none}
-ul.clean li{padding:5px 0 5px 22px;position:relative}
-ul.clean li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:.7rem;top:9px}
-table.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem}
-table.tbl th{background:rgba(198,160,92,.16);color:var(--plum);font-weight:800;text-align:left;padding:9px 11px;border-bottom:1px solid rgba(198,160,92,.3)}
-table.tbl td{padding:8px 11px;border-bottom:1px solid rgba(198,160,92,.16)}
-.answer{background:rgba(204,142,134,.1);border:1px solid rgba(204,142,134,.3);border-radius:12px;padding:12px 16px;margin:12px 0;font-weight:700;color:var(--plum2)}
-.figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:18px 0}
-.figs figure{margin:0;border:1px solid rgba(198,160,92,.28);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 20px 40px -34px rgba(120,70,80,.5)}
-.figs img{width:100%;display:block}
-.figs figcaption{font-size:.78rem;color:var(--muted);padding:8px 10px;text-align:center}
-.doc-note{display:flex;align-items:center;gap:9px;justify-content:center;color:var(--muted);font-size:.85rem;margin-top:30px}
-.doc-note svg{width:15px;height:15px;color:var(--golddk)}
-</style>
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
+.rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
+.lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
+.lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:5px 0}
+.grp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:18px 0;box-shadow:0 16px 40px -30px rgba(120,40,60,.4)}
+.grp h2{font-family:'Spectral',serif;color:var(--ink);font-size:1.35rem;margin:0 0 4px}
+.grp .rule{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.f{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:11px 0;border-bottom:1px dashed #EFE1DC}
+.f:last-child{border-bottom:0}
+@media(max-width:560px){.f{grid-template-columns:1fr;gap:2px}}
+.f .lbl{font-weight:700;color:var(--ink2)}
+.f .eq{font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.14rem;color:var(--ink);white-space:nowrap;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="predmet-elektrodistributivni-sistemi.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Elektrodistributivni sistemi</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Elektrodistributivni sistemi · Priručnik formula</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="topnav"><a class="back" href="predmet-elektrodistributivni-sistemi.html">← Nazad na predmet</a></div>
-<main>
-  <div class="doc-eyebrow">Elektrodistributivni sistemi · formule</div>
-  <h1 class="doc">Formule</h1>
-  <p class="doc-lead">Sve ključne formule na jednom mestu — spremne pred ispit.</p>
-  
-<div class="topic">
-  <h2>Pouzdanost — ključne formule</h2>
-  <div class="fx"><div class="lbl">Trajanje prekida čvora</div>$$U_i = \lambda_i \cdot r_i \quad [\text{h/god}]$$</div>
-  <div class="fx"><div class="lbl">SAIFI — prosečna učestanost</div>$$\text{SAIFI} = \frac{\sum_i \lambda_i N_i}{\sum_i N_i}$$</div>
-  <div class="fx"><div class="lbl">SAIDI — prosečno trajanje</div>$$\text{SAIDI} = \frac{\sum_i U_i N_i}{\sum_i N_i}$$</div>
-  <div class="fx"><div class="lbl">ENS — neisporučena energija</div>$$\text{ENS} = \sum_i P_i \, U_i$$</div>
-  <div class="fx"><div class="lbl">Šteta</div>$$\check{\text{S}}\text{TETA} = \sum_i c_i \, \text{ENS}_i$$</div>
-</div>
-<div class="topic">
-  <h2>Nesimetrični režimi — simetrične komponente</h2>
-  <div class="fx"><div class="lbl">Operator</div>$$a = e^{j120^\circ}, \quad 1 + a + a^2 = 0$$</div>
-  <div class="fx"><div class="lbl">Razlaganje (Fortescue)</div>$$\begin{bmatrix} I_0 \\ I_1 \\ I_2 \end{bmatrix} = \frac{1}{3}\begin{bmatrix} 1 & 1 & 1 \\ 1 & a & a^2 \\ 1 & a^2 & a \end{bmatrix}\begin{bmatrix} I_a \\ I_b \\ I_c \end{bmatrix}$$</div>
-  <div class="fx"><div class="lbl">Sinteza</div>$$\begin{bmatrix} I_a \\ I_b \\ I_c \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 \\ 1 & a^2 & a \\ 1 & a & a^2 \end{bmatrix}\begin{bmatrix} I_0 \\ I_1 \\ I_2 \end{bmatrix}$$</div>
-</div>
-
-  <div class="doc-note">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-    Sadržaj je samo za pregled — zaštićen autorskim pravom.
-  </div>
-</main>
-<script defer src="gate.js" data-subject="elektrodistributivni-sistemi"></script>
-<script src="i18n-mathia.js" defer></script>
-<script src="zastita.js"></script>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="predmet-elektrodistributivni-sistemi.html">← Elektrodistributivni sistemi</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><span class="tb-lang">SR</span></header>
+<div class="cover"><div class="eyebrow">Formule · Podsetnik</div><h1>Elektrodistributivni sistemi — formule</h1><div class="sub">Sve ključne formule na jednom mestu, po celinama.</div></div>
+<div class="wrap"><div class="grp"><h2>Mreža</h2><div class="rule"></div><div class="f"><span class="lbl">Pad napona</span><span class="eq">ΔU = I(R cos φ + X sin φ)</span></div><div class="f"><span class="lbl">Gubici (trofazno)</span><span class="eq">P<sub>g</sub> = 3 I² R</span></div><div class="f"><span class="lbl">Aktivna snaga</span><span class="eq">P = √<span class="rt">3</span> U<sub>l</sub> I cos φ</span></div><div class="f"><span class="lbl">Snaga kompenzacije</span><span class="eq">Q<sub>C</sub> = P(tg φ<sub>1</sub> − tg φ<sub>2</sub>)</span></div></div></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="predmet-elektrodistributivni-sistemi.html">Elektrodistributivni sistemi</a><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi</a><a href="o-marini.html">O meni</a><a href="uslovi.html">Uslovi</a><a href="privatnost.html">Privatnost</a></nav><div class="rule"></div><div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
 </body>
 </html>

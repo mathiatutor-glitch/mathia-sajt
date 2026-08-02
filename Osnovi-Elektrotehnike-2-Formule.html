@@ -1,252 +1,59 @@
-<!doctype html><html lang="sr"><head><meta charset="utf-8">
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mathia — Osnovi elektrotehnike 2 · Formule</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#FBF6EE;--rose:#CC8E86;--plum:#432C37;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--plum);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
-.lang{position:fixed;top:14px;right:14px;z-index:9;appearance:menulist;font:700 14px Inter,sans-serif;padding:7px 10px;border-radius:999px;background:#fff;border:2px solid var(--gold);color:var(--plum);cursor:pointer}
-.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 22px;background:radial-gradient(120% 80% at 50% 0%,#fff,var(--paper))}
-.seal{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#fff,#FBF1DD);font-family:'Spectral',serif;font-size:28px;color:var(--golddk);box-shadow:0 14px 34px rgba(67,44,55,.14);margin-bottom:18px}
-.brandline{font-size:13px;letter-spacing:.34em;color:var(--golddk);font-weight:700}
-.kind{font-size:13px;letter-spacing:.12em;color:var(--rose);margin-top:6px;text-transform:uppercase}
-.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(30px,6vw,46px);margin:14px 0 8px;max-width:14em}
-.subtitle{color:#7a6b66;max-width:30em;margin:0 auto}
-.foot{margin-top:26px;font-size:12px;letter-spacing:.06em;color:#a89a93}
-.page{max-width:760px;margin:0 auto;padding:10px 20px 70px}
-.topic{background:#fff;border:1px solid var(--goldlt);border-radius:18px;padding:22px 22px 18px;margin:18px 0;box-shadow:0 14px 34px rgba(67,44,55,.06)}
-.topic h2{font-family:'Spectral',serif;font-size:25px;font-weight:700;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
-.tnum{display:inline-flex;min-width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;font:700 15px Inter;flex:none}
-.topic p{margin:6px 0 12px}
-.box{border-radius:14px;padding:13px 15px;margin:12px 0}
-.zapamti{background:#FBF6EE;border:1px solid var(--goldlt)}
-.primer{background:#fff;border:1px dashed var(--gold)}
-.bx-h{font-size:12px;letter-spacing:.08em;color:var(--golddk);font-weight:700;text-transform:uppercase;margin-bottom:6px}
-.task{font-weight:600;margin-bottom:6px}
-.katex-display{margin:.5em 0}
-.foot2{text-align:center;color:#a89a93;font-size:12px;padding:10px 0 30px}
-</style><style>
-.box{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:14px 16px}
-.katex-display{margin:.35em 0;overflow-x:auto;overflow-y:hidden;padding:4px 2px}
-.katex-display>.katex{white-space:nowrap}.katex{max-width:100%}
-.topic{padding:24px 24px 20px}.topic p{color:#6f5f5a}.bx-h{margin-bottom:8px}.task{color:var(--plum)}
-.cover{min-height:68vh;padding:74px 24px 50px}
-.brandline{letter-spacing:.42em}
-.kind{margin-top:10px}
-.cover h1{margin:18px 0 12px;font-size:clamp(34px,6.2vw,52px);line-height:1.12;text-wrap:balance;text-align:center}
-.subtitle{font-size:17px;line-height:1.72;max-width:27em;text-wrap:pretty;overflow-wrap:normal;hyphens:none}
-.subtitle::before{content:"";display:block;width:54px;height:2px;margin:2px auto 18px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.foot{margin-top:30px}
-@media (max-width:560px){.box .katex{font-size:.95em}.topic h2{font-size:23px}}
-@media print{.lang{display:none}body{background:#fff}.cover{min-height:auto;padding:28px 18px}.topic{break-inside:avoid;box-shadow:none;border-color:#e7d2a2}.box{box-shadow:none}}
-
-/* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
-.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
-.katex{max-width:100%}
-.katex{font-family:KaTeX_Main,"Times New Roman",serif}
-.scroll-h{position:static;bottom:auto;margin-top:22px}
-.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
-.rule{margin-top:30px}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<script defer src="napredak.js"></script><!--napredaklog-->
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Osnovi-Elektrotehnike-2-Formule.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Mathia — Osnovi elektrotehnike 2 · Formule">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Osnovi-Elektrotehnike-2-Formule.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathia — Osnovi elektrotehnike 2 · Formule">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
+.rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
+.lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
+.lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:5px 0}
+.grp{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:18px 0;box-shadow:0 16px 40px -30px rgba(120,40,60,.4)}
+.grp h2{font-family:'Spectral',serif;color:var(--ink);font-size:1.35rem;margin:0 0 4px}
+.grp .rule{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.f{display:grid;grid-template-columns:210px 1fr;gap:14px;align-items:center;padding:11px 0;border-bottom:1px dashed #EFE1DC}
+.f:last-child{border-bottom:0}
+@media(max-width:560px){.f{grid-template-columns:1fr;gap:2px}}
+.f .lbl{font-weight:700;color:var(--ink2)}
+.f .eq{font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.14rem;color:var(--ink);white-space:nowrap;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="predmet-osnovi-elektrotehnike-2.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Osnovi elektrotehnike 2</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Osnovi elektrotehnike 2 · Priručnik formula</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<select class="lang" id="lang" aria-label="Jezik / Language">
-<option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
-
-<div class="cover">
-<div class="seal">B Φ ∿</div>
-<div class="brandline">MATHIA</div>
-<div class="kind" data-i18n="kind">formule · priručnik</div>
-<h1 data-i18n="name">Osnovi elektrotehnike 2</h1>
-<p class="subtitle" data-i18n="sub">Ključne formule i veličine, sa kratkim primerom uz svaku.</p>
-<div class="foot" data-i18n="foot">uči s ljubavlju · mathia.rs</div>
-</div>
-
-<div class="page">
-<section class="topic"><h2><span class="tnum">1</span> <span data-i18n="t1">Magnetska indukcija i Lorencova sila</span></h2>
-<p data-i18n="e1">Na naelektrisanje u pokretu deluje magnetska sila upravna na brzinu i polje.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\vec F=q\,\vec v\times\vec B\qquad F=BIl\sin\theta$$</div></section>
-<section class="topic"><h2><span class="tnum">2</span> <span data-i18n="t2">Bio–Savarov zakon</span></h2>
-<p data-i18n="e2">Polje pravolinijskog provodnika opada sa rastojanjem; u centru kružne petlje zavisi od poluprečnika.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$B=\frac{\mu_0 I}{2\pi r}\qquad B_{\text{petlja}}=\frac{\mu_0 I}{2R}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$I=10\text{ A},\ r=5\text{ cm}\ \Rightarrow\ B=?$</div>$$B=\frac{4\pi\cdot10^{-7}\cdot10}{2\pi\cdot0{,}05}=4\cdot10^{-5}\ \text{T}$$</div></section>
-<section class="topic"><h2><span class="tnum">3</span> <span data-i18n="t3">Magnetski fluks</span></h2>
-<p data-i18n="e3">Fluks je proizvod indukcije i površine kroz koju prolazi, sa kosinusom ugla.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\Phi=\int\vec B\cdot d\vec S=BS\cos\theta\qquad [\Phi]=\text{Wb}$$</div></section>
-<section class="topic"><h2><span class="tnum">4</span> <span data-i18n="t4">Amperov zakon</span></h2>
-<p data-i18n="e4">Cirkulacija vektora B duž zatvorene konture jednaka je obuhvaćenoj struji puta μ₀.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\oint\vec B\cdot d\vec l=\mu_0 I\qquad B_{\text{sol}}=\mu_0 nI$$</div></section>
-<section class="topic"><h2><span class="tnum">5</span> <span data-i18n="t5">Feromagnetici i magnetska kola</span></h2>
-<p data-i18n="e5">U magnetskom kolu magnetomotorna sila igra ulogu napona, a magnetski otpor ulogu otpora.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$B=\mu H,\ \ \mu=\mu_0\mu_r\qquad \mathcal{F}=NI=\Phi R_m,\ \ R_m=\frac{l}{\mu S}$$</div></section>
-<section class="topic"><h2><span class="tnum">6</span> <span data-i18n="t6">Granični uslovi (magnetsko polje)</span></h2>
-<p data-i18n="e6">Normalna komponenta indukcije B je neprekidna, a tangencijalna komponenta jačine polja H je neprekidna (bez površinske struje).</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$B_{1n}=B_{2n}\qquad H_{1t}=H_{2t}$$</div></section>
-<section class="topic"><h2><span class="tnum">7</span> <span data-i18n="t7">Faradejev i Lencov zakon</span></h2>
-<p data-i18n="e7">Indukovani napon jednak je brzini promene fluksa; znak minus (Lenc) označava suprotstavljanje promeni.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$e=-\frac{d\Phi}{dt}$$</div></section>
-<section class="topic"><h2><span class="tnum">8</span> <span data-i18n="t8">Sopstvena i međusobna induktivnost</span></h2>
-<p data-i18n="e8">Induktivnost povezuje fluks i struju; promenljiva struja u kalemu indukuje napon.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\Phi=Li\qquad e=-L\frac{di}{dt}\qquad M=\frac{\Phi_{12}}{I_1}$$</div></section>
-<section class="topic"><h2><span class="tnum">9</span> <span data-i18n="t9">Energija magnetskog polja</span></h2>
-<p data-i18n="e9">Energija u kalemu zavisi od induktivnosti i kvadrata struje; gustina energije od kvadrata indukcije.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$W=\frac12 LI^2\qquad w=\frac{B^2}{2\mu}$$</div></section>
-<section class="topic"><h2><span class="tnum">10</span> <span data-i18n="t10">Prostoperiodični (sinusni) režim</span></h2>
-<p data-i18n="e10">Efektivna vrednost povezuje sinusni signal sa istosmernim po snazi; ω je kružna učestanost.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$U_{ef}=\frac{U_m}{\sqrt2}\qquad \omega=2\pi f=\frac{2\pi}{T}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$U_m=311\text{ V}\ \Rightarrow\ U_{ef}\approx?$</div>$$U_{ef}=\frac{311}{\sqrt2}\approx220\ \text{V}$$</div></section>
-<section class="topic"><h2><span class="tnum">11</span> <span data-i18n="t11">Impedansa elemenata</span></h2>
-<p data-i18n="e11">Otpornik ima realnu, a kalem i kondenzator imaginarnu impedansu zavisnu od učestanosti.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$Z_R=R\qquad Z_L=j\omega L\qquad Z_C=\frac{1}{j\omega C}$$</div></section>
-<section class="topic"><h2><span class="tnum">12</span> <span data-i18n="t12">Omov zakon u kompleksnom domenu</span></h2>
-<p data-i18n="e12">U sinusnom režimu kola se rešavaju fazorima: napon je proizvod impedanse i struje.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\underline U=\underline Z\,\underline I\qquad \underline Z=R+jX=|Z|e^{j\varphi}$$</div></section>
-<section class="topic"><h2><span class="tnum">13</span> <span data-i18n="t13">Kompleksna snaga</span></h2>
-<p data-i18n="e13">Prividna snaga objedinjuje aktivnu (W) i reaktivnu (var); faktor snage je kosinus ugla.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\underline S=\underline U\,\underline I^{*}=P+jQ\qquad P=UI\cos\varphi$$</div></section>
-<section class="topic"><h2><span class="tnum">14</span> <span data-i18n="t14">Rezonansa</span></h2>
-<p data-i18n="e14">U rezonansi induktivna i kapacitivna reaktansa se poništavaju; redna rezonansa daje minimalnu impedansu.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$f_0=\frac{1}{2\pi\sqrt{LC}}\qquad Q=\frac{\omega_0 L}{R}$$</div>
-<div class="box primer"><div class="bx-h" data-i18n="primer">PRIMER</div><div class="task">$L=1\text{ mH},\ C=1\,\text{µF}\ \Rightarrow\ f_0\approx?$</div>$$f_0=\frac{1}{2\pi\sqrt{10^{-3}\cdot10^{-6}}}\approx5{,}03\ \text{kHz}$$</div></section>
-<section class="topic"><h2><span class="tnum">15</span> <span data-i18n="t15">Popravka faktora snage</span></h2>
-<p data-i18n="e15">Paralelni kondenzator kompenzuje reaktivnu snagu induktivnog potrošača i podiže faktor snage.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$Q_C=U^2\omega C\qquad Q_C=P(\operatorname{tg}\varphi_1-\operatorname{tg}\varphi_2)$$</div></section>
-<section class="topic"><h2><span class="tnum">16</span> <span data-i18n="t16">Simetrični trofazni sistemi</span></h2>
-<p data-i18n="e16">U vezi zvezda linijski napon je √3 puta fazni; u trouglu linijska struja je √3 puta fazna.</p>
-<div class="box zapamti"><div class="bx-h" data-i18n="formule">FORMULE</div>$$\text{zvezda}:\ U_l=\sqrt3\,U_f\qquad \text{trougao}:\ I_l=\sqrt3\,I_f\qquad P=\sqrt3\,U_l I_l\cos\varphi$$</div></section>
-</div>
-<div class="foot2" data-i18n="foot2">© Mathia · uči s ljubavlju · mathia.rs</div>
-
-<script>
-(function(){
-  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
-  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
-  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "osnovi-elektrotehnike", "data-name": "Profesorica", "data-subj": "Osnovi elektrotehnike 2"};
-  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "", "en": ""};
-  var st=document.createElement("script"); st.src=SRC;
-  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
-  st.setAttribute("data-lang",L);
-  st.setAttribute("data-hi",HI[L]||HI.sr);
-  (document.body||document.documentElement).appendChild(st);
-})();
-</script>
-<script defer src="gate.js" data-subject="osnovi-elektrotehnike"></script>
-<script>
-var I18N={"kind": {"en": "formulas · handbook", "de": "Formeln · Handbuch", "fr": "formules · aide-mémoire", "es": "fórmulas · manual", "it": "formule · prontuario", "ru": "формулы · справочник", "pt": "fórmulas · manual"}, "name": {"en": "Fundamentals of Electrical Engineering 2", "de": "Grundlagen der Elektrotechnik 2", "fr": "Bases du génie électrique 2", "es": "Fundamentos de electrotecnia 2", "it": "Fondamenti di elettrotecnica 2", "ru": "Основы электротехники 2", "pt": "Fundamentos de eletrotecnia 2"}, "sub": {"en": "Key formulas and quantities, each with a short example.", "de": "Wichtige Formeln und Größen, jeweils mit kurzem Beispiel.", "fr": "Formules et grandeurs essentielles, chacune avec un court exemple.", "es": "Fórmulas y magnitudes clave, cada una con un breve ejemplo.", "it": "Formule e grandezze chiave, ognuna con un breve esempio.", "ru": "Ключевые формулы и величины, каждая с кратким примером.", "pt": "Fórmulas e grandezas-chave, cada uma com um breve exemplo."}, "formule": {"en": "FORMULAS", "de": "FORMELN", "fr": "FORMULES", "es": "FÓRMULAS", "it": "FORMULE", "ru": "ФОРМУЛЫ", "pt": "FÓRMULAS"}, "primer": {"en": "EXAMPLE", "de": "BEISPIEL", "fr": "EXEMPLE", "es": "EJEMPLO", "it": "ESEMPIO", "ru": "ПРИМЕР", "pt": "EXEMPLO"}, "foot": {"en": "learn with love · mathia.rs", "de": "lerne mit Liebe · mathia.rs", "fr": "apprends avec amour · mathia.rs", "es": "aprende con amor · mathia.rs", "it": "impara con amore · mathia.rs", "ru": "учись с любовью · mathia.rs", "pt": "aprende com amor · mathia.rs"}, "foot2": {"en": "© Mathia · learn with love · mathia.rs", "de": "© Mathia · lerne mit Liebe · mathia.rs", "fr": "© Mathia · apprends avec amour · mathia.rs", "es": "© Mathia · aprende con amor · mathia.rs", "it": "© Mathia · impara con amore · mathia.rs", "ru": "© Mathia · учись с любовью · mathia.rs", "pt": "© Mathia · aprende com amor · mathia.rs"}, "t1": {"en": "Magnetic flux density and Lorentz force", "de": "Magnetische Flussdichte und Lorentzkraft", "fr": "Induction magnétique et force de Lorentz", "es": "Inducción magnética y fuerza de Lorentz", "it": "Induzione magnetica e forza di Lorentz", "ru": "Магнитная индукция и сила Лоренца", "pt": "Indução magnética e força de Lorentz"}, "e1": {"en": "A moving charge feels a magnetic force perpendicular to its velocity and to the field.", "de": "Auf eine bewegte Ladung wirkt eine magnetische Kraft senkrecht zu Geschwindigkeit und Feld.", "fr": "Une charge en mouvement subit une force magnétique perpendiculaire à sa vitesse et au champ.", "es": "Sobre una carga en movimiento actúa una fuerza magnética perpendicular a la velocidad y al campo.", "it": "Su una carica in moto agisce una forza magnetica perpendicolare alla velocità e al campo.", "ru": "На движущийся заряд действует магнитная сила, перпендикулярная скорости и полю.", "pt": "Sobre uma carga em movimento atua uma força magnética perpendicular à velocidade e ao campo."}, "t2": {"en": "Biot–Savart law", "de": "Biot–Savart-Gesetz", "fr": "Loi de Biot–Savart", "es": "Ley de Biot–Savart", "it": "Legge di Biot–Savart", "ru": "Закон Био–Савара", "pt": "Lei de Biot–Savart"}, "e2": {"en": "The field of a straight wire falls off with distance; at the centre of a loop it depends on the radius.", "de": "Das Feld eines geraden Leiters nimmt mit dem Abstand ab; im Zentrum einer Schleife hängt es vom Radius ab.", "fr": "Le champ d'un fil rectiligne décroît avec la distance ; au centre d'une boucle il dépend du rayon.", "es": "El campo de un hilo recto decae con la distancia; en el centro de una espira depende del radio.", "it": "Il campo di un filo rettilineo diminuisce con la distanza; al centro di una spira dipende dal raggio.", "ru": "Поле прямого провода убывает с расстоянием; в центре витка зависит от радиуса.", "pt": "O campo de um fio retilíneo decai com a distância; no centro de uma espira depende do raio."}, "t3": {"en": "Magnetic flux", "de": "Magnetischer Fluss", "fr": "Flux magnétique", "es": "Flujo magnético", "it": "Flusso magnetico", "ru": "Магнитный поток", "pt": "Fluxo magnético"}, "e3": {"en": "Flux is the product of flux density and the area it crosses, times the cosine of the angle.", "de": "Der Fluss ist das Produkt aus Flussdichte und durchsetzter Fläche, mal Kosinus des Winkels.", "fr": "Le flux est le produit de l'induction et de la surface traversée, par le cosinus de l'angle.", "es": "El flujo es el producto de la inducción y la superficie atravesada, por el coseno del ángulo.", "it": "Il flusso è il prodotto dell'induzione e dell'area attraversata, per il coseno dell'angolo.", "ru": "Поток — произведение индукции на площадь и косинус угла.", "pt": "O fluxo é o produto da indução pela área atravessada, vezes o cosseno do ângulo."}, "t4": {"en": "Ampère's law", "de": "Ampèresches Gesetz", "fr": "Théorème d'Ampère", "es": "Ley de Ampère", "it": "Legge di Ampère", "ru": "Закон Ампера", "pt": "Lei de Ampère"}, "e4": {"en": "The circulation of B around a closed loop equals the enclosed current times μ₀.", "de": "Die Zirkulation von B um eine geschlossene Schleife ist gleich dem eingeschlossenen Strom mal μ₀.", "fr": "La circulation de B le long d'un contour fermé vaut le courant enlacé multiplié par μ₀.", "es": "La circulación de B en un contorno cerrado es igual a la corriente encerrada por μ₀.", "it": "La circolazione di B lungo un percorso chiuso è uguale alla corrente concatenata per μ₀.", "ru": "Циркуляция B по замкнутому контуру равна охваченному току, умноженному на μ₀.", "pt": "A circulação de B num contorno fechado é igual à corrente envolvida vezes μ₀."}, "t5": {"en": "Ferromagnets and magnetic circuits", "de": "Ferromagnete und magnetische Kreise", "fr": "Ferromagnétiques et circuits magnétiques", "es": "Ferromagnéticos y circuitos magnéticos", "it": "Ferromagneti e circuiti magnetici", "ru": "Ферромагнетики и магнитные цепи", "pt": "Ferromagnéticos e circuitos magnéticos"}, "e5": {"en": "In a magnetic circuit the magnetomotive force plays the role of voltage and reluctance that of resistance.", "de": "Im magnetischen Kreis übernimmt die magnetische Spannung die Rolle der Spannung und der magnetische Widerstand die des Widerstands.", "fr": "Dans un circuit magnétique, la force magnétomotrice joue le rôle de la tension et la réluctance celui de la résistance.", "es": "En un circuito magnético la fuerza magnetomotriz hace de tensión y la reluctancia de resistencia.", "it": "In un circuito magnetico la forza magnetomotrice fa da tensione e la riluttanza da resistenza.", "ru": "В магнитной цепи магнитодвижущая сила играет роль напряжения, а магнитное сопротивление — роль сопротивления.", "pt": "Num circuito magnético a força magnetomotriz faz de tensão e a relutância de resistência."}, "t6": {"en": "Boundary conditions (magnetic field)", "de": "Randbedingungen (Magnetfeld)", "fr": "Conditions aux limites (champ magnétique)", "es": "Condiciones de contorno (campo magnético)", "it": "Condizioni al contorno (campo magnetico)", "ru": "Граничные условия (магнитное поле)", "pt": "Condições de fronteira (campo magnético)"}, "e6": {"en": "The normal component of B is continuous, and the tangential component of H is continuous (no surface current).", "de": "Die Normalkomponente von B ist stetig, die Tangentialkomponente von H ebenfalls (ohne Flächenstrom).", "fr": "La composante normale de B est continue, et la composante tangentielle de H l'est aussi (sans courant surfacique).", "es": "La componente normal de B es continua, y la tangencial de H también (sin corriente superficial).", "it": "La componente normale di B è continua, e la tangenziale di H pure (senza corrente superficiale).", "ru": "Нормальная составляющая B непрерывна, и тангенциальная составляющая H непрерывна (без поверхностного тока).", "pt": "A componente normal de B é contínua, e a tangencial de H também (sem corrente superficial)."}, "t7": {"en": "Faraday's and Lenz's law", "de": "Faradaysches und Lenzsches Gesetz", "fr": "Lois de Faraday et de Lenz", "es": "Leyes de Faraday y Lenz", "it": "Leggi di Faraday e Lenz", "ru": "Законы Фарадея и Ленца", "pt": "Leis de Faraday e Lenz"}, "e7": {"en": "The induced EMF equals the rate of change of flux; the minus sign (Lenz) means it opposes the change.", "de": "Die induzierte Spannung ist gleich der Änderungsrate des Flusses; das Minuszeichen (Lenz) bedeutet Gegenwirkung.", "fr": "La f.é.m. induite est égale au taux de variation du flux ; le signe moins (Lenz) traduit l'opposition au changement.", "es": "La fem inducida es igual a la tasa de cambio del flujo; el signo menos (Lenz) indica oposición al cambio.", "it": "La f.e.m. indotta è uguale alla velocità di variazione del flusso; il segno meno (Lenz) indica opposizione.", "ru": "Наведённая ЭДС равна скорости изменения потока; знак минус (Ленц) означает противодействие.", "pt": "A f.e.m. induzida é igual à taxa de variação do fluxo; o sinal menos (Lenz) indica oposição."}, "t8": {"en": "Self- and mutual inductance", "de": "Eigen- und Gegeninduktivität", "fr": "Inductances propre et mutuelle", "es": "Inductancia propia y mutua", "it": "Auto- e mutua induttanza", "ru": "Собственная и взаимная индуктивность", "pt": "Indutância própria e mútua"}, "e8": {"en": "Inductance relates flux to current; a changing current in a coil induces a voltage.", "de": "Die Induktivität verknüpft Fluss und Strom; ein sich ändernder Spulenstrom induziert eine Spannung.", "fr": "L'inductance relie le flux au courant ; un courant variable dans une bobine induit une tension.", "es": "La inductancia relaciona flujo y corriente; una corriente variable en una bobina induce tensión.", "it": "L'induttanza lega flusso e corrente; una corrente variabile in una bobina induce una tensione.", "ru": "Индуктивность связывает поток и ток; изменяющийся ток в катушке наводит напряжение.", "pt": "A indutância relaciona fluxo e corrente; uma corrente variável numa bobina induz tensão."}, "t9": {"en": "Energy of the magnetic field", "de": "Energie des Magnetfeldes", "fr": "Énergie du champ magnétique", "es": "Energía del campo magnético", "it": "Energia del campo magnetico", "ru": "Энергия магнитного поля", "pt": "Energia do campo magnético"}, "e9": {"en": "The coil's energy depends on inductance and current squared; the energy density on B squared.", "de": "Die Energie der Spule hängt von Induktivität und Stromquadrat ab; die Energiedichte vom Quadrat von B.", "fr": "L'énergie de la bobine dépend de l'inductance et du carré du courant ; la densité d'énergie du carré de B.", "es": "La energía de la bobina depende de la inductancia y la corriente al cuadrado; la densidad, de B al cuadrado.", "it": "L'energia della bobina dipende dall'induttanza e dal quadrato della corrente; la densità dal quadrato di B.", "ru": "Энергия катушки зависит от индуктивности и квадрата тока; плотность энергии — от квадрата B.", "pt": "A energia da bobina depende da indutância e do quadrado da corrente; a densidade, do quadrado de B."}, "t10": {"en": "Sinusoidal steady state", "de": "Sinusförmiger Dauerzustand", "fr": "Régime sinusoïdal permanent", "es": "Régimen sinusoidal permanente", "it": "Regime sinusoidale permanente", "ru": "Синусоидальный установившийся режим", "pt": "Regime sinusoidal permanente"}, "e10": {"en": "The RMS value relates a sinusoid to DC by power; ω is the angular frequency.", "de": "Der Effektivwert verknüpft eine Sinusgröße leistungsmäßig mit Gleichstrom; ω ist die Kreisfrequenz.", "fr": "La valeur efficace relie une sinusoïde au continu par la puissance ; ω est la pulsation.", "es": "El valor eficaz relaciona una sinusoide con la CC por potencia; ω es la pulsación.", "it": "Il valore efficace lega una sinusoide alla continua per potenza; ω è la pulsazione.", "ru": "Действующее значение связывает синусоиду с постоянным током по мощности; ω — угловая частота.", "pt": "O valor eficaz relaciona uma sinusoide com a CC por potência; ω é a frequência angular."}, "t11": {"en": "Element impedances", "de": "Bauelement-Impedanzen", "fr": "Impédances des éléments", "es": "Impedancias de los elementos", "it": "Impedenze degli elementi", "ru": "Импедансы элементов", "pt": "Impedâncias dos elementos"}, "e11": {"en": "A resistor has real impedance; a coil and a capacitor have frequency-dependent imaginary impedance.", "de": "Ein Widerstand hat reelle, Spule und Kondensator frequenzabhängige imaginäre Impedanz.", "fr": "Une résistance a une impédance réelle ; bobine et condensateur, une impédance imaginaire dépendant de la fréquence.", "es": "La resistencia tiene impedancia real; bobina y condensador, imaginaria y dependiente de la frecuencia.", "it": "Il resistore ha impedenza reale; bobina e condensatore, immaginaria e dipendente dalla frequenza.", "ru": "У резистора импеданс действительный; у катушки и конденсатора — мнимый, зависящий от частоты.", "pt": "O resistor tem impedância real; bobina e condensador, imaginária e dependente da frequência."}, "t12": {"en": "Ohm's law in the complex domain", "de": "Ohmsches Gesetz im komplexen Bereich", "fr": "Loi d'Ohm en domaine complexe", "es": "Ley de Ohm en el dominio complejo", "it": "Legge di Ohm nel dominio complesso", "ru": "Закон Ома в комплексной форме", "pt": "Lei de Ohm no domínio complexo"}, "e12": {"en": "In sinusoidal steady state, circuits are solved with phasors: voltage equals impedance times current.", "de": "Im Sinusbetrieb werden Schaltungen mit Zeigern gelöst: Spannung gleich Impedanz mal Strom.", "fr": "En régime sinusoïdal, on résout les circuits par phaseurs : tension égale impédance fois courant.", "es": "En régimen sinusoidal los circuitos se resuelven con fasores: tensión igual a impedancia por corriente.", "it": "In regime sinusoidale i circuiti si risolvono con i fasori: tensione uguale impedenza per corrente.", "ru": "В синусоидальном режиме цепи решают векторами: напряжение равно импедансу на ток.", "pt": "Em regime sinusoidal os circuitos resolvem-se com fasores: tensão igual a impedância vezes corrente."}, "t13": {"en": "Complex power", "de": "Komplexe Leistung", "fr": "Puissance complexe", "es": "Potencia compleja", "it": "Potenza complessa", "ru": "Комплексная мощность", "pt": "Potência complexa"}, "e13": {"en": "Apparent power combines active (W) and reactive (var); the power factor is the cosine of the angle.", "de": "Die Scheinleistung vereint Wirk- (W) und Blindleistung (var); der Leistungsfaktor ist der Kosinus des Winkels.", "fr": "La puissance apparente réunit l'active (W) et la réactive (var) ; le facteur de puissance est le cosinus de l'angle.", "es": "La potencia aparente reúne la activa (W) y la reactiva (var); el factor de potencia es el coseno del ángulo.", "it": "La potenza apparente unisce attiva (W) e reattiva (var); il fattore di potenza è il coseno dell'angolo.", "ru": "Полная мощность объединяет активную (Вт) и реактивную (вар); коэффициент мощности — косинус угла.", "pt": "A potência aparente reúne a ativa (W) e a reativa (var); o fator de potência é o cosseno do ângulo."}, "t14": {"en": "Resonance", "de": "Resonanz", "fr": "Résonance", "es": "Resonancia", "it": "Risonanza", "ru": "Резонанс", "pt": "Ressonância"}, "e14": {"en": "At resonance the inductive and capacitive reactances cancel; series resonance gives minimum impedance.", "de": "In Resonanz heben sich induktive und kapazitive Blindwiderstände auf; Reihenresonanz ergibt minimale Impedanz.", "fr": "À la résonance, les réactances inductive et capacitive s'annulent ; la résonance série donne l'impédance minimale.", "es": "En resonancia las reactancias inductiva y capacitiva se cancelan; la serie da impedancia mínima.", "it": "In risonanza le reattanze induttiva e capacitiva si annullano; la serie dà impedenza minima.", "ru": "В резонансе индуктивное и ёмкостное сопротивления компенсируются; последовательный резонанс даёт минимум импеданса.", "pt": "Na ressonância as reatâncias indutiva e capacitiva cancelam-se; a série dá impedância mínima."}, "t15": {"en": "Power-factor correction", "de": "Leistungsfaktorkorrektur", "fr": "Correction du facteur de puissance", "es": "Corrección del factor de potencia", "it": "Rifasamento", "ru": "Коррекция коэффициента мощности", "pt": "Correção do fator de potência"}, "e15": {"en": "A parallel capacitor compensates the reactive power of an inductive load and raises the power factor.", "de": "Ein Parallelkondensator kompensiert die Blindleistung einer induktiven Last und hebt den Leistungsfaktor.", "fr": "Un condensateur en parallèle compense la puissance réactive d'une charge inductive et relève le facteur de puissance.", "es": "Un condensador en paralelo compensa la potencia reactiva de una carga inductiva y eleva el factor de potencia.", "it": "Un condensatore in parallelo compensa la potenza reattiva di un carico induttivo e alza il fattore di potenza.", "ru": "Параллельный конденсатор компенсирует реактивную мощность индуктивной нагрузки и повышает коэффициент мощности.", "pt": "Um condensador em paralelo compensa a potência reativa de uma carga indutiva e eleva o fator de potência."}, "t16": {"en": "Balanced three-phase systems", "de": "Symmetrische Dreiphasensysteme", "fr": "Systèmes triphasés équilibrés", "es": "Sistemas trifásicos equilibrados", "it": "Sistemi trifase simmetrici", "ru": "Симметричные трёхфазные системы", "pt": "Sistemas trifásicos equilibrados"}, "e16": {"en": "In a star connection the line voltage is √3 times the phase voltage; in delta the line current is √3 times the phase current.", "de": "In Sternschaltung ist die Leiterspannung das √3-fache der Strangspannung; im Dreieck der Leiterstrom das √3-fache des Strangstroms.", "fr": "En étoile, la tension de ligne vaut √3 fois la tension de phase ; en triangle, le courant de ligne vaut √3 fois le courant de phase.", "es": "En estrella la tensión de línea es √3 veces la de fase; en triángulo la corriente de línea es √3 veces la de fase.", "it": "A stella la tensione di linea è √3 volte quella di fase; a triangolo la corrente di linea è √3 volte quella di fase.", "ru": "При соединении звездой линейное напряжение в √3 раза больше фазного; в треугольнике линейный ток в √3 раза больше фазного.", "pt": "Em estrela a tensão de linha é √3 vezes a de fase; em triângulo a corrente de linha é √3 vezes a de fase."}};
-document.querySelectorAll("[data-i18n]").forEach(function(e){e.__sr=e.innerHTML});
-function apply(l){document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n"),t=I18N[k];e.innerHTML=(!l||l==="sr"||!t||!t[l])?e.__sr:t[l]});document.documentElement.lang=l;try{rk()}catch(_){}}
-document.getElementById("lang").onchange=function(){apply(this.value)};
-function rk(){if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})}
-window.addEventListener("load",rk);
-</script>
-<script>
-(function(){
- function fit(){
-  var ds=document.querySelectorAll('.katex-display');
-  for(var i=0;i<ds.length;i++){
-   var el=ds[i];el.style.fontSize='';
-   var p=100,n=0;
-   while(el.scrollWidth>el.clientWidth+1&&p>45&&n<24){p-=5;n++;el.style.fontSize=p+'%';}
-  }
- }
- window.addEventListener('load',function(){setTimeout(fit,60);});
- window.addEventListener('resize',function(){setTimeout(fit,80);});
-})();
-</script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
-<script>/*LANG-ON-LOAD*/(function(){try{var sv=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();var sel=document.getElementById("lang");if(sel)sel.value=sv;if(sv!=="sr"&&typeof apply==="function"){document.querySelectorAll("[data-i18n]").forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML});apply(sv);}}catch(e){}})();</script>
-</body></html>
+<header class="topbar"><a class="tb-back" href="predmet-osnovi-elektrotehnike-2.html">← Osnovi elektrotehnike 2</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><span class="tb-lang">SR</span></header>
+<div class="cover"><div class="eyebrow">Formule · Podsetnik</div><h1>OET 2 — formule</h1><div class="sub">Sve ključne formule na jednom mestu, po celinama.</div></div>
+<div class="wrap"><div class="grp"><h2>Naizmenične struje</h2><div class="rule"></div><div class="f"><span class="lbl">Induktivna reaktansa</span><span class="eq">X<sub>L</sub> = ω L</span></div><div class="f"><span class="lbl">Kapacitivna reaktansa</span><span class="eq">X<sub>C</sub> = <span class="frac"><span class="num">1</span><span class="den">ω C</span></span></span></div><div class="f"><span class="lbl">Impedansa</span><span class="eq">Z = √<span class="rt">R² + (X<sub>L</sub> − X<sub>C</sub>)²</span></span></div><div class="f"><span class="lbl">Fazni ugao</span><span class="eq">tg φ = <span class="frac"><span class="num">X<sub>L</sub> − X<sub>C</sub></span><span class="den">R</span></span></span></div></div><div class="grp"><h2>Snaga i prelazni procesi</h2><div class="rule"></div><div class="f"><span class="lbl">Aktivna snaga</span><span class="eq">P = U I cos φ</span></div><div class="f"><span class="lbl">Reaktivna</span><span class="eq">Q = U I sin φ</span></div><div class="f"><span class="lbl">Prividna</span><span class="eq">S = U I</span></div><div class="f"><span class="lbl">Rezonansa</span><span class="eq">f<sub>0</sub> = <span class="frac"><span class="num">1</span><span class="den">2π √<span class="rt">L C</span></span></span></span></div><div class="f"><span class="lbl">Vremenska konstanta</span><span class="eq">τ = R C &nbsp; (RC kolo)</span></div></div></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="predmet-osnovi-elektrotehnike-2.html">Osnovi elektrotehnike 2</a><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi</a><a href="o-marini.html">O meni</a><a href="uslovi.html">Uslovi</a><a href="privatnost.html">Privatnost</a></nav><div class="rule"></div><div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+</body>
+</html>
