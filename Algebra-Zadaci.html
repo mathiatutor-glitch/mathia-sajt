@@ -1,357 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mathia — Algebra · Provera znanja</title>
+<title>Mathia — Algebra · Zadaci</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
-  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
-  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Spectral',serif;
-}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-html,body{overflow-x:hidden}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
-.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
-.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
-h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
-.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
-.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
-.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
-.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
-.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
-.chip.soon{opacity:.5}
-.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
-.intro b{font-family:var(--hf)}
-.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
-.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
-.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
-.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
-.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
-.zad-n.solved{background:var(--good)}
-.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
-.opcije{display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
-.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
-.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
-.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
-.opt.correct{background:#edf6ee;border-color:var(--good)}
-.opt.wrong{background:#fbeeed;border-color:var(--bad)}
-.opt.correct .opt-l{background:var(--good);color:#fff}
-.opt.wrong .opt-l{background:var(--bad);color:#fff}
-.opt[disabled]{cursor:default}
-.opt[disabled]:hover{transform:none;background:#fffdf8}
-.opt.correct[disabled]:hover{background:#edf6ee}
-.opt.wrong[disabled]:hover{background:#fbeeed}
-.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
-.feedback.ok{color:var(--good)}
-.feedback.no{color:var(--bad)}
-.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
-.reveal-btn:hover{background:var(--acc);color:#fff}
-.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
-.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
-.rstep+.rstep{border-top:1px solid #f3ead9}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
-.katex{white-space:nowrap;font-size:1.02em}
-.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
-.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<style>/* v2 redizajn — kompaktno, meni + strelica, centrirano, vidljiv reset */
-.topbar{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 24px;background:rgba(251,246,238,.96);border-bottom:1px solid var(--line)}
-.tb-back{font-weight:700;font-size:.9rem;color:var(--acc2);text-decoration:none;white-space:nowrap}
-.tb-back:hover{color:var(--acc)}
-.tb-brand{font-family:var(--hf);font-weight:700;font-size:1.3rem;letter-spacing:.1em;color:var(--ink);text-decoration:none}
-.tb-nav{display:flex;gap:20px}
-.tb-nav a{font-weight:600;font-size:.85rem;color:var(--muted);text-decoration:none;letter-spacing:.03em}
-.tb-nav a:hover{color:var(--acc2)}
-@media(max-width:560px){.tb-brand{display:none}.tb-nav{gap:14px}}
-.cover{min-height:auto!important;padding:44px 24px 34px!important}
-.brandline{display:none}
-.eyebrow{margin-bottom:10px}
-h1{font-size:clamp(2.2rem,5.5vw,3.3rem)!important;margin-bottom:12px}
-.sub{font-size:.98rem;max-width:520px}
-.page{padding-top:26px!important}
-.zad-q{text-align:center!important;font-size:1.09rem;margin-bottom:18px}
-.sub{font-size:1.02rem}
-.intro{font-size:1rem}
-.intro b{font-family:inherit!important;font-weight:800;color:var(--acc2)}
-.opt-m{font-size:1rem}
-.opt-l{width:32px;height:32px}
-.reset{display:block;width:fit-content;margin:28px auto 0;background:#fff8ee;border:1.5px solid var(--accS);color:var(--acc2);text-decoration:none;font-family:var(--hf);font-weight:700;font-size:.95rem;padding:10px 22px;border-radius:999px;cursor:pointer;transition:.15s}
-.reset:hover{border-color:var(--acc);background:#fff;color:var(--acc)}
-.foot{margin-top:22px}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Algebra-Zadaci.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Mathia — Algebra — zadaci">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Algebra-Zadaci.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathia — Algebra — zadaci">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+.frac .den{padding-top:.06em}
+.rt{border-top:1.6px solid currentColor;padding:.08em .25em 0;margin-left:-.06em}
+.lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
+.lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:5px 0}
+.zad{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:18px 0;box-shadow:0 16px 40px -30px rgba(120,40,60,.4)}
+.zad .z-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.zad .z-n{width:30px;height:30px;flex:none;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldsoft));color:#4a3712;font-family:'Spectral',serif;font-weight:700;display:flex;align-items:center;justify-content:center}
+.zad .z-t{font-family:'Spectral',serif;font-weight:700;color:var(--ink)}
+.zad .q{color:#4a3a40;margin:2px 0 10px}
+.zad .sol{background:linear-gradient(180deg,#FFF7FA,#FBEEF2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.zad .sol .h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.7rem;color:var(--malina);margin-bottom:6px}
 </style>
 </head>
 <body>
-<header class="topbar">
-  <a class="tb-back" href="predmet-algebra.html" title="Algebra" aria-label="Algebra"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></a>
-  <a class="tb-brand" href="index.html">MATHIA EDU</a>
-  <select class="lang" id="lang" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
-</header>
-<div class="cover">
-  <div class="eyebrow">Algebra · vežbaj i proveri se</div>
-  <h1>Provera znanja</h1>
-  <p class="sub">Reši zadatke po oblastima, pa otkrij rešenje korak po korak. Napredak se pamti na ovom uređaju.</p>
-  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
-</div>
-
-<div class="page">
-  <div class="chips" id="roksel">
-    <span class="chip active" data-y="pol">Polinomi</span>
-    <span class="chip" data-y="kva">Kvadratne jednačine</span>
-    <span class="chip" data-y="sis">Sistemi</span>
-    <span class="chip" data-y="nej">Nejednačine</span>
-    <span class="chip" data-y="fak">Faktorizacija</span>
-  </div>
-  <div class="intro"><b id="rok-label">Tema: Polinomi</b> · izaberi odgovor, pa se proveri.</div>
-
-  <div class="prog-wrap">
-    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
-    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
-  </div>
-
-  <div id="lista"></div>
-  <button class="reset" id="reset">↺ Resetuj napredak</button>
-  <div class="foot" id="rok-foot">MATHIA · Polinomi · uči s ljubavlju · mathia.rs</div>
-</div>
-
-<script>
-// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
-// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
-const A=[{"n": 1, "t": "Stepen polinoma $3x^4+2x-1$ je:", "o": ["$2$", "$3$", "$4$", "$1$", "$5$"], "c": 2, "r": ["Najveći eksponent je $4$.", ""]}, {"n": 2, "t": "Koliko je $(x+2)(x-2)$?", "o": ["$x^2-4$", "$x^2+4$", "$x^2-4x+4$", "$x^2-2$", "$x^2+4x+4$"], "c": 0, "r": ["Razlika kvadrata: $x^2-2^2$.", "$=x^2-4$."]}, {"n": 3, "t": "Koliko je $(x+1)^2$?", "o": ["$x^2+1$", "$x^2+2x+1$", "$x^2+x+1$", "$x^2-2x+1$", "$2x+1$"], "c": 1, "r": ["$(a+b)^2=a^2+2ab+b^2$.", "$=x^2+2x+1$."]}, {"n": 4, "t": "Vrednost polinoma $P(x)=x^2-3$ u $x=2$ je:", "o": ["$1$", "$-1$", "$4$", "$7$", "$0$"], "c": 0, "r": ["$P(2)=4-3$.", "$=1$."]},
-/*LIN-MERGE*/{"n": 1, "t": "Množenje matrica je u opštem slučaju:", "o": ["komutativno uvek", "nekomutativno", "komutativno samo za $2\\times2$", "uvek daje nulu", "uvek jednako $A$"], "c": 1, "r": ["$AB\\ne BA$ u opštem slučaju.", ""]}, {"n": 2, "t": "Za jediničnu matricu $I$ važi:", "o": ["$AI=A$", "$AI=I$", "$AI=0$", "$AI=A^{-1}$", "$AI=A^{T}$"], "c": 0, "r": ["$I$ je neutral za množenje.", ""]}, {"n": 3, "t": "Koliko je $\\left(A^{T}\\right)^{T}$?", "o": ["$A$", "$A^{T}$", "$A^{-1}$", "$I$", "$0$"], "c": 0, "r": ["Dvostruko transponovanje vraća matricu.", ""]}, {"n": 4, "t": "Proizvod matrice $2\\times 3$ i matrice $3\\times 2$ je dimenzije:", "o": ["$3\\times 3$", "$2\\times 2$", "$2\\times 3$", "$3\\times 2$", "ne može se množiti"], "c": 1, "r": ["Unutrašnje dimenzije se poklapaju → $2\\times 2$.", ""]}];
-const B=[{"n": 1, "t": "Rešenja jednačine $x^2-5x+6=0$ su:", "o": ["$2$ i $3$", "$1$ i $6$", "$-2$ i $-3$", "$5$ i $6$", "$1$ i $5$"], "c": 0, "r": ["$(x-2)(x-3)=0$.", "$x=2,\\ x=3$."]}, {"n": 2, "t": "Diskriminanta jednačine $x^2+x+1=0$ je:", "o": ["$5$", "$-3$", "$3$", "$0$", "$1$"], "c": 1, "r": ["$D=1-4=-3$.", "$D<0$ → nema realnih rešenja."]}, {"n": 3, "t": "Zbir rešenja jednačine $x^2-7x+10=0$ je:", "o": ["$7$", "$10$", "$-7$", "$3$", "$17$"], "c": 0, "r": ["Po Vijetu zbir $=7$.", ""]}, {"n": 4, "t": "Proizvod rešenja jednačine $x^2-7x+10=0$ je:", "o": ["$7$", "$10$", "$-10$", "$3$", "$5$"], "c": 1, "r": ["Po Vijetu proizvod $=10$.", ""]},
-/*LIN-MERGE*/{"n": 1, "t": "Determinanta matrice $\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$ je:", "o": ["$ad-bc$", "$ab-cd$", "$ad+bc$", "$ac-bd$", "$a+d$"], "c": 0, "r": ["$\\det=ad-bc$.", ""]}, {"n": 2, "t": "Koliko je $\\det\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}$?", "o": ["$2$", "$-2$", "$10$", "$-10$", "$0$"], "c": 1, "r": ["$1\\cdot 4-2\\cdot 3=4-6$.", "$=-2$."]}, {"n": 3, "t": "Ako je $\\det A=0$, matrica je:", "o": ["invertibilna", "singularna (nije invertibilna)", "jedinična", "simetrična", "ortogonalna"], "c": 1, "r": ["Nulta determinanta → nema inverz.", ""]}, {"n": 4, "t": "Koliko je $\\det(I)$?", "o": ["$0$", "$1$", "$n$", "$\\infty$", "$-1$"], "c": 1, "r": ["Determinanta jedinične matrice je $1$.", ""]}];
-const C=[{"n": 1, "t": "U sistemu $x+y=5,\\ x-y=1$ vrednost $x$ je:", "o": ["$2$", "$3$", "$4$", "$1$", "$5$"], "c": 1, "r": ["Sabiranjem: $2x=6$.", "$x=3$."]}, {"n": 2, "t": "Ako je $2x=8$, onda je $x$:", "o": ["$2$", "$8$", "$4$", "$6$", "$16$"], "c": 2, "r": ["$x=8:2$.", "$x=4$."]}, {"n": 3, "t": "U sistemu $x+2y=7,\\ x=1$ vrednost $y$ je:", "o": ["$2$", "$1$", "$3$", "$4$", "$6$"], "c": 2, "r": ["$1+2y=7\\Rightarrow 2y=6$.", "$y=3$."]}, {"n": 4, "t": "U sistemu $y=2x,\\ x+y=9$ vrednost $x$ je:", "o": ["$2$", "$6$", "$3$", "$9$", "$4$"], "c": 2, "r": ["$x+2x=9\\Rightarrow 3x=9$.", "$x=3$."]},
-/*LIN-MERGE*/{"n": 1, "t": "Sistem ima jedinstveno rešenje ako je:", "o": ["$\\det A=0$", "$\\det A\\ne 0$", "$A=0$", "$A=I$", "uvek"], "c": 1, "r": ["Nenula determinanta → jedinstveno rešenje.", ""]}, {"n": 2, "t": "Homogen sistem $Ax=0$ uvek ima:", "o": ["trivijalno rešenje $x=0$", "nema rešenja", "beskonačno uvek", "negativno rešenje", "ne zavisi"], "c": 0, "r": ["$x=0$ je uvek rešenje.", ""]}, {"n": 3, "t": "Gausova eliminacija svodi sistem na:", "o": ["determinantu samo", "stepenasti (trougaoni) oblik", "množenje matrica", "sopstvene vrednosti", "transponovanu matricu"], "c": 1, "r": ["Eliminacijom do trougaonog oblika.", ""]}, {"n": 4, "t": "Linearni sistem može imati rešenja:", "o": ["uvek tačno $1$", "$0$, $1$ ili beskonačno mnogo", "uvek $0$", "uvek $2$", "uvek beskonačno"], "c": 1, "r": ["Tri mogućnosti za broj rešenja.", ""]}];
-const D=[{"n": 1, "t": "Rešenje nejednačine $x+3>5$ je:", "o": ["$x>2$", "$x>8$", "$x<2$", "$x>-2$", "$x<8$"], "c": 0, "r": ["$x>5-3$.", "$x>2$."]}, {"n": 2, "t": "Rešenje nejednačine $2x<10$ je:", "o": ["$x<5$", "$x<10$", "$x>5$", "$x<20$", "$x>10$"], "c": 0, "r": ["$x<10:2$.", "$x<5$."]}, {"n": 3, "t": "Rešenje nejednačine $-x>-4$ je:", "o": ["$x>4$", "$x<4$", "$x>-4$", "$x<-4$", "$x=4$"], "c": 1, "r": ["Množenjem sa $-1$ menja se znak: $x<4$.", ""]}, {"n": 4, "t": "Nejednačina $x^2\\ge 0$ važi:", "o": ["za sve realne $x$", "samo za $x>0$", "samo za $x=0$", "nikad", "samo za $x<0$"], "c": 0, "r": ["Kvadrat je uvek nenegativan.", "Tačno za svako $x$."]},
-/*LIN-MERGE*/{"n": 1, "t": "Baza vektorskog prostora je:", "o": ["bilo koji skup vektora", "linearno nezavisan skup koji generiše prostor", "samo jedan vektor", "nula-vektor", "linearno zavisan skup"], "c": 1, "r": ["Nezavisni vektori koji razapinju prostor.", ""]}, {"n": 2, "t": "Dimenzija prostora $\\mathbb{R}^3$ je:", "o": ["$1$", "$2$", "$3$", "$\\infty$", "$0$"], "c": 2, "r": ["Tri bazna vektora.", ""]}, {"n": 3, "t": "Vektori su linearno zavisni ako je:", "o": ["jedan linearna kombinacija ostalih", "svi su nula", "ortogonalni su", "jedinični su", "nezavisni su"], "c": 0, "r": ["Postoji netrivijalna kombinacija jednaka nuli.", ""]}, {"n": 4, "t": "Nula-vektor pripada:", "o": ["nijednom potprostoru", "svakom potprostoru", "samo $\\mathbb{R}^3$", "samo ako je baza", "nikad"], "c": 1, "r": ["Svaki potprostor sadrži $\\vec 0$.", ""]}];
-const E=[{"n": 1, "t": "Faktorisan oblik izraza $x^2-9$ je:", "o": ["$(x-9)(x+1)$", "$(x-3)(x+3)$", "$(x-3)^2$", "$(x+3)^2$", "$(x-9)$"], "c": 1, "r": ["Razlika kvadrata.", "$(x-3)(x+3)$."]}, {"n": 2, "t": "Faktorisan oblik izraza $x^2+2x$ je:", "o": ["$x(x+2)$", "$x^2(x+2)$", "$(x+1)(x+2)$", "$2x(x+1)$", "$x+2$"], "c": 0, "r": ["Izvuče se zajednički $x$.", "$x(x+2)$."]}, {"n": 3, "t": "Koliko je $i^2$?", "o": ["$1$", "$-1$", "$i$", "$-i$", "$0$"], "c": 1, "r": ["Imaginarna jedinica.", "$i^2=-1$."]}, {"n": 4, "t": "Koliko je $(1+i)(1-i)$?", "o": ["$2$", "$0$", "$2i$", "$1$", "$-2$"], "c": 0, "r": ["$1-i^2=1-(-1)$.", "$=2$."]},
-/*LIN-MERGE*/{"n": 1, "t": "Ako je $A\\vec v=\\lambda\\vec v$ (uz $\\vec v\\ne 0$), onda je $\\lambda$:", "o": ["sopstvena vrednost", "nula uvek", "determinanta", "trag", "inverz"], "c": 0, "r": ["$\\lambda$ je sopstvena (karakteristična) vrednost.", ""]}, {"n": 2, "t": "Sopstvene vrednosti se dobijaju iz:", "o": ["$\\det(A-\\lambda I)=0$", "$\\det A=0$", "$A\\lambda=0$", "$\\det(A+I)=0$", "$A=\\lambda$"], "c": 0, "r": ["Karakteristična jednačina.", ""]}, {"n": 3, "t": "Trag matrice (zbir dijagonale) jednak je:", "o": ["proizvodu sopstvenih vrednosti", "zbiru sopstvenih vrednosti", "razlici", "nuli", "determinanti"], "c": 1, "r": ["$\\operatorname{tr}(A)=\\sum\\lambda_i$.", ""]}, {"n": 4, "t": "Determinanta je jednaka:", "o": ["zbiru sopstvenih vrednosti", "proizvodu sopstvenih vrednosti", "tragu", "nuli", "jedinici"], "c": 1, "r": ["$\\det(A)=\\prod\\lambda_i$.", ""]}];
-
-const EXAMS={
-  'pol':{label:'Polinomi', z:A},
-  'kva':{label:'Kvadratne jednačine', z:B},
-  'sis':{label:'Sistemi', z:C},
-  'nej':{label:'Nejednačine', z:D},
-  'fak':{label:'Faktorizacija', z:E}
-};
-let YEAR='pol';
-let ZADACI=EXAMS[YEAR].z;
-let KEY='mathia_alg_'+YEAR;
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
-function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-let stanje=load();
-
-function updateProgress(){
-  const n=Object.values(stanje).filter(v=>v==='ok').length;
-  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
-  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
-}
-
-function render(){
-  const lista=document.getElementById('lista');
-  ZADACI.forEach(z=>{
-    const solved=stanje[z.n]==='ok';
-    const card=document.createElement('div'); card.className='zad';
-    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
-    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
-    card.innerHTML=`
-      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
-      <div class="zad-q">${z.t}</div>
-      <div class="opcije">${opts}</div>
-      <button class="reveal-btn">Prikaži rešenje ✦</button>
-      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
-    // option clicks
-    const optEls=card.querySelectorAll('.opt');
-    optEls.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        if(card.dataset.done) return;
-        const i=+btn.dataset.i;
-        optEls.forEach(b=>b.setAttribute('disabled','')); 
-        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
-        if(i!==z.c) btn.classList.add('wrong');
-        card.dataset.done='1';
-        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
-        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
-        const fb=document.createElement('div');
-        fb.className='feedback '+(i===z.c?'ok':'no');
-        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
-        card.querySelector('.opcije').after(fb);
-        updateProgress();
-      });
-    });
-    card.querySelector('.reveal-btn').addEventListener('click',e=>{
-      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
-      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
-      if(!r.hidden) fitFormulas(r);
-    });
-    lista.appendChild(card);
-  });
-  updateProgress();
-}
-
-document.getElementById('reset').addEventListener('click',()=>{
-  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
-});
-
-function fitFormulas(root){
-  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
-    var avail=box.clientWidth; if(avail<=0) return;
-    box.querySelectorAll('.katex').forEach(function(k){
-      k.style.fontSize=''; var size=1.02, g=0;
-      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
-    });
-  });
-}
-function typeset(){
-  if(window.renderMathInElement){
-    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
-  }
-  fitFormulas();
-}
-var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
-function go(){ render(); typeset(); }
-function switchYear(y){
-  if(!EXAMS[y]||y===YEAR) return;
-  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_alg_'+YEAR; stanje=load();
-  document.getElementById('lista').innerHTML='';
-  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
-  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
-  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Polinomi · uči s ljubavlju · mathia.rs';
-  render(); typeset();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
-if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
-</script>
-
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script defer src="gate.js" data-subject="algebra"></script>
-<footer class="uzfoot"><div class="w">
-  <div class="fo">&#10022;</div>
-  <a class="bm" href="index.html">MATHIA EDU</a>
-  <div class="tag">Dostupno svakog trenutka, na svakom mestu.</div>
-  <div class="lnk"><a href="index.html">Početna</a><span>&#183;</span><a href="predmeti.html">Predmeti</a><span>&#183;</span><a href="prodavnica.html">Prodavnica</a><span>&#183;</span><a href="index.html#paketi">Paketi</a><span>&#183;</span><a href="o-marini.html">O meni</a></div>
-  <div class="leg"><a href="uslovi.html">Uslovi</a><span>&#183;</span><a href="privatnost.html">Privatnost</a><span>&#183;</span><a href="reklamacije.html">Reklamacije</a><span>&#183;</span><a href="mailto:kontakt@mathia.rs">kontakt@mathia.rs</a></div>
-  <div class="soc">
-    <a href="https://www.facebook.com/share/1EuZcccwXR/?mibextid=wwXIfr" target="_blank" rel="noopener" title="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
-    <a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 3.65A6.15 6.15 0 1 0 18.15 12 6.15 6.15 0 0 0 12 5.85zm0 10.15A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-10.55a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
-    <a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" title="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
-  </div>
-  <div class="cp">&#169; 2026 Mathia Edu &#183; Sva prava zadržana</div>
-</div></footer>
-
-<style id="mathia-uzor">
-.topbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(251,246,238,.92)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #EADFC9!important;padding:0 18px!important;min-height:62px}
-.topbar .tb-back{width:40px;height:40px;border-radius:50%;background:#fff!important;border:1px solid #EADFC9!important;display:grid;place-items:center;color:#432C37!important;text-decoration:none;box-shadow:0 6px 16px -10px rgba(70,40,55,.4);flex:0 0 auto}
-.topbar .tb-back svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.topbar .tb-brand{font-family:'Spectral',serif!important;font-weight:700;letter-spacing:.30em;font-size:1.05rem;text-transform:uppercase;text-decoration:none;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uzfoil 9s linear infinite}
-.topbar .lang{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:#7a5f22!important;background:#fff!important;border:1px solid #EADFC9!important;border-radius:100px!important;padding:8px 12px!important;flex:0 0 auto}
-.topbar .tb-nav{display:none!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:48px 20px 44px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%;display:grid;place-items:center;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;color:#9C7838!important;font-size:.82rem!important;font-weight:700!important;margin-bottom:8px!important;-webkit-text-fill-color:#9C7838!important;background:none!important}
-.cover .kind{color:#9C7838!important;font-size:.74rem!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important;margin-top:6px!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-size:clamp(2.1rem,6vw,3.1rem)!important;font-weight:700!important;margin:8px 0 10px!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important;font-size:1.02rem!important;max-width:54ch;margin:0 auto!important;line-height:1.55}
-.cover .foot{color:#8a7768!important;font-size:.78rem!important;margin-top:12px!important;font-style:italic}
-.uzfoot{background:linear-gradient(180deg,#F3E9D6,#EEE1C9);border-top:1px solid #E7D8BE;text-align:center;padding:38px 16px 46px;font-family:'Nunito',sans-serif}
-.uzfoot .w{max-width:860px;margin:0 auto}
-.uzfoot .fo{color:#C6A05C;font-size:15px;opacity:.6;margin-bottom:12px}
-.uzfoot .bm{font-family:'Spectral',serif;font-weight:700;letter-spacing:.30em;font-size:15px;text-transform:uppercase;text-decoration:none;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:230% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:uzfoil 9s linear infinite}
-.uzfoot .tag{color:#6f5f54;font-size:12.5px;margin-top:10px}
-.uzfoot .lnk{margin-top:15px;font-size:12.5px;font-weight:800}
-.uzfoot .lnk a{color:#9C7838;text-decoration:none}.uzfoot .lnk span{color:#D9C39A;margin:0 8px}
-.uzfoot .leg{margin-top:8px;font-size:11.5px;font-weight:700}
-.uzfoot .leg a{color:#8a7768;text-decoration:none}.uzfoot .leg span{color:#D9C39A;margin:0 7px}
-.uzfoot .soc{margin-top:18px;display:flex;justify-content:center;gap:13px}
-.uzfoot .soc a{width:38px;height:38px;border-radius:50%;border:1px solid #E7D8BE;background:#fff;display:grid;place-items:center;color:#9C7838;box-shadow:0 8px 18px -12px rgba(70,40,55,.5)}
-.uzfoot .soc svg{width:18px;height:18px;fill:currentColor}
-.uzfoot .cp{color:#9a8776;font-size:11px;margin-top:18px}
-@keyframes uzfoil{to{background-position:230% center}}
-@media(max-width:600px){.topbar{padding:0 12px!important}.topbar .tb-brand{font-size:.9rem;letter-spacing:.22em}}
-</style>
-
-<script>(function(){var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();var st=document.createElement("script");st.src="https://project-y23je.vercel.app/widget.js?v=9";st.setAttribute("data-api","https://project-y23je.vercel.app/api/chat");st.setAttribute("data-mode","algebra");st.setAttribute("data-name","Profesorica");st.setAttribute("data-subj","Algebra");st.setAttribute("data-lang",L);(document.body||document.documentElement).appendChild(st);})();</script>
-<script>/*UZOR-KATEX-RETRY*/window.addEventListener('load',function(){try{if(window.renderMathInElement){renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});}}catch(e){}});</script>
+<header class="topbar"><a class="tb-back" href="predmet-algebra.html">← Algebra</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><span class="tb-lang">SR</span></header>
+<div class="cover"><div class="eyebrow">Zadaci · Rešeni</div><h1>Algebra — zadaci</h1><div class="sub">Tipični zadaci sa detaljnim postupkom.</div></div>
+<div class="wrap"><div class="zad"><div class="z-h"><span class="z-n">1</span><span class="z-t">Moduo i argument</span></div><p class="q">Za z = 1 + i nađi |z| i φ.</p><div class="sol"><div class="h">Rešenje</div><span class="step">|z| = √<span class="rt">1² + 1²</span> = √<span class="rt">2</span></span><span class="step">tg φ = <span class="frac"><span class="num">1</span><span class="den">1</span></span> = 1 → φ = 45°</span></div></div><div class="zad"><div class="z-h"><span class="z-n">2</span><span class="z-t">Moavrova formula</span></div><p class="q">Izračunaj (1 + i)<sup>4</sup>.</p><div class="sol"><div class="h">Rešenje</div><span class="step">|z| = √<span class="rt">2</span>, φ = 45°</span><span class="step">(1+i)<sup>4</sup> = (√<span class="rt">2</span>)<sup>4</sup>(cos 180° + i sin 180°) = 4·(−1) = −4</span></div></div><div class="zad"><div class="z-h"><span class="z-n">3</span><span class="z-t">Kvadratna — Vieta</span></div><p class="q">Bez rešavanja nađi zbir i proizvod nula za x² − 5x + 6 = 0.</p><div class="sol"><div class="h">Rešenje</div><span class="step">x<sub>1</sub> + x<sub>2</sub> = 5</span><span class="step">x<sub>1</sub> · x<sub>2</sub> = 6 &nbsp; (nule su 2 i 3)</span></div></div><div class="zad"><div class="z-h"><span class="z-n">4</span><span class="z-t">Determinanta 3×3</span></div><p class="q">Izračunaj det za [1 2 3; 0 1 4; 5 6 0].</p><div class="sol"><div class="h">Rešenje</div><span class="step">= 1(1·0 − 4·6) − 2(0·0 − 4·5) + 3(0·6 − 1·5)</span><span class="step">= 1(−24) − 2(−20) + 3(−5) = −24 + 40 − 15 = 1</span></div></div><div class="zad"><div class="z-h"><span class="z-n">5</span><span class="z-t">Inverzna matrica 2×2</span></div><p class="q">Nađi inverznu od A = [2 1; 1 1].</p><div class="sol"><div class="h">Rešenje</div><span class="step">det A = 2·1 − 1·1 = 1</span><span class="step">A<sup>−1</sup> = <span class="frac"><span class="num">1</span><span class="den">1</span></span> [ 1 −1 ; −1 2 ] = [ 1 −1 ; −1 2 ]</span></div></div><div class="zad"><div class="z-h"><span class="z-n">6</span><span class="z-t">Sistem — Kramer</span></div><p class="q">Reši: x + 2y = 4, 3x − y = 5.</p><div class="sol"><div class="h">Rešenje</div><span class="step">det A = 1·(−1) − 2·3 = −7</span><span class="step">x = <span class="frac"><span class="num">(4·(−1) − 2·5)</span><span class="den">−7</span></span> = <span class="frac"><span class="num">−14</span><span class="den">−7</span></span> = 2, &nbsp; y = 1</span></div></div><div class="zad"><div class="z-h"><span class="z-n">7</span><span class="z-t">Sopstvene vrednosti</span></div><p class="q">Nađi sopstvene vrednosti od A = [2 0; 0 3].</p><div class="sol"><div class="h">Rešenje</div><span class="step">det(A − λI) = (2 − λ)(3 − λ) = 0</span><span class="step">λ<sub>1</sub> = 2, λ<sub>2</sub> = 3</span></div></div></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="predmet-algebra.html">Algebra</a><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi</a><a href="o-marini.html">O meni</a><a href="uslovi.html">Uslovi</a><a href="privatnost.html">Privatnost</a></nav><div class="rule"></div><div class="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
 </body>
 </html>
