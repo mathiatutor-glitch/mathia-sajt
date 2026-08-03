@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profesorica — predlog slađeg prozora</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito:wght@400;600;700;800&family=Spectral:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FCF7EE;--card:#FFFDFA;--ink:#3E2D34;--plum:#5A1024;--gold:#C6A05C;--golddk:#9C7838;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;padding:26px;
+    background:radial-gradient(900px 480px at 82% -8%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(760px 420px at 6% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),#F6EEE1}
+  .lead{text-align:center;max-width:420px;margin-bottom:16px}
+  .lead .eb{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--malina);font-weight:800}
+  .lead h1{font-family:'Cormorant Garamond',serif;color:var(--plum);font-size:1.7rem;margin:6px 0 4px}
+  .lead p{color:var(--muted);font-size:.9rem;margin:0}
+  /* ——— panel klona ——— */
+  .panel{width:412px;max-width:calc(100vw - 24px);height:648px;background:var(--cream);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;position:relative;
+    box-shadow:0 40px 90px -24px rgba(90,16,36,.4),0 0 0 1px rgba(198,160,92,.3);border:1px solid rgba(198,160,92,.28)}
+  .panel:before{content:'✦';position:absolute;top:84px;right:18px;color:rgba(198,160,92,.5);font-size:13px;z-index:1;animation:tw 4.5s ease-in-out infinite}
+  .panel:after{content:'✦';position:absolute;bottom:96px;left:16px;color:rgba(176,30,72,.32);font-size:12px;z-index:1;animation:tw 6s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.2}50%{opacity:.7}}
+  /* header */
+  .hd{display:flex;align-items:center;gap:12px;padding:15px 16px;position:relative;color:#fff;
+    background:linear-gradient(135deg,#C4A05E,#D9BE82 52%,#CBAA6C);text-shadow:0 1px 2px rgba(120,84,30,.3)}
+  .hd:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,rgba(255,246,214,.9),rgba(176,30,72,.5),rgba(255,246,214,.9),transparent)}
+  .hd .av{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,246,214,.95);object-fit:cover;box-shadow:0 4px 10px -3px rgba(0,0,0,.35);flex:none;background:radial-gradient(circle at 40% 34%,#f6e7c9,#caa76a)}
+  .hd .nm{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:1.45rem;line-height:1;display:flex;align-items:center;gap:7px}
+  .hd .nm .hb{font-size:.8rem}
+  .hd .sub{font-size:.72rem;opacity:.96;margin-top:4px;display:flex;align-items:center;gap:7px}
+  .hd .dot{width:8px;height:8px;border-radius:50%;background:#5FD98A;box-shadow:0 0 0 0 rgba(95,217,138,.6);animation:live 2.2s ease-out infinite}
+  @keyframes live{0%{box-shadow:0 0 0 0 rgba(95,217,138,.5)}70%{box-shadow:0 0 0 7px rgba(95,217,138,0)}}
+  .hd .sp{flex:1}
+  .hd .lang{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.55);border-radius:100px;color:#fff;font-weight:800;font-size:.7rem;padding:5px 11px}
+  .hd .x{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;display:grid;place-items:center;font-size:15px}
+  /* messages */
+  .msgs{flex:1;overflow-y:auto;padding:20px 15px;display:flex;flex-direction:column;gap:18px;
+    background:radial-gradient(140% 55% at 50% 0%,rgba(231,210,162,.12),transparent 58%),var(--cream)}
+  .row{display:flex;gap:9px;align-items:flex-end}
+  .row.me{flex-direction:row-reverse}
+  .sav{width:27px;height:27px;border-radius:50%;flex:none;background:radial-gradient(circle at 40% 34%,#f6e7c9,#caa76a)}
+  .bub{max-width:82%;padding:15px 18px;border-radius:20px;font-size:14.5px;line-height:1.72;box-shadow:0 12px 26px -16px rgba(120,40,60,.42)}
+  .zoi .bub{background:linear-gradient(180deg,#FFFFFF,#FFFBF2);color:var(--ink);border:1px solid rgba(198,160,92,.22);border-bottom-left-radius:7px}
+  .me .bub{background:linear-gradient(155deg,#CC5E7E,#B01E48);color:#fff;border-bottom-right-radius:7px;box-shadow:0 12px 26px -12px rgba(176,30,72,.5)}
+  .bub p{margin:.92em 0 0}.bub p:first-child{margin-top:0}
+  .bub .h{display:block;font-weight:800;color:var(--malina);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin:.2em 0 .3em}
+  .bub b{color:var(--malina)}
+  .disp{display:block;text-align:center;margin:1em 0 .3em;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.12rem;color:var(--plum)}
+  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+  .frac>span{display:block;line-height:1.12;padding:0 .45em}.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}.frac .den{padding-top:.06em}
+  .lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .16em}
+  .lim .u{font-size:.56em;margin-top:.12em;white-space:nowrap}
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;padding:2px 15px 10px}
+  .chip{background:linear-gradient(180deg,#FFFDF8,#F6EEDD);border:1px solid rgba(198,160,92,.42);color:#5C3B49;border-radius:999px;padding:8px 14px 8px 12px;font-size:12.5px;font-weight:700}
+  .chip:before{content:'✦';color:var(--malina);font-size:.68em;margin-right:6px}
+  /* input */
+  .foot{padding:11px;border-top:1px solid #ECE0CC;background:#FFFDF8;display:flex;gap:8px;align-items:flex-end}
+  .foot .tool{width:40px;height:40px;border-radius:12px;background:#FBF5EA;border:1px solid rgba(198,160,92,.4);font-size:17px;display:grid;place-items:center;color:var(--golddk)}
+  .foot .ta{flex:1;border:1px solid rgba(198,160,92,.35);border-radius:12px;padding:11px 13px;color:#8a7a74;font-family:inherit;font-size:14px;background:#fff}
+  .foot .send{height:40px;border-radius:12px;padding:0 18px;border:none;color:#fff;font-weight:800;font-family:inherit;background:linear-gradient(135deg,#D3B06A,#9C7838);box-shadow:0 8px 18px -8px rgba(156,120,56,.7)}
+</style>
+</head>
+<body>
+  <div>
+    <div class="lead">
+      <div class="eb">Predlog</div>
+      <h1>Slađi prozor Profesorice</h1>
+      <p>Ovako bih zasladila klon — topli krem, zlato i malina, meki baloni, čisto iscrtana matematika. Reci šta ti se sviđa pa prenosim u živi widget.</p>
+    </div>
+
+    <div class="panel">
+      <div class="hd">
+        <div class="av"></div>
+        <div>
+          <div class="nm">Profesorica <span class="hb">💛</span></div>
+          <div class="sub"><span class="dot"></span> Matematička analiza 1 · odmah tu</div>
+        </div>
+        <div class="sp"></div>
+        <div class="lang">SR ▾</div>
+        <div class="x">✕</div>
+      </div>
+
+      <div class="msgs">
+        <div class="row zoi"><div class="sav"></div><div class="bub">
+          <p>Ćao, Marina 🌸 Krećemo polako — tu sam uz tebe.</p>
+          <p>Hajde limes koji ti je bio mučan:</p>
+          <span class="disp"><span class="lim">lim<span class="u">x→3</span></span> <span class="frac"><span class="num">x² − 9</span><span class="den">x − 3</span></span></span>
+          <p><b>Ideja:</b> brojilac je razlika kvadrata, pa ga rastavimo i skratimo (x − 3).</p>
+        </div></div>
+
+        <div class="row me"><div class="bub">Aha, znači (x−3)(x+3) pa se skrati? 😯</div></div>
+
+        <div class="row zoi"><div class="sav"></div><div class="bub">
+          <p><b>Baš tako! Bravo ✨</b> Ostane nam:</p>
+          <span class="disp"><span class="lim">lim<span class="u">x→3</span></span> (x + 3) = 3 + 3 = <b>6</b></span>
+          <span class="h">Zapamti</span>
+          <p>Kad dobiješ oblik „0/0“, prvo probaj rastavljanje pa skraćivanje — pre nego posегneš za pravilima.</p>
+          <p>Probaj sad ti sličan: <span class="lim">lim<span class="u">x→2</span></span> <span class="frac"><span class="num">x² − 4</span><span class="den">x − 2</span></span> — koliko dobiješ? 💛</p>
+        </div></div>
+      </div>
+
+      <div class="chips">
+        <span class="chip">Objasni mi na primeru</span>
+        <span class="chip">Daj mi lakši korak</span>
+        <span class="chip">Reši do kraja</span>
+      </div>
+
+      <div class="foot">
+        <div class="tool">📎</div>
+        <div class="ta">Napiši pitanje…</div>
+        <button class="send">Pošalji</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
