@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5A1024">
+<title>Proveri znanje — Baze podataka (SQL) · Mathia</title>
+<meta name="description" content="Proveri znanje iz predmeta Baze podataka (SQL) — pitanje po pitanje, sa detaljnim rešenjem uz Profesoricu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream);overflow-x:hidden}
+  h1,h2,h3{font-family:'Spectral',Georgia,serif;font-weight:700;margin:0;color:var(--ink);line-height:1.15}
+  p{margin:0}
+  /* ——— padajući simboli u pozadini ——— */
+  #fall{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  #fall span{position:absolute;top:-8%;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.16);animation:drift linear infinite;will-change:transform}
+  @keyframes drift{0%{transform:translateY(-10vh) rotate(0)}100%{transform:translateY(112vh) rotate(22deg)}}
+  @media(prefers-reduced-motion:reduce){#fall{display:none}}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  /* topbar */
+  .tb{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32)}
+  .tb:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+  .tb a.back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}
+  .tb a.brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none}
+  .tb a.brand b{color:var(--gold)}
+  /* hero */
+  .hero{text-align:center;padding:46px 0 8px}
+  .eyebrow{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--malina);font-weight:800}
+  .hero h1{font-size:clamp(2rem,5vw,2.9rem);margin:12px 0 8px}
+  .hero p{color:var(--ink2);max-width:520px;margin:0 auto;font-size:1.05rem}
+  .free{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#FFFBF3,#FBF3E2);border:1px solid var(--goldsoft);border-radius:100px;padding:6px 15px;font-weight:800;font-size:.74rem;color:var(--golddk);margin-bottom:6px}
+  /* progress */
+  .prog{height:8px;border-radius:8px;background:rgba(198,160,92,.16);overflow:hidden;margin:26px 0 6px}
+  .prog i{display:block;height:100%;background:linear-gradient(90deg,var(--goldsoft),var(--gold));width:0;transition:width .4s ease}
+  .qnum{font-size:.8rem;color:var(--muted);font-weight:800;letter-spacing:.04em;text-align:center;margin-bottom:14px}
+  /* card */
+  .card{background:var(--card);border:1px solid rgba(198,160,92,.26);border-radius:24px;padding:32px 30px;box-shadow:0 34px 74px -42px rgba(120,40,60,.5);position:relative;overflow:hidden}
+  .card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),#FFF6D6,var(--gold),transparent)}
+  .q-tag{display:inline-block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--golddk);background:#FBF3E2;border:1px solid var(--goldsoft);border-radius:100px;padding:3px 11px;margin-bottom:12px}
+  .q-txt{font-family:'Spectral',serif;font-size:clamp(1.35rem,3.4vw,1.7rem);color:var(--ink);line-height:1.35}
+  .opts{display:grid;gap:11px;margin-top:20px}
+  .opt{display:flex;align-items:center;gap:12px;text-align:left;border:1.5px solid rgba(198,160,92,.32);background:#fffdf8;border-radius:14px;padding:14px 16px;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);cursor:pointer;transition:transform .14s,border-color .14s,background .14s}
+  .opt:hover:not(.done){border-color:var(--gold);background:#FBF3E2;transform:translateX(3px)}
+  .opt .mk{width:26px;height:26px;flex:none;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--golddk)}
+  .opts.locked .opt{cursor:default}
+  .opt.correct{border-color:#2E9E6B;background:linear-gradient(180deg,#F1FBF5,#E7F6EE)}
+  .opt.correct .mk{border-color:#2E9E6B;background:#2E9E6B;color:#fff}
+  .opt.wrong{border-color:#D08;opacity:.85;background:#FDF2F6}
+  .opt.wrong .mk{border-color:#B01E48;background:#B01E48;color:#fff}
+  .fb{text-align:center;font-weight:800;font-size:.95rem;margin-top:14px;min-height:1.2em}
+  .fb.ok{color:#2E9E6B}.fb.no{color:var(--malina)}
+  .sol{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease,margin .4s ease;margin:0}
+  .sol.on{max-height:1400px;opacity:1;margin:20px 0 0}
+  .sol-in{background:linear-gradient(180deg,#FFF7FA,#FBEEF2);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+  .sol-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;color:var(--malina);margin-bottom:8px}
+  .step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.1rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+  .res{display:inline-block;margin-top:6px;font-family:'Spectral',serif;font-weight:700;color:var(--malina);border:1.5px solid rgba(176,30,72,.35);border-radius:10px;padding:4px 14px;background:#fff}
+  .note{color:#5C3B49;font-size:.96rem;margin-top:8px}
+  /* math bits */
+  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+  .frac>span{display:block;line-height:1.12;padding:0 .45em}
+  .frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
+  .frac .den{padding-top:.06em}
+  .lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
+  .lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
+  b{color:var(--ink)}
+  /* controls */
+  .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:13px 26px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.94rem;cursor:pointer;text-decoration:none;border:1.5px solid transparent;transition:transform .16s,box-shadow .16s,background .16s}
+  .btn-gold{background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196);background-size:240% auto;color:#3a2410;box-shadow:0 16px 30px -14px rgba(160,120,40,.7);animation:shim 7s linear infinite}
+  @keyframes shim{to{background-position:-240% center}}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;border-color:rgba(198,160,92,.5);color:var(--golddk)}
+  .btn-ghost:hover{background:#FBF3E2}
+  .btn-mal{background:linear-gradient(160deg,#CC5E7E,#B01E48);color:#fff;box-shadow:0 14px 28px -12px rgba(176,30,72,.5)}
+  .btn-mal:hover{transform:translateY(-2px)}
+  .backbtn{background:none;border:none;color:var(--muted);font-family:inherit;font-weight:700;cursor:pointer;font-size:.86rem}
+  /* end */
+  #end{display:none;text-align:center}
+  #end.on{display:block}
+  #end .big{font-size:clamp(2rem,5vw,2.8rem);margin:6px 0 8px;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .mbox{margin:22px 0 0;background:linear-gradient(160deg,#5A1024,#3A0B18);color:#fff;border-radius:20px;padding:26px;position:relative;overflow:hidden}
+  .mbox:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .mbox h3{color:#fff;font-size:1.5rem;margin-bottom:6px}
+  .mbox p{color:#f0dfe4;margin-bottom:16px}
+  .pf{margin-top:56px;text-align:center;padding:34px 22px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--goldsoft);background:linear-gradient(180deg,#FBF6EE,#F5EAD9)}
+  .pf .w{font-family:'Spectral',serif;font-weight:700;font-size:1.5rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+</style>
+</head>
+<body>
+<div id="fall" aria-hidden="true"></div>
+
+<header class="tb">
+  <a class="back" href="predmet-baze-podataka.html">← Baze podataka (SQL)</a>
+  <a class="brand" href="index.html">MATHIA<b>·</b>EDU</a>
+  <span style="width:60px"></span>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="free">✦ Vežbaj svojim tempom, bez pritiska 💛</span>
+    <div class="eyebrow">Proveri znanje · Baze podataka (SQL)</div>
+    <h1>Koliko ti stvarno leži?</h1>
+    <p>Idi pitanje po pitanje. Kad si spreman/na, otvori <b>detaljno rešenje</b> — Profesorica ti sve razloži korak po korak.</p>
+  </div>
+</section>
+
+<div class="wrap" style="padding-bottom:40px">
+  <div class="prog"><i id="bar"></i></div>
+  <div class="qnum" id="qnum"></div>
+
+  <div class="card" id="qcard">
+    <span class="q-tag" id="tag"></span>
+    <div class="q-txt" id="qtxt"></div>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <div class="sol" id="sol"><div class="sol-in"><div class="sol-h">Rešenje — korak po korak</div><div id="solbody"></div></div></div>
+    <div class="row">
+      <button class="btn btn-mal" id="revealBtn">Pogledaj rešenje →</button>
+      <button class="btn btn-gold" id="nextBtn" style="display:none">Sledeće pitanje →</button>
+    </div>
+    <div style="text-align:center;margin-top:14px"><button class="backbtn" id="prevBtn">← Prethodno</button></div>
+  </div>
+
+  <div id="end">
+    <div class="card">
+      <span class="free">🎉 Sve si prošao/la!</span>
+      <div class="big">Bravo!</div>
+      <p style="color:var(--ink2);max-width:520px;margin:0 auto">Prošao/la si sva pitanja iz predmeta Baze podataka (SQL). Ono što ti je bilo mutno — Profesorica ti razjasni do kraja, kad god poželiš.</p>
+      <div class="mbox">
+        <h3>Zapni negde? Tu sam. 💛</h3>
+        <p>Pitaj Profesoricu bilo šta iz predmeta Baze podataka (SQL) — objasni ti na tvom primeru, korak po korak, 0–24h.</p>
+        <div class="row" style="margin-top:0">
+          <a class="btn btn-gold" href="predmet-baze-podataka.html">Pitaj Profesoricu →</a>
+          <a class="btn btn-ghost" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)">Svi predmeti →</a>
+        </div>
+      </div>
+      <div style="margin-top:20px"><button class="backbtn" id="againBtn">↺ Ponovi kviz</button></div>
+    </div>
+  </div>
+</div>
+
+<footer class="pf"><div class="w">MATHIA</div>© 2026 Mathia Edu · Sva prava zadržana.</footer>
+
+<script>
+(function(){
+  // padajući simboli
+  var syms=["∫","∑","√","π","∞","∂","lim","dx","≈","≤","Σ","ƒ","θ","Δ","e","∇"];
+  var fall=document.getElementById("fall"),i,N=18,html="";
+  for(i=0;i<N;i++){
+    var s=syms[Math.floor(Math.random()*syms.length)];
+    var left=Math.random()*100, size=(Math.random()*26+16).toFixed(0), dur=(Math.random()*16+14).toFixed(1), del=(-Math.random()*20).toFixed(1);
+    html+='<span style="left:'+left+'%;font-size:'+size+'px;animation-duration:'+dur+'s;animation-delay:'+del+'s">'+s+'</span>';
+  }
+  fall.innerHTML=html;
+
+  // pitanja
+  var F=function(a,b){return '<span class="frac"><span class="num">'+a+'</span><span class="den">'+b+'</span></span>';};
+  var LIM=function(u){return '<span class="lim">lim<span class="und">'+u+'</span></span>';};
+  var Q=[{"tag": "Prost upit", "q": "Izdvoj imena studenata sa prosekom &gt; 8.", "o": ["SELECT ime FROM student WHERE prosek &gt; 8;", "SELECT * FROM student;", "SELECT prosek FROM student;", "DELETE FROM student WHERE prosek &gt; 8;"], "c": 0, "sol": "<span class=\"step\">SELECT <b>ime</b> FROM student WHERE prosek &gt; 8;</span><div class=\"note\">WHERE filtrira redove po uslovu.</div><span class=\"res\">SELECT ime FROM student WHERE prosek &gt; 8;</span>"}, {"tag": "Spajanje (JOIN)", "q": "Prikaži studente i njihove ocene (student ↔ ocena).", "o": ["SELECT s.ime, o.ocena FROM student s JOIN ocena o ON s.id = o.student_id;", "SELECT ime, ocena FROM student;", "JOIN student ocena;", "SELECT * FROM student, ocena;"], "c": 0, "sol": "<span class=\"step\">SELECT s.ime, o.ocena FROM student s</span><span class=\"step\">JOIN ocena o ON s.id = o.student_id;</span><span class=\"res\">JOIN po ključu student_id</span>"}, {"tag": "Agregacija", "q": "Broj studenata po smeru.", "o": ["SELECT smer, COUNT(*) FROM student GROUP BY smer;", "SELECT COUNT(*) FROM student;", "SELECT smer FROM student;", "GROUP student BY smer;"], "c": 0, "sol": "<span class=\"step\">SELECT smer, COUNT(*) FROM student GROUP BY smer;</span><div class=\"note\">GROUP BY grupiše redove pre agregacije.</div><span class=\"res\">GROUP BY smer + COUNT(*)</span>"}, {"tag": "Normalizacija", "q": "Kolona sadrži više telefona u jednoj ćeliji. Koji NF krši?", "o": ["Krši 1NF (vrednosti nisu atomske)", "Krši 2NF", "Krši 3NF", "Ne krši ništa"], "c": 0, "sol": "<span class=\"step\">Prva normalna forma traži atomske (nedeljive) vrednosti.</span><span class=\"step\">Više telefona u jednoj ćeliji → razdvoj u posebnu tabelu.</span><span class=\"res\">Krši 1NF</span>"}];
+
+  var idx=0, revealed=false, L=["A","B","C","D","E"];
+  var qcard=document.getElementById("qcard"),end=document.getElementById("end");
+  function pick(k,el){
+    var op=document.getElementById("opts"); if(op.classList.contains("locked")) return;
+    op.classList.add("locked"); var it=Q[idx], nd=op.children;
+    for(var j=0;j<nd.length;j++){ if(j===it.c) nd[j].classList.add("correct"); }
+    var fb=document.getElementById("fb");
+    if(k===it.c){ fb.className="fb ok"; fb.textContent="Tačno! Bravo ✨"; }
+    else{ el.classList.add("wrong"); fb.className="fb no"; fb.textContent="Nije tačno — pogledaj rešenje 💛"; }
+    document.getElementById("nextBtn").style.display="";
+  }
+  function render(){
+    var it=Q[idx];
+    document.getElementById("tag").innerHTML=it.tag;
+    document.getElementById("qtxt").innerHTML=it.q;
+    var op=document.getElementById("opts"); op.className="opts"; op.innerHTML="";
+    (it.o||[]).forEach(function(txt,k){ var b=document.createElement("div"); b.className="opt"; b.innerHTML='<span class="mk">'+L[k]+'</span><span>'+txt+'</span>'; b.addEventListener("click",function(){ pick(k,b); }); op.appendChild(b); });
+    var fb=document.getElementById("fb"); fb.className="fb"; fb.textContent="";
+    document.getElementById("solbody").innerHTML=it.sol;
+    document.getElementById("sol").classList.remove("on");
+    document.getElementById("revealBtn").style.display="";
+    document.getElementById("nextBtn").style.display="none";
+    document.getElementById("nextBtn").textContent = idx===Q.length-1 ? "Završi →" : "Sledeće pitanje →";
+    document.getElementById("prevBtn").style.visibility = idx>0 ? "visible":"hidden";
+    document.getElementById("qnum").textContent="Pitanje "+(idx+1)+" / "+Q.length;
+    document.getElementById("bar").style.width=((idx)/Q.length*100)+"%";
+    revealed=false;
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  document.getElementById("revealBtn").addEventListener("click",function(){
+    document.getElementById("sol").classList.add("on");
+    this.style.display="none";
+    document.getElementById("nextBtn").style.display="";
+    revealed=true;
+  });
+  document.getElementById("nextBtn").addEventListener("click",function(){
+    if(idx<Q.length-1){idx++;render();}
+    else{ // kraj
+      document.getElementById("bar").style.width="100%";
+      qcard.style.display="none";document.getElementById("qnum").style.display="none";document.querySelector(".prog").style.display="none";
+      end.classList.add("on");window.scrollTo({top:0,behavior:"smooth"});
+    }
+  });
+  document.getElementById("prevBtn").addEventListener("click",function(){ if(idx>0){idx--;render();} });
+  document.getElementById("againBtn").addEventListener("click",function(){
+    idx=0;end.classList.remove("on");qcard.style.display="";document.getElementById("qnum").style.display="";document.querySelector(".prog").style.display="";render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>
