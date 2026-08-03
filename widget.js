@@ -266,6 +266,8 @@
     "@keyframes zoicta{0%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}" +
     "#zoi-head{display:flex;align-items:center;gap:11px;padding:14px 15px;background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27120%27%20height%3D%27120%27%20viewBox%3D%270%200%20120%20120%27%3E%3Cg%20fill%3D%27%23FFFFFF%27%20fill-opacity%3D%270.16%27%3E%3Cg%20transform%3D%27translate%2820%2C24%29%20scale%282.2%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2888%2C16%29%20scale%281.6%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2860%2C60%29%20scale%282.6%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%28104%2C74%29%20scale%281.8%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%27translate%2832%2C92%29%20scale%281.8%29%27%3E%3Cpath%20d%3D%27M0%20-1C.12%20-.12%20.12%20-.12%201%200C.12%20.12%20.12%20.12%200%201C-.12%20.12%20-.12%20.12%20-1%200C-.12%20-.12%20-.12%20-.12%200%20-1Z%27%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E'),linear-gradient(135deg,#C4A05E 0%,#D9BE82 55%,#CBAA6C 100%);background-size:120px 120px,auto;color:#fff;text-shadow:0 1px 2px rgba(120,84,30,.32)}" +
     "#zoi-head img{width:46px;height:46px;border-radius:50%;border:2px solid rgba(255,246,214,.9);box-shadow:0 0 0 1px rgba(160,120,50,.5),0 4px 10px -4px rgba(0,0,0,.4);object-fit:cover}" +
+    "#zoi-head{position:relative}#zoi-head:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,rgba(255,246,214,.92),rgba(176,30,72,.55),rgba(255,246,214,.92),transparent)}" +
+    "#zoi-head .zoi-name:after{content:' \\1F49B';font-size:.62em;vertical-align:2px;opacity:.95}" +
     "#zoi-head .zoi-name{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:22px;line-height:1;letter-spacing:.01em}" +
     "#zoi-head .zoi-sub{font-size:11.5px;opacity:.95;margin-top:3px;display:block;max-width:240px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}#zoi-head .zoi-sub:before{content:'';display:inline-block;vertical-align:middle;width:7px;height:7px;border-radius:50%;background:#5FD98A;margin-right:7px;box-shadow:0 0 0 0 rgba(95,217,138,.7);animation:zoiLive 2.2s ease-out infinite}@keyframes zoiLive{0%{box-shadow:0 0 0 0 rgba(95,217,138,.55)}70%{box-shadow:0 0 0 7px rgba(95,217,138,0)}100%{box-shadow:0 0 0 0 rgba(95,217,138,0)}}" +
     "#zoi-head .zoi-sp{flex:1}" +
@@ -596,6 +598,8 @@
     s = s.replace(/\blim\s+([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)/g, function(_m,v,t){ return _lim(v,t); });
     // sigurnosna mreza: tekstualni parcijalni izvod ∂f/∂x -> \frac{\partial f}{\partial x}
     s = s.replace(/\u2202(\u00B2|\^2)?\s*([A-Za-z])\s*\/\s*\u2202\s*([A-Za-z])(\u00B2|\^2)?/g, function(_m,o1,fn,vr,o2){ var ord=(o1||o2)?"^2":""; math.push(["\\frac{\\partial"+ord+" "+fn+"}{\\partial "+vr+ord+"}",0]); return "\u0001K"+(math.length-1)+"\u0001"; });
+    // sigurnosna mreza: GOLI LaTeX bez $...$ (\frac, \sqrt, \lim_{...}, \pi, \cdot) -> inline formula da se nikad ne vidi kao sifra/slova
+    s = s.replace(/\\[A-Za-z]+(?:\s*(?:\{[^{}]*\}|_\{[^{}]*\}|\^\{[^{}]*\}|_[A-Za-z0-9]|\^[A-Za-z0-9]))*/g, function(m0){ math.push([m0,0]); return "K"+(math.length-1)+""; });
     // ukloni linije-razdelnike (---, ***, ___) i skupi višestruke prazne redove —
     // mehur koristi white-space:pre-wrap, pa bi inače pravili prevelike praznine
     s = s.replace(/^[ \t]*([-*_])(?:[ \t]*\1){2,}[ \t]*$/gm, "");
@@ -673,7 +677,7 @@
     if (!window.katex){ var n=+(root.getAttribute("data-kxr")||0); if(n<14){ root.setAttribute("data-kxr",n+1); setTimeout(function(){ typeset(root); }, 250); } return; }
     var ns = root.querySelectorAll(".kx:not([data-done])");
     for (var i=0;i<ns.length;i++){ var el=ns[i]; var src=el.textContent;
-      try { window.katex.render(src, el, {displayMode: el.getAttribute("data-d")==="1", throwOnError:true, errorColor:"#9C7838"}); }
+      try { window.katex.render(src, el, {displayMode: el.getAttribute("data-d")==="1", throwOnError:false, errorColor:"#9C7838"}); }
       catch(e){ el.textContent = texToText(src); el.className += " kx-fallback"; }
       el.setAttribute("data-done","1");
     }
