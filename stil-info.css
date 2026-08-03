@@ -1,7 +1,7 @@
 /* stil-info.css — zajednički stil za pravne/info i status stranice (Mathia) */
 :root{
   --paper:#FBF6EE; --paper2:#F5EADB; --blush:#F4E3DD; --rose:#CC8E86; --rose-dk:#B5746C;
-  --plum:#432C37; --plum2:#5C3B49; --plum3:#7E5765; --gold:#C6A05C; --golddk:#9C7838;
+  --plum:#5A1024; --plum2:#7A3346; --plum3:#9C5A68; --gold:#C6A05C; --golddk:#9C7838;
   --goldlt:#E7D2A2; --ink:#3E2D34; --muted:#90787E; --bord:#ECDAC5; --card:#fffcf6;
 }
 *{box-sizing:border-box}

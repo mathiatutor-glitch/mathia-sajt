@@ -43,7 +43,7 @@
       ".mh .mh-seal{position:relative}.mh .mh-seal::after{content:'✦';position:absolute;top:-3px;right:-3px;color:#C6A05C;font-size:14px;line-height:1;text-shadow:0 1px 4px rgba(198,160,92,.5);animation:mhTw 3s ease-in-out infinite}@keyframes mhTw{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}" +
       "@media(prefers-reduced-motion:reduce){.mh .mh-cta{animation:none}.mh .mh-seal::after{animation:none}.mh .mh-wm b{animation:none}}" +
       ".mh .mh-burger{display:none;width:34px;height:30px;background:none;border:none;cursor:pointer;position:relative;flex:none}" +
-      ".mh .mh-burger span{position:absolute;left:4px;right:4px;height:2.5px;background:#432C37;border-radius:3px;transition:.28s}" +
+      ".mh .mh-burger span{position:absolute;left:4px;right:4px;height:2.5px;background:#5A1024;border-radius:3px;transition:.28s}" +
       ".mh .mh-burger span:nth-child(1){top:7px}.mh .mh-burger span:nth-child(2){top:14px}.mh .mh-burger span:nth-child(3){top:21px}" +
       ".mh.open .mh-burger span:nth-child(1){top:14px;transform:rotate(45deg)}.mh.open .mh-burger span:nth-child(2){opacity:0}.mh.open .mh-burger span:nth-child(3){top:14px;transform:rotate(-45deg)}" +
       /* srednje širine (900–1180px): postepeno stišnjavanje da meni NIJE zgusnut pre nego pređe u hamburger */

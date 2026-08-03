@@ -59,7 +59,7 @@ body::after{display:none!important}
 
 /* foil tekst -> mirno tamno; zadrži eleganciju bez šarenila */
 .mark,.w-h2 .mark,.sh-h2 .mark,.gold-underline{
-  background:none!important;-webkit-text-fill-color:#432C37!important;color:#432C37!important;font-weight:600!important}
+  background:none!important;-webkit-text-fill-color:#5A1024!important;color:#5A1024!important;font-weight:600!important}
 
 /* hero tipografija: mirnija, manje razmaknuta */
 .eyebrow{letter-spacing:.22em!important;color:#B3A79E!important;font-weight:700!important;font-size:.72rem!important}
@@ -67,7 +67,7 @@ body::after{display:none!important}
 .lead{color:#7A6B66!important}
 
 /* dugmad: tamna, bez sjaja (kao na nalogu) */
-.btn-gold,a.btn-gold,.btn.btn-gold,.hero .btn-gold,.finale .btn-gold{background:#432C37!important;background-image:none!important;color:#F3E9DA!important;box-shadow:none!important;font-weight:600!important}
+.btn-gold,a.btn-gold,.btn.btn-gold,.hero .btn-gold,.finale .btn-gold{background:#5A1024!important;background-image:none!important;color:#F3E9DA!important;box-shadow:none!important;font-weight:600!important}
 .btn-gold:hover,a.btn-gold:hover,.btn.btn-gold:hover{filter:brightness(1.12)}
 
 /* pozadinski matematički simboli još suptilniji */
@@ -115,7 +115,7 @@ body::after{display:none!important}
 .btn-gold,a.btn-gold,.btn.btn-gold{position:relative;overflow:hidden;
   transition:filter .25s ease,transform .25s ease,box-shadow .25s ease!important}
 .btn-gold:hover,a.btn-gold:hover,.btn.btn-gold:hover{
-  transform:translateY(-1px);box-shadow:0 14px 30px -16px rgba(67,44,55,.55)!important}
+  transform:translateY(-1px);box-shadow:0 14px 30px -16px rgba(90,16,36,.55)!important}
 .btn-gold::before,a.btn-gold::before,.btn.btn-gold::before{
   content:"";position:absolute;top:0;left:0;width:34%;height:100%;
   background:linear-gradient(100deg,transparent,rgba(255,247,225,.35),transparent);

@@ -53,7 +53,7 @@ select.lang, .lang{
 
 /* — sitna poliranja koja podižu utisak (bezbedna, globalna) — */
 *{ text-rendering: optimizeLegibility; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-::selection{ background:#E7D2A2; color:#432C37; }
+::selection{ background:#E7D2A2; color:#5A1024; }
 html{ scroll-behavior:smooth; }
 a{ text-underline-offset:2px; }
 button, .btn, [role="button"]{ letter-spacing:.005em; }
@@ -94,7 +94,7 @@ button:active, .btn:active, [role="button"]:active{ transform: translateY(1px); 
 }
 .card:hover,.tile:hover,.quote:hover,.step:hover,.tier:hover,.plan:hover,.product:hover,.matcard:hover,.pcard:hover,.tcard:hover{
   transform:translateY(-4px);
-  box-shadow:0 22px 44px -28px rgba(67,44,55,.40), inset 0 2px 0 rgba(198,160,92,.85);
+  box-shadow:0 22px 44px -28px rgba(90,16,36,.40), inset 0 2px 0 rgba(198,160,92,.85);
   border-color:#E7D2A2;
 }
 
@@ -110,7 +110,7 @@ button:active, .btn:active, [role="button"]:active{ transform: translateY(1px); 
 /* ——— LUKSUZ v3: prozračno, elegantno, savršeno na svim uređajima ——— */
 img{max-width:100%}
 hr{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(198,160,92,.45),transparent);margin:2.2rem 0}
-blockquote{font-family:var(--mathia-serif);font-style:italic;color:#5C3B49;border-left:2px solid #C6A05C;padding-left:1.1rem;margin:1.4rem 0}
+blockquote{font-family:var(--mathia-serif);font-style:italic;color:#7A3346;border-left:2px solid #C6A05C;padding-left:1.1rem;margin:1.4rem 0}
 h1,h2{letter-spacing:-.004em}
 
 /* ==========================================================================
