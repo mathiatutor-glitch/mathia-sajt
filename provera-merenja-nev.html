@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#5A1024">
-<title>Proveri znanje — Merenja neelektričnih veličina · Mathia</title>
-<meta name="description" content="Proveri znanje iz predmeta Merenja neelektričnih veličina — pitanje po pitanje, sa detaljnim rešenjem uz Profesoricu.">
+<title>Proveri znanje — Analiza 1 · Mathia</title>
+<meta name="description" content="Proveri znanje iz Analize 1 — pitanje po pitanje, sa detaljnim rešenjem uz Profesoricu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -94,17 +94,17 @@
 <div id="fall" aria-hidden="true"></div>
 
 <header class="tb">
-  <a class="back" href="predmet-merenja-nev.html">← Merenja neelektričnih veličina</a>
+  <a class="back" href="predmet-merenja-nev.html" data-i18n="back">← Analiza 1</a>
   <a class="brand" href="index.html">MATHIA<b>·</b>EDU</a>
-  <span style="width:60px"></span>
+  <select id="qlang" aria-label="Jezik / Language" style="margin-left:auto;border:1px solid rgba(198,160,92,.5);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:#A6803C;background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <span class="free">✦ Vežbaj svojim tempom, bez pritiska 💛</span>
-    <div class="eyebrow">Proveri znanje · Merenja neelektričnih veličina</div>
-    <h1>Koliko ti stvarno leži?</h1>
-    <p>Idi pitanje po pitanje. Kad si spreman/na, otvori <b>detaljno rešenje</b> — Profesorica ti sve razloži korak po korak.</p>
+    <span class="free" data-i18n="free">✦ Vežbaj svojim tempom, bez pritiska 💛</span>
+    <div class="eyebrow" data-i18n="eyebrow">Proveri znanje · Analiza 1</div>
+    <h1 data-i18n="h1">Koliko ti stvarno leži?</h1>
+    <p data-i18n-html="heroP"></p>
   </div>
 </section>
 
@@ -117,28 +117,28 @@
     <div class="q-txt" id="qtxt"></div>
     <div class="opts" id="opts"></div>
     <div class="fb" id="fb"></div>
-    <div class="sol" id="sol"><div class="sol-in"><div class="sol-h">Rešenje — korak po korak</div><div id="solbody"></div></div></div>
+    <div class="sol" id="sol"><div class="sol-in"><div class="sol-h" data-i18n="solH">Rešenje — korak po korak</div><div id="solbody"></div></div></div>
     <div class="row">
-      <button class="btn btn-mal" id="revealBtn">Pogledaj rešenje →</button>
+      <button class="btn btn-mal" id="revealBtn" data-i18n="reveal">Pogledaj rešenje →</button>
       <button class="btn btn-gold" id="nextBtn" style="display:none">Sledeće pitanje →</button>
     </div>
-    <div style="text-align:center;margin-top:14px"><button class="backbtn" id="prevBtn">← Prethodno</button></div>
+    <div style="text-align:center;margin-top:14px"><button class="backbtn" id="prevBtn" data-i18n="prev">← Prethodno</button></div>
   </div>
 
   <div id="end">
     <div class="card">
-      <span class="free">🎉 Sve si prošao/la!</span>
-      <div class="big">Bravo!</div>
-      <p style="color:var(--ink2);max-width:520px;margin:0 auto">Prošao/la si sva pitanja iz predmeta Merenja neelektričnih veličina. Ono što ti je bilo mutno — Profesorica ti razjasni do kraja, kad god poželiš.</p>
+      <span class="free" data-i18n="endBadge">🎉 Sve si prošao/la!</span>
+      <div class="big" data-i18n="endBig">Bravo!</div>
+      <p style="color:var(--ink2);max-width:520px;margin:0 auto" data-i18n="endP"></p>
       <div class="mbox">
-        <h3>Zapni negde? Tu sam. 💛</h3>
-        <p>Pitaj Profesoricu bilo šta iz predmeta Merenja neelektričnih veličina — objasni ti na tvom primeru, korak po korak, 0–24h.</p>
+        <h3 data-i18n="mboxH">Zapni negde? Tu sam. 💛</h3>
+        <p data-i18n="mboxP"></p>
         <div class="row" style="margin-top:0">
-          <a class="btn btn-gold" href="predmet-merenja-nev.html">Pitaj Profesoricu →</a>
-          <a class="btn btn-ghost" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)">Svi predmeti →</a>
+          <a class="btn btn-gold" href="predmet-merenja-nev.html" data-i18n="askBtn">Pitaj Profesoricu →</a>
+          <a class="btn btn-ghost" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)" data-i18n="allBtn">Svi predmeti →</a>
         </div>
       </div>
-      <div style="margin-top:20px"><button class="backbtn" id="againBtn">↺ Ponovi kviz</button></div>
+      <div style="margin-top:20px"><button class="backbtn" id="againBtn" data-i18n="again">↺ Ponovi kviz</button></div>
     </div>
   </div>
 </div>
@@ -158,9 +158,12 @@
   fall.innerHTML=html;
 
   // pitanja
-  var F=function(a,b){return '<span class="frac"><span class="num">'+a+'</span><span class="den">'+b+'</span></span>';};
-  var LIM=function(u){return '<span class="lim">lim<span class="und">'+u+'</span></span>';};
-  var Q=[{"tag": "Osetljivost", "q": "Senzor: promena ulaza 10°C daje 50 mV. Osetljivost?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. Nađi R<sub>t</sub>.", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = R<sub>0</sub>(1 + α ΔT) = 100(1 + 0,385)</span><span class=\"step\">= 100 · 1,385 = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}];
+  var I18N={"heroP": {"sr": "Idi pitanje po pitanje. Kad si spreman/na, otvori <b>detaljno rešenje</b> — Profesorica ti sve razloži korak po korak.", "en": "Go question by question. When you're ready, open the <b>detailed solution</b> — Profesorica explains everything step by step.", "de": "Geh Frage für Frage. Wenn du bereit bist, öffne die <b>ausführliche Lösung</b> — Profesorica erklärt alles Schritt für Schritt.", "fr": "Avance question par question. Quand tu es prêt·e, ouvre la <b>solution détaillée</b> — Profesorica t'explique tout étape par étape.", "es": "Ve pregunta por pregunta. Cuando estés listo/a, abre la <b>solución detallada</b> — Profesorica te lo explica paso a paso.", "it": "Vai domanda per domanda. Quando sei pronto/a, apri la <b>soluzione dettagliata</b> — Profesorica ti spiega tutto passo dopo passo.", "ru": "Иди вопрос за вопросом. Когда будешь готов(а), открой <b>подробное решение</b> — Profesorica всё объяснит шаг за шагом.", "pt": "Vai pergunta a pergunta. Quando estiveres pronto/a, abre a <b>solução detalhada</b> — a Profesorica explica tudo passo a passo."}, "h1": {"sr": "Koliko ti stvarno leži?", "en": "How well do you really know it?", "de": "Wie gut kannst du es wirklich?", "fr": "Tu maîtrises vraiment ?", "es": "¿Cuánto dominas de verdad?", "it": "Quanto lo padroneggi davvero?", "ru": "Насколько ты и правда владеешь?", "pt": "Até que ponto dominas mesmo?"}, "free": {"sr": "✦ Vežbaj svojim tempom, bez pritiska 💛", "en": "✦ Practise at your own pace, no pressure 💛", "de": "✦ Übe in deinem Tempo, ganz entspannt 💛", "fr": "✦ Entraîne-toi à ton rythme, sans pression 💛", "es": "✦ Practica a tu ritmo, sin presión 💛", "it": "✦ Allenati al tuo ritmo, senza pressione 💛", "ru": "✦ Занимайся в своём темпе, без давления 💛", "pt": "✦ Pratica ao teu ritmo, sem pressão 💛"}, "reveal": {"sr": "Pogledaj rešenje →", "en": "Show the solution →", "de": "Lösung anzeigen →", "fr": "Voir la solution →", "es": "Ver la solución →", "it": "Mostra la soluzione →", "ru": "Показать решение →", "pt": "Ver a solução →"}, "nextMid": {"sr": "Sledeće pitanje →", "en": "Next question →", "de": "Nächste Frage →", "fr": "Question suivante →", "es": "Siguiente pregunta →", "it": "Domanda successiva →", "ru": "Следующий вопрос →", "pt": "Próxima pergunta →"}, "nextEnd": {"sr": "Završi →", "en": "Finish →", "de": "Fertig →", "fr": "Terminer →", "es": "Terminar →", "it": "Fine →", "ru": "Завершить →", "pt": "Terminar →"}, "prev": {"sr": "← Prethodno", "en": "← Previous", "de": "← Zurück", "fr": "← Précédent", "es": "← Anterior", "it": "← Precedente", "ru": "← Назад", "pt": "← Anterior"}, "fbOk": {"sr": "Tačno! Bravo ✨", "en": "Correct! Well done ✨", "de": "Richtig! Bravo ✨", "fr": "Correct ! Bravo ✨", "es": "¡Correcto! Bravo ✨", "it": "Giusto! Bravo ✨", "ru": "Верно! Молодец ✨", "pt": "Certo! Boa ✨"}, "fbNo": {"sr": "Nije tačno — pogledaj rešenje 💛", "en": "Not quite — check the solution 💛", "de": "Nicht ganz — sieh dir die Lösung an 💛", "fr": "Pas tout à fait — regarde la solution 💛", "es": "No exacto — mira la solución 💛", "it": "Non proprio — guarda la soluzione 💛", "ru": "Не совсем — посмотри решение 💛", "pt": "Não bem — vê a solução 💛"}, "solH": {"sr": "Rešenje — korak po korak", "en": "Solution — step by step", "de": "Lösung — Schritt für Schritt", "fr": "Solution — étape par étape", "es": "Solución — paso a paso", "it": "Soluzione — passo dopo passo", "ru": "Решение — шаг за шагом", "pt": "Solução — passo a passo"}, "qnum": {"sr": "Pitanje", "en": "Question", "de": "Frage", "fr": "Question", "es": "Pregunta", "it": "Domanda", "ru": "Вопрос", "pt": "Pergunta"}, "endBadge": {"sr": "🎉 Sve si prošao/la!", "en": "🎉 You made it through!", "de": "🎉 Alles geschafft!", "fr": "🎉 Tu as tout fait !", "es": "🎉 ¡Lo lograste!", "it": "🎉 Ce l'hai fatta!", "ru": "🎉 Ты всё прошёл(ла)!", "pt": "🎉 Conseguiste!"}, "endBig": {"sr": "Bravo!", "en": "Well done!", "de": "Bravo!", "fr": "Bravo !", "es": "¡Bravo!", "it": "Bravo!", "ru": "Молодец!", "pt": "Boa!"}, "endP": {"sr": "Prošao/la si sva pitanja. Ono što ti je bilo mutno — Profesorica ti razjasni do kraja, kad god poželiš.", "en": "You went through all the questions. Whatever was fuzzy — Profesorica clears it up fully, whenever you like.", "de": "Du hast alle Fragen geschafft. Was unklar war — Profesorica klärt es vollständig, wann immer du willst.", "fr": "Tu as parcouru toutes les questions. Ce qui restait flou — Profesorica l'éclaircit à fond, quand tu veux.", "es": "Recorriste todas las preguntas. Lo que quedó confuso — Profesorica te lo aclara del todo, cuando quieras.", "it": "Hai svolto tutte le domande. Ciò che era confuso — Profesorica te lo chiarisce del tutto, quando vuoi.", "ru": "Ты прошёл(ла) все вопросы. Что было непонятно — Profesorica разъяснит до конца, когда захочешь.", "pt": "Passaste por todas as perguntas. O que ficou confuso — a Profesorica esclarece por completo, quando quiseres."}, "mboxH": {"sr": "Zapni negde? Tu sam. 💛", "en": "Stuck somewhere? I'm here. 💛", "de": "Irgendwo hängen geblieben? Ich bin da. 💛", "fr": "Bloqué·e quelque part ? Je suis là. 💛", "es": "¿Te atascas? Estoy aquí. 💛", "it": "Ti blocchi da qualche parte? Ci sono io. 💛", "ru": "Где-то застрял(а)? Я рядом. 💛", "pt": "Emperraste nalgum ponto? Estou aqui. 💛"}, "mboxP": {"sr": "Pitaj Profesoricu bilo šta iz ovog predmeta — objasni ti na tvom primeru, korak po korak, 0–24h.", "en": "Ask Profesorica anything from this subject — she explains it on your own example, step by step, 24/7.", "de": "Frag Profesorica alles aus diesem Fach — sie erklärt es an deinem Beispiel, Schritt für Schritt, rund um die Uhr.", "fr": "Demande à Profesorica tout sur cette matière — elle t'explique sur ton exemple, étape par étape, 24h/24.", "es": "Pregunta a Profesorica lo que sea de esta asignatura — te lo explica con tu ejemplo, paso a paso, 24/7.", "it": "Chiedi a Profesorica qualsiasi cosa di questa materia — te lo spiega sul tuo esempio, passo dopo passo, 24 ore su 24.", "ru": "Спроси Profesorica о чём угодно по этому предмету — объяснит на твоём примере, шаг за шагом, круглосуточно.", "pt": "Pergunta à Profesorica qualquer coisa desta disciplina — explica no teu exemplo, passo a passo, 24h."}, "askBtn": {"sr": "Pitaj Profesoricu →", "en": "Ask Profesorica →", "de": "Frag Profesorica →", "fr": "Demande à Profesorica →", "es": "Pregunta a Profesorica →", "it": "Chiedi a Profesorica →", "ru": "Спроси Profesorica →", "pt": "Pergunta à Profesorica →"}, "allBtn": {"sr": "Svi predmeti →", "en": "All subjects →", "de": "Alle Fächer →", "fr": "Toutes les matières →", "es": "Todas las asignaturas →", "it": "Tutte le materie →", "ru": "Все предметы →", "pt": "Todas as disciplinas →"}, "again": {"sr": "↺ Ponovi kviz", "en": "↺ Retake the quiz", "de": "↺ Quiz wiederholen", "fr": "↺ Refaire le quiz", "es": "↺ Repetir el test", "it": "↺ Rifai il quiz", "ru": "↺ Пройти заново", "pt": "↺ Repetir o quiz"}, "back": {"sr": "← Merenja neelektričnih veličina", "en": "← Non-electrical measurements", "de": "← Messung nichtelektr. Größen", "fr": "← Mesures non électriques", "es": "← Mediciones no eléctricas", "it": "← Misure non elettriche", "ru": "← Измерение неэлектрических величин", "pt": "← Medições não elétricas"}, "eyebrow": {"sr": "Proveri znanje · Merenja neelektričnih veličina", "en": "Test yourself · Non-electrical measurements", "de": "Wissen prüfen · Messung nichtelektr. Größen", "fr": "Teste-toi · Mesures non électriques", "es": "Ponte a prueba · Mediciones no eléctricas", "it": "Mettiti alla prova · Misure non elettriche", "ru": "Проверь знания · Измерение неэлектрических величин", "pt": "Testa-te · Medições não elétricas"}};
+var DATA={"sr": [{"tag": "Osetljivost", "q": "Senzor: 10°C daje 50 mV. Osetljivost?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. R<sub>t</sub>?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}], "en": [{"tag": "Sensitivity", "q": "Sensor: 10°C gives 50 mV. Sensitivity?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0.00385, ΔT = 100°C. R<sub>t</sub>?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}], "de": [{"tag": "Empfindlichkeit", "q": "Sensor: 10°C ergibt 50 mV. Empfindlichkeit?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. R<sub>t</sub>?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}], "fr": [{"tag": "Sensibilité", "q": "Capteur : 10°C donne 50 mV. Sensibilité ?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. R<sub>t</sub> ?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}], "es": [{"tag": "Sensibilidad", "q": "Sensor: 10°C da 50 mV. ¿Sensibilidad?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. ¿R<sub>t</sub>?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}], "it": [{"tag": "Sensibilità", "q": "Sensore: 10°C dà 50 mV. Sensibilità?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. R<sub>t</sub>?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}], "ru": [{"tag": "Чувствительность", "q": "Датчик: 10°C даёт 50 mV. Чувствительность?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. R<sub>t</sub>?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}], "pt": [{"tag": "Sensibilidade", "q": "Sensor: 10°C dá 50 mV. Sensibilidade?", "o": ["5 mV/°C", "50 mV/°C", "0,2 °C/mV", "500 mV/°C"], "c": 0, "sol": "<span class=\"step\">S = <span class=\"frac\"><span class=\"num\">50 mV</span><span class=\"den\">10 °C</span></span> = 5 mV/°C</span><span class=\"res\">5 mV/°C</span>"}, {"tag": "Pt100", "q": "R<sub>0</sub> = 100 Ω, α = 0,00385, ΔT = 100°C. R<sub>t</sub>?", "o": ["138,5 Ω", "100 Ω", "238,5 Ω", "103,85 Ω"], "c": 0, "sol": "<span class=\"step\">R<sub>t</sub> = 100(1 + 0,385) = 138,5 Ω</span><span class=\"res\">138,5 Ω</span>"}]};
+var LANG='sr';try{LANG=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(e){}if(!DATA[LANG])LANG='sr';
+var Q=DATA[LANG];
+function tr(l){if(!DATA[l])l='sr';LANG=l;Q=DATA[l];try{localStorage.setItem('mathia_lang',l);}catch(e){}document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(I18N[k]&&I18N[k][l])e.textContent=I18N[k][l];});document.querySelectorAll('[data-i18n-html]').forEach(function(e){var k=e.getAttribute('data-i18n-html');if(I18N[k]&&I18N[k][l])e.innerHTML=I18N[k][l];});var sel=document.getElementById('qlang');if(sel)sel.value=l;render();}
+
 
   var idx=0, revealed=false, L=["A","B","C","D","E"];
   var qcard=document.getElementById("qcard"),end=document.getElementById("end");
@@ -169,8 +172,8 @@
     op.classList.add("locked"); var it=Q[idx], nd=op.children;
     for(var j=0;j<nd.length;j++){ if(j===it.c) nd[j].classList.add("correct"); }
     var fb=document.getElementById("fb");
-    if(k===it.c){ fb.className="fb ok"; fb.textContent="Tačno! Bravo ✨"; }
-    else{ el.classList.add("wrong"); fb.className="fb no"; fb.textContent="Nije tačno — pogledaj rešenje 💛"; }
+    if(k===it.c){ fb.className="fb ok"; fb.textContent=I18N.fbOk[LANG]; }
+    else{ el.classList.add("wrong"); fb.className="fb no"; fb.textContent=I18N.fbNo[LANG]; }
     document.getElementById("nextBtn").style.display="";
   }
   function render(){
@@ -184,9 +187,9 @@
     document.getElementById("sol").classList.remove("on");
     document.getElementById("revealBtn").style.display="";
     document.getElementById("nextBtn").style.display="none";
-    document.getElementById("nextBtn").textContent = idx===Q.length-1 ? "Završi →" : "Sledeće pitanje →";
+    document.getElementById("nextBtn").textContent = (idx===Q.length-1 ? I18N.nextEnd[LANG] : I18N.nextMid[LANG]);
     document.getElementById("prevBtn").style.visibility = idx>0 ? "visible":"hidden";
-    document.getElementById("qnum").textContent="Pitanje "+(idx+1)+" / "+Q.length;
+    document.getElementById("qnum").textContent=I18N.qnum[LANG]+" "+(idx+1)+" / "+Q.length;
     document.getElementById("bar").style.width=((idx)/Q.length*100)+"%";
     revealed=false;
     window.scrollTo({top:0,behavior:"smooth"});
@@ -209,7 +212,8 @@
   document.getElementById("againBtn").addEventListener("click",function(){
     idx=0;end.classList.remove("on");qcard.style.display="";document.getElementById("qnum").style.display="";document.querySelector(".prog").style.display="";render();
   });
-  render();
+  var _sel=document.getElementById('qlang');if(_sel){_sel.value=LANG;_sel.addEventListener('change',function(){tr(this.value);});}
+  tr(LANG);
 })();
 </script>
 </body>
