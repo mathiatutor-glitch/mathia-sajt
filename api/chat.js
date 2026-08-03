@@ -500,7 +500,7 @@ export default async function handler(req, res) {
         "x-api-key": process.env.ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01",
       },
-      body: JSON.stringify({ model: "claude-opus-4-8", max_tokens: 2000, system: systemBlocks, messages }),
+      body: JSON.stringify({ model: "claude-opus-4-8", max_tokens: 4096, system: systemBlocks, messages }),
     });
 
     const data = await r.json();
