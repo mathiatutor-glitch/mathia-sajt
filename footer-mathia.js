@@ -1,105 +1,63 @@
-/* ============================================================
-   MATHIA — zajednički footer (identičan lepom footeru prve strane)
-   <script src="footer-mathia.js" defer></script>            → pun footer
-   <script src="footer-mathia.js" data-min defer></script>   → samo copyright red
-   Ne dodavati na strane sa svojim završetkom (npr. O meni).
-   ============================================================ */
+/* MATHIA — zajednički (identičan) footer za sve glavne strane.
+   Ubaci sa: <script src="footer-mathia.js" defer></script>
+   Ubacuje svoj CSS + footer NA KRAJ <body> samo ako footer već ne postoji. */
 (function () {
-  "use strict";
-  if (document.getElementById("mfz")) return;
+  if (document.querySelector("footer.mf-foot")) return;
+  // ako strana već ima neki svoj footer, ne diramo je
+  if (document.querySelector("footer")) return;
 
-  if (!document.querySelector('link[href*="Cormorant+Garamond"]')) {
-    var f = document.createElement("link");
-    f.rel = "stylesheet";
-    f.href = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;700;800&family=Pinyon+Script&display=swap";
-    document.head.appendChild(f);
+  function injectCss() {
+    if (document.getElementById("mf-css")) return;
+    var s = document.createElement("style"); s.id = "mf-css";
+    s.textContent =
+      ".mf-foot{position:relative;margin-top:64px;background:linear-gradient(180deg,#FBF6EE,#F5EAD9);border-top:1px solid rgba(198,160,92,.4);text-align:center;padding:56px 22px 30px;overflow:hidden}" +
+      ".mf-foot::before{content:'';position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#F0DCA8,#C6A05C,#FFF6D6,#C6A05C,#F0DCA8,transparent)}" +
+      ".mf-in{max-width:900px;margin:0 auto;position:relative;z-index:1}" +
+      ".mf-orn{color:#C6A05C;letter-spacing:.5em;font-size:1rem;margin-bottom:10px}" +
+      ".mf-word{font-family:'Spectral',Georgia,serif;font-weight:700;font-size:2rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}" +
+      ".mf-line{font-family:'Spectral',Georgia,serif;font-style:italic;color:#7A3346;margin:12px auto 0;max-width:520px;line-height:1.6}" +
+      ".mf-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;margin:22px 0 6px}" +
+      ".mf-links a{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:.9rem;color:#5A1024;text-decoration:none;transition:color .2s}" +
+      ".mf-links a:hover{color:#A6803C}" +
+      ".mf-soc{display:flex;justify-content:center;gap:14px;margin:14px 0 4px}" +
+      ".mf-soc a{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(198,160,92,.5);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);transition:transform .2s,border-color .2s}" +
+      ".mf-soc a:hover{transform:translateY(-2px);border-color:#C6A05C}" +
+      ".mf-soc svg{width:18px;height:18px;fill:#A6803C}" +
+      ".mf-rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:20px auto 12px;max-width:520px}" +
+      ".mf-copy{color:#8A7A80;font-size:.78rem;font-family:'Inter',system-ui,sans-serif}";
+    document.head.appendChild(s);
   }
 
-  var css =
-    "#mfz{position:relative;background:linear-gradient(180deg,#F3E9D6,#EEE1C9);color:#6a5a52;border-top:1px solid #E7D8BE;font-family:Nunito,system-ui,sans-serif;overflow:hidden}" +
-    "#mfz .mfz-wrap{max-width:820px;margin:0 auto;padding:72px 22px 0;text-align:center;position:relative;z-index:2}" +
-    ".mfz-mono{width:58px;height:58px;border-radius:50%;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.7rem;color:#3a2530;background:radial-gradient(circle at 38% 30%,#FFF6D6,#C6A05C);box-shadow:0 0 36px -4px rgba(231,210,162,.75)}" +
-    ".mfz-love{font-family:'Pinyon Script',cursive;font-size:clamp(2.6rem,6vw,3.2rem);line-height:1;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:mfzFoil 10s linear infinite}" +
-    "@keyframes mfzFoil{to{background-position:220% center}}" +
-    ".mfz-tag{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:#9C7838;margin-top:10px}" +
-    ".mfz-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin:24px 0 26px}" +
-    ".mfz-nav a{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;color:#7a5f22;text-decoration:none;transition:color .16s ease}" +
-    ".mfz-nav a:hover{color:#9C7838}" +
-    ".mfz-dot{width:4px;height:4px;border-radius:50%;background:#D9C39A}" +
-    ".mfz-soc{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:8px}" +
-    ".mfz-soc a{width:92px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#7a6a60;font-family:'Cormorant Garamond',serif;font-size:.9rem;text-decoration:none}" +
-    ".mfz-soc a .i{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid #E7D8BE;background:#fff;color:#9C7838;transition:all .2s ease}" +
-    ".mfz-soc a .i svg{width:18px;height:18px}" +
-    ".mfz-soc a:hover .i{border-color:transparent;background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 12px 22px -8px rgba(198,160,92,.7)}" +
-    ".mfz-rule{display:flex;align-items:center;justify-content:center;gap:12px;margin:34px auto 24px}" +
-    ".mfz-rule .l{height:1px;width:90px;background:linear-gradient(90deg,transparent,rgba(198,160,92,.55))}" +
-    ".mfz-rule .l.r{transform:scaleX(-1)}" +
-    ".mfz-rule .d{width:6px;height:6px;transform:rotate(45deg);background:#E7D2A2;box-shadow:0 0 12px rgba(231,210,162,.9)}" +
-    ".mfz-fine{font-size:.8rem;color:#8a7a70;margin-bottom:16px;white-space:nowrap}" +
-    ".mfz-fine a{color:inherit;text-decoration:none;transition:color .16s ease}.mfz-fine a:hover{color:#E7D2A2}" +
-    ".mfz-legal{font-size:.72rem;color:#a2917f;line-height:1.6;white-space:nowrap}" +
-    "@media(max-width:760px){.mfz-fine,.mfz-legal{white-space:normal}}" +
-    ".mfz-bottom{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px 0 42px;margin-top:20px;border-top:1px solid #E7D8BE}" +
-    ".mfz-copy{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#9a8776}" +
-    ".mfz-pay{display:inline-flex;align-items:center;background:rgba(255,255,255,.92);border:1px solid rgba(198,160,92,.3);border-radius:8px;padding:5px 10px;box-shadow:0 10px 22px -16px rgba(0,0,0,.5)}" +
-    ".mfz-pay img{height:15px;width:auto;display:block}" +
-    "@media(prefers-reduced-motion:reduce){.mfz-love{animation:none}}";
-  var st = document.createElement("style");
-  st.textContent = css;
-  document.head.appendChild(st);
-
-  function svg(i){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+i+'</svg>';}
-  var icMail=svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>');
-  var icIg=svg('<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/>');
-  var icYt=svg('<rect x="2.5" y="6" width="19" height="12" rx="4"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5z"/>');
-  var icFb=svg('<path d="M14 8.5h2.2V5.4H14c-2 0-3.3 1.2-3.3 3.2v1.9H8.6v3.1h2.1V21h3.2v-7.4h2.2l.5-3.1h-2.7V8.9c0-.3.2-.4.5-.4z"/>');
-  var lock='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
-
-  var minMode = !!document.querySelector('script[src*="footer-mathia"][data-min]');
+  var HTML =
+    '<div class="mf-in">' +
+      '<div class="mf-orn">✦</div>' +
+      '<div class="mf-word">MATHIA</div>' +
+      '<p class="mf-line">Matematika, fizika, elektrotehnika i programiranje — online, od 5. razreda do fakulteta, uz Profesoricu 0–24h.</p>' +
+      '<nav class="mf-links">' +
+        '<a href="predmeti.html">Predmeti</a>' +
+        '<a href="prodavnica.html">Prodavnica</a>' +
+        '<a href="index.html#paketi">Paketi i cene</a>' +
+        '<a href="o-marini.html">O meni</a>' +
+        '<a href="mailto:kontakt@mathia.rs">Kontakt</a>' +
+        '<a href="uslovi.html">Uslovi kupovine</a>' +
+        '<a href="privatnost.html">Politika privatnosti</a>' +
+      '</nav>' +
+      '<div class="mf-soc">' +
+        '<a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg></a>' +
+        '<a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.97.24 2.43.4.61.24 1.05.52 1.5.98.46.45.74.89.98 1.5.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43-.24.61-.52 1.05-.98 1.5-.45.46-.89.74-1.5.98-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.97-.24-2.43-.4-.61-.24-1.05-.52-1.5-.98-.46-.45-.74-.89-.98-1.5-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.24-1.97.4-2.43.24-.61.52-1.05.98-1.5.45-.46.89-.74 1.5-.98.46-.16 1.26-.35 2.43-.4C8.42 2.21 8.8 2.2 12 2.2zm0 1.98c-3.15 0-3.52.01-4.76.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.9-.19-1.39-.32-1.71a2.86 2.86 0 0 0-.69-1.06 2.86 2.86 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.76-.07zm0 3.37a4.45 4.45 0 1 1 0 8.9 4.45 4.45 0 0 1 0-8.9zm0 7.34a2.89 2.89 0 1 0 0-5.78 2.89 2.89 0 0 0 0 5.78zm5.66-7.56a1.04 1.04 0 1 1-2.08 0 1.04 1.04 0 0 1 2.08 0z"/></svg></a>' +
+      '</div>' +
+      '<div class="mf-rule"></div>' +
+      '<div class="mf-copy">© 2026 Mathia Edu · Sva prava zadržana.</div>' +
+    '</div>';
 
   function build() {
-    if (document.getElementById("mfz")) return;
-    try {
-      var fs = document.querySelectorAll("footer");
-      for (var i = 0; i < fs.length; i++) {
-        if (fs[i].id === "mfz") continue;
-        if (fs[i].closest(".cart,.drawer,.korpa,[aria-modal],dialog,#korpa,#cart")) continue;
-        fs[i].style.display = "none"; break;
-      }
-    } catch (e) {}
-
-    var ft = document.createElement("footer");
-    ft.id = "mfz";
-    var rule = '<div class="mfz-rule" aria-hidden="true"><span class="l"></span><span class="d"></span><span class="l r"></span></div>';
-
-    if (minMode) {
-      ft.className = "mfzmin";
-      ft.innerHTML = '<div class="mfz-bottom" style="border:none">' + rule + '<span class="mfz-copy">\u00A9 2026 Mathia Edu \u00B7 Sva prava zadr\u017eana</span></div>';
-      document.body.appendChild(ft);
-      return;
-    }
-
-    ft.innerHTML =
-      '<div class="mfz-wrap">' +
-      '<div class="mfz-mono" aria-hidden="true">M</div>' +
-      '<div class="mfz-love">U\u010di s ljubavlju</div>' +
-      '<div class="mfz-tag">Mathia \u00B7 tvoja profesorica</div>'  +
-      '<div class="mfz-soc">' +
-      '<a href="mailto:kontakt@mathia.rs"><span class="i">' + icMail + '</span>Email</a>' +
-      '<a href="https://instagram.com" target="_blank" rel="noopener"><span class="i">' + icIg + '</span>Instagram</a>' +
-      '<a href="https://youtube.com" target="_blank" rel="noopener"><span class="i">' + icYt + '</span>YouTube</a>' +
-      '<a href="https://facebook.com" target="_blank" rel="noopener"><span class="i">' + icFb + '</span>Facebook</a>' +
-      '</div>' + rule +
-      '<div class="mfz-fine"><a href="uslovi.html">Uslovi kupovine</a> \u00B7 <a href="reklamacije.html">Reklamacije i povra\u0107aj</a> \u00B7 <a href="povracaj.html">Povra\u0107aj sredstava</a> \u00B7 <a href="privatnost.html">Politika privatnosti</a></div>' +
-      '<p class="mfz-legal">Obrazovna platforma za u\u010denje i pripremu \u00B7 sav sadr\u017eaj za\u0161ti\u0107en autorskim pravom \u00B7 priprema ne garantuje upis ni rezultat.</p>' +
-      '<div class="mfz-bottom">' +
-      '<span class="mfz-copy">\u00A9 2026 Mathia Edu \u00B7 Sva prava zadr\u017eana</span>' +
-      '<span class="mfz-pay"><img src="placanje-logos.png" alt="Visa, Mastercard, DinaCard, 3-D Secure"></span>' +
-      '</div>' +
-      '</div>';
-    document.body.appendChild(ft);
+    injectCss();
+    var f = document.createElement("footer");
+    f.className = "mf-foot";
+    f.setAttribute("role", "contentinfo");
+    f.innerHTML = HTML;
+    document.body.appendChild(f);
   }
-
-  if (document.body) build();
-  else document.addEventListener("DOMContentLoaded", build);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
+  else build();
 })();

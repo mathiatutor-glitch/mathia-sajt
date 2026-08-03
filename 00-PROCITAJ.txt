@@ -1,0 +1,38 @@
+MATHIA — ŽIVE STRANE SAJTA (objedinjeno, 3. avgust)
+====================================================
+
+U ovom folderu je NAJNOVIJA verzija svake bitne stranice sajta, na jednom mestu.
+Sve .html + .js + .css + slike idu u KOREN (root) sajta (drag-drop na Vercel).
+
+ŠTA JE POPRAVLJENO
+------------------
+1) Dugme na početnoj „OTKRIJ ŠTA ŽELIŠ DA UPIŠEŠ"
+   → sada vodi na testiraj-se.html, koja je iznova napravljena kao živ hub
+     (3 kartice: Srednja / Viša / Fakultet) u slatkom malina+zlato stilu.
+   Ranije je vodila na praznu stranu bez linkova — otud „ne radi".
+
+2) Test sklonosti (test-sklonosti.html)
+   → klik na nivo (Srednja / Viša / Fakultet) ODMAH pokreće test.
+   → i direktan ulaz test-sklonosti.html?nivo=srednja/visa/fakultet radi.
+   Provereno programski (headless): oba slučaja pokreću test i prvo pitanje.
+   Stil ujednačen na krem + zlato + malina (kao „Probaj besplatno").
+
+3) Zajednički footer (footer-mathia.js)
+   → nov, samostalan; ubacuje isti slatki footer sa © 2026 Mathia Edu
+     na strane koje ga nisu imale (testiraj-se, cenovnik, predmeti).
+
+4) cenovnik.html (Paketi) i predmeti.html → dobili header + footer + ©.
+
+5) theme-color na svim velikim stranama ujednačen na malina (#5A1024).
+
+6) Bundlovani svi zajednički fajlovi da ništa ne „puca" (404):
+   mathia-header.js, footer-mathia.js, i18n-mathia.js, napredak.js,
+   mathia-type.css, theme-mathia.css, stil-info.css,
+   logo.png, marina.jpg, avatar.jpg, icon-192.png, placanje-logos.png.
+
+NAPOMENA
+--------
+Dokumenta predmeta (Skripta/Formule/Zadaci) i backend klona (api/lib) su i dalje
+u folderu A-UPLOAD-SVE-KOMPLET. Ovaj folder je SAMO za glavne strane sajta.
+
+© 2026 Mathia Edu
