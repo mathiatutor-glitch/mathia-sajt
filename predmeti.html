@@ -283,6 +283,7 @@ footer .mflt-tag{color:#B01E48!important}
 </style>
 </head>
 <body>
+<div id="mathfall" aria-hidden="true"></div>
 <header>
   <div class="wrap nav">
     <a class="brand" href="index.html"><span class="bmark goldtext">Mathia</span><span class="bsub">s Marinom</span></a>
@@ -813,5 +814,41 @@ header{border-bottom:1px solid rgba(198,160,92,.20);box-shadow:0 1px 0 rgba(255,
 <script>/*jezik-sync*/(function(){try{var l=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();document.querySelectorAll('select[aria-label="Jezik"]').forEach(function(x){x.value=l;});}catch(e){}})();</script>
 <script src="mathia-header.js" defer></script>
 <script src="footer-mathia.js" defer></script>
+<style>
+/* ——— SLATKI SLOJ (po uzoru na „Probaj besplatno") ——— */
+#mathfall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#mathfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.20);animation:mfall linear infinite;will-change:transform,opacity}
+#mathfall span.m{color:rgba(176,30,72,.14)}
+@keyframes mfall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(18deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#mathfall{display:none}}
+header,section,footer{position:relative;z-index:1}
+/* slađe kartice — meki gradijent, malina rub, lebde */
+.card,.tcard{position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.card::before,.tcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--malina,#B01E48));opacity:.85}
+.card:hover,.tcard:hover{transform:translateY(-4px);box-shadow:0 30px 54px -30px rgba(90,16,36,.4)}
+.card .ic svg,.tcard .ti svg{transition:transform .2s ease}
+.card:hover .ic svg,.tcard:hover .ti svg{transform:scale(1.08) rotate(-4deg)}
+/* malina naglasak na „mark" reči + sparkle na sekcijskim naslovima */
+.w-h2 .mark::after{background:linear-gradient(90deg,transparent,#B01E48,transparent)!important}
+.sec .eyebrow::after,.hero .eyebrow::after{content:" ✦";color:var(--gold);opacity:.7;font-size:.85em}
+</style>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var box=document.getElementById('mathfall'); if(!box) return;
+  var GL=['π','√','Σ','∫','α','x²','½','+','·','∞','≈','💛','🌸','✦','θ'];
+  var N = innerWidth<640 ? 9 : 15;
+  for(var i=0;i<N;i++){
+    var s=document.createElement('span');
+    s.textContent=GL[Math.floor(Math.random()*GL.length)];
+    if(Math.random()<0.24) s.className='m';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';
+    s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';
+    s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';
+    box.appendChild(s);
+  }
+})();
+</script>
 </body>
 </html>

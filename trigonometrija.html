@@ -287,6 +287,34 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
   box-shadow:0 16px 32px -14px rgba(176,30,72,.65)}
 .endcta .go:hover{filter:brightness(1.05)}
 .endcta .mini{display:block;margin-top:12px;font-size:.8rem;color:var(--muted);font-weight:700}
+/* ——— HUB + POGLAVLJA (podstranice) ——— */
+.hub-intro-note{margin:20px 0 4px;font-family:var(--serif);font-style:italic;color:var(--plum2);font-size:1.06rem}
+#chapters{display:none}
+body.inchap #chapters{display:block}
+body.inchap #hubview{display:none}
+.chapter{display:none}
+.chapter.active{display:block}
+.chap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin:22px 0 14px}
+.chap-card{position:relative;text-align:left;cursor:pointer;font:inherit;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:22px;padding:22px 20px 18px;box-shadow:var(--sh);transition:transform .18s,box-shadow .18s,border-color .18s;overflow:hidden}
+.chap-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.chap-card:hover{transform:translateY(-5px);box-shadow:0 34px 60px -34px rgba(90,16,36,.45);border-color:var(--gold)}
+.chap-card .cnum{position:absolute;top:15px;right:17px;font-family:var(--serif);font-size:.82rem;font-weight:700;color:var(--gold)}
+.chap-card .csym{display:block;font-family:var(--serif);font-size:2rem;line-height:1;color:var(--malina)}
+.chap-card h3{font-family:var(--serif);color:var(--plum);font-size:1.28rem;margin:12px 0 6px;line-height:1.1}
+.chap-card p{color:var(--plum2);font-size:.92rem;margin:0 0 12px;line-height:1.45}
+.chap-card .center-enter{font-weight:800;color:var(--malina);font-size:.9rem}
+.chap-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:4px 0 20px;padding-bottom:16px;border-bottom:1px solid var(--hair)}
+.chap-back{border:1px solid var(--bord);background:#fffdf9;color:var(--plum);border-radius:100px;padding:9px 16px;font:inherit;font-weight:800;font-size:.82rem;cursor:pointer;transition:.15s}
+.chap-back:hover{border-color:var(--malina);color:var(--malina)}
+.chap-head .cht{flex:1;min-width:150px}
+.chap-head .cht .k{display:block;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:2px}
+.chap-head .cht b{font-family:var(--serif);color:var(--plum);font-size:1.5rem}
+.chap-nav{display:flex;gap:8px}
+.chap-nav button{width:40px;height:40px;border:1px solid var(--bord);background:#fffdf9;color:var(--plum);border-radius:12px;font:inherit;font-weight:800;font-size:1.1rem;cursor:pointer;transition:.15s}
+.chap-nav button:hover{border-color:var(--gold);background:#fff}
+.chap-foot{margin:34px 0 6px;text-align:center}
+.chap-foot button{border:none;background:linear-gradient(150deg,#CC5E7E,var(--malina));color:#fff;border-radius:100px;padding:14px 28px;font:inherit;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 16px 30px -14px rgba(176,30,72,.6);transition:filter .15s}
+.chap-foot button:hover{filter:brightness(1.05)}
 </style>
 </head>
 <body>
@@ -305,6 +333,29 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
     <a class="pcta" href="pocni.html">Probaj besplatno 15 min →</a>
   </div>
 
+  <div id="hubview">
+  <div class="hub-intro-note">Izaberi poglavlje i zaroni — svako je kratka, slatka lekcija koju možeš da vidiš. 💛</div>
+  <div class="chap-grid">
+      <button class="chap-card" onclick="openCh(1)"><span class="cnum">1/7</span><span class="csym">◯</span><h3>Jedinična kružnica</h3><p>Srce trigonometrije — povuci tačku i gledaj kako iz nje nastaju sve funkcije.</p><span class="center-enter">Uđi →</span></button>
+      <button class="chap-card" onclick="openCh(2)"><span class="cnum">2/7</span><span class="csym">∠</span><h3>Uglovi i radijani</h3><p>Smer, stepeni i radijani — i šta radijan zapravo znači.</p><span class="center-enter">Uđi →</span></button>
+      <button class="chap-card" onclick="openCh(3)"><span class="cnum">3/7</span><span class="csym">△</span><h3>Sinus i kosinus</h3><p>Dve projekcije jedne tačke. Odatle sve počinje.</p><span class="center-enter">Uđi →</span></button>
+      <button class="chap-card" onclick="openCh(4)"><span class="cnum">4/7</span><span class="csym">╱</span><h3>Tangens i kotangens</h3><p>Nagib i njegova recipročna vrednost, na tangentnim osama.</p><span class="center-enter">Uđi →</span></button>
+      <button class="chap-card" onclick="openCh(5)"><span class="cnum">5/7</span><span class="csym">▦</span><h3>Tablica i znaci</h3><p>Karakteristične vrednosti i znaci po kvadrantima.</p><span class="center-enter">Uđi →</span></button>
+      <button class="chap-card" onclick="openCh(6)"><span class="cnum">6/7</span><span class="csym">∿</span><h3>Grafici</h3><p>Kako se kružnica odmotava u talas.</p><span class="center-enter">Uđi →</span></button>
+      <button class="chap-card" onclick="openCh(7)"><span class="cnum">7/7</span><span class="csym">★</span><h3>Izazov i kviz</h3><p>Pogodi vrednost, gradi niz, pa se proveri.</p><span class="center-enter">Uđi →</span></button>
+  </div>
+    <div class="endcta reveal">
+    <div class="eyebrow" style="justify-content:center">Mathia</div>
+    <p class="trig-quote">„Sada konačno razumem trigonometriju."</p>
+    <h3>Ovakvo objašnjenje — za svaki predmet</h3>
+    <p>Vizuelno, strpljivo, do suštine. A Profesorica ti je uz rame 24/7 — pitaj kad god zapneš.</p>
+    <a href="pocni.html" class="go">Probaj besplatno 15 min →</a>
+    <span class="mini">Bez kartice · otkaži kad želiš · 💛</span>
+  </div>
+  </div>
+<div id="chapters">
+  <section class="chapter" id="ch1" data-ch="1">
+    <div class="chap-head"><button class="chap-back" onclick="hubShow()">← Sve lekcije</button><div class="cht"><span class="k">Poglavlje 1 / 7</span><b>Jedinična kružnica</b></div><div class="chap-nav"><button onclick="hubShow()" aria-label="Prethodno">‹</button><button onclick="openCh(2)" aria-label="Sledeće">›</button></div></div>
   <section class="hero" aria-label="Interaktivna jedinična kružnica">
     <div class="stage">
       <svg class="csvg" id="circ" viewBox="0 0 440 460" role="img" aria-label="Jedinična kružnica sa pokretnom tačkom">
@@ -361,6 +412,10 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
     </div>
   </section>
 
+    <div class="chap-foot"><button onclick="openCh(2)">Sledeće: Uglovi i radijani →</button></div>
+  </section>
+  <section class="chapter" id="ch2" data-ch="2">
+    <div class="chap-head"><button class="chap-back" onclick="hubShow()">← Sve lekcije</button><div class="cht"><span class="k">Poglavlje 2 / 7</span><b>Uglovi i radijani</b></div><div class="chap-nav"><button onclick="openCh(1)" aria-label="Prethodno">‹</button><button onclick="openCh(3)" aria-label="Sledeće">›</button></div></div>
   <h2 class="sec reveal"><span class="n">01 · SMER</span>Pozitivan i negativan smer</h2>
   <p class="tx reveal">Ugao merimo od pozitivnog dela x-ose. Kad se poluprečnik okreće suprotno od kazaljke na satu, ugao je pozitivan; u smeru kazaljke je negativan. Isti položaj poluprečnika opisuje beskonačno mnogo uglova.</p>
   <div class="card reveal"><div class="fbox" id="f_smer"></div></div>
@@ -392,6 +447,10 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
     pun krug<span class="op">=</span>2π<span class="op">≈</span>6,28 poluprečnika
   </div></div>
 
+    <div class="chap-foot"><button onclick="openCh(3)">Sledeće: Sinus i kosinus →</button></div>
+  </section>
+  <section class="chapter" id="ch3" data-ch="3">
+    <div class="chap-head"><button class="chap-back" onclick="hubShow()">← Sve lekcije</button><div class="cht"><span class="k">Poglavlje 3 / 7</span><b>Sinus i kosinus</b></div><div class="chap-nav"><button onclick="openCh(2)" aria-label="Prethodno">‹</button><button onclick="openCh(4)" aria-label="Sledeće">›</button></div></div>
   <h2 class="sec reveal"><span class="n">03 · KOSINUS</span>cos(α) je vodoravna projekcija</h2>
   <p class="tx reveal">cos(α) je x-koordinata tačke na kružnici. Uvek je između −1 i 1. Pozitivan u I i IV kvadrantu, negativan u II i III, nula na y-osi.</p>
   <div class="card reveal"><div class="fbox" id="f_cos"></div></div>
@@ -404,6 +463,10 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
   <p class="tx reveal">Poluprečnik (dužine 1) je hipotenuza pravouglog trougla čije su katete cos(α) i sin(α). Odatle sledi osnovni identitet:</p>
   <div class="card reveal"><div class="fbox" id="f_ident"></div></div>
 
+    <div class="chap-foot"><button onclick="openCh(4)">Sledeće: Tangens i kotangens →</button></div>
+  </section>
+  <section class="chapter" id="ch4" data-ch="4">
+    <div class="chap-head"><button class="chap-back" onclick="hubShow()">← Sve lekcije</button><div class="cht"><span class="k">Poglavlje 4 / 7</span><b>Tangens i kotangens</b></div><div class="chap-nav"><button onclick="openCh(3)" aria-label="Prethodno">‹</button><button onclick="openCh(5)" aria-label="Sledeće">›</button></div></div>
   <h2 class="sec reveal"><span class="n">06 · TANGENS</span>tg(α)</h2>
   <p class="tx reveal">Tangens je odnos sinusa i kosinusa; geometrijski je dužina na uspravnoj tangenti u tački (1, 0). Kad se približavamo 90° ili 270°, vrednost neograničeno raste — teži ka +∞ ili −∞ — jer se cos(α) približava nuli.</p>
   <div class="card reveal"><div class="fbox" id="f_tg"></div></div>
@@ -412,6 +475,10 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
   <p class="tx reveal">Kotangens je recipročan tangensu; geometrijski je dužina na vodoravnoj tangenti u tački (0, 1). Na 0°, 180° i 360° vrednost teži ka +∞ ili −∞ jer se sin(α) približava nuli.</p>
   <div class="card reveal"><div class="fbox" id="f_ctg"></div></div>
 
+    <div class="chap-foot"><button onclick="openCh(5)">Sledeće: Tablica i znaci →</button></div>
+  </section>
+  <section class="chapter" id="ch5" data-ch="5">
+    <div class="chap-head"><button class="chap-back" onclick="hubShow()">← Sve lekcije</button><div class="cht"><span class="k">Poglavlje 5 / 7</span><b>Tablica i znaci</b></div><div class="chap-nav"><button onclick="openCh(4)" aria-label="Prethodno">‹</button><button onclick="openCh(6)" aria-label="Sledeće">›</button></div></div>
   <h2 class="sec reveal"><span class="n">08 · TABELA</span>Karakteristične vrednosti</h2>
   <p class="tx reveal">Klikni bilo koji red — tačka mirno ode na taj ugao.</p>
   <div class="card reveal" style="padding:8px 12px;overflow-x:auto"><table id="tbl" class="nv"></table></div>
@@ -421,11 +488,19 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
   <div class="chips" id="quadChips" style="margin-bottom:14px"></div>
   <div class="card reveal"><div class="fbox" id="quadOut" style="font-size:1.3rem"></div></div>
 
+    <div class="chap-foot"><button onclick="openCh(6)">Sledeće: Grafici →</button></div>
+  </section>
+  <section class="chapter" id="ch6" data-ch="6">
+    <div class="chap-head"><button class="chap-back" onclick="hubShow()">← Sve lekcije</button><div class="cht"><span class="k">Poglavlje 6 / 7</span><b>Grafici</b></div><div class="chap-nav"><button onclick="openCh(5)" aria-label="Prethodno">‹</button><button onclick="openCh(7)" aria-label="Sledeće">›</button></div></div>
   <h2 class="sec reveal"><span class="n">10 · GRAFICI</span>Kako kružnica pravi grafik</h2>
   <p class="tx reveal">Dok tačka putuje po kružnici, njena koordinata se „razmotava" u grafik. Izaberi funkcije:</p>
   <div class="ctrls" id="fnToggles" style="margin-bottom:14px"></div>
   <div class="card reveal" style="padding:14px"><svg class="csvg" id="graph" viewBox="-190 0 1090 300" role="img" aria-label="Grafici trigonometrijskih funkcija"></svg></div>
 
+    <div class="chap-foot"><button onclick="openCh(7)">Sledeće: Izazov i kviz →</button></div>
+  </section>
+  <section class="chapter" id="ch7" data-ch="7">
+    <div class="chap-head"><button class="chap-back" onclick="hubShow()">← Sve lekcije</button><div class="cht"><span class="k">Poglavlje 7 / 7</span><b>Izazov i kviz</b></div><div class="chap-nav"><button onclick="openCh(6)" aria-label="Prethodno">‹</button><button onclick="hubShow()" aria-label="Sledeće">›</button></div></div>
   <h2 class="sec reveal"><span class="n">11 · IZAZOV</span>Pogodi vrednost</h2>
   <p class="tx reveal">Klikni tačan odgovor — gradi niz i skupljaj poene. Koliko dugo možeš bez greške?</p>
   <div class="card reveal" id="game"></div>
@@ -434,14 +509,10 @@ h1 em,.lead b{color:var(--malina);font-style:normal}
   <p class="tx reveal">Bez prijave — samo proveri da li si razumeo/la.</p>
   <div class="card reveal" id="quiz"></div>
 
-  <div class="endcta reveal">
-    <div class="eyebrow" style="justify-content:center">Mathia</div>
-    <p class="trig-quote">„Sada konačno razumem trigonometriju."</p>
-    <h3>Ovakvo objašnjenje — za svaki predmet</h3>
-    <p>Vizuelno, strpljivo, do suštine. A Profesorica ti je uz rame 24/7 — pitaj kad god zapneš.</p>
-    <a href="pocni.html" class="go">Probaj besplatno 15 min →</a>
-    <span class="mini">Bez kartice · otkaži kad želiš · 💛</span>
-  </div>
+    <div class="chap-foot"><button onclick="hubShow()">↩ Nazad na sve lekcije</button></div>
+  </section>
+</div>
+
 </div>
 <script>
 (function(){
@@ -742,6 +813,30 @@ h1{letter-spacing:-.005em}
   </div>
 </footer>
 <script>
+/* HUB ↔ poglavlja (podstranice) */
+(function(){
+  function clamp(n){return n<1||n>7?0:n;}
+  window.openCh=function(n){
+    n=clamp(n);
+    if(!n){return window.hubShow();}
+    document.body.classList.add('inchap');
+    var all=document.querySelectorAll('.chapter');
+    for(var i=0;i<all.length;i++) all[i].classList.remove('active');
+    var el=document.getElementById('ch'+n);
+    if(el) el.classList.add('active');
+    try{history.replaceState(null,'','#ch'+n);}catch(e){}
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  window.hubShow=function(){
+    document.body.classList.remove('inchap');
+    var all=document.querySelectorAll('.chapter');
+    for(var i=0;i<all.length;i++) all[i].classList.remove('active');
+    try{history.replaceState(null,'','#');}catch(e){}
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  function initCh(){var m=(location.hash||'').match(/^#ch([1-7])$/);if(m)openCh(+m[1]);}
+  if(document.readyState!=='loading') initCh(); else document.addEventListener('DOMContentLoaded',initCh);
+})();
 /* padajući matematički simboli u pozadini — nežno, kao „Probaj besplatno 15 min" */
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
