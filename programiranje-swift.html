@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#432C37">
+<meta name="theme-color" content="#5A1024">
 <title>Swift — uči uz Profesoricu | Mathia</title>
 <meta name="description" content="Swift: granične vrednosti, izvodi, integrali i ispitivanje funkcija — objašnjeno korak po korak, uz skripte, formule, vežbu i profesoricu dostupnu 0–24h.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" href="/icon-192.png">
 <style>
   :root{
     --paper:#FBF6EE; --paper2:#F4E9D8; --champ:#F7EAC9;
     --blush:#F6E7E0; --rose:#B87E77;
-    --plum:#402A34; --plum2:#5C3B49; --ink:#4A3A40; --muted:#8B7681;
+    --plum:#402A34; --plum2:#7A3346; --ink:#4A3A40; --muted:#8B7681;
     --gold:#C6A05C; --golddk:#9C7838; --goldlt:#E7D2A2;
     --card:#FFFCF6; --bord:#E7D6C0; --line:rgba(156,120,56,.16); --grid:rgba(156,120,56,.05);
-    --serif:'Spectral',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+    --serif:'Cormorant Garamond',Georgia,serif; --sans:'Nunito',system-ui,sans-serif;
     --maxw:1180px; --measure:760px; --sp:clamp(60px,8.5vw,112px);
     /* usklađena tipografska skala */
     --t-hero:clamp(2.3rem,4.6vw,3.5rem);
@@ -343,23 +343,6 @@
 </style>
 <link rel="stylesheet" href="theme-mathia.css">
 <link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
-</style>
 </head>
 <body>
 
@@ -499,7 +482,7 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
   var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
   var SRC="https://project-y23je.vercel.app/widget.js?v=9";
   var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "fax-swift", "data-name": "Profesorica", "data-sub": "Swift", "data-sub-en": "Swift", "data-hi-en": "Hi! I'm Profesorica \ud83d\udc69\u200d\ud83c\udfeb Here I help you with \u201cSwift\u201d. Send a problem (a photo works too) or a question \u2014 I'll explain step by step!"};
-  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam Profesorica \u2014 tvoj vodi\u010d kroz predmet Swift. Po\u0161alji mi zadatak ili pitanje i re\u0161avamo ga zajedno, korak po korak.", "en": "Hi! I'm Profesorica \ud83d\udc69\u200d\ud83c\udfeb Here I help you with \u201cSwift\u201d. Send a problem (a photo works too) or a question \u2014 I'll explain step by step!"};
+  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam Profesorica \u2014 tvoj vodi\u010d kroz Matemati\u010dku analizu 1. Po\u0161alji mi zadatak ili pitanje i re\u0161avamo ga zajedno, korak po korak.", "en": "Hi! I'm Profesorica \ud83d\udc69\u200d\ud83c\udfeb Here I help you with \u201cSwift\u201d. Send a problem (a photo works too) or a question \u2014 I'll explain step by step!"};
   var st=document.createElement("script"); st.src=SRC;
   for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
   st.setAttribute("data-lang",L);
@@ -521,5 +504,6 @@ window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.de
 })();
 </script>
 <script src="i18n-mathia.js"></script>
+<script>(function(){try{if(localStorage.getItem('mathia_owner')||localStorage.getItem('mathia_access')==='full'){document.cookie='mathia_owner=MATHIA-MARINA-2026;path=/;max-age=31536000;samesite=lax';}}catch(e){}})();</script>
 </body>
 </html>

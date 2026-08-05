@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#432C37">
+<meta name="theme-color" content="#5A1024">
 <title>Fizika 6. razred — uči uz Profesoricu | Mathia</title>
 <meta name="description" content="Fizika 6. razred: granične vrednosti, izvodi, integrali i ispitivanje funkcija — objašnjeno korak po korak, uz skripte, formule, vežbu i profesoricu dostupnu 0–24h.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
   :root{
     --paper:#FBF6EE; --paper2:#F4E9D8; --champ:#F7EAC9;
     --blush:#F6E7E0; --rose:#B87E77;
-    --plum:#402A34; --plum2:#5C3B49; --ink:#4A3A40; --muted:#8B7681;
+    --plum:#402A34; --plum2:#7A3346; --ink:#4A3A40; --muted:#8B7681;
     --gold:#C6A05C; --golddk:#9C7838; --goldlt:#E7D2A2;
     --card:#FFFCF6; --bord:#E7D6C0; --line:rgba(156,120,56,.16); --grid:rgba(156,120,56,.05);
     --serif:'Spectral',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
@@ -343,22 +343,19 @@
 </style>
 <link rel="stylesheet" href="theme-mathia.css">
 <link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
+<style id="px-unify-slatki">
 :root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
 .eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
+.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxUShim 7s linear infinite;transition:transform .16s}
+@keyframes pxUShim{to{background-position:-240% center}}
 .btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;color:#8A7A80!important;border-top:1px solid #F0DCA8!important}
+footer .fglow{opacity:.2!important;color:#C6A05C!important}
+footer .word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
+footer a{color:#7A3346!important}
+footer a:hover{color:#A6803C!important}
+footer h4{color:#A6803C!important}
+footer .fclaim,footer p,footer small{color:#8A7A80!important}
 </style>
 </head>
 <body>
