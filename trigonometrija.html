@@ -11,12 +11,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
- --paper:#FBF7EF; --paper2:#F5ECDD; --ink:#40323A; --plum:#3E2A34; --plum2:#6A5560;
- --gold:#B18A46; --gold2:#C6A162; --goldlt:#E7D6B0; --champ:#F6EDD8;
+ --paper:#FBF6EE; --paper2:#F5EADB; --ink:#43303A; --plum:#5A1024; --plum2:#7A3346;
+ --gold:#C6A05C; --gold2:#D9BE82; --goldlt:#E7D2A2; --champ:#F7EAC9;
+ --malina:#B01E48; --malinasoft:#E7A9BB;
  --muted:#9A8B92; --bord:#EADFCB; --hair:#F0E7D6; --card:#FFFDF9;
- --sin:#B65E7E; --cos:#4C7FA6; --tg:#5E8A5B; --ctg:#B58A44;
+ --sin:#C0587E; --cos:#4C7FA6; --tg:#5E8A5B; --ctg:#B58A44;
  --serif:'Spectral',Georgia,'Times New Roman',serif; --sans:'Inter',system-ui,sans-serif;
- --sh:0 30px 70px -50px rgba(90,60,25,.55);
+ --sh:0 30px 70px -50px rgba(90,16,36,.5);
 }
 *{box-sizing:border-box}
 /* dosledni, elegantni brojevi u celoj matematici (Spectral lining figures) */
@@ -237,16 +238,72 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .px-foot .pf-rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:20px auto 14px;max-width:560px}
 .px-foot .pf-bot{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;color:#8A7A80;font-size:.76rem}
 .px-foot .pf-pay{height:20px;opacity:.9;display:block}
+
+/* ——— SLATKI SLOJ (kao „Probaj besplatno 15 min") ——— */
+#mathfall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#mathfall span{position:absolute;top:-8%;font-family:var(--serif);font-style:italic;
+  color:rgba(198,160,92,.30);animation:mfall linear infinite;will-change:transform,opacity;user-select:none}
+#mathfall span.m{color:rgba(176,30,72,.22)}
+@keyframes mfall{0%{transform:translateY(-10vh) rotate(0);opacity:0}
+  10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(24deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#mathfall{display:none}}
+.wrap{position:relative;z-index:1}
+/* malina eyebrow + naglasci */
+.eyebrow{color:var(--malina)}
+h1 em,.lead b{color:var(--malina);font-style:normal}
+.rule{background:linear-gradient(90deg,var(--malina),var(--gold),var(--goldlt))}
+/* slađa primarna dugmad */
+.btn.on{background:linear-gradient(150deg,var(--gold2),var(--gold));border-color:var(--gold);color:#4a2410;
+  box-shadow:0 12px 22px -12px rgba(176,120,40,.6)}
+.btn:hover{border-color:var(--malina)}
+.chip:hover{border-color:var(--malina)}
+.chip.act{background:linear-gradient(150deg,var(--goldlt),var(--gold2));border-color:var(--gold);color:#4a2410}
+.stage{box-shadow:0 34px 74px -46px rgba(90,16,36,.5)}
+.stage::before{content:"✦";position:absolute;top:12px;right:16px;color:var(--gold);opacity:.55;font-size:14px;z-index:2;animation:tw 4.5s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.22}50%{opacity:.7}}
+/* Profesorica pozivnica */
+.prof-invite{display:flex;align-items:center;gap:15px;margin:26px 0 2px;padding:16px 20px;border-radius:22px;
+  background:linear-gradient(135deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);box-shadow:var(--sh);position:relative;overflow:hidden}
+.prof-invite:after{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.prof-invite .pav{width:54px;height:54px;border-radius:50%;flex:none;border:2px solid var(--goldlt);
+  background:radial-gradient(circle at 40% 34%,#f6e7c9,#caa76a);box-shadow:0 6px 14px -6px rgba(90,16,36,.4)}
+.prof-invite .pav img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.prof-invite .pt{flex:1;min-width:0}
+.prof-invite .pt b{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:1.14rem;display:block}
+.prof-invite .pt span{color:var(--plum2);font-size:.92rem}
+.prof-invite .pcta{flex:none;text-decoration:none;font-weight:800;font-size:.9rem;color:#fff;
+  background:linear-gradient(150deg,#CC5E7E,var(--malina));border-radius:999px;padding:11px 20px;
+  box-shadow:0 12px 24px -12px rgba(176,30,72,.6);white-space:nowrap}
+.prof-invite .pcta:hover{filter:brightness(1.05)}
+@media(max-width:560px){.prof-invite{flex-wrap:wrap}.prof-invite .pcta{width:100%;text-align:center}}
+/* slađi završni CTA */
+.endcta{margin:64px 0 8px;text-align:center;background:radial-gradient(120% 120% at 50% 0,#FFF7F2,#FBF1E4);
+  border:1px solid var(--goldlt);border-radius:26px;padding:40px 26px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.endcta:before{content:"💛";position:absolute;top:14px;left:50%;transform:translateX(-50%);font-size:20px;opacity:.9}
+.endcta h3{font-family:var(--serif);font-weight:700;color:var(--plum);font-size:1.7rem;margin:14px 0 6px}
+.endcta p{color:var(--plum2);max-width:440px;margin:0 auto 18px}
+.endcta .go{display:inline-block;text-decoration:none;font-weight:800;color:#fff;font-size:1.02rem;
+  background:linear-gradient(150deg,#CC5E7E,var(--malina));border-radius:999px;padding:15px 30px;
+  box-shadow:0 16px 32px -14px rgba(176,30,72,.65)}
+.endcta .go:hover{filter:brightness(1.05)}
+.endcta .mini{display:block;margin-top:12px;font-size:.8rem;color:var(--muted);font-weight:700}
 </style>
 </head>
 <body>
 <script>document.documentElement.classList.add("js");</script>
+<div id="mathfall" aria-hidden="true"></div>
 <div class="wrap">
   <a class="back" href="vizuelne-lekcije.html">← Vizuelne lekcije</a>
   <div class="eyebrow">Mathia · interaktivna lekcija</div>
-  <h1>Trigonometrija koju konačno možeš da vidiš</h1>
+  <h1>Trigonometrija koju konačno možeš da <em>vidiš</em></h1>
   <p class="lead">Bez učenja napamet. Gledaj kako iz položaja tačke na kružnici nastaju sin(α), cos(α), tg(α) i ctg(α) — mirno, korak po korak.</p>
   <div class="rule"></div>
+
+  <div class="prof-invite">
+    <div class="pav"><img src="avatar.jpg" alt="Profesorica" onerror="this.style.display='none'"></div>
+    <div class="pt"><b>Zapela si? Profesorica ti je tu 💛</b><span>Probaj besplatno 15 minuta — pitaj šta god ti nije jasno, u svako doba.</span></div>
+    <a class="pcta" href="pocni.html">Probaj besplatno 15 min →</a>
+  </div>
 
   <section class="hero" aria-label="Interaktivna jedinična kružnica">
     <div class="stage">
@@ -377,11 +434,13 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   <p class="tx reveal">Bez prijave — samo proveri da li si razumeo/la.</p>
   <div class="card reveal" id="quiz"></div>
 
-  <div class="card reveal" style="margin-top:44px;text-align:center;background:linear-gradient(150deg,#fffdf9,var(--champ));border-color:var(--goldlt)">
+  <div class="endcta reveal">
     <div class="eyebrow" style="justify-content:center">Mathia</div>
     <p class="trig-quote">„Sada konačno razumem trigonometriju."</p>
-    <p class="tx reveal" style="margin:0 auto;max-width:560px">Ovako Mathia objašnjava — vizuelno, strpljivo, do suštine. Želiš ovakvo objašnjenje za svaki predmet, uz profesoricu koja ti je uz rame 24/7?</p>
-    <a href="index.html#paketi" class="btn on" style="display:inline-block;margin-top:16px;text-decoration:none;padding:12px 22px">Probaj Mathia besplatno →</a>
+    <h3>Ovakvo objašnjenje — za svaki predmet</h3>
+    <p>Vizuelno, strpljivo, do suštine. A Profesorica ti je uz rame 24/7 — pitaj kad god zapneš.</p>
+    <a href="pocni.html" class="go">Probaj besplatno 15 min →</a>
+    <span class="mini">Bez kartice · otkaži kad želiš · 💛</span>
   </div>
 </div>
 <script>
@@ -682,4 +741,23 @@ h1{letter-spacing:-.005em}
     <div class="pf-bot"><span class="pf-copy">© 2026 Mathia Edu · Sva prava zadržana</span><img class="pf-pay" src="placanje-logos.png" alt="Visa · Mastercard · DinaCard · 3-D Secure"></div>
   </div>
 </footer>
+<script>
+/* padajući matematički simboli u pozadini — nežno, kao „Probaj besplatno 15 min" */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var box=document.getElementById('mathfall'); if(!box) return;
+  var GL=['sin','cos','tg','π','α','√','∫','Σ','θ','∞','½','x²','·','30°','45°','60°','+','÷'];
+  var N = innerWidth<640 ? 12 : 20;
+  for(var i=0;i<N;i++){
+    var s=document.createElement('span');
+    s.textContent=GL[Math.floor(Math.random()*GL.length)];
+    if(Math.random()<0.28) s.className='m';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.fontSize=(13+Math.random()*24).toFixed(0)+'px';
+    s.style.animationDuration=(11+Math.random()*12).toFixed(1)+'s';
+    s.style.animationDelay=(-Math.random()*20).toFixed(1)+'s';
+    box.appendChild(s);
+  }
+})();
+</script>
 </body></html>
