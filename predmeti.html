@@ -60,9 +60,11 @@
   .step .num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--goldlt));color:#4a3812;font-weight:800;margin-bottom:10px}
   .step b{display:block;color:var(--plum);font-family:'Spectral',serif;font-size:1.25rem;font-weight:600;margin-bottom:4px}
   .step p{color:#6a5a62;font-size:.93rem}
-  .cta{background:linear-gradient(160deg,#FFF7EC,#FBEEDA 55%,#FBE7E9);color:#5A1024;border:1px solid #F0DCA8;text-align:center;padding:58px 0}
-  .cta h2{color:#fff;font-size:clamp(1.8rem,4.6vw,2.5rem);margin-bottom:10px}
-  .cta p{color:#e9d9dd;margin-bottom:22px}
+  .cta{text-align:center;padding:44px 0 24px}
+  .cta .wrap{max-width:620px;background:radial-gradient(120% 120% at 50% 0,#FFF7F2,#FBEEDA);border:1px solid #F0DCA8;border-radius:26px;padding:40px 30px;position:relative;overflow:hidden;box-shadow:0 30px 66px -40px rgba(90,16,36,.4)}
+  .cta .wrap::before{content:"💛";position:absolute;top:14px;left:50%;transform:translateX(-50%);font-size:20px;opacity:.9}
+  .cta h2{color:#5A1024;font-family:'Spectral',Georgia,serif;font-size:clamp(1.7rem,4.6vw,2.4rem);margin:14px 0 8px}
+  .cta p{color:#7A3346;max-width:440px;margin:0 auto 20px}
   footer{background:var(--plum);color:#d9c7cd;text-align:center;padding:38px 0}
   footer .fbrand{font-family:'Spectral',serif;font-size:1.5rem;letter-spacing:.1em;margin-bottom:6px}
   footer p{font-size:.85rem;color:#c7b3ba;margin-top:4px}
@@ -316,12 +318,12 @@ footer .mflt-tag{color:#B01E48!important}
     <h2 data-i18n="s_h2" style="text-align:center">Izaberi svoj put</h2>
     <p class="pw-lead" style="text-align:center;max-width:560px;margin:8px auto 26px;color:#6a5a62" data-i18n="s_p">Klikni kuda ideš — pa ti otvaram baš tvoje predmete, jedno po jedno. 💛</p>
     <div id="pw-cats" class="pw-cats">
-      <button class="pw-cat" onclick="pwOpen(0)"><span class="pw-sym">🎒</span><span class="pw-cnt">8</span><b>Osnovna škola</b><span class="pw-d">5–8. razred i mala matura</span><span class="pw-go">Otvori →</span></button>
-      <button class="pw-cat" onclick="pwOpen(1)"><span class="pw-sym">📐</span><span class="pw-cnt">8</span><b>Srednja škola</b><span class="pw-d">matematika i fizika · 1–4. razred</span><span class="pw-go">Otvori →</span></button>
-      <button class="pw-cat" onclick="pwOpen(2)"><span class="pw-sym">🎯</span><span class="pw-cnt">3</span><b>Priprema za prijemne</b><span class="pw-d">od škole do fakulteta</span><span class="pw-go">Otvori →</span></button>
-      <button class="pw-cat" onclick="pwOpen(3)"><span class="pw-sym">🎓</span><span class="pw-cnt">31</span><b>Fakultet</b><span class="pw-d">inženjerski predmeti</span><span class="pw-go">Otvori →</span></button>
-      <button class="pw-cat" onclick="pwOpen(4)"><span class="pw-sym">⌨️</span><span class="pw-cnt">19</span><b>Programiranje</b><span class="pw-d">od Scratch-a do TypeScript-a</span><span class="pw-go">Otvori →</span></button>
-      <button class="pw-cat" onclick="pwOpen(5)"><span class="pw-sym">⚡</span><span class="pw-cnt">3</span><b>Elektronika i alati</b><span class="pw-d">projektovanje kola</span><span class="pw-go">Otvori →</span></button>
+      <button class="pw-cat" onclick="pwOpen(0)"><span class="pw-sym">🎒</span><span class="pw-cnt">8</span><b data-i18n="g1n">Osnovna škola</b><span class="pw-d" data-i18n="g1c">5–8. razred i mala matura</span><span class="pw-go">Otvori →</span></button>
+      <button class="pw-cat" onclick="pwOpen(1)"><span class="pw-sym">📐</span><span class="pw-cnt">8</span><b data-i18n="g2n">Srednja škola</b><span class="pw-d" data-i18n="g2c">matematika i fizika · 1–4. razred</span><span class="pw-go">Otvori →</span></button>
+      <button class="pw-cat" onclick="pwOpen(2)"><span class="pw-sym">🎯</span><span class="pw-cnt">3</span><b data-i18n="g3n">Priprema za prijemne</b><span class="pw-d" data-i18n="g3c">od škole do fakulteta</span><span class="pw-go">Otvori →</span></button>
+      <button class="pw-cat" onclick="pwOpen(3)"><span class="pw-sym">🎓</span><span class="pw-cnt">31</span><b data-i18n="g4n">Fakultet</b><span class="pw-d" data-i18n="g4c">inženjerski predmeti</span><span class="pw-go">Otvori →</span></button>
+      <button class="pw-cat" onclick="pwOpen(4)"><span class="pw-sym">⌨️</span><span class="pw-cnt">19</span><b data-i18n="g5n">Programiranje</b><span class="pw-d" data-i18n="g5c">od Scratch-a do TypeScript-a</span><span class="pw-go">Otvori →</span></button>
+      <button class="pw-cat" onclick="pwOpen(5)"><span class="pw-sym">⚡</span><span class="pw-cnt">3</span><b data-i18n="g6n">Elektronika i alati</b><span class="pw-d" data-i18n="g6c">projektovanje kola</span><span class="pw-go">Otvori →</span></button>
     </div>
     <div id="pw-panels" class="pw-panels">
       <div class="pw-panel" data-c="0"><div class="pw-head"><button class="pw-back" onclick="pwHome()">← Sve oblasti</button><div class="pw-tt"><span>🎒 Osnovna škola</span><b>5–8. razred i mala matura</b></div></div><div class="pw-grid"><a class="pw-subj" href="osnovna-matematika-5.html"><span class="pw-dot"></span>Matematika 5. razred</a><a class="pw-subj" href="osnovna-matematika-6.html"><span class="pw-dot"></span>Matematika 6. razred</a><a class="pw-subj" href="osnovna-matematika-7.html"><span class="pw-dot"></span>Matematika 7. razred</a><a class="pw-subj" href="osnovna-matematika-8.html"><span class="pw-dot"></span>Matematika 8. razred</a><a class="pw-subj" href="osnovna-fizika-6.html"><span class="pw-dot"></span>Fizika 6. razred</a><a class="pw-subj" href="osnovna-fizika-7.html"><span class="pw-dot"></span>Fizika 7. razred</a><a class="pw-subj" href="osnovna-fizika-8.html"><span class="pw-dot"></span>Fizika 8. razred</a><a class="pw-subj" href="mala-matura.html"><span class="pw-dot"></span>Mala matura</a></div></div>
