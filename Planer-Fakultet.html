@@ -24,9 +24,9 @@
   .serif{font-family:'Spectral',serif}
   /* layout */
   .app{display:grid;grid-template-columns:262px 1fr;min-height:100vh}
-  .side{background:linear-gradient(180deg,#3c2733,#2e1d27);color:#f3e9da;position:sticky;top:0;height:100vh;overflow-y:auto;padding:0 0 30px}
+  .side{background:linear-gradient(180deg,#5A1024,#3F0A16);color:#f3e9da;position:sticky;top:0;height:100vh;overflow-y:auto;padding:0 0 30px}
   .side::-webkit-scrollbar{width:7px}.side::-webkit-scrollbar-thumb{background:rgba(231,210,162,.25);border-radius:9px}
-  .brand{padding:20px 22px 16px;border-bottom:1px solid rgba(231,210,162,.18);position:sticky;top:0;background:linear-gradient(180deg,#3c2733,#352230);z-index:2}
+  .brand{padding:20px 22px 16px;border-bottom:1px solid rgba(231,210,162,.18);position:sticky;top:0;background:linear-gradient(180deg,#5A1024,#4A0D1B);z-index:2}
   .brand b{font-family:'Spectral',serif;font-size:1.34rem;letter-spacing:.02em;display:block;color:#fff}
   .brand .by{font-family:'Pinyon Script',cursive;font-size:1.32rem;letter-spacing:.01em;text-transform:none;color:var(--goldlt);margin-top:5px;font-weight:400}
   .navgrp{padding:14px 14px 2px}
@@ -227,9 +227,43 @@ code{overflow-wrap:break-word}
 .px-foot .pf-links a:hover{color:#A6803C}
 .px-foot .pf-rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:560px}
 .px-foot .pf-bot{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;color:#8A7A80;font-size:.76rem}
+
+/* ——— SLATKI SLOJ (u duhu „Probaj besplatno") ——— */
+#mathfall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#mathfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.20);animation:mfall linear infinite;will-change:transform,opacity}
+#mathfall span.m{color:rgba(176,30,72,.14)}
+@keyframes mfall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(20deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#mathfall{display:none}}
+.app{position:relative;z-index:1}
+.top{background:rgba(251,246,238,.9)!important}
+.top::before{background:linear-gradient(90deg,transparent,#E7D2A2,#C6A05C,#7A3346,#C6A05C,#E7D2A2,transparent)!important}
+.card{background:linear-gradient(180deg,#FFFDF8,#FFFAF1)!important;border-color:#F0E2CE!important;border-radius:22px!important;position:relative;overflow:hidden;transition:box-shadow .18s,transform .18s;box-shadow:0 1px 2px rgba(120,90,50,.05),0 22px 46px -30px rgba(90,16,36,.32),0 2px 10px -6px rgba(198,160,92,.18)!important}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#C6A05C,#7A3346);opacity:.85}
+.card::after{content:"";position:absolute;top:0;left:0;right:0;height:60px;pointer-events:none;background:radial-gradient(120% 100% at 50% 0,rgba(255,255,255,.5),transparent 70%)}
+.card:hover{transform:translateY(-2px)}
+.card>h3{padding-left:6px;position:relative}
+.card>h3::after{content:"✦";margin-left:9px;color:#E7D2A2;font-size:.6em;vertical-align:middle;opacity:.7}
+.card .desc{color:#a08791}
+.addbtn{border-style:solid!important;border-color:#EAD3A6!important;background:linear-gradient(180deg,#FFFBF0,#FBF1DC)!important;color:#8a5a10!important;border-radius:14px!important}
+.addbtn:hover{border-color:#7A3346!important;background:#FDF6E8!important;color:#7A3346!important}
+.tbtn:hover{border-color:#7A3346!important}
+.banner{background:linear-gradient(100deg,#FFF7EC,#FBEEDA 55%,#FBE7E9)!important;border-color:#F0DCA8!important;border-radius:22px!important;position:relative}
+.banner::after{content:"✦";margin-left:auto;font-size:1.2rem;opacity:.9}
+.savei .dot{background:#5fa978}
+.navi.on{color:#4a2a12;box-shadow:0 6px 16px -8px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,247,214,.6)}
+.navi:hover{background:rgba(231,210,162,.14)}
+.side{position:relative}
+.side::after{content:"";position:absolute;top:0;left:0;right:0;height:180px;pointer-events:none;background:radial-gradient(120% 80% at 50% -10%,rgba(231,210,162,.28),transparent 70%)}
+.brand b{position:relative}
+.brand b::after{content:" ✦";color:#E7D2A2;-webkit-text-fill-color:#E7D2A2;font-size:.7em;opacity:.85}
+.top .mt{background:linear-gradient(92deg,#5A1024,#7A3346);-webkit-background-clip:text;background-clip:text;color:transparent}
+input.t:focus,select.t:focus,textarea.t:focus{border-color:#C6A05C!important;box-shadow:0 0 0 3px rgba(176,30,72,.10)!important}
+.chk{border-radius:100px}.chk:hover{border-color:#7A3346}
+.bar>i{background:linear-gradient(90deg,#C6A05C,#7A3346)!important}
 </style>
 </head>
 <body>
+<div id="mathfall" aria-hidden="true"></div>
 <div class="app">
   <aside class="side" id="side">
     <div class="brand">
@@ -869,5 +903,24 @@ var bt=c.querySelectorAll('.mt');for(var i=0;i<bt.length;i++)bt[i].addEventListe
     <div class="pf-bot"><span class="pf-copy">© 2026 Mathia Edu · Sva prava zadržana</span></div>
   </div>
 </footer>
+<script>
+/* nežni matematički simboli u pozadini — kao „Probaj besplatno 15 min" */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var box=document.getElementById('mathfall'); if(!box) return;
+  var GL=['∫','Σ','∂','dx','λ','π','∞','≈','√','θ','∇','∮'];
+  var N = innerWidth<640 ? 8 : 14;
+  for(var i=0;i<N;i++){
+    var s=document.createElement('span');
+    s.textContent=GL[Math.floor(Math.random()*GL.length)];
+    if(Math.random()<0.26) s.className='m';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';
+    s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';
+    s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';
+    box.appendChild(s);
+  }
+})();
+</script>
 </body>
 </html>
