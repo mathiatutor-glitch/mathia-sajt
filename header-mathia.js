@@ -61,7 +61,7 @@
     '.mh-backfab:hover{border-color:#C6A05C;background:#fff}' +
     '@keyframes mhSlide{to{background-position:-220% 0}}@keyframes mhFoil{to{background-position:230% center}}' +
     /* ——— site-wide dizajnerski potpis (prefinjeni detalji na svakoj strani) ——— */
-    '::selection{background:rgba(198,160,92,.28);color:#3E2A34}' +
+    '::selection{background:rgba(198,160,92,.28);color:#43303A}' +
     'html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}' +
     '::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-thumb{background:linear-gradient(#D8B871,#9C7838);border-radius:10px;border:3px solid rgba(251,246,238,.92)}::-webkit-scrollbar-track{background:transparent}' +
     'a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #C6A05C;outline-offset:2px;border-radius:6px}' +
