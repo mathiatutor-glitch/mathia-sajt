@@ -552,7 +552,7 @@ footer a{color:#7A3346!important}footer a:hover{color:#A6803C!important}footer h
         #home-new .hn-post{background:#fff;border:1px solid #EFE6D6;border-radius:20px;overflow:hidden;margin-bottom:20px;box-shadow:0 16px 34px -26px rgba(90,50,60,.4)}
         #home-new .hn-posthd{display:flex;align-items:center;gap:11px;padding:13px 16px}
         #home-new .hn-postav{width:36px;height:36px;border-radius:50%;color:#F7E9DD;display:grid;place-items:center;font-family:'Spectral',serif;font-weight:700;font-size:14px}
-        #home-new .hn-hero{height:154px;background:radial-gradient(320px 170px at 76% 18%,rgba(231,195,106,.32),transparent 60%),linear-gradient(150deg,#462836,#281620);display:flex;align-items:center;justify-content:center}
+        #home-new .hn-hero{height:154px;background:radial-gradient(320px 170px at 76% 18%,rgba(231,195,106,.42),transparent 62%),linear-gradient(150deg,#5A1024,#3F0A16);display:flex;align-items:center;justify-content:center}
         #home-new .hn-postft{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 16px}
         #home-new .hn-cta{background:linear-gradient(180deg,#E7D2A2,#C6A05C);color:#43301a;font-weight:800;font-size:13px;padding:10px 20px;border-radius:100px;text-decoration:none;white-space:nowrap}
         #home-new .hn-sect{font-family:'Spectral',serif;font-size:17px;color:#5A1024;font-weight:600;margin:0 0 12px}
@@ -860,6 +860,12 @@ footer a{color:#7A3346!important}footer a:hover{color:#A6803C!important}footer h
   <!-- Plutajuća Profesorica (uvek prisutna) -->
   <button class="pfab" onclick="openProf()" aria-label="Otvori Profesoricu"><span class="ping"></span><img src="marina.jpg" alt="" onerror="this.remove()">👩‍🏫</button>
   <script>
+  /* Lokalni prevod za dinamičke natpise koje globalni rečnik promaši (npr. SVG tekst). */
+  function mdLang(){try{return (localStorage.getItem('mathia_lang')||'sr').slice(0,2).toLowerCase();}catch(e){return 'sr';}}
+  var MDASH={
+    "PREĐENO GRADIVA":{en:"PROGRESS",de:"FORTSCHRITT",fr:"PROGRÈS",es:"PROGRESO",it:"PROGRESSO",ru:"ПРОГРЕСС",pt:"PROGRESSO"}
+  };
+  function mdt(sr){var l=mdLang();if(l==='sr')return sr;var m=MDASH[sr];return (m&&m[l])||sr;}
   function botGo(sec,idx,el){ try{ go(sec, document.querySelectorAll('.snav')[idx]); }catch(e){} document.querySelectorAll('.botnav button').forEach(function(b){b.classList.remove('act');}); if(el)el.classList.add('act'); }
   function openProf(){ try{ go('prof', document.querySelectorAll('.snav')[5]); }catch(e){} document.querySelectorAll('.botnav button').forEach(function(b){b.classList.remove('act');}); }
   </script>
@@ -1238,7 +1244,7 @@ function renderHome(){
   if(MP.length){ var s0=MP[0];
     var off=(283*(1-overall/100)).toFixed(0);
     cont='<div class="hn-post"><div class="hn-posthd"><div class="hn-postav" style="background:linear-gradient(135deg,#7A3346,#8a5a6b)">'+e((s0.naziv||'?')[0])+'</div><div style="flex:1"><div style="font-weight:800;font-size:13.5px;color:#5A1024">'+e(s0.naziv)+'</div><div style="font-size:11.5px;color:#9a8a90">Nastavi gde si stao'+(s0.topic?(' · '+e(s0.topic)):'')+'</div></div></div>'+
-      '<div class="hn-hero"><svg width="112" height="112" viewBox="0 0 112 112"><circle cx="56" cy="56" r="45" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="8"/><circle cx="56" cy="56" r="45" fill="none" stroke="#E7C36A" stroke-width="8" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="'+off+'" transform="rotate(-90 56 56)"/><text x="56" y="52" text-anchor="middle" font-family="Spectral,serif" font-size="28" font-weight="700" fill="#FBF6EE">'+overall+'%</text><text x="56" y="70" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" font-weight="800" fill="#F2E1AB" letter-spacing="1.4">PREĐENO GRADIVA</text></svg></div>'+
+      '<div class="hn-hero"><svg width="112" height="112" viewBox="0 0 112 112"><circle cx="56" cy="56" r="45" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="8"/><circle cx="56" cy="56" r="45" fill="none" stroke="#E7C36A" stroke-width="8" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="'+off+'" transform="rotate(-90 56 56)"/><text x="56" y="52" text-anchor="middle" font-family="Spectral,serif" font-size="28" font-weight="700" fill="#FBF6EE">'+overall+'%</text><text x="56" y="70" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" font-weight="800" fill="#F2E1AB" letter-spacing="1.4">'+mdt('PREĐENO GRADIVA')+'</text></svg></div>'+
       '<div class="hn-postft"><div style="font-size:12.5px;color:#8a7a80">'+teme+' tema · <b style="color:#5A1024">niz '+bestNiz+' dana</b> · '+Math.round(totalMin/60)+'h</div><a class="hn-cta" href="'+matURL(s0.key,'skripta')+'">Nastavi</a></div></div>';
   } else {
     cont='<div class="hn-post" style="padding:24px 20px;text-align:center"><div style="font-family:Spectral,serif;font-size:19px;color:#5A1024;margin-bottom:6px">Dobrodošla! 🌷</div><div style="color:#8a7a80;font-size:13.5px;margin-bottom:15px">Izaberi predmet uz svoj paket pa počinjemo.</div><a class="hn-cta" href="predmeti.html">Izaberi predmet</a></div>';
