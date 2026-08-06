@@ -320,7 +320,7 @@ body.inchap #hubview{display:none}
 <body>
 <script>document.documentElement.classList.add("js");</script>
 <div id="mathfall" aria-hidden="true"></div>
-<select aria-label="Jezik" class="lang" onchange="try{localStorage.setItem(&#39;mathia_lang&#39;,this.value);}catch(e){};dispatchEvent(new Event(&#39;mathia:lang&#39;))" style="position:fixed;top:12px;right:12px;z-index:9000;border:1px solid var(--goldlt,#E7D2A2);border-radius:100px;padding:6px 12px;font-family:inherit;font-weight:800;font-size:.78rem;color:var(--plum,#5A1024);background:#fff;box-shadow:0 8px 20px -10px rgba(90,16,36,.4)"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+<select aria-label="Jezik" class="lang" onchange="try{localStorage.setItem(&#39;mathia_lang&#39;,this.value);}catch(e){};window.dispatchEvent(new Event(&#39;mathia:lang&#39;))" style="position:fixed;top:12px;right:12px;z-index:9000;border:1px solid var(--goldlt,#E7D2A2);border-radius:100px;padding:6px 12px;font-family:inherit;font-weight:800;font-size:.78rem;color:var(--plum,#5A1024);background:#fff;box-shadow:0 8px 20px -10px rgba(90,16,36,.4)"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
 <div class="wrap">
   <a class="back" href="predmeti.html">← Vizuelne lekcije</a>
   <div class="eyebrow">Mathia · interaktivna lekcija</div>
