@@ -919,4 +919,20 @@ header,.sh-hero,.sh-store,.sh-prod,.sh-quote,footer{position:relative;z-index:1}
   }
 })();
 </script>
+<script>
+/* Prodavnica slatki natpisi i18n */
+(function(){
+var H={"Stikeri i nagrade": ["Stickers and rewards", "Sticker und Belohnungen", "Autocollants et récompenses", "Stickers y recompensas", "Adesivi e ricompense", "Стикеры и награды", "Autocolantes e recompensas"], "Uz tebe — zauvek": ["With you — forever", "Bei dir — für immer", "Avec toi — pour toujours", "Contigo — para siempre", "Con te — per sempre", "С тобой — навсегда", "Contigo — para sempre"], "Odlično": ["Excellent", "Ausgezeichnet", "Excellent", "Excelente", "Ottimo", "Отлично", "Excelente"], "Cilj": ["Goal", "Ziel", "Objectif", "Meta", "Obiettivo", "Цель", "Meta"], "Niz": ["Streak", "Serie", "Série", "Racha", "Serie", "Серия", "Sequência"], "Položeno": ["Passed", "Bestanden", "Réussi", "Aprobado", "Superato", "Сдано", "Aprovado"], "Zahvalnost": ["Gratitude", "Dankbarkeit", "Gratitude", "Gratitud", "Gratitudine", "Благодарность", "Gratidão"], "Sve tačno": ["All correct", "Alles richtig", "Tout juste", "Todo correcto", "Tutto giusto", "Всё верно", "Tudo certo"], "Zvezda dana": ["Star of the day", "Star des Tages", "Star du jour", "Estrella del día", "Stella del giorno", "Звезда дня", "Estrela do dia"], "Urađeno": ["Done", "Erledigt", "Fait", "Hecho", "Fatto", "Готово", "Feito"], "Pun pogodak": ["Bullseye", "Volltreffer", "Dans le mille", "Diana", "Pieno centro", "В яблочко", "Na mosca"], "Dijamant": ["Diamond", "Diamant", "Diamant", "Diamante", "Diamante", "Бриллиант", "Diamante"], "Prvo mesto": ["First place", "Erster Platz", "Première place", "Primer lugar", "Primo posto", "Первое место", "Primeiro lugar"], "Na vreme": ["On time", "Pünktlich", "À l'heure", "A tiempo", "In orario", "Вовремя", "A tempo"], "Bistra glava": ["Sharp mind", "Kluger Kopf", "Esprit vif", "Mente lúcida", "Mente sveglia", "Светлая голова", "Cabeça brilhante"], "Istrajnost": ["Persistence", "Ausdauer", "Persévérance", "Constancia", "Perseveranza", "Упорство", "Persistência"], "Za sreću": ["For luck", "Für Glück", "Pour la chance", "Para la suerte", "Per fortuna", "На удачу", "Para dar sorte"], "Pročitano": ["Read", "Gelesen", "Lu", "Leído", "Letto", "Прочитано", "Lido"], "Blistavo": ["Brilliant", "Glänzend", "Brillant", "Brillante", "Brillante", "Блестяще", "Brilhante"], "Dobar dan": ["Good day", "Guter Tag", "Bonne journée", "Buen día", "Buona giornata", "Хороший день", "Bom dia"], "Šampanj": ["Champagne", "Champagner", "Champagne", "Champán", "Champagne", "Шампань", "Champanhe"], "Plum": ["Plum", "Pflaume", "Prune", "Ciruela", "Prugna", "Слива", "Ameixa"], "Blush": ["Blush", "Rosé", "Blush", "Rubor", "Rosa", "Румяна", "Blush"]};var IDX={en:0,de:1,fr:2,es:3,it:4,ru:5,pt:6};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return 'sr';}
+function tr(x){var l=lng();if(l==='sr'||!(l in IDX))return x;var a=H[x];return a?a[IDX[l]]:x;}
+function walk(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null,false),n;
+ while(n=w.nextNode()){var p=n.parentNode;if(!p)continue;var tg=p.nodeName;if(tg==='SCRIPT'||tg==='STYLE'||tg==='OPTION'||tg==='TEXTAREA')continue;
+  var base=(n.__po!==undefined?n.__po:n.nodeValue),t=(base||'').trim();if(!t||!H[t])continue;
+  if(n.__po===undefined)n.__po=n.nodeValue;var v=n.__po.replace(t,tr(t));if(n.nodeValue!==v)n.nodeValue=v;}}
+var _t;function apply(){walk();}
+function init(){apply();try{new MutationObserver(function(m){for(var i=0;i<m.length;i++){if(m[i].addedNodes&&m[i].addedNodes.length){clearTimeout(_t);_t=setTimeout(apply,140);break;}}}).observe(document.body,{childList:true,subtree:true});}catch(e){}}
+if(document.readyState!=='loading')init();else document.addEventListener('DOMContentLoaded',init);
+addEventListener('mathia:lang',apply);addEventListener('storage',function(e){if(!e||e.key==='mathia_lang')apply();});
+})();
+</script>
 </body></html>
