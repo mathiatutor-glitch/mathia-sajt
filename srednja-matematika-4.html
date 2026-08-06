@@ -343,8 +343,18 @@
 </style>
 <link rel="stylesheet" href="theme-mathia.css">
 <link rel="stylesheet" href="mathia-type.css">
+<style id="sweet-fall">
+#mathfall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#mathfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.20);animation:mfall linear infinite;will-change:transform,opacity}
+#mathfall span.m{color:rgba(176,30,72,.14)}
+@keyframes mfall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(18deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#mathfall{display:none}}
+.topbar,.hero,.band,section,footer,.wrap,.panel{position:relative;z-index:1}
+.mat:hover,.topic:hover{transform:translateY(-4px)}
+</style>
 </head>
 <body>
+<div id="mathfall" aria-hidden="true"></div>
 
 <div class="mathfog" aria-hidden="true"><span>lim</span><span>&#8747; f(x)dx</span><span>dy/dx</span><span>f&#8242;(x)</span><span>&#8721;</span></div>
 
@@ -521,5 +531,11 @@ window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.de
 </script>
 <script src="i18n-mathia.js"></script>
 <script>(function(){try{if(localStorage.getItem('mathia_owner')||localStorage.getItem('mathia_access')==='full'){document.cookie='mathia_owner=MATHIA-MARINA-2026;path=/;max-age=31536000;samesite=lax';}}catch(e){}})();</script>
+<script>
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var b=document.getElementById('mathfall');if(!b)return;
+var G=['π','√','Σ','∫','α','x²','½','+','·','∞','≈','💛','🌸','✦','θ'];var N=innerWidth<640?9:15;
+for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.24)s.className='m';
+s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}})();
+</script>
 </body>
 </html>
