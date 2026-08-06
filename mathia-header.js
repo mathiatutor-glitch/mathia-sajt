@@ -64,15 +64,26 @@
         '</nav>' +
       '</div>';
 
-    var old = document.querySelector("header");
+    // NAV-header prepoznajemo po: direktno dete <body>, ILI nav-klasa (topbar/mainnav/site-header/nav), ILI sadrži jezik-birač.
+    // Sadržajne <header> (npr. class="hero" unutar <main>) NE diramo.
+    function isNavHeader(h){
+      if (h === mh) return false;
+      if (h.parentNode === document.body) return true;
+      var c = (h.className || "") + "";
+      if (/topbar|mathia-topnav|mainnav|site-?header|navbar|(^|\s)nav(\s|$)/i.test(c)) return true;
+      if (h.querySelector && h.querySelector("select.lang, select[aria-label='Jezik']")) return true;
+      return false;
+    }
+    var old = null, allh = document.querySelectorAll("header");
+    for (var oi = 0; oi < allh.length; oi++){ if (isNavHeader(allh[oi])) { old = allh[oi]; break; } }
     if (old && old.parentNode) old.parentNode.replaceChild(mh, old);
     else document.body.insertBefore(mh, document.body.firstChild);
 
-    // — čišćenje: ukloni SVE druge <header>-e i zalutale jezik-biraче (i one koji se dodaju kasnije) —
+    // — čišćenje: ukloni druge NAV-header-e i zalutale jezik-biraче (i one koji se dodaju kasnije) —
     function sweep(){
       try {
         var hs = document.querySelectorAll("header");
-        for (var i = 0; i < hs.length; i++) { if (hs[i] !== mh && hs[i].parentNode) hs[i].parentNode.removeChild(hs[i]); }
+        for (var i = 0; i < hs.length; i++) { if (hs[i] !== mh && isNavHeader(hs[i]) && hs[i].parentNode) hs[i].parentNode.removeChild(hs[i]); }
         var ss = document.querySelectorAll("select");
         for (var k = 0; k < ss.length; k++) {
           var el = ss[k];
