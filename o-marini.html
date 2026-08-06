@@ -366,8 +366,17 @@ footer .word,footer .fbrand{color:#5A1024!important;-webkit-text-fill-color:#5A1
 footer a{color:#7A3346!important}footer a:hover{color:#A6803C!important}footer h4{color:#A6803C!important}
 @media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
 </style>
+<style id="sweet-fall">
+#mathfall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#mathfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.18);animation:mfall linear infinite}
+#mathfall span.m{color:rgba(176,30,72,.12)}
+@keyframes mfall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(18deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#mathfall{display:none}}
+header,section,footer,.wrap{position:relative;z-index:1}
+</style>
 </head>
 <body>
+<div id="mathfall" aria-hidden="true"></div>
 
 <header>
   <div class="wrap nav">
@@ -640,5 +649,11 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 </style>
 <script src="mathia-header.js" defer></script>
 <style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
+<script>
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var b=document.getElementById('mathfall');if(!b)return;
+var G=['π','√','Σ','∫','α','x²','½','+','·','∞','≈','💛','🌸','✦'];var N=innerWidth<640?8:13;
+for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.22)s.className='m';
+s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*20).toFixed(0)+'px';s.style.animationDuration=(14+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}})();
+</script>
 </body>
 </html>
