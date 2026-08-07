@@ -677,7 +677,7 @@ footer a{color:#7A3346!important}footer a:hover{color:#A6803C!important}footer h
               <div class="pl-todo"><span class="pl-chk" onclick="this.parentNode.classList.toggle('done')"></span><span class="tt">Provera: mini-kviz iz limesa</span><span class="tg">15 min</span></div>
             </div>
             <div style="margin-top:13px;display:flex;gap:9px;flex-wrap:wrap">
-              <a class="btn btn-gold btn-sm" href="Mathia-Student-Planner.html">▶ Fokus-tajmer</a>
+              <a class="btn btn-gold btn-sm" href="prodavnica.html">▶ Fokus-tajmer</a>
               <button class="btn btn-ghost btn-sm" onclick="dodajZadatak()">＋ Dodaj zadatak</button>
             </div>
           </div>
@@ -699,7 +699,7 @@ footer a{color:#7A3346!important}footer a:hover{color:#A6803C!important}footer h
             <span class="own" id="pl-own">✓ Uz tvoj nalog</span>
             <p id="pl-desc" style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p>
             <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn btn-gold" id="pl-open" href="Mathia-Student-Planner.html">Otvori planer →</a>
+              <a class="btn btn-gold" id="pl-open" href="prodavnica.html">Otvori planer →</a>
             </div>
           </div>
         </div>
@@ -726,7 +726,7 @@ footer a{color:#7A3346!important}footer a:hover{color:#A6803C!important}footer h
           var M={
             osnovna:{href:'Planer-Osnovna.html',naziv:'Planer za osnovnu školu',ic:'🎒',opis:'Časovi, kontrolni, mala matura, navike, raspoloženje, stikeri i bedževi.'},
             srednja:{href:'Planer-Srednja.html',naziv:'Planer za srednju školu',ic:'📐',opis:'Kontrolni i pismeni, matura (odbrojavanje), razredi, raspored, navike i ciljevi.'},
-            fakultet:{href:'Mathia-Student-Planner.html',naziv:'Mathia Student Planner',ic:'🎓',opis:'Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.'}
+            fakultet:{href:'prodavnica.html',naziv:'Mathia Student Planner',ic:'🎓',opis:'Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.'}
           };
           if(!lvl) return {href:'Planeri.html',naziv:'Izaberi planer',ic:'📔',opis:'Izaberi planer za svoj uzrast — osnovna, srednja škola ili fakultet.'};
           return M[lvl];
@@ -1206,7 +1206,7 @@ function render(){
   var owns=!!(PROFILE&&(PROFILE.planer===true||PROFILE.planer==='da'||PROFILE.planer===1||PROFILE.pretplata_aktivna));
   var pt=document.querySelector('#sec-plan .plan-hero .t');
   if(pt){ pt.innerHTML= owns
-    ? '<b>Mathia Student Planner</b><span class="own">✓ U vlasništvu</span><p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-gold" href="Mathia-Student-Planner.html">Otvori planer →</a></div>'
+    ? '<b>Mathia Student Planner</b><span class="own">✓ U vlasništvu</span><p style="font-size:.9rem;color:#6b585e">Raspored, ispitni rokovi, fokus-tajmer, navike i odbrojavanje do diplome.</p><div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-gold" href="prodavnica.html">Otvori planer →</a></div>'
     : '<b>Mathia Student Planner</b><p style="font-size:.92rem;color:#6b585e;margin:8px 0 0">Tvoj kompletan planer za studije — raspored, rokovi, fokus i navike. Dodaj ga uz nalog.</p><div style="margin-top:12px"><a class="btn btn-gold" href="prodavnica.html">Pogledaj u Prodavnici →</a></div>'; }
   var _cil=$('ciljevi'); if(_cil){
     if(!MP.length){ _cil.innerHTML='<p style="color:var(--muted);margin:0">Izaberi predmet pa ću ti postaviti nedeljne ciljeve. 🌷</p>'; }
