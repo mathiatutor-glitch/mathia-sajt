@@ -5,6 +5,7 @@
    (localStorage 'mathia_lang' + događaj 'mathia:lang' + document.lang) i mobilni meni. */
 (function () {
   var NAV = [
+    ["index.html", "Početna"],
     ["predmeti.html", "Predmeti"],
     ["index.html#paketi", "Paketi"],
     ["prodavnica.html", "Prodavnica"],
