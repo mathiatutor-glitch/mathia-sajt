@@ -11,8 +11,7 @@
  --serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box}
 body{margin:0;font-family:var(--sans);color:var(--ink);background:
- radial-gradient(900px 460px at 84% -6%,#FBEAEF 0,transparent 60%),
- radial-gradient(760px 420px at 6% 108%,#F7ECD6 0,transparent 62%),var(--cream);line-height:1.6;overflow-x:hidden}
+ radial-gradient(560px 420px at 106% -5%,#FBEAEF 0,transparent 56%), radial-gradient(520px 400px at -6% 106%,#F7ECD6 0,transparent 58%),var(--cream);line-height:1.6;overflow-x:hidden}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 h1,h2,h3{font-family:var(--serif);color:var(--plum);font-weight:600;line-height:1.1;margin:0}
 .eyebrow{font-family:var(--sans);font-weight:800;letter-spacing:.3em;text-transform:uppercase;font-size:.7rem;color:var(--malina)}
@@ -149,9 +148,9 @@ footer{text-align:center;padding:40px 0 30px;color:var(--muted);font-size:.82rem
 
   <section style="padding-top:8px">
     <div class="trustbar reveal">
-      <div><b>1.200+</b><span>zadovoljnih učenika</span></div>
-      <div><b>5.0★</b><span>prosečna ocena</span></div>
-      <div><b>80+</b><span>predmeta</span></div>
+      <div><b data-count="1200" data-thousands="1" data-suffix="+">1.200+</b><span>zadovoljnih učenika</span></div>
+      <div><b data-count="5" data-dec="1" data-suffix="★">5.0★</b><span>prosečna ocena</span></div>
+      <div><b data-count="80" data-suffix="+">80+</b><span>predmeta</span></div>
       <div><b>0–24h</b><span>Profesorica uz tebe</span></div>
     </div>
   </section>
@@ -196,7 +195,7 @@ footer{text-align:center;padding:40px 0 30px;color:var(--muted);font-size:.82rem
     <div style="text-align:center"><span class="guarantee reveal">💛 Bez rizika — prvih 15 minuta je na poklon, bez kartice.</span></div>
   </section>
 
-  <section>
+  <section id="paketi" style="scroll-margin-top:90px">
     <div class="sec-h reveal"><div class="eyebrow">paketi</div><h2>Jedan paket — cela Profesorica</h2><p>Biraš samo koliko predmeta učiš. Sve ostalo je uključeno.</p></div>
     <div class="tiers">
       <div class="tier reveal"><h3>BASIC</h3><div class="sub">za jedan predmet</div>
@@ -264,5 +263,9 @@ if(document.readyState!=='loading')apply();else document.addEventListener('DOMCo
 addEventListener('mathia:lang',apply);addEventListener('storage',function(e){if(!e||e.key==='mathia_lang')apply();});
 })();
 </script>
+<script>(function(){function fmt(n,dec,th){var x=dec?n.toFixed(dec):Math.round(n).toString();if(th)x=x.replace(/\B(?=(\d{3})+(?!\d))/g,".");return x;}
+function run(el){var t=parseFloat(el.getAttribute("data-count"))||0,dec=+(el.getAttribute("data-dec")||0),suf=el.getAttribute("data-suffix")||"",th=el.getAttribute("data-thousands"),s=null,d=1500;
+function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=fmt(t*e,dec,th)+suf;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
+var els=document.querySelectorAll("[data-count]");if(window.IntersectionObserver){var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){run(x.target);io.unobserve(x.target);}})},{threshold:.4});els.forEach(function(e){io.observe(e)});}else els.forEach(run);})();</script>
 </body>
 </html>
