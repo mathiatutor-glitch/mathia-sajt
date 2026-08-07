@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathia — Provera znanja · Matematika 8 🎯</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EE;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--goldlt:#F0DCA8;--malina:#B01E48;--malina2:#CC5E7E;--mint:#3FB98C;--muted:#8A7A80}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#43303A;min-height:100vh;
+ background:radial-gradient(900px 500px at 82% -8%,#F6E1EC 0,rgba(246,225,236,0) 60%),radial-gradient(760px 460px at 6% 106%,#F7ECD6 0,rgba(247,236,214,0) 62%),radial-gradient(600px 500px at 50% 120%,#EDE3FB 0,rgba(237,227,251,0) 60%),var(--cream);overflow-x:hidden}
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.22);animation:fl linear infinite}
+#fall span.m{color:rgba(176,30,72,.16)}
+@keyframes fl{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(24deg);opacity:0}}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:14px 18px 40px}
+.top{display:flex;align-items:center;gap:12px;padding:6px 2px 12px}
+.top .back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:1.1rem}
+.top .lang{margin-left:auto;border:1px solid var(--goldlt);border-radius:100px;padding:5px 10px;font-family:inherit;font-weight:800;font-size:.72rem;color:var(--ink);background:#fff}
+.bar{flex:1;height:14px;border-radius:100px;background:#EEE1D8;overflow:hidden;box-shadow:inset 0 1px 3px rgba(120,60,70,.12)}
+.bar>i{display:block;height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--malina));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.hearts{font-size:1rem;white-space:nowrap}.streak{font-weight:900;color:var(--gold);font-size:.95rem;white-space:nowrap}
+.card{background:linear-gradient(180deg,#FFFDF9,#FDF3EA);border:1px solid var(--goldlt);border-radius:30px;padding:24px 22px;box-shadow:0 30px 70px -34px rgba(90,16,36,.5);animation:pop .5s cubic-bezier(.2,.9,.2,1)}
+@keyframes pop{0%{transform:scale(.92) translateY(12px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+.eyebrow{text-align:center;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:.66rem;color:var(--malina)}
+.qnum{display:block;text-align:center;margin:2px 0 6px;color:var(--muted);font-weight:800;font-size:.8rem}
+.mascot{width:74px;height:74px;margin:2px auto 6px;border-radius:50%;display:grid;place-items:center;font-size:2.3rem;background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC);border:2px solid var(--goldlt);box-shadow:0 12px 26px -12px rgba(176,30,72,.4);animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.q{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.45rem;text-align:center;line-height:1.25;margin:4px 0}
+.qhint{text-align:center;color:var(--ink2);font-size:.9rem;margin:2px 0 14px}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #EFE0D6;border-radius:18px;padding:13px 16px;font-weight:800;font-size:1.05rem;color:var(--ink);cursor:pointer;transition:transform .12s,border-color .15s,background .15s;text-align:left}
+.opt .em{font-size:1.3rem}
+.opt:hover{transform:translateY(-2px);border-color:var(--gold)}
+.opt.correct{border-color:var(--mint);background:linear-gradient(180deg,#F1FBF6,#E4F6EE);animation:good .5s}
+.opt.wrong{border-color:var(--malina);background:linear-gradient(180deg,#FDEFF3,#FBE3EA);animation:shake .4s}
+@keyframes good{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{margin-top:12px;text-align:center;font-weight:900;font-size:1.05rem;min-height:24px}
+.fb.ok{color:var(--mint)}.fb.no{color:var(--malina)}
+.cta{display:block;width:100%;margin-top:14px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:900;font-size:1.05rem;padding:15px;border-radius:100px;box-shadow:0 16px 30px -14px rgba(176,30,72,.6);transition:transform .15s}
+.cta:hover{transform:translateY(-2px)}
+.hidden{display:none}
+.result{text-align:center}.result .big{font-size:3.4rem;margin:4px 0}.result h2{font-family:'Spectral',serif;color:var(--ink);font-size:1.9rem;margin:2px 0}
+.result .score{font-weight:900;color:var(--gold);font-size:1.15rem}.result .msg{color:var(--ink2);margin:8px 0 4px}
+.badge{display:inline-flex;align-items:center;gap:8px;margin:12px auto 4px;background:linear-gradient(135deg,#FFF3D6,#F3DFA6);border:1px solid var(--goldlt);border-radius:100px;padding:10px 18px;font-weight:900;color:#8a6a1e;box-shadow:0 10px 22px -12px rgba(160,120,40,.6)}
+.again{margin-top:12px;background:none;border:none;color:var(--ink2);font-weight:800;cursor:pointer;text-decoration:underline}
+#conf{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+#conf i{position:absolute;top:-6%;width:10px;height:14px;border-radius:2px;animation:cf linear forwards}
+@keyframes cf{to{transform:translateY(110vh) rotate(560deg);opacity:.9}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="fall" aria-hidden="true"></div>
+<div id="conf" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="top">
+    <a class="back" href="osnovna-matematika-8.html">←</a>
+    <div class="bar"><i id="prog"></i></div>
+    <span class="hearts" id="hearts">❤️❤️❤️</span>
+    <span class="streak" id="streak">🔥 0</span>
+    <select class="lang" id="lang" aria-label="Jezik"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+  </div>
+  <section class="card" id="quiz">
+    <div class="eyebrow" id="eyebrow"></div>
+    <span class="qnum" id="qnum"></span>
+    <div class="mascot" id="mascot">🦉</div>
+    <h2 class="q" id="q"></h2>
+    <p class="qhint" id="qhint"></p>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <button class="cta hidden" id="next"></button>
+  </section>
+  <section class="card result hidden" id="report">
+    <div class="big" id="rbig">🎉</div>
+    <h2 id="rtitle"></h2>
+    <div class="score" id="rscore"></div>
+    <p class="msg" id="rmsg"></p>
+    <div class="badge" id="rbadge"></div>
+    <button class="cta" id="toClone"></button>
+    <br><button class="again" id="again"></button>
+  </section>
+</main>
+<script>
+var D={"eyebrow": {"sr": "Provera znanja · Matematika 8 🎯", "en": "Knowledge Check · Math 8 🎯", "de": "Wissenstest · Mathematik 8 🎯", "fr": "Contrôle des connaissances · Maths 8 🎯", "es": "Prueba de conocimientos · Matemáticas 8 🎯", "it": "Verifica delle conoscenze · Matematica 8 🎯", "ru": "Проверка знаний · Математика 8 🎯", "pt": "Teste de conhecimentos · Matemática 8 🎯"}, "badge": {"sr": "🏅 Bedž: Matematičar 8", "en": "🏅 Badge: Mathematician 8", "de": "🏅 Abzeichen: Mathematiker 8", "fr": "🏅 Badge : Mathématicien 8", "es": "🏅 Insignia: Matemático 8", "it": "🏅 Badge: Matematico 8", "ru": "🏅 Значок: Математик 8", "pt": "🏅 Emblema: Matemático 8"}, "questions": [{"q": {"sr": "Data je funkcija y = 2x + 3. Koliki je koeficijent pravca (nagib) k?", "en": "Given the function y = 2x + 3, what is the slope (coefficient) k?", "de": "Gegeben ist die Funktion y = 2x + 3. Wie groß ist die Steigung (Koeffizient) k?", "fr": "Soit la fonction y = 2x + 3. Quel est le coefficient directeur (pente) k ?", "es": "Dada la función y = 2x + 3, ¿cuál es la pendiente (coeficiente) k?", "it": "Data la funzione y = 2x + 3, quanto vale il coefficiente angolare (pendenza) k?", "ru": "Дана функция y = 2x + 3. Чему равен угловой коэффициент (наклон) k?", "pt": "Dada a função y = 2x + 3, qual é o coeficiente angular (inclinação) k?"}, "hint": {"sr": "Nagib k je broj ispred x u zapisu y = kx + n.", "en": "The slope k is the number in front of x in y = kx + n.", "de": "Die Steigung k ist die Zahl vor x in y = kx + n.", "fr": "La pente k est le nombre devant x dans y = kx + n.", "es": "La pendiente k es el número delante de x en y = kx + n.", "it": "La pendenza k è il numero davanti a x in y = kx + n.", "ru": "Наклон k — это число перед x в записи y = kx + n.", "pt": "A inclinação k é o número antes de x em y = kx + n."}, "opts": [{"em": "🍬", "t": {"sr": "k = 2", "en": "k = 2", "de": "k = 2", "fr": "k = 2", "es": "k = 2", "it": "k = 2", "ru": "k = 2", "pt": "k = 2"}}, {"em": "✨", "t": {"sr": "k = 3", "en": "k = 3", "de": "k = 3", "fr": "k = 3", "es": "k = 3", "it": "k = 3", "ru": "k = 3", "pt": "k = 3"}}, {"em": "🌸", "t": {"sr": "k = -2", "en": "k = -2", "de": "k = -2", "fr": "k = -2", "es": "k = -2", "it": "k = -2", "ru": "k = -2", "pt": "k = -2"}}, {"em": "💫", "t": {"sr": "k = 5", "en": "k = 5", "de": "k = 5", "fr": "k = 5", "es": "k = 5", "it": "k = 5", "ru": "k = 5", "pt": "k = 5"}}], "c": 0}, {"q": {"sr": "Funkcija y = -4x + 1 je:", "en": "The function y = -4x + 1 is:", "de": "Die Funktion y = -4x + 1 ist:", "fr": "La fonction y = -4x + 1 est :", "es": "La función y = -4x + 1 es:", "it": "La funzione y = -4x + 1 è:", "ru": "Функция y = -4x + 1 является:", "pt": "A função y = -4x + 1 é:"}, "hint": {"sr": "Ako je k < 0, funkcija opada; ako je k > 0, funkcija raste.", "en": "If k < 0 the function is decreasing; if k > 0 it is increasing.", "de": "Wenn k < 0 ist, fällt die Funktion; wenn k > 0 ist, steigt sie.", "fr": "Si k < 0, la fonction est décroissante ; si k > 0, elle est croissante.", "es": "Si k < 0 la función es decreciente; si k > 0 es creciente.", "it": "Se k < 0 la funzione è decrescente; se k > 0 è crescente.", "ru": "Если k < 0, функция убывает; если k > 0 — возрастает.", "pt": "Se k < 0 a função é decrescente; se k > 0 é crescente."}, "opts": [{"em": "🍬", "t": {"sr": "Opadajuća (jer je k = -4 < 0)", "en": "Decreasing (since k = -4 < 0)", "de": "Fallend (da k = -4 < 0)", "fr": "Décroissante (car k = -4 < 0)", "es": "Decreciente (porque k = -4 < 0)", "it": "Decrescente (poiché k = -4 < 0)", "ru": "Убывающей (так как k = -4 < 0)", "pt": "Decrescente (pois k = -4 < 0)"}}, {"em": "✨", "t": {"sr": "Rastuća (jer je k = -4 < 0)", "en": "Increasing (since k = -4 < 0)", "de": "Steigend (da k = -4 < 0)", "fr": "Croissante (car k = -4 < 0)", "es": "Creciente (porque k = -4 < 0)", "it": "Crescente (poiché k = -4 < 0)", "ru": "Возрастающей (так как k = -4 < 0)", "pt": "Crescente (pois k = -4 < 0)"}}, {"em": "🌸", "t": {"sr": "Konstantna", "en": "Constant", "de": "Konstant", "fr": "Constante", "es": "Constante", "it": "Costante", "ru": "Постоянной", "pt": "Constante"}}], "c": 0}, {"q": {"sr": "Rešenje sistema x + y = 10 i x - y = 2 je x =", "en": "The solution of the system x + y = 10 and x - y = 2 is x =", "de": "Die Lösung des Systems x + y = 10 und x - y = 2 ist x =", "fr": "La solution du système x + y = 10 et x - y = 2 est x =", "es": "La solución del sistema x + y = 10 y x - y = 2 es x =", "it": "La soluzione del sistema x + y = 10 e x - y = 2 è x =", "ru": "Решение системы x + y = 10 и x - y = 2: x =", "pt": "A solução do sistema x + y = 10 e x - y = 2 é x ="}, "hint": {"sr": "Saberi obe jednačine: 2x = 12.", "en": "Add both equations: 2x = 12.", "de": "Addiere beide Gleichungen: 2x = 12.", "fr": "Additionne les deux équations : 2x = 12.", "es": "Suma ambas ecuaciones: 2x = 12.", "it": "Somma le due equazioni: 2x = 12.", "ru": "Сложи оба уравнения: 2x = 12.", "pt": "Soma as duas equações: 2x = 12."}, "opts": [{"em": "🍬", "t": {"sr": "x = 6", "en": "x = 6", "de": "x = 6", "fr": "x = 6", "es": "x = 6", "it": "x = 6", "ru": "x = 6", "pt": "x = 6"}}, {"em": "✨", "t": {"sr": "x = 4", "en": "x = 4", "de": "x = 4", "fr": "x = 4", "es": "x = 4", "it": "x = 4", "ru": "x = 4", "pt": "x = 4"}}, {"em": "🌸", "t": {"sr": "x = 8", "en": "x = 8", "de": "x = 8", "fr": "x = 8", "es": "x = 8", "it": "x = 8", "ru": "x = 8", "pt": "x = 8"}}, {"em": "💫", "t": {"sr": "x = 2", "en": "x = 2", "de": "x = 2", "fr": "x = 2", "es": "x = 2", "it": "x = 2", "ru": "x = 2", "pt": "x = 2"}}], "c": 0}, {"q": {"sr": "Dva slična trougla imaju razmeru sličnosti 2:3. Ako je stranica manjeg trougla 4 cm, kolika je odgovarajuća stranica većeg?", "en": "Two similar triangles have a similarity ratio of 2:3. If a side of the smaller triangle is 4 cm, what is the corresponding side of the larger one?", "de": "Zwei ähnliche Dreiecke haben ein Ähnlichkeitsverhältnis von 2:3. Wenn eine Seite des kleineren Dreiecks 4 cm beträgt, wie lang ist die entsprechende Seite des größeren?", "fr": "Deux triangles semblables ont un rapport de similitude de 2:3. Si un côté du petit triangle mesure 4 cm, quelle est la longueur du côté correspondant du grand triangle ?", "es": "Dos triángulos semejantes tienen una razón de semejanza de 2:3. Si un lado del triángulo menor mide 4 cm, ¿cuál es el lado correspondiente del mayor?", "it": "Due triangoli simili hanno un rapporto di similitudine di 2:3. Se un lato del triangolo minore è 4 cm, quanto misura il lato corrispondente del triangolo maggiore?", "ru": "Два подобных треугольника имеют коэффициент подобия 2:3. Если сторона меньшего треугольника равна 4 см, чему равна соответствующая сторона большего?", "pt": "Dois triângulos semelhantes têm razão de semelhança 2:3. Se um lado do triângulo menor mede 4 cm, qual é o lado correspondente do maior?"}, "hint": {"sr": "Pomnoži 4 cm sa 3/2.", "en": "Multiply 4 cm by 3/2.", "de": "Multipliziere 4 cm mit 3/2.", "fr": "Multiplie 4 cm par 3/2.", "es": "Multiplica 4 cm por 3/2.", "it": "Moltiplica 4 cm per 3/2.", "ru": "Умножь 4 см на 3/2.", "pt": "Multiplica 4 cm por 3/2."}, "opts": [{"em": "🍬", "t": {"sr": "6 cm", "en": "6 cm", "de": "6 cm", "fr": "6 cm", "es": "6 cm", "it": "6 cm", "ru": "6 см", "pt": "6 cm"}}, {"em": "✨", "t": {"sr": "8 cm", "en": "8 cm", "de": "8 cm", "fr": "8 cm", "es": "8 cm", "it": "8 cm", "ru": "8 см", "pt": "8 cm"}}, {"em": "🌸", "t": {"sr": "5 cm", "en": "5 cm", "de": "5 cm", "fr": "5 cm", "es": "5 cm", "it": "5 cm", "ru": "5 см", "pt": "5 cm"}}, {"em": "💫", "t": {"sr": "4 cm", "en": "4 cm", "de": "4 cm", "fr": "4 cm", "es": "4 cm", "it": "4 cm", "ru": "4 см", "pt": "4 cm"}}], "c": 0}, {"q": {"sr": "Prizma ima površinu osnove B = 20 cm² i visinu H = 5 cm. Kolika je zapremina V = B·H?", "en": "A prism has a base area of B = 20 cm² and a height of H = 5 cm. What is its volume V = B·H?", "de": "Ein Prisma hat eine Grundfläche von B = 20 cm² und eine Höhe von H = 5 cm. Wie groß ist das Volumen V = B·H?", "fr": "Un prisme a une aire de base B = 20 cm² et une hauteur H = 5 cm. Quel est son volume V = B·H ?", "es": "Un prisma tiene un área de base B = 20 cm² y una altura H = 5 cm. ¿Cuál es su volumen V = B·H?", "it": "Un prisma ha un'area di base B = 20 cm² e un'altezza H = 5 cm. Qual è il suo volume V = B·H?", "ru": "У призмы площадь основания B = 20 см² и высота H = 5 см. Чему равен объём V = B·H?", "pt": "Um prisma tem área da base B = 20 cm² e altura H = 5 cm. Qual é o seu volume V = B·H?"}, "hint": {"sr": "Pomnoži površinu osnove sa visinom.", "en": "Multiply the base area by the height.", "de": "Multipliziere die Grundfläche mit der Höhe.", "fr": "Multiplie l'aire de la base par la hauteur.", "es": "Multiplica el área de la base por la altura.", "it": "Moltiplica l'area di base per l'altezza.", "ru": "Умножь площадь основания на высоту.", "pt": "Multiplica a área da base pela altura."}, "opts": [{"em": "🍬", "t": {"sr": "100 cm³", "en": "100 cm³", "de": "100 cm³", "fr": "100 cm³", "es": "100 cm³", "it": "100 cm³", "ru": "100 см³", "pt": "100 cm³"}}, {"em": "✨", "t": {"sr": "25 cm³", "en": "25 cm³", "de": "25 cm³", "fr": "25 cm³", "es": "25 cm³", "it": "25 cm³", "ru": "25 см³", "pt": "25 cm³"}}, {"em": "🌸", "t": {"sr": "15 cm³", "en": "15 cm³", "de": "15 cm³", "fr": "15 cm³", "es": "15 cm³", "it": "15 cm³", "ru": "15 см³", "pt": "15 cm³"}}, {"em": "💫", "t": {"sr": "4 cm³", "en": "4 cm³", "de": "4 cm³", "fr": "4 cm³", "es": "4 cm³", "it": "4 cm³", "ru": "4 см³", "pt": "4 cm³"}}], "c": 0}, {"q": {"sr": "Valjak ima poluprečnik osnove r = 2 cm i visinu H = 5 cm. Kolika je zapremina V = r²π·H?", "en": "A cylinder has a base radius r = 2 cm and height H = 5 cm. What is its volume V = r²π·H?", "de": "Ein Zylinder hat einen Grundradius r = 2 cm und eine Höhe H = 5 cm. Wie groß ist das Volumen V = r²π·H?", "fr": "Un cylindre a un rayon de base r = 2 cm et une hauteur H = 5 cm. Quel est son volume V = r²π·H ?", "es": "Un cilindro tiene un radio de base r = 2 cm y una altura H = 5 cm. ¿Cuál es su volumen V = r²π·H?", "it": "Un cilindro ha raggio di base r = 2 cm e altezza H = 5 cm. Qual è il suo volume V = r²π·H?", "ru": "У цилиндра радиус основания r = 2 см и высота H = 5 см. Чему равен объём V = r²π·H?", "pt": "Um cilindro tem raio da base r = 2 cm e altura H = 5 cm. Qual é o seu volume V = r²π·H?"}, "hint": {"sr": "Izračunaj r² = 4, pa pomnoži sa π i sa H.", "en": "Compute r² = 4, then multiply by π and by H.", "de": "Berechne r² = 4, dann multipliziere mit π und mit H.", "fr": "Calcule r² = 4, puis multiplie par π et par H.", "es": "Calcula r² = 4, luego multiplica por π y por H.", "it": "Calcola r² = 4, poi moltiplica per π e per H.", "ru": "Вычисли r² = 4, затем умножь на π и на H.", "pt": "Calcula r² = 4, depois multiplica por π e por H."}, "opts": [{"em": "🍬", "t": {"sr": "20π cm³", "en": "20π cm³", "de": "20π cm³", "fr": "20π cm³", "es": "20π cm³", "it": "20π cm³", "ru": "20π см³", "pt": "20π cm³"}}, {"em": "✨", "t": {"sr": "10π cm³", "en": "10π cm³", "de": "10π cm³", "fr": "10π cm³", "es": "10π cm³", "it": "10π cm³", "ru": "10π см³", "pt": "10π cm³"}}, {"em": "🌸", "t": {"sr": "40π cm³", "en": "40π cm³", "de": "40π cm³", "fr": "40π cm³", "es": "40π cm³", "it": "40π cm³", "ru": "40π см³", "pt": "40π cm³"}}, {"em": "💫", "t": {"sr": "8π cm³", "en": "8π cm³", "de": "8π cm³", "fr": "8π cm³", "es": "8π cm³", "it": "8π cm³", "ru": "8π см³", "pt": "8π cm³"}}], "c": 0}, {"q": {"sr": "Data je funkcija f(x) = 2x - 1. Kolika je vrednost f(3)?", "en": "Given the function f(x) = 2x - 1, what is the value of f(3)?", "de": "Gegeben ist die Funktion f(x) = 2x - 1. Wie lautet der Wert von f(3)?", "fr": "Soit la fonction f(x) = 2x - 1. Quelle est la valeur de f(3) ?", "es": "Dada la función f(x) = 2x - 1, ¿cuál es el valor de f(3)?", "it": "Data la funzione f(x) = 2x - 1, quanto vale f(3)?", "ru": "Дана функция f(x) = 2x - 1. Чему равно значение f(3)?", "pt": "Dada a função f(x) = 2x - 1, qual é o valor de f(3)?"}, "hint": {"sr": "Zameni x sa 3 i izračunaj.", "en": "Substitute x with 3 and calculate.", "de": "Setze x = 3 ein und berechne.", "fr": "Remplace x par 3 et calcule.", "es": "Sustituye x por 3 y calcula.", "it": "Sostituisci x con 3 e calcola.", "ru": "Подставь x = 3 и вычисли.", "pt": "Substitui x por 3 e calcula."}, "opts": [{"em": "🍬", "t": {"sr": "5", "en": "5", "de": "5", "fr": "5", "es": "5", "it": "5", "ru": "5", "pt": "5"}}, {"em": "✨", "t": {"sr": "6", "en": "6", "de": "6", "fr": "6", "es": "6", "it": "6", "ru": "6", "pt": "6"}}, {"em": "🌸", "t": {"sr": "3", "en": "3", "de": "3", "fr": "3", "es": "3", "it": "3", "ru": "3", "pt": "3"}}, {"em": "💫", "t": {"sr": "7", "en": "7", "de": "7", "fr": "7", "es": "7", "it": "7", "ru": "7", "pt": "7"}}], "c": 0}], "C": {"fbok": {"sr": ["Bravo! ✨", "Tako je! 💛", "Sjajno! 🎉", "Baš tako! 🌸"], "en": ["Great! ✨", "That's it! 💛", "Awesome! 🎉", "Exactly! 🌸"], "de": ["Super! ✨", "Richtig! 💛", "Klasse! 🎉", "Genau! 🌸"], "fr": ["Bravo ! ✨", "C'est ça ! 💛", "Super ! 🎉", "Exact ! 🌸"], "es": ["¡Genial! ✨", "¡Eso es! 💛", "¡Increíble! 🎉", "¡Exacto! 🌸"], "it": ["Bravo! ✨", "Esatto! 💛", "Fantastico! 🎉", "Proprio così! 🌸"], "ru": ["Молодец! ✨", "Верно! 💛", "Отлично! 🎉", "Именно! 🌸"], "pt": ["Boa! ✨", "É isso! 💛", "Incrível! 🎉", "Exato! 🌸"]}, "fbno": {"sr": "Skoro! Tačno je označeno 💡", "en": "Almost! The correct one is marked 💡", "de": "Fast! Die richtige ist markiert 💡", "fr": "Presque ! La bonne est marquée 💡", "es": "¡Casi! La correcta está marcada 💡", "it": "Quasi! Quella giusta è segnata 💡", "ru": "Почти! Правильный отмечен 💡", "pt": "Quase! A certa está marcada 💡"}, "qword": {"sr": "Pitanje", "en": "Question", "de": "Frage", "fr": "Question", "es": "Pregunta", "it": "Domanda", "ru": "Вопрос", "pt": "Pergunta"}, "next": {"sr": "Dalje →", "en": "Next →", "de": "Weiter →", "fr": "Suivant →", "es": "Siguiente →", "it": "Avanti →", "ru": "Дальше →", "pt": "Seguinte →"}, "nextlast": {"sr": "Vidi rezultat 🎁", "en": "See result 🎁", "de": "Ergebnis ansehen 🎁", "fr": "Voir le résultat 🎁", "es": "Ver resultado 🎁", "it": "Vedi risultato 🎁", "ru": "Результат 🎁", "pt": "Ver resultado 🎁"}, "rwin": {"sr": "Ja to mogu! 🎉", "en": "I can do this! 🎉", "de": "Ich kann das! 🎉", "fr": "J'y arrive ! 🎉", "es": "¡Yo puedo! 🎉", "it": "Ce la faccio! 🎉", "ru": "У меня получилось! 🎉", "pt": "Eu consigo! 🎉"}, "rmid": {"sr": "Super napredak!", "en": "Great progress!", "de": "Toller Fortschritt!", "fr": "Beau progrès !", "es": "¡Buen progreso!", "it": "Ottimi progressi!", "ru": "Отличный прогресс!", "pt": "Ótimo progresso!"}, "rlow": {"sr": "Odličan početak!", "en": "Great start!", "de": "Toller Anfang!", "fr": "Bon début !", "es": "¡Buen comienzo!", "it": "Ottimo inizio!", "ru": "Отличное начало!", "pt": "Ótimo começo!"}, "mwin": {"sr": "Sjajno ti ide — pravi si as!", "en": "You're doing great — a real star!", "de": "Klasse — ein echter Star!", "fr": "Tu assures — une vraie star !", "es": "¡Lo haces genial — toda una estrella!", "it": "Vai alla grande — una vera stella!", "ru": "Отлично — ты настоящая звезда!", "pt": "Vais muito bem — uma estrela!"}, "mmid": {"sr": "Još malo vežbe i sve je tvoje 💪", "en": "A little more practice and you've got it 💪", "de": "Noch etwas Übung und du hast es 💪", "fr": "Encore un peu et c'est gagné 💪", "es": "Un poco más y lo tienes 💪", "it": "Ancora un po' e ci sei 💪", "ru": "Ещё немного практики — и всё твоё 💪", "pt": "Mais um pouco e é teu 💪"}, "mlow": {"sr": "Hajde da ovo pređemo zajedno 💛", "en": "Let's go through this together 💛", "de": "Gehen wir das zusammen durch 💛", "fr": "Voyons ça ensemble 💛", "es": "Repasémoslo juntos 💛", "it": "Rivediamolo insieme 💛", "ru": "Давай разберём это вместе 💛", "pt": "Vamos ver isto juntos 💛"}, "score": {"sr": "Tačno", "en": "Correct", "de": "Richtig", "fr": "Correct", "es": "Correcto", "it": "Corretto", "ru": "Верно", "pt": "Correto"}, "toclone": {"sr": "Uči dalje uz Profesoricu 💛", "en": "Keep learning with Profesorica 💛", "de": "Weiterlernen mit Profesorica 💛", "fr": "Continue avec Profesorica 💛", "es": "Sigue con Profesorica 💛", "it": "Continua con Profesorica 💛", "ru": "Учись дальше с Profesorica 💛", "pt": "Continua com a Profesorica 💛"}, "again": {"sr": "↻ Probaj ponovo", "en": "↻ Try again", "de": "↻ Nochmal", "fr": "↻ Réessayer", "es": "↻ Reintentar", "it": "↻ Riprova", "ru": "↻ Ещё раз", "pt": "↻ Tentar de novo"}}, "back": "osnovna-matematika-8.html"};
+var $=function(id){return document.getElementById(id)};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2).toLowerCase();if(D.C.next[s])return s;}}catch(e){}return 'sr'}
+var i=0,score=0,hearts=3,streak=0,answered=false;
+function T(o){var l=lng();return (o&&o[l])||o.sr||''}
+function chrome(){
+ $('eyebrow').textContent=T(D.eyebrow);
+ $('again').textContent=T(D.C.again);
+ $('toClone').textContent=T(D.C.toclone);
+ $('rbadge').textContent=T(D.badge);
+ var s=$('lang');if(s)s.value=lng();
+}
+var curOrder=[],curCorrect=0,curBtns=[];
+function render(){
+ answered=false;var it=D.questions[i];
+ $('qnum').textContent=T(D.C.qword)+' '+(i+1)+' / '+D.questions.length;
+ $('q').textContent=T(it.q);$('qhint').textContent=T(it.hint);
+ $('mascot').textContent='🦉';$('fb').textContent='';$('fb').className='fb';
+ $('next').classList.add('hidden');$('prog').style.width=(i/D.questions.length*100)+'%';
+ // izmešaj opcije (pozicija tačnog nije uvek ista); zadrži isti redosled dok se pitanje ne promeni
+ if(!it.__ord){var ord=it.opts.map(function(_,x){return x});for(var a=ord.length-1;a>0;a--){var r=Math.floor(Math.random()*(a+1));var t=ord[a];ord[a]=ord[r];ord[r]=t;}it.__ord=ord;}
+ curOrder=it.__ord;curCorrect=curOrder.indexOf(it.c);curBtns=[];
+ var box=$('opts');box.innerHTML='';
+ curOrder.forEach(function(orig,pos){var op=it.opts[orig];var b=document.createElement('button');b.className='opt';
+   b.innerHTML='<span class="em">'+op.em+'</span><span>'+(T(op.t))+'</span>';
+   b.style.animation='pop .35s '+(pos*0.05)+'s both';b.onclick=function(){pick(pos,b)};box.appendChild(b);curBtns.push(b);});
+ chrome();
+}
+function pick(pos,btn){
+ if(answered)return;answered=true;var ok=(pos===curCorrect);
+ curBtns.forEach(function(o,idx){o.style.pointerEvents='none';if(idx===curCorrect)o.classList.add('correct');});
+ if(ok){btn.classList.add('correct');score++;streak++;$('streak').textContent='🔥 '+streak;
+   $('mascot').textContent=['🥳','😻','🌟','💯','🎈'][Math.floor(Math.random()*5)];
+   var p=D.C.fbok[lng()]||D.C.fbok.sr;$('fb').textContent=p[Math.floor(Math.random()*p.length)];$('fb').className='fb ok';miniConf();
+ }else{btn.classList.add('wrong');streak=0;$('streak').textContent='🔥 0';hearts--;
+   $('hearts').textContent='❤️'.repeat(Math.max(0,hearts))+'🤍'.repeat(3-Math.max(0,hearts));
+   $('mascot').textContent='🫣';$('fb').textContent=T(D.C.fbno);$('fb').className='fb no';}
+ $('next').classList.remove('hidden');
+ $('next').textContent=(i===D.questions.length-1)?T(D.C.nextlast):T(D.C.next);
+}
+$('next').onclick=function(){i++;if(i>=D.questions.length||hearts<=0){finish();return;}render();};
+function finish(){
+ $('prog').style.width='100%';$('quiz').classList.add('hidden');$('report').classList.remove('hidden');
+ $('rscore').textContent=T(D.C.score)+': '+score+' / '+D.questions.length;
+ var pct=score/D.questions.length;
+ if(pct>=0.8){$('rbig').textContent='🏆';$('rtitle').textContent=T(D.C.rwin);$('rmsg').textContent=T(D.C.mwin);$('rbadge').style.display='';bigConf();}
+ else if(pct>=0.5){$('rbig').textContent='🌟';$('rtitle').textContent=T(D.C.rmid);$('rmsg').textContent=T(D.C.mmid);$('rbadge').style.display='';bigConf();}
+ else{$('rbig').textContent='🌱';$('rtitle').textContent=T(D.C.rlow);$('rmsg').textContent=T(D.C.mlow);$('rbadge').style.display='none';}
+ chrome();
+}
+$('again').onclick=function(){i=0;score=0;hearts=3;streak=0;$('hearts').textContent='❤️❤️❤️';$('streak').textContent='🔥 0';$('report').classList.add('hidden');$('quiz').classList.remove('hidden');render();};
+$('toClone').onclick=function(){location.href=D.back;};
+function spawnConf(n){var box=$('conf');var cols=['#C6A05C','#B01E48','#CC5E7E','#F0DCA8','#3FB98C','#E7D2A2'];for(var k=0;k<n;k++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[k%cols.length];s.style.animationDuration=(1.6+Math.random()*1.4)+'s';s.style.transform='rotate('+Math.random()*360+'deg)';if(Math.random()<.25)s.style.borderRadius='50%';box.appendChild(s);setTimeout(function(el){return function(){el.remove()}}(s),3200);}}
+function miniConf(){spawnConf(14)}
+function bigConf(){spawnConf(90);var h=['💛','🌸','✨','🎉'];for(var k=0;k<16;k++){(function(k){setTimeout(function(){var s=document.createElement('i');s.textContent=h[k%4];s.style.cssText='position:absolute;top:-6%;font-size:20px;left:'+(Math.random()*100)+'%;animation:cf '+(1.8+Math.random())+'s linear forwards';$('conf').appendChild(s);setTimeout(function(){s.remove()},3200)},k*60)})(k);}}
+(function(){var box=$('fall'),g=['π','√','∑','+','÷','½','💛','🌸','✦','⭐'];for(var k=0;k<22;k++){var s=document.createElement('span');s.textContent=g[k%g.length];if(k%3===0)s.className='m';s.style.left=Math.random()*100+'%';s.style.fontSize=(13+Math.random()*22)+'px';s.style.animationDuration=(7+Math.random()*8)+'s';s.style.animationDelay=(-Math.random()*10)+'s';box.appendChild(s);}})();
+$('lang').addEventListener('change',function(){try{localStorage.setItem('mathia_lang',this.value);}catch(e){}try{document.documentElement.lang=this.value;}catch(e){}try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:this.value}));}catch(e){}render();});
+window.addEventListener('mathia:lang',function(){if(!$('report').classList.contains('hidden'))finish();else render();});
+render();
+</script>
+</body>
+</html>

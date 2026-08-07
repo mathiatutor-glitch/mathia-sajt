@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathia — Provera znanja · Fizika 6 🎯</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EE;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--goldlt:#F0DCA8;--malina:#B01E48;--malina2:#CC5E7E;--mint:#3FB98C;--muted:#8A7A80}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#43303A;min-height:100vh;
+ background:radial-gradient(900px 500px at 82% -8%,#F6E1EC 0,rgba(246,225,236,0) 60%),radial-gradient(760px 460px at 6% 106%,#F7ECD6 0,rgba(247,236,214,0) 62%),radial-gradient(600px 500px at 50% 120%,#EDE3FB 0,rgba(237,227,251,0) 60%),var(--cream);overflow-x:hidden}
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.22);animation:fl linear infinite}
+#fall span.m{color:rgba(176,30,72,.16)}
+@keyframes fl{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(24deg);opacity:0}}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:14px 18px 40px}
+.top{display:flex;align-items:center;gap:12px;padding:6px 2px 12px}
+.top .back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:1.1rem}
+.top .lang{margin-left:auto;border:1px solid var(--goldlt);border-radius:100px;padding:5px 10px;font-family:inherit;font-weight:800;font-size:.72rem;color:var(--ink);background:#fff}
+.bar{flex:1;height:14px;border-radius:100px;background:#EEE1D8;overflow:hidden;box-shadow:inset 0 1px 3px rgba(120,60,70,.12)}
+.bar>i{display:block;height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--malina));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.hearts{font-size:1rem;white-space:nowrap}.streak{font-weight:900;color:var(--gold);font-size:.95rem;white-space:nowrap}
+.card{background:linear-gradient(180deg,#FFFDF9,#FDF3EA);border:1px solid var(--goldlt);border-radius:30px;padding:24px 22px;box-shadow:0 30px 70px -34px rgba(90,16,36,.5);animation:pop .5s cubic-bezier(.2,.9,.2,1)}
+@keyframes pop{0%{transform:scale(.92) translateY(12px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+.eyebrow{text-align:center;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:.66rem;color:var(--malina)}
+.qnum{display:block;text-align:center;margin:2px 0 6px;color:var(--muted);font-weight:800;font-size:.8rem}
+.mascot{width:74px;height:74px;margin:2px auto 6px;border-radius:50%;display:grid;place-items:center;font-size:2.3rem;background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC);border:2px solid var(--goldlt);box-shadow:0 12px 26px -12px rgba(176,30,72,.4);animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.q{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.45rem;text-align:center;line-height:1.25;margin:4px 0}
+.qhint{text-align:center;color:var(--ink2);font-size:.9rem;margin:2px 0 14px}
+.opts{display:grid;gap:11px}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #EFE0D6;border-radius:18px;padding:13px 16px;font-weight:800;font-size:1.05rem;color:var(--ink);cursor:pointer;transition:transform .12s,border-color .15s,background .15s;text-align:left}
+.opt .em{font-size:1.3rem}
+.opt:hover{transform:translateY(-2px);border-color:var(--gold)}
+.opt.correct{border-color:var(--mint);background:linear-gradient(180deg,#F1FBF6,#E4F6EE);animation:good .5s}
+.opt.wrong{border-color:var(--malina);background:linear-gradient(180deg,#FDEFF3,#FBE3EA);animation:shake .4s}
+@keyframes good{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{margin-top:12px;text-align:center;font-weight:900;font-size:1.05rem;min-height:24px}
+.fb.ok{color:var(--mint)}.fb.no{color:var(--malina)}
+.cta{display:block;width:100%;margin-top:14px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:900;font-size:1.05rem;padding:15px;border-radius:100px;box-shadow:0 16px 30px -14px rgba(176,30,72,.6);transition:transform .15s}
+.cta:hover{transform:translateY(-2px)}
+.hidden{display:none}
+.result{text-align:center}.result .big{font-size:3.4rem;margin:4px 0}.result h2{font-family:'Spectral',serif;color:var(--ink);font-size:1.9rem;margin:2px 0}
+.result .score{font-weight:900;color:var(--gold);font-size:1.15rem}.result .msg{color:var(--ink2);margin:8px 0 4px}
+.badge{display:inline-flex;align-items:center;gap:8px;margin:12px auto 4px;background:linear-gradient(135deg,#FFF3D6,#F3DFA6);border:1px solid var(--goldlt);border-radius:100px;padding:10px 18px;font-weight:900;color:#8a6a1e;box-shadow:0 10px 22px -12px rgba(160,120,40,.6)}
+.again{margin-top:12px;background:none;border:none;color:var(--ink2);font-weight:800;cursor:pointer;text-decoration:underline}
+#conf{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+#conf i{position:absolute;top:-6%;width:10px;height:14px;border-radius:2px;animation:cf linear forwards}
+@keyframes cf{to{transform:translateY(110vh) rotate(560deg);opacity:.9}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="fall" aria-hidden="true"></div>
+<div id="conf" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="top">
+    <a class="back" href="osnovna-fizika-6.html">←</a>
+    <div class="bar"><i id="prog"></i></div>
+    <span class="hearts" id="hearts">❤️❤️❤️</span>
+    <span class="streak" id="streak">🔥 0</span>
+    <select class="lang" id="lang" aria-label="Jezik"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+  </div>
+  <section class="card" id="quiz">
+    <div class="eyebrow" id="eyebrow"></div>
+    <span class="qnum" id="qnum"></span>
+    <div class="mascot" id="mascot">🦉</div>
+    <h2 class="q" id="q"></h2>
+    <p class="qhint" id="qhint"></p>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <button class="cta hidden" id="next"></button>
+  </section>
+  <section class="card result hidden" id="report">
+    <div class="big" id="rbig">🎉</div>
+    <h2 id="rtitle"></h2>
+    <div class="score" id="rscore"></div>
+    <p class="msg" id="rmsg"></p>
+    <div class="badge" id="rbadge"></div>
+    <button class="cta" id="toClone"></button>
+    <br><button class="again" id="again"></button>
+  </section>
+</main>
+<script>
+var D={"eyebrow": {"sr": "Provera znanja · Fizika 6 🎯", "en": "Knowledge Check · Physics 6 🎯", "de": "Wissenscheck · Physik 6 🎯", "fr": "Contrôle des connaissances · Physique 6 🎯", "es": "Control de conocimientos · Física 6 🎯", "it": "Verifica delle conoscenze · Fisica 6 🎯", "ru": "Проверка знаний · Физика 6 🎯", "pt": "Verificação de conhecimentos · Física 6 🎯"}, "badge": {"sr": "🏅 Bedž: Fizičar 6", "en": "🏅 Badge: Physicist 6", "de": "🏅 Abzeichen: Physiker 6", "fr": "🏅 Badge : Physicien 6", "es": "🏅 Insignia: Físico 6", "it": "🏅 Distintivo: Fisico 6", "ru": "🏅 Значок: Физик 6", "pt": "🏅 Distintivo: Físico 6"}, "questions": [{"q": {"sr": "Kojom formulom izračunavamo brzinu ravnomernog kretanja?", "en": "Which formula do we use to calculate the speed of uniform motion?", "de": "Mit welcher Formel berechnet man die Geschwindigkeit einer gleichförmigen Bewegung?", "fr": "Quelle formule utilise-t-on pour calculer la vitesse d'un mouvement uniforme ?", "es": "¿Qué fórmula usamos para calcular la velocidad de un movimiento uniforme?", "it": "Quale formula si usa per calcolare la velocità di un moto uniforme?", "ru": "По какой формуле вычисляют скорость равномерного движения?", "pt": "Qual fórmula usamos para calcular a velocidade de um movimento uniforme?"}, "hint": {"sr": "Brzina je put podeljen vremenom.", "en": "Speed is distance divided by time.", "de": "Geschwindigkeit ist Weg geteilt durch Zeit.", "fr": "La vitesse est la distance divisée par le temps.", "es": "La velocidad es la distancia dividida por el tiempo.", "it": "La velocità è lo spazio diviso per il tempo.", "ru": "Скорость — это путь, делённый на время.", "pt": "Velocidade é a distância dividida pelo tempo."}, "opts": [{"em": "🚀", "t": {"sr": "v = s · t", "en": "v = s · t", "de": "v = s · t", "fr": "v = s · t", "es": "v = s · t", "it": "v = s · t", "ru": "v = s · t", "pt": "v = s · t"}}, {"em": "✨", "t": {"sr": "v = s / t", "en": "v = s / t", "de": "v = s / t", "fr": "v = s / t", "es": "v = s / t", "it": "v = s / t", "ru": "v = s / t", "pt": "v = s / t"}}, {"em": "🌸", "t": {"sr": "v = t / s", "en": "v = t / s", "de": "v = t / s", "fr": "v = t / s", "es": "v = t / s", "it": "v = t / s", "ru": "v = t / s", "pt": "v = t / s"}}, {"em": "💫", "t": {"sr": "v = s + t", "en": "v = s + t", "de": "v = s + t", "fr": "v = s + t", "es": "v = s + t", "it": "v = s + t", "ru": "v = s + t", "pt": "v = s + t"}}], "c": 1}, {"q": {"sr": "Koja je osnovna (SI) jedinica za brzinu?", "en": "What is the basic (SI) unit for speed?", "de": "Was ist die grundlegende (SI-)Einheit für die Geschwindigkeit?", "fr": "Quelle est l'unité de base (SI) de la vitesse ?", "es": "¿Cuál es la unidad básica (SI) de la velocidad?", "it": "Qual è l'unità di misura di base (SI) della velocità?", "ru": "Какова основная (СИ) единица измерения скорости?", "pt": "Qual é a unidade básica (SI) de velocidade?"}, "hint": {"sr": "Brzina se meri odnosom dužine i vremena.", "en": "Speed is measured as a ratio of length and time.", "de": "Die Geschwindigkeit wird als Verhältnis von Länge und Zeit gemessen.", "fr": "La vitesse se mesure par le rapport entre longueur et temps.", "es": "La velocidad se mide como una relación entre longitud y tiempo.", "it": "La velocità si misura come rapporto tra lunghezza e tempo.", "ru": "Скорость измеряется как отношение длины ко времени.", "pt": "A velocidade é medida como a razão entre comprimento e tempo."}, "opts": [{"em": "🚀", "t": {"sr": "km/h", "en": "km/h", "de": "km/h", "fr": "km/h", "es": "km/h", "it": "km/h", "ru": "km/h", "pt": "km/h"}}, {"em": "✨", "t": {"sr": "kg/m³", "en": "kg/m³", "de": "kg/m³", "fr": "kg/m³", "es": "kg/m³", "it": "kg/m³", "ru": "kg/m³", "pt": "kg/m³"}}, {"em": "🌸", "t": {"sr": "N", "en": "N", "de": "N", "fr": "N", "es": "N", "it": "N", "ru": "N", "pt": "N"}}, {"em": "💫", "t": {"sr": "m/s", "en": "m/s", "de": "m/s", "fr": "m/s", "es": "m/s", "it": "m/s", "ru": "m/s", "pt": "m/s"}}], "c": 3}, {"q": {"sr": "Koja je SI jedinica za silu?", "en": "What is the SI unit for force?", "de": "Was ist die SI-Einheit für die Kraft?", "fr": "Quelle est l'unité SI de la force ?", "es": "¿Cuál es la unidad SI de la fuerza?", "it": "Qual è l'unità SI della forza?", "ru": "Какова единица измерения силы в СИ?", "pt": "Qual é a unidade SI de força?"}, "hint": {"sr": "Ova jedinica nosi ime po poznatom fizičaru.", "en": "This unit is named after a famous physicist.", "de": "Diese Einheit ist nach einem berühmten Physiker benannt.", "fr": "Cette unité porte le nom d'un physicien célèbre.", "es": "Esta unidad lleva el nombre de un físico famoso.", "it": "Questa unità prende il nome da un famoso fisico.", "ru": "Эта единица названа в честь известного физика.", "pt": "Esta unidade tem o nome de um físico famoso."}, "opts": [{"em": "🚀", "t": {"sr": "N", "en": "N", "de": "N", "fr": "N", "es": "N", "it": "N", "ru": "N", "pt": "N"}}, {"em": "✨", "t": {"sr": "kg", "en": "kg", "de": "kg", "fr": "kg", "es": "kg", "it": "kg", "ru": "kg", "pt": "kg"}}, {"em": "🌸", "t": {"sr": "Pa", "en": "Pa", "de": "Pa", "fr": "Pa", "es": "Pa", "it": "Pa", "ru": "Pa", "pt": "Pa"}}, {"em": "💫", "t": {"sr": "m", "en": "m", "de": "m", "fr": "m", "es": "m", "it": "m", "ru": "m", "pt": "m"}}], "c": 0}, {"q": {"sr": "Kojom formulom se izračunava gustina tela?", "en": "Which formula is used to calculate the density of a body?", "de": "Mit welcher Formel berechnet man die Dichte eines Körpers?", "fr": "Quelle formule permet de calculer la masse volumique d'un corps ?", "es": "¿Qué fórmula se usa para calcular la densidad de un cuerpo?", "it": "Quale formula si usa per calcolare la densità di un corpo?", "ru": "По какой формуле вычисляют плотность тела?", "pt": "Qual fórmula é usada para calcular a densidade de um corpo?"}, "hint": {"sr": "Gustina povezuje masu i zapreminu.", "en": "Density connects mass and volume.", "de": "Die Dichte verbindet Masse und Volumen.", "fr": "La masse volumique relie la masse et le volume.", "es": "La densidad relaciona la masa y el volumen.", "it": "La densità mette in relazione massa e volume.", "ru": "Плотность связывает массу и объём.", "pt": "A densidade relaciona massa e volume."}, "opts": [{"em": "🚀", "t": {"sr": "ρ = m · V", "en": "ρ = m · V", "de": "ρ = m · V", "fr": "ρ = m · V", "es": "ρ = m · V", "it": "ρ = m · V", "ru": "ρ = m · V", "pt": "ρ = m · V"}}, {"em": "✨", "t": {"sr": "ρ = V / m", "en": "ρ = V / m", "de": "ρ = V / m", "fr": "ρ = V / m", "es": "ρ = V / m", "it": "ρ = V / m", "ru": "ρ = V / m", "pt": "ρ = V / m"}}, {"em": "🌸", "t": {"sr": "ρ = m / V", "en": "ρ = m / V", "de": "ρ = m / V", "fr": "ρ = m / V", "es": "ρ = m / V", "it": "ρ = m / V", "ru": "ρ = m / V", "pt": "ρ = m / V"}}, {"em": "💫", "t": {"sr": "ρ = m + V", "en": "ρ = m + V", "de": "ρ = m + V", "fr": "ρ = m + V", "es": "ρ = m + V", "it": "ρ = m + V", "ru": "ρ = m + V", "pt": "ρ = m + V"}}], "c": 2}, {"q": {"sr": "Kojim instrumentom merimo masu tela?", "en": "Which instrument do we use to measure the mass of a body?", "de": "Mit welchem Instrument misst man die Masse eines Körpers?", "fr": "Avec quel instrument mesure-t-on la masse d'un corps ?", "es": "¿Con qué instrumento medimos la masa de un cuerpo?", "it": "Con quale strumento si misura la massa di un corpo?", "ru": "Каким прибором измеряют массу тела?", "pt": "Com que instrumento medimos a massa de um corpo?"}, "hint": {"sr": "Ovaj instrument ima tas ili kazaljku i skalu.", "en": "This instrument has a pan or a pointer and a scale.", "de": "Dieses Instrument hat eine Waagschale oder einen Zeiger und eine Skala.", "fr": "Cet instrument possède un plateau ou une aiguille et une échelle graduée.", "es": "Este instrumento tiene un platillo o una aguja y una escala.", "it": "Questo strumento ha un piatto o una lancetta e una scala graduata.", "ru": "У этого прибора есть чаша или стрелка и шкала.", "pt": "Este instrumento tem um prato ou um ponteiro e uma escala."}, "opts": [{"em": "🚀", "t": {"sr": "dinamometrom", "en": "dynamometer", "de": "Dynamometer", "fr": "dynamomètre", "es": "dinamómetro", "it": "dinamometro", "ru": "динамометр", "pt": "dinamómetro"}}, {"em": "✨", "t": {"sr": "vagom", "en": "scale (balance)", "de": "Waage", "fr": "balance", "es": "balanza", "it": "bilancia", "ru": "весы", "pt": "balança"}}, {"em": "🌸", "t": {"sr": "termometrom", "en": "thermometer", "de": "Thermometer", "fr": "thermomètre", "es": "termómetro", "it": "termometro", "ru": "термометр", "pt": "termómetro"}}], "c": 1}, {"q": {"sr": "Kada je poluga u ravnoteži?", "en": "When is a lever in equilibrium?", "de": "Wann befindet sich ein Hebel im Gleichgewicht?", "fr": "Quand un levier est-il en équilibre ?", "es": "¿Cuándo está una palanca en equilibrio?", "it": "Quando una leva è in equilibrio?", "ru": "Когда рычаг находится в равновесии?", "pt": "Quando é que uma alavanca está em equilíbrio?"}, "hint": {"sr": "Uporedi proizvode sile i kraka na obe strane.", "en": "Compare the products of force and arm on both sides.", "de": "Vergleiche die Produkte aus Kraft und Hebelarm auf beiden Seiten.", "fr": "Compare les produits de la force et du bras de levier des deux côtés.", "es": "Compara los productos de la fuerza y el brazo a ambos lados.", "it": "Confronta i prodotti di forza e braccio su entrambi i lati.", "ru": "Сравни произведения силы и плеча по обе стороны.", "pt": "Compara os produtos da força e do braço nos dois lados."}, "opts": [{"em": "🚀", "t": {"sr": "kad su sile jednake, bez obzira na krak", "en": "when the forces are equal, regardless of the arm", "de": "wenn die Kräfte gleich sind, unabhängig vom Hebelarm", "fr": "quand les forces sont égales, quel que soit le bras de levier", "es": "cuando las fuerzas son iguales, sin importar el brazo", "it": "quando le forze sono uguali, indipendentemente dal braccio", "ru": "когда силы равны, независимо от плеча", "pt": "quando as forças são iguais, independentemente do braço"}}, {"em": "✨", "t": {"sr": "kad je duži krak uvek više opterećen", "en": "when the longer arm is always more loaded", "de": "wenn der längere Hebelarm immer stärker belastet ist", "fr": "quand le bras le plus long est toujours plus chargé", "es": "cuando el brazo más largo siempre está más cargado", "it": "quando il braccio più lungo è sempre più caricato", "ru": "когда более длинное плечо всегда сильнее нагружено", "pt": "quando o braço mais longo está sempre mais carregado"}}, {"em": "🌸", "t": {"sr": "kad je zbir sila i krakova isti", "en": "when the sum of forces and arms is the same", "de": "wenn die Summe von Kräften und Hebelarmen gleich ist", "fr": "quand la somme des forces et des bras est la même", "es": "cuando la suma de las fuerzas y los brazos es igual", "it": "quando la somma di forze e bracci è uguale", "ru": "когда сумма сил и плеч одинакова", "pt": "quando a soma das forças e dos braços é igual"}}, {"em": "💫", "t": {"sr": "kad su proizvodi sile i kraka jednaki sa obe strane", "en": "when the products of force and arm are equal on both sides", "de": "wenn die Produkte aus Kraft und Hebelarm auf beiden Seiten gleich sind", "fr": "quand les produits de la force et du bras sont égaux des deux côtés", "es": "cuando los productos de la fuerza y el brazo son iguales en ambos lados", "it": "quando i prodotti di forza e braccio sono uguali su entrambi i lati", "ru": "когда произведения силы и плеча равны с обеих сторон", "pt": "quando os produtos da força e do braço são iguais nos dois lados"}}], "c": 3}, {"q": {"sr": "Kojom formulom izračunavamo pritisak?", "en": "Which formula do we use to calculate pressure?", "de": "Mit welcher Formel berechnet man den Druck?", "fr": "Quelle formule utilise-t-on pour calculer la pression ?", "es": "¿Qué fórmula usamos para calcular la presión?", "it": "Quale formula si usa per calcolare la pressione?", "ru": "По какой формуле вычисляют давление?", "pt": "Qual fórmula usamos para calcular a pressão?"}, "hint": {"sr": "Pritisak zavisi od sile i površine na koju deluje.", "en": "Pressure depends on the force and the surface it acts on.", "de": "Der Druck hängt von der Kraft und der Fläche ab, auf die sie wirkt.", "fr": "La pression dépend de la force et de la surface sur laquelle elle agit.", "es": "La presión depende de la fuerza y de la superficie sobre la que actúa.", "it": "La pressione dipende dalla forza e dalla superficie su cui agisce.", "ru": "Давление зависит от силы и площади, на которую она действует.", "pt": "A pressão depende da força e da superfície sobre a qual atua."}, "opts": [{"em": "🚀", "t": {"sr": "p = F / S", "en": "p = F / S", "de": "p = F / S", "fr": "p = F / S", "es": "p = F / S", "it": "p = F / S", "ru": "p = F / S", "pt": "p = F / S"}}, {"em": "✨", "t": {"sr": "p = F · S", "en": "p = F · S", "de": "p = F · S", "fr": "p = F · S", "es": "p = F · S", "it": "p = F · S", "ru": "p = F · S", "pt": "p = F · S"}}, {"em": "🌸", "t": {"sr": "p = S / F", "en": "p = S / F", "de": "p = S / F", "fr": "p = S / F", "es": "p = S / F", "it": "p = S / F", "ru": "p = S / F", "pt": "p = S / F"}}, {"em": "💫", "t": {"sr": "p = F + S", "en": "p = F + S", "de": "p = F + S", "fr": "p = F + S", "es": "p = F + S", "it": "p = F + S", "ru": "p = F + S", "pt": "p = F + S"}}], "c": 0}], "C": {"fbok": {"sr": ["Bravo! ✨", "Tako je! 💛", "Sjajno! 🎉", "Baš tako! 🌸"], "en": ["Great! ✨", "That's it! 💛", "Awesome! 🎉", "Exactly! 🌸"], "de": ["Super! ✨", "Richtig! 💛", "Klasse! 🎉", "Genau! 🌸"], "fr": ["Bravo ! ✨", "C'est ça ! 💛", "Super ! 🎉", "Exact ! 🌸"], "es": ["¡Genial! ✨", "¡Eso es! 💛", "¡Increíble! 🎉", "¡Exacto! 🌸"], "it": ["Bravo! ✨", "Esatto! 💛", "Fantastico! 🎉", "Proprio così! 🌸"], "ru": ["Молодец! ✨", "Верно! 💛", "Отлично! 🎉", "Именно! 🌸"], "pt": ["Boa! ✨", "É isso! 💛", "Incrível! 🎉", "Exato! 🌸"]}, "fbno": {"sr": "Skoro! Tačno je označeno 💡", "en": "Almost! The correct one is marked 💡", "de": "Fast! Die richtige ist markiert 💡", "fr": "Presque ! La bonne est marquée 💡", "es": "¡Casi! La correcta está marcada 💡", "it": "Quasi! Quella giusta è segnata 💡", "ru": "Почти! Правильный отмечен 💡", "pt": "Quase! A certa está marcada 💡"}, "qword": {"sr": "Pitanje", "en": "Question", "de": "Frage", "fr": "Question", "es": "Pregunta", "it": "Domanda", "ru": "Вопрос", "pt": "Pergunta"}, "next": {"sr": "Dalje →", "en": "Next →", "de": "Weiter →", "fr": "Suivant →", "es": "Siguiente →", "it": "Avanti →", "ru": "Дальше →", "pt": "Seguinte →"}, "nextlast": {"sr": "Vidi rezultat 🎁", "en": "See result 🎁", "de": "Ergebnis ansehen 🎁", "fr": "Voir le résultat 🎁", "es": "Ver resultado 🎁", "it": "Vedi risultato 🎁", "ru": "Результат 🎁", "pt": "Ver resultado 🎁"}, "rwin": {"sr": "Ja to mogu! 🎉", "en": "I can do this! 🎉", "de": "Ich kann das! 🎉", "fr": "J'y arrive ! 🎉", "es": "¡Yo puedo! 🎉", "it": "Ce la faccio! 🎉", "ru": "У меня получилось! 🎉", "pt": "Eu consigo! 🎉"}, "rmid": {"sr": "Super napredak!", "en": "Great progress!", "de": "Toller Fortschritt!", "fr": "Beau progrès !", "es": "¡Buen progreso!", "it": "Ottimi progressi!", "ru": "Отличный прогресс!", "pt": "Ótimo progresso!"}, "rlow": {"sr": "Odličan početak!", "en": "Great start!", "de": "Toller Anfang!", "fr": "Bon début !", "es": "¡Buen comienzo!", "it": "Ottimo inizio!", "ru": "Отличное начало!", "pt": "Ótimo começo!"}, "mwin": {"sr": "Sjajno ti ide — pravi si as!", "en": "You're doing great — a real star!", "de": "Klasse — ein echter Star!", "fr": "Tu assures — une vraie star !", "es": "¡Lo haces genial — toda una estrella!", "it": "Vai alla grande — una vera stella!", "ru": "Отлично — ты настоящая звезда!", "pt": "Vais muito bem — uma estrela!"}, "mmid": {"sr": "Još malo vežbe i sve je tvoje 💪", "en": "A little more practice and you've got it 💪", "de": "Noch etwas Übung und du hast es 💪", "fr": "Encore un peu et c'est gagné 💪", "es": "Un poco más y lo tienes 💪", "it": "Ancora un po' e ci sei 💪", "ru": "Ещё немного практики — и всё твоё 💪", "pt": "Mais um pouco e é teu 💪"}, "mlow": {"sr": "Hajde da ovo pređemo zajedno 💛", "en": "Let's go through this together 💛", "de": "Gehen wir das zusammen durch 💛", "fr": "Voyons ça ensemble 💛", "es": "Repasémoslo juntos 💛", "it": "Rivediamolo insieme 💛", "ru": "Давай разберём это вместе 💛", "pt": "Vamos ver isto juntos 💛"}, "score": {"sr": "Tačno", "en": "Correct", "de": "Richtig", "fr": "Correct", "es": "Correcto", "it": "Corretto", "ru": "Верно", "pt": "Correto"}, "toclone": {"sr": "Uči dalje uz Profesoricu 💛", "en": "Keep learning with Profesorica 💛", "de": "Weiterlernen mit Profesorica 💛", "fr": "Continue avec Profesorica 💛", "es": "Sigue con Profesorica 💛", "it": "Continua con Profesorica 💛", "ru": "Учись дальше с Profesorica 💛", "pt": "Continua com a Profesorica 💛"}, "again": {"sr": "↻ Probaj ponovo", "en": "↻ Try again", "de": "↻ Nochmal", "fr": "↻ Réessayer", "es": "↻ Reintentar", "it": "↻ Riprova", "ru": "↻ Ещё раз", "pt": "↻ Tentar de novo"}}, "back": "osnovna-fizika-6.html"};
+var $=function(id){return document.getElementById(id)};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2).toLowerCase();if(D.C.next[s])return s;}}catch(e){}return 'sr'}
+var i=0,score=0,hearts=3,streak=0,answered=false;
+function T(o){var l=lng();return (o&&o[l])||o.sr||''}
+function chrome(){
+ $('eyebrow').textContent=T(D.eyebrow);
+ $('again').textContent=T(D.C.again);
+ $('toClone').textContent=T(D.C.toclone);
+ $('rbadge').textContent=T(D.badge);
+ var s=$('lang');if(s)s.value=lng();
+}
+var curOrder=[],curCorrect=0,curBtns=[];
+function render(){
+ answered=false;var it=D.questions[i];
+ $('qnum').textContent=T(D.C.qword)+' '+(i+1)+' / '+D.questions.length;
+ $('q').textContent=T(it.q);$('qhint').textContent=T(it.hint);
+ $('mascot').textContent='🦉';$('fb').textContent='';$('fb').className='fb';
+ $('next').classList.add('hidden');$('prog').style.width=(i/D.questions.length*100)+'%';
+ // izmešaj opcije (pozicija tačnog nije uvek ista); zadrži isti redosled dok se pitanje ne promeni
+ if(!it.__ord){var ord=it.opts.map(function(_,x){return x});for(var a=ord.length-1;a>0;a--){var r=Math.floor(Math.random()*(a+1));var t=ord[a];ord[a]=ord[r];ord[r]=t;}it.__ord=ord;}
+ curOrder=it.__ord;curCorrect=curOrder.indexOf(it.c);curBtns=[];
+ var box=$('opts');box.innerHTML='';
+ curOrder.forEach(function(orig,pos){var op=it.opts[orig];var b=document.createElement('button');b.className='opt';
+   b.innerHTML='<span class="em">'+op.em+'</span><span>'+(T(op.t))+'</span>';
+   b.style.animation='pop .35s '+(pos*0.05)+'s both';b.onclick=function(){pick(pos,b)};box.appendChild(b);curBtns.push(b);});
+ chrome();
+}
+function pick(pos,btn){
+ if(answered)return;answered=true;var ok=(pos===curCorrect);
+ curBtns.forEach(function(o,idx){o.style.pointerEvents='none';if(idx===curCorrect)o.classList.add('correct');});
+ if(ok){btn.classList.add('correct');score++;streak++;$('streak').textContent='🔥 '+streak;
+   $('mascot').textContent=['🥳','😻','🌟','💯','🎈'][Math.floor(Math.random()*5)];
+   var p=D.C.fbok[lng()]||D.C.fbok.sr;$('fb').textContent=p[Math.floor(Math.random()*p.length)];$('fb').className='fb ok';miniConf();
+ }else{btn.classList.add('wrong');streak=0;$('streak').textContent='🔥 0';hearts--;
+   $('hearts').textContent='❤️'.repeat(Math.max(0,hearts))+'🤍'.repeat(3-Math.max(0,hearts));
+   $('mascot').textContent='🫣';$('fb').textContent=T(D.C.fbno);$('fb').className='fb no';}
+ $('next').classList.remove('hidden');
+ $('next').textContent=(i===D.questions.length-1)?T(D.C.nextlast):T(D.C.next);
+}
+$('next').onclick=function(){i++;if(i>=D.questions.length||hearts<=0){finish();return;}render();};
+function finish(){
+ $('prog').style.width='100%';$('quiz').classList.add('hidden');$('report').classList.remove('hidden');
+ $('rscore').textContent=T(D.C.score)+': '+score+' / '+D.questions.length;
+ var pct=score/D.questions.length;
+ if(pct>=0.8){$('rbig').textContent='🏆';$('rtitle').textContent=T(D.C.rwin);$('rmsg').textContent=T(D.C.mwin);$('rbadge').style.display='';bigConf();}
+ else if(pct>=0.5){$('rbig').textContent='🌟';$('rtitle').textContent=T(D.C.rmid);$('rmsg').textContent=T(D.C.mmid);$('rbadge').style.display='';bigConf();}
+ else{$('rbig').textContent='🌱';$('rtitle').textContent=T(D.C.rlow);$('rmsg').textContent=T(D.C.mlow);$('rbadge').style.display='none';}
+ chrome();
+}
+$('again').onclick=function(){i=0;score=0;hearts=3;streak=0;$('hearts').textContent='❤️❤️❤️';$('streak').textContent='🔥 0';$('report').classList.add('hidden');$('quiz').classList.remove('hidden');render();};
+$('toClone').onclick=function(){location.href=D.back;};
+function spawnConf(n){var box=$('conf');var cols=['#C6A05C','#B01E48','#CC5E7E','#F0DCA8','#3FB98C','#E7D2A2'];for(var k=0;k<n;k++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[k%cols.length];s.style.animationDuration=(1.6+Math.random()*1.4)+'s';s.style.transform='rotate('+Math.random()*360+'deg)';if(Math.random()<.25)s.style.borderRadius='50%';box.appendChild(s);setTimeout(function(el){return function(){el.remove()}}(s),3200);}}
+function miniConf(){spawnConf(14)}
+function bigConf(){spawnConf(90);var h=['💛','🌸','✨','🎉'];for(var k=0;k<16;k++){(function(k){setTimeout(function(){var s=document.createElement('i');s.textContent=h[k%4];s.style.cssText='position:absolute;top:-6%;font-size:20px;left:'+(Math.random()*100)+'%;animation:cf '+(1.8+Math.random())+'s linear forwards';$('conf').appendChild(s);setTimeout(function(){s.remove()},3200)},k*60)})(k);}}
+(function(){var box=$('fall'),g=['π','√','∑','+','÷','½','💛','🌸','✦','⭐'];for(var k=0;k<22;k++){var s=document.createElement('span');s.textContent=g[k%g.length];if(k%3===0)s.className='m';s.style.left=Math.random()*100+'%';s.style.fontSize=(13+Math.random()*22)+'px';s.style.animationDuration=(7+Math.random()*8)+'s';s.style.animationDelay=(-Math.random()*10)+'s';box.appendChild(s);}})();
+$('lang').addEventListener('change',function(){try{localStorage.setItem('mathia_lang',this.value);}catch(e){}try{document.documentElement.lang=this.value;}catch(e){}try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:this.value}));}catch(e){}render();});
+window.addEventListener('mathia:lang',function(){if(!$('report').classList.contains('hidden'))finish();else render();});
+render();
+</script>
+</body>
+</html>
