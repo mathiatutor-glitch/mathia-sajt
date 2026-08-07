@@ -1,296 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mathia — Matematika 1. razred — zadaci</title>
+<title>Mathia — Matematika 1. razred — Zadaci · Zbirka zadataka</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
-  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
-  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Spectral',serif;
-}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-html,body{overflow-x:hidden}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
-.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
-.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
-h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
-.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
-.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
-.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
-.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
-.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
-.chip.soon{opacity:.5}
-.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
-.intro b{font-family:var(--hf)}
-.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
-.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
-.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
-.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
-.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
-.zad-n.solved{background:var(--good)}
-.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
-.opcije{display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
-.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
-.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
-.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
-.opt.correct{background:#edf6ee;border-color:var(--good)}
-.opt.wrong{background:#fbeeed;border-color:var(--bad)}
-.opt.correct .opt-l{background:var(--good);color:#fff}
-.opt.wrong .opt-l{background:var(--bad);color:#fff}
-.opt[disabled]{cursor:default}
-.opt[disabled]:hover{transform:none;background:#fffdf8}
-.opt.correct[disabled]:hover{background:#edf6ee}
-.opt.wrong[disabled]:hover{background:#fbeeed}
-.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
-.feedback.ok{color:var(--good)}
-.feedback.no{color:var(--bad)}
-.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
-.reveal-btn:hover{background:var(--acc);color:#fff}
-.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
-.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
-.rstep+.rstep{border-top:1px solid #f3ead9}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
-.katex{white-space:nowrap;font-size:1.02em}
-.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
-.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Matematika-1-Razred-Zadaci.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Mathia — Matematika 1. razred — zadaci">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Matematika-1-Razred-Zadaci.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathia — Matematika 1. razred — zadaci">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+.page{padding:10px 0 40px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:10px 0 26px;box-shadow:0 16px 40px -30px rgba(120,40,60,.4);color:#4a3a40}
+.topic{margin:34px 0}
+.topic>h2{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.7rem;margin:0 0 4px}
+.topic>h2 .n{color:var(--gold);font-size:1.1rem;margin-right:8px}
+.topic h3{font-family:'Spectral',serif;color:var(--ink);font-size:1.18rem;margin:22px 0 6px}
+.rule{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line)}
+.box .bx-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin-bottom:6px}
+.zapamti{background:linear-gradient(180deg,#FFFBF3,#FBF3E2)}.zapamti .bx-h{color:var(--golddk)}
+.primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
+.fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:20px 0;padding:15px 18px;line-height:1.6;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="srednja-matematika-1.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Matematika 1. razred</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Matematika 1. razred · Provera znanja</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="cover">
-  <div class="brandline">MATHIA</div>
-  <div class="eyebrow">Srednja škola · Vežba</div>
-  <h1>Matematika 1. razred — zadaci</h1>
-  <p class="sub">Vežba po oblastima za 1. razred srednje: logika i skupovi, realni brojevi, linearna funkcija, stepenovanje, geometrija. Probaj sam, pa otkrij rešenje korak po korak.</p>
-  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
-</div>
-
-<div class="page">
-  <div class="chips" id="roksel">
-    <span class="chip active" data-y="log">Logika i skupovi</span>
-    <span class="chip" data-y="real">Realni brojevi</span>
-    <span class="chip" data-y="lin">Linearna funkcija</span>
-    <span class="chip" data-y="step">Stepenovanje</span>
-    <span class="chip" data-y="geo">Geometrija</span>
-  </div>
-  <div class="intro"><b id="rok-label">Oblast: Logika i skupovi</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
-
-  <div class="prog-wrap">
-    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
-    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
-  </div>
-
-  <div id="lista"></div>
-  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
-  <div class="foot" id="rok-foot">MATHIA · Logika i skupovi · uči s ljubavlju · mathia.rs</div>
-</div>
-
-<script>
-// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
-// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
-const A=[{"n": 1, "t": "Za $A=\\{1,2,3\\}$ i $B=\\{2,3,4\\}$, koliko elemenata ima $A\\cap B$?", "o": ["$1$", "$2$", "$3$", "$4$", "$0$"], "c": 1, "r": ["$A\\cap B=\\{2,3\\}$.", "Ima $2$ elementa."]}, {"n": 2, "t": "Iskaz „$2+2=5$“ je:", "o": ["tačan", "netačan", "nije iskaz", "nepoznat", "i tačan i netačan"], "c": 1, "r": ["$2+2=4\\ne 5$.", "Iskaz je netačan."]}, {"n": 3, "t": "Koliko podskupova ima skup $A=\\{1,2,3,4\\}$?", "o": ["$8$", "$16$", "$4$", "$12$", "$32$"], "c": 1, "r": ["Broj podskupova je $2^n=2^4$.", "$=16$."]}, {"n": 4, "t": "Za $A=\\{1,2\\}$ i $B=\\{2,3\\}$, koliko elemenata ima $A\\cup B$?", "o": ["$2$", "$4$", "$3$", "$5$", "$1$"], "c": 2, "r": ["$A\\cup B=\\{1,2,3\\}$.", "Ima $3$ elementa."]}];
-const B=[{"n": 1, "t": "Koliko je $|-5|$?", "o": ["$5$", "$-5$", "$0$", "$25$", "$1$"], "c": 0, "r": ["Apsolutna vrednost je nenegativna.", "$|-5|=5$."]}, {"n": 2, "t": "Ako je $3:5=x:10$, onda je $x$:", "o": ["$5$", "$6$", "$8$", "$2$", "$15$"], "c": 1, "r": ["$x=\\dfrac{3\\cdot 10}{5}$.", "$x=6$."]}, {"n": 3, "t": "Koliko je $\\sqrt{2\\cdot 8}$?", "o": ["$4$", "$16$", "$10$", "$2$", "$8$"], "c": 0, "r": ["$\\sqrt{16}=4$.", ""]}, {"n": 4, "t": "Decimalni broj $0{,}75$ kao razlomak je:", "o": ["$\\dfrac34$", "$\\dfrac75$", "$\\dfrac{3}{40}$", "$\\dfrac12$", "$\\dfrac45$"], "c": 0, "r": ["$0{,}75=\\dfrac{75}{100}$.", "$=\\dfrac34$."]}];
-const C=[{"n": 1, "t": "Koeficijent pravca prave $y=3x-1$ je:", "o": ["$-1$", "$3$", "$1$", "$-3$", "$0$"], "c": 1, "r": ["Oblik $y=kx+n$.", "$k=3$."]}, {"n": 2, "t": "Nula funkcije $y=2x-6$ je:", "o": ["$2$", "$3$", "$6$", "$-6$", "$0$"], "c": 1, "r": ["$2x-6=0$.", "$x=3$."]}, {"n": 3, "t": "Za funkciju $y=-x+4$, vrednost u $x=1$ je:", "o": ["$5$", "$3$", "$4$", "$-3$", "$1$"], "c": 1, "r": ["$y=-1+4$.", "$=3$."]}, {"n": 4, "t": "Prava $y=5x+2$ seče $y$-osu u tački sa ordinatom:", "o": ["$5$", "$2$", "$0$", "$-2$", "$7$"], "c": 1, "r": ["Za $x=0$ je $y=2$.", ""]}];
-const D=[{"n": 1, "t": "Koliko je $2^3\\cdot 2^2$?", "o": ["$2^5=32$", "$2^6=64$", "$2^1=2$", "$4^5$", "$2^{32}$"], "c": 0, "r": ["$2^{3+2}=2^5$.", "$=32$."]}, {"n": 2, "t": "Koliko je $\\left(2^3\\right)^2$?", "o": ["$2^5$", "$2^6=64$", "$2^9$", "$8$", "$2^1$"], "c": 1, "r": ["$2^{3\\cdot 2}=2^6$.", "$=64$."]}, {"n": 3, "t": "Koliko je $5^0$?", "o": ["$0$", "$1$", "$5$", "$25$", "nije definisano"], "c": 1, "r": ["Svaki broj na nulti stepen (osim $0$) je $1$.", "$5^0=1$."]}, {"n": 4, "t": "Koliko je $2^{-2}$?", "o": ["$-4$", "$\\dfrac14$", "$4$", "$-\\dfrac14$", "$2$"], "c": 1, "r": ["$2^{-2}=\\dfrac{1}{2^2}$.", "$=\\dfrac14$."]}];
-const E=[{"n": 1, "t": "Zbir unutrašnjih uglova trougla je:", "o": ["$90^\\circ$", "$180^\\circ$", "$360^\\circ$", "$270^\\circ$", "$120^\\circ$"], "c": 1, "r": ["Konstantno za svaki trougao.", "$180^\\circ$."]}, {"n": 2, "t": "Hipotenuza pravouglog trougla sa katetama $5$ i $12$ je:", "o": ["$13$", "$17$", "$169$", "$7$", "$60$"], "c": 0, "r": ["$c=\\sqrt{5^2+12^2}=\\sqrt{169}$.", "$c=13$."]}, {"n": 3, "t": "U pravouglom trouglu, sinus oštrog ugla jednak je odnosu:", "o": ["nalegla kateta / hipotenuza", "naspramna kateta / hipotenuza", "hipotenuza / naspramna kateta", "naspramna / nalegla kateta", "hipotenuza / nalegla kateta"], "c": 1, "r": ["$\\sin\\alpha=\\dfrac{\\text{naspramna kateta}}{\\text{hipotenuza}}$.", ""]}, {"n": 4, "t": "Površina pravouglog trougla sa katetama $6$ i $8$ je:", "o": ["$48$", "$24$", "$14$", "$10$", "$28$"], "c": 1, "r": ["$P=\\dfrac{a\\cdot b}{2}=\\dfrac{6\\cdot 8}{2}$.", "$=24$."]}];
-
-const EXAMS={
-  'log':{label:'Logika i skupovi', z:A},
-  'real':{label:'Realni brojevi', z:B},
-  'lin':{label:'Linearna funkcija', z:C},
-  'step':{label:'Stepenovanje', z:D},
-  'geo':{label:'Geometrija', z:E}
-};
-let YEAR='log';
-let ZADACI=EXAMS[YEAR].z;
-let KEY='mathia_sm1_'+YEAR;
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
-function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-let stanje=load();
-
-function updateProgress(){
-  const n=Object.values(stanje).filter(v=>v==='ok').length;
-  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
-  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
-}
-
-function render(){
-  const lista=document.getElementById('lista');
-  ZADACI.forEach(z=>{
-    const solved=stanje[z.n]==='ok';
-    const card=document.createElement('div'); card.className='zad';
-    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
-    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
-    card.innerHTML=`
-      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
-      <div class="zad-q">${z.t}</div>
-      <div class="opcije">${opts}</div>
-      <button class="reveal-btn">Prikaži rešenje ✦</button>
-      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
-    // option clicks
-    const optEls=card.querySelectorAll('.opt');
-    optEls.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        if(card.dataset.done) return;
-        const i=+btn.dataset.i;
-        optEls.forEach(b=>b.setAttribute('disabled','')); 
-        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
-        if(i!==z.c) btn.classList.add('wrong');
-        card.dataset.done='1';
-        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
-        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
-        const fb=document.createElement('div');
-        fb.className='feedback '+(i===z.c?'ok':'no');
-        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
-        card.querySelector('.opcije').after(fb);
-        updateProgress();
-      });
-    });
-    card.querySelector('.reveal-btn').addEventListener('click',e=>{
-      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
-      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
-      if(!r.hidden) fitFormulas(r);
-    });
-    lista.appendChild(card);
-  });
-  updateProgress();
-}
-
-document.getElementById('reset').addEventListener('click',()=>{
-  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
-});
-
-function fitFormulas(root){
-  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
-    var avail=box.clientWidth; if(avail<=0) return;
-    box.querySelectorAll('.katex').forEach(function(k){
-      k.style.fontSize=''; var size=1.02, g=0;
-      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
-    });
-  });
-}
-function typeset(){
-  if(window.renderMathInElement){
-    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
-  }
-  fitFormulas();
-}
-var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
-function go(){ render(); typeset(); }
-function switchYear(y){
-  if(!EXAMS[y]||y===YEAR) return;
-  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_sm1_'+YEAR; stanje=load();
-  document.getElementById('lista').innerHTML='';
-  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
-  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
-  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Logika i skupovi · uči s ljubavlju · mathia.rs';
-  render(); typeset();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
-if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
-</script>
-
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script defer src="gate.js" data-subject="sr-mat-1"></script>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="srednja-matematika-1.html" data-i18n="back">← Matematika 1. razred</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">MathIA</div><div class="eyebrow" data-i18n="eyebrow">E‑knjiga · Zbirka zadataka</div><h1 data-i18n="title">Matematika 1. razred — Zadaci</h1><div class="sub" data-i18n="sub">Rešeni zadaci iz svake oblasti, korak po korak.</div><div class="orn">✦</div><a class="tb-back" href="srednja-matematika-1.html" data-i18n="back2">← Nazad na predmet</a></div>
+<div class="wrap page"><div class="intro" data-i18n-html="intro"><b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak, tako da možeš da pratiš logiku rešavanja i primeniš je na slične probleme. Zadaci prate redosled tema iz skripte.</div><section class="topic"><h2><span class="n">1.</span><span data-i18n="tn1">Logika i skupovi</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps1">Dati su skupovi A = {1, 2, 3, 4} i B = {3, 4, 5, 6}. Odrediti A ∪ B, A ∩ B i A ∖ B.</span><span class="step" data-i18n-html="tst1_1">Unija A ∪ B sadrži sve elemente koji pripadaju bar jednom skupu: A ∪ B = {1, 2, 3, 4, 5, 6}.</span><span class="step" data-i18n-html="tst1_2">Presek A ∩ B sadrži elemente koji pripadaju oba skupa: A ∩ B = {3, 4}.</span><span class="step" data-i18n-html="tst1_3">Razlika A ∖ B sadrži elemente iz A koji ne pripadaju B: A ∖ B = {1, 2}.</span></div></section><section class="topic"><h2><span class="n">2.</span><span data-i18n="tn2">Realni brojevi</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps2">Rešiti nejednačinu |x − 3| ≤ 5 i predstaviti rešenje na brojevnoj pravoj.</span><span class="step" data-i18n-html="tst2_1">Nejednačina |x − 3| ≤ 5 znači da je razdaljina broja x od broja 3 najviše 5.</span><span class="step" data-i18n-html="tst2_2">Zapisujemo kao dvostruku nejednakost: −5 ≤ x − 3 ≤ 5.</span><span class="step" data-i18n-html="tst2_3">Dodamo 3 na sve tri strane: −2 ≤ x ≤ 8.</span><span class="step" data-i18n-html="tst2_4">Rešenje je interval x ∈ [−2, 8].</span></div></section><section class="topic"><h2><span class="n">3.</span><span data-i18n="tn3">Linearne funkcije</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps3">Odrediti jednačinu prave koja prolazi kroz tačke A(1, 2) i B(3, 8).</span><span class="step" data-i18n-html="tst3_1">Izračunamo koeficijent pravca: k = (8 − 2)/(3 − 1) = 6/2 = 3.</span><span class="step" data-i18n-html="tst3_2">Koristimo tačku A i oblik y − y₁ = k(x − x₁): y − 2 = 3(x − 1).</span><span class="step" data-i18n-html="tst3_3">Sredimo jednačinu: y = 3x − 3 + 2 = 3x − 1.</span><span class="step" data-i18n-html="tst3_4">Jednačina prave je y = 3x − 1.</span></div></section><section class="topic"><h2><span class="n">4.</span><span data-i18n="tn4">Kvadratna jednačina</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps4">Rešiti kvadratnu jednačinu x² − 5x + 6 = 0.</span><span class="step" data-i18n-html="tst4_1">Odredimo koeficijente: a = 1, b = −5, c = 6.</span><span class="step" data-i18n-html="tst4_2">Izračunamo diskriminantu: D = (−5)² − 4·1·6 = 25 − 24 = 1.</span><span class="step" data-i18n-html="tst4_3">Primenimo formulu: x = (5 ± √1) / 2, pa je x₁ = (5+1)/2 = 3 i x₂ = (5−1)/2 = 2.</span><span class="step" data-i18n-html="tst4_4">Proverimo Vietovim formulama: x₁ + x₂ = 5 = −b/a i x₁ · x₂ = 6 = c/a.</span></div></section><section class="topic"><h2><span class="n">5.</span><span data-i18n="tn5">Stepeni i koreni</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps5">Uprostiti izraz (2³ · 2⁴) / 2⁵ i izračunati vrednost.</span><span class="step" data-i18n-html="tst5_1">Primenimo pravilo aᵐ·aⁿ = aᵐ⁺ⁿ u brojiocu: 2³ · 2⁴ = 2⁷.</span><span class="step" data-i18n-html="tst5_2">Delimo stepene sa istom osnovom: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².</span><span class="step" data-i18n-html="tst5_3">Izračunamo vrednost: 2² = 4.</span></div></section><section class="topic"><h2><span class="n">6.</span><span data-i18n="tn6">Trigonometrija — uvod</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps6">U pravouglom trouglu hipotenuza je c = 10, a jedna kateta je a = 6. Izračunati sin α, cos α i drugu katetu b.</span><span class="step" data-i18n-html="tst6_1">Primenimo Pitagorinu teoremu da nađemo b: b² = c² − a² = 100 − 36 = 64, pa je b = 8.</span><span class="step" data-i18n-html="tst6_2">Izračunamo sin α = a/c = 6/10 = 0.6.</span><span class="step" data-i18n-html="tst6_3">Izračunamo cos α = b/c = 8/10 = 0.8.</span></div></section></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="srednja-matematika-1.html" data-i18n="subj">Matematika 1. razred</a><a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a><a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a><a href="index.html#paketi" data-i18n="nav_plans">Paketi</a><a href="o-marini.html" data-i18n="nav_about">O meni</a><a href="uslovi.html" data-i18n="nav_terms">Uslovi</a><a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a></nav><div class="rule"></div><div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<script>(function(){var T={"back2": {"sr": "← Nazad na predmet", "en": "← Back to subject", "de": "← Zurück zum Fach", "fr": "← Retour à la matière", "es": "← Volver a la asignatura", "it": "← Torna alla materia", "ru": "← Назад к предмету", "pt": "← Voltar à disciplina"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}, "lbl_zap": {"sr": "Zapamti", "en": "Remember", "de": "Merke", "fr": "À retenir", "es": "Recuerda", "it": "Ricorda", "ru": "Запомни", "pt": "Lembra"}, "subj": {"sr": "Matematika 1. razred", "en": "Mathematics, Grade 1", "de": "Mathematik, 1. Klasse", "fr": "Mathématiques, 1re année", "es": "Matemáticas, 1.º año", "it": "Matematica, 1° anno", "ru": "Математика, 1 класс", "pt": "Matemática, 1.º ano"}, "back": {"sr": "← Matematika 1. razred", "en": "← Mathematics, Grade 1", "de": "← Mathematik, 1. Klasse", "fr": "← Mathématiques, 1re année", "es": "← Matemáticas, 1.º año", "it": "← Matematica, 1° anno", "ru": "← Математика, 1 класс", "pt": "← Matemática, 1.º ano"}, "eyebrow": {"sr": "E‑knjiga · Zbirka zadataka", "en": "E‑book · Problem set", "de": "E‑Book · Aufgabensammlung", "fr": "E‑book · Recueil d'exercices", "es": "E‑book · Colección de problemas", "it": "E‑book · Raccolta di esercizi", "ru": "Э‑книга · Сборник задач", "pt": "E‑book · Coletânea de exercícios"}, "title": {"sr": "Matematika 1. razred — Zadaci", "en": "Mathematics, Grade 1 — Problems", "de": "Mathematik, 1. Klasse — Aufgaben", "fr": "Mathématiques, 1re année — Exercices", "es": "Matemáticas, 1.º año — Problemas", "it": "Matematica, 1° anno — Problemi", "ru": "Математика, 1 класс — Задачи", "pt": "Matemática, 1.º ano — Problemas"}, "sub": {"sr": "Rešeni zadaci iz svake oblasti, korak po korak.", "en": "Solved problems from every topic, step by step.", "de": "Gelöste Aufgaben aus jedem Themenbereich, Schritt für Schritt.", "fr": "Des exercices résolus dans chaque domaine, étape par étape.", "es": "Problemas resueltos de cada tema, paso a paso.", "it": "Problemi risolti per ogni argomento, passo dopo passo.", "ru": "Решённые задачи по каждой теме, шаг за шагом.", "pt": "Problemas resolvidos de cada tópico, passo a passo."}, "intro": {"sr": "<b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak, tako da možeš da pratiš logiku rešavanja i primeniš je na slične probleme. Zadaci prate redosled tema iz skripte.", "en": "<b>Learn through solved problems.</b> Each problem is solved step by step, so you can follow the logic of the solution and apply it to similar problems. The problems follow the same order of topics as the notes.", "de": "<b>Lerne anhand gelöster Aufgaben.</b> Jede Aufgabe wird Schritt für Schritt gelöst, sodass du der Logik der Lösung folgen und sie auf ähnliche Probleme anwenden kannst. Die Aufgaben folgen der gleichen Themenreihenfolge wie im Skript.", "fr": "<b>Apprends grâce aux exercices résolus.</b> Chaque exercice est résolu étape par étape, afin que tu puisses suivre la logique de la résolution et l'appliquer à des problèmes similaires. Les exercices suivent le même ordre de thèmes que le cours.", "es": "<b>Aprende con problemas resueltos.</b> Cada problema está resuelto paso a paso, de modo que puedas seguir la lógica de la solución y aplicarla a problemas similares. Los problemas siguen el mismo orden de temas que los apuntes.", "it": "<b>Impara attraverso problemi risolti.</b> Ogni problema è risolto passo dopo passo, così puoi seguire la logica della soluzione e applicarla a problemi simili. I problemi seguono lo stesso ordine degli argomenti degli appunti.", "ru": "<b>Учись на решённых задачах.</b> Каждая задача решена шаг за шагом, чтобы ты мог проследить логику решения и применить её к похожим задачам. Задачи следуют тому же порядку тем, что и конспект.", "pt": "<b>Aprende através de problemas resolvidos.</b> Cada problema é resolvido passo a passo, para que possas seguir a lógica da solução e aplicá-la a problemas semelhantes. Os problemas seguem a mesma ordem de tópicos da apostila."}, "lbl_rp": {"sr": "Rešen primer", "en": "Worked example", "de": "Gelöstes Beispiel", "fr": "Exemple résolu", "es": "Ejemplo resuelto", "it": "Esempio risolto", "ru": "Разобранный пример", "pt": "Exemplo resolvido"}, "tn1": {"sr": "Logika i skupovi", "en": "Logic and Sets", "de": "Logik und Mengen", "fr": "Logique et ensembles", "es": "Lógica y conjuntos", "it": "Logica e insiemi", "ru": "Логика и множества", "pt": "Lógica e conjuntos"}, "tps1": {"sr": "Dati su skupovi A = {1, 2, 3, 4} i B = {3, 4, 5, 6}. Odrediti A ∪ B, A ∩ B i A ∖ B.", "en": "Given the sets A = {1, 2, 3, 4} and B = {3, 4, 5, 6}. Find A ∪ B, A ∩ B and A ∖ B.", "de": "Gegeben sind die Mengen A = {1, 2, 3, 4} und B = {3, 4, 5, 6}. Bestimme A ∪ B, A ∩ B und A ∖ B.", "fr": "On donne les ensembles A = {1, 2, 3, 4} et B = {3, 4, 5, 6}. Déterminer A ∪ B, A ∩ B et A ∖ B.", "es": "Se dan los conjuntos A = {1, 2, 3, 4} y B = {3, 4, 5, 6}. Determinar A ∪ B, A ∩ B y A ∖ B.", "it": "Sono dati gli insiemi A = {1, 2, 3, 4} e B = {3, 4, 5, 6}. Determinare A ∪ B, A ∩ B e A ∖ B.", "ru": "Даны множества A = {1, 2, 3, 4} и B = {3, 4, 5, 6}. Найти A ∪ B, A ∩ B и A ∖ B.", "pt": "São dados os conjuntos A = {1, 2, 3, 4} e B = {3, 4, 5, 6}. Determinar A ∪ B, A ∩ B e A ∖ B."}, "tst1_1": {"sr": "Unija A ∪ B sadrži sve elemente koji pripadaju bar jednom skupu: A ∪ B = {1, 2, 3, 4, 5, 6}.", "en": "The union A ∪ B contains all elements belonging to at least one set: A ∪ B = {1, 2, 3, 4, 5, 6}.", "de": "Die Vereinigung A ∪ B enthält alle Elemente, die zu mindestens einer Menge gehören: A ∪ B = {1, 2, 3, 4, 5, 6}.", "fr": "L'union A ∪ B contient tous les éléments appartenant à au moins un des ensembles : A ∪ B = {1, 2, 3, 4, 5, 6}.", "es": "La unión A ∪ B contiene todos los elementos que pertenecen al menos a uno de los conjuntos: A ∪ B = {1, 2, 3, 4, 5, 6}.", "it": "L'unione A ∪ B contiene tutti gli elementi che appartengono ad almeno uno degli insiemi: A ∪ B = {1, 2, 3, 4, 5, 6}.", "ru": "Объединение A ∪ B содержит все элементы, принадлежащие хотя бы одному множеству: A ∪ B = {1, 2, 3, 4, 5, 6}.", "pt": "A união A ∪ B contém todos os elementos que pertencem a pelo menos um dos conjuntos: A ∪ B = {1, 2, 3, 4, 5, 6}."}, "tst1_2": {"sr": "Presek A ∩ B sadrži elemente koji pripadaju oba skupa: A ∩ B = {3, 4}.", "en": "The intersection A ∩ B contains elements belonging to both sets: A ∩ B = {3, 4}.", "de": "Der Durchschnitt A ∩ B enthält die Elemente, die zu beiden Mengen gehören: A ∩ B = {3, 4}.", "fr": "L'intersection A ∩ B contient les éléments appartenant aux deux ensembles : A ∩ B = {3, 4}.", "es": "La intersección A ∩ B contiene los elementos que pertenecen a ambos conjuntos: A ∩ B = {3, 4}.", "it": "L'intersezione A ∩ B contiene gli elementi che appartengono a entrambi gli insiemi: A ∩ B = {3, 4}.", "ru": "Пересечение A ∩ B содержит элементы, принадлежащие обоим множествам: A ∩ B = {3, 4}.", "pt": "A interseção A ∩ B contém os elementos que pertencem a ambos os conjuntos: A ∩ B = {3, 4}."}, "tst1_3": {"sr": "Razlika A ∖ B sadrži elemente iz A koji ne pripadaju B: A ∖ B = {1, 2}.", "en": "The difference A ∖ B contains elements of A that do not belong to B: A ∖ B = {1, 2}.", "de": "Die Differenz A ∖ B enthält die Elemente von A, die nicht zu B gehören: A ∖ B = {1, 2}.", "fr": "La différence A ∖ B contient les éléments de A qui n'appartiennent pas à B : A ∖ B = {1, 2}.", "es": "La diferencia A ∖ B contiene los elementos de A que no pertenecen a B: A ∖ B = {1, 2}.", "it": "La differenza A ∖ B contiene gli elementi di A che non appartengono a B: A ∖ B = {1, 2}.", "ru": "Разность A ∖ B содержит элементы множества A, не принадлежащие B: A ∖ B = {1, 2}.", "pt": "A diferença A ∖ B contém os elementos de A que não pertencem a B: A ∖ B = {1, 2}."}, "tn2": {"sr": "Realni brojevi", "en": "Real Numbers", "de": "Reelle Zahlen", "fr": "Nombres réels", "es": "Números reales", "it": "Numeri reali", "ru": "Действительные числа", "pt": "Números reais"}, "tps2": {"sr": "Rešiti nejednačinu |x − 3| ≤ 5 i predstaviti rešenje na brojevnoj pravoj.", "en": "Solve the inequality |x − 3| ≤ 5 and represent the solution on the number line.", "de": "Löse die Ungleichung |x − 3| ≤ 5 und stelle die Lösung auf der Zahlengeraden dar.", "fr": "Résoudre l'inéquation |x − 3| ≤ 5 et représenter la solution sur la droite numérique.", "es": "Resolver la inecuación |x − 3| ≤ 5 y representar la solución en la recta numérica.", "it": "Risolvere la disequazione |x − 3| ≤ 5 e rappresentare la soluzione sulla retta numerica.", "ru": "Решить неравенство |x − 3| ≤ 5 и изобразить решение на числовой прямой.", "pt": "Resolver a inequação |x − 3| ≤ 5 e representar a solução na reta numérica."}, "tst2_1": {"sr": "Nejednačina |x − 3| ≤ 5 znači da je razdaljina broja x od broja 3 najviše 5.", "en": "The inequality |x − 3| ≤ 5 means that the distance of x from 3 is at most 5.", "de": "Die Ungleichung |x − 3| ≤ 5 bedeutet, dass der Abstand der Zahl x von 3 höchstens 5 beträgt.", "fr": "L'inéquation |x − 3| ≤ 5 signifie que la distance entre x et 3 est au plus 5.", "es": "La inecuación |x − 3| ≤ 5 significa que la distancia de x a 3 es como máximo 5.", "it": "La disequazione |x − 3| ≤ 5 significa che la distanza di x da 3 è al massimo 5.", "ru": "Неравенство |x − 3| ≤ 5 означает, что расстояние от x до 3 не превышает 5.", "pt": "A inequação |x − 3| ≤ 5 significa que a distância de x a 3 é, no máximo, 5."}, "tst2_2": {"sr": "Zapisujemo kao dvostruku nejednakost: −5 ≤ x − 3 ≤ 5.", "en": "We write it as a double inequality: −5 ≤ x − 3 ≤ 5.", "de": "Wir schreiben sie als doppelte Ungleichung: −5 ≤ x − 3 ≤ 5.", "fr": "On l'écrit sous forme d'un double inégalité : −5 ≤ x − 3 ≤ 5.", "es": "La escribimos como una desigualdad doble: −5 ≤ x − 3 ≤ 5.", "it": "La scriviamo come disuguaglianza doppia: −5 ≤ x − 3 ≤ 5.", "ru": "Запишем в виде двойного неравенства: −5 ≤ x − 3 ≤ 5.", "pt": "Escrevemos como uma desigualdade dupla: −5 ≤ x − 3 ≤ 5."}, "tst2_3": {"sr": "Dodamo 3 na sve tri strane: −2 ≤ x ≤ 8.", "en": "We add 3 to all three sides: −2 ≤ x ≤ 8.", "de": "Wir addieren 3 zu allen drei Seiten: −2 ≤ x ≤ 8.", "fr": "On ajoute 3 aux trois membres : −2 ≤ x ≤ 8.", "es": "Sumamos 3 a los tres miembros: −2 ≤ x ≤ 8.", "it": "Aggiungiamo 3 a tutti e tre i membri: −2 ≤ x ≤ 8.", "ru": "Прибавим 3 ко всем трём частям: −2 ≤ x ≤ 8.", "pt": "Somamos 3 aos três membros: −2 ≤ x ≤ 8."}, "tst2_4": {"sr": "Rešenje je interval x ∈ [−2, 8].", "en": "The solution is the interval x ∈ [−2, 8].", "de": "Die Lösung ist das Intervall x ∈ [−2, 8].", "fr": "La solution est l'intervalle x ∈ [−2, 8].", "es": "La solución es el intervalo x ∈ [−2, 8].", "it": "La soluzione è l'intervallo x ∈ [−2, 8].", "ru": "Решением является интервал x ∈ [−2, 8].", "pt": "A solução é o intervalo x ∈ [−2, 8]."}, "tn3": {"sr": "Linearne funkcije", "en": "Linear Functions", "de": "Lineare Funktionen", "fr": "Fonctions linéaires", "es": "Funciones lineales", "it": "Funzioni lineari", "ru": "Линейные функции", "pt": "Funções lineares"}, "tps3": {"sr": "Odrediti jednačinu prave koja prolazi kroz tačke A(1, 2) i B(3, 8).", "en": "Determine the equation of the line passing through points A(1, 2) and B(3, 8).", "de": "Bestimme die Gleichung der Geraden, die durch die Punkte A(1, 2) und B(3, 8) verläuft.", "fr": "Déterminer l'équation de la droite passant par les points A(1, 2) et B(3, 8).", "es": "Determinar la ecuación de la recta que pasa por los puntos A(1, 2) y B(3, 8).", "it": "Determinare l'equazione della retta passante per i punti A(1, 2) e B(3, 8).", "ru": "Найти уравнение прямой, проходящей через точки A(1, 2) и B(3, 8).", "pt": "Determinar a equação da reta que passa pelos pontos A(1, 2) e B(3, 8)."}, "tst3_1": {"sr": "Izračunamo koeficijent pravca: k = (8 − 2)/(3 − 1) = 6/2 = 3.", "en": "We calculate the slope coefficient: k = (8 − 2)/(3 − 1) = 6/2 = 3.", "de": "Wir berechnen den Anstiegskoeffizienten: k = (8 − 2)/(3 − 1) = 6/2 = 3.", "fr": "On calcule le coefficient directeur : k = (8 − 2)/(3 − 1) = 6/2 = 3.", "es": "Calculamos el coeficiente de pendiente: k = (8 − 2)/(3 − 1) = 6/2 = 3.", "it": "Calcoliamo il coefficiente angolare: k = (8 − 2)/(3 − 1) = 6/2 = 3.", "ru": "Вычислим угловой коэффициент: k = (8 − 2)/(3 − 1) = 6/2 = 3.", "pt": "Calculamos o coeficiente angular: k = (8 − 2)/(3 − 1) = 6/2 = 3."}, "tst3_2": {"sr": "Koristimo tačku A i oblik y − y₁ = k(x − x₁): y − 2 = 3(x − 1).", "en": "We use point A and the form y − y₁ = k(x − x₁): y − 2 = 3(x − 1).", "de": "Wir verwenden den Punkt A und die Form y − y₁ = k(x − x₁): y − 2 = 3(x − 1).", "fr": "On utilise le point A et la forme y − y₁ = k(x − x₁) : y − 2 = 3(x − 1).", "es": "Usamos el punto A y la forma y − y₁ = k(x − x₁): y − 2 = 3(x − 1).", "it": "Usiamo il punto A e la forma y − y₁ = k(x − x₁): y − 2 = 3(x − 1).", "ru": "Используем точку A и вид y − y₁ = k(x − x₁): y − 2 = 3(x − 1).", "pt": "Usamos o ponto A e a forma y − y₁ = k(x − x₁): y − 2 = 3(x − 1)."}, "tst3_3": {"sr": "Sredimo jednačinu: y = 3x − 3 + 2 = 3x − 1.", "en": "We simplify the equation: y = 3x − 3 + 2 = 3x − 1.", "de": "Wir vereinfachen die Gleichung: y = 3x − 3 + 2 = 3x − 1.", "fr": "On simplifie l'équation : y = 3x − 3 + 2 = 3x − 1.", "es": "Simplificamos la ecuación: y = 3x − 3 + 2 = 3x − 1.", "it": "Semplifichiamo l'equazione: y = 3x − 3 + 2 = 3x − 1.", "ru": "Упростим уравнение: y = 3x − 3 + 2 = 3x − 1.", "pt": "Simplificamos a equação: y = 3x − 3 + 2 = 3x − 1."}, "tst3_4": {"sr": "Jednačina prave je y = 3x − 1.", "en": "The equation of the line is y = 3x − 1.", "de": "Die Geradengleichung lautet y = 3x − 1.", "fr": "L'équation de la droite est y = 3x − 1.", "es": "La ecuación de la recta es y = 3x − 1.", "it": "L'equazione della retta è y = 3x − 1.", "ru": "Уравнение прямой: y = 3x − 1.", "pt": "A equação da reta é y = 3x − 1."}, "tn4": {"sr": "Kvadratna jednačina", "en": "Quadratic Equation", "de": "Quadratische Gleichung", "fr": "Équation du second degré", "es": "Ecuación cuadrática", "it": "Equazione di secondo grado", "ru": "Квадратное уравнение", "pt": "Equação do segundo grau"}, "tps4": {"sr": "Rešiti kvadratnu jednačinu x² − 5x + 6 = 0.", "en": "Solve the quadratic equation x² − 5x + 6 = 0.", "de": "Löse die quadratische Gleichung x² − 5x + 6 = 0.", "fr": "Résoudre l'équation du second degré x² − 5x + 6 = 0.", "es": "Resolver la ecuación cuadrática x² − 5x + 6 = 0.", "it": "Risolvere l'equazione di secondo grado x² − 5x + 6 = 0.", "ru": "Решить квадратное уравнение x² − 5x + 6 = 0.", "pt": "Resolver a equação do segundo grau x² − 5x + 6 = 0."}, "tst4_1": {"sr": "Odredimo koeficijente: a = 1, b = −5, c = 6.", "en": "We identify the coefficients: a = 1, b = −5, c = 6.", "de": "Wir bestimmen die Koeffizienten: a = 1, b = −5, c = 6.", "fr": "On identifie les coefficients : a = 1, b = −5, c = 6.", "es": "Identificamos los coeficientes: a = 1, b = −5, c = 6.", "it": "Individuiamo i coefficienti: a = 1, b = −5, c = 6.", "ru": "Определим коэффициенты: a = 1, b = −5, c = 6.", "pt": "Identificamos os coeficientes: a = 1, b = −5, c = 6."}, "tst4_2": {"sr": "Izračunamo diskriminantu: D = (−5)² − 4·1·6 = 25 − 24 = 1.", "en": "We calculate the discriminant: D = (−5)² − 4·1·6 = 25 − 24 = 1.", "de": "Wir berechnen die Diskriminante: D = (−5)² − 4·1·6 = 25 − 24 = 1.", "fr": "On calcule le discriminant : D = (−5)² − 4·1·6 = 25 − 24 = 1.", "es": "Calculamos el discriminante: D = (−5)² − 4·1·6 = 25 − 24 = 1.", "it": "Calcoliamo il discriminante: D = (−5)² − 4·1·6 = 25 − 24 = 1.", "ru": "Вычислим дискриминант: D = (−5)² − 4·1·6 = 25 − 24 = 1.", "pt": "Calculamos o discriminante: D = (−5)² − 4·1·6 = 25 − 24 = 1."}, "tst4_3": {"sr": "Primenimo formulu: x = (5 ± √1) / 2, pa je x₁ = (5+1)/2 = 3 i x₂ = (5−1)/2 = 2.", "en": "We apply the formula: x = (5 ± √1) / 2, so x₁ = (5+1)/2 = 3 and x₂ = (5−1)/2 = 2.", "de": "Wir wenden die Formel an: x = (5 ± √1) / 2, also x₁ = (5+1)/2 = 3 und x₂ = (5−1)/2 = 2.", "fr": "On applique la formule : x = (5 ± √1) / 2, donc x₁ = (5+1)/2 = 3 et x₂ = (5−1)/2 = 2.", "es": "Aplicamos la fórmula: x = (5 ± √1) / 2, por lo que x₁ = (5+1)/2 = 3 y x₂ = (5−1)/2 = 2.", "it": "Applichiamo la formula: x = (5 ± √1) / 2, quindi x₁ = (5+1)/2 = 3 e x₂ = (5−1)/2 = 2.", "ru": "Применим формулу: x = (5 ± √1) / 2, значит x₁ = (5+1)/2 = 3 и x₂ = (5−1)/2 = 2.", "pt": "Aplicamos a fórmula: x = (5 ± √1) / 2, logo x₁ = (5+1)/2 = 3 e x₂ = (5−1)/2 = 2."}, "tst4_4": {"sr": "Proverimo Vietovim formulama: x₁ + x₂ = 5 = −b/a i x₁ · x₂ = 6 = c/a.", "en": "We check using Vieta's formulas: x₁ + x₂ = 5 = −b/a and x₁ · x₂ = 6 = c/a.", "de": "Wir überprüfen mit dem Satz von Vieta: x₁ + x₂ = 5 = −b/a und x₁ · x₂ = 6 = c/a.", "fr": "On vérifie avec les formules de Viète : x₁ + x₂ = 5 = −b/a et x₁ · x₂ = 6 = c/a.", "es": "Comprobamos con las fórmulas de Vieta: x₁ + x₂ = 5 = −b/a y x₁ · x₂ = 6 = c/a.", "it": "Verifichiamo con le formule di Viète: x₁ + x₂ = 5 = −b/a e x₁ · x₂ = 6 = c/a.", "ru": "Проверим по теореме Виета: x₁ + x₂ = 5 = −b/a и x₁ · x₂ = 6 = c/a.", "pt": "Verificamos com as fórmulas de Vieta: x₁ + x₂ = 5 = −b/a e x₁ · x₂ = 6 = c/a."}, "tn5": {"sr": "Stepeni i koreni", "en": "Powers and Roots", "de": "Potenzen und Wurzeln", "fr": "Puissances et racines", "es": "Potencias y raíces", "it": "Potenze e radici", "ru": "Степени и корни", "pt": "Potências e raízes"}, "tps5": {"sr": "Uprostiti izraz (2³ · 2⁴) / 2⁵ i izračunati vrednost.", "en": "Simplify the expression (2³ · 2⁴) / 2⁵ and calculate its value.", "de": "Vereinfache den Ausdruck (2³ · 2⁴) / 2⁵ und berechne den Wert.", "fr": "Simplifier l'expression (2³ · 2⁴) / 2⁵ et calculer sa valeur.", "es": "Simplificar la expresión (2³ · 2⁴) / 2⁵ y calcular su valor.", "it": "Semplificare l'espressione (2³ · 2⁴) / 2⁵ e calcolarne il valore.", "ru": "Упростить выражение (2³ · 2⁴) / 2⁵ и вычислить его значение.", "pt": "Simplificar a expressão (2³ · 2⁴) / 2⁵ e calcular o seu valor."}, "tst5_1": {"sr": "Primenimo pravilo aᵐ·aⁿ = aᵐ⁺ⁿ u brojiocu: 2³ · 2⁴ = 2⁷.", "en": "We apply the rule aᵐ·aⁿ = aᵐ⁺ⁿ in the numerator: 2³ · 2⁴ = 2⁷.", "de": "Wir wenden im Zähler die Regel aᵐ·aⁿ = aᵐ⁺ⁿ an: 2³ · 2⁴ = 2⁷.", "fr": "On applique la règle aᵐ·aⁿ = aᵐ⁺ⁿ au numérateur : 2³ · 2⁴ = 2⁷.", "es": "Aplicamos la regla aᵐ·aⁿ = aᵐ⁺ⁿ en el numerador: 2³ · 2⁴ = 2⁷.", "it": "Applichiamo la regola aᵐ·aⁿ = aᵐ⁺ⁿ al numeratore: 2³ · 2⁴ = 2⁷.", "ru": "Применим правило aᵐ·aⁿ = aᵐ⁺ⁿ в числителе: 2³ · 2⁴ = 2⁷.", "pt": "Aplicamos a regra aᵐ·aⁿ = aᵐ⁺ⁿ no numerador: 2³ · 2⁴ = 2⁷."}, "tst5_2": {"sr": "Delimo stepene sa istom osnovom: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².", "en": "We divide powers with the same base: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².", "de": "Wir dividieren Potenzen mit gleicher Basis: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².", "fr": "On divise des puissances de même base : 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².", "es": "Dividimos potencias de la misma base: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².", "it": "Dividiamo potenze con la stessa base: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².", "ru": "Разделим степени с одинаковым основанием: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2².", "pt": "Dividimos potências com a mesma base: 2⁷ / 2⁵ = 2⁷⁻⁵ = 2²."}, "tst5_3": {"sr": "Izračunamo vrednost: 2² = 4.", "en": "We calculate the value: 2² = 4.", "de": "Wir berechnen den Wert: 2² = 4.", "fr": "On calcule la valeur : 2² = 4.", "es": "Calculamos el valor: 2² = 4.", "it": "Calcoliamo il valore: 2² = 4.", "ru": "Вычислим значение: 2² = 4.", "pt": "Calculamos o valor: 2² = 4."}, "tn6": {"sr": "Trigonometrija — uvod", "en": "Trigonometry — Introduction", "de": "Trigonometrie — Einführung", "fr": "Trigonométrie — Introduction", "es": "Trigonometría — Introducción", "it": "Trigonometria — Introduzione", "ru": "Тригонометрия — введение", "pt": "Trigonometria — Introdução"}, "tps6": {"sr": "U pravouglom trouglu hipotenuza je c = 10, a jedna kateta je a = 6. Izračunati sin α, cos α i drugu katetu b.", "en": "In a right triangle, the hypotenuse is c = 10, and one leg is a = 6. Calculate sin α, cos α and the other leg b.", "de": "In einem rechtwinkligen Dreieck ist die Hypotenuse c = 10 und eine Kathete a = 6. Berechne sin α, cos α und die andere Kathete b.", "fr": "Dans un triangle rectangle, l'hypoténuse vaut c = 10 et un côté vaut a = 6. Calculer sin α, cos α et l'autre côté b.", "es": "En un triángulo rectángulo, la hipotenusa es c = 10 y un cateto es a = 6. Calcular sen α, cos α y el otro cateto b.", "it": "In un triangolo rettangolo, l'ipotenusa è c = 10 e un cateto è a = 6. Calcolare sin α, cos α e l'altro cateto b.", "ru": "В прямоугольном треугольнике гипотенуза c = 10, а один катет a = 6. Вычислить sin α, cos α и второй катет b.", "pt": "Num triângulo retângulo, a hipotenusa é c = 10 e um cateto é a = 6. Calcular sen α, cos α e o outro cateto b."}, "tst6_1": {"sr": "Primenimo Pitagorinu teoremu da nađemo b: b² = c² − a² = 100 − 36 = 64, pa je b = 8.", "en": "We apply the Pythagorean theorem to find b: b² = c² − a² = 100 − 36 = 64, so b = 8.", "de": "Wir wenden den Satz des Pythagoras an, um b zu finden: b² = c² − a² = 100 − 36 = 64, also b = 8.", "fr": "On applique le théorème de Pythagore pour trouver b : b² = c² − a² = 100 − 36 = 64, donc b = 8.", "es": "Aplicamos el teorema de Pitágoras para hallar b: b² = c² − a² = 100 − 36 = 64, por lo que b = 8.", "it": "Applichiamo il teorema di Pitagora per trovare b: b² = c² − a² = 100 − 36 = 64, quindi b = 8.", "ru": "Применим теорему Пифагора, чтобы найти b: b² = c² − a² = 100 − 36 = 64, значит b = 8.", "pt": "Aplicamos o teorema de Pitágoras para encontrar b: b² = c² − a² = 100 − 36 = 64, logo b = 8."}, "tst6_2": {"sr": "Izračunamo sin α = a/c = 6/10 = 0.6.", "en": "We calculate sin α = a/c = 6/10 = 0.6.", "de": "Wir berechnen sin α = a/c = 6/10 = 0.6.", "fr": "On calcule sin α = a/c = 6/10 = 0.6.", "es": "Calculamos sen α = a/c = 6/10 = 0.6.", "it": "Calcoliamo sin α = a/c = 6/10 = 0.6.", "ru": "Вычислим sin α = a/c = 6/10 = 0.6.", "pt": "Calculamos sen α = a/c = 6/10 = 0.6."}, "tst6_3": {"sr": "Izračunamo cos α = b/c = 8/10 = 0.8.", "en": "We calculate cos α = b/c = 8/10 = 0.8.", "de": "Wir berechnen cos α = b/c = 8/10 = 0.8.", "fr": "On calcule cos α = b/c = 8/10 = 0.8.", "es": "Calculamos cos α = b/c = 8/10 = 0.8.", "it": "Calcoliamo cos α = b/c = 8/10 = 0.8.", "ru": "Вычислим cos α = b/c = 8/10 = 0.8.", "pt": "Calculamos cos α = b/c = 8/10 = 0.8."}};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(e){try{ap(((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase())}catch(_){}});})();</script>
 </body>
 </html>

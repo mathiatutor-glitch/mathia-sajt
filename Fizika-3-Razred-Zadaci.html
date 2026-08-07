@@ -1,296 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mathia — Fizika 3. razred — zadaci</title>
+<title>Mathia — Fizika · 3. razred · Zadaci · Zbirka zadataka</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
-  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
-  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Spectral',serif;
-}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-html,body{overflow-x:hidden}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
-.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
-.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
-h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
-.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
-.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
-.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
-.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
-.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
-.chip.soon{opacity:.5}
-.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
-.intro b{font-family:var(--hf)}
-.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
-.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
-.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
-.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
-.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
-.zad-n.solved{background:var(--good)}
-.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
-.opcije{display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
-.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
-.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
-.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
-.opt.correct{background:#edf6ee;border-color:var(--good)}
-.opt.wrong{background:#fbeeed;border-color:var(--bad)}
-.opt.correct .opt-l{background:var(--good);color:#fff}
-.opt.wrong .opt-l{background:var(--bad);color:#fff}
-.opt[disabled]{cursor:default}
-.opt[disabled]:hover{transform:none;background:#fffdf8}
-.opt.correct[disabled]:hover{background:#edf6ee}
-.opt.wrong[disabled]:hover{background:#fbeeed}
-.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
-.feedback.ok{color:var(--good)}
-.feedback.no{color:var(--bad)}
-.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
-.reveal-btn:hover{background:var(--acc);color:#fff}
-.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
-.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
-.rstep+.rstep{border-top:1px solid #f3ead9}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
-.katex{white-space:nowrap;font-size:1.02em}
-.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
-.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Fizika-3-Razred-Zadaci.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Mathia — Fizika 3. razred — zadaci">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Fizika-3-Razred-Zadaci.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathia — Fizika 3. razred — zadaci">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+.page{padding:10px 0 40px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:10px 0 26px;box-shadow:0 16px 40px -30px rgba(120,40,60,.4);color:#4a3a40}
+.topic{margin:34px 0}
+.topic>h2{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.7rem;margin:0 0 4px}
+.topic>h2 .n{color:var(--gold);font-size:1.1rem;margin-right:8px}
+.topic h3{font-family:'Spectral',serif;color:var(--ink);font-size:1.18rem;margin:22px 0 6px}
+.rule{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line)}
+.box .bx-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin-bottom:6px}
+.zapamti{background:linear-gradient(180deg,#FFFBF3,#FBF3E2)}.zapamti .bx-h{color:var(--golddk)}
+.primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
+.fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:20px 0;padding:15px 18px;line-height:1.6;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="srednja-fizika-3.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Fizika 3. razred</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Fizika 3. razred · Provera znanja</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="cover">
-  <div class="brandline">MATHIA</div>
-  <div class="eyebrow">Srednja škola · Fizika</div>
-  <h1>Fizika 3. razred — zadaci</h1>
-  <p class="sub">Vežba po oblastima za 3. razred srednje: elektrostatika, jednosmerna struja, magnetno polje, elektromagnetna indukcija, naizmenična struja. Probaj sam, pa otkrij rešenje korak po korak.</p>
-  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
-</div>
-
-<div class="page">
-  <div class="chips" id="roksel">
-    <span class="chip active" data-y="els">Elektrostatika</span>
-    <span class="chip" data-y="str">Jednosmerna struja</span>
-    <span class="chip" data-y="mag">Magnetno polje</span>
-    <span class="chip" data-y="ind">Elektromagnetna indukcija</span>
-    <span class="chip" data-y="nas">Naizmenična struja</span>
-  </div>
-  <div class="intro"><b id="rok-label">Oblast: Elektrostatika</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
-
-  <div class="prog-wrap">
-    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
-    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
-  </div>
-
-  <div id="lista"></div>
-  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
-  <div class="foot" id="rok-foot">MATHIA · Elektrostatika · uči s ljubavlju · mathia.rs</div>
-</div>
-
-<script>
-// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
-// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
-const A=[{"n": 1, "t": "Po Kulonovom zakonu, sila između naelektrisanja zavisi od rastojanja kao:", "o": ["$\\propto r$", "$\\propto \\dfrac{1}{r}$", "$\\propto \\dfrac{1}{r^2}$", "$\\propto r^2$", "ne zavisi od $r$"], "c": 2, "r": ["$F=k\\dfrac{q_1 q_2}{r^2}$.", "Obrnuto srazmerno $r^2$."]}, {"n": 2, "t": "Jedinica za količinu naelektrisanja je:", "o": ["amper", "kulon (C)", "volt", "tesla", "om"], "c": 1, "r": ["Naelektrisanje se meri u kulonima.", ""]}, {"n": 3, "t": "Dva istoimena naelektrisanja se:", "o": ["privlače", "odbijaju", "ne deluju", "spajaju", "neutrališu"], "c": 1, "r": ["Isti znaci se odbijaju.", ""]}, {"n": 4, "t": "Jedinica za jačinu električnog polja $E=\\dfrac{F}{q}$ je:", "o": ["N·m", "N/C (V/m)", "C/N", "J/C", "A/m"], "c": 1, "r": ["$E=\\dfrac{F}{q}$ → njutn po kulonu.", "N/C = V/m."]}];
-const B=[{"n": 1, "t": "Po Omovom zakonu, za $U=10\\text{ V}$, $R=2\\,\\Omega$, struja je:", "o": ["$20\\text{ A}$", "$5\\text{ A}$", "$8\\text{ A}$", "$0{,}2\\text{ A}$", "$12\\text{ A}$"], "c": 1, "r": ["$I=\\dfrac{U}{R}=\\dfrac{10}{2}$.", "$=5\\text{ A}$."]}, {"n": 2, "t": "Otpor provodnika $R=\\rho\\dfrac{l}{S}$ raste sa:", "o": ["debljinom", "dužinom provodnika", "bojom", "naponom", "temperaturom okoline"], "c": 1, "r": ["Duži provodnik → veći otpor.", ""]}, {"n": 3, "t": "Snaga potrošača za $U=12\\text{ V}$, $I=2\\text{ A}$ je:", "o": ["$6\\text{ W}$", "$10\\text{ W}$", "$24\\text{ W}$", "$14\\text{ W}$", "$0{,}16\\text{ W}$"], "c": 2, "r": ["$P=U\\cdot I=12\\cdot 2$.", "$=24\\text{ W}$."]}, {"n": 4, "t": "Ekvivalentni otpor redne veze $R_1$ i $R_2$ je:", "o": ["$R_1+R_2$", "$\\dfrac{R_1 R_2}{R_1+R_2}$", "$R_1-R_2$", "$\\dfrac{1}{R_1}+\\dfrac{1}{R_2}$", "$R_1 R_2$"], "c": 0, "r": ["U rednoj vezi otpori se sabiraju.", "$R=R_1+R_2$."]}];
-const C=[{"n": 1, "t": "Oko provodnika kroz koji teče struja postoji:", "o": ["gravitaciono polje", "električno polje samo", "magnetno polje", "ništa", "zvučni talas"], "c": 2, "r": ["Struja stvara magnetno polje.", ""]}, {"n": 2, "t": "Jedinica za magnetnu indukciju je:", "o": ["njutn", "tesla (T)", "amper", "volt", "veber"], "c": 1, "r": ["Magnetna indukcija $B$ se meri u teslama.", ""]}, {"n": 3, "t": "Sila na provodnik $F=BIl$ za $B=2\\text{ T}$, $I=3\\text{ A}$, $l=0{,}5\\text{ m}$ je:", "o": ["$1{,}5\\text{ N}$", "$12\\text{ N}$", "$3\\text{ N}$", "$6\\text{ N}$", "$0{,}33\\text{ N}$"], "c": 2, "r": ["$F=B I l=2\\cdot 3\\cdot 0{,}5$.", "$=3\\text{ N}$."]}, {"n": 4, "t": "Magnetne linije sile (van magneta) idu:", "o": ["od južnog ka severnom polu", "od severnog ka južnom polu", "u krug oko tela", "ne postoje", "pravo ka centru"], "c": 1, "r": ["Spolja: od severnog (N) ka južnom (S) polu.", ""]}];
-const D=[{"n": 1, "t": "Elektromotorna sila indukcije nastaje pri promeni:", "o": ["električnog otpora", "magnetnog fluksa", "mase", "temperature", "naelektrisanja"], "c": 1, "r": ["Faradejev zakon indukcije.", "Promena magnetnog fluksa."]}, {"n": 2, "t": "Faradejev zakon indukcije glasi:", "o": ["$\\varepsilon=-\\dfrac{d\\Phi}{dt}$", "$\\varepsilon=IR$", "$\\varepsilon=BIl$", "$\\varepsilon=\\dfrac{Q}{t}$", "$\\varepsilon=mc^2$"], "c": 0, "r": ["EMS je jednaka brzini promene fluksa (sa znakom minus).", ""]}, {"n": 3, "t": "Po Lencovom pravilu, indukovana struja se:", "o": ["pojačava promenu", "suprotstavlja promeni koja je izaziva", "ne javlja", "uvek je nula", "menja masu"], "c": 1, "r": ["Smer je takav da se protivi uzroku.", ""]}, {"n": 4, "t": "Transformator radi na principu:", "o": ["Omovog zakona", "elektromagnetne indukcije", "Kulonovog zakona", "Paskalovog zakona", "fotoefekta"], "c": 1, "r": ["Promenljivi fluks indukuje napon u sekundaru.", ""]}];
-const E=[{"n": 1, "t": "Frekvencija naizmenične struje u mreži (Srbija) je:", "o": ["$220\\text{ Hz}$", "$60\\text{ Hz}$", "$50\\text{ Hz}$", "$100\\text{ Hz}$", "$1\\text{ Hz}$"], "c": 2, "r": ["Mrežna frekvencija je $50\\text{ Hz}$.", ""]}, {"n": 2, "t": "Efektivna vrednost napona je:", "o": ["$U_{max}\\sqrt2$", "$\\dfrac{U_{max}}{\\sqrt2}$", "$2U_{max}$", "$\\dfrac{U_{max}}{2}$", "$U_{max}$"], "c": 1, "r": ["$U_{ef}=\\dfrac{U_{max}}{\\sqrt2}$.", ""]}, {"n": 3, "t": "Naizmenična struja periodično menja:", "o": ["samo jačinu", "smer (i jačinu)", "samo napon izvora", "ništa", "frekvenciju mreže"], "c": 1, "r": ["Naizmenična struja menja smer.", ""]}, {"n": 4, "t": "Transformator služi da menja:", "o": ["frekvenciju", "smer struje", "napon", "snagu izvora", "otpor"], "c": 2, "r": ["Transformator menja napon (i struju).", ""]}];
-
-const EXAMS={
-  'els':{label:'Elektrostatika', z:A},
-  'str':{label:'Jednosmerna struja', z:B},
-  'mag':{label:'Magnetno polje', z:C},
-  'ind':{label:'Elektromagnetna indukcija', z:D},
-  'nas':{label:'Naizmenična struja', z:E}
-};
-let YEAR='els';
-let ZADACI=EXAMS[YEAR].z;
-let KEY='mathia_sf3_'+YEAR;
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
-function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-let stanje=load();
-
-function updateProgress(){
-  const n=Object.values(stanje).filter(v=>v==='ok').length;
-  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
-  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
-}
-
-function render(){
-  const lista=document.getElementById('lista');
-  ZADACI.forEach(z=>{
-    const solved=stanje[z.n]==='ok';
-    const card=document.createElement('div'); card.className='zad';
-    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
-    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
-    card.innerHTML=`
-      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
-      <div class="zad-q">${z.t}</div>
-      <div class="opcije">${opts}</div>
-      <button class="reveal-btn">Prikaži rešenje ✦</button>
-      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
-    // option clicks
-    const optEls=card.querySelectorAll('.opt');
-    optEls.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        if(card.dataset.done) return;
-        const i=+btn.dataset.i;
-        optEls.forEach(b=>b.setAttribute('disabled','')); 
-        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
-        if(i!==z.c) btn.classList.add('wrong');
-        card.dataset.done='1';
-        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
-        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
-        const fb=document.createElement('div');
-        fb.className='feedback '+(i===z.c?'ok':'no');
-        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
-        card.querySelector('.opcije').after(fb);
-        updateProgress();
-      });
-    });
-    card.querySelector('.reveal-btn').addEventListener('click',e=>{
-      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
-      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
-      if(!r.hidden) fitFormulas(r);
-    });
-    lista.appendChild(card);
-  });
-  updateProgress();
-}
-
-document.getElementById('reset').addEventListener('click',()=>{
-  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
-});
-
-function fitFormulas(root){
-  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
-    var avail=box.clientWidth; if(avail<=0) return;
-    box.querySelectorAll('.katex').forEach(function(k){
-      k.style.fontSize=''; var size=1.02, g=0;
-      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
-    });
-  });
-}
-function typeset(){
-  if(window.renderMathInElement){
-    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
-  }
-  fitFormulas();
-}
-var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
-function go(){ render(); typeset(); }
-function switchYear(y){
-  if(!EXAMS[y]||y===YEAR) return;
-  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_sf3_'+YEAR; stanje=load();
-  document.getElementById('lista').innerHTML='';
-  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
-  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
-  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Elektrostatika · uči s ljubavlju · mathia.rs';
-  render(); typeset();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
-if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
-</script>
-
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script defer src="gate.js" data-subject="sr-fiz-3"></script>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="srednja-fizika-3.html" data-i18n="back">← Fizika 3. razred</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">MathIA</div><div class="eyebrow" data-i18n="eyebrow">E‑knjiga · Zbirka zadataka</div><h1 data-i18n="title">Fizika · 3. razred · Zadaci</h1><div class="sub" data-i18n="sub">Rešeni zadaci iz svake oblasti, korak po korak.</div><div class="orn">✦</div><a class="tb-back" href="srednja-fizika-3.html" data-i18n="back2">← Nazad na predmet</a></div>
+<div class="wrap page"><div class="intro" data-i18n-html="intro"><b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak, tako da se jasno vidi koja se formula primenjuje i kako se dolazi do konačnog rezultata. Rešavanjem sličnih zadataka učvršćuje se razumevanje gradiva.</div><section class="topic"><h2><span class="n">1.</span><span data-i18n="tn1">Oscilacije</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps1">Matematičko klatno dužine l = 1 m osciluje u polju gravitacije g = 10 m/s². Izračunati period T i frekvenciju f oscilovanja klatna. (Uzeti π ≈ 3,14.)</span><span class="step" data-i18n-html="tst1_1">Zapisati formulu za period: T = 2π√(l/g).</span><span class="step" data-i18n-html="tst1_2">Uvrstiti vrednosti: T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 s.</span><span class="step" data-i18n-html="tst1_3">Izračunati frekvenciju: f = 1/T = 1/1,99 ≈ 0,50 Hz.</span></div></section><section class="topic"><h2><span class="n">2.</span><span data-i18n="tn2">Talasi</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps2">Zvučni talas ima frekvenciju f = 440 Hz i brzinu prostiranja kroz vazduh v = 340 m/s. Izračunati talasnu dužinu λ tog talasa.</span><span class="step" data-i18n-html="tst2_1">Zapisati formulu: v = λ·f, odakle je λ = v/f.</span><span class="step" data-i18n-html="tst2_2">Uvrstiti vrednosti: λ = 340/440 ≈ 0,77 m.</span><span class="step" data-i18n-html="tst2_3">Zaključak: talasna dužina tona je približno 0,77 m.</span></div></section><section class="topic"><h2><span class="n">3.</span><span data-i18n="tn3">Magnetno polje</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps3">Pravolinijski provodnik dužine L = 0,5 m nalazi se upravno na homogeno magnetno polje indukcije B = 0,2 T. Kroz provodnik protiče struja jačine I = 4 A. Izračunati intenzitet magnetne sile koja deluje na provodnik.</span><span class="step" data-i18n-html="tst3_1">Zapisati formulu: F = B·I·L.</span><span class="step" data-i18n-html="tst3_2">Uvrstiti vrednosti: F = 0,2·4·0,5 = 0,4 N.</span><span class="step" data-i18n-html="tst3_3">Zaključak: na provodnik deluje magnetna sila od 0,4 N.</span></div></section><section class="topic"><h2><span class="n">4.</span><span data-i18n="tn4">Indukcija</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps4">Magnetni fluks kroz kalem se ravnomerno promeni od Φ₁ = 0,02 Wb do Φ₂ = 0,08 Wb za vreme Δt = 0,3 s. Izračunati intenzitet indukovane elektromotorne sile.</span><span class="step" data-i18n-html="tst4_1">Izračunati promenu fluksa: ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Wb.</span><span class="step" data-i18n-html="tst4_2">Primeniti formulu: ε = ΔΦ/Δt = 0,06/0,3 = 0,2 V (uzima se intenzitet, bez znaka minus).</span><span class="step" data-i18n-html="tst4_3">Zaključak: indukovana elektromotorna sila iznosi 0,2 V.</span></div></section><section class="topic"><h2><span class="n">5.</span><span data-i18n="tn5">Naizmenična struja</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps5">Amplituda naizmeničnog napona u kolu iznosi U₀ = 311 V. Izračunati efektivnu vrednost tog napona.</span><span class="step" data-i18n-html="tst5_1">Zapisati formulu: Uef = U₀/√2.</span><span class="step" data-i18n-html="tst5_2">Uvrstiti vrednost: Uef = 311/1,41 ≈ 220 V.</span><span class="step" data-i18n-html="tst5_3">Zaključak: efektivna vrednost napona iznosi približno 220 V, što odgovara standardnom naponu gradske mreže.</span></div></section><section class="topic"><h2><span class="n">6.</span><span data-i18n="tn6">Optika</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps6">Predmet se nalazi na rastojanju p = 30 cm ispred sabirnog sočiva žižne daljine f = 10 cm. Izračunati rastojanje lika l od sočiva.</span><span class="step" data-i18n-html="tst6_1">Zapisati jednačinu sočiva: 1/f = 1/p + 1/l, odakle je 1/l = 1/f − 1/p.</span><span class="step" data-i18n-html="tst6_2">Uvrstiti vrednosti: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.</span><span class="step" data-i18n-html="tst6_3">Izračunati l: l = 15 cm. Lik se formira na rastojanju 15 cm od sočiva.</span></div></section></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="srednja-fizika-3.html" data-i18n="subj">Fizika 3. razred</a><a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a><a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a><a href="index.html#paketi" data-i18n="nav_plans">Paketi</a><a href="o-marini.html" data-i18n="nav_about">O meni</a><a href="uslovi.html" data-i18n="nav_terms">Uslovi</a><a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a></nav><div class="rule"></div><div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<script>(function(){var T={"back2": {"sr": "← Nazad na predmet", "en": "← Back to subject", "de": "← Zurück zum Fach", "fr": "← Retour à la matière", "es": "← Volver a la asignatura", "it": "← Torna alla materia", "ru": "← Назад к предмету", "pt": "← Voltar à disciplina"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}, "lbl_zap": {"sr": "Zapamti", "en": "Remember", "de": "Merke", "fr": "À retenir", "es": "Recuerda", "it": "Ricorda", "ru": "Запомни", "pt": "Lembra"}, "subj": {"sr": "Fizika 3. razred", "en": "Physics Grade 3", "de": "Physik 3. Klasse", "fr": "Physique 3e année", "es": "Física 3.º curso", "it": "Fisica 3ª classe", "ru": "Физика, 3 класс", "pt": "Física 3.º ano"}, "back": {"sr": "← Fizika 3. razred", "en": "← Physics Grade 3", "de": "← Physik 3. Klasse", "fr": "← Physique 3e année", "es": "← Física 3.º curso", "it": "← Fisica 3ª classe", "ru": "← Физика, 3 класс", "pt": "← Física 3.º ano"}, "eyebrow": {"sr": "E‑knjiga · Zbirka zadataka", "en": "E‑book · Problem set", "de": "E‑Book · Aufgabensammlung", "fr": "E‑book · Recueil d'exercices", "es": "E‑book · Colección de problemas", "it": "E‑book · Raccolta di esercizi", "ru": "Э‑книга · Сборник задач", "pt": "E‑book · Coletânea de exercícios"}, "title": {"sr": "Fizika · 3. razred · Zadaci", "en": "Physics · Grade 3 · Problems", "de": "Physik · 3. Klasse · Aufgaben", "fr": "Physique · 3e année · Exercices", "es": "Física · 3.º curso · Problemas", "it": "Fisica · 3ª classe · Esercizi", "ru": "Физика · 3 класс · Задачи", "pt": "Física · 3.º ano · Problemas"}, "sub": {"sr": "Rešeni zadaci iz svake oblasti, korak po korak.", "en": "Solved problems from every topic, step by step.", "de": "Gelöste Aufgaben aus jedem Themenbereich, Schritt für Schritt.", "fr": "Exercices résolus de chaque thème, étape par étape.", "es": "Problemas resueltos de cada tema, paso a paso.", "it": "Problemi risolti di ogni argomento, passo dopo passo.", "ru": "Решённые задачи по каждой теме, шаг за шагом.", "pt": "Problemas resolvidos de cada tema, passo a passo."}, "intro": {"sr": "<b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak, tako da se jasno vidi koja se formula primenjuje i kako se dolazi do konačnog rezultata. Rešavanjem sličnih zadataka učvršćuje se razumevanje gradiva.", "en": "<b>Learn through solved problems.</b> Each problem is solved step by step, so it is clear which formula is applied and how the final result is reached. Solving similar problems strengthens understanding of the material.", "de": "<b>Lerne anhand gelöster Aufgaben.</b> Jede Aufgabe ist Schritt für Schritt gelöst, sodass klar wird, welche Formel angewendet wird und wie man zum Endergebnis gelangt. Das Lösen ähnlicher Aufgaben festigt das Verständnis des Stoffes.", "fr": "<b>Apprendre par des exercices résolus.</b> Chaque exercice est résolu étape par étape, afin de voir clairement quelle formule est appliquée et comment on arrive au résultat final. Résoudre des exercices similaires consolide la compréhension du programme.", "es": "<b>Aprende con problemas resueltos.</b> Cada problema está resuelto paso a paso, de modo que se ve claramente qué fórmula se aplica y cómo se llega al resultado final. Resolver problemas similares refuerza la comprensión del contenido.", "it": "<b>Impara con esercizi risolti.</b> Ogni esercizio è risolto passo dopo passo, in modo da vedere chiaramente quale formula viene applicata e come si arriva al risultato finale. Risolvere esercizi simili rafforza la comprensione del programma.", "ru": "<b>Учись на решённых задачах.</b> Каждая задача решена шаг за шагом, чтобы было ясно, какая формула применяется и как получается итоговый результат. Решение похожих задач закрепляет понимание материала.", "pt": "<b>Aprende com problemas resolvidos.</b> Cada problema é resolvido passo a passo, para que fique claro qual fórmula é aplicada e como se chega ao resultado final. Resolver problemas semelhantes reforça a compreensão da matéria."}, "lbl_rp": {"sr": "Rešen primer", "en": "Worked example", "de": "Gelöstes Beispiel", "fr": "Exemple résolu", "es": "Ejemplo resuelto", "it": "Esempio risolto", "ru": "Разобранный пример", "pt": "Exemplo resolvido"}, "tn1": {"sr": "Oscilacije", "en": "Oscillations", "de": "Schwingungen", "fr": "Oscillations", "es": "Oscilaciones", "it": "Oscillazioni", "ru": "Колебания", "pt": "Oscilações"}, "tps1": {"sr": "Matematičko klatno dužine l = 1 m osciluje u polju gravitacije g = 10 m/s². Izračunati period T i frekvenciju f oscilovanja klatna. (Uzeti π ≈ 3,14.)", "en": "A simple pendulum of length l = 1 m oscillates in a gravitational field with g = 10 m/s². Calculate the period T and the frequency f of the pendulum's oscillation. (Take π ≈ 3.14.)", "de": "Ein mathematisches Pendel der Länge l = 1 m schwingt in einem Gravitationsfeld mit g = 10 m/s². Berechne die Periode T und die Frequenz f der Pendelschwingung. (π ≈ 3,14.)", "fr": "Un pendule simple de longueur l = 1 m oscille dans un champ de gravité g = 10 m/s². Calculer la période T et la fréquence f de l'oscillation du pendule. (Prendre π ≈ 3,14.)", "es": "Un péndulo simple de longitud l = 1 m oscila en un campo gravitatorio con g = 10 m/s². Calcular el período T y la frecuencia f de la oscilación del péndulo. (Tomar π ≈ 3,14.)", "it": "Un pendolo semplice di lunghezza l = 1 m oscilla in un campo gravitazionale con g = 10 m/s². Calcolare il periodo T e la frequenza f dell'oscillazione del pendolo. (Prendere π ≈ 3,14.)", "ru": "Математический маятник длиной l = 1 м колеблется в поле тяжести с g = 10 м/с². Вычислить период T и частоту f колебаний маятника. (Принять π ≈ 3,14.)", "pt": "Um pêndulo simples de comprimento l = 1 m oscila num campo gravitacional com g = 10 m/s². Calcular o período T e a frequência f da oscilação do pêndulo. (Tomar π ≈ 3,14.)"}, "tst1_1": {"sr": "Zapisati formulu za period: T = 2π√(l/g).", "en": "Write down the formula for the period: T = 2π√(l/g).", "de": "Formel für die Periode notieren: T = 2π√(l/g).", "fr": "Écrire la formule de la période : T = 2π√(l/g).", "es": "Escribir la fórmula del período: T = 2π√(l/g).", "it": "Scrivere la formula del periodo: T = 2π√(l/g).", "ru": "Записать формулу периода: T = 2π√(l/g).", "pt": "Escrever a fórmula do período: T = 2π√(l/g)."}, "tst1_2": {"sr": "Uvrstiti vrednosti: T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 s.", "en": "Substitute the values: T = 2·3.14·√(1/10) = 6.28·√0.1 ≈ 6.28·0.316 ≈ 1.99 s.", "de": "Werte einsetzen: T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 s.", "fr": "Remplacer les valeurs : T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 s.", "es": "Sustituir los valores: T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 s.", "it": "Sostituire i valori: T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 s.", "ru": "Подставить значения: T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 с.", "pt": "Substituir os valores: T = 2·3,14·√(1/10) = 6,28·√0,1 ≈ 6,28·0,316 ≈ 1,99 s."}, "tst1_3": {"sr": "Izračunati frekvenciju: f = 1/T = 1/1,99 ≈ 0,50 Hz.", "en": "Calculate the frequency: f = 1/T = 1/1.99 ≈ 0.50 Hz.", "de": "Frequenz berechnen: f = 1/T = 1/1,99 ≈ 0,50 Hz.", "fr": "Calculer la fréquence : f = 1/T = 1/1,99 ≈ 0,50 Hz.", "es": "Calcular la frecuencia: f = 1/T = 1/1,99 ≈ 0,50 Hz.", "it": "Calcolare la frequenza: f = 1/T = 1/1,99 ≈ 0,50 Hz.", "ru": "Вычислить частоту: f = 1/T = 1/1,99 ≈ 0,50 Гц.", "pt": "Calcular a frequência: f = 1/T = 1/1,99 ≈ 0,50 Hz."}, "tn2": {"sr": "Talasi", "en": "Waves", "de": "Wellen", "fr": "Ondes", "es": "Ondas", "it": "Onde", "ru": "Волны", "pt": "Ondas"}, "tps2": {"sr": "Zvučni talas ima frekvenciju f = 440 Hz i brzinu prostiranja kroz vazduh v = 340 m/s. Izračunati talasnu dužinu λ tog talasa.", "en": "A sound wave has a frequency f = 440 Hz and propagates through air at a speed v = 340 m/s. Calculate the wavelength λ of this wave.", "de": "Eine Schallwelle hat eine Frequenz von f = 440 Hz und breitet sich in Luft mit einer Geschwindigkeit von v = 340 m/s aus. Berechne die Wellenlänge λ dieser Welle.", "fr": "Une onde sonore a une fréquence f = 440 Hz et se propage dans l'air à une vitesse v = 340 m/s. Calculer la longueur d'onde λ de cette onde.", "es": "Una onda sonora tiene una frecuencia f = 440 Hz y se propaga por el aire a una velocidad v = 340 m/s. Calcular la longitud de onda λ de esa onda.", "it": "Un'onda sonora ha una frequenza f = 440 Hz e si propaga nell'aria a una velocità v = 340 m/s. Calcolare la lunghezza d'onda λ di quest'onda.", "ru": "Звуковая волна имеет частоту f = 440 Гц и распространяется в воздухе со скоростью v = 340 м/с. Вычислить длину волны λ этой волны.", "pt": "Uma onda sonora tem frequência f = 440 Hz e propaga-se no ar a uma velocidade v = 340 m/s. Calcular o comprimento de onda λ dessa onda."}, "tst2_1": {"sr": "Zapisati formulu: v = λ·f, odakle je λ = v/f.", "en": "Write down the formula: v = λ·f, so λ = v/f.", "de": "Formel notieren: v = λ·f, also λ = v/f.", "fr": "Écrire la formule : v = λ·f, d'où λ = v/f.", "es": "Escribir la fórmula: v = λ·f, de donde λ = v/f.", "it": "Scrivere la formula: v = λ·f, da cui λ = v/f.", "ru": "Записать формулу: v = λ·f, откуда λ = v/f.", "pt": "Escrever a fórmula: v = λ·f, logo λ = v/f."}, "tst2_2": {"sr": "Uvrstiti vrednosti: λ = 340/440 ≈ 0,77 m.", "en": "Substitute the values: λ = 340/440 ≈ 0.77 m.", "de": "Werte einsetzen: λ = 340/440 ≈ 0,77 m.", "fr": "Remplacer les valeurs : λ = 340/440 ≈ 0,77 m.", "es": "Sustituir los valores: λ = 340/440 ≈ 0,77 m.", "it": "Sostituire i valori: λ = 340/440 ≈ 0,77 m.", "ru": "Подставить значения: λ = 340/440 ≈ 0,77 м.", "pt": "Substituir os valores: λ = 340/440 ≈ 0,77 m."}, "tst2_3": {"sr": "Zaključak: talasna dužina tona je približno 0,77 m.", "en": "Conclusion: the wavelength of the tone is approximately 0.77 m.", "de": "Schlussfolgerung: Die Wellenlänge des Tons beträgt etwa 0,77 m.", "fr": "Conclusion : la longueur d'onde du son est d'environ 0,77 m.", "es": "Conclusión: la longitud de onda del tono es aproximadamente 0,77 m.", "it": "Conclusione: la lunghezza d'onda del suono è di circa 0,77 m.", "ru": "Вывод: длина волны тона составляет примерно 0,77 м.", "pt": "Conclusão: o comprimento de onda do som é de aproximadamente 0,77 m."}, "tn3": {"sr": "Magnetno polje", "en": "Magnetic Field", "de": "Magnetfeld", "fr": "Champ magnétique", "es": "Campo magnético", "it": "Campo magnetico", "ru": "Магнитное поле", "pt": "Campo magnético"}, "tps3": {"sr": "Pravolinijski provodnik dužine L = 0,5 m nalazi se upravno na homogeno magnetno polje indukcije B = 0,2 T. Kroz provodnik protiče struja jačine I = 4 A. Izračunati intenzitet magnetne sile koja deluje na provodnik.", "en": "A straight conductor of length L = 0.5 m is placed perpendicular to a uniform magnetic field of flux density B = 0.2 T. A current of strength I = 4 A flows through the conductor. Calculate the magnitude of the magnetic force acting on the conductor.", "de": "Ein gerader Leiter der Länge L = 0,5 m steht senkrecht zu einem homogenen Magnetfeld der Flussdichte B = 0,2 T. Durch den Leiter fließt ein Strom der Stärke I = 4 A. Berechne den Betrag der magnetischen Kraft, die auf den Leiter wirkt.", "fr": "Un conducteur rectiligne de longueur L = 0,5 m est placé perpendiculairement à un champ magnétique uniforme d'induction B = 0,2 T. Un courant d'intensité I = 4 A traverse le conducteur. Calculer l'intensité de la force magnétique agissant sur le conducteur.", "es": "Un conductor rectilíneo de longitud L = 0,5 m se encuentra perpendicular a un campo magnético uniforme de inducción B = 0,2 T. Por el conductor circula una corriente de intensidad I = 4 A. Calcular la intensidad de la fuerza magnética que actúa sobre el conductor.", "it": "Un conduttore rettilineo di lunghezza L = 0,5 m è posto perpendicolarmente a un campo magnetico uniforme di induzione B = 0,2 T. Nel conduttore scorre una corrente di intensità I = 4 A. Calcolare l'intensità della forza magnetica che agisce sul conduttore.", "ru": "Прямой проводник длиной L = 0,5 м расположен перпендикулярно однородному магнитному полю индукцией B = 0,2 Тл. По проводнику течёт ток силой I = 4 А. Вычислить величину магнитной силы, действующей на проводник.", "pt": "Um condutor retilíneo de comprimento L = 0,5 m está colocado perpendicularmente a um campo magnético uniforme de indução B = 0,2 T. Pelo condutor circula uma corrente de intensidade I = 4 A. Calcular a intensidade da força magnética que atua sobre o condutor."}, "tst3_1": {"sr": "Zapisati formulu: F = B·I·L.", "en": "Write down the formula: F = B·I·L.", "de": "Formel notieren: F = B·I·L.", "fr": "Écrire la formule : F = B·I·L.", "es": "Escribir la fórmula: F = B·I·L.", "it": "Scrivere la formula: F = B·I·L.", "ru": "Записать формулу: F = B·I·L.", "pt": "Escrever a fórmula: F = B·I·L."}, "tst3_2": {"sr": "Uvrstiti vrednosti: F = 0,2·4·0,5 = 0,4 N.", "en": "Substitute the values: F = 0.2·4·0.5 = 0.4 N.", "de": "Werte einsetzen: F = 0,2·4·0,5 = 0,4 N.", "fr": "Remplacer les valeurs : F = 0,2·4·0,5 = 0,4 N.", "es": "Sustituir los valores: F = 0,2·4·0,5 = 0,4 N.", "it": "Sostituire i valori: F = 0,2·4·0,5 = 0,4 N.", "ru": "Подставить значения: F = 0,2·4·0,5 = 0,4 Н.", "pt": "Substituir os valores: F = 0,2·4·0,5 = 0,4 N."}, "tst3_3": {"sr": "Zaključak: na provodnik deluje magnetna sila od 0,4 N.", "en": "Conclusion: a magnetic force of 0.4 N acts on the conductor.", "de": "Schlussfolgerung: Auf den Leiter wirkt eine magnetische Kraft von 0,4 N.", "fr": "Conclusion : une force magnétique de 0,4 N agit sur le conducteur.", "es": "Conclusión: sobre el conductor actúa una fuerza magnética de 0,4 N.", "it": "Conclusione: sul conduttore agisce una forza magnetica di 0,4 N.", "ru": "Вывод: на проводник действует магнитная сила 0,4 Н.", "pt": "Conclusão: sobre o condutor atua uma força magnética de 0,4 N."}, "tn4": {"sr": "Indukcija", "en": "Induction", "de": "Induktion", "fr": "Induction", "es": "Inducción", "it": "Induzione", "ru": "Индукция", "pt": "Indução"}, "tps4": {"sr": "Magnetni fluks kroz kalem se ravnomerno promeni od Φ₁ = 0,02 Wb do Φ₂ = 0,08 Wb za vreme Δt = 0,3 s. Izračunati intenzitet indukovane elektromotorne sile.", "en": "The magnetic flux through a coil changes uniformly from Φ₁ = 0.02 Wb to Φ₂ = 0.08 Wb over a time Δt = 0.3 s. Calculate the magnitude of the induced electromotive force.", "de": "Der magnetische Fluss durch eine Spule ändert sich gleichmäßig von Φ₁ = 0,02 Wb auf Φ₂ = 0,08 Wb in einer Zeit von Δt = 0,3 s. Berechne den Betrag der induzierten elektromotorischen Kraft.", "fr": "Le flux magnétique à travers une bobine varie uniformément de Φ₁ = 0,02 Wb à Φ₂ = 0,08 Wb en un temps Δt = 0,3 s. Calculer l'intensité de la force électromotrice induite.", "es": "El flujo magnético a través de una bobina varía uniformemente de Φ₁ = 0,02 Wb a Φ₂ = 0,08 Wb en un tiempo Δt = 0,3 s. Calcular la intensidad de la fuerza electromotriz inducida.", "it": "Il flusso magnetico attraverso una bobina varia uniformemente da Φ₁ = 0,02 Wb a Φ₂ = 0,08 Wb in un tempo Δt = 0,3 s. Calcolare l'intensità della forza elettromotrice indotta.", "ru": "Магнитный поток через катушку равномерно изменяется от Φ₁ = 0,02 Вб до Φ₂ = 0,08 Вб за время Δt = 0,3 с. Вычислить величину индуцированной электродвижущей силы.", "pt": "O fluxo magnético através de uma bobina varia uniformemente de Φ₁ = 0,02 Wb para Φ₂ = 0,08 Wb num tempo Δt = 0,3 s. Calcular a intensidade da força eletromotriz induzida."}, "tst4_1": {"sr": "Izračunati promenu fluksa: ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Wb.", "en": "Calculate the change in flux: ΔΦ = Φ₂ − Φ₁ = 0.08 − 0.02 = 0.06 Wb.", "de": "Flussänderung berechnen: ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Wb.", "fr": "Calculer la variation de flux : ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Wb.", "es": "Calcular la variación del flujo: ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Wb.", "it": "Calcolare la variazione di flusso: ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Wb.", "ru": "Вычислить изменение потока: ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Вб.", "pt": "Calcular a variação do fluxo: ΔΦ = Φ₂ − Φ₁ = 0,08 − 0,02 = 0,06 Wb."}, "tst4_2": {"sr": "Primeniti formulu: ε = ΔΦ/Δt = 0,06/0,3 = 0,2 V (uzima se intenzitet, bez znaka minus).", "en": "Apply the formula: ε = ΔΦ/Δt = 0.06/0.3 = 0.2 V (magnitude is taken, without the minus sign).", "de": "Formel anwenden: ε = ΔΦ/Δt = 0,06/0,3 = 0,2 V (es wird der Betrag genommen, ohne Minuszeichen).", "fr": "Appliquer la formule : ε = ΔΦ/Δt = 0,06/0,3 = 0,2 V (on prend l'intensité, sans le signe moins).", "es": "Aplicar la fórmula: ε = ΔΦ/Δt = 0,06/0,3 = 0,2 V (se toma el valor absoluto, sin el signo menos).", "it": "Applicare la formula: ε = ΔΦ/Δt = 0,06/0,3 = 0,2 V (si considera il valore assoluto, senza il segno meno).", "ru": "Применить формулу: ε = ΔΦ/Δt = 0,06/0,3 = 0,2 В (берётся модуль, без знака минус).", "pt": "Aplicar a fórmula: ε = ΔΦ/Δt = 0,06/0,3 = 0,2 V (toma-se o valor absoluto, sem o sinal negativo)."}, "tst4_3": {"sr": "Zaključak: indukovana elektromotorna sila iznosi 0,2 V.", "en": "Conclusion: the induced electromotive force is 0.2 V.", "de": "Schlussfolgerung: Die induzierte elektromotorische Kraft beträgt 0,2 V.", "fr": "Conclusion : la force électromotrice induite est de 0,2 V.", "es": "Conclusión: la fuerza electromotriz inducida es de 0,2 V.", "it": "Conclusione: la forza elettromotrice indotta è di 0,2 V.", "ru": "Вывод: индуцированная электродвижущая сила составляет 0,2 В.", "pt": "Conclusão: a força eletromotriz induzida é de 0,2 V."}, "tn5": {"sr": "Naizmenična struja", "en": "Alternating Current", "de": "Wechselstrom", "fr": "Courant alternatif", "es": "Corriente alterna", "it": "Corrente alternata", "ru": "Переменный ток", "pt": "Corrente alternada"}, "tps5": {"sr": "Amplituda naizmeničnog napona u kolu iznosi U₀ = 311 V. Izračunati efektivnu vrednost tog napona.", "en": "The amplitude of the alternating voltage in a circuit is U₀ = 311 V. Calculate the effective (RMS) value of this voltage.", "de": "Die Amplitude der Wechselspannung in einem Stromkreis beträgt U₀ = 311 V. Berechne den Effektivwert dieser Spannung.", "fr": "L'amplitude de la tension alternative dans un circuit est U₀ = 311 V. Calculer la valeur efficace de cette tension.", "es": "La amplitud de la tensión alterna en un circuito es U₀ = 311 V. Calcular el valor eficaz de esa tensión.", "it": "L'ampiezza della tensione alternata in un circuito è U₀ = 311 V. Calcolare il valore efficace di questa tensione.", "ru": "Амплитуда переменного напряжения в цепи равна U₀ = 311 В. Вычислить действующее значение этого напряжения.", "pt": "A amplitude da tensão alternada num circuito é U₀ = 311 V. Calcular o valor eficaz dessa tensão."}, "tst5_1": {"sr": "Zapisati formulu: Uef = U₀/√2.", "en": "Write down the formula: Uef = U₀/√2.", "de": "Formel notieren: Ueff = U₀/√2.", "fr": "Écrire la formule : Uef = U₀/√2.", "es": "Escribir la fórmula: Uef = U₀/√2.", "it": "Scrivere la formula: Uef = U₀/√2.", "ru": "Записать формулу: Uef = U₀/√2.", "pt": "Escrever a fórmula: Uef = U₀/√2."}, "tst5_2": {"sr": "Uvrstiti vrednost: Uef = 311/1,41 ≈ 220 V.", "en": "Substitute the value: Uef = 311/1.41 ≈ 220 V.", "de": "Wert einsetzen: Ueff = 311/1,41 ≈ 220 V.", "fr": "Remplacer la valeur : Uef = 311/1,41 ≈ 220 V.", "es": "Sustituir el valor: Uef = 311/1,41 ≈ 220 V.", "it": "Sostituire il valore: Uef = 311/1,41 ≈ 220 V.", "ru": "Подставить значение: Uef = 311/1,41 ≈ 220 В.", "pt": "Substituir o valor: Uef = 311/1,41 ≈ 220 V."}, "tst5_3": {"sr": "Zaključak: efektivna vrednost napona iznosi približno 220 V, što odgovara standardnom naponu gradske mreže.", "en": "Conclusion: the effective voltage is approximately 220 V, which corresponds to the standard mains voltage.", "de": "Schlussfolgerung: Der Effektivwert der Spannung beträgt etwa 220 V, was der üblichen Netzspannung entspricht.", "fr": "Conclusion : la valeur efficace de la tension est d'environ 220 V, ce qui correspond à la tension standard du secteur.", "es": "Conclusión: el valor eficaz de la tensión es aproximadamente 220 V, lo que corresponde a la tensión estándar de la red eléctrica.", "it": "Conclusione: il valore efficace della tensione è di circa 220 V, che corrisponde alla tensione standard di rete.", "ru": "Вывод: действующее значение напряжения составляет примерно 220 В, что соответствует стандартному напряжению городской сети.", "pt": "Conclusão: o valor eficaz da tensão é de aproximadamente 220 V, o que corresponde à tensão padrão da rede elétrica."}, "tn6": {"sr": "Optika", "en": "Optics", "de": "Optik", "fr": "Optique", "es": "Óptica", "it": "Ottica", "ru": "Оптика", "pt": "Óptica"}, "tps6": {"sr": "Predmet se nalazi na rastojanju p = 30 cm ispred sabirnog sočiva žižne daljine f = 10 cm. Izračunati rastojanje lika l od sočiva.", "en": "An object is placed at a distance p = 30 cm in front of a converging lens with focal length f = 10 cm. Calculate the distance l of the image from the lens.", "de": "Ein Gegenstand befindet sich in einem Abstand p = 30 cm vor einer Sammellinse mit der Brennweite f = 10 cm. Berechne den Abstand l des Bildes von der Linse.", "fr": "Un objet est placé à une distance p = 30 cm devant une lentille convergente de distance focale f = 10 cm. Calculer la distance l de l'image à la lentille.", "es": "Un objeto se encuentra a una distancia p = 30 cm delante de una lente convergente de distancia focal f = 10 cm. Calcular la distancia l de la imagen a la lente.", "it": "Un oggetto si trova a una distanza p = 30 cm davanti a una lente convergente con distanza focale f = 10 cm. Calcolare la distanza l dell'immagine dalla lente.", "ru": "Предмет находится на расстоянии p = 30 см перед собирающей линзой с фокусным расстоянием f = 10 см. Вычислить расстояние l от изображения до линзы.", "pt": "Um objeto encontra-se a uma distância p = 30 cm à frente de uma lente convergente com distância focal f = 10 cm. Calcular a distância l da imagem à lente."}, "tst6_1": {"sr": "Zapisati jednačinu sočiva: 1/f = 1/p + 1/l, odakle je 1/l = 1/f − 1/p.", "en": "Write down the lens equation: 1/f = 1/p + 1/l, so 1/l = 1/f − 1/p.", "de": "Linsengleichung notieren: 1/f = 1/p + 1/l, also 1/l = 1/f − 1/p.", "fr": "Écrire l'équation des lentilles : 1/f = 1/p + 1/l, d'où 1/l = 1/f − 1/p.", "es": "Escribir la ecuación de la lente: 1/f = 1/p + 1/l, de donde 1/l = 1/f − 1/p.", "it": "Scrivere l'equazione della lente: 1/f = 1/p + 1/l, da cui 1/l = 1/f − 1/p.", "ru": "Записать формулу линзы: 1/f = 1/p + 1/l, откуда 1/l = 1/f − 1/p.", "pt": "Escrever a equação da lente: 1/f = 1/p + 1/l, logo 1/l = 1/f − 1/p."}, "tst6_2": {"sr": "Uvrstiti vrednosti: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.", "en": "Substitute the values: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.", "de": "Werte einsetzen: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.", "fr": "Remplacer les valeurs : 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.", "es": "Sustituir los valores: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.", "it": "Sostituire i valori: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.", "ru": "Подставить значения: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15.", "pt": "Substituir os valores: 1/l = 1/10 − 1/30 = 3/30 − 1/30 = 2/30 = 1/15."}, "tst6_3": {"sr": "Izračunati l: l = 15 cm. Lik se formira na rastojanju 15 cm od sočiva.", "en": "Calculate l: l = 15 cm. The image forms at a distance of 15 cm from the lens.", "de": "l berechnen: l = 15 cm. Das Bild entsteht in einem Abstand von 15 cm von der Linse.", "fr": "Calculer l : l = 15 cm. L'image se forme à une distance de 15 cm de la lentille.", "es": "Calcular l: l = 15 cm. La imagen se forma a una distancia de 15 cm de la lente.", "it": "Calcolare l: l = 15 cm. L'immagine si forma a una distanza di 15 cm dalla lente.", "ru": "Вычислить l: l = 15 см. Изображение образуется на расстоянии 15 см от линзы.", "pt": "Calcular l: l = 15 cm. A imagem forma-se a uma distância de 15 cm da lente."}};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(e){try{ap(((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase())}catch(_){}});})();</script>
 </body>
 </html>

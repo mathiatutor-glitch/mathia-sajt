@@ -1,296 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mathia — Fizika 6. razred — zadaci</title>
+<title>Mathia — Fizika · 6. razred · Zadaci · Zbirka zadataka</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
-  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
-  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Spectral',serif;
-}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-html,body{overflow-x:hidden}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
-.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
-.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
-h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
-.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
-.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
-.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
-.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
-.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
-.chip.soon{opacity:.5}
-.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
-.intro b{font-family:var(--hf)}
-.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
-.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
-.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
-.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
-.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
-.zad-n.solved{background:var(--good)}
-.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
-.opcije{display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
-.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
-.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
-.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
-.opt.correct{background:#edf6ee;border-color:var(--good)}
-.opt.wrong{background:#fbeeed;border-color:var(--bad)}
-.opt.correct .opt-l{background:var(--good);color:#fff}
-.opt.wrong .opt-l{background:var(--bad);color:#fff}
-.opt[disabled]{cursor:default}
-.opt[disabled]:hover{transform:none;background:#fffdf8}
-.opt.correct[disabled]:hover{background:#edf6ee}
-.opt.wrong[disabled]:hover{background:#fbeeed}
-.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
-.feedback.ok{color:var(--good)}
-.feedback.no{color:var(--bad)}
-.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
-.reveal-btn:hover{background:var(--acc);color:#fff}
-.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
-.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
-.rstep+.rstep{border-top:1px solid #f3ead9}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
-.katex{white-space:nowrap;font-size:1.02em}
-.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
-.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Fizika-6-Razred-Zadaci.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Mathia — Fizika 6. razred — zadaci">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Fizika-6-Razred-Zadaci.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathia — Fizika 6. razred — zadaci">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+.page{padding:10px 0 40px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:10px 0 26px;box-shadow:0 16px 40px -30px rgba(120,40,60,.4);color:#4a3a40}
+.topic{margin:34px 0}
+.topic>h2{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.7rem;margin:0 0 4px}
+.topic>h2 .n{color:var(--gold);font-size:1.1rem;margin-right:8px}
+.topic h3{font-family:'Spectral',serif;color:var(--ink);font-size:1.18rem;margin:22px 0 6px}
+.rule{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line)}
+.box .bx-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin-bottom:6px}
+.zapamti{background:linear-gradient(180deg,#FFFBF3,#FBF3E2)}.zapamti .bx-h{color:var(--golddk)}
+.primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
+.fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:20px 0;padding:15px 18px;line-height:1.6;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="osnovna-fizika-6.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Fizika 6. razred</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Fizika 6. razred · Provera znanja</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="cover">
-  <div class="brandline">MATHIA</div>
-  <div class="eyebrow">Osnovna škola · Fizika</div>
-  <h1>Fizika 6. razred — zadaci</h1>
-  <p class="sub">Vežba po oblastima za 6. razred: fizičke veličine i jedinice, brzina i kretanje, masa i gustina, sila i težina, merenje. Probaj sam, pa otkrij rešenje korak po korak.</p>
-  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
-</div>
-
-<div class="page">
-  <div class="chips" id="roksel">
-    <span class="chip active" data-y="vel">Veličine i jedinice</span>
-    <span class="chip" data-y="brz">Brzina i kretanje</span>
-    <span class="chip" data-y="mas">Masa i gustina</span>
-    <span class="chip" data-y="sil">Sila i težina</span>
-    <span class="chip" data-y="mer">Merenje</span>
-  </div>
-  <div class="intro"><b id="rok-label">Oblast: Veličine i jedinice</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
-
-  <div class="prog-wrap">
-    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
-    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
-  </div>
-
-  <div id="lista"></div>
-  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
-  <div class="foot" id="rok-foot">MATHIA · Veličine i jedinice · uči s ljubavlju · mathia.rs</div>
-</div>
-
-<script>
-// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
-// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
-const A=[{"n": 1, "t": "Osnovna jedinica za dužinu u SI sistemu je:", "o": ["metar (m)", "kilogram (kg)", "sekunda (s)", "njutn (N)", "litar (l)"], "c": 0, "r": ["Dužina se meri u metrima.", "Oznaka: m."]}, {"n": 2, "t": "Osnovna jedinica za masu u SI sistemu je:", "o": ["gram", "kilogram (kg)", "njutn", "litar", "metar"], "c": 1, "r": ["SI jedinica mase je kilogram.", "Oznaka: kg."]}, {"n": 3, "t": "Osnovna jedinica za vreme u SI sistemu je:", "o": ["sat", "minut", "sekunda (s)", "metar", "kilogram"], "c": 2, "r": ["SI jedinica vremena je sekunda.", "Oznaka: s."]}, {"n": 4, "t": "Koliko sekundi ima jedan minut?", "o": ["$10$", "$100$", "$60$", "$24$", "$3600$"], "c": 2, "r": ["$1$ minut $=60$ sekundi.", ""]}];
-const B=[{"n": 1, "t": "Telo pređe $s=20\\text{ m}$ za $t=4\\text{ s}$. Brzina je:", "o": ["$4\\text{ m/s}$", "$5\\text{ m/s}$", "$80\\text{ m/s}$", "$24\\text{ m/s}$", "$16\\text{ m/s}$"], "c": 1, "r": ["$v=\\dfrac{s}{t}=\\dfrac{20}{4}$.", "$v=5\\text{ m/s}$."]}, {"n": 2, "t": "Jedinica za brzinu je:", "o": ["m/s", "m/s²", "kg", "N", "s"], "c": 0, "r": ["Brzina = put po vremenu.", "Jedinica: m/s."]}, {"n": 3, "t": "Telo za $2\\text{ s}$ pređe $10\\text{ m}$. Njegova brzina je:", "o": ["$2\\text{ m/s}$", "$20\\text{ m/s}$", "$5\\text{ m/s}$", "$12\\text{ m/s}$", "$8\\text{ m/s}$"], "c": 2, "r": ["$v=\\dfrac{10}{2}$.", "$v=5\\text{ m/s}$."]}, {"n": 4, "t": "Ako se telo kreće brzinom $3\\text{ m/s}$, za $5\\text{ s}$ pređe put:", "o": ["$8\\text{ m}$", "$15\\text{ m}$", "$1{,}5\\text{ m}$", "$3\\text{ m}$", "$30\\text{ m}$"], "c": 1, "r": ["$s=v\\cdot t=3\\cdot 5$.", "$s=15\\text{ m}$."]}];
-const C=[{"n": 1, "t": "Telo mase $m=20\\text{ g}$ ima zapreminu $V=10\\text{ cm}^3$. Gustina je:", "o": ["$0{,}5\\text{ g/cm}^3$", "$2\\text{ g/cm}^3$", "$200\\text{ g/cm}^3$", "$30\\text{ g/cm}^3$", "$10\\text{ g/cm}^3$"], "c": 1, "r": ["$\\rho=\\dfrac{m}{V}=\\dfrac{20}{10}$.", "$\\rho=2\\text{ g/cm}^3$."]}, {"n": 2, "t": "Jedinica za gustinu (u SI) je:", "o": ["m/s", "kg/m³", "N", "J", "Pa"], "c": 1, "r": ["Gustina = masa po zapremini.", "Jedinica: kg/m³."]}, {"n": 3, "t": "Gustina vode približno iznosi:", "o": ["$0{,}1\\text{ g/cm}^3$", "$1\\text{ g/cm}^3$", "$10\\text{ g/cm}^3$", "$100\\text{ g/cm}^3$", "$1000\\text{ g/cm}^3$"], "c": 1, "r": ["Voda: $1\\text{ g/cm}^3=1000\\text{ kg/m}^3$.", ""]}, {"n": 4, "t": "Masa tela meri se:", "o": ["lenjirom", "vagom", "termometrom", "satom", "dinamometrom"], "c": 1, "r": ["Za merenje mase koristi se vaga.", ""]}];
-const D=[{"n": 1, "t": "Jedinica za silu je:", "o": ["paskal", "njutn (N)", "džul", "vat", "kilogram"], "c": 1, "r": ["Sila se meri u njutnima.", "Oznaka: N."]}, {"n": 2, "t": "Sila kojom Zemlja privlači telo naziva se:", "o": ["trenje", "težina (sila teže)", "elastična sila", "potisak", "magnetna sila"], "c": 1, "r": ["Zemljino privlačenje daje težinu tela.", ""]}, {"n": 3, "t": "Sila se meri:", "o": ["vagom", "lenjirom", "dinamometrom", "termometrom", "satom"], "c": 2, "r": ["Za merenje sile koristi se dinamometar.", ""]}, {"n": 4, "t": "Telo mase $1\\text{ kg}$ ima težinu približno (uz $g\\approx 10\\text{ N/kg}$):", "o": ["$1\\text{ N}$", "$10\\text{ N}$", "$100\\text{ N}$", "$0{,}1\\text{ N}$", "$1000\\text{ N}$"], "c": 1, "r": ["$G=m\\cdot g=1\\cdot 10$.", "$G=10\\text{ N}$."]}];
-const E=[{"n": 1, "t": "Koliko metara ima $1\\text{ km}$?", "o": ["$10$", "$100$", "$1000$", "$1$", "$10000$"], "c": 2, "r": ["$1\\text{ km}=1000\\text{ m}$.", ""]}, {"n": 2, "t": "Koliko centimetara ima $2\\text{ m}$?", "o": ["$20$", "$200$", "$2000$", "$2$", "$0{,}2$"], "c": 1, "r": ["$1\\text{ m}=100\\text{ cm}$, pa $2\\cdot 100$.", "$=200\\text{ cm}$."]}, {"n": 3, "t": "Koliko grama ima $1\\text{ kg}$?", "o": ["$100$", "$10$", "$1000$", "$500$", "$2000$"], "c": 2, "r": ["$1\\text{ kg}=1000\\text{ g}$.", ""]}, {"n": 4, "t": "Termometar je instrument kojim merimo:", "o": ["masu", "dužinu", "temperaturu", "vreme", "silu"], "c": 2, "r": ["Termometar meri temperaturu.", ""]}];
-
-const EXAMS={
-  'vel':{label:'Veličine i jedinice', z:A},
-  'brz':{label:'Brzina i kretanje', z:B},
-  'mas':{label:'Masa i gustina', z:C},
-  'sil':{label:'Sila i težina', z:D},
-  'mer':{label:'Merenje', z:E}
-};
-let YEAR='vel';
-let ZADACI=EXAMS[YEAR].z;
-let KEY='mathia_f6_'+YEAR;
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
-function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-let stanje=load();
-
-function updateProgress(){
-  const n=Object.values(stanje).filter(v=>v==='ok').length;
-  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
-  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
-}
-
-function render(){
-  const lista=document.getElementById('lista');
-  ZADACI.forEach(z=>{
-    const solved=stanje[z.n]==='ok';
-    const card=document.createElement('div'); card.className='zad';
-    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
-    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
-    card.innerHTML=`
-      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
-      <div class="zad-q">${z.t}</div>
-      <div class="opcije">${opts}</div>
-      <button class="reveal-btn">Prikaži rešenje ✦</button>
-      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
-    // option clicks
-    const optEls=card.querySelectorAll('.opt');
-    optEls.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        if(card.dataset.done) return;
-        const i=+btn.dataset.i;
-        optEls.forEach(b=>b.setAttribute('disabled','')); 
-        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
-        if(i!==z.c) btn.classList.add('wrong');
-        card.dataset.done='1';
-        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
-        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
-        const fb=document.createElement('div');
-        fb.className='feedback '+(i===z.c?'ok':'no');
-        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
-        card.querySelector('.opcije').after(fb);
-        updateProgress();
-      });
-    });
-    card.querySelector('.reveal-btn').addEventListener('click',e=>{
-      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
-      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
-      if(!r.hidden) fitFormulas(r);
-    });
-    lista.appendChild(card);
-  });
-  updateProgress();
-}
-
-document.getElementById('reset').addEventListener('click',()=>{
-  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
-});
-
-function fitFormulas(root){
-  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
-    var avail=box.clientWidth; if(avail<=0) return;
-    box.querySelectorAll('.katex').forEach(function(k){
-      k.style.fontSize=''; var size=1.02, g=0;
-      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
-    });
-  });
-}
-function typeset(){
-  if(window.renderMathInElement){
-    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
-  }
-  fitFormulas();
-}
-var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
-function go(){ render(); typeset(); }
-function switchYear(y){
-  if(!EXAMS[y]||y===YEAR) return;
-  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_f6_'+YEAR; stanje=load();
-  document.getElementById('lista').innerHTML='';
-  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
-  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
-  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Veličine i jedinice · uči s ljubavlju · mathia.rs';
-  render(); typeset();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
-if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
-</script>
-
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script defer src="gate.js" data-subject="osn-fiz-6"></script>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="osnovna-fizika-6.html" data-i18n="back">← Fizika 6. razred</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">MathIA</div><div class="eyebrow" data-i18n="eyebrow">E‑knjiga · Zbirka zadataka</div><h1 data-i18n="title">Fizika · 6. razred · Zadaci</h1><div class="sub" data-i18n="sub">Rešeni zadaci iz svake oblasti, korak po korak.</div><div class="orn">✦</div><a class="tb-back" href="osnovna-fizika-6.html" data-i18n="back2">← Nazad na predmet</a></div>
+<div class="wrap page"><div class="intro" data-i18n-html="intro"><b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak kako bi ti bilo lakše da razumeš postupak.</div><section class="topic"><h2><span class="n">1.</span><span data-i18n="tn1">Kretanje</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps1">Automobil pređe put od 150 km za 2 sata. Kolika je njegova prosečna brzina?</span><span class="step" data-i18n-html="tst1_1">Zapiši poznate veličine: s = 150 km, t = 2 h.</span><span class="step" data-i18n-html="tst1_2">Primeni formulu v = s/t.</span><span class="step" data-i18n-html="tst1_3">Izračunaj: v = 150 km / 2 h = 75 km/h.</span><span class="step" data-i18n-html="tst1_4">Odgovor: prosečna brzina automobila je 75 km/h.</span></div></section><section class="topic"><h2><span class="n">2.</span><span data-i18n="tn2">Masa i gustina</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps2">Komad metala ima masu 270 g i zapreminu 100 cm³. Odredi gustinu metala.</span><span class="step" data-i18n-html="tst2_1">Zapiši podatke: m = 270 g, V = 100 cm³.</span><span class="step" data-i18n-html="tst2_2">Primeni formulu ρ = m/V.</span><span class="step" data-i18n-html="tst2_3">Izračunaj: ρ = 270 g / 100 cm³ = 2,7 g/cm³.</span><span class="step" data-i18n-html="tst2_4">Zaključak: to je gustina aluminijuma.</span></div></section><section class="topic"><h2><span class="n">3.</span><span data-i18n="tn3">Merenje</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps3">Izrazi dužinu od 2,5 km u metrima i vreme od 1,5 h u sekundama.</span><span class="step" data-i18n-html="tst3_1">Podseti se: 1 km = 1000 m i 1 h = 3600 s.</span><span class="step" data-i18n-html="tst3_2">Za dužinu: 2,5 km · 1000 = 2500 m.</span><span class="step" data-i18n-html="tst3_3">Za vreme: 1,5 h · 3600 = 5400 s.</span><span class="step" data-i18n-html="tst3_4">Odgovor: 2500 m i 5400 s.</span></div></section><section class="topic"><h2><span class="n">4.</span><span data-i18n="tn4">Pritisak — uvod</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps4">Sila od 200 N deluje na površinu od 0,5 m². Izračunaj pritisak.</span><span class="step" data-i18n-html="tst4_1">Zapiši podatke: F = 200 N, S = 0,5 m².</span><span class="step" data-i18n-html="tst4_2">Primeni formulu p = F/S.</span><span class="step" data-i18n-html="tst4_3">Izračunaj: p = 200 N / 0,5 m² = 400 Pa.</span><span class="step" data-i18n-html="tst4_4">Odgovor: pritisak iznosi 400 Pa.</span></div></section><section class="topic"><h2><span class="n">5.</span><span data-i18n="tn5">Ravnoteža</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps5">Na polugu na rastojanju 2 m od oslonca deluje sila od 30 N. Kolika sila na rastojanju od 3 m sa druge strane održava ravnotežu?</span><span class="step" data-i18n-html="tst5_1">Zapiši podatke: F1 = 30 N, d1 = 2 m, d2 = 3 m.</span><span class="step" data-i18n-html="tst5_2">Primeni uslov ravnoteže: F1·d1 = F2·d2.</span><span class="step" data-i18n-html="tst5_3">Izračunaj: F2 = (30 N · 2 m) / 3 m = 20 N.</span><span class="step" data-i18n-html="tst5_4">Odgovor: potrebna sila je 20 N.</span></div></section><section class="topic"><h2><span class="n">6.</span><span data-i18n="tn6">Sila</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps6">Telo mase 5 kg ubrzava se silom tako da mu ubrzanje iznosi 2 m/s². Izračunaj silu.</span><span class="step" data-i18n-html="tst6_1">Zapiši podatke: m = 5 kg, a = 2 m/s².</span><span class="step" data-i18n-html="tst6_2">Primeni formulu F = m·a.</span><span class="step" data-i18n-html="tst6_3">Izračunaj: F = 5 kg · 2 m/s² = 10 N.</span><span class="step" data-i18n-html="tst6_4">Odgovor: sila iznosi 10 N.</span></div></section></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="osnovna-fizika-6.html" data-i18n="subj">Fizika 6. razred</a><a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a><a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a><a href="index.html#paketi" data-i18n="nav_plans">Paketi</a><a href="o-marini.html" data-i18n="nav_about">O meni</a><a href="uslovi.html" data-i18n="nav_terms">Uslovi</a><a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a></nav><div class="rule"></div><div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<script>(function(){var T={"back2": {"sr": "← Nazad na predmet", "en": "← Back to subject", "de": "← Zurück zum Fach", "fr": "← Retour à la matière", "es": "← Volver a la asignatura", "it": "← Torna alla materia", "ru": "← Назад к предмету", "pt": "← Voltar à disciplina"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}, "lbl_zap": {"sr": "Zapamti", "en": "Remember", "de": "Merke", "fr": "À retenir", "es": "Recuerda", "it": "Ricorda", "ru": "Запомни", "pt": "Lembra"}, "subj": {"sr": "Fizika 6. razred", "en": "Physics Grade 6", "de": "Physik 6. Klasse", "fr": "Physique 6e année", "es": "Física 6.º grado", "it": "Fisica 6ª classe", "ru": "Физика, 6 класс", "pt": "Física 6.º ano"}, "back": {"sr": "← Fizika 6. razred", "en": "← Physics Grade 6", "de": "← Physik 6. Klasse", "fr": "← Physique 6e année", "es": "← Física 6.º grado", "it": "← Fisica 6ª classe", "ru": "← Физика, 6 класс", "pt": "← Física 6.º ano"}, "eyebrow": {"sr": "E‑knjiga · Zbirka zadataka", "en": "E‑book · Problem set", "de": "E‑Book · Aufgabensammlung", "fr": "E‑book · Recueil d'exercices", "es": "E‑book · Colección de problemas", "it": "E‑book · Raccolta di esercizi", "ru": "Э‑книга · Сборник задач", "pt": "E‑book · Coletânea de exercícios"}, "title": {"sr": "Fizika · 6. razred · Zadaci", "en": "Physics · Grade 6 · Problems", "de": "Physik · 6. Klasse · Aufgaben", "fr": "Physique · 6e année · Exercices", "es": "Física · 6.º grado · Problemas", "it": "Fisica · 6ª classe · Problemi", "ru": "Физика · 6 класс · Задачи", "pt": "Física · 6.º ano · Problemas"}, "sub": {"sr": "Rešeni zadaci iz svake oblasti, korak po korak.", "en": "Solved problems from every topic, step by step.", "de": "Gelöste Aufgaben aus jedem Themenbereich, Schritt für Schritt.", "fr": "Exercices résolus de chaque thème, étape par étape.", "es": "Problemas resueltos de cada tema, paso a paso.", "it": "Problemi risolti di ogni argomento, passo dopo passo.", "ru": "Решённые задачи по каждой теме, шаг за шагом.", "pt": "Problemas resolvidos de cada tema, passo a passo."}, "intro": {"sr": "<b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak kako bi ti bilo lakše da razumeš postupak.", "en": "<b>Learn through solved problems.</b> Each problem is solved step by step to help you understand the process.", "de": "<b>Lerne anhand gelöster Aufgaben.</b> Jede Aufgabe wird Schritt für Schritt gelöst, damit du den Lösungsweg leichter verstehst.", "fr": "<b>Apprends grâce aux exercices résolus.</b> Chaque exercice est résolu étape par étape pour t'aider à comprendre la démarche.", "es": "<b>Aprende con problemas resueltos.</b> Cada problema está resuelto paso a paso para que te resulte más fácil entender el procedimiento.", "it": "<b>Impara con i problemi risolti.</b> Ogni problema è risolto passo dopo passo per aiutarti a capire il procedimento.", "ru": "<b>Учись на решённых задачах.</b> Каждая задача решена шаг за шагом, чтобы тебе было легче понять ход решения.", "pt": "<b>Aprende com problemas resolvidos.</b> Cada problema é resolvido passo a passo para te ajudar a compreender o processo."}, "lbl_rp": {"sr": "Rešen primer", "en": "Worked example", "de": "Gelöstes Beispiel", "fr": "Exemple résolu", "es": "Ejemplo resuelto", "it": "Esempio risolto", "ru": "Разобранный пример", "pt": "Exemplo resolvido"}, "tn1": {"sr": "Kretanje", "en": "Motion", "de": "Bewegung", "fr": "Mouvement", "es": "Movimiento", "it": "Moto", "ru": "Движение", "pt": "Movimento"}, "tps1": {"sr": "Automobil pređe put od 150 km za 2 sata. Kolika je njegova prosečna brzina?", "en": "A car travels a distance of 150 km in 2 hours. What is its average speed?", "de": "Ein Auto legt eine Strecke von 150 km in 2 Stunden zurück. Wie groß ist seine Durchschnittsgeschwindigkeit?", "fr": "Une voiture parcourt une distance de 150 km en 2 heures. Quelle est sa vitesse moyenne ?", "es": "Un automóvil recorre una distancia de 150 km en 2 horas. ¿Cuál es su velocidad media?", "it": "Un'automobile percorre una distanza di 150 km in 2 ore. Qual è la sua velocità media?", "ru": "Автомобиль проезжает путь 150 km за 2 часа. Какова его средняя скорость?", "pt": "Um carro percorre uma distância de 150 km em 2 horas. Qual é a sua velocidade média?"}, "tst1_1": {"sr": "Zapiši poznate veličine: s = 150 km, t = 2 h.", "en": "Write down the known values: s = 150 km, t = 2 h.", "de": "Schreibe die bekannten Größen auf: s = 150 km, t = 2 h.", "fr": "Note les valeurs connues : s = 150 km, t = 2 h.", "es": "Anota los valores conocidos: s = 150 km, t = 2 h.", "it": "Scrivi i valori noti: s = 150 km, t = 2 h.", "ru": "Запиши известные величины: s = 150 km, t = 2 h.", "pt": "Anota os valores conhecidos: s = 150 km, t = 2 h."}, "tst1_2": {"sr": "Primeni formulu v = s/t.", "en": "Apply the formula v = s/t.", "de": "Wende die Formel v = s/t an.", "fr": "Applique la formule v = s/t.", "es": "Aplica la fórmula v = s/t.", "it": "Applica la formula v = s/t.", "ru": "Примени формулу v = s/t.", "pt": "Aplica a fórmula v = s/t."}, "tst1_3": {"sr": "Izračunaj: v = 150 km / 2 h = 75 km/h.", "en": "Calculate: v = 150 km / 2 h = 75 km/h.", "de": "Berechne: v = 150 km / 2 h = 75 km/h.", "fr": "Calcule : v = 150 km / 2 h = 75 km/h.", "es": "Calcula: v = 150 km / 2 h = 75 km/h.", "it": "Calcola: v = 150 km / 2 h = 75 km/h.", "ru": "Вычисли: v = 150 km / 2 h = 75 km/h.", "pt": "Calcula: v = 150 km / 2 h = 75 km/h."}, "tst1_4": {"sr": "Odgovor: prosečna brzina automobila je 75 km/h.", "en": "Answer: the car's average speed is 75 km/h.", "de": "Antwort: Die Durchschnittsgeschwindigkeit des Autos beträgt 75 km/h.", "fr": "Réponse : la vitesse moyenne de la voiture est de 75 km/h.", "es": "Respuesta: la velocidad media del automóvil es 75 km/h.", "it": "Risposta: la velocità media dell'automobile è 75 km/h.", "ru": "Ответ: средняя скорость автомобиля составляет 75 km/h.", "pt": "Resposta: a velocidade média do carro é 75 km/h."}, "tn2": {"sr": "Masa i gustina", "en": "Mass and density", "de": "Masse und Dichte", "fr": "Masse et densité", "es": "Masa y densidad", "it": "Massa e densità", "ru": "Масса и плотность", "pt": "Massa e densidade"}, "tps2": {"sr": "Komad metala ima masu 270 g i zapreminu 100 cm³. Odredi gustinu metala.", "en": "A piece of metal has a mass of 270 g and a volume of 100 cm³. Determine the density of the metal.", "de": "Ein Metallstück hat eine Masse von 270 g und ein Volumen von 100 cm³. Bestimme die Dichte des Metalls.", "fr": "Un morceau de métal a une masse de 270 g et un volume de 100 cm³. Détermine la densité du métal.", "es": "Un trozo de metal tiene una masa de 270 g y un volumen de 100 cm³. Determina la densidad del metal.", "it": "Un pezzo di metallo ha una massa di 270 g e un volume di 100 cm³. Determina la densità del metallo.", "ru": "Кусок металла имеет массу 270 g и объём 100 cm³. Определи плотность металла.", "pt": "Um pedaço de metal tem uma massa de 270 g e um volume de 100 cm³. Determina a densidade do metal."}, "tst2_1": {"sr": "Zapiši podatke: m = 270 g, V = 100 cm³.", "en": "Write down the data: m = 270 g, V = 100 cm³.", "de": "Schreibe die Daten auf: m = 270 g, V = 100 cm³.", "fr": "Note les données : m = 270 g, V = 100 cm³.", "es": "Anota los datos: m = 270 g, V = 100 cm³.", "it": "Scrivi i dati: m = 270 g, V = 100 cm³.", "ru": "Запиши данные: m = 270 g, V = 100 cm³.", "pt": "Anota os dados: m = 270 g, V = 100 cm³."}, "tst2_2": {"sr": "Primeni formulu ρ = m/V.", "en": "Apply the formula ρ = m/V.", "de": "Wende die Formel ρ = m/V an.", "fr": "Applique la formule ρ = m/V.", "es": "Aplica la fórmula ρ = m/V.", "it": "Applica la formula ρ = m/V.", "ru": "Примени формулу ρ = m/V.", "pt": "Aplica a fórmula ρ = m/V."}, "tst2_3": {"sr": "Izračunaj: ρ = 270 g / 100 cm³ = 2,7 g/cm³.", "en": "Calculate: ρ = 270 g / 100 cm³ = 2.7 g/cm³.", "de": "Berechne: ρ = 270 g / 100 cm³ = 2,7 g/cm³.", "fr": "Calcule : ρ = 270 g / 100 cm³ = 2,7 g/cm³.", "es": "Calcula: ρ = 270 g / 100 cm³ = 2,7 g/cm³.", "it": "Calcola: ρ = 270 g / 100 cm³ = 2,7 g/cm³.", "ru": "Вычисли: ρ = 270 g / 100 cm³ = 2,7 g/cm³.", "pt": "Calcula: ρ = 270 g / 100 cm³ = 2,7 g/cm³."}, "tst2_4": {"sr": "Zaključak: to je gustina aluminijuma.", "en": "Conclusion: this is the density of aluminum.", "de": "Schlussfolgerung: das ist die Dichte von Aluminium.", "fr": "Conclusion : c'est la densité de l'aluminium.", "es": "Conclusión: esa es la densidad del aluminio.", "it": "Conclusione: è la densità dell'alluminio.", "ru": "Вывод: это плотность алюминия.", "pt": "Conclusão: essa é a densidade do alumínio."}, "tn3": {"sr": "Merenje", "en": "Measurement", "de": "Messung", "fr": "Mesure", "es": "Medición", "it": "Misura", "ru": "Измерение", "pt": "Medição"}, "tps3": {"sr": "Izrazi dužinu od 2,5 km u metrima i vreme od 1,5 h u sekundama.", "en": "Express a length of 2.5 km in meters and a time of 1.5 h in seconds.", "de": "Drücke eine Länge von 2,5 km in Metern und eine Zeit von 1,5 h in Sekunden aus.", "fr": "Exprime une longueur de 2,5 km en mètres et une durée de 1,5 h en secondes.", "es": "Expresa una longitud de 2,5 km en metros y un tiempo de 1,5 h en segundos.", "it": "Esprimi una lunghezza di 2,5 km in metri e un tempo di 1,5 h in secondi.", "ru": "Вырази длину 2,5 km в метрах и время 1,5 h в секундах.", "pt": "Expressa um comprimento de 2,5 km em metros e um tempo de 1,5 h em segundos."}, "tst3_1": {"sr": "Podseti se: 1 km = 1000 m i 1 h = 3600 s.", "en": "Recall that: 1 km = 1000 m and 1 h = 3600 s.", "de": "Erinnere dich: 1 km = 1000 m und 1 h = 3600 s.", "fr": "Rappelle-toi : 1 km = 1000 m et 1 h = 3600 s.", "es": "Recuerda que: 1 km = 1000 m y 1 h = 3600 s.", "it": "Ricorda che: 1 km = 1000 m e 1 h = 3600 s.", "ru": "Вспомни: 1 km = 1000 m и 1 h = 3600 s.", "pt": "Recorda que: 1 km = 1000 m e 1 h = 3600 s."}, "tst3_2": {"sr": "Za dužinu: 2,5 km · 1000 = 2500 m.", "en": "For length: 2.5 km · 1000 = 2500 m.", "de": "Für die Länge: 2,5 km · 1000 = 2500 m.", "fr": "Pour la longueur : 2,5 km · 1000 = 2500 m.", "es": "Para la longitud: 2,5 km · 1000 = 2500 m.", "it": "Per la lunghezza: 2,5 km · 1000 = 2500 m.", "ru": "Для длины: 2,5 km · 1000 = 2500 m.", "pt": "Para o comprimento: 2,5 km · 1000 = 2500 m."}, "tst3_3": {"sr": "Za vreme: 1,5 h · 3600 = 5400 s.", "en": "For time: 1.5 h · 3600 = 5400 s.", "de": "Für die Zeit: 1,5 h · 3600 = 5400 s.", "fr": "Pour le temps : 1,5 h · 3600 = 5400 s.", "es": "Para el tiempo: 1,5 h · 3600 = 5400 s.", "it": "Per il tempo: 1,5 h · 3600 = 5400 s.", "ru": "Для времени: 1,5 h · 3600 = 5400 s.", "pt": "Para o tempo: 1,5 h · 3600 = 5400 s."}, "tst3_4": {"sr": "Odgovor: 2500 m i 5400 s.", "en": "Answer: 2500 m and 5400 s.", "de": "Antwort: 2500 m und 5400 s.", "fr": "Réponse : 2500 m et 5400 s.", "es": "Respuesta: 2500 m y 5400 s.", "it": "Risposta: 2500 m e 5400 s.", "ru": "Ответ: 2500 m и 5400 s.", "pt": "Resposta: 2500 m e 5400 s."}, "tn4": {"sr": "Pritisak — uvod", "en": "Pressure — introduction", "de": "Druck — Einführung", "fr": "Pression — introduction", "es": "Presión — introducción", "it": "Pressione — introduzione", "ru": "Давление — введение", "pt": "Pressão — introdução"}, "tps4": {"sr": "Sila od 200 N deluje na površinu od 0,5 m². Izračunaj pritisak.", "en": "A force of 200 N acts on a surface of 0.5 m². Calculate the pressure.", "de": "Eine Kraft von 200 N wirkt auf eine Fläche von 0,5 m². Berechne den Druck.", "fr": "Une force de 200 N agit sur une surface de 0,5 m². Calcule la pression.", "es": "Una fuerza de 200 N actúa sobre una superficie de 0,5 m². Calcula la presión.", "it": "Una forza di 200 N agisce su una superficie di 0,5 m². Calcola la pressione.", "ru": "Сила 200 N действует на поверхность 0,5 m². Вычисли давление.", "pt": "Uma força de 200 N atua sobre uma superfície de 0,5 m². Calcula a pressão."}, "tst4_1": {"sr": "Zapiši podatke: F = 200 N, S = 0,5 m².", "en": "Write down the data: F = 200 N, S = 0.5 m².", "de": "Schreibe die Daten auf: F = 200 N, S = 0,5 m².", "fr": "Note les données : F = 200 N, S = 0,5 m².", "es": "Anota los datos: F = 200 N, S = 0,5 m².", "it": "Scrivi i dati: F = 200 N, S = 0,5 m².", "ru": "Запиши данные: F = 200 N, S = 0,5 m².", "pt": "Anota os dados: F = 200 N, S = 0,5 m²."}, "tst4_2": {"sr": "Primeni formulu p = F/S.", "en": "Apply the formula p = F/S.", "de": "Wende die Formel p = F/S an.", "fr": "Applique la formule p = F/S.", "es": "Aplica la fórmula p = F/S.", "it": "Applica la formula p = F/S.", "ru": "Примени формулу p = F/S.", "pt": "Aplica a fórmula p = F/S."}, "tst4_3": {"sr": "Izračunaj: p = 200 N / 0,5 m² = 400 Pa.", "en": "Calculate: p = 200 N / 0.5 m² = 400 Pa.", "de": "Berechne: p = 200 N / 0,5 m² = 400 Pa.", "fr": "Calcule : p = 200 N / 0,5 m² = 400 Pa.", "es": "Calcula: p = 200 N / 0,5 m² = 400 Pa.", "it": "Calcola: p = 200 N / 0,5 m² = 400 Pa.", "ru": "Вычисли: p = 200 N / 0,5 m² = 400 Pa.", "pt": "Calcula: p = 200 N / 0,5 m² = 400 Pa."}, "tst4_4": {"sr": "Odgovor: pritisak iznosi 400 Pa.", "en": "Answer: the pressure is 400 Pa.", "de": "Antwort: der Druck beträgt 400 Pa.", "fr": "Réponse : la pression est de 400 Pa.", "es": "Respuesta: la presión es de 400 Pa.", "it": "Risposta: la pressione è di 400 Pa.", "ru": "Ответ: давление составляет 400 Pa.", "pt": "Resposta: a pressão é de 400 Pa."}, "tn5": {"sr": "Ravnoteža", "en": "Equilibrium", "de": "Gleichgewicht", "fr": "Équilibre", "es": "Equilibrio", "it": "Equilibrio", "ru": "Равновесие", "pt": "Equilíbrio"}, "tps5": {"sr": "Na polugu na rastojanju 2 m od oslonca deluje sila od 30 N. Kolika sila na rastojanju od 3 m sa druge strane održava ravnotežu?", "en": "A force of 30 N acts on a lever at a distance of 2 m from the pivot. What force at a distance of 3 m on the other side keeps it in equilibrium?", "de": "Auf einen Hebel wirkt in einem Abstand von 2 m vom Drehpunkt eine Kraft von 30 N. Welche Kraft in einem Abstand von 3 m auf der anderen Seite hält das Gleichgewicht?", "fr": "Une force de 30 N agit sur un levier à une distance de 2 m du point d'appui. Quelle force, à une distance de 3 m de l'autre côté, maintient l'équilibre ?", "es": "Sobre una palanca actúa una fuerza de 30 N a una distancia de 2 m del punto de apoyo. ¿Qué fuerza a una distancia de 3 m del otro lado mantiene el equilibrio?", "it": "Su una leva agisce una forza di 30 N a una distanza di 2 m dal fulcro. Quale forza a una distanza di 3 m dall'altra parte mantiene l'equilibrio?", "ru": "На рычаг на расстоянии 2 m от опоры действует сила 30 N. Какая сила на расстоянии 3 m с другой стороны удерживает равновесие?", "pt": "Sobre uma alavanca atua uma força de 30 N a uma distância de 2 m do ponto de apoio. Que força a uma distância de 3 m do outro lado mantém o equilíbrio?"}, "tst5_1": {"sr": "Zapiši podatke: F1 = 30 N, d1 = 2 m, d2 = 3 m.", "en": "Write down the data: F1 = 30 N, d1 = 2 m, d2 = 3 m.", "de": "Schreibe die Daten auf: F1 = 30 N, d1 = 2 m, d2 = 3 m.", "fr": "Note les données : F1 = 30 N, d1 = 2 m, d2 = 3 m.", "es": "Anota los datos: F1 = 30 N, d1 = 2 m, d2 = 3 m.", "it": "Scrivi i dati: F1 = 30 N, d1 = 2 m, d2 = 3 m.", "ru": "Запиши данные: F1 = 30 N, d1 = 2 m, d2 = 3 m.", "pt": "Anota os dados: F1 = 30 N, d1 = 2 m, d2 = 3 m."}, "tst5_2": {"sr": "Primeni uslov ravnoteže: F1·d1 = F2·d2.", "en": "Apply the equilibrium condition: F1·d1 = F2·d2.", "de": "Wende die Gleichgewichtsbedingung an: F1·d1 = F2·d2.", "fr": "Applique la condition d'équilibre : F1·d1 = F2·d2.", "es": "Aplica la condición de equilibrio: F1·d1 = F2·d2.", "it": "Applica la condizione di equilibrio: F1·d1 = F2·d2.", "ru": "Примени условие равновесия: F1·d1 = F2·d2.", "pt": "Aplica a condição de equilíbrio: F1·d1 = F2·d2."}, "tst5_3": {"sr": "Izračunaj: F2 = (30 N · 2 m) / 3 m = 20 N.", "en": "Calculate: F2 = (30 N · 2 m) / 3 m = 20 N.", "de": "Berechne: F2 = (30 N · 2 m) / 3 m = 20 N.", "fr": "Calcule : F2 = (30 N · 2 m) / 3 m = 20 N.", "es": "Calcula: F2 = (30 N · 2 m) / 3 m = 20 N.", "it": "Calcola: F2 = (30 N · 2 m) / 3 m = 20 N.", "ru": "Вычисли: F2 = (30 N · 2 m) / 3 m = 20 N.", "pt": "Calcula: F2 = (30 N · 2 m) / 3 m = 20 N."}, "tst5_4": {"sr": "Odgovor: potrebna sila je 20 N.", "en": "Answer: the required force is 20 N.", "de": "Antwort: die erforderliche Kraft beträgt 20 N.", "fr": "Réponse : la force nécessaire est de 20 N.", "es": "Respuesta: la fuerza necesaria es de 20 N.", "it": "Risposta: la forza necessaria è di 20 N.", "ru": "Ответ: необходимая сила равна 20 N.", "pt": "Resposta: a força necessária é de 20 N."}, "tn6": {"sr": "Sila", "en": "Force", "de": "Kraft", "fr": "Force", "es": "Fuerza", "it": "Forza", "ru": "Сила", "pt": "Força"}, "tps6": {"sr": "Telo mase 5 kg ubrzava se silom tako da mu ubrzanje iznosi 2 m/s². Izračunaj silu.", "en": "A body of mass 5 kg is accelerated by a force so that its acceleration is 2 m/s². Calculate the force.", "de": "Ein Körper mit der Masse 5 kg wird durch eine Kraft so beschleunigt, dass seine Beschleunigung 2 m/s² beträgt. Berechne die Kraft.", "fr": "Un corps de masse 5 kg est accéléré par une force telle que son accélération est de 2 m/s². Calcule la force.", "es": "Un cuerpo de masa 5 kg es acelerado por una fuerza de modo que su aceleración es de 2 m/s². Calcula la fuerza.", "it": "Un corpo di massa 5 kg viene accelerato da una forza in modo che la sua accelerazione sia di 2 m/s². Calcola la forza.", "ru": "Тело массой 5 kg разгоняется силой так, что его ускорение составляет 2 m/s². Вычисли силу.", "pt": "Um corpo de massa 5 kg é acelerado por uma força de modo que a sua aceleração seja de 2 m/s². Calcula a força."}, "tst6_1": {"sr": "Zapiši podatke: m = 5 kg, a = 2 m/s².", "en": "Write down the data: m = 5 kg, a = 2 m/s².", "de": "Schreibe die Daten auf: m = 5 kg, a = 2 m/s².", "fr": "Note les données : m = 5 kg, a = 2 m/s².", "es": "Anota los datos: m = 5 kg, a = 2 m/s².", "it": "Scrivi i dati: m = 5 kg, a = 2 m/s².", "ru": "Запиши данные: m = 5 kg, a = 2 m/s².", "pt": "Anota os dados: m = 5 kg, a = 2 m/s²."}, "tst6_2": {"sr": "Primeni formulu F = m·a.", "en": "Apply the formula F = m·a.", "de": "Wende die Formel F = m·a an.", "fr": "Applique la formule F = m·a.", "es": "Aplica la fórmula F = m·a.", "it": "Applica la formula F = m·a.", "ru": "Примени формулу F = m·a.", "pt": "Aplica a fórmula F = m·a."}, "tst6_3": {"sr": "Izračunaj: F = 5 kg · 2 m/s² = 10 N.", "en": "Calculate: F = 5 kg · 2 m/s² = 10 N.", "de": "Berechne: F = 5 kg · 2 m/s² = 10 N.", "fr": "Calcule : F = 5 kg · 2 m/s² = 10 N.", "es": "Calcula: F = 5 kg · 2 m/s² = 10 N.", "it": "Calcola: F = 5 kg · 2 m/s² = 10 N.", "ru": "Вычисли: F = 5 kg · 2 m/s² = 10 N.", "pt": "Calcula: F = 5 kg · 2 m/s² = 10 N."}, "tst6_4": {"sr": "Odgovor: sila iznosi 10 N.", "en": "Answer: the force is 10 N.", "de": "Antwort: die Kraft beträgt 10 N.", "fr": "Réponse : la force est de 10 N.", "es": "Respuesta: la fuerza es de 10 N.", "it": "Risposta: la forza è di 10 N.", "ru": "Ответ: сила равна 10 N.", "pt": "Resposta: a força é de 10 N."}};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(e){try{ap(((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase())}catch(_){}});})();</script>
 </body>
 </html>

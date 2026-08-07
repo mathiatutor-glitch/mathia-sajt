@@ -1,296 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mathia — Fizika 8. razred — zadaci</title>
+<title>Mathia — Fizika · 8. razred — Zadaci · Zbirka zadataka</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#fbf6ee; --cov1:#f6ecdc; --cov2:#f3e7d4; --cov3:#efe0c8;
-  --ink:#2c2622; --muted:#7c6f63; --acc:#b08a4a; --acc2:#9a7838; --accS:#e7d4b0;
-  --card:#fffaf2; --line:#ecdfca; --good:#4f8a5b; --bad:#bd5b54; --rad:18px; --hf:'Spectral',serif;
-}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-html,body{overflow-x:hidden}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.cover{min-height:62vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  background:linear-gradient(165deg,var(--cov1),var(--cov2) 55%,var(--cov3));padding:54px 24px;position:relative;overflow:hidden}
-.brandline{font-family:var(--hf);letter-spacing:.34em;color:var(--acc2);font-weight:700;font-size:15px;margin-bottom:18px}
-.eyebrow{font-family:var(--hf);letter-spacing:.28em;text-transform:uppercase;color:var(--acc2);font-weight:700;font-size:13px;margin-bottom:14px}
-h1{font-family:var(--hf);font-weight:700;font-size:clamp(2rem,6vw,3.2rem);margin:0 0 14px;line-height:1.1}
-.sub{color:var(--muted);max-width:560px;margin:0 auto 22px;font-size:1.02rem}
-.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--acc);margin-top:6px}
-.r{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accS),var(--acc),var(--accS),transparent)}
-.page{max-width:780px;margin:0 auto;padding:36px 20px 100px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px}
-.chip{font-family:var(--hf);font-weight:600;font-size:.92rem;padding:7px 16px;border-radius:999px;border:1px solid var(--accS);color:var(--acc2);background:#fff8ee}
-.chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
-.chip.soon{opacity:.5}
-.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;margin:6px 0 18px;color:var(--ink)}
-.intro b{font-family:var(--hf)}
-.prog-wrap{position:sticky;top:0;z-index:5;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.prog-top{display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
-.prog-bar{height:8px;border-radius:99px;background:var(--accS);overflow:hidden}
-.prog-fill{height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s ease}
-.zad{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);padding:18px 18px 16px;margin:14px 0;box-shadow:0 6px 18px rgba(0,0,0,.03)}
-.zad-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.zad-n{font-family:var(--hf);font-weight:700;color:#fff;background:var(--acc);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:1.05rem}
-.zad-n.solved{background:var(--good)}
-.zad-q{font-size:1.03rem;line-height:1.7;margin-bottom:16px;word-break:break-word}
-.opcije{display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#fffdf8;border:1.5px solid var(--accS);border-radius:14px;padding:11px 15px;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--ink);transition:transform .12s,border-color .12s,background .12s}
-.opt:hover{border-color:var(--acc);background:#fff8ec;transform:translateY(-1px)}
-.opt-l{font-family:var(--hf);font-weight:700;color:var(--acc2);background:#f3e7cf;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:1.02rem}
-.opt-m{flex:1;min-width:0;padding:4px 0;font-size:.96rem;line-height:1.5}
-.opt.correct{background:#edf6ee;border-color:var(--good)}
-.opt.wrong{background:#fbeeed;border-color:var(--bad)}
-.opt.correct .opt-l{background:var(--good);color:#fff}
-.opt.wrong .opt-l{background:var(--bad);color:#fff}
-.opt[disabled]{cursor:default}
-.opt[disabled]:hover{transform:none;background:#fffdf8}
-.opt.correct[disabled]:hover{background:#edf6ee}
-.opt.wrong[disabled]:hover{background:#fbeeed}
-.feedback{margin-top:11px;font-family:var(--hf);font-weight:700;font-size:1.05rem}
-.feedback.ok{color:var(--good)}
-.feedback.no{color:var(--bad)}
-.reveal-btn{margin-top:12px;background:none;border:1px solid var(--acc);color:var(--acc2);font-family:var(--hf);font-weight:700;font-size:1rem;padding:8px 16px;border-radius:10px;cursor:pointer;transition:.15s}
-.reveal-btn:hover{background:var(--acc);color:#fff}
-.resenje{margin-top:14px;background:#fbf4e5;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.res-h{font-family:var(--hf);font-weight:700;color:var(--acc2);letter-spacing:.06em;margin-bottom:8px}
-.rstep{padding:8px 0;color:var(--ink);line-height:1.6;font-size:.96rem}
-.rstep+.rstep{border-top:1px solid #f3ead9}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:4px}
-.katex{white-space:nowrap;font-size:1.02em}
-.foot{text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
-.reset{display:block;margin:18px auto 0;background:none;border:none;color:var(--muted);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Fizika-8-Razred-Zadaci.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Mathia — Fizika 8. razred — zadaci">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Fizika-8-Razred-Zadaci.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mathia — Fizika 8. razred — zadaci">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+.page{padding:10px 0 40px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:10px 0 26px;box-shadow:0 16px 40px -30px rgba(120,40,60,.4);color:#4a3a40}
+.topic{margin:34px 0}
+.topic>h2{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.7rem;margin:0 0 4px}
+.topic>h2 .n{color:var(--gold);font-size:1.1rem;margin-right:8px}
+.topic h3{font-family:'Spectral',serif;color:var(--ink);font-size:1.18rem;margin:22px 0 6px}
+.rule{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line)}
+.box .bx-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin-bottom:6px}
+.zapamti{background:linear-gradient(180deg,#FFFBF3,#FBF3E2)}.zapamti .bx-h{color:var(--golddk)}
+.primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
+.fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:20px 0;padding:15px 18px;line-height:1.6;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="osnovna-fizika-8.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Fizika 8. razred</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Fizika 8. razred · Provera znanja</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="cover">
-  <div class="brandline">MATHIA</div>
-  <div class="eyebrow">Osnovna škola · Fizika</div>
-  <h1>Fizika 8. razred — zadaci</h1>
-  <p class="sub">Vežba po oblastima za 8. razred: naelektrisanje i električno polje, električna struja (Omov zakon), magnetizam i indukcija, oscilacije i talasi, svetlost i atom. Probaj sam, pa otkrij rešenje korak po korak.</p>
-  <div class="rule"><span class="r"></span>✦<span class="r"></span></div>
-</div>
-
-<div class="page">
-  <div class="chips" id="roksel">
-    <span class="chip active" data-y="nae">Naelektrisanje</span>
-    <span class="chip" data-y="str">Električna struja</span>
-    <span class="chip" data-y="mag">Magnetizam i indukcija</span>
-    <span class="chip" data-y="osc">Oscilacije i talasi</span>
-    <span class="chip" data-y="sve">Svetlost i atom</span>
-  </div>
-  <div class="intro"><b id="rok-label">Oblast: Naelektrisanje</b> · zaokruži odgovor, pa proveri. Tvoj napredak se pamti na ovom uređaju.</div>
-
-  <div class="prog-wrap">
-    <div class="prog-top"><span>Tvoj napredak</span><span id="prog-txt">0 / 20</span></div>
-    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
-  </div>
-
-  <div id="lista"></div>
-  <button class="reset" id="reset">↺ Resetuj napredak za ovaj rok</button>
-  <div class="foot" id="rok-foot">MATHIA · Naelektrisanje · uči s ljubavlju · mathia.rs</div>
-</div>
-
-<script>
-// ===== Baza zadataka: MATF, Jun 2023 (20 zadataka) =====
-// t = tekst (LaTeX u $...$), o = opcije, c = indeks tačnog (0=A..4=E), r = koraci rešenja
-const A=[{"n": 1, "t": "Jedinica za količinu naelektrisanja je:", "o": ["njutn", "kulon (C)", "amper", "volt", "om"], "c": 1, "r": ["Naelektrisanje se meri u kulonima.", "Oznaka: C."]}, {"n": 2, "t": "Dva istoimena (ista) naelektrisanja se:", "o": ["privlače", "ne deluju", "odbijaju", "spajaju", "neutrališu"], "c": 2, "r": ["Isti znaci se odbijaju, različiti privlače.", "Odgovor: odbijaju se."]}, {"n": 3, "t": "Telo koje ima višak elektrona naelektrisano je:", "o": ["pozitivno", "negativno", "neutralno", "naizmenično", "nije naelektrisano"], "c": 1, "r": ["Elektroni nose negativno naelektrisanje.", "Telo je negativno."]}, {"n": 4, "t": "Provodnik je materijal koji:", "o": ["ne provodi struju", "topi se", "provodi električnu struju", "uvek svetli", "privlači magnet"], "c": 2, "r": ["Provodnici (npr. metali) lako provode struju.", ""]}];
-const B=[{"n": 1, "t": "Po Omovom zakonu, ako je $U=12\\text{ V}$ i $R=4\\,\\Omega$, jačina struje je:", "o": ["$48\\text{ A}$", "$3\\text{ A}$", "$8\\text{ A}$", "$0{,}33\\text{ A}$", "$16\\text{ A}$"], "c": 1, "r": ["$I=\\dfrac{U}{R}=\\dfrac{12}{4}$.", "$I=3\\text{ A}$."]}, {"n": 2, "t": "Jedinica za jačinu električne struje je:", "o": ["volt", "om", "amper (A)", "vat", "herc"], "c": 2, "r": ["Jačina struje se meri u amperima.", "Oznaka: A."]}, {"n": 3, "t": "Ako je $R=5\\,\\Omega$ i $I=2\\text{ A}$, napon je:", "o": ["$2{,}5\\text{ V}$", "$7\\text{ V}$", "$10\\text{ V}$", "$3\\text{ V}$", "$20\\text{ V}$"], "c": 2, "r": ["$U=R\\cdot I=5\\cdot 2$.", "$U=10\\text{ V}$."]}, {"n": 4, "t": "Jedinica za električni otpor je:", "o": ["volt", "amper", "om (Ω)", "džul", "herc"], "c": 2, "r": ["Otpor se meri u omima.", "Oznaka: Ω."]}];
-const C=[{"n": 1, "t": "Koliko polova ima svaki magnet?", "o": ["$1$", "$2$", "$3$", "$4$", "$0$"], "c": 1, "r": ["Svaki magnet ima severni i južni pol.", "Ukupno $2$ pola."]}, {"n": 2, "t": "Dva istoimena magnetna pola se:", "o": ["privlače", "ne deluju", "odbijaju", "spajaju", "nestaju"], "c": 2, "r": ["Isti polovi se odbijaju, različiti privlače.", "Odgovor: odbijaju se."]}, {"n": 3, "t": "Oko provodnika kroz koji teče struja nastaje:", "o": ["električno polje", "magnetno polje", "ništa", "toplota samo", "zvuk"], "c": 1, "r": ["Struja stvara magnetno polje oko provodnika.", ""]}, {"n": 4, "t": "Pojavu elektromagnetne indukcije otkrio je:", "o": ["Njutn", "Om", "Faradej", "Tesla", "Volta"], "c": 2, "r": ["Majkl Faradej otkrio je indukciju.", ""]}];
-const D=[{"n": 1, "t": "Jedinica za frekvenciju (učestanost) je:", "o": ["sekunda", "herc (Hz)", "metar", "vat", "paskal"], "c": 1, "r": ["Frekvencija se meri u hercima.", "Oznaka: Hz."]}, {"n": 2, "t": "Ako je frekvencija $f=2\\text{ Hz}$, period je:", "o": ["$2\\text{ s}$", "$0{,}5\\text{ s}$", "$1\\text{ s}$", "$4\\text{ s}$", "$0{,}2\\text{ s}$"], "c": 1, "r": ["$T=\\dfrac{1}{f}=\\dfrac{1}{2}$.", "$T=0{,}5\\text{ s}$."]}, {"n": 3, "t": "Zvuk je:", "o": ["elektromagnetni talas", "svetlost", "mehanički talas", "električna struja", "vakuum"], "c": 2, "r": ["Zvuk je mehanički talas i ne širi se kroz vakuum.", ""]}, {"n": 4, "t": "Period oscilovanja je vreme za:", "o": ["pola oscilacije", "jednu punu oscilaciju", "deset oscilacija", "jednu sekundu uvek", "merenje brzine"], "c": 1, "r": ["Period je trajanje jedne potpune oscilacije.", ""]}];
-const E=[{"n": 1, "t": "Brzina svetlosti u vakuumu približno iznosi:", "o": ["$30\\,000\\text{ km/s}$", "$300\\,000\\text{ km/s}$", "$3000\\text{ km/s}$", "$3\\text{ km/s}$", "$1080\\text{ km/s}$"], "c": 1, "r": ["$c\\approx 300\\,000\\text{ km/s}=3\\cdot 10^{8}\\text{ m/s}$.", ""]}, {"n": 2, "t": "Pri prelasku iz jedne providne sredine u drugu, svetlost se:", "o": ["nestaje", "ubrzava uvek", "prelama (refrakcija)", "zaustavlja", "pretvara u zvuk"], "c": 2, "r": ["Promena brzine na granici izaziva prelamanje.", "To je refrakcija."]}, {"n": 3, "t": "Jezgro atoma čine:", "o": ["samo elektroni", "protoni i neutroni", "samo protoni", "samo neutroni", "joni"], "c": 1, "r": ["U jezgru su protoni i neutroni; elektroni su oko jezgra.", ""]}, {"n": 4, "t": "Naelektrisanje elektrona je:", "o": ["pozitivno", "neutralno", "negativno", "promenljivo", "ne postoji"], "c": 2, "r": ["Elektron nosi elementarno negativno naelektrisanje.", ""]}];
-
-const EXAMS={
-  'nae':{label:'Naelektrisanje', z:A},
-  'str':{label:'Električna struja', z:B},
-  'mag':{label:'Magnetizam i indukcija', z:C},
-  'osc':{label:'Oscilacije i talasi', z:D},
-  'sve':{label:'Svetlost i atom', z:E}
-};
-let YEAR='nae';
-let ZADACI=EXAMS[YEAR].z;
-let KEY='mathia_f8_'+YEAR;
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
-function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-let stanje=load();
-
-function updateProgress(){
-  const n=Object.values(stanje).filter(v=>v==='ok').length;
-  document.getElementById('prog-txt').textContent=n+' / '+ZADACI.length;
-  document.getElementById('prog-fill').style.width=(100*n/ZADACI.length)+'%';
-}
-
-function render(){
-  const lista=document.getElementById('lista');
-  ZADACI.forEach(z=>{
-    const solved=stanje[z.n]==='ok';
-    const card=document.createElement('div'); card.className='zad';
-    const opts=z.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="opt-l">${'ABCDE'[i]}</span><span class="opt-m">${o}</span></button>`).join('');
-    const koraci=z.r.map(s=>`<div class="rstep">${s}</div>`).join('');
-    card.innerHTML=`
-      <div class="zad-h"><div class="zad-n${solved?' solved':''}">${z.n}</div></div>
-      <div class="zad-q">${z.t}</div>
-      <div class="opcije">${opts}</div>
-      <button class="reveal-btn">Prikaži rešenje ✦</button>
-      <div class="resenje" hidden><div class="res-h">✦ REŠENJE</div><div class="steps">${koraci}</div></div>`;
-    // option clicks
-    const optEls=card.querySelectorAll('.opt');
-    optEls.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        if(card.dataset.done) return;
-        const i=+btn.dataset.i;
-        optEls.forEach(b=>b.setAttribute('disabled','')); 
-        card.querySelector('.opt[data-i="'+z.c+'"]').classList.add('correct');
-        if(i!==z.c) btn.classList.add('wrong');
-        card.dataset.done='1';
-        stanje[z.n]=(i===z.c)?'ok':'miss'; save(stanje);
-        if(i===z.c) card.querySelector('.zad-n').classList.add('solved');
-        const fb=document.createElement('div');
-        fb.className='feedback '+(i===z.c?'ok':'no');
-        fb.textContent=(i===z.c)?'✓ Tačno! Bravo.':('✗ Tačan odgovor je '+'ABCDE'[z.c]+'.');
-        card.querySelector('.opcije').after(fb);
-        updateProgress();
-      });
-    });
-    card.querySelector('.reveal-btn').addEventListener('click',e=>{
-      const r=card.querySelector('.resenje'); r.hidden=!r.hidden;
-      e.target.textContent=r.hidden?'Prikaži rešenje ✦':'Sakrij rešenje';
-      if(!r.hidden) fitFormulas(r);
-    });
-    lista.appendChild(card);
-  });
-  updateProgress();
-}
-
-document.getElementById('reset').addEventListener('click',()=>{
-  if(confirm('Resetovati napredak za ovu temu?')){stanje={};save(stanje);location.reload();}
-});
-
-function fitFormulas(root){
-  (root||document).querySelectorAll('.zad-q, .opt-m, .rstep').forEach(function(box){
-    var avail=box.clientWidth; if(avail<=0) return;
-    box.querySelectorAll('.katex').forEach(function(k){
-      k.style.fontSize=''; var size=1.02, g=0;
-      while(k.offsetWidth>avail-1 && size>0.62 && g<24){ size-=0.05; k.style.fontSize=size.toFixed(2)+'em'; g++; }
-    });
-  });
-}
-function typeset(){
-  if(window.renderMathInElement){
-    renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});
-  }
-  fitFormulas();
-}
-var _rz; window.addEventListener('resize',function(){clearTimeout(_rz);_rz=setTimeout(function(){fitFormulas();},180);});
-function go(){ render(); typeset(); }
-function switchYear(y){
-  if(!EXAMS[y]||y===YEAR) return;
-  YEAR=y; ZADACI=EXAMS[y].z; KEY='mathia_f8_'+YEAR; stanje=load();
-  document.getElementById('lista').innerHTML='';
-  document.querySelectorAll('#roksel .chip').forEach(c=>c.classList.toggle('active',c.dataset.y===y));
-  var lab=document.getElementById('rok-label'); if(lab) lab.textContent='Tema: '+EXAMS[y].label;
-  var ft=document.getElementById('rok-foot'); if(ft) ft.textContent='MATHIA · Naelektrisanje · uči s ljubavlju · mathia.rs';
-  render(); typeset();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-document.querySelectorAll('#roksel .chip').forEach(c=>c.addEventListener('click',()=>switchYear(c.dataset.y)));
-if(document.readyState!=='loading') setTimeout(go,60); else window.addEventListener('DOMContentLoaded',()=>setTimeout(go,60));
-</script>
-
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script defer src="gate.js" data-subject="osn-fiz-8"></script>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="osnovna-fizika-8.html" data-i18n="back">← Fizika 8. razred</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">MathIA</div><div class="eyebrow" data-i18n="eyebrow">E‑knjiga · Zbirka zadataka</div><h1 data-i18n="title">Fizika · 8. razred — Zadaci</h1><div class="sub" data-i18n="sub">Rešeni zadaci iz svake oblasti, korak po korak.</div><div class="orn">✦</div><a class="tb-back" href="osnovna-fizika-8.html" data-i18n="back2">← Nazad na predmet</a></div>
+<div class="wrap page"><div class="intro" data-i18n-html="intro"><b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak, kako bi lakše razumeo/la postupak i mogao/la samostalno da rešavaš slične zadatke.</div><section class="topic"><h2><span class="n">1.</span><span data-i18n="tn1">Elektricitet</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps1">Kroz provodnik protekne naelektrisanje od 12 C za 4 s. Izračunaj jačinu struje.</span><span class="step" data-i18n-html="tst1_1">Zapamtimo formulu: I = Q/t</span><span class="step" data-i18n-html="tst1_2">Uvrstimo vrednosti: I = 12 C / 4 s</span><span class="step" data-i18n-html="tst1_3">Izračunamo: I = 3 A</span></div></section><section class="topic"><h2><span class="n">2.</span><span data-i18n="tn2">Strujno kolo</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps2">Dva otpornika R₁ = 4 Ω i R₂ = 6 Ω vezana su serijski na napon U = 20 V. Izračunaj jačinu struje u kolu.</span><span class="step" data-i18n-html="tst2_1">Izračunamo ukupan otpor: R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω</span><span class="step" data-i18n-html="tst2_2">Primenimo Omov zakon: I = U/R</span><span class="step" data-i18n-html="tst2_3">Uvrstimo vrednosti: I = 20 V / 10 Ω</span><span class="step" data-i18n-html="tst2_4">Izračunamo: I = 2 A</span></div></section><section class="topic"><h2><span class="n">3.</span><span data-i18n="tn3">Magnetizam</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps3">Objasni zašto se dva magneta okrenuta severnim polovima jedan prema drugom odbijaju.</span><span class="step" data-i18n-html="tst3_1">Prisetimo se pravila: istoimeni polovi se odbijaju</span><span class="step" data-i18n-html="tst3_2">Oba magneta imaju severni pol (N) okrenut jedan ka drugom</span><span class="step" data-i18n-html="tst3_3">Pošto su polovi istoimeni (N–N), magneti se odbijaju</span></div></section><section class="topic"><h2><span class="n">4.</span><span data-i18n="tn4">Indukcija</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps4">Objasni zašto se u kalemu javlja struja kada magnet brzo uvučemo u njega, a zašto struje nema kada magnet miruje unutar kalema.</span><span class="step" data-i18n-html="tst4_1">Setimo se uslova za indukciju: potrebna je promena magnetnog polja</span><span class="step" data-i18n-html="tst4_2">Dok magnet ulazi, magnetno polje kroz kalem se menja → struja se indukuje</span><span class="step" data-i18n-html="tst4_3">Kada magnet miruje, polje je konstantno → nema promene → nema indukovane struje</span></div></section><section class="topic"><h2><span class="n">5.</span><span data-i18n="tn5">Optika</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps5">Svetlosni zrak pada na ravno ogledalo pod uglom od 30° u odnosu na normalu. Pod kojim uglom se odbija zrak?</span><span class="step" data-i18n-html="tst5_1">Setimo se zakona odbijanja: ugao upada = ugao odbijanja</span><span class="step" data-i18n-html="tst5_2">Ugao upada iznosi 30°</span><span class="step" data-i18n-html="tst5_3">Zaključujemo: ugao odbijanja takođe iznosi 30°</span></div></section><section class="topic"><h2><span class="n">6.</span><span data-i18n="tn6">Zvuk</span></h2><div class="rule"></div><div class="box primer"><div class="bx-h" data-i18n="lbl_rp">Rešen primer</div><span data-i18n-html="tps6">Grmljavinu čujemo 6 sekundi nakon što smo videli munju. Na kojoj udaljenosti se dogodilo pražnjenje ako je brzina zvuka 340 m/s?</span><span class="step" data-i18n-html="tst6_1">Setimo se formule: s = v·t</span><span class="step" data-i18n-html="tst6_2">Uvrstimo vrednosti: s = 340 m/s · 6 s</span><span class="step" data-i18n-html="tst6_3">Izračunamo: s = 2040 m</span></div></section></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="osnovna-fizika-8.html" data-i18n="subj">Fizika 8. razred</a><a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a><a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a><a href="index.html#paketi" data-i18n="nav_plans">Paketi</a><a href="o-marini.html" data-i18n="nav_about">O meni</a><a href="uslovi.html" data-i18n="nav_terms">Uslovi</a><a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a></nav><div class="rule"></div><div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<script>(function(){var T={"back2": {"sr": "← Nazad na predmet", "en": "← Back to subject", "de": "← Zurück zum Fach", "fr": "← Retour à la matière", "es": "← Volver a la asignatura", "it": "← Torna alla materia", "ru": "← Назад к предмету", "pt": "← Voltar à disciplina"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}, "lbl_zap": {"sr": "Zapamti", "en": "Remember", "de": "Merke", "fr": "À retenir", "es": "Recuerda", "it": "Ricorda", "ru": "Запомни", "pt": "Lembra"}, "subj": {"sr": "Fizika 8. razred", "en": "Physics 8th grade", "de": "Physik 8. Klasse", "fr": "Physique 8e année", "es": "Física 8.º grado", "it": "Fisica 8ª classe", "ru": "Физика 8 класс", "pt": "Física 8.º ano"}, "back": {"sr": "← Fizika 8. razred", "en": "← Physics 8th grade", "de": "← Physik 8. Klasse", "fr": "← Physique 8e année", "es": "← Física 8.º grado", "it": "← Fisica 8ª classe", "ru": "← Физика 8 класс", "pt": "← Física 8.º ano"}, "eyebrow": {"sr": "E‑knjiga · Zbirka zadataka", "en": "E‑book · Problem set", "de": "E‑Book · Aufgabensammlung", "fr": "E‑book · Recueil d'exercices", "es": "E‑book · Colección de problemas", "it": "E‑book · Raccolta di esercizi", "ru": "Э‑книга · Сборник задач", "pt": "E‑book · Coletânea de exercícios"}, "title": {"sr": "Fizika · 8. razred — Zadaci", "en": "Physics · 8th grade — Problems", "de": "Physik · 8. Klasse — Aufgaben", "fr": "Physique · 8e année — Exercices", "es": "Física · 8.º grado — Ejercicios", "it": "Fisica · 8ª classe — Esercizi", "ru": "Физика · 8 класс — Задачи", "pt": "Física · 8.º ano — Exercícios"}, "sub": {"sr": "Rešeni zadaci iz svake oblasti, korak po korak.", "en": "Solved problems from every topic, step by step.", "de": "Gelöste Aufgaben aus jedem Themenbereich, Schritt für Schritt.", "fr": "Exercices résolus de chaque thème, étape par étape.", "es": "Ejercicios resueltos de cada tema, paso a paso.", "it": "Esercizi risolti per ogni argomento, passo dopo passo.", "ru": "Решённые задачи по каждой теме, шаг за шагом.", "pt": "Exercícios resolvidos de cada tema, passo a passo."}, "intro": {"sr": "<b>Uči kroz rešene zadatke.</b> Svaki zadatak je rešen korak po korak, kako bi lakše razumeo/la postupak i mogao/la samostalno da rešavaš slične zadatke.", "en": "<b>Learn through solved problems.</b> Each problem is solved step by step, so you can easily understand the method and solve similar problems on your own.", "de": "<b>Lernen anhand gelöster Aufgaben.</b> Jede Aufgabe ist Schritt für Schritt gelöst, damit du das Vorgehen leichter verstehst und ähnliche Aufgaben selbstständig lösen kannst.", "fr": "<b>Apprendre grâce aux exercices résolus.</b> Chaque exercice est résolu étape par étape, afin que tu comprennes facilement la méthode et puisses résoudre seul(e) des exercices similaires.", "es": "<b>Aprende con ejercicios resueltos.</b> Cada ejercicio está resuelto paso a paso, para que entiendas fácilmente el procedimiento y puedas resolver por tu cuenta ejercicios similares.", "it": "<b>Impara con gli esercizi risolti.</b> Ogni esercizio è risolto passo dopo passo, così puoi capire facilmente il procedimento e risolvere da solo/a esercizi simili.", "ru": "<b>Учись на решённых задачах.</b> Каждая задача решена шаг за шагом, чтобы тебе было легче понять способ решения и самостоятельно решать похожие задачи.", "pt": "<b>Aprende com exercícios resolvidos.</b> Cada exercício é resolvido passo a passo, para que compreendas facilmente o método e consigas resolver sozinho/a exercícios semelhantes."}, "lbl_rp": {"sr": "Rešen primer", "en": "Worked example", "de": "Gelöstes Beispiel", "fr": "Exemple résolu", "es": "Ejemplo resuelto", "it": "Esempio risolto", "ru": "Разобранный пример", "pt": "Exemplo resolvido"}, "tn1": {"sr": "Elektricitet", "en": "Electricity", "de": "Elektrizität", "fr": "Électricité", "es": "Electricidad", "it": "Elettricità", "ru": "Электричество", "pt": "Eletricidade"}, "tps1": {"sr": "Kroz provodnik protekne naelektrisanje od 12 C za 4 s. Izračunaj jačinu struje.", "en": "A charge of 12 C flows through a conductor in 4 s. Calculate the current.", "de": "Durch einen Leiter fließt in 4 s eine Ladung von 12 C. Berechne die Stromstärke.", "fr": "Une charge de 12 C traverse un conducteur en 4 s. Calcule l'intensité du courant.", "es": "Por un conductor circula una carga de 12 C en 4 s. Calcula la intensidad de corriente.", "it": "Attraverso un conduttore passa una carica di 12 C in 4 s. Calcola l'intensità di corrente.", "ru": "Через проводник за 4 с проходит заряд 12 Кл. Вычисли силу тока.", "pt": "Através de um condutor passa uma carga de 12 C em 4 s. Calcula a intensidade de corrente."}, "tst1_1": {"sr": "Zapamtimo formulu: I = Q/t", "en": "Recall the formula: I = Q/t", "de": "Wir erinnern uns an die Formel: I = Q/t", "fr": "Rappelons la formule : I = Q/t", "es": "Recordamos la fórmula: I = Q/t", "it": "Ricordiamo la formula: I = Q/t", "ru": "Вспомним формулу: I = Q/t", "pt": "Recordamos a fórmula: I = Q/t"}, "tst1_2": {"sr": "Uvrstimo vrednosti: I = 12 C / 4 s", "en": "Substitute the values: I = 12 C / 4 s", "de": "Wir setzen die Werte ein: I = 12 C / 4 s", "fr": "Remplaçons les valeurs : I = 12 C / 4 s", "es": "Sustituimos los valores: I = 12 C / 4 s", "it": "Sostituiamo i valori: I = 12 C / 4 s", "ru": "Подставим значения: I = 12 Кл / 4 с", "pt": "Substituímos os valores: I = 12 C / 4 s"}, "tst1_3": {"sr": "Izračunamo: I = 3 A", "en": "Calculate: I = 3 A", "de": "Wir berechnen: I = 3 A", "fr": "Calculons : I = 3 A", "es": "Calculamos: I = 3 A", "it": "Calcoliamo: I = 3 A", "ru": "Вычисляем: I = 3 А", "pt": "Calculamos: I = 3 A"}, "tn2": {"sr": "Strujno kolo", "en": "Electric circuit", "de": "Stromkreis", "fr": "Circuit électrique", "es": "Circuito eléctrico", "it": "Circuito elettrico", "ru": "Электрическая цепь", "pt": "Circuito elétrico"}, "tps2": {"sr": "Dva otpornika R₁ = 4 Ω i R₂ = 6 Ω vezana su serijski na napon U = 20 V. Izračunaj jačinu struje u kolu.", "en": "Two resistors, R₁ = 4 Ω and R₂ = 6 Ω, are connected in series to a voltage U = 20 V. Calculate the current in the circuit.", "de": "Zwei Widerstände, R₁ = 4 Ω und R₂ = 6 Ω, sind in Reihe an eine Spannung U = 20 V angeschlossen. Berechne die Stromstärke im Stromkreis.", "fr": "Deux résistances, R₁ = 4 Ω et R₂ = 6 Ω, sont branchées en série sous une tension U = 20 V. Calcule l'intensité du courant dans le circuit.", "es": "Dos resistencias, R₁ = 4 Ω y R₂ = 6 Ω, están conectadas en serie a un voltaje U = 20 V. Calcula la intensidad de corriente en el circuito.", "it": "Due resistori, R₁ = 4 Ω e R₂ = 6 Ω, sono collegati in serie a una tensione U = 20 V. Calcola l'intensità di corrente nel circuito.", "ru": "Два резистора, R₁ = 4 Ом и R₂ = 6 Ом, соединены последовательно и подключены к напряжению U = 20 В. Вычисли силу тока в цепи.", "pt": "Duas resistências, R₁ = 4 Ω e R₂ = 6 Ω, estão ligadas em série a uma tensão U = 20 V. Calcula a intensidade de corrente no circuito."}, "tst2_1": {"sr": "Izračunamo ukupan otpor: R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω", "en": "Calculate the total resistance: R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω", "de": "Wir berechnen den Gesamtwiderstand: R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω", "fr": "Calculons la résistance totale : R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω", "es": "Calculamos la resistencia total: R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω", "it": "Calcoliamo la resistenza totale: R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω", "ru": "Вычисляем общее сопротивление: R = R₁ + R₂ = 4 Ом + 6 Ом = 10 Ом", "pt": "Calculamos a resistência total: R = R₁ + R₂ = 4 Ω + 6 Ω = 10 Ω"}, "tst2_2": {"sr": "Primenimo Omov zakon: I = U/R", "en": "Apply Ohm's law: I = U/R", "de": "Wir wenden das Ohmsche Gesetz an: I = U/R", "fr": "Appliquons la loi d'Ohm : I = U/R", "es": "Aplicamos la ley de Ohm: I = U/R", "it": "Applichiamo la legge di Ohm: I = U/R", "ru": "Применяем закон Ома: I = U/R", "pt": "Aplicamos a lei de Ohm: I = U/R"}, "tst2_3": {"sr": "Uvrstimo vrednosti: I = 20 V / 10 Ω", "en": "Substitute the values: I = 20 V / 10 Ω", "de": "Wir setzen die Werte ein: I = 20 V / 10 Ω", "fr": "Remplaçons les valeurs : I = 20 V / 10 Ω", "es": "Sustituimos los valores: I = 20 V / 10 Ω", "it": "Sostituiamo i valori: I = 20 V / 10 Ω", "ru": "Подставим значения: I = 20 В / 10 Ом", "pt": "Substituímos os valores: I = 20 V / 10 Ω"}, "tst2_4": {"sr": "Izračunamo: I = 2 A", "en": "Calculate: I = 2 A", "de": "Wir berechnen: I = 2 A", "fr": "Calculons : I = 2 A", "es": "Calculamos: I = 2 A", "it": "Calcoliamo: I = 2 A", "ru": "Вычисляем: I = 2 А", "pt": "Calculamos: I = 2 A"}, "tn3": {"sr": "Magnetizam", "en": "Magnetism", "de": "Magnetismus", "fr": "Magnétisme", "es": "Magnetismo", "it": "Magnetismo", "ru": "Магнетизм", "pt": "Magnetismo"}, "tps3": {"sr": "Objasni zašto se dva magneta okrenuta severnim polovima jedan prema drugom odbijaju.", "en": "Explain why two magnets with their north poles facing each other repel.", "de": "Erkläre, warum sich zwei Magnete, deren Nordpole einander zugewandt sind, abstoßen.", "fr": "Explique pourquoi deux aimants dont les pôles nord se font face se repoussent.", "es": "Explica por qué dos imanes con sus polos norte enfrentados se repelen.", "it": "Spiega perché due magneti con i poli nord rivolti l'uno verso l'altro si respingono.", "ru": "Объясни, почему два магнита, обращённые друг к другу северными полюсами, отталкиваются.", "pt": "Explica por que razão dois ímanes com os polos norte virados um para o outro se repelem."}, "tst3_1": {"sr": "Prisetimo se pravila: istoimeni polovi se odbijaju", "en": "Recall the rule: like poles repel", "de": "Wir erinnern uns an die Regel: gleichnamige Pole stoßen sich ab", "fr": "Rappelons la règle : les pôles de même nom se repoussent", "es": "Recordamos la regla: los polos del mismo nombre se repelen", "it": "Ricordiamo la regola: i poli dello stesso nome si respingono", "ru": "Вспомним правило: одноимённые полюсы отталкиваются", "pt": "Recordamos a regra: polos iguais repelem-se"}, "tst3_2": {"sr": "Oba magneta imaju severni pol (N) okrenut jedan ka drugom", "en": "Both magnets have their north pole (N) facing each other", "de": "Beide Magnete haben ihren Nordpol (N) einander zugewandt", "fr": "Les deux aimants ont leur pôle nord (N) tourné l'un vers l'autre", "es": "Ambos imanes tienen su polo norte (N) enfrentado entre sí", "it": "Entrambi i magneti hanno il polo nord (N) rivolto l'uno verso l'altro", "ru": "Оба магнита обращены друг к другу северным полюсом (N)", "pt": "Ambos os ímanes têm o polo norte (N) virado um para o outro"}, "tst3_3": {"sr": "Pošto su polovi istoimeni (N–N), magneti se odbijaju", "en": "Since the poles are the same (N–N), the magnets repel", "de": "Da die Pole gleichnamig sind (N–N), stoßen sich die Magnete ab", "fr": "Comme les pôles sont de même nom (N–N), les aimants se repoussent", "es": "Como los polos son del mismo nombre (N–N), los imanes se repelen", "it": "Poiché i poli sono dello stesso nome (N–N), i magneti si respingono", "ru": "Так как полюсы одноимённые (N–N), магниты отталкиваются", "pt": "Como os polos são iguais (N–N), os ímanes repelem-se"}, "tn4": {"sr": "Indukcija", "en": "Induction", "de": "Induktion", "fr": "Induction", "es": "Inducción", "it": "Induzione", "ru": "Индукция", "pt": "Indução"}, "tps4": {"sr": "Objasni zašto se u kalemu javlja struja kada magnet brzo uvučemo u njega, a zašto struje nema kada magnet miruje unutar kalema.", "en": "Explain why a current appears in a coil when a magnet is quickly pushed into it, and why there is no current when the magnet is at rest inside the coil.", "de": "Erkläre, warum in einer Spule ein Strom entsteht, wenn ein Magnet schnell hineingeschoben wird, und warum kein Strom fließt, wenn der Magnet ruhig in der Spule liegt.", "fr": "Explique pourquoi un courant apparaît dans une bobine lorsqu'on y insère rapidement un aimant, et pourquoi il n'y a pas de courant lorsque l'aimant est immobile à l'intérieur de la bobine.", "es": "Explica por qué aparece corriente en una bobina cuando se introduce rápidamente un imán en ella, y por qué no hay corriente cuando el imán está en reposo dentro de la bobina.", "it": "Spiega perché in una bobina compare corrente quando un magnete viene inserito rapidamente al suo interno, e perché non c'è corrente quando il magnete è fermo all'interno della bobina.", "ru": "Объясни, почему в катушке возникает ток, когда в неё быстро вдвигают магнит, и почему тока нет, когда магнит неподвижен внутри катушки.", "pt": "Explica por que razão surge corrente numa bobina quando um íman é rapidamente introduzido nela, e por que razão não há corrente quando o íman está em repouso dentro da bobina."}, "tst4_1": {"sr": "Setimo se uslova za indukciju: potrebna je promena magnetnog polja", "en": "Recall the condition for induction: a change in the magnetic field is required", "de": "Wir erinnern uns an die Bedingung für Induktion: es ist eine Änderung des Magnetfeldes nötig", "fr": "Rappelons la condition pour l'induction : il faut une variation du champ magnétique", "es": "Recordamos la condición para la inducción: se necesita un cambio en el campo magnético", "it": "Ricordiamo la condizione per l'induzione: è necessaria una variazione del campo magnetico", "ru": "Вспомним условие индукции: необходимо изменение магнитного поля", "pt": "Recordamos a condição para a indução: é necessária uma variação do campo magnético"}, "tst4_2": {"sr": "Dok magnet ulazi, magnetno polje kroz kalem se menja → struja se indukuje", "en": "While the magnet is entering, the magnetic field through the coil changes → current is induced", "de": "Während der Magnet eindringt, ändert sich das Magnetfeld durch die Spule → es wird Strom induziert", "fr": "Pendant que l'aimant entre, le champ magnétique à travers la bobine change → un courant est induit", "es": "Mientras el imán entra, el campo magnético a través de la bobina cambia → se induce corriente", "it": "Mentre il magnete entra, il campo magnetico attraverso la bobina cambia → si induce corrente", "ru": "Пока магнит входит, магнитное поле через катушку меняется → индуцируется ток", "pt": "Enquanto o íman entra, o campo magnético através da bobina muda → induz-se corrente"}, "tst4_3": {"sr": "Kada magnet miruje, polje je konstantno → nema promene → nema indukovane struje", "en": "When the magnet is at rest, the field is constant → no change → no induced current", "de": "Wenn der Magnet ruht, ist das Feld konstant → keine Änderung → kein induzierter Strom", "fr": "Lorsque l'aimant est immobile, le champ est constant → pas de variation → pas de courant induit", "es": "Cuando el imán está en reposo, el campo es constante → no hay cambio → no hay corriente inducida", "it": "Quando il magnete è fermo, il campo è costante → nessuna variazione → nessuna corrente indotta", "ru": "Когда магнит неподвижен, поле постоянно → изменений нет → индуцированного тока нет", "pt": "Quando o íman está em repouso, o campo é constante → não há variação → não há corrente induzida"}, "tn5": {"sr": "Optika", "en": "Optics", "de": "Optik", "fr": "Optique", "es": "Óptica", "it": "Ottica", "ru": "Оптика", "pt": "Ótica"}, "tps5": {"sr": "Svetlosni zrak pada na ravno ogledalo pod uglom od 30° u odnosu na normalu. Pod kojim uglom se odbija zrak?", "en": "A light ray hits a flat mirror at an angle of 30° from the normal. At what angle is the ray reflected?", "de": "Ein Lichtstrahl trifft in einem Winkel von 30° zur Normalen auf einen ebenen Spiegel. In welchem Winkel wird der Strahl reflektiert?", "fr": "Un rayon lumineux frappe un miroir plan avec un angle de 30° par rapport à la normale. Sous quel angle le rayon est-il réfléchi ?", "es": "Un rayo de luz incide sobre un espejo plano con un ángulo de 30° respecto a la normal. ¿Bajo qué ángulo se refleja el rayo?", "it": "Un raggio di luce colpisce uno specchio piano con un angolo di 30° rispetto alla normale. Con quale angolo viene riflesso il raggio?", "ru": "Луч света падает на плоское зеркало под углом 30° к нормали. Под каким углом отразится луч?", "pt": "Um raio de luz incide num espelho plano com um ângulo de 30° em relação à normal. Sob que ângulo é refletido o raio?"}, "tst5_1": {"sr": "Setimo se zakona odbijanja: ugao upada = ugao odbijanja", "en": "Recall the law of reflection: angle of incidence = angle of reflection", "de": "Wir erinnern uns an das Reflexionsgesetz: Einfallswinkel = Ausfallswinkel", "fr": "Rappelons la loi de la réflexion : angle d'incidence = angle de réflexion", "es": "Recordamos la ley de reflexión: ángulo de incidencia = ángulo de reflexión", "it": "Ricordiamo la legge della riflessione: angolo di incidenza = angolo di riflessione", "ru": "Вспомним закон отражения: угол падения = угол отражения", "pt": "Recordamos a lei da reflexão: ângulo de incidência = ângulo de reflexão"}, "tst5_2": {"sr": "Ugao upada iznosi 30°", "en": "The angle of incidence is 30°", "de": "Der Einfallswinkel beträgt 30°", "fr": "L'angle d'incidence est de 30°", "es": "El ángulo de incidencia es de 30°", "it": "L'angolo di incidenza è di 30°", "ru": "Угол падения равен 30°", "pt": "O ângulo de incidência é de 30°"}, "tst5_3": {"sr": "Zaključujemo: ugao odbijanja takođe iznosi 30°", "en": "We conclude: the angle of reflection is also 30°", "de": "Wir schließen daraus: der Ausfallswinkel beträgt ebenfalls 30°", "fr": "Nous concluons : l'angle de réflexion est aussi de 30°", "es": "Concluimos: el ángulo de reflexión también es de 30°", "it": "Concludiamo: anche l'angolo di riflessione è di 30°", "ru": "Заключаем: угол отражения также равен 30°", "pt": "Concluímos: o ângulo de reflexão também é de 30°"}, "tn6": {"sr": "Zvuk", "en": "Sound", "de": "Schall", "fr": "Son", "es": "Sonido", "it": "Suono", "ru": "Звук", "pt": "Som"}, "tps6": {"sr": "Grmljavinu čujemo 6 sekundi nakon što smo videli munju. Na kojoj udaljenosti se dogodilo pražnjenje ako je brzina zvuka 340 m/s?", "en": "We hear thunder 6 seconds after seeing the lightning. At what distance did the discharge occur if the speed of sound is 340 m/s?", "de": "Wir hören den Donner 6 Sekunden, nachdem wir den Blitz gesehen haben. In welcher Entfernung fand die Entladung statt, wenn die Schallgeschwindigkeit 340 m/s beträgt?", "fr": "Nous entendons le tonnerre 6 secondes après avoir vu l'éclair. À quelle distance a eu lieu la décharge si la vitesse du son est de 340 m/s ?", "es": "Oímos el trueno 6 segundos después de ver el relámpago. ¿A qué distancia ocurrió la descarga si la velocidad del sonido es de 340 m/s?", "it": "Sentiamo il tuono 6 secondi dopo aver visto il lampo. A quale distanza è avvenuta la scarica se la velocità del suono è 340 m/s?", "ru": "Мы слышим гром через 6 секунд после того, как увидели молнию. На каком расстоянии произошёл разряд, если скорость звука 340 м/с?", "pt": "Ouvimos o trovão 6 segundos depois de vermos o relâmpago. A que distância ocorreu a descarga se a velocidade do som é de 340 m/s?"}, "tst6_1": {"sr": "Setimo se formule: s = v·t", "en": "Recall the formula: s = v·t", "de": "Wir erinnern uns an die Formel: s = v·t", "fr": "Rappelons la formule : s = v·t", "es": "Recordamos la fórmula: s = v·t", "it": "Ricordiamo la formula: s = v·t", "ru": "Вспомним формулу: s = v·t", "pt": "Recordamos a fórmula: s = v·t"}, "tst6_2": {"sr": "Uvrstimo vrednosti: s = 340 m/s · 6 s", "en": "Substitute the values: s = 340 m/s · 6 s", "de": "Wir setzen die Werte ein: s = 340 m/s · 6 s", "fr": "Remplaçons les valeurs : s = 340 m/s · 6 s", "es": "Sustituimos los valores: s = 340 m/s · 6 s", "it": "Sostituiamo i valori: s = 340 m/s · 6 s", "ru": "Подставим значения: s = 340 м/с · 6 с", "pt": "Substituímos os valores: s = 340 m/s · 6 s"}, "tst6_3": {"sr": "Izračunamo: s = 2040 m", "en": "Calculate: s = 2040 m", "de": "Wir berechnen: s = 2040 m", "fr": "Calculons : s = 2040 m", "es": "Calculamos: s = 2040 m", "it": "Calcoliamo: s = 2040 m", "ru": "Вычисляем: s = 2040 м", "pt": "Calculamos: s = 2040 m"}};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(e){try{ap(((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase())}catch(_){}});})();</script>
 </body>
 </html>

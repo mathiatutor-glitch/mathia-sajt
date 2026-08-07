@@ -1,278 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Priručnik formula — Matematika 6. razred · Mathia</title>
+<title>Mathia — Formule · Matematika 6. razred · Formule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --navy:#432c37; --gold:#9c7838; --cream:#fbf6ee; --ink:#243; --soft:#6b6256; --line:#e7dcc4; }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
-  /* zaglavlje */
-  header{background:linear-gradient(180deg,#fffcf6,#fbf6ee);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
-  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
-  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
-  h1{font-family:'Spectral',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
-  .lead{color:var(--soft);max-width:560px;margin:.4em auto 0}
-  /* sekcije */
-  section{margin:34px 0}
-  .sec-h{font-family:'Spectral',serif;font-weight:700;font-size:1.32rem;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--line);padding-bottom:8px;margin-bottom:6px}
-  .sec-h .em{font-size:1.4rem}
-  .card{background:#fffcf6;border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:14px 0;box-shadow:0 4px 16px rgba(31,51,87,.05)}
-  .card h3{margin:.1em 0 .5em;font-size:1.02rem;color:var(--navy)}
-  .f{background:var(--cream);border:1px dashed #dcceac;border-radius:12px;padding:12px 14px;margin:10px 0;font-size:1.08rem;overflow-x:auto}
-  .note{color:var(--soft);font-size:.92rem;margin:6px 0 0}
-  .ex{font-size:.95rem;color:#4a5}
-  .ex b{color:var(--navy)}
-  ul.r{margin:.3em 0 .2em;padding-left:1.1em}
-  ul.r li{margin:.2em 0}
-  .pill{display:inline-block;background:#f3ebd6;color:#8a6d24;border-radius:999px;padding:2px 10px;font-size:.74rem;font-weight:700;letter-spacing:.04em}
-  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
-  footer a{color:var(--gold);text-decoration:none;font-weight:600}
-  /* diskretan vodeni žig */
-  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;background-repeat:repeat;
-      background-image:repeating-linear-gradient(-30deg,transparent 0 120px,rgba(31,51,87,.0) 120px 240px)}
-  .wm span{position:absolute;font-size:.8rem;color:#432c37;transform:rotate(-30deg);white-space:nowrap}
-  main{position:relative;z-index:1}
-</style>
-<style>
-/* ===== MATHIA LUXE THEME (global override) ===== */
-:root{
-  --navy:#432C37;--head:#432C37;--ink:#4f3b44;--soft:#8a7480;--muted:#8a7480;
-  --gold:#9C7838;--acc:#9C7838;--acc2:#7d5f2c;--gold-deep:#9C7838;--gold2:#E7D2A2;--accS:#E7D2A2;
-  --cream:#FBF6EE;--bg:#FBF6EE;--paper:#FBF6EE;--paper2:#F3E9D6;--card:#FFFCF6;
-  --line:#E7DBC4;
-  --cov1:#FDFAF3;--cov2:#FBF1E4;--cov3:#F6E7D6;
-  --zapBg1:#FFFAF0;--zapBg2:#FBEFD9;--zapBd:#E7D2A2;--zapH:#9C7838;
-  --stepBg:#F6EEDD;--stepBd:#E7D2A2;--stepNum1:#e7c97f;--stepNum2:#C6A05C;
-  --i1:#9C7838;--i2:#C6A05C;--i3:#B98E5A;
-}
-h1,h2,h3,h4{font-family:'Spectral',Georgia,serif}
-a{color:#9C7838}
-.zchat,#zchat,.zlauncher,#zdot{display:none!important}
-</style>
-<style>
-/* community / social — luxe pills */
-.social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 16px;margin:30px auto 8px;max-width:600px;padding:0 16px}
-.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
-.social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(160,120,60,.6)}
-.social svg{width:20px;height:20px;fill:currentColor;flex:none}
-
-/* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
-.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
-.katex{max-width:100%}
-.scroll-h{position:static;bottom:auto;margin-top:22px}
-.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
-.rule{margin-top:30px}
-
-.katex{font-family:KaTeX_Main,"Times New Roman",serif}
-</style>
-<link rel="icon" type="image/png" href="logo.png">
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<script defer src="napredak.js"></script><!--napredaklog-->
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Matematika-6-Razred-Formule.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Priručnik formula — Matematika 6. razred · Mathia">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Matematika-6-Razred-Formule.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Priručnik formula — Matematika 6. razred · Mathia">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+.page{padding:10px 0 40px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:10px 0 26px;box-shadow:0 16px 40px -30px rgba(120,40,60,.4);color:#4a3a40}
+.topic{margin:34px 0}
+.topic>h2{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.7rem;margin:0 0 4px}
+.topic>h2 .n{color:var(--gold);font-size:1.1rem;margin-right:8px}
+.topic h3{font-family:'Spectral',serif;color:var(--ink);font-size:1.18rem;margin:22px 0 6px}
+.rule{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line)}
+.box .bx-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin-bottom:6px}
+.zapamti{background:linear-gradient(180deg,#FFFBF3,#FBF3E2)}.zapamti .bx-h{color:var(--golddk)}
+.primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
+.fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:20px 0;padding:15px 18px;line-height:1.6;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="osnovna-matematika-6.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Matematika 6. razred</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Matematika 6. razred · Priručnik formula</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="wm" id="wm" aria-hidden="true"></div>
-
-<header>
-  <div class="wrap">
-    <div class="brand"><img src="logo.png" alt="MathIA" style="width:32px;height:32px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:9px">Mathia</div>
-    <div class="eyebrow">priručnik formula · osnovna škola</div>
-    <h1>Matematika — 6. razred</h1>
-    <p class="lead">Sve najvažnije formule i pravila na jednom mestu — lepo i pregledno. Marina ti ih sredila po temama, da ti uvek budu pri ruci. 💛</p>
-  </div>
-</header>
-
-<main class="wrap">
-
-  <section>
-    <div class="sec-h"><span class="em">➕</span> Celi brojevi</div>
-<div class="card">
-      <h3>Pravila znakova</h3>
-      <ul class="r"><li>sabiranje: jednaki znaci se sabiraju, različiti se oduzimaju</li><li>množenje/deljenje: jednaki znaci → +, različiti → −</li></ul>
-      <p class="ex"><b>Primer:</b> (−3) · (−4) = 12 &nbsp;·&nbsp; (−12) : 4 = −3 ❤️</p>
-    </div>
-  </section>
-  <section>
-    <div class="sec-h"><span class="em">🍰</span> Razlomci (racionalni brojevi)</div>
-<div class="card">
-      <h3>Operacije</h3>
-      <div class="f">$$\frac{a}{c}\pm\frac{b}{c}=\frac{a\pm b}{c}\qquad \frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{bd}\qquad \frac{a}{b}:\frac{c}{d}=\frac{a}{b}\cdot\frac{d}{c}$$</div>
-      <p class="note">Različiti imenioci → prvo na zajednički imenilac.</p>
-    </div>
-  </section>
-  <section>
-    <div class="sec-h"><span class="em">%</span> Procenat</div>
-<div class="card">
-      <h3>Procenat od broja</h3>
-      <div class="f">$$p\%\ \text{od}\ b=\frac{p}{100}\cdot b$$</div>
-      <p class="ex"><b>Primer:</b> 20% od 50 = (20/100)·50 = 10 ❤️</p>
-    </div>
-  </section>
-  <section>
-    <div class="sec-h"><span class="em">📐</span> Trougao i četvorougao</div>
-<div class="card">
-      <h3>Zbir uglova</h3>
-      <div class="f">$$\text{trougao}=180^\circ \qquad \text{četvorougao}=360^\circ$$</div>
-    </div>
-<div class="card">
-      <h3>Vrste trougla</h3>
-      <ul class="r"><li>po stranicama: jednakostranični, jednakokraki, raznostranični</li><li>po uglovima: oštrougli, pravougli, tupougli</li></ul>
-    </div>
-  </section>
-  <section>
-    <div class="sec-h"><span class="em">⬛</span> Površine</div>
-<div class="card">
-      <h3>Pravougaonik i kvadrat</h3>
-      <div class="f">$$P_{\square}=a\cdot b \qquad P_{kvadrat}=a^2$$</div>
-    </div>
-<div class="card">
-      <h3>Trougao</h3>
-      <div class="f">$$P=\frac{a\cdot h_a}{2}$$</div>
-      <p class="note">a — stranica, hₐ — visina na tu stranicu.</p>
-    </div>
-<div class="card">
-      <h3>Paralelogram</h3>
-      <div class="f">$$P=a\cdot h$$</div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <p>✦ Mathia · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
-    <p style="opacity:.7">Ovaj priručnik je deo Mathia pretplate. Molimo te da ga ne deliš — pravljen je s puno pažnje baš za tebe.</p>
-  </div>
-<div style="text-align:center;margin:26px auto 0"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Inter',sans-serif;font-weight:600;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)">← Mathia · Početna</a></div>
-<div class="social" data-social="1"><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a><a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>Email</span></a></div>
-<div class="mathia-copyr" style="text-align:center;padding:16px 20px 22px;font-family:'Inter',sans-serif;font-size:.78rem;color:rgba(67,44,55,.55);letter-spacing:.02em">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
-</footer>
-
-<script>
-  // render formula
-  document.addEventListener("DOMContentLoaded", function(){
-    if (window.renderMathInElement) {
-      renderMathInElement(document.body, {
-        delimiters: [{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],
-        throwOnError:false
-      });
-    }
-    // diskretan vodeni žig (ime/telefon korisnika ako ga server ubaci kao window.MATHIA_USER)
-    var wm = document.getElementById("wm");
-    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
-    fetch("/api/me",{credentials:"include",headers:(function(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");var t=v&&(v.access_token||(v.session&&v.session.access_token));if(t)return{Authorization:"Bearer "+t};}}}catch(e){}return{};})()}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"Mathia · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"Mathia · mathia.rs");});
-  });
-</script>
-  <script>
-(function(){
-  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
-  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
-  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "osn-mat-6", "data-sub": "Matematika 6. razred", "data-name": "Profesorica", "data-subj": "Matematika za 6. razred osnovne \u0161kole", "data-avatar": "avatar.jpg", "data-hi-en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
-  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam va\u0161a profesorica Marina. Ovo su materijali \u2014 postavite pitanje, po\u0161aljite sliku \ud83d\udcf7 ili diktirajte \ud83c\udf99\ufe0f zadatak.", "en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
-  var st=document.createElement("script"); st.src=SRC;
-  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
-  st.setAttribute("data-lang",L);
-  st.setAttribute("data-hi",HI[L]||HI.sr);
-  (document.body||document.documentElement).appendChild(st);
-})();
-</script>
-<script defer src="gate.js" data-subject="osn-mat-6"></script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script src="mathia-header.js" defer></script>
-<style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="osnovna-matematika-6.html" data-i18n="back">← Matematika 6. razred</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">MathIA</div><div class="eyebrow" data-i18n="eyebrow">E‑knjiga · Formule</div><h1 data-i18n="title">Formule · Matematika 6. razred</h1><div class="sub" data-i18n="sub">Sve ključne formule 6. razreda na jednom mestu.</div><div class="orn">✦</div><a class="tb-back" href="osnovna-matematika-6.html" data-i18n="back2">← Nazad na predmet</a></div>
+<div class="wrap page"><div class="intro" data-i18n-html="intro"><b>Formule na jednom mestu.</b> Ovde su sabrane sve formule koje su potrebne za 6. razred - od računa sa razlomcima do obima i površine likova.</div><section class="topic"><h2><span class="n">1.</span><span data-i18n="tn1">Celi brojevi</span></h2><div class="rule"></div><span class="fx" data-i18n-html="tf1_1">(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −</span><span class="fx" data-i18n-html="tf1_2">|a| ≥ 0  (apsolutna vrednost broja a)</span><span class="fx" data-i18n-html="tf1_3">a + (−a) = 0  (zbir suprotnih brojeva)</span></section><section class="topic"><h2><span class="n">2.</span><span data-i18n="tn2">Razlomci</span></h2><div class="rule"></div><span class="fx" data-i18n-html="tf2_1">a/b + c/b = (a + c)/b  (isti imenilac)</span><span class="fx" data-i18n-html="tf2_2">a/b · c/d = (a·c)/(b·d)</span><span class="fx" data-i18n-html="tf2_3">a/b ÷ c/d = a/b · d/c</span></section><section class="topic"><h2><span class="n">3.</span><span data-i18n="tn3">Procenti</span></h2><div class="rule"></div><span class="fx" data-i18n-html="tf3_1">p% od N = N·p/100</span><span class="fx" data-i18n-html="tf3_2">p% = a/N · 100  (a je deo, N je celina)</span><span class="fx" data-i18n-html="tf3_3">N = a·100/p  (izračunavanje celine kada znamo deo i procenat)</span></section><section class="topic"><h2><span class="n">4.</span><span data-i18n="tn4">Proporcije</span></h2><div class="rule"></div><span class="fx" data-i18n-html="tf4_1">a : b = c : d  ⇒  a·d = b·c</span><span class="fx" data-i18n-html="tf4_2">x = b·c/a  (nepoznati član proporcije)</span><span class="fx" data-i18n-html="tf4_3">Direktna proporcionalnost: y = k·x  (y/x = const)</span></section><section class="topic"><h2><span class="n">5.</span><span data-i18n="tn5">Trougao i četvorougao</span></h2><div class="rule"></div><span class="fx" data-i18n-html="tf5_1">α + β + γ = 180°  (zbir uglova trougla)</span><span class="fx" data-i18n-html="tf5_2">Zbir uglova četvorougla = 360°</span><span class="fx" data-i18n-html="tf5_3">Nejednakost trougla: a < b + c  (svaka stranica manja od zbira druge dve)</span></section><section class="topic"><h2><span class="n">6.</span><span data-i18n="tn6">Površina i obim</span></h2><div class="rule"></div><span class="fx" data-i18n-html="tf6_1">Pravougaonik: O = 2(a + b),  P = a·b</span><span class="fx" data-i18n-html="tf6_2">Trougao: P = (a·h)/2</span><span class="fx" data-i18n-html="tf6_3">Trapez: P = ((a + b)·h)/2</span></section></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="osnovna-matematika-6.html" data-i18n="subj">Matematika 6. razred</a><a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a><a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a><a href="index.html#paketi" data-i18n="nav_plans">Paketi</a><a href="o-marini.html" data-i18n="nav_about">O meni</a><a href="uslovi.html" data-i18n="nav_terms">Uslovi</a><a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a></nav><div class="rule"></div><div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<script>(function(){var T={"back2": {"sr": "← Nazad na predmet", "en": "← Back to subject", "de": "← Zurück zum Fach", "fr": "← Retour à la matière", "es": "← Volver a la asignatura", "it": "← Torna alla materia", "ru": "← Назад к предмету", "pt": "← Voltar à disciplina"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}, "lbl_zap": {"sr": "Zapamti", "en": "Remember", "de": "Merke", "fr": "À retenir", "es": "Recuerda", "it": "Ricorda", "ru": "Запомни", "pt": "Lembra"}, "subj": {"sr": "Matematika 6. razred", "en": "Mathematics Grade 6", "de": "Mathematik 6. Klasse", "fr": "Mathématiques 6e année", "es": "Matemáticas 6.º grado", "it": "Matematica 6ª classe", "ru": "Математика 6 класс", "pt": "Matemática 6.º ano"}, "back": {"sr": "← Matematika 6. razred", "en": "← Mathematics Grade 6", "de": "← Mathematik 6. Klasse", "fr": "← Mathématiques 6e année", "es": "← Matemáticas 6.º grado", "it": "← Matematica 6ª classe", "ru": "← Математика 6 класс", "pt": "← Matemática 6.º ano"}, "eyebrow": {"sr": "E‑knjiga · Formule", "en": "E‑book · Formulas", "de": "E‑Book · Formeln", "fr": "E‑book · Formules", "es": "E‑book · Fórmulas", "it": "E‑book · Formule", "ru": "Э‑книга · Формулы", "pt": "E‑book · Fórmulas"}, "title": {"sr": "Formule · Matematika 6. razred", "en": "Formulas · Mathematics Grade 6", "de": "Formeln · Mathematik 6. Klasse", "fr": "Formules · Mathématiques 6e année", "es": "Fórmulas · Matemáticas 6.º grado", "it": "Formule · Matematica 6ª classe", "ru": "Формулы · Математика 6 класс", "pt": "Fórmulas · Matemática 6.º ano"}, "sub": {"sr": "Sve ključne formule 6. razreda na jednom mestu.", "en": "All key Grade 6 formulas in one place.", "de": "Alle wichtigen Formeln der 6. Klasse an einem Ort.", "fr": "Toutes les formules clés de 6e année réunies en un seul endroit.", "es": "Todas las fórmulas clave de 6.º grado en un solo lugar.", "it": "Tutte le formule chiave della 6ª classe in un unico posto.", "ru": "Все ключевые формулы 6 класса в одном месте.", "pt": "Todas as fórmulas-chave do 6.º ano num só lugar."}, "intro": {"sr": "<b>Formule na jednom mestu.</b> Ovde su sabrane sve formule koje su potrebne za 6. razred - od računa sa razlomcima do obima i površine likova.", "en": "<b>Formulas in one place.</b> Here are all the formulas needed for Grade 6 - from operations with fractions to the perimeter and area of shapes.", "de": "<b>Formeln an einem Ort.</b> Hier sind alle Formeln gesammelt, die für die 6. Klasse gebraucht werden - vom Rechnen mit Brüchen bis zu Umfang und Fläche von Figuren.", "fr": "<b>Toutes les formules réunies.</b> Voici toutes les formules nécessaires en 6e année - des opérations sur les fractions au périmètre et à l'aire des figures.", "es": "<b>Fórmulas en un solo lugar.</b> Aquí están reunidas todas las fórmulas necesarias para 6.º grado - desde las operaciones con fracciones hasta el perímetro y el área de las figuras.", "it": "<b>Formule in un unico posto.</b> Qui sono raccolte tutte le formule necessarie per la 6ª classe - dalle operazioni con le frazioni al perimetro e all'area delle figure.", "ru": "<b>Все формулы в одном месте.</b> Здесь собраны все формулы, необходимые для 6 класса - от действий с дробями до периметра и площади фигур.", "pt": "<b>Fórmulas num só lugar.</b> Aqui estão reunidas todas as fórmulas necessárias para o 6.º ano - desde as operações com frações até ao perímetro e área das figuras."}, "lbl_rp": {"sr": "Rešen primer", "en": "Worked example", "de": "Gelöstes Beispiel", "fr": "Exemple résolu", "es": "Ejemplo resuelto", "it": "Esempio risolto", "ru": "Разобранный пример", "pt": "Exemplo resolvido"}, "tn1": {"sr": "Celi brojevi", "en": "Integers", "de": "Ganze Zahlen", "fr": "Nombres entiers", "es": "Números enteros", "it": "Numeri interi", "ru": "Целые числа", "pt": "Números inteiros"}, "tf1_1": {"sr": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −", "en": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −", "de": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −", "fr": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −", "es": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −", "it": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −", "ru": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −", "pt": "(+)·(+) = +,  (−)·(−) = +,  (+)·(−) = −"}, "tf1_2": {"sr": "|a| ≥ 0  (apsolutna vrednost broja a)", "en": "|a| ≥ 0  (absolute value of a)", "de": "|a| ≥ 0  (Betrag der Zahl a)", "fr": "|a| ≥ 0  (valeur absolue de a)", "es": "|a| ≥ 0  (valor absoluto de a)", "it": "|a| ≥ 0  (valore assoluto di a)", "ru": "|a| ≥ 0  (модуль числа a)", "pt": "|a| ≥ 0  (valor absoluto de a)"}, "tf1_3": {"sr": "a + (−a) = 0  (zbir suprotnih brojeva)", "en": "a + (−a) = 0  (sum of opposite numbers)", "de": "a + (−a) = 0  (Summe entgegengesetzter Zahlen)", "fr": "a + (−a) = 0  (somme de nombres opposés)", "es": "a + (−a) = 0  (suma de números opuestos)", "it": "a + (−a) = 0  (somma di numeri opposti)", "ru": "a + (−a) = 0  (сумма противоположных чисел)", "pt": "a + (−a) = 0  (soma de números opostos)"}, "tn2": {"sr": "Razlomci", "en": "Fractions", "de": "Brüche", "fr": "Fractions", "es": "Fracciones", "it": "Frazioni", "ru": "Дроби", "pt": "Frações"}, "tf2_1": {"sr": "a/b + c/b = (a + c)/b  (isti imenilac)", "en": "a/b + c/b = (a + c)/b  (same denominator)", "de": "a/b + c/b = (a + c)/b  (gleicher Nenner)", "fr": "a/b + c/b = (a + c)/b  (même dénominateur)", "es": "a/b + c/b = (a + c)/b  (mismo denominador)", "it": "a/b + c/b = (a + c)/b  (stesso denominatore)", "ru": "a/b + c/b = (a + c)/b  (одинаковый знаменатель)", "pt": "a/b + c/b = (a + c)/b  (mesmo denominador)"}, "tf2_2": {"sr": "a/b · c/d = (a·c)/(b·d)", "en": "a/b · c/d = (a·c)/(b·d)", "de": "a/b · c/d = (a·c)/(b·d)", "fr": "a/b · c/d = (a·c)/(b·d)", "es": "a/b · c/d = (a·c)/(b·d)", "it": "a/b · c/d = (a·c)/(b·d)", "ru": "a/b · c/d = (a·c)/(b·d)", "pt": "a/b · c/d = (a·c)/(b·d)"}, "tf2_3": {"sr": "a/b ÷ c/d = a/b · d/c", "en": "a/b ÷ c/d = a/b · d/c", "de": "a/b ÷ c/d = a/b · d/c", "fr": "a/b ÷ c/d = a/b · d/c", "es": "a/b ÷ c/d = a/b · d/c", "it": "a/b ÷ c/d = a/b · d/c", "ru": "a/b ÷ c/d = a/b · d/c", "pt": "a/b ÷ c/d = a/b · d/c"}, "tn3": {"sr": "Procenti", "en": "Percentages", "de": "Prozente", "fr": "Pourcentages", "es": "Porcentajes", "it": "Percentuali", "ru": "Проценты", "pt": "Percentagens"}, "tf3_1": {"sr": "p% od N = N·p/100", "en": "p% of N = N·p/100", "de": "p% von N = N·p/100", "fr": "p% de N = N·p/100", "es": "p% de N = N·p/100", "it": "p% di N = N·p/100", "ru": "p% от N = N·p/100", "pt": "p% de N = N·p/100"}, "tf3_2": {"sr": "p% = a/N · 100  (a je deo, N je celina)", "en": "p% = a/N · 100  (a is the part, N is the whole)", "de": "p% = a/N · 100  (a ist der Teil, N das Ganze)", "fr": "p% = a/N · 100  (a est la partie, N est le tout)", "es": "p% = a/N · 100  (a es la parte, N es el todo)", "it": "p% = a/N · 100  (a è la parte, N è l'intero)", "ru": "p% = a/N · 100  (a - часть, N - целое)", "pt": "p% = a/N · 100  (a é a parte, N é o todo)"}, "tf3_3": {"sr": "N = a·100/p  (izračunavanje celine kada znamo deo i procenat)", "en": "N = a·100/p  (finding the whole when we know the part and the percentage)", "de": "N = a·100/p  (Berechnung des Ganzen, wenn Teil und Prozentsatz bekannt sind)", "fr": "N = a·100/p  (calcul du tout quand on connaît la partie et le pourcentage)", "es": "N = a·100/p  (cálculo del todo cuando se conocen la parte y el porcentaje)", "it": "N = a·100/p  (calcolo dell'intero conoscendo la parte e la percentuale)", "ru": "N = a·100/p  (вычисление целого, если известны часть и процент)", "pt": "N = a·100/p  (cálculo do todo quando se conhecem a parte e a percentagem)"}, "tn4": {"sr": "Proporcije", "en": "Proportions", "de": "Proportionen", "fr": "Proportions", "es": "Proporciones", "it": "Proporzioni", "ru": "Пропорции", "pt": "Proporções"}, "tf4_1": {"sr": "a : b = c : d  ⇒  a·d = b·c", "en": "a : b = c : d  ⇒  a·d = b·c", "de": "a : b = c : d  ⇒  a·d = b·c", "fr": "a : b = c : d  ⇒  a·d = b·c", "es": "a : b = c : d  ⇒  a·d = b·c", "it": "a : b = c : d  ⇒  a·d = b·c", "ru": "a : b = c : d  ⇒  a·d = b·c", "pt": "a : b = c : d  ⇒  a·d = b·c"}, "tf4_2": {"sr": "x = b·c/a  (nepoznati član proporcije)", "en": "x = b·c/a  (unknown term of the proportion)", "de": "x = b·c/a  (unbekanntes Glied der Proportion)", "fr": "x = b·c/a  (terme inconnu de la proportion)", "es": "x = b·c/a  (término desconocido de la proporción)", "it": "x = b·c/a  (termine incognito della proporzione)", "ru": "x = b·c/a  (неизвестный член пропорции)", "pt": "x = b·c/a  (termo desconhecido da proporção)"}, "tf4_3": {"sr": "Direktna proporcionalnost: y = k·x  (y/x = const)", "en": "Direct proportionality: y = k·x  (y/x = const)", "de": "Direkte Proportionalität: y = k·x  (y/x = konstant)", "fr": "Proportionnalité directe : y = k·x  (y/x = constante)", "es": "Proporcionalidad directa: y = k·x  (y/x = constante)", "it": "Proporzionalità diretta: y = k·x  (y/x = costante)", "ru": "Прямая пропорциональность: y = k·x  (y/x = const)", "pt": "Proporcionalidade direta: y = k·x  (y/x = constante)"}, "tn5": {"sr": "Trougao i četvorougao", "en": "Triangle and quadrilateral", "de": "Dreieck und Viereck", "fr": "Triangle et quadrilatère", "es": "Triángulo y cuadrilátero", "it": "Triangolo e quadrilatero", "ru": "Треугольник и четырёхугольник", "pt": "Triângulo e quadrilátero"}, "tf5_1": {"sr": "α + β + γ = 180°  (zbir uglova trougla)", "en": "α + β + γ = 180°  (sum of the angles of a triangle)", "de": "α + β + γ = 180°  (Winkelsumme im Dreieck)", "fr": "α + β + γ = 180°  (somme des angles d'un triangle)", "es": "α + β + γ = 180°  (suma de los ángulos de un triángulo)", "it": "α + β + γ = 180°  (somma degli angoli di un triangolo)", "ru": "α + β + γ = 180°  (сумма углов треугольника)", "pt": "α + β + γ = 180°  (soma dos ângulos de um triângulo)"}, "tf5_2": {"sr": "Zbir uglova četvorougla = 360°", "en": "Sum of the angles of a quadrilateral = 360°", "de": "Winkelsumme im Viereck = 360°", "fr": "Somme des angles d'un quadrilatère = 360°", "es": "Suma de los ángulos de un cuadrilátero = 360°", "it": "Somma degli angoli di un quadrilatero = 360°", "ru": "Сумма углов четырёхугольника = 360°", "pt": "Soma dos ângulos de um quadrilátero = 360°"}, "tf5_3": {"sr": "Nejednakost trougla: a < b + c  (svaka stranica manja od zbira druge dve)", "en": "Triangle inequality: a < b + c  (each side is smaller than the sum of the other two)", "de": "Dreiecksungleichung: a < b + c  (jede Seite ist kleiner als die Summe der anderen beiden)", "fr": "Inégalité triangulaire : a < b + c  (chaque côté est inférieur à la somme des deux autres)", "es": "Desigualdad triangular: a < b + c  (cada lado es menor que la suma de los otros dos)", "it": "Disuguaglianza triangolare: a < b + c  (ogni lato è minore della somma degli altri due)", "ru": "Неравенство треугольника: a < b + c  (каждая сторона меньше суммы двух других)", "pt": "Desigualdade triangular: a < b + c  (cada lado é menor que a soma dos outros dois)"}, "tn6": {"sr": "Površina i obim", "en": "Area and perimeter", "de": "Fläche und Umfang", "fr": "Aire et périmètre", "es": "Área y perímetro", "it": "Area e perimetro", "ru": "Площадь и периметр", "pt": "Área e perímetro"}, "tf6_1": {"sr": "Pravougaonik: O = 2(a + b),  P = a·b", "en": "Rectangle: P = 2(a + b),  A = a·b", "de": "Rechteck: U = 2(a + b),  A = a·b", "fr": "Rectangle : P = 2(a + b),  A = a·b", "es": "Rectángulo: P = 2(a + b),  A = a·b", "it": "Rettangolo: P = 2(a + b),  A = a·b", "ru": "Прямоугольник: P = 2(a + b),  S = a·b", "pt": "Retângulo: P = 2(a + b),  A = a·b"}, "tf6_2": {"sr": "Trougao: P = (a·h)/2", "en": "Triangle: A = (a·h)/2", "de": "Dreieck: A = (a·h)/2", "fr": "Triangle : A = (a·h)/2", "es": "Triángulo: A = (a·h)/2", "it": "Triangolo: A = (a·h)/2", "ru": "Треугольник: S = (a·h)/2", "pt": "Triângulo: A = (a·h)/2"}, "tf6_3": {"sr": "Trapez: P = ((a + b)·h)/2", "en": "Trapezoid: A = ((a + b)·h)/2", "de": "Trapez: A = ((a + b)·h)/2", "fr": "Trapèze : A = ((a + b)·h)/2", "es": "Trapecio: A = ((a + b)·h)/2", "it": "Trapezio: A = ((a + b)·h)/2", "ru": "Трапеция: S = ((a + b)·h)/2", "pt": "Trapézio: A = ((a + b)·h)/2"}};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(e){try{ap(((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase())}catch(_){}});})();</script>
 </body>
 </html>

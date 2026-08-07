@@ -1,347 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Skripta — Matematika 5. razred · Mathia</title>
+<title>Mathia — Matematika · 5. razred · Skripta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --navy:#432c37; --gold:#9c7838; --cream:#fbf6ee; --soft:#6b6256; --line:#e7dcc4; }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Inter',system-ui,sans-serif;line-height:1.68;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
-  header{background:linear-gradient(180deg,#fffcf6,#fbf6ee);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
-  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
-  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
-  h1{font-family:'Spectral',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
-  .lead{color:var(--soft);max-width:580px;margin:.4em auto 0}
-  /* sadržaj */
-  .toc{background:#fffcf6;border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:28px 0;box-shadow:0 4px 16px rgba(31,51,87,.05)}
-  .toc h2{font-family:'Spectral',serif;font-size:1.05rem;margin:.1em 0 .5em}
-  .toc ol{margin:0;padding-left:1.2em}
-  .toc li{margin:.3em 0}
-  .toc a{color:var(--navy);text-decoration:none;border-bottom:1px dotted #cdbd92}
-  .toc a:hover{color:var(--gold)}
-  /* lekcija */
-  .lesson{margin:34px 0;scroll-margin-top:14px}
-  .lesson-h{font-family:'Spectral',serif;font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line);padding-bottom:8px}
-  .lnum{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fbf6ee;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Inter'}
-  .lesson p{margin:.7em 0}
-  .lesson h3{margin:1.1em 0 .2em;font-size:1.06rem}
-  .f{background:#fffcf6;border:1px dashed #dcceac;border-radius:12px;padding:10px 14px;margin:10px 0;overflow-x:auto}
-  .ex{background:#fbf6ea;border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px;margin:14px 0}
-  .ex .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8a6d24;font-weight:700}
-  .tip{background:#eef3ee;border-left:3px solid #7fae84;border-radius:8px;padding:12px 16px;margin:14px 0;color:#2f4f33}
-  .tip .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#5a8a60;font-weight:700}
-  details.try{background:#fffcf6;border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin:14px 0}
-  details.try summary{cursor:pointer;font-weight:700;color:var(--navy);padding:10px 0;list-style:none}
-  details.try summary::-webkit-details-marker{display:none}
-  details.try summary::before{content:"✎ ";color:var(--gold)}
-  details.try[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
-  .sol{color:var(--soft)}
-  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
-  footer a{color:var(--gold);text-decoration:none;font-weight:600}
-  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
-  .wm span{position:absolute;font-size:.8rem;color:#432c37;transform:rotate(-30deg);white-space:nowrap}
-  main{position:relative;z-index:1}
-  .backtop{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--gold);text-decoration:none}
-</style>
-<style>
-/* ===== MATHIA LUXE THEME (global override) ===== */
-:root{
-  --navy:#432C37;--head:#432C37;--ink:#4f3b44;--soft:#8a7480;--muted:#8a7480;
-  --gold:#9C7838;--acc:#9C7838;--acc2:#7d5f2c;--gold-deep:#9C7838;--gold2:#E7D2A2;--accS:#E7D2A2;
-  --cream:#FBF6EE;--bg:#FBF6EE;--paper:#FBF6EE;--paper2:#F3E9D6;--card:#FFFCF6;
-  --line:#E7DBC4;
-  --cov1:#FDFAF3;--cov2:#FBF1E4;--cov3:#F6E7D6;
-  --zapBg1:#FFFAF0;--zapBg2:#FBEFD9;--zapBd:#E7D2A2;--zapH:#9C7838;
-  --stepBg:#F6EEDD;--stepBd:#E7D2A2;--stepNum1:#e7c97f;--stepNum2:#C6A05C;
-  --i1:#9C7838;--i2:#C6A05C;--i3:#B98E5A;
-}
-h1,h2,h3,h4{font-family:'Spectral',Georgia,serif}
-a{color:#9C7838}
-.zchat,#zchat,.zlauncher,#zdot{display:none!important}
-</style>
-<style>
-/* community / social — luxe pills */
-.social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 16px;margin:30px auto 8px;max-width:600px;padding:0 16px}
-.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
-.social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(160,120,60,.6)}
-.social svg{width:20px;height:20px;fill:currentColor;flex:none}
-
-/* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
-.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
-.katex{max-width:100%}
-.scroll-h{position:static;bottom:auto;margin-top:22px}
-.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
-.rule{margin-top:30px}
-
-.katex{font-family:KaTeX_Main,"Times New Roman",serif}
-</style>
-<link rel="icon" type="image/png" href="logo.png">
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<script defer src="napredak.js"></script><!--napredaklog-->
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Matematika-5-Razred-Skripta.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Skripta — Matematika 5. razred · Mathia">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Matematika-5-Razred-Skripta.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Skripta — Matematika 5. razred · Mathia">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+.page{padding:10px 0 40px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:10px 0 26px;box-shadow:0 16px 40px -30px rgba(120,40,60,.4);color:#4a3a40}
+.topic{margin:34px 0}
+.topic>h2{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.7rem;margin:0 0 4px}
+.topic>h2 .n{color:var(--gold);font-size:1.1rem;margin-right:8px}
+.topic h3{font-family:'Spectral',serif;color:var(--ink);font-size:1.18rem;margin:22px 0 6px}
+.rule{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line)}
+.box .bx-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin-bottom:6px}
+.zapamti{background:linear-gradient(180deg,#FFFBF3,#FBF3E2)}.zapamti .bx-h{color:var(--golddk)}
+.primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
+.fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:20px 0;padding:15px 18px;line-height:1.6;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="osnovna-matematika-5.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Matematika 5. razred</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Matematika 5. razred · Skripta</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="wm" id="wm" aria-hidden="true"></div>
-
-<header>
-  <div class="wrap">
-    <div class="brand"><img src="logo.png" alt="MathIA" style="width:32px;height:32px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:9px">Mathia</div>
-    <div class="eyebrow">skripta · osnovna škola</div>
-    <h1>Matematika — 5. razred</h1>
-    <p class="lead">Cela godina, lekcija po lekcija — objašnjeno lagano i s puno primera. Marina je uz tebe na svakom koraku. Kad zapneš, samo otvori čet i pitaj. 💛</p>
-  </div>
-</header>
-
-<main class="wrap" id="top">
-
-  <nav class="toc">
-    <h2>Šta sve učimo ove godine</h2>
-    <ol>
-      <li><a href="#l1">Prirodni brojevi i deljivost</a></li>
-      <li><a href="#l2">Razlomci</a></li>
-      <li><a href="#l3">Decimalni brojevi</a></li>
-      <li><a href="#l4">Uglovi</a></li>
-      <li><a href="#l5">Osna simetrija</a></li>
-      <li><a href="#l6">Obim i površina</a></li>
-    </ol>
-  </nav>
-
-  <!-- L1 -->
-  <section class="lesson" id="l1">
-    <div class="lesson-h"><span class="lnum">1</span> Prirodni brojevi i deljivost</div>
-    <p>Prirodni brojevi su brojevi kojima brojimo: 1, 2, 3, 4, … Kažemo da je broj <b>deljiv</b> drugim brojem ako pri deljenju nema ostatka.</p>
-    <h3>Pravila deljivosti — brze provere</h3>
-    <p>Da ne moraš uvek da deliš, postoje zgodna pravila:</p>
-    <p>• sa <b>2</b> — ako se broj završava na 0, 2, 4, 6 ili 8 (paran je)<br>
-       • sa <b>5</b> — ako se završava na 0 ili 5<br>
-       • sa <b>10</b> — ako se završava na 0<br>
-       • sa <b>3</b> — ako je zbir cifara deljiv sa 3<br>
-       • sa <b>9</b> — ako je zbir cifara deljiv sa 9</p>
-    <div class="ex">
-      <div class="tag">Rešen primer</div>
-      <p>Da li je 372 deljivo sa 3?</p>
-      <p>Saberemo cifre: 3 + 7 + 2 = 12. Pošto je 12 deljivo sa 3, i ceo broj 372 je deljiv sa 3. ✔️</p>
-    </div>
-    <h3>Prosti i složeni brojevi</h3>
-    <p>Broj je <b>prost</b> ako je deljiv samo sa 1 i sa samim sobom (npr. 2, 3, 5, 7, 11). Ako ima i druge delioce, <b>složen</b> je (npr. 6 = 2·3).</p>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Broj 1 nije ni prost ni složen — on je poseban. ❤️</p></div>
-    <details class="try"><summary>Probaj sam: da li je 145 deljivo sa 5? A sa 3?</summary>
-      <p class="sol">Završava se na 5 → <b>jeste</b> deljivo sa 5. Zbir cifara 1+4+5 = 10, a 10 nije deljivo sa 3 → <b>nije</b> deljivo sa 3.</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-
-  <!-- L2 -->
-  <section class="lesson" id="l2">
-    <div class="lesson-h"><span class="lnum">2</span> Razlomci</div>
-    <p>Razlomak je deo celine. U zapisu $\frac{a}{b}$ broj gore (a) je <b>brojilac</b>, a broj dole (b) <b>imenilac</b>. Na primer, $\frac{3}{4}$ znači „tri od četiri jednaka dela".</p>
-    <h3>Proširivanje i skraćivanje</h3>
-    <p>Vrednost razlomka se ne menja kad i gore i dole pomnožimo (ili podelimo) istim brojem:</p>
-    <div class="f">$$\frac{a}{b}=\frac{a\cdot k}{b\cdot k}\qquad\qquad \frac{a}{b}=\frac{a:k}{b:k}$$</div>
-    <h3>Sabiranje i oduzimanje</h3>
-    <p>Ako je imenilac isti — sabiramo brojioce. Ako je različit — prvo svedemo na zajednički imenilac.</p>
-    <div class="ex">
-      <div class="tag">Rešen primer</div>
-      <p>$\frac{1}{2}+\frac{1}{4}=?$</p>
-      <p>Svedemo na imenilac 4: $\frac{1}{2}=\frac{2}{4}$. Sad sabiramo: $\frac{2}{4}+\frac{1}{4}=\frac{3}{4}$. ✔️</p>
-    </div>
-    <h3>Množenje i deljenje</h3>
-    <div class="f">$$\frac{a}{b}\cdot\frac{c}{d}=\frac{a\cdot c}{b\cdot d}\qquad\qquad \frac{a}{b}:\frac{c}{d}=\frac{a}{b}\cdot\frac{d}{c}$$</div>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Deljenje razlomkom = množenje „prevrnutim" razlomkom. Samo okreneš drugi razlomak naglavačke! 🙃</p></div>
-    <details class="try"><summary>Probaj sam: koliko je $\frac{2}{3}+\frac{1}{6}$?</summary>
-      <p class="sol">Zajednički imenilac je 6: $\frac{2}{3}=\frac{4}{6}$. Onda $\frac{4}{6}+\frac{1}{6}=\frac{5}{6}$.</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-
-  <!-- L3 -->
-  <section class="lesson" id="l3">
-    <div class="lesson-h"><span class="lnum">3</span> Decimalni brojevi</div>
-    <p>Decimalni broj ima ceo deo i deo iza zapete, npr. 3,47. Cifre iza zapete su desetine, stotine, hiljadite…</p>
-    <h3>Zaokrugljivanje</h3>
-    <p>Gledamo prvu cifru koju izbacujemo: ako je <b>5 ili veća</b> — zaokružujemo naviše; ako je <b>manja od 5</b> — naniže.</p>
-    <div class="ex">
-      <div class="tag">Rešen primer</div>
-      <p>Zaokruži 3,47 na desetinu i na ceo broj.</p>
-      <p>Na desetinu: gledamo 7 (≥5) → 3,5. Na ceo broj: gledamo 4 (&lt;5) → 3. ✔️</p>
-    </div>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Razlomak i decimala su dva načina da zapišemo istu stvar: $\frac{1}{2}=0{,}5$. ❤️</p></div>
-    <details class="try"><summary>Probaj sam: zaokruži 12,86 na desetinu.</summary>
-      <p class="sol">Prva izbačena cifra je 6 (≥5) → naviše → 12,9.</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-
-  <!-- L4 -->
-  <section class="lesson" id="l4">
-    <div class="lesson-h"><span class="lnum">4</span> Uglovi</div>
-    <p>Ugao nastaje kad se dve poluprave sastanu u jednoj tački (temenu). Veličinu ugla merimo u <b>stepenima</b> (°), uglomerom.</p>
-    <h3>Vrste uglova</h3>
-    <p>• <b>oštar</b> — manji od 90°<br>• <b>prav</b> — tačno 90°<br>• <b>tup</b> — između 90° i 180°<br>• <b>opružen</b> — tačno 180°</p>
-    <div class="ex">
-      <div class="tag">Rešen primer</div>
-      <p>Dva ugla zajedno čine prav ugao, jedan je 30°. Koliki je drugi?</p>
-      <p>Prav ugao je 90°, pa je drugi 90° − 30° = 60°. ✔️</p>
-    </div>
-    <details class="try"><summary>Probaj sam: koje je vrste ugao od 120°?</summary>
-      <p class="sol">Veći od 90°, a manji od 180° → <b>tup</b> ugao.</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-
-  <!-- L5 -->
-  <section class="lesson" id="l5">
-    <div class="lesson-h"><span class="lnum">5</span> Osna simetrija</div>
-    <p>Figura je <b>osno simetrična</b> ako postoji prava (osa) koja je deli na dva dela koji se poklapaju kad ih „presavijemo" preko te ose — kao u ogledalu.</p>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Leptir, srce ♡ i slovo A imaju osu simetrije. Probaj da nacrtaš osu na svom imenu — koja slova su simetrična? 🦋</p></div>
-    <details class="try"><summary>Probaj sam: koliko osa simetrije ima kvadrat?</summary>
-      <p class="sol">Kvadrat ima <b>4</b> ose simetrije (dve kroz sredine stranica i dve dijagonale).</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-
-  <!-- L6 -->
-  <section class="lesson" id="l6">
-    <div class="lesson-h"><span class="lnum">6</span> Obim i površina</div>
-    <p><b>Obim</b> je dužina ivice figure (koliko bismo prešli idući oko nje). <b>Površina</b> je koliko prostora figura zauzima.</p>
-    <div class="f">$$\text{Kvadrat:}\quad O=4a,\quad P=a^2 \qquad\qquad \text{Pravougaonik:}\quad O=2(a+b),\quad P=a\cdot b$$</div>
-    <div class="ex">
-      <div class="tag">Rešen primer</div>
-      <p>Pravougaonik ima stranice a = 5 cm i b = 3 cm. Nađi obim i površinu.</p>
-      <p>Obim: $O=2\cdot(5+3)=2\cdot 8=16$ cm.<br>Površina: $P=5\cdot 3=15$ cm². ✔️</p>
-    </div>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Obim merimo u cm (dužina), a površinu u cm² (kvadratni cm) — zato što pokrivamo prostor kvadratićima. ❤️</p></div>
-    <details class="try"><summary>Probaj sam: kvadrat ima stranicu a = 6 cm. Koliki su obim i površina?</summary>
-      <p class="sol">Obim: $O=4\cdot 6=24$ cm. Površina: $P=6^2=36$ cm².</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <p>✦ Mathia · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
-    <p style="opacity:.7">Ova skripta je deo Mathia pretplate. Molimo te da je ne deliš — pravljena je s puno pažnje baš za tebe.</p>
-  </div>
-<div style="text-align:center;margin:26px auto 0"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Inter',sans-serif;font-weight:600;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)">← Mathia · Početna</a></div>
-<div class="social" data-social="1"><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a><a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>Email</span></a></div>
-<div class="mathia-copyr" style="text-align:center;padding:16px 20px 22px;font-family:'Inter',sans-serif;font-size:.78rem;color:rgba(67,44,55,.55);letter-spacing:.02em">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
-</footer>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function(){
-    if (window.renderMathInElement) {
-      renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
-    }
-    var wm=document.getElementById("wm");
-    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
-    fetch("/api/me",{credentials:"include",headers:(function(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");var t=v&&(v.access_token||(v.session&&v.session.access_token));if(t)return{Authorization:"Bearer "+t};}}}catch(e){}return{};})()}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"Mathia · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"Mathia · mathia.rs");});
-  });
-</script>
-  <script>
-(function(){
-  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
-  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
-  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "osn-mat-5", "data-sub": "Matematika 5. razred", "data-name": "Profesorica", "data-subj": "Matematika za 5. razred osnovne \u0161kole", "data-avatar": "avatar.jpg", "data-hi-en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
-  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam va\u0161a profesorica Marina. Ovo su materijali \u2014 postavite pitanje, po\u0161aljite sliku \ud83d\udcf7 ili diktirajte \ud83c\udf99\ufe0f zadatak.", "en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
-  var st=document.createElement("script"); st.src=SRC;
-  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
-  st.setAttribute("data-lang",L);
-  st.setAttribute("data-hi",HI[L]||HI.sr);
-  (document.body||document.documentElement).appendChild(st);
-})();
-</script>
-<script defer src="gate.js" data-subject="osn-mat-5"></script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script src="mathia-header.js" defer></script>
-<style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="osnovna-matematika-5.html" data-i18n="back">← Matematika 5. razred</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">MathIA</div><div class="eyebrow" data-i18n="eyebrow">E‑knjiga · Skripta</div><h1 data-i18n="title">Matematika · 5. razred</h1><div class="sub" data-i18n="sub">Prirodni brojevi, deljivost, razlomci, decimale, uglovi i površine — korak po korak.</div><div class="orn">✦</div><a class="tb-back" href="osnovna-matematika-5.html" data-i18n="back2">← Nazad na predmet</a></div>
+<div class="wrap page"><div class="intro" data-i18n-html="intro"><b>O čemu je gradivo.</b> Ova skripta prati program matematike za 5. razred i objašnjava prirodne brojeve, deljivost, razlomke, decimalne brojeve, uglove i površine kroz jasna objašnjenja i primere. Svaka oblast sadrži teoriju, ključna pravila i rešen zadatak.</div><section class="topic"><h2><span class="n">1.</span><span data-i18n="tn1">Prirodni brojevi</span></h2><div class="rule"></div><p data-i18n-html="tp1"><b>Prirodni brojevi</b> su brojevi kojima brojimo predmete: 1, 2, 3, 4... Skup prirodnih brojeva je beskonačan i obeležava se sa N. Sabiranje i množenje prirodnih brojeva uvek daju prirodan broj, dok oduzimanje to ne mora.</p><span class="fx" data-i18n-html="tf1_1">a + b = b + a  (zamena mesta sabiraka)</span><span class="fx" data-i18n-html="tf1_2">a · b = b · a  (zamena mesta činilaca)</span><span class="fx" data-i18n-html="tf1_3">a · (b + c) = a·b + a·c  (distributivni zakon)</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr1">Zapamti: nula nije prirodan broj u užem smislu, a najmanji prirodan broj je 1.</span></div></section><section class="topic"><h2><span class="n">2.</span><span data-i18n="tn2">Deljivost</span></h2><div class="rule"></div><p data-i18n-html="tp2"><b>Deljivost</b> je osobina jednog broja da se drugim brojem deli bez ostatka. Brojevi 2, 3, 5, 9 i 10 imaju jednostavna pravila deljivosti koja pomažu da brzo proverimo da li je deljenje moguće. <b>Prost broj</b> ima tačno dva delioca (1 i sebe), a <b>složen broj</b> ima više od dva delioca.</p><span class="fx" data-i18n-html="tf2_1">Deljivo sa 2: poslednja cifra je 0, 2, 4, 6 ili 8</span><span class="fx" data-i18n-html="tf2_2">Deljivo sa 3: zbir cifara deljiv je sa 3</span><span class="fx" data-i18n-html="tf2_3">Deljivo sa 5: poslednja cifra je 0 ili 5</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr2">Zapamti: broj 1 nije ni prost ni složen.</span></div></section><section class="topic"><h2><span class="n">3.</span><span data-i18n="tn3">Razlomci</span></h2><div class="rule"></div><p data-i18n-html="tp3"><b>Razlomak</b> predstavlja deo celine i zapisuje se kao a/b, gde je a brojilac, a b imenilac (b ≠ 0). Razlomci se mogu sabirati, oduzimati, množiti i deliti, a pre sabiranja i oduzimanja razlomaka sa različitim imeniocima potrebno ih je svesti na zajednički imenilac.</p><span class="fx" data-i18n-html="tf3_1">a/b + c/b = (a+c)/b  (isti imenioci)</span><span class="fx" data-i18n-html="tf3_2">a/b · c/d = (a·c)/(b·d)</span><span class="fx" data-i18n-html="tf3_3">a/b : c/d = a/b · d/c</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr3">Zapamti: razlomak se ne menja ako brojilac i imenilac pomnožimo ili podelimo istim brojem.</span></div></section><section class="topic"><h2><span class="n">4.</span><span data-i18n="tn4">Decimalni brojevi</span></h2><div class="rule"></div><p data-i18n-html="tp4"><b>Decimalni broj</b> je broj zapisan pomoću decimalne zapete, kao 3,25. Cifre levo od zapete predstavljaju cele jedinice, a cifre desno predstavljaju desetine, stotine i tako dalje. Decimalni brojevi se sabiraju i oduzimaju tako što se zapeta postavlja ispod zapete.</p><span class="fx" data-i18n-html="tf4_1">0,1 = 1/10 ;  0,01 = 1/100</span><span class="fx" data-i18n-html="tf4_2">Množenje sa 10, 100...: zapeta se pomera udesno</span><span class="fx" data-i18n-html="tf4_3">Deljenje sa 10, 100...: zapeta se pomera ulevo</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr4">Zapamti: pri sabiranju decimalnih brojeva, zapete moraju biti poravnate jedna ispod druge.</span></div></section><section class="topic"><h2><span class="n">5.</span><span data-i18n="tn5">Uglovi</span></h2><div class="rule"></div><p data-i18n-html="tp5"><b>Ugao</b> nastaje spajanjem dve poluprave iz iste tačke koja se zove teme. Uglovi se mere u stepenima (°) pomoću uglomera. Prema veličini razlikujemo <b>oštar</b> (manji od 90°), <b>prav</b> (tačno 90°), <b>tup</b> (između 90° i 180°) i <b>opružen</b> ugao (tačno 180°).</p><span class="fx" data-i18n-html="tf5_1">Pun ugao = 360°</span><span class="fx" data-i18n-html="tf5_2">Opružen ugao = 180°</span><span class="fx" data-i18n-html="tf5_3">Prav ugao = 90°</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr5">Zapamti: zbir uglova u trouglu uvek iznosi 180°.</span></div></section><section class="topic"><h2><span class="n">6.</span><span data-i18n="tn6">Površine i obim</span></h2><div class="rule"></div><p data-i18n-html="tp6"><b>Obim</b> je zbir dužina svih stranica figure, a <b>površina</b> je veličina prostora koji figura zauzima. Za pravougaonik i kvadrat postoje jednostavne formule koje koriste dužine stranica.</p><span class="fx" data-i18n-html="tf6_1">Pravougaonik: O = 2(a+b), P = a · b</span><span class="fx" data-i18n-html="tf6_2">Kvadrat: O = 4a, P = a²</span><span class="fx" data-i18n-html="tf6_3">Trougao: P = (a · h) / 2</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr6">Zapamti: obim se meri u jedinicama dužine (cm, m), a površina u kvadratnim jedinicama (cm², m²).</span></div></section></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="osnovna-matematika-5.html" data-i18n="subj">Matematika 5. razred</a><a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a><a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a><a href="index.html#paketi" data-i18n="nav_plans">Paketi</a><a href="o-marini.html" data-i18n="nav_about">O meni</a><a href="uslovi.html" data-i18n="nav_terms">Uslovi</a><a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a></nav><div class="rule"></div><div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<script>(function(){var T={"back2": {"sr": "← Nazad na predmet", "en": "← Back to subject", "de": "← Zurück zum Fach", "fr": "← Retour à la matière", "es": "← Volver a la asignatura", "it": "← Torna alla materia", "ru": "← Назад к предмету", "pt": "← Voltar à disciplina"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}, "lbl_zap": {"sr": "Zapamti", "en": "Remember", "de": "Merke", "fr": "À retenir", "es": "Recuerda", "it": "Ricorda", "ru": "Запомни", "pt": "Lembra"}, "subj": {"sr": "Matematika 5. razred", "en": "Maths, Grade 5", "de": "Mathematik, 5. Klasse", "fr": "Mathématiques, 5e année", "es": "Matemáticas, 5.º grado", "it": "Matematica, classe 5ª", "ru": "Математика, 5 класс", "pt": "Matemática, 5.º ano"}, "back": {"sr": "← Matematika 5. razred", "en": "← Maths, Grade 5", "de": "← Mathematik, 5. Klasse", "fr": "← Mathématiques, 5e année", "es": "← Matemáticas, 5.º grado", "it": "← Matematica, classe 5ª", "ru": "← Математика, 5 класс", "pt": "← Matemática, 5.º ano"}, "eyebrow": {"sr": "E‑knjiga · Skripta", "en": "E‑book · Notes", "de": "E‑Book · Skript", "fr": "E‑book · Notes de cours", "es": "E‑book · Apuntes", "it": "E‑book · Dispensa", "ru": "Э‑книга · Конспект", "pt": "E‑book · Apontamentos"}, "title": {"sr": "Matematika · 5. razred", "en": "Maths · Grade 5", "de": "Mathematik · 5. Klasse", "fr": "Mathématiques · 5e année", "es": "Matemáticas · 5.º grado", "it": "Matematica · Classe 5ª", "ru": "Математика · 5 класс", "pt": "Matemática · 5.º ano"}, "sub": {"sr": "Prirodni brojevi, deljivost, razlomci, decimale, uglovi i površine — korak po korak.", "en": "Natural numbers, divisibility, fractions, decimals, angles and areas — step by step.", "de": "Natürliche Zahlen, Teilbarkeit, Brüche, Dezimalzahlen, Winkel und Flächen — Schritt für Schritt.", "fr": "Nombres naturels, divisibilité, fractions, nombres décimaux, angles et aires — étape par étape.", "es": "Números naturales, divisibilidad, fracciones, decimales, ángulos y áreas — paso a paso.", "it": "Numeri naturali, divisibilità, frazioni, numeri decimali, angoli e aree — passo dopo passo.", "ru": "Натуральные числа, делимость, дроби, десятичные дроби, углы и площади — шаг за шагом.", "pt": "Números naturais, divisibilidade, frações, decimais, ângulos e áreas — passo a passo."}, "intro": {"sr": "<b>O čemu je gradivo.</b> Ova skripta prati program matematike za 5. razred i objašnjava prirodne brojeve, deljivost, razlomke, decimalne brojeve, uglove i površine kroz jasna objašnjenja i primere. Svaka oblast sadrži teoriju, ključna pravila i rešen zadatak.", "en": "<b>What this covers.</b> This script follows the Grade 5 mathematics curriculum and explains natural numbers, divisibility, fractions, decimal numbers, angles and areas through clear explanations and examples. Each topic includes theory, key rules and a solved problem.", "de": "<b>Worum es geht.</b> Dieses Skript folgt dem Mathematiklehrplan der 5. Klasse und erklärt natürliche Zahlen, Teilbarkeit, Brüche, Dezimalzahlen, Winkel und Flächen anhand klarer Erklärungen und Beispiele. Jedes Thema enthält Theorie, wichtige Regeln und eine gelöste Aufgabe.", "fr": "<b>Le contenu du programme.</b> Ce support suit le programme de mathématiques de 5e année et explique les nombres naturels, la divisibilité, les fractions, les nombres décimaux, les angles et les aires à travers des explications claires et des exemples. Chaque thème contient la théorie, les règles essentielles et un exercice résolu.", "es": "<b>De qué trata el material.</b> Este apunte sigue el programa de matemáticas de 5.º grado y explica los números naturales, la divisibilidad, las fracciones, los números decimales, los ángulos y las áreas mediante explicaciones claras y ejemplos. Cada tema incluye teoría, reglas clave y un ejercicio resuelto.", "it": "<b>Di cosa tratta il materiale.</b> Questa dispensa segue il programma di matematica della classe 5ª e spiega i numeri naturali, la divisibilità, le frazioni, i numeri decimali, gli angoli e le aree con spiegazioni chiare ed esempi. Ogni argomento contiene la teoria, le regole principali e un esercizio risolto.", "ru": "<b>О чём этот материал.</b> Этот конспект следует программе по математике за 5 класс и объясняет натуральные числа, делимость, дроби, десятичные дроби, углы и площади через понятные объяснения и примеры. Каждая тема включает теорию, ключевые правила и решённую задачу.", "pt": "<b>Sobre o que é a matéria.</b> Este resumo segue o programa de matemática do 5.º ano e explica os números naturais, a divisibilidade, as frações, os números decimais, os ângulos e as áreas através de explicações claras e exemplos. Cada tema inclui teoria, regras essenciais e um exercício resolvido."}, "lbl_rp": {"sr": "Rešen primer", "en": "Worked example", "de": "Gelöstes Beispiel", "fr": "Exemple résolu", "es": "Ejemplo resuelto", "it": "Esempio risolto", "ru": "Разобранный пример", "pt": "Exemplo resolvido"}, "tn1": {"sr": "Prirodni brojevi", "en": "Natural Numbers", "de": "Natürliche Zahlen", "fr": "Nombres naturels", "es": "Números naturales", "it": "Numeri naturali", "ru": "Натуральные числа", "pt": "Números naturais"}, "tp1": {"sr": "<b>Prirodni brojevi</b> su brojevi kojima brojimo predmete: 1, 2, 3, 4... Skup prirodnih brojeva je beskonačan i obeležava se sa N. Sabiranje i množenje prirodnih brojeva uvek daju prirodan broj, dok oduzimanje to ne mora.", "en": "<b>Natural numbers</b> are the numbers we use for counting objects: 1, 2, 3, 4... The set of natural numbers is infinite and is denoted by N. Adding or multiplying natural numbers always gives a natural number, but subtraction does not always.", "de": "<b>Natürliche Zahlen</b> sind die Zahlen, mit denen wir Gegenstände zählen: 1, 2, 3, 4... Die Menge der natürlichen Zahlen ist unendlich und wird mit N bezeichnet. Addition und Multiplikation natürlicher Zahlen ergeben immer eine natürliche Zahl, bei der Subtraktion ist das nicht immer der Fall.", "fr": "Les <b>nombres naturels</b> sont les nombres qui servent à compter des objets : 1, 2, 3, 4... L'ensemble des nombres naturels est infini et se note N. L'addition et la multiplication de nombres naturels donnent toujours un nombre naturel, mais la soustraction pas toujours.", "es": "Los <b>números naturales</b> son los números que usamos para contar objetos: 1, 2, 3, 4... El conjunto de los números naturales es infinito y se denota con N. La suma y la multiplicación de números naturales siempre dan un número natural, pero la resta no siempre.", "it": "I <b>numeri naturali</b> sono i numeri che usiamo per contare gli oggetti: 1, 2, 3, 4... L'insieme dei numeri naturali è infinito e si indica con N. L'addizione e la moltiplicazione di numeri naturali danno sempre un numero naturale, mentre la sottrazione non sempre.", "ru": "<b>Натуральные числа</b> — это числа, которыми мы считаем предметы: 1, 2, 3, 4... Множество натуральных чисел бесконечно и обозначается буквой N. Сложение и умножение натуральных чисел всегда дают натуральное число, а вычитание — не всегда.", "pt": "Os <b>números naturais</b> são os números que usamos para contar objetos: 1, 2, 3, 4... O conjunto dos números naturais é infinito e representa-se por N. A soma e a multiplicação de números naturais dão sempre um número natural, mas a subtração nem sempre."}, "tf1_1": {"sr": "a + b = b + a  (zamena mesta sabiraka)", "en": "a + b = b + a  (commutativity of addition)", "de": "a + b = b + a  (Kommutativgesetz der Addition)", "fr": "a + b = b + a  (commutativité de l'addition)", "es": "a + b = b + a  (propiedad conmutativa de la suma)", "it": "a + b = b + a  (proprietà commutativa dell'addizione)", "ru": "a + b = b + a  (переместительное свойство сложения)", "pt": "a + b = b + a  (propriedade comutativa da adição)"}, "tf1_2": {"sr": "a · b = b · a  (zamena mesta činilaca)", "en": "a · b = b · a  (commutativity of multiplication)", "de": "a · b = b · a  (Kommutativgesetz der Multiplikation)", "fr": "a · b = b · a  (commutativité de la multiplication)", "es": "a · b = b · a  (propiedad conmutativa de la multiplicación)", "it": "a · b = b · a  (proprietà commutativa della moltiplicazione)", "ru": "a · b = b · a  (переместительное свойство умножения)", "pt": "a · b = b · a  (propriedade comutativa da multiplicação)"}, "tf1_3": {"sr": "a · (b + c) = a·b + a·c  (distributivni zakon)", "en": "a · (b + c) = a·b + a·c  (distributive law)", "de": "a · (b + c) = a·b + a·c  (Distributivgesetz)", "fr": "a · (b + c) = a·b + a·c  (distributivité)", "es": "a · (b + c) = a·b + a·c  (propiedad distributiva)", "it": "a · (b + c) = a·b + a·c  (proprietà distributiva)", "ru": "a · (b + c) = a·b + a·c  (распределительный закон)", "pt": "a · (b + c) = a·b + a·c  (propriedade distributiva)"}, "tr1": {"sr": "Zapamti: nula nije prirodan broj u užem smislu, a najmanji prirodan broj je 1.", "en": "Remember: zero is not a natural number in the strict sense, and the smallest natural number is 1.", "de": "Merke: Null ist im engeren Sinne keine natürliche Zahl, die kleinste natürliche Zahl ist 1.", "fr": "Retiens : zéro n'est pas un nombre naturel au sens strict, le plus petit nombre naturel est 1.", "es": "Recuerda: el cero no es un número natural en sentido estricto, el número natural más pequeño es 1.", "it": "Ricorda: lo zero non è un numero naturale in senso stretto, il più piccolo numero naturale è 1.", "ru": "Запомни: ноль не является натуральным числом в узком смысле, наименьшее натуральное число — 1.", "pt": "Lembra-te: o zero não é um número natural em sentido estrito, o menor número natural é 1."}, "tn2": {"sr": "Deljivost", "en": "Divisibility", "de": "Teilbarkeit", "fr": "Divisibilité", "es": "Divisibilidad", "it": "Divisibilità", "ru": "Делимость", "pt": "Divisibilidade"}, "tp2": {"sr": "<b>Deljivost</b> je osobina jednog broja da se drugim brojem deli bez ostatka. Brojevi 2, 3, 5, 9 i 10 imaju jednostavna pravila deljivosti koja pomažu da brzo proverimo da li je deljenje moguće. <b>Prost broj</b> ima tačno dva delioca (1 i sebe), a <b>složen broj</b> ima više od dva delioca.", "en": "<b>Divisibility</b> is the property of a number being divided by another number without a remainder. The numbers 2, 3, 5, 9 and 10 have simple divisibility rules that help us quickly check whether division is possible. A <b>prime number</b> has exactly two divisors (1 and itself), while a <b>composite number</b> has more than two divisors.", "de": "<b>Teilbarkeit</b> ist die Eigenschaft einer Zahl, durch eine andere Zahl ohne Rest teilbar zu sein. Die Zahlen 2, 3, 5, 9 und 10 haben einfache Teilbarkeitsregeln, mit denen wir schnell prüfen können, ob die Division möglich ist. Eine <b>Primzahl</b> hat genau zwei Teiler (1 und sich selbst), eine <b>zusammengesetzte Zahl</b> hat mehr als zwei Teiler.", "fr": "La <b>divisibilité</b> est la propriété d'un nombre à être divisé par un autre nombre sans reste. Les nombres 2, 3, 5, 9 et 10 ont des règles de divisibilité simples qui permettent de vérifier rapidement si la division est possible. Un <b>nombre premier</b> a exactement deux diviseurs (1 et lui-même), tandis qu'un <b>nombre composé</b> a plus de deux diviseurs.", "es": "La <b>divisibilidad</b> es la propiedad de un número de dividirse entre otro número sin dejar resto. Los números 2, 3, 5, 9 y 10 tienen reglas de divisibilidad sencillas que ayudan a comprobar rápidamente si la división es posible. Un <b>número primo</b> tiene exactamente dos divisores (1 y él mismo), mientras que un <b>número compuesto</b> tiene más de dos divisores.", "it": "La <b>divisibilità</b> è la proprietà di un numero di essere diviso per un altro numero senza resto. I numeri 2, 3, 5, 9 e 10 hanno regole di divisibilità semplici che aiutano a verificare rapidamente se la divisione è possibile. Un <b>numero primo</b> ha esattamente due divisori (1 e se stesso), mentre un <b>numero composto</b> ha più di due divisori.", "ru": "<b>Делимость</b> — это свойство числа делиться на другое число без остатка. Числа 2, 3, 5, 9 и 10 имеют простые признаки делимости, которые помогают быстро проверить, возможно ли деление. <b>Простое число</b> имеет ровно два делителя (1 и само себя), а <b>составное число</b> имеет более двух делителей.", "pt": "A <b>divisibilidade</b> é a propriedade de um número ser dividido por outro número sem deixar resto. Os números 2, 3, 5, 9 e 10 têm regras de divisibilidade simples que ajudam a verificar rapidamente se a divisão é possível. Um <b>número primo</b> tem exatamente dois divisores (1 e ele próprio), enquanto um <b>número composto</b> tem mais de dois divisores."}, "tf2_1": {"sr": "Deljivo sa 2: poslednja cifra je 0, 2, 4, 6 ili 8", "en": "Divisible by 2: the last digit is 0, 2, 4, 6 or 8", "de": "Teilbar durch 2: die letzte Ziffer ist 0, 2, 4, 6 oder 8", "fr": "Divisible par 2 : le dernier chiffre est 0, 2, 4, 6 ou 8", "es": "Divisible entre 2: la última cifra es 0, 2, 4, 6 u 8", "it": "Divisibile per 2: l'ultima cifra è 0, 2, 4, 6 o 8", "ru": "Делится на 2: последняя цифра 0, 2, 4, 6 или 8", "pt": "Divisível por 2: o último algarismo é 0, 2, 4, 6 ou 8"}, "tf2_2": {"sr": "Deljivo sa 3: zbir cifara deljiv je sa 3", "en": "Divisible by 3: the sum of the digits is divisible by 3", "de": "Teilbar durch 3: die Quersumme ist durch 3 teilbar", "fr": "Divisible par 3 : la somme des chiffres est divisible par 3", "es": "Divisible entre 3: la suma de las cifras es divisible entre 3", "it": "Divisibile per 3: la somma delle cifre è divisibile per 3", "ru": "Делится на 3: сумма цифр делится на 3", "pt": "Divisível por 3: a soma dos algarismos é divisível por 3"}, "tf2_3": {"sr": "Deljivo sa 5: poslednja cifra je 0 ili 5", "en": "Divisible by 5: the last digit is 0 or 5", "de": "Teilbar durch 5: die letzte Ziffer ist 0 oder 5", "fr": "Divisible par 5 : le dernier chiffre est 0 ou 5", "es": "Divisible entre 5: la última cifra es 0 o 5", "it": "Divisibile per 5: l'ultima cifra è 0 o 5", "ru": "Делится на 5: последняя цифра 0 или 5", "pt": "Divisível por 5: o último algarismo é 0 ou 5"}, "tr2": {"sr": "Zapamti: broj 1 nije ni prost ni složen.", "en": "Remember: the number 1 is neither prime nor composite.", "de": "Merke: die Zahl 1 ist weder eine Primzahl noch eine zusammengesetzte Zahl.", "fr": "Retiens : le nombre 1 n'est ni premier ni composé.", "es": "Recuerda: el número 1 no es ni primo ni compuesto.", "it": "Ricorda: il numero 1 non è né primo né composto.", "ru": "Запомни: число 1 не является ни простым, ни составным.", "pt": "Lembra-te: o número 1 não é primo nem composto."}, "tn3": {"sr": "Razlomci", "en": "Fractions", "de": "Brüche", "fr": "Fractions", "es": "Fracciones", "it": "Frazioni", "ru": "Дроби", "pt": "Frações"}, "tp3": {"sr": "<b>Razlomak</b> predstavlja deo celine i zapisuje se kao a/b, gde je a brojilac, a b imenilac (b ≠ 0). Razlomci se mogu sabirati, oduzimati, množiti i deliti, a pre sabiranja i oduzimanja razlomaka sa različitim imeniocima potrebno ih je svesti na zajednički imenilac.", "en": "A <b>fraction</b> represents a part of a whole and is written as a/b, where a is the numerator and b is the denominator (b ≠ 0). Fractions can be added, subtracted, multiplied and divided; before adding or subtracting fractions with different denominators, they must be converted to a common denominator.", "de": "Ein <b>Bruch</b> stellt einen Teil eines Ganzen dar und wird als a/b geschrieben, wobei a der Zähler und b der Nenner ist (b ≠ 0). Brüche können addiert, subtrahiert, multipliziert und dividiert werden; vor der Addition oder Subtraktion von Brüchen mit unterschiedlichen Nennern müssen diese auf einen gemeinsamen Nenner gebracht werden.", "fr": "Une <b>fraction</b> représente une partie d'un tout et s'écrit a/b, où a est le numérateur et b le dénominateur (b ≠ 0). Les fractions peuvent être additionnées, soustraites, multipliées et divisées ; avant d'additionner ou de soustraire des fractions ayant des dénominateurs différents, il faut les réduire au même dénominateur.", "es": "Una <b>fracción</b> representa una parte de un todo y se escribe como a/b, donde a es el numerador y b el denominador (b ≠ 0). Las fracciones se pueden sumar, restar, multiplicar y dividir; antes de sumar o restar fracciones con distinto denominador, hay que reducirlas a un denominador común.", "it": "Una <b>frazione</b> rappresenta una parte di un intero e si scrive come a/b, dove a è il numeratore e b è il denominatore (b ≠ 0). Le frazioni si possono sommare, sottrarre, moltiplicare e dividere; prima di sommare o sottrarre frazioni con denominatori diversi, bisogna ridurle allo stesso denominatore.", "ru": "<b>Дробь</b> обозначает часть целого и записывается как a/b, где a — числитель, а b — знаменатель (b ≠ 0). Дроби можно складывать, вычитать, умножать и делить; перед сложением и вычитанием дробей с разными знаменателями их нужно привести к общему знаменателю.", "pt": "Uma <b>fração</b> representa uma parte de um todo e escreve-se como a/b, em que a é o numerador e b é o denominador (b ≠ 0). As frações podem ser somadas, subtraídas, multiplicadas e divididas; antes de somar ou subtrair frações com denominadores diferentes, é preciso reduzi-las ao mesmo denominador."}, "tf3_1": {"sr": "a/b + c/b = (a+c)/b  (isti imenioci)", "en": "a/b + c/b = (a+c)/b  (same denominators)", "de": "a/b + c/b = (a+c)/b  (gleiche Nenner)", "fr": "a/b + c/b = (a+c)/b  (mêmes dénominateurs)", "es": "a/b + c/b = (a+c)/b  (mismo denominador)", "it": "a/b + c/b = (a+c)/b  (stesso denominatore)", "ru": "a/b + c/b = (a+c)/b  (одинаковые знаменатели)", "pt": "a/b + c/b = (a+c)/b  (denominadores iguais)"}, "tf3_2": {"sr": "a/b · c/d = (a·c)/(b·d)", "en": "a/b · c/d = (a·c)/(b·d)", "de": "a/b · c/d = (a·c)/(b·d)", "fr": "a/b · c/d = (a·c)/(b·d)", "es": "a/b · c/d = (a·c)/(b·d)", "it": "a/b · c/d = (a·c)/(b·d)", "ru": "a/b · c/d = (a·c)/(b·d)", "pt": "a/b · c/d = (a·c)/(b·d)"}, "tf3_3": {"sr": "a/b : c/d = a/b · d/c", "en": "a/b : c/d = a/b · d/c", "de": "a/b : c/d = a/b · d/c", "fr": "a/b : c/d = a/b · d/c", "es": "a/b : c/d = a/b · d/c", "it": "a/b : c/d = a/b · d/c", "ru": "a/b : c/d = a/b · d/c", "pt": "a/b : c/d = a/b · d/c"}, "tr3": {"sr": "Zapamti: razlomak se ne menja ako brojilac i imenilac pomnožimo ili podelimo istim brojem.", "en": "Remember: a fraction stays the same if we multiply or divide both the numerator and the denominator by the same number.", "de": "Merke: ein Bruch ändert sich nicht, wenn wir Zähler und Nenner mit derselben Zahl multiplizieren oder dividieren.", "fr": "Retiens : une fraction ne change pas si l'on multiplie ou divise le numérateur et le dénominateur par le même nombre.", "es": "Recuerda: una fracción no cambia si multiplicamos o dividimos el numerador y el denominador por el mismo número.", "it": "Ricorda: una frazione non cambia se moltiplichiamo o dividiamo il numeratore e il denominatore per lo stesso numero.", "ru": "Запомни: дробь не меняется, если числитель и знаменатель умножить или разделить на одно и то же число.", "pt": "Lembra-te: uma fração não muda se multiplicarmos ou dividirmos o numerador e o denominador pelo mesmo número."}, "tn4": {"sr": "Decimalni brojevi", "en": "Decimal Numbers", "de": "Dezimalzahlen", "fr": "Nombres décimaux", "es": "Números decimales", "it": "Numeri decimali", "ru": "Десятичные дроби", "pt": "Números decimais"}, "tp4": {"sr": "<b>Decimalni broj</b> je broj zapisan pomoću decimalne zapete, kao 3,25. Cifre levo od zapete predstavljaju cele jedinice, a cifre desno predstavljaju desetine, stotine i tako dalje. Decimalni brojevi se sabiraju i oduzimaju tako što se zapeta postavlja ispod zapete.", "en": "A <b>decimal number</b> is a number written using a decimal point, such as 3.25. The digits to the left of the point represent whole units, while the digits to the right represent tenths, hundredths and so on. Decimal numbers are added and subtracted by lining up the decimal points.", "de": "Eine <b>Dezimalzahl</b> ist eine Zahl, die mit einem Dezimalkomma geschrieben wird, wie 3,25. Die Ziffern links vom Komma stellen ganze Einheiten dar, die Ziffern rechts davon Zehntel, Hundertstel und so weiter. Dezimalzahlen werden addiert und subtrahiert, indem man das Komma untereinander schreibt.", "fr": "Un <b>nombre décimal</b> est un nombre écrit avec une virgule décimale, comme 3,25. Les chiffres à gauche de la virgule représentent des unités entières, ceux à droite représentent les dixièmes, les centièmes, etc. Les nombres décimaux s'additionnent et se soustraient en alignant les virgules les unes sous les autres.", "es": "Un <b>número decimal</b> es un número escrito con una coma decimal, como 3,25. Las cifras a la izquierda de la coma representan unidades enteras, y las cifras a la derecha representan décimas, centésimas, etc. Los números decimales se suman y se restan colocando la coma debajo de la coma.", "it": "Un <b>numero decimale</b> è un numero scritto con una virgola decimale, come 3,25. Le cifre a sinistra della virgola rappresentano le unità intere, mentre le cifre a destra rappresentano i decimi, i centesimi e così via. I numeri decimali si sommano e si sottraggono allineando le virgole una sotto l'altra.", "ru": "<b>Десятичная дробь</b> — это число, записанное с помощью десятичной запятой, например 3,25. Цифры слева от запятой обозначают целые единицы, а цифры справа — десятые, сотые и так далее. Десятичные дроби складывают и вычитают, располагая запятую под запятой.", "pt": "Um <b>número decimal</b> é um número escrito com vírgula decimal, como 3,25. Os algarismos à esquerda da vírgula representam unidades inteiras, e os algarismos à direita representam décimas, centésimas, e assim por diante. Os números decimais somam-se e subtraem-se alinhando a vírgula por baixo da vírgula."}, "tf4_1": {"sr": "0,1 = 1/10 ;  0,01 = 1/100", "en": "0.1 = 1/10 ;  0.01 = 1/100", "de": "0,1 = 1/10 ;  0,01 = 1/100", "fr": "0,1 = 1/10 ;  0,01 = 1/100", "es": "0,1 = 1/10 ;  0,01 = 1/100", "it": "0,1 = 1/10 ;  0,01 = 1/100", "ru": "0,1 = 1/10 ;  0,01 = 1/100", "pt": "0,1 = 1/10 ;  0,01 = 1/100"}, "tf4_2": {"sr": "Množenje sa 10, 100...: zapeta se pomera udesno", "en": "Multiplying by 10, 100...: the decimal point moves to the right", "de": "Multiplikation mit 10, 100...: das Komma verschiebt sich nach rechts", "fr": "Multiplication par 10, 100... : la virgule se déplace vers la droite", "es": "Multiplicación por 10, 100...: la coma se desplaza hacia la derecha", "it": "Moltiplicazione per 10, 100...: la virgola si sposta verso destra", "ru": "Умножение на 10, 100...: запятая сдвигается вправо", "pt": "Multiplicação por 10, 100...: a vírgula desloca-se para a direita"}, "tf4_3": {"sr": "Deljenje sa 10, 100...: zapeta se pomera ulevo", "en": "Dividing by 10, 100...: the decimal point moves to the left", "de": "Division durch 10, 100...: das Komma verschiebt sich nach links", "fr": "Division par 10, 100... : la virgule se déplace vers la gauche", "es": "División entre 10, 100...: la coma se desplaza hacia la izquierda", "it": "Divisione per 10, 100...: la virgola si sposta verso sinistra", "ru": "Деление на 10, 100...: запятая сдвигается влево", "pt": "Divisão por 10, 100...: a vírgula desloca-se para a esquerda"}, "tr4": {"sr": "Zapamti: pri sabiranju decimalnih brojeva, zapete moraju biti poravnate jedna ispod druge.", "en": "Remember: when adding decimal numbers, the decimal points must be lined up one below the other.", "de": "Merke: beim Addieren von Dezimalzahlen müssen die Kommas genau untereinanderstehen.", "fr": "Retiens : lors de l'addition de nombres décimaux, les virgules doivent être alignées les unes sous les autres.", "es": "Recuerda: al sumar números decimales, las comas deben quedar alineadas una debajo de otra.", "it": "Ricorda: quando si sommano numeri decimali, le virgole devono essere allineate una sotto l'altra.", "ru": "Запомни: при сложении десятичных дробей запятые должны стоять точно одна под другой.", "pt": "Lembra-te: ao somar números decimais, as vírgulas devem ficar alinhadas umas por baixo das outras."}, "tn5": {"sr": "Uglovi", "en": "Angles", "de": "Winkel", "fr": "Angles", "es": "Ángulos", "it": "Angoli", "ru": "Углы", "pt": "Ângulos"}, "tp5": {"sr": "<b>Ugao</b> nastaje spajanjem dve poluprave iz iste tačke koja se zove teme. Uglovi se mere u stepenima (°) pomoću uglomera. Prema veličini razlikujemo <b>oštar</b> (manji od 90°), <b>prav</b> (tačno 90°), <b>tup</b> (između 90° i 180°) i <b>opružen</b> ugao (tačno 180°).", "en": "An <b>angle</b> is formed when two rays meet at the same point, called the vertex. Angles are measured in degrees (°) using a protractor. By size we distinguish an <b>acute</b> angle (less than 90°), a <b>right</b> angle (exactly 90°), an <b>obtuse</b> angle (between 90° and 180°) and a <b>straight</b> angle (exactly 180°).", "de": "Ein <b>Winkel</b> entsteht, wenn sich zwei Halbgeraden im selben Punkt treffen, der Scheitelpunkt genannt wird. Winkel werden in Grad (°) mit einem Winkelmesser gemessen. Nach Größe unterscheiden wir einen <b>spitzen</b> Winkel (kleiner als 90°), einen <b>rechten</b> Winkel (genau 90°), einen <b>stumpfen</b> Winkel (zwischen 90° und 180°) und einen <b>gestreckten</b> Winkel (genau 180°).", "fr": "Un <b>angle</b> se forme lorsque deux demi-droites se rejoignent en un même point, appelé sommet. Les angles se mesurent en degrés (°) à l'aide d'un rapporteur. Selon leur taille, on distingue l'angle <b>aigu</b> (inférieur à 90°), l'angle <b>droit</b> (exactement 90°), l'angle <b>obtus</b> (entre 90° et 180°) et l'angle <b>plat</b> (exactement 180°).", "es": "Un <b>ángulo</b> se forma al unir dos semirrectas que parten de un mismo punto, llamado vértice. Los ángulos se miden en grados (°) con un transportador. Según su tamaño distinguimos el ángulo <b>agudo</b> (menor de 90°), el ángulo <b>recto</b> (exactamente 90°), el ángulo <b>obtuso</b> (entre 90° y 180°) y el ángulo <b>llano</b> (exactamente 180°).", "it": "Un <b>angolo</b> si forma unendo due semirette che partono dallo stesso punto, chiamato vertice. Gli angoli si misurano in gradi (°) con il goniometro. In base all'ampiezza distinguiamo l'angolo <b>acuto</b> (minore di 90°), l'angolo <b>retto</b> (esattamente 90°), l'angolo <b>ottuso</b> (tra 90° e 180°) e l'angolo <b>piatto</b> (esattamente 180°).", "ru": "<b>Угол</b> образуется при соединении двух лучей из одной точки, которая называется вершиной. Углы измеряются в градусах (°) с помощью транспортира. По величине различают <b>острый</b> угол (меньше 90°), <b>прямой</b> угол (ровно 90°), <b>тупой</b> угол (между 90° и 180°) и <b>развёрнутый</b> угол (ровно 180°).", "pt": "Um <b>ângulo</b> forma-se ao unir duas semirretas que partem do mesmo ponto, chamado vértice. Os ângulos medem-se em graus (°) com um transferidor. Quanto ao tamanho, distinguimos o ângulo <b>agudo</b> (menor que 90°), o ângulo <b>reto</b> (exatamente 90°), o ângulo <b>obtuso</b> (entre 90° e 180°) e o ângulo <b>raso</b> (exatamente 180°)."}, "tf5_1": {"sr": "Pun ugao = 360°", "en": "Full angle = 360°", "de": "Vollwinkel = 360°", "fr": "Angle plein = 360°", "es": "Ángulo completo = 360°", "it": "Angolo giro = 360°", "ru": "Полный угол = 360°", "pt": "Ângulo giro = 360°"}, "tf5_2": {"sr": "Opružen ugao = 180°", "en": "Straight angle = 180°", "de": "Gestreckter Winkel = 180°", "fr": "Angle plat = 180°", "es": "Ángulo llano = 180°", "it": "Angolo piatto = 180°", "ru": "Развёрнутый угол = 180°", "pt": "Ângulo raso = 180°"}, "tf5_3": {"sr": "Prav ugao = 90°", "en": "Right angle = 90°", "de": "Rechter Winkel = 90°", "fr": "Angle droit = 90°", "es": "Ángulo recto = 90°", "it": "Angolo retto = 90°", "ru": "Прямой угол = 90°", "pt": "Ângulo reto = 90°"}, "tr5": {"sr": "Zapamti: zbir uglova u trouglu uvek iznosi 180°.", "en": "Remember: the sum of the angles in a triangle is always 180°.", "de": "Merke: die Winkelsumme in einem Dreieck beträgt immer 180°.", "fr": "Retiens : la somme des angles d'un triangle vaut toujours 180°.", "es": "Recuerda: la suma de los ángulos de un triángulo siempre es 180°.", "it": "Ricorda: la somma degli angoli di un triangolo è sempre 180°.", "ru": "Запомни: сумма углов треугольника всегда равна 180°.", "pt": "Lembra-te: a soma dos ângulos de um triângulo é sempre 180°."}, "tn6": {"sr": "Površine i obim", "en": "Areas and Perimeter", "de": "Flächen und Umfang", "fr": "Aires et périmètre", "es": "Áreas y perímetro", "it": "Aree e perimetro", "ru": "Площади и периметр", "pt": "Áreas e perímetro"}, "tp6": {"sr": "<b>Obim</b> je zbir dužina svih stranica figure, a <b>površina</b> je veličina prostora koji figura zauzima. Za pravougaonik i kvadrat postoje jednostavne formule koje koriste dužine stranica.", "en": "The <b>perimeter</b> is the sum of the lengths of all sides of a figure, while the <b>area</b> is the amount of space the figure covers. For a rectangle and a square there are simple formulas that use the lengths of the sides.", "de": "Der <b>Umfang</b> ist die Summe der Längen aller Seiten einer Figur, während die <b>Fläche</b> die Größe des Raums angibt, den die Figur einnimmt. Für Rechteck und Quadrat gibt es einfache Formeln, die die Seitenlängen verwenden.", "fr": "Le <b>périmètre</b> est la somme des longueurs de tous les côtés d'une figure, tandis que l'<b>aire</b> est la mesure de l'espace occupé par la figure. Pour le rectangle et le carré, il existe des formules simples utilisant les longueurs des côtés.", "es": "El <b>perímetro</b> es la suma de las longitudes de todos los lados de una figura, mientras que el <b>área</b> es el tamaño del espacio que ocupa la figura. Para el rectángulo y el cuadrado existen fórmulas sencillas que usan las longitudes de los lados.", "it": "Il <b>perimetro</b> è la somma delle lunghezze di tutti i lati di una figura, mentre l'<b>area</b> è la misura dello spazio occupato dalla figura. Per il rettangolo e il quadrato esistono formule semplici che usano le lunghezze dei lati.", "ru": "<b>Периметр</b> — это сумма длин всех сторон фигуры, а <b>площадь</b> — это величина пространства, которое занимает фигура. Для прямоугольника и квадрата существуют простые формулы, использующие длины сторон.", "pt": "O <b>perímetro</b> é a soma dos comprimentos de todos os lados de uma figura, enquanto a <b>área</b> é o tamanho do espaço que a figura ocupa. Para o retângulo e o quadrado existem fórmulas simples que usam os comprimentos dos lados."}, "tf6_1": {"sr": "Pravougaonik: O = 2(a+b), P = a · b", "en": "Rectangle: P = 2(a+b), A = a · b", "de": "Rechteck: U = 2(a+b), A = a · b", "fr": "Rectangle : P = 2(a+b), A = a · b", "es": "Rectángulo: P = 2(a+b), A = a · b", "it": "Rettangolo: P = 2(a+b), A = a · b", "ru": "Прямоугольник: P = 2(a+b), S = a · b", "pt": "Retângulo: P = 2(a+b), A = a · b"}, "tf6_2": {"sr": "Kvadrat: O = 4a, P = a²", "en": "Square: P = 4a, A = a²", "de": "Quadrat: U = 4a, A = a²", "fr": "Carré : P = 4a, A = a²", "es": "Cuadrado: P = 4a, A = a²", "it": "Quadrato: P = 4a, A = a²", "ru": "Квадрат: P = 4a, S = a²", "pt": "Quadrado: P = 4a, A = a²"}, "tf6_3": {"sr": "Trougao: P = (a · h) / 2", "en": "Triangle: A = (a · h) / 2", "de": "Dreieck: A = (a · h) / 2", "fr": "Triangle : A = (a · h) / 2", "es": "Triángulo: A = (a · h) / 2", "it": "Triangolo: A = (a · h) / 2", "ru": "Треугольник: S = (a · h) / 2", "pt": "Triângulo: A = (a · h) / 2"}, "tr6": {"sr": "Zapamti: obim se meri u jedinicama dužine (cm, m), a površina u kvadratnim jedinicama (cm², m²).", "en": "Remember: perimeter is measured in units of length (cm, m), while area is measured in square units (cm², m²).", "de": "Merke: der Umfang wird in Längeneinheiten (cm, m) gemessen, die Fläche in Flächeneinheiten (cm², m²).", "fr": "Retiens : le périmètre se mesure en unités de longueur (cm, m), l'aire se mesure en unités carrées (cm², m²).", "es": "Recuerda: el perímetro se mide en unidades de longitud (cm, m), y el área en unidades cuadradas (cm², m²).", "it": "Ricorda: il perimetro si misura in unità di lunghezza (cm, m), l'area in unità quadrate (cm², m²).", "ru": "Запомни: периметр измеряется в единицах длины (см, м), а площадь — в квадратных единицах (см², м²).", "pt": "Lembra-te: o perímetro mede-se em unidades de comprimento (cm, m), e a área em unidades quadradas (cm², m²)."}};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(e){try{ap(((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase())}catch(_){}});})();</script>
 </body>
 </html>

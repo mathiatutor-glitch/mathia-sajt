@@ -1,282 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Skripta — Fizika 6. razred · Mathia</title>
+<title>Mathia — Fizika · 6. razred · Skripta · Skripta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --navy:#432c37; --gold:#9c7838; --cream:#fbf6ee; --soft:#6b6256; --line:#e7dcc4; }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--cream);color:var(--navy);font-family:'Inter',system-ui,sans-serif;line-height:1.68;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
-  header{background:linear-gradient(180deg,#fffcf6,#fbf6ee);border-bottom:1px solid var(--line);padding:30px 0 26px;text-align:center}
-  .brand{font-size:.74rem;letter-spacing:.32em;color:var(--gold);font-weight:700;text-transform:uppercase}
-  .eyebrow{font-size:.72rem;letter-spacing:.24em;color:var(--soft);text-transform:uppercase;margin-top:18px}
-  h1{font-family:'Spectral',serif;font-weight:700;font-size:2rem;margin:.25em 0 .15em}
-  .lead{color:var(--soft);max-width:580px;margin:.4em auto 0}
-  /* sadržaj */
-  .toc{background:#fffcf6;border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin:28px 0;box-shadow:0 4px 16px rgba(31,51,87,.05)}
-  .toc h2{font-family:'Spectral',serif;font-size:1.05rem;margin:.1em 0 .5em}
-  .toc ol{margin:0;padding-left:1.2em}
-  .toc li{margin:.3em 0}
-  .toc a{color:var(--navy);text-decoration:none;border-bottom:1px dotted #cdbd92}
-  .toc a:hover{color:var(--gold)}
-  /* lekcija */
-  .lesson{margin:34px 0;scroll-margin-top:14px}
-  .lesson-h{font-family:'Spectral',serif;font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--line);padding-bottom:8px}
-  .lnum{flex:none;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fbf6ee;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Inter'}
-  .lesson p{margin:.7em 0}
-  .lesson h3{margin:1.1em 0 .2em;font-size:1.06rem}
-  .f{background:#fffcf6;border:1px dashed #dcceac;border-radius:12px;padding:10px 14px;margin:10px 0;overflow-x:auto}
-  .ex{background:#fbf6ea;border-left:3px solid var(--gold);border-radius:8px;padding:12px 16px;margin:14px 0}
-  .ex .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#8a6d24;font-weight:700}
-  .tip{background:#eef3ee;border-left:3px solid #7fae84;border-radius:8px;padding:12px 16px;margin:14px 0;color:#2f4f33}
-  .tip .tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#5a8a60;font-weight:700}
-  details.try{background:#fffcf6;border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin:14px 0}
-  details.try summary{cursor:pointer;font-weight:700;color:var(--navy);padding:10px 0;list-style:none}
-  details.try summary::-webkit-details-marker{display:none}
-  details.try summary::before{content:"✎ ";color:var(--gold)}
-  details.try[open] summary{border-bottom:1px solid var(--line);margin-bottom:8px}
-  .sol{color:var(--soft)}
-  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 40px;text-align:center;color:var(--soft);font-size:.85rem}
-  footer a{color:var(--gold);text-decoration:none;font-weight:600}
-  .wm{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05}
-  .wm span{position:absolute;font-size:.8rem;color:#432c37;transform:rotate(-30deg);white-space:nowrap}
-  main{position:relative;z-index:1}
-  .backtop{display:inline-block;margin-top:8px;font-size:.82rem;color:var(--gold);text-decoration:none}
-</style>
-<style>
-/* ===== MATHIA LUXE THEME (global override) ===== */
-:root{
-  --navy:#432C37;--head:#432C37;--ink:#4f3b44;--soft:#8a7480;--muted:#8a7480;
-  --gold:#9C7838;--acc:#9C7838;--acc2:#7d5f2c;--gold-deep:#9C7838;--gold2:#E7D2A2;--accS:#E7D2A2;
-  --cream:#FBF6EE;--bg:#FBF6EE;--paper:#FBF6EE;--paper2:#F3E9D6;--card:#FFFCF6;
-  --line:#E7DBC4;
-  --cov1:#FDFAF3;--cov2:#FBF1E4;--cov3:#F6E7D6;
-  --zapBg1:#FFFAF0;--zapBg2:#FBEFD9;--zapBd:#E7D2A2;--zapH:#9C7838;
-  --stepBg:#F6EEDD;--stepBd:#E7D2A2;--stepNum1:#e7c97f;--stepNum2:#C6A05C;
-  --i1:#9C7838;--i2:#C6A05C;--i3:#B98E5A;
-}
-h1,h2,h3,h4{font-family:'Spectral',Georgia,serif}
-a{color:#9C7838}
-.zchat,#zchat,.zlauncher,#zdot{display:none!important}
-</style>
-<style>
-/* community / social — luxe pills */
-.social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 16px;margin:30px auto 8px;max-width:600px;padding:0 16px}
-.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Inter',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
-.social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(160,120,60,.6)}
-.social svg{width:20px;height:20px;fill:currentColor;flex:none}
-
-/* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
-.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
-.katex{max-width:100%}
-.katex{font-family:KaTeX_Main,"Times New Roman",serif}
-.scroll-h{position:static;bottom:auto;margin-top:22px}
-.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
-.rule{margin-top:30px}
-</style>
-<link rel="icon" type="image/png" href="logo.png">
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
+:root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
 *{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<script defer src="napredak.js"></script><!--napredaklog-->
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Fizika-6-Razred-Skripta.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Skripta — Fizika 6. razred · Mathia">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Fizika-6-Razred-Skripta.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Skripta — Fizika 6. razred · Mathia">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 22px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32);position:relative}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
+.tb-back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none;font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldsoft);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+.cover{text-align:center;padding:56px 22px 30px}
+.cover .seal{width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 40% 34%,#16233b,#0d1626);border:2px solid var(--gold);box-shadow:0 0 0 5px var(--cream),0 0 0 7px rgba(231,210,162,.6);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;color:var(--goldsoft);font-family:'Spectral',serif;font-size:.7rem}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.68rem;color:var(--gold)}
+.cover h1{font-family:'Spectral',serif;font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--ink);margin:12px 0 6px}
+.cover .sub{color:var(--ink2);font-style:italic;font-family:'Spectral',serif;font-size:1.05rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:16px 0 6px}
+b,strong{color:var(--ink)}
+.pf{background:linear-gradient(180deg,#FBF6EE,#F5EEE1);border-top:1px solid var(--goldsoft);text-align:center;padding:40px 22px 26px;margin-top:20px;position:relative}
+.pf:before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pf .orn{color:var(--gold);letter-spacing:.5em;margin-bottom:10px}
+.pf .word{font-family:'Spectral',serif;font-weight:700;font-size:1.9rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .line{font-family:'Spectral',serif;font-style:italic;color:var(--ink2);margin:10px auto 0;max-width:480px}
+.pf .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 20px;margin:20px 0 4px}
+.pf .links a{font-weight:700;font-size:.85rem;color:var(--ink2);text-decoration:none}.pf .links a:hover{color:var(--golddk)}
+.pf .rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:18px auto 12px;max-width:520px}
+.pf .copy{color:var(--muted);font-size:.76rem}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
+.page{padding:10px 0 40px}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:10px 0 26px;box-shadow:0 16px 40px -30px rgba(120,40,60,.4);color:#4a3a40}
+.topic{margin:34px 0}
+.topic>h2{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.7rem;margin:0 0 4px}
+.topic>h2 .n{color:var(--gold);font-size:1.1rem;margin-right:8px}
+.topic h3{font-family:'Spectral',serif;color:var(--ink);font-size:1.18rem;margin:22px 0 6px}
+.rule{height:2px;width:64px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));border-radius:2px;margin:6px 0 14px}
+.box{border-radius:16px;padding:16px 18px;margin:16px 0;border:1px solid var(--line)}
+.box .bx-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;margin-bottom:6px}
+.zapamti{background:linear-gradient(180deg,#FFFBF3,#FBF3E2)}.zapamti .bx-h{color:var(--golddk)}
+.primer{background:linear-gradient(180deg,#FFF7FA,#FBEEF2)}.primer .bx-h{color:var(--malina)}
+.fx{display:block;text-align:center;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.16rem;color:var(--ink);margin:20px 0;padding:15px 18px;line-height:1.6;background:#fff;border:1px dashed var(--goldsoft);border-radius:12px;overflow-x:auto}
 </style>
 </head>
 <body>
-<div id="mtopbar" style="position:sticky;top:0;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:12px 20px;background:rgba(251,246,238,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #ECDAC5;font-family:'Inter',system-ui,sans-serif"><a href="osnovna-fizika-6.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem">← Fizika 6. razred</a><a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid rgba(198,160,92,.5);background:#FFFCF6;color:#9C7838;text-decoration:none;font-weight:800;font-size:.82rem;white-space:nowrap">Početna</a><span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:1.06rem;letter-spacing:.03em;color:#432C37">Fizika 6. razred · Skripta</span><select aria-label="Jezik" onchange="try{var v=this.value.toLowerCase();localStorage.setItem('mathia_lang',v);document.documentElement.lang=v;window.dispatchEvent(new Event('mathia:lang'));window.dispatchEvent(new StorageEvent('storage',{key:'mathia_lang',newValue:v}))}catch(e){}" style="background:transparent;border:1px solid #C6A05C;color:#9C7838;border-radius:100px;font-family:'Inter',sans-serif;font-weight:800;font-size:.72rem;padding:6px 10px;cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></div>
-
-
-
-<div class="wm" id="wm" aria-hidden="true"></div>
-
-<header>
-  <div class="wrap">
-    <div class="brand"><img src="logo.png" alt="MathIA" style="width:32px;height:32px;border-radius:50%;object-fit:cover;vertical-align:middle;margin-right:9px">Mathia</div>
-    <div class="eyebrow">skripta · osnovna škola</div>
-    <h1>Fizika — 6. razred</h1>
-    <p class="lead">Cela godina, lekcija po lekcija — objašnjeno lagano i s puno primera iz života. Marina je uz tebe na svakom koraku. Kad zapneš, samo otvori čet i pitaj. 💛</p>
-  </div>
-</header>
-
-<main class="wrap" id="top">
-
-  <nav class="toc">
-    <h2>Šta sve učimo ove godine</h2>
-    <ol>
-      <li><a href="#l1">Šta je fizika i kako merimo</a></li>
-      <li><a href="#l2">Kretanje i brzina</a></li>
-      <li><a href="#l3">Sila</a></li>
-      <li><a href="#l4">Gravitacija i težina</a></li>
-      <li><a href="#l5">Gustina</a></li>
-    </ol>
-  </nav>
-
-  <section class="lesson" id="l1">
-    <div class="lesson-h"><span class="lnum">1</span> Šta je fizika i kako merimo</div>
-    <p>Fizika proučava prirodu oko nas — kretanje, svetlost, toplotu, struju. Sve to merimo.</p>
-    <h3>SI jedinice</h3>
-    <p>Dužina — metar (m), vreme — sekunda (s), masa — kilogram (kg).</p>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Dobra navika: uz svaki broj uvek piši jedinicu! 20 nije isto što i 20 m. ❤️</p></div>
-    <details class="try"><summary>Probaj sam: koja je SI jedinica za masu?</summary><p class="sol">Kilogram (kg).</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-  <section class="lesson" id="l2">
-    <div class="lesson-h"><span class="lnum">2</span> Kretanje i brzina</div>
-    <p>Telo se kreće kad menja položaj. Brzina nam kaže koliko brzo — koliki put pređe za jedinicu vremena.</p>
-    <div class="f">$$v=\frac{s}{t}$$</div>
-    <div class="ex"><div class="tag">Rešen primer</div><p>Auto pređe 100 m za 5 s. Kolika je brzina?</p><p>$v=\frac{100}{5}=20$ m/s. ✔️</p></div>
-    <details class="try"><summary>Probaj sam: biciklista pređe 60 m za 6 s. Brzina?</summary><p class="sol">$v=60/6=10$ m/s.</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-  <section class="lesson" id="l3">
-    <div class="lesson-h"><span class="lnum">3</span> Sila</div>
-    <p>Sila je uzrok promene kretanja ili oblika tela. Meri se u njutnima (N). Ima više vrsta: gravitaciona, trenja, elastična.</p>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Silu ne vidimo, ali vidimo šta radi — gura, vuče, zaustavlja, deformiše. ❤️</p></div>
-    <details class="try"><summary>Probaj sam: u kojoj jedinici merimo silu?</summary><p class="sol">U njutnima (N).</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-  <section class="lesson" id="l4">
-    <div class="lesson-h"><span class="lnum">4</span> Gravitacija i težina</div>
-    <p>Zemlja privlači sva tela — to je gravitacija. Težina je sila kojom Zemlja privlači telo.</p>
-    <div class="f">$$G=m\cdot g\qquad(g\approx 10\ \text{N/kg})$$</div>
-    <div class="ex"><div class="tag">Rešen primer</div><p>Telo mase 2 kg — kolika mu je težina?</p><p>$G=m\cdot g=2\cdot 10=20$ N. ✔️</p></div>
-    <details class="try"><summary>Probaj sam: težina tela mase 5 kg?</summary><p class="sol">$G=5\cdot10=50$ N.</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-  <section class="lesson" id="l5">
-    <div class="lesson-h"><span class="lnum">5</span> Gustina</div>
-    <p>Gustina nam kaže koliko je telo „zbijeno" — koliko mase ima u jedinici zapremine.</p>
-    <div class="f">$$\rho=\frac{m}{V}$$</div>
-    <div class="ex"><div class="tag">Rešen primer</div><p>Telo ima masu 200 g i zapreminu 100 cm³. Gustina?</p><p>$\rho=\frac{200}{100}=2$ g/cm³. ✔️</p></div>
-    <div class="tip"><div class="tag">Marina kaže</div><p>Zato gvožđe tone, a drvo pliva — gvožđe ima veću gustinu od vode! ❤️</p></div>
-    <details class="try"><summary>Probaj sam: masa 60 g, zapremina 20 cm³ — gustina?</summary><p class="sol">$\rho=60/20=3$ g/cm³.</p></details>
-    <a class="backtop" href="#top">↑ na vrh</a>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <p>✦ Mathia · <a href="https://www.mathia.rs">mathia.rs</a> — uči s ljubavlju 💛</p>
-    <p style="opacity:.7">Ova skripta je deo Mathia pretplate. Molimo te da je ne deliš — pravljena je s puno pažnje baš za tebe.</p>
-  </div>
-<div style="text-align:center;margin:26px auto 0"><a href="index.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#432C37;text-decoration:none;font-family:'Inter',sans-serif;font-weight:600;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)">← Mathia · Početna</a></div>
-<div class="social" data-social="1"><a href="https://www.instagram.com/mathia.ai" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.81s0 3.54-.07 4.81c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.54 2.2 15.16 2.2 12s.01-3.54.07-4.81c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.5.01-4.74.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.5 3.2 8.86 3.2 12s.01 3.5.07 4.74c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.6.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.6.07-4.74s-.01-3.5-.07-4.74c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.5 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06zm0 1.8A3.14 3.14 0 1 0 15.14 12 3.14 3.14 0 0 0 12 8.86zm5.16-2.96a1.15 1.15 0 1 1-1.15 1.15 1.15 1.15 0 0 1 1.15-1.15z"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/@mathiatutor" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg><span>YouTube</span></a><a href="https://www.facebook.com/share/1CPxNs7fWc/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg><span>Facebook</span></a><a href="mailto:kontakt@mathia.rs" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.18L4.3 7h15.4L12 12.18zM4 8.3V17h16V8.3l-7.4 5.05a1 1 0 0 1-1.2 0L4 8.3z"/></svg><span>Email</span></a></div>
-<div class="mathia-copyr" style="text-align:center;padding:16px 20px 22px;font-family:'Inter',sans-serif;font-size:.78rem;color:rgba(67,44,55,.55);letter-spacing:.02em">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
-</footer>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function(){
-    if (window.renderMathInElement) {
-      renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
-    }
-    var wm=document.getElementById("wm");
-    function drawWM(who){for(var i=0;i<60;i++){var s=document.createElement("span");s.textContent=who;s.style.left=((i*23)%100)+"%";s.style.top=((i*17)%100)+"%";wm.appendChild(s);}}
-    fetch("/api/me",{credentials:"include",headers:(function(){try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k&&/^sb-.*-auth-token$/.test(k)){var v=JSON.parse(localStorage.getItem(k)||"null");var t=v&&(v.access_token||(v.session&&v.session.access_token));if(t)return{Authorization:"Bearer "+t};}}}catch(e){}return{};})()}).then(function(r){return r.json();}).then(function(d){var p=(d&&d.profile)?d.profile:d;drawWM((p&&p.wm)?p.wm:(window.MATHIA_USER||"Mathia · mathia.rs"));}).catch(function(){drawWM(window.MATHIA_USER||"Mathia · mathia.rs");});
-  });
-</script>
-  <script>
-(function(){
-  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
-  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
-  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "osn-fiz-6", "data-sub": "Fizika 6. razred", "data-name": "Profesorica", "data-subj": "Fizika za 6. razred osnovne \u0161kole", "data-avatar": "avatar.jpg", "data-hi-en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
-  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam va\u0161a profesorica Marina. Ovo su materijali \u2014 postavite pitanje, po\u0161aljite sliku \ud83d\udcf7 ili diktirajte \ud83c\udf99\ufe0f zadatak.", "en": "Hi! \u2764\ufe0f I'm Marina. These are the study materials \u2014 ask me anything, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f."};
-  var st=document.createElement("script"); st.src=SRC;
-  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
-  st.setAttribute("data-lang",L);
-  st.setAttribute("data-hi",HI[L]||HI.sr);
-  (document.body||document.documentElement).appendChild(st);
-})();
-</script>
-<script defer src="gate.js" data-subject="osn-fiz-6"></script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script>
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
-<script src="mathia-header.js" defer></script>
-<style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
-<style id="mathia-uzor2">
-#mtopbar{background:rgba(251,246,238,.94)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;border-bottom:1px solid #EADFC9!important;box-shadow:0 8px 24px -20px rgba(120,70,80,.5)!important}
-#mtopbar a{color:#9C7838!important;border-color:#E7D8BE!important;background:#FFFCF6!important;font-weight:800!important}
-#mtopbar>span{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:600!important}
-#mtopbar select{border:1px solid #E7D8BE!important;color:#9C7838!important;background:#fff!important;border-radius:100px!important}
-.cover{background:radial-gradient(700px 400px at 80% -10%,rgba(198,160,92,.16),transparent 60%),linear-gradient(160deg,#FCF9F3,#F1E3CD)!important;text-align:center;padding:46px 20px 42px!important;border-bottom:1px solid #EADFC9}
-.cover .seal{width:76px!important;height:76px!important;margin:0 auto 14px!important;border-radius:50%!important;display:grid!important;place-items:center!important;background:#fff!important;color:#9C7838!important;font-family:'Spectral',serif!important;font-style:italic;font-size:20px!important;box-shadow:0 0 0 3px #FCF9F3,0 0 0 6px #C6A05C,0 14px 30px -14px rgba(120,70,80,.4)!important;border:0!important}
-.cover .brandline{font-family:'Spectral',serif!important;letter-spacing:.3em!important;font-size:.82rem!important;font-weight:700!important;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C)!important;background-size:230% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important;animation:uz2foil 9s linear infinite}
-.cover .kind{color:#9C7838!important;font-weight:800!important;letter-spacing:.2em!important;text-transform:uppercase!important}
-.cover h1{font-family:'Spectral',serif!important;color:#432C37!important;font-weight:700!important;-webkit-text-fill-color:#432C37!important;background:none!important}
-.cover .subtitle,.cover .sub{color:#4d3a40!important}
-.cover .foot{color:#8a7768!important}
-.foot2,body>footer{background:linear-gradient(180deg,#F3E9D6,#EEE1C9)!important;color:#6a5a52!important;border-top:1px solid #E7D8BE!important}
-.foot2 a,body>footer a{color:#9C7838!important}
-@keyframes uz2foil{to{background-position:230% center}}
-</style>
+<header class="topbar"><a class="tb-back" href="osnovna-fizika-6.html" data-i18n="back">← Fizika 6. razred</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">MathIA</div><div class="eyebrow" data-i18n="eyebrow">E‑knjiga · Skripta</div><h1 data-i18n="title">Fizika · 6. razred · Skripta</h1><div class="sub" data-i18n="sub">Pregled gradiva iz fizike za 6. razred osnovne škole.</div><div class="orn">✦</div><a class="tb-back" href="osnovna-fizika-6.html" data-i18n="back2">← Nazad na predmet</a></div>
+<div class="wrap page"><div class="intro" data-i18n-html="intro"><b>O čemu je gradivo.</b> Ova skripta pokriva osnovne pojmove fizike 6. razreda: kretanje, masu i gustinu, merenje, pritisak, ravnotežu i silu.</div><section class="topic"><h2><span class="n">1.</span><span data-i18n="tn1">Kretanje</span></h2><div class="rule"></div><p data-i18n-html="tp1"><b>Kretanje</b> tela je promena položaja tela u odnosu na druga tela tokom vremena. Put (s) je pređena dužina, a vreme (t) je trajanje kretanja. <b>Brzina</b> pokazuje koliko brzo telo menja položaj.</p><span class="fx" data-i18n-html="tf1_1">v = s/t — brzina</span><span class="fx" data-i18n-html="tf1_2">s = v·t — put</span><span class="fx" data-i18n-html="tf1_3">t = s/v — vreme</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr1">Jedinica za brzinu je m/s ili km/h. Za pretvaranje: 1 m/s ≈ 3,6 km/h.</span></div></section><section class="topic"><h2><span class="n">2.</span><span data-i18n="tn2">Masa i gustina</span></h2><div class="rule"></div><p data-i18n-html="tp2"><b>Masa</b> (m) je mera količine materije u telu i meri se u kilogramima (kg). <b>Gustina</b> (ρ) pokazuje koliko mase ima u jedinici zapremine tela.</p><span class="fx" data-i18n-html="tf2_1">ρ = m/V — gustina</span><span class="fx" data-i18n-html="tf2_2">m = ρ·V — masa</span><span class="fx" data-i18n-html="tf2_3">V = m/ρ — zapremina</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr2">Jedinica za gustinu je kg/m³ ili g/cm³. Voda ima gustinu 1000 kg/m³ (1 g/cm³).</span></div></section><section class="topic"><h2><span class="n">3.</span><span data-i18n="tn3">Merenje</span></h2><div class="rule"></div><p data-i18n-html="tp3"><b>Merenje</b> je postupak upoređivanja fizičke veličine sa izabranom jedinicom mere. Osnovne jedinice u fizici su metar (m) za dužinu, kilogram (kg) za masu i sekunda (s) za vreme.</p><span class="fx" data-i18n-html="tf3_1">1 km = 1000 m — pretvaranje dužine</span><span class="fx" data-i18n-html="tf3_2">1 h = 3600 s — pretvaranje vremena</span><span class="fx" data-i18n-html="tf3_3">1 kg = 1000 g — pretvaranje mase</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr3">Svako merenje ima grešku merenja. Rezultat merenja uvek zapisujemo sa odgovarajućom jedinicom.</span></div></section><section class="topic"><h2><span class="n">4.</span><span data-i18n="tn4">Pritisak — uvod</span></h2><div class="rule"></div><p data-i18n-html="tp4"><b>Pritisak</b> (p) nastaje kada sila deluje upravno na neku površinu. Što je površina manja, pritisak je veći pri istoj sili.</p><span class="fx" data-i18n-html="tf4_1">p = F/S — pritisak</span><span class="fx" data-i18n-html="tf4_2">F = p·S — sila</span><span class="fx" data-i18n-html="tf4_3">S = F/p — površina</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr4">Jedinica za pritisak je paskal (Pa). 1 Pa = 1 N/m².</span></div></section><section class="topic"><h2><span class="n">5.</span><span data-i18n="tn5">Ravnoteža</span></h2><div class="rule"></div><p data-i18n-html="tp5">Telo je u <b>ravnoteži</b> kada je zbir svih sila koje na njega deluju jednak nuli. Poluga je u ravnoteži kada su momenti sila sa obe strane oslonca jednaki.</p><span class="fx" data-i18n-html="tf5_1">F1·d1 = F2·d2 — uslov ravnoteže poluge</span><span class="fx" data-i18n-html="tf5_2">ΣF = 0 — uslov ravnoteže sila</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr5">Momenat sile zavisi od veličine sile i njenog kraka (rastojanja od oslonca).</span></div></section><section class="topic"><h2><span class="n">6.</span><span data-i18n="tn6">Sila</span></h2><div class="rule"></div><p data-i18n-html="tp6"><b>Sila</b> je uzrok promene brzine tela ili njegovog oblika. Sila je vektorska veličina — ima pravac, smer i intenzitet. Meri se u njutnima (N).</p><span class="fx" data-i18n-html="tf6_1">F = m·a — drugi Njutnov zakon</span><span class="fx" data-i18n-html="tf6_2">Fg = m·g — sila teže</span><div class="box zapamti"><div class="bx-h" data-i18n="lbl_zap">Zapamti</div><span data-i18n-html="tr6">Ubrzanje zemljine teže je g ≈ 9,81 m/s² (u praksi se koristi 10 m/s²).</span></div></section></div>
+<footer class="pf"><div class="orn">✦</div><div class="word">MATHIA</div><p class="line" data-i18n="tagline">Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.</p><nav class="links"><a href="osnovna-fizika-6.html" data-i18n="subj">Fizika 6. razred</a><a href="predmeti.html" data-i18n="nav_subjects">Predmeti</a><a href="prodavnica.html" data-i18n="nav_store">Prodavnica</a><a href="index.html#paketi" data-i18n="nav_plans">Paketi</a><a href="o-marini.html" data-i18n="nav_about">O meni</a><a href="uslovi.html" data-i18n="nav_terms">Uslovi</a><a href="privatnost.html" data-i18n="nav_privacy">Privatnost</a></nav><div class="rule"></div><div class="copy" data-i18n="copy">© 2026 Mathia Edu · Sva prava zadržana.</div></footer>
+<script>(function(){var T={"back2": {"sr": "← Nazad na predmet", "en": "← Back to subject", "de": "← Zurück zum Fach", "fr": "← Retour à la matière", "es": "← Volver a la asignatura", "it": "← Torna alla materia", "ru": "← Назад к предмету", "pt": "← Voltar à disciplina"}, "tagline": {"sr": "Matematika, fizika, elektrotehnika i programiranje — online, uz Profesoricu 0–24h.", "en": "Mathematics, physics, electrical engineering and programming — online, with Profesorica 0–24h.", "de": "Mathematik, Physik, Elektrotechnik und Programmierung — online, mit Profesorica 0–24 h.", "fr": "Mathématiques, physique, génie électrique et programmation — en ligne, avec Profesorica 0–24h.", "es": "Matemáticas, física, ingeniería eléctrica y programación — en línea, con Profesorica 0–24h.", "it": "Matematica, fisica, ingegneria elettrica e programmazione — online, con Profesorica 0–24h.", "ru": "Математика, физика, электротехника и программирование — онлайн, с Profesorica 0–24 ч.", "pt": "Matemática, física, engenharia elétrica e programação — online, com a Profesorica 0–24h."}, "nav_subjects": {"sr": "Predmeti", "en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Asignaturas", "it": "Materie", "ru": "Предметы", "pt": "Disciplinas"}, "nav_store": {"sr": "Prodavnica", "en": "Store", "de": "Shop", "fr": "Boutique", "es": "Tienda", "it": "Negozio", "ru": "Магазин", "pt": "Loja"}, "nav_plans": {"sr": "Paketi", "en": "Plans", "de": "Pakete", "fr": "Formules", "es": "Planes", "it": "Piani", "ru": "Тарифы", "pt": "Planos"}, "nav_about": {"sr": "O meni", "en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "nav_terms": {"sr": "Uslovi", "en": "Terms", "de": "AGB", "fr": "Conditions", "es": "Términos", "it": "Termini", "ru": "Условия", "pt": "Termos"}, "nav_privacy": {"sr": "Privatnost", "en": "Privacy", "de": "Datenschutz", "fr": "Confidentialité", "es": "Privacidad", "it": "Privacy", "ru": "Конфиденциальность", "pt": "Privacidade"}, "copy": {"sr": "© 2026 Mathia Edu · Sva prava zadržana.", "en": "© 2026 Mathia Edu · All rights reserved.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten.", "fr": "© 2026 Mathia Edu · Tous droits réservés.", "es": "© 2026 Mathia Edu · Todos los derechos reservados.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati.", "ru": "© 2026 Mathia Edu · Все права защищены.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados."}, "lbl_zap": {"sr": "Zapamti", "en": "Remember", "de": "Merke", "fr": "À retenir", "es": "Recuerda", "it": "Ricorda", "ru": "Запомни", "pt": "Lembra"}, "subj": {"sr": "Fizika 6. razred", "en": "Physics Grade 6", "de": "Physik 6. Klasse", "fr": "Physique 6e année", "es": "Física 6.º grado", "it": "Fisica 6ª classe", "ru": "Физика, 6 класс", "pt": "Física 6.º ano"}, "back": {"sr": "← Fizika 6. razred", "en": "← Physics Grade 6", "de": "← Physik 6. Klasse", "fr": "← Physique 6e année", "es": "← Física 6.º grado", "it": "← Fisica 6ª classe", "ru": "← Физика, 6 класс", "pt": "← Física 6.º ano"}, "eyebrow": {"sr": "E‑knjiga · Skripta", "en": "E‑book · Notes", "de": "E‑Book · Skript", "fr": "E‑book · Notes de cours", "es": "E‑book · Apuntes", "it": "E‑book · Dispensa", "ru": "Э‑книга · Конспект", "pt": "E‑book · Apontamentos"}, "title": {"sr": "Fizika · 6. razred · Skripta", "en": "Physics · Grade 6 · Notes", "de": "Physik · 6. Klasse · Skript", "fr": "Physique · 6e année · Cours", "es": "Física · 6.º grado · Apuntes", "it": "Fisica · 6ª classe · Dispensa", "ru": "Физика · 6 класс · Конспект", "pt": "Física · 6.º ano · Apontamentos"}, "sub": {"sr": "Pregled gradiva iz fizike za 6. razred osnovne škole.", "en": "An overview of the 6th grade physics curriculum.", "de": "Ein Überblick über den Physikstoff der 6. Klasse.", "fr": "Un aperçu du programme de physique de 6e année.", "es": "Un resumen del programa de física de 6.º grado.", "it": "Una panoramica del programma di fisica di 6ª classe.", "ru": "Обзор программы по физике для 6 класса.", "pt": "Uma visão geral do programa de física do 6.º ano."}, "intro": {"sr": "<b>O čemu je gradivo.</b> Ova skripta pokriva osnovne pojmove fizike 6. razreda: kretanje, masu i gustinu, merenje, pritisak, ravnotežu i silu.", "en": "<b>What this covers.</b> This guide covers the basic concepts of 6th grade physics: motion, mass and density, measurement, pressure, equilibrium and force.", "de": "<b>Worum es geht.</b> Dieses Skript behandelt die Grundbegriffe der Physik der 6. Klasse: Bewegung, Masse und Dichte, Messung, Druck, Gleichgewicht und Kraft.", "fr": "<b>Le sujet du cours.</b> Ce cours couvre les notions de base de la physique de 6e année : le mouvement, la masse et la densité, la mesure, la pression, l'équilibre et la force.", "es": "<b>De qué trata el material.</b> Este apunte cubre los conceptos básicos de física de 6.º grado: el movimiento, la masa y la densidad, la medición, la presión, el equilibrio y la fuerza.", "it": "<b>Di cosa tratta il materiale.</b> Questa dispensa copre i concetti di base della fisica di 6ª classe: il moto, la massa e la densità, la misura, la pressione, l'equilibrio e la forza.", "ru": "<b>О чём этот материал.</b> Этот конспект охватывает основные понятия физики 6 класса: движение, массу и плотность, измерение, давление, равновесие и силу.", "pt": "<b>Sobre o que trata a matéria.</b> Este material aborda os conceitos básicos de física do 6.º ano: o movimento, a massa e a densidade, a medição, a pressão, o equilíbrio e a força."}, "lbl_rp": {"sr": "Rešen primer", "en": "Worked example", "de": "Gelöstes Beispiel", "fr": "Exemple résolu", "es": "Ejemplo resuelto", "it": "Esempio risolto", "ru": "Разобранный пример", "pt": "Exemplo resolvido"}, "tn1": {"sr": "Kretanje", "en": "Motion", "de": "Bewegung", "fr": "Mouvement", "es": "Movimiento", "it": "Moto", "ru": "Движение", "pt": "Movimento"}, "tp1": {"sr": "<b>Kretanje</b> tela je promena položaja tela u odnosu na druga tela tokom vremena. Put (s) je pređena dužina, a vreme (t) je trajanje kretanja. <b>Brzina</b> pokazuje koliko brzo telo menja položaj.", "en": "<b>Motion</b> is the change of an object's position relative to other objects over time. Distance (s) is the length traveled, and time (t) is the duration of the motion. <b>Speed</b> shows how quickly an object changes position.", "de": "<b>Bewegung</b> eines Körpers ist die Änderung seiner Lage gegenüber anderen Körpern im Laufe der Zeit. Der Weg (s) ist die zurückgelegte Strecke, die Zeit (t) ist die Dauer der Bewegung. Die <b>Geschwindigkeit</b> zeigt, wie schnell ein Körper seine Lage ändert.", "fr": "Le <b>mouvement</b> d'un corps est le changement de sa position par rapport à d'autres corps au fil du temps. La distance (s) est la longueur parcourue, et le temps (t) est la durée du mouvement. La <b>vitesse</b> indique à quelle rapidité un corps change de position.", "es": "El <b>movimiento</b> de un cuerpo es el cambio de su posición respecto a otros cuerpos a lo largo del tiempo. El espacio (s) es la longitud recorrida, y el tiempo (t) es la duración del movimiento. La <b>velocidad</b> indica con qué rapidez un cuerpo cambia de posición.", "it": "Il <b>moto</b> di un corpo è il cambiamento della sua posizione rispetto ad altri corpi nel tempo. Lo spazio (s) è la lunghezza percorsa, e il tempo (t) è la durata del moto. La <b>velocità</b> indica quanto velocemente un corpo cambia posizione.", "ru": "<b>Движение</b> тела — это изменение его положения относительно других тел с течением времени. Путь (s) — это пройденное расстояние, а время (t) — продолжительность движения. <b>Скорость</b> показывает, как быстро тело меняет своё положение.", "pt": "O <b>movimento</b> de um corpo é a mudança da sua posição em relação a outros corpos ao longo do tempo. O espaço (s) é a distância percorrida, e o tempo (t) é a duração do movimento. A <b>velocidade</b> indica com que rapidez um corpo muda de posição."}, "tf1_1": {"sr": "v = s/t — brzina", "en": "v = s/t — speed", "de": "v = s/t — Geschwindigkeit", "fr": "v = s/t — vitesse", "es": "v = s/t — velocidad", "it": "v = s/t — velocità", "ru": "v = s/t — скорость", "pt": "v = s/t — velocidade"}, "tf1_2": {"sr": "s = v·t — put", "en": "s = v·t — distance", "de": "s = v·t — Weg", "fr": "s = v·t — distance", "es": "s = v·t — espacio", "it": "s = v·t — spazio", "ru": "s = v·t — путь", "pt": "s = v·t — espaço"}, "tf1_3": {"sr": "t = s/v — vreme", "en": "t = s/v — time", "de": "t = s/v — Zeit", "fr": "t = s/v — temps", "es": "t = s/v — tiempo", "it": "t = s/v — tempo", "ru": "t = s/v — время", "pt": "t = s/v — tempo"}, "tr1": {"sr": "Jedinica za brzinu je m/s ili km/h. Za pretvaranje: 1 m/s ≈ 3,6 km/h.", "en": "The unit for speed is m/s or km/h. To convert: 1 m/s ≈ 3.6 km/h.", "de": "Die Einheit für Geschwindigkeit ist m/s oder km/h. Zur Umrechnung: 1 m/s ≈ 3,6 km/h.", "fr": "L'unité de vitesse est le m/s ou le km/h. Pour convertir : 1 m/s ≈ 3,6 km/h.", "es": "La unidad de velocidad es m/s o km/h. Para convertir: 1 m/s ≈ 3,6 km/h.", "it": "L'unità di misura della velocità è m/s o km/h. Per convertire: 1 m/s ≈ 3,6 km/h.", "ru": "Единица измерения скорости — m/s или km/h. Для перевода: 1 m/s ≈ 3,6 km/h.", "pt": "A unidade de velocidade é m/s ou km/h. Para converter: 1 m/s ≈ 3,6 km/h."}, "tn2": {"sr": "Masa i gustina", "en": "Mass and density", "de": "Masse und Dichte", "fr": "Masse et densité", "es": "Masa y densidad", "it": "Massa e densità", "ru": "Масса и плотность", "pt": "Massa e densidade"}, "tp2": {"sr": "<b>Masa</b> (m) je mera količine materije u telu i meri se u kilogramima (kg). <b>Gustina</b> (ρ) pokazuje koliko mase ima u jedinici zapremine tela.", "en": "<b>Mass</b> (m) is a measure of the amount of matter in an object and is measured in kilograms (kg). <b>Density</b> (ρ) shows how much mass is contained in a unit volume of an object.", "de": "Die <b>Masse</b> (m) ist ein Maß für die Menge an Materie in einem Körper und wird in Kilogramm (kg) gemessen. Die <b>Dichte</b> (ρ) zeigt, wie viel Masse in einer Volumeneinheit des Körpers enthalten ist.", "fr": "La <b>masse</b> (m) est une mesure de la quantité de matière d'un corps et se mesure en kilogrammes (kg). La <b>densité</b> (ρ) indique la quantité de masse contenue dans une unité de volume du corps.", "es": "La <b>masa</b> (m) es una medida de la cantidad de materia de un cuerpo y se mide en kilogramos (kg). La <b>densidad</b> (ρ) indica cuánta masa hay en una unidad de volumen del cuerpo.", "it": "La <b>massa</b> (m) è una misura della quantità di materia di un corpo e si misura in chilogrammi (kg). La <b>densità</b> (ρ) indica quanta massa è contenuta in un'unità di volume del corpo.", "ru": "<b>Масса</b> (m) — это мера количества вещества в теле, измеряется в килограммах (kg). <b>Плотность</b> (ρ) показывает, сколько массы содержится в единице объёма тела.", "pt": "A <b>massa</b> (m) é uma medida da quantidade de matéria de um corpo e mede-se em quilogramas (kg). A <b>densidade</b> (ρ) indica quanta massa há numa unidade de volume do corpo."}, "tf2_1": {"sr": "ρ = m/V — gustina", "en": "ρ = m/V — density", "de": "ρ = m/V — Dichte", "fr": "ρ = m/V — densité", "es": "ρ = m/V — densidad", "it": "ρ = m/V — densità", "ru": "ρ = m/V — плотность", "pt": "ρ = m/V — densidade"}, "tf2_2": {"sr": "m = ρ·V — masa", "en": "m = ρ·V — mass", "de": "m = ρ·V — Masse", "fr": "m = ρ·V — masse", "es": "m = ρ·V — masa", "it": "m = ρ·V — massa", "ru": "m = ρ·V — масса", "pt": "m = ρ·V — massa"}, "tf2_3": {"sr": "V = m/ρ — zapremina", "en": "V = m/ρ — volume", "de": "V = m/ρ — Volumen", "fr": "V = m/ρ — volume", "es": "V = m/ρ — volumen", "it": "V = m/ρ — volume", "ru": "V = m/ρ — объём", "pt": "V = m/ρ — volume"}, "tr2": {"sr": "Jedinica za gustinu je kg/m³ ili g/cm³. Voda ima gustinu 1000 kg/m³ (1 g/cm³).", "en": "The unit for density is kg/m³ or g/cm³. Water has a density of 1000 kg/m³ (1 g/cm³).", "de": "Die Einheit für Dichte ist kg/m³ oder g/cm³. Wasser hat eine Dichte von 1000 kg/m³ (1 g/cm³).", "fr": "L'unité de densité est le kg/m³ ou le g/cm³. L'eau a une densité de 1000 kg/m³ (1 g/cm³).", "es": "La unidad de densidad es kg/m³ o g/cm³. El agua tiene una densidad de 1000 kg/m³ (1 g/cm³).", "it": "L'unità di misura della densità è kg/m³ o g/cm³. L'acqua ha una densità di 1000 kg/m³ (1 g/cm³).", "ru": "Единица измерения плотности — kg/m³ или g/cm³. Плотность воды составляет 1000 kg/m³ (1 g/cm³).", "pt": "A unidade de densidade é kg/m³ ou g/cm³. A água tem uma densidade de 1000 kg/m³ (1 g/cm³)."}, "tn3": {"sr": "Merenje", "en": "Measurement", "de": "Messung", "fr": "Mesure", "es": "Medición", "it": "Misura", "ru": "Измерение", "pt": "Medição"}, "tp3": {"sr": "<b>Merenje</b> je postupak upoređivanja fizičke veličine sa izabranom jedinicom mere. Osnovne jedinice u fizici su metar (m) za dužinu, kilogram (kg) za masu i sekunda (s) za vreme.", "en": "<b>Measurement</b> is the process of comparing a physical quantity with a chosen unit of measure. The basic units in physics are the meter (m) for length, the kilogram (kg) for mass, and the second (s) for time.", "de": "<b>Messung</b> ist der Vorgang, bei dem eine physikalische Größe mit einer gewählten Maßeinheit verglichen wird. Die Grundeinheiten in der Physik sind der Meter (m) für die Länge, das Kilogramm (kg) für die Masse und die Sekunde (s) für die Zeit.", "fr": "La <b>mesure</b> est le procédé qui consiste à comparer une grandeur physique à une unité de mesure choisie. Les unités de base en physique sont le mètre (m) pour la longueur, le kilogramme (kg) pour la masse et la seconde (s) pour le temps.", "es": "La <b>medición</b> es el proceso de comparar una magnitud física con una unidad de medida elegida. Las unidades básicas en física son el metro (m) para la longitud, el kilogramo (kg) para la masa y el segundo (s) para el tiempo.", "it": "La <b>misura</b> è il procedimento con cui si confronta una grandezza fisica con un'unità di misura scelta. Le unità di base in fisica sono il metro (m) per la lunghezza, il chilogrammo (kg) per la massa e il secondo (s) per il tempo.", "ru": "<b>Измерение</b> — это процесс сравнения физической величины с выбранной единицей измерения. Основные единицы в физике — это метр (m) для длины, килограмм (kg) для массы и секунда (s) для времени.", "pt": "A <b>medição</b> é o processo de comparar uma grandeza física com uma unidade de medida escolhida. As unidades básicas em física são o metro (m) para o comprimento, o quilograma (kg) para a massa e o segundo (s) para o tempo."}, "tf3_1": {"sr": "1 km = 1000 m — pretvaranje dužine", "en": "1 km = 1000 m — length conversion", "de": "1 km = 1000 m — Längenumrechnung", "fr": "1 km = 1000 m — conversion de longueur", "es": "1 km = 1000 m — conversión de longitud", "it": "1 km = 1000 m — conversione di lunghezza", "ru": "1 km = 1000 m — перевод длины", "pt": "1 km = 1000 m — conversão de comprimento"}, "tf3_2": {"sr": "1 h = 3600 s — pretvaranje vremena", "en": "1 h = 3600 s — time conversion", "de": "1 h = 3600 s — Zeitumrechnung", "fr": "1 h = 3600 s — conversion de temps", "es": "1 h = 3600 s — conversión de tiempo", "it": "1 h = 3600 s — conversione di tempo", "ru": "1 h = 3600 s — перевод времени", "pt": "1 h = 3600 s — conversão de tempo"}, "tf3_3": {"sr": "1 kg = 1000 g — pretvaranje mase", "en": "1 kg = 1000 g — mass conversion", "de": "1 kg = 1000 g — Massenumrechnung", "fr": "1 kg = 1000 g — conversion de masse", "es": "1 kg = 1000 g — conversión de masa", "it": "1 kg = 1000 g — conversione di massa", "ru": "1 kg = 1000 g — перевод массы", "pt": "1 kg = 1000 g — conversão de massa"}, "tr3": {"sr": "Svako merenje ima grešku merenja. Rezultat merenja uvek zapisujemo sa odgovarajućom jedinicom.", "en": "Every measurement has a measurement error. We always write the result of a measurement together with the appropriate unit.", "de": "Jede Messung hat einen Messfehler. Das Messergebnis schreiben wir immer mit der passenden Einheit auf.", "fr": "Toute mesure comporte une erreur de mesure. On note toujours le résultat d'une mesure avec l'unité appropriée.", "es": "Toda medición tiene un error de medición. El resultado de una medición siempre se escribe con la unidad correspondiente.", "it": "Ogni misura ha un errore di misura. Il risultato di una misura va sempre scritto con l'unità di misura corrispondente.", "ru": "Каждое измерение имеет погрешность измерения. Результат измерения всегда записывается с соответствующей единицей измерения.", "pt": "Toda medição tem um erro de medição. O resultado de uma medição escreve-se sempre com a unidade correspondente."}, "tn4": {"sr": "Pritisak — uvod", "en": "Pressure — introduction", "de": "Druck — Einführung", "fr": "Pression — introduction", "es": "Presión — introducción", "it": "Pressione — introduzione", "ru": "Давление — введение", "pt": "Pressão — introdução"}, "tp4": {"sr": "<b>Pritisak</b> (p) nastaje kada sila deluje upravno na neku površinu. Što je površina manja, pritisak je veći pri istoj sili.", "en": "<b>Pressure</b> (p) occurs when a force acts perpendicular to a surface. The smaller the surface, the greater the pressure for the same force.", "de": "<b>Druck</b> (p) entsteht, wenn eine Kraft senkrecht auf eine Fläche wirkt. Je kleiner die Fläche ist, desto größer ist der Druck bei gleicher Kraft.", "fr": "La <b>pression</b> (p) apparaît lorsqu'une force agit perpendiculairement à une surface. Plus la surface est petite, plus la pression est grande pour une même force.", "es": "La <b>presión</b> (p) se produce cuando una fuerza actúa perpendicularmente sobre una superficie. Cuanto más pequeña es la superficie, mayor es la presión para la misma fuerza.", "it": "La <b>pressione</b> (p) si genera quando una forza agisce perpendicolarmente su una superficie. Quanto più piccola è la superficie, tanto maggiore è la pressione a parità di forza.", "ru": "<b>Давление</b> (p) возникает, когда сила действует перпендикулярно поверхности. Чем меньше поверхность, тем больше давление при той же силе.", "pt": "A <b>pressão</b> (p) surge quando uma força atua perpendicularmente sobre uma superfície. Quanto menor for a superfície, maior é a pressão para a mesma força."}, "tf4_1": {"sr": "p = F/S — pritisak", "en": "p = F/S — pressure", "de": "p = F/S — Druck", "fr": "p = F/S — pression", "es": "p = F/S — presión", "it": "p = F/S — pressione", "ru": "p = F/S — давление", "pt": "p = F/S — pressão"}, "tf4_2": {"sr": "F = p·S — sila", "en": "F = p·S — force", "de": "F = p·S — Kraft", "fr": "F = p·S — force", "es": "F = p·S — fuerza", "it": "F = p·S — forza", "ru": "F = p·S — сила", "pt": "F = p·S — força"}, "tf4_3": {"sr": "S = F/p — površina", "en": "S = F/p — surface area", "de": "S = F/p — Fläche", "fr": "S = F/p — surface", "es": "S = F/p — superficie", "it": "S = F/p — superficie", "ru": "S = F/p — площадь", "pt": "S = F/p — superfície"}, "tr4": {"sr": "Jedinica za pritisak je paskal (Pa). 1 Pa = 1 N/m².", "en": "The unit for pressure is the pascal (Pa). 1 Pa = 1 N/m².", "de": "Die Einheit für Druck ist das Pascal (Pa). 1 Pa = 1 N/m².", "fr": "L'unité de pression est le pascal (Pa). 1 Pa = 1 N/m².", "es": "La unidad de presión es el pascal (Pa). 1 Pa = 1 N/m².", "it": "L'unità di misura della pressione è il pascal (Pa). 1 Pa = 1 N/m².", "ru": "Единица измерения давления — паскаль (Pa). 1 Pa = 1 N/m².", "pt": "A unidade de pressão é o pascal (Pa). 1 Pa = 1 N/m²."}, "tn5": {"sr": "Ravnoteža", "en": "Equilibrium", "de": "Gleichgewicht", "fr": "Équilibre", "es": "Equilibrio", "it": "Equilibrio", "ru": "Равновесие", "pt": "Equilíbrio"}, "tp5": {"sr": "Telo je u <b>ravnoteži</b> kada je zbir svih sila koje na njega deluju jednak nuli. Poluga je u ravnoteži kada su momenti sila sa obe strane oslonca jednaki.", "en": "An object is in <b>equilibrium</b> when the sum of all forces acting on it is equal to zero. A lever is in equilibrium when the moments of force on both sides of the pivot are equal.", "de": "Ein Körper ist im <b>Gleichgewicht</b>, wenn die Summe aller auf ihn wirkenden Kräfte gleich null ist. Ein Hebel ist im Gleichgewicht, wenn die Drehmomente auf beiden Seiten des Drehpunkts gleich groß sind.", "fr": "Un corps est en <b>équilibre</b> lorsque la somme de toutes les forces qui agissent sur lui est égale à zéro. Un levier est en équilibre lorsque les moments des forces de part et d'autre du point d'appui sont égaux.", "es": "Un cuerpo está en <b>equilibrio</b> cuando la suma de todas las fuerzas que actúan sobre él es igual a cero. Una palanca está en equilibrio cuando los momentos de las fuerzas a ambos lados del punto de apoyo son iguales.", "it": "Un corpo è in <b>equilibrio</b> quando la somma di tutte le forze che agiscono su di esso è uguale a zero. Una leva è in equilibrio quando i momenti delle forze sui due lati del fulcro sono uguali.", "ru": "Тело находится в <b>равновесии</b>, когда сумма всех действующих на него сил равна нулю. Рычаг находится в равновесии, когда моменты сил по обе стороны опоры равны.", "pt": "Um corpo está em <b>equilíbrio</b> quando a soma de todas as forças que atuam sobre ele é igual a zero. Uma alavanca está em equilíbrio quando os momentos das forças em ambos os lados do ponto de apoio são iguais."}, "tf5_1": {"sr": "F1·d1 = F2·d2 — uslov ravnoteže poluge", "en": "F1·d1 = F2·d2 — lever equilibrium condition", "de": "F1·d1 = F2·d2 — Gleichgewichtsbedingung des Hebels", "fr": "F1·d1 = F2·d2 — condition d'équilibre du levier", "es": "F1·d1 = F2·d2 — condición de equilibrio de la palanca", "it": "F1·d1 = F2·d2 — condizione di equilibrio della leva", "ru": "F1·d1 = F2·d2 — условие равновесия рычага", "pt": "F1·d1 = F2·d2 — condição de equilíbrio da alavanca"}, "tf5_2": {"sr": "ΣF = 0 — uslov ravnoteže sila", "en": "ΣF = 0 — condition for equilibrium of forces", "de": "ΣF = 0 — Gleichgewichtsbedingung der Kräfte", "fr": "ΣF = 0 — condition d'équilibre des forces", "es": "ΣF = 0 — condición de equilibrio de fuerzas", "it": "ΣF = 0 — condizione di equilibrio delle forze", "ru": "ΣF = 0 — условие равновесия сил", "pt": "ΣF = 0 — condição de equilíbrio das forças"}, "tr5": {"sr": "Momenat sile zavisi od veličine sile i njenog kraka (rastojanja od oslonca).", "en": "The moment of a force depends on the size of the force and its arm (distance from the pivot).", "de": "Das Drehmoment einer Kraft hängt von der Größe der Kraft und ihrem Hebelarm (Abstand vom Drehpunkt) ab.", "fr": "Le moment d'une force dépend de l'intensité de la force et de son bras de levier (distance par rapport au point d'appui).", "es": "El momento de una fuerza depende de la magnitud de la fuerza y de su brazo (distancia al punto de apoyo).", "it": "Il momento di una forza dipende dall'intensità della forza e dal suo braccio (distanza dal fulcro).", "ru": "Момент силы зависит от величины силы и её плеча (расстояния от опоры).", "pt": "O momento de uma força depende da intensidade da força e do seu braço (distância ao ponto de apoio)."}, "tn6": {"sr": "Sila", "en": "Force", "de": "Kraft", "fr": "Force", "es": "Fuerza", "it": "Forza", "ru": "Сила", "pt": "Força"}, "tp6": {"sr": "<b>Sila</b> je uzrok promene brzine tela ili njegovog oblika. Sila je vektorska veličina — ima pravac, smer i intenzitet. Meri se u njutnima (N).", "en": "<b>Force</b> is the cause of a change in an object's speed or shape. Force is a vector quantity — it has a direction, an orientation and a magnitude. It is measured in newtons (N).", "de": "Die <b>Kraft</b> ist die Ursache für die Änderung der Geschwindigkeit eines Körpers oder seiner Form. Die Kraft ist eine vektorielle Größe — sie hat eine Richtung, einen Richtungssinn und einen Betrag. Sie wird in Newton (N) gemessen.", "fr": "La <b>force</b> est la cause du changement de vitesse d'un corps ou de sa forme. La force est une grandeur vectorielle — elle a une direction, un sens et une intensité. Elle se mesure en newtons (N).", "es": "La <b>fuerza</b> es la causa del cambio de velocidad de un cuerpo o de su forma. La fuerza es una magnitud vectorial: tiene dirección, sentido e intensidad. Se mide en newtons (N).", "it": "La <b>forza</b> è la causa del cambiamento di velocità di un corpo o della sua forma. La forza è una grandezza vettoriale — ha una direzione, un verso e un'intensità. Si misura in newton (N).", "ru": "<b>Сила</b> — это причина изменения скорости тела или его формы. Сила — векторная величина: она имеет направление, ориентацию и величину. Измеряется в ньютонах (N).", "pt": "A <b>força</b> é a causa da mudança de velocidade de um corpo ou da sua forma. A força é uma grandeza vetorial — tem direção, sentido e intensidade. Mede-se em newtons (N)."}, "tf6_1": {"sr": "F = m·a — drugi Njutnov zakon", "en": "F = m·a — Newton's second law", "de": "F = m·a — zweites Newtonsches Gesetz", "fr": "F = m·a — deuxième loi de Newton", "es": "F = m·a — segunda ley de Newton", "it": "F = m·a — secondo principio della dinamica", "ru": "F = m·a — второй закон Ньютона", "pt": "F = m·a — segunda lei de Newton"}, "tf6_2": {"sr": "Fg = m·g — sila teže", "en": "Fg = m·g — force of gravity", "de": "Fg = m·g — Gewichtskraft", "fr": "Fg = m·g — force de pesanteur", "es": "Fg = m·g — fuerza de gravedad", "it": "Fg = m·g — forza peso", "ru": "Fg = m·g — сила тяжести", "pt": "Fg = m·g — força da gravidade"}, "tr6": {"sr": "Ubrzanje zemljine teže je g ≈ 9,81 m/s² (u praksi se koristi 10 m/s²).", "en": "The acceleration due to gravity is g ≈ 9.81 m/s² (in practice, 10 m/s² is used).", "de": "Die Erdbeschleunigung beträgt g ≈ 9,81 m/s² (in der Praxis wird 10 m/s² verwendet).", "fr": "L'accélération de la pesanteur est g ≈ 9,81 m/s² (en pratique, on utilise 10 m/s²).", "es": "La aceleración de la gravedad es g ≈ 9,81 m/s² (en la práctica se usa 10 m/s²).", "it": "L'accelerazione di gravità è g ≈ 9,81 m/s² (nella pratica si usa 10 m/s²).", "ru": "Ускорение свободного падения составляет g ≈ 9,81 m/s² (на практике используют 10 m/s²).", "pt": "A aceleração da gravidade é g ≈ 9,81 m/s² (na prática usa-se 10 m/s²)."}};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(e){try{ap(((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase())}catch(_){}});})();</script>
 </body>
 </html>
