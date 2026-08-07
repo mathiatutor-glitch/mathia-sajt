@@ -31,7 +31,7 @@
   // — reveal na skrol —
   function reveal() {
     if (RM || !('IntersectionObserver' in window)) return;
-    var sel = 'main > section, .card, .tier, .mat, .mcard, .tst, .step, .grid3 > *, .sec, .pw-cats, .prijemni-banner, .hero-trust, .band, .subj-sec, .finale, [data-reveal], .reveal';
+    var sel = 'main > section, .card, .tier, .mat, .mcard, .tst, .step, .grid3 > *, .sec, .pw-cats, .prijemni-banner, .hero-trust, .band, .subj-sec, .finale, .sh-why, .sh-store, .sh-badges, .store-prev, [data-reveal], .reveal';
     var io = new IntersectionObserver(function (ents) {
       ents.forEach(function (en) { if (en.isIntersecting) { en.target.classList.remove('md-hidden'); en.target.classList.add('md-show'); io.unobserve(en.target); } });
     }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
