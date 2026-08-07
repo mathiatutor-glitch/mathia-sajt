@@ -109,14 +109,20 @@
 
     var sel = mh.querySelector(".mh-lang");
     try { var cl = (localStorage.getItem("mathia_lang") || (document.documentElement.lang || "sr")).slice(0,2).toLowerCase(); sel.value = cl; } catch(e){}
+    function emitLang(lang){
+      // CustomEvent sa detail — strane predmeta čitaju e.detail; samostalni engine-i čitaju localStorage (već postavljen)
+      try { window.dispatchEvent(new CustomEvent("mathia:lang", { detail: lang })); }
+      catch(e){ try { window.dispatchEvent(new Event("mathia:lang")); } catch(_){} }
+    }
     sel.addEventListener("change", function(){
-      try { localStorage.setItem("mathia_lang", this.value); } catch(e){}
-      try { document.documentElement.lang = this.value; } catch(e){}
-      try { window.dispatchEvent(new Event("mathia:lang")); } catch(e){}
+      var lang = (this.value || "sr");
+      try { localStorage.setItem("mathia_lang", lang); } catch(e){}
+      try { document.documentElement.lang = lang; } catch(e){}
+      emitLang(lang);
     });
 
-    // Prevedi tek ubačen header ako je jezik već postavljen (samostalni engine strane / globalni i18n)
-    try { window.dispatchEvent(new Event("mathia:lang")); } catch(e){}
+    // Prevedi tek ubačen header + stranu ako je jezik već postavljen (samostalni engine / globalni i18n / per-page apply)
+    try { var curLang = (localStorage.getItem("mathia_lang") || "sr").slice(0,2).toLowerCase(); emitLang(curLang); } catch(e){ emitLang("sr"); }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
