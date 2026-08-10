@@ -649,7 +649,7 @@ function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice
 function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}it.forEach(function(p){var e=p[0],m=p[1];e.textContent=(l==='sr'||!m[l])?e.__o:m[l];});}
 ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);
 try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
-setInterval(ap,800);})();</script>
+[150,500,1200,2500].forEach(function(_d){setTimeout(ap,_d)});})();</script>
 <!--prijnav--><script>(function(){
 var L={
  nalog:{sr:'Moj nalog',en:'My account',de:'Mein Konto',fr:'Mon compte',es:'Mi cuenta',it:'Il mio account',ru:'\u041b\u0438\u0447\u043d\u044b\u0439 \u043a\u0430\u0431\u0438\u043d\u0435\u0442',pt:'Minha conta'},
@@ -689,7 +689,7 @@ function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatc
   var cb=nav.querySelector('.cart-btn');if(cb&&cb.firstChild&&cb.firstChild.nodeType===3&&!cb.hasAttribute('data-i18n'))cb.firstChild.textContent=(L.korpa[l]||L.korpa.sr)+' ';}
  var bn=document.querySelector('[data-prij-banner]');if(bn){var t=bn.querySelector('[data-pt]'),s=bn.querySelector('[data-ps]'),c=bn.querySelector('[data-pc]');if(t)t.textContent=BT[l]||BT.sr;if(s)s.textContent=BS[l]||BS.sr;if(c)c.textContent=BC[l]||BC.sr;}
  var pb=document.querySelector('[data-plan-banner]');if(pb){var t2=pb.querySelector('[data-plt]'),s2=pb.querySelector('[data-pls]'),c2=pb.querySelector('[data-plc]');if(t2)t2.textContent=BPT[l]||BPT.sr;if(s2)s2.textContent=BPS[l]||BPS.sr;if(c2)c2.textContent=BPC[l]||BPC.sr;}}
-ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:lng()}));}catch(e){}},_t);});addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}setInterval(function(){ensure();ap();},900);
+ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:lng()}));}catch(e){}},_t);});addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}[150,500,1200,2500].forEach(function(_d){setTimeout(function(){ensure();ap();},_d)});
 })();</script>
 <!--protect--><style>
 body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
