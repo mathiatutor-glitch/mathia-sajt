@@ -163,10 +163,28 @@
     }, true);
   }
 
+  /* skripta/reels/flip bez .topic — pun katanac (ne može preview po lekciji) */
+  function scriptOverlayLock() {
+    if (document.getElementById("mathia-gate")) return;
+    var o = document.createElement("div");
+    o.id = "mathia-gate";
+    o.style.cssText = "position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(90,16,36,.34);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:Inter,system-ui,Arial,sans-serif";
+    o.innerHTML =
+      '<div style="width:100%;max-width:440px;background:#fff;border:1px solid #E7D2A2;border-radius:22px;box-shadow:0 30px 70px rgba(90,16,36,.3);padding:26px 24px;text-align:center">' +
+      '<div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
+      '<h2 style="font-family:Cormorant Garamond,serif;font-weight:700;font-size:24px;margin:8px 0 6px;color:#5A1024">Otključaj ceo materijal</h2>' +
+      '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">Pretplati se da otvoriš celu skriptu, formule i zadatke — uz Profesoricu.</p>' +
+      plansHTML() +
+      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">Već imaš pretplatu? <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>' +
+      '</div>';
+    document.body.appendChild(o);
+    document.documentElement.style.overflow = "hidden";
+  }
+
   /* skripta u probi: pokaži samo prvu lekciju */
   function previewLock() {
     var topics = Array.prototype.slice.call(document.querySelectorAll("section.topic, section.part"));
-    if (!topics.length) return;
+    if (!topics.length) { scriptOverlayLock(); return; }
 
     for (var i = 1; i < topics.length; i++) {
       var t = topics[i];
