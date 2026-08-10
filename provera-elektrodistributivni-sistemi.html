@@ -1,220 +1,192 @@
 <!doctype html>
-<html lang="sr">
+<html lang="sr-Latn">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#5A1024">
-<title>Proveri znanje — Analiza 1 · Mathia</title>
-<meta name="description" content="Proveri znanje iz Analize 1 — pitanje po pitanje, sa detaljnim rešenjem uz Profesoricu.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Mathia — Provera znanja · Elektrodistributivni sistemi 🎯</title>
+<meta name="description" content="Proveri znanje — Elektrodistributivni sistemi, pitanje po pitanje, sa rešenjem korak po korak uz Profesoricu.">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,600;0,700;1,500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{--cream:#FBF6EE;--card:#FFFDFA;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--muted:#8A7A80;--line:#EFE1DC}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#3E2D34;line-height:1.7;background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--cream);overflow-x:hidden}
-  h1,h2,h3{font-family:'Spectral',Georgia,serif;font-weight:700;margin:0;color:var(--ink);line-height:1.15}
-  p{margin:0}
-  /* ——— padajući simboli u pozadini ——— */
-  #fall{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-  #fall span{position:absolute;top:-8%;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.16);animation:drift linear infinite;will-change:transform}
-  @keyframes drift{0%{transform:translateY(-10vh) rotate(0)}100%{transform:translateY(112vh) rotate(22deg)}}
-  @media(prefers-reduced-motion:reduce){#fall{display:none}}
-  .wrap{max-width:760px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
-  /* topbar */
-  .tb{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.32)}
-  .tb:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldsoft),var(--gold),#FFF6D6,var(--gold),var(--goldsoft),transparent)}
-  .tb a.back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:.9rem}
-  .tb a.brand{font-family:'Spectral',serif;font-weight:700;letter-spacing:.12em;color:var(--ink);text-decoration:none}
-  .tb a.brand b{color:var(--gold)}
-  /* hero */
-  .hero{text-align:center;padding:46px 0 8px}
-  .eyebrow{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--malina);font-weight:800}
-  .hero h1{font-size:clamp(2rem,5vw,2.9rem);margin:12px 0 8px}
-  .hero p{color:var(--ink2);max-width:520px;margin:0 auto;font-size:1.05rem}
-  .free{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(180deg,#FFFBF3,#FBF3E2);border:1px solid var(--goldsoft);border-radius:100px;padding:6px 15px;font-weight:800;font-size:.74rem;color:var(--golddk);margin-bottom:6px}
-  /* progress */
-  .prog{height:8px;border-radius:8px;background:rgba(198,160,92,.16);overflow:hidden;margin:26px 0 6px}
-  .prog i{display:block;height:100%;background:linear-gradient(90deg,var(--goldsoft),var(--gold));width:0;transition:width .4s ease}
-  .qnum{font-size:.8rem;color:var(--muted);font-weight:800;letter-spacing:.04em;text-align:center;margin-bottom:14px}
-  /* card */
-  .card{background:var(--card);border:1px solid rgba(198,160,92,.26);border-radius:24px;padding:32px 30px;box-shadow:0 34px 74px -42px rgba(120,40,60,.5);position:relative;overflow:hidden}
-  .card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),#FFF6D6,var(--gold),transparent)}
-  .q-tag{display:inline-block;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--golddk);background:#FBF3E2;border:1px solid var(--goldsoft);border-radius:100px;padding:3px 11px;margin-bottom:12px}
-  .q-txt{font-family:'Spectral',serif;font-size:clamp(1.35rem,3.4vw,1.7rem);color:var(--ink);line-height:1.35}
-  .opts{display:grid;gap:11px;margin-top:20px}
-  .opt{display:flex;align-items:center;gap:12px;text-align:left;border:1.5px solid rgba(198,160,92,.32);background:#fffdf8;border-radius:14px;padding:14px 16px;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.08rem;color:var(--ink);cursor:pointer;transition:transform .14s,border-color .14s,background .14s}
-  .opt:hover:not(.done){border-color:var(--gold);background:#FBF3E2;transform:translateX(3px)}
-  .opt .mk{width:26px;height:26px;flex:none;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;color:var(--golddk)}
-  .opts.locked .opt{cursor:default}
-  .opt.correct{border-color:#2E9E6B;background:linear-gradient(180deg,#F1FBF5,#E7F6EE)}
-  .opt.correct .mk{border-color:#2E9E6B;background:#2E9E6B;color:#fff}
-  .opt.wrong{border-color:#D08;opacity:.85;background:#FDF2F6}
-  .opt.wrong .mk{border-color:#B01E48;background:#B01E48;color:#fff}
-  .fb{text-align:center;font-weight:800;font-size:.95rem;margin-top:14px;min-height:1.2em}
-  .fb.ok{color:#2E9E6B}.fb.no{color:var(--malina)}
-  .sol{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease,margin .4s ease;margin:0}
-  .sol.on{max-height:1400px;opacity:1;margin:20px 0 0}
-  .sol-in{background:linear-gradient(180deg,#FFF7FA,#FBEEF2);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
-  .sol-h{font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;color:var(--malina);margin-bottom:8px}
-  .step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.1rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:11px 0;line-height:1.5}
-  .res{display:inline-block;margin-top:6px;font-family:'Spectral',serif;font-weight:700;color:var(--malina);border:1.5px solid rgba(176,30,72,.35);border-radius:10px;padding:4px 14px;background:#fff}
-  .note{color:#7A3346;font-size:.96rem;margin-top:8px}
-  /* math bits */
-  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
-  .frac>span{display:block;line-height:1.12;padding:0 .45em}
-  .frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}
-  .frac .den{padding-top:.06em}
-  .lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .18em}
-  .lim .und{font-size:.58em;margin-top:.14em;font-style:normal;white-space:nowrap}
-  b{color:var(--ink)}
-  /* controls */
-  .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
-  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:13px 26px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.94rem;cursor:pointer;text-decoration:none;border:1.5px solid transparent;transition:transform .16s,box-shadow .16s,background .16s}
-  .btn-gold{background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196);background-size:240% auto;color:#3a2410;box-shadow:0 16px 30px -14px rgba(160,120,40,.7);animation:shim 7s linear infinite}
-  @keyframes shim{to{background-position:-240% center}}
-  .btn-gold:hover{transform:translateY(-2px)}
-  .btn-ghost{background:transparent;border-color:rgba(198,160,92,.5);color:var(--golddk)}
-  .btn-ghost:hover{background:#FBF3E2}
-  .btn-mal{background:linear-gradient(160deg,#CC5E7E,#B01E48);color:#fff;box-shadow:0 14px 28px -12px rgba(176,30,72,.5)}
-  .btn-mal:hover{transform:translateY(-2px)}
-  .backbtn{background:none;border:none;color:var(--muted);font-family:inherit;font-weight:700;cursor:pointer;font-size:.86rem}
-  /* end */
-  #end{display:none;text-align:center}
-  #end.on{display:block}
-  #end .big{font-size:clamp(2rem,5vw,2.8rem);margin:6px 0 8px;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .mbox{margin:22px 0 0;background:linear-gradient(160deg,#5A1024,#3A0B18);color:#fff;border-radius:20px;padding:26px;position:relative;overflow:hidden}
-  .mbox:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-  .mbox h3{color:#fff;font-size:1.5rem;margin-bottom:6px}
-  .mbox p{color:#f0dfe4;margin-bottom:16px}
-  .pf{margin-top:56px;text-align:center;padding:34px 22px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--goldsoft);background:linear-gradient(180deg,#FBF6EE,#F5EAD9)}
-  .pf .w{font-family:'Spectral',serif;font-weight:700;font-size:1.5rem;letter-spacing:.24em;background:linear-gradient(100deg,#9C7838,#E7D2A2 32%,#FFF7E2 50%,#E7D2A2 68%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+:root{--cream:#FBF6EE;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldlt:#F0DCA8;--goldsoft:#F0DCA8;--malina:#B01E48;--malina2:#CC5E7E;--mint:#3FB98C;--muted:#8A7A80;--line:#EFE1DC}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#43303A;min-height:100vh;background:radial-gradient(520px 400px at 104% -6%,#F6E1EC 0,transparent 56%),radial-gradient(500px 380px at -6% 106%,#F7ECD6 0,transparent 58%),var(--cream);overflow-x:hidden}
+h1,h2,h3{font-family:'Spectral',Georgia,serif;font-weight:700;margin:0;color:var(--ink);line-height:1.15}
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.20);animation:fl linear infinite;will-change:transform}
+#fall span.m{color:rgba(176,30,72,.15)}
+@keyframes fl{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(24deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#fall{display:none}}
+.wrap{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:14px 18px 40px}
+.top{display:flex;align-items:center;gap:12px;padding:6px 2px 14px}
+.top .back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:1.15rem}
+.top .lang{margin-left:auto;border:1px solid var(--goldlt);border-radius:100px;padding:5px 10px;font-family:inherit;font-weight:800;font-size:.72rem;color:var(--ink);background:#fff;cursor:pointer}
+.bar{flex:1;height:14px;border-radius:100px;background:#EEE1D8;overflow:hidden;box-shadow:inset 0 1px 3px rgba(120,60,70,.12)}
+.bar>i{display:block;height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--malina));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.hearts{font-size:1rem;white-space:nowrap}.streak{font-weight:900;color:var(--gold);font-size:.95rem;white-space:nowrap}
+.hero{text-align:center;margin:2px 0 14px}
+.hero .free{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(180deg,#FFFBF3,#FBF3E2);border:1px solid var(--goldsoft);border-radius:100px;padding:6px 15px;font-weight:800;font-size:.72rem;color:var(--golddk)}
+.card{background:linear-gradient(180deg,#FFFDF9,#FDF3EA);border:1px solid var(--goldlt);border-radius:30px;padding:24px 22px;box-shadow:0 30px 70px -34px rgba(90,16,36,.5);animation:pop .5s cubic-bezier(.2,.9,.2,1);position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),#FFF6D6,var(--gold),transparent)}
+@keyframes pop{0%{transform:scale(.95) translateY(10px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+.eyebrow{text-align:center;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:.66rem;color:var(--malina)}
+.qnum{display:block;text-align:center;margin:2px 0 4px;color:var(--muted);font-weight:800;font-size:.8rem}
+.mascot{width:70px;height:70px;margin:4px auto 4px;border-radius:50%;display:grid;place-items:center;font-size:2.15rem;background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC);border:2px solid var(--goldlt);box-shadow:0 12px 26px -12px rgba(176,30,72,.4);animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.qtag{display:block;text-align:center;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--golddk);margin:2px 0 6px}
+.q{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.3rem;text-align:center;line-height:1.3;margin:4px 0 6px}
+.opts{display:grid;gap:11px;margin-top:14px}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #EFE0D6;border-radius:18px;padding:13px 15px;font-family:'Spectral','Cambria Math',Georgia,serif;font-weight:600;font-size:1.05rem;color:var(--ink);cursor:pointer;transition:transform .12s,border-color .15s,background .15s;text-align:left}
+.opt .mk{width:26px;height:26px;flex:none;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:.82rem;color:var(--golddk)}
+.opt:hover{transform:translateY(-2px);border-color:var(--gold)}
+.opts.locked .opt{cursor:default}
+.opt.correct{border-color:var(--mint);background:linear-gradient(180deg,#F1FBF6,#E4F6EE);animation:good .5s}
+.opt.correct .mk{border-color:var(--mint);background:var(--mint);color:#fff}
+.opt.wrong{border-color:var(--malina);background:linear-gradient(180deg,#FDEFF3,#FBE3EA);animation:shake .4s}
+.opt.wrong .mk{border-color:var(--malina);background:var(--malina);color:#fff}
+@keyframes good{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{margin-top:12px;text-align:center;font-weight:900;font-size:1.02rem;min-height:22px}
+.fb.ok{color:var(--mint)}.fb.no{color:var(--malina)}
+.sol{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease,margin .4s ease;margin:0}
+.sol.on{max-height:1600px;opacity:1;margin:14px 0 0}
+.sol-in{background:linear-gradient(180deg,#FFF7FA,#FBEEF2);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.sol-h{font-weight:900;letter-spacing:.06em;text-transform:uppercase;font-size:.7rem;color:var(--malina);margin-bottom:6px;text-align:center}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.06rem;color:var(--ink);white-space:nowrap;overflow-x:auto;margin:10px 0;line-height:1.5}
+.res{display:inline-block;margin-top:6px;font-family:'Spectral',serif;font-weight:700;color:var(--malina);border:1.5px solid rgba(176,30,72,.35);border-radius:10px;padding:4px 14px;background:#fff}
+.note{color:#7A3346;font-size:.94rem;margin-top:8px}
+.rt{border-top:1.5px solid currentColor;padding:0 .12em}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}.frac .den{padding-top:.06em}
+b{color:var(--ink)}
+.cta{display:block;width:100%;margin-top:14px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:900;font-size:1.02rem;padding:14px;border-radius:100px;box-shadow:0 16px 30px -14px rgba(176,30,72,.6);transition:transform .15s;text-decoration:none;text-align:center}
+.cta:hover{transform:translateY(-2px)}
+.cta.ghost{background:linear-gradient(135deg,#EAD196,#C6A05C);color:#3a2410;box-shadow:0 14px 28px -14px rgba(160,120,40,.7)}
+.reveal{display:block;width:100%;margin-top:12px;border:1.5px solid rgba(198,160,92,.5);cursor:pointer;background:#fff;color:var(--golddk);font-weight:800;font-size:.95rem;padding:12px;border-radius:100px;transition:background .15s}
+.reveal:hover{background:#FBF3E2}
+.hidden{display:none}
+.result{text-align:center}.result .big{font-size:3.2rem;margin:4px 0}.result h2{font-size:1.8rem;margin:2px 0}
+.result .score{font-weight:900;color:var(--gold);font-size:1.12rem}.result .msg{color:var(--ink2);margin:8px 0 4px}
+.rbadge{display:inline-flex;align-items:center;gap:8px;margin:12px auto 4px;background:linear-gradient(135deg,#FFF3D6,#F3DFA6);border:1px solid var(--goldlt);border-radius:100px;padding:10px 18px;font-weight:900;color:#8a6a1e;box-shadow:0 10px 22px -12px rgba(160,120,40,.6)}
+.again{margin-top:12px;background:none;border:none;color:var(--ink2);font-weight:800;cursor:pointer;text-decoration:underline}
+#conf{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+#conf i{position:absolute;top:-6%;width:10px;height:14px;border-radius:2px;animation:cf linear forwards}
+@keyframes cf{to{transform:translateY(110vh) rotate(560deg);opacity:.9}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div id="fall" aria-hidden="true"></div>
-
-<header class="tb">
-  <a class="back" href="predmet-elektrodistributivni-sistemi.html" data-i18n="back">← Analiza 1</a>
-  <a class="brand" href="index.html">MATHIA<b>·</b>EDU</a>
-  <select id="qlang" aria-label="Jezik / Language" style="margin-left:auto;border:1px solid rgba(198,160,92,.5);border-radius:100px;padding:5px 12px;font-weight:800;font-size:.72rem;color:#A6803C;background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
-</header>
-
-<section class="hero">
-  <div class="wrap">
-    <span class="free" data-i18n="free">✦ Vežbaj svojim tempom, bez pritiska 💛</span>
-    <div class="eyebrow" data-i18n="eyebrow">Proveri znanje · Analiza 1</div>
-    <h1 data-i18n="h1">Koliko ti stvarno leži?</h1>
-    <p data-i18n-html="heroP"></p>
+<div id="conf" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="top">
+    <a class="back" id="backlink" href="predmet-elektrodistributivni-sistemi.html">←</a>
+    <div class="bar"><i id="prog"></i></div>
+    <span class="hearts" id="hearts">❤️❤️❤️</span>
+    <span class="streak" id="streak">🔥 0</span>
+    <select class="lang" id="lang" aria-label="Jezik"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
   </div>
-</section>
-
-<div class="wrap" style="padding-bottom:40px">
-  <div class="prog"><i id="bar"></i></div>
-  <div class="qnum" id="qnum"></div>
-
-  <div class="card" id="qcard">
-    <span class="q-tag" id="tag"></span>
-    <div class="q-txt" id="qtxt"></div>
+  <div class="hero"><span class="free" id="free"></span></div>
+  <section class="card" id="quiz">
+    <div class="eyebrow" id="eyebrow"></div>
+    <span class="qnum" id="qnum"></span>
+    <div class="mascot" id="mascot">🦉</div>
+    <span class="qtag" id="tag"></span>
+    <h2 class="q" id="q"></h2>
     <div class="opts" id="opts"></div>
     <div class="fb" id="fb"></div>
-    <div class="sol" id="sol"><div class="sol-in"><div class="sol-h" data-i18n="solH">Rešenje — korak po korak</div><div id="solbody"></div></div></div>
-    <div class="row">
-      <button class="btn btn-mal" id="revealBtn" data-i18n="reveal">Pogledaj rešenje →</button>
-      <button class="btn btn-gold" id="nextBtn" style="display:none">Sledeće pitanje →</button>
-    </div>
-    <div style="text-align:center;margin-top:14px"><button class="backbtn" id="prevBtn" data-i18n="prev">← Prethodno</button></div>
-  </div>
-
-  <div id="end">
-    <div class="card">
-      <span class="free" data-i18n="endBadge">🎉 Sve si prošao/la!</span>
-      <div class="big" data-i18n="endBig">Bravo!</div>
-      <p style="color:var(--ink2);max-width:520px;margin:0 auto" data-i18n="endP"></p>
-      <div class="mbox">
-        <h3 data-i18n="mboxH">Zapni negde? Tu sam. 💛</h3>
-        <p data-i18n="mboxP"></p>
-        <div class="row" style="margin-top:0">
-          <a class="btn btn-gold" href="predmet-elektrodistributivni-sistemi.html" data-i18n="askBtn">Pitaj Profesoricu →</a>
-          <a class="btn btn-ghost" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)" data-i18n="allBtn">Svi predmeti →</a>
-        </div>
-      </div>
-      <div style="margin-top:20px"><button class="backbtn" id="againBtn" data-i18n="again">↺ Ponovi kviz</button></div>
-    </div>
-  </div>
-</div>
-
-<footer class="pf"><div class="w">MATHIA</div>© 2026 Mathia Edu · Sva prava zadržana.</footer>
-
+    <div class="sol" id="sol"><div class="sol-in"><div class="sol-h" id="solH"></div><div id="solbody"></div></div></div>
+    <button class="reveal" id="reveal"></button>
+    <button class="cta hidden" id="next"></button>
+  </section>
+  <section class="card result hidden" id="report">
+    <div class="big" id="rbig">🎉</div>
+    <h2 id="rtitle"></h2>
+    <div class="score" id="rscore"></div>
+    <p class="msg" id="rmsg"></p>
+    <div class="rbadge" id="rbadge"></div>
+    <a class="cta" id="ask"></a>
+    <a class="cta ghost" id="allsub" style="margin-top:10px"></a>
+    <br><button class="again" id="again"></button>
+  </section>
+</main>
 <script>
-(function(){
-  // padajući simboli
-  var syms=["∫","∑","√","π","∞","∂","lim","dx","≈","≤","Σ","ƒ","θ","Δ","e","∇"];
-  var fall=document.getElementById("fall"),i,N=18,html="";
-  for(i=0;i<N;i++){
-    var s=syms[Math.floor(Math.random()*syms.length)];
-    var left=Math.random()*100, size=(Math.random()*26+16).toFixed(0), dur=(Math.random()*16+14).toFixed(1), del=(-Math.random()*20).toFixed(1);
-    html+='<span style="left:'+left+'%;font-size:'+size+'px;animation-duration:'+dur+'s;animation-delay:'+del+'s">'+s+'</span>';
-  }
-  fall.innerHTML=html;
-
-  // pitanja
-  var I18N={"heroP": {"sr": "Idi pitanje po pitanje. Kad si spreman/na, otvori <b>detaljno rešenje</b> — Profesorica ti sve razloži korak po korak.", "en": "Go question by question. When you're ready, open the <b>detailed solution</b> — Profesorica explains everything step by step.", "de": "Geh Frage für Frage. Wenn du bereit bist, öffne die <b>ausführliche Lösung</b> — Profesorica erklärt alles Schritt für Schritt.", "fr": "Avance question par question. Quand tu es prêt·e, ouvre la <b>solution détaillée</b> — Profesorica t'explique tout étape par étape.", "es": "Ve pregunta por pregunta. Cuando estés listo/a, abre la <b>solución detallada</b> — Profesorica te lo explica paso a paso.", "it": "Vai domanda per domanda. Quando sei pronto/a, apri la <b>soluzione dettagliata</b> — Profesorica ti spiega tutto passo dopo passo.", "ru": "Иди вопрос за вопросом. Когда будешь готов(а), открой <b>подробное решение</b> — Profesorica всё объяснит шаг за шагом.", "pt": "Vai pergunta a pergunta. Quando estiveres pronto/a, abre a <b>solução detalhada</b> — a Profesorica explica tudo passo a passo."}, "h1": {"sr": "Koliko ti stvarno leži?", "en": "How well do you really know it?", "de": "Wie gut kannst du es wirklich?", "fr": "Tu maîtrises vraiment ?", "es": "¿Cuánto dominas de verdad?", "it": "Quanto lo padroneggi davvero?", "ru": "Насколько ты и правда владеешь?", "pt": "Até que ponto dominas mesmo?"}, "free": {"sr": "✦ Vežbaj svojim tempom, bez pritiska 💛", "en": "✦ Practise at your own pace, no pressure 💛", "de": "✦ Übe in deinem Tempo, ganz entspannt 💛", "fr": "✦ Entraîne-toi à ton rythme, sans pression 💛", "es": "✦ Practica a tu ritmo, sin presión 💛", "it": "✦ Allenati al tuo ritmo, senza pressione 💛", "ru": "✦ Занимайся в своём темпе, без давления 💛", "pt": "✦ Pratica ao teu ritmo, sem pressão 💛"}, "reveal": {"sr": "Pogledaj rešenje →", "en": "Show the solution →", "de": "Lösung anzeigen →", "fr": "Voir la solution →", "es": "Ver la solución →", "it": "Mostra la soluzione →", "ru": "Показать решение →", "pt": "Ver a solução →"}, "nextMid": {"sr": "Sledeće pitanje →", "en": "Next question →", "de": "Nächste Frage →", "fr": "Question suivante →", "es": "Siguiente pregunta →", "it": "Domanda successiva →", "ru": "Следующий вопрос →", "pt": "Próxima pergunta →"}, "nextEnd": {"sr": "Završi →", "en": "Finish →", "de": "Fertig →", "fr": "Terminer →", "es": "Terminar →", "it": "Fine →", "ru": "Завершить →", "pt": "Terminar →"}, "prev": {"sr": "← Prethodno", "en": "← Previous", "de": "← Zurück", "fr": "← Précédent", "es": "← Anterior", "it": "← Precedente", "ru": "← Назад", "pt": "← Anterior"}, "fbOk": {"sr": "Tačno! Bravo ✨", "en": "Correct! Well done ✨", "de": "Richtig! Bravo ✨", "fr": "Correct ! Bravo ✨", "es": "¡Correcto! Bravo ✨", "it": "Giusto! Bravo ✨", "ru": "Верно! Молодец ✨", "pt": "Certo! Boa ✨"}, "fbNo": {"sr": "Nije tačno — pogledaj rešenje 💛", "en": "Not quite — check the solution 💛", "de": "Nicht ganz — sieh dir die Lösung an 💛", "fr": "Pas tout à fait — regarde la solution 💛", "es": "No exacto — mira la solución 💛", "it": "Non proprio — guarda la soluzione 💛", "ru": "Не совсем — посмотри решение 💛", "pt": "Não bem — vê a solução 💛"}, "solH": {"sr": "Rešenje — korak po korak", "en": "Solution — step by step", "de": "Lösung — Schritt für Schritt", "fr": "Solution — étape par étape", "es": "Solución — paso a paso", "it": "Soluzione — passo dopo passo", "ru": "Решение — шаг за шагом", "pt": "Solução — passo a passo"}, "qnum": {"sr": "Pitanje", "en": "Question", "de": "Frage", "fr": "Question", "es": "Pregunta", "it": "Domanda", "ru": "Вопрос", "pt": "Pergunta"}, "endBadge": {"sr": "🎉 Sve si prošao/la!", "en": "🎉 You made it through!", "de": "🎉 Alles geschafft!", "fr": "🎉 Tu as tout fait !", "es": "🎉 ¡Lo lograste!", "it": "🎉 Ce l'hai fatta!", "ru": "🎉 Ты всё прошёл(ла)!", "pt": "🎉 Conseguiste!"}, "endBig": {"sr": "Bravo!", "en": "Well done!", "de": "Bravo!", "fr": "Bravo !", "es": "¡Bravo!", "it": "Bravo!", "ru": "Молодец!", "pt": "Boa!"}, "endP": {"sr": "Prošao/la si sva pitanja. Ono što ti je bilo mutno — Profesorica ti razjasni do kraja, kad god poželiš.", "en": "You went through all the questions. Whatever was fuzzy — Profesorica clears it up fully, whenever you like.", "de": "Du hast alle Fragen geschafft. Was unklar war — Profesorica klärt es vollständig, wann immer du willst.", "fr": "Tu as parcouru toutes les questions. Ce qui restait flou — Profesorica l'éclaircit à fond, quand tu veux.", "es": "Recorriste todas las preguntas. Lo que quedó confuso — Profesorica te lo aclara del todo, cuando quieras.", "it": "Hai svolto tutte le domande. Ciò che era confuso — Profesorica te lo chiarisce del tutto, quando vuoi.", "ru": "Ты прошёл(ла) все вопросы. Что было непонятно — Profesorica разъяснит до конца, когда захочешь.", "pt": "Passaste por todas as perguntas. O que ficou confuso — a Profesorica esclarece por completo, quando quiseres."}, "mboxH": {"sr": "Zapni negde? Tu sam. 💛", "en": "Stuck somewhere? I'm here. 💛", "de": "Irgendwo hängen geblieben? Ich bin da. 💛", "fr": "Bloqué·e quelque part ? Je suis là. 💛", "es": "¿Te atascas? Estoy aquí. 💛", "it": "Ti blocchi da qualche parte? Ci sono io. 💛", "ru": "Где-то застрял(а)? Я рядом. 💛", "pt": "Emperraste nalgum ponto? Estou aqui. 💛"}, "mboxP": {"sr": "Pitaj Profesoricu bilo šta iz ovog predmeta — objasni ti na tvom primeru, korak po korak, 0–24h.", "en": "Ask Profesorica anything from this subject — she explains it on your own example, step by step, 24/7.", "de": "Frag Profesorica alles aus diesem Fach — sie erklärt es an deinem Beispiel, Schritt für Schritt, rund um die Uhr.", "fr": "Demande à Profesorica tout sur cette matière — elle t'explique sur ton exemple, étape par étape, 24h/24.", "es": "Pregunta a Profesorica lo que sea de esta asignatura — te lo explica con tu ejemplo, paso a paso, 24/7.", "it": "Chiedi a Profesorica qualsiasi cosa di questa materia — te lo spiega sul tuo esempio, passo dopo passo, 24 ore su 24.", "ru": "Спроси Profesorica о чём угодно по этому предмету — объяснит на твоём примере, шаг за шагом, круглосуточно.", "pt": "Pergunta à Profesorica qualquer coisa desta disciplina — explica no teu exemplo, passo a passo, 24h."}, "askBtn": {"sr": "Pitaj Profesoricu →", "en": "Ask Profesorica →", "de": "Frag Profesorica →", "fr": "Demande à Profesorica →", "es": "Pregunta a Profesorica →", "it": "Chiedi a Profesorica →", "ru": "Спроси Profesorica →", "pt": "Pergunta à Profesorica →"}, "allBtn": {"sr": "Svi predmeti →", "en": "All subjects →", "de": "Alle Fächer →", "fr": "Toutes les matières →", "es": "Todas las asignaturas →", "it": "Tutte le materie →", "ru": "Все предметы →", "pt": "Todas as disciplinas →"}, "again": {"sr": "↺ Ponovi kviz", "en": "↺ Retake the quiz", "de": "↺ Quiz wiederholen", "fr": "↺ Refaire le quiz", "es": "↺ Repetir el test", "it": "↺ Rifai il quiz", "ru": "↺ Пройти заново", "pt": "↺ Repetir o quiz"}, "back": {"sr": "← Elektrodistributivni sistemi", "en": "← Power distribution systems", "de": "← Verteilnetze", "fr": "← Réseaux de distribution", "es": "← Sistemas de distribución", "it": "← Sistemi di distribuzione", "ru": "← Распределительные сети", "pt": "← Sistemas de distribuição"}, "eyebrow": {"sr": "Proveri znanje · Elektrodistributivni sistemi", "en": "Test yourself · Power distribution systems", "de": "Wissen prüfen · Verteilnetze", "fr": "Teste-toi · Réseaux de distribution", "es": "Ponte a prueba · Sistemas de distribución", "it": "Mettiti alla prova · Sistemi di distribuzione", "ru": "Проверь знания · Распределительные сети", "pt": "Testa-te · Sistemas de distribuição"}};
+var I18N={"heroP": {"sr": "Idi pitanje po pitanje. Kad si spreman/na, otvori <b>detaljno rešenje</b> — Profesorica ti sve razloži korak po korak.", "en": "Go question by question. When you're ready, open the <b>detailed solution</b> — Profesorica explains everything step by step.", "de": "Geh Frage für Frage. Wenn du bereit bist, öffne die <b>ausführliche Lösung</b> — Profesorica erklärt alles Schritt für Schritt.", "fr": "Avance question par question. Quand tu es prêt·e, ouvre la <b>solution détaillée</b> — Profesorica t'explique tout étape par étape.", "es": "Ve pregunta por pregunta. Cuando estés listo/a, abre la <b>solución detallada</b> — Profesorica te lo explica paso a paso.", "it": "Vai domanda per domanda. Quando sei pronto/a, apri la <b>soluzione dettagliata</b> — Profesorica ti spiega tutto passo dopo passo.", "ru": "Иди вопрос за вопросом. Когда будешь готов(а), открой <b>подробное решение</b> — Profesorica всё объяснит шаг за шагом.", "pt": "Vai pergunta a pergunta. Quando estiveres pronto/a, abre a <b>solução detalhada</b> — a Profesorica explica tudo passo a passo."}, "h1": {"sr": "Koliko ti stvarno leži?", "en": "How well do you really know it?", "de": "Wie gut kannst du es wirklich?", "fr": "Tu maîtrises vraiment ?", "es": "¿Cuánto dominas de verdad?", "it": "Quanto lo padroneggi davvero?", "ru": "Насколько ты и правда владеешь?", "pt": "Até que ponto dominas mesmo?"}, "free": {"sr": "✦ Vežbaj svojim tempom, bez pritiska 💛", "en": "✦ Practise at your own pace, no pressure 💛", "de": "✦ Übe in deinem Tempo, ganz entspannt 💛", "fr": "✦ Entraîne-toi à ton rythme, sans pression 💛", "es": "✦ Practica a tu ritmo, sin presión 💛", "it": "✦ Allenati al tuo ritmo, senza pressione 💛", "ru": "✦ Занимайся в своём темпе, без давления 💛", "pt": "✦ Pratica ao teu ritmo, sem pressão 💛"}, "reveal": {"sr": "Pogledaj rešenje →", "en": "Show the solution →", "de": "Lösung anzeigen →", "fr": "Voir la solution →", "es": "Ver la solución →", "it": "Mostra la soluzione →", "ru": "Показать решение →", "pt": "Ver a solução →"}, "nextMid": {"sr": "Sledeće pitanje →", "en": "Next question →", "de": "Nächste Frage →", "fr": "Question suivante →", "es": "Siguiente pregunta →", "it": "Domanda successiva →", "ru": "Следующий вопрос →", "pt": "Próxima pergunta →"}, "nextEnd": {"sr": "Završi →", "en": "Finish →", "de": "Fertig →", "fr": "Terminer →", "es": "Terminar →", "it": "Fine →", "ru": "Завершить →", "pt": "Terminar →"}, "prev": {"sr": "← Prethodno", "en": "← Previous", "de": "← Zurück", "fr": "← Précédent", "es": "← Anterior", "it": "← Precedente", "ru": "← Назад", "pt": "← Anterior"}, "fbOk": {"sr": "Tačno! Bravo ✨", "en": "Correct! Well done ✨", "de": "Richtig! Bravo ✨", "fr": "Correct ! Bravo ✨", "es": "¡Correcto! Bravo ✨", "it": "Giusto! Bravo ✨", "ru": "Верно! Молодец ✨", "pt": "Certo! Boa ✨"}, "fbNo": {"sr": "Nije tačno — pogledaj rešenje 💛", "en": "Not quite — check the solution 💛", "de": "Nicht ganz — sieh dir die Lösung an 💛", "fr": "Pas tout à fait — regarde la solution 💛", "es": "No exacto — mira la solución 💛", "it": "Non proprio — guarda la soluzione 💛", "ru": "Не совсем — посмотри решение 💛", "pt": "Não bem — vê a solução 💛"}, "solH": {"sr": "Rešenje — korak po korak", "en": "Solution — step by step", "de": "Lösung — Schritt für Schritt", "fr": "Solution — étape par étape", "es": "Solución — paso a paso", "it": "Soluzione — passo dopo passo", "ru": "Решение — шаг за шагом", "pt": "Solução — passo a passo"}, "qnum": {"sr": "Pitanje", "en": "Question", "de": "Frage", "fr": "Question", "es": "Pregunta", "it": "Domanda", "ru": "Вопрос", "pt": "Pergunta"}, "endBadge": {"sr": "🎉 Sve si prošao/la!", "en": "🎉 You made it through!", "de": "🎉 Alles geschafft!", "fr": "🎉 Tu as tout fait !", "es": "🎉 ¡Lo lograste!", "it": "🎉 Ce l'hai fatta!", "ru": "🎉 Ты всё прошёл(ла)!", "pt": "🎉 Conseguiste!"}, "endBig": {"sr": "Bravo!", "en": "Well done!", "de": "Bravo!", "fr": "Bravo !", "es": "¡Bravo!", "it": "Bravo!", "ru": "Молодец!", "pt": "Boa!"}, "endP": {"sr": "Prošao/la si sva pitanja. Ono što ti je bilo mutno — Profesorica ti razjasni do kraja, kad god poželiš.", "en": "You went through all the questions. Whatever was fuzzy — Profesorica clears it up fully, whenever you like.", "de": "Du hast alle Fragen geschafft. Was unklar war — Profesorica klärt es vollständig, wann immer du willst.", "fr": "Tu as parcouru toutes les questions. Ce qui restait flou — Profesorica l'éclaircit à fond, quand tu veux.", "es": "Recorriste todas las preguntas. Lo que quedó confuso — Profesorica te lo aclara del todo, cuando quieras.", "it": "Hai svolto tutte le domande. Ciò che era confuso — Profesorica te lo chiarisce del tutto, quando vuoi.", "ru": "Ты прошёл(ла) все вопросы. Что было непонятно — Profesorica разъяснит до конца, когда захочешь.", "pt": "Passaste por todas as perguntas. O que ficou confuso — a Profesorica esclarece por completo, quando quiseres."}, "mboxH": {"sr": "Zapni negde? Tu sam. 💛", "en": "Stuck somewhere? I'm here. 💛", "de": "Irgendwo hängen geblieben? Ich bin da. 💛", "fr": "Bloqué·e quelque part ? Je suis là. 💛", "es": "¿Te atascas? Estoy aquí. 💛", "it": "Ti blocchi da qualche parte? Ci sono io. 💛", "ru": "Где-то застрял(а)? Я рядом. 💛", "pt": "Emperraste nalgum ponto? Estou aqui. 💛"}, "mboxP": {"sr": "Pitaj Profesoricu bilo šta iz ovog predmeta — objasni ti na tvom primeru, korak po korak, 0–24h.", "en": "Ask Profesorica anything from this subject — she explains it on your own example, step by step, 24/7.", "de": "Frag Profesorica alles aus diesem Fach — sie erklärt es an deinem Beispiel, Schritt für Schritt, rund um die Uhr.", "fr": "Demande à Profesorica tout sur cette matière — elle t'explique sur ton exemple, étape par étape, 24h/24.", "es": "Pregunta a Profesorica lo que sea de esta asignatura — te lo explica con tu ejemplo, paso a paso, 24/7.", "it": "Chiedi a Profesorica qualsiasi cosa di questa materia — te lo spiega sul tuo esempio, passo dopo passo, 24 ore su 24.", "ru": "Спроси Profesorica о чём угодно по этому предмету — объяснит на твоём примере, шаг за шагом, круглосуточно.", "pt": "Pergunta à Profesorica qualquer coisa desta disciplina — explica no teu exemplo, passo a passo, 24h."}, "askBtn": {"sr": "Pitaj Profesoricu →", "en": "Ask Profesorica →", "de": "Frag Profesorica →", "fr": "Demande à Profesorica →", "es": "Pregunta a Profesorica →", "it": "Chiedi a Profesorica →", "ru": "Спроси Profesorica →", "pt": "Pergunta à Profesorica →"}, "allBtn": {"sr": "Svi predmeti →", "en": "All subjects →", "de": "Alle Fächer →", "fr": "Toutes les matières →", "es": "Todas las asignaturas →", "it": "Tutte le materie →", "ru": "Все предметы →", "pt": "Todas as disciplinas →"}, "again": {"sr": "↺ Ponovi kviz", "en": "↺ Retake the quiz", "de": "↺ Quiz wiederholen", "fr": "↺ Refaire le quiz", "es": "↺ Repetir el test", "it": "↺ Rifai il quiz", "ru": "↺ Пройти заново", "pt": "↺ Repetir o quiz"}, "back": {"sr": "← Elektrodistributivni sistemi", "en": "← Power distribution systems", "de": "← Verteilnetze", "fr": "← Réseaux de distribution", "es": "← Sistemas de distribución", "it": "← Sistemi di distribuzione", "ru": "← Распределительные сети", "pt": "← Sistemas de distribuição"}, "eyebrow": {"sr": "Proveri znanje · Elektrodistributivni sistemi", "en": "Test yourself · Power distribution systems", "de": "Wissen prüfen · Verteilnetze", "fr": "Teste-toi · Réseaux de distribution", "es": "Ponte a prueba · Sistemas de distribución", "it": "Mettiti alla prova · Sistemi di distribuzione", "ru": "Проверь знания · Распределительные сети", "pt": "Testa-te · Sistemas de distribuição"}};
 var DATA={"sr": [{"tag": "Gubici u vodu", "q": "Trofazni vod, I = 100 A, R = 0,2 Ω/fazi. Gubici?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Pad napona", "q": "I = 50 A, R = 0,5 Ω, X = 0,3 Ω, cos φ = 0,8. Pad?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}], "en": [{"tag": "Line losses", "q": "Three-phase line, I = 100 A, R = 0.2 Ω/phase. Losses?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Voltage drop", "q": "I = 50 A, R = 0.5 Ω, X = 0.3 Ω, cos φ = 0.8. Drop?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}], "de": [{"tag": "Leitungsverluste", "q": "Drehstromleitung, I = 100 A, R = 0,2 Ω/Phase. Verluste?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Spannungsabfall", "q": "I = 50 A, R = 0,5 Ω, X = 0,3 Ω, cos φ = 0,8. Abfall?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}], "fr": [{"tag": "Pertes en ligne", "q": "Ligne triphasée, I = 100 A, R = 0,2 Ω/phase. Pertes ?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Chute de tension", "q": "I = 50 A, R = 0,5 Ω, X = 0,3 Ω, cos φ = 0,8. Chute ?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}], "es": [{"tag": "Pérdidas de línea", "q": "Línea trifásica, I = 100 A, R = 0,2 Ω/fase. ¿Pérdidas?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Caída de tensión", "q": "I = 50 A, R = 0,5 Ω, X = 0,3 Ω, cos φ = 0,8. ¿Caída?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}], "it": [{"tag": "Perdite di linea", "q": "Linea trifase, I = 100 A, R = 0,2 Ω/fase. Perdite?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Caduta di tensione", "q": "I = 50 A, R = 0,5 Ω, X = 0,3 Ω, cos φ = 0,8. Caduta?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}], "ru": [{"tag": "Потери в линии", "q": "Трёхфазная линия, I = 100 A, R = 0,2 Ω/фазу. Потери?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Падение напряжения", "q": "I = 50 A, R = 0,5 Ω, X = 0,3 Ω, cos φ = 0,8. Падение?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}], "pt": [{"tag": "Perdas na linha", "q": "Linha trifásica, I = 100 A, R = 0,2 Ω/fase. Perdas?", "o": ["6 kW", "2 kW", "60 kW", "0,6 kW"], "c": 0, "sol": "<span class=\"step\">P<sub>g</sub> = 3·I²·R = 3·100²·0,2 = 6 kW</span><span class=\"res\">6 kW</span>"}, {"tag": "Queda de tensão", "q": "I = 50 A, R = 0,5 Ω, X = 0,3 Ω, cos φ = 0,8. Queda?", "o": ["29 V", "40 V", "25 V", "58 V"], "c": 0, "sol": "<span class=\"step\">ΔU = I(R cos φ + X sin φ) = 50·0,58 = 29 V</span><span class=\"res\">29 V</span>"}]};
-var LANG='sr';try{LANG=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(e){}if(!DATA[LANG])LANG='sr';
+var UIX={"score": {"sr": "Tačno", "en": "Correct", "de": "Richtig", "fr": "Correct", "es": "Correcto", "it": "Corretto", "ru": "Верно", "pt": "Correto"}, "rwin": {"sr": "Ja to mogu! 🎉", "en": "I can do this! 🎉", "de": "Ich kann das! 🎉", "fr": "J'y arrive ! 🎉", "es": "¡Yo puedo! 🎉", "it": "Ce la faccio! 🎉", "ru": "У меня получилось! 🎉", "pt": "Eu consigo! 🎉"}, "rmid": {"sr": "Super napredak!", "en": "Great progress!", "de": "Toller Fortschritt!", "fr": "Beau progrès !", "es": "¡Buen progreso!", "it": "Ottimi progressi!", "ru": "Отличный прогресс!", "pt": "Ótimo progresso!"}, "rlow": {"sr": "Odličan početak!", "en": "Great start!", "de": "Toller Anfang!", "fr": "Bon début !", "es": "¡Buen comienzo!", "it": "Ottimo inizio!", "ru": "Отличное начало!", "pt": "Ótimo começo!"}, "mwin": {"sr": "Sjajno ti ide — pravi si as!", "en": "You're doing great — a real star!", "de": "Klasse — ein echter Star!", "fr": "Tu assures — une vraie star !", "es": "¡Lo haces genial — toda una estrella!", "it": "Vai alla grande — una vera stella!", "ru": "Отлично — ты настоящая звезда!", "pt": "Vais muito bem — uma estrela!"}, "mmid": {"sr": "Još malo vežbe i sve je tvoje 💪", "en": "A little more practice and you've got it 💪", "de": "Noch etwas Übung und du hast es 💪", "fr": "Encore un peu et c'est gagné 💪", "es": "Un poco más y lo tienes 💪", "it": "Ancora un po' e ci sei 💪", "ru": "Ещё немного практики — и всё твоё 💪", "pt": "Mais um pouco e é teu 💪"}, "mlow": {"sr": "Hajde da ovo pređemo zajedno 💛", "en": "Let's go through this together 💛", "de": "Gehen wir das zusammen durch 💛", "fr": "Voyons ça ensemble 💛", "es": "Repasémoslo juntos 💛", "it": "Rivediamolo insieme 💛", "ru": "Давай разберём это вместе 💛", "pt": "Vamos ver isto juntos 💛"}, "badge": {"sr": "🏅 Bedž", "en": "🏅 Badge", "de": "🏅 Abzeichen", "fr": "🏅 Badge", "es": "🏅 Insignia", "it": "🏅 Distintivo", "ru": "🏅 Значок", "pt": "🏅 Emblema"}, "fbokv": {"sr": ["Bravo! ✨", "Tako je! 💛", "Sjajno! 🎉", "Baš tako! 🌸"], "en": ["Great! ✨", "That's it! 💛", "Awesome! 🎉", "Exactly! 🌸"], "de": ["Super! ✨", "Richtig! 💛", "Klasse! 🎉", "Genau! 🌸"], "fr": ["Bravo ! ✨", "C'est ça ! 💛", "Super ! 🎉", "Exact ! 🌸"], "es": ["¡Genial! ✨", "¡Eso es! 💛", "¡Increíble! 🎉", "¡Exacto! 🌸"], "it": ["Bravo! ✨", "Esatto! 💛", "Fantastico! 🎉", "Proprio così! 🌸"], "ru": ["Молодец! ✨", "Верно! 💛", "Отлично! 🎉", "Именно! 🌸"], "pt": ["Boa! ✨", "É isso! 💛", "Incrível! 🎉", "Exato! 🌸"]}};
+var SUBJ="Elektrodistributivni sistemi";
+var ASKHREF="predmet-elektrodistributivni-sistemi.html";
+var $=function(id){return document.getElementById(id)};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2).toLowerCase();if(DATA[s])return s;}}catch(e){}return 'sr'}
+function U(o){var l=lng();return (o&&(o[l]||o.sr))||''}
+var LANG=lng();if(!DATA[LANG])LANG='sr';
 var Q=DATA[LANG];
-function tr(l){if(!DATA[l])l='sr';LANG=l;Q=DATA[l];try{localStorage.setItem('mathia_lang',l);}catch(e){}document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(I18N[k]&&I18N[k][l])e.textContent=I18N[k][l];});document.querySelectorAll('[data-i18n-html]').forEach(function(e){var k=e.getAttribute('data-i18n-html');if(I18N[k]&&I18N[k][l])e.innerHTML=I18N[k][l];});var sel=document.getElementById('qlang');if(sel)sel.value=l;render();}
-
-
-  var idx=0, revealed=false, L=["A","B","C","D","E"];
-  var qcard=document.getElementById("qcard"),end=document.getElementById("end");
-  function pick(k,el){
-    var op=document.getElementById("opts"); if(op.classList.contains("locked")) return;
-    op.classList.add("locked"); var it=Q[idx], nd=op.children;
-    for(var j=0;j<nd.length;j++){ if(j===it.c) nd[j].classList.add("correct"); }
-    var fb=document.getElementById("fb");
-    if(k===it.c){ fb.className="fb ok"; fb.textContent=I18N.fbOk[LANG]; }
-    else{ el.classList.add("wrong"); fb.className="fb no"; fb.textContent=I18N.fbNo[LANG]; }
-    document.getElementById("nextBtn").style.display="";
-  }
-  function render(){
-    var it=Q[idx];
-    document.getElementById("tag").innerHTML=it.tag;
-    document.getElementById("qtxt").innerHTML=it.q;
-    var op=document.getElementById("opts"); op.className="opts"; op.innerHTML="";
-    (it.o||[]).forEach(function(txt,k){ var b=document.createElement("div"); b.className="opt"; b.innerHTML='<span class="mk">'+L[k]+'</span><span>'+txt+'</span>'; b.addEventListener("click",function(){ pick(k,b); }); op.appendChild(b); });
-    var fb=document.getElementById("fb"); fb.className="fb"; fb.textContent="";
-    document.getElementById("solbody").innerHTML=it.sol;
-    document.getElementById("sol").classList.remove("on");
-    document.getElementById("revealBtn").style.display="";
-    document.getElementById("nextBtn").style.display="none";
-    document.getElementById("nextBtn").textContent = (idx===Q.length-1 ? I18N.nextEnd[LANG] : I18N.nextMid[LANG]);
-    document.getElementById("prevBtn").style.visibility = idx>0 ? "visible":"hidden";
-    document.getElementById("qnum").textContent=I18N.qnum[LANG]+" "+(idx+1)+" / "+Q.length;
-    document.getElementById("bar").style.width=((idx)/Q.length*100)+"%";
-    revealed=false;
-    window.scrollTo({top:0,behavior:"smooth"});
-  }
-  document.getElementById("revealBtn").addEventListener("click",function(){
-    document.getElementById("sol").classList.add("on");
-    this.style.display="none";
-    document.getElementById("nextBtn").style.display="";
-    revealed=true;
-  });
-  document.getElementById("nextBtn").addEventListener("click",function(){
-    if(idx<Q.length-1){idx++;render();}
-    else{ // kraj
-      document.getElementById("bar").style.width="100%";
-      qcard.style.display="none";document.getElementById("qnum").style.display="none";document.querySelector(".prog").style.display="none";
-      end.classList.add("on");window.scrollTo({top:0,behavior:"smooth"});
-    }
-  });
-  document.getElementById("prevBtn").addEventListener("click",function(){ if(idx>0){idx--;render();} });
-  document.getElementById("againBtn").addEventListener("click",function(){
-    idx=0;end.classList.remove("on");qcard.style.display="";document.getElementById("qnum").style.display="";document.querySelector(".prog").style.display="";render();
-  });
-  var _sel=document.getElementById('qlang');if(_sel){_sel.value=LANG;_sel.addEventListener('change',function(){tr(this.value);});}
-  tr(LANG);
-})();
+var i=0,score=0,hearts=3,streak=0,answered=false;
+var curOrder=[],curCorrect=0,curBtns=[],L=["A","B","C","D","E"];
+function chrome(){
+ $('eyebrow').textContent=U(I18N.eyebrow);
+ $('free').textContent=U(I18N.free);
+ $('solH').textContent=U(I18N.solH);
+ $('reveal').textContent=U(I18N.reveal);
+ $('again').textContent=U(I18N.again);
+ $('ask').textContent=U(I18N.askBtn);$('ask').href=ASKHREF;
+ $('allsub').textContent=U(I18N.allBtn);$('allsub').href='predmeti.html';
+ var s=$('lang');if(s)s.value=LANG;
+ document.documentElement.lang=LANG;
+}
+function render(){
+ answered=false;Q=DATA[LANG];var it=Q[i];
+ $('qnum').textContent=U(I18N.qnum)+' '+(i+1)+' / '+Q.length;
+ $('tag').innerHTML=it.tag||'';
+ $('q').innerHTML=it.q;
+ $('mascot').textContent='🦉';$('fb').textContent='';$('fb').className='fb';
+ $('sol').classList.remove('on');$('solbody').innerHTML=it.sol||'';
+ $('reveal').classList.remove('hidden');
+ $('next').classList.add('hidden');
+ $('prog').style.width=(i/Q.length*100)+'%';
+ if(!it.__ord){var ord=(it.o||[]).map(function(_,x){return x});for(var a=ord.length-1;a>0;a--){var r=Math.floor(Math.random()*(a+1));var t=ord[a];ord[a]=ord[r];ord[r]=t;}it.__ord=ord;}
+ curOrder=it.__ord;curCorrect=curOrder.indexOf(it.c);curBtns=[];
+ var box=$('opts');box.className='opts';box.innerHTML='';
+ curOrder.forEach(function(orig,pos){var b=document.createElement('button');b.className='opt';
+   b.innerHTML='<span class="mk">'+L[pos]+'</span><span>'+(it.o[orig])+'</span>';
+   b.style.animation='pop .35s '+(pos*0.05)+'s both';b.onclick=function(){pick(pos,b)};box.appendChild(b);curBtns.push(b);});
+ chrome();
+}
+function pick(pos,btn){
+ if(answered)return;answered=true;var ok=(pos===curCorrect);
+ $('opts').classList.add('locked');
+ curBtns.forEach(function(o,idx){o.style.pointerEvents='none';if(idx===curCorrect)o.classList.add('correct');});
+ if(ok){btn.classList.add('correct');score++;streak++;$('streak').textContent='🔥 '+streak;
+   $('mascot').textContent=['🥳','😻','🌟','💯','🎈'][Math.floor(Math.random()*5)];
+   var p=UIX.fbokv[LANG]||UIX.fbokv.sr;$('fb').textContent=p[Math.floor(Math.random()*p.length)];$('fb').className='fb ok';miniConf();
+ }else{btn.classList.add('wrong');streak=0;$('streak').textContent='🔥 0';hearts=Math.max(0,hearts-1);
+   $('hearts').textContent='❤️'.repeat(hearts)+'🤍'.repeat(3-hearts);
+   $('mascot').textContent='🫣';$('fb').textContent=U(I18N.fbNo);$('fb').className='fb no';}
+ $('next').classList.remove('hidden');
+ $('next').textContent=(i===Q.length-1)?U(I18N.nextEnd):U(I18N.nextMid);
+}
+$('reveal').onclick=function(){$('sol').classList.add('on');this.classList.add('hidden');};
+$('next').onclick=function(){i++;if(i>=Q.length){finish();return;}render();};
+function finish(){
+ $('prog').style.width='100%';$('quiz').classList.add('hidden');$('report').classList.remove('hidden');
+ $('rscore').textContent=U(UIX.score)+': '+score+' / '+Q.length;
+ var pct=score/Q.length;
+ if(pct>=0.8){$('rbig').textContent='🏆';$('rtitle').textContent=U(UIX.rwin);$('rmsg').textContent=U(UIX.mwin);$('rbadge').style.display='';bigConf();}
+ else if(pct>=0.5){$('rbig').textContent='🌟';$('rtitle').textContent=U(UIX.rmid);$('rmsg').textContent=U(UIX.mmid);$('rbadge').style.display='';bigConf();}
+ else{$('rbig').textContent='🌱';$('rtitle').textContent=U(UIX.rlow);$('rmsg').textContent=U(UIX.mlow);$('rbadge').style.display='none';}
+ $('rbadge').textContent=U(UIX.badge)+': '+SUBJ;
+ chrome();
+}
+$('again').onclick=function(){i=0;score=0;hearts=3;streak=0;$('hearts').textContent='❤️❤️❤️';$('streak').textContent='🔥 0';(DATA[LANG]||[]).forEach(function(it){delete it.__ord;});$('report').classList.add('hidden');$('quiz').classList.remove('hidden');render();};
+function spawnConf(n){var box=$('conf');var cols=['#C6A05C','#B01E48','#CC5E7E','#F0DCA8','#3FB98C','#E7D2A2'];for(var k=0;k<n;k++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[k%cols.length];s.style.animationDuration=(1.6+Math.random()*1.4)+'s';s.style.transform='rotate('+Math.random()*360+'deg)';if(Math.random()<.25)s.style.borderRadius='50%';box.appendChild(s);setTimeout(function(el){return function(){el.remove()}}(s),3200);}}
+function miniConf(){spawnConf(14)}
+function bigConf(){spawnConf(90);var h=['💛','🌸','✨','🎉'];for(var k=0;k<16;k++){(function(k){setTimeout(function(){var s=document.createElement('i');s.textContent=h[k%4];s.style.cssText='position:absolute;top:-6%;font-size:20px;left:'+(Math.random()*100)+'%;animation:cf '+(1.8+Math.random())+'s linear forwards';$('conf').appendChild(s);setTimeout(function(){s.remove()},3200)},k*60)})(k);}}
+(function(){var box=$('fall'),g=['∫','∑','√','π','∞','∂','θ','Δ','≈','½','💛','🌸','✦','⭐'];for(var k=0;k<20;k++){var s=document.createElement('span');s.textContent=g[k%g.length];if(k%3===0)s.className='m';s.style.left=Math.random()*100+'%';s.style.fontSize=(13+Math.random()*20)+'px';s.style.animationDuration=(7+Math.random()*8)+'s';s.style.animationDelay=(-Math.random()*10)+'s';box.appendChild(s);}})();
+$('lang').addEventListener('change',function(){LANG=this.value;if(!DATA[LANG])LANG='sr';try{localStorage.setItem('mathia_lang',this.value);}catch(e){}try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:this.value}));}catch(e){}if(!$('report').classList.contains('hidden'))finish();else render();});
+window.addEventListener('mathia:lang',function(e){var v=(e&&e.detail)?String(e.detail).slice(0,2):LANG;if(DATA[v])LANG=v;if(!$('report').classList.contains('hidden'))finish();else render();});
+render();
 </script>
+<style id="kul-safe">body{padding-bottom:calc(24px + env(safe-area-inset-bottom))}@media(max-width:560px){.wrap{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}}</style>
 </body>
 </html>
