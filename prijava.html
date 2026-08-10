@@ -184,6 +184,16 @@ code{overflow-wrap:break-word}
   .backpill .chev{color:#C6A05C;font-weight:800;align-self:center}
   .mw{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:700;font-size:1.32em;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:mwFoil 8s linear infinite}
   @keyframes mwFoil{to{background-position:220% center}}
+  /* slatka maskota iznad kartice — u duhu kvizova */
+  .pmascot{width:78px;height:78px;margin:-58px auto 6px;border-radius:50%;display:grid;place-items:center;font-size:2.5rem;
+    background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC)!important;border:2.5px solid #F0DCA8;
+    box-shadow:0 16px 30px -14px rgba(176,30,72,.45),0 2px 0 rgba(255,255,255,.8) inset;position:relative;z-index:3;animation:pbob 3s ease-in-out infinite}
+  .pmascot .ow{filter:drop-shadow(0 2px 3px rgba(120,40,60,.25))}
+  @keyframes pbob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+  @media(prefers-reduced-motion:reduce){.pmascot{animation:none}}
+  .card h1{font-size:1.55rem!important;line-height:1.2!important}
+  .field{background:#fff!important;border-radius:16px!important}
+  .field:focus-within{box-shadow:0 0 0 4px rgba(198,160,92,.14)!important}
 </style>
 <script src="mathia-header.js" defer></script>
 </head>
@@ -198,6 +208,8 @@ code{overflow-wrap:break-word}
   <div class="top"><a class="backpill" href="index.html"><span class="chev">←</span> Nazad na <span class="mw">Mathia</span></a></div>
 
   <div class="card">
+
+    <div class="pmascot" aria-hidden="true"><span class="ow">🦉</span></div>
 
     <!-- KORAK 1: telefon -->
     <div id="step1">
@@ -274,7 +286,13 @@ code{overflow-wrap:break-word}
 // ============================================================
 (function(){
   var API = "/api";
-  var DEMO_CODE = "123456";           // samo za demo prikaz; ukloni kad backend proradi
+  var DEMO_CODE = "123456";           // fallback za prikaz dok SMS provajder nije uključen u Supabase-u
+  // ——— PRAVI telefonski OTP preko Supabase-a (radi čim se u Supabase-u uključi SMS provajder) ———
+  var SB_URL="https://ibhirxltgeyecrjwymai.supabase.co";
+  var SB_ANON="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImliaGlyeGx0Z2V5ZWNyand5bWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MTYzMzgsImV4cCI6MjA5NzQ5MjMzOH0.nE3xYc5JuUpPETrGP8oEiFWlZnhhuYhxY-XFDBtARXk";
+  var _sbc=null;
+  function sbc(){ if(_sbc) return _sbc; try{ if(window.supabase) _sbc=window.supabase.createClient(SB_URL,SB_ANON); }catch(e){} return _sbc; }
+  function setSbCookie(ses){ try{ if(!ses||!ses.access_token) return; var ost=ses.expires_at?(ses.expires_at-Math.floor(Date.now()/1000)):3600; var sec=(location.protocol==="https:")?"; Secure":""; document.cookie="mathia_sb="+encodeURIComponent(ses.access_token)+"; path=/; max-age="+Math.max(60,Math.min(ost,3600))+"; SameSite=Lax"+sec; }catch(e){} }
   var T = {
     sr:{h1:"Prijavi se brojem telefona",sub1:"Bez kartice. Prvih <b>15 minuta</b> je potpuno besplatno.",
         lblPhone:"Broj telefona",consent:'Slažem se da Mathia obradi moj broj telefona radi prijave, u skladu sa <a href="/privatnost.html" target="_blank">politikom privatnosti</a>.',
@@ -370,19 +388,26 @@ code{overflow-wrap:break-word}
   $("send").onclick=async function(){
     clearMsg(); if(!phoneValid()){ err(T[lang].eInvalid); return; }
     phone=normPhone(); $("send").disabled=true;
-    var res=await post("/auth/send-code",{phone:phone});
-    // backend vraća {ok:true}; ako je null -> demo mod
+    var sent=false;
+    var c=sbc();
+    if(c){ try{ var r=await c.auth.signInWithOtp({phone:phone}); if(!r||!r.error) sent=true; }catch(e){} }
+    if(!sent){ await post("/auth/send-code",{phone:phone}); }   // fallback dok SMS provajder nije uključen
     $("phoneEcho").textContent=phone;
     ok(T[lang].sent); show($("step1"),false); show($("step2"),true); startTimer(); $("code").focus();
-    if(res===null){ console.info("[Mathia] DEMO mod: unesi kod "+DEMO_CODE); }
+    if(!sent){ console.info("[Mathia] DEMO mod: unesi kod "+DEMO_CODE); }
   };
   $("resend").onclick=function(){ if($("resend").style.pointerEvents==="none")return; $("send").onclick(); };
   $("back").onclick=function(){ clearMsg(); show($("step2"),false); show($("step1"),true); $("send").disabled=false; };
 
   $("verify").onclick=async function(){
     clearMsg(); var code=$("code").value; $("verify").disabled=true;
-    var res=await post("/auth/verify",{phone:phone,code:code});
-    if(res===null){ // DEMO
+    var c=sbc();
+    if(c){ try{ var r=await c.auth.verifyOtp({phone:phone,token:code,type:"sms"});
+      if(r && !r.error && r.data && r.data.session){ setSbCookie(r.data.session); ok(T[lang].welcome); showStart(); return; }
+      if(r && r.error){ /* pogrešan kod ili SMS provajder nije uključen — probaj fallback ispod */ }
+    }catch(e){} }
+    var res=await post("/auth/verify",{phone:phone,code:code});   // fallback (demo)
+    if(res===null){
       if(code===DEMO_CODE){ ok(T[lang].welcome); showStart(); }
       else { err(T[lang].eCode); $("verify").disabled=false; }
       return;

@@ -517,5 +517,27 @@ s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFi
 })();
 </script>
 <script src="mathia-delight.js" defer></script>
+<style id="sweetfx-css">
+#sweetfall{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+#sweetfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.18);animation:sff linear infinite;will-change:transform}
+#sweetfall span.m{color:rgba(176,30,72,.14)}
+@keyframes sff{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(22deg);opacity:0}}
+.sweetowl{width:70px;height:70px;margin:2px auto 8px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC);border:2.5px solid #F0DCA8;box-shadow:0 16px 30px -14px rgba(176,30,72,.42),0 2px 0 rgba(255,255,255,.85) inset;animation:sowlbob 3s ease-in-out infinite}
+@keyframes sowlbob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){#sweetfall span,.sweetowl{animation:none}}
+</style>
+<script>(function(){
+ try{
+ if(!document.getElementById('mathfall')&&!document.getElementById('fall')&&!document.getElementById('sweetfall')){
+   var box=document.createElement('div');box.id='sweetfall';box.setAttribute('aria-hidden','true');
+   var g=['✦','⭐','🧭','💛','🌸','✨','❓','∑','π','√'],h='';
+   for(var k=0;k<20;k++){var m=(k%3===0)?' class="m"':'';h+='<span'+m+' style="left:'+(Math.random()*100)+'%;font-size:'+(13+Math.random()*20).toFixed(0)+'px;animation-duration:'+(7+Math.random()*8).toFixed(1)+'s;animation-delay:'+(-Math.random()*12).toFixed(1)+'s">'+g[k%g.length]+'</span>';}
+   box.innerHTML=h;document.body.appendChild(box);
+ }
+ function ensureOwl(){ if(document.querySelector('.sweetowl'))return; var hd=document.querySelector('.ts-hero h1,.hero h1,.stage h1,main h1,.card h1,h1'); if(!hd||!hd.parentNode)return; var o=document.createElement('div');o.className='sweetowl';o.setAttribute('aria-hidden','true');o.textContent='🦉';hd.parentNode.insertBefore(o,hd); }
+ ensureOwl();[150,400,900,1800].forEach(function(d){setTimeout(ensureOwl,d);});
+ try{var mo=new MutationObserver(function(){clearTimeout(window.__sowl);window.__sowl=setTimeout(ensureOwl,160);});mo.observe(document.body,{childList:true,subtree:true});}catch(e){}
+ }catch(e){}
+})();</script>
 </body>
 </html>
