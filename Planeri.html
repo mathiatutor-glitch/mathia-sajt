@@ -115,4 +115,18 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
   </div>
 </footer>
 <script src="mathia-delight.js" defer></script>
+<style id="formulefx-css">
+#formulefall{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+#formulefall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.16);animation:fmf linear infinite;will-change:transform}
+#formulefall span.m{color:rgba(176,30,72,.12)}
+@keyframes fmf{0%{transform:translateY(-10vh) rotate(0);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateY(114vh) rotate(18deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#formulefall span{animation:none}}
+</style>
+<script>(function(){try{
+ if(document.getElementById('formulefall')||document.getElementById('mathfog')||document.getElementById('fall'))return;
+ var box=document.createElement('div');box.id='formulefall';box.setAttribute('aria-hidden','true');
+ var g=['∫','∑','√','π','∂','dx','dy','lim','Δ','≈','½','∞','θ','∇','ƒ','≤'],h='';
+ for(var k=0;k<18;k++){var m=(k%3===0)?' class="m"':'';h+='<span'+m+' style="left:'+(Math.random()*100)+'%;font-size:'+(13+Math.random()*22).toFixed(0)+'px;animation-duration:'+(9+Math.random()*9).toFixed(1)+'s;animation-delay:'+(-Math.random()*16).toFixed(1)+'s">'+g[k%g.length]+'</span>';}
+ box.innerHTML=h;document.body.appendChild(box);
+}catch(e){}})();</script>
 </body></html>
