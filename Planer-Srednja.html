@@ -326,6 +326,7 @@ input.t:focus,select.t:focus,textarea.t:focus{border-color:#C6A05C!important;box
       <button class="tbtn miniad" onclick="toggleSide(true)">☰</button>
       <div class="mt" id="mtitle">Naslovna</div>
       <span class="savei"><span class="dot"></span><span id="savetxt">Sačuvano</span></span>
+      <select class="pl-lang" id="pl-lang" aria-label="Jezik" onchange="try{localStorage.setItem('mathia_lang',this.value);document.documentElement.lang=this.value;window.dispatchEvent(new CustomEvent('mathia:lang',{detail:this.value}));}catch(e){}"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
       <button class="tbtn danger" onclick="resetAll()">↺ Reset</button>
     </div>
     <div class="wrap">
@@ -948,17 +949,7 @@ var sv='champ';try{sv=localStorage.getItem(K)||'champ';}catch(e){}set(sv);
 var bt=c.querySelectorAll('.mt');for(var i=0;i<bt.length;i++)bt[i].addEventListener('click',function(){set(this.getAttribute('data-t'));});
 })();
 </script>
-<script src="mathia-header.js" defer></script>
-<footer class="mfoot mfoot2 px-foot">
-  <div class="pf-in">
-    <div class="pf-orn">✦</div>
-    <div class="pf-word">MATHIA</div>
-    <p class="pf-line">Matematika, fizika, elektrotehnika i programiranje — online, od 5. razreda do fakulteta, uz Profesoricu 0–24h.</p>
-    <nav class="pf-links"><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi i cene</a><a href="o-marini.html">O meni</a><a href="mailto:kontakt@mathia.rs">Kontakt</a><a href="uslovi.html">Uslovi kupovine</a><a href="privatnost.html">Politika privatnosti</a></nav>
-    <div class="pf-rule"></div>
-    <div class="pf-bot"><span class="pf-copy">© 2026 Mathia Edu · Sva prava zadržana</span></div>
-  </div>
-</footer>
+<!-- sajt-heder i futer uklonjeni: planer je čist standalone app -->
 <script>
 /* nežni matematički simboli u pozadini — kao „Probaj besplatno 15 min" */
 (function(){
@@ -1008,7 +999,11 @@ if(document.readyState!=='loading')init();else document.addEventListener('DOMCon
 /* čist „tool" izgled — bez lebdećeg šuma iza forme */
 #lux-spark,#mathfall{display:none!important}
 /* topla dobrodošlica na Naslovnoj — poziva da se popunjava */
-.welcome-hero{position:relative;text-align:center;background:radial-gradient(120% 120% at 50% -20%,#FFF3F7,#FCF6EA 60%);border:1px solid #F0DCA8;border-radius:24px;padding:26px 24px 24px;margin-bottom:18px;box-shadow:0 22px 46px -30px rgba(176,30,72,.28)}
+.welcome-hero{position:relative;text-align:center;background:linear-gradient(180deg,#FFF8EE,#FBF3E6);border:1px solid #F0DCA8;border-radius:24px;padding:24px 24px 22px;margin-bottom:18px;box-shadow:0 18px 40px -30px rgba(120,70,80,.3)}
+/* jezički prekidač u planeru */
+.pl-lang{border:1px solid #E7D2A2;border-radius:100px;padding:6px 11px;font-family:'Nunito',sans-serif;font-weight:800;font-size:.74rem;color:#9C7838;background:#fff;cursor:pointer}
+/* ako se ipak ubaci sajt-heder — sakrij ga u planeru */
+#mhead,header.mh,.mh,.mathia-header,#mathia-header{display:none!important}
 .welcome-hero .wh-owl{width:70px;height:70px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC);border:2.5px solid rgba(198,160,92,.6);box-shadow:0 14px 26px -12px rgba(176,30,72,.4);animation:luxbob 3s ease-in-out infinite}
 .welcome-hero .wh-t{font-family:'Spectral',serif;font-size:1.6rem;color:#5A1024;margin:0 0 6px}
 .welcome-hero .wh-lead{font-size:1.02rem;color:#5A1024;font-weight:600;margin:0 auto 4px;max-width:560px}
@@ -1126,6 +1121,7 @@ if(document.readyState!=='loading')init();else document.addEventListener('DOMCon
  boot();
 })();
 </script>
+<script>(function(){try{var l=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase();var s=document.getElementById("pl-lang");if(s){for(var i=0;i<s.options.length;i++){if(s.options[i].value===l){s.selectedIndex=i;break;}}}}catch(e){}})();</script>
 <script src="mathia-delight.js" defer></script>
 </body>
 </html>
