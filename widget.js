@@ -379,7 +379,7 @@
       '<div id="zoi-inrow">' +
         '<button class="zoi-tool" id="zoi-photo" title="Pošalji sliku, kod-fajl ili screenshot zadatka">📎</button>' +
         '<button class="zoi-tool" id="zoi-mic" title="Izdiktiraj zadatak">🎙️</button>' +
-        '<input type="file" id="zoi-file" accept="image/*,text/*,.txt,.py,.js,.ts,.jsx,.tsx,.java,.c,.cc,.cpp,.cxx,.h,.hpp,.cs,.go,.rs,.rb,.php,.swift,.kt,.scala,.sql,.html,.htm,.css,.scss,.json,.xml,.yaml,.yml,.md,.csv,.r,.m,.ino,.sh,.pas,.lua,.dart,.pl,.asm,.vhd,.v" style="display:none"/>' +
+        '<input type="file" id="zoi-file" accept="image/*,text/*,.txt,.py,.js,.ts,.jsx,.tsx,.java,.c,.cc,.cpp,.cxx,.h,.hpp,.cs,.go,.rs,.rb,.php,.swift,.kt,.scala,.sql,.html,.htm,.css,.scss,.json,.xml,.yaml,.yml,.md,.csv,.r,.m,.ino,.sh,.pas,.lua,.dart,.pl,.asm,.vhd,.v,.pdf,.docx,application/pdf" style="display:none"/>' +
         '<textarea id="zoi-ta" rows="1"></textarea>' +
         '<button class="zoi-send" id="zoi-go"></button>' +
       "</div>" +
@@ -1292,14 +1292,19 @@
     var txt = (taEl.value || "").trim();
     if (!txt && !attachment) return;
 
-    var isImg = attachment && attachment.kind !== "text";
-    addBub("me", txt || (attachment && attachment.kind === "text" ? ("📎 " + (attachment.name || "fajl")) : ""), isImg ? attachment.url : null);
+    var isImg = attachment && attachment.kind === "image";
+    var isPdf = attachment && attachment.kind === "pdf";
+    addBub("me", txt || (attachment ? ("📎 " + (attachment.name || "fajl")) : ""), isImg ? attachment.url : null);
 
     var content;
     if (isImg) {
       content = [];
       if (txt) content.push({ type: "text", text: txt });
       content.push({ type: "image", source: { type: "base64", media_type: attachment.media_type, data: attachment.data } });
+    } else if (isPdf) {
+      content = [];
+      if (txt) content.push({ type: "text", text: txt });
+      content.push({ type: "document", source: { type: "base64", media_type: "application/pdf", data: attachment.data } });
     } else if (attachment && attachment.kind === "text") {
       content = (txt ? txt + "\n\n" : "") + "Evo mog fajla \"" + (attachment.name || "kod") + "\":\n```" + (attachment.ext || "") + "\n" + attachment.text + "\n```";
     } else {
@@ -1336,6 +1341,14 @@
   }
 
   // ——— prilog: slika ili kod-fajl ———
+  function loadMammoth(cb){
+    if (window.mammoth) { cb(true); return; }
+    var sc = document.createElement("script");
+    sc.src = "https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js";
+    sc.onload = function(){ cb(!!window.mammoth); };
+    sc.onerror = function(){ cb(false); };
+    document.head.appendChild(sc);
+  }
   function clearAttach() { attachment = null; prevEl.style.display = "none"; prevImg.style.display = ""; prevImg.src = ""; fileEl.value = ""; }
   var TEXTEXT = ["txt","py","js","ts","jsx","tsx","java","c","cc","cpp","cxx","h","hpp","cs","go","rs","rb","php","swift","kt","kts","scala","sql","html","htm","css","scss","json","xml","yaml","yml","md","csv","tsv","r","m","ino","sh","bat","ps1","pas","lua","dart","pl","asm","vhd","v"];
   fileEl.addEventListener("change", function () {
@@ -1343,17 +1356,41 @@
     if (!f) return;
     var ext = (f.name || "").split(".").pop().toLowerCase();
     var isImg = (f.type && f.type.indexOf("image/") === 0);
-    var isText = !isImg && (((f.type && f.type.indexOf("text/") === 0)) || TEXTEXT.indexOf(ext) >= 0);
+    var isPdf = (f.type === "application/pdf") || ext === "pdf";
+    var isDocx = ext === "docx";
+    var isText = !isImg && !isPdf && !isDocx && (((f.type && f.type.indexOf("text/") === 0)) || TEXTEXT.indexOf(ext) >= 0);
     if (isImg) {
       var rd = new FileReader();
       rd.onload = function () { var url = rd.result; attachment = { kind:"image", media_type: f.type || "image/jpeg", data: String(url).split(",")[1], url: url }; prevImg.style.display = ""; prevImg.src = url; prevName.textContent = f.name || "slika"; prevEl.style.display = "flex"; };
       rd.readAsDataURL(f);
+    } else if (isPdf) {
+      var rp = new FileReader();
+      rp.onload = function () { attachment = { kind:"pdf", media_type:"application/pdf", data: String(rp.result).split(",")[1], name: f.name || "dokument.pdf" }; prevImg.style.display = "none"; prevName.textContent = "📎 " + (f.name || "PDF"); prevEl.style.display = "flex"; };
+      rp.readAsDataURL(f);
+    } else if (isDocx) {
+      prevImg.style.display = "none"; prevName.textContent = "📎 učitavam " + (f.name || "dokument") + "…"; prevEl.style.display = "flex";
+      loadMammoth(function(ok){
+        if (!ok) { prevName.textContent = "Ne mogu da učitam .docx — sačuvaj kao PDF"; attachment = null; fileEl.value = ""; return; }
+        var rb = new FileReader();
+        rb.onload = function () {
+          try {
+            window.mammoth.extractRawText({ arrayBuffer: rb.result }).then(function(res){
+              var tx = (res && res.value || "").trim();
+              if (!tx) { prevName.textContent = "Prazan .docx — sačuvaj kao PDF"; attachment = null; fileEl.value = ""; return; }
+              if (tx.length > 100000) tx = tx.slice(0, 100000) + "\n…(skraćeno)";
+              attachment = { kind:"text", name: f.name || "dokument", ext: "", text: tx };
+              prevName.textContent = "📎 " + (f.name || "dokument");
+            }).catch(function(){ prevName.textContent = "Ne mogu da pročitam .docx — sačuvaj kao PDF"; attachment = null; fileEl.value = ""; });
+          } catch(e){ prevName.textContent = "Ne mogu da pročitam .docx — sačuvaj kao PDF"; attachment = null; fileEl.value = ""; }
+        };
+        rb.readAsArrayBuffer(f);
+      });
     } else if (isText) {
       var rt = new FileReader();
       rt.onload = function () { var t = String(rt.result || ""); if (t.length > 100000) t = t.slice(0, 100000) + "\n…(skraćeno)"; attachment = { kind:"text", name: f.name || "kod", ext: ext, text: t }; prevImg.style.display = "none"; prevName.textContent = "📎 " + (f.name || "kod"); prevEl.style.display = "flex"; };
       rt.readAsText(f);
     } else {
-      prevImg.style.display = "none"; prevName.textContent = "Nepodržan fajl — pošalji sliku ili kod-fajl"; prevEl.style.display = "flex"; attachment = null; fileEl.value = "";
+      prevImg.style.display = "none"; prevName.textContent = "Nepodržan fajl — pošalji sliku, PDF, .docx ili kod-fajl"; prevEl.style.display = "flex"; attachment = null; fileEl.value = "";
     }
   });
   $("#zoi-prev-x").onclick = clearAttach;
