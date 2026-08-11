@@ -496,7 +496,7 @@ function renderProfil(){
   const subs=DB.subjects||[];
   const avg=subs.length?Math.round(subs.reduce((a,s)=>a+(+s.napredak||0),0)/subs.length):0;
   const polozeno=subs.filter(s=>(+s.napredak||0)>=100).length;
-  let h='<div class="welcome-hero"><div class="wh-owl" aria-hidden="true">🦉</div><h3 class="wh-t">Ovo je tvoj planer 💛</h3><p class="wh-lead">Ovde ti živi cela školska godina — ciljevi, raspored, kontrolni, navike i mali uspesi.</p><p class="wh-sub">Popunjavaj malo po malo — svaki korak se čuva sam. Kreni odavde 👇</p></div>';
+  let h='';
   h+=card('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg> Naslovna',
     `<div class="grid2">
        ${field('Ime i prezime','profil.ime')}
@@ -1122,6 +1122,27 @@ if(document.readyState!=='loading')init();else document.addEventListener('DOMCon
 })();
 </script>
 <script>(function(){try{var l=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase();var s=document.getElementById("pl-lang");if(s){for(var i=0;i<s.options.length;i++){if(s.options[i].value===l){s.selectedIndex=i;break;}}}}catch(e){}})();</script>
+<style id="plan-anim">
+#content>.card,#content>.welcome-hero{animation:planIn .5s cubic-bezier(.2,.8,.2,1) both}
+#content>*:nth-child(2){animation-delay:.05s}#content>*:nth-child(3){animation-delay:.1s}
+#content>*:nth-child(4){animation-delay:.15s}#content>*:nth-child(5){animation-delay:.2s}
+#content>*:nth-child(6){animation-delay:.25s}#content>*:nth-child(n+7){animation-delay:.3s}
+@keyframes planIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.eng-hud{animation:planIn .5s cubic-bezier(.2,.8,.2,1) both}
+#nav .navgrp{animation:navIn .45s ease both}
+#nav .navgrp:nth-child(2){animation-delay:.05s}#nav .navgrp:nth-child(3){animation-delay:.1s}
+#nav .navgrp:nth-child(4){animation-delay:.15s}#nav .navgrp:nth-child(n+5){animation-delay:.2s}
+@keyframes navIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+.navi{transition:background .14s,transform .12s}
+.navi:hover .nic{transform:scale(1.08) rotate(-4deg)}
+.nic{transition:transform .15s}
+/* refined top bar (gornji deo prozora) */
+.top{padding:14px 30px!important;border-bottom:1px solid #EFE1C8!important}
+.top .mt{font-size:1.35rem!important}
+.top .mt .mt-ic svg{width:22px;height:22px}
+.savei{background:#F3F8F1;border:1px solid #d9ead9;border-radius:100px;padding:5px 12px}
+@media(prefers-reduced-motion:reduce){#content>.card,.eng-hud,#nav .navgrp,#content>.welcome-hero{animation:none!important}}
+</style>
 <script src="mathia-delight.js" defer></script>
 </body>
 </html>
