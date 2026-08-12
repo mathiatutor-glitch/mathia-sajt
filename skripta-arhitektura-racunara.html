@@ -300,24 +300,10 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="ftop">
-      <div>
-        <div class="fbrand"><span class="goldtext">Mathia</span></div>
-        <p>Matematika · Fizika · Elektrotehnika · Programiranje — uz Profesoricu, 0–24h.</p>
-        <p style="margin-top:8px"><a href="index.html">Početna</a> · <a href="predmeti.html">Predmeti</a> · <a href="prodavnica.html">Prodavnica</a> · <a href="index.html#paketi">Paketi</a></p>
-      </div>
-      <div class="footsig-wrap"><span class="footsig">Profesorica</span></div>
-    </div>
-    <div class="mathia-copyr">© 2026 Mathia Edu · Sva prava zadržana. Zabranjeno je kopiranje, umnožavanje i distribucija sadržaja, dizajna i metodologije bez pismene dozvole.</div>
-  </div>
-</footer>
-
 <script>
 (function(){
   var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
-  var SRC="https://project-y23je.vercel.app/widget.js?v=9";
+  var SRC="https://project-y23je.vercel.app/widget.js?v=10";
   var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "site", "data-name": "Profesorica", "data-sub": "Skripta \u2014 Arhitektura ra\u010dunara", "data-sub-en": "Study guide \u2014 Arhitektura ra\u010dunara", "data-hi-en": "Hi! I'm Profesorica \ud83d\udc69\u200d\ud83c\udfeb for Computer Architecture. Ask me about the computer model, assembly programming, processor and memory organization, system software, or CISC/RISC and parallelism \u2014 step by step!"};
   var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! Ja sam Profesorica \ud83d\udc69\u200d\ud83c\udfeb za Arhitekturu ra\u010dunara. Pitaj me o modelu ra\u010dunara, asemblerskom programiranju, organizaciji procesora i memorije, sistemskim programima ili CISC/RISC i paralelizmu \u2014 obja\u0161njavam korak po korak!", "en": "Hi! I'm Profesorica \ud83d\udc69\u200d\ud83c\udfeb for Computer Architecture. Ask me about the computer model, assembly programming, processor and memory organization, system software, or CISC/RISC and parallelism \u2014 step by step!"};
   var st=document.createElement("script"); st.src=SRC;
@@ -395,5 +381,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 <script src="i18n-mathia.js"></script>
 <script src="mathia-header.js" defer></script>
 <style id="mathia-readwidth">/* MATHIA fix: čitljiva širina — formule/oblaci nisu razvučeni preko cele strane */.page{max-width:820px!important;margin-left:auto!important;margin-right:auto!important}</style>
+<script src="mathia-delight.js" defer></script>
+<script src="footer-mathia.js" defer></script>
 </body>
 </html>
