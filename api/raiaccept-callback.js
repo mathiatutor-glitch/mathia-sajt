@@ -125,8 +125,13 @@ export default async function handler(req, res) {
     // 4) Aktivacija pristupa
     let pristupLink = (process.env.APP_URL || '') + '/nalog.html';
     if (porudzbina.tip === 'paket') {
-      const paketSifra = detaljno[0] && detaljno[0].sifra ? detaljno[0].sifra.replace(/^(MATHIA-|PKT-)/i, '').toLowerCase() : null;
-      const istice = await supa.aktivirajPretplatu({ email, paket: paketSifra, predmeti });
+      const _it0 = detaljno[0] || {};
+      // Porodica plana (basic/gold/diamond) — iz planKey, ili iz šifre (skini MATHIA-/PKT- i -GOD).
+      const paketSifra = _it0.planKey
+        || (_it0.sifra ? _it0.sifra.replace(/^(MATHIA-|PKT-)/i, '').replace(/-god$/i, '').toLowerCase() : null);
+      // Trajanje pristupa: 30 (mesečni) ili 365 (godišnji), iz kataloga.
+      const dani = _it0.trajanjeDana || null;
+      const istice = await supa.aktivirajPretplatu({ email, paket: paketSifra, predmeti, dani });
       pristupLink += '?istice=' + istice.toISOString().slice(0, 10);
       try {
         const uidSb = await adminFindUidByEmail(email);
@@ -167,7 +172,8 @@ export default async function handler(req, res) {
       if (porudzbina.tip === 'paket') {
         try {
           var _ime = (porudzbina.kupac_ime || '').trim().split(/\s+/)[0] || '';
-          var _pk = (detaljno[0] && detaljno[0].sifra ? detaljno[0].sifra.replace(/^(MATHIA-|PKT-)/i, '') : '');
+          var _pk = (detaljno[0] && detaljno[0].planKey)
+            || (detaljno[0] && detaljno[0].sifra ? detaljno[0].sifra.replace(/^(MATHIA-|PKT-)/i, '').replace(/-god$/i, '') : '');
           _pk = _pk ? _pk.charAt(0).toUpperCase() + _pk.slice(1).toLowerCase() : '';
           await mail.posaljiDobrodoslicu({ to: email, ime: _ime, paket: _pk, pristupLink });
         } catch (e2) {
