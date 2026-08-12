@@ -429,13 +429,6 @@ header,section,footer,.wrap{position:relative;z-index:1}
 <!-- CTA -->
 
 
-<footer class="om-close" role="contentinfo">
-  <div class="om-orn" aria-hidden="true"><span></span><i></i><span></span></div>
-  <p class="om-msg">Neka svaki tvoj dan bude korak ka svetlosti — uči, voli, budi zahvalan.<br>A ja ću biti tu, uz tebe — uvek.</p>
-  <div class="om-signoff"><span class="om-pre">s ljubavlju,</span><span class="om-sig">Marina</span></div>
-  <div class="om-copy">© 2026 Mathia Edu</div>
-</footer>
-
 <script>
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function countUp(el){var t=el.getAttribute('data-count');if(t===null)return;t=+t;var suf=el.getAttribute('data-suffix')||'';if(reduce){el.textContent=t+suf;return;}var dur=1100,s=null;function tick(x){if(!s)s=x;var p=Math.min((x-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+suf;if(p<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
@@ -656,5 +649,6 @@ for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.
 s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*20).toFixed(0)+'px';s.style.animationDuration=(14+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}})();
 </script>
 <script src="mathia-delight.js" defer></script>
+<script src="footer-mathia.js" defer></script>
 </body>
 </html>

@@ -104,16 +104,6 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 })();</script>
 <script src="i18n-mathia.js"></script>
 <script src="mathia-header.js" defer></script>
-<footer class="mfoot mfoot2 px-foot">
-  <div class="pf-in">
-    <div class="pf-orn">✦</div>
-    <div class="pf-word">MATHIA</div>
-    <p class="pf-line">Matematika, fizika, elektrotehnika i programiranje — online, od 5. razreda do fakulteta, uz Profesoricu 0–24h.</p>
-    <nav class="pf-links"><a href="predmeti.html">Predmeti</a><a href="prodavnica.html">Prodavnica</a><a href="index.html#paketi">Paketi i cene</a><a href="o-marini.html">O meni</a><a href="mailto:kontakt@mathia.rs">Kontakt</a><a href="uslovi.html">Uslovi kupovine</a><a href="privatnost.html">Politika privatnosti</a></nav>
-    <div class="pf-rule"></div>
-    <div class="pf-bot"><span class="pf-copy">© 2026 Mathia Edu · Sva prava zadržana</span></div>
-  </div>
-</footer>
 <script src="mathia-delight.js" defer></script>
 <style id="formulefx-css">
 #formulefall{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
@@ -129,4 +119,5 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
  for(var k=0;k<18;k++){var m=(k%3===0)?' class="m"':'';h+='<span'+m+' style="left:'+(Math.random()*100)+'%;font-size:'+(13+Math.random()*22).toFixed(0)+'px;animation-duration:'+(9+Math.random()*9).toFixed(1)+'s;animation-delay:'+(-Math.random()*16).toFixed(1)+'s">'+g[k%g.length]+'</span>';}
  box.innerHTML=h;document.body.appendChild(box);
 }catch(e){}})();</script>
+<script src="footer-mathia.js" defer></script>
 </body></html>
