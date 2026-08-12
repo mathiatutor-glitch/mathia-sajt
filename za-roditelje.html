@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Za roditelje — MATHIA EDU</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EE;--cream2:#F5EADB;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;
+ --gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--malina2:#CC5E7E;--muted:#8A7A80;
+ --serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:
+ radial-gradient(560px 420px at 106% -5%,#FBEAEF 0,transparent 56%), radial-gradient(520px 400px at -6% 106%,#F7ECD6 0,transparent 58%),var(--cream);line-height:1.6;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);color:var(--plum);font-weight:600;line-height:1.1;margin:0}
+.eyebrow{font-family:var(--sans);font-weight:800;letter-spacing:.3em;text-transform:uppercase;font-size:.7rem;color:var(--malina)}
+a{text-decoration:none}
+/* padajući simboli */
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:var(--serif);font-style:italic;color:rgba(198,160,92,.22);animation:fl linear infinite}
+#fall span.m{color:rgba(176,30,72,.16)}
+@keyframes fl{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(20deg);opacity:0}}
+main{position:relative;z-index:1}
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.5rem;letter-spacing:.14em;
+ background:linear-gradient(100deg,#9C7838,#E7D2A2 34%,#FFF7E2 50%,#E7D2A2 66%,#C6A05C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav .lite{display:flex;gap:26px;align-items:center}
+.nav .lite a{color:var(--plum);font-weight:700;font-size:.92rem}
+.nav .acc{background:linear-gradient(135deg,#E7D2A2,#C6A05C);color:#4a3410;font-weight:800;padding:9px 18px;border-radius:100px;font-size:.86rem}
+@media(max-width:720px){.nav .lite a:not(.acc){display:none}}
+/* HERO */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:36px 0 56px}
+@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center}}
+.hero h1{font-size:clamp(2.4rem,6vw,3.8rem);margin:14px 0 8px}
+.hero h1 em{font-style:normal;color:var(--malina)}
+.hero .lead{color:var(--plum2);font-size:1.14rem;max-width:520px;margin:0 0 26px}
+@media(max-width:820px){.hero .lead{margin:0 auto 26px}}
+.cta{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:800;font-size:1.05rem;
+ padding:16px 30px;border-radius:100px;box-shadow:0 18px 36px -14px rgba(176,30,72,.6);transition:transform .16s,box-shadow .16s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 24px 44px -14px rgba(176,30,72,.75)}
+.cta2{display:inline-flex;align-items:center;gap:8px;margin-left:12px;color:var(--plum);font-weight:800;padding:16px 22px;border-radius:100px;border:1.5px solid var(--goldlt)}
+.microtrust{margin-top:16px;color:var(--muted);font-size:.9rem}
+.microtrust b{color:var(--plum2)}
+.portrait{position:relative;justify-self:center}
+.portrait .ring{position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,#E7D2A2,#C6A05C,#F7EAC9,#CC5E7E,#E7D2A2);filter:blur(2px);opacity:.55;animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.portrait .ph{position:relative;width:290px;height:290px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 30px 60px -24px rgba(90,16,36,.5)}
+@media(max-width:820px){.portrait .ph{width:230px;height:230px}}
+.portrait .tag{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--goldlt);border-radius:100px;padding:7px 18px;font-family:var(--serif);color:var(--plum);font-weight:600;box-shadow:0 12px 24px -12px rgba(90,16,36,.4);white-space:nowrap}
+.portrait .spk{position:absolute;color:var(--gold);font-size:18px;animation:tw 4s ease-in-out infinite}
+/* sekcije */
+section{padding:52px 0}
+.sec-h{text-align:center;max-width:640px;margin:0 auto 34px}
+.sec-h h2{font-size:clamp(1.9rem,4.4vw,2.7rem);margin:.15em 0 .25em}
+.sec-h p{color:var(--plum2);font-size:1.06rem;margin:0}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:.8}}
+/* KO SI TI + benefiti — kartice */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.grid3{grid-template-columns:1fr}}
+.card{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:24px;padding:26px 22px;
+ box-shadow:0 24px 50px -34px rgba(90,16,36,.4);transition:transform .2s,box-shadow .2s,border-color .2s}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.card:hover{transform:translateY(-7px);box-shadow:0 40px 70px -34px rgba(90,16,36,.5);border-color:var(--gold)}
+.card .em{font-size:2.4rem;line-height:1;display:inline-block;transition:transform .25s}
+.card:hover .em{transform:scale(1.15) rotate(-6deg)}
+.card h3{font-size:1.4rem;margin:12px 0 6px}
+.card p{color:#6a5a62;font-size:.96rem;margin:0 0 12px}
+.card .go{font-weight:800;color:var(--malina);font-size:.92rem}
+/* KAKO RADI koraci */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:st}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{background:var(--card);border:1px solid var(--goldlt);border-radius:22px;padding:26px 22px;position:relative}
+.step .n{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:1.3rem;color:#4a3410;background:linear-gradient(160deg,#F0DCA6,#C6A05C);margin-bottom:12px}
+.step h3{font-size:1.25rem;margin-bottom:5px}
+.step p{color:#6a5a62;font-size:.95rem;margin:0}
+/* UTISCI */
+.tst{max-width:720px;margin:0 auto;text-align:center;background:radial-gradient(120% 120% at 50% 0,#FFF7F2,#FBEEDA);border:1px solid var(--goldlt);border-radius:28px;padding:44px 30px;box-shadow:0 30px 66px -40px rgba(90,16,36,.4)}
+.tst .stars{color:var(--gold);letter-spacing:3px;font-size:1.1rem}
+.tst q{display:block;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--plum);line-height:1.5;margin:14px 0 16px}
+.tst .who{color:var(--plum2);font-weight:700}
+/* PAKETI */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+@media(max-width:820px){.tiers{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+.tier{display:flex;flex-direction:column;background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.3);border-radius:24px;padding:28px 24px;box-shadow:0 24px 50px -32px rgba(90,16,36,.4);position:relative}
+.tier h3{font-size:1.5rem;letter-spacing:.04em}
+.tier .sub{color:var(--muted);font-size:.9rem;margin:2px 0 14px}
+.tier ul{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:10px;flex:1}
+.tier li{padding-left:24px;position:relative;font-size:.94rem;color:var(--ink)}
+.tier li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
+.tier .price{font-family:var(--serif);font-weight:700;font-size:2rem;color:var(--plum)}
+.tier .price span{font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--golddk)}
+.tier .pick{margin-top:16px;text-align:center;border:1.5px solid var(--gold);color:var(--golddk);font-weight:800;border-radius:100px;padding:13px}
+.tier.feat{border:2px solid var(--malina);box-shadow:0 34px 72px -30px rgba(176,30,72,.45),0 30px 64px -32px rgba(198,160,92,.5);transform:scale(1.03)}
+@media(max-width:820px){.tier.feat{transform:none}}
+.tier .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:800;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;padding:7px 16px;border-radius:100px;box-shadow:0 12px 24px -8px rgba(176,30,72,.6)}
+.tier.feat .pick{background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;border:none;box-shadow:0 16px 32px -14px rgba(176,30,72,.6)}
+.paknote{text-align:center;color:var(--muted);margin-top:18px;font-size:.92rem}
+/* FINAL CTA */
+.final{text-align:center;background:linear-gradient(180deg,#FFFDF9,#FBEEDA);color:var(--plum);border:1px solid var(--goldlt);border-radius:28px;padding:46px 34px;position:relative;overflow:hidden;box-shadow:0 30px 70px -44px rgba(120,70,80,.4)}
+.final::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--malina),var(--goldlt),transparent)}
+.final h2{color:var(--plum);font-size:clamp(1.8rem,4.4vw,2.6rem)}
+.final p{color:var(--plum2);max-width:480px;margin:10px auto 24px}
+.final .cta{background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;box-shadow:0 18px 36px -14px rgba(176,30,72,.55)}
+/* FOOTER */
+footer{text-align:center;padding:40px 0 30px;color:var(--muted);font-size:.82rem}
+.trustbar{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 44px;max-width:840px;margin:0 auto;padding:22px 26px;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:22px;box-shadow:0 20px 44px -32px rgba(90,16,36,.4);text-align:center}
+.trustbar>div{min-width:118px}
+.trustbar b{display:block;font-family:var(--serif);color:var(--plum);font-size:1.6rem;font-weight:700;line-height:1}
+.trustbar span{color:var(--muted);font-size:.8rem;font-weight:700;letter-spacing:.02em}
+.tstwrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.tstwrap{grid-template-columns:1fr}}
+.tst2{background:var(--card);border:1px solid var(--goldlt);border-radius:22px;padding:26px 24px;box-shadow:0 22px 46px -32px rgba(90,16,36,.4)}
+.tst2 .stars{color:var(--gold);letter-spacing:2px}
+.tst2 q{display:block;font-family:var(--serif);font-style:italic;font-size:1.14rem;color:var(--plum);line-height:1.5;margin:8px 0 12px}
+.tst2 .who{color:var(--plum2);font-weight:700;font-size:.9rem}
+.guarantee{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#fff;border:1px solid var(--goldlt);border-radius:100px;padding:9px 18px;color:var(--plum2);font-weight:700;font-size:.88rem;box-shadow:0 12px 24px -14px rgba(90,16,36,.35)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+<script src="mathia-header.js" defer></script>
+<style>/* kul-sloj */
+@keyframes ctaGlow{0%,100%{box-shadow:0 18px 36px -14px rgba(176,30,72,.6)}50%{box-shadow:0 20px 46px -10px rgba(176,30,72,.85),0 0 0 7px rgba(204,94,126,.12)}}
+.hero .cta{animation:ctaGlow 2.6s ease-in-out infinite}
+.hero .cta:hover{animation:none}
+.grid3 .card{transition:transform .22s cubic-bezier(.2,.9,.2,1),box-shadow .22s,border-color .22s}
+.grid3 .card:hover{transform:translateY(-8px) rotate(-.7deg) scale(1.02)}
+.sec-h .eyebrow::after{content:" ✨";animation:twk 2.4s ease-in-out infinite;display:inline-block}
+@keyframes twk{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+.tier{transition:transform .25s cubic-bezier(.2,.9,.2,1),box-shadow .25s}
+.tier:hover{transform:translateY(-7px) scale(1.025)}
+.trustbar>div{transition:transform .3s}.trustbar>div:hover{transform:translateY(-4px)}
+.trustbar b{background:linear-gradient(100deg,var(--plum),var(--malina));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+@media(prefers-reduced-motion:reduce){.hero .cta,.sec-h .eyebrow::after{animation:none}}
+</style>
+<style id="mkt-valuestack">.valuestack{max-width:660px;margin:0 auto;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid #F0DCA8;border-radius:22px;padding:26px 30px;box-shadow:0 24px 60px -40px rgba(120,40,60,.4)}.incl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:13px 26px}@media(max-width:600px){.incl{grid-template-columns:1fr}}.incl li{position:relative;padding-left:34px;color:#5A1024;font-weight:600;line-height:1.4}.incl li::before{content:"✓";position:absolute;left:0;top:1px;width:23px;height:23px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#E7D2A2,#C6A05C);color:#4a3410;font-weight:900;font-size:.82rem}.vs-note{text-align:center;color:#8A7A80;font-size:.92rem;margin-top:20px}</style>
+<style id="mkt-faq">.faq{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}.faq details{background:#FFFDF9;border:1px solid #F0DCA8;border-radius:16px;padding:2px 20px;box-shadow:0 14px 34px -30px rgba(120,40,60,.4)}.faq details[open]{box-shadow:0 20px 44px -30px rgba(120,40,60,.5)}.faq summary{list-style:none;cursor:pointer;font-family:Spectral,Georgia,serif;font-weight:700;color:#5A1024;font-size:1.08rem;padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:14px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";color:#B01E48;font-weight:800;font-size:1.5rem;line-height:1;transition:transform .2s}.faq details[open] summary::after{transform:rotate(45deg)}.faq details p{margin:0 0 16px;color:#5a4750;line-height:1.6}</style>
+<style id="mkt-annual">
+.billtoggle{display:inline-flex;gap:4px;background:#F3E9D6;border:1px solid var(--goldlt);border-radius:100px;padding:4px;margin:0 auto 24px;justify-self:center}
+.billtoggle{display:flex;width:max-content;margin-left:auto;margin-right:auto}
+.bt{border:none;background:transparent;font-family:var(--sans);font-weight:800;font-size:.9rem;color:var(--plum2);padding:9px 18px;border-radius:100px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.bt.on{background:#fff;color:var(--plum);box-shadow:0 8px 18px -10px rgba(120,70,80,.5)}
+.bt b{font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--malina2),var(--malina));padding:3px 8px;border-radius:100px}
+</style>
+</head>
+<body>
+<div id="fall" aria-hidden="true"></div>
+<main class="wrap">
+
+  <section class="hero" style="padding-top:14px">
+    <div>
+      <div class="eyebrow">za roditelje</div>
+      <h1>Mirno srce — i <em>bolje ocene</em>.</h1>
+      <p class="lead">Vaše dete ima strpljivu Profesoricu 0–24h koja objašnjava dok ne razume, bez pritiska i bez čekanja. Vi pratite napredak, a učenje postaje lakše za celu porodicu.</p>
+      <div>
+        <a class="cta" href="pocni.html">Probajte besplatno 15 min →</a>
+        <a class="cta2" href="index.html#paketi">Pogledajte pakete</a>
+      </div>
+      <div class="microtrust">Prvih 15 minuta je na poklon — bez kartice, bez obaveza.</div>
+    </div>
+    <div class="portrait">
+      <div class="ring"></div>
+      <img class="ph" src="marina.jpg" alt="Profesorica" onerror="this.style.background='radial-gradient(circle at 40% 34%,#f6e7c9,#caa76a)';this.removeAttribute('src')">
+      <div class="tag">Profesorica 💛</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h reveal"><div class="eyebrow">zašto roditelji biraju Mathiu</div><h2>Podrška detetu — i vama</h2></div>
+    <div class="grid3">
+      <div class="card reveal"><span class="em">🕐</span><h3>Dostupna 0–24h</h3><p>Dete ne čeka termin ni vas da stignete. Zapelo u 22h pred kontrolni? Profesorica je tu, odmah.</p></div>
+      <div class="card reveal"><span class="em">💛</span><h3>Strpljiva, bez pritiska</h3><p>Objašnjava isti pojam koliko god puta treba — smireno i ljubazno. Dete se ne stidi da pita.</p></div>
+      <div class="card reveal"><span class="em">💰</span><h3>Povoljnije od privatnog časa</h3><p>Za cenu jednog-dva privatna časa mesečno — neograničena pomoć iz svih izabranih predmeta.</p></div>
+      <div class="card reveal"><span class="em">📈</span><h3>Vi pratite napredak</h3><p>Na nalogu vidite predmete, aktivnost i planer. Znate da dete zaista uči, ne samo „sedi za kompjuterom".</p></div>
+      <div class="card reveal"><span class="em">🛡️</span><h3>Bezbedno za decu</h3><p>Bez reklama i neprimerenog sadržaja. Napravila profesorka, sa fokusom na učenje, strpljenje i motivaciju.</p></div>
+      <div class="card reveal"><span class="em">🌍</span><h3>Na 8 jezika</h3><p>Ako dete uči na drugom jeziku ili živite u inostranstvu — sajt i Profesorica govore 8 jezika.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h reveal"><div class="eyebrow">kako izgleda u praksi</div><h2>Tri koraka do mirnijih večeri</h2></div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">1</div><h3>Napravite nalog</h3><p>Za par minuta — i odmah probate besplatnih 15 minuta, bez kartice.</p></div>
+      <div class="step reveal"><div class="n">2</div><h3>Dete uči uz Profesoricu</h3><p>Pita, šalje sliku zadatka, dobija objašnjenje korak po korak dok ne klikne.</p></div>
+      <div class="step reveal"><div class="n">3</div><h3>Vi pratite rezultat</h3><p>Napredak se čuva na nalogu; ocene i samopouzdanje rastu iz nedelje u nedelju.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h reveal"><div class="eyebrow">iskustva roditelja</div><h2>Ono što roditelji kažu</h2></div>
+    <div class="tstwrap">
+      <div class="tst2 reveal"><div class="stars">★★★★★</div><q>„Prvi put da neko objasni matematiku tako da ćerka stvarno razume. Iz trojke je skočila na peticu."</q><div class="who">— Jelena, mama osmaka</div></div>
+      <div class="tst2 reveal"><div class="stars">★★★★★</div><q>„Konačno večeri bez suza nad domaćim. Sin sam pita Profesoricu i reši, a ja sam mirna."</q><div class="who">— Marija, mama petaka</div></div>
+    </div>
+    <div style="text-align:center"><span class="guarantee reveal">💛 Bez rizika — 15 min gratis, otkažete kad želite, bez ugovora.</span></div>
+  </section>
+
+  <section>
+    <div class="final reveal">
+      <h2>Poklonite detetu osećaj „Ja to mogu."</h2>
+      <p>Počnite besplatno danas. Bez kartice, bez obaveza — samo prvi korak.</p>
+      <a class="cta" href="pocni.html">Probajte besplatno →</a>
+    </div>
+  </section>
+
+</main>
+<script src="i18n-mathia.js"></script>
+<script src="footer-mathia.js"></script>
+<script>(function(){var PLD={"za roditelje":["for parents", "für Eltern", "pour les parents", "para padres", "per i genitori", "для родителей", "para os pais"],"Mirno srce — i":["A calm heart — and", "Ein ruhiges Herz — und", "Un cœur serein — et", "Un corazón tranquilo — y", "Un cuore sereno — e", "Спокойное сердце — и", "Um coração tranquilo — e"],"bolje ocene":["better grades", "bessere Noten", "de meilleures notes", "mejores notas", "voti migliori", "лучшие оценки", "melhores notas"],"Vaše dete ima strpljivu Profesoricu 0–24h koja objašnjava dok ne razume, bez pritiska i bez čekanja. Vi pratite napredak, a učenje postaje lakše za celu porodicu.":["Your child has a patient Tutor available 0–24h who explains until they understand, with no pressure and no waiting. You follow the progress, and learning becomes easier for the whole family.", "Ihr Kind hat eine geduldige Lehrerin rund um die Uhr (0–24h), die so lange erklärt, bis es versteht — ohne Druck und ohne Warten. Sie verfolgen den Fortschritt, und das Lernen wird für die ganze Familie leichter.", "Votre enfant a une Professeure patiente disponible 0–24h qui explique jusqu'à ce qu'il comprenne, sans pression et sans attente. Vous suivez ses progrès, et l'apprentissage devient plus facile pour toute la famille.", "Su hijo tiene una Profesora paciente disponible 0–24h que explica hasta que lo entiende, sin presión y sin esperas. Usted sigue su progreso, y aprender se vuelve más fácil para toda la familia.", "Tuo figlio ha una Professoressa paziente disponibile 0–24h che spiega finché non capisce, senza pressione e senza attese. Segui i progressi e imparare diventa più facile per tutta la famiglia.", "У вашего ребёнка есть терпеливая Преподавательница 0–24 ч, которая объясняет, пока он не поймёт, без давления и без ожидания. Вы следите за прогрессом, и учёба становится легче для всей семьи.", "O seu filho tem uma Professora paciente disponível 0–24h que explica até ele entender, sem pressão e sem espera. Você acompanha o progresso, e aprender fica mais fácil para toda a família."],"Probajte besplatno 15 min →":["Try 15 min free →", "15 Min kostenlos testen →", "Essayez 15 min gratuitement →", "Pruebe 15 min gratis →", "Prova 15 min gratis →", "Попробуйте 15 мин бесплатно →", "Experimente 15 min grátis →"],"Pogledajte pakete":["See the plans", "Pakete ansehen", "Voir les forfaits", "Ver los paquetes", "Guarda i pacchetti", "Посмотреть тарифы", "Ver os pacotes"],"Prvih 15 minuta je na poklon — bez kartice, bez obaveza.":["The first 15 minutes are on us — no card, no commitment.", "Die ersten 15 Minuten sind geschenkt — ohne Karte, ohne Verpflichtung.", "Les 15 premières minutes sont offertes — sans carte, sans engagement.", "Los primeros 15 minutos son de regalo — sin tarjeta, sin compromiso.", "I primi 15 minuti sono in regalo — senza carta, senza impegno.", "Первые 15 минут в подарок — без карты, без обязательств.", "Os primeiros 15 minutos são um presente — sem cartão, sem compromisso."],"Profesorica 💛":["Tutor 💛", "Lehrerin 💛", "Professeure 💛", "Profesora 💛", "Professoressa 💛", "Преподавательница 💛", "Professora 💛"],"zašto roditelji biraju Mathiu":["why parents choose Mathia", "warum Eltern sich für Mathia entscheiden", "pourquoi les parents choisissent Mathia", "por qué los padres eligen Mathia", "perché i genitori scelgono Mathia", "почему родители выбирают Mathia", "por que os pais escolhem Mathia"],"Podrška detetu — i vama":["Support for your child — and for you", "Unterstützung für Ihr Kind — und für Sie", "Un soutien pour votre enfant — et pour vous", "Apoyo para su hijo — y para usted", "Un sostegno per tuo figlio — e per te", "Поддержка ребёнку — и вам", "Apoio para o seu filho — e para você"],"Dostupna 0–24h":["Available 0–24h", "Rund um die Uhr verfügbar (0–24h)", "Disponible 0–24h", "Disponible 0–24h", "Disponibile 0–24h", "Доступна 0–24 ч", "Disponível 0–24h"],"Dete ne čeka termin ni vas da stignete. Zapelo u 22h pred kontrolni? Profesorica je tu, odmah.":["Your child doesn't wait for an appointment or for you to be free. Stuck at 10 p.m. before a test? The Tutor is right there, instantly.", "Ihr Kind wartet weder auf einen Termin noch darauf, dass Sie Zeit haben. Um 22 Uhr vor der Klassenarbeit nicht weiter? Die Lehrerin ist sofort da.", "Votre enfant n'attend ni un rendez-vous ni que vous soyez disponible. Bloqué à 22h avant un contrôle ? La Professeure est là, tout de suite.", "Su hijo no espera una cita ni a que usted tenga tiempo. ¿Atascado a las 22h antes de un examen? La Profesora está ahí, al instante.", "Tuo figlio non aspetta un appuntamento né che tu sia libera. Bloccato alle 22 prima di una verifica? La Professoressa è lì, subito.", "Ребёнок не ждёт ни записи, ни того, когда вы освободитесь. Застрял в 22:00 перед контрольной? Преподавательница уже здесь, сразу.", "O seu filho não espera por um horário nem que você tenha tempo. Travou às 22h antes de uma prova? A Professora está ali, na hora."],"Strpljiva, bez pritiska":["Patient, no pressure", "Geduldig, ohne Druck", "Patiente, sans pression", "Paciente, sin presión", "Paziente, senza pressione", "Терпеливая, без давления", "Paciente, sem pressão"],"Objašnjava isti pojam koliko god puta treba — smireno i ljubazno. Dete se ne stidi da pita.":["She explains the same concept as many times as needed — calmly and kindly. Your child isn't embarrassed to ask.", "Sie erklärt denselben Begriff so oft wie nötig — ruhig und freundlich. Ihr Kind schämt sich nicht zu fragen.", "Elle explique la même notion autant de fois qu'il le faut — avec calme et gentillesse. Votre enfant n'a pas honte de poser des questions.", "Explica el mismo concepto tantas veces como haga falta — con calma y amabilidad. Su hijo no siente vergüenza de preguntar.", "Spiega lo stesso concetto tutte le volte che serve — con calma e gentilezza. Tuo figlio non si vergogna di chiedere.", "Она объясняет одно и то же понятие столько раз, сколько нужно — спокойно и доброжелательно. Ребёнок не стесняется спрашивать.", "Ela explica o mesmo conceito quantas vezes for preciso — com calma e gentileza. O seu filho não tem vergonha de perguntar."],"Povoljnije od privatnog časa":["More affordable than a private lesson", "Günstiger als eine Nachhilfestunde", "Moins cher qu'un cours particulier", "Más económico que una clase particular", "Più conveniente di una lezione privata", "Дешевле частного урока", "Mais em conta que uma aula particular"],"Za cenu jednog-dva privatna časa mesečno — neograničena pomoć iz svih izabranih predmeta.":["For the price of one or two private lessons a month — unlimited help in all the subjects you choose.", "Zum Preis von ein bis zwei Nachhilfestunden im Monat — unbegrenzte Hilfe in allen gewählten Fächern.", "Pour le prix d'un ou deux cours particuliers par mois — une aide illimitée dans toutes les matières choisies.", "Por el precio de una o dos clases particulares al mes — ayuda ilimitada en todas las asignaturas elegidas.", "Al prezzo di una o due lezioni private al mese — aiuto illimitato in tutte le materie scelte.", "За стоимость одного-двух частных уроков в месяц — неограниченная помощь по всем выбранным предметам.", "Pelo preço de uma ou duas aulas particulares por mês — ajuda ilimitada em todas as matérias escolhidas."],"Vi pratite napredak":["You follow the progress", "Sie verfolgen den Fortschritt", "Vous suivez les progrès", "Usted sigue el progreso", "Segui i progressi", "Вы следите за прогрессом", "Você acompanha o progresso"],"Na nalogu vidite predmete, aktivnost i planer. Znate da dete zaista uči, ne samo „sedi za kompjuterom\".":["In the account you see the subjects, activity and planner. You know your child is really studying, not just “sitting at the computer.”", "Im Konto sehen Sie die Fächer, die Aktivität und den Planer. Sie wissen, dass Ihr Kind wirklich lernt und nicht nur „vor dem Computer sitzt“.", "Dans le compte, vous voyez les matières, l'activité et le planificateur. Vous savez que votre enfant apprend vraiment, et ne fait pas que « rester assis devant l'ordinateur ».", "En la cuenta ve las asignaturas, la actividad y el planificador. Sabe que su hijo realmente estudia y no solo «está sentado frente al ordenador».", "Nell'account vedi le materie, l'attività e il planner. Sai che tuo figlio studia davvero e non «sta solo seduto al computer».", "В аккаунте вы видите предметы, активность и планер. Вы знаете, что ребёнок действительно учится, а не просто «сидит за компьютером».", "Na conta você vê as matérias, a atividade e o planejador. Você sabe que o seu filho realmente estuda, e não apenas “fica sentado ao computador”."],"Bezbedno za decu":["Safe for children", "Sicher für Kinder", "Sûr pour les enfants", "Seguro para los niños", "Sicuro per i bambini", "Безопасно для детей", "Seguro para as crianças"],"Bez reklama i neprimerenog sadržaja. Napravila profesorka, sa fokusom na učenje, strpljenje i motivaciju.":["No ads and no inappropriate content. Created by a teacher, with a focus on learning, patience and motivation.", "Keine Werbung und keine unangemessenen Inhalte. Von einer Lehrerin entwickelt, mit Fokus auf Lernen, Geduld und Motivation.", "Sans publicité ni contenu inapproprié. Conçu par une enseignante, avec un accent sur l'apprentissage, la patience et la motivation.", "Sin anuncios ni contenido inapropiado. Creado por una profesora, con el foco en el aprendizaje, la paciencia y la motivación.", "Senza pubblicità né contenuti inappropriati. Creato da un'insegnante, con particolare attenzione all'apprendimento, alla pazienza e alla motivazione.", "Без рекламы и неприемлемого контента. Создано преподавательницей, с упором на учёбу, терпение и мотивацию.", "Sem anúncios nem conteúdo inadequado. Criado por uma professora, com foco na aprendizagem, na paciência e na motivação."],"Na 8 jezika":["In 8 languages", "In 8 Sprachen", "En 8 langues", "En 8 idiomas", "In 8 lingue", "На 8 языках", "Em 8 idiomas"],"Ako dete uči na drugom jeziku ili živite u inostranstvu — sajt i Profesorica govore 8 jezika.":["If your child studies in another language or you live abroad — the site and the Tutor speak 8 languages.", "Wenn Ihr Kind in einer anderen Sprache lernt oder Sie im Ausland leben — die Website und die Lehrerin sprechen 8 Sprachen.", "Si votre enfant apprend dans une autre langue ou si vous vivez à l'étranger — le site et la Professeure parlent 8 langues.", "Si su hijo estudia en otro idioma o viven en el extranjero — el sitio y la Profesora hablan 8 idiomas.", "Se tuo figlio studia in un'altra lingua o vivi all'estero — il sito e la Professoressa parlano 8 lingue.", "Если ребёнок учится на другом языке или вы живёте за границей — сайт и Преподавательница говорят на 8 языках.", "Se o seu filho estuda em outro idioma ou vocês vivem no exterior — o site e a Professora falam 8 idiomas."],"kako izgleda u praksi":["how it works in practice", "so sieht es in der Praxis aus", "comment ça se passe en pratique", "cómo funciona en la práctica", "come funziona nella pratica", "как это выглядит на практике", "como funciona na prática"],"Tri koraka do mirnijih večeri":["Three steps to calmer evenings", "Drei Schritte zu ruhigeren Abenden", "Trois étapes vers des soirées plus sereines", "Tres pasos hacia noches más tranquilas", "Tre passi verso serate più serene", "Три шага к спокойным вечерам", "Três passos para noites mais tranquilas"],"Napravite nalog":["Create an account", "Konto erstellen", "Créez un compte", "Cree una cuenta", "Crea un account", "Создайте аккаунт", "Crie uma conta"],"Za par minuta — i odmah probate besplatnih 15 minuta, bez kartice.":["In just a couple of minutes — and you try 15 free minutes right away, no card.", "In wenigen Minuten — und Sie testen sofort 15 kostenlose Minuten, ohne Karte.", "En quelques minutes — et vous essayez tout de suite 15 minutes gratuites, sans carte.", "En un par de minutos — y prueba enseguida 15 minutos gratis, sin tarjeta.", "In un paio di minuti — e provi subito 15 minuti gratis, senza carta.", "За пару минут — и сразу пробуете 15 бесплатных минут, без карты.", "Em poucos minutos — e você experimenta já 15 minutos grátis, sem cartão."],"Dete uči uz Profesoricu":["Your child learns with the Tutor", "Ihr Kind lernt mit der Lehrerin", "Votre enfant apprend avec la Professeure", "Su hijo aprende con la Profesora", "Tuo figlio impara con la Professoressa", "Ребёнок учится с Преподавательницей", "O seu filho aprende com a Professora"],"Pita, šalje sliku zadatka, dobija objašnjenje korak po korak dok ne klikne.":["They ask, send a photo of the problem, and get a step-by-step explanation until it clicks.", "Es fragt, schickt ein Foto der Aufgabe und bekommt eine Schritt-für-Schritt-Erklärung, bis der Groschen fällt.", "Il pose des questions, envoie une photo de l'exercice et reçoit une explication étape par étape jusqu'au déclic.", "Pregunta, envía una foto del ejercicio y recibe una explicación paso a paso hasta que le hace clic.", "Fa domande, invia una foto dell'esercizio e riceve una spiegazione passo dopo passo finché non scatta il clic.", "Он спрашивает, присылает фото задачи и получает пошаговое объяснение, пока не поймёт.", "Ele pergunta, envia uma foto do exercício e recebe uma explicação passo a passo até fazer sentido."],"Vi pratite rezultat":["You follow the results", "Sie verfolgen das Ergebnis", "Vous suivez les résultats", "Usted sigue los resultados", "Segui i risultati", "Вы следите за результатом", "Você acompanha o resultado"],"Napredak se čuva na nalogu; ocene i samopouzdanje rastu iz nedelje u nedelju.":["Progress is saved in the account; grades and confidence grow from week to week.", "Der Fortschritt wird im Konto gespeichert; Noten und Selbstvertrauen wachsen von Woche zu Woche.", "Les progrès sont enregistrés dans le compte ; les notes et la confiance grandissent de semaine en semaine.", "El progreso se guarda en la cuenta; las notas y la confianza crecen semana tras semana.", "I progressi vengono salvati nell'account; i voti e la sicurezza crescono di settimana in settimana.", "Прогресс сохраняется в аккаунте; оценки и уверенность растут от недели к неделе.", "O progresso fica guardado na conta; as notas e a confiança crescem de semana em semana."],"iskustva roditelja":["parents' experiences", "Erfahrungen von Eltern", "témoignages de parents", "experiencias de padres", "esperienze dei genitori", "отзывы родителей", "experiências de pais"],"Ono što roditelji kažu":["What parents say", "Was Eltern sagen", "Ce que disent les parents", "Lo que dicen los padres", "Cosa dicono i genitori", "Что говорят родители", "O que os pais dizem"],"„Prvi put da neko objasni matematiku tako da ćerka stvarno razume. Iz trojke je skočila na peticu.\"":["“The first time someone explained maths so that my daughter really understands. She jumped from a C to an A.”", "„Zum ersten Mal hat jemand Mathe so erklärt, dass meine Tochter es wirklich versteht. Sie ist von einer Drei auf eine Eins gesprungen.“", "« Pour la première fois, quelqu'un a expliqué les maths pour que ma fille comprenne vraiment. Elle est passée de 10 à 18 sur 20. »", "«Por primera vez alguien explica las matemáticas de forma que mi hija de verdad las entiende. Ha pasado de un aprobado justo a un sobresaliente.»", "«Per la prima volta qualcuno ha spiegato la matematica in modo che mia figlia capisca davvero. È passata dal sei al nove.»", "«Впервые кто-то объяснил математику так, что дочь действительно понимает. Она подскочила с тройки на пятёрку.»", "“Pela primeira vez alguém explicou matemática de um jeito que minha filha realmente entende. Ela passou de um 6 para um 9.”"],"— Jelena, mama osmaka":["— Jelena, mom of an 8th-grader", "— Jelena, Mutter eines Achtklässlers", "— Jelena, maman d'un élève de 8e année", "— Jelena, mamá de un alumno de 8.º", "— Jelena, mamma di un ragazzo di terza media", "— Елена, мама восьмиклассника", "— Jelena, mãe de um aluno do 8.º ano"],"„Konačno večeri bez suza nad domaćim. Sin sam pita Profesoricu i reši, a ja sam mirna.\"":["“Finally, evenings without tears over homework. My son asks the Tutor himself and solves it, and I'm at peace.”", "„Endlich Abende ohne Tränen über den Hausaufgaben. Mein Sohn fragt die Lehrerin selbst und löst es, und ich bin ruhig.“", "« Enfin des soirées sans larmes sur les devoirs. Mon fils demande lui-même à la Professeure et résout l'exercice, et moi je suis tranquille. »", "«Por fin noches sin lágrimas por los deberes. Mi hijo le pregunta solo a la Profesora y lo resuelve, y yo estoy tranquila.»", "«Finalmente serate senza lacrime sui compiti. Mio figlio chiede da solo alla Professoressa e risolve, e io sono tranquilla.»", "«Наконец-то вечера без слёз над домашкой. Сын сам спрашивает Преподавательницу и решает, а я спокойна.»", "“Por fim, noites sem lágrimas por causa da lição de casa. Meu filho pergunta sozinho à Professora e resolve, e eu fico tranquila.”"],"— Marija, mama petaka":["— Marija, mom of a 5th-grader", "— Marija, Mutter eines Fünftklässlers", "— Marija, maman d'un élève de 5e année", "— Marija, mamá de un alumno de 5.º", "— Marija, mamma di un alunno di quinta", "— Мария, мама пятиклассника", "— Marija, mãe de um aluno do 5.º ano"],"💛 Bez rizika — 15 min gratis, otkažete kad želite, bez ugovora.":["💛 No risk — 15 min free, cancel whenever you want, no contract.", "💛 Ohne Risiko — 15 Min gratis, jederzeit kündbar, ohne Vertrag.", "💛 Sans risque — 15 min gratuites, annulez quand vous voulez, sans contrat.", "💛 Sin riesgo — 15 min gratis, cancele cuando quiera, sin contrato.", "💛 Senza rischi — 15 min gratis, disdici quando vuoi, senza contratto.", "💛 Без риска — 15 мин бесплатно, отмена в любой момент, без договора.", "💛 Sem risco — 15 min grátis, cancele quando quiser, sem contrato."],"Poklonite detetu osećaj „Ja to mogu.\"":["Give your child the feeling of “I can do it.”", "Schenken Sie Ihrem Kind das Gefühl „Ich kann das.“", "Offrez à votre enfant le sentiment « Je peux le faire. »", "Regale a su hijo la sensación de «Yo puedo con esto.»", "Regala a tuo figlio la sensazione «Io ce la faccio.»", "Подарите ребёнку ощущение «Я могу это сделать».", "Dê ao seu filho a sensação de “Eu consigo.”"],"Počnite besplatno danas. Bez kartice, bez obaveza — samo prvi korak.":["Start for free today. No card, no commitment — just the first step.", "Beginnen Sie heute kostenlos. Ohne Karte, ohne Verpflichtung — nur der erste Schritt.", "Commencez gratuitement aujourd'hui. Sans carte, sans engagement — juste le premier pas.", "Empiece gratis hoy. Sin tarjeta, sin compromiso — solo el primer paso.", "Inizia gratis oggi. Senza carta, senza impegno — solo il primo passo.", "Начните бесплатно сегодня. Без карты, без обязательств — просто первый шаг.", "Comece grátis hoje. Sem cartão, sem compromisso — apenas o primeiro passo."],"Probajte besplatno →":["Try for free →", "Kostenlos testen →", "Essayez gratuitement →", "Pruebe gratis →", "Prova gratis →", "Попробуйте бесплатно →", "Experimente grátis →"]};var IDX={en:0,de:1,fr:2,es:3,it:4,ru:5,pt:6};function lng(){try{var s=localStorage.getItem("mathia_lang");if(s)return s.slice(0,2).toLowerCase();}catch(e){}return "sr";}function tr(x){var l=lng();if(l==="sr"||!(l in IDX))return x;var a=PLD[x];return a?a[IDX[l]]:x;}function ap(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);var n;while(n=w.nextNode()){var p=n.parentNode;if(!p||p.nodeName==="SCRIPT"||p.nodeName==="STYLE")continue;var b=(n.__po!==undefined?n.__po:n.nodeValue),t=(b||"").trim();if(!t||!PLD[t])continue;if(n.__po===undefined)n.__po=n.nodeValue;n.nodeValue=n.__po.replace(t,tr(t));}}if(document.readyState!=="loading")ap();else document.addEventListener("DOMContentLoaded",ap);window.addEventListener("mathia:lang",function(){setTimeout(ap,0)});window.addEventListener("storage",function(e){if(e.key==="mathia_lang")setTimeout(ap,0)});})();</script><script>(function(){var els=document.querySelectorAll(".reveal");if(!("IntersectionObserver"in window)){els.forEach(function(e){e.classList.add("in")});return;}var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target);}})},{threshold:.12});els.forEach(function(e){io.observe(e)});})();</script>
+</body></html>

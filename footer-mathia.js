@@ -24,7 +24,8 @@
       ".mf-soc a:hover{transform:translateY(-2px);border-color:#C6A05C}" +
       ".mf-soc svg{width:18px;height:18px;fill:#A6803C}" +
       ".mf-rule{height:1px;background:linear-gradient(90deg,transparent,#E7D9C5,transparent);margin:20px auto 12px;max-width:520px}" +
-      ".mf-copy{color:#8A7A80;font-size:.78rem;font-family:'Inter',system-ui,sans-serif}";
+      ".mf-copy{color:#8A7A80;font-size:.78rem;font-family:'Inter',system-ui,sans-serif}"+
+      ".mf-note{color:#9A8A90;font-size:.72rem;max-width:600px;margin:10px auto 0;line-height:1.5;font-family:'Inter',system-ui,sans-serif}";
     document.head.appendChild(s);
   }
 
@@ -48,8 +49,14 @@
       '</div>' +
       '<div class="mf-rule"></div>' +
       '<div class="mf-copy">© 2026 Mathia Edu · Sva prava zadržana.</div>' +
+      '<div class="mf-note" id="mf-note"></div>' +
     '</div>';
 
+  var MF_NOTE={"sr": "Mathia je nezavisna obrazovna platforma edukativnog karaktera i nije povezana ni sa jednom školom, fakultetom niti drugom ustanovom.", "en": "Mathia is an independent educational platform and is not affiliated with any school, university or other institution.", "de": "Mathia ist eine unabhängige Bildungsplattform mit pädagogischem Charakter und steht in keiner Verbindung zu einer Schule, Universität oder sonstigen Einrichtung.", "fr": "Mathia est une plateforme éducative indépendante à caractère pédagogique et n'est affiliée à aucune école, université ni autre institution.", "es": "Mathia es una plataforma educativa independiente de carácter formativo y no está afiliada a ninguna escuela, universidad u otra institución.", "it": "Mathia è una piattaforma educativa indipendente di carattere formativo e non è affiliata ad alcuna scuola, università o altra istituzione.", "ru": "Mathia — независимая образовательная платформа образовательного характера, не связанная ни с одной школой, университетом или иным учреждением.", "pt": "A Mathia é uma plataforma educativa independente, de carácter pedagógico, e não está afiliada a nenhuma escola, universidade ou outra instituição."};
+  function mfLang(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return 'sr';}
+  function setNote(){var el=document.getElementById('mf-note');if(!el)return;var l=mfLang();el.textContent=MF_NOTE[l]||MF_NOTE.sr;}
+  window.addEventListener('mathia:lang',setNote);
+  window.addEventListener('storage',function(e){if(e.key==='mathia_lang')setNote();});
   function build() {
     injectCss();
     var f = document.createElement("footer");
@@ -57,6 +64,7 @@
     f.setAttribute("role", "contentinfo");
     f.innerHTML = HTML;
     document.body.appendChild(f);
+    setNote();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
   else build();
