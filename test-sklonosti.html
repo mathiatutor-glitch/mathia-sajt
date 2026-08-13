@@ -425,8 +425,8 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
   if(nivo==='sred')nivo='srednja';if(nivo==='fak')nivo='fakultet';
 
   var lvlBtns=document.querySelectorAll('.lvl');
-  lvlBtns.forEach(function(b){b.addEventListener('click',function(){lvlBtns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');nivo=b.dataset.lvl;});});
-  qs('startBtn').addEventListener('click',function(){if(!nivo){alert('Izaberi nivo (srednja, viša ili fakultet).');return;}grad=qs('grad').value.trim();start();});
+  lvlBtns.forEach(function(b){b.addEventListener('click',function(){lvlBtns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');nivo=b.dataset.lvl;});}); if(lvlBtns[0]){lvlBtns[0].classList.add('on');nivo=nivo||lvlBtns[0].dataset.lvl;}
+  qs('startBtn').addEventListener('click',function(){if(!nivo){nivo=(lvlBtns[0]&&lvlBtns[0].dataset.lvl)||'srednja';}grad=qs('grad').value.trim();start();});
 
   function start(){idx=0;answers=[];show('test');render();}
   function render(){
