@@ -82,6 +82,22 @@ body{margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--p
 .btn-back:hover{color:var(--plum)}
 .lock-note{display:flex;align-items:center;gap:9px;justify-content:center;margin-top:22px;color:var(--muted);font-size:.85rem}
 .lock-note svg{width:15px;height:15px;color:var(--golddk)}
+/* planer upsell */
+.pl-up{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#FFF7E8,#FBEFD9);border:1.5px solid rgba(198,160,92,.5);border-radius:18px;padding:16px 18px;margin-bottom:22px;transition:border-color .2s,box-shadow .2s}
+.pl-up.on{border-color:var(--gold);box-shadow:0 14px 30px -18px rgba(198,160,92,.95)}
+.pl-ic{font-size:1.7rem;flex:none;line-height:1}
+.pl-body{flex:1;min-width:0}
+.pl-t{font-family:'Spectral',serif;font-weight:700;color:var(--plum);font-size:1.12rem}
+.pl-d{color:var(--muted);font-size:.86rem;line-height:1.45;margin-top:2px}
+.pl-lvl{display:inline-block;margin-top:8px;font-size:.72rem;font-weight:800;letter-spacing:.05em;color:#9C7838;background:radial-gradient(circle at 30% 20%,#FFFDF6,#F3E7CE);border:1px solid var(--goldlt);border-radius:100px;padding:3px 12px}
+.pl-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex:none}
+.pl-price{font-family:'Spectral',serif;font-weight:700;color:var(--golddk);font-size:1.06rem;white-space:nowrap}
+.pl-price span{font-size:.72rem;color:var(--muted);font-weight:600}
+.pl-toggle{width:52px;height:30px;border-radius:100px;border:1.5px solid rgba(198,160,92,.5);background:#F1E7D4;position:relative;cursor:pointer;transition:background .2s,border-color .2s;padding:0}
+.pl-toggle .pl-knob{position:absolute;top:2.5px;left:3px;width:23px;height:23px;border-radius:50%;background:#fff;box-shadow:0 3px 8px -2px rgba(120,70,80,.5);transition:transform .22s}
+.pl-toggle.on{background:radial-gradient(circle at 40% 30%,#FFF6D6,#C6A05C);border-color:var(--gold)}
+.pl-toggle.on .pl-knob{transform:translateX(21px)}
+@media(max-width:560px){.pl-up{flex-wrap:wrap}.pl-right{flex-direction:row;width:100%;justify-content:space-between}}
 </style>
 <link rel="stylesheet" href="mathia-type.css">
 <style id="px-besplatno-look">
@@ -178,6 +194,16 @@ var pkg = PKG[pkgKey];
   if(bl) bl.setAttribute('href','placanje.html?paket='+pkgKey); })();
 var MAX = pkg.n;
 var selected = [];
+var plannerOn = qp('planer')==='1';
+// Prepozna planer po uzrastu izabranih predmeta (isti prioritet kao naplata)
+function detectPlanner(){
+  var GRP={}; SUBS.forEach(function(x){ GRP[x.t]=x.g; });
+  var gset=selected.map(function(s){ return GRP[s.t]||''; });
+  function has(g){ return gset.indexOf(g)>=0; }
+  if(has('Osnovna škola') && !has('Srednja škola') && !has('Priprema za prijemne ispite') && !has('Fakultet') && !has('Programiranje') && !has('Elektronika i alati')) return {id:'PLANER-OSNOVNA', grp:'Osnovna škola'};
+  if((has('Srednja škola')||has('Priprema za prijemne ispite')) && !has('Fakultet') && !has('Programiranje') && !has('Elektronika i alati')) return {id:'PLANER-SREDNJA', grp:'Srednja škola'};
+  return {id:'PLANER-FAKULTET', grp:'Fakultet'};
+}
 
 function nsub(n){ return n+' '+(n===1?'predmet':(n<5?'predmeta':'predmeta')); }
 
@@ -236,6 +262,7 @@ document.getElementById('to2').addEventListener('click',function(){
 document.getElementById('back1').addEventListener('click',function(){go(1);});
 document.getElementById('back2').addEventListener('click',function(){go(2);});
 document.getElementById('to3').addEventListener('click',function(){ buildReview(); go(3); });
+document.getElementById('review').addEventListener('click',function(e){ if(e.target.closest('#plToggle')){ plannerOn=!plannerOn; buildReview(); } });
 
 function buildReview(){
   var name=document.getElementById('fName').value.trim();
@@ -244,11 +271,28 @@ function buildReview(){
   var who = (name? (name+(last?' '+last:'')) : mail) || 'Novi korisnik';
   var bookIc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2z"/><path d="M18 3v18"/></svg>';
   var userIc='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>';
-  var h='<div class="rev-item"><span class="rev-ic">'+userIc+'</span><div><div class="rev-k">Nalog</div><div class="rev-v">'+who+'</div></div></div>';
-  h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Paket '+pkg.label+'</div><div class="rev-v">'+selected.map(function(s){return s.t;}).join(' · ')+'</div></div></div>';
-  var CENE={basic:4990,gold:6990,diamond:9990}; var CENE_G={basic:49900,gold:69900,diamond:99900}; var plan=(qp('plan')==='godisnje')?'godisnje':'mesecno'; var cena=(plan==='godisnje'?CENE_G:CENE)[pkgKey]||0; var pl=(qp('planer')==='1'); if(pl)cena+=1990;
-  var kor=''; try{kor=localStorage.getItem('mathia_korica')||'';}catch(e){}
-  h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Za naplatu</div><div class="rev-v" style="font-family:\'Spectral\',serif;font-size:1.35rem;color:var(--golddk);font-weight:700">'+cena.toLocaleString('sr-RS')+' RSD'+(plan==='godisnje'?' / godišnje':' / mesečno')+(pl?' <span style=\'font-size:.8rem;color:#90787E\'>(uklj. planer'+(kor?', korica '+kor:'')+')</span>':'')+'</div></div></div>';
+  var plan=(qp('plan')==='godisnje')?'godisnje':'mesecno';
+  var CENE={basic:4990,gold:6990,diamond:9990}, CENE_G={basic:49900,gold:69900,diamond:99900};
+  var pkgCena=(plan==='godisnje'?CENE_G:CENE)[pkgKey]||0;
+  var per=(plan==='godisnje'?' / godišnje':' / mesečno');
+  var dp=detectPlanner();
+  var upsell='<div class="pl-up'+(plannerOn?' on':'')+'" id="plUp">'
+    +'<div class="pl-ic">🗓️</div>'
+    +'<div class="pl-body"><div class="pl-t">Dodaj i svoj planer?</div>'
+    +'<div class="pl-d">Gejmifikovan planer, prilagođen tvom uzrastu — kupiš jednom, tvoj je zauvek.</div>'
+    +'<span class="pl-lvl">'+dp.grp+'</span></div>'
+    +'<div class="pl-right"><div class="pl-price">+1.990 RSD</div><div class="pl-once" style="font-size:.72rem;color:#90787E;font-weight:600">jednokratno</div>'
+    +'<button type="button" class="pl-toggle'+(plannerOn?' on':'')+'" id="plToggle" role="switch" aria-checked="'+(plannerOn?'true':'false')+'"><span class="pl-knob"></span></button>'
+    +'</div></div>';
+  var h=upsell;
+  h+='<div class="rev-item"><span class="rev-ic">'+userIc+'</span><div><div class="rev-k">Nalog</div><div class="rev-v">'+who+'</div></div></div>';
+  h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">Paket '+pkg.label+'</div><div class="rev-v">'+selected.map(function(s){return s.t;}).join(' · ')+'</div><div style="font-size:.85rem;color:#90787E;margin-top:2px">'+pkgCena.toLocaleString('sr-RS')+' RSD'+per+'</div></div></div>';
+  var total=pkgCena;
+  if(plannerOn){
+    total+=1990;
+    h+='<div class="rev-item"><span class="rev-ic">🗓️</span><div><div class="rev-k">Lični planer</div><div class="rev-v" style="font-size:1.1rem"><span>'+dp.grp+'</span> · 1.990 RSD</div><div style="font-size:.85rem;color:#90787E;margin-top:2px">jednokratno</div></div></div>';
+  }
+  h+='<div class="rev-item"><span class="rev-ic">'+bookIc+'</span><div><div class="rev-k">'+(plannerOn?'Ukupno danas':'Za naplatu')+'</div><div class="rev-v" style="font-family:\'Spectral\',serif;font-size:1.4rem;color:var(--golddk);font-weight:700">'+total.toLocaleString('sr-RS')+' RSD'+(plannerOn?'':per)+'</div></div></div>';
   document.getElementById('review').innerHTML=h;
 }
 
@@ -257,20 +301,12 @@ document.getElementById('finish').addEventListener('click',function(){
   var last=document.getElementById('fLast').value.trim();
   var mail=document.getElementById('fMail').value.trim();
   if(!mail || mail.indexOf('@')<0){ alert('Za plaćanje i račun nam treba tvoj imejl — vrati se na 1. korak i upiši ga.'); go(1); return; }
-  var wantsPlanner = qp('planer')==='1';
+  var wantsPlanner = plannerOn;
   var plan=(qp('plan')==='godisnje')?'godisnje':'mesecno';
   // upamti izbor da se posle plaćanja poveže sa nalogom
   try{ localStorage.setItem('mathia_reg', JSON.stringify({ name:name, last:last, email:mail, paket:pkgKey, pkgLabel:pkg.label, plan:plan, subjects:selected, plannerAdded:wantsPlanner, created:Date.now() })); }catch(e){}
   var stavke=[{ id: (plan==='godisnje'? pkgKey+'-god' : pkgKey), kolicina:1 }];
-  if(wantsPlanner){
-    var GRP={}; SUBS.forEach(function(x){ GRP[x.t]=x.g; });
-    var gset=selected.map(function(s){ return GRP[s.t]||''; });
-    var planId='PLANER-FAKULTET';
-    if(gset.indexOf('Fakultet')>=0||gset.indexOf('Programiranje')>=0||gset.indexOf('Elektronika i alati')>=0){ planId='PLANER-FAKULTET'; }
-    else if(gset.indexOf('Srednja škola')>=0||gset.indexOf('Priprema za prijemne ispite')>=0){ planId='PLANER-SREDNJA'; }
-    else if(gset.indexOf('Osnovna škola')>=0){ planId='PLANER-OSNOVNA'; }
-    stavke.push({ id:planId, kolicina:1 });
-  }
+  if(wantsPlanner){ stavke.push({ id: detectPlanner().id, kolicina:1 }); }
   var korica='Šampanj'; try{ korica=localStorage.getItem('mathia_korica')||'Šampanj'; }catch(e){}
   var lang='sr'; try{ var _l=localStorage.getItem('mathia_lang'); if(_l) lang=_l.slice(0,2).toLowerCase(); }catch(e){}
   var btn=this; btn.disabled=true; btn.textContent='Pripremam plaćanje…';
@@ -284,6 +320,6 @@ document.getElementById('finish').addEventListener('click',function(){
 </script>
 <script src="i18n-mathia.js" defer></script>
 <script src="mathia-delight.js" defer></script>
-<script>(function(){var D={"/ godišnje":{"en":"/ year","de":"/ Jahr","fr":"/ an","es":"/ año","it":"/ anno","ru":"/ год","pt":"/ ano"},"/ mesečno":{"en":"/ month","de":"/ Monat","fr":"/ mois","es":"/ mes","it":"/ mese","ru":"/ мес","pt":"/ mês"},"Radije bih uplatom na račun (IPS QR) →": {"en": "I'd rather pay by bank transfer (IPS QR) →", "de": "Ich zahle lieber per Banküberweisung (IPS QR) →", "fr": "Je préfère payer par virement bancaire (IPS QR) →", "es": "Prefiero pagar por transferencia bancaria (IPS QR) →", "it": "Preferisco pagare con bonifico bancario (IPS QR) →", "ru": "Я лучше заплачу банковским переводом (IPS QR) →", "pt": "Prefiro pagar por transferência bancária (IPS QR) →"}, "Uplata na račun se ne otključava automatski — javi nam se posle uplate.": {"en": "Payment by bank transfer does not unlock automatically — let us know after you pay.", "de": "Die Überweisung wird nicht automatisch freigeschaltet — melde dich bei uns nach der Zahlung.", "fr": "Le paiement par virement ne se débloque pas automatiquement — contacte-nous après le paiement.", "es": "El pago por transferencia no se desbloquea automáticamente — avísanos después de pagar.", "it": "Il pagamento tramite bonifico non si sblocca automaticamente — contattaci dopo il pagamento.", "ru": "Оплата банковским переводом не открывается автоматически — сообщи нам после оплаты.", "pt": "O pagamento por transferência não é desbloqueado automaticamente — avisa-nos depois de pagares."}};function lg(){try{return(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){return"sr"}}function ap(){var l=lg();var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);var n;while(n=w.nextNode()){var p=n.parentNode;if(!p||p.nodeName==="SCRIPT"||p.nodeName==="STYLE")continue;var raw=(n.__o!==undefined?n.__o:n.nodeValue);var t=raw.trim();var d=D[t];if(d){if(n.__o===undefined)n.__o=n.nodeValue;n.nodeValue=(l==="sr"||!d[l])?n.__o:raw.replace(t,d[l]);}}}if(document.readyState!=="loading")ap();else document.addEventListener("DOMContentLoaded",ap);window.addEventListener("mathia:lang",function(){setTimeout(ap,0)});try{var mo=new MutationObserver(function(){clearTimeout(window.__mep);window.__mep=setTimeout(ap,140)});mo.observe(document.body,{childList:true,subtree:true});}catch(e){}})();</script>
+<script>(function(){var D={"Dodaj i svoj planer?":{"en":"Add your planner too?","de":"Deinen Planer auch dazu?","fr":"Ajouter aussi ton agenda ?","es":"¿Añadir también tu planificador?","it":"Aggiungi anche il tuo planner?","ru":"Добавить и свой планер?","pt":"Adicionar também o teu planner?"},"Gejmifikovan planer, prilagođen tvom uzrastu — kupiš jednom, tvoj je zauvek.":{"en":"A gamified planner, tailored to your age — buy once, yours forever.","de":"Ein spielerischer Planer, passend zu deinem Alter — einmal kaufen, für immer deiner.","fr":"Un agenda ludifié, adapté à ton âge — tu l'achètes une fois, il est à toi pour toujours.","es":"Un planificador gamificado, adaptado a tu edad — lo compras una vez, es tuyo para siempre.","it":"Un planner gamificato, su misura per la tua età — lo compri una volta, è tuo per sempre.","ru":"Геймифицированный планер под твой возраст — покупаешь один раз, он твой навсегда.","pt":"Um planner gamificado, adaptado à tua idade — compras uma vez, é teu para sempre."},"jednokratno":{"en":"one-time","de":"einmalig","fr":"paiement unique","es":"pago único","it":"una tantum","ru":"разовый платёж","pt":"pagamento único"},"Lični planer":{"en":"Personal planner","de":"Persönlicher Planer","fr":"Agenda personnel","es":"Planificador personal","it":"Planner personale","ru":"Личный планер","pt":"Planner pessoal"},"Ukupno danas":{"en":"Total today","de":"Heute insgesamt","fr":"Total aujourd'hui","es":"Total hoy","it":"Totale oggi","ru":"Итого сегодня","pt":"Total hoje"},"/ godišnje":{"en":"/ year","de":"/ Jahr","fr":"/ an","es":"/ año","it":"/ anno","ru":"/ год","pt":"/ ano"},"/ mesečno":{"en":"/ month","de":"/ Monat","fr":"/ mois","es":"/ mes","it":"/ mese","ru":"/ мес","pt":"/ mês"},"Radije bih uplatom na račun (IPS QR) →": {"en": "I'd rather pay by bank transfer (IPS QR) →", "de": "Ich zahle lieber per Banküberweisung (IPS QR) →", "fr": "Je préfère payer par virement bancaire (IPS QR) →", "es": "Prefiero pagar por transferencia bancaria (IPS QR) →", "it": "Preferisco pagare con bonifico bancario (IPS QR) →", "ru": "Я лучше заплачу банковским переводом (IPS QR) →", "pt": "Prefiro pagar por transferência bancária (IPS QR) →"}, "Uplata na račun se ne otključava automatski — javi nam se posle uplate.": {"en": "Payment by bank transfer does not unlock automatically — let us know after you pay.", "de": "Die Überweisung wird nicht automatisch freigeschaltet — melde dich bei uns nach der Zahlung.", "fr": "Le paiement par virement ne se débloque pas automatiquement — contacte-nous après le paiement.", "es": "El pago por transferencia no se desbloquea automáticamente — avísanos después de pagar.", "it": "Il pagamento tramite bonifico non si sblocca automaticamente — contattaci dopo il pagamento.", "ru": "Оплата банковским переводом не открывается автоматически — сообщи нам после оплаты.", "pt": "O pagamento por transferência não é desbloqueado automaticamente — avisa-nos depois de pagares."}};function lg(){try{return(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){return"sr"}}function ap(){var l=lg();var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);var n;while(n=w.nextNode()){var p=n.parentNode;if(!p||p.nodeName==="SCRIPT"||p.nodeName==="STYLE")continue;var raw=(n.__o!==undefined?n.__o:n.nodeValue);var t=raw.trim();var d=D[t];if(d){if(n.__o===undefined)n.__o=n.nodeValue;n.nodeValue=(l==="sr"||!d[l])?n.__o:raw.replace(t,d[l]);}}}if(document.readyState!=="loading")ap();else document.addEventListener("DOMContentLoaded",ap);window.addEventListener("mathia:lang",function(){setTimeout(ap,0)});try{var mo=new MutationObserver(function(){clearTimeout(window.__mep);window.__mep=setTimeout(ap,140)});mo.observe(document.body,{childList:true,subtree:true});}catch(e){}})();</script>
 </body>
 </html>
