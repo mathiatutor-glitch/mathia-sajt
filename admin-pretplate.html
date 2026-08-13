@@ -17,12 +17,12 @@ body{margin:0;background:radial-gradient(1100px 520px at 82% -8%,#FBEEF2 0,rgba(
 h1{font-family:'Spectral',Georgia,serif;margin:0 0 4px;font-size:2rem;font-weight:700;color:var(--plum)}
 .sub{color:var(--muted);margin:0 0 22px;font-size:.94rem}
 /* —— dashboard kartice —— */
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:2px 0 24px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin:2px 0 24px}
 @media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
 .stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px;box-shadow:0 8px 22px -18px rgba(67,44,55,.5);position:relative;overflow:hidden}
 .stat:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--goldsoft),var(--gold))}
 .stat.pink:before{background:linear-gradient(90deg,#F3C0CF,var(--malina))}
-.stat .k{font-family:'Nunito';font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:.68rem;color:var(--muted)}
+.stat .ic{font-size:1.5rem;line-height:1;margin-bottom:6px}.stat{transition:transform .15s,box-shadow .15s}.stat:hover{transform:translateY(-2px);box-shadow:0 16px 34px -22px rgba(67,44,55,.6)}.stat.gold2:before{background:linear-gradient(90deg,#F0DCA8,#C6A05C)}.stat.gold2 .v{color:#A6803C}.stat .k{font-family:'Nunito';font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:.68rem;color:var(--muted)}
 .stat .v{font-family:'Spectral',serif;font-weight:700;font-size:2.1rem;line-height:1.1;margin-top:6px;color:var(--plum)}
 .stat.pink .v{color:var(--malina)}
 .stat .cap{font-size:.74rem;color:var(--muted);margin-top:2px}
@@ -39,7 +39,7 @@ input,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-ra
 .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
 .btn-warn{background:#fff;color:#A33;border:1px solid #E8C5C5}
 table{width:100%;border-collapse:collapse;font-size:.88rem}
-th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:middle}tbody tr:hover{background:#FFF9EF}tbody tr:nth-child(even){background:#FDFBF7}
 th{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.74rem;font-weight:700}
 .ok{background:#E8F5E9;color:#2E7D32}.no{background:#FFEBEE;color:#C62828}.wait{background:#FFF8E1;color:#F57F17}
@@ -71,11 +71,14 @@ th{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.
   <p class="sub">Sve na jednom mestu — prijave, pretplate i porudžbine. Ručno aktiviranje je za kupce koji plate <b>na račun (IPS QR)</b>.</p>
 
   <div class="stats">
-    <div class="stat pink"><div class="k">Probaj besplatno</div><div class="v" id="st-sign">0</div><div class="cap">prijava telefonom</div></div>
-    <div class="stat"><div class="k">Aktivne pretplate</div><div class="v" id="st-akt">0</div><div class="cap">važe danas</div></div>
-    <div class="stat"><div class="k">Istekle</div><div class="v" id="st-ist">0</div><div class="cap">za obnovu</div></div>
-    <div class="stat"><div class="k">Nalozi bez pretplate</div><div class="v" id="st-bez">0</div><div class="cap">čekaju otključavanje</div></div>
-    <div class="stat"><div class="k">Porudžbine</div><div class="v" id="st-ord">0</div><div class="cap">kartične kupovine</div></div>
+    <div class="stat gold2"><div class="ic">💰</div><div class="k">Prihod (kartice)</div><div class="v" id="st-prihod">0</div><div class="cap">plaćene porudžbine</div></div>
+    <div class="stat pink"><div class="ic">📞</div><div class="k">Probaj besplatno</div><div class="v" id="st-sign">0</div><div class="cap">prijava telefonom</div></div>
+    <div class="stat"><div class="ic">✅</div><div class="k">Aktivne pretplate</div><div class="v" id="st-akt">0</div><div class="cap">važe danas</div></div>
+    <div class="stat"><div class="ic">⏳</div><div class="k">Uskoro ističe</div><div class="v" id="st-usk">0</div><div class="cap">u narednih 7 dana</div></div>
+    <div class="stat"><div class="ic">🔁</div><div class="k">Istekle</div><div class="v" id="st-ist">0</div><div class="cap">za obnovu</div></div>
+    <div class="stat"><div class="ic">🔓</div><div class="k">Bez pretplate</div><div class="v" id="st-bez">0</div><div class="cap">čekaju otključavanje</div></div>
+    <div class="stat"><div class="ic">🧾</div><div class="k">Porudžbine</div><div class="v" id="st-ord">0</div><div class="cap">kartične kupovine</div></div>
+    <div class="stat"><div class="ic">⌛</div><div class="k">Na čekanju</div><div class="v" id="st-cek">0</div><div class="cap">neplaćene porudžbine</div></div>
   </div>
 
   <div class="card">
@@ -224,7 +227,7 @@ function render(){
   $("t-ord").querySelector("tbody").innerHTML = od.length ? od.map(function(o){
     var st=o.status==="placeno"?"ok":(o.status==="na_cekanju"?"wait":"no");
     var pm=(o.stavke&&o.stavke.predmeti)||null;
-    return '<tr><td>'+esc(o.kupac_email)+'</td><td>'+(o.iznos_rsd||0).toLocaleString("sr-RS")+'</td>'
+    return '<tr><td>'+esc(o.kupac_email)+'</td><td>'+(o.iznos_rsd||0).toLocaleString("sr-RS")+' din'+'</td>'
       +'<td><span class="pill '+st+'">'+esc(o.status)+'</span></td>'
       +'<td>'+(pm&&pm.length?'<span class="mono">'+esc([].concat(pm).join(", "))+'</span>':'<span class="pill no">null</span>')+'</td>'
       +'<td>'+dat(o.created_at)+'</td></tr>';
@@ -245,6 +248,14 @@ function render(){
   if($("st-ist"))$("st-ist").textContent=pr.length-akt;
   if($("st-bez"))$("st-bez").textContent=bez.length;
   if($("st-ord"))$("st-ord").textContent=od.length;
+  var placeno=od.filter(function(o){return o.status==="placeno";});
+  var prihod=placeno.reduce(function(s,o){return s+(o.iznos_rsd||0);},0);
+  var naCekanju=od.filter(function(o){return o.status==="na_cekanju";}).length;
+  var sedam=new Date(sada.getTime()+7*86400000);
+  var uskoro=pr.filter(function(p){return p.status==="aktivna"&&p.istice&&new Date(p.istice)>sada&&new Date(p.istice)<=sedam;}).length;
+  if($("st-prihod"))$("st-prihod").textContent=prihod.toLocaleString("sr-RS")+" din";
+  if($("st-usk"))$("st-usk").textContent=uskoro;
+  if($("st-cek"))$("st-cek").textContent=naCekanju;
 }
 
 /* ——— akcije ——— */
