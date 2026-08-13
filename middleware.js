@@ -50,6 +50,18 @@ export default async function middleware(req) {
   // DEMO planera: dozvoli pregled bez prijave SAMO uz ?demo=1 (ograničen demo — kupovina daje nalog i čuvanje)
   if (/^planer-(osnovna|srednja|fakultet)\.html$/.test(path) && url.searchParams.get("demo") === "1") return undefined;
 
+  // STRANE PREDMETA su JAVNE (marketing: hero, oblasti, „šta pokrivamo") — posetilac vidi ponudu.
+  // Klon (chat) i materijali (skripte/formule/zadaci/provere) ostaju zaključani (chat backend + gate.js).
+  if (!/(skripta|formule|zadaci|provera|kviz|zbirka|-razred)/.test(path)
+      && (/^predmet-/.test(path)
+          || /^(osnovna|srednja)-(matematika|fizika)-\d/.test(path)
+          || /^programiranje-/.test(path)
+          || /^elektronika-/.test(path)
+          || /^prijemni/.test(path)
+          || path === "mala-matura.html")) {
+    return undefined;
+  }
+
   // SIGURNOSNI PREKIDAČ: SITE_LOCK=0 -> ne zaključavaj (samo stari kviz-gate)
   const lockOn = (process.env.SITE_LOCK ?? "1") !== "0";
   if (!lockOn) {
