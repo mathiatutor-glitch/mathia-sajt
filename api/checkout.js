@@ -22,7 +22,8 @@ export default async function handler(req, res) {
 
     // 3) Porudžbina u bazi (status 'na_cekanju')
     if (!supa.konfigurisan()) return res.status(503).json({ greska: 'Baza nije podešena (Supabase ključevi)' });
-    const orderId = await supa.napraviPorudzbinu({ email, ime, iznos: ukupno, stavke: { detaljno, predmeti: predmeti || null }, tip });
+    const jezik = String(lang || 'sr').slice(0, 2).toLowerCase();
+    const orderId = await supa.napraviPorudzbinu({ email, ime, iznos: ukupno, stavke: { detaljno, predmeti: predmeti || null, lang: jezik }, tip });
 
     // 4) URL za plaćanje — vodi na pay-start koji pravi potpisanu UPC formu.
     //    (SUCCESS_URL / FAILURE_URL / NOTIFY_URL se podešavaju na UPC Merchant portalu.)

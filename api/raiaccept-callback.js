@@ -109,6 +109,7 @@ export default async function handler(req, res) {
 
     const { detaljno, predmeti } = porudzbina.stavke;
     const email = porudzbina.kupac_email;
+    const jezik = (porudzbina.stavke && porudzbina.stavke.lang) || 'sr'; // jezik kupca za mejlove
 
     // 2) Fiskalni racun (ESIR). Ako pukne, NE blokiramo pristup - logujemo za rucno.
     let racun = null;
@@ -167,6 +168,7 @@ export default async function handler(req, res) {
         racun,
         sta: detaljno.map(function (s) { return s.naziv + ' x' + s.kolicina; }).join(', '),
         pristupLink,
+        lang: jezik,
       });
       // Dobrodoslica (kako da pocne) — samo za pakete; ne rusimo tok ako pukne
       if (porudzbina.tip === 'paket') {
@@ -175,7 +177,7 @@ export default async function handler(req, res) {
           var _pk = (detaljno[0] && detaljno[0].planKey)
             || (detaljno[0] && detaljno[0].sifra ? detaljno[0].sifra.replace(/^(MATHIA-|PKT-)/i, '').replace(/-god$/i, '') : '');
           _pk = _pk ? _pk.charAt(0).toUpperCase() + _pk.slice(1).toLowerCase() : '';
-          await mail.posaljiDobrodoslicu({ to: email, ime: _ime, paket: _pk, pristupLink });
+          await mail.posaljiDobrodoslicu({ to: email, ime: _ime, paket: _pk, pristupLink, lang: jezik });
         } catch (e2) {
           console.error('upc-callback: dobrodoslica nije poslata', e2.message);
         }
