@@ -40,6 +40,7 @@
   var me = document.currentScript;
   if (!me) { var ss = document.querySelectorAll('script[data-subject]'); me = ss[ss.length - 1]; }
   var SUBJECT = (me && me.getAttribute("data-subject")) || "";
+  var ANYSUB = !!(me && me.getAttribute("data-anysub") === "1"); // bilo koja aktivna pretplata otključava (kvizovi)
   var FREE_MS = FREE_MIN * 60 * 1000;
   var KEY = "mathia_free_" + SUBJECT;
 
@@ -112,6 +113,7 @@
           var row = rows[i];
           if (row.tip === "klon") continue;   // dopuna (48h) otključava SAMO klon — skripte/formule ostaju za pun paket
           var vazi = !row.istice || new Date(row.istice) > new Date();
+          if (ANYSUB && vazi) return "subscribed";   // kviz: bilo koja aktivna pretplata
           var kupljeno = [];
           (Array.isArray(row.predmeti) ? row.predmeti : []).forEach(function(p){
             kljucevi(p).forEach(function(k){ kupljeno.push(k); });
@@ -163,20 +165,26 @@
     }, true);
   }
 
+
+  /* Sladak katanac (krem+zlato, katanac ikonica) — zajednički za sve poruke */
+  function gateCard(title, sub){
+    return '<div style="width:100%;max-width:460px;background:linear-gradient(180deg,#FFFDF9,#FBEFDA);border:1.5px solid #E7D2A2;border-radius:24px;box-shadow:0 30px 70px -28px rgba(90,16,36,.4);padding:28px 24px;text-align:center;font-family:Inter,system-ui,Arial,sans-serif">' +
+      '<div style="width:56px;height:56px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid #C6A05C;box-shadow:0 12px 26px -12px rgba(198,160,92,.7)">\uD83D\uDD12</div>' +
+      '<div style="width:54px;height:54px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid #C6A05C;box-shadow:0 12px 26px -12px rgba(198,160,92,.7)">\uD83D\uDD12</div><div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
+      '<h2 style="font-family:\'Cormorant Garamond\',Georgia,serif;font-weight:700;font-size:25px;margin:6px 0 6px;color:#5A1024">' + title + '</h2>' +
+      '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">' + sub + '</p>' +
+      plansHTML() +
+      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">Već imaš pretplatu? <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>' +
+      '</div>';
+  }
+
   /* skripta/reels/flip bez .topic — pun katanac (ne može preview po lekciji) */
   function scriptOverlayLock() {
     if (document.getElementById("mathia-gate")) return;
     var o = document.createElement("div");
     o.id = "mathia-gate";
     o.style.cssText = "position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(90,16,36,.34);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:Inter,system-ui,Arial,sans-serif";
-    o.innerHTML =
-      '<div style="width:100%;max-width:440px;background:#fff;border:1px solid #E7D2A2;border-radius:22px;box-shadow:0 30px 70px rgba(90,16,36,.3);padding:26px 24px;text-align:center">' +
-      '<div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
-      '<h2 style="font-family:Cormorant Garamond,serif;font-weight:700;font-size:24px;margin:8px 0 6px;color:#5A1024">Otključaj ceo materijal</h2>' +
-      '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">Pretplati se da otvoriš celu skriptu, formule i zadatke — uz Profesoricu.</p>' +
-      plansHTML() +
-      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">Već imaš pretplatu? <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>' +
-      '</div>';
+    o.innerHTML = gateCard("Otključaj ceo materijal","Pretplati se da otvoriš celu skriptu, formule i zadatke — uz Profesoricu.");
     document.body.appendChild(o);
     document.documentElement.style.overflow = "hidden";
   }
@@ -198,9 +206,9 @@
     if (document.getElementById("mathia-skripta-cta")) return;
     var cta = document.createElement("div");
     cta.id = "mathia-skripta-cta";
-    cta.style.cssText = "margin:22px auto;max-width:460px;background:#fff;border:1px solid #E7D2A2;border-radius:20px;box-shadow:0 26px 64px rgba(90,16,36,.2);padding:24px 22px;text-align:center;font-family:Inter,system-ui,Arial,sans-serif";
+    cta.style.cssText = "margin:22px auto;max-width:460px;background:linear-gradient(180deg,#FFFDF9,#FBEFDA);border:1.5px solid #E7D2A2;border-radius:24px;box-shadow:0 26px 64px -26px rgba(90,16,36,.35);padding:26px 22px;text-align:center;font-family:Inter,system-ui,Arial,sans-serif";
     cta.innerHTML =
-      '<div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
+      '<div style="width:54px;height:54px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid #C6A05C;box-shadow:0 12px 26px -12px rgba(198,160,92,.7)">\uD83D\uDD12</div><div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
       '<h2 style="font-family:Cormorant Garamond,serif;font-weight:700;font-size:24px;margin:8px 0 6px;color:#5A1024">Ovo je pogled na skriptu</h2>' +
       '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">Prvu lekciju vidiš besplatno. Pretplati se da otključaš ceo materijal — sve formule, primere i Marinu.</p>' +
       plansHTML() +
@@ -232,14 +240,7 @@
     var o = document.createElement("div");
     o.id = "mathia-gate";
     o.style.cssText = "position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(90,16,36,.34);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);font-family:Inter,system-ui,Arial,sans-serif";
-    o.innerHTML =
-      '<div style="width:100%;max-width:440px;background:#fff;border:1px solid #E7D2A2;border-radius:22px;box-shadow:0 30px 70px rgba(90,16,36,.3);padding:26px 24px;text-align:center">' +
-      '<div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
-      '<h2 style="font-family:Cormorant Garamond,serif;font-weight:700;font-size:26px;margin:8px 0 6px;color:#5A1024">Besplatnih 15 minuta je isteklo</h2>' +
-      '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">Izaberi paket da nastaviš s ovim predmetom — knjige, skripte, Marina i test sklonosti.</p>' +
-      plansHTML() +
-      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">Već imaš pretplatu? <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>' +
-      '</div>';
+    o.innerHTML = gateCard("Besplatnih 15 minuta je isteklo","Izaberi paket da nastaviš s ovim predmetom — knjige, skripte, Marina i test sklonosti.");
     document.body.appendChild(o);
     document.documentElement.style.overflow = "hidden";
   }
