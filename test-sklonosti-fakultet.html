@@ -1,93 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Test sklonosti — izbor fakulteta i smera · MATHIA</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="theme-color" content="#5A1024">
+<title>Mathia — Test sklonosti (fakultet)</title>
+<meta name="description" content="Besplatan test sklonosti — otkrij koji smer, škola i fakultet ti najviše leže.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#FBF6EE;--paper2:#F5EADB;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--plum:#432C37;--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:760px}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 18px;border-bottom:1px solid var(--bord);background:#fff9ef;flex-wrap:wrap}
-.brand{font-family:'Spectral',serif;font-weight:700;font-size:1.3rem;color:var(--plum);letter-spacing:.5px}
-.brand span{color:var(--golddk)}
-.barr{display:flex;align-items:center;gap:12px}
-.lang{font:inherit;font-weight:700;color:var(--plum);border:1.5px solid var(--bord);border-radius:100px;padding:6px 12px;background:#fff}
-.back{color:var(--golddk);text-decoration:none;font-weight:700;font-size:.95rem}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:26px 18px 70px}
-.eyebrow{color:var(--golddk);font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-size:.78rem;margin:6px 0 8px}
-h1{font-family:'Spectral',serif;font-weight:700;color:var(--plum);font-size:2.3rem;line-height:1.1;margin:0 0 10px}
-.lead{color:var(--ink);font-size:1.06rem;margin:0 0 6px}
-.note{color:var(--muted);font-size:.9rem}
-.card{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:24px 22px;box-shadow:0 10px 30px rgba(176,138,74,.10);margin-top:22px}
-.prog{height:8px;border-radius:100px;background:var(--paper2);overflow:hidden;margin:4px 0 18px}
-.prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--goldlt),var(--gold));width:0;transition:width .25s}
-.qnum{color:var(--golddk);font-weight:800;font-size:.85rem;letter-spacing:1px}
-.qtext{font-family:'Spectral',serif;font-size:1.55rem;font-weight:600;color:var(--plum);margin:6px 0 18px;line-height:1.2}
-.opts{display:flex;flex-direction:column;gap:10px}
-.opt{appearance:none;border:1.5px solid var(--bord);background:#fff;color:var(--ink);font:inherit;font-weight:600;text-align:left;padding:13px 16px;border-radius:12px;cursor:pointer;transition:.15s}
-.opt:hover{border-color:var(--gold);background:var(--champ)}
-.opt.sel{border-color:var(--golddk);background:var(--goldlt)}
-.row{display:flex;gap:10px;justify-content:space-between;margin-top:18px}
-.btn{appearance:none;border:none;font:inherit;font-weight:800;padding:12px 22px;border-radius:100px;cursor:pointer;text-decoration:none;display:inline-block}
-.btn-g{background:linear-gradient(180deg,var(--gold),var(--golddk));color:#fff;box-shadow:0 6px 16px rgba(176,138,74,.30)}
-.btn-o{background:#fff;color:var(--golddk);border:1.5px solid var(--bord)}
-.btn:disabled{opacity:.45;cursor:default}
-.top{background:linear-gradient(180deg,#fff,var(--champ));border:1px solid var(--goldlt);border-radius:16px;padding:18px 20px;text-align:center;margin-bottom:18px}
-.top .lbl{color:var(--golddk);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:.75rem}
-.top .nm{font-family:'Spectral',serif;font-size:2rem;font-weight:700;color:var(--plum);margin:4px 0}
-.sec{font-weight:800;color:var(--plum);font-family:'Spectral',serif;font-size:1.3rem;margin:18px 0 2px}
-.barrow{margin:12px 0}
-.barrow .h{display:flex;justify-content:space-between;font-weight:700;font-size:.95rem;margin-bottom:4px}
-.barrow .h .p{color:var(--golddk)}
-.track{height:12px;border-radius:100px;background:var(--paper2);overflow:hidden}
-.track>i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--goldlt),var(--gold))}
-.rec{border:1px solid var(--bord);border-radius:14px;padding:16px 18px;margin-top:14px;background:#fff}
-.rec h3{font-family:'Spectral',serif;color:var(--plum);font-size:1.4rem;margin:0 0 6px}
-.rec .meta{font-size:.92rem;color:var(--ink);margin:6px 0}
-.rec .meta b{color:var(--golddk)}
-.rec a{color:var(--golddk);font-weight:800;text-decoration:none}
-.hidden{display:none}
-@media(max-width:560px){h1{font-size:1.9rem}.qtext{font-size:1.3rem}.wrap{padding:20px 14px 60px}}
+  :root{--paper:#FBF6EE;--paper2:#F5EADB;--blush:#F4E3DD;--rose:#CC8E86;--rose-dk:#B5746C;--plum:#5A1024;--plum2:#7A3346;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--ink:#3E2D34;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--maxw:840px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Spectral',Georgia,serif;font-weight:600;line-height:1.12;margin:0}
+  p{margin:0}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--golddk);font-weight:800}
+  .orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:6px auto 0}
+  .orn .l{height:1px;width:70px;background:linear-gradient(90deg,transparent,rgba(198,160,92,.6))}
+  .orn .l.r{transform:scaleX(-1)}
+  .orn .d{width:7px;height:7px;transform:rotate(45deg);background:var(--goldlt);box-shadow:0 0 10px rgba(198,160,92,.8)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:100px;padding:14px 28px;font-family:inherit;font-weight:800;font-size:.94rem;cursor:pointer;border:1.5px solid transparent;transition:transform .15s,box-shadow .15s,background .15s;text-decoration:none}
+  .btn-gold{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;box-shadow:0 14px 30px -14px rgba(198,160,92,.9);position:relative;overflow:hidden}
+  .btn-gold::after{content:"";position:absolute;top:0;left:-60%;width:34%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);animation:sweep 6.5s ease-in-out infinite}
+  @keyframes sweep{0%{left:-60%}44%{left:135%}100%{left:135%}}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;border-color:rgba(198,160,92,.5);color:var(--golddk)}
+  .btn-ghost:hover{background:#FBF3E2}
+  .ts-hero{background:linear-gradient(165deg,#4A2A38,#3A2330 58%,#2C1A25);color:#fff;text-align:center;padding:66px 0 72px;position:relative;overflow:hidden}
+  .ts-hero::after{content:"";position:absolute;inset:0;background:radial-gradient(560px 300px at 50% -10%,rgba(231,210,162,.18),transparent);pointer-events:none}
+  .ts-hero .wrap{position:relative;z-index:1}
+  .ts-hero .eyebrow{color:var(--goldlt)}
+  .ts-hero h1{color:#fff;font-size:clamp(2.2rem,5.6vw,3.4rem);margin:14px 0 14px}
+  .ts-hero p{color:#eadfe2;max-width:560px;margin:0 auto;font-size:1.06rem}
+  .ts-hero .orn .l{background:linear-gradient(90deg,transparent,rgba(231,210,162,.6))}
+  .stage{padding:46px 0 74px}
+  .card{background:var(--card);border:1px solid rgba(198,160,92,.26);border-radius:24px;padding:34px;box-shadow:0 34px 74px -42px rgba(120,70,80,.5);position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),#FFF6D6,var(--gold),transparent)}
+  .lvl-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}
+  @media(max-width:560px){.lvl-row{grid-template-columns:1fr}}
+  .lvl{border:1.5px solid rgba(198,160,92,.35);background:linear-gradient(180deg,#fffefb,#FCF6EA);border-radius:18px;padding:24px 16px 20px;text-align:center;cursor:pointer;transition:transform .16s,border-color .16s,box-shadow .16s;font-family:inherit;color:var(--plum);display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 16px 34px -30px rgba(120,70,80,.4)}
+  .lvl:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 26px 44px -30px rgba(198,160,92,.5)}
+  .lvl.on{background:linear-gradient(180deg,#4A2A38,#2C1A25);color:#fff;border-color:transparent;box-shadow:0 16px 32px -16px rgba(120,70,80,.6)}
+  .lv-ic{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#9C7838;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);position:relative;margin-bottom:6px;box-shadow:0 12px 22px -12px rgba(198,160,92,.8)}
+  .lv-ic::before{content:"";position:absolute;inset:-2px;border-radius:50%;padding:2px;background:linear-gradient(135deg,#F0DCA6,#B8923F);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+  .lv-ic svg{width:23px;height:23px}
+  .lvl b{font-family:'Spectral',serif;font-size:1.35rem;font-weight:600;display:block;color:var(--plum)}
+  .lvl .lv-s{font-size:.82rem;color:var(--muted)}
+  .lvl.on b{color:#fff}.lvl.on .lv-s{color:rgba(231,210,162,.8)}.lvl.on .lv-ic{background:rgba(231,210,162,.16);color:#E7D2A2}
+  .fld{margin:8px 0 22px}
+  .fld label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:7px}
+  .fld input{width:100%;border:1px solid rgba(198,160,92,.4);border-radius:12px;padding:12px 15px;font-family:inherit;font-size:1rem;background:#fffdf8;color:var(--plum)}
+  .fld input:focus{outline:none;border-color:var(--gold)}
+  .center{text-align:center}
+  .prog{height:6px;border-radius:6px;background:rgba(198,160,92,.16);overflow:hidden;margin-bottom:8px}
+  .prog i{display:block;height:100%;background:linear-gradient(90deg,var(--goldlt),var(--gold));width:0;transition:width .3s}
+  .qnum{font-size:.78rem;color:var(--muted);font-weight:700;margin-bottom:18px;letter-spacing:.04em}
+  .qtext{font-family:'Spectral',serif;font-size:clamp(1.5rem,3.6vw,2rem);color:var(--plum);margin-bottom:26px;line-height:1.25}
+  .opts{display:grid;gap:11px}
+  .opt{border:1.5px solid rgba(198,160,92,.32);background:#fffdf8;border-radius:14px;padding:15px 20px;text-align:left;cursor:pointer;font-family:inherit;font-size:1.02rem;color:var(--plum);font-weight:600;transition:all .14s;display:flex;align-items:center;gap:12px}
+  .opt:hover{border-color:var(--gold);background:#FBF3E2;transform:translateX(3px)}
+  .opt .dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--gold);flex:none}
+  .ts-back{margin-top:20px;background:none;border:none;color:var(--muted);font-family:inherit;font-weight:700;cursor:pointer;font-size:.86rem}
+  /* report */
+  .rep-type{text-align:center}
+  .rep-type h2{font-size:clamp(2rem,5.5vw,3rem);margin:10px 0;background:linear-gradient(100deg,#9C7838,#E7D2A2 30%,#FFF7E2 48%,#E7D2A2 66%,#C6A05C);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 8s linear infinite}
+  @keyframes foil{to{background-position:220% center}}
+  .rep-type .lead{color:#6a5a62;max-width:580px;margin:0 auto;font-size:1.06rem}
+  .rep-sec{margin-top:34px}
+  .rep-sec .sh{text-align:center;margin-bottom:20px}
+  .rep-sec h3{font-family:'Spectral',serif;font-size:1.7rem;color:var(--plum)}
+  .bar-row{margin-bottom:13px}
+  .bar-top{display:flex;justify-content:space-between;font-size:.9rem;font-weight:700;color:var(--plum);margin-bottom:5px}
+  .bar-top span:last-child{color:var(--golddk)}
+  .bar{height:10px;border-radius:6px;background:rgba(198,160,92,.14);overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--goldlt),var(--gold));width:0;transition:width .8s ease}
+  .bar.top1 i{background:linear-gradient(90deg,var(--gold),var(--golddk))}
+  .opt-cards{display:grid;gap:14px}
+  .opt-card{background:linear-gradient(180deg,#FFFFFF,#FCF6EA);border:1px solid rgba(198,160,92,.26);border-radius:18px;padding:20px 22px;position:relative;overflow:hidden;box-shadow:0 22px 46px -34px rgba(120,70,80,.42);transition:transform .16s,box-shadow .16s,border-color .16s}
+  .opt-card::before{content:"";position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--goldlt),var(--gold))}
+  .opt-card:hover{transform:translateY(-3px);box-shadow:0 32px 56px -34px rgba(120,70,80,.5);border-color:rgba(198,160,92,.5)}
+  .opt-card.best{border-color:rgba(198,160,92,.55);box-shadow:0 30px 60px -30px rgba(198,160,92,.5)}
+  .oc-top{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:9px}
+  .oc-name{font-family:'Spectral',serif;font-size:1.4rem;color:var(--plum);font-weight:600;line-height:1.1}
+  .oc-badge{display:inline-block;font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#4a3812;background:linear-gradient(160deg,#E7D2A2,#C6A05C);border-radius:100px;padding:3px 8px;margin-left:8px;vertical-align:middle}
+  .oc-pct{font-family:'Spectral',serif;font-weight:700;font-size:1.7rem;color:var(--golddk);flex:none}
+  .oc-pct small{font-family:'Inter',sans-serif;font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;text-align:right;margin-top:-4px}
+  .oc-bar{height:7px;border-radius:5px;background:rgba(198,160,92,.14);overflow:hidden;margin-bottom:11px}
+  .oc-bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--goldlt),var(--gold));width:0;transition:width .8s ease}
+  .oc-why{color:#6a5a62;font-size:.94rem}
+  .oc-career{margin-top:9px;font-size:.78rem;font-weight:700;color:var(--golddk);letter-spacing:.02em}
+  .mathia-box{margin-top:26px;background:linear-gradient(160deg,#4A2A38,#2C1A25);color:#fff;border-radius:20px;padding:28px;text-align:center;position:relative;overflow:hidden}
+  .mathia-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .mathia-box h4{font-size:1.6rem;color:#fff;margin-bottom:6px}
+  .mathia-box p{color:#eadfe2;font-size:.95rem;margin-bottom:8px}
+  .mathia-box .subs{color:var(--goldlt);font-weight:700;margin-bottom:16px;font-size:1.02rem}
+  .rep-cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+  .hidden{display:none}
 </style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
+<link rel="stylesheet" href="theme-mathia.css">
+<style>
+.traits{display:grid;grid-template-columns:1fr 1fr;gap:11px 20px;max-width:640px;margin:0 auto}
+@media(max-width:560px){.traits{grid-template-columns:1fr}}
+.trait{display:flex;align-items:center;gap:11px;font-size:1rem;color:var(--plum);font-weight:600}
+.trait .tk{width:22px;height:22px;flex:none;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFFDF6,#F1E1BE);position:relative;box-shadow:0 6px 12px -6px rgba(198,160,92,.8)}
+.trait .tk::after{content:"";position:absolute;inset:0;background:no-repeat center/12px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239C7838' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-11'/%3E%3C/svg%3E")}
+.oc-name a{color:inherit;text-decoration:none;border-bottom:2px solid rgba(198,160,92,.4);transition:border-color .15s}
+.oc-name a:hover{border-color:var(--gold)}
+.career-box{margin-top:16px;background:#fffdf8;border:1px dashed rgba(198,160,92,.5);border-radius:16px;padding:20px 22px}
+.career-box .cb-h{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--golddk);font-weight:800;margin-bottom:7px}
+.career-box p{color:#7A3346;font-size:.98rem}
 </style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#432C37">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<link rel="canonical" href="https://mathia.rs/Test-Sklonosti-Fakultet.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Test sklonosti — izbor fakulteta i smera · MATHIA">
-<meta property="og:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta property="og:url" content="https://mathia.rs/Test-Sklonosti-Fakultet.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Test sklonosti — izbor fakulteta i smera · MATHIA">
-<meta name="twitter:description" content="MATHIA EDU — online časovi i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
 <link rel="stylesheet" href="mathia-type.css">
+<style>
+/* ——— PREMIUM POLISH — test sklonosti ——— */
+.btn-gold,a.btn-gold,.btn.btn-gold{background:#5A1024!important;background-image:none!important;color:#F3E9DA!important;border:none!important;box-shadow:0 14px 30px -16px rgba(90,16,36,.6)!important;font-weight:600!important}
+.btn-gold:hover{filter:brightness(1.13)!important;transform:translateY(-1px)!important}
+.eyebrow{color:#9C7838!important}
+.card{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease!important}
+.card:hover{border-color:#E7D2A2!important}
+.lvl{position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s ease,border-color .3s ease!important}
+.lvl::after{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:linear-gradient(90deg,#C6A05C,#E7D2A2,transparent);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.lvl:hover::after,.lvl.on::after,.lvl.sel::after,.lvl.active::after{transform:scaleX(1)}
+.lv-ic{transition:background .25s ease,color .25s ease}
+.lvl:hover .lv-ic,.lvl.on .lv-ic,.lvl.sel .lv-ic,.lvl.active .lv-ic{background:#5A1024!important;color:#F7EAC9!important}
+.rep-sec .card{position:relative}
+</style>
 <style id="px-test-wizard">
 :root{--plum:#5A1024;--plum2:#7A3346}
 body{position:relative;background:radial-gradient(820px 380px at 88% -8%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 6% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper)!important}
@@ -112,105 +151,405 @@ body::after{content:"\222B";position:fixed;bottom:8%;right:5%;font-family:'Spect
 .btn-ghost{border-color:#C6A05C!important;color:#8E1338!important}
 #repTypeName{color:#8E1338!important}
 </style>
+<style id="sweet-fall">
+#mathfall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#mathfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.20);animation:mfall linear infinite}
+#mathfall span.m{color:rgba(176,30,72,.14)}
+@keyframes mfall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(18deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#mathfall{display:none}}
+header,section,footer,.wrap,.card,.lvl{position:relative;z-index:1}
+</style>
+<style id="ts-sweet">
+.eyebrow{color:#B01E48}
+.lvl{border-radius:22px!important;overflow:hidden;position:relative;padding:28px 18px 22px!important}
+.lvl::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#C6A05C,#B01E48)}
+.lvl:hover{transform:translateY(-6px)!important;border-color:#C6A05C!important;box-shadow:0 34px 56px -32px rgba(90,16,36,.45)!important}
+.lvl .lv-ic{width:56px!important;height:56px!important;transition:transform .22s ease}
+.lvl:hover .lv-ic{transform:scale(1.12) rotate(-5deg)}
+.lvl b{font-size:1.42rem!important}
+.lvl.on::before{background:linear-gradient(180deg,#E7D2A2,#B01E48)}
+</style>
+<style id="ts-pocni">
+/* „Probaj besplatno" stil: meka gradijent pozadina + centrirana slatka kartica */
+body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#FBF3EC 0,#F6ECE6 60%,#FBF3EC 100%)!important;min-height:100vh}
+.ts-hero{padding:38px 20px 6px!important;text-align:center}
+.ts-hero .wrap{max-width:560px;margin:0 auto}
+.ts-hero h1{font-size:clamp(1.7rem,5.6vw,2.35rem)!important}
+.ts-hero p{font-size:1.02rem!important;max-width:470px;margin-left:auto!important;margin-right:auto!important}
+.stage .wrap{max-width:540px;margin:0 auto}
+.stage .card{border-radius:28px!important;box-shadow:0 44px 96px -44px rgba(80,40,60,.45),0 2px 0 rgba(255,255,255,.7) inset!important;padding:32px 28px 28px!important}
+.stage .card>.center h2{font-family:'Spectral',Georgia,serif!important}
+.btn-gold{border-radius:100px!important;padding:15px 32px!important;font-weight:800;font-size:1rem}
+.opt{border-radius:16px!important}
+.lvl-row{gap:14px!important}
+#chooser,.qwrap,.report,.stage>.wrap>.card{animation:tsIn .36s ease both}
+@keyframes tsIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* korak-tačkice u vrhu kartice (dekorativno, pocni osećaj) */
+.ts-dots{display:flex;gap:7px;justify-content:center;margin:0 0 14px}
+.ts-dots i{width:26px;height:5px;border-radius:6px;background:#E9DCC8}
+.ts-dots i.on{background:linear-gradient(90deg,#EAD3A0,#C6A05C)}
+/* sve u jednoj kartici (pocni): sakrij odvojeni hero, badge-ikonica u kartici */
+.ts-hero{display:none!important}
+.stage{padding:40px 0 60px!important;display:flex;justify-content:center}
+.ts-ic{width:58px;height:58px;border-radius:18px;background:linear-gradient(160deg,#F7E9CF,#EAD3A6);display:flex;align-items:center;justify-content:center;font-size:27px;margin:2px auto 12px;box-shadow:0 12px 24px -12px rgba(198,160,92,.85)}
+.ts-eyb{text-align:center;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:#B01E48;font-weight:800;margin-bottom:2px}
+.stage .card>.center h2{font-size:1.7rem!important;margin-top:2px!important}
+/* ——— EKRAN PITANJA — maksimalno slatko ——— */
+#test{text-align:center}
+.qnum{display:inline-block;margin:2px auto 14px!important;background:linear-gradient(180deg,#FFFBF0,#F6E9CE);border:1px solid #EAD3A6;color:#9C7838;font-weight:800;font-size:.76rem;letter-spacing:.06em;padding:6px 16px;border-radius:100px}
+#test .prog{max-width:300px;margin:0 auto 6px!important;height:8px;border-radius:6px;background:#EDE0C8;overflow:hidden}
+#test .qtext{text-align:center;font-family:'Spectral',Georgia,serif}
+#test .opts{text-align:left;display:grid;gap:11px;max-width:440px;margin:0 auto}
+.opt{border-radius:16px!important;transition:transform .14s,border-color .14s,box-shadow .14s,background .14s}
+.opt:hover{transform:translateY(-2px)!important;border-color:#C6A05C!important;box-shadow:0 18px 34px -22px rgba(90,16,36,.4)}
+.ts-back{display:block!important;margin:20px auto 0!important;background:none!important;border:none!important;color:#9C7838!important;font-weight:800;font-size:.9rem;cursor:pointer}
+.ts-back:hover{color:#B01E48!important}
+/* ——— EKRAN REZULTATA — maksimalno slatko ——— */
+#report .rep-type{text-align:center}
+#report .rep-type .eyebrow{color:#B01E48;justify-content:center}
+#report h2{font-family:'Spectral',Georgia,serif!important;font-size:clamp(1.7rem,4.6vw,2.3rem)}
+.rep-sec .sh h3{font-family:'Spectral',Georgia,serif}
+.rep-sec .sh h3::after{content:" ✦";color:#E7D2A2;font-size:.7em}
+.rep-cta .btn-gold{border-radius:100px!important;padding:14px 26px!important}
+</style>
+<style id="ts-anim">
+/* ——— ANIMACIJE ——— */
+@keyframes tsUp{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes tsIcPop{0%{opacity:0;transform:scale(.55) rotate(-14deg)}60%{transform:scale(1.14) rotate(5deg)}100%{opacity:1;transform:none}}
+@keyframes tsFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes tsShine{0%,100%{left:-60%}22%,62%{left:135%}}
+@keyframes tsPop{0%{transform:scale(.9);opacity:.5}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+/* badge: poskok + nežno lebdenje */
+.ts-ic{animation:tsIcPop .55s cubic-bezier(.2,1,.3,1) both, tsFloat 3.6s ease-in-out .7s infinite}
+/* odgovori uleću jedan-za-drugim (opts se prave iznova pri svakom pitanju) */
+#test .opts .opt{animation:tsUp .44s cubic-bezier(.2,.8,.2,1) both}
+#test .opts .opt:nth-child(1){animation-delay:.05s}
+#test .opts .opt:nth-child(2){animation-delay:.12s}
+#test .opts .opt:nth-child(3){animation-delay:.19s}
+#test .opts .opt:nth-child(4){animation-delay:.26s}
+#test .opts .opt:nth-child(5){animation-delay:.33s}
+#test .opts .opt:nth-child(6){animation-delay:.40s}
+.opt:active{transform:scale(.97)!important}
+/* rezultati se pojavljuju redom (elemente pravi JS pri prikazu) */
+#traits>*{animation:tsPop .5s cubic-bezier(.2,1,.3,1) both}
+#traits>*:nth-child(2){animation-delay:.08s}#traits>*:nth-child(3){animation-delay:.16s}#traits>*:nth-child(4){animation-delay:.24s}#traits>*:nth-child(5){animation-delay:.32s}
+#bars .bar-row{animation:tsUp .5s ease both}
+#bars .bar-row:nth-child(2){animation-delay:.09s}#bars .bar-row:nth-child(3){animation-delay:.18s}#bars .bar-row:nth-child(4){animation-delay:.27s}#bars .bar-row:nth-child(5){animation-delay:.36s}
+#optCards>*{animation:tsUp .52s cubic-bezier(.2,.8,.2,1) both}
+#optCards>*:nth-child(2){animation-delay:.1s}#optCards>*:nth-child(3){animation-delay:.2s}#optCards>*:nth-child(4){animation-delay:.3s}
+#mathiaSubs>*{animation:tsPop .45s ease both}
+#mathiaSubs>*:nth-child(2){animation-delay:.08s}#mathiaSubs>*:nth-child(3){animation-delay:.16s}#mathiaSubs>*:nth-child(4){animation-delay:.24s}
+/* zlatna dugmad blistaju */
+.btn-gold{position:relative;overflow:hidden}
+.btn-gold::after{content:"";position:absolute;top:-30%;left:-60%;width:38%;height:160%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);animation:tsShine 4s ease-in-out infinite;pointer-events:none}
+.btn-gold:hover{transform:translateY(-2px)}
+/* progres traka nežno pulsira dok se puni */
+#test .prog i{box-shadow:0 0 10px rgba(198,160,92,.6)}
+/* klizni ulaz cele kartice pri svakom prikazu ekrana */
+@keyframes tsCardIn{from{opacity:0;transform:translateY(18px) scale(.99)}to{opacity:1;transform:none}}
+.ts-in{animation:tsCardIn .46s cubic-bezier(.2,.8,.2,1)}
+/* slađi odgovori: mek gradijent, dot koji zasija malina */
+#test .opts .opt{background:linear-gradient(180deg,#fffdf9,#FCF6EA)!important;border-radius:18px!important;border-color:rgba(198,160,92,.35)!important}
+#test .opts .opt:hover{background:#FFF8EE!important;border-color:#C6A05C!important}
+#test .opts .opt .dot{transition:background .15s,border-color .15s,box-shadow .15s,transform .15s}
+#test .opts .opt:hover .dot{background:#B01E48;border-color:#B01E48;box-shadow:0 0 0 5px rgba(176,30,72,.12);transform:scale(1.1)}
+/* konfete na rezultatu */
+#tsConfetti{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
+#tsConfetti b{position:absolute;top:-24px;width:10px;height:14px;border-radius:2px;will-change:transform,opacity;opacity:0}
+@keyframes confFall{0%{opacity:0;transform:translateY(-10px) rotate(0)}8%{opacity:1}100%{opacity:0;transform:translateY(102vh) rotate(720deg)}}
+@media(prefers-reduced-motion:reduce){.ts-ic,#test .opts .opt,#traits>*,#bars .bar-row,#optCards>*,#mathiaSubs>*,.btn-gold::after,.ts-in{animation:none!important}}
+</style>
+<style id="ts-mockup">
+#chooser,#test,#report{box-shadow:0 40px 90px -50px rgba(90,16,36,.5)!important}
+.opt button{border:1.5px solid rgba(198,160,92,.42)!important;background:linear-gradient(180deg,#fff,#FBF3E4)!important;border-radius:16px!important;padding:15px 16px!important;font-weight:700;color:#5A1024;display:flex!important;align-items:center;gap:12px;transition:transform .14s,border-color .14s,box-shadow .14s;box-shadow:0 6px 16px -12px rgba(156,120,56,.5)}
+.opt button:hover{border-color:#C6A05C!important;transform:translateY(-2px);box-shadow:0 14px 26px -14px rgba(198,160,92,.7)}
+.opt button:active{transform:translateY(0) scale(.99)}
+.opt button .dot{width:20px;height:20px;border-radius:50%;border:2px solid rgba(198,160,92,.55);flex:none;transition:.14s}
+.opt button:hover .dot{background:radial-gradient(circle at 40% 30%,#FFF6D6,#C6A05C);border-color:#C6A05C}
+#progBar{background:linear-gradient(90deg,#E7D2A2,#C6A05C)!important;transition:width .4s ease!important;border-radius:100px}
+.ts-ic{box-shadow:0 16px 30px -16px rgba(198,160,92,.8)}
+.lvl:hover{border-color:#C6A05C}
+@media(prefers-reduced-motion:no-preference){#chooser,#test,#report{animation:tsin .5s both}@keyframes tsin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}.ts-ic{animation:tsbob 3s ease-in-out infinite}@keyframes tsbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
+</style>
 </head>
 <body>
-<script src="header-mathia.js" defer></script>
-<div class="bar">
-  <div class="brand">MATHIA<span> · sklonosti</span></div>
-  <div class="barr">
-    <select class="lang" id="lang" aria-label="Jezik">
-      <option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option>
-    </select>
-    <a class="back" href="predmeti.html">←</a>
+<div id="mathfall" aria-hidden="true"></div>
+
+<section class="ts-hero">
+  <div class="wrap">
+    <div class="eyebrow">besplatan test sklonosti</div>
+    <h1 id="heroH1">Otkrij fakultet koji ti leži</h1>
+    <div class="orn"><span class="l"></span><span class="d"></span><span class="l r"></span></div>
+    <p style="margin-top:16px" id="heroP">Za par minuta otkrivaš koji smer, škola i fakultet ti najviše leže — na osnovu toga kako razmišljaš i šta te pokreće.</p>
   </div>
-</div>
-<div class="wrap">
-  <div class="eyebrow" id="eyebrow"></div>
-  <h1 id="h1"></h1>
-  <p class="lead" id="lead"></p>
-  <p class="note" id="note"></p>
-  <div class="card" id="quiz">
-    <div class="prog"><i id="pfill"></i></div>
-    <div class="qnum" id="qnum"></div>
-    <div class="qtext" id="qtext"></div>
-    <div class="opts" id="opts"></div>
-    <div class="row">
-      <button class="btn btn-o" id="prev"></button>
-      <button class="btn btn-g" id="next" disabled></button>
+</section>
+
+<div class="stage">
+  <div class="wrap">
+
+    <div id="chooser" class="card">
+      <div class="ts-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="ts-eyb">test sklonosti · fakultet</div>
+      <div class="ts-ic" aria-hidden="true">🧭</div>
+      <div class="center"><h2 style="color:var(--plum);font-size:1.9rem;margin:8px 0 4px">Za šta radiš test?</h2>
+      <p style="color:var(--muted);max-width:520px;margin:6px auto 0">Test procenjuje tvoje sklonosti i preporučuje ti smerove, škole i fakultete koji ti odgovaraju. Izaberi nivo:</p></div>
+      <div class="lvl-row">
+        <button class="lvl" data-lvl="srednja"><span class="lv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg></span><b>Srednja škola</b><span class="lv-s">koju srednju upisati</span></button>
+        <button class="lvl" data-lvl="visa"><span class="lv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><b>Viša škola</b><span class="lv-s">strukovne studije</span></button>
+        <button class="lvl" data-lvl="fakultet"><span class="lv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg></span><b>Fakultet</b><span class="lv-s">smer i fakultet</span></button>
+      </div>
+      <div class="fld"><label for="grad">Grad (opciono)</label><input id="grad" type="text" placeholder="npr. Beograd, Novi Sad, Niš…"></div>
+      <div class="center"><button class="btn btn-gold" id="startBtn">Započni test →</button></div>
+      <div class="center" style="margin-top:16px"><a href="testiraj-se.html" style="color:#9C7838;font-weight:800;text-decoration:none;font-size:.9rem">Već znaš smer? Proveri znanje →</a></div>
     </div>
+
+    <div id="test" class="card hidden">
+      <div class="ts-dots" aria-hidden="true"><i></i><i class="on"></i><i></i></div>
+      <div class="ts-ic" aria-hidden="true">✨</div>
+      <div class="prog"><i id="progBar"></i></div>
+      <div class="qnum" id="qnum">Pitanje 1 / 18</div>
+      <div class="qtext" id="qtext"></div>
+      <div class="opts" id="opts"></div>
+      <button class="ts-back" id="backBtn">← Prethodno</button>
+    </div>
+
+    <div id="report" class="hidden">
+      <div class="card">
+        <div class="ts-dots" aria-hidden="true"><i></i><i></i><i class="on"></i></div>
+        <div class="ts-ic" aria-hidden="true">🎉</div>
+        <div class="rep-type">
+          <div class="eyebrow">tvoj rezultat</div>
+          <h2 id="repTypeName"></h2>
+          <div class="orn"><span class="l"></span><span class="d"></span><span class="l r"></span></div>
+          <p class="lead" style="margin-top:16px" id="repTypeDesc"></p>
+        </div>
+        <div class="rep-sec">
+          <div class="sh"><h3>Tvoje vrline i talenti</h3><p style="color:var(--muted);font-size:.92rem;margin-top:4px">Ono u čemu prirodno blistaš.</p></div>
+          <div class="traits" id="traits"></div>
+        </div>
+        <div class="rep-sec">
+          <div class="sh"><h3>Koliko ti šta leži</h3></div>
+          <div id="bars"></div>
+        </div>
+        <div class="rep-sec">
+          <div class="sh"><h3>Preporučeni smerovi za tebe</h3><p style="color:var(--muted);font-size:.92rem;margin-top:4px">Rangirano po tome koliko odgovaraju tvom profilu.</p></div>
+          <div class="opt-cards" id="optCards"></div>
+          <div class="career-box" id="careerBox"></div>
+        </div>
+        <div class="mathia-box">
+          <h4>Kako da stigneš tamo</h4>
+          <p>Na Mathiji te vode baš pravi predmeti i profesorica koja je uvek uz tebe:</p>
+          <div class="subs" id="mathiaSubs"></div>
+          <div class="rep-cta">
+            <a class="btn btn-gold" href="predmeti.html">Pogledaj predmete →</a>
+            <a class="btn btn-ghost" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)">Priprema za prijemni →</a>
+          </div>
+        </div>
+        <div class="center" style="margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center"><a class="btn btn-gold" href="index.html">← Vrati se na početnu</a><button class="ts-back" id="restartBtn">↺ Uradi test ponovo</button></div>
+      </div>
+    </div>
+
   </div>
-  <div class="card hidden" id="result"></div>
 </div>
+
 <script>
-var DATA={"I18N": {"sr": {"ui": {"eyebrow": "Prijemni · orijentacija", "h1": "Test sklonosti", "lead": "Otkrij koji fakultet i smer ti najviše leže. Dvadeset kratkih pitanja, a na kraju dobijaš rangiranu listu sa procentima, opisom, preporučenim fakultetima i savetima za učenje.", "note": "Test je orijentacioni — služi kao podsticaj za razmišljanje, ne kao konačna odluka.", "qnum": "PITANJE", "prev": "← Nazad", "more": "Dalje →", "see": "Vidi rezultat ✓", "topLbl": "Najviše ti leži", "match": "podudaranja", "profile": "Tvoj profil", "recs": "Preporuke za tebe", "fakLbl": "Fakulteti", "savLbl": "Saveti", "repeat": "↻ Ponovi test", "solve": "Reši rokove →", "disc": "Rezultat je orijentacioni. Najbolja odluka spaja ono što ti leži, ono što voliš i prilike koje te zanimaju."}, "scale": ["Uopšte se ne slažem", "Uglavnom se ne slažem", "Neutralno", "Uglavnom se slažem", "Potpuno se slažem"], "Q": ["Uživam da rešavam logičke i matematičke probleme.", "Voleo/la bih da programiram ili pravim aplikacije.", "Zanima me kako rade mašine, struja i uređaji.", "Privlači me rad sa ljudima i briga o njihovom zdravlju.", "Volim da razmišljam o društvu, pravdi i pravilima.", "Zanima me novac, tržište i kako posluju firme.", "Lako učim strane jezike i volim književnost.", "Volim da crtam, dizajniram ili stvaram vizuelne stvari.", "Uživam u eksperimentima iz fizike, hemije ili biologije.", "Kad nešto ne radi, volim da otkrijem zašto i popravim.", "Volim da analiziram podatke i tražim obrasce.", "Lako mi je da povedem tim i ubedim druge.", "Mogu dugo da rešavam zadatak dok ne dođem do tačnog rešenja.", "Zanima me ljudsko telo i kako funkcioniše.", "Volim da pišem, debatujem i iznosim argumente.", "Privlači me arhitektura i oblikovanje prostora.", "Volim tehnologiju, nove uređaje i aplikacije.", "Briga o prirodi i živom svetu mi je važna.", "Volim da organizujem, planiram i vodim računa o budžetu.", "Uživam da pomažem drugima da nešto nauče ili reše."], "fields": {"mat": {"name": "Matematika i tehnika", "desc": "Logika, računanje i tehnički problemi su ti igra. Smeri gde se gradi, računa i rešava.", "sav": "Radi zadatke svaki dan po malo i prati naše rešene rokove iz matematike.", "linktxt": "Reši matematiku — rokovi 2002–2025"}, "it": {"name": "Računarstvo i IT", "desc": "Privlače te programiranje, aplikacije i rad sa podacima. Budućnost u softveru i tehnologiji.", "sav": "Počni od jednog jezika (Python) i pravi male projekte; vežbaj logiku i algoritme.", "linktxt": "Pogledaj predmete iz programiranja"}, "nat": {"name": "Prirodne nauke", "desc": "Voliš da razumeš kako svet funkcioniše kroz fiziku, hemiju i biologiju.", "sav": "Poveži teoriju sa eksperimentima; uči kroz primere iz svakodnevnog života.", "linktxt": ""}, "med": {"name": "Medicina i zdravstvo", "desc": "Briga o ljudima i ljudsko telo te privlače. Smeri sa puno znanja i odgovornosti.", "sav": "Ojačaj hemiju i biologiju; navikni se na učenje velike količine gradiva.", "linktxt": ""}, "soc": {"name": "Društvo i pravo", "desc": "Voliš argumente, pravila i pitanja pravde i društva.", "sav": "Čitaj, debatuj i vežbaj jasno pisanje i izlaganje stavova.", "linktxt": ""}, "eco": {"name": "Ekonomija i biznis", "desc": "Zanimaju te novac, tržište, organizacija i vođenje.", "sav": "Prati osnove matematike i statistike; uči kroz realne primere firmi.", "linktxt": ""}, "lang": {"name": "Jezici i humanistika", "desc": "Lako učiš jezike, voliš književnost i komunikaciju.", "sav": "Čitaj na jeziku koji učiš svaki dan i vežbaj prevođenje i pisanje.", "linktxt": ""}, "art": {"name": "Umetnost, dizajn i arhitektura", "desc": "Stvaraš, crtaš i oblikuješ prostor i vizuelne ideje.", "sav": "Pravi portfolio radova; vežbaj crtanje i prostorno razmišljanje.", "linktxt": ""}}}, "en": {"ui": {"eyebrow": "Admissions · orientation", "h1": "Aptitude test", "lead": "Discover which faculty and track suit you best. Twenty short questions, then a ranked list with percentages, descriptions, recommended faculties and study tips.", "note": "This test is for orientation — a nudge for reflection, not a final decision.", "qnum": "QUESTION", "prev": "← Back", "more": "Next →", "see": "See result ✓", "topLbl": "Your best match", "match": "match", "profile": "Your profile", "recs": "Recommendations for you", "fakLbl": "Faculties", "savLbl": "Tips", "repeat": "↻ Retake test", "solve": "Solve past exams →", "disc": "The result is indicative. The best choice combines what suits you, what you love, and the opportunities that interest you."}, "scale": ["Strongly disagree", "Mostly disagree", "Neutral", "Mostly agree", "Strongly agree"], "Q": ["I enjoy solving logical and mathematical problems.", "I'd like to code or build apps.", "I'm curious how machines, electricity and devices work.", "I'm drawn to working with people and caring for their health.", "I like thinking about society, justice and rules.", "I'm interested in money, markets and how companies work.", "I learn languages easily and love literature.", "I love drawing, designing or creating visual things.", "I enjoy physics, chemistry or biology experiments.", "When something breaks, I like to find out why and fix it.", "I like analysing data and finding patterns.", "I find it easy to lead a team and persuade others.", "I can work on a problem for a long time until I get it right.", "I'm interested in the human body and how it works.", "I like writing, debating and making arguments.", "Architecture and shaping space appeal to me.", "I love technology, new devices and apps.", "Caring for nature and living things matters to me.", "I like organising, planning and managing a budget.", "I enjoy helping others learn or solve something."], "fields": {"mat": {"name": "Mathematics & engineering", "desc": "Logic, calculation and technical problems are your playground — fields that build, compute and solve.", "sav": "Solve a little every day and follow our solved math entrance exams.", "linktxt": "Solve math — past exams 2002–2025"}, "it": {"name": "Computing & IT", "desc": "Coding, apps and data attract you — a future in software and technology.", "sav": "Start with one language (Python) and build small projects; practise logic and algorithms.", "linktxt": "See programming subjects"}, "nat": {"name": "Natural sciences", "desc": "You love understanding the world through physics, chemistry and biology.", "sav": "Link theory to experiments; learn through everyday examples.", "linktxt": ""}, "med": {"name": "Medicine & health", "desc": "Caring for people and the human body draw you — fields of deep knowledge and responsibility.", "sav": "Strengthen chemistry and biology; get used to learning a lot of material.", "linktxt": ""}, "soc": {"name": "Society & law", "desc": "You love arguments, rules and questions of justice and society.", "sav": "Read, debate and practise clear writing and presenting views.", "linktxt": ""}, "eco": {"name": "Economics & business", "desc": "Money, markets, organising and leading interest you.", "sav": "Keep up basic maths and statistics; learn from real company cases.", "linktxt": ""}, "lang": {"name": "Languages & humanities", "desc": "You learn languages easily and love literature and communication.", "sav": "Read daily in the language you study and practise translation and writing.", "linktxt": ""}, "art": {"name": "Art, design & architecture", "desc": "You create, draw and shape space and visual ideas.", "sav": "Build a portfolio; practise drawing and spatial thinking.", "linktxt": ""}}}, "de": {"ui": {"eyebrow": "Aufnahme · Orientierung", "h1": "Eignungstest", "lead": "Finde heraus, welche Fakultät und Richtung am besten zu dir passt. Zwanzig kurze Fragen, danach eine Rangliste mit Prozenten, Beschreibungen, empfohlenen Fakultäten und Lerntipps.", "note": "Der Test dient der Orientierung — ein Anstoß zum Nachdenken, keine endgültige Entscheidung.", "qnum": "FRAGE", "prev": "← Zurück", "more": "Weiter →", "see": "Ergebnis ansehen ✓", "topLbl": "Beste Übereinstimmung", "match": "Übereinstimmung", "profile": "Dein Profil", "recs": "Empfehlungen für dich", "fakLbl": "Fakultäten", "savLbl": "Tipps", "repeat": "↻ Test wiederholen", "solve": "Altklausuren lösen →", "disc": "Das Ergebnis ist ein Anhaltspunkt. Die beste Wahl verbindet, was zu dir passt, was du liebst und welche Chancen dich reizen."}, "scale": ["Stimme gar nicht zu", "Stimme eher nicht zu", "Neutral", "Stimme eher zu", "Stimme voll zu"], "Q": ["Ich löse gern logische und mathematische Aufgaben.", "Ich würde gern programmieren oder Apps bauen.", "Mich interessiert, wie Maschinen, Strom und Geräte funktionieren.", "Mich reizt die Arbeit mit Menschen und die Sorge um ihre Gesundheit.", "Ich denke gern über Gesellschaft, Gerechtigkeit und Regeln nach.", "Mich interessieren Geld, Märkte und wie Firmen arbeiten.", "Ich lerne leicht Sprachen und liebe Literatur.", "Ich zeichne, gestalte und schaffe gern Visuelles.", "Ich mag Experimente in Physik, Chemie oder Biologie.", "Wenn etwas nicht geht, finde ich gern heraus warum und repariere es.", "Ich analysiere gern Daten und suche Muster.", "Es fällt mir leicht, ein Team zu führen und zu überzeugen.", "Ich kann lange an einer Aufgabe arbeiten, bis sie stimmt.", "Mich interessiert der menschliche Körper und wie er funktioniert.", "Ich schreibe, debattiere und argumentiere gern.", "Architektur und Raumgestaltung reizen mich.", "Ich liebe Technik, neue Geräte und Apps.", "Mir ist die Sorge um Natur und Lebewesen wichtig.", "Ich organisiere, plane und verwalte gern ein Budget.", "Ich helfe anderen gern beim Lernen oder Lösen."], "fields": {"mat": {"name": "Mathematik & Technik", "desc": "Logik, Rechnen und Technik liegen dir — Richtungen, die bauen, rechnen und lösen.", "sav": "Rechne täglich ein wenig und nutze unsere gelösten Mathe-Aufnahmeprüfungen.", "linktxt": "Mathe lösen — Prüfungen 2002–2025"}, "it": {"name": "Informatik & IT", "desc": "Programmieren, Apps und Daten reizen dich — Zukunft in Software und Technik.", "sav": "Beginne mit einer Sprache (Python) und baue kleine Projekte; übe Logik und Algorithmen.", "linktxt": "Programmierfächer ansehen"}, "nat": {"name": "Naturwissenschaften", "desc": "Du verstehst die Welt gern durch Physik, Chemie und Biologie.", "sav": "Verbinde Theorie mit Experimenten; lerne an Alltagsbeispielen.", "linktxt": ""}, "med": {"name": "Medizin & Gesundheit", "desc": "Menschen und der Körper ziehen dich an — Richtungen mit viel Wissen und Verantwortung.", "sav": "Stärke Chemie und Biologie; gewöhne dich an viel Lernstoff.", "linktxt": ""}, "soc": {"name": "Gesellschaft & Recht", "desc": "Du liebst Argumente, Regeln und Fragen von Recht und Gesellschaft.", "sav": "Lies, debattiere und übe klares Schreiben und Vortragen.", "linktxt": ""}, "eco": {"name": "Wirtschaft", "desc": "Geld, Märkte, Organisation und Führung interessieren dich.", "sav": "Halte Mathe- und Statistikgrundlagen; lerne an echten Firmenbeispielen.", "linktxt": ""}, "lang": {"name": "Sprachen & Geisteswissenschaften", "desc": "Du lernst leicht Sprachen und liebst Literatur und Kommunikation.", "sav": "Lies täglich in der Sprache, die du lernst, und übe Übersetzen und Schreiben.", "linktxt": ""}, "art": {"name": "Kunst, Design & Architektur", "desc": "Du gestaltest, zeichnest und formst Raum und visuelle Ideen.", "sav": "Baue ein Portfolio; übe Zeichnen und räumliches Denken.", "linktxt": ""}}}, "fr": {"ui": {"eyebrow": "Admission · orientation", "h1": "Test d'aptitude", "lead": "Découvre quelle faculté et quelle filière te conviennent le mieux. Vingt questions courtes, puis un classement avec pourcentages, descriptions, facultés recommandées et conseils d'étude.", "note": "Ce test est indicatif — une invitation à réfléchir, pas une décision finale.", "qnum": "QUESTION", "prev": "← Retour", "more": "Suivant →", "see": "Voir le résultat ✓", "topLbl": "Ta meilleure affinité", "match": "de correspondance", "profile": "Ton profil", "recs": "Recommandations pour toi", "fakLbl": "Facultés", "savLbl": "Conseils", "repeat": "↻ Refaire le test", "solve": "Annales →", "disc": "Le résultat est indicatif. Le meilleur choix réunit ce qui te convient, ce que tu aimes et les opportunités qui t'intéressent."}, "scale": ["Pas du tout d'accord", "Plutôt pas d'accord", "Neutre", "Plutôt d'accord", "Tout à fait d'accord"], "Q": ["J'aime résoudre des problèmes logiques et mathématiques.", "J'aimerais coder ou créer des applis.", "La façon dont marchent machines, électricité et appareils m'intéresse.", "Le travail avec les gens et le soin de leur santé m'attire.", "J'aime réfléchir à la société, la justice et les règles.", "L'argent, les marchés et le fonctionnement des entreprises m'intéressent.", "J'apprends facilement les langues et j'aime la littérature.", "J'aime dessiner, concevoir ou créer des choses visuelles.", "J'aime les expériences de physique, chimie ou biologie.", "Quand ça ne marche pas, j'aime trouver pourquoi et réparer.", "J'aime analyser des données et trouver des schémas.", "Je mène facilement une équipe et je convaincs les autres.", "Je peux travailler longtemps sur un problème jusqu'à la bonne solution.", "Le corps humain et son fonctionnement m'intéressent.", "J'aime écrire, débattre et argumenter.", "L'architecture et l'aménagement de l'espace m'attirent.", "J'adore la technologie, les nouveaux appareils et applis.", "Prendre soin de la nature et du vivant compte pour moi.", "J'aime organiser, planifier et gérer un budget.", "J'aime aider les autres à apprendre ou résoudre."], "fields": {"mat": {"name": "Mathématiques & technique", "desc": "La logique, le calcul et la technique sont ton terrain — des filières qui construisent et résolvent.", "sav": "Fais quelques exercices chaque jour et suis nos annales de maths corrigées.", "linktxt": "Maths — annales 2002–2025"}, "it": {"name": "Informatique & IT", "desc": "Le code, les applis et les données t'attirent — l'avenir dans le logiciel.", "sav": "Commence par un langage (Python) et fais de petits projets; entraîne logique et algorithmes.", "linktxt": "Voir les matières de programmation"}, "nat": {"name": "Sciences naturelles", "desc": "Tu aimes comprendre le monde par la physique, la chimie et la biologie.", "sav": "Relie la théorie aux expériences; apprends par des exemples du quotidien.", "linktxt": ""}, "med": {"name": "Médecine & santé", "desc": "Le soin des gens et le corps humain t'attirent — des filières exigeantes et responsables.", "sav": "Renforce chimie et biologie; habitue-toi à beaucoup de matière.", "linktxt": ""}, "soc": {"name": "Société & droit", "desc": "Tu aimes les arguments, les règles et les questions de justice et société.", "sav": "Lis, débats et entraîne-toi à écrire et exposer clairement.", "linktxt": ""}, "eco": {"name": "Économie & gestion", "desc": "L'argent, les marchés, l'organisation et le management t'intéressent.", "sav": "Maintiens les bases de maths et stats; apprends sur des cas d'entreprises.", "linktxt": ""}, "lang": {"name": "Langues & sciences humaines", "desc": "Tu apprends vite les langues et aimes la littérature et la communication.", "sav": "Lis chaque jour dans la langue étudiée et entraîne traduction et écriture.", "linktxt": ""}, "art": {"name": "Art, design & architecture", "desc": "Tu crées, dessines et façonnes l'espace et les idées visuelles.", "sav": "Constitue un portfolio; entraîne le dessin et la pensée spatiale.", "linktxt": ""}}}, "es": {"ui": {"eyebrow": "Admisión · orientación", "h1": "Test de aptitud", "lead": "Descubre qué facultad y especialidad te convienen más. Veinte preguntas cortas y luego una lista ordenada con porcentajes, descripciones, facultades recomendadas y consejos de estudio.", "note": "Es un test orientativo — un estímulo para reflexionar, no una decisión final.", "qnum": "PREGUNTA", "prev": "← Atrás", "more": "Siguiente →", "see": "Ver resultado ✓", "topLbl": "Tu mejor afinidad", "match": "de coincidencia", "profile": "Tu perfil", "recs": "Recomendaciones para ti", "fakLbl": "Facultades", "savLbl": "Consejos", "repeat": "↻ Repetir test", "solve": "Resolver exámenes →", "disc": "El resultado es orientativo. La mejor decisión une lo que te conviene, lo que amas y las oportunidades que te interesan."}, "scale": ["Totalmente en desacuerdo", "Más bien en desacuerdo", "Neutral", "Más bien de acuerdo", "Totalmente de acuerdo"], "Q": ["Disfruto resolviendo problemas lógicos y matemáticos.", "Me gustaría programar o crear apps.", "Me interesa cómo funcionan máquinas, electricidad y dispositivos.", "Me atrae trabajar con personas y cuidar su salud.", "Me gusta pensar en la sociedad, la justicia y las reglas.", "Me interesan el dinero, los mercados y cómo operan las empresas.", "Aprendo idiomas con facilidad y amo la literatura.", "Me encanta dibujar, diseñar o crear cosas visuales.", "Disfruto los experimentos de física, química o biología.", "Cuando algo falla, me gusta averiguar por qué y arreglarlo.", "Me gusta analizar datos y buscar patrones.", "Me resulta fácil liderar un equipo y convencer a otros.", "Puedo trabajar mucho en un problema hasta resolverlo.", "Me interesa el cuerpo humano y cómo funciona.", "Me gusta escribir, debatir y argumentar.", "Me atraen la arquitectura y dar forma al espacio.", "Me encanta la tecnología, los dispositivos y las apps.", "Cuidar la naturaleza y los seres vivos me importa.", "Me gusta organizar, planificar y manejar un presupuesto.", "Disfruto ayudar a otros a aprender o resolver algo."], "fields": {"mat": {"name": "Matemáticas e ingeniería", "desc": "La lógica, el cálculo y lo técnico son tu terreno — carreras que construyen y resuelven.", "sav": "Practica un poco cada día y sigue nuestros exámenes de matemáticas resueltos.", "linktxt": "Matemáticas — exámenes 2002–2025"}, "it": {"name": "Informática y TI", "desc": "Te atraen el código, las apps y los datos — futuro en software y tecnología.", "sav": "Empieza con un lenguaje (Python) y haz pequeños proyectos; practica lógica y algoritmos.", "linktxt": "Ver materias de programación"}, "nat": {"name": "Ciencias naturales", "desc": "Te encanta entender el mundo con física, química y biología.", "sav": "Une teoría y experimentos; aprende con ejemplos cotidianos.", "linktxt": ""}, "med": {"name": "Medicina y salud", "desc": "Cuidar a las personas y el cuerpo humano te atraen — carreras de mucho saber y responsabilidad.", "sav": "Refuerza química y biología; acostúmbrate a estudiar mucho.", "linktxt": ""}, "soc": {"name": "Sociedad y derecho", "desc": "Amas los argumentos, las reglas y la justicia y la sociedad.", "sav": "Lee, debate y practica escribir y exponer con claridad.", "linktxt": ""}, "eco": {"name": "Economía y negocios", "desc": "Te interesan el dinero, los mercados, organizar y liderar.", "sav": "Mantén bases de matemáticas y estadística; aprende con casos reales.", "linktxt": ""}, "lang": {"name": "Lenguas y humanidades", "desc": "Aprendes idiomas con facilidad y amas la literatura y la comunicación.", "sav": "Lee a diario en el idioma que estudias y practica traducción y escritura.", "linktxt": ""}, "art": {"name": "Arte, diseño y arquitectura", "desc": "Creas, dibujas y das forma al espacio y a ideas visuales.", "sav": "Crea un portafolio; practica dibujo y pensamiento espacial.", "linktxt": ""}}}, "it": {"ui": {"eyebrow": "Ammissione · orientamento", "h1": "Test attitudinale", "lead": "Scopri quale facoltà e indirizzo fanno per te. Venti domande brevi e poi una classifica con percentuali, descrizioni, facoltà consigliate e consigli di studio.", "note": "Il test è orientativo — uno spunto di riflessione, non una decisione definitiva.", "qnum": "DOMANDA", "prev": "← Indietro", "more": "Avanti →", "see": "Vedi risultato ✓", "topLbl": "La tua affinità migliore", "match": "di corrispondenza", "profile": "Il tuo profilo", "recs": "Consigli per te", "fakLbl": "Facoltà", "savLbl": "Consigli", "repeat": "↻ Rifai il test", "solve": "Esami passati →", "disc": "Il risultato è indicativo. La scelta migliore unisce ciò che ti si addice, ciò che ami e le opportunità che ti interessano."}, "scale": ["Per niente d'accordo", "Poco d'accordo", "Neutrale", "Abbastanza d'accordo", "Pienamente d'accordo"], "Q": ["Mi piace risolvere problemi logici e matematici.", "Vorrei programmare o creare app.", "Mi interessa come funzionano macchine, elettricità e dispositivi.", "Mi attira lavorare con le persone e curarne la salute.", "Mi piace riflettere su società, giustizia e regole.", "Mi interessano denaro, mercati e come operano le aziende.", "Imparo facilmente le lingue e amo la letteratura.", "Amo disegnare, progettare o creare cose visive.", "Mi piacciono gli esperimenti di fisica, chimica o biologia.", "Quando qualcosa non va, mi piace scoprire perché e ripararlo.", "Mi piace analizzare dati e trovare schemi.", "Mi è facile guidare un team e convincere gli altri.", "Posso lavorare a lungo su un problema fino alla soluzione giusta.", "Mi interessa il corpo umano e come funziona.", "Mi piace scrivere, dibattere e argomentare.", "Mi attirano l'architettura e dare forma allo spazio.", "Amo la tecnologia, i nuovi dispositivi e le app.", "Mi sta a cuore la natura e il mondo vivente.", "Mi piace organizzare, pianificare e gestire un budget.", "Mi piace aiutare gli altri a imparare o risolvere."], "fields": {"mat": {"name": "Matematica e tecnica", "desc": "Logica, calcolo e tecnica sono il tuo campo — indirizzi che costruiscono e risolvono.", "sav": "Esercitati ogni giorno e segui i nostri esami di matematica risolti.", "linktxt": "Matematica — esami 2002–2025"}, "it": {"name": "Informatica e IT", "desc": "Ti attraggono codice, app e dati — futuro nel software e nella tecnologia.", "sav": "Inizia con un linguaggio (Python) e crea piccoli progetti; allena logica e algoritmi.", "linktxt": "Vedi le materie di programmazione"}, "nat": {"name": "Scienze naturali", "desc": "Ami capire il mondo attraverso fisica, chimica e biologia.", "sav": "Collega teoria ed esperimenti; impara con esempi quotidiani.", "linktxt": ""}, "med": {"name": "Medicina e salute", "desc": "La cura delle persone e il corpo umano ti attraggono — indirizzi impegnativi e responsabili.", "sav": "Rafforza chimica e biologia; abituati a studiare molto.", "linktxt": ""}, "soc": {"name": "Società e diritto", "desc": "Ami argomenti, regole e questioni di giustizia e società.", "sav": "Leggi, dibatti ed esercitati a scrivere ed esporre con chiarezza.", "linktxt": ""}, "eco": {"name": "Economia e business", "desc": "Ti interessano denaro, mercati, organizzazione e leadership.", "sav": "Mantieni basi di matematica e statistica; impara da casi reali.", "linktxt": ""}, "lang": {"name": "Lingue e materie umanistiche", "desc": "Impari facilmente le lingue e ami letteratura e comunicazione.", "sav": "Leggi ogni giorno nella lingua che studi ed esercitati a tradurre e scrivere.", "linktxt": ""}, "art": {"name": "Arte, design e architettura", "desc": "Crei, disegni e dai forma allo spazio e a idee visive.", "sav": "Crea un portfolio; allena disegno e pensiero spaziale.", "linktxt": ""}}}, "ru": {"ui": {"eyebrow": "Поступление · ориентация", "h1": "Тест склонностей", "lead": "Узнай, какой факультет и направление подходят тебе больше всего. Двадцать коротких вопросов, затем рейтинг с процентами, описаниями, рекомендуемыми факультетами и советами по учёбе.", "note": "Тест ориентировочный — повод задуматься, а не окончательное решение.", "qnum": "ВОПРОС", "prev": "← Назад", "more": "Дальше →", "see": "Смотреть результат ✓", "topLbl": "Лучшее совпадение", "match": "совпадения", "profile": "Твой профиль", "recs": "Рекомендации для тебя", "fakLbl": "Факультеты", "savLbl": "Советы", "repeat": "↻ Пройти снова", "solve": "Решать варианты →", "disc": "Результат ориентировочный. Лучший выбор объединяет то, что тебе подходит, что ты любишь, и возможности, которые тебя интересуют."}, "scale": ["Совсем не согласен/на", "Скорее не согласен/на", "Нейтрально", "Скорее согласен/на", "Полностью согласен/на"], "Q": ["Мне нравится решать логические и математические задачи.", "Я хотел(а) бы программировать или создавать приложения.", "Мне интересно, как работают машины, электричество и устройства.", "Меня привлекает работа с людьми и забота об их здоровье.", "Мне нравится размышлять об обществе, справедливости и правилах.", "Меня интересуют деньги, рынок и как работают компании.", "Мне легко даются языки, и я люблю литературу.", "Я люблю рисовать, проектировать и создавать визуальное.", "Мне нравятся опыты по физике, химии или биологии.", "Когда что-то ломается, люблю понять почему и починить.", "Мне нравится анализировать данные и искать закономерности.", "Мне легко вести команду и убеждать других.", "Я могу долго решать задачу, пока не найду верный ответ.", "Меня интересует человеческое тело и как оно работает.", "Мне нравится писать, спорить и приводить аргументы.", "Меня привлекает архитектура и оформление пространства.", "Я люблю технологии, новые устройства и приложения.", "Мне важна забота о природе и живом мире.", "Мне нравится организовывать, планировать и вести бюджет.", "Мне нравится помогать другим учиться или решать."], "fields": {"mat": {"name": "Математика и техника", "desc": "Логика, расчёты и техника — твоя стихия: направления, где строят, считают и решают.", "sav": "Решай понемногу каждый день и используй наши разобранные варианты по математике.", "linktxt": "Математика — варианты 2002–2025"}, "it": {"name": "Информатика и ИТ", "desc": "Тебя влекут программирование, приложения и данные — будущее в ИТ.", "sav": "Начни с одного языка (Python) и делай маленькие проекты; тренируй логику и алгоритмы.", "linktxt": "Предметы по программированию"}, "nat": {"name": "Естественные науки", "desc": "Ты любишь понимать мир через физику, химию и биологию.", "sav": "Связывай теорию с опытами; учись на примерах из жизни.", "linktxt": ""}, "med": {"name": "Медицина и здоровье", "desc": "Тебя влечёт забота о людях и человеческое тело — направления знаний и ответственности.", "sav": "Подтяни химию и биологию; привыкай к большому объёму материала.", "linktxt": ""}, "soc": {"name": "Общество и право", "desc": "Ты любишь аргументы, правила и вопросы справедливости и общества.", "sav": "Читай, спорь и тренируй ясное письмо и изложение позиций.", "linktxt": ""}, "eco": {"name": "Экономика и бизнес", "desc": "Тебя интересуют деньги, рынки, организация и руководство.", "sav": "Поддерживай основы математики и статистики; учись на реальных кейсах.", "linktxt": ""}, "lang": {"name": "Языки и гуманитарные науки", "desc": "Тебе легко даются языки, ты любишь литературу и общение.", "sav": "Читай каждый день на изучаемом языке и тренируй перевод и письмо.", "linktxt": ""}, "art": {"name": "Искусство, дизайн и архитектура", "desc": "Ты создаёшь, рисуешь и формируешь пространство и визуальные идеи.", "sav": "Собирай портфолио; тренируй рисунок и пространственное мышление.", "linktxt": ""}}}, "pt": {"ui": {"eyebrow": "Admissão · orientação", "h1": "Teste de aptidão", "lead": "Descobre qual faculdade e área mais combinam contigo. Vinte perguntas curtas e depois uma lista ordenada com percentagens, descrições, faculdades recomendadas e dicas de estudo.", "note": "O teste é orientativo — um incentivo à reflexão, não uma decisão final.", "qnum": "PERGUNTA", "prev": "← Voltar", "more": "Seguinte →", "see": "Ver resultado ✓", "topLbl": "A tua melhor afinidade", "match": "de correspondência", "profile": "O teu perfil", "recs": "Recomendações para ti", "fakLbl": "Faculdades", "savLbl": "Dicas", "repeat": "↻ Refazer teste", "solve": "Resolver provas →", "disc": "O resultado é indicativo. A melhor escolha une o que combina contigo, o que amas e as oportunidades que te interessam."}, "scale": ["Discordo totalmente", "Discordo em parte", "Neutro", "Concordo em parte", "Concordo totalmente"], "Q": ["Gosto de resolver problemas lógicos e matemáticos.", "Gostaria de programar ou criar apps.", "Interessa-me como funcionam máquinas, eletricidade e dispositivos.", "Atrai-me trabalhar com pessoas e cuidar da sua saúde.", "Gosto de pensar sobre sociedade, justiça e regras.", "Interessam-me dinheiro, mercados e como operam as empresas.", "Aprendo línguas com facilidade e adoro literatura.", "Adoro desenhar, criar ou produzir coisas visuais.", "Gosto de experiências de física, química ou biologia.", "Quando algo falha, gosto de descobrir porquê e reparar.", "Gosto de analisar dados e encontrar padrões.", "É-me fácil liderar uma equipa e convencer os outros.", "Consigo trabalhar muito num problema até à solução certa.", "Interessa-me o corpo humano e como funciona.", "Gosto de escrever, debater e argumentar.", "Atraem-me a arquitetura e a modelação do espaço.", "Adoro tecnologia, novos dispositivos e apps.", "Importa-me cuidar da natureza e dos seres vivos.", "Gosto de organizar, planear e gerir um orçamento.", "Gosto de ajudar os outros a aprender ou resolver algo."], "fields": {"mat": {"name": "Matemática e engenharia", "desc": "Lógica, cálculo e técnica são o teu terreno — áreas que constroem e resolvem.", "sav": "Pratica um pouco todos os dias e segue as nossas provas de matemática resolvidas.", "linktxt": "Matemática — provas 2002–2025"}, "it": {"name": "Computação e TI", "desc": "Atraem-te código, apps e dados — futuro no software e tecnologia.", "sav": "Começa com uma linguagem (Python) e faz pequenos projetos; treina lógica e algoritmos.", "linktxt": "Ver disciplinas de programação"}, "nat": {"name": "Ciências naturais", "desc": "Adoras compreender o mundo pela física, química e biologia.", "sav": "Liga teoria e experiências; aprende com exemplos do dia a dia.", "linktxt": ""}, "med": {"name": "Medicina e saúde", "desc": "Cuidar das pessoas e o corpo humano atraem-te — áreas de muito saber e responsabilidade.", "sav": "Reforça química e biologia; habitua-te a muita matéria.", "linktxt": ""}, "soc": {"name": "Sociedade e direito", "desc": "Adoras argumentos, regras e questões de justiça e sociedade.", "sav": "Lê, debate e treina escrita e exposição claras.", "linktxt": ""}, "eco": {"name": "Economia e negócios", "desc": "Interessam-te dinheiro, mercados, organização e liderança.", "sav": "Mantém bases de matemática e estatística; aprende com casos reais.", "linktxt": ""}, "lang": {"name": "Línguas e humanidades", "desc": "Aprendes línguas facilmente e adoras literatura e comunicação.", "sav": "Lê todos os dias na língua que estudas e treina tradução e escrita.", "linktxt": ""}, "art": {"name": "Arte, design e arquitetura", "desc": "Crias, desenhas e moldas espaço e ideias visuais.", "sav": "Cria um portfólio; treina desenho e pensamento espacial.", "linktxt": ""}}}}, "BASE": {"mat": {"fak": "MATF, ETF, FTN, Mašinski, Građevinski", "link": "Prijemni-Matematika-Rokovi.html"}, "it": {"fak": "RAF, FON, MATF–informatika, ETF–softver", "link": "predmeti.html"}, "nat": {"fak": "PMF (fizika, hemija, biologija)", "link": ""}, "med": {"fak": "Medicinski, Stomatološki, Farmaceutski", "link": ""}, "soc": {"fak": "Pravni, FPN, Filozofski", "link": ""}, "eco": {"fak": "Ekonomski, FON (menadžment)", "link": ""}, "lang": {"fak": "Filološki, Učiteljski", "link": ""}, "art": {"fak": "Arhitektonski, FLU, FPU", "link": ""}}, "WEIGHTS": [{"mat": 2, "it": 1}, {"it": 2}, {"mat": 2}, {"med": 2}, {"soc": 2}, {"eco": 2}, {"lang": 2}, {"art": 2}, {"nat": 2}, {"mat": 1, "it": 1}, {"it": 1, "nat": 1, "eco": 1}, {"eco": 1, "soc": 1}, {"mat": 2}, {"med": 1, "nat": 1}, {"soc": 1, "lang": 1}, {"art": 1, "mat": 1}, {"it": 2}, {"nat": 1, "med": 1}, {"eco": 2}, {"soc": 1, "lang": 1, "med": 1}], "ORDER": ["mat", "it", "nat", "med", "soc", "eco", "lang", "art"]};
-var I18N=DATA.I18N, BASE=DATA.BASE, WEIGHTS=DATA.WEIGHTS, ORDER=DATA.ORDER;
-function pickLang(){try{var s=localStorage.getItem('mathia_lang');if(s&&I18N[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return I18N[h]?h:'sr';}
-var LANG=pickLang();
-var $=function(id){return document.getElementById(id);};
-var i=0, ans=new Array(WEIGHTS.length).fill(null), shown='quiz';
-function T(){return I18N[LANG]||I18N.sr;}
-function applyStatic(){
-  var u=T().ui;
-  $('eyebrow').textContent=u.eyebrow;$('h1').textContent=u.h1;$('lead').textContent=u.lead;$('note').textContent=u.note;
-  document.documentElement.lang=LANG; $('lang').value=LANG;
-}
-function render(){
-  shown='quiz';var u=T().ui;
-  $('pfill').style.width=(i/WEIGHTS.length*100)+'%';
-  $('qnum').textContent=u.qnum+' '+(i+1)+' / '+WEIGHTS.length;
-  $('qtext').textContent=T().Q[i];
-  var o=$('opts');o.innerHTML='';
-  T().scale.forEach(function(lab,v){var b=document.createElement('button');b.className='opt'+(ans[i]===v?' sel':'');b.textContent=lab;b.onclick=function(){ans[i]=v;render();};o.appendChild(b);});
-  $('prev').textContent=u.prev;$('prev').disabled=(i===0);
-  $('next').disabled=(ans[i]===null);
-  $('next').textContent=(i===WEIGHTS.length-1)?u.see:u.more;
-}
-function result(){
-  shown='result';var u=T().ui,F=T().fields;
-  var score={},max={};ORDER.forEach(function(f){score[f]=0;max[f]=0;});
-  WEIGHTS.forEach(function(w,qi){for(var f in w){score[f]+=w[f]*ans[qi];max[f]+=w[f]*4;}});
-  var rank=ORDER.map(function(f){return {f:f,pct:max[f]?Math.round(score[f]/max[f]*100):0};}).sort(function(a,b){return b.pct-a.pct;});
-  var top=rank[0];
-  var html='<div class="top"><div class="lbl">'+u.topLbl+'</div><div class="nm">'+F[top.f].name+'</div><div>'+top.pct+'% '+u.match+'</div></div>';
-  html+='<div class="sec">'+u.profile+'</div>';
-  rank.forEach(function(r){html+='<div class="barrow"><div class="h"><span>'+F[r.f].name+'</span><span class="p">'+r.pct+'%</span></div><div class="track"><i style="width:'+r.pct+'%"></i></div></div>';});
-  html+='<div class="sec">'+u.recs+'</div>';
-  rank.slice(0,3).forEach(function(r){var f=r.f,fx=F[f],b=BASE[f];
-    html+='<div class="rec"><h3>'+fx.name+' · '+r.pct+'%</h3>';
-    html+='<div class="meta">'+fx.desc+'</div>';
-    html+='<div class="meta"><b>'+u.fakLbl+':</b> '+b.fak+'</div>';
-    html+='<div class="meta"><b>'+u.savLbl+':</b> '+fx.sav+'</div>';
-    if(b.link&&fx.linktxt)html+='<div class="meta">→ <a href="'+b.link+'">'+fx.linktxt+'</a></div>';
-    html+='</div>';});
-  html+='<div class="row" style="margin-top:20px"><button class="btn btn-o" id="again">'+u.repeat+'</button><a class="btn btn-g" href="'+BASE.mat.link+'">'+u.solve+'</a></div>';
-  html+='<p class="note" style="margin-top:14px">'+u.disc+'</p>';
-  $('quiz').classList.add('hidden');var R=$('result');R.innerHTML=html;R.classList.remove('hidden');
-  $('again').onclick=restart;R.scrollIntoView({behavior:'smooth',block:'start'});
-}
-function restart(){i=0;for(var k=0;k<ans.length;k++)ans[k]=null;$('result').classList.add('hidden');$('quiz').classList.remove('hidden');render();window.scrollTo({top:0,behavior:'smooth'});}
-$('prev').onclick=function(){if(i>0){i--;render();}};
-$('next').onclick=function(){if(ans[i]===null)return;if(i<WEIGHTS.length-1){i++;render();}else result();};
-$('lang').onchange=function(){LANG=this.value;try{localStorage.setItem('mathia_lang',LANG);}catch(e){}applyStatic();if(shown==='result')result();else render();};
-applyStatic();render();
+(function(){
+  "use strict";
+  var TYPES={
+    T:{name:'Tehnički tip',desc:'Praktičan si, snalažljiv i voliš da stvaraš i popravljaš. Tamo gde drugi vide problem, ti vidiš rešenje — i rukama i glavom.'},
+    I:{name:'Istraživački tip',desc:'Radoznao si i analitičan. Voliš da razumeš kako svet funkcioniše i uživaš u izazovu teškog problema.'},
+    K:{name:'Kreativni tip',desc:'Maštovit si i originalan. Vidiš lepotu i ideje tamo gde ih drugi ne primećuju, i voliš da stvaraš nešto svoje.'},
+    D:{name:'Društveni tip',desc:'Topao si i empatičan. Ispunjava te rad s ljudima — da pomogneš, podučiš i povežeš.'},
+    P:{name:'Preduzetnički tip',desc:'Odlučan si i pun inicijative. Voliš da vodiš, ubeđuješ i pokrećeš stvari napred.'},
+    O:{name:'Organizacioni tip',desc:'Precizan si i pouzdan. Voliš red, jasnoću i kad sve radi kao dobro podešen sistem.'}
+  };
+  var ORDER=['T','I','K','D','P','O'];
+  var Q=[
+    ['Volim da rastavljam i sastavljam stvari da vidim kako rade.','T'],['Uživam da radim rukama — da pravim, popravljam, sklapam.','T'],['Mašine, uređaji i tehnologija me privlače.','T'],
+    ['Volim da rešavam teške zadatke i logičke zagonetke.','I'],['Zanima me zašto stvari funkcionišu — volim da istražujem.','I'],['Matematika i nauka su mi izazov u kojem uživam.','I'],
+    ['Volim da stvaram — crtam, dizajniram ili izmišljam nešto novo.','K'],['Mašta i originalne ideje su mi vrlo važne.','K'],['Privlače me lepota, umetnost i estetika.','K'],
+    ['Ispunjava me kad pomognem nekome ili ga nečemu naučim.','D'],['Lako razumem kako se drugi osećaju.','D'],['Volim timski rad i druženje s ljudima.','D'],
+    ['Volim da vodim, pokrećem i ubeđujem druge za svoju ideju.','P'],['Privlače me posao, prodaja i pokretanje nečeg svog.','P'],['Ne bojim se rizika kad verujem u cilj.','P'],
+    ['Volim red, jasne planove i kad je sve na svom mestu.','O'],['Dobro se snalazim s brojevima, podacima i detaljima.','O'],['Volim kad zadatak ima jasna pravila i korake.','O']
+  ];
+  var OPTS=[['Uopšte ne',1],['Uglavnom ne',2],['Uglavnom da',3],['U potpunosti da',4]];
+  var SUBS={T:'Matematika · Fizika · Elektronika · Programiranje',I:'Matematika · Fizika · Programiranje · Priprema za prijemni',K:'Matematika · Programiranje',D:'Matematika · Priprema za prijemni',P:'Matematika · Priprema za prijemni',O:'Matematika · Programiranje · Priprema za prijemni'};
+  var TRAITS={T:['praktičnost i snalažljivost','logičko rešavanje problema','spretnost i istrajnost'],I:['analitičan, radoznao um','dubina razmišljanja','ljubav ka učenju i preciznost'],K:['mašta i originalnost','osećaj za lepotu i sklad','izražajnost i inovativnost'],D:['empatija i toplina','komunikativnost','timski duh i želja da pomogneš'],P:['inicijativa i hrabrost','liderstvo i ubedljivost','preduzimljiv duh'],O:['organizovanost i pouzdanost','sistematičnost i preciznost','odgovornost i doslednost']};
+  var CAREERS={T:'Inženjer, projektant, tehničar ili programer — tehnička zanimanja su danas među najtraženijima i najbolje plaćenima, sa lakim zapošljavanjem i u zemlji i u svetu.',I:'Istraživač, analitičar, programer ili naučnik — poslovi u kojima se ceni pamet i analiza, sa odličnim izgledima za karijeru bilo gde.',K:'Dizajner, arhitekta, umetnik ili kreativni direktor — zanimanja u kojima tvoja originalnost postaje prava vrednost i prepoznatljiv potpis.',D:'Psiholog, lekar, profesor ili vaspitač — poslovi s ljudima koji su uvek potrebni, sigurni i duboko ispunjavajući.',P:'Menadžer, preduzetnik, ekonomista ili pravnik — vodeće uloge i sopstveni biznis; put ka samostalnosti, rastu i uticaju.',O:'Ekonomista, računovođa, analitičar ili administrator — stabilna, sigurna i uvek tražena zanimanja sa jasnim napredovanjem.'};
+  var POOL={
+    fakultet:[
+      {n:'Elektrotehnički fakultet (ETF)',t:'T',t2:'I',w:'Spaja tehniku i rešavanje problema — za tvoj praktičan, logičan um. Jedna od najtraženijih oblasti danas.'},
+      {n:'Računarstvo i informatika (Matematički / ETF / FTN)',t:'I',t2:'T',w:'Logika, analiza i stvaranje softvera — savršeno za istraživački i tehnički um.'},
+      {n:'Mašinski fakultet',t:'T',w:'Za ruke i glavu koje vole da prave, pokreću i usavršavaju stvari.'},
+      {n:'Građevinski fakultet',t:'T',t2:'O',w:'Tehnika i preciznost koje grade nešto trajno i vidljivo.'},
+      {n:'Saobraćajni fakultet',t:'T',t2:'O',w:'Sistemi, logistika i tehnika — jasno, primenjeno i organizovano.'},
+      {n:'Matematički fakultet',t:'I',w:'Za um koji uživa u dubokim, čistim problemima i logici.'},
+      {n:'Fizički fakultet / PMF',t:'I',w:'Za radoznalost koja želi da razume kako svet zaista radi.'},
+      {n:'Arhitektonski fakultet',t:'K',t2:'T',w:'Spaja kreativnost i tehniku — mašta koja se gradi u prostor.'},
+      {n:'Fakultet primenjenih umetnosti',t:'K',w:'Prostor za tvoju maštu, estetiku i originalnost.'},
+      {n:'Fakultet dramskih umetnosti (FDU)',t:'K',t2:'D',w:'Za izražajnost, emociju i kreativnu energiju pred ljudima.'},
+      {n:'Psihologija — Filozofski fakultet',t:'D',t2:'I',w:'Za tvoju empatiju i želju da razumeš ljude i njihov um.'},
+      {n:'Medicinski fakultet',t:'D',t2:'I',w:'Pomaganje ljudima uz nauku — plemenit i cenjen put.'},
+      {n:'Učiteljski fakultet',t:'D',w:'Za ljubav prema deci i radost podučavanja.'},
+      {n:'Pravni fakultet',t:'P',t2:'O',w:'Za jasnu logiku, argumentaciju, red i rad s ljudima.'},
+      {n:'Ekonomski fakultet',t:'P',t2:'O',w:'Za inicijativu, posao i razumevanje sveta novca.'},
+      {n:'Fakultet organizacionih nauka (FON)',t:'O',t2:'P',w:'Spaja tehniku, organizaciju i biznis — svestrano i vrlo traženo.'},
+      {n:'Fakultet za menadžment',t:'P',w:'Za liderstvo, vođenje ljudi i pokretanje ideja.'},
+      {n:'Ekonomski fakultet — finansije i računovodstvo',t:'O',w:'Za preciznost, brojeve i sigurnu, traženu struku.'},
+      {n:'Filološki fakultet (jezici)',t:'K',t2:'D',w:'Za ljubav prema jeziku, kulturi i komunikaciji.'}
+    ],
+    srednja:[
+      {n:'Elektrotehnička škola',t:'T',t2:'I',w:'Rano ulaziš u tehniku koju voliš — praktično i traženo.'},
+      {n:'Mašinska tehnička škola',t:'T',w:'Za ruke koje vole da prave, sklapaju i popravljaju.'},
+      {n:'Saobraćajna škola',t:'T',t2:'O',w:'Sistemi i tehnika u praksi, sa jasnim pravilima.'},
+      {n:'Građevinska tehnička škola',t:'T',t2:'O',w:'Tehnika i preciznost koje grade.'},
+      {n:'Matematička gimnazija',t:'I',w:'Najbolja osnova za nauku, tehniku i istraživanje.'},
+      {n:'Gimnazija (prirodno-matematički)',t:'I',t2:'T',w:'Široka osnova za sve prirodne i tehničke nauke.'},
+      {n:'Medicinska škola',t:'D',t2:'I',w:'Pomaganje ljudima uz nauku, od ranih dana.'},
+      {n:'Gimnazija (društveno-jezički)',t:'D',t2:'K',w:'Za ljude, jezike i društvo — najšira vrata.'},
+      {n:'Umetnička / dizajnerska škola',t:'K',w:'Prostor da razviješ talenat i maštu od početka.'},
+      {n:'Grafička škola',t:'K',t2:'T',w:'Kreativnost + tehnika štampe i dizajna.'},
+      {n:'Ekonomska škola',t:'P',t2:'O',w:'Rano učiš kako posao i novac funkcionišu.'},
+      {n:'Pravno-birotehnička škola',t:'O',t2:'D',w:'Red, pravila i rad s ljudima i dokumentima.'},
+      {n:'Turistička / ugostiteljska škola',t:'P',t2:'D',w:'Za komunikaciju, ljude i preduzimljivost.'}
+    ],
+    visa:[
+      {n:'Visoka tehnička škola — elektrotehnika',t:'T',t2:'I',w:'Brz put do konkretnog, traženog tehničkog zanimanja.'},
+      {n:'Strukovne studije mašinstva',t:'T',w:'Praktične veštine koje industrija traži.'},
+      {n:'Strukovne studije informatike',t:'I',t2:'T',w:'Programiranje i IT — jedan od najbržih puteva do posla.'},
+      {n:'Poslovna analitika',t:'I',t2:'O',w:'Podaci i logika u službi biznisa.'},
+      {n:'Strukovne studije dizajna',t:'K',w:'Kreativnost pretvorena u konkretno zanimanje.'},
+      {n:'Multimedija',t:'K',t2:'T',w:'Spoj kreative i tehnologije.'},
+      {n:'Strukovne studije za vaspitače',t:'D',w:'Direktan put ka radu s decom.'},
+      {n:'Zdravstvene strukovne studije',t:'D',t2:'I',w:'Pomaganje ljudima uz struku i nauku.'},
+      {n:'Strukovne studije ekonomije / menadžmenta',t:'P',t2:'O',w:'Brz put do posla ili sopstvenog biznisa.'},
+      {n:'Marketing',t:'P',t2:'K',w:'Za ideje, komunikaciju i preduzimljivost.'},
+      {n:'Turizam i ugostiteljstvo',t:'P',t2:'D',w:'Ljudi, komunikacija i dinamičan posao.'},
+      {n:'Računovodstvo',t:'O',w:'Red, brojevi i sigurna struka.'},
+      {n:'Poslovna administracija',t:'O',t2:'P',w:'Organizacija i vođenje poslovanja.'}
+    ]
+  };
+
+  var nivo=null, grad='', idx=0, answers=[];
+  function qs(id){return document.getElementById(id);}
+  function show(id){['chooser','test','report'].forEach(function(x){qs(x).classList.toggle('hidden',x!==id);});window.scrollTo({top:0,behavior:'smooth'});}
+  try{var u=new URLSearchParams(location.search);if(u.get('nivo')){nivo=u.get('nivo');grad=u.get('grad')||'';}}catch(e){}
+  if(nivo==='sred')nivo='srednja';if(nivo==='fak')nivo='fakultet';
+
+  var lvlBtns=document.querySelectorAll('.lvl');
+  lvlBtns.forEach(function(b){b.addEventListener('click',function(){lvlBtns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');nivo=b.dataset.lvl;});}); if(lvlBtns[0]){lvlBtns[0].classList.add('on');nivo=nivo||lvlBtns[0].dataset.lvl;}
+  qs('startBtn').addEventListener('click',function(){if(!nivo){nivo=(lvlBtns[0]&&lvlBtns[0].dataset.lvl)||'srednja';}grad=qs('grad').value.trim();start();});
+
+  function start(){idx=0;answers=[];show('test');render();}
+  function render(){
+    var q=Q[idx];
+    qs('progBar').style.width=(idx/Q.length*100)+'%';
+    qs('qnum').textContent='Pitanje '+(idx+1)+' / '+Q.length;
+    qs('qtext').textContent=q[0];
+    var o=qs('opts');o.innerHTML='';
+    OPTS.forEach(function(op){var btn=document.createElement('button');btn.className='opt';btn.innerHTML='<span class="dot"></span>'+op[0];btn.addEventListener('click',function(){answers[idx]={type:q[1],val:op[1]};next();});o.appendChild(btn);});
+    qs('backBtn').style.visibility=idx>0?'visible':'hidden';
+  }
+  function next(){if(idx<Q.length-1){idx++;render();}else{finish();}}
+  qs('backBtn').addEventListener('click',function(){if(idx>0){idx--;render();}});
+
+  function finish(){
+    var score={T:0,I:0,K:0,D:0,P:0,O:0},cnt={T:0,I:0,K:0,D:0,P:0,O:0};
+    answers.forEach(function(a){score[a.type]+=a.val;cnt[a.type]++;});
+    var pct={};ORDER.forEach(function(t){pct[t]=Math.round(score[t]/(cnt[t]*4)*100);});
+    var sorted=ORDER.slice().sort(function(a,b){return pct[b]-pct[a];});
+    var top=sorted[0];
+    qs('repTypeName').textContent=TYPES[top].name;
+    qs('repTypeDesc').textContent=TYPES[top].desc;
+    var tr=qs('traits');tr.innerHTML='';TRAITS[top].concat(TRAITS[sorted[1]]).slice(0,6).forEach(function(x){var d=document.createElement('div');d.className='trait';d.innerHTML='<span class="tk"></span>'+x;tr.appendChild(d);});
+    qs('careerBox').innerHTML='<div class="cb-h">Šta te čeka posle</div><p>'+CAREERS[top]+'</p>';
+    var bars=qs('bars');bars.innerHTML='';
+    sorted.forEach(function(t,i){var row=document.createElement('div');row.className='bar-row';row.innerHTML='<div class="bar-top"><span>'+TYPES[t].name+'</span><span>'+pct[t]+'%</span></div><div class="bar'+(i===0?' top1':'')+'"><i></i></div>';bars.appendChild(row);(function(r,p){setTimeout(function(){r.querySelector('i').style.width=p+'%';},60+i*90);})(row,pct[t]);});
+    // rangiraj opcije po profilu
+    var CTAG={T:'inženjerska i IT zanimanja',I:'nauka, IT, analitika',K:'dizajn, umetnost, mediji',D:'zdravstvo, obrazovanje, rad s ljudima',P:'biznis, menadžment, pravo',O:'ekonomija, finansije, administracija'};
+    var pool=(POOL[nivo]||POOL.fakultet).map(function(o){var m=Math.round(pct[o.t]*0.72+pct[o.t2||o.t]*0.28);return{n:o.n,w:o.w,t:o.t,m:Math.max(35,Math.min(99,m))};});
+    pool.sort(function(a,b){return b.m-a.m;});
+    var picks=pool.slice(0,5);
+    var wrap=qs('optCards');wrap.innerHTML='';
+    picks.forEach(function(o,i){
+      var c=document.createElement('div');c.className='opt-card'+(i===0?' best':'');
+      c.innerHTML='<div class="oc-top"><span class="oc-name"><a href="predmeti.html">'+o.n+'</a>'+(i===0?'<span class="oc-badge">najbolji izbor</span>':'')+'</span><span class="oc-pct">'+o.m+'%<small>preklapanje</small></span></div><div class="oc-bar"><i></i></div><p class="oc-why">'+o.w+(grad&&i===0?(' U tvom gradu ('+grad+') potraži baš ovaj smer.'):'')+'</p><div class="oc-career">Moguća zanimanja: '+CTAG[o.t]+'</div>';
+      wrap.appendChild(c);
+      (function(cc,p){setTimeout(function(){cc.querySelector('.oc-bar i').style.width=p+'%';},120+i*110);})(c,o.m);
+    });
+    qs('mathiaSubs').textContent=SUBS[top];
+    show('report');
+  }
+  qs('restartBtn').addEventListener('click',function(){show('chooser');document.querySelectorAll('.lvl').forEach(function(x){x.classList.remove('on');});});
+
+  var HEROT={srednja:'Koju srednju školu upisati?',visa:'Koja viša škola je za tebe?',fakultet:'Koji fakultet i smer su za tebe?'};
+  if(nivo && HEROT[nivo]){qs('heroH1').textContent=HEROT[nivo];start();}
+})();
 </script>
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
+<script src="i18n-mathia.js" defer></script>
 <script src="mathia-header.js" defer></script>
 <script id="px-test-fix">
 /* Klik na nivo odmah pokreće test (kao besplatno tok) — rešava „dugme ne radi". */
 (function(){try{var lvls=document.querySelectorAll('.lvl');var sb=document.getElementById('startBtn');lvls.forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){if(sb)sb.click();},140);});});}catch(e){}})();
 </script>
+<script>
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var b=document.getElementById('mathfall');if(!b)return;
+var G=['π','√','Σ','∫','α','x²','½','+','·','∞','≈','💛','🌸','✦','θ'];var N=innerWidth<640?9:15;
+for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.24)s.className='m';
+s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}})();
+</script>
+<script>
+/* Klizni ulaz kartice + konfete na rezultatu */
+(function(){
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function pop(el){el.classList.remove('ts-in');void el.offsetWidth;el.classList.add('ts-in');}
+  var COL=['#C6A05C','#E7D2A2','#B01E48','#CC5E7E','#F0DCA6','#9C7838','#F4E3DD'];
+  function confetti(){
+    if(rm)return;
+    var box=document.getElementById('tsConfetti');
+    if(!box){box=document.createElement('div');box.id='tsConfetti';document.body.appendChild(box);}
+    box.innerHTML='';
+    var N=Math.min(innerWidth<600?46:80, 90);
+    for(var i=0;i<N;i++){
+      var b=document.createElement('b');var heart=Math.random()<0.22;
+      if(heart){b.textContent='💛';b.style.background='none';b.style.fontSize=(12+Math.random()*10)+'px';b.style.width='auto';b.style.height='auto';}
+      else{b.style.background=COL[(Math.random()*COL.length)|0];}
+      b.style.left=(Math.random()*100)+'%';
+      var dur=(2.4+Math.random()*1.8).toFixed(2), del=(Math.random()*0.5).toFixed(2);
+      b.style.animation='confFall '+dur+'s cubic-bezier(.25,.6,.4,1) '+del+'s forwards';
+      box.appendChild(b);
+    }
+    setTimeout(function(){if(box)box.innerHTML='';},5200);
+  }
+  ['test','report','chooser'].forEach(function(id){
+    var el=document.getElementById(id);if(!el)return;
+    try{new MutationObserver(function(){if(!el.classList.contains('hidden')){pop(el);if(id==='report')setTimeout(confetti,180);}}).observe(el,{attributes:true,attributeFilter:['class']});}catch(e){}
+  });
+})();
+</script>
+<script src="mathia-delight.js" defer></script>
+<style id="sweetfx-css">
+#sweetfall{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+#sweetfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.18);animation:sff linear infinite;will-change:transform}
+#sweetfall span.m{color:rgba(176,30,72,.14)}
+@keyframes sff{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(22deg);opacity:0}}
+.sweetowl{width:70px;height:70px;margin:2px auto 8px;border-radius:50%;display:grid;place-items:center;font-size:2.2rem;background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC);border:2.5px solid #F0DCA8;box-shadow:0 16px 30px -14px rgba(176,30,72,.42),0 2px 0 rgba(255,255,255,.85) inset;animation:sowlbob 3s ease-in-out infinite}
+@keyframes sowlbob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){#sweetfall span,.sweetowl{animation:none}}
+</style>
+<script>(function(){
+ try{
+ if(!document.getElementById('mathfall')&&!document.getElementById('fall')&&!document.getElementById('sweetfall')){
+   var box=document.createElement('div');box.id='sweetfall';box.setAttribute('aria-hidden','true');
+   var g=['✦','⭐','🧭','💛','🌸','✨','❓','∑','π','√'],h='';
+   for(var k=0;k<20;k++){var m=(k%3===0)?' class="m"':'';h+='<span'+m+' style="left:'+(Math.random()*100)+'%;font-size:'+(13+Math.random()*20).toFixed(0)+'px;animation-duration:'+(7+Math.random()*8).toFixed(1)+'s;animation-delay:'+(-Math.random()*12).toFixed(1)+'s">'+g[k%g.length]+'</span>';}
+   box.innerHTML=h;document.body.appendChild(box);
+ }
+ function ensureOwl(){ if(document.querySelector('.sweetowl'))return; var hd=document.querySelector('.ts-hero h1,.hero h1,.stage h1,main h1,.card h1,h1'); if(!hd||!hd.parentNode)return; var o=document.createElement('div');o.className='sweetowl';o.setAttribute('aria-hidden','true');o.textContent='🦉';hd.parentNode.insertBefore(o,hd); }
+ ensureOwl();[150,400,900,1800].forEach(function(d){setTimeout(ensureOwl,d);});
+ try{var mo=new MutationObserver(function(){clearTimeout(window.__sowl);window.__sowl=setTimeout(ensureOwl,160);});mo.observe(document.body,{childList:true,subtree:true});}catch(e){}
+ }catch(e){}
+})();</script>
+<style>#chooser{opacity:0}</style><script>document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){try{var b=document.querySelector('.lvl[data-lvl="fakultet"]');if(b)b.click();var s=document.getElementById("startBtn");if(s)s.click();var c=document.getElementById("chooser");if(c)c.style.opacity="";}catch(e){}},80);});</script>
 </body>
 </html>

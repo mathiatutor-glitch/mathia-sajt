@@ -259,6 +259,18 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
 @keyframes confFall{0%{opacity:0;transform:translateY(-10px) rotate(0)}8%{opacity:1}100%{opacity:0;transform:translateY(102vh) rotate(720deg)}}
 @media(prefers-reduced-motion:reduce){.ts-ic,#test .opts .opt,#traits>*,#bars .bar-row,#optCards>*,#mathiaSubs>*,.btn-gold::after,.ts-in{animation:none!important}}
 </style>
+<style id="ts-mockup">
+#chooser,#test,#report{box-shadow:0 40px 90px -50px rgba(90,16,36,.5)!important}
+.opt button{border:1.5px solid rgba(198,160,92,.42)!important;background:linear-gradient(180deg,#fff,#FBF3E4)!important;border-radius:16px!important;padding:15px 16px!important;font-weight:700;color:#5A1024;display:flex!important;align-items:center;gap:12px;transition:transform .14s,border-color .14s,box-shadow .14s;box-shadow:0 6px 16px -12px rgba(156,120,56,.5)}
+.opt button:hover{border-color:#C6A05C!important;transform:translateY(-2px);box-shadow:0 14px 26px -14px rgba(198,160,92,.7)}
+.opt button:active{transform:translateY(0) scale(.99)}
+.opt button .dot{width:20px;height:20px;border-radius:50%;border:2px solid rgba(198,160,92,.55);flex:none;transition:.14s}
+.opt button:hover .dot{background:radial-gradient(circle at 40% 30%,#FFF6D6,#C6A05C);border-color:#C6A05C}
+#progBar{background:linear-gradient(90deg,#E7D2A2,#C6A05C)!important;transition:width .4s ease!important;border-radius:100px}
+.ts-ic{box-shadow:0 16px 30px -16px rgba(198,160,92,.8)}
+.lvl:hover{border-color:#C6A05C}
+@media(prefers-reduced-motion:no-preference){#chooser,#test,#report{animation:tsin .5s both}@keyframes tsin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}.ts-ic{animation:tsbob 3s ease-in-out infinite}@keyframes tsbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
+</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
