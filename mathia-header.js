@@ -8,7 +8,7 @@
     ["index.html", "Početna"],
     ["predmeti.html", "Predmeti"],
     ["index.html#paketi", "Paketi"],
-    ["prodavnica.html", "Prodavnica"],
+    ["prodavnica.html", "Dodaci"],
     ["o-marini.html", "O meni"]
   ];
   var LANGS = [["sr","SR"],["en","EN"],["de","DE"],["fr","FR"],["es","ES"],["it","IT"],["ru","RU"],["pt","PT"]];
@@ -121,6 +121,23 @@
       try { document.documentElement.lang = lang; } catch(e){}
       emitLang(lang);
     });
+
+    // Samostalan prevod novog natpisa "Dodaci" (rečnici strana ga nemaju) — cilja link po href-u
+    var DODACI = { en:"Add-ons", de:"Extras", fr:"Suppléments", es:"Complementos", it:"Extra", ru:"Дополнения", pt:"Extras" };
+    function traDodaci(){
+      try{
+        var l = (localStorage.getItem("mathia_lang") || document.documentElement.lang || "sr").slice(0,2).toLowerCase();
+        var as = mh.querySelectorAll(".mh-lite a");
+        for (var i=0;i<as.length;i++){
+          var a = as[i]; if (a.getAttribute("href") !== "prodavnica.html") continue;
+          if (a.__o === undefined) a.__o = a.textContent;
+          a.textContent = (l==="sr" || !DODACI[l]) ? a.__o : DODACI[l];
+        }
+      }catch(e){}
+    }
+    traDodaci();
+    window.addEventListener("mathia:lang", traDodaci);
+    window.addEventListener("storage", function(e){ if (e.key==="mathia_lang") traDodaci(); });
 
     // Prevedi tek ubačen header + stranu ako je jezik već postavljen (samostalni engine / globalni i18n / per-page apply)
     try { var curLang = (localStorage.getItem("mathia_lang") || "sr").slice(0,2).toLowerCase(); emitLang(curLang); } catch(e){ emitLang("sr"); }
