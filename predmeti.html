@@ -356,6 +356,27 @@ footer .mflt-tag{color:#B01E48!important}
 @media(max-width:860px){.hero-grand .wrap{grid-template-columns:1fr;text-align:center;gap:26px}.hero-grand .hero-orn,.hero-grand .row{justify-content:center}.hero-grand .hero-trust{margin-left:auto;margin-right:auto}.pm-portrait{order:-1}.pm-portrait .ph{width:210px;height:210px}}
 @media(prefers-reduced-motion:reduce){.pm-portrait .ring,.pm-portrait .spk{animation:none}}
 </style>
+<style id="pm-search-css">
+.hero-grand .wrap{display:block!important;grid-template-columns:none!important;max-width:860px;text-align:center}
+.hero-grand .hero-orn,.hero-grand .row{justify-content:center}
+.hero-grand .lead{margin-left:auto;margin-right:auto}
+.hero-grand .hero-trust{margin-left:auto;margin-right:auto}
+.pm-search{position:relative;max-width:560px;margin:26px auto 0}
+.pm-search input{width:100%;padding:16px 20px 16px 50px;border:1.5px solid #E7D2A2;border-radius:100px;font:inherit;font-size:1.05rem;color:#43303A;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239C7838' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.3-4.3'/%3E%3C/svg%3E") no-repeat 18px center;background-size:20px;box-shadow:0 18px 38px -24px rgba(90,16,36,.45);transition:border-color .15s,box-shadow .15s}
+.pm-search input:focus{outline:none;border-color:#C6A05C;box-shadow:0 0 0 4px rgba(198,160,92,.16),0 18px 38px -24px rgba(90,16,36,.45)}
+.pm-res{position:absolute;left:0;right:0;top:calc(100% + 8px);background:#fff;border:1px solid #E7D2A2;border-radius:18px;box-shadow:0 34px 66px -30px rgba(90,16,36,.45);overflow:hidden;z-index:40;text-align:left;display:none;max-height:340px;overflow-y:auto}
+.pm-res.on{display:block}
+.pm-res a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;color:#43303A;font-weight:600;border-bottom:1px solid #F3EADB;text-decoration:none}
+.pm-res a:last-child{border-bottom:none}
+.pm-res a:hover{background:#FFF7EC;color:#9C7838}
+.pm-res .cat{color:#9C7838;font-size:.78rem;font-weight:700;white-space:nowrap;flex:none}
+.pm-res .empty{padding:14px 18px;color:#8A7A80}
+.pm-pop{margin:16px auto 0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;max-width:640px}
+.pm-pop>span{color:#8A7A80;font-weight:800;font-size:.82rem;letter-spacing:.02em}
+.pm-pop a{background:#FFFDF9;border:1px solid #E7D2A2;border-radius:100px;padding:7px 15px;font-weight:700;font-size:.86rem;color:#5A1024;text-decoration:none;transition:transform .15s,border-color .15s,color .15s}
+.pm-pop a:hover{border-color:#C6A05C;color:#9C7838;transform:translateY(-2px)}
+@media(max-width:560px){.pm-search input{font-size:1rem}}
+</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
@@ -372,17 +393,22 @@ footer .mflt-tag{color:#B01E48!important}
 </header>
 
 <section class="hero hero-grand">
-  <div class="wrap"><div class="pm-htext">
+  <div class="wrap">
     <div class="hero-orn" aria-hidden="true"><i></i><span>&#10022;</span><i></i></div>
     <div class="eyebrow" data-i18n="h_eyb">Predmeti i putevi</div>
     <h1 data-i18n="h_h1">Nađi svoj put</h1>
-    <p class="lead" data-i18n="h_lead">Najvažnije pitanje nije koji zadatak da rešiš — već <b style="color:#fff">ko želiš da postaneš</b>. Zato prvo otkrivamo kuda ideš, a onda biramo tačno one predmete koji te vode tamo — bez lutanja i izgubljenog vremena.</p>
-    <div class="row">
+    <p class="lead" data-i18n="h_lead">Najvažnije pitanje nije koji zadatak da rešiš — već <b style="color:#9C7838">ko želiš da postaneš</b>. Ukucaj predmet ili izaberi kuda ideš — otvaramo ti tačno tvoje predmete, bez lutanja.</p>
+    <form class="pm-search" onsubmit="return false" role="search">
+      <input id="pm-q" type="search" autocomplete="off" placeholder="Pretraži predmet…" aria-label="Pretraži predmet">
+      <div id="pm-res" class="pm-res" role="listbox"></div>
+    </form>
+    <div class="pm-pop"><span id="pm-pop-l">Najtraženije:</span><a href="predmet-algebra.html">Algebra</a><a href="predmet-fizika-mehanika.html">Mehanika</a><a href="trigonometrija.html">Trigonometrija</a><a href="programiranje-python.html">Python</a><a href="predmet-analiza1.html">Analiza 1</a><a href="mala-matura.html">Mala matura</a></div>
+    <div class="row" style="margin-top:22px">
       <a class="btn btn-gold" href="test-sklonosti.html" data-i18n="h_btn1">Uradi test sklonosti →</a>
       <a class="btn btn-ghost-l" href="#predmeti" data-i18n="h_btn2">Pogledaj sve predmete ↓</a>
     </div>
-    <div class="hero-trust rv"><span>80+ predmeta</span><span>Od 5. razreda do fakulteta</span><span>Profesorica 24/7</span></div>
-  </div><div class="pm-portrait"><div class="ring"></div><img class="ph" src="marina.jpg" alt="Profesorica" onerror="this.style.background='radial-gradient(circle at 40% 34%,#f6e7c9,#caa76a)';this.removeAttribute('src')"><span class="spk" style="top:2%;left:-4%">✦</span><span class="spk" style="top:24%;right:-6%">✦</span><span class="spk" style="bottom:16%;left:-6%">✦</span><div class="tag">Profesorica 💛</div></div></div>
+    <div class="hero-trust rv"><span>80+ predmeta</span><span>Od 5. razreda do fakulteta</span><span>8 jezika</span><span>Profesorica 0–24h</span></div>
+  </div>
 </section>
 
 <section class="sec alt" id="predmeti">
@@ -941,6 +967,29 @@ header,section,footer{position:relative;z-index:1}
  setTimeout(function(){var a=document.querySelectorAll('.rv:not(.in)');for(var k=0;k<a.length;k++){var r=a[k].getBoundingClientRect();if(r.top<innerHeight+80)a[k].classList.add('in');}},250);
  setTimeout(function(){var a=document.querySelectorAll('.rv:not(.in)');for(var k=0;k<a.length;k++)a[k].classList.add('in');},1600);
 }catch(e){}})();
+</script>
+<script>
+(function(){
+ var TR={ph:{sr:'Pretraži predmet…',en:'Search a subject…',de:'Fach suchen…',fr:'Rechercher une matière…',es:'Buscar asignatura…',it:'Cerca una materia…',ru:'Найти предмет…',pt:'Procurar disciplina…'},pop:{sr:'Najtraženije:',en:'Popular:',de:'Beliebt:',fr:'Populaires :',es:'Populares:',it:'Popolari:',ru:'Популярное:',pt:'Populares:'},empty:{sr:'Nema rezultata.',en:'No results.',de:'Keine Ergebnisse.',fr:'Aucun résultat.',es:'Sin resultados.',it:'Nessun risultato.',ru:'Ничего не найдено.',pt:'Sem resultados.'}};
+ function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return 'sr';}
+ var EMPTY='Nema rezultata.';
+ function ap(){var l=lng();var q=document.getElementById('pm-q');if(q)q.setAttribute('placeholder',TR.ph[l]||TR.ph.sr);var pl=document.getElementById('pm-pop-l');if(pl)pl.textContent=TR.pop[l]||TR.pop.sr;EMPTY=TR.empty[l]||TR.empty.sr;}
+ function norm(s){return (s||'').toLowerCase().replace(/[čć]/g,'c').replace(/š/g,'s').replace(/ž/g,'z').replace(/đ/g,'dj');}
+ var IDX=[];
+ function build(){IDX=[];var els=document.querySelectorAll('#pw-panels .pw-subj');for(var i=0;i<els.length;i++){var a=els[i];var t=(a.textContent||'').trim();if(!t)continue;var cat='';var panel=a.closest('.pw-panel');if(panel){var tt=panel.querySelector('.pw-tt span');if(tt)cat=tt.textContent.replace(/[^A-Za-zČĆŽŠĐčćžšđ ]/g,'').trim();}IDX.push({t:t,n:norm(t),h:a.getAttribute('href'),c:cat});}}
+ function start(){
+   ap();
+   var q=document.getElementById('pm-q'),res=document.getElementById('pm-res');
+   if(!q||!res)return;
+   build();
+   function render(list){ if(!list.length){res.innerHTML='<div class="empty">'+EMPTY+'</div>';res.classList.add('on');return;} var h='';for(var i=0;i<Math.min(list.length,10);i++){var x=list[i];h+='<a href="'+x.h+'"><span>'+x.t+'</span><span class="cat">'+x.c+'</span></a>';}res.innerHTML=h;res.classList.add('on'); }
+   q.addEventListener('input',function(){var v=norm(q.value.trim());if(!v){res.classList.remove('on');res.innerHTML='';return;}if(!IDX.length)build();var m=[];for(var i=0;i<IDX.length;i++){if(IDX[i].n.indexOf(v)>=0)m.push(IDX[i]);}render(m);});
+   q.addEventListener('keydown',function(e){if(e.key==='Enter'){var first=res.querySelector('a');if(first){location.href=first.getAttribute('href');}}});
+   document.addEventListener('click',function(e){if(!e.target.closest('.pm-search'))res.classList.remove('on');});
+   window.addEventListener('mathia:lang',ap);
+ }
+ if(document.readyState!=='loading')start();else document.addEventListener('DOMContentLoaded',start);
+})();
 </script>
 </body>
 </html>
