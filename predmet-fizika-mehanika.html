@@ -376,10 +376,28 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
 @media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
 </style>
 <script src="mathia-header.js" defer></script>
+<style id="pa-wow">
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.20);animation:paFall linear infinite}
+#fall span.m{color:rgba(176,30,72,.15)}
+@keyframes paFall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(22deg);opacity:0}}
+.ig-page{position:relative;z-index:1}
+.ig-av{position:relative}
+.ig-av .ig-face{position:absolute;inset:5px;width:calc(100% - 10px);height:calc(100% - 10px);border-radius:50%;object-fit:cover;object-position:center 22%;box-shadow:inset 0 0 0 3px #fff,0 10px 22px -12px rgba(90,16,36,.5);z-index:1}
+.ig-av .ig-badge{position:absolute;right:-2px;bottom:-2px;z-index:2;width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF7E0,#EAD3A0);border:2.5px solid #fff;display:grid;place-items:center;font-family:'Spectral',serif;font-style:italic;font-size:18px;color:#9C7838;box-shadow:0 8px 16px -8px rgba(156,120,56,.75)}
+.ig-av .spk{position:absolute;z-index:2;color:#C6A05C;font-size:15px;animation:paTw 3.6s ease-in-out infinite;pointer-events:none}
+@keyframes paTw{0%,100%{opacity:.25;transform:scale(.85)}50%{opacity:.9;transform:scale(1.15)}}
+.ig-eb{position:relative}.ig-eb::after{content:" ✨";animation:paTw 2.6s ease-in-out infinite;display:inline-block}
+.ig-tp{transition:transform .2s cubic-bezier(.2,.9,.2,1),box-shadow .16s,border-color .16s}
+.ig-tp:hover{transform:translateY(-4px) rotate(-.6deg) scale(1.02)}
+.ig-mat:hover{transform:translateY(-5px) rotate(-.5deg) scale(1.01)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){#fall,.ig-av .spk,.ig-eb::after{animation:none}#fall{display:none}.rv{opacity:1;transform:none}}
+</style>
 </head>
 <body>
 
-<div class="mathfog" aria-hidden="true"><span>lim</span><span>&#8747; f(x)dx</span><span>dy/dx</span><span>f&#8242;(x)</span><span>&#8721;</span></div>
+<div id="fall" aria-hidden="true"></div>
 
 <header class="ig-top">
   <a class="ig-bk" href="predmeti.html" title="Svi predmeti" aria-label="Svi predmeti"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></a>
@@ -493,10 +511,10 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
 @media(max-width:560px){.ig-grid{grid-template-columns:1fr}.ig-av{width:82px;height:82px}.ig-av>span{font-size:36px}.ig-prow{gap:16px}}
 </style>
 <div class="ig-page"><div class="ig-col">
-  <div class="ig-card ig-prof">
+  <div class="ig-card ig-prof rv">
     <span class="ig-cn tl"></span><span class="ig-cn tr"></span>
     <div class="ig-prow">
-      <div class="ig-av"><span><i>M</i></span></div>
+      <div class="ig-av"><img class="ig-face" src="marina.jpg" alt="Profesorica" onerror="this.remove()"><span class="ig-badge">m</span><span class="spk" style="top:2%;left:-4%">✦</span><span class="spk" style="top:26%;right:-8%">✦</span><span class="spk" style="bottom:10%;left:-8%">✦</span><span><i>M</i></span></div>
       <div class="ig-stats">
         <div><b data-i18n="fV2">6 celina</b><span data-i18n="fL2">Oblasti</span></div>
         <div><b>3</b><span data-i18n="fL3">Materijali</span></div>
@@ -511,8 +529,8 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
       <a class="ig-b2" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;" data-i18n="pfBtn">Pitaj Profesoricu &#8594;</a>
     </div>
   </div>
-  <div class="ig-sh"><div class="ig-eb" data-i18n="celE">Celine</div><h2 data-i18n="celT">Kroz šta ćeš proći</h2><div class="ig-rl"></div></div>
-  <div class="ig-cel">
+  <div class="ig-sh rv"><div class="ig-eb" data-i18n="celE">Celine</div><h2 data-i18n="celT">Kroz šta ćeš proći</h2><div class="ig-rl"></div></div>
+  <div class="ig-cel rv">
         <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M4 12c0-2.1 1.5-3.6 3.4-3.6S10.8 10 12 12s2.7 3.6 4.6 3.6S20 14.1 20 12s-1.5-3.6-3.4-3.6S13.2 10 12 12s-2.7 3.6-4.6 3.6S4 14.1 4 12Z"/></svg></span></div><div class="lb" data-i18n="c1t">Kinematika</div></a>
         <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 15.5c4.5 0 4.5-9 9-9s4.5 9 9 9"/></svg></span></div><div class="lb" data-i18n="c2t">Dinamika tačke</div></a>
         <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 18C9 18 15 12 20 4"/><path d="M6 13.5 20 18"/></svg></span></div><div class="lb" data-i18n="c3t">Sistemi tela</div></a>
@@ -520,8 +538,8 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
         <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m20 20-5-5"/></svg></span></div><div class="lb" data-i18n="c5t">Momenti</div></a>
         <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 18C8.5 18 13.5 6 21 6"/><path d="M3 13h18" stroke-dasharray="2.4 2.6"/></svg></span></div><div class="lb" data-i18n="c6t">Oscilacije</div></a>
   </div>
-  <div class="ig-sh" id="gradivo"><div class="ig-eb" data-i18n="secCover">Gradivo</div><h2 data-i18n="covT">Šta pokrivamo</h2><div class="ig-rl"></div></div>
-  <div class="ig-grid">
+  <div class="ig-sh rv" id="gradivo"><div class="ig-eb" data-i18n="secCover">Gradivo</div><h2 data-i18n="covT">Šta pokrivamo</h2><div class="ig-rl"></div></div>
+  <div class="ig-grid rv">
         <div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 12c0-2.1 1.5-3.6 3.4-3.6S10.8 10 12 12s2.7 3.6 4.6 3.6S20 14.1 20 12s-1.5-3.6-3.4-3.6S13.2 10 12 12s-2.7 3.6-4.6 3.6S4 14.1 4 12Z"/></svg></span><div><h3 data-i18n="c1t">Kinematika</h3><p data-i18n="c1d">Brzina, ubrzanje</p></div></div>
         <div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M3 15.5c4.5 0 4.5-9 9-9s4.5 9 9 9"/></svg></span><div><h3 data-i18n="c2t">Dinamika tačke</h3><p data-i18n="c2d">Njutnovi zakoni</p></div></div>
         <div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M3 18C9 18 15 12 20 4"/><path d="M6 13.5 20 18"/></svg></span><div><h3 data-i18n="c3t">Sistemi tela</h3><p data-i18n="c3d">Količina kretanja</p></div></div>
@@ -529,23 +547,23 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
         <div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m20 20-5-5"/></svg></span><div><h3 data-i18n="c5t">Momenti</h3><p data-i18n="c5d">Sile, inercije</p></div></div>
         <div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M3 18C8.5 18 13.5 6 21 6"/><path d="M3 13h18" stroke-dasharray="2.4 2.6"/></svg></span><div><h3 data-i18n="c6t">Oscilacije</h3><p data-i18n="c6d">Slobodne, prinudne</p></div></div>
   </div>
-  <div class="ig-sh"><div class="ig-eb" data-i18n="mE">Materijali</div><h2 data-i18n="mT">Sve za ovaj predmet, na jednom mestu</h2><div class="ig-rl"></div></div>
-  <div class="ig-mats">
+  <div class="ig-sh rv"><div class="ig-eb" data-i18n="mE">Materijali</div><h2 data-i18n="mT">Sve za ovaj predmet, na jednom mestu</h2><div class="ig-rl"></div></div>
+  <div class="ig-mats rv">
     <a class="ig-mat m1" href="Mehanika-Skripta.html"><span class="wm">&#8721;</span><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M8 3v15"/></svg></span><h3 data-i18n="mS">Skripta</h3><p data-i18n="mSd">Teorija objašnjena <b>korak po korak</b>, sa rešenim primerima za svaku oblast.</p><span class="go" data-i18n="mSg">Otvori skriptu &#8594;</span></a>
     <a class="ig-mat m2" href="Mehanika-Formule.html"><span class="wm">&#960;</span><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 8h16M9 8v10M15 8v10"/></svg></span><h3 data-i18n="mF">Priručnik formula</h3><p data-i18n="mFd">Sve ključne formule na jednom mestu — <b>spremne pred ispit</b>.</p><span class="go" data-i18n="mFg">Otvori formule &#8594;</span></a>
     <a class="ig-mat m3" href="Mehanika-Zadaci.html"><span class="wm">&#8730;</span><span class="mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg></span><h3 data-i18n="mV">Provera znanja</h3><p data-i18n="mVd">Rešavaj zadatke, otkrij postupak i <b>proveri</b> koliko si savladao.</p><span class="go" data-i18n="mVg">Proveri se &#8594;</span></a><a class="ig-mat m4" href="provera-mehanika.html"><span class="wm">&#10003;</span><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-4.9"/></svg></span><h3 data-i18n="mProv">Proveri znanje</h3><p data-i18n="mProvd">Pitanje po pitanje, sa opcijama i detaljnim rešenjem.</p><span class="go" data-i18n="mProvg">Uradi kviz &#8594;</span></a>
   </div>
   <p class="ig-note" data-i18n="mNote">Prvu stranu vidiš besplatno &#183; <b>ceo sadržaj se otključava pretplatom na ovaj predmet.</b></p>
-  <div class="ig-sh"><div class="ig-eb" data-i18n="jE">Kako uči Mathia</div><h2 data-i18n="jT">Jasan put od prvog pitanja do sigurnosti</h2><div class="ig-rl"></div></div>
-  <div class="ig-steps">
+  <div class="ig-sh rv"><div class="ig-eb" data-i18n="jE">Kako uči Mathia</div><h2 data-i18n="jT">Jasan put od prvog pitanja do sigurnosti</h2><div class="ig-rl"></div></div>
+  <div class="ig-steps rv">
     <div class="ig-step"><span class="n">I</span><div><h3 data-i18n="s1t">Razumi</h3><p data-i18n="s1d">Profesorica objasni suštinu — zašto, ne samo kako</p></div></div>
     <div class="ig-step"><span class="n">II</span><div><h3 data-i18n="s2t">Nauči</h3><p data-i18n="s2d">Skripta i formule složene pregledno, korak po korak</p></div></div>
     <div class="ig-step"><span class="n">III</span><div><h3 data-i18n="s3t">Vežbaj</h3><p data-i18n="s3d">Rešavaš zadatke uz vođenje, sopstvenim tempom</p></div></div>
     <div class="ig-step"><span class="n">IV</span><div><h3 data-i18n="s4t">Proveri</h3><p data-i18n="s4d">Kratke provere pokažu šta znaš, a šta još treba</p></div></div>
     <div class="ig-step"><span class="n">V</span><div><h3 data-i18n="s5t">Napreduj</h3><p data-i18n="s5d">Pratiš napredak i uvek znaš svoj sledeći korak</p></div></div>
   </div>
-  <div class="ig-sh" id="profesorica"><div class="ig-eb" data-i18n="pE">Uz tebe</div><h2 data-i18n="pT">Profesorica koja te prati i pamti</h2><div class="ig-rl"></div></div>
-  <div class="ig-duo">
+  <div class="ig-sh rv" id="profesorica"><div class="ig-eb" data-i18n="pE">Uz tebe</div><h2 data-i18n="pT">Profesorica koja te prati i pamti</h2><div class="ig-rl"></div></div>
+  <div class="ig-duo rv">
     <div class="ig-pan">
       <div class="lbl" data-i18n="npL">Tvoj napredak</div>
       <h3 data-i18n="npT">Uvek znaš dokle si stigao</h3>
@@ -562,7 +580,7 @@ footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{col
       <a class="ig-ask" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;" data-i18n="pfBtn">Pitaj Profesoricu &#8594;</a>
     </div>
   </div>
-  <div class="ig-fin">
+  <div class="ig-fin rv">
     <div class="orn">&#10022;</div>
     <h2 data-i18n="h1">Mehanika</h2>
     <div class="k" data-i18n="finK">konačno jasna</div>
@@ -611,5 +629,11 @@ window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.de
 <script defer src="gate.js" data-subject="fax-mehanika" data-note-only="1"></script>
 <script src="mathia-delight.js" defer></script>
 <script src="footer-mathia.js" defer></script>
+<script>(function(){try{
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var b=document.getElementById('fall');if(b){var G=['∫','∑','√','π','v','a','F','m','·','ω','g','💛','✦','θ','J'];var N=innerWidth<640?10:16;for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.26)s.className='m';s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}}}
+ var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -8% 0px'}):null;
+ var rv=document.querySelectorAll('.rv');for(var j=0;j<rv.length;j++){io?io.observe(rv[j]):rv[j].classList.add('in');}
+ setTimeout(function(){var a=document.querySelectorAll('.rv:not(.in)');for(var k=0;k<a.length;k++)a[k].classList.add('in');},1500);
+}catch(e){}})();</script>
 </body>
 </html>
