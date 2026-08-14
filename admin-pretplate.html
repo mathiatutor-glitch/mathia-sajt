@@ -7,54 +7,72 @@
 <title>Pretplate — MATHIA admin</title>
 <link rel="stylesheet" href="mathia-type.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-:root{--gold:#C6A05C;--golddk:#A6803C;--goldsoft:#F0DCA8;--malina:#B01E48;--malinadk:#8E1338;--plum:#432C37;--ink:#432C37;--muted:#90787E;--line:#EFE4DB;--bg:#FBF6EE;--card:#FFFDFA}
+:root{--gold:#C6A05C;--golddk:#9C7838;--goldsoft:#F0DCA8;--goldlt:#E7D2A2;--malina:#B01E48;--malina2:#CC5E7E;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--muted:#8A7A80;--line:#EFE1CE;--bg:#FBF6EE;--card:#FFFDF9;--serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(1100px 520px at 82% -8%,#FBEEF2 0,rgba(251,238,242,0) 60%),var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif}
-.wrap{max-width:1120px;margin:0 auto;padding:26px 18px 80px}
-.eyebrow{font-family:'Nunito',sans-serif;font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.7rem;color:var(--gold);margin:0 0 6px}
-h1{font-family:'Spectral',Georgia,serif;margin:0 0 4px;font-size:2rem;font-weight:700;color:var(--plum)}
-.sub{color:var(--muted);margin:0 0 22px;font-size:.94rem}
-/* —— dashboard kartice —— */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin:2px 0 24px}
+body{margin:0;background:radial-gradient(1100px 520px at 84% -8%,#FBEAEF 0,transparent 58%),radial-gradient(760px 420px at -6% 106%,#F7ECD6 0,transparent 60%),var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 18px 90px}
+.eyebrow{font-family:var(--sans);font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.7rem;color:var(--golddk);margin:0 0 6px}
+h1{font-family:var(--serif);margin:0 0 4px;font-size:2.1rem;font-weight:700;color:var(--plum)}
+.sub{color:var(--muted);margin:0 0 20px;font-size:.94rem}
+.dash-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+#refresh{white-space:nowrap}
+/* KPI kartice */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px;margin:4px 0 22px}
 @media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px;box-shadow:0 8px 22px -18px rgba(67,44,55,.5);position:relative;overflow:hidden}
+.stat{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:18px;padding:16px 16px 14px;box-shadow:0 20px 44px -34px rgba(90,16,36,.4);transition:transform .16s,box-shadow .16s}
+.stat:hover{transform:translateY(-3px);box-shadow:0 30px 54px -34px rgba(90,16,36,.5)}
 .stat:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--goldsoft),var(--gold))}
-.stat.pink:before{background:linear-gradient(90deg,#F3C0CF,var(--malina))}
-.stat .ic{font-size:1.5rem;line-height:1;margin-bottom:6px}.stat{transition:transform .15s,box-shadow .15s}.stat:hover{transform:translateY(-2px);box-shadow:0 16px 34px -22px rgba(67,44,55,.6)}.stat.gold2:before{background:linear-gradient(90deg,#F0DCA8,#C6A05C)}.stat.gold2 .v{color:#A6803C}.stat .k{font-family:'Nunito';font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:.68rem;color:var(--muted)}
-.stat .v{font-family:'Spectral',serif;font-weight:700;font-size:2.1rem;line-height:1.1;margin-top:6px;color:var(--plum)}
-.stat.pink .v{color:var(--malina)}
-.stat .cap{font-size:.74rem;color:var(--muted);margin-top:2px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 10px 26px -22px rgba(67,44,55,.55)}
-.card h2{font-family:'Spectral',Georgia,serif;font-size:1.2rem;margin:0 0 12px;color:var(--plum)}
+.stat.pink:before{background:linear-gradient(90deg,var(--malina2),var(--malina))}
+.stat.gold2:before{background:linear-gradient(90deg,#F0DCA8,#C6A05C)}
+.stat.plum:before{background:linear-gradient(90deg,#7A3346,#5A1024)}
+.stat .ic{font-size:1.45rem;line-height:1;margin-bottom:6px}
+.stat .k{font-family:var(--sans);font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:.66rem;color:var(--muted)}
+.stat .v{font-family:var(--serif);font-weight:700;font-size:1.9rem;line-height:1.1;margin-top:6px;color:var(--plum)}
+.stat.gold2 .v{color:var(--golddk)}.stat.pink .v{color:var(--malina)}
+.stat .cap{font-size:.72rem;color:var(--muted);margin-top:2px}
+/* Grafikoni */
+.charts{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:820px){.charts{grid-template-columns:1fr}}
+.chartcard{background:var(--card);border:1px solid var(--goldlt);border-radius:20px;padding:18px 20px;box-shadow:0 18px 44px -34px rgba(90,16,36,.4)}
+.chartcard h3{font-family:var(--serif);font-size:1.06rem;color:var(--plum);margin:0 0 12px;font-weight:600}
+.chartcard canvas{max-height:230px}
+.charts-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:820px){.charts-2{grid-template-columns:1fr}}
+/* Kartice/tabele */
+.card{background:var(--card);border:1px solid var(--goldlt);border-radius:20px;padding:22px;margin-bottom:18px;box-shadow:0 18px 44px -34px rgba(90,16,36,.4)}
+.card h2{font-family:var(--serif);font-size:1.24rem;margin:0 0 12px;color:var(--plum)}
 label{display:block;font-size:.83rem;color:var(--muted);margin:10px 0 4px;font-weight:700}
-input,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+input,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;font:inherit;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,160,92,.15)}
 .row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
 @media(max-width:720px){.row{grid-template-columns:1fr}}
-.btn{background:linear-gradient(180deg,#D6B36E,var(--gold));color:#fff;border:0;border-radius:12px;padding:11px 18px;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 8px 18px -12px rgba(166,128,60,.9)}
-.btn:hover{background:linear-gradient(180deg,var(--gold),var(--golddk))}
-.btn:disabled{opacity:.5;cursor:default}
-.btn-sm{padding:6px 11px;font-size:.82rem;border-radius:8px}
-.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
-.btn-warn{background:#fff;color:#A33;border:1px solid #E8C5C5}
+.btn{background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;border:0;border-radius:100px;padding:11px 20px;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 12px 24px -12px rgba(176,30,72,.55);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(176,30,72,.7)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.btn-sm{padding:7px 13px;font-size:.82rem}
+.btn-ghost{background:#FFFDF9;color:var(--plum);border:1.5px solid var(--goldlt);box-shadow:none}
+.btn-ghost:hover{border-color:var(--gold);box-shadow:none}
+.btn-warn{background:#fff;color:#A33;border:1.5px solid #E8C5C5;box-shadow:none}
 table{width:100%;border-collapse:collapse;font-size:.88rem}
-th,td{text-align:left;padding:10px 9px;border-bottom:1px solid var(--line);vertical-align:middle}tbody tr:hover{background:#FFF9EF}tbody tr:nth-child(even){background:#FDFBF7}
-th{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.74rem;font-weight:700}
-.ok{background:#E8F5E9;color:#2E7D32}.no{background:#FFEBEE;color:#C62828}.wait{background:#FFF8E1;color:#F57F17}
-.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:10px;background:#FDFCFA}
+th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:hover{background:#FFF9EF}tbody tr:nth-child(even){background:#FDFBF7}
+th{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:800}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:800}
+.ok{background:#E8F5E9;color:#2E7D32}.no{background:#FFEBEE;color:#C62828}.wait{background:#FFF8E1;color:#B7791F}
+.pk{background:linear-gradient(135deg,#F0DCA8,#C6A05C);color:#4a3410}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:10px;background:#FDFCFA}
 .chip{display:flex;align-items:center;gap:7px;font-size:.84rem;padding:5px 7px;border-radius:8px;cursor:pointer}
-.chip:hover{background:#FFF8EC}
-.chip input{width:auto;margin:0}
-.grp-h{grid-column:1/-1;font-weight:800;font-size:.76rem;color:var(--golddk);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 2px}
-.msg{padding:11px 14px;border-radius:10px;margin:12px 0;font-size:.9rem;display:none}
-.msg.err{background:#FFEBEE;color:#C62828;display:block}
-.msg.ok{background:#E8F5E9;color:#2E7D32;display:block}
+.chip:hover{background:#FFF8EC}.chip input{width:auto;margin:0}
+.grp-h{grid-column:1/-1;font-weight:800;font-size:.74rem;color:var(--golddk);text-transform:uppercase;letter-spacing:.05em;margin:8px 0 2px}
+.msg{padding:11px 14px;border-radius:11px;margin:12px 0;font-size:.9rem;display:none}
+.msg.err{background:#FFEBEE;color:#C62828;display:block}.msg.ok{background:#E8F5E9;color:#2E7D32;display:block}
 #gate{max-width:420px;margin:70px auto;text-align:center}
-.hid{display:none}
-.count{font-size:.78rem;color:var(--muted);margin-top:6px}
+.hid{display:none}.count{font-size:.78rem;color:var(--muted);margin-top:6px}
 .mono{font-family:ui-monospace,Menlo,monospace;font-size:.78rem;color:var(--muted)}
+.toppg .tp-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.88rem}.toppg .tp-row:last-child{border-bottom:none}.toppg .tp-row b{color:var(--plum);font-family:var(--serif)}.toppg .tp-row span{color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -66,19 +84,37 @@ th{font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.
 </div>
 
 <div class="wrap hid" id="app">
-  <p class="eyebrow">MATHIA · kontrolna tabla</p>
-  <h1>Dobro jutro, Marina ✦</h1>
-  <p class="sub">Sve na jednom mestu — prijave, pretplate i porudžbine. Ručno aktiviranje je za kupce koji plate <b>na račun (IPS QR)</b>.</p>
+  <div class="dash-head"><div><p class="eyebrow">MATHIA · kontrolna tabla</p><h1>Dobro jutro, Marina ✦</h1></div><button class="btn btn-ghost" id="refresh">↻ Osveži</button></div>
+  <p class="sub">Sve na jednom mestu — prijave, posete, pretplate, prihod i porudžbine. <span id="last-upd" class="mono"></span></p>
 
   <div class="stats">
-    <div class="stat gold2"><div class="ic">💰</div><div class="k">Prihod (kartice)</div><div class="v" id="st-prihod">0</div><div class="cap">plaćene porudžbine</div></div>
-    <div class="stat pink"><div class="ic">📞</div><div class="k">Probaj besplatno</div><div class="v" id="st-sign">0</div><div class="cap">prijava telefonom</div></div>
+    <div class="stat gold2"><div class="ic">💰</div><div class="k">Prihod ukupno</div><div class="v" id="st-prihod">0</div><div class="cap">sve plaćene porudžbine</div></div>
+    <div class="stat gold2"><div class="ic">📅</div><div class="k">Prihod ovog meseca</div><div class="v" id="st-prihod-m">0</div><div class="cap">od 1. u mesecu</div></div>
+    <div class="stat plum"><div class="ic">🔮</div><div class="k">MRR (procena)</div><div class="v" id="st-mrr">0</div><div class="cap">aktivne × cena paketa</div></div>
     <div class="stat"><div class="ic">✅</div><div class="k">Aktivne pretplate</div><div class="v" id="st-akt">0</div><div class="cap">važe danas</div></div>
     <div class="stat"><div class="ic">⏳</div><div class="k">Uskoro ističe</div><div class="v" id="st-usk">0</div><div class="cap">u narednih 7 dana</div></div>
     <div class="stat"><div class="ic">🔁</div><div class="k">Istekle</div><div class="v" id="st-ist">0</div><div class="cap">za obnovu</div></div>
-    <div class="stat"><div class="ic">🔓</div><div class="k">Bez pretplate</div><div class="v" id="st-bez">0</div><div class="cap">čekaju otključavanje</div></div>
+    <div class="stat pink"><div class="ic">📞</div><div class="k">Probaj besplatno</div><div class="v" id="st-sign">0</div><div class="cap">prijave (posete/lidovi)</div></div>
+    <div class="stat pink"><div class="ic">🌐</div><div class="k">Posete (14 dana)</div><div class="v" id="st-pv">0</div><div class="cap">stvarne posete sajta</div></div>
+    <div class="stat"><div class="ic">👤</div><div class="k">Nalozi</div><div class="v" id="st-nal">0</div><div class="cap">registrovani</div></div>
+    <div class="stat pink"><div class="ic">📈</div><div class="k">Konverzija</div><div class="v" id="st-konv">0%</div><div class="cap">kupci / prijave</div></div>
     <div class="stat"><div class="ic">🧾</div><div class="k">Porudžbine</div><div class="v" id="st-ord">0</div><div class="cap">kartične kupovine</div></div>
     <div class="stat"><div class="ic">⌛</div><div class="k">Na čekanju</div><div class="v" id="st-cek">0</div><div class="cap">neplaćene porudžbine</div></div>
+    <div class="stat"><div class="ic">🔓</div><div class="k">Bez pretplate</div><div class="v" id="st-bez">0</div><div class="cap">čekaju otključavanje</div></div>
+    <div class="stat gold2"><div class="ic">💳</div><div class="k">Prosečna porudžbina</div><div class="v" id="st-avg">0</div><div class="cap">plaćene</div></div>
+  </div>
+
+  <div class="charts">
+    <div class="chartcard"><h3>💰 Prihod po mesecima</h3><canvas id="ch-prihod"></canvas></div>
+    <div class="chartcard"><h3>💎 Raspodela paketa (aktivne)</h3><canvas id="ch-paketi"></canvas></div>
+  </div>
+  <div class="charts-2">
+    <div class="chartcard"><h3>📞 Prijave „probaj besplatno" (14 dana)</h3><canvas id="ch-prijave"></canvas></div>
+    <div class="chartcard"><h3>✅ Nove pretplate (6 meseci)</h3><canvas id="ch-nove"></canvas></div>
+  </div>
+  <div class="charts-2">
+    <div class="chartcard"><h3>🌐 Posete po danu (14 dana)</h3><canvas id="ch-posete"></canvas></div>
+    <div class="chartcard"><h3>🔥 Najposećenije strane</h3><div id="top-pages" class="toppg"><div style="color:var(--muted)">Učitavam…</div></div></div>
   </div>
 
   <div class="card">
@@ -256,6 +292,55 @@ function render(){
   if($("st-prihod"))$("st-prihod").textContent=prihod.toLocaleString("sr-RS")+" din";
   if($("st-usk"))$("st-usk").textContent=uskoro;
   if($("st-cek"))$("st-cek").textContent=naCekanju;
+  // —— dodatne metrike ——
+  var cene={basic:4990,gold:6990,diamond:9990};
+  var mrr=pr.reduce(function(s,p){var v=(p.status==="aktivna"&&(!p.istice||new Date(p.istice)>sada));return s+(v?(cene[String(p.paket||"").toLowerCase()]||0):0);},0);
+  var d0=new Date(sada.getFullYear(),sada.getMonth(),1);
+  var prihodM=placeno.filter(function(o){return o.created_at&&new Date(o.created_at)>=d0;}).reduce(function(s,o){return s+(o.iznos_rsd||0);},0);
+  var avg=placeno.length?Math.round(prihod/placeno.length):0;
+  var kupci={}; pr.forEach(function(p){if(p.kupac_email)kupci[String(p.kupac_email).toLowerCase()]=1;});
+  var konv=(sg.total>0)?Math.round(Object.keys(kupci).length/sg.total*100):0;
+  if($("st-prihod-m"))$("st-prihod-m").textContent=prihodM.toLocaleString("sr-RS")+" din";
+  if($("st-mrr"))$("st-mrr").textContent=mrr.toLocaleString("sr-RS")+" din";
+  if($("st-nal"))$("st-nal").textContent=na.length;
+  if($("st-konv"))$("st-konv").textContent=konv+"%";
+  if($("st-avg"))$("st-avg").textContent=avg.toLocaleString("sr-RS")+" din";
+  if($("last-upd"))$("last-upd").textContent="· osveženo "+sada.toLocaleTimeString("sr-RS");
+  try{ drawCharts(pr,placeno,sg,sada); }catch(e){}
+}
+
+
+/* ——— grafikoni ——— */
+var CH={};
+function mkChart(id,cfg){ if(!window.Chart)return; var c=document.getElementById(id); if(!c)return; if(CH[id]){CH[id].destroy();} Chart.defaults.font.family="Inter,system-ui,sans-serif"; Chart.defaults.color="#8A7A80"; CH[id]=new Chart(c,cfg); }
+function monthKey(d){return d.getFullYear()+"-"+(d.getMonth()+1);}
+function drawCharts(pr,placeno,sg,sada){
+  var labels=[],keys=[];
+  for(var i=5;i>=0;i--){var d=new Date(sada.getFullYear(),sada.getMonth()-i,1);keys.push(monthKey(d));labels.push(d.toLocaleDateString("sr-RS",{month:"short"}));}
+  var mrev={}; placeno.forEach(function(o){if(!o.created_at)return;mrev[monthKey(new Date(o.created_at))]=(mrev[monthKey(new Date(o.created_at))]||0)+(o.iznos_rsd||0);});
+  mkChart("ch-prihod",{type:"bar",data:{labels:labels,datasets:[{label:"Prihod (din)",data:keys.map(function(k){return mrev[k]||0;}),backgroundColor:"#C6A05C",borderRadius:8,maxBarThickness:46}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:"rgba(198,160,92,.12)"}},x:{grid:{display:false}}}}});
+  var pk={basic:0,gold:0,diamond:0}; pr.forEach(function(p){var v=(p.status==="aktivna"&&(!p.istice||new Date(p.istice)>sada));if(v){var k=String(p.paket||"").toLowerCase();if(pk[k]!=null)pk[k]++;}});
+  mkChart("ch-paketi",{type:"doughnut",data:{labels:["Basic","Gold","Diamond"],datasets:[{data:[pk.basic,pk.gold,pk.diamond],backgroundColor:["#E7D2A2","#C6A05C","#B01E48"],borderWidth:2,borderColor:"#FFFDF9"}]},options:{responsive:true,cutout:"62%",plugins:{legend:{position:"bottom"}}}});
+  var dl=[],dv=[],cnt={}; (sg.recent||[]).forEach(function(x){if(!x.ts)return;var k=new Date(x.ts).toISOString().slice(0,10);cnt[k]=(cnt[k]||0)+1;});
+  for(var j=13;j>=0;j--){var dd=new Date(sada.getTime()-j*86400000);dl.push(dd.toLocaleDateString("sr-RS",{day:"numeric",month:"numeric"}));dv.push(cnt[dd.toISOString().slice(0,10)]||0);}
+  mkChart("ch-prijave",{type:"line",data:{labels:dl,datasets:[{label:"Prijave",data:dv,borderColor:"#B01E48",backgroundColor:"rgba(176,30,72,.12)",fill:true,tension:.35,pointRadius:2}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:"rgba(198,160,92,.12)"}},x:{grid:{display:false}}}}});
+  var nrev={}; pr.forEach(function(p){var t=p.pocinje||p.created_at;if(!t)return;nrev[monthKey(new Date(t))]=(nrev[monthKey(new Date(t))]||0)+1;});
+  mkChart("ch-nove",{type:"bar",data:{labels:labels,datasets:[{label:"Nove pretplate",data:keys.map(function(k){return nrev[k]||0;}),backgroundColor:"#CC5E7E",borderRadius:8,maxBarThickness:46}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:"rgba(198,160,92,.12)"}},x:{grid:{display:false}}}}});
+}
+
+
+/* ——— posete (stvarne) ——— */
+async function loadPosete(){
+  try{
+    var r=await fetch("/api/admin-posete",{headers:{Authorization:"Bearer "+TOKEN}});
+    var j=await r.json(); if(!j||!j.ok||!j.posete) return;
+    var P=j.posete;
+    if($("st-pv"))$("st-pv").textContent=(P.dana14||0).toLocaleString("sr-RS");
+    var labels=(P.byDay||[]).map(function(x){return x.d.slice(5);});
+    var data=(P.byDay||[]).map(function(x){return x.n;});
+    mkChart("ch-posete",{type:"line",data:{labels:labels,datasets:[{label:"Posete",data:data,borderColor:"#B01E48",backgroundColor:"rgba(176,30,72,.12)",fill:true,tension:.35,pointRadius:2}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:"rgba(198,160,92,.12)"}},x:{grid:{display:false}}}}});
+    var tp=$("top-pages"); if(tp){ tp.innerHTML=(P.topPages&&P.topPages.length)?P.topPages.map(function(x){return '<div class="tp-row"><span>'+esc(x.p)+'</span><b>'+(x.n||0).toLocaleString("sr-RS")+'</b></div>';}).join(""):'<div style="color:var(--muted)">Još nema poseta. (Uključi beacon: zameni mathia-delight.js)</div>'; }
+  }catch(e){}
 }
 
 /* ——— akcije ——— */
@@ -265,6 +350,7 @@ async function post(payload){
 }
 document.addEventListener("click", async function(e){
   var b=e.target.closest("button"); if(!b) return;
+  if(b.id==="refresh"){ b.disabled=true; loadPosete(); load().then(function(){b.disabled=false;}); return; }
 
   if(b.id==="f-go"){
     var email=$("f-email").value.trim(), paket=$("f-paket").value, dana=parseInt($("f-dana").value,10)||30;
@@ -295,7 +381,7 @@ document.addEventListener("click", async function(e){
   if(!j.ok){ $("gate-msg").textContent=j.error||"Greška."; return; }
   DATA=j;
   $("gate").classList.add("hid"); $("app").classList.remove("hid");
-  renderSubs(); render();
+  renderSubs(); render(); loadPosete();
 })();
 </script>
 </body>

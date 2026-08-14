@@ -5,6 +5,24 @@
   if (window.__mathiaDelight) return; window.__mathiaDelight = 1;
   var RM = false; try { RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 
+  /* Vercel Web Analytics — prave posete (uključi u Vercel: project → Analytics → Enable).
+     Ubacuje se jednom, na svakoj strani koja učita ovaj fajl. */
+  try {
+    if (!document.getElementById('vercel-insights')) {
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      var vi = document.createElement('script');
+      vi.id = 'vercel-insights'; vi.defer = true; vi.src = '/_vercel/insights/script.js';
+      document.head.appendChild(vi);
+    }
+  } catch (e) {}
+
+  /* Beacon za admin tablu: broji posetu ove strane (KV brojač preko /api/hit). */
+  try {
+    var __pv = (location && location.pathname) || '/';
+    if (navigator.sendBeacon) { navigator.sendBeacon('/api/hit?p=' + encodeURIComponent(__pv)); }
+    else { fetch('/api/hit?p=' + encodeURIComponent(__pv), { method: 'POST', keepalive: true }).catch(function(){}); }
+  } catch (e) {}
+
   var CSS =
     ".md-hidden{opacity:0;transform:translateY(20px)}" +
     ".md-show{opacity:1!important;transform:none!important;transition:opacity .6s ease,transform .65s cubic-bezier(.2,.85,.2,1)}" +
