@@ -95,7 +95,18 @@
   }
 
   // — maskota —
-  var TIPS = ['Ti to možeš! 💛', 'Hajde da učimo! ✨', 'Svaki korak se broji 🌟', 'Diši — tu sam uz tebe 🌸', 'Bravo što si tu! 🎉', 'Pitaj me bilo šta 💬'];
+  var TIPS_L = {
+    sr: ['Ti to možeš! 💛', 'Hajde da učimo! ✨', 'Svaki korak se broji 🌟', 'Diši — tu sam uz tebe 🌸', 'Bravo što si tu! 🎉', 'Pitaj me bilo šta 💬'],
+    en: ['You can do it! 💛', "Let's learn! ✨", 'Every step counts 🌟', "Breathe — I'm here with you 🌸", "Great that you're here! 🎉", 'Ask me anything 💬'],
+    de: ['Du schaffst das! 💛', 'Lass uns lernen! ✨', 'Jeder Schritt zählt 🌟', 'Atme — ich bin bei dir 🌸', 'Schön, dass du da bist! 🎉', 'Frag mich alles 💬'],
+    fr: ['Tu peux le faire ! 💛', 'Apprenons ! ✨', 'Chaque pas compte 🌟', 'Respire — je suis là 🌸', 'Ravie que tu sois là ! 🎉', "Demande-moi ce que tu veux 💬"],
+    es: ['¡Tú puedes! 💛', '¡Vamos a aprender! ✨', 'Cada paso cuenta 🌟', 'Respira — estoy contigo 🌸', '¡Qué bien que estés aquí! 🎉', 'Pregúntame lo que sea 💬'],
+    it: ['Ce la puoi fare! 💛', 'Impariamo! ✨', 'Ogni passo conta 🌟', 'Respira — sono qui con te 🌸', 'Che bello che ci sei! 🎉', 'Chiedimi qualsiasi cosa 💬'],
+    ru: ['У тебя получится! 💛', 'Давай учиться! ✨', 'Каждый шаг важен 🌟', 'Дыши — я рядом 🌸', 'Здорово, что ты здесь! 🎉', 'Спрашивай что угодно 💬'],
+    pt: ['Tu consegues! 💛', 'Vamos aprender! ✨', 'Cada passo conta 🌟', 'Respira — estou aqui contigo 🌸', 'Que bom que estás aqui! 🎉', 'Pergunta-me o que quiseres 💬']
+  };
+  function mdLang(){ try{ var s=localStorage.getItem('mathia_lang'); if(s) return s.slice(0,2).toLowerCase(); }catch(e){} return (document.documentElement.lang||'sr').slice(0,2).toLowerCase(); }
+  function TIPS(){ return TIPS_L[mdLang()] || TIPS_L.sr; }
   function mascot() {
     if (document.getElementById('md-mascot')) return;
     var m = document.createElement('div'); m.id = 'md-mascot'; m.setAttribute('aria-hidden', 'true');
@@ -103,7 +114,7 @@
     document.body.appendChild(m);
     var faces = ['🦉', '🦊', '🐨', '🐼', '🦄', '🐧', '🌟'], fi = 0, ti = 0;
     var bub = m.querySelector('.bub'), face = m.querySelector('.face');
-    function speak() { bub.textContent = TIPS[ti % TIPS.length]; ti++; m.classList.add('show'); setTimeout(function () { m.classList.remove('show'); }, 4200); }
+    function speak() { var t = TIPS(); bub.textContent = t[ti % t.length]; ti++; m.classList.add('show'); setTimeout(function () { m.classList.remove('show'); }, 4200); }
     setTimeout(speak, 1600); setInterval(speak, 12000);
     m.addEventListener('click', function () {
       var r = face.getBoundingClientRect(); hearts(r.left + r.width / 2, r.top + r.height / 2);
