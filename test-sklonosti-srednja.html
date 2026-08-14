@@ -271,6 +271,17 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
 .lvl:hover{border-color:#C6A05C}
 @media(prefers-reduced-motion:no-preference){#chooser,#test,#report{animation:tsin .5s both}@keyframes tsin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}.ts-ic{animation:tsbob 3s ease-in-out infinite}@keyframes tsbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
 </style>
+<style id="ts-city-css">
+.city-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.city-list li{position:relative;padding-left:22px;font-size:.94rem;color:#5A1024;font-weight:600;line-height:1.4}
+.city-list li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#E7D2A2,#C6A05C)}
+.city-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 14px;padding:9px 0;border-bottom:1px solid rgba(198,160,92,.18)}
+.city-row:last-of-type{border-bottom:none}
+.city-row b{color:#5A1024;font-family:'Spectral',serif}
+.city-row span{color:#7c6b60;font-size:.9rem}
+.ig-cityhint{margin:12px 0 0;font-size:.85rem;color:#9C7838;font-style:italic}
+.city-list+.oc-why{margin-top:12px}
+</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
@@ -336,6 +347,7 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
           <div class="opt-cards" id="optCards"></div>
           <div class="career-box" id="careerBox"></div>
         </div>
+        <div class="rep-sec" id="citySec"></div>
         <div class="mathia-box">
           <h4>Kako da stigneš tamo</h4>
           <p>Na Mathiji te vode baš pravi predmeti i profesorica koja je uvek uz tebe:</p>
@@ -430,6 +442,47 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
     ]
   };
 
+
+  var UNI={
+    'beograd':{disp:'Beograd (Univerzitet u Beogradu)',
+      T:['Elektrotehnički fakultet (ETF)','Mašinski fakultet','Građevinski fakultet','Saobraćajni fakultet','Tehnološko-metalurški'],
+      I:['Matematički fakultet','Fizički fakultet','Elektrotehnički (ETF) — softver','Računarski fakultet (RAF)'],
+      K:['Arhitektonski fakultet','Fakultet primenjenih umetnosti','Fakultet dramskih umetnosti (FDU)'],
+      D:['Medicinski fakultet','Farmaceutski fakultet','Filozofski — psihologija','Učiteljski fakultet'],
+      P:['Ekonomski fakultet','Pravni fakultet','Fakultet organizacionih nauka (FON)'],
+      O:['Fakultet organizacionih nauka (FON)','Ekonomski — finansije i računovodstvo']},
+    'novi sad':{disp:'Novi Sad (Univerzitet u Novom Sadu)',
+      T:['Fakultet tehničkih nauka (FTN)','Tehnološki fakultet','Poljoprivredni — agroinženjering'],
+      I:['Prirodno-matematički fakultet (PMF)','FTN — računarstvo i automatika'],
+      K:['Akademija umetnosti','FTN — arhitektura','FTN — scenski dizajn'],
+      D:['Medicinski fakultet','Filozofski — psihologija i pedagogija'],
+      P:['Ekonomski fakultet (Subotica)','Pravni fakultet'],
+      O:['FTN — industrijsko inženjerstvo i menadžment','Ekonomski fakultet (Subotica)']},
+    'nis':{disp:'Niš (Univerzitet u Nišu)',
+      T:['Elektronski fakultet','Mašinski fakultet','Građevinsko-arhitektonski'],
+      I:['Prirodno-matematički fakultet (PMF)','Elektronski fakultet — računarstvo'],
+      K:['Fakultet umetnosti','Građevinsko-arhitektonski — arhitektura'],
+      D:['Medicinski fakultet','Filozofski — psihologija i pedagogija'],
+      P:['Ekonomski fakultet','Pravni fakultet'],
+      O:['Ekonomski fakultet','Fakultet zaštite na radu']},
+    'kragujevac':{disp:'Kragujevac (Univerzitet u Kragujevcu)',
+      T:['Fakultet inženjerskih nauka (FIN)','FTN Čačak'],
+      I:['Prirodno-matematički fakultet (PMF)','FIN — računarsko inženjerstvo'],
+      K:['Filološko-umetnički fakultet (FILUM)'],
+      D:['Medicinski fakultet','FILUM — pedagogija'],
+      P:['Ekonomski fakultet','Pravni fakultet'],
+      O:['Ekonomski fakultet','FIN — industrijsko inženjerstvo']}
+  };
+  var UNI_ALIAS={'bg':'beograd','beograd':'beograd','ns':'novi sad','novisad':'novi sad','ni':'nis','nis':'nis','kg':'kragujevac','kragujevac':'kragujevac'};
+  var SREDNJE={
+    'beograd':'Matematička gimnazija, Računarska gimnazija i druge beogradske gimnazije; brojne stručne škole (elektrotehnička, mašinska, ekonomska, medicinska).',
+    'novi sad':'Gimnazija „Jovan Jovanović Zmaj", Elektrotehnička škola „Mihajlo Pupin", mašinska, ekonomska i medicinska škola.',
+    'nis':'Gimnazija „Bora Stanković", Elektrotehnička škola „Nikola Tesla" i druge stručne škole.',
+    'kragujevac':'Prva kragujevačka gimnazija i tehničke/ekonomske/medicinske škole.'
+  };
+  function norm(s){return (s||'').toLowerCase().replace(/[čć]/g,'c').replace(/š/g,'s').replace(/ž/g,'z').replace(/đ/g,'dj').replace(/\s+/g,' ').trim();}
+  function cityKey(g){g=norm(g);if(!g)return null;var ng=g.replace(/\s/g,'');if(UNI_ALIAS[ng])return UNI_ALIAS[ng];for(var k in UNI){var nk=norm(k).replace(/\s/g,'');if(ng.indexOf(nk)>-1||nk.indexOf(ng)>-1)return k;}return null;}
+
   var nivo=null, grad='', idx=0, answers=[];
   function qs(id){return document.getElementById(id);}
   function show(id){['chooser','test','report'].forEach(function(x){qs(x).classList.toggle('hidden',x!==id);});window.scrollTo({top:0,behavior:'smooth'});}
@@ -478,6 +531,34 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
       (function(cc,p){setTimeout(function(){cc.querySelector('.oc-bar i').style.width=p+'%';},120+i*110);})(c,o.m);
     });
     qs('mathiaSubs').textContent=SUBS[top];
+
+    // === GDE MOŽEŠ DA UPIŠEŠ (grad-svesno) ===
+    (function(){
+      var host=qs('citySec'); if(!host)return;
+      var key=cityKey(grad), top2=[top,sorted[1]], H='';
+      H+='<div class="sh"><h3>Gde možeš da upišeš</h3><p style="color:var(--muted);font-size:.92rem;margin-top:4px">Konkretne škole i fakulteti koji odgovaraju tvom profilu'+(grad?(' — u gradu '+grad):'')+'.</p></div>';
+      if(nivo==='srednja'){
+        var g1=(top==='K')?'Za tvoj profil odlična je umetnička/dizajnerska škola ili gimnazija (društveno-jezički smer).':((top==='D'||top==='P')?'Za tvoj profil odličan je društveno-jezički smer gimnazije ili odgovarajuća stručna škola (medicinska, ekonomska, pravno-birotehnička).':'Za tvoj profil odlična je gimnazija (prirodno-matematički smer) ili tehnička škola u tvojoj oblasti (elektrotehnička, mašinska, računarska).');
+        var nm=key?SREDNJE[key]:'Potraži gimnaziju i odgovarajuću stručnu školu u svom gradu — svaki veći grad ih ima.';
+        H+='<div class="opt-card"><p class="oc-why">'+g1+'</p><div class="oc-career">'+(key?('U gradu '+UNI[key].disp.split(' (')[0]+': '):'Savet: ')+nm+'</div></div>';
+        if(!key)H+='<p class="ig-cityhint">Upiši svoj grad na početku testa da vidiš baš svoje škole.</p>';
+      } else {
+        var vlabel=(nivo==='visa')?'Visoke/strukovne studije (i srodni fakulteti):':'Fakulteti za tebe:';
+        if(key){
+          var uni=UNI[key], list=[]; top2.forEach(function(t){(uni[t]||[]).forEach(function(x){if(list.indexOf(x)<0)list.push(x);});});
+          list=list.slice(0,6);
+          H+='<div class="opt-card"><div class="oc-top"><span class="oc-name">'+uni.disp+'</span></div><div class="oc-career" style="margin-top:2px">'+vlabel+'</div><ul class="city-list">';
+          list.forEach(function(x){H+='<li>'+x+'</li>';}); H+='</ul>';
+          if(nivo==='visa')H+='<p class="oc-why">Uz fakultete, potraži i akreditovane visoke strukovne škole (npr. VTŠ) u svom gradu — brz put do traženog zanimanja.</p>';
+          H+='</div>';
+        } else {
+          H+='<div class="opt-card"><div class="oc-career" style="margin-bottom:6px">Najveći univerzitetski centri za tvoj profil:</div>';
+          ['beograd','novi sad','nis'].forEach(function(c){var u=UNI[c];var l=(u[top]||[]).slice(0,2).join(' · ');H+='<div class="city-row"><b>'+u.disp.split(' (')[0]+'</b><span>'+l+'</span></div>';});
+          H+='<p class="ig-cityhint">Upiši svoj grad na početku testa da vidiš baš svoje fakultete.</p></div>';
+        }
+      }
+      host.innerHTML=H;
+    })();
     show('report');
   }
   qs('restartBtn').addEventListener('click',function(){show('chooser');document.querySelectorAll('.lvl').forEach(function(x){x.classList.remove('on');});});
@@ -488,10 +569,7 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
 </script>
 <script src="i18n-mathia.js" defer></script>
 <script src="mathia-header.js" defer></script>
-<script id="px-test-fix">
-/* Klik na nivo odmah pokreće test (kao besplatno tok) — rešava „dugme ne radi". */
-(function(){try{var lvls=document.querySelectorAll('.lvl');var sb=document.getElementById('startBtn');lvls.forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){if(sb)sb.click();},140);});});}catch(e){}})();
-</script>
+<!-- px-test-fix uklonjen: nivo je predizabran, dugme Start radi, grad se ne preskače -->
 <script>
 (function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var b=document.getElementById('mathfall');if(!b)return;
 var G=['π','√','Σ','∫','α','x²','½','+','·','∞','≈','💛','🌸','✦','θ'];var N=innerWidth<640?9:15;
@@ -550,6 +628,6 @@ s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFi
  try{var mo=new MutationObserver(function(){clearTimeout(window.__sowl);window.__sowl=setTimeout(ensureOwl,160);});mo.observe(document.body,{childList:true,subtree:true});}catch(e){}
  }catch(e){}
 })();</script>
-<style>#chooser{opacity:0}</style><script>document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){try{var b=document.querySelector('.lvl[data-lvl="srednja"]');if(b)b.click();var s=document.getElementById("startBtn");if(s)s.click();var c=document.getElementById("chooser");if(c)c.style.opacity="";}catch(e){}},80);});</script>
+<style>#chooser{opacity:0}</style><script>document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){try{var want="srednja";document.querySelectorAll(".lvl").forEach(function(b){if(b.dataset.lvl===want){b.classList.add("on");}else{b.style.display="none";}});var c=document.getElementById("chooser");if(c)c.style.opacity="";}catch(e){}},60);});</script>
 </body>
 </html>
