@@ -212,6 +212,14 @@ a{text-decoration:none;color:inherit}
 .pa-w{color:var(--plum2);font-weight:700;font-size:.9rem}
 @media(prefers-reduced-motion:reduce){#fall,.ig-av .spk,.ig-eb::after{animation:none}#fall{display:none}}
 </style>
+<style id="ig-warm">
+.ig-av{width:116px!important;height:116px!important}
+.ig-av .ig-face{position:absolute;inset:5px;width:calc(100% - 10px);height:calc(100% - 10px);border-radius:50%;object-fit:cover;box-shadow:inset 0 0 0 3px #fff,0 10px 22px -12px rgba(90,16,36,.5);z-index:1}
+.ig-av .ig-badge{position:absolute;right:-2px;bottom:-2px;z-index:2;width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF7E0,#EAD3A0);border:2.5px solid #fff;display:grid;place-items:center;font-family:'Spectral',serif;font-style:italic;font-size:19px;color:#9C7838;box-shadow:0 8px 16px -8px rgba(156,120,56,.75)}
+.ig-av .ig-badge i{font-style:italic}
+.ig-page::before{content:"";position:absolute;top:0;left:0;right:0;height:340px;background:radial-gradient(680px 300px at 50% -20%,rgba(204,94,126,.10),transparent 60%);pointer-events:none;z-index:0}
+.ig-prof{position:relative;z-index:1}
+</style>
 </head>
 <body>
 
@@ -232,7 +240,7 @@ a{text-decoration:none;color:inherit}
   <div class="ig-card ig-prof rv">
     <span class="ig-cn tl"></span><span class="ig-cn tr"></span>
     <div class="ig-prow">
-      <div class="ig-av"><span><i>x</i></span><span class="spk" style="top:2%;left:-4%">✦</span><span class="spk" style="top:26%;right:-8%">✦</span><span class="spk" style="bottom:10%;left:-8%">✦</span></div>
+      <div class="ig-av"><span class="ig-mono"><i>x</i></span><img class="ig-face" src="marina.jpg" alt="Profesorica" onerror="this.remove()"><span class="ig-badge"><i>x</i></span><span class="spk" style="top:2%;left:-4%">✦</span><span class="spk" style="top:26%;right:-8%">✦</span><span class="spk" style="bottom:10%;left:-8%">✦</span></div>
       <div class="ig-stats">
         <div><b>12</b><span data-i18n="fL2">Oblasti</span></div>
         <div><b>4</b><span data-i18n="fL3">Materijali</span></div>

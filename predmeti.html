@@ -339,6 +339,23 @@ footer .mflt-tag{color:#B01E48!important}
 .hero-trust b,.hero-trust strong{background:linear-gradient(100deg,#5A1024,#B01E48);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.eyebrow::after,.eyebrow2::after{animation:none}}
 </style>
+<style id="pm-hero2col">
+.hero-grand .wrap{max-width:1080px;display:grid;grid-template-columns:1.15fr .85fr;gap:46px;align-items:center;text-align:left}
+.hero-grand .pm-htext{min-width:0}
+.hero-grand h1{font-size:clamp(2.4rem,5vw,3.9rem);margin:10px 0 16px}
+.hero-grand .hero-orn,.hero-grand .row{justify-content:flex-start}
+.hero-grand .lead{margin-left:0;margin-right:0}
+.hero-grand .hero-trust{margin-left:0}
+.pm-portrait{position:relative;justify-self:center}
+.pm-portrait .ring{position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,#E7D2A2,#C6A05C,#F7EAC9,#CC5E7E,#E7D2A2);filter:blur(2px);opacity:.55;animation:pmSpin 14s linear infinite}
+@keyframes pmSpin{to{transform:rotate(360deg)}}
+.pm-portrait .ph{position:relative;width:300px;height:300px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 30px 60px -24px rgba(90,16,36,.5)}
+.pm-portrait .spk{position:absolute;color:#C6A05C;font-size:18px;animation:pmSpk 4s ease-in-out infinite}
+@keyframes pmSpk{0%,100%{opacity:.25}50%{opacity:.85}}
+.pm-portrait .tag{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #E7D2A2;border-radius:100px;padding:7px 18px;font-family:'Spectral',serif;color:#5A1024;font-weight:600;box-shadow:0 12px 26px -10px rgba(90,16,36,.45);white-space:nowrap}
+@media(max-width:860px){.hero-grand .wrap{grid-template-columns:1fr;text-align:center;gap:26px}.hero-grand .hero-orn,.hero-grand .row{justify-content:center}.hero-grand .hero-trust{margin-left:auto;margin-right:auto}.pm-portrait{order:-1}.pm-portrait .ph{width:210px;height:210px}}
+@media(prefers-reduced-motion:reduce){.pm-portrait .ring,.pm-portrait .spk{animation:none}}
+</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
@@ -355,7 +372,7 @@ footer .mflt-tag{color:#B01E48!important}
 </header>
 
 <section class="hero hero-grand">
-  <div class="wrap">
+  <div class="wrap"><div class="pm-htext">
     <div class="hero-orn" aria-hidden="true"><i></i><span>&#10022;</span><i></i></div>
     <div class="eyebrow" data-i18n="h_eyb">Predmeti i putevi</div>
     <h1 data-i18n="h_h1">Nađi svoj put</h1>
@@ -365,7 +382,7 @@ footer .mflt-tag{color:#B01E48!important}
       <a class="btn btn-ghost-l" href="#predmeti" data-i18n="h_btn2">Pogledaj sve predmete ↓</a>
     </div>
     <div class="hero-trust rv"><span>80+ predmeta</span><span>Od 5. razreda do fakulteta</span><span>Profesorica 24/7</span></div>
-  </div>
+  </div><div class="pm-portrait"><div class="ring"></div><img class="ph" src="marina.jpg" alt="Profesorica" onerror="this.style.background='radial-gradient(circle at 40% 34%,#f6e7c9,#caa76a)';this.removeAttribute('src')"><span class="spk" style="top:2%;left:-4%">✦</span><span class="spk" style="top:24%;right:-6%">✦</span><span class="spk" style="bottom:16%;left:-6%">✦</span><div class="tag">Profesorica 💛</div></div></div>
 </section>
 
 <section class="sec alt" id="predmeti">
