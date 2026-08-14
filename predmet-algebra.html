@@ -184,46 +184,10 @@ a{text-decoration:none;color:inherit}
 .ig-fin .ig-stamp{display:inline-block;margin-top:.14em;transform:rotate(-5deg);font-family:var(--serif);font-style:italic;font-weight:800;font-size:clamp(1.3rem,3.4vw,2.05rem);color:#9C7838;border:2.5px solid rgba(156,120,56,.6);border-radius:14px;padding:3px 22px;background:linear-gradient(180deg,rgba(255,251,242,.92),rgba(247,236,214,.72));box-shadow:0 10px 24px -10px rgba(156,120,56,.55),inset 0 0 0 1px rgba(255,246,214,.8);letter-spacing:.01em;text-shadow:0 1px 0 rgba(255,255,255,.5)}
 @media(prefers-reduced-motion:reduce){.ig-fin .ig-stamp{transform:rotate(-5deg)}}
 </style>
-<style id="pa-wow">
-#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-#fall span{position:absolute;top:-8%;font-family:var(--serif);font-style:italic;color:rgba(198,160,92,.20);animation:paFall linear infinite;will-change:transform}
-#fall span.m{color:rgba(176,30,72,.15)}
-@keyframes paFall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(22deg);opacity:0}}
-.ig-page{position:relative;z-index:1}
-.ig-av{position:relative}
-.ig-av .spk{position:absolute;color:var(--gold);font-size:15px;animation:paTw 3.6s ease-in-out infinite;pointer-events:none}
-@keyframes paTw{0%,100%{opacity:.25;transform:scale(.85)}50%{opacity:.9;transform:scale(1.15)}}
-.ig-eb{position:relative}
-.ig-eb::after{content:" ✨";animation:paTw 2.6s ease-in-out infinite;display:inline-block}
-.ig-tp{transition:transform .2s cubic-bezier(.2,.9,.2,1),box-shadow .16s,border-color .16s}
-.ig-tp:hover{transform:translateY(-4px) rotate(-.6deg) scale(1.02)}
-.ig-mat:hover{transform:translateY(-5px) rotate(-.5deg) scale(1.01)}
-.pa-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:780px;margin:34px auto 0;padding:22px 20px;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:22px;box-shadow:0 24px 50px -36px rgba(90,16,36,.4);text-align:center}
-@media(max-width:600px){.pa-trust{grid-template-columns:1fr 1fr;gap:16px}}
-.pa-trust>div{transition:transform .3s}.pa-trust>div:hover{transform:translateY(-4px)}
-.pa-trust b{display:block;font-family:var(--serif);font-size:1.75rem;font-weight:700;line-height:1;background:linear-gradient(100deg,var(--plum),var(--malina));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.pa-trust span{color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.02em}
-.pa-tst{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto}
-@media(max-width:640px){.pa-tst{grid-template-columns:1fr}}
-.pa-q{background:var(--card);border:1px solid var(--goldlt);border-radius:20px;padding:24px 22px;box-shadow:0 22px 46px -34px rgba(90,16,36,.4);transition:transform .2s,box-shadow .2s}
-.pa-q:hover{transform:translateY(-5px);box-shadow:0 34px 60px -34px rgba(90,16,36,.5)}
-.pa-st{color:var(--gold);letter-spacing:2px}
-.pa-q q{display:block;font-family:var(--serif);font-style:italic;font-size:1.12rem;color:var(--plum);line-height:1.5;margin:8px 0 12px}
-.pa-w{color:var(--plum2);font-weight:700;font-size:.9rem}
-@media(prefers-reduced-motion:reduce){#fall,.ig-av .spk,.ig-eb::after{animation:none}#fall{display:none}}
-</style>
-<style id="ig-warm">
-.ig-av{width:116px!important;height:116px!important}
-.ig-av .ig-face{position:absolute;inset:5px;width:calc(100% - 10px);height:calc(100% - 10px);border-radius:50%;object-fit:cover;box-shadow:inset 0 0 0 3px #fff,0 10px 22px -12px rgba(90,16,36,.5);z-index:1}
-.ig-av .ig-badge{position:absolute;right:-2px;bottom:-2px;z-index:2;width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF7E0,#EAD3A0);border:2.5px solid #fff;display:grid;place-items:center;font-family:'Spectral',serif;font-style:italic;font-size:19px;color:#9C7838;box-shadow:0 8px 16px -8px rgba(156,120,56,.75)}
-.ig-av .ig-badge i{font-style:italic}
-.ig-page::before{content:"";position:absolute;top:0;left:0;right:0;height:340px;background:radial-gradient(680px 300px at 50% -20%,rgba(204,94,126,.10),transparent 60%);pointer-events:none;z-index:0}
-.ig-prof{position:relative;z-index:1}
-</style>
 </head>
 <body>
 
-<div id="fall" aria-hidden="true"></div>
+<div class="mathfog" aria-hidden="true"><span>lim</span><span>&#8747; f(x)dx</span><span>dy/dx</span><span>f&#8242;(x)</span><span>&#8721;</span></div>
 
 <header class="ig-top">
   <a class="ig-bk" href="predmeti.html" title="Svi predmeti" aria-label="Svi predmeti"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></a>
@@ -237,10 +201,10 @@ a{text-decoration:none;color:inherit}
 
 <div class="ig-page"><div class="ig-col">
 
-  <div class="ig-card ig-prof rv">
+  <div class="ig-card ig-prof">
     <span class="ig-cn tl"></span><span class="ig-cn tr"></span>
     <div class="ig-prow">
-      <div class="ig-av"><span class="ig-mono"><i>x</i></span><img class="ig-face" src="marina.jpg" alt="Profesorica" onerror="this.remove()"><span class="ig-badge"><i>x</i></span><span class="spk" style="top:2%;left:-4%">✦</span><span class="spk" style="top:26%;right:-8%">✦</span><span class="spk" style="bottom:10%;left:-8%">✦</span></div>
+      <div class="ig-av"><span><i>x</i></span></div>
       <div class="ig-stats">
         <div><b>12</b><span data-i18n="fL2">Oblasti</span></div>
         <div><b>4</b><span data-i18n="fL3">Materijali</span></div>
@@ -256,9 +220,8 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-  <div class="pa-trust rv"><div><b>12</b><span>oblasti gradiva</span></div><div><b>4</b><span>materijala</span></div><div><b>0–24h</b><span>Profesorica uz tebe</span></div><div><b>8</b><span>jezika</span></div></div>
-<div class="ig-sh rv"><div class="ig-eb" data-i18n="celE">Celine</div><h2 data-i18n="celT">Kroz šta ćeš proći</h2><div class="ig-rl"></div></div>
-  <div class="ig-cel rv">
+  <div class="ig-sh"><div class="ig-eb" data-i18n="celE">Celine</div><h2 data-i18n="celT">Kroz šta ćeš proći</h2><div class="ig-rl"></div></div>
+  <div class="ig-cel">
       <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M4 12c0-2.1 1.5-3.6 3.4-3.6S10.8 10 12 12s2.7 3.6 4.6 3.6S20 14.1 20 12Z"/></svg></span></div><div class="lb" data-i18n="c1t">Stepeni</div></a>
       <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 15.5c4.5 0 4.5-9 9-9s4.5 9 9 9"/></svg></span></div><div class="lb" data-i18n="c2t">Formule</div></a>
       <a href="#gradivo"><div class="c"><span><svg viewBox="0 0 24 24"><path d="M3 18C9 18 15 12 20 4"/><path d="M6 13.5 20 18"/></svg></span></div><div class="lb" data-i18n="c3t">Kvadratne</div></a>
@@ -267,19 +230,19 @@ a{text-decoration:none;color:inherit}
       <a href="#gradivo"><div class="c"><span>λ</span></div><div class="lb">Sopstvene</div></a>
   </div>
 
-  <div class="ig-sh rv" id="gradivo"><div class="ig-eb" data-i18n="secCover">Gradivo</div><h2 data-i18n="covT">Šta pokrivamo</h2><div class="ig-rl"></div></div>
-  <div class="ig-grid rv"><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Matematička logika</h3><p>Iskazi, logičke operacije, kvantifikatori</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Skupovi i relacije</h3><p>Ekvivalencija i poredak, funkcije, Haseov dijagram</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Algebarske strukture</h3><p>Grupoidi, grupe, prsteni i polja; izomorfizmi</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Bulove algebre i mreže</h3><p>Aksiome, De Morgan, SDNF/SKNF, minimalne DNF</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Kompleksni brojevi</h3><p>Trigonometrijski oblik, Moavr, n-ti koreni</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Polinomi</h3><p>Hornerova šema, nule, faktorizacija nad Q, R, C</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Matrice i determinante</h3><p>Operacije, rang, inverz; det = ad − bc</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Sistemi linearnih jednačina</h3><p>Gaus, Kramer, diskusija po parametru</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Vektorski prostori</h3><p>Linearna zavisnost, baza, dimenzija, potprostor</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Linearne transformacije</h3><p>Matrica LT, rang, injektivnost, izomorfizam</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Karakteristični koreni i vektori</h3><p>Sopstvene vrednosti; primena (PageRank)</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Analitička geometrija</h3><p>Vektori, prave i ravni; skalarni/vektorski/mešoviti proizvod</p></div></div></div>
+  <div class="ig-sh" id="gradivo"><div class="ig-eb" data-i18n="secCover">Gradivo</div><h2 data-i18n="covT">Šta pokrivamo</h2><div class="ig-rl"></div></div>
+  <div class="ig-grid"><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Matematička logika</h3><p>Iskazi, logičke operacije, kvantifikatori</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Skupovi i relacije</h3><p>Ekvivalencija i poredak, funkcije, Haseov dijagram</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Algebarske strukture</h3><p>Grupoidi, grupe, prsteni i polja; izomorfizmi</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Bulove algebre i mreže</h3><p>Aksiome, De Morgan, SDNF/SKNF, minimalne DNF</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Kompleksni brojevi</h3><p>Trigonometrijski oblik, Moavr, n-ti koreni</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Polinomi</h3><p>Hornerova šema, nule, faktorizacija nad Q, R, C</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Matrice i determinante</h3><p>Operacije, rang, inverz; det = ad − bc</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Sistemi linearnih jednačina</h3><p>Gaus, Kramer, diskusija po parametru</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Vektorski prostori</h3><p>Linearna zavisnost, baza, dimenzija, potprostor</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Linearne transformacije</h3><p>Matrica LT, rang, injektivnost, izomorfizam</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Karakteristični koreni i vektori</h3><p>Sopstvene vrednosti; primena (PageRank)</p></div></div><div class="ig-tp"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><div><h3>Analitička geometrija</h3><p>Vektori, prave i ravni; skalarni/vektorski/mešoviti proizvod</p></div></div></div>
 
-  <div class="ig-sh rv"><div class="ig-eb" data-i18n="mE">Materijali</div><h2 data-i18n="mT">Sve za ovaj predmet, na jednom mestu</h2><div class="ig-rl"></div></div>
-  <div class="ig-mats rv">
+  <div class="ig-sh"><div class="ig-eb" data-i18n="mE">Materijali</div><h2 data-i18n="mT">Sve za ovaj predmet, na jednom mestu</h2><div class="ig-rl"></div></div>
+  <div class="ig-mats">
     <a class="ig-mat m1" href="Algebra-Skripta.html"><span class="wm">&#8721;</span><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M8 3v15"/></svg></span><h3 data-i18n="mS">Skripta</h3><p data-i18n="mSd">Teorija objašnjena <b>korak po korak</b>, sa rešenim primerima za svaku oblast.</p><span class="go" data-i18n="mSg">Otvori skriptu &#8594;</span></a>
     <a class="ig-mat m2" href="Algebra-Formule.html"><span class="wm">&#960;</span><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 8h16M9 8v10M15 8v10"/></svg></span><h3 data-i18n="mF">Formule</h3><p data-i18n="mFd">Sve ključne formule na jednom mestu — <b>spremne pred ispit</b>.</p><span class="go" data-i18n="mFg">Otvori formule &#8594;</span></a>
     <a class="ig-mat m3" href="Algebra-Zadaci.html"><span class="wm">&#8730;</span><span class="mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg></span><h3 data-i18n="mV">Rešeni primeri</h3><p data-i18n="mVd">Zadaci rešeni <b>korak po korak</b> — vidiš ceo postupak, ne samo rezultat.</p><span class="go" data-i18n="mVg">Otvori rešene primere &#8594;</span></a><a class="ig-mat m4" href="provera-algebra.html"><span class="wm">&#10003;</span><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-4.9"/></svg></span><h3 data-i18n="mProv">Test znanja</h3><p data-i18n="mProvd">Pitanje po pitanje, sa opcijama i detaljnim rešenjem.</p><span class="go" data-i18n="mProvg">Uradi test &#8594;</span></a>
   </div>
   <p class="ig-note" data-i18n="mNote">Prvu stranu vidiš besplatno &#183; <b>ceo sadržaj se otključava pretplatom na ovaj predmet.</b></p>
 
-  <div class="ig-sh rv"><div class="ig-eb" data-i18n="jE">Kako uči Mathia</div><h2 data-i18n="jT">Jasan put od prvog pitanja do sigurnosti</h2><div class="ig-rl"></div></div>
-  <div class="ig-steps rv">
+  <div class="ig-sh"><div class="ig-eb" data-i18n="jE">Kako uči Mathia</div><h2 data-i18n="jT">Jasan put od prvog pitanja do sigurnosti</h2><div class="ig-rl"></div></div>
+  <div class="ig-steps">
       <div class="ig-step"><span class="n">I</span><div><h3 data-i18n="s1t">Razumi</h3><p data-i18n="s1d">Profesorica objasni suštinu — zašto, ne samo kako</p></div></div>
       <div class="ig-step"><span class="n">II</span><div><h3 data-i18n="s2t">Nauči</h3><p data-i18n="s2d">Skripta i formule složene pregledno, korak po korak</p></div></div>
       <div class="ig-step"><span class="n">III</span><div><h3 data-i18n="s3t">Vežbaj</h3><p data-i18n="s3d">Rešavaš zadatke uz vođenje, sopstvenim tempom</p></div></div>
@@ -287,8 +250,8 @@ a{text-decoration:none;color:inherit}
       <div class="ig-step"><span class="n">V</span><div><h3 data-i18n="s5t">Napreduj</h3><p data-i18n="s5d">Pratiš napredak i uvek znaš svoj sledeći korak</p></div></div>
   </div>
 
-  <div class="ig-sh rv" id="profesorica"><div class="ig-eb" data-i18n="pE">Uz tebe</div><h2 data-i18n="pT">Profesorica koja te prati i pamti</h2><div class="ig-rl"></div></div>
-  <div class="ig-duo rv">
+  <div class="ig-sh" id="profesorica"><div class="ig-eb" data-i18n="pE">Uz tebe</div><h2 data-i18n="pT">Profesorica koja te prati i pamti</h2><div class="ig-rl"></div></div>
+  <div class="ig-duo">
     <div class="ig-pan">
       <div class="lbl" data-i18n="npL">Tvoj napredak</div>
       <h3 data-i18n="npT">Uvek znaš dokle si stigao</h3>
@@ -306,9 +269,7 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-  <div class="ig-sh rv"><div class="ig-eb">Iskustva</div><h2>Šta kažu studenti</h2><div class="ig-rl"></div></div>
-<div class="pa-tst rv"><div class="pa-q"><div class="pa-st">★★★★★</div><q>„Profesorica mi je objasnila Moavrovu formulu u ponoć pred kolokvijum — konačno mi je kliknulo."</q><div class="pa-w">— Miloš, student FTN-a</div></div><div class="pa-q"><div class="pa-st">★★★★★</div><q>„Determinante i sistemi su mi bili noćna mora. Sad ih rešavam sama, korak po korak."</q><div class="pa-w">— Teodora, brucoškinja</div></div></div>
-<div class="ig-fin rv">
+  <div class="ig-fin">
     <div class="orn">&#10022;</div>
     <div class="ig-stampwrap"><span class="ig-finname" data-i18n="h1">Algebra</span><span class="ig-stamp" data-i18n="finK">konačno jasna</span></div>
     <p data-i18n="finS">Počni s pitanjem koje te muči — Profesorica te vodi ostatak puta.</p>
@@ -357,11 +318,5 @@ window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.de
 <script defer src="gate.js" data-subject="algebra" data-note-only="1"></script>
 <script src="mathia-delight.js" defer></script>
 <script src="footer-mathia.js" defer></script>
-<script>
-(function(){try{
- if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var b=document.getElementById('fall');if(b){var G=['∫','∑','√','π','α','x²','½','λ','·','∞','≈','💛','✦','θ','det'];var N=innerWidth<640?10:16;for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.26)s.className='m';s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}}}
- setTimeout(function(){var a=document.querySelectorAll('.rv:not(.in)');for(var i=0;i<a.length;i++)a[i].classList.add('in');},1500);
-}catch(e){}})();
-</script>
 </body>
 </html>
