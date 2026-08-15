@@ -377,6 +377,33 @@ footer .mflt-tag{color:#B01E48!important}
 .pm-pop a:hover{border-color:#C6A05C;color:#9C7838;transform:translateY(-2px)}
 @media(max-width:560px){.pm-search input{font-size:1rem}}
 </style>
+<style id="pm-hero-power">
+.hero-grand .wrap{display:grid!important;grid-template-columns:1.08fr .92fr!important;gap:46px;align-items:center;text-align:left!important;max-width:1120px}
+.hero-grand .hero-orn,.hero-grand .row{justify-content:flex-start!important}
+.hero-grand .lead{margin-left:0!important;margin-right:0!important;max-width:none;text-wrap:pretty}
+.hero-grand h1{font-size:clamp(2.6rem,5.6vw,4.2rem)!important;margin:8px 0 14px}
+.pm-search{margin:24px 0 0!important}
+.pm-pop{margin:16px 0 0!important;justify-content:flex-start!important}
+/* Tabla „univerzum predmeta" */
+.pm-board{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid #E7D2A2;border-radius:26px;min-height:320px;padding:30px;box-shadow:0 34px 74px -44px rgba(90,16,36,.5);display:flex;align-items:center;justify-content:center}
+.pm-board::before{content:"";position:absolute;inset:10px;border:1px solid rgba(198,160,92,.28);border-radius:18px;pointer-events:none}
+.pm-board .pm-chip{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#CC5E7E,#B01E48);color:#fff;font-weight:800;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:100px;box-shadow:0 12px 24px -8px rgba(176,30,72,.5);z-index:3}
+.pm-board .pm-sym{position:absolute;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.16);font-size:4.2rem;user-select:none;z-index:0}
+.pm-board .pm-sym.s1{top:8%;left:6%}.pm-board .pm-sym.s2{top:12%;right:10%}.pm-board .pm-sym.s3{bottom:12%;left:12%}
+.pm-board .pm-sym.s4{bottom:8%;right:8%}.pm-board .pm-sym.s5{top:46%;left:44%;color:rgba(176,30,72,.12)}.pm-board .pm-sym.s6{bottom:40%;right:30%}
+.pm-cloud{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:340px}
+.pm-cloud .pm-pill{background:#FFFDF9;border:1px solid #E7D2A2;border-radius:100px;padding:9px 16px;font-weight:700;font-size:.9rem;color:#5A1024;box-shadow:0 10px 24px -18px rgba(90,16,36,.5)}
+.pm-cloud .pm-pill.big{background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3410;border-color:transparent;font-weight:800}
+@media(max-width:880px){.hero-grand .wrap{grid-template-columns:1fr!important;gap:26px}.hero-grand .hero-orn,.hero-grand .row{justify-content:center!important}.hero-grand .lead{margin:0 auto!important}.pm-search,.pm-pop{margin-left:auto!important;margin-right:auto!important}.pm-pop{justify-content:center!important}.pm-board{order:-1;min-height:220px}.hero-grand .wrap{text-align:center!important}.hero-grand .hero-orn{justify-content:center!important}}
+/* Premium kartice kategorija */
+#predmeti .pw-cat{padding:26px 22px 22px!important;border-radius:22px!important;border:1px solid #E7D2A2!important;box-shadow:0 26px 54px -38px rgba(90,16,36,.45)!important}
+#predmeti .pw-cat::before{width:5px!important}
+#predmeti .pw-cat:hover{transform:translateY(-7px) rotate(-.6deg) scale(1.02)!important;box-shadow:0 40px 70px -40px rgba(90,16,36,.55)!important}
+#predmeti .pw-sym{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:1.7rem;background:radial-gradient(circle at 38% 30%,#FFF7E0,#F1E0BE);box-shadow:0 12px 24px -12px rgba(156,120,56,.7);margin-bottom:4px}
+#predmeti .pw-cat b{font-size:1.42rem!important;margin-top:12px!important}
+#predmeti .pw-cnt{background:linear-gradient(135deg,#F0DCA8,#C6A05C)!important;color:#4a3410!important;font-size:.72rem!important;padding:4px 11px!important;top:20px!important;right:20px!important}
+#predmeti .pw-go{color:#B01E48!important;font-weight:800!important}
+</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
@@ -394,20 +421,32 @@ footer .mflt-tag{color:#B01E48!important}
 
 <section class="hero hero-grand">
   <div class="wrap">
-    <div class="hero-orn" aria-hidden="true"><i></i><span>&#10022;</span><i></i></div>
-    <div class="eyebrow" data-i18n="h_eyb">Predmeti i putevi</div>
-    <h1 data-i18n="h_h1">Nađi svoj put</h1>
-    <p class="lead" data-i18n="h_lead">Najvažnije pitanje nije koji zadatak da rešiš — već <b style="color:#9C7838">ko želiš da postaneš</b>. Ukucaj predmet ili izaberi kuda ideš — otvaramo ti tačno tvoje predmete, bez lutanja.</p>
-    <form class="pm-search" onsubmit="return false" role="search">
-      <input id="pm-q" type="search" autocomplete="off" placeholder="Pretraži predmet…" aria-label="Pretraži predmet">
-      <div id="pm-res" class="pm-res" role="listbox"></div>
-    </form>
-    <div class="pm-pop"><span id="pm-pop-l">Najtraženije:</span><a href="predmet-algebra.html">Algebra</a><a href="predmet-fizika-mehanika.html">Mehanika</a><a href="trigonometrija.html">Trigonometrija</a><a href="programiranje-python.html">Python</a><a href="predmet-analiza1.html">Analiza 1</a><a href="mala-matura.html">Mala matura</a></div>
-    <div class="row" style="margin-top:22px">
-      <a class="btn btn-gold" href="test-sklonosti.html" data-i18n="h_btn1">Uradi test sklonosti →</a>
-      <a class="btn btn-ghost-l" href="#predmeti" data-i18n="h_btn2">Pogledaj sve predmete ↓</a>
+    <div class="pm-hero-l">
+      <div class="hero-orn" aria-hidden="true"><i></i><span>&#10022;</span><i></i></div>
+      <div class="eyebrow" data-i18n="h_eyb">Predmeti i putevi</div>
+      <h1 data-i18n="h_h1">Nađi svoj put</h1>
+      <p class="lead" data-i18n="h_lead">Ukucaj predmet ili izaberi kuda ideš — otvaramo ti tačno tvoje predmete, bez lutanja. Od 5. razreda do fakulteta, uz Profesoricu 0–24h.</p>
+      <form class="pm-search" onsubmit="return false" role="search">
+        <input id="pm-q" type="search" autocomplete="off" placeholder="Pretraži predmet…" aria-label="Pretraži predmet">
+        <div id="pm-res" class="pm-res" role="listbox"></div>
+      </form>
+      <div class="pm-pop"><span id="pm-pop-l">Najtraženije:</span><a href="predmet-algebra.html">Algebra</a><a href="predmet-fizika-mehanika.html">Mehanika</a><a href="trigonometrija.html">Trigonometrija</a><a href="programiranje-python.html">Python</a><a href="predmet-analiza1.html">Analiza 1</a><a href="mala-matura.html">Mala matura</a></div>
+      <div class="row" style="margin-top:22px">
+        <a class="btn btn-gold" href="test-sklonosti.html" data-i18n="h_btn1">Uradi test sklonosti →</a>
+        <a class="btn btn-ghost-l" href="#predmeti" data-i18n="h_btn2">Pogledaj sve predmete ↓</a>
+      </div>
     </div>
-    <div class="hero-trust rv"><span>80+ predmeta</span><span>Od 5. razreda do fakulteta</span><span>8 jezika</span><span>Profesorica 0–24h</span></div>
+    <div class="pm-board" aria-hidden="true">
+      <span class="pm-chip">80+ predmeta</span>
+      <span class="pm-sym s1">&#8721;</span><span class="pm-sym s2">&#960;</span><span class="pm-sym s3">&#8730;</span>
+      <span class="pm-sym s4">&#8747;</span><span class="pm-sym s5">&#955;</span><span class="pm-sym s6">&#8801;</span>
+      <div class="pm-cloud">
+        <span class="pm-pill big">Matematika</span><span class="pm-pill">Fizika</span>
+        <span class="pm-pill">Programiranje</span><span class="pm-pill">Elektrotehnika</span>
+        <span class="pm-pill big">Algebra</span><span class="pm-pill">Mehanika</span>
+        <span class="pm-pill">Analiza</span><span class="pm-pill">Python</span>
+      </div>
+    </div>
   </div>
 </section>
 
