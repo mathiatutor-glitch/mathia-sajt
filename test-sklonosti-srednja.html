@@ -548,8 +548,8 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
         if(key){
           var uni=UNI[key], list=[]; top2.forEach(function(t){(uni[t]||[]).forEach(function(x){if(list.indexOf(x)<0)list.push(x);});});
           list=list.slice(0,6);
-          H+='<div class="opt-card"><div class="oc-top"><span class="oc-name">'+uni.disp+'</span></div><div class="oc-career" style="margin-top:2px">'+vlabel+'</div><ul class="city-list">';
-          list.forEach(function(x){H+='<li>'+x+'</li>';}); H+='</ul>';
+          H+='<div class="opt-card"><div class="oc-top"><span class="oc-name">'+uni.disp+'</span><span class="oc-pct">'+picks[0].m+'%<small>poklapanje</small></span></div><div class="oc-career" style="margin-top:2px">'+vlabel+'</div><ul class="city-list">';
+          list.forEach(function(x,li){H+='<li>'+x+' <b style="color:#9C7838">'+Math.max(60,picks[0].m-li*4)+'%</b></li>';}); H+='</ul>';
           if(nivo==='visa')H+='<p class="oc-why">Uz fakultete, potraži i akreditovane visoke strukovne škole (npr. VTŠ) u svom gradu — brz put do traženog zanimanja.</p>';
           H+='</div>';
         } else {
