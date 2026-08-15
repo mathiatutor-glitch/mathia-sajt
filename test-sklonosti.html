@@ -171,7 +171,7 @@ header,section,footer,.wrap,.card,.lvl{position:relative;z-index:1}
 </style>
 <style id="ts-pocni">
 /* „Probaj besplatno" stil: meka gradijent pozadina + centrirana slatka kartica */
-body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#FBF3EC 0,#F6ECE6 60%,#FBF3EC 100%)!important;min-height:100vh}
+body{background:radial-gradient(120% 90% at 18% 0%,#F7ECD6 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#FBF6EE 0,#F6ECE6 60%,#FBF6EE 100%)!important;min-height:100vh}
 .ts-hero{padding:38px 20px 6px!important;text-align:center}
 .ts-hero .wrap{max-width:560px;margin:0 auto}
 .ts-hero h1{font-size:clamp(1.7rem,5.6vw,2.35rem)!important}
@@ -283,13 +283,51 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
 .city-list+.oc-why{margin-top:12px}
 </style>
 <style id="ts-selfcontained">.card,#test,#report,#chooser{opacity:1!important}.md-hidden{opacity:1!important;transform:none!important}</style>
+<style id="ts-lang-css">
+#tsLang{position:fixed;top:14px;right:14px;z-index:60;display:flex;align-items:center;gap:7px;background:rgba(255,253,249,.92);border:1px solid rgba(198,160,92,.45);border-radius:100px;padding:5px 8px 5px 12px;box-shadow:0 12px 28px -16px rgba(90,16,36,.4);backdrop-filter:blur(6px)}
+#tsLang .globe{width:15px;height:15px;color:#9C7838;flex:none}
+#tsLangSel{appearance:none;-webkit-appearance:none;border:none;background:transparent;font-family:inherit;font-weight:800;font-size:.82rem;color:#5A1024;letter-spacing:.06em;cursor:pointer;padding:2px 18px 2px 2px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239C7838' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center;background-size:12px}
+#tsLangSel:focus{outline:none}
+#tsLangSel option{color:#43303A}
+@media(max-width:560px){#tsLang{top:10px;right:10px;padding:4px 7px 4px 10px}}
+#qmicro{display:inline-block;margin:2px auto 12px;font-size:.86rem;font-weight:700;color:#B01E48;min-height:1.1em;transition:opacity .25s}
+</style>
+<style id="ts-elevate">
+/* ——— warm intro on the first question ——— */
+#qintro{display:block;max-width:400px;margin:0 auto 16px;padding:11px 18px;font-size:.92rem;font-weight:600;color:#7A3346;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid rgba(198,160,92,.34);border-radius:100px;box-shadow:0 12px 26px -18px rgba(90,16,36,.35);animation:tsUp .5s cubic-bezier(.2,.8,.2,1) both}
+/* ——— per-question gentle fade/slide ——— */
+@keyframes tsQIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#test .qtext.qin{animation:tsQIn .38s cubic-bezier(.2,.8,.2,1) both}
+/* ——— selected answer highlight (before auto-advance) ——— */
+#test .opts .opt.sel{border-color:#B01E48!important;background:linear-gradient(180deg,#FFF3F6,#FCE7EC)!important;box-shadow:0 12px 28px -14px rgba(176,30,72,.5)!important;transform:none!important}
+#test .opts .opt.sel .dot{background:#B01E48!important;border-color:#B01E48!important;box-shadow:0 0 0 5px rgba(176,30,72,.16)!important;transform:scale(1.12)!important}
+#test .opts .opt.sel::after{content:"";position:absolute;right:16px;top:50%;margin-top:-9.5px;width:19px;height:19px;border-radius:50%;background:#B01E48 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-11'/%3E%3C/svg%3E") center/12px no-repeat;animation:tsPop .3s ease both}
+#test .opts .opt{position:relative}
+/* ——— top-2 blend sentence on the report ——— */
+#repBlend{max-width:520px;margin:14px auto 0;display:inline-block;padding:9px 20px;font-family:'Spectral',Georgia,serif;font-size:1.06rem;font-weight:600;color:#5A1024;background:linear-gradient(180deg,#FFFBF2,#F8ECD5);border:1px solid rgba(198,160,92,.4);border-radius:100px;box-shadow:0 14px 30px -20px rgba(198,160,92,.7)}
+#repBlend:empty{display:none}
+@media(prefers-reduced-motion:reduce){#qintro,#test .qtext.qin,#test .opts .opt.sel::after{animation:none!important}}
+</style>
 </head>
 <body>
+<div id="tsLang" aria-label="Language">
+  <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 4 5.7 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.7-4-9s1.4-6.5 4-9z"/></svg>
+  <select id="tsLangSel" aria-label="Choose language">
+    <option value="sr">SR · Srpski</option>
+    <option value="en">EN · English</option>
+    <option value="de">DE · Deutsch</option>
+    <option value="fr">FR · Français</option>
+    <option value="es">ES · Español</option>
+    <option value="it">IT · Italiano</option>
+    <option value="ru">RU · Русский</option>
+    <option value="pt">PT · Português</option>
+  </select>
+</div>
 <div id="mathfall" aria-hidden="true"></div>
 
 <section class="ts-hero">
   <div class="wrap">
-    <div class="eyebrow">besplatan test sklonosti</div>
+    <div class="eyebrow" id="heroEyebrow">besplatan test sklonosti</div>
     <h1 id="heroH1">Otkrij svoj pravi put</h1>
     <div class="orn"><span class="l"></span><span class="d"></span><span class="l r"></span></div>
     <p style="margin-top:16px" id="heroP">Za par minuta otkrivaš koji smer, škola i fakultet ti najviše leže — na osnovu toga kako razmišljaš i šta te pokreće.</p>
@@ -301,18 +339,18 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
 
     <div id="chooser" class="card">
       <div class="ts-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
-      <div class="ts-eyb">besplatan test sklonosti</div>
+      <div class="ts-eyb" id="chEyebrow">besplatan test sklonosti</div>
       <div class="ts-ic" aria-hidden="true">🧭</div>
-      <div class="center"><h2 style="color:var(--plum);font-size:1.9rem;margin:8px 0 4px">Za šta radiš test?</h2>
-      <p style="color:var(--muted);max-width:520px;margin:6px auto 0">Test procenjuje tvoje sklonosti i preporučuje ti smerove, škole i fakultete koji ti odgovaraju. Izaberi nivo:</p></div>
+      <div class="center"><h2 id="chTitle" style="color:var(--plum);font-size:1.9rem;margin:8px 0 4px">Za šta radiš test?</h2>
+      <p id="chSub" style="color:var(--muted);max-width:520px;margin:6px auto 0">Test procenjuje tvoje sklonosti i preporučuje ti smerove, škole i fakultete koji ti odgovaraju. Izaberi nivo:</p></div>
       <div class="lvl-row">
         <button class="lvl" data-lvl="srednja"><span class="lv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h11v17H6.6A1.6 1.6 0 0 1 5 18.9V5A1.5 1.5 0 0 1 6 3.5z"/><line x1="9" y1="8" x2="14" y2="8"/></svg></span><b>Srednja škola</b><span class="lv-s">koju srednju upisati</span></button>
         <button class="lvl" data-lvl="visa"><span class="lv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span><b>Viša škola</b><span class="lv-s">strukovne studije</span></button>
         <button class="lvl" data-lvl="fakultet"><span class="lv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4z"/><path d="M6 10.7V15c0 1.4 2.7 2.6 6 2.6s6-1.2 6-2.6v-4.3"/></svg></span><b>Fakultet</b><span class="lv-s">smer i fakultet</span></button>
       </div>
-      <div class="fld"><label for="grad">Grad (opciono)</label><input id="grad" type="text" placeholder="npr. Beograd, Novi Sad, Niš…"></div>
+      <div class="fld"><label for="grad" id="chGradLabel">Grad (opciono)</label><input id="grad" type="text" placeholder="npr. Beograd, Novi Sad, Niš…"></div>
       <div class="center"><button class="btn btn-gold" id="startBtn">Započni test →</button></div>
-      <div class="center" style="margin-top:16px"><a href="testiraj-se.html" style="color:#9C7838;font-weight:800;text-decoration:none;font-size:.9rem">Već znaš smer? Proveri znanje →</a></div>
+      <div class="center" style="margin-top:16px"><a id="chAlready" href="testiraj-se.html" style="color:#9C7838;font-weight:800;text-decoration:none;font-size:.9rem">Već znaš smer? Proveri znanje →</a></div>
     </div>
 
     <div id="test" class="card hidden">
@@ -320,6 +358,8 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
       <div class="ts-ic" aria-hidden="true">✨</div>
       <div class="prog"><i id="progBar"></i></div>
       <div class="qnum" id="qnum">Pitanje 1 / 18</div>
+      <div id="qintro"></div>
+      <div id="qmicro"></div>
       <div class="qtext" id="qtext"></div>
       <div class="opts" id="opts"></div>
       <button class="ts-back" id="backBtn">← Prethodno</button>
@@ -330,35 +370,39 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
         <div class="ts-dots" aria-hidden="true"><i></i><i></i><i class="on"></i></div>
         <div class="ts-ic" aria-hidden="true">🎉</div>
         <div class="rep-type">
-          <div class="eyebrow">tvoj rezultat</div>
+          <div class="eyebrow" id="repEyebrow">tvoj rezultat</div>
           <h2 id="repTypeName"></h2>
           <div class="orn"><span class="l"></span><span class="d"></span><span class="l r"></span></div>
           <p class="lead" style="margin-top:16px" id="repTypeDesc"></p>
+          <div style="text-align:center"><span id="repBlend"></span></div>
         </div>
         <div class="rep-sec">
-          <div class="sh"><h3>Tvoje vrline i talenti</h3><p style="color:var(--muted);font-size:.92rem;margin-top:4px">Ono u čemu prirodno blistaš.</p></div>
+          <div class="sh"><h3 id="repTraitsTitle">Tvoje vrline i talenti</h3><p id="repTraitsSub" style="color:var(--muted);font-size:.92rem;margin-top:4px">Ono u čemu prirodno blistaš.</p></div>
           <div class="traits" id="traits"></div>
         </div>
         <div class="rep-sec">
-          <div class="sh"><h3>Koliko ti šta leži</h3></div>
+          <div class="sh"><h3 id="repBarsTitle">Koliko ti šta leži</h3></div>
           <div id="bars"></div>
         </div>
         <div class="rep-sec">
-          <div class="sh"><h3>Preporučeni smerovi za tebe</h3><p style="color:var(--muted);font-size:.92rem;margin-top:4px">Rangirano po tome koliko odgovaraju tvom profilu.</p></div>
+          <div class="sh"><h3 id="repRecTitle">Preporučeni smerovi za tebe</h3><p id="repRecSub" style="color:var(--muted);font-size:.92rem;margin-top:4px">Rangirano po tome koliko odgovaraju tvom profilu.</p></div>
           <div class="opt-cards" id="optCards"></div>
           <div class="career-box" id="careerBox"></div>
         </div>
         <div class="rep-sec" id="citySec"></div>
         <div class="mathia-box">
-          <h4>Kako da stigneš tamo</h4>
-          <p>Na Mathiji te vode baš pravi predmeti i profesorica koja je uvek uz tebe:</p>
+          <h4 id="repMathiaTitle">Kako da stigneš tamo</h4>
+          <p id="repMathiaP">Na Mathiji te vode baš pravi predmeti i profesorica koja je uvek uz tebe:</p>
           <div class="subs" id="mathiaSubs"></div>
           <div class="rep-cta">
-            <a class="btn btn-gold" href="predmeti.html">Pogledaj predmete →</a>
-            <a class="btn btn-ghost" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)">Priprema za prijemni →</a>
+            <a class="btn btn-gold" id="repCtaMain" href="index.html#paketi">Baš za tebe: kreni sa Profesoricom 0–24h →</a>
+          </div>
+          <div class="rep-cta" style="margin-top:10px">
+            <a class="btn btn-ghost" id="repCtaSubjects" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)">Pogledaj predmete →</a>
+            <a class="btn btn-ghost" id="repCtaPrijemni" href="predmeti.html" style="color:#E7D2A2;border-color:rgba(231,210,162,.5)">Priprema za prijemni →</a>
           </div>
         </div>
-        <div class="center" style="margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center"><a class="btn btn-gold" href="index.html">← Vrati se na početnu</a><button class="ts-back" id="restartBtn">↺ Uradi test ponovo</button></div>
+        <div class="center" style="margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center"><a class="btn btn-gold" id="repBackHome" href="index.html">← Vrati se na početnu</a><button class="ts-back" id="restartBtn">↺ Uradi test ponovo</button></div>
       </div>
     </div>
 
@@ -368,82 +412,224 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
 <script>
 (function(){
   "use strict";
-  var TYPES={
-    T:{name:'Tehnički tip',desc:'Praktičan si, snalažljiv i voliš da stvaraš i popravljaš. Tamo gde drugi vide problem, ti vidiš rešenje — i rukama i glavom.'},
-    I:{name:'Istraživački tip',desc:'Radoznao si i analitičan. Voliš da razumeš kako svet funkcioniše i uživaš u izazovu teškog problema.'},
-    K:{name:'Kreativni tip',desc:'Maštovit si i originalan. Vidiš lepotu i ideje tamo gde ih drugi ne primećuju, i voliš da stvaraš nešto svoje.'},
-    D:{name:'Društveni tip',desc:'Topao si i empatičan. Ispunjava te rad s ljudima — da pomogneš, podučiš i povežeš.'},
-    P:{name:'Preduzetnički tip',desc:'Odlučan si i pun inicijative. Voliš da vodiš, ubeđuješ i pokrećeš stvari napred.'},
-    O:{name:'Organizacioni tip',desc:'Precizan si i pouzdan. Voliš red, jasnoću i kad sve radi kao dobro podešen sistem.'}
+  var I18N={
+  sr:{
+    he:[`besplatan test sklonosti`,`Otkrij svoj pravi put`,`Za par minuta otkrivaš koji smer, škola i fakultet ti najviše leže — na osnovu toga kako razmišljaš i šta te pokreće.`],
+    ch:[`besplatan test sklonosti`,`Za šta radiš test?`,`Test procenjuje tvoje sklonosti i preporučuje ti smerove, škole i fakultete koji ti odgovaraju. Izaberi nivo:`,`Grad (opciono)`,`Započni test →`,`Već znaš smer? Proveri znanje →`],
+    gradPh:`npr. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`Srednja škola`,`koju srednju upisati`],visa:[`Viša škola`,`strukovne studije`],fakultet:[`Fakultet`,`smer i fakultet`]},
+    heroT:{srednja:`Koju srednju školu upisati?`,visa:`Koja viša škola je za tebe?`,fakultet:`Koji fakultet i smer su za tebe?`},
+    q:[`Volim da rastavljam i sastavljam stvari da vidim kako rade.`,`Uživam da radim rukama — da pravim, popravljam, sklapam.`,`Mašine, uređaji i tehnologija me privlače.`,`Volim da rešavam teške zadatke i logičke zagonetke.`,`Zanima me zašto stvari funkcionišu — volim da istražujem.`,`Matematika i nauka su mi izazov u kojem uživam.`,`Volim da stvaram — crtam, dizajniram ili izmišljam nešto novo.`,`Mašta i originalne ideje su mi vrlo važne.`,`Privlače me lepota, umetnost i estetika.`,`Ispunjava me kad pomognem nekome ili ga nečemu naučim.`,`Lako razumem kako se drugi osećaju.`,`Volim timski rad i druženje s ljudima.`,`Volim da vodim, pokrećem i ubeđujem druge za svoju ideju.`,`Privlače me posao, prodaja i pokretanje nečeg svog.`,`Ne bojim se rizika kad verujem u cilj.`,`Volim red, jasne planove i kad je sve na svom mestu.`,`Dobro se snalazim s brojevima, podacima i detaljima.`,`Volim kad zadatak ima jasna pravila i korake.`],
+    opts:[`Uopšte ne`,`Uglavnom ne`,`Uglavnom da`,`U potpunosti da`],
+    qnum:`Pitanje {n} / {t}`,back:`← Prethodno`,
+    micro:[`Kreni! Nema pogrešnih odgovora 💛`,`Odlično ti ide!`,`Tačno na pola puta!`,`Skoro pa gotovo!`,`Poslednje pitanje!`],
+    intro:`Nema tačnih i netačnih odgovora — samo budi iskren/na. 💛`,blend:`Ti si pre svega {a}, uz snažnu crtu koju nosi {b}.`,ctaMainDyn:`Spremi se za {x} uz Profesoricu 0–24h →`,
+    rp:{eyebrow:`tvoj rezultat`,traitsTitle:`Tvoje vrline i talenti`,traitsSub:`Ono u čemu prirodno blistaš.`,barsTitle:`Koliko ti šta leži`,recTitle:`Preporučeni smerovi za tebe`,recSub:`Rangirano po tome koliko odgovaraju tvom profilu.`,careerHead:`Šta te čeka posle`,best:`najbolji izbor`,overlap:`preklapanje`,possible:`Moguća zanimanja: `,mathiaTitle:`Kako da stigneš tamo`,mathiaP:`Na Mathiji te vode baš pravi predmeti i profesorica koja je uvek uz tebe:`,ctaMain:`Baš za tebe: kreni sa Profesoricom 0–24h →`,ctaSubjects:`Pogledaj predmete →`,ctaPrijemni:`Priprema za prijemni →`,backHome:`← Vrati se na početnu`,restart:`↺ Uradi test ponovo`},
+    types:{T:[`Tehnički tip`,`Praktičan si, snalažljiv i voliš da stvaraš i popravljaš. Tamo gde drugi vide problem, ti vidiš rešenje — i rukama i glavom.`],I:[`Istraživački tip`,`Radoznao si i analitičan. Voliš da razumeš kako svet funkcioniše i uživaš u izazovu teškog problema.`],K:[`Kreativni tip`,`Maštovit si i originalan. Vidiš lepotu i ideje tamo gde ih drugi ne primećuju, i voliš da stvaraš nešto svoje.`],D:[`Društveni tip`,`Topao si i empatičan. Ispunjava te rad s ljudima — da pomogneš, podučiš i povežeš.`],P:[`Preduzetnički tip`,`Odlučan si i pun inicijative. Voliš da vodiš, ubeđuješ i pokrećeš stvari napred.`],O:[`Organizacioni tip`,`Precizan si i pouzdan. Voliš red, jasnoću i kad sve radi kao dobro podešen sistem.`]},
+    traits:{T:[`praktičnost i snalažljivost`,`logičko rešavanje problema`,`spretnost i istrajnost`],I:[`analitičan, radoznao um`,`dubina razmišljanja`,`ljubav ka učenju i preciznost`],K:[`mašta i originalnost`,`osećaj za lepotu i sklad`,`izražajnost i inovativnost`],D:[`empatija i toplina`,`komunikativnost`,`timski duh i želja da pomogneš`],P:[`inicijativa i hrabrost`,`liderstvo i ubedljivost`,`preduzimljiv duh`],O:[`organizovanost i pouzdanost`,`sistematičnost i preciznost`,`odgovornost i doslednost`]},
+    careers:{T:`Inženjer, projektant, tehničar ili programer — tehnička zanimanja su danas među najtraženijima i najbolje plaćenima, sa lakim zapošljavanjem i u zemlji i u svetu.`,I:`Istraživač, analitičar, programer ili naučnik — poslovi u kojima se ceni pamet i analiza, sa odličnim izgledima za karijeru bilo gde.`,K:`Dizajner, arhitekta, umetnik ili kreativni direktor — zanimanja u kojima tvoja originalnost postaje prava vrednost i prepoznatljiv potpis.`,D:`Psiholog, lekar, profesor ili vaspitač — poslovi s ljudima koji su uvek potrebni, sigurni i duboko ispunjavajući.`,P:`Menadžer, preduzetnik, ekonomista ili pravnik — vodeće uloge i sopstveni biznis; put ka samostalnosti, rastu i uticaju.`,O:`Ekonomista, računovođa, analitičar ili administrator — stabilna, sigurna i uvek tražena zanimanja sa jasnim napredovanjem.`},
+    subs:{T:`Matematika · Fizika · Elektronika · Programiranje`,I:`Matematika · Fizika · Programiranje · Priprema za prijemni`,K:`Matematika · Programiranje`,D:`Matematika · Priprema za prijemni`,P:`Matematika · Priprema za prijemni`,O:`Matematika · Programiranje · Priprema za prijemni`},
+    ctag:{T:`inženjerska i IT zanimanja`,I:`nauka, IT, analitika`,K:`dizajn, umetnost, mediji`,D:`zdravstvo, obrazovanje, rad s ljudima`,P:`biznis, menadžment, pravo`,O:`ekonomija, finansije, administracija`},
+    pw:{fakultet:[`Spaja tehniku i rešavanje problema — za tvoj praktičan, logičan um. Jedna od najtraženijih oblasti danas.`,`Logika, analiza i stvaranje softvera — savršeno za istraživački i tehnički um.`,`Za ruke i glavu koje vole da prave, pokreću i usavršavaju stvari.`,`Tehnika i preciznost koje grade nešto trajno i vidljivo.`,`Sistemi, logistika i tehnika — jasno, primenjeno i organizovano.`,`Za um koji uživa u dubokim, čistim problemima i logici.`,`Za radoznalost koja želi da razume kako svet zaista radi.`,`Spaja kreativnost i tehniku — mašta koja se gradi u prostor.`,`Prostor za tvoju maštu, estetiku i originalnost.`,`Za izražajnost, emociju i kreativnu energiju pred ljudima.`,`Za tvoju empatiju i želju da razumeš ljude i njihov um.`,`Pomaganje ljudima uz nauku — plemenit i cenjen put.`,`Za ljubav prema deci i radost podučavanja.`,`Za jasnu logiku, argumentaciju, red i rad s ljudima.`,`Za inicijativu, posao i razumevanje sveta novca.`,`Spaja tehniku, organizaciju i biznis — svestrano i vrlo traženo.`,`Za liderstvo, vođenje ljudi i pokretanje ideja.`,`Za preciznost, brojeve i sigurnu, traženu struku.`,`Za ljubav prema jeziku, kulturi i komunikaciji.`],srednja:[`Rano ulaziš u tehniku koju voliš — praktično i traženo.`,`Za ruke koje vole da prave, sklapaju i popravljaju.`,`Sistemi i tehnika u praksi, sa jasnim pravilima.`,`Tehnika i preciznost koje grade.`,`Najbolja osnova za nauku, tehniku i istraživanje.`,`Široka osnova za sve prirodne i tehničke nauke.`,`Pomaganje ljudima uz nauku, od ranih dana.`,`Za ljude, jezike i društvo — najšira vrata.`,`Prostor da razviješ talenat i maštu od početka.`,`Kreativnost + tehnika štampe i dizajna.`,`Rano učiš kako posao i novac funkcionišu.`,`Red, pravila i rad s ljudima i dokumentima.`,`Za komunikaciju, ljude i preduzimljivost.`],visa:[`Brz put do konkretnog, traženog tehničkog zanimanja.`,`Praktične veštine koje industrija traži.`,`Programiranje i IT — jedan od najbržih puteva do posla.`,`Podaci i logika u službi biznisa.`,`Kreativnost pretvorena u konkretno zanimanje.`,`Spoj kreative i tehnologije.`,`Direktan put ka radu s decom.`,`Pomaganje ljudima uz struku i nauku.`,`Brz put do posla ili sopstvenog biznisa.`,`Za ideje, komunikaciju i preduzimljivost.`,`Ljudi, komunikacija i dinamičan posao.`,`Red, brojevi i sigurna struka.`,`Organizacija i vođenje poslovanja.`]},
+    city:{title:`Gde možeš da upišeš`,subA:`Konkretne škole i fakulteti koji odgovaraju tvom profilu`,subIn:` — u gradu `,subEnd:`.`,inYourCity:` U tvom gradu (%s) potraži baš ovaj smer.`,g1:{K:`Za tvoj profil odlična je umetnička/dizajnerska škola ili gimnazija (društveno-jezički smer).`,DP:`Za tvoj profil odličan je društveno-jezički smer gimnazije ili odgovarajuća stručna škola (medicinska, ekonomska, pravno-birotehnička).`,EL:`Za tvoj profil odlična je gimnazija (prirodno-matematički smer) ili tehnička škola u tvojoj oblasti (elektrotehnička, mašinska, računarska).`},inCity:`U gradu %s: `,tip:`Savet: `,sredFallback:`Potraži gimnaziju i odgovarajuću stručnu školu u svom gradu — svaki veći grad ih ima.`,vlabel:{visa:`Visoke/strukovne studije (i srodni fakulteti):`,fakultet:`Fakulteti za tebe:`},visaExtra:`Uz fakultete, potraži i akreditovane visoke strukovne škole (npr. VTŠ) u svom gradu — brz put do traženog zanimanja.`,biggest:`Najveći univerzitetski centri za tvoj profil:`,hintFak:`Upiši svoj grad na početku testa da vidiš baš svoje fakultete.`,hintSred:`Upiši svoj grad na početku testa da vidiš baš svoje škole.`,cityMatch:`poklapanje`}
+  },
+  en:{
+    he:[`free aptitude test`,`Discover your true path`,`In just a few minutes you discover which major, school and faculty suit you best — based on how you think and what drives you.`],
+    ch:[`free aptitude test`,`What are you taking the test for?`,`The test assesses your aptitudes and recommends the paths, schools and faculties that suit you. Choose a level:`,`City (optional)`,`Start the test →`,`Already know your path? Test your knowledge →`],
+    gradPh:`e.g. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`High school`,`which high school to choose`],visa:[`College`,`vocational studies`],fakultet:[`University`,`major and faculty`]},
+    heroT:{srednja:`Which high school should you choose?`,visa:`Which college is right for you?`,fakultet:`Which faculty and major are right for you?`},
+    q:[`I like taking things apart and putting them back together to see how they work.`,`I enjoy working with my hands — building, fixing, assembling.`,`Machines, devices and technology attract me.`,`I like solving hard problems and logic puzzles.`,`I want to know why things work — I love to investigate.`,`Maths and science are a challenge I enjoy.`,`I love to create — drawing, designing or inventing something new.`,`Imagination and original ideas matter a lot to me.`,`Beauty, art and aesthetics attract me.`,`It fulfils me to help someone or teach them something.`,`I easily sense how others feel.`,`I love teamwork and being around people.`,`I like to lead, initiate and win others over to my idea.`,`Business, sales and starting something of my own attract me.`,`I am not afraid of risk when I believe in the goal.`,`I love order, clear plans and when everything is in its place.`,`I am good with numbers, data and details.`,`I like it when a task has clear rules and steps.`],
+    opts:[`Not at all`,`Mostly no`,`Mostly yes`,`Absolutely yes`],
+    qnum:`Question {n} / {t}`,back:`← Back`,
+    micro:[`Off we go! There are no wrong answers 💛`,`You are doing great!`,`Right at the halfway mark!`,`Almost there!`,`Last question!`],
+    intro:`There are no right or wrong answers — just be honest with yourself. 💛`,blend:`You are above all {a}, with a strong streak of {b}.`,ctaMainDyn:`Get ready for {x} with your Teacher 0–24h →`,
+    rp:{eyebrow:`your result`,traitsTitle:`Your strengths and talents`,traitsSub:`Where you naturally shine.`,barsTitle:`How much each fits you`,recTitle:`Recommended paths for you`,recSub:`Ranked by how well they match your profile.`,careerHead:`What awaits you after`,best:`best match`,overlap:`match`,possible:`Possible careers: `,mathiaTitle:`How to get there`,mathiaP:`On Mathia, the right subjects and a teacher who is always by your side guide you:`,ctaMain:`Made for you: start with your Teacher 0–24h →`,ctaSubjects:`See the subjects →`,ctaPrijemni:`Entrance-exam prep →`,backHome:`← Back to home`,restart:`↺ Take the test again`},
+    types:{T:[`The Technical type`,`You are practical, resourceful and love to create and fix. Where others see a problem, you see a solution — with both your hands and your head.`],I:[`The Investigative type`,`You are curious and analytical. You love to understand how the world works and enjoy the challenge of a hard problem.`],K:[`The Creative type`,`You are imaginative and original. You see beauty and ideas where others do not, and you love to create something of your own.`],D:[`The Social type`,`You are warm and empathetic. Working with people fulfils you — helping, teaching and connecting.`],P:[`The Enterprising type`,`You are decisive and full of initiative. You love to lead, persuade and drive things forward.`],O:[`The Organised type`,`You are precise and reliable. You love order, clarity and when everything runs like a well-tuned system.`]},
+    traits:{T:[`practicality and resourcefulness`,`logical problem-solving`,`dexterity and persistence`],I:[`an analytical, curious mind`,`depth of thinking`,`a love of learning and precision`],K:[`imagination and originality`,`a sense of beauty and harmony`,`expressiveness and innovation`],D:[`empathy and warmth`,`communication skills`,`team spirit and a desire to help`],P:[`initiative and courage`,`leadership and persuasiveness`,`an enterprising spirit`],O:[`organisation and reliability`,`systematic thinking and precision`,`responsibility and consistency`]},
+    careers:{T:`Engineer, designer, technician or programmer — technical professions are among the most sought-after and best-paid today, with easy employment at home and abroad.`,I:`Researcher, analyst, programmer or scientist — jobs that value intelligence and analysis, with excellent career prospects anywhere.`,K:`Designer, architect, artist or creative director — professions where your originality becomes a real asset and a recognisable signature.`,D:`Psychologist, doctor, teacher or educator — people-focused jobs that are always needed, secure and deeply fulfilling.`,P:`Manager, entrepreneur, economist or lawyer — leadership roles and your own business; a path to independence, growth and influence.`,O:`Economist, accountant, analyst or administrator — stable, secure and always in-demand professions with clear advancement.`},
+    subs:{T:`Maths · Physics · Electronics · Programming`,I:`Maths · Physics · Programming · Entrance-exam prep`,K:`Maths · Programming`,D:`Maths · Entrance-exam prep`,P:`Maths · Entrance-exam prep`,O:`Maths · Programming · Entrance-exam prep`},
+    ctag:{T:`engineering and IT professions`,I:`science, IT, analytics`,K:`design, art, media`,D:`healthcare, education, working with people`,P:`business, management, law`,O:`economics, finance, administration`},
+    pw:{fakultet:[`Combines engineering and problem-solving — for your practical, logical mind. One of the most in-demand fields today.`,`Logic, analysis and building software — perfect for an investigative and technical mind.`,`For hands and a mind that love to build, drive and perfect things.`,`Engineering and precision that build something lasting and visible.`,`Systems, logistics and engineering — clear, applied and organised.`,`For a mind that enjoys deep, pure problems and logic.`,`For a curiosity that wants to understand how the world really works.`,`Combines creativity and engineering — imagination built into space.`,`Room for your imagination, aesthetics and originality.`,`For expressiveness, emotion and creative energy in front of people.`,`For your empathy and desire to understand people and their minds.`,`Helping people through science — a noble and respected path.`,`For a love of children and the joy of teaching.`,`For clear logic, argument, order and working with people.`,`For initiative, business and understanding the world of money.`,`Combines technology, organisation and business — versatile and highly sought-after.`,`For leadership, guiding people and launching ideas.`,`For precision, numbers and a secure, in-demand profession.`,`For a love of language, culture and communication.`],srednja:[`You enter the tech you love early — practical and in demand.`,`For hands that love to build, assemble and fix.`,`Systems and engineering in practice, with clear rules.`,`Engineering and precision that build.`,`The best foundation for science, engineering and research.`,`A broad foundation for all natural and technical sciences.`,`Helping people through science, from early on.`,`For people, languages and society — the widest doors.`,`Room to develop your talent and imagination from the start.`,`Creativity plus the craft of print and design.`,`You learn early how business and money work.`,`Order, rules and working with people and documents.`,`For communication, people and enterprise.`],visa:[`A fast track to a concrete, in-demand technical profession.`,`Practical skills that industry demands.`,`Programming and IT — one of the fastest paths to a job.`,`Data and logic in the service of business.`,`Creativity turned into a concrete profession.`,`A blend of creativity and technology.`,`A direct path to working with children.`,`Helping people through profession and science.`,`A fast track to a job or your own business.`,`For ideas, communication and enterprise.`,`People, communication and a dynamic job.`,`Order, numbers and a secure profession.`,`Organising and running a business.`]},
+    city:{title:`Where you can enrol`,subA:`Specific schools and faculties that match your profile`,subIn:` — in `,subEnd:`.`,inYourCity:` In your city (%s), look for exactly this path.`,g1:{K:`For your profile, an art or design school — or a general secondary school on the social-sciences and languages track — is a great fit.`,DP:`For your profile, the social-sciences track of a general secondary school, or a matching vocational school (medical, business, legal-administrative), is excellent.`,EL:`For your profile, a general secondary school on the science-and-maths track, or a technical school in your field (electrical, mechanical, computing), is excellent.`},inCity:`In %s: `,tip:`Tip: `,sredFallback:`Look for a general secondary school and a matching vocational school in your city — every larger city has them.`,vlabel:{visa:`Colleges / vocational studies (and related faculties):`,fakultet:`Faculties for you:`},visaExtra:`Alongside faculties, look for accredited vocational colleges in your city — a fast path to an in-demand profession.`,biggest:`The largest university centres for your profile:`,hintFak:`Enter your city at the start of the test to see faculties near you.`,hintSred:`Enter your city at the start of the test to see schools near you.`,cityMatch:`match`}
+  },
+  de:{
+    he:[`kostenloser Eignungstest`,`Entdecke deinen wahren Weg`,`In wenigen Minuten findest du heraus, welche Fachrichtung, Schule und welches Studium am besten zu dir passen — basierend darauf, wie du denkst und was dich antreibt.`],
+    ch:[`kostenloser Eignungstest`,`Wofür machst du den Test?`,`Der Test ermittelt deine Neigungen und empfiehlt dir passende Fachrichtungen, Schulen und Studiengänge. Wähle eine Stufe:`,`Stadt (optional)`,`Test starten →`,`Kennst du deine Richtung schon? Teste dein Wissen →`],
+    gradPh:`z. B. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`Weiterführende Schule`,`welche Schule wählen`],visa:[`Fachhochschule`,`berufliche Studien`],fakultet:[`Universität`,`Fach und Fakultät`]},
+    heroT:{srednja:`Welche Schule solltest du wählen?`,visa:`Welche Fachhochschule passt zu dir?`,fakultet:`Welche Fakultät und welches Fach passen zu dir?`},
+    q:[`Ich zerlege und baue Dinge gern zusammen, um zu sehen, wie sie funktionieren.`,`Ich arbeite gern mit den Händen — bauen, reparieren, zusammensetzen.`,`Maschinen, Geräte und Technik ziehen mich an.`,`Ich löse gern schwierige Aufgaben und Logikrätsel.`,`Mich interessiert, warum Dinge funktionieren — ich forsche gern.`,`Mathematik und Naturwissenschaften sind eine Herausforderung, die ich genieße.`,`Ich erschaffe gern — zeichnen, gestalten oder etwas Neues erfinden.`,`Fantasie und originelle Ideen sind mir sehr wichtig.`,`Schönheit, Kunst und Ästhetik ziehen mich an.`,`Es erfüllt mich, jemandem zu helfen oder ihm etwas beizubringen.`,`Ich spüre leicht, wie sich andere fühlen.`,`Ich mag Teamarbeit und den Umgang mit Menschen.`,`Ich führe, treibe an und überzeuge andere gern von meiner Idee.`,`Geschäft, Verkauf und etwas Eigenes aufzubauen ziehen mich an.`,`Ich scheue kein Risiko, wenn ich an das Ziel glaube.`,`Ich mag Ordnung, klare Pläne und wenn alles an seinem Platz ist.`,`Ich komme gut mit Zahlen, Daten und Details zurecht.`,`Ich mag es, wenn eine Aufgabe klare Regeln und Schritte hat.`],
+    opts:[`Überhaupt nicht`,`Eher nicht`,`Eher ja`,`Voll und ganz`],
+    qnum:`Frage {n} / {t}`,back:`← Zurück`,
+    micro:[`Los geht’s! Es gibt keine falschen Antworten 💛`,`Das machst du super!`,`Genau die Hälfte geschafft!`,`Fast geschafft!`,`Letzte Frage!`],
+    intro:`Es gibt keine richtigen oder falschen Antworten — sei einfach ehrlich zu dir. 💛`,blend:`Du bist vor allem {a} — und ebenso stark ist {b} in dir.`,ctaMainDyn:`Bereite dich auf {x} vor — mit deiner Lehrerin rund um die Uhr →`,
+    rp:{eyebrow:`dein Ergebnis`,traitsTitle:`Deine Stärken und Talente`,traitsSub:`Worin du von Natur aus glänzt.`,barsTitle:`Wie gut was zu dir passt`,recTitle:`Empfohlene Richtungen für dich`,recSub:`Sortiert danach, wie gut sie zu deinem Profil passen.`,careerHead:`Was danach auf dich wartet`,best:`beste Wahl`,overlap:`Übereinstimmung`,possible:`Mögliche Berufe: `,mathiaTitle:`So kommst du dorthin`,mathiaP:`Bei Mathia führen dich genau die richtigen Fächer und eine Lehrerin, die immer für dich da ist:`,ctaMain:`Genau für dich: Starte mit deiner Lehrerin rund um die Uhr →`,ctaSubjects:`Fächer ansehen →`,ctaPrijemni:`Vorbereitung auf die Aufnahmeprüfung →`,backHome:`← Zurück zur Startseite`,restart:`↺ Test erneut machen`},
+    types:{T:[`Der technische Typ`,`Du bist praktisch veranlagt, findig und liebst es, zu gestalten und zu reparieren. Wo andere ein Problem sehen, siehst du eine Lösung — mit Händen und Kopf.`],I:[`Der forschende Typ`,`Du bist neugierig und analytisch. Du willst verstehen, wie die Welt funktioniert, und genießt die Herausforderung eines schwierigen Problems.`],K:[`Der kreative Typ`,`Du bist fantasievoll und originell. Du siehst Schönheit und Ideen, wo andere sie nicht bemerken, und erschaffst gern etwas Eigenes.`],D:[`Der soziale Typ`,`Du bist warmherzig und einfühlsam. Die Arbeit mit Menschen erfüllt dich — helfen, lehren und verbinden.`],P:[`Der unternehmerische Typ`,`Du bist entschlossen und voller Initiative. Du führst, überzeugst und bringst Dinge gern voran.`],O:[`Der organisierte Typ`,`Du bist präzise und zuverlässig. Du liebst Ordnung, Klarheit und wenn alles wie ein gut eingestelltes System läuft.`]},
+    traits:{T:[`Praktisch veranlagt und findig`,`logisches Problemlösen`,`Geschick und Ausdauer`],I:[`ein analytischer, neugieriger Verstand`,`Tiefe im Denken`,`Lernfreude und Genauigkeit`],K:[`Fantasie und Originalität`,`Sinn für Schönheit und Harmonie`,`Ausdruckskraft und Innovation`],D:[`Empathie und Wärme`,`Kommunikationsstärke`,`Teamgeist und Hilfsbereitschaft`],P:[`Initiative und Mut`,`Führungsstärke und Überzeugungskraft`,`unternehmerischer Geist`],O:[`Organisation und Zuverlässigkeit`,`Systematik und Genauigkeit`,`Verantwortung und Beständigkeit`]},
+    careers:{T:`Ingenieur, Konstrukteur, Techniker oder Programmierer — technische Berufe gehören heute zu den gefragtesten und bestbezahlten, mit guten Jobchancen im In- und Ausland.`,I:`Forscher, Analyst, Programmierer oder Wissenschaftler — Berufe, in denen Verstand und Analyse zählen, mit ausgezeichneten Karrierechancen überall.`,K:`Designer, Architekt, Künstler oder Kreativdirektor — Berufe, in denen deine Originalität zu einem echten Wert und einer unverwechselbaren Handschrift wird.`,D:`Psychologe, Arzt, Lehrer oder Erzieher — Berufe mit Menschen, die immer gebraucht werden, sicher und zutiefst erfüllend sind.`,P:`Manager, Unternehmer, Ökonom oder Jurist — Führungsrollen und ein eigenes Unternehmen; ein Weg zu Selbstständigkeit, Wachstum und Einfluss.`,O:`Ökonom, Buchhalter, Analyst oder Verwaltungsfachkraft — stabile, sichere und stets gefragte Berufe mit klaren Aufstiegschancen.`},
+    subs:{T:`Mathematik · Physik · Elektronik · Programmieren`,I:`Mathematik · Physik · Programmieren · Prüfungsvorbereitung`,K:`Mathematik · Programmieren`,D:`Mathematik · Prüfungsvorbereitung`,P:`Mathematik · Prüfungsvorbereitung`,O:`Mathematik · Programmieren · Prüfungsvorbereitung`},
+    ctag:{T:`Ingenieur- und IT-Berufe`,I:`Wissenschaft, IT, Analytik`,K:`Design, Kunst, Medien`,D:`Gesundheit, Bildung, Arbeit mit Menschen`,P:`Business, Management, Recht`,O:`Wirtschaft, Finanzen, Verwaltung`},
+    pw:{fakultet:[`Verbindet Technik und Problemlösen — für deinen praktischen, logischen Kopf. Eines der gefragtesten Felder heute.`,`Logik, Analyse und Softwareentwicklung — perfekt für einen forschenden und technischen Kopf.`,`Für Hände und Kopf, die gern bauen, antreiben und Dinge verbessern.`,`Technik und Präzision, die etwas Bleibendes und Sichtbares schaffen.`,`Systeme, Logistik und Technik — klar, angewandt und organisiert.`,`Für einen Kopf, der tiefe, reine Probleme und Logik genießt.`,`Für eine Neugier, die verstehen will, wie die Welt wirklich funktioniert.`,`Verbindet Kreativität und Technik — Fantasie, die in den Raum gebaut wird.`,`Raum für deine Fantasie, Ästhetik und Originalität.`,`Für Ausdruckskraft, Emotion und kreative Energie vor Menschen.`,`Für deine Empathie und den Wunsch, Menschen und ihren Verstand zu verstehen.`,`Menschen mit Wissenschaft helfen — ein edler und geachteter Weg.`,`Für die Liebe zu Kindern und die Freude am Unterrichten.`,`Für klare Logik, Argumentation, Ordnung und Arbeit mit Menschen.`,`Für Initiative, Geschäft und das Verständnis der Welt des Geldes.`,`Verbindet Technik, Organisation und Business — vielseitig und sehr gefragt.`,`Für Führung, Menschen leiten und Ideen anstoßen.`,`Für Präzision, Zahlen und einen sicheren, gefragten Beruf.`,`Für die Liebe zu Sprache, Kultur und Kommunikation.`],srednja:[`Du steigst früh in die Technik ein, die du liebst — praktisch und gefragt.`,`Für Hände, die gern bauen, zusammensetzen und reparieren.`,`Systeme und Technik in der Praxis, mit klaren Regeln.`,`Technik und Präzision, die bauen.`,`Die beste Grundlage für Wissenschaft, Technik und Forschung.`,`Eine breite Grundlage für alle Natur- und technischen Wissenschaften.`,`Menschen mit Wissenschaft helfen, von klein auf.`,`Für Menschen, Sprachen und Gesellschaft — die weitesten Türen.`,`Raum, dein Talent und deine Fantasie von Anfang an zu entwickeln.`,`Kreativität plus die Technik von Druck und Design.`,`Du lernst früh, wie Geschäft und Geld funktionieren.`,`Ordnung, Regeln und Arbeit mit Menschen und Dokumenten.`,`Für Kommunikation, Menschen und Unternehmungsgeist.`],visa:[`Ein schneller Weg zu einem konkreten, gefragten technischen Beruf.`,`Praktische Fähigkeiten, die die Industrie verlangt.`,`Programmieren und IT — einer der schnellsten Wege zum Job.`,`Daten und Logik im Dienst des Business.`,`Kreativität, verwandelt in einen konkreten Beruf.`,`Eine Verbindung aus Kreativität und Technologie.`,`Ein direkter Weg zur Arbeit mit Kindern.`,`Menschen mit Fachwissen und Wissenschaft helfen.`,`Ein schneller Weg zum Job oder zum eigenen Business.`,`Für Ideen, Kommunikation und Unternehmungsgeist.`,`Menschen, Kommunikation und ein dynamischer Job.`,`Ordnung, Zahlen und ein sicherer Beruf.`,`Organisation und Unternehmensführung.`]},
+    city:{title:`Wo du dich einschreiben kannst`,subA:`Konkrete Schulen und Fakultäten, die zu deinem Profil passen`,subIn:` — in `,subEnd:`.`,inYourCity:` Such in deiner Stadt (%s) genau nach dieser Richtung.`,g1:{K:`Für dein Profil passt eine Kunst- oder Designschule — oder eine allgemeinbildende Oberschule mit sprachlich-gesellschaftlichem Schwerpunkt — hervorragend.`,DP:`Für dein Profil sind der sprachlich-gesellschaftliche Zweig einer Oberschule oder eine passende Fachschule (medizinisch, kaufmännisch, verwaltungsrechtlich) ausgezeichnet.`,EL:`Für dein Profil eignen sich eine Oberschule mit naturwissenschaftlich-mathematischem Schwerpunkt oder eine Fachschule deines Bereichs (Elektrotechnik, Maschinenbau, Informatik) hervorragend.`},inCity:`In %s: `,tip:`Tipp: `,sredFallback:`Such in deiner Stadt nach einer Oberschule und einer passenden Fachschule — jede größere Stadt hat sie.`,vlabel:{visa:`Fachhochschulen / berufliche Studien (und verwandte Fakultäten):`,fakultet:`Fakultäten für dich:`},visaExtra:`Suche neben Fakultäten auch nach akkreditierten höheren Fachschulen in deiner Stadt — ein schneller Weg zu einem gefragten Beruf.`,biggest:`Die größten Universitätszentren für dein Profil:`,hintFak:`Gib deine Stadt am Anfang des Tests ein, um Fakultäten in deiner Nähe zu sehen.`,hintSred:`Gib deine Stadt am Anfang des Tests ein, um Schulen in deiner Nähe zu sehen.`,cityMatch:`Übereinstimmung`}
+  },
+  fr:{
+    he:[`test d’aptitude gratuit`,`Découvre ta vraie voie`,`En quelques minutes, tu découvres quelle filière, quelle école et quelle faculté te correspondent le mieux — selon ta façon de penser et ce qui te motive.`],
+    ch:[`test d’aptitude gratuit`,`Pour quoi passes-tu le test ?`,`Le test évalue tes aptitudes et te recommande les filières, écoles et facultés qui te conviennent. Choisis un niveau :`,`Ville (facultatif)`,`Commencer le test →`,`Tu connais déjà ta voie ? Teste tes connaissances →`],
+    gradPh:`p. ex. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`Lycée`,`quel lycée choisir`],visa:[`École supérieure`,`études professionnelles`],fakultet:[`Université`,`filière et faculté`]},
+    heroT:{srednja:`Quel lycée choisir ?`,visa:`Quelle école supérieure est faite pour toi ?`,fakultet:`Quelle faculté et quelle filière sont faites pour toi ?`},
+    q:[`J’aime démonter et remonter les choses pour voir comment elles fonctionnent.`,`J’aime travailler de mes mains — fabriquer, réparer, assembler.`,`Les machines, les appareils et la technologie m’attirent.`,`J’aime résoudre des problèmes difficiles et des énigmes logiques.`,`Je veux savoir pourquoi les choses fonctionnent — j’aime explorer.`,`Les maths et les sciences sont un défi que j’apprécie.`,`J’aime créer — dessiner, concevoir ou inventer quelque chose de nouveau.`,`L’imagination et les idées originales comptent beaucoup pour moi.`,`La beauté, l’art et l’esthétique m’attirent.`,`Cela m’épanouit d’aider quelqu’un ou de lui apprendre quelque chose.`,`Je perçois facilement ce que ressentent les autres.`,`J’aime le travail d’équipe et la compagnie des gens.`,`J’aime diriger, initier et convaincre les autres de mon idée.`,`Les affaires, la vente et lancer quelque chose à moi m’attirent.`,`Je n’ai pas peur du risque quand je crois au but.`,`J’aime l’ordre, les plans clairs et quand tout est à sa place.`,`Je suis à l’aise avec les chiffres, les données et les détails.`,`J’aime quand une tâche a des règles et des étapes claires.`],
+    opts:[`Pas du tout`,`Plutôt non`,`Plutôt oui`,`Tout à fait`],
+    qnum:`Question {n} / {t}`,back:`← Précédent`,
+    micro:[`C’est parti ! Il n’y a pas de mauvaises réponses 💛`,`Tu t’en sors très bien !`,`Pile à la moitié !`,`Presque fini !`,`Dernière question !`],
+    intro:`Il n’y a pas de bonnes ni de mauvaises réponses — sois simplement sincère avec toi-même. 💛`,blend:`Tu es avant tout {a}, et {b} n’est jamais loin.`,ctaMainDyn:`Prépare-toi pour {x} avec ta professeure 0–24h →`,
+    rp:{eyebrow:`ton résultat`,traitsTitle:`Tes forces et tes talents`,traitsSub:`Là où tu brilles naturellement.`,barsTitle:`À quel point chaque profil te correspond`,recTitle:`Filières recommandées pour toi`,recSub:`Classées selon leur correspondance avec ton profil.`,careerHead:`Ce qui t’attend ensuite`,best:`meilleur choix`,overlap:`correspondance`,possible:`Métiers possibles : `,mathiaTitle:`Comment y arriver`,mathiaP:`Sur Mathia, les bonnes matières et une professeure toujours à tes côtés te guident :`,ctaMain:`Rien que pour toi : commence avec ta professeure 0–24h →`,ctaSubjects:`Voir les matières →`,ctaPrijemni:`Préparation au concours d’entrée →`,backHome:`← Retour à l’accueil`,restart:`↺ Refaire le test`},
+    types:{T:[`Le type technique`,`Tu es pratique, débrouillard et tu aimes créer et réparer. Là où d’autres voient un problème, tu vois une solution — avec les mains et la tête.`],I:[`Le type chercheur`,`Tu es curieux et analytique. Tu aimes comprendre comment le monde fonctionne et tu apprécies le défi d’un problème difficile.`],K:[`Le type créatif`,`Tu es imaginatif et original. Tu vois la beauté et les idées là où d’autres ne les remarquent pas, et tu aimes créer quelque chose de personnel.`],D:[`Le type social`,`Tu es chaleureux et empathique. Le travail avec les autres t’épanouit — aider, enseigner et relier.`],P:[`Le type entreprenant`,`Tu es déterminé et plein d’initiative. Tu aimes diriger, convaincre et faire avancer les choses.`],O:[`Le type organisé`,`Tu es précis et fiable. Tu aimes l’ordre, la clarté et quand tout fonctionne comme un système bien réglé.`]},
+    traits:{T:[`sens pratique et débrouillardise`,`résolution logique de problèmes`,`habileté et persévérance`],I:[`un esprit analytique et curieux`,`profondeur de réflexion`,`goût d’apprendre et précision`],K:[`imagination et originalité`,`sens de la beauté et de l’harmonie`,`expressivité et innovation`],D:[`empathie et chaleur`,`sens de la communication`,`esprit d’équipe et envie d’aider`],P:[`initiative et courage`,`leadership et force de conviction`,`esprit entreprenant`],O:[`organisation et fiabilité`,`rigueur et précision`,`sens des responsabilités et constance`]},
+    careers:{T:`Ingénieur, concepteur, technicien ou programmeur — les métiers techniques sont aujourd’hui parmi les plus recherchés et les mieux payés, avec un emploi facile ici comme à l’étranger.`,I:`Chercheur, analyste, programmeur ou scientifique — des métiers où l’intelligence et l’analyse comptent, avec d’excellentes perspectives partout.`,K:`Designer, architecte, artiste ou directeur créatif — des métiers où ton originalité devient une vraie valeur et une signature reconnaissable.`,D:`Psychologue, médecin, enseignant ou éducateur — des métiers auprès des gens, toujours utiles, sûrs et profondément épanouissants.`,P:`Manager, entrepreneur, économiste ou juriste — des rôles de direction et ta propre entreprise ; une voie vers l’autonomie, la croissance et l’influence.`,O:`Économiste, comptable, analyste ou administrateur — des métiers stables, sûrs et toujours recherchés, avec une progression claire.`},
+    subs:{T:`Maths · Physique · Électronique · Programmation`,I:`Maths · Physique · Programmation · Prépa concours`,K:`Maths · Programmation`,D:`Maths · Prépa concours`,P:`Maths · Prépa concours`,O:`Maths · Programmation · Prépa concours`},
+    ctag:{T:`métiers de l’ingénierie et de l’informatique`,I:`sciences, informatique, analyse`,K:`design, art, médias`,D:`santé, éducation, contact humain`,P:`business, management, droit`,O:`économie, finance, administration`},
+    pw:{fakultet:[`Allie technique et résolution de problèmes — pour ton esprit pratique et logique. L’un des domaines les plus recherchés aujourd’hui.`,`Logique, analyse et création de logiciels — parfait pour un esprit chercheur et technique.`,`Pour les mains et la tête qui aiment fabriquer, faire fonctionner et perfectionner.`,`Technique et précision qui construisent quelque chose de durable et visible.`,`Systèmes, logistique et technique — clair, appliqué et organisé.`,`Pour un esprit qui savoure les problèmes profonds, purs et la logique.`,`Pour une curiosité qui veut comprendre comment le monde fonctionne vraiment.`,`Allie créativité et technique — l’imagination qui se construit dans l’espace.`,`De l’espace pour ton imagination, ton esthétique et ton originalité.`,`Pour l’expressivité, l’émotion et l’énergie créative devant les autres.`,`Pour ton empathie et ton envie de comprendre les gens et leur esprit.`,`Aider les gens grâce à la science — une voie noble et respectée.`,`Pour l’amour des enfants et la joie d’enseigner.`,`Pour une logique claire, l’argumentation, l’ordre et le contact humain.`,`Pour l’initiative, les affaires et la compréhension du monde de l’argent.`,`Allie technique, organisation et business — polyvalent et très recherché.`,`Pour le leadership, guider les gens et lancer des idées.`,`Pour la précision, les chiffres et un métier sûr et recherché.`,`Pour l’amour de la langue, de la culture et de la communication.`],srednja:[`Tu entres tôt dans la technique que tu aimes — pratique et recherchée.`,`Pour les mains qui aiment fabriquer, assembler et réparer.`,`Systèmes et technique en pratique, avec des règles claires.`,`Technique et précision qui construisent.`,`La meilleure base pour la science, la technique et la recherche.`,`Une large base pour toutes les sciences naturelles et techniques.`,`Aider les gens grâce à la science, dès les premiers jours.`,`Pour les gens, les langues et la société — les portes les plus larges.`,`De l’espace pour développer ton talent et ton imagination dès le départ.`,`Créativité + technique de l’impression et du design.`,`Tu apprends tôt comment fonctionnent les affaires et l’argent.`,`Ordre, règles et travail avec les gens et les documents.`,`Pour la communication, les gens et l’esprit d’entreprise.`],visa:[`Une voie rapide vers un métier technique concret et recherché.`,`Des compétences pratiques que l’industrie recherche.`,`Programmation et informatique — l’un des chemins les plus rapides vers l’emploi.`,`Données et logique au service du business.`,`La créativité transformée en un métier concret.`,`Un mélange de créativité et de technologie.`,`Un chemin direct vers le travail avec les enfants.`,`Aider les gens grâce au métier et à la science.`,`Une voie rapide vers l’emploi ou ta propre entreprise.`,`Pour les idées, la communication et l’esprit d’entreprise.`,`Les gens, la communication et un métier dynamique.`,`Ordre, chiffres et un métier sûr.`,`Organisation et gestion d’entreprise.`]},
+    city:{title:`Où tu peux t’inscrire`,subA:`Des écoles et facultés précises qui correspondent à ton profil`,subIn:` — à `,subEnd:`.`,inYourCity:` Dans ta ville (%s), cherche exactement cette voie.`,g1:{K:`Pour ton profil, une école d’art ou de design — ou un lycée général à orientation sciences humaines et langues — convient parfaitement.`,DP:`Pour ton profil, la filière sciences humaines d’un lycée général, ou une école professionnelle adaptée (santé, commerce, administratif-juridique), est excellente.`,EL:`Pour ton profil, un lycée général à orientation scientifique et mathématique, ou une école technique de ton domaine (électrotechnique, mécanique, informatique), est excellent.`},inCity:`À %s : `,tip:`Astuce : `,sredFallback:`Cherche un lycée général et une école professionnelle adaptée dans ta ville — chaque grande ville en a.`,vlabel:{visa:`Écoles supérieures / études professionnelles (et facultés proches) :`,fakultet:`Des facultés pour toi :`},visaExtra:`En plus des facultés, cherche des écoles supérieures professionnelles accréditées dans ta ville — une voie rapide vers un métier recherché.`,biggest:`Les plus grands centres universitaires pour ton profil :`,hintFak:`Saisis ta ville au début du test pour voir les facultés près de chez toi.`,hintSred:`Saisis ta ville au début du test pour voir les écoles près de chez toi.`,cityMatch:`correspondance`}
+  },
+  es:{
+    he:[`test de aptitudes gratuito`,`Descubre tu verdadero camino`,`En pocos minutos descubres qué especialidad, escuela y facultad encajan mejor contigo — según cómo piensas y qué te motiva.`],
+    ch:[`test de aptitudes gratuito`,`¿Para qué haces el test?`,`El test evalúa tus aptitudes y te recomienda las especialidades, escuelas y facultades que encajan contigo. Elige un nivel:`,`Ciudad (opcional)`,`Empezar el test →`,`¿Ya sabes tu camino? Pon a prueba tus conocimientos →`],
+    gradPh:`p. ej. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`Secundaria`,`qué instituto elegir`],visa:[`Ciclo superior`,`estudios profesionales`],fakultet:[`Universidad`,`carrera y facultad`]},
+    heroT:{srednja:`¿Qué instituto elegir?`,visa:`¿Qué estudios superiores son para ti?`,fakultet:`¿Qué facultad y carrera son para ti?`},
+    q:[`Me gusta desmontar y montar cosas para ver cómo funcionan.`,`Disfruto trabajar con las manos — construir, reparar, ensamblar.`,`Las máquinas, los aparatos y la tecnología me atraen.`,`Me gusta resolver problemas difíciles y acertijos de lógica.`,`Quiero saber por qué funcionan las cosas — me encanta investigar.`,`Las matemáticas y la ciencia son un reto que disfruto.`,`Me encanta crear — dibujar, diseñar o inventar algo nuevo.`,`La imaginación y las ideas originales me importan mucho.`,`La belleza, el arte y la estética me atraen.`,`Me llena ayudar a alguien o enseñarle algo.`,`Percibo con facilidad cómo se sienten los demás.`,`Me encanta el trabajo en equipo y estar con gente.`,`Me gusta liderar, impulsar y convencer a otros de mi idea.`,`Los negocios, las ventas y emprender algo propio me atraen.`,`No temo el riesgo cuando creo en el objetivo.`,`Me encanta el orden, los planes claros y que todo esté en su sitio.`,`Se me dan bien los números, los datos y los detalles.`,`Me gusta cuando una tarea tiene reglas y pasos claros.`],
+    opts:[`Para nada`,`Más bien no`,`Más bien sí`,`Totalmente sí`],
+    qnum:`Pregunta {n} / {t}`,back:`← Anterior`,
+    micro:[`¡Vamos! No hay respuestas incorrectas 💛`,`¡Lo estás haciendo genial!`,`¡Justo a la mitad!`,`¡Casi terminas!`,`¡Última pregunta!`],
+    intro:`No hay respuestas correctas ni incorrectas — solo sé sincero/a contigo. 💛`,blend:`Eres ante todo {a}, y {b} nunca anda lejos.`,ctaMainDyn:`Prepárate para {x} con tu profesora 0–24h →`,
+    rp:{eyebrow:`tu resultado`,traitsTitle:`Tus fortalezas y talentos`,traitsSub:`Aquello en lo que brillas de forma natural.`,barsTitle:`Cuánto encaja cada perfil contigo`,recTitle:`Especialidades recomendadas para ti`,recSub:`Ordenadas según lo bien que encajan con tu perfil.`,careerHead:`Lo que te espera después`,best:`mejor opción`,overlap:`coincidencia`,possible:`Profesiones posibles: `,mathiaTitle:`Cómo llegar allí`,mathiaP:`En Mathia te guían justo las materias adecuadas y una profesora que siempre está a tu lado:`,ctaMain:`Hecho para ti: empieza con tu profesora 0–24h →`,ctaSubjects:`Ver las materias →`,ctaPrijemni:`Preparación para el examen de acceso →`,backHome:`← Volver al inicio`,restart:`↺ Repetir el test`},
+    types:{T:[`El tipo técnico`,`Eres práctico, ingenioso y te encanta crear y arreglar. Donde otros ven un problema, tú ves una solución — con las manos y con la cabeza.`],I:[`El tipo investigador`,`Eres curioso y analítico. Te encanta entender cómo funciona el mundo y disfrutas el reto de un problema difícil.`],K:[`El tipo creativo`,`Eres imaginativo y original. Ves belleza e ideas donde otros no las notan, y te encanta crear algo propio.`],D:[`El tipo social`,`Eres cálido y empático. Trabajar con personas te llena — ayudar, enseñar y conectar.`],P:[`El tipo emprendedor`,`Eres decidido y lleno de iniciativa. Te encanta liderar, convencer e impulsar las cosas.`],O:[`El tipo organizado`,`Eres preciso y fiable. Te encanta el orden, la claridad y que todo funcione como un sistema bien ajustado.`]},
+    traits:{T:[`sentido práctico e ingenio`,`resolución lógica de problemas`,`destreza y perseverancia`],I:[`una mente analítica y curiosa`,`profundidad de pensamiento`,`amor por aprender y precisión`],K:[`imaginación y originalidad`,`sentido de la belleza y la armonía`,`expresividad e innovación`],D:[`empatía y calidez`,`habilidad para comunicar`,`espíritu de equipo y ganas de ayudar`],P:[`iniciativa y valentía`,`liderazgo y capacidad de convencer`,`espíritu emprendedor`],O:[`organización y fiabilidad`,`método y precisión`,`responsabilidad y constancia`]},
+    careers:{T:`Ingeniero, proyectista, técnico o programador — las profesiones técnicas están hoy entre las más demandadas y mejor pagadas, con empleo fácil dentro y fuera del país.`,I:`Investigador, analista, programador o científico — trabajos donde se valora la inteligencia y el análisis, con excelentes perspectivas en cualquier lugar.`,K:`Diseñador, arquitecto, artista o director creativo — profesiones donde tu originalidad se convierte en un valor real y una firma reconocible.`,D:`Psicólogo, médico, profesor o educador — trabajos con personas siempre necesarios, seguros y profundamente satisfactorios.`,P:`Directivo, emprendedor, economista o abogado — puestos de liderazgo y tu propio negocio; un camino hacia la autonomía, el crecimiento y la influencia.`,O:`Economista, contable, analista o administrador — profesiones estables, seguras y siempre demandadas, con una progresión clara.`},
+    subs:{T:`Matemáticas · Física · Electrónica · Programación`,I:`Matemáticas · Física · Programación · Prep. de acceso`,K:`Matemáticas · Programación`,D:`Matemáticas · Prep. de acceso`,P:`Matemáticas · Prep. de acceso`,O:`Matemáticas · Programación · Prep. de acceso`},
+    ctag:{T:`profesiones de ingeniería e informática`,I:`ciencia, informática, análisis`,K:`diseño, arte, medios`,D:`salud, educación, trato con personas`,P:`negocios, gestión, derecho`,O:`economía, finanzas, administración`},
+    pw:{fakultet:[`Une técnica y resolución de problemas — para tu mente práctica y lógica. Uno de los campos más demandados hoy.`,`Lógica, análisis y creación de software — perfecto para una mente investigadora y técnica.`,`Para manos y mente que aman construir, poner en marcha y perfeccionar.`,`Técnica y precisión que construyen algo duradero y visible.`,`Sistemas, logística y técnica — claro, aplicado y organizado.`,`Para una mente que disfruta los problemas profundos, puros y la lógica.`,`Para una curiosidad que quiere entender cómo funciona de verdad el mundo.`,`Une creatividad y técnica — la imaginación que se construye en el espacio.`,`Espacio para tu imaginación, tu estética y tu originalidad.`,`Para la expresividad, la emoción y la energía creativa ante la gente.`,`Para tu empatía y tu deseo de entender a las personas y su mente.`,`Ayudar a las personas con la ciencia — un camino noble y respetado.`,`Por el amor a los niños y la alegría de enseñar.`,`Para la lógica clara, la argumentación, el orden y el trato con la gente.`,`Para la iniciativa, los negocios y entender el mundo del dinero.`,`Une técnica, organización y negocio — versátil y muy demandado.`,`Para el liderazgo, guiar a las personas y lanzar ideas.`,`Para la precisión, los números y una profesión segura y demandada.`,`Por el amor a la lengua, la cultura y la comunicación.`],srednja:[`Entras pronto en la técnica que amas — práctica y demandada.`,`Para manos que aman construir, ensamblar y reparar.`,`Sistemas y técnica en la práctica, con reglas claras.`,`Técnica y precisión que construyen.`,`La mejor base para la ciencia, la técnica y la investigación.`,`Una base amplia para todas las ciencias naturales y técnicas.`,`Ayudar a las personas con la ciencia, desde temprano.`,`Para las personas, las lenguas y la sociedad — las puertas más amplias.`,`Espacio para desarrollar tu talento y tu imaginación desde el principio.`,`Creatividad + técnica de la impresión y el diseño.`,`Aprendes pronto cómo funcionan los negocios y el dinero.`,`Orden, reglas y trato con personas y documentos.`,`Para la comunicación, las personas y la iniciativa.`],visa:[`Una vía rápida a una profesión técnica concreta y demandada.`,`Habilidades prácticas que la industria busca.`,`Programación e informática — uno de los caminos más rápidos al empleo.`,`Datos y lógica al servicio del negocio.`,`La creatividad convertida en una profesión concreta.`,`Una unión de creatividad y tecnología.`,`Un camino directo al trabajo con niños.`,`Ayudar a las personas con la profesión y la ciencia.`,`Una vía rápida al empleo o a tu propio negocio.`,`Para las ideas, la comunicación y la iniciativa.`,`Personas, comunicación y un trabajo dinámico.`,`Orden, números y una profesión segura.`,`Organización y gestión de negocios.`]},
+    city:{title:`Dónde puedes matricularte`,subA:`Escuelas y facultades concretas que encajan con tu perfil`,subIn:` — en `,subEnd:`.`,inYourCity:` En tu ciudad (%s), busca justamente este camino.`,g1:{K:`Para tu perfil, una escuela de arte o diseño — o un instituto general con itinerario de ciencias sociales y lenguas — encaja perfectamente.`,DP:`Para tu perfil, el itinerario de ciencias sociales de un instituto general, o una escuela profesional afín (sanitaria, de negocios, jurídico-administrativa), es excelente.`,EL:`Para tu perfil, un instituto general con itinerario de ciencias y matemáticas, o una escuela técnica de tu campo (electrotecnia, mecánica, informática), es excelente.`},inCity:`En %s: `,tip:`Consejo: `,sredFallback:`Busca un instituto general y una escuela profesional afín en tu ciudad — toda ciudad grande las tiene.`,vlabel:{visa:`Estudios superiores / profesionales (y facultades afines):`,fakultet:`Facultades para ti:`},visaExtra:`Además de las facultades, busca escuelas superiores profesionales acreditadas en tu ciudad — una vía rápida a una profesión demandada.`,biggest:`Los mayores centros universitarios para tu perfil:`,hintFak:`Escribe tu ciudad al inicio del test para ver las facultades cerca de ti.`,hintSred:`Escribe tu ciudad al inicio del test para ver las escuelas cerca de ti.`,cityMatch:`coincidencia`}
+  },
+  it:{
+    he:[`test attitudinale gratuito`,`Scopri la tua vera strada`,`In pochi minuti scopri quale indirizzo, scuola e facoltà fanno di più per te — in base a come pensi e a ciò che ti motiva.`],
+    ch:[`test attitudinale gratuito`,`Per cosa fai il test?`,`Il test valuta le tue attitudini e ti consiglia gli indirizzi, le scuole e le facoltà più adatti a te. Scegli un livello:`,`Città (facoltativo)`,`Inizia il test →`,`Conosci già la tua strada? Metti alla prova le tue conoscenze →`],
+    gradPh:`es. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`Scuola superiore`,`quale scuola scegliere`],visa:[`Formazione superiore`,`studi professionali`],fakultet:[`Università`,`indirizzo e facoltà`]},
+    heroT:{srednja:`Quale scuola superiore scegliere?`,visa:`Quale percorso superiore fa per te?`,fakultet:`Quale facoltà e indirizzo fanno per te?`},
+    q:[`Mi piace smontare e rimontare le cose per vedere come funzionano.`,`Mi piace lavorare con le mani — costruire, riparare, assemblare.`,`Le macchine, i dispositivi e la tecnologia mi attraggono.`,`Mi piace risolvere problemi difficili e rompicapi logici.`,`Voglio sapere perché le cose funzionano — amo indagare.`,`La matematica e la scienza sono una sfida che mi piace.`,`Amo creare — disegnare, progettare o inventare qualcosa di nuovo.`,`La fantasia e le idee originali contano molto per me.`,`La bellezza, l’arte e l’estetica mi attraggono.`,`Mi appaga aiutare qualcuno o insegnargli qualcosa.`,`Percepisco facilmente come si sentono gli altri.`,`Amo il lavoro di squadra e stare con le persone.`,`Mi piace guidare, dare il via e convincere gli altri della mia idea.`,`Gli affari, le vendite e avviare qualcosa di mio mi attraggono.`,`Non ho paura del rischio quando credo nell’obiettivo.`,`Amo l’ordine, i piani chiari e quando tutto è al suo posto.`,`Me la cavo bene con numeri, dati e dettagli.`,`Mi piace quando un compito ha regole e passaggi chiari.`],
+    opts:[`Per niente`,`Piuttosto no`,`Piuttosto sì`,`Assolutamente sì`],
+    qnum:`Domanda {n} / {t}`,back:`← Indietro`,
+    micro:[`Si parte! Non ci sono risposte sbagliate 💛`,`Stai andando alla grande!`,`Sei esattamente a metà!`,`Quasi finito!`,`Ultima domanda!`],
+    intro:`Non ci sono risposte giuste o sbagliate — sii semplicemente sincero/a con te stesso/a. 💛`,blend:`Sei soprattutto {a}, e {b} non è mai lontano.`,ctaMainDyn:`Preparati per {x} con la tua professoressa 0–24h →`,
+    rp:{eyebrow:`il tuo risultato`,traitsTitle:`I tuoi punti di forza e talenti`,traitsSub:`Ciò in cui brilli in modo naturale.`,barsTitle:`Quanto ogni profilo fa per te`,recTitle:`Indirizzi consigliati per te`,recSub:`In ordine di quanto corrispondono al tuo profilo.`,careerHead:`Cosa ti aspetta dopo`,best:`scelta migliore`,overlap:`corrispondenza`,possible:`Professioni possibili: `,mathiaTitle:`Come arrivarci`,mathiaP:`Su Mathia ti guidano proprio le materie giuste e una professoressa sempre al tuo fianco:`,ctaMain:`Fatto per te: inizia con la tua professoressa 0–24h →`,ctaSubjects:`Guarda le materie →`,ctaPrijemni:`Preparazione al test d’ingresso →`,backHome:`← Torna alla home`,restart:`↺ Rifai il test`},
+    types:{T:[`Il tipo tecnico`,`Sei pratico, pieno di risorse e ami creare e riparare. Dove altri vedono un problema, tu vedi una soluzione — con le mani e con la testa.`],I:[`Il tipo ricercatore`,`Sei curioso e analitico. Ami capire come funziona il mondo e ti piace la sfida di un problema difficile.`],K:[`Il tipo creativo`,`Sei fantasioso e originale. Vedi bellezza e idee dove altri non le notano e ami creare qualcosa di tuo.`],D:[`Il tipo sociale`,`Sei caloroso ed empatico. Lavorare con le persone ti appaga — aiutare, insegnare e connettere.`],P:[`Il tipo intraprendente`,`Sei deciso e pieno di iniziativa. Ami guidare, convincere e far avanzare le cose.`],O:[`Il tipo organizzato`,`Sei preciso e affidabile. Ami l’ordine, la chiarezza e quando tutto funziona come un sistema ben regolato.`]},
+    traits:{T:[`senso pratico e intraprendenza`,`risoluzione logica dei problemi`,`abilità e perseveranza`],I:[`una mente analitica e curiosa`,`profondità di pensiero`,`amore per l’apprendimento e precisione`],K:[`fantasia e originalità`,`senso della bellezza e dell’armonia`,`espressività e innovazione`],D:[`empatia e calore`,`capacità di comunicare`,`spirito di squadra e voglia di aiutare`],P:[`iniziativa e coraggio`,`leadership e capacità di convincere`,`spirito intraprendente`],O:[`organizzazione e affidabilità`,`metodo e precisione`,`responsabilità e coerenza`]},
+    careers:{T:`Ingegnere, progettista, tecnico o programmatore — le professioni tecniche sono oggi tra le più richieste e meglio pagate, con facilità di impiego in patria e all’estero.`,I:`Ricercatore, analista, programmatore o scienziato — lavori in cui contano intelligenza e analisi, con ottime prospettive ovunque.`,K:`Designer, architetto, artista o direttore creativo — professioni in cui la tua originalità diventa un vero valore e una firma riconoscibile.`,D:`Psicologo, medico, insegnante o educatore — lavori con le persone sempre necessari, sicuri e profondamente appaganti.`,P:`Manager, imprenditore, economista o avvocato — ruoli di guida e un’attività tua; una via verso autonomia, crescita e influenza.`,O:`Economista, contabile, analista o amministratore — professioni stabili, sicure e sempre richieste, con avanzamenti chiari.`},
+    subs:{T:`Matematica · Fisica · Elettronica · Programmazione`,I:`Matematica · Fisica · Programmazione · Prep. esame d’ingresso`,K:`Matematica · Programmazione`,D:`Matematica · Prep. esame d’ingresso`,P:`Matematica · Prep. esame d’ingresso`,O:`Matematica · Programmazione · Prep. esame d’ingresso`},
+    ctag:{T:`professioni di ingegneria e informatica`,I:`scienza, informatica, analisi`,K:`design, arte, media`,D:`sanità, istruzione, lavoro con le persone`,P:`business, management, diritto`,O:`economia, finanza, amministrazione`},
+    pw:{fakultet:[`Unisce tecnica e problem solving — per la tua mente pratica e logica. Uno dei campi più richiesti oggi.`,`Logica, analisi e creazione di software — perfetto per una mente indagatrice e tecnica.`,`Per mani e mente che amano costruire, mettere in moto e perfezionare.`,`Tecnica e precisione che costruiscono qualcosa di duraturo e visibile.`,`Sistemi, logistica e tecnica — chiaro, applicato e organizzato.`,`Per una mente che ama i problemi profondi, puri e la logica.`,`Per una curiosità che vuole capire come funziona davvero il mondo.`,`Unisce creatività e tecnica — la fantasia che si costruisce nello spazio.`,`Spazio per la tua fantasia, la tua estetica e la tua originalità.`,`Per espressività, emozione ed energia creativa davanti alle persone.`,`Per la tua empatia e il desiderio di capire le persone e la loro mente.`,`Aiutare le persone con la scienza — una strada nobile e stimata.`,`Per l’amore verso i bambini e la gioia di insegnare.`,`Per la logica chiara, l’argomentazione, l’ordine e il lavoro con le persone.`,`Per l’iniziativa, gli affari e la comprensione del mondo del denaro.`,`Unisce tecnica, organizzazione e business — versatile e molto richiesto.`,`Per la leadership, guidare le persone e lanciare idee.`,`Per la precisione, i numeri e una professione sicura e richiesta.`,`Per l’amore verso la lingua, la cultura e la comunicazione.`],srednja:[`Entri presto nella tecnica che ami — pratica e richiesta.`,`Per mani che amano costruire, assemblare e riparare.`,`Sistemi e tecnica nella pratica, con regole chiare.`,`Tecnica e precisione che costruiscono.`,`La miglior base per scienza, tecnica e ricerca.`,`Una base ampia per tutte le scienze naturali e tecniche.`,`Aiutare le persone con la scienza, fin da subito.`,`Per le persone, le lingue e la società — le porte più ampie.`,`Spazio per sviluppare il tuo talento e la tua fantasia fin dall’inizio.`,`Creatività + tecnica della stampa e del design.`,`Impari presto come funzionano gli affari e il denaro.`,`Ordine, regole e lavoro con persone e documenti.`,`Per la comunicazione, le persone e lo spirito d’iniziativa.`],visa:[`Una via rapida verso una professione tecnica concreta e richiesta.`,`Competenze pratiche che l’industria cerca.`,`Programmazione e informatica — una delle vie più rapide al lavoro.`,`Dati e logica al servizio del business.`,`La creatività trasformata in una professione concreta.`,`Un connubio di creatività e tecnologia.`,`Una via diretta al lavoro con i bambini.`,`Aiutare le persone con professione e scienza.`,`Una via rapida al lavoro o alla tua attività.`,`Per le idee, la comunicazione e lo spirito d’iniziativa.`,`Persone, comunicazione e un lavoro dinamico.`,`Ordine, numeri e una professione sicura.`,`Organizzazione e gestione dell’attività.`]},
+    city:{title:`Dove puoi iscriverti`,subA:`Scuole e facoltà concrete adatte al tuo profilo`,subIn:` — a `,subEnd:`.`,inYourCity:` Nella tua città (%s), cerca proprio questo indirizzo.`,g1:{K:`Per il tuo profilo, una scuola d’arte o di design — o un liceo a indirizzo umanistico-linguistico — è l’ideale.`,DP:`Per il tuo profilo, l’indirizzo umanistico di un liceo, o una scuola professionale adatta (sanitaria, commerciale, giuridico-amministrativa), è eccellente.`,EL:`Per il tuo profilo, un liceo a indirizzo scientifico-matematico, o un istituto tecnico del tuo settore (elettrotecnica, meccanica, informatica), è eccellente.`},inCity:`A %s: `,tip:`Consiglio: `,sredFallback:`Cerca un liceo e una scuola professionale adatta nella tua città — ogni città grande le ha.`,vlabel:{visa:`Studi superiori / professionali (e facoltà affini):`,fakultet:`Facoltà per te:`},visaExtra:`Oltre alle facoltà, cerca istituti tecnici superiori accreditati nella tua città — una via rapida verso una professione richiesta.`,biggest:`I maggiori centri universitari per il tuo profilo:`,hintFak:`Inserisci la tua città all’inizio del test per vedere le facoltà vicino a te.`,hintSred:`Inserisci la tua città all’inizio del test per vedere le scuole vicino a te.`,cityMatch:`corrispondenza`}
+  },
+  ru:{
+    he:[`бесплатный тест склонностей`,`Открой свой настоящий путь`,`За несколько минут ты узнаешь, какое направление, школа и факультет подходят тебе больше всего — на основе того, как ты мыслишь и что тебя вдохновляет.`],
+    ch:[`бесплатный тест склонностей`,`Для чего ты проходишь тест?`,`Тест оценивает твои склонности и рекомендует подходящие направления, школы и факультеты. Выбери уровень:`,`Город (необязательно)`,`Начать тест →`,`Уже знаешь направление? Проверь свои знания →`],
+    gradPh:`напр. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`Средняя школа`,`какую школу выбрать`],visa:[`Колледж`,`профессиональное образование`],fakultet:[`Университет`,`направление и факультет`]},
+    heroT:{srednja:`Какую среднюю школу выбрать?`,visa:`Какой колледж тебе подходит?`,fakultet:`Какой факультет и направление тебе подходят?`},
+    q:[`Мне нравится разбирать и собирать вещи, чтобы понять, как они работают.`,`Мне нравится работать руками — создавать, чинить, собирать.`,`Меня привлекают машины, устройства и технологии.`,`Мне нравится решать сложные задачи и логические головоломки.`,`Мне интересно, почему всё работает — я люблю исследовать.`,`Математика и наука — это вызов, который мне в радость.`,`Я люблю создавать — рисовать, проектировать или придумывать новое.`,`Воображение и оригинальные идеи очень важны для меня.`,`Меня привлекают красота, искусство и эстетика.`,`Меня наполняет, когда я помогаю кому-то или чему-то учу.`,`Я легко понимаю, что чувствуют другие.`,`Я люблю работу в команде и общение с людьми.`,`Мне нравится вести за собой, побуждать и убеждать других в своей идее.`,`Меня привлекают бизнес, продажи и создание своего дела.`,`Я не боюсь риска, когда верю в цель.`,`Я люблю порядок, ясные планы и когда всё на своих местах.`,`Я хорошо управляюсь с числами, данными и деталями.`,`Мне нравится, когда у задачи есть чёткие правила и шаги.`],
+    opts:[`Совсем нет`,`Скорее нет`,`Скорее да`,`Полностью да`],
+    qnum:`Вопрос {n} / {t}`,back:`← Назад`,
+    micro:[`Поехали! Неправильных ответов нет 💛`,`У тебя отлично получается!`,`Ровно половина пути!`,`Почти готово!`,`Последний вопрос!`],
+    intro:`Нет правильных и неправильных ответов — просто будь честен/на с собой. 💛`,blend:`Ты прежде всего {a}, и {b} всегда рядом.`,ctaMainDyn:`Готовься к «{x}» с преподавательницей 0–24 ч →`,
+    rp:{eyebrow:`твой результат`,traitsTitle:`Твои сильные стороны и таланты`,traitsSub:`То, в чём ты блистаешь от природы.`,barsTitle:`Насколько что тебе подходит`,recTitle:`Рекомендованные направления для тебя`,recSub:`Отсортировано по тому, насколько они подходят твоему профилю.`,careerHead:`Что ждёт тебя дальше`,best:`лучший выбор`,overlap:`совпадение`,possible:`Возможные профессии: `,mathiaTitle:`Как этого достичь`,mathiaP:`На Mathia тебя ведут именно нужные предметы и преподавательница, которая всегда рядом:`,ctaMain:`Именно для тебя: начни с преподавательницей 0–24 ч →`,ctaSubjects:`Посмотреть предметы →`,ctaPrijemni:`Подготовка к вступительному →`,backHome:`← Вернуться на главную`,restart:`↺ Пройти тест снова`},
+    types:{T:[`Технический тип`,`Ты практичный, находчивый и любишь создавать и чинить. Там, где другие видят проблему, ты видишь решение — и руками, и головой.`],I:[`Исследовательский тип`,`Ты любознательный и аналитичный. Ты любишь понимать, как устроен мир, и получаешь удовольствие от сложной задачи.`],K:[`Творческий тип`,`Ты изобретательный и оригинальный. Ты видишь красоту и идеи там, где другие их не замечают, и любишь создавать своё.`],D:[`Социальный тип`,`Ты тёплый и чуткий. Работа с людьми наполняет тебя — помогать, учить и объединять.`],P:[`Предприимчивый тип`,`Ты решительный и полон инициативы. Ты любишь вести за собой, убеждать и двигать дела вперёд.`],O:[`Организованный тип`,`Ты точный и надёжный. Ты любишь порядок, ясность и когда всё работает как хорошо настроенная система.`]},
+    traits:{T:[`практичность и находчивость`,`логическое решение задач`,`ловкость и упорство`],I:[`аналитический, любознательный ум`,`глубина мышления`,`любовь к учёбе и точность`],K:[`воображение и оригинальность`,`чувство красоты и гармонии`,`выразительность и новаторство`],D:[`эмпатия и теплота`,`умение общаться`,`командный дух и желание помогать`],P:[`инициатива и смелость`,`лидерство и убедительность`,`предприимчивый дух`],O:[`организованность и надёжность`,`системность и точность`,`ответственность и последовательность`]},
+    careers:{T:`Инженер, проектировщик, техник или программист — технические профессии сегодня среди самых востребованных и высокооплачиваемых, с лёгким трудоустройством и дома, и за рубежом.`,I:`Исследователь, аналитик, программист или учёный — работа, где ценятся ум и анализ, с отличными перспективами где угодно.`,K:`Дизайнер, архитектор, художник или креативный директор — профессии, где твоя оригинальность становится настоящей ценностью и узнаваемым почерком.`,D:`Психолог, врач, преподаватель или воспитатель — работа с людьми, которая всегда нужна, надёжна и глубоко наполняет.`,P:`Менеджер, предприниматель, экономист или юрист — руководящие роли и собственный бизнес; путь к самостоятельности, росту и влиянию.`,O:`Экономист, бухгалтер, аналитик или администратор — стабильные, надёжные и всегда востребованные профессии с ясным карьерным ростом.`},
+    subs:{T:`Математика · Физика · Электроника · Программирование`,I:`Математика · Физика · Программирование · Подготовка к вступительному`,K:`Математика · Программирование`,D:`Математика · Подготовка к вступительному`,P:`Математика · Подготовка к вступительному`,O:`Математика · Программирование · Подготовка к вступительному`},
+    ctag:{T:`инженерные и IT-профессии`,I:`наука, IT, аналитика`,K:`дизайн, искусство, медиа`,D:`здравоохранение, образование, работа с людьми`,P:`бизнес, менеджмент, право`,O:`экономика, финансы, администрирование`},
+    pw:{fakultet:[`Соединяет технику и решение задач — для твоего практичного, логичного ума. Одна из самых востребованных областей сегодня.`,`Логика, анализ и создание программ — идеально для исследовательского и технического ума.`,`Для рук и головы, которые любят создавать, приводить в движение и совершенствовать.`,`Техника и точность, которые создают нечто прочное и видимое.`,`Системы, логистика и техника — ясно, прикладно и организованно.`,`Для ума, который наслаждается глубокими, чистыми задачами и логикой.`,`Для любознательности, которая хочет понять, как на самом деле устроен мир.`,`Соединяет творчество и технику — воображение, воплощённое в пространстве.`,`Пространство для твоего воображения, эстетики и оригинальности.`,`Для выразительности, эмоций и творческой энергии перед людьми.`,`Для твоей эмпатии и желания понимать людей и их ум.`,`Помогать людям с помощью науки — благородный и уважаемый путь.`,`Для любви к детям и радости обучения.`,`Для ясной логики, аргументации, порядка и работы с людьми.`,`Для инициативы, дела и понимания мира денег.`,`Соединяет технику, организацию и бизнес — разносторонне и очень востребованно.`,`Для лидерства, руководства людьми и запуска идей.`,`Для точности, чисел и надёжной, востребованной профессии.`,`Для любви к языку, культуре и общению.`],srednja:[`Ты рано входишь в технику, которую любишь — практично и востребованно.`,`Для рук, которые любят создавать, собирать и чинить.`,`Системы и техника на практике, с ясными правилами.`,`Техника и точность, которые строят.`,`Лучшая основа для науки, техники и исследований.`,`Широкая основа для всех естественных и технических наук.`,`Помогать людям с помощью науки, с ранних лет.`,`Для людей, языков и общества — самые широкие двери.`,`Пространство, чтобы развивать талант и воображение с самого начала.`,`Творчество + техника печати и дизайна.`,`Ты рано учишься, как работают дело и деньги.`,`Порядок, правила и работа с людьми и документами.`,`Для общения, людей и предприимчивости.`],visa:[`Быстрый путь к конкретной, востребованной технической профессии.`,`Практические навыки, которые нужны индустрии.`,`Программирование и IT — один из самых быстрых путей к работе.`,`Данные и логика на службе бизнеса.`,`Творчество, превращённое в конкретную профессию.`,`Соединение творчества и технологий.`,`Прямой путь к работе с детьми.`,`Помогать людям с помощью профессии и науки.`,`Быстрый путь к работе или собственному бизнесу.`,`Для идей, общения и предприимчивости.`,`Люди, общение и динамичная работа.`,`Порядок, числа и надёжная профессия.`,`Организация и ведение бизнеса.`]},
+    city:{title:`Куда можно поступить`,subA:`Конкретные школы и факультеты, которые подходят твоему профилю`,subIn:` — в городе `,subEnd:`.`,inYourCity:` В своём городе (%s) ищи именно это направление.`,g1:{K:`Для твоего профиля отлично подойдёт художественная или дизайнерская школа — или общеобразовательная гимназия с общественно-языковым уклоном.`,DP:`Для твоего профиля отлично подойдёт общественно-языковой уклон гимназии или подходящая профильная школа (медицинская, экономическая, юридическо-административная).`,EL:`Для твоего профиля отлично подойдёт гимназия с естественно-математическим уклоном или техническая школа твоего направления (электротехническая, машиностроительная, компьютерная).`},inCity:`В городе %s: `,tip:`Совет: `,sredFallback:`Поищи гимназию и подходящую профильную школу в своём городе — они есть в каждом крупном городе.`,vlabel:{visa:`Колледжи / профессиональные программы (и близкие факультеты):`,fakultet:`Факультеты для тебя:`},visaExtra:`Помимо факультетов, поищи аккредитованные профессиональные колледжи в своём городе — быстрый путь к востребованной профессии.`,biggest:`Крупнейшие университетские центры для твоего профиля:`,hintFak:`Укажи свой город в начале теста, чтобы увидеть факультеты рядом с тобой.`,hintSred:`Укажи свой город в начале теста, чтобы увидеть школы рядом с тобой.`,cityMatch:`совпадение`}
+  },
+  pt:{
+    he:[`teste de aptidão gratuito`,`Descobre o teu verdadeiro caminho`,`Em poucos minutos descobres que área, escola e faculdade combinam melhor contigo — com base em como pensas e no que te move.`],
+    ch:[`teste de aptidão gratuito`,`Para que estás a fazer o teste?`,`O teste avalia as tuas aptidões e recomenda as áreas, escolas e faculdades que combinam contigo. Escolhe um nível:`,`Cidade (opcional)`,`Começar o teste →`,`Já sabes o teu caminho? Testa os teus conhecimentos →`],
+    gradPh:`ex. Beograd, Novi Sad, Niš…`,
+    lv:{srednja:[`Secundário`,`que escola escolher`],visa:[`Ensino superior curto`,`estudos profissionais`],fakultet:[`Universidade`,`área e faculdade`]},
+    heroT:{srednja:`Que escola secundária escolher?`,visa:`Que ensino superior é para ti?`,fakultet:`Que faculdade e área são para ti?`},
+    q:[`Gosto de desmontar e montar coisas para ver como funcionam.`,`Gosto de trabalhar com as mãos — construir, reparar, montar.`,`As máquinas, os aparelhos e a tecnologia atraem-me.`,`Gosto de resolver problemas difíceis e enigmas de lógica.`,`Quero saber porque é que as coisas funcionam — adoro investigar.`,`A matemática e a ciência são um desafio de que gosto.`,`Adoro criar — desenhar, projetar ou inventar algo novo.`,`A imaginação e as ideias originais são muito importantes para mim.`,`A beleza, a arte e a estética atraem-me.`,`Realiza-me ajudar alguém ou ensinar-lhe algo.`,`Percebo facilmente como os outros se sentem.`,`Adoro o trabalho em equipa e estar com pessoas.`,`Gosto de liderar, impulsionar e convencer os outros da minha ideia.`,`Os negócios, as vendas e criar algo meu atraem-me.`,`Não tenho medo do risco quando acredito no objetivo.`,`Adoro a ordem, os planos claros e que tudo esteja no seu lugar.`,`Dou-me bem com números, dados e detalhes.`,`Gosto quando uma tarefa tem regras e passos claros.`],
+    opts:[`De todo não`,`Mais ou menos não`,`Mais ou menos sim`,`Totalmente sim`],
+    qnum:`Pergunta {n} / {t}`,back:`← Anterior`,
+    micro:[`Vamos lá! Não há respostas erradas 💛`,`Estás a ir muito bem!`,`Mesmo a meio!`,`Quase a terminar!`,`Última pergunta!`],
+    intro:`Não há respostas certas nem erradas — sê apenas sincero/a contigo. 💛`,blend:`És acima de tudo {a}, e {b} nunca anda longe.`,ctaMainDyn:`Prepara-te para {x} com a tua professora 0–24h →`,
+    rp:{eyebrow:`o teu resultado`,traitsTitle:`Os teus pontos fortes e talentos`,traitsSub:`Aquilo em que brilhas naturalmente.`,barsTitle:`O quanto cada perfil combina contigo`,recTitle:`Áreas recomendadas para ti`,recSub:`Ordenadas pela forma como combinam com o teu perfil.`,careerHead:`O que te espera depois`,best:`melhor escolha`,overlap:`correspondência`,possible:`Profissões possíveis: `,mathiaTitle:`Como lá chegar`,mathiaP:`Na Mathia guiam-te precisamente as matérias certas e uma professora que está sempre ao teu lado:`,ctaMain:`Feito para ti: começa com a tua professora 0–24h →`,ctaSubjects:`Ver as matérias →`,ctaPrijemni:`Preparação para o exame de acesso →`,backHome:`← Voltar ao início`,restart:`↺ Fazer o teste de novo`},
+    types:{T:[`O tipo técnico`,`És prático, engenhoso e adoras criar e reparar. Onde outros veem um problema, tu vês uma solução — com as mãos e com a cabeça.`],I:[`O tipo investigador`,`És curioso e analítico. Adoras perceber como o mundo funciona e gostas do desafio de um problema difícil.`],K:[`O tipo criativo`,`És imaginativo e original. Vês beleza e ideias onde outros não reparam e adoras criar algo teu.`],D:[`O tipo social`,`És caloroso e empático. Trabalhar com pessoas realiza-te — ajudar, ensinar e ligar.`],P:[`O tipo empreendedor`,`És decidido e cheio de iniciativa. Adoras liderar, convencer e fazer as coisas avançar.`],O:[`O tipo organizado`,`És preciso e fiável. Adoras a ordem, a clareza e quando tudo funciona como um sistema bem afinado.`]},
+    traits:{T:[`sentido prático e engenho`,`resolução lógica de problemas`,`destreza e persistência`],I:[`uma mente analítica e curiosa`,`profundidade de pensamento`,`gosto por aprender e precisão`],K:[`imaginação e originalidade`,`sentido de beleza e harmonia`,`expressividade e inovação`],D:[`empatia e calor humano`,`capacidade de comunicar`,`espírito de equipa e vontade de ajudar`],P:[`iniciativa e coragem`,`liderança e poder de convicção`,`espírito empreendedor`],O:[`organização e fiabilidade`,`método e precisão`,`responsabilidade e consistência`]},
+    careers:{T:`Engenheiro, projetista, técnico ou programador — as profissões técnicas estão hoje entre as mais procuradas e mais bem pagas, com emprego fácil no país e no estrangeiro.`,I:`Investigador, analista, programador ou cientista — trabalhos onde a inteligência e a análise são valorizadas, com excelentes perspetivas em qualquer lugar.`,K:`Designer, arquiteto, artista ou diretor criativo — profissões em que a tua originalidade se torna um verdadeiro valor e uma assinatura reconhecível.`,D:`Psicólogo, médico, professor ou educador — trabalhos com pessoas sempre necessários, seguros e profundamente gratificantes.`,P:`Gestor, empreendedor, economista ou advogado — papéis de liderança e o teu próprio negócio; um caminho para a autonomia, o crescimento e a influência.`,O:`Economista, contabilista, analista ou administrador — profissões estáveis, seguras e sempre procuradas, com progressão clara.`},
+    subs:{T:`Matemática · Física · Eletrónica · Programação`,I:`Matemática · Física · Programação · Prep. exame de acesso`,K:`Matemática · Programação`,D:`Matemática · Prep. exame de acesso`,P:`Matemática · Prep. exame de acesso`,O:`Matemática · Programação · Prep. exame de acesso`},
+    ctag:{T:`profissões de engenharia e informática`,I:`ciência, informática, análise`,K:`design, arte, media`,D:`saúde, educação, trabalho com pessoas`,P:`negócios, gestão, direito`,O:`economia, finanças, administração`},
+    pw:{fakultet:[`Une técnica e resolução de problemas — para a tua mente prática e lógica. Uma das áreas mais procuradas hoje.`,`Lógica, análise e criação de software — perfeito para uma mente investigadora e técnica.`,`Para mãos e mente que adoram construir, pôr a funcionar e aperfeiçoar.`,`Técnica e precisão que constroem algo duradouro e visível.`,`Sistemas, logística e técnica — claro, aplicado e organizado.`,`Para uma mente que gosta de problemas profundos, puros e da lógica.`,`Para uma curiosidade que quer perceber como o mundo funciona de verdade.`,`Une criatividade e técnica — a imaginação construída no espaço.`,`Espaço para a tua imaginação, estética e originalidade.`,`Para a expressividade, a emoção e a energia criativa diante das pessoas.`,`Para a tua empatia e vontade de perceber as pessoas e a sua mente.`,`Ajudar as pessoas com a ciência — um caminho nobre e respeitado.`,`Pelo amor às crianças e a alegria de ensinar.`,`Para a lógica clara, a argumentação, a ordem e o trato com pessoas.`,`Para a iniciativa, os negócios e a compreensão do mundo do dinheiro.`,`Une técnica, organização e negócio — versátil e muito procurado.`,`Para a liderança, guiar pessoas e lançar ideias.`,`Para a precisão, os números e uma profissão segura e procurada.`,`Pelo amor à língua, à cultura e à comunicação.`],srednja:[`Entras cedo na técnica que adoras — prática e procurada.`,`Para mãos que adoram construir, montar e reparar.`,`Sistemas e técnica na prática, com regras claras.`,`Técnica e precisão que constroem.`,`A melhor base para a ciência, a técnica e a investigação.`,`Uma base ampla para todas as ciências naturais e técnicas.`,`Ajudar as pessoas com a ciência, desde cedo.`,`Para as pessoas, as línguas e a sociedade — as portas mais amplas.`,`Espaço para desenvolver o teu talento e a tua imaginação desde o início.`,`Criatividade + técnica da impressão e do design.`,`Aprendes cedo como funcionam os negócios e o dinheiro.`,`Ordem, regras e trabalho com pessoas e documentos.`,`Para a comunicação, as pessoas e o espírito de iniciativa.`],visa:[`Um caminho rápido para uma profissão técnica concreta e procurada.`,`Competências práticas que a indústria procura.`,`Programação e informática — um dos caminhos mais rápidos para o emprego.`,`Dados e lógica ao serviço do negócio.`,`A criatividade transformada numa profissão concreta.`,`Uma união de criatividade e tecnologia.`,`Um caminho direto para o trabalho com crianças.`,`Ajudar as pessoas com a profissão e a ciência.`,`Um caminho rápido para o emprego ou o teu próprio negócio.`,`Para as ideias, a comunicação e o espírito de iniciativa.`,`Pessoas, comunicação e um trabalho dinâmico.`,`Ordem, números e uma profissão segura.`,`Organização e gestão do negócio.`]},
+    city:{title:`Onde te podes inscrever`,subA:`Escolas e faculdades concretas que combinam com o teu perfil`,subIn:` — em `,subEnd:`.`,inYourCity:` Na tua cidade (%s), procura exatamente esta área.`,g1:{K:`Para o teu perfil, uma escola de arte ou design — ou uma escola secundária geral na via de ciências sociais e línguas — encaixa perfeitamente.`,DP:`Para o teu perfil, a via de ciências sociais de uma escola secundária geral, ou uma escola profissional adequada (saúde, negócios, jurídico-administrativa), é excelente.`,EL:`Para o teu perfil, uma escola secundária geral na via de ciências e matemática, ou uma escola técnica da tua área (eletrotecnia, mecânica, informática), é excelente.`},inCity:`Em %s: `,tip:`Dica: `,sredFallback:`Procura uma escola secundária geral e uma escola profissional adequada na tua cidade — todas as cidades maiores as têm.`,vlabel:{visa:`Ensino superior / profissional (e faculdades afins):`,fakultet:`Faculdades para ti:`},visaExtra:`Além das faculdades, procura escolas superiores profissionais acreditadas na tua cidade — um caminho rápido para uma profissão procurada.`,biggest:`Os maiores centros universitários para o teu perfil:`,hintFak:`Escreve a tua cidade no início do teste para veres faculdades perto de ti.`,hintSred:`Escreve a tua cidade no início do teste para veres escolas perto de ti.`,cityMatch:`correspondência`}
+  }
   };
+
   var ORDER=['T','I','K','D','P','O'];
-  var Q=[
-    ['Volim da rastavljam i sastavljam stvari da vidim kako rade.','T'],['Uživam da radim rukama — da pravim, popravljam, sklapam.','T'],['Mašine, uređaji i tehnologija me privlače.','T'],
-    ['Volim da rešavam teške zadatke i logičke zagonetke.','I'],['Zanima me zašto stvari funkcionišu — volim da istražujem.','I'],['Matematika i nauka su mi izazov u kojem uživam.','I'],
-    ['Volim da stvaram — crtam, dizajniram ili izmišljam nešto novo.','K'],['Mašta i originalne ideje su mi vrlo važne.','K'],['Privlače me lepota, umetnost i estetika.','K'],
-    ['Ispunjava me kad pomognem nekome ili ga nečemu naučim.','D'],['Lako razumem kako se drugi osećaju.','D'],['Volim timski rad i druženje s ljudima.','D'],
-    ['Volim da vodim, pokrećem i ubeđujem druge za svoju ideju.','P'],['Privlače me posao, prodaja i pokretanje nečeg svog.','P'],['Ne bojim se rizika kad verujem u cilj.','P'],
-    ['Volim red, jasne planove i kad je sve na svom mestu.','O'],['Dobro se snalazim s brojevima, podacima i detaljima.','O'],['Volim kad zadatak ima jasna pravila i korake.','O']
-  ];
-  var OPTS=[['Uopšte ne',1],['Uglavnom ne',2],['Uglavnom da',3],['U potpunosti da',4]];
-  var SUBS={T:'Matematika · Fizika · Elektronika · Programiranje',I:'Matematika · Fizika · Programiranje · Priprema za prijemni',K:'Matematika · Programiranje',D:'Matematika · Priprema za prijemni',P:'Matematika · Priprema za prijemni',O:'Matematika · Programiranje · Priprema za prijemni'};
-  var TRAITS={T:['praktičnost i snalažljivost','logičko rešavanje problema','spretnost i istrajnost'],I:['analitičan, radoznao um','dubina razmišljanja','ljubav ka učenju i preciznost'],K:['mašta i originalnost','osećaj za lepotu i sklad','izražajnost i inovativnost'],D:['empatija i toplina','komunikativnost','timski duh i želja da pomogneš'],P:['inicijativa i hrabrost','liderstvo i ubedljivost','preduzimljiv duh'],O:['organizovanost i pouzdanost','sistematičnost i preciznost','odgovornost i doslednost']};
-  var CAREERS={T:'Inženjer, projektant, tehničar ili programer — tehnička zanimanja su danas među najtraženijima i najbolje plaćenima, sa lakim zapošljavanjem i u zemlji i u svetu.',I:'Istraživač, analitičar, programer ili naučnik — poslovi u kojima se ceni pamet i analiza, sa odličnim izgledima za karijeru bilo gde.',K:'Dizajner, arhitekta, umetnik ili kreativni direktor — zanimanja u kojima tvoja originalnost postaje prava vrednost i prepoznatljiv potpis.',D:'Psiholog, lekar, profesor ili vaspitač — poslovi s ljudima koji su uvek potrebni, sigurni i duboko ispunjavajući.',P:'Menadžer, preduzetnik, ekonomista ili pravnik — vodeće uloge i sopstveni biznis; put ka samostalnosti, rastu i uticaju.',O:'Ekonomista, računovođa, analitičar ili administrator — stabilna, sigurna i uvek tražena zanimanja sa jasnim napredovanjem.'};
+  var Q_TYPES=['T','T','T','I','I','I','K','K','K','D','D','D','P','P','P','O','O','O'];
   var POOL={
     fakultet:[
-      {n:'Elektrotehnički fakultet (ETF)',t:'T',t2:'I',w:'Spaja tehniku i rešavanje problema — za tvoj praktičan, logičan um. Jedna od najtraženijih oblasti danas.'},
-      {n:'Računarstvo i informatika (Matematički / ETF / FTN)',t:'I',t2:'T',w:'Logika, analiza i stvaranje softvera — savršeno za istraživački i tehnički um.'},
-      {n:'Mašinski fakultet',t:'T',w:'Za ruke i glavu koje vole da prave, pokreću i usavršavaju stvari.'},
-      {n:'Građevinski fakultet',t:'T',t2:'O',w:'Tehnika i preciznost koje grade nešto trajno i vidljivo.'},
-      {n:'Saobraćajni fakultet',t:'T',t2:'O',w:'Sistemi, logistika i tehnika — jasno, primenjeno i organizovano.'},
-      {n:'Matematički fakultet',t:'I',w:'Za um koji uživa u dubokim, čistim problemima i logici.'},
-      {n:'Fizički fakultet / PMF',t:'I',w:'Za radoznalost koja želi da razume kako svet zaista radi.'},
-      {n:'Arhitektonski fakultet',t:'K',t2:'T',w:'Spaja kreativnost i tehniku — mašta koja se gradi u prostor.'},
-      {n:'Fakultet primenjenih umetnosti',t:'K',w:'Prostor za tvoju maštu, estetiku i originalnost.'},
-      {n:'Fakultet dramskih umetnosti (FDU)',t:'K',t2:'D',w:'Za izražajnost, emociju i kreativnu energiju pred ljudima.'},
-      {n:'Psihologija — Filozofski fakultet',t:'D',t2:'I',w:'Za tvoju empatiju i želju da razumeš ljude i njihov um.'},
-      {n:'Medicinski fakultet',t:'D',t2:'I',w:'Pomaganje ljudima uz nauku — plemenit i cenjen put.'},
-      {n:'Učiteljski fakultet',t:'D',w:'Za ljubav prema deci i radost podučavanja.'},
-      {n:'Pravni fakultet',t:'P',t2:'O',w:'Za jasnu logiku, argumentaciju, red i rad s ljudima.'},
-      {n:'Ekonomski fakultet',t:'P',t2:'O',w:'Za inicijativu, posao i razumevanje sveta novca.'},
-      {n:'Fakultet organizacionih nauka (FON)',t:'O',t2:'P',w:'Spaja tehniku, organizaciju i biznis — svestrano i vrlo traženo.'},
-      {n:'Fakultet za menadžment',t:'P',w:'Za liderstvo, vođenje ljudi i pokretanje ideja.'},
-      {n:'Ekonomski fakultet — finansije i računovodstvo',t:'O',w:'Za preciznost, brojeve i sigurnu, traženu struku.'},
-      {n:'Filološki fakultet (jezici)',t:'K',t2:'D',w:'Za ljubav prema jeziku, kulturi i komunikaciji.'}
+      {n:'Elektrotehnički fakultet (ETF)',t:'T',t2:'I'},
+      {n:'Računarstvo i informatika (Matematički / ETF / FTN)',t:'I',t2:'T'},
+      {n:'Mašinski fakultet',t:'T'},
+      {n:'Građevinski fakultet',t:'T',t2:'O'},
+      {n:'Saobraćajni fakultet',t:'T',t2:'O'},
+      {n:'Matematički fakultet',t:'I'},
+      {n:'Fizički fakultet / PMF',t:'I'},
+      {n:'Arhitektonski fakultet',t:'K',t2:'T'},
+      {n:'Fakultet primenjenih umetnosti',t:'K'},
+      {n:'Fakultet dramskih umetnosti (FDU)',t:'K',t2:'D'},
+      {n:'Psihologija — Filozofski fakultet',t:'D',t2:'I'},
+      {n:'Medicinski fakultet',t:'D',t2:'I'},
+      {n:'Učiteljski fakultet',t:'D'},
+      {n:'Pravni fakultet',t:'P',t2:'O'},
+      {n:'Ekonomski fakultet',t:'P',t2:'O'},
+      {n:'Fakultet organizacionih nauka (FON)',t:'O',t2:'P'},
+      {n:'Fakultet za menadžment',t:'P'},
+      {n:'Ekonomski fakultet — finansije i računovodstvo',t:'O'},
+      {n:'Filološki fakultet (jezici)',t:'K',t2:'D'}
     ],
     srednja:[
-      {n:'Elektrotehnička škola',t:'T',t2:'I',w:'Rano ulaziš u tehniku koju voliš — praktično i traženo.'},
-      {n:'Mašinska tehnička škola',t:'T',w:'Za ruke koje vole da prave, sklapaju i popravljaju.'},
-      {n:'Saobraćajna škola',t:'T',t2:'O',w:'Sistemi i tehnika u praksi, sa jasnim pravilima.'},
-      {n:'Građevinska tehnička škola',t:'T',t2:'O',w:'Tehnika i preciznost koje grade.'},
-      {n:'Matematička gimnazija',t:'I',w:'Najbolja osnova za nauku, tehniku i istraživanje.'},
-      {n:'Gimnazija (prirodno-matematički)',t:'I',t2:'T',w:'Široka osnova za sve prirodne i tehničke nauke.'},
-      {n:'Medicinska škola',t:'D',t2:'I',w:'Pomaganje ljudima uz nauku, od ranih dana.'},
-      {n:'Gimnazija (društveno-jezički)',t:'D',t2:'K',w:'Za ljude, jezike i društvo — najšira vrata.'},
-      {n:'Umetnička / dizajnerska škola',t:'K',w:'Prostor da razviješ talenat i maštu od početka.'},
-      {n:'Grafička škola',t:'K',t2:'T',w:'Kreativnost + tehnika štampe i dizajna.'},
-      {n:'Ekonomska škola',t:'P',t2:'O',w:'Rano učiš kako posao i novac funkcionišu.'},
-      {n:'Pravno-birotehnička škola',t:'O',t2:'D',w:'Red, pravila i rad s ljudima i dokumentima.'},
-      {n:'Turistička / ugostiteljska škola',t:'P',t2:'D',w:'Za komunikaciju, ljude i preduzimljivost.'}
+      {n:'Elektrotehnička škola',t:'T',t2:'I'},
+      {n:'Mašinska tehnička škola',t:'T'},
+      {n:'Saobraćajna škola',t:'T',t2:'O'},
+      {n:'Građevinska tehnička škola',t:'T',t2:'O'},
+      {n:'Matematička gimnazija',t:'I'},
+      {n:'Gimnazija (prirodno-matematički)',t:'I',t2:'T'},
+      {n:'Medicinska škola',t:'D',t2:'I'},
+      {n:'Gimnazija (društveno-jezički)',t:'D',t2:'K'},
+      {n:'Umetnička / dizajnerska škola',t:'K'},
+      {n:'Grafička škola',t:'K',t2:'T'},
+      {n:'Ekonomska škola',t:'P',t2:'O'},
+      {n:'Pravno-birotehnička škola',t:'O',t2:'D'},
+      {n:'Turistička / ugostiteljska škola',t:'P',t2:'D'}
     ],
     visa:[
-      {n:'Visoka tehnička škola — elektrotehnika',t:'T',t2:'I',w:'Brz put do konkretnog, traženog tehničkog zanimanja.'},
-      {n:'Strukovne studije mašinstva',t:'T',w:'Praktične veštine koje industrija traži.'},
-      {n:'Strukovne studije informatike',t:'I',t2:'T',w:'Programiranje i IT — jedan od najbržih puteva do posla.'},
-      {n:'Poslovna analitika',t:'I',t2:'O',w:'Podaci i logika u službi biznisa.'},
-      {n:'Strukovne studije dizajna',t:'K',w:'Kreativnost pretvorena u konkretno zanimanje.'},
-      {n:'Multimedija',t:'K',t2:'T',w:'Spoj kreative i tehnologije.'},
-      {n:'Strukovne studije za vaspitače',t:'D',w:'Direktan put ka radu s decom.'},
-      {n:'Zdravstvene strukovne studije',t:'D',t2:'I',w:'Pomaganje ljudima uz struku i nauku.'},
-      {n:'Strukovne studije ekonomije / menadžmenta',t:'P',t2:'O',w:'Brz put do posla ili sopstvenog biznisa.'},
-      {n:'Marketing',t:'P',t2:'K',w:'Za ideje, komunikaciju i preduzimljivost.'},
-      {n:'Turizam i ugostiteljstvo',t:'P',t2:'D',w:'Ljudi, komunikacija i dinamičan posao.'},
-      {n:'Računovodstvo',t:'O',w:'Red, brojevi i sigurna struka.'},
-      {n:'Poslovna administracija',t:'O',t2:'P',w:'Organizacija i vođenje poslovanja.'}
+      {n:'Visoka tehnička škola — elektrotehnika',t:'T',t2:'I'},
+      {n:'Strukovne studije mašinstva',t:'T'},
+      {n:'Strukovne studije informatike',t:'I',t2:'T'},
+      {n:'Poslovna analitika',t:'I',t2:'O'},
+      {n:'Strukovne studije dizajna',t:'K'},
+      {n:'Multimedija',t:'K',t2:'T'},
+      {n:'Strukovne studije za vaspitače',t:'D'},
+      {n:'Zdravstvene strukovne studije',t:'D',t2:'I'},
+      {n:'Strukovne studije ekonomije / menadžmenta',t:'P',t2:'O'},
+      {n:'Marketing',t:'P',t2:'K'},
+      {n:'Turizam i ugostiteljstvo',t:'P',t2:'D'},
+      {n:'Računovodstvo',t:'O'},
+      {n:'Poslovna administracija',t:'O',t2:'P'}
     ]
   };
-
-
   var UNI={
     'beograd':{disp:'Beograd (Univerzitet u Beogradu)',
       T:['Elektrotehnički fakultet (ETF)','Mašinski fakultet','Građevinski fakultet','Saobraćajni fakultet','Tehnološko-metalurški'],
@@ -484,88 +670,142 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
   function norm(s){return (s||'').toLowerCase().replace(/[čć]/g,'c').replace(/š/g,'s').replace(/ž/g,'z').replace(/đ/g,'dj').replace(/\s+/g,' ').trim();}
   function cityKey(g){g=norm(g);if(!g)return null;var ng=g.replace(/\s/g,'');if(UNI_ALIAS[ng])return UNI_ALIAS[ng];for(var k in UNI){var nk=norm(k).replace(/\s/g,'');if(ng.indexOf(nk)>-1||nk.indexOf(ng)>-1)return k;}return null;}
 
-  var nivo=null, grad='', idx=0, answers=[];
+  var LANGS=['sr','en','de','fr','es','it','ru','pt'];
+  function readLang(){var s=null;try{s=localStorage.getItem('mathia_lang');}catch(e){}s=(''+(s||'sr')).toLowerCase();return LANGS.indexOf(s)>=0?s:'sr';}
+  var lang=readLang();
+  var L=I18N[lang]||I18N.sr;
+
+  var nivo=null, grad='', idx=0, answers=[], reported=false, locked=false, advTimer=null;
+  var reduceMotion=false; try{reduceMotion=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);}catch(e){}
+  function lcf(s){s=''+(s||'');return s.charAt(0).toLowerCase()+s.slice(1);}
   function qs(id){return document.getElementById(id);}
-  function show(id){['chooser','test','report'].forEach(function(x){qs(x).classList.toggle('hidden',x!==id);});window.scrollTo({top:0,behavior:'smooth'});}
-  try{var u=new URLSearchParams(location.search);if(u.get('nivo')){nivo=u.get('nivo');grad=u.get('grad')||'';}}catch(e){}
+  function show(id){['chooser','test','report'].forEach(function(x){var el=qs(x);if(el)el.classList.toggle('hidden',x!==id);});window.scrollTo({top:0,behavior:'smooth'});}
+
+  try{var u=new URLSearchParams(location.search);var pl=u.get('lvl')||u.get('nivo');if(pl){nivo=pl;}grad=u.get('grad')||'';}catch(e){}
   if(nivo==='sred')nivo='srednja';if(nivo==='fak')nivo='fakultet';
+  var autoStart=(nivo==='srednja'||nivo==='visa'||nivo==='fakultet');
 
   var lvlBtns=document.querySelectorAll('.lvl');
-  lvlBtns.forEach(function(b){b.addEventListener('click',function(){lvlBtns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');nivo=b.dataset.lvl;});}); if(lvlBtns[0]){lvlBtns[0].classList.add('on');nivo=nivo||lvlBtns[0].dataset.lvl;}
-  qs('startBtn').addEventListener('click',function(){if(!nivo){nivo=(lvlBtns[0]&&lvlBtns[0].dataset.lvl)||'srednja';}grad=qs('grad').value.trim();start();});
+  lvlBtns.forEach(function(b){b.addEventListener('click',function(){lvlBtns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');nivo=b.dataset.lvl;});});
+  if(lvlBtns[0]){ if(autoStart){lvlBtns.forEach(function(x){x.classList.toggle('on',x.dataset.lvl===nivo);});} else {lvlBtns[0].classList.add('on');nivo=nivo||lvlBtns[0].dataset.lvl;} }
 
-  function start(){idx=0;answers=[];show('test');render();}
+  var startBtn=qs('startBtn'); if(startBtn) startBtn.addEventListener('click',function(){if(!nivo){nivo=(lvlBtns[0]&&lvlBtns[0].dataset.lvl)||'srednja';}var gi=qs('grad');grad=gi?gi.value.trim():'';start();});
+
+  function start(){idx=0;answers=[];reported=false;show('test');render();}
+
+  function microFor(i,total){var M=L.micro;if(i===total-1)return M[4];if(i===0)return M[0];var r=i/total;if(r<0.34)return M[1];if(r<0.67)return M[2];return M[3];}
+
   function render(){
-    var q=Q[idx];
-    qs('progBar').style.width=(idx/Q.length*100)+'%';
-    qs('qnum').textContent='Pitanje '+(idx+1)+' / '+Q.length;
-    qs('qtext').textContent=q[0];
+    locked=false; if(advTimer){clearTimeout(advTimer);advTimer=null;}
+    var total=L.q.length;
+    qs('progBar').style.width=(idx/total*100)+'%';
+    qs('qnum').textContent=L.qnum.replace('{n}',idx+1).replace('{t}',total);
+    var qi=qs('qintro'); if(qi){ if(idx===0){qi.textContent=L.intro||'';qi.style.display='';} else {qi.textContent='';qi.style.display='none';} }
+    var mc=qs('qmicro'); if(mc) mc.textContent=microFor(idx,total);
+    var qt=qs('qtext'); qt.textContent=L.q[idx];
+    if(!reduceMotion){qt.classList.remove('qin');void qt.offsetWidth;qt.classList.add('qin');}
     var o=qs('opts');o.innerHTML='';
-    OPTS.forEach(function(op){var btn=document.createElement('button');btn.className='opt';btn.innerHTML='<span class="dot"></span>'+op[0];btn.addEventListener('click',function(){answers[idx]={type:q[1],val:op[1]};next();});o.appendChild(btn);});
-    qs('backBtn').style.visibility=idx>0?'visible':'hidden';
+    var prev=answers[idx]?answers[idx].val:0;
+    L.opts.forEach(function(label,oi){
+      var btn=document.createElement('button');btn.className='opt'+(prev===oi+1?' sel':'');
+      var d=document.createElement('span');d.className='dot';btn.appendChild(d);btn.appendChild(document.createTextNode(label));
+      btn.addEventListener('click',function(){
+        if(locked)return; locked=true;
+        answers[idx]={type:Q_TYPES[idx],val:oi+1};
+        Array.prototype.forEach.call(o.children,function(x){x.classList.remove('sel');});
+        btn.classList.add('sel');
+        qs('progBar').style.width=((idx+1)/total*100)+'%';
+        advTimer=setTimeout(next, reduceMotion?0:400);
+      });
+      o.appendChild(btn);
+    });
+    var bb=qs('backBtn'); if(bb){bb.textContent=L.back;bb.style.visibility=idx>0?'visible':'hidden';}
   }
-  function next(){if(idx<Q.length-1){idx++;render();}else{finish();}}
-  qs('backBtn').addEventListener('click',function(){if(idx>0){idx--;render();}});
+  function next(){if(idx<L.q.length-1){idx++;render();}else{finish();}}
+  var backBtn=qs('backBtn'); if(backBtn) backBtn.addEventListener('click',function(){if(idx>0){idx--;render();}});
 
   function finish(){
+    reported=true;
     var score={T:0,I:0,K:0,D:0,P:0,O:0},cnt={T:0,I:0,K:0,D:0,P:0,O:0};
     answers.forEach(function(a){score[a.type]+=a.val;cnt[a.type]++;});
-    var pct={};ORDER.forEach(function(t){pct[t]=Math.round(score[t]/(cnt[t]*4)*100);});
+    var pct={};ORDER.forEach(function(t){pct[t]=cnt[t]?Math.round(score[t]/(cnt[t]*4)*100):0;});
     var sorted=ORDER.slice().sort(function(a,b){return pct[b]-pct[a];});
     var top=sorted[0];
-    qs('repTypeName').textContent=TYPES[top].name;
-    qs('repTypeDesc').textContent=TYPES[top].desc;
-    var tr=qs('traits');tr.innerHTML='';TRAITS[top].concat(TRAITS[sorted[1]]).slice(0,6).forEach(function(x){var d=document.createElement('div');d.className='trait';d.innerHTML='<span class="tk"></span>'+x;tr.appendChild(d);});
-    qs('careerBox').innerHTML='<div class="cb-h">Šta te čeka posle</div><p>'+CAREERS[top]+'</p>';
+    qs('repTypeName').textContent=L.types[top][0];
+    qs('repTypeDesc').textContent=L.types[top][1];
+    var rb=qs('repBlend'); if(rb){ var bt=L.blend; rb.textContent=bt?bt.replace('{a}',lcf(L.types[top][0])).replace('{b}',lcf(L.types[sorted[1]][0])):''; }
+    var tr=qs('traits');tr.innerHTML='';L.traits[top].concat(L.traits[sorted[1]]).slice(0,6).forEach(function(x){var d=document.createElement('div');d.className='trait';var k=document.createElement('span');k.className='tk';d.appendChild(k);d.appendChild(document.createTextNode(x));tr.appendChild(d);});
+    qs('careerBox').innerHTML='<div class="cb-h">'+L.rp.careerHead+'</div><p>'+L.careers[top]+'</p>';
     var bars=qs('bars');bars.innerHTML='';
-    sorted.forEach(function(t,i){var row=document.createElement('div');row.className='bar-row';row.innerHTML='<div class="bar-top"><span>'+TYPES[t].name+'</span><span>'+pct[t]+'%</span></div><div class="bar'+(i===0?' top1':'')+'"><i></i></div>';bars.appendChild(row);(function(r,p){setTimeout(function(){r.querySelector('i').style.width=p+'%';},60+i*90);})(row,pct[t]);});
-    // rangiraj opcije po profilu
-    var CTAG={T:'inženjerska i IT zanimanja',I:'nauka, IT, analitika',K:'dizajn, umetnost, mediji',D:'zdravstvo, obrazovanje, rad s ljudima',P:'biznis, menadžment, pravo',O:'ekonomija, finansije, administracija'};
-    var pool=(POOL[nivo]||POOL.fakultet).map(function(o){var m=Math.round(pct[o.t]*0.72+pct[o.t2||o.t]*0.28);return{n:o.n,w:o.w,t:o.t,m:Math.max(35,Math.min(99,m))};});
+    sorted.forEach(function(t,i){var row=document.createElement('div');row.className='bar-row';row.innerHTML='<div class="bar-top"><span>'+L.types[t][0]+'</span><span>'+pct[t]+'%</span></div><div class="bar'+(i===0?' top1':'')+'"><i></i></div>';bars.appendChild(row);(function(r,p){setTimeout(function(){r.querySelector('i').style.width=p+'%';},60+i*90);})(row,pct[t]);});
+    var poolSrc=POOL[nivo]||POOL.fakultet;
+    var whys=(L.pw[nivo]||L.pw.fakultet);
+    var pool=poolSrc.map(function(o,pi){var m=Math.round(pct[o.t]*0.72+pct[o.t2||o.t]*0.28);return{n:o.n,w:whys[pi]||'',t:o.t,m:Math.max(35,Math.min(99,m))};});
     pool.sort(function(a,b){return b.m-a.m;});
     var picks=pool.slice(0,5);
     var wrap=qs('optCards');wrap.innerHTML='';
     picks.forEach(function(o,i){
       var c=document.createElement('div');c.className='opt-card'+(i===0?' best':'');
-      c.innerHTML='<div class="oc-top"><span class="oc-name"><a href="predmeti.html">'+o.n+'</a>'+(i===0?'<span class="oc-badge">najbolji izbor</span>':'')+'</span><span class="oc-pct">'+o.m+'%<small>preklapanje</small></span></div><div class="oc-bar"><i></i></div><p class="oc-why">'+o.w+(grad&&i===0?(' U tvom gradu ('+grad+') potraži baš ovaj smer.'):'')+'</p><div class="oc-career">Moguća zanimanja: '+CTAG[o.t]+'</div>';
+      c.innerHTML='<div class="oc-top"><span class="oc-name"><a href="predmeti.html">'+o.n+'</a>'+(i===0?'<span class="oc-badge">'+L.rp.best+'</span>':'')+'</span><span class="oc-pct">'+o.m+'%<small>'+L.rp.overlap+'</small></span></div><div class="oc-bar"><i></i></div><p class="oc-why">'+o.w+(grad&&i===0?L.city.inYourCity.replace('%s',grad):'')+'</p><div class="oc-career">'+L.rp.possible+L.ctag[o.t]+'</div>';
       wrap.appendChild(c);
       (function(cc,p){setTimeout(function(){cc.querySelector('.oc-bar i').style.width=p+'%';},120+i*110);})(c,o.m);
     });
-    qs('mathiaSubs').textContent=SUBS[top];
+    qs('mathiaSubs').textContent=L.subs[top];
+    var cm=qs('repCtaMain'); if(cm){ var dyn=L.rp&&L.rp.ctaMainDyn||L.ctaMainDyn; cm.textContent=dyn?dyn.replace('{x}',L.ctag[top]||''):L.rp.ctaMain; }
 
-    // === GDE MOŽEŠ DA UPIŠEŠ (grad-svesno) ===
     (function(){
       var host=qs('citySec'); if(!host)return;
       var key=cityKey(grad), top2=[top,sorted[1]], H='';
-      H+='<div class="sh"><h3>Gde možeš da upišeš</h3><p style="color:var(--muted);font-size:.92rem;margin-top:4px">Konkretne škole i fakulteti koji odgovaraju tvom profilu'+(grad?(' — u gradu '+grad):'')+'.</p></div>';
+      H+='<div class="sh"><h3>'+L.city.title+'</h3><p style="color:var(--muted);font-size:.92rem;margin-top:4px">'+L.city.subA+(grad?(L.city.subIn+grad):'')+L.city.subEnd+'</p></div>';
       if(nivo==='srednja'){
-        var g1=(top==='K')?'Za tvoj profil odlična je umetnička/dizajnerska škola ili gimnazija (društveno-jezički smer).':((top==='D'||top==='P')?'Za tvoj profil odličan je društveno-jezički smer gimnazije ili odgovarajuća stručna škola (medicinska, ekonomska, pravno-birotehnička).':'Za tvoj profil odlična je gimnazija (prirodno-matematički smer) ili tehnička škola u tvojoj oblasti (elektrotehnička, mašinska, računarska).');
-        var nm=key?SREDNJE[key]:'Potraži gimnaziju i odgovarajuću stručnu školu u svom gradu — svaki veći grad ih ima.';
-        H+='<div class="opt-card"><p class="oc-why">'+g1+'</p><div class="oc-career">'+(key?('U gradu '+UNI[key].disp.split(' (')[0]+': '):'Savet: ')+nm+'</div></div>';
-        if(!key)H+='<p class="ig-cityhint">Upiši svoj grad na početku testa da vidiš baš svoje škole.</p>';
+        var g1=(top==='K')?L.city.g1.K:((top==='D'||top==='P')?L.city.g1.DP:L.city.g1.EL);
+        var nm=key?SREDNJE[key]:L.city.sredFallback;
+        var pref=key?L.city.inCity.replace('%s',UNI[key].disp.split(' (')[0]):L.city.tip;
+        H+='<div class="opt-card"><p class="oc-why">'+g1+'</p><div class="oc-career">'+pref+nm+'</div></div>';
+        if(!key)H+='<p class="ig-cityhint">'+L.city.hintSred+'</p>';
       } else {
-        var vlabel=(nivo==='visa')?'Visoke/strukovne studije (i srodni fakulteti):':'Fakulteti za tebe:';
+        var vlabel=(nivo==='visa')?L.city.vlabel.visa:L.city.vlabel.fakultet;
         if(key){
           var uni=UNI[key], list=[]; top2.forEach(function(t){(uni[t]||[]).forEach(function(x){if(list.indexOf(x)<0)list.push(x);});});
           list=list.slice(0,6);
-          H+='<div class="opt-card"><div class="oc-top"><span class="oc-name">'+uni.disp+'</span><span class="oc-pct">'+picks[0].m+'%<small>poklapanje</small></span></div><div class="oc-career" style="margin-top:2px">'+vlabel+'</div><ul class="city-list">';
+          H+='<div class="opt-card"><div class="oc-top"><span class="oc-name">'+uni.disp+'</span><span class="oc-pct">'+picks[0].m+'%<small>'+L.city.cityMatch+'</small></span></div><div class="oc-career" style="margin-top:2px">'+vlabel+'</div><ul class="city-list">';
           list.forEach(function(x,li){H+='<li>'+x+' <b style="color:#9C7838">'+Math.max(60,picks[0].m-li*4)+'%</b></li>';}); H+='</ul>';
-          if(nivo==='visa')H+='<p class="oc-why">Uz fakultete, potraži i akreditovane visoke strukovne škole (npr. VTŠ) u svom gradu — brz put do traženog zanimanja.</p>';
+          if(nivo==='visa')H+='<p class="oc-why">'+L.city.visaExtra+'</p>';
           H+='</div>';
         } else {
-          H+='<div class="opt-card"><div class="oc-career" style="margin-bottom:6px">Najveći univerzitetski centri za tvoj profil:</div>';
-          ['beograd','novi sad','nis'].forEach(function(c){var u=UNI[c];var l=(u[top]||[]).slice(0,2).join(' · ');H+='<div class="city-row"><b>'+u.disp.split(' (')[0]+'</b><span>'+l+'</span></div>';});
-          H+='<p class="ig-cityhint">Upiši svoj grad na početku testa da vidiš baš svoje fakultete.</p></div>';
+          H+='<div class="opt-card"><div class="oc-career" style="margin-bottom:6px">'+L.city.biggest+'</div>';
+          ['beograd','novi sad','nis'].forEach(function(c){var uu=UNI[c];var l=(uu[top]||[]).slice(0,2).join(' · ');H+='<div class="city-row"><b>'+uu.disp.split(' (')[0]+'</b><span>'+l+'</span></div>';});
+          H+='<p class="ig-cityhint">'+L.city.hintFak+'</p></div>';
         }
       }
       host.innerHTML=H;
     })();
     show('report');
   }
-  qs('restartBtn').addEventListener('click',function(){show('chooser');document.querySelectorAll('.lvl').forEach(function(x){x.classList.remove('on');});});
+  var restartBtn=qs('restartBtn'); if(restartBtn) restartBtn.addEventListener('click',function(){reported=false;show('chooser');document.querySelectorAll('.lvl').forEach(function(x){x.classList.remove('on');});});
 
-  var HEROT={srednja:'Koju srednju školu upisati?',visa:'Koja viša škola je za tebe?',fakultet:'Koji fakultet i smer su za tebe?'};
-  if(nivo && HEROT[nivo]){qs('heroH1').textContent=HEROT[nivo];start();}
+  function setText(id,val){var el=qs(id);if(el&&val!=null)el.textContent=val;}
+  function applyLang(lg){
+    lang=lg; L=I18N[lg]||I18N.sr;
+    try{document.documentElement.lang=lg;}catch(e){}
+    setText('heroEyebrow',L.he[0]); setText('heroH1',L.he[1]); setText('heroP',L.he[2]);
+    setText('chEyebrow',L.ch[0]); setText('chTitle',L.ch[1]); setText('chSub',L.ch[2]); setText('chGradLabel',L.ch[3]); setText('startBtn',L.ch[4]); setText('chAlready',L.ch[5]);
+    var gi=qs('grad'); if(gi) gi.setAttribute('placeholder',L.gradPh||'');
+    document.querySelectorAll('.lvl').forEach(function(b){var lv=b.dataset.lvl;var arr=L.lv[lv];if(!arr)return;var bEl=b.querySelector('b');var sEl=b.querySelector('.lv-s');if(bEl)bEl.textContent=arr[0];if(sEl)sEl.textContent=arr[1];});
+    var bb=qs('backBtn'); if(bb) bb.textContent=L.back;
+    setText('repEyebrow',L.rp.eyebrow); setText('repTraitsTitle',L.rp.traitsTitle); setText('repTraitsSub',L.rp.traitsSub); setText('repBarsTitle',L.rp.barsTitle); setText('repRecTitle',L.rp.recTitle); setText('repRecSub',L.rp.recSub); setText('repMathiaTitle',L.rp.mathiaTitle); setText('repMathiaP',L.rp.mathiaP); setText('repCtaMain',L.rp.ctaMain); setText('repCtaSubjects',L.rp.ctaSubjects); setText('repCtaPrijemni',L.rp.ctaPrijemni); setText('repBackHome',L.rp.backHome); setText('restartBtn',L.rp.restart);
+    var testEl=qs('test'), repEl=qs('report');
+    if(testEl && !testEl.classList.contains('hidden')) render();
+    else if(repEl && !repEl.classList.contains('hidden') && reported && answers.length) finish();
+  }
+
+  var sel=qs('tsLangSel');
+  if(sel){ sel.value=lang; sel.addEventListener('change',function(){var v=sel.value;try{localStorage.setItem('mathia_lang',v);}catch(e){}window.dispatchEvent(new CustomEvent('mathia:lang',{detail:v}));}); }
+  window.addEventListener('mathia:lang',function(e){var v=(e&&e.detail)?e.detail:readLang();v=(''+v).toLowerCase();if(LANGS.indexOf(v)<0)v='sr';if(sel)sel.value=v;applyLang(v);});
+
+  applyLang(lang);
+
+  if(autoStart){ var HT=L.heroT; if(HT&&HT[nivo])setText('heroH1',HT[nivo]); start(); }
 })();
 </script>
 
