@@ -25,7 +25,7 @@
     "@keyframes mdSpark{0%{opacity:0;transform:translate(0,0) scale(.4)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.1)}}" +
     /* konfete */
     "#md-conf{position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden}" +
-    "#md-conf i{position:absolute;width:9px;height:13px;border-radius:2px;animation:mdCf linear forwards}" +
+    "#md-conf i{position:absolute;width:6px;height:9px;border-radius:2px;opacity:.9;animation:mdCf linear forwards}" +
     "@keyframes mdCf{to{transform:translateY(var(--fall)) rotate(560deg);opacity:0}}" +
     /* maskota */
     "#md-mascot{position:fixed;left:16px;bottom:16px;z-index:9997;display:flex;align-items:flex-end;gap:8px;cursor:pointer;user-select:none;font-family:'Nunito',system-ui,sans-serif}" +
@@ -91,7 +91,7 @@
     document.addEventListener('click', function (e) {
       var t = e.target && e.target.closest && e.target.closest('a.cta,button.cta,.acc,.mh-acc,.pick,.cta2,[data-pop]');
       if (!t) return;
-      burst(e.clientX, e.clientY, 16);
+      burst(e.clientX, e.clientY, 6);
     }, true);
     // sjaj na hover
     if (!RM) document.addEventListener('mouseover', function (e) {

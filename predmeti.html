@@ -404,6 +404,17 @@ footer .mflt-tag{color:#B01E48!important}
 #predmeti .pw-cnt{background:linear-gradient(135deg,#F0DCA8,#C6A05C)!important;color:#4a3410!important;font-size:.72rem!important;padding:4px 11px!important;top:20px!important;right:20px!important}
 #predmeti .pw-go{color:#B01E48!important;font-weight:800!important}
 </style>
+<style id="pm-router">
+.hero-grand .wrap{display:block!important;grid-template-columns:none!important;text-align:center!important;max-width:840px!important}
+.hero-grand .hero-orn,.hero-grand .row{justify-content:center!important}
+.hero-grand .lead{margin:0 auto!important;max-width:600px}
+.pm-search{margin:24px auto 0!important;max-width:620px}
+.pm-search input{padding:18px 22px 18px 54px!important;font-size:1.08rem!important}
+.pm-pop{margin:14px auto 0!important;justify-content:center!important}
+.hero-grand{padding-bottom:14px!important}
+#predmeti{padding-top:26px!important}
+#predmeti .pw-lead{display:none}
+</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
@@ -421,31 +432,18 @@ footer .mflt-tag{color:#B01E48!important}
 
 <section class="hero hero-grand">
   <div class="wrap">
-    <div class="pm-hero-l">
-      <div class="hero-orn" aria-hidden="true"><i></i><span>&#10022;</span><i></i></div>
-      <div class="eyebrow" data-i18n="h_eyb">Predmeti i putevi</div>
-      <h1 data-i18n="h_h1">Nađi svoj put</h1>
-      <p class="lead" data-i18n="h_lead">Ukucaj predmet ili izaberi kuda ideš — otvaramo ti tačno tvoje predmete, bez lutanja. Od 5. razreda do fakulteta, uz Profesoricu 0–24h.</p>
-      <form class="pm-search" onsubmit="return false" role="search">
-        <input id="pm-q" type="search" autocomplete="off" placeholder="Pretraži predmet…" aria-label="Pretraži predmet">
-        <div id="pm-res" class="pm-res" role="listbox"></div>
-      </form>
-      <div class="pm-pop"><span id="pm-pop-l">Najtraženije:</span><a href="predmet-algebra.html">Algebra</a><a href="predmet-fizika-mehanika.html">Mehanika</a><a href="trigonometrija.html">Trigonometrija</a><a href="programiranje-python.html">Python</a><a href="predmet-analiza1.html">Analiza 1</a><a href="mala-matura.html">Mala matura</a></div>
-      <div class="row" style="margin-top:22px">
-        <a class="btn btn-gold" href="test-sklonosti.html" data-i18n="h_btn1">Uradi test sklonosti →</a>
-        <a class="btn btn-ghost-l" href="#predmeti" data-i18n="h_btn2">Pogledaj sve predmete ↓</a>
-      </div>
-    </div>
-    <div class="pm-board" aria-hidden="true">
-      <span class="pm-chip">80+ predmeta</span>
-      <span class="pm-sym s1">&#8721;</span><span class="pm-sym s2">&#960;</span><span class="pm-sym s3">&#8730;</span>
-      <span class="pm-sym s4">&#8747;</span><span class="pm-sym s5">&#955;</span><span class="pm-sym s6">&#8801;</span>
-      <div class="pm-cloud">
-        <span class="pm-pill big">Matematika</span><span class="pm-pill">Fizika</span>
-        <span class="pm-pill">Programiranje</span><span class="pm-pill">Elektrotehnika</span>
-        <span class="pm-pill big">Algebra</span><span class="pm-pill">Mehanika</span>
-        <span class="pm-pill">Analiza</span><span class="pm-pill">Python</span>
-      </div>
+    <div class="hero-orn" aria-hidden="true"><i></i><span>&#10022;</span><i></i></div>
+    <div class="eyebrow" data-i18n="h_eyb">Svi predmeti · jedno mesto</div>
+    <h1 data-i18n="h_h1">Nađi svoj put</h1>
+    <p class="lead" data-i18n="h_lead">Ukucaj predmet — ili izaberi kuda ideš. Od 5. razreda do fakulteta i programiranja, uz Profesoricu 0–24h.</p>
+    <form class="pm-search" onsubmit="return false" role="search">
+      <input id="pm-q" type="search" autocomplete="off" placeholder="Pretraži predmet…" aria-label="Pretraži predmet">
+      <div id="pm-res" class="pm-res" role="listbox"></div>
+    </form>
+    <div class="pm-pop"><span id="pm-pop-l">Najtraženije:</span><a href="predmet-algebra.html">Algebra</a><a href="predmet-fizika-mehanika.html">Mehanika</a><a href="trigonometrija.html">Trigonometrija</a><a href="programiranje-python.html">Python</a><a href="predmet-analiza1.html">Analiza 1</a><a href="mala-matura.html">Mala matura</a></div>
+    <div class="row" style="margin-top:22px">
+      <a class="btn btn-ghost-l" href="#predmeti" data-i18n="h_btn2">Izaberi kuda ideš ↓</a>
+      <a class="btn btn-gold" href="test-sklonosti.html" data-i18n="h_btn1">Uradi test sklonosti →</a>
     </div>
   </div>
 </section>
