@@ -125,13 +125,15 @@
     document.body.appendChild(m);
     var faces = ['🦉', '🦊', '🐨', '🐼', '🦄', '🐧', '🌟'], fi = 0, ti = 0;
     var bub = m.querySelector('.bub'), face = m.querySelector('.face');
-    function speak() { var t = TIPS(); bub.textContent = t[ti % t.length]; ti++; m.classList.add('show'); setTimeout(function () { m.classList.remove('show'); }, 4200); }
-    setTimeout(speak, 1600); setInterval(speak, 12000);
-    window.addEventListener('mathia:lang', function(){ setTimeout(speak, 60); });
-    window.addEventListener('storage', function(e){ if(!e || e.key==='mathia_lang'){ setTimeout(speak, 60); } });
+    var lastMsg = -1, lastSpeakAt = 0;
+    function speak() { var now = Date.now(); if (now - lastSpeakAt < 5000) return; lastSpeakAt = now; var t = TIPS(); lastMsg = ti % t.length; bub.textContent = t[lastMsg]; ti++; m.classList.add('show'); setTimeout(function () { m.classList.remove('show'); }, 5200); }
+    setTimeout(speak, 2000); setInterval(speak, 15000);
+    function retrans(){ if (lastMsg < 0) return; var t = TIPS(); bub.textContent = t[lastMsg % t.length]; }
+    window.addEventListener('mathia:lang', retrans);
+    window.addEventListener('storage', function(e){ if(!e || e.key==='mathia_lang') retrans(); });
     m.addEventListener('click', function () {
       var r = face.getBoundingClientRect(); hearts(r.left + r.width / 2, r.top + r.height / 2);
-      fi++; face.textContent = faces[fi % faces.length]; speak();
+      fi++; face.textContent = faces[fi % faces.length]; lastSpeakAt = 0; speak();
     });
   }
 
