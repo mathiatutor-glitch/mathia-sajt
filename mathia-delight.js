@@ -16,13 +16,6 @@
     }
   } catch (e) {}
 
-  /* Beacon za admin tablu: broji posetu ove strane (KV brojač preko /api/hit). */
-  try {
-    var __pv = (location && location.pathname) || '/';
-    if (navigator.sendBeacon) { navigator.sendBeacon('/api/hit?p=' + encodeURIComponent(__pv)); }
-    else { fetch('/api/hit?p=' + encodeURIComponent(__pv), { method: 'POST', keepalive: true }).catch(function(){}); }
-  } catch (e) {}
-
   var CSS =
     ".md-hidden{opacity:0;transform:translateY(20px)}" +
     ".md-show{opacity:1!important;transform:none!important;transition:opacity .6s ease,transform .65s cubic-bezier(.2,.85,.2,1)}" +
@@ -114,14 +107,14 @@
 
   // — maskota —
   var TIPS_L = {
-    sr: ['Ti to možeš! 💛', 'Hajde da učimo! ✨', 'Svaki korak se broji 🌟', 'Diši — tu sam uz tebe 🌸', 'Bravo što si tu! 🎉', 'Pitaj me bilo šta 💬'],
-    en: ['You can do it! 💛', "Let's learn! ✨", 'Every step counts 🌟', "Breathe — I'm here with you 🌸", "Great that you're here! 🎉", 'Ask me anything 💬'],
-    de: ['Du schaffst das! 💛', 'Lass uns lernen! ✨', 'Jeder Schritt zählt 🌟', 'Atme — ich bin bei dir 🌸', 'Schön, dass du da bist! 🎉', 'Frag mich alles 💬'],
-    fr: ['Tu peux le faire ! 💛', 'Apprenons ! ✨', 'Chaque pas compte 🌟', 'Respire — je suis là 🌸', 'Ravie que tu sois là ! 🎉', "Demande-moi ce que tu veux 💬"],
-    es: ['¡Tú puedes! 💛', '¡Vamos a aprender! ✨', 'Cada paso cuenta 🌟', 'Respira — estoy contigo 🌸', '¡Qué bien que estés aquí! 🎉', 'Pregúntame lo que sea 💬'],
-    it: ['Ce la puoi fare! 💛', 'Impariamo! ✨', 'Ogni passo conta 🌟', 'Respira — sono qui con te 🌸', 'Che bello che ci sei! 🎉', 'Chiedimi qualsiasi cosa 💬'],
-    ru: ['У тебя получится! 💛', 'Давай учиться! ✨', 'Каждый шаг важен 🌟', 'Дыши — я рядом 🌸', 'Здорово, что ты здесь! 🎉', 'Спрашивай что угодно 💬'],
-    pt: ['Tu consegues! 💛', 'Vamos aprender! ✨', 'Cada passo conta 🌟', 'Respira — estou aqui contigo 🌸', 'Que bom que estás aqui! 🎉', 'Pergunta-me o que quiseres 💬']
+    sr: ['Ti to možeš! 💛', 'Hajde da učimo! ✨', 'Svaki korak se broji 🌟', 'Diši — tu sam uz tebe 🌸', 'Bravo što si tu! 🎉', 'Pitaj me bilo šta 💬', 'Ponosna sam na tebe 🌟', 'Napravi malu pauzu 🍵', 'Samo napred — ide ti! 🚀'],
+    en: ['You can do it! 💛', "Let's learn! ✨", 'Every step counts 🌟', "Breathe — I'm here with you 🌸", "Great that you're here! 🎉", 'Ask me anything 💬', "I'm proud of you 🌟", 'Take a little break 🍵', "Keep going — you've got this! 🚀"],
+    de: ['Du schaffst das! 💛', 'Lass uns lernen! ✨', 'Jeder Schritt zählt 🌟', 'Atme — ich bin bei dir 🌸', 'Schön, dass du da bist! 🎉', 'Frag mich alles 💬', 'Ich bin stolz auf dich 🌟', 'Mach eine kleine Pause 🍵', 'Weiter so — du schaffst das! 🚀'],
+    fr: ['Tu peux le faire ! 💛', 'Apprenons ! ✨', 'Chaque pas compte 🌟', 'Respire — je suis là 🌸', 'Ravie que tu sois là ! 🎉', "Demande-moi ce que tu veux 💬", 'Je suis fière de toi 🌟', 'Fais une petite pause 🍵', 'Continue — tu vas y arriver ! 🚀'],
+    es: ['¡Tú puedes! 💛', '¡Vamos a aprender! ✨', 'Cada paso cuenta 🌟', 'Respira — estoy contigo 🌸', '¡Qué bien que estés aquí! 🎉', 'Pregúntame lo que sea 💬', 'Estoy orgullosa de ti 🌟', 'Haz una pequeña pausa 🍵', '¡Sigue así, tú puedes! 🚀'],
+    it: ['Ce la puoi fare! 💛', 'Impariamo! ✨', 'Ogni passo conta 🌟', 'Respira — sono qui con te 🌸', 'Che bello che ci sei! 🎉', 'Chiedimi qualsiasi cosa 💬', 'Sono fiera di te 🌟', 'Fai una piccola pausa 🍵', 'Vai avanti — ce la fai! 🚀'],
+    ru: ['У тебя получится! 💛', 'Давай учиться! ✨', 'Каждый шаг важен 🌟', 'Дыши — я рядом 🌸', 'Здорово, что ты здесь! 🎉', 'Спрашивай что угодно 💬', 'Я горжусь тобой 🌟', 'Сделай небольшой перерыв 🍵', 'Продолжай — у тебя получается! 🚀'],
+    pt: ['Tu consegues! 💛', 'Vamos aprender! ✨', 'Cada passo conta 🌟', 'Respira — estou aqui contigo 🌸', 'Que bom que estás aqui! 🎉', 'Pergunta-me o que quiseres 💬', 'Estou orgulhosa de ti 🌟', 'Faz uma pequena pausa 🍵', 'Continua — tu consegues! 🚀']
   };
   function mdLang(){ try{ var s=localStorage.getItem('mathia_lang'); if(s) return s.slice(0,2).toLowerCase(); }catch(e){} return (document.documentElement.lang||'sr').slice(0,2).toLowerCase(); }
   function TIPS(){ return TIPS_L[mdLang()] || TIPS_L.sr; }
@@ -134,6 +127,8 @@
     var bub = m.querySelector('.bub'), face = m.querySelector('.face');
     function speak() { var t = TIPS(); bub.textContent = t[ti % t.length]; ti++; m.classList.add('show'); setTimeout(function () { m.classList.remove('show'); }, 4200); }
     setTimeout(speak, 1600); setInterval(speak, 12000);
+    window.addEventListener('mathia:lang', function(){ setTimeout(speak, 60); });
+    window.addEventListener('storage', function(e){ if(!e || e.key==='mathia_lang'){ setTimeout(speak, 60); } });
     m.addEventListener('click', function () {
       var r = face.getBoundingClientRect(); hearts(r.left + r.width / 2, r.top + r.height / 2);
       fi++; face.textContent = faces[fi % faces.length]; speak();
