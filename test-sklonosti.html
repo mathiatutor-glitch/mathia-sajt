@@ -282,6 +282,7 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
 .ig-cityhint{margin:12px 0 0;font-size:.85rem;color:#9C7838;font-style:italic}
 .city-list+.oc-why{margin-top:12px}
 </style>
+<style id="ts-selfcontained">.card,#test,#report,#chooser{opacity:1!important}.md-hidden{opacity:1!important;transform:none!important}</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
@@ -567,8 +568,8 @@ body{background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),ra
   if(nivo && HEROT[nivo]){qs('heroH1').textContent=HEROT[nivo];start();}
 })();
 </script>
-<script src="i18n-mathia.js" defer></script>
-<script src="mathia-header.js" defer></script>
+
+
 <!-- px-test-fix uklonjen: nivo je predizabran, dugme Start radi, grad se ne preskače -->
 <script>
 (function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var b=document.getElementById('mathfall');if(!b)return;
@@ -605,7 +606,7 @@ s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFi
   });
 })();
 </script>
-<script src="mathia-delight.js" defer></script>
+
 <style id="sweetfx-css">
 #sweetfall{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 #sweetfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.18);animation:sff linear infinite;will-change:transform}
