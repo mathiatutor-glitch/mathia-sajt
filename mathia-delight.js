@@ -25,7 +25,7 @@
     "@keyframes mdSpark{0%{opacity:0;transform:translate(0,0) scale(.4)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.1)}}" +
     /* konfete */
     "#md-conf{position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden}" +
-    "#md-conf i{position:absolute;width:6px;height:9px;border-radius:2px;opacity:.9;animation:mdCf linear forwards}" +
+    "#md-conf i{position:absolute;width:9px;height:13px;border-radius:2px;animation:mdCf linear forwards}" +
     "@keyframes mdCf{to{transform:translateY(var(--fall)) rotate(560deg);opacity:0}}" +
     /* maskota */
     "#md-mascot{position:fixed;left:16px;bottom:16px;z-index:9997;display:flex;align-items:flex-end;gap:8px;cursor:pointer;user-select:none;font-family:'Nunito',system-ui,sans-serif}" +
@@ -91,7 +91,7 @@
     document.addEventListener('click', function (e) {
       var t = e.target && e.target.closest && e.target.closest('a.cta,button.cta,.acc,.mh-acc,.pick,.cta2,[data-pop]');
       if (!t) return;
-      burst(e.clientX, e.clientY, 6);
+      burst(e.clientX, e.clientY, 16);
     }, true);
     // sjaj na hover
     if (!RM) document.addEventListener('mouseover', function (e) {
@@ -125,15 +125,13 @@
     document.body.appendChild(m);
     var faces = ['🦉', '🦊', '🐨', '🐼', '🦄', '🐧', '🌟'], fi = 0, ti = 0;
     var bub = m.querySelector('.bub'), face = m.querySelector('.face');
-    var lastMsg = -1, lastSpeakAt = 0;
-    function speak() { var now = Date.now(); if (now - lastSpeakAt < 5000) return; lastSpeakAt = now; var t = TIPS(); lastMsg = ti % t.length; bub.textContent = t[lastMsg]; ti++; m.classList.add('show'); setTimeout(function () { m.classList.remove('show'); }, 5200); }
-    setTimeout(speak, 2000); setInterval(speak, 15000);
-    function retrans(){ if (lastMsg < 0) return; var t = TIPS(); bub.textContent = t[lastMsg % t.length]; }
-    window.addEventListener('mathia:lang', retrans);
-    window.addEventListener('storage', function(e){ if(!e || e.key==='mathia_lang') retrans(); });
+    function speak() { var t = TIPS(); bub.textContent = t[ti % t.length]; ti++; m.classList.add('show'); setTimeout(function () { m.classList.remove('show'); }, 4200); }
+    setTimeout(speak, 1600); setInterval(speak, 12000);
+    window.addEventListener('mathia:lang', function(){ setTimeout(speak, 60); });
+    window.addEventListener('storage', function(e){ if(!e || e.key==='mathia_lang'){ setTimeout(speak, 60); } });
     m.addEventListener('click', function () {
       var r = face.getBoundingClientRect(); hearts(r.left + r.width / 2, r.top + r.height / 2);
-      fi++; face.textContent = faces[fi % faces.length]; lastSpeakAt = 0; speak();
+      fi++; face.textContent = faces[fi % faces.length]; speak();
     });
   }
 
