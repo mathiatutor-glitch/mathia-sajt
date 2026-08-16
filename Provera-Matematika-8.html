@@ -51,6 +51,86 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#43303A;min-height
 @keyframes cf{to{transform:translateY(110vh) rotate(560deg);opacity:.9}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<style id="prov-lux">
+.card{background:linear-gradient(180deg,#FFFDF9,#FBEFDA)!important;border:1.5px solid rgba(198,160,92,.4)!important;border-radius:26px!important;box-shadow:0 40px 90px -50px rgba(90,16,36,.5)!important}
+.mascot{width:78px!important;height:78px!important;background:radial-gradient(circle at 40% 30%,#FFF6D6,#EAD3A0)!important;border:2px solid #C6A05C!important;box-shadow:0 16px 30px -14px rgba(198,160,92,.85)!important;font-size:2rem!important}
+.bar{height:14px!important;background:#F1E7D4!important;border:1px solid rgba(198,160,92,.35)}
+.bar>*{background:linear-gradient(90deg,#E7D2A2,#C6A05C)!important;transition:width .45s ease!important}
+.opt{background:linear-gradient(180deg,#fff,#FBF3E4)!important;border:1.5px solid rgba(198,160,92,.42)!important;border-radius:16px!important;padding:14px 15px!important;grid-template-columns:auto 1fr!important;align-items:center;gap:12px;text-align:left;font-weight:700;color:#5A1024;transition:transform .14s,border-color .14s,box-shadow .14s;box-shadow:0 6px 16px -12px rgba(156,120,56,.5)}
+.opt:hover{border-color:#C6A05C!important;transform:translateY(-2px);box-shadow:0 16px 28px -14px rgba(198,160,92,.75)}
+.opt:active{transform:scale(.99)}
+.opt .mk{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 30%,#FFF6D6,#E7D2A2);border:1px solid #C6A05C;font-weight:900;color:#5A1024;flex:none}
+.opt.correct{border-color:#3F9A6A!important;background:linear-gradient(180deg,#F3FBF5,#E7F6EC)!important}
+.opt.wrong{border-color:#CC5E7E!important;background:linear-gradient(180deg,#FFF5F8,#FBEAF0)!important}
+.fb{font-size:1.08rem!important}
+.heart{font-size:1.05rem!important}
+@keyframes pop{0%{opacity:0;transform:translateY(10px) scale(.98)}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){.mascot{animation:mbob 3s ease-in-out infinite}@keyframes mbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
+</style>
+<style id="mathia-polish">
+/* MATHIA quiz polish — nicer fonts, larger owl-side text, vertical centering, top-row spacing.
+   Palette-safe only: cream #FBF6EE, card #FFFDF9, plum #5A1024, ink #43303A, gold #C6A05C/#9C7838, malina #B01E48. No purple/lavender. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--mp-plum:#5A1024;--mp-ink:#43303A;--mp-gold:#C6A05C;--mp-golddk:#9C7838;--mp-malina:#B01E48;--mp-muted:#8A7A80}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--mp-ink)}
+h1,h2,h3{font-family:'Spectral',Georgia,'Times New Roman',serif}
+
+/* 3 + 4) Vertically center the whole quiz group and lower it — responsive, no clipping (min-height, not fixed height) */
+main.wrap{min-height:100dvh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:26px}
+.hero{margin-top:0!important}
+#quiz,#report{margin-bottom:0!important}
+
+/* 4) Top row (hearts + streak + language) — breathing room, less cramped, lowered */
+.top{padding:18px 2px 22px!important;gap:14px!important}
+.top .back{font-size:1.25rem!important}
+.top .lang{font-size:.8rem!important;padding:7px 13px!important;letter-spacing:.03em}
+.hearts{font-size:1.12rem!important}
+.streak{font-size:1.02rem!important}
+
+/* 2) Text around the owl — enlarge eyebrow, question number and topic tag for readability */
+.eyebrow{font-size:.84rem!important;letter-spacing:.16em!important;color:var(--mp-malina)}
+.qnum{font-size:1rem!important;font-weight:800!important;color:var(--mp-muted)}
+.qtag{font-size:.84rem!important;letter-spacing:.1em!important;color:var(--mp-golddk)}
+
+/* 1) Fonts — elegant serif for the question, clean Inter for options/body/UI */
+.q{font-family:'Spectral',Georgia,serif!important;font-weight:700;color:var(--mp-plum)}
+.opt{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif!important;font-weight:600;color:var(--mp-plum)}
+.opt .mk{font-family:'Inter',system-ui,sans-serif!important}
+.eyebrow,.qnum,.qtag,.fb,.cta,.reveal,.top,.streak{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif!important}
+
+/* cuter, cleaner touch */
+.card{border-radius:28px!important}
+.mascot{margin:8px auto 10px!important}
+
+/* short screens: keep comfortable, never clip */
+@media(max-height:680px){main.wrap{justify-content:flex-start;padding-top:14px;padding-bottom:28px}}
+</style>
+<!-- MATHIA-KATEX -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<style id="mathia-kviz-fix">
+/* Palette: cream #FBF6EE, plum #5A1024, gold #C6A05C/#9C7838, malina #B01E48 */
+/* 3) HEADER STACKING: eyebrow -> subject -> question number, nicely spaced */
+.eyebrow{text-align:center!important;font-family:'Inter',system-ui,sans-serif!important;font-weight:900!important;letter-spacing:.2em!important;text-transform:uppercase;font-size:.72rem!important;color:#B01E48!important;margin:0 0 3px!important}
+.subject{display:block;text-align:center;font-family:'Spectral',Georgia,'Times New Roman',serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5A1024;font-size:1.16rem;line-height:1.12;margin:2px 0 4px}
+.qnum{display:block!important;text-align:center;font-family:'Inter',system-ui,sans-serif!important;color:#8A7A80!important;font-weight:800!important;font-size:.9rem!important;margin:2px 0 4px!important}
+/* 1) CRITICAL next button: vertical-centering used to push it off-screen. Anchor content to top so it is always visible & scrollable. */
+main.wrap{justify-content:flex-start!important;padding-top:22px}
+#next{margin-top:16px}
+#next:not(.hidden){display:block!important}
+/* 4) SOLUTION: clean, centered, one step per line, highlighted result */
+.sol-in{text-align:center!important}
+.sol-h{text-align:center!important}
+.step{display:block!important;text-align:center!important;margin:10px 0!important;line-height:1.55!important}
+.note{text-align:center!important;margin:10px auto!important;max-width:34em}
+.res{display:inline-block!important;margin:12px auto 2px!important;padding:9px 20px!important;font-weight:800!important;color:#B01E48!important;background:#fff!important;border:1.6px solid rgba(176,30,72,.42)!important;border-radius:12px!important;box-shadow:0 10px 22px -14px rgba(176,30,72,.6)!important}
+/* 2) KaTeX: proper radicals, italic i, consistent phi, real matrices */
+.katex{font-size:1.05em;color:inherit;line-height:1.2}
+.q .katex{font-size:1.12em}
+.opt .katex,.step .katex,.res .katex,.note .katex{font-size:1.02em}
+.katex-display{margin:.3em 0}
+</style>
 </head>
 <body>
 <div id="fall" aria-hidden="true"></div>
@@ -65,6 +145,7 @@ body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:#43303A;min-height
   </div>
   <section class="card" id="quiz">
     <div class="eyebrow" id="eyebrow"></div>
+    <div class="subject" id="subject"></div>
     <span class="qnum" id="qnum"></span>
     <div class="mascot" id="mascot">🦉</div>
     <h2 class="q" id="q"></h2>
@@ -90,7 +171,7 @@ function lng(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2
 var i=0,score=0,hearts=3,streak=0,answered=false;
 function T(o){var l=lng();return (o&&o[l])||o.sr||''}
 function chrome(){
- $('eyebrow').textContent=T(D.eyebrow);
+ (function(){var _eb=T(D.eyebrow),_p=_eb.split('\u00B7');$('eyebrow').textContent=(_p[0]||_eb).trim();var _s=$('subject');if(_s)_s.textContent=(_p.slice(1).join('\u00B7')||'').trim();})();
  $('again').textContent=T(D.C.again);
  $('toClone').textContent=T(D.C.toclone);
  $('rbadge').textContent=T(D.badge);
@@ -121,7 +202,7 @@ function pick(pos,btn){
  }else{btn.classList.add('wrong');streak=0;$('streak').textContent='🔥 0';hearts--;
    $('hearts').textContent='❤️'.repeat(Math.max(0,hearts))+'🤍'.repeat(3-Math.max(0,hearts));
    $('mascot').textContent='🫣';$('fb').textContent=T(D.C.fbno);$('fb').className='fb no';}
- $('next').classList.remove('hidden');
+ $('next').classList.remove('hidden');try{$('next').scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}
  $('next').textContent=(i===D.questions.length-1)?T(D.C.nextlast):T(D.C.next);
 }
 $('next').onclick=function(){i++;if(i>=D.questions.length||hearts<=0){finish();return;}render();};
@@ -142,6 +223,27 @@ function bigConf(){spawnConf(90);var h=['💛','🌸','✨','🎉'];for(var k=0;
 (function(){var box=$('fall'),g=['π','√','∑','+','÷','½','💛','🌸','✦','⭐'];for(var k=0;k<22;k++){var s=document.createElement('span');s.textContent=g[k%g.length];if(k%3===0)s.className='m';s.style.left=Math.random()*100+'%';s.style.fontSize=(13+Math.random()*22)+'px';s.style.animationDuration=(7+Math.random()*8)+'s';s.style.animationDelay=(-Math.random()*10)+'s';box.appendChild(s);}})();
 $('lang').addEventListener('change',function(){try{localStorage.setItem('mathia_lang',this.value);}catch(e){}try{document.documentElement.lang=this.value;}catch(e){}try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:this.value}));}catch(e){}render();});
 window.addEventListener('mathia:lang',function(){if(!$('report').classList.contains('hidden'))finish();else render();});
+function mathTT(x){return x
+ .replace(/<sup>([^<]*)<\/sup>/g,'^{$1}')
+ .replace(/<sub>([^<]*)<\/sub>/g,'_{$1}')
+ .replace(/¹/g,'^{1}').replace(/²/g,'^{2}').replace(/³/g,'^{3}')
+ .replace(/⁰/g,'^{0}').replace(/⁴/g,'^{4}').replace(/⁵/g,'^{5}').replace(/⁶/g,'^{6}').replace(/⁷/g,'^{7}').replace(/⁸/g,'^{8}').replace(/⁹/g,'^{9}').replace(/ⁿ/g,'^{n}')
+ .replace(/₁/g,'_{1}').replace(/₂/g,'_{2}').replace(/₃/g,'_{3}').replace(/ₙ/g,'_{n}').replace(/ᵢ/g,'_{i}')
+ .replace(/−/g,'-').replace(/·/g,' \\cdot ').replace(/×/g,' \\times ').replace(/′/g,"'")
+ .replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();}
+function mathBmat(inner){var rows=inner.split(';').map(function(r){return r.trim().split(/[\s,]+/).filter(Boolean).map(function(c){return mathTT(c);}).join(' & ');});return '\\begin{bmatrix}'+rows.join(' \\\\ ')+'\\end{bmatrix}';}
+function mathLegacy(h){
+ h=h.replace(/ϕ/g,'φ');
+ h=h.replace(/√\s*<span class="rt">([\s\S]*?)<\/span>/g,function(_,g){return '\\(\\sqrt{'+mathTT(g)+'}\\)';});
+ h=h.replace(/<span class="frac"><span class="num">([\s\S]*?)<\/span><span class="den">([\s\S]*?)<\/span><\/span>/g,function(_,a,b){return '\\(\\dfrac{'+mathTT(a)+'}{'+mathTT(b)+'}\\)';});
+ h=h.replace(/\[(\[[^\[\]]*\](?:\s*,\s*\[[^\[\]]*\])*)\]/g,function(_,g){var rows=(g.match(/\[[^\[\]]*\]/g)||[]).map(function(r){return r.replace(/^\[|\]$/g,'');});return '\\('+mathBmat(rows.join(';'))+'\\)';});
+ h=h.replace(/\[([^\[\]]*;[^\[\]]*)\]/g,function(_,g){return '\\('+mathBmat(g)+'\\)';});
+ return h;}
+function mathpass(){
+ if(!(window.katex&&window.renderMathInElement))return;
+ ['q','tag','opts','solbody','qhint'].forEach(function(id){var el=document.getElementById(id);if(!el)return;var h=el.innerHTML,n=mathLegacy(h);if(n!==h)el.innerHTML=n;try{window.renderMathInElement(el,{delimiters:[{left:'\\(',right:'\\)',display:false}],throwOnError:false});}catch(e){}});
+}
+(function(){var _r=render;render=function(){var v=_r.apply(this,arguments);try{mathpass();}catch(e){}return v;};})();
 render();
 </script>
 <style id="kul-safe">body{padding-bottom:calc(24px + env(safe-area-inset-bottom))}@media(max-width:560px){.wrap{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}}</style>
