@@ -157,6 +157,22 @@ button.b:active{transform:scale(.95)}
     var l2=P(d,R-30); var rad=el('text',{x:l2.x,y:l2.y+4,"text-anchor":"middle","font-size":13,fill:'#E7D2A2',"font-family":"Inter,system-ui",opacity:.92});rad.textContent=RADLBL[d];svg.appendChild(rad);
   });
 
+  // stalne vrednosti na osama (za lakše pamćenje): 0, ±1/2, ±√2/2, ±√3/2, ±1
+  var AXV=[{v:0.5,l:'1/2'},{v:Math.SQRT2/2,l:'√2/2'},{v:Math.sqrt(3)/2,l:'√3/2'}];
+  function axText(x,y,s,anchor,fill){var e=el('text',{x:x,y:y,"text-anchor":anchor||'middle',"font-size":12,fill:fill||'#EBD9B4',"font-family":"Inter,system-ui",opacity:.9});e.textContent=s;svg.appendChild(e);}
+  function tick(x1,y1,x2,y2){svg.appendChild(el('line',{x1:x1,y1:y1,x2:x2,y2:y2,stroke:'#C9A96A',"stroke-width":1.4,opacity:.5}));}
+  AXV.forEach(function(o){var d=o.v*R;
+    tick(C+d,C-5,C+d,C+5); axText(C+d,C+19,o.l,'middle','#F2D06A');
+    tick(C-d,C-5,C-d,C+5); axText(C-d,C+19,'−'+o.l,'middle','#F2D06A');
+    tick(C-5,C-d,C+5,C-d); axText(C-15,C-d+4,o.l,'end','#6FD69A');
+    tick(C-5,C+d,C+5,C+d); axText(C-15,C+d+4,'−'+o.l,'end','#6FD69A');
+  });
+  axText(C-13,C+18,'0','end','#EBD9B4');
+  axText(C+R-2,C+19,'1','middle','#F2D06A'); axText(C-R+2,C+19,'−1','middle','#F2D06A');
+  axText(C-15,C-R+16,'1','end','#6FD69A'); axText(C-15,C+R-6,'−1','end','#6FD69A');
+  var cosL=el('text',{x:C+R-8,y:C-12,"text-anchor":'end',"font-size":19,fill:'#F2D06A',"font-style":'italic',"font-family":"'Spectral',Georgia,serif"});cosL.textContent='cos';svg.appendChild(cosL);
+  var sinL=el('text',{x:C+14,y:C-R+40,"text-anchor":'start',"font-size":19,fill:'#6FD69A',"font-style":'italic',"font-family":"'Spectral',Georgia,serif"});sinL.textContent='sin';svg.appendChild(sinL);
+
   var sector=el('path',{fill:'rgba(204,94,126,.28)',stroke:'none'}); svg.appendChild(sector);
   var cosSeg=el('line',{stroke:'#F2D06A',"stroke-width":6,"stroke-linecap":"round"}); svg.appendChild(cosSeg);
   var sinSeg=el('line',{stroke:'#6FD69A',"stroke-width":4,"stroke-dasharray":"7 8","stroke-linecap":"round"}); svg.appendChild(sinSeg);
@@ -187,7 +203,8 @@ button.b:active{transform:scale(.95)}
     document.querySelectorAll('.chip').forEach(function(ch){ch.classList.toggle('on', +ch.dataset.deg===((deg%360)+360)%360);});
     document.getElementById('slider').value=((deg%360)+360)%360;
   }
-  function land(deg){ curDeg=deg; dispDeg=((deg%360)+360)%360; targetDeg=deg; drawVec(deg); readout(dispDeg); }
+  function land(deg){ curDeg=deg; dispDeg=((deg%360)+360)%360; targetDeg=deg; drawVec(deg); readout(dispDeg);
+    handle.setAttribute('r',14); halo.setAttribute('r',21); setTimeout(function(){handle.setAttribute('r',11);halo.setAttribute('r',17);},150); }
 
   // animation: glide to next special angle, pause, repeat
   var lastTs=0;
