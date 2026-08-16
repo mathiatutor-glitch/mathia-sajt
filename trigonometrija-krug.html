@@ -7,46 +7,49 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--cream:#FBF6EE;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--muted:#8A7A80;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--malina:#B01E48;--malina2:#CC5E7E;--serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
---board1:#4A0E1E;--board2:#5A1024}
+:root{--cream:#FBF6EE;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--muted:#8A7A80;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--malina:#B01E48;--malina2:#CC5E7E;--mint:#3F9A6A;--serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--board1:#5C1329;--board2:#43101F}
 *{box-sizing:border-box}
-body{margin:0;font-family:var(--sans);color:var(--ink);background:radial-gradient(700px 420px at 88% -8%,#FBEAEF 0,transparent 55%),radial-gradient(620px 400px at -6% 108%,#F7ECD6 0,transparent 58%),var(--cream);line-height:1.55}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:radial-gradient(760px 440px at 88% -8%,#FBEAEF 0,transparent 55%),radial-gradient(640px 420px at -6% 108%,#F7ECD6 0,transparent 58%),var(--cream);line-height:1.55}
 .wrap{max-width:1080px;margin:0 auto;padding:22px 20px 60px}
-.head{text-align:center;margin:6px 0 14px}
-.eyebrow{font-weight:800;letter-spacing:.24em;text-transform:uppercase;font-size:.72rem;color:var(--golddk)}
+.head{text-align:center;margin:6px 0 16px}
+.eyebrow{font-weight:800;letter-spacing:.26em;text-transform:uppercase;font-size:.72rem;color:var(--golddk)}
 h1{font-family:var(--serif);color:var(--plum);font-size:clamp(1.7rem,4.4vw,2.5rem);margin:.15em 0 .1em}
 .sub{color:var(--plum2);max-width:640px;margin:0 auto;font-size:1.02rem}
-.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start;margin-top:16px}
-@media(max-width:860px){.grid{grid-template-columns:1fr}}
-.board{background:linear-gradient(160deg,var(--board1),var(--board2));border:2px solid var(--gold);border-radius:22px;padding:12px;box-shadow:0 30px 60px -34px rgba(90,16,36,.6);position:relative;overflow:hidden}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:24px;align-items:start;margin-top:16px}
+@media(max-width:880px){.grid{grid-template-columns:1fr}}
+.board{background:radial-gradient(120% 120% at 30% 10%,#6A1730,#43101F 70%);border:2px solid var(--gold);border-radius:28px;padding:14px;box-shadow:0 34px 66px -34px rgba(90,16,36,.6),inset 0 2px 0 rgba(255,255,255,.06);position:relative;overflow:hidden}
+.board::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 78% -12%,rgba(231,210,162,.14),transparent 60%);pointer-events:none}
 .board svg{display:block;width:100%;height:auto;touch-action:none;cursor:grab}
 .board svg.drag{cursor:grabbing}
-.side{display:flex;flex-direction:column;gap:14px}
-.panel{background:var(--card);border:1px solid var(--goldlt);border-radius:18px;padding:16px 16px 18px;box-shadow:0 20px 44px -34px rgba(90,16,36,.4)}
-.panel h3{font-family:var(--serif);color:var(--plum);margin:0 0 8px;font-size:1.05rem}
-.read{display:flex;flex-direction:column;gap:10px}
-.rrow{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#FCF6EA;border:1px solid var(--goldlt);border-radius:12px;padding:9px 13px}
-.rrow .lbl{font-weight:800;color:var(--golddk);font-size:.86rem;letter-spacing:.02em}
-.rrow .val{font-size:1.12rem;color:var(--plum)}
+.side{display:flex;flex-direction:column;gap:16px}
+.panel{background:var(--card);border:1px solid var(--goldlt);border-radius:22px;padding:18px 18px 20px;box-shadow:0 22px 46px -34px rgba(90,16,36,.42)}
+.panel h3{font-family:var(--serif);color:var(--plum);margin:0 0 12px;font-size:1.08rem;display:flex;align-items:center;gap:8px}
+.panel h3::before{content:"";width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--goldlt),var(--malina))}
+.read{display:flex;flex-direction:column;gap:14px}
+.rrow{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg,#FFFDF8,#FCF4E6);border:1px solid #EEDDBD;border-radius:16px;padding:13px 16px;box-shadow:0 8px 18px -14px rgba(90,16,36,.35)}
+.rrow .lbl{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--golddk);font-size:.9rem;letter-spacing:.02em}
+.rrow .lbl i{width:9px;height:9px;border-radius:50%;flex:none;display:inline-block}
+.rrow .val{font-size:1.2rem;color:var(--plum)}
+.rrow.thetaline{background:linear-gradient(180deg,#FFF0F4,#FBE3EA);border-color:#F0C9D6}
 .rrow.thetaline .val{color:var(--malina);font-weight:800}
-.controls .crow{display:flex;align-items:center;gap:10px;margin:10px 0}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:100px;background:linear-gradient(90deg,var(--goldlt),var(--gold));outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#FFF3F7,var(--malina2));border:2px solid #fff;box-shadow:0 4px 12px -3px rgba(176,30,72,.6);cursor:pointer}
-input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--malina2);border:2px solid #fff;cursor:pointer}
+.dot-t{background:var(--malina)} .dot-r{background:var(--gold)} .dot-s{background:var(--mint)} .dot-c{background:#E0A83C} .dot-tan{background:var(--malina2)}
+.controls .crow{display:flex;align-items:center;gap:10px;margin:12px 0}
+.controls .crow.lbl{font-size:.82rem;color:var(--muted);margin:14px 0 2px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:9px;border-radius:100px;background:linear-gradient(90deg,var(--goldlt),var(--gold));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:23px;height:23px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#FFF3F7,var(--malina2));border:3px solid #fff;box-shadow:0 5px 14px -3px rgba(176,30,72,.6);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:23px;height:23px;border-radius:50%;background:var(--malina2);border:3px solid #fff;cursor:pointer}
 .btns{display:flex;flex-wrap:wrap;gap:8px}
-button.b{font-family:inherit;font-weight:800;border:none;border-radius:100px;padding:10px 16px;cursor:pointer;font-size:.9rem;transition:transform .12s}
-button.b:active{transform:scale(.96)}
+button.b{font-family:inherit;font-weight:800;border:none;border-radius:100px;padding:11px 18px;cursor:pointer;font-size:.92rem;transition:transform .12s}
+button.b:active{transform:scale(.95)}
 .b-gold{background:linear-gradient(135deg,#EAD196,var(--gold));color:#3a2410;box-shadow:0 12px 24px -12px rgba(160,120,40,.6)}
 .b-ghost{background:#FFFDF9;border:1.5px solid var(--goldlt);color:var(--plum)}
 .b-malina{background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;box-shadow:0 12px 24px -12px rgba(176,30,72,.55)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.chip{background:#FFFDF9;border:1px solid var(--goldlt);border-radius:100px;padding:5px 11px;font-weight:800;font-size:.8rem;color:var(--plum);cursor:pointer}
-.chip:hover{border-color:var(--gold)}
-.togg{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--ink);font-weight:600}
-.speed{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted)}
-.note{color:var(--muted);font-size:.82rem;margin-top:8px}
-.katex{font-size:1.05em}
-.rrow .val .katex{color:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.chip{background:#FFFDF9;border:1px solid var(--goldlt);border-radius:100px;padding:6px 12px;font-weight:800;font-size:.82rem;color:var(--plum);cursor:pointer;transition:transform .1s,border-color .12s,background .12s}
+.chip:hover{border-color:var(--gold);transform:translateY(-1px)}
+.chip.on{background:linear-gradient(135deg,#F7E7EC,#F3D9E0);border-color:var(--malina2);color:var(--malina)}
+.note{color:var(--muted);font-size:.82rem;margin-top:10px}
+.katex{font-size:1.06em}.rrow .val .katex{color:inherit}
 .langsel{position:absolute;top:12px;right:14px}
 .langsel select{font:inherit;font-weight:700;border:1px solid var(--goldlt);border-radius:100px;padding:5px 10px;background:#fff;color:var(--plum)}
 </style>
@@ -57,7 +60,7 @@ button.b:active{transform:scale(.96)}
   <div class="head">
     <div class="eyebrow" id="eyebrow">interaktivno · trigonometrija</div>
     <h1 id="title">Trigonometrijski krug</h1>
-    <p class="sub" id="subtitle">Prevuci ružičastu tačku ili pusti animaciju — ugao se menja polako, a vrednosti se ispisuju uživo.</p>
+    <p class="sub" id="subtitle">Prevuci ružičastu tačku ili pusti animaciju — ugao je vektor, a vrednosti se ispisuju uživo.</p>
   </div>
 
   <div class="grid">
@@ -67,28 +70,26 @@ button.b:active{transform:scale(.96)}
       <div class="panel">
         <h3 id="valuesH">Vrednosti</h3>
         <div class="read">
-          <div class="rrow thetaline"><span class="lbl" id="lblAngle">UGAO θ</span><span class="val" id="vTheta"></span></div>
-          <div class="rrow"><span class="lbl">RAD</span><span class="val" id="vRad"></span></div>
-          <div class="rrow"><span class="lbl">sin θ</span><span class="val" id="vSin"></span></div>
-          <div class="rrow"><span class="lbl">cos θ</span><span class="val" id="vCos"></span></div>
-          <div class="rrow"><span class="lbl">tan θ</span><span class="val" id="vTan"></span></div>
+          <div class="rrow thetaline"><span class="lbl"><i class="dot-t"></i><span id="lblAngle">UGAO θ</span></span><span class="val" id="vTheta"></span></div>
+          <div class="rrow"><span class="lbl"><i class="dot-r"></i>RAD</span><span class="val" id="vRad"></span></div>
+          <div class="rrow"><span class="lbl"><i class="dot-s"></i>sin θ</span><span class="val" id="vSin"></span></div>
+          <div class="rrow"><span class="lbl"><i class="dot-c"></i>cos θ</span><span class="val" id="vCos"></span></div>
+          <div class="rrow"><span class="lbl"><i class="dot-tan"></i>tan θ</span><span class="val" id="vTan"></span></div>
         </div>
       </div>
 
       <div class="panel controls">
         <h3 id="ctrlH">Upravljanje</h3>
-        <div class="crow"><input type="range" id="slider" min="0" max="360" step="0.5" value="45"></div>
+        <div class="crow"><input type="range" id="slider" min="0" max="360" step="1" value="45"></div>
         <div class="btns">
           <button class="b b-malina" id="play">▶ <span id="playTxt">Animiraj</span></button>
-          <button class="b b-ghost" id="minus">−1°</button>
-          <button class="b b-ghost" id="plus">+1°</button>
+          <button class="b b-ghost" id="prev">‹ <span id="prevTxt">Prethodni</span></button>
+          <button class="b b-ghost" id="next"><span id="nextTxt">Sledeći</span> ›</button>
           <button class="b b-gold" id="reset">↺ <span id="resetTxt">Reset</span></button>
         </div>
-        <div class="crow speed"><span id="speedTxt">Brzina</span>
-          <input type="range" id="speed" min="0.2" max="3" step="0.1" value="0.7" style="max-width:150px">
-        </div>
-        <label class="togg"><input type="checkbox" id="snap"> <span id="snapTxt">Skoči na tačne uglove</span></label>
-        <div class="note" id="snapNote">Brzi izbor:</div>
+        <div class="crow lbl"><span id="speedTxt">Brzina animacije</span></div>
+        <div class="crow"><input type="range" id="speed" min="0.3" max="2.4" step="0.1" value="1"></div>
+        <div class="note" id="pickNote">Karakteristični uglovi:</div>
         <div class="chips" id="chips"></div>
       </div>
     </div>
@@ -100,134 +101,144 @@ button.b:active{transform:scale(.96)}
   var I18N={
     eyebrow:{sr:"interaktivno · trigonometrija",en:"interactive · trigonometry",de:"interaktiv · Trigonometrie",fr:"interactif · trigonométrie",es:"interactivo · trigonometría",it:"interattivo · trigonometria",ru:"интерактивно · тригонометрия",pt:"interativo · trigonometria"},
     title:{sr:"Trigonometrijski krug",en:"Trigonometric unit circle",de:"Trigonometrischer Einheitskreis",fr:"Cercle trigonométrique",es:"Círculo trigonométrico",it:"Cerchio trigonometrico",ru:"Тригонометрический круг",pt:"Círculo trigonométrico"},
-    subtitle:{sr:"Prevuci ružičastu tačku ili pusti animaciju — ugao se menja polako, a vrednosti se ispisuju uživo.",en:"Drag the pink point or start the animation — the angle changes slowly and the values update live.",de:"Zieh den rosa Punkt oder starte die Animation — der Winkel ändert sich langsam und die Werte aktualisieren sich live.",fr:"Fais glisser le point rose ou lance l'animation — l'angle change lentement et les valeurs se mettent à jour en direct.",es:"Arrastra el punto rosa o inicia la animación — el ángulo cambia despacio y los valores se actualizan en vivo.",it:"Trascina il punto rosa o avvia l'animazione — l'angolo cambia lentamente e i valori si aggiornano in tempo reale.",ru:"Тяни розовую точку или запусти анимацию — угол меняется медленно, а значения обновляются вживую.",pt:"Arrasta o ponto rosa ou inicia a animação — o ângulo muda devagar e os valores atualizam ao vivo."},
+    subtitle:{sr:"Prevuci ružičastu tačku ili pusti animaciju — ugao je vektor, a vrednosti se ispisuju uživo.",en:"Drag the pink point or play the animation — the angle is a vector and the values update live.",de:"Zieh den rosa Punkt oder starte die Animation — der Winkel ist ein Vektor und die Werte aktualisieren sich live.",fr:"Fais glisser le point rose ou lance l'animation — l'angle est un vecteur et les valeurs se mettent à jour en direct.",es:"Arrastra el punto rosa o inicia la animación — el ángulo es un vector y los valores se actualizan en vivo.",it:"Trascina il punto rosa o avvia l'animazione — l'angolo è un vettore e i valori si aggiornano in tempo reale.",ru:"Тяни розовую точку или запусти анимацию — угол это вектор, а значения обновляются вживую.",pt:"Arrasta o ponto rosa ou inicia a animação — o ângulo é um vetor e os valores atualizam ao vivo."},
     valuesH:{sr:"Vrednosti",en:"Values",de:"Werte",fr:"Valeurs",es:"Valores",it:"Valori",ru:"Значения",pt:"Valores"},
     ctrlH:{sr:"Upravljanje",en:"Controls",de:"Steuerung",fr:"Commandes",es:"Controles",it:"Comandi",ru:"Управление",pt:"Controlos"},
     lblAngle:{sr:"UGAO θ",en:"ANGLE θ",de:"WINKEL θ",fr:"ANGLE θ",es:"ÁNGULO θ",it:"ANGOLO θ",ru:"УГОЛ θ",pt:"ÂNGULO θ"},
     play:{sr:"Animiraj",en:"Animate",de:"Animieren",fr:"Animer",es:"Animar",it:"Anima",ru:"Анимация",pt:"Animar"},
     pause:{sr:"Pauza",en:"Pause",de:"Pause",fr:"Pause",es:"Pausa",it:"Pausa",ru:"Пауза",pt:"Pausa"},
+    prev:{sr:"Prethodni",en:"Prev",de:"Zurück",fr:"Précéd.",es:"Anterior",it:"Prec.",ru:"Назад",pt:"Anterior"},
+    next:{sr:"Sledeći",en:"Next",de:"Weiter",fr:"Suivant",es:"Siguiente",it:"Succ.",ru:"Далее",pt:"Seguinte"},
     reset:{sr:"Reset",en:"Reset",de:"Zurücksetzen",fr:"Réinit.",es:"Reiniciar",it:"Reset",ru:"Сброс",pt:"Repor"},
-    speed:{sr:"Brzina",en:"Speed",de:"Tempo",fr:"Vitesse",es:"Velocidad",it:"Velocità",ru:"Скорость",pt:"Velocidade"},
-    snap:{sr:"Skoči na tačne uglove",en:"Snap to special angles",de:"An besondere Winkel einrasten",fr:"Aimanter aux angles remarquables",es:"Ajustar a ángulos notables",it:"Aggancia agli angoli notevoli",ru:"Привязка к особым углам",pt:"Ajustar aos ângulos notáveis"},
-    snapNote:{sr:"Brzi izbor:",en:"Quick pick:",de:"Schnellauswahl:",fr:"Choix rapide :",es:"Selección rápida:",it:"Scelta rapida:",ru:"Быстрый выбор:",pt:"Escolha rápida:"}
+    speed:{sr:"Brzina animacije",en:"Animation speed",de:"Animationstempo",fr:"Vitesse d'animation",es:"Velocidad de animación",it:"Velocità animazione",ru:"Скорость анимации",pt:"Velocidade da animação"},
+    pick:{sr:"Karakteristični uglovi:",en:"Special angles:",de:"Besondere Winkel:",fr:"Angles remarquables :",es:"Ángulos notables:",it:"Angoli notevoli:",ru:"Особые углы:",pt:"Ângulos notáveis:"}
   };
   function lang(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2).toLowerCase();if(I18N.title[s])return s;}}catch(e){}return 'sr';}
 
-  // special angles: deg -> {rad, sin, cos} as KaTeX
   var SPEC={
-    0:{r:"0",s:"0",c:"1"},30:{r:"\\tfrac{\\pi}{6}",s:"\\tfrac12",c:"\\tfrac{\\sqrt3}{2}"},
-    45:{r:"\\tfrac{\\pi}{4}",s:"\\tfrac{\\sqrt2}{2}",c:"\\tfrac{\\sqrt2}{2}"},60:{r:"\\tfrac{\\pi}{3}",s:"\\tfrac{\\sqrt3}{2}",c:"\\tfrac12"},
-    90:{r:"\\tfrac{\\pi}{2}",s:"1",c:"0"},120:{r:"\\tfrac{2\\pi}{3}",s:"\\tfrac{\\sqrt3}{2}",c:"-\\tfrac12"},
-    135:{r:"\\tfrac{3\\pi}{4}",s:"\\tfrac{\\sqrt2}{2}",c:"-\\tfrac{\\sqrt2}{2}"},150:{r:"\\tfrac{5\\pi}{6}",s:"\\tfrac12",c:"-\\tfrac{\\sqrt3}{2}"},
-    180:{r:"\\pi",s:"0",c:"-1"},210:{r:"\\tfrac{7\\pi}{6}",s:"-\\tfrac12",c:"-\\tfrac{\\sqrt3}{2}"},
-    225:{r:"\\tfrac{5\\pi}{4}",s:"-\\tfrac{\\sqrt2}{2}",c:"-\\tfrac{\\sqrt2}{2}"},240:{r:"\\tfrac{4\\pi}{3}",s:"-\\tfrac{\\sqrt3}{2}",c:"-\\tfrac12"},
-    270:{r:"\\tfrac{3\\pi}{2}",s:"-1",c:"0"},300:{r:"\\tfrac{5\\pi}{3}",s:"-\\tfrac{\\sqrt3}{2}",c:"\\tfrac12"},
-    315:{r:"\\tfrac{7\\pi}{4}",s:"-\\tfrac{\\sqrt2}{2}",c:"\\tfrac{\\sqrt2}{2}"},330:{r:"\\tfrac{11\\pi}{6}",s:"-\\tfrac12",c:"\\tfrac{\\sqrt3}{2}"},
-    360:{r:"2\\pi",s:"0",c:"1"}
+    0:{r:"0",s:"0",c:"1",t:"0"},
+    30:{r:"\\tfrac{\\pi}{6}",s:"\\tfrac12",c:"\\tfrac{\\sqrt3}{2}",t:"\\tfrac{\\sqrt3}{3}"},
+    45:{r:"\\tfrac{\\pi}{4}",s:"\\tfrac{\\sqrt2}{2}",c:"\\tfrac{\\sqrt2}{2}",t:"1"},
+    60:{r:"\\tfrac{\\pi}{3}",s:"\\tfrac{\\sqrt3}{2}",c:"\\tfrac12",t:"\\sqrt3"},
+    90:{r:"\\tfrac{\\pi}{2}",s:"1",c:"0",t:"\\text{—}"},
+    120:{r:"\\tfrac{2\\pi}{3}",s:"\\tfrac{\\sqrt3}{2}",c:"-\\tfrac12",t:"-\\sqrt3"},
+    135:{r:"\\tfrac{3\\pi}{4}",s:"\\tfrac{\\sqrt2}{2}",c:"-\\tfrac{\\sqrt2}{2}",t:"-1"},
+    150:{r:"\\tfrac{5\\pi}{6}",s:"\\tfrac12",c:"-\\tfrac{\\sqrt3}{2}",t:"-\\tfrac{\\sqrt3}{3}"},
+    180:{r:"\\pi",s:"0",c:"-1",t:"0"},
+    210:{r:"\\tfrac{7\\pi}{6}",s:"-\\tfrac12",c:"-\\tfrac{\\sqrt3}{2}",t:"\\tfrac{\\sqrt3}{3}"},
+    225:{r:"\\tfrac{5\\pi}{4}",s:"-\\tfrac{\\sqrt2}{2}",c:"-\\tfrac{\\sqrt2}{2}",t:"1"},
+    240:{r:"\\tfrac{4\\pi}{3}",s:"-\\tfrac{\\sqrt3}{2}",c:"-\\tfrac12",t:"\\sqrt3"},
+    270:{r:"\\tfrac{3\\pi}{2}",s:"-1",c:"0",t:"\\text{—}"},
+    300:{r:"\\tfrac{5\\pi}{3}",s:"-\\tfrac{\\sqrt3}{2}",c:"\\tfrac12",t:"-\\sqrt3"},
+    315:{r:"\\tfrac{7\\pi}{4}",s:"-\\tfrac{\\sqrt2}{2}",c:"\\tfrac{\\sqrt2}{2}",t:"-1"},
+    330:{r:"\\tfrac{11\\pi}{6}",s:"-\\tfrac12",c:"\\tfrac{\\sqrt3}{2}",t:"-\\tfrac{\\sqrt3}{3}"}
   };
   var SPECDEG=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330];
+  var RADLBL={0:'0',30:'π/6',45:'π/4',60:'π/3',90:'π/2',120:'2π/3',135:'3π/4',150:'5π/6',180:'π',210:'7π/6',225:'5π/4',240:'4π/3',270:'3π/2',300:'5π/3',315:'7π/4',330:'11π/6'};
 
-  var C=310,R=250; // svg center + radius
-  var svg=document.getElementById('uc');
-  var SVGNS="http://www.w3.org/2000/svg";
+  var C=310,R=250;
+  var svg=document.getElementById('uc'), SVGNS="http://www.w3.org/2000/svg";
   function el(n,a){var e=document.createElementNS(SVGNS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
-  function P(deg){var t=deg*Math.PI/180;return {x:C+R*Math.cos(t), y:C-R*Math.sin(t)};}
+  function P(deg,rad){rad=rad||R;var t=deg*Math.PI/180;return {x:C+rad*Math.cos(t), y:C-rad*Math.sin(t)};}
 
-  // static layer
-  svg.appendChild(el('circle',{cx:C,cy:C,r:R,fill:'none',stroke:'#7FB0E8',"stroke-width":2.4,opacity:.9}));
-  svg.appendChild(el('line',{x1:C-R-26,y1:C,x2:C+R+26,y2:C,stroke:'#8FA8D8',"stroke-width":1.6,opacity:.55}));
-  svg.appendChild(el('line',{x1:C,y1:C-R-26,x2:C,y2:C+R+26,stroke:'#8FA8D8',"stroke-width":1.6,opacity:.55}));
-  // special-angle dots + degree labels + radian labels
+  // defs: arrowhead
+  var defs=el('defs',{});
+  var mk=el('marker',{id:'arw',markerWidth:20,markerHeight:20,refX:8.5,refY:6,orient:'auto',markerUnits:'userSpaceOnUse'});
+  mk.appendChild(el('path',{d:'M1 1 L11 6 L1 11 L3.4 6 Z',fill:'#EC3F63'})); defs.appendChild(mk); svg.appendChild(defs);
+
+  svg.appendChild(el('circle',{cx:C,cy:C,r:R,fill:'none',stroke:'#8FB6EE',"stroke-width":2.6,opacity:.92}));
+  svg.appendChild(el('line',{x1:C-R-24,y1:C,x2:C+R+24,y2:C,stroke:'#9DB4E0',"stroke-width":1.6,opacity:.5}));
+  svg.appendChild(el('line',{x1:C,y1:C-R-24,x2:C,y2:C+R+24,stroke:'#9DB4E0',"stroke-width":1.6,opacity:.5}));
   SPECDEG.forEach(function(d){
     var p=P(d);
-    svg.appendChild(el('circle',{cx:p.x,cy:p.y,r:5,fill:'#E85C86'}));
-    var lp=P(d), rr=R+30; var t=d*Math.PI/180;
-    var lx=C+rr*Math.cos(t), ly=C-rr*Math.sin(t);
-    var deg=el('text',{x:lx,y:ly+4,"text-anchor":"middle","font-size":15,fill:'#F3E7C9',"font-family":"Inter,system-ui"});deg.textContent=d+'°';svg.appendChild(deg);
-    var rr2=R-30; var rx=C+rr2*Math.cos(t), ry=C-rr2*Math.sin(t);
-    var rad=el('text',{x:rx,y:ry+4,"text-anchor":"middle","font-size":13,fill:'#E7D2A2',"font-family":"Inter,system-ui",opacity:.9});
-    rad.textContent=({0:'0',30:'π/6',45:'π/4',60:'π/3',90:'π/2',120:'2π/3',135:'3π/4',150:'5π/6',180:'π',210:'7π/6',225:'5π/4',240:'4π/3',270:'3π/2',300:'5π/3',315:'7π/4',330:'11π/6'})[d];
-    svg.appendChild(rad);
+    svg.appendChild(el('circle',{cx:p.x,cy:p.y,r:5,fill:'#EE7CA0','data-deg':d,class:'sdot'}));
+    var t=d*Math.PI/180, l=P(d,R+30);
+    var deg=el('text',{x:l.x,y:l.y+4,"text-anchor":"middle","font-size":15,fill:'#F5E9CD',"font-family":"Inter,system-ui"});deg.textContent=d+'°';svg.appendChild(deg);
+    var l2=P(d,R-30); var rad=el('text',{x:l2.x,y:l2.y+4,"text-anchor":"middle","font-size":13,fill:'#E7D2A2',"font-family":"Inter,system-ui",opacity:.92});rad.textContent=RADLBL[d];svg.appendChild(rad);
   });
 
-  // dynamic layer
-  var sector=el('path',{fill:'rgba(198,160,92,.35)',stroke:'none'}); svg.appendChild(sector);
+  var sector=el('path',{fill:'rgba(204,94,126,.28)',stroke:'none'}); svg.appendChild(sector);
   var cosSeg=el('line',{stroke:'#F2D06A',"stroke-width":6,"stroke-linecap":"round"}); svg.appendChild(cosSeg);
-  var sinSeg=el('line',{stroke:'#5FD08B',"stroke-width":4,"stroke-dasharray":"7 7","stroke-linecap":"round"}); svg.appendChild(sinSeg);
-  var radius=el('line',{stroke:'#EC3F63',"stroke-width":5,"stroke-linecap":"round"}); svg.appendChild(radius);
-  var handle=el('circle',{r:15,fill:'#F49CC4',stroke:'#fff',"stroke-width":3,filter:''}); svg.appendChild(handle);
+  var sinSeg=el('line',{stroke:'#6FD69A',"stroke-width":4,"stroke-dasharray":"7 8","stroke-linecap":"round"}); svg.appendChild(sinSeg);
+  var halo=el('circle',{r:17,fill:'rgba(244,156,196,.30)'}); svg.appendChild(halo);
+  var vector=el('line',{stroke:'#EC3F63',"stroke-width":5.5,"stroke-linecap":"round","marker-end":"url(#arw)"}); svg.appendChild(vector);
+  var handle=el('circle',{r:11,fill:'#F49CC4',stroke:'#fff',"stroke-width":3}); svg.appendChild(handle);
 
-  var angle=45, playing=false, raf=null;
+  // state (snap to characteristic angles)
+  var curDeg=45, dispDeg=45, targetDeg=45, holding=false, holdUntil=0, playing=false, raf=null;
+  function nearestSpec(a){a=((a%360)+360)%360;var best=0,bd=999;SPECDEG.forEach(function(x){var dd=Math.min(Math.abs(x-a),360-Math.abs(x-a));if(dd<bd){bd=dd;best=x;}});return best;}
+  function tex(id,s){var e=document.getElementById(id);try{katex.render(s,e,{throwOnError:false});}catch(_){e.textContent=s;}}
 
-  function fmt(x){ if(Math.abs(x)<1e-9)x=0; var v=Math.round(x*1000)/1000; return (v===Math.round(v))?String(v):v.toFixed(3); }
-  function tex(id,s){var e=document.getElementById(id); try{katex.render(s,e,{throwOnError:false});}catch(_){e.textContent=s;} }
-  function txt(id,s){var e=document.getElementById(id); e.textContent=s;}
-
-  function draw(){
-    var p=P(angle);
-    var t=angle*Math.PI/180, s=Math.sin(t), c=Math.cos(t);
-    radius.setAttribute('x1',C);radius.setAttribute('y1',C);radius.setAttribute('x2',p.x);radius.setAttribute('y2',p.y);
+  function drawVec(deg){
+    var p=P(deg), pv=P(deg,R-13);
+    vector.setAttribute('x1',C);vector.setAttribute('y1',C);vector.setAttribute('x2',pv.x);vector.setAttribute('y2',pv.y);
     cosSeg.setAttribute('x1',C);cosSeg.setAttribute('y1',C);cosSeg.setAttribute('x2',p.x);cosSeg.setAttribute('y2',C);
     sinSeg.setAttribute('x1',p.x);sinSeg.setAttribute('y1',C);sinSeg.setAttribute('x2',p.x);sinSeg.setAttribute('y2',p.y);
-    handle.setAttribute('cx',p.x);handle.setAttribute('cy',p.y);
-    // arc sector from 0 to angle
-    var rr=64; var a=((angle%360)+360)%360; var large=a>180?1:0;
-    var e0={x:C+rr,y:C}, e1={x:C+rr*Math.cos(t),y:C-rr*Math.sin(t)};
-    sector.setAttribute('d','M '+C+' '+C+' L '+e0.x+' '+e0.y+' A '+rr+' '+rr+' 0 '+large+' 0 '+e1.x+' '+e1.y+' Z');
-    // readouts
-    var dd=Math.round(a*100)/100;
-    var whole=Math.abs(dd-Math.round(dd))<1e-6?Math.round(dd):dd;
-    tex('vTheta', whole+"^\\circ");
-    var spec=SPEC[Math.round(a)]; var isSpec=(Math.abs(a-Math.round(a))<1e-6)&&spec;
-    if(isSpec){ tex('vRad',spec.r); tex('vSin',spec.s); tex('vCos',spec.c); }
-    else { tex('vRad', (a*Math.PI/180).toFixed(3)); tex('vSin', fmt(s)); tex('vCos', fmt(c)); }
-    if(Math.abs(c)<1e-9){ tex('vTan','\\text{—}'); } else { tex('vTan', fmt(s/c)); }
-    document.getElementById('slider').value=a;
+    halo.setAttribute('cx',p.x);halo.setAttribute('cy',p.y);handle.setAttribute('cx',p.x);handle.setAttribute('cy',p.y);
+    var t=deg*Math.PI/180, rr=66, a=((deg%360)+360)%360, large=a>180?1:0;
+    var e1=P(deg,rr);
+    sector.setAttribute('d','M '+C+' '+C+' L '+(C+rr)+' '+C+' A '+rr+' '+rr+' 0 '+large+' 0 '+e1.x+' '+e1.y+' Z');
   }
+  function readout(deg){
+    var sp=SPEC[deg]; if(!sp)sp=SPEC[nearestSpec(deg)];
+    tex('vTheta', (((deg%360)+360)%360)+"^\\circ");
+    tex('vRad', sp.r); tex('vSin', sp.s); tex('vCos', sp.c); tex('vTan', sp.t);
+    document.querySelectorAll('.sdot').forEach(function(d){d.setAttribute('r', (+d.getAttribute('data-deg')===((deg%360)+360)%360)?8:5);});
+    document.querySelectorAll('.chip').forEach(function(ch){ch.classList.toggle('on', +ch.dataset.deg===((deg%360)+360)%360);});
+    document.getElementById('slider').value=((deg%360)+360)%360;
+  }
+  function land(deg){ curDeg=deg; dispDeg=((deg%360)+360)%360; targetDeg=deg; drawVec(deg); readout(dispDeg); }
 
-  function setAngle(a,snap){ a=((a%360)+360)%360; if(snap){var best=0,bd=999;[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360].forEach(function(x){var dd=Math.abs(x-a);if(dd<bd){bd=dd;best=x;}});a=best%360;} angle=a; draw(); }
+  // animation: glide to next special angle, pause, repeat
+  var lastTs=0;
+  function nextTargetAbs(){ var c=((curDeg%360)+360)%360, cont=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360]; for(var i=0;i<cont.length;i++){ if(cont[i]>c+0.01) return Math.floor(curDeg/360)*360+cont[i]; } return Math.floor(curDeg/360)*360+360; }
+  function loop(ts){ if(!playing)return; if(!lastTs)lastTs=ts; var dt=(ts-lastTs)/1000; lastTs=ts;
+    if(holding){ if(ts>=holdUntil){ holding=false; targetDeg=nextTargetAbs(); } }
+    else{ var sp=parseFloat(document.getElementById('speed').value); curDeg+=dt*sp*70;
+      if(curDeg>=targetDeg){ curDeg=targetDeg; holding=true; holdUntil=ts+ (900/Math.max(sp,.3));
+        dispDeg=((targetDeg%360)+360)%360; if(dispDeg===0 && targetDeg>=360){ curDeg=0; targetDeg=0; } readout(dispDeg); }
+    }
+    drawVec(curDeg); raf=requestAnimationFrame(loop);
+  }
+  function startPlay(){ if(playing)return; playing=true; lastTs=0; holding=false; targetDeg=nextTargetAbs();
+    document.getElementById('playTxt').textContent=I18N.pause[lang()]; document.getElementById('play').firstChild.textContent='⏸ '; raf=requestAnimationFrame(loop); }
+  function stopPlay(){ if(playing){ playing=false; if(raf)cancelAnimationFrame(raf); land(nearestSpec(curDeg)); }
+    document.getElementById('playTxt').textContent=I18N.play[lang()]; document.getElementById('play').firstChild.textContent='▶ '; }
 
-  // drag
+  // drag -> snap to nearest special
   var dragging=false;
-  function evtAngle(ev){
-    var r=svg.getBoundingClientRect();
-    var px=(ev.clientX-r.left)/r.width*620, py=(ev.clientY-r.top)/r.height*620;
-    var dx=px-C, dy=C-py; var a=Math.atan2(dy,dx)*180/Math.PI; return ((a%360)+360)%360;
-  }
+  function evtAngle(ev){var r=svg.getBoundingClientRect();var px=(ev.clientX-r.left)/r.width*620, py=(ev.clientY-r.top)/r.height*620;var a=Math.atan2(C-py,px-C)*180/Math.PI;return ((a%360)+360)%360;}
   function down(ev){dragging=true;svg.classList.add('drag');stopPlay();move(ev);ev.preventDefault();}
-  function move(ev){ if(!dragging)return; var e=ev.touches?ev.touches[0]:ev; setAngle(evtAngle(e), document.getElementById('snap').checked); }
-  function up(){dragging=false;svg.classList.remove('drag');}
-  svg.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
-  svg.addEventListener('touchstart',down,{passive:false}); window.addEventListener('touchmove',function(e){if(dragging){move(e);e.preventDefault();}},{passive:false}); window.addEventListener('touchend',up);
+  function move(ev){if(!dragging)return;var e=ev.touches?ev.touches[0]:ev;land(nearestSpec(evtAngle(e)));}
+  function upp(){dragging=false;svg.classList.remove('drag');}
+  svg.addEventListener('mousedown',down);window.addEventListener('mousemove',move);window.addEventListener('mouseup',upp);
+  svg.addEventListener('touchstart',down,{passive:false});window.addEventListener('touchmove',function(e){if(dragging){move(e);e.preventDefault();}},{passive:false});window.addEventListener('touchend',upp);
 
-  // animation (slow)
-  var last=0;
-  function loop(ts){ if(!playing)return; if(!last)last=ts; var dt=(ts-last)/1000; last=ts; var sp=parseFloat(document.getElementById('speed').value); angle=((angle+dt*sp*40)%360+360)%360; draw(); raf=requestAnimationFrame(loop); }
-  function startPlay(){ if(playing)return; playing=true; last=0; document.getElementById('playTxt').textContent=I18N.pause[lang()]; document.getElementById('play').firstChild.textContent='⏸ '; raf=requestAnimationFrame(loop); }
-  function stopPlay(){ playing=false; if(raf)cancelAnimationFrame(raf); document.getElementById('playTxt').textContent=I18N.play[lang()]; document.getElementById('play').firstChild.textContent='▶ '; }
-  document.getElementById('play').addEventListener('click',function(){ playing?stopPlay():startPlay(); });
-  document.getElementById('plus').addEventListener('click',function(){stopPlay();setAngle(Math.round(angle)+1,false);});
-  document.getElementById('minus').addEventListener('click',function(){stopPlay();setAngle(Math.round(angle)-1,false);});
-  document.getElementById('reset').addEventListener('click',function(){stopPlay();setAngle(45,false);});
-  document.getElementById('slider').addEventListener('input',function(){stopPlay();setAngle(parseFloat(this.value), document.getElementById('snap').checked);});
+  function step(dir){stopPlay();var a=nearestSpec(curDeg);var i=SPECDEG.indexOf(a);i=(i+dir+SPECDEG.length)%SPECDEG.length;land(SPECDEG[i]);}
+  document.getElementById('play').addEventListener('click',function(){playing?stopPlay():startPlay();});
+  document.getElementById('next').addEventListener('click',function(){step(1);});
+  document.getElementById('prev').addEventListener('click',function(){step(-1);});
+  document.getElementById('reset').addEventListener('click',function(){stopPlay();land(45);});
+  document.getElementById('slider').addEventListener('input',function(){stopPlay();land(nearestSpec(parseFloat(this.value)));});
 
-  // quick chips
   var chips=document.getElementById('chips');
-  SPECDEG.forEach(function(d){ var b=document.createElement('button'); b.className='chip'; b.textContent=d+'°'; b.addEventListener('click',function(){stopPlay();setAngle(d,false);}); chips.appendChild(b); });
+  SPECDEG.forEach(function(d){var b=document.createElement('button');b.className='chip';b.dataset.deg=d;b.textContent=d+'°';b.addEventListener('click',function(){stopPlay();land(d);});chips.appendChild(b);});
 
-  function applyLang(){ var l=lang(); document.getElementById('lang').value=l;
-    ['eyebrow','title','subtitle','valuesH','ctrlH','lblAngle','snapNote'].forEach(function(k){var e=document.getElementById(k);if(e&&I18N[k])e.textContent=I18N[k][l];});
+  function applyLang(){var l=lang();document.getElementById('lang').value=l;
+    ['eyebrow','title','subtitle','valuesH','ctrlH','lblAngle'].forEach(function(k){var e=document.getElementById(k);if(e&&I18N[k])e.textContent=I18N[k][l];});
     document.getElementById('playTxt').textContent=playing?I18N.pause[l]:I18N.play[l];
+    document.getElementById('prevTxt').textContent=I18N.prev[l];
+    document.getElementById('nextTxt').textContent=I18N.next[l];
     document.getElementById('resetTxt').textContent=I18N.reset[l];
     document.getElementById('speedTxt').textContent=I18N.speed[l];
-    document.getElementById('snapTxt').textContent=I18N.snap[l];
+    document.getElementById('pickNote').textContent=I18N.pick[l];
     document.documentElement.setAttribute('lang',l);
   }
   document.getElementById('lang').addEventListener('change',function(){try{localStorage.setItem('mathia_lang',this.value);}catch(e){}applyLang();});
   window.addEventListener('mathia:lang',applyLang);
 
-  applyLang(); draw();   /* iscrtaj odmah — tex() ima fallback na tekst ako KaTeX još nije tu */
-  if(!window.katex){var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js';sc.onload=function(){draw();};document.head.appendChild(sc);}
+  applyLang(); land(45);
+  if(!window.katex){var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js';sc.onload=function(){readout(dispDeg);};document.head.appendChild(sc);}
 })();
 </script>
 </body>
