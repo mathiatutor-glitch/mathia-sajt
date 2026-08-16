@@ -211,6 +211,41 @@ main{padding-top:18px}
     </div>
   </section>
 
+  <style id="trigban-css">
+.trig-banner{display:flex;align-items:center;justify-content:space-between;gap:26px;max-width:1100px;margin:6px auto;padding:26px 32px;border-radius:24px;background:linear-gradient(135deg,#FFF7F2,#FBEEDA);border:1px solid #E7D2A2;box-shadow:0 30px 60px -38px rgba(90,16,36,.42);text-decoration:none;color:inherit;transition:transform .18s ease,box-shadow .18s ease}
+.trig-banner:hover{transform:translateY(-4px);box-shadow:0 42px 74px -40px rgba(90,16,36,.5)}
+.trig-banner .tb-txt{flex:1;min-width:0}
+.trig-banner .tb-eyb{font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:.7rem;color:#B01E48}
+.trig-banner h2{font-family:'Spectral',Georgia,serif;color:#5A1024;font-size:clamp(1.5rem,3vw,2.1rem);margin:.18em 0 .28em}
+.trig-banner h2 em{font-style:normal;color:#B01E48}
+.trig-banner p{margin:0 0 14px;color:#7A3346;font-size:1.02rem}
+.tb-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#EAD196,#C6A05C);color:#3a2410;font-weight:800;padding:12px 22px;border-radius:100px;box-shadow:0 14px 28px -14px rgba(160,120,40,.6)}
+.tb-vis{flex:none}
+.tb-vis svg{display:block;filter:drop-shadow(0 12px 22px rgba(176,30,72,.25))}
+@media(max-width:660px){.trig-banner{flex-direction:column;text-align:center;padding:24px}.tb-vis{order:-1}}
+</style>
+<section class="reveal"><div class="wrap">
+  <a class="trig-banner" href="trigonometrija-krug.html">
+    <div class="tb-txt">
+      <div class="tb-eyb">novo · interaktivno</div>
+      <h2>Trigonometrijski krug — <em>uživo</em></h2>
+      <p>Prevuci ugao i gledaj kako se sin θ i cos θ menjaju u realnom vremenu — svi uglovi, radijani i tačne vrednosti (√3/2, √2/2, …).</p>
+      <span class="tb-cta">Otvori krug →</span>
+    </div>
+    <div class="tb-vis">
+      <svg viewBox="0 0 130 130" width="132" height="132" aria-hidden="true">
+        <circle cx="65" cy="65" r="52" fill="none" stroke="#C6A05C" stroke-width="3"/>
+        <line x1="8" y1="65" x2="122" y2="65" stroke="#E7D2A2" stroke-width="2"/>
+        <line x1="65" y1="8" x2="65" y2="122" stroke="#E7D2A2" stroke-width="2"/>
+        <path d="M65 65 L102 65 A37 37 0 0 0 91.8 38.2 Z" fill="rgba(176,30,72,.14)"/>
+        <line x1="65" y1="65" x2="101.8" y2="28.2" stroke="#EC3F63" stroke-width="4" stroke-linecap="round"/>
+        <line x1="101.8" y1="65" x2="101.8" y2="28.2" stroke="#5FD08B" stroke-width="3" stroke-dasharray="5 5"/>
+        <circle cx="101.8" cy="28.2" r="8" fill="#F49CC4" stroke="#fff" stroke-width="2.5"/>
+      </svg>
+    </div>
+  </a>
+</div></section>
+
   <section>
     <div class="sec-h reveal"><div class="eyebrow">šta još nudimo</div><h2>Sve za učenje — na jednom mestu</h2></div>
     <div class="grid3">
@@ -218,7 +253,7 @@ main{padding-top:18px}
       <a class="card reveal" href="predmeti.html"><span class="em">🎯</span><h3>Kvizovi i provere</h3><p>Vežbaj i proveri znanje kroz slatke kvizove sa rešenjima.</p><span class="go">Pogledaj →</span></a>
       <a class="card reveal" href="Planeri.html"><span class="em">🗓️</span><h3>Lični planer</h3><p>Raspored, rokovi, navike i ciljevi — sve tvoje, sačuvano na profilu.</p><span class="go">Otvori →</span></a>
       <a class="card reveal" href="test-sklonosti.html"><span class="em">🧭</span><h3>Test sklonosti</h3><p>Ne znaš šta da upišeš? Otkrij smer, školu i fakultet koji ti leže.</p><span class="go">Uradi test →</span></a>
-      <a class="card reveal" href="trigonometrija.html"><span class="em">📐</span><h3>Interaktivno gradivo</h3><p>Trigonometrija koju vidiš i crteži koji oživljavaju pojmove.</p><span class="go">Probaj →</span></a>
+      <a class="card reveal" href="trigonometrija-krug.html"><span class="em">📐</span><h3>Trigonometrijski krug (uživo)</h3><p>Prevuci ugao, gledaj sin i cos u realnom vremenu — svi uglovi, radijani i tačne vrednosti.</p><span class="go">Otvori krug →</span></a>
       <div class="card reveal"><span class="em">🌍</span><h3>Na 8 jezika</h3><p>Uči na svom jeziku — ceo sajt i Profesorica govore 8 jezika.</p></div>
     </div>
   </section>
