@@ -91,6 +91,55 @@ b{color:var(--ink)}
 @keyframes pop{0%{opacity:0;transform:translateY(10px) scale(.98)}100%{opacity:1;transform:none}}
 @media(prefers-reduced-motion:no-preference){.mascot{animation:mbob 3s ease-in-out infinite}@keyframes mbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
 </style>
+<style id="kviz-space">
+main.wrap{min-height:100dvh;display:flex;flex-direction:column;padding-bottom:56px}
+.hero{margin-top:auto}
+#quiz,#report{margin-bottom:auto}
+.opts{gap:14px!important;margin-top:20px!important}
+.opt{padding:16px 18px!important}
+.q{margin:12px 0 4px!important;line-height:1.42!important}
+.mascot{margin:10px auto 12px!important}
+.qtag{margin:4px 0 12px!important}
+.qnum{margin:4px 0 6px!important}
+</style>
+<style id="mathia-polish">
+/* MATHIA quiz polish — nicer fonts, larger owl-side text, vertical centering, top-row spacing.
+   Palette-safe only: cream #FBF6EE, card #FFFDF9, plum #5A1024, ink #43303A, gold #C6A05C/#9C7838, malina #B01E48. No purple/lavender. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--mp-plum:#5A1024;--mp-ink:#43303A;--mp-gold:#C6A05C;--mp-golddk:#9C7838;--mp-malina:#B01E48;--mp-muted:#8A7A80}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--mp-ink)}
+h1,h2,h3{font-family:'Spectral',Georgia,'Times New Roman',serif}
+
+/* 3 + 4) Vertically center the whole quiz group and lower it — responsive, no clipping (min-height, not fixed height) */
+main.wrap{min-height:100dvh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:26px}
+.hero{margin-top:0!important}
+#quiz,#report{margin-bottom:0!important}
+
+/* 4) Top row (hearts + streak + language) — breathing room, less cramped, lowered */
+.top{padding:18px 2px 22px!important;gap:14px!important}
+.top .back{font-size:1.25rem!important}
+.top .lang{font-size:.8rem!important;padding:7px 13px!important;letter-spacing:.03em}
+.hearts{font-size:1.12rem!important}
+.streak{font-size:1.02rem!important}
+
+/* 2) Text around the owl — enlarge eyebrow, question number and topic tag for readability */
+.eyebrow{font-size:.84rem!important;letter-spacing:.16em!important;color:var(--mp-malina)}
+.qnum{font-size:1rem!important;font-weight:800!important;color:var(--mp-muted)}
+.qtag{font-size:.84rem!important;letter-spacing:.1em!important;color:var(--mp-golddk)}
+
+/* 1) Fonts — elegant serif for the question, clean Inter for options/body/UI */
+.q{font-family:'Spectral',Georgia,serif!important;font-weight:700;color:var(--mp-plum)}
+.opt{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif!important;font-weight:600;color:var(--mp-plum)}
+.opt .mk{font-family:'Inter',system-ui,sans-serif!important}
+.eyebrow,.qnum,.qtag,.fb,.cta,.reveal,.top,.streak{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif!important}
+
+/* cuter, cleaner touch */
+.card{border-radius:28px!important}
+.mascot{margin:8px auto 10px!important}
+
+/* short screens: keep comfortable, never clip */
+@media(max-height:680px){main.wrap{justify-content:flex-start;padding-top:14px;padding-bottom:28px}}
+</style>
 </head>
 <body>
 <div id="fall" aria-hidden="true"></div>
