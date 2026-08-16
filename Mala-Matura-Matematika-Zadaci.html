@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathia — Mala matura · Rešeni zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+:root{--cream:#FBF6EE;--cream2:#F5EADB;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--ink2:#6A5A62;
+ --gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--malina2:#CC5E7E;--muted:#8A7A80;--line:#EFE1CE;
+ --serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.7;font-size:17px;letter-spacing:.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+ background:radial-gradient(720px 380px at 88% -6%,#FBEAEF 0,transparent 60%),radial-gradient(640px 340px at 4% 108%,#F7ECD6 0,transparent 62%),var(--cream)}
+h1,h2,h3{font-family:var(--serif);color:var(--plum);margin:0}
+a{text-decoration:none}
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+::selection{background:var(--goldlt);color:var(--plum)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.3)}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent)}
+.tb-back{color:var(--plum2);font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:var(--serif);font-weight:700;letter-spacing:.14em;color:var(--plum);font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldlt);border-radius:100px;padding:7px 13px;font-weight:800;font-size:.74rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer}
+.cover{text-align:center;padding:52px 22px 22px}
+.cover .seal{width:70px;height:70px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--golddk);
+ background:radial-gradient(circle at 38% 32%,#FFFDF6,#F1E1BE);box-shadow:0 0 0 6px rgba(198,160,92,.10),0 16px 30px -16px rgba(156,120,56,.7)}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;color:var(--golddk)}
+.cover h1{font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--plum);margin:12px 0 6px}
+.cover h1 em{font-style:italic;color:var(--malina)}
+.cover .sub{color:var(--plum2);font-style:italic;font-family:var(--serif);font-size:1.08rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:18px 0 4px}
+b,strong{color:var(--plum)}
+.zad{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:24px;padding:24px 26px;margin:22px 0;box-shadow:0 22px 48px -34px rgba(90,16,36,.42);transition:transform .16s,box-shadow .16s,border-color .16s}
+.zad::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.zad::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(231,210,162,.28),transparent 70%);pointer-events:none}
+.zad:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 32px 58px -34px rgba(90,16,36,.5)}
+.zad .z-h{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+.zad .z-n{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3712;font-family:var(--serif);font-weight:700;font-size:1.14rem;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(156,120,56,.7)}
+.zad .z-t{font-family:var(--serif);font-weight:700;font-size:1.26rem;color:var(--plum);letter-spacing:.01em}
+.zad .q{color:var(--ink);margin:2px 0 16px;font-size:1rem;line-height:1.7}
+.zad .sol{background:linear-gradient(180deg,#FFF9F1,#FCF3E6);border:1px solid var(--goldlt);border-radius:18px;padding:16px 18px 14px}
+.zad .sol .h{display:inline-flex;align-items:center;gap:7px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem;color:var(--malina);margin-bottom:12px}
+.zad .sol .h::before{content:"✓";display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-size:.62rem}
+.step{display:flex;align-items:baseline;gap:.6em;font-family:var(--sans);font-weight:500;font-size:1.06rem;color:var(--plum);line-height:1.55;padding:11px 15px;margin:9px 0;background:rgba(255,255,255,.66);border:1px solid rgba(198,160,92,.22);border-radius:13px;white-space:normal;overflow-wrap:break-word}
+.step::before{content:"→";flex:none;color:var(--golddk);font-weight:800;font-family:var(--sans);line-height:1.55}
+.step:last-child{background:linear-gradient(180deg,#FBF6EE,#F5EAD9);border-color:var(--goldlt);font-weight:600}
+.katex{font-size:1.04em}
+@media(max-width:560px){.wrap{padding:0 14px}.cover{padding-top:38px}.cover h1{font-size:2rem}.zad{padding:18px 18px}.step{font-size:1.04rem}}
+@media(prefers-reduced-motion:no-preference){.zad{animation:zin .5s both}@keyframes zin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="tb-back" href="mala-matura.html" data-i18n="back">← Mala matura</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">∑</div><div class="eyebrow" data-i18n="eyebrow">Zadaci · Rešeni</div><h1 data-i18n="title">Mala matura — matematika · zadaci</h1><div class="sub" data-i18n="sub">Rešeni zadaci iz 5 oblasti, korak po korak.</div><div class="orn">✦</div></div>
+<div class="wrap">
+
+<div class="zad"><div class="z-h"><span class="z-n">1</span><span class="z-t" data-i18n="zt1">Razlomci</span></div><p class="q"><span data-i18n="q1">Izračunaj</span> <span class="tx" data-tex="\dfrac{2}{3} + \dfrac{1}{6}"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\dfrac{2}{3} + \dfrac{1}{6} = \dfrac{4}{6} + \dfrac{1}{6}"></span></span><span class="step"><span class="tx" data-tex="= \dfrac{5}{6}"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">2</span><span class="z-t" data-i18n="zt2">Procenti</span></div><p class="q"><span data-i18n="q2">Koliko je 15% od 80?</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="15\% \text{ od } 80 = \dfrac{15}{100}\cdot 80"></span></span><span class="step"><span class="tx" data-tex="= 12"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">3</span><span class="z-t" data-i18n="zt3">Linearna jednačina</span></div><p class="q"><span data-i18n="q3">Reši jednačinu</span> <span class="tx" data-tex="2x + 3 = 11"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="2x = 11 - 3 = 8"></span></span><span class="step"><span class="tx" data-tex="x = \dfrac{8}{2} = 4"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">4</span><span class="z-t" data-i18n="zt4">Linearna funkcija</span></div><p class="q"><span data-i18n="q4">Za funkciju</span> <span class="tx" data-tex="y = 2x - 1"></span> <span data-i18n="q4b">nađi y kada je x = 3.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="y = 2\cdot 3 - 1"></span></span><span class="step"><span class="tx" data-tex="y = 5"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">5</span><span class="z-t" data-i18n="zt5">Proporcija</span></div><p class="q"><span data-i18n="q5">Reši proporciju</span> <span class="tx" data-tex="\dfrac{x}{4} = \dfrac{6}{8}"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="8x = 4\cdot 6 = 24"></span></span><span class="step"><span class="tx" data-tex="x = 3"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">6</span><span class="z-t" data-i18n="zt6">Uglovi u trouglu</span></div><p class="q"><span data-i18n="q6">Dva ugla trougla su 50° i 60°. Koliki je treći ugao?</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\alpha + \beta + \gamma = 180^\circ"></span></span><span class="step"><span class="tx" data-tex="\gamma = 180^\circ - 50^\circ - 60^\circ = 70^\circ"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">7</span><span class="z-t" data-i18n="zt7">Pitagorina teorema</span></div><p class="q"><span data-i18n="q7">Katete pravouglog trougla su 6 i 8. Nađi hipotenuzu.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="c = \sqrt{6^{2} + 8^{2}} = \sqrt{36 + 64}"></span></span><span class="step"><span class="tx" data-tex="c = \sqrt{100} = 10"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">8</span><span class="z-t" data-i18n="zt8">Površina i obim pravougaonika</span></div><p class="q"><span data-i18n="q8">Pravougaonik ima stranice a = 5 i b = 3. Nađi površinu i obim.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="P = a\cdot b = 5\cdot 3 = 15"></span></span><span class="step"><span class="tx" data-tex="O = 2(a + b) = 2(5 + 3) = 16"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">9</span><span class="z-t" data-i18n="zt9">Zapremina kocke</span></div><p class="q"><span data-i18n="q9">Ivica kocke je a = 4. Nađi zapreminu.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="V = a^{3} = 4^{3}"></span></span><span class="step"><span class="tx" data-tex="V = 64"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">10</span><span class="z-t" data-i18n="zt10">Aritmetička sredina</span></div><p class="q"><span data-i18n="q10">Nađi aritmetičku sredinu brojeva 4, 6, 8, 10.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\bar{x} = \dfrac{4 + 6 + 8 + 10}{4} = \dfrac{28}{4}"></span></span><span class="step"><span class="tx" data-tex="= 7"></span></span></div></div>
+
+</div>
+<script>(function(){var T={
+"back":{"sr":"← Mala matura","en":"← Final exam (grade 8)","de":"← Abschlussprüfung (8. Klasse)","fr":"← Examen final (fin de collège)","es":"← Examen final (8.º grado)","it":"← Esame finale (terza media)","ru":"← Выпускной экзамен (8 класс)","pt":"← Exame final (8.º ano)"},
+"eyebrow":{"sr":"Zadaci · Rešeni","en":"Problems · Solved","de":"Aufgaben · Gelöst","fr":"Exercices · Résolus","es":"Ejercicios · Resueltos","it":"Esercizi · Risolti","ru":"Задачи · Решённые","pt":"Exercícios · Resolvidos"},
+"title":{"sr":"Mala matura — matematika · zadaci","en":"Final exam (grade 8) — mathematics · problems","de":"Abschlussprüfung (8. Klasse) — Mathematik · Aufgaben","fr":"Examen final (collège) — mathématiques · exercices","es":"Examen final (8.º grado) — matemáticas · ejercicios","it":"Esame finale (terza media) — matematica · esercizi","ru":"Выпускной экзамен (8 класс) — математика · задачи","pt":"Exame final (8.º ano) — matemática · exercícios"},
+"sub":{"sr":"Rešeni zadaci iz 5 oblasti, korak po korak.","en":"Solved problems from 5 topics, step by step.","de":"Gelöste Aufgaben aus 5 Themengebieten, Schritt für Schritt.","fr":"Exercices résolus de 5 domaines, étape par étape.","es":"Ejercicios resueltos de 5 áreas, paso a paso.","it":"Esercizi risolti di 5 argomenti, passo dopo passo.","ru":"Решённые задачи из 5 разделов, шаг за шагом.","pt":"Exercícios resolvidos de 5 áreas, passo a passo."},
+"sol":{"sr":"Rešenje","en":"Solution","de":"Lösung","fr":"Solution","es":"Solución","it":"Soluzione","ru":"Решение","pt":"Solução"},
+"zt1":{"sr":"Razlomci","en":"Fractions","de":"Brüche","fr":"Fractions","es":"Fracciones","it":"Frazioni","ru":"Дроби","pt":"Frações"},
+"zt2":{"sr":"Procenti","en":"Percentages","de":"Prozentrechnung","fr":"Pourcentages","es":"Porcentajes","it":"Percentuali","ru":"Проценты","pt":"Percentagens"},
+"zt3":{"sr":"Linearna jednačina","en":"Linear equation","de":"Lineare Gleichung","fr":"Équation linéaire","es":"Ecuación lineal","it":"Equazione lineare","ru":"Линейное уравнение","pt":"Equação linear"},
+"zt4":{"sr":"Linearna funkcija","en":"Linear function","de":"Lineare Funktion","fr":"Fonction affine","es":"Función lineal","it":"Funzione lineare","ru":"Линейная функция","pt":"Função linear"},
+"zt5":{"sr":"Proporcija","en":"Proportion","de":"Verhältnisgleichung","fr":"Proportion","es":"Proporción","it":"Proporzione","ru":"Пропорция","pt":"Proporção"},
+"zt6":{"sr":"Uglovi u trouglu","en":"Angles in a triangle","de":"Winkel im Dreieck","fr":"Angles d'un triangle","es":"Ángulos de un triángulo","it":"Angoli di un triangolo","ru":"Углы треугольника","pt":"Ângulos de um triângulo"},
+"zt7":{"sr":"Pitagorina teorema","en":"Pythagorean theorem","de":"Satz des Pythagoras","fr":"Théorème de Pythagore","es":"Teorema de Pitágoras","it":"Teorema di Pitagora","ru":"Теорема Пифагора","pt":"Teorema de Pitágoras"},
+"zt8":{"sr":"Površina i obim pravougaonika","en":"Area and perimeter of a rectangle","de":"Fläche und Umfang eines Rechtecks","fr":"Aire et périmètre d'un rectangle","es":"Área y perímetro de un rectángulo","it":"Area e perimetro di un rettangolo","ru":"Площадь и периметр прямоугольника","pt":"Área e perímetro de um retângulo"},
+"zt9":{"sr":"Zapremina kocke","en":"Volume of a cube","de":"Volumen eines Würfels","fr":"Volume d'un cube","es":"Volumen de un cubo","it":"Volume di un cubo","ru":"Объём куба","pt":"Volume de um cubo"},
+"zt10":{"sr":"Aritmetička sredina","en":"Arithmetic mean","de":"Arithmetisches Mittel","fr":"Moyenne arithmétique","es":"Media aritmética","it":"Media aritmetica","ru":"Среднее арифметическое","pt":"Média aritmética"},
+"q1":{"sr":"Izračunaj","en":"Evaluate","de":"Berechne","fr":"Calcule","es":"Calcula","it":"Calcola","ru":"Вычисли","pt":"Calcula"},
+"q2":{"sr":"Koliko je 15% od 80?","en":"What is 15% of 80?","de":"Wie viel sind 15% von 80?","fr":"Combien font 15% de 80 ?","es":"¿Cuánto es el 15% de 80?","it":"Quanto è il 15% di 80?","ru":"Сколько составляет 15% от 80?","pt":"Quanto é 15% de 80?"},
+"q3":{"sr":"Reši jednačinu","en":"Solve the equation","de":"Löse die Gleichung","fr":"Résous l'équation","es":"Resuelve la ecuación","it":"Risolvi l'equazione","ru":"Реши уравнение","pt":"Resolve a equação"},
+"q4":{"sr":"Za funkciju","en":"For the function","de":"Für die Funktion","fr":"Pour la fonction","es":"Para la función","it":"Per la funzione","ru":"Для функции","pt":"Para a função"},
+"q4b":{"sr":"nađi y kada je x = 3.","en":"find y when x = 3.","de":"finde y, wenn x = 3.","fr":"trouve y lorsque x = 3.","es":"halla y cuando x = 3.","it":"trova y quando x = 3.","ru":"найди y при x = 3.","pt":"encontra y quando x = 3."},
+"q5":{"sr":"Reši proporciju","en":"Solve the proportion","de":"Löse die Verhältnisgleichung","fr":"Résous la proportion","es":"Resuelve la proporción","it":"Risolvi la proporzione","ru":"Реши пропорцию","pt":"Resolve a proporção"},
+"q6":{"sr":"Dva ugla trougla su 50° i 60°. Koliki je treći ugao?","en":"Two angles of a triangle are 50° and 60°. What is the third angle?","de":"Zwei Winkel eines Dreiecks sind 50° und 60°. Wie groß ist der dritte Winkel?","fr":"Deux angles d'un triangle valent 50° et 60°. Quel est le troisième angle ?","es":"Dos ángulos de un triángulo son 50° y 60°. ¿Cuánto mide el tercer ángulo?","it":"Due angoli di un triangolo sono 50° e 60°. Quanto misura il terzo angolo?","ru":"Два угла треугольника равны 50° и 60°. Чему равен третий угол?","pt":"Dois ângulos de um triângulo são 50° e 60°. Quanto mede o terceiro ângulo?"},
+"q7":{"sr":"Katete pravouglog trougla su 6 i 8. Nađi hipotenuzu.","en":"The legs of a right triangle are 6 and 8. Find the hypotenuse.","de":"Die Katheten eines rechtwinkligen Dreiecks sind 6 und 8. Finde die Hypotenuse.","fr":"Les cathètes d'un triangle rectangle valent 6 et 8. Trouve l'hypoténuse.","es":"Los catetos de un triángulo rectángulo son 6 y 8. Halla la hipotenusa.","it":"I cateti di un triangolo rettangolo sono 6 e 8. Trova l'ipotenusa.","ru":"Катеты прямоугольного треугольника равны 6 и 8. Найди гипотенузу.","pt":"Os catetos de um triângulo retângulo são 6 e 8. Encontra a hipotenusa."},
+"q8":{"sr":"Pravougaonik ima stranice a = 5 i b = 3. Nađi površinu i obim.","en":"A rectangle has sides a = 5 and b = 3. Find its area and perimeter.","de":"Ein Rechteck hat die Seiten a = 5 und b = 3. Finde Fläche und Umfang.","fr":"Un rectangle a pour côtés a = 5 et b = 3. Trouve son aire et son périmètre.","es":"Un rectángulo tiene lados a = 5 y b = 3. Halla el área y el perímetro.","it":"Un rettangolo ha i lati a = 5 e b = 3. Trova l'area e il perimetro.","ru":"Прямоугольник имеет стороны a = 5 и b = 3. Найди площадь и периметр.","pt":"Um retângulo tem lados a = 5 e b = 3. Encontra a área e o perímetro."},
+"q9":{"sr":"Ivica kocke je a = 4. Nađi zapreminu.","en":"The edge of a cube is a = 4. Find its volume.","de":"Die Kante eines Würfels ist a = 4. Finde das Volumen.","fr":"L'arête d'un cube est a = 4. Trouve son volume.","es":"La arista de un cubo es a = 4. Halla el volumen.","it":"Lo spigolo di un cubo è a = 4. Trova il volume.","ru":"Ребро куба равно a = 4. Найди объём.","pt":"A aresta de um cubo é a = 4. Encontra o volume."},
+"q10":{"sr":"Nađi aritmetičku sredinu brojeva 4, 6, 8, 10.","en":"Find the arithmetic mean of the numbers 4, 6, 8, 10.","de":"Bestimme das arithmetische Mittel der Zahlen 4, 6, 8, 10.","fr":"Trouve la moyenne arithmétique des nombres 4, 6, 8, 10.","es":"Halla la media aritmética de los números 4, 6, 8, 10.","it":"Trova la media aritmetica dei numeri 4, 6, 8, 10.","ru":"Найди среднее арифметическое чисел 4, 6, 8, 10.","pt":"Encontra a média aritmética dos números 4, 6, 8, 10."}
+};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(){try{ap((localStorage.getItem("mathia_lang")||"sr").toLowerCase())}catch(e){}});})();</script>
+<script>(function(){function R(){if(!window.katex){return setTimeout(R,40);}var n=document.querySelectorAll('.tx[data-tex]');for(var i=0;i<n.length;i++){var el=n[i];if(el.getAttribute('data-done'))continue;try{katex.render(el.getAttribute('data-tex'),el,{throwOnError:false,displayMode:false});el.setAttribute('data-done','1');}catch(e){}}}if(document.readyState!=='loading')R();else document.addEventListener('DOMContentLoaded',R);})();</script>
+<script defer src="gate.js" data-subject="mala-matura" data-skripta="1"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathia — Prijemni za srednju školu · Rešeni zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+:root{--cream:#FBF6EE;--cream2:#F5EADB;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--ink2:#6A5A62;
+ --gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--malina2:#CC5E7E;--muted:#8A7A80;--line:#EFE1CE;
+ --serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.7;font-size:17px;letter-spacing:.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+ background:radial-gradient(720px 380px at 88% -6%,#FBEAEF 0,transparent 60%),radial-gradient(640px 340px at 4% 108%,#F7ECD6 0,transparent 62%),var(--cream)}
+h1,h2,h3{font-family:var(--serif);color:var(--plum);margin:0}
+a{text-decoration:none}
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+::selection{background:var(--goldlt);color:var(--plum)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.3)}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent)}
+.tb-back{color:var(--plum2);font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:var(--serif);font-weight:700;letter-spacing:.14em;color:var(--plum);font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldlt);border-radius:100px;padding:7px 13px;font-weight:800;font-size:.74rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer}
+.cover{text-align:center;padding:52px 22px 22px}
+.cover .seal{width:70px;height:70px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--golddk);
+ background:radial-gradient(circle at 38% 32%,#FFFDF6,#F1E1BE);box-shadow:0 0 0 6px rgba(198,160,92,.10),0 16px 30px -16px rgba(156,120,56,.7)}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;color:var(--golddk)}
+.cover h1{font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--plum);margin:12px 0 6px}
+.cover h1 em{font-style:italic;color:var(--malina)}
+.cover .sub{color:var(--plum2);font-style:italic;font-family:var(--serif);font-size:1.08rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:18px 0 4px}
+b,strong{color:var(--plum)}
+.zad{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:24px;padding:24px 26px;margin:22px 0;box-shadow:0 22px 48px -34px rgba(90,16,36,.42);transition:transform .16s,box-shadow .16s,border-color .16s}
+.zad::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.zad::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(231,210,162,.28),transparent 70%);pointer-events:none}
+.zad:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 32px 58px -34px rgba(90,16,36,.5)}
+.zad .z-h{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+.zad .z-n{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3712;font-family:var(--serif);font-weight:700;font-size:1.14rem;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(156,120,56,.7)}
+.zad .z-t{font-family:var(--serif);font-weight:700;font-size:1.26rem;color:var(--plum);letter-spacing:.01em}
+.zad .q{color:var(--ink);margin:2px 0 16px;font-size:1rem;line-height:1.7}
+.zad .sol{background:linear-gradient(180deg,#FFF9F1,#FCF3E6);border:1px solid var(--goldlt);border-radius:18px;padding:16px 18px 14px}
+.zad .sol .h{display:inline-flex;align-items:center;gap:7px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem;color:var(--malina);margin-bottom:12px}
+.zad .sol .h::before{content:"✓";display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-size:.62rem}
+.step{display:flex;align-items:baseline;gap:.6em;font-family:var(--sans);font-weight:500;font-size:1.06rem;color:var(--plum);line-height:1.55;padding:11px 15px;margin:9px 0;background:rgba(255,255,255,.66);border:1px solid rgba(198,160,92,.22);border-radius:13px;white-space:normal;overflow-wrap:break-word}
+.step::before{content:"→";flex:none;color:var(--golddk);font-weight:800;font-family:var(--sans);line-height:1.55}
+.step:last-child{background:linear-gradient(180deg,#FBF6EE,#F5EAD9);border-color:var(--goldlt);font-weight:600}
+.katex{font-size:1.04em}
+@media(max-width:560px){.wrap{padding:0 14px}.cover{padding-top:38px}.cover h1{font-size:2rem}.zad{padding:18px 18px}.step{font-size:1.04rem}}
+@media(prefers-reduced-motion:no-preference){.zad{animation:zin .5s both}@keyframes zin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="tb-back" href="prijemni-srednja.html" data-i18n="back">← Prijemni za srednju školu</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">∑</div><div class="eyebrow" data-i18n="eyebrow">Zadaci · Rešeni</div><h1 data-i18n="title">Prijemni za srednju školu — matematika · zadaci</h1><div class="sub" data-i18n="sub">Tipični zadaci za upis u srednju školu, korak po korak.</div><div class="orn">✦</div></div>
+<div class="wrap">
+
+<div class="zad"><div class="z-h"><span class="z-n">1</span><span class="z-t" data-i18n="zt1">Razlomci</span></div><p class="q"><span data-i18n="q1">Izračunaj</span> <span class="tx" data-tex="\dfrac{3}{4} - \dfrac{1}{2}"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\dfrac{3}{4} - \dfrac{1}{2} = \dfrac{3}{4} - \dfrac{2}{4}"></span></span><span class="step"><span class="tx" data-tex="= \dfrac{1}{4}"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">2</span><span class="z-t" data-i18n="zt2">Procenti</span></div><p class="q"><span data-i18n="q2">Koliko je 20% od 150?</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="20\% \text{ od } 150 = \dfrac{20}{100}\cdot 150"></span></span><span class="step"><span class="tx" data-tex="= 30"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">3</span><span class="z-t" data-i18n="zt3">Linearna jednačina</span></div><p class="q"><span data-i18n="q3">Reši jednačinu</span> <span class="tx" data-tex="3(x - 2) = 9"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="x - 2 = \dfrac{9}{3} = 3"></span></span><span class="step"><span class="tx" data-tex="x = 5"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">4</span><span class="z-t" data-i18n="zt4">Sistem jednačina</span></div><p class="q"><span data-i18n="q4">Reši sistem</span> <span class="tx" data-tex="x + y = 10,\ \ x - y = 4"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="2x = 14 \Rightarrow x = 7"></span></span><span class="step"><span class="tx" data-tex="y = 10 - 7 = 3"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">5</span><span class="z-t" data-i18n="zt5">Razmera</span></div><p class="q"><span data-i18n="q5">Podeli broj 60 u razmeri 2 : 3.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="2 + 3 = 5 \text{ delova},\quad \dfrac{60}{5} = 12"></span></span><span class="step"><span class="tx" data-tex="2\cdot 12 = 24,\quad 3\cdot 12 = 36"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">6</span><span class="z-t" data-i18n="zt6">Stepeni</span></div><p class="q"><span data-i18n="q6">Izračunaj</span> <span class="tx" data-tex="2^{4}\cdot 2^{2}"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="2^{4}\cdot 2^{2} = 2^{4+2} = 2^{6}"></span></span><span class="step"><span class="tx" data-tex="= 64"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">7</span><span class="z-t" data-i18n="zt7">Naporedni uglovi</span></div><p class="q"><span data-i18n="q7">Jedan naporedni ugao je 110°. Koliki je drugi?</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\alpha + \beta = 180^\circ"></span></span><span class="step"><span class="tx" data-tex="\beta = 180^\circ - 110^\circ = 70^\circ"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">8</span><span class="z-t" data-i18n="zt8">Pitagorina teorema</span></div><p class="q"><span data-i18n="q8">Katete su 5 i 12. Nađi hipotenuzu.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="c = \sqrt{5^{2} + 12^{2}} = \sqrt{25 + 144}"></span></span><span class="step"><span class="tx" data-tex="c = \sqrt{169} = 13"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">9</span><span class="z-t" data-i18n="zt9">Površina trougla</span></div><p class="q"><span data-i18n="q9">Osnovica trougla je a = 6, a visina h = 4. Nađi površinu.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="P = \dfrac{a\cdot h}{2} = \dfrac{6\cdot 4}{2}"></span></span><span class="step"><span class="tx" data-tex="P = 12"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">10</span><span class="z-t" data-i18n="zt10">Krug</span></div><p class="q"><span data-i18n="q10">Krug ima poluprečnik r = 7. Nađi obim i površinu.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="O = 2r\pi = 14\pi \approx 43{,}96"></span></span><span class="step"><span class="tx" data-tex="P = r^{2}\pi = 49\pi \approx 153{,}94"></span></span></div></div>
+
+</div>
+<script>(function(){var T={
+"back":{"sr":"← Prijemni za srednju školu","en":"← Entrance exam (secondary school)","de":"← Aufnahmeprüfung (weiterführende Schule)","fr":"← Concours (lycée)","es":"← Examen de acceso (secundaria)","it":"← Esame d'ammissione (scuola superiore)","ru":"← Вступительный (средняя школа)","pt":"← Exame de acesso (ensino secundário)"},
+"eyebrow":{"sr":"Zadaci · Rešeni","en":"Problems · Solved","de":"Aufgaben · Gelöst","fr":"Exercices · Résolus","es":"Ejercicios · Resueltos","it":"Esercizi · Risolti","ru":"Задачи · Решённые","pt":"Exercícios · Resolvidos"},
+"title":{"sr":"Prijemni za srednju školu — matematika · zadaci","en":"Secondary-school entrance exam — mathematics · problems","de":"Aufnahmeprüfung weiterführende Schule — Mathematik · Aufgaben","fr":"Concours d'entrée au lycée — mathématiques · exercices","es":"Examen de acceso a secundaria — matemáticas · ejercicios","it":"Esame d'ammissione alla scuola superiore — matematica · esercizi","ru":"Вступительный в среднюю школу — математика · задачи","pt":"Exame de acesso ao ensino secundário — matemática · exercícios"},
+"sub":{"sr":"Tipični zadaci za upis u srednju školu, korak po korak.","en":"Typical secondary-school entrance problems, step by step.","de":"Typische Aufnahmeaufgaben für die weiterführende Schule, Schritt für Schritt.","fr":"Exercices types d'entrée au lycée, étape par étape.","es":"Ejercicios típicos de acceso a secundaria, paso a paso.","it":"Esercizi tipici d'ammissione alla scuola superiore, passo dopo passo.","ru":"Типичные задачи для поступления в среднюю школу, шаг за шагом.","pt":"Exercícios típicos de acesso ao ensino secundário, passo a passo."},
+"sol":{"sr":"Rešenje","en":"Solution","de":"Lösung","fr":"Solution","es":"Solución","it":"Soluzione","ru":"Решение","pt":"Solução"},
+"zt1":{"sr":"Razlomci","en":"Fractions","de":"Brüche","fr":"Fractions","es":"Fracciones","it":"Frazioni","ru":"Дроби","pt":"Frações"},
+"zt2":{"sr":"Procenti","en":"Percentages","de":"Prozentrechnung","fr":"Pourcentages","es":"Porcentajes","it":"Percentuali","ru":"Проценты","pt":"Percentagens"},
+"zt3":{"sr":"Linearna jednačina","en":"Linear equation","de":"Lineare Gleichung","fr":"Équation linéaire","es":"Ecuación lineal","it":"Equazione lineare","ru":"Линейное уравнение","pt":"Equação linear"},
+"zt4":{"sr":"Sistem jednačina","en":"System of equations","de":"Gleichungssystem","fr":"Système d'équations","es":"Sistema de ecuaciones","it":"Sistema di equazioni","ru":"Система уравнений","pt":"Sistema de equações"},
+"zt5":{"sr":"Razmera","en":"Ratio","de":"Verhältnis","fr":"Rapport","es":"Razón","it":"Rapporto","ru":"Отношение","pt":"Razão"},
+"zt6":{"sr":"Stepeni","en":"Powers","de":"Potenzen","fr":"Puissances","es":"Potencias","it":"Potenze","ru":"Степени","pt":"Potências"},
+"zt7":{"sr":"Naporedni uglovi","en":"Supplementary angles","de":"Nebenwinkel","fr":"Angles supplémentaires","es":"Ángulos suplementarios","it":"Angoli supplementari","ru":"Смежные углы","pt":"Ângulos suplementares"},
+"zt8":{"sr":"Pitagorina teorema","en":"Pythagorean theorem","de":"Satz des Pythagoras","fr":"Théorème de Pythagore","es":"Teorema de Pitágoras","it":"Teorema di Pitagora","ru":"Теорема Пифагора","pt":"Teorema de Pitágoras"},
+"zt9":{"sr":"Površina trougla","en":"Area of a triangle","de":"Flächeninhalt des Dreiecks","fr":"Aire du triangle","es":"Área del triángulo","it":"Area del triangolo","ru":"Площадь треугольника","pt":"Área do triângulo"},
+"zt10":{"sr":"Krug","en":"Circle","de":"Kreis","fr":"Cercle","es":"Círculo","it":"Cerchio","ru":"Круг","pt":"Círculo"},
+"q1":{"sr":"Izračunaj","en":"Evaluate","de":"Berechne","fr":"Calcule","es":"Calcula","it":"Calcola","ru":"Вычисли","pt":"Calcula"},
+"q2":{"sr":"Koliko je 20% od 150?","en":"What is 20% of 150?","de":"Wie viel sind 20% von 150?","fr":"Combien font 20% de 150 ?","es":"¿Cuánto es el 20% de 150?","it":"Quanto è il 20% di 150?","ru":"Сколько составляет 20% от 150?","pt":"Quanto é 20% de 150?"},
+"q3":{"sr":"Reši jednačinu","en":"Solve the equation","de":"Löse die Gleichung","fr":"Résous l'équation","es":"Resuelve la ecuación","it":"Risolvi l'equazione","ru":"Реши уравнение","pt":"Resolve a equação"},
+"q4":{"sr":"Reši sistem","en":"Solve the system","de":"Löse das System","fr":"Résous le système","es":"Resuelve el sistema","it":"Risolvi il sistema","ru":"Реши систему","pt":"Resolve o sistema"},
+"q5":{"sr":"Podeli broj 60 u razmeri 2 : 3.","en":"Divide the number 60 in the ratio 2 : 3.","de":"Teile die Zahl 60 im Verhältnis 2 : 3.","fr":"Partage le nombre 60 dans le rapport 2 : 3.","es":"Divide el número 60 en la razón 2 : 3.","it":"Dividi il numero 60 nel rapporto 2 : 3.","ru":"Раздели число 60 в отношении 2 : 3.","pt":"Divide o número 60 na razão 2 : 3."},
+"q6":{"sr":"Izračunaj","en":"Evaluate","de":"Berechne","fr":"Calcule","es":"Calcula","it":"Calcola","ru":"Вычисли","pt":"Calcula"},
+"q7":{"sr":"Jedan naporedni ugao je 110°. Koliki je drugi?","en":"One of two supplementary angles is 110°. What is the other?","de":"Einer von zwei Nebenwinkeln beträgt 110°. Wie groß ist der andere?","fr":"L'un de deux angles supplémentaires vaut 110°. Quel est l'autre ?","es":"Uno de dos ángulos suplementarios es 110°. ¿Cuánto mide el otro?","it":"Uno di due angoli supplementari è 110°. Quanto misura l'altro?","ru":"Один из двух смежных углов равен 110°. Чему равен другой?","pt":"Um de dois ângulos suplementares é 110°. Quanto mede o outro?"},
+"q8":{"sr":"Katete su 5 i 12. Nađi hipotenuzu.","en":"The legs are 5 and 12. Find the hypotenuse.","de":"Die Katheten sind 5 und 12. Finde die Hypotenuse.","fr":"Les cathètes valent 5 et 12. Trouve l'hypoténuse.","es":"Los catetos son 5 y 12. Halla la hipotenusa.","it":"I cateti sono 5 e 12. Trova l'ipotenusa.","ru":"Катеты равны 5 и 12. Найди гипотенузу.","pt":"Os catetos são 5 e 12. Encontra a hipotenusa."},
+"q9":{"sr":"Osnovica trougla je a = 6, a visina h = 4. Nađi površinu.","en":"A triangle has base a = 6 and height h = 4. Find its area.","de":"Ein Dreieck hat die Grundseite a = 6 und die Höhe h = 4. Finde den Flächeninhalt.","fr":"Un triangle a une base a = 6 et une hauteur h = 4. Trouve son aire.","es":"Un triángulo tiene base a = 6 y altura h = 4. Halla su área.","it":"Un triangolo ha base a = 6 e altezza h = 4. Trova la sua area.","ru":"У треугольника основание a = 6 и высота h = 4. Найди площадь.","pt":"Um triângulo tem base a = 6 e altura h = 4. Encontra a sua área."},
+"q10":{"sr":"Krug ima poluprečnik r = 7. Nađi obim i površinu.","en":"A circle has radius r = 7. Find its circumference and area.","de":"Ein Kreis hat den Radius r = 7. Finde Umfang und Fläche.","fr":"Un cercle a un rayon r = 7. Trouve son périmètre et son aire.","es":"Un círculo tiene radio r = 7. Halla su perímetro y su área.","it":"Un cerchio ha raggio r = 7. Trova la circonferenza e l'area.","ru":"Круг имеет радиус r = 7. Найди длину окружности и площадь.","pt":"Um círculo tem raio r = 7. Encontra o perímetro e a área."}
+};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(){try{ap((localStorage.getItem("mathia_lang")||"sr").toLowerCase())}catch(e){}});})();</script>
+<script>(function(){function R(){if(!window.katex){return setTimeout(R,40);}var n=document.querySelectorAll('.tx[data-tex]');for(var i=0;i<n.length;i++){var el=n[i];if(el.getAttribute('data-done'))continue;try{katex.render(el.getAttribute('data-tex'),el,{throwOnError:false,displayMode:false});el.setAttribute('data-done','1');}catch(e){}}}if(document.readyState!=='loading')R();else document.addEventListener('DOMContentLoaded',R);})();</script>
+<script defer src="gate.js" data-subject="mala-matura" data-skripta="1"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathia — Prijemni VPŠ Novi Sad · Rešeni zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+:root{--cream:#FBF6EE;--cream2:#F5EADB;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--ink2:#6A5A62;
+ --gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--malina2:#CC5E7E;--muted:#8A7A80;--line:#EFE1CE;
+ --serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.7;font-size:17px;letter-spacing:.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+ background:radial-gradient(720px 380px at 88% -6%,#FBEAEF 0,transparent 60%),radial-gradient(640px 340px at 4% 108%,#F7ECD6 0,transparent 62%),var(--cream)}
+h1,h2,h3{font-family:var(--serif);color:var(--plum);margin:0}
+a{text-decoration:none}
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+::selection{background:var(--goldlt);color:var(--plum)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.3)}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent)}
+.tb-back{color:var(--plum2);font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:var(--serif);font-weight:700;letter-spacing:.14em;color:var(--plum);font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldlt);border-radius:100px;padding:7px 13px;font-weight:800;font-size:.74rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer}
+.cover{text-align:center;padding:52px 22px 22px}
+.cover .seal{width:70px;height:70px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--golddk);
+ background:radial-gradient(circle at 38% 32%,#FFFDF6,#F1E1BE);box-shadow:0 0 0 6px rgba(198,160,92,.10),0 16px 30px -16px rgba(156,120,56,.7)}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;color:var(--golddk)}
+.cover h1{font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--plum);margin:12px 0 6px}
+.cover h1 em{font-style:italic;color:var(--malina)}
+.cover .sub{color:var(--plum2);font-style:italic;font-family:var(--serif);font-size:1.08rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:18px 0 4px}
+b,strong{color:var(--plum)}
+.zad{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:24px;padding:24px 26px;margin:22px 0;box-shadow:0 22px 48px -34px rgba(90,16,36,.42);transition:transform .16s,box-shadow .16s,border-color .16s}
+.zad::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.zad::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(231,210,162,.28),transparent 70%);pointer-events:none}
+.zad:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 32px 58px -34px rgba(90,16,36,.5)}
+.zad .z-h{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+.zad .z-n{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3712;font-family:var(--serif);font-weight:700;font-size:1.14rem;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(156,120,56,.7)}
+.zad .z-t{font-family:var(--serif);font-weight:700;font-size:1.26rem;color:var(--plum);letter-spacing:.01em}
+.zad .q{color:var(--ink);margin:2px 0 16px;font-size:1rem;line-height:1.7}
+.zad .sol{background:linear-gradient(180deg,#FFF9F1,#FCF3E6);border:1px solid var(--goldlt);border-radius:18px;padding:16px 18px 14px}
+.zad .sol .h{display:inline-flex;align-items:center;gap:7px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem;color:var(--malina);margin-bottom:12px}
+.zad .sol .h::before{content:"✓";display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-size:.62rem}
+.step{display:flex;align-items:baseline;gap:.6em;font-family:var(--sans);font-weight:500;font-size:1.06rem;color:var(--plum);line-height:1.55;padding:11px 15px;margin:9px 0;background:rgba(255,255,255,.66);border:1px solid rgba(198,160,92,.22);border-radius:13px;white-space:normal;overflow-wrap:break-word}
+.step::before{content:"→";flex:none;color:var(--golddk);font-weight:800;font-family:var(--sans);line-height:1.55}
+.step:last-child{background:linear-gradient(180deg,#FBF6EE,#F5EAD9);border-color:var(--goldlt);font-weight:600}
+.katex{font-size:1.04em}
+@media(max-width:560px){.wrap{padding:0 14px}.cover{padding-top:38px}.cover h1{font-size:2rem}.zad{padding:18px 18px}.step{font-size:1.04rem}}
+@media(prefers-reduced-motion:no-preference){.zad{animation:zin .5s both}@keyframes zin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="tb-back" href="predmet-prijemni-visa-ns.html" data-i18n="back">← Prijemni VPŠ Novi Sad</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">∑</div><div class="eyebrow" data-i18n="eyebrow">Zadaci · Rešeni</div><h1 data-i18n="title">Prijemni — Viša poslovna škola Novi Sad · zadaci</h1><div class="sub" data-i18n="sub">Tipični zadaci sa prijemnog, sa detaljnim postupkom.</div><div class="orn">✦</div></div>
+<div class="wrap">
+
+<div class="zad"><div class="z-h"><span class="z-n">1</span><span class="z-t" data-i18n="zt1">Razlomci</span></div><p class="q"><span data-i18n="q1">Izračunaj</span> <span class="tx" data-tex="\dfrac{3}{5} + \dfrac{1}{2}"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\dfrac{3}{5} + \dfrac{1}{2} = \dfrac{6}{10} + \dfrac{5}{10}"></span></span><span class="step"><span class="tx" data-tex="= \dfrac{11}{10} = 1{,}1"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">2</span><span class="z-t" data-i18n="zt2">Procenti</span></div><p class="q"><span data-i18n="q2">Koliko je 24% od 500?</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="24\% \text{ od } 500 = \dfrac{24}{100}\cdot 500"></span></span><span class="step"><span class="tx" data-tex="= 120"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">3</span><span class="z-t" data-i18n="zt3">Sniženje cene</span></div><p class="q"><span data-i18n="q3">Proizvod od 1200 din snižen je za 25%. Kolika je nova cena?</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="25\% \text{ od } 1200 = \dfrac{25}{100}\cdot 1200 = 300"></span></span><span class="step"><span class="tx" data-tex="1200 - 300 = 900"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">4</span><span class="z-t" data-i18n="zt4">Linearna jednačina</span></div><p class="q"><span data-i18n="q4">Reši jednačinu</span> <span class="tx" data-tex="5x - 3 = 2x + 9"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="5x - 2x = 9 + 3"></span></span><span class="step"><span class="tx" data-tex="3x = 12 \Rightarrow x = 4"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">5</span><span class="z-t" data-i18n="zt5">Kvadratna jednačina</span></div><p class="q"><span data-i18n="q5">Reši jednačinu</span> <span class="tx" data-tex="x^{2} - 6x + 8 = 0"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="D = (-6)^{2} - 4\cdot 1\cdot 8 = 4"></span></span><span class="step"><span class="tx" data-tex="x_{1,2} = \dfrac{6 \pm \sqrt{4}}{2}"></span></span><span class="step"><span class="tx" data-tex="x_{1} = 4,\quad x_{2} = 2"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">6</span><span class="z-t" data-i18n="zt6">Sistem jednačina</span></div><p class="q"><span data-i18n="q6">Reši sistem</span> <span class="tx" data-tex="x + 2y = 8,\ \ 3x - y = 3"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="x = 8 - 2y"></span></span><span class="step"><span class="tx" data-tex="3(8 - 2y) - y = 3 \Rightarrow 24 - 7y = 3"></span></span><span class="step"><span class="tx" data-tex="y = 3,\quad x = 2"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">7</span><span class="z-t" data-i18n="zt7">Prosta kamata</span></div><p class="q"><span data-i18n="q7">Na kapital od 10000 din uz godišnju kamatnu stopu 5%, izračunaj kamatu za 1 godinu</span> <span data-i18n="q7b">i ukupan iznos.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="I = \dfrac{K\cdot p\cdot t}{100} = \dfrac{10000\cdot 5\cdot 1}{100}"></span></span><span class="step"><span class="tx" data-tex="I = 500"></span></span><span class="step"><span class="tx" data-tex="10000 + 500 = 10500"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">8</span><span class="z-t" data-i18n="zt8">Proporcija</span></div><p class="q"><span data-i18n="q8">Ako 3 kg voća košta 240 din, koliko košta 5 kg?</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\dfrac{240}{3} = 80 \text{ (cena po kg)}"></span></span><span class="step"><span class="tx" data-tex="80\cdot 5 = 400"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">9</span><span class="z-t" data-i18n="zt9">Stepeni</span></div><p class="q"><span data-i18n="q9">Izračunaj</span> <span class="tx" data-tex="\dfrac{10^{5}}{10^{2}}"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\dfrac{10^{5}}{10^{2}} = 10^{5-2} = 10^{3}"></span></span><span class="step"><span class="tx" data-tex="= 1000"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">10</span><span class="z-t" data-i18n="zt10">Aritmetička sredina</span></div><p class="q"><span data-i18n="q10">Nađi prosek prihoda: 200, 300, 400, 500.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\bar{x} = \dfrac{200 + 300 + 400 + 500}{4} = \dfrac{1400}{4}"></span></span><span class="step"><span class="tx" data-tex="= 350"></span></span></div></div>
+
+</div>
+<script>(function(){var T={
+"back":{"sr":"← Prijemni VPŠ Novi Sad","en":"← Business College entrance (Novi Sad)","de":"← Aufnahmeprüfung Wirtschaftshochschule Novi Sad","fr":"← Concours École de commerce Novi Sad","es":"← Acceso Escuela de Negocios Novi Sad","it":"← Ammissione Scuola d'Impresa Novi Sad","ru":"← Вступительный Бизнес-колледж Нови-Сад","pt":"← Acesso Escola de Negócios Novi Sad"},
+"eyebrow":{"sr":"Zadaci · Rešeni","en":"Problems · Solved","de":"Aufgaben · Gelöst","fr":"Exercices · Résolus","es":"Ejercicios · Resueltos","it":"Esercizi · Risolti","ru":"Задачи · Решённые","pt":"Exercícios · Resolvidos"},
+"title":{"sr":"Prijemni — Viša poslovna škola Novi Sad · zadaci","en":"Entrance exam — Business College Novi Sad · problems","de":"Aufnahmeprüfung — Wirtschaftshochschule Novi Sad · Aufgaben","fr":"Concours — École supérieure de commerce Novi Sad · exercices","es":"Examen de acceso — Escuela de Negocios Novi Sad · ejercicios","it":"Esame d'ammissione — Scuola Superiore d'Impresa Novi Sad · esercizi","ru":"Вступительный — Высшая бизнес-школа Нови-Сад · задачи","pt":"Exame de acesso — Escola Superior de Negócios Novi Sad · exercícios"},
+"sub":{"sr":"Tipični zadaci sa prijemnog, sa detaljnim postupkom.","en":"Typical entrance-exam problems, with detailed solutions.","de":"Typische Prüfungsaufgaben, mit ausführlichem Lösungsweg.","fr":"Exercices types du concours, avec démarche détaillée.","es":"Ejercicios típicos del examen, con procedimiento detallado.","it":"Esercizi tipici dell'esame, con procedimento dettagliato.","ru":"Типичные задачи вступительного, с подробным решением.","pt":"Exercícios típicos do exame, com procedimento detalhado."},
+"sol":{"sr":"Rešenje","en":"Solution","de":"Lösung","fr":"Solution","es":"Solución","it":"Soluzione","ru":"Решение","pt":"Solução"},
+"zt1":{"sr":"Razlomci","en":"Fractions","de":"Brüche","fr":"Fractions","es":"Fracciones","it":"Frazioni","ru":"Дроби","pt":"Frações"},
+"zt2":{"sr":"Procenti","en":"Percentages","de":"Prozentrechnung","fr":"Pourcentages","es":"Porcentajes","it":"Percentuali","ru":"Проценты","pt":"Percentagens"},
+"zt3":{"sr":"Sniženje cene","en":"Price discount","de":"Preisnachlass","fr":"Remise de prix","es":"Descuento de precio","it":"Sconto sul prezzo","ru":"Снижение цены","pt":"Desconto no preço"},
+"zt4":{"sr":"Linearna jednačina","en":"Linear equation","de":"Lineare Gleichung","fr":"Équation linéaire","es":"Ecuación lineal","it":"Equazione lineare","ru":"Линейное уравнение","pt":"Equação linear"},
+"zt5":{"sr":"Kvadratna jednačina","en":"Quadratic equation","de":"Quadratische Gleichung","fr":"Équation du second degré","es":"Ecuación cuadrática","it":"Equazione di secondo grado","ru":"Квадратное уравнение","pt":"Equação do segundo grau"},
+"zt6":{"sr":"Sistem jednačina","en":"System of equations","de":"Gleichungssystem","fr":"Système d'équations","es":"Sistema de ecuaciones","it":"Sistema di equazioni","ru":"Система уравнений","pt":"Sistema de equações"},
+"zt7":{"sr":"Prosta kamata","en":"Simple interest","de":"Einfache Zinsen","fr":"Intérêts simples","es":"Interés simple","it":"Interesse semplice","ru":"Простые проценты","pt":"Juros simples"},
+"zt8":{"sr":"Proporcija","en":"Proportion","de":"Verhältnisrechnung","fr":"Proportion","es":"Proporción","it":"Proporzione","ru":"Пропорция","pt":"Proporção"},
+"zt9":{"sr":"Stepeni","en":"Powers","de":"Potenzen","fr":"Puissances","es":"Potencias","it":"Potenze","ru":"Степени","pt":"Potências"},
+"zt10":{"sr":"Aritmetička sredina","en":"Arithmetic mean","de":"Arithmetisches Mittel","fr":"Moyenne arithmétique","es":"Media aritmética","it":"Media aritmetica","ru":"Среднее арифметическое","pt":"Média aritmética"},
+"q1":{"sr":"Izračunaj","en":"Evaluate","de":"Berechne","fr":"Calcule","es":"Calcula","it":"Calcola","ru":"Вычисли","pt":"Calcula"},
+"q2":{"sr":"Koliko je 24% od 500?","en":"What is 24% of 500?","de":"Wie viel sind 24% von 500?","fr":"Combien font 24% de 500 ?","es":"¿Cuánto es el 24% de 500?","it":"Quanto è il 24% di 500?","ru":"Сколько составляет 24% от 500?","pt":"Quanto é 24% de 500?"},
+"q3":{"sr":"Proizvod od 1200 din snižen je za 25%. Kolika je nova cena?","en":"A product priced at 1200 was reduced by 25%. What is the new price?","de":"Ein Produkt für 1200 wurde um 25% reduziert. Wie hoch ist der neue Preis?","fr":"Un produit à 1200 a été réduit de 25%. Quel est le nouveau prix ?","es":"Un producto de 1200 se rebajó un 25%. ¿Cuál es el nuevo precio?","it":"Un prodotto da 1200 è stato ridotto del 25%. Qual è il nuovo prezzo?","ru":"Товар стоимостью 1200 подешевел на 25%. Какова новая цена?","pt":"Um produto de 1200 foi reduzido em 25%. Qual é o novo preço?"},
+"q4":{"sr":"Reši jednačinu","en":"Solve the equation","de":"Löse die Gleichung","fr":"Résous l'équation","es":"Resuelve la ecuación","it":"Risolvi l'equazione","ru":"Реши уравнение","pt":"Resolve a equação"},
+"q5":{"sr":"Reši jednačinu","en":"Solve the equation","de":"Löse die Gleichung","fr":"Résous l'équation","es":"Resuelve la ecuación","it":"Risolvi l'equazione","ru":"Реши уравнение","pt":"Resolve a equação"},
+"q6":{"sr":"Reši sistem","en":"Solve the system","de":"Löse das System","fr":"Résous le système","es":"Resuelve el sistema","it":"Risolvi il sistema","ru":"Реши систему","pt":"Resolve o sistema"},
+"q7":{"sr":"Na kapital od 10000 din uz godišnju kamatnu stopu 5%, izračunaj kamatu za 1 godinu","en":"For a capital of 10000 at an annual interest rate of 5%, calculate the interest for 1 year","de":"Für ein Kapital von 10000 bei einem jährlichen Zinssatz von 5% berechne die Zinsen für 1 Jahr","fr":"Pour un capital de 10000 à un taux d'intérêt annuel de 5%, calcule les intérêts pour 1 an","es":"Para un capital de 10000 con una tasa de interés anual del 5%, calcula el interés de 1 año","it":"Per un capitale di 10000 con un tasso d'interesse annuo del 5%, calcola l'interesse per 1 anno","ru":"Для капитала 10000 при годовой процентной ставке 5% вычисли проценты за 1 год","pt":"Para um capital de 10000 com uma taxa de juro anual de 5%, calcula os juros de 1 ano"},
+"q7b":{"sr":"i ukupan iznos.","en":"and the total amount.","de":"und den Gesamtbetrag.","fr":"et le montant total.","es":"y el importe total.","it":"e l'importo totale.","ru":"и итоговую сумму.","pt":"e o montante total."},
+"q8":{"sr":"Ako 3 kg voća košta 240 din, koliko košta 5 kg?","en":"If 3 kg of fruit costs 240, how much do 5 kg cost?","de":"Wenn 3 kg Obst 240 kosten, wie viel kosten 5 kg?","fr":"Si 3 kg de fruits coûtent 240, combien coûtent 5 kg ?","es":"Si 3 kg de fruta cuestan 240, ¿cuánto cuestan 5 kg?","it":"Se 3 kg di frutta costano 240, quanto costano 5 kg?","ru":"Если 3 кг фруктов стоят 240, сколько стоят 5 кг?","pt":"Se 3 kg de fruta custam 240, quanto custam 5 kg?"},
+"q9":{"sr":"Izračunaj","en":"Evaluate","de":"Berechne","fr":"Calcule","es":"Calcula","it":"Calcola","ru":"Вычисли","pt":"Calcula"},
+"q10":{"sr":"Nađi prosek prihoda: 200, 300, 400, 500.","en":"Find the average of the revenues: 200, 300, 400, 500.","de":"Berechne den Durchschnitt der Erlöse: 200, 300, 400, 500.","fr":"Trouve la moyenne des revenus : 200, 300, 400, 500.","es":"Halla el promedio de los ingresos: 200, 300, 400, 500.","it":"Trova la media dei ricavi: 200, 300, 400, 500.","ru":"Найди среднее доходов: 200, 300, 400, 500.","pt":"Encontra a média das receitas: 200, 300, 400, 500."}
+};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(){try{ap((localStorage.getItem("mathia_lang")||"sr").toLowerCase())}catch(e){}});})();</script>
+<script>(function(){function R(){if(!window.katex){return setTimeout(R,40);}var n=document.querySelectorAll('.tx[data-tex]');for(var i=0;i<n.length;i++){var el=n[i];if(el.getAttribute('data-done'))continue;try{katex.render(el.getAttribute('data-tex'),el,{throwOnError:false,displayMode:false});el.setAttribute('data-done','1');}catch(e){}}}if(document.readyState!=='loading')R();else document.addEventListener('DOMContentLoaded',R);})();</script>
+<script defer src="gate.js" data-subject="prijemni-visa-ns" data-skripta="1"></script>
+</body>
+</html>

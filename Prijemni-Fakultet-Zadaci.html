@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathia — Prijemni za fakultet · Rešeni zadaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+:root{--cream:#FBF6EE;--cream2:#F5EADB;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--ink2:#6A5A62;
+ --gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--malina2:#CC5E7E;--muted:#8A7A80;--line:#EFE1CE;
+ --serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.7;font-size:17px;letter-spacing:.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+ background:radial-gradient(720px 380px at 88% -6%,#FBEAEF 0,transparent 60%),radial-gradient(640px 340px at 4% 108%,#F7ECD6 0,transparent 62%),var(--cream)}
+h1,h2,h3{font-family:var(--serif);color:var(--plum);margin:0}
+a{text-decoration:none}
+.wrap{max-width:720px;margin:0 auto;padding:0 22px}
+::selection{background:var(--goldlt);color:var(--plum)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(198,160,92,.3)}
+.topbar:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent)}
+.tb-back{color:var(--plum2);font-weight:800;font-size:.9rem}.tb-back:hover{color:var(--golddk)}
+.tb-brand{font-family:var(--serif);font-weight:700;letter-spacing:.14em;color:var(--plum);font-size:1.02rem}.tb-brand b{color:var(--gold)}
+.tb-lang{border:1px solid var(--goldlt);border-radius:100px;padding:7px 13px;font-weight:800;font-size:.74rem;color:var(--golddk);background:linear-gradient(180deg,#FFFDF8,#FBF3E2);cursor:pointer}
+.cover{text-align:center;padding:52px 22px 22px}
+.cover .seal{width:70px;height:70px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--golddk);
+ background:radial-gradient(circle at 38% 32%,#FFFDF6,#F1E1BE);box-shadow:0 0 0 6px rgba(198,160,92,.10),0 16px 30px -16px rgba(156,120,56,.7)}
+.cover .eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.7rem;color:var(--golddk)}
+.cover h1{font-weight:700;font-size:clamp(2rem,5.2vw,2.9rem);color:var(--plum);margin:12px 0 6px}
+.cover h1 em{font-style:italic;color:var(--malina)}
+.cover .sub{color:var(--plum2);font-style:italic;font-family:var(--serif);font-size:1.08rem}
+.cover .orn{color:var(--gold);letter-spacing:.5em;margin:18px 0 4px}
+b,strong{color:var(--plum)}
+.zad{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:24px;padding:24px 26px;margin:22px 0;box-shadow:0 22px 48px -34px rgba(90,16,36,.42);transition:transform .16s,box-shadow .16s,border-color .16s}
+.zad::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.zad::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(231,210,162,.28),transparent 70%);pointer-events:none}
+.zad:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 32px 58px -34px rgba(90,16,36,.5)}
+.zad .z-h{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+.zad .z-n{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3712;font-family:var(--serif);font-weight:700;font-size:1.14rem;display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(156,120,56,.7)}
+.zad .z-t{font-family:var(--serif);font-weight:700;font-size:1.26rem;color:var(--plum);letter-spacing:.01em}
+.zad .q{color:var(--ink);margin:2px 0 16px;font-size:1rem;line-height:1.7}
+.zad .sol{background:linear-gradient(180deg,#FFF9F1,#FCF3E6);border:1px solid var(--goldlt);border-radius:18px;padding:16px 18px 14px}
+.zad .sol .h{display:inline-flex;align-items:center;gap:7px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.68rem;color:var(--malina);margin-bottom:12px}
+.zad .sol .h::before{content:"✓";display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-size:.62rem}
+.step{display:flex;align-items:baseline;gap:.6em;font-family:var(--sans);font-weight:500;font-size:1.06rem;color:var(--plum);line-height:1.55;padding:11px 15px;margin:9px 0;background:rgba(255,255,255,.66);border:1px solid rgba(198,160,92,.22);border-radius:13px;white-space:normal;overflow-wrap:break-word}
+.step::before{content:"→";flex:none;color:var(--golddk);font-weight:800;font-family:var(--sans);line-height:1.55}
+.step:last-child{background:linear-gradient(180deg,#FBF6EE,#F5EAD9);border-color:var(--goldlt);font-weight:600}
+.katex{font-size:1.04em}
+@media(max-width:560px){.wrap{padding:0 14px}.cover{padding-top:38px}.cover h1{font-size:2rem}.zad{padding:18px 18px}.step{font-size:1.04rem}}
+@media(prefers-reduced-motion:no-preference){.zad{animation:zin .5s both}@keyframes zin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="tb-back" href="prijemni-fakultet.html" data-i18n="back">← Prijemni za fakultet</a><a class="tb-brand" href="index.html">MATHIA<b>·</b>EDU</a><select class="tb-lang" id="langsel" aria-label="Jezik / Language"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select></header>
+<div class="cover"><div class="seal">∑</div><div class="eyebrow" data-i18n="eyebrow">Zadaci · Rešeni</div><h1 data-i18n="title">Prijemni za fakultet — matematika · zadaci</h1><div class="sub" data-i18n="sub">Napredniji zadaci sa prijemnog, sa detaljnim postupkom.</div><div class="orn">✦</div></div>
+<div class="wrap">
+
+<div class="zad"><div class="z-h"><span class="z-n">1</span><span class="z-t" data-i18n="zt1">Kvadratna jednačina</span></div><p class="q"><span data-i18n="q1">Reši jednačinu</span> <span class="tx" data-tex="x^{2} - 4x + 3 = 0"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="D = (-4)^{2} - 4\cdot 1\cdot 3 = 4"></span></span><span class="step"><span class="tx" data-tex="x_{1,2} = \dfrac{4 \pm \sqrt{4}}{2}"></span></span><span class="step"><span class="tx" data-tex="x_{1} = 3,\quad x_{2} = 1"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">2</span><span class="z-t" data-i18n="zt2">Vietove formule</span></div><p class="q"><span data-i18n="q2">Napiši kvadratnu jednačinu čije su nule 2 i 5.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="x_{1} + x_{2} = 7,\quad x_{1}\cdot x_{2} = 10"></span></span><span class="step"><span class="tx" data-tex="x^{2} - 7x + 10 = 0"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">3</span><span class="z-t" data-i18n="zt3">Kvadratna nejednačina</span></div><p class="q"><span data-i18n="q3">Reši nejednačinu</span> <span class="tx" data-tex="x^{2} - 5x + 6 > 0"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="(x - 2)(x - 3) > 0"></span></span><span class="step"><span class="tx" data-tex="x < 2 \ \ \lor\ \ x > 3"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">4</span><span class="z-t" data-i18n="zt4">Eksponencijalna jednačina</span></div><p class="q"><span data-i18n="q4">Reši jednačinu</span> <span class="tx" data-tex="3^{x+1} = 27"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="3^{x+1} = 3^{3}"></span></span><span class="step"><span class="tx" data-tex="x + 1 = 3 \Rightarrow x = 2"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">5</span><span class="z-t" data-i18n="zt5">Logaritamska jednačina</span></div><p class="q"><span data-i18n="q5">Reši jednačinu</span> <span class="tx" data-tex="\log_{3} x = 2"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="x = 3^{2}"></span></span><span class="step"><span class="tx" data-tex="x = 9"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">6</span><span class="z-t" data-i18n="zt6">Trigonometrijski identitet</span></div><p class="q"><span data-i18n="q6">Ako je</span> <span class="tx" data-tex="\sin\alpha = \dfrac{3}{5}"></span> <span data-i18n="q6b">i α je oštar ugao, nađi cos α.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\cos^{2}\alpha = 1 - \sin^{2}\alpha = 1 - \dfrac{9}{25} = \dfrac{16}{25}"></span></span><span class="step"><span class="tx" data-tex="\cos\alpha = \dfrac{4}{5}"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">7</span><span class="z-t" data-i18n="zt7">Trigonometrijska jednačina</span></div><p class="q"><span data-i18n="q7">Reši</span> <span class="tx" data-tex="\sin x = \dfrac{1}{2}"></span> <span data-i18n="q7b">za x iz intervala [0, π].</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="x = \dfrac{\pi}{6}"></span></span><span class="step"><span class="tx" data-tex="x = \dfrac{5\pi}{6}"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">8</span><span class="z-t" data-i18n="zt8">Aritmetički niz</span></div><p class="q"><span data-i18n="q8">Za aritmetički niz sa a₁ = 3 i d = 4 nađi a₁₀.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="a_{10} = a_{1} + 9d = 3 + 9\cdot 4"></span></span><span class="step"><span class="tx" data-tex="a_{10} = 39"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">9</span><span class="z-t" data-i18n="zt9">Geometrijski niz</span></div><p class="q"><span data-i18n="q9">Za geometrijski niz sa b₁ = 2 i q = 3 nađi b₅.</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="b_{5} = b_{1}\cdot q^{4} = 2\cdot 3^{4}"></span></span><span class="step"><span class="tx" data-tex="b_{5} = 162"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">10</span><span class="z-t" data-i18n="zt10">Rastojanje tačaka</span></div><p class="q"><span data-i18n="q10">Nađi rastojanje tačaka A(1, 2) i B(4, 6).</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="d = \sqrt{(4-1)^{2} + (6-2)^{2}} = \sqrt{9 + 16}"></span></span><span class="step"><span class="tx" data-tex="d = \sqrt{25} = 5"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">11</span><span class="z-t" data-i18n="zt11">Izvod funkcije</span></div><p class="q"><span data-i18n="q11">Nađi izvod funkcije</span> <span class="tx" data-tex="f(x) = x^{2}"></span> <span data-i18n="q11b">i izračunaj f′(3).</span></p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="f'(x) = 2x"></span></span><span class="step"><span class="tx" data-tex="f'(3) = 6"></span></span></div></div>
+
+<div class="zad"><div class="z-h"><span class="z-n">12</span><span class="z-t" data-i18n="zt12">Kombinatorika</span></div><p class="q"><span data-i18n="q12">Izračunaj</span> <span class="tx" data-tex="\dbinom{5}{2}"></span>.</p><div class="sol"><div class="h" data-i18n="sol">Rešenje</div><span class="step"><span class="tx" data-tex="\dbinom{5}{2} = \dfrac{5!}{2!\,3!}"></span></span><span class="step"><span class="tx" data-tex="= 10"></span></span></div></div>
+
+</div>
+<script>(function(){var T={
+"back":{"sr":"← Prijemni za fakultet","en":"← University entrance exam","de":"← Aufnahmeprüfung (Universität)","fr":"← Concours (université)","es":"← Examen de acceso (universidad)","it":"← Esame d'ammissione (università)","ru":"← Вступительный (университет)","pt":"← Exame de acesso (universidade)"},
+"eyebrow":{"sr":"Zadaci · Rešeni","en":"Problems · Solved","de":"Aufgaben · Gelöst","fr":"Exercices · Résolus","es":"Ejercicios · Resueltos","it":"Esercizi · Risolti","ru":"Задачи · Решённые","pt":"Exercícios · Resolvidos"},
+"title":{"sr":"Prijemni za fakultet — matematika · zadaci","en":"University entrance exam — mathematics · problems","de":"Aufnahmeprüfung Universität — Mathematik · Aufgaben","fr":"Concours universitaire — mathématiques · exercices","es":"Examen de acceso universitario — matemáticas · ejercicios","it":"Esame d'ammissione universitario — matematica · esercizi","ru":"Вступительный в университет — математика · задачи","pt":"Exame de acesso universitário — matemática · exercícios"},
+"sub":{"sr":"Napredniji zadaci sa prijemnog, sa detaljnim postupkom.","en":"More advanced entrance-exam problems, with detailed solutions.","de":"Anspruchsvollere Prüfungsaufgaben, mit ausführlichem Lösungsweg.","fr":"Exercices de concours plus avancés, avec démarche détaillée.","es":"Ejercicios de acceso más avanzados, con procedimiento detallado.","it":"Esercizi d'esame più avanzati, con procedimento dettagliato.","ru":"Более сложные задачи вступительного, с подробным решением.","pt":"Exercícios de acesso mais avançados, com procedimento detalhado."},
+"sol":{"sr":"Rešenje","en":"Solution","de":"Lösung","fr":"Solution","es":"Solución","it":"Soluzione","ru":"Решение","pt":"Solução"},
+"zt1":{"sr":"Kvadratna jednačina","en":"Quadratic equation","de":"Quadratische Gleichung","fr":"Équation du second degré","es":"Ecuación cuadrática","it":"Equazione di secondo grado","ru":"Квадратное уравнение","pt":"Equação do segundo grau"},
+"zt2":{"sr":"Vietove formule","en":"Vieta's formulas","de":"Satz von Vieta","fr":"Formules de Viète","es":"Fórmulas de Vieta","it":"Formule di Viète","ru":"Формулы Виета","pt":"Fórmulas de Viète"},
+"zt3":{"sr":"Kvadratna nejednačina","en":"Quadratic inequality","de":"Quadratische Ungleichung","fr":"Inéquation du second degré","es":"Inecuación cuadrática","it":"Disequazione di secondo grado","ru":"Квадратное неравенство","pt":"Inequação do segundo grau"},
+"zt4":{"sr":"Eksponencijalna jednačina","en":"Exponential equation","de":"Exponentialgleichung","fr":"Équation exponentielle","es":"Ecuación exponencial","it":"Equazione esponenziale","ru":"Показательное уравнение","pt":"Equação exponencial"},
+"zt5":{"sr":"Logaritamska jednačina","en":"Logarithmic equation","de":"Logarithmische Gleichung","fr":"Équation logarithmique","es":"Ecuación logarítmica","it":"Equazione logaritmica","ru":"Логарифмическое уравнение","pt":"Equação logarítmica"},
+"zt6":{"sr":"Trigonometrijski identitet","en":"Trigonometric identity","de":"Trigonometrische Identität","fr":"Identité trigonométrique","es":"Identidad trigonométrica","it":"Identità trigonometrica","ru":"Тригонометрическое тождество","pt":"Identidade trigonométrica"},
+"zt7":{"sr":"Trigonometrijska jednačina","en":"Trigonometric equation","de":"Trigonometrische Gleichung","fr":"Équation trigonométrique","es":"Ecuación trigonométrica","it":"Equazione trigonometrica","ru":"Тригонометрическое уравнение","pt":"Equação trigonométrica"},
+"zt8":{"sr":"Aritmetički niz","en":"Arithmetic sequence","de":"Arithmetische Folge","fr":"Suite arithmétique","es":"Sucesión aritmética","it":"Successione aritmetica","ru":"Арифметическая прогрессия","pt":"Progressão aritmética"},
+"zt9":{"sr":"Geometrijski niz","en":"Geometric sequence","de":"Geometrische Folge","fr":"Suite géométrique","es":"Sucesión geométrica","it":"Successione geometrica","ru":"Геометрическая прогрессия","pt":"Progressão geométrica"},
+"zt10":{"sr":"Rastojanje tačaka","en":"Distance between points","de":"Abstand zweier Punkte","fr":"Distance entre deux points","es":"Distancia entre puntos","it":"Distanza tra punti","ru":"Расстояние между точками","pt":"Distância entre pontos"},
+"zt11":{"sr":"Izvod funkcije","en":"Derivative of a function","de":"Ableitung einer Funktion","fr":"Dérivée d'une fonction","es":"Derivada de una función","it":"Derivata di una funzione","ru":"Производная функции","pt":"Derivada de uma função"},
+"zt12":{"sr":"Kombinatorika","en":"Combinatorics","de":"Kombinatorik","fr":"Combinatoire","es":"Combinatoria","it":"Calcolo combinatorio","ru":"Комбинаторика","pt":"Combinatória"},
+"q1":{"sr":"Reši jednačinu","en":"Solve the equation","de":"Löse die Gleichung","fr":"Résous l'équation","es":"Resuelve la ecuación","it":"Risolvi l'equazione","ru":"Реши уравнение","pt":"Resolve a equação"},
+"q2":{"sr":"Napiši kvadratnu jednačinu čije su nule 2 i 5.","en":"Write a quadratic equation whose roots are 2 and 5.","de":"Schreibe eine quadratische Gleichung mit den Nullstellen 2 und 5.","fr":"Écris une équation du second degré dont les racines sont 2 et 5.","es":"Escribe una ecuación cuadrática cuyas raíces sean 2 y 5.","it":"Scrivi un'equazione di secondo grado con radici 2 e 5.","ru":"Составь квадратное уравнение с корнями 2 и 5.","pt":"Escreve uma equação do segundo grau cujas raízes sejam 2 e 5."},
+"q3":{"sr":"Reši nejednačinu","en":"Solve the inequality","de":"Löse die Ungleichung","fr":"Résous l'inéquation","es":"Resuelve la inecuación","it":"Risolvi la disequazione","ru":"Реши неравенство","pt":"Resolve a inequação"},
+"q4":{"sr":"Reši jednačinu","en":"Solve the equation","de":"Löse die Gleichung","fr":"Résous l'équation","es":"Resuelve la ecuación","it":"Risolvi l'equazione","ru":"Реши уравнение","pt":"Resolve a equação"},
+"q5":{"sr":"Reši jednačinu","en":"Solve the equation","de":"Löse die Gleichung","fr":"Résous l'équation","es":"Resuelve la ecuación","it":"Risolvi l'equazione","ru":"Реши уравнение","pt":"Resolve a equação"},
+"q6":{"sr":"Ako je","en":"If","de":"Wenn","fr":"Si","es":"Si","it":"Se","ru":"Если","pt":"Se"},
+"q6b":{"sr":"i α je oštar ugao, nađi cos α.","en":"and α is an acute angle, find cos α.","de":"und α ein spitzer Winkel ist, finde cos α.","fr":"et α est un angle aigu, trouve cos α.","es":"y α es un ángulo agudo, halla cos α.","it":"e α è un angolo acuto, trova cos α.","ru":"и α — острый угол, найди cos α.","pt":"e α é um ângulo agudo, encontra cos α."},
+"q7":{"sr":"Reši","en":"Solve","de":"Löse","fr":"Résous","es":"Resuelve","it":"Risolvi","ru":"Реши","pt":"Resolve"},
+"q7b":{"sr":"za x iz intervala [0, π].","en":"for x in the interval [0, π].","de":"für x im Intervall [0, π].","fr":"pour x dans l'intervalle [0, π].","es":"para x en el intervalo [0, π].","it":"per x nell'intervallo [0, π].","ru":"для x из интервала [0, π].","pt":"para x no intervalo [0, π]."},
+"q8":{"sr":"Za aritmetički niz sa a₁ = 3 i d = 4 nađi a₁₀.","en":"For an arithmetic sequence with a₁ = 3 and d = 4, find a₁₀.","de":"Finde a₁₀ einer arithmetischen Folge mit a₁ = 3 und d = 4.","fr":"Pour une suite arithmétique avec a₁ = 3 et d = 4, trouve a₁₀.","es":"Para una sucesión aritmética con a₁ = 3 y d = 4, halla a₁₀.","it":"Per una successione aritmetica con a₁ = 3 e d = 4, trova a₁₀.","ru":"Для арифметической прогрессии с a₁ = 3 и d = 4 найди a₁₀.","pt":"Para uma progressão aritmética com a₁ = 3 e d = 4, encontra a₁₀."},
+"q9":{"sr":"Za geometrijski niz sa b₁ = 2 i q = 3 nađi b₅.","en":"For a geometric sequence with b₁ = 2 and q = 3, find b₅.","de":"Finde b₅ einer geometrischen Folge mit b₁ = 2 und q = 3.","fr":"Pour une suite géométrique avec b₁ = 2 et q = 3, trouve b₅.","es":"Para una sucesión geométrica con b₁ = 2 y q = 3, halla b₅.","it":"Per una successione geometrica con b₁ = 2 e q = 3, trova b₅.","ru":"Для геометрической прогрессии с b₁ = 2 и q = 3 найди b₅.","pt":"Para uma progressão geométrica com b₁ = 2 e q = 3, encontra b₅."},
+"q10":{"sr":"Nađi rastojanje tačaka A(1, 2) i B(4, 6).","en":"Find the distance between the points A(1, 2) and B(4, 6).","de":"Finde den Abstand der Punkte A(1, 2) und B(4, 6).","fr":"Trouve la distance entre les points A(1, 2) et B(4, 6).","es":"Halla la distancia entre los puntos A(1, 2) y B(4, 6).","it":"Trova la distanza tra i punti A(1, 2) e B(4, 6).","ru":"Найди расстояние между точками A(1, 2) и B(4, 6).","pt":"Encontra a distância entre os pontos A(1, 2) e B(4, 6)."},
+"q11":{"sr":"Nađi izvod funkcije","en":"Find the derivative of the function","de":"Finde die Ableitung der Funktion","fr":"Trouve la dérivée de la fonction","es":"Halla la derivada de la función","it":"Trova la derivata della funzione","ru":"Найди производную функции","pt":"Encontra a derivada da função"},
+"q11b":{"sr":"i izračunaj f′(3).","en":"and evaluate f′(3).","de":"und berechne f′(3).","fr":"et calcule f′(3).","es":"y calcula f′(3).","it":"e calcola f′(3).","ru":"и вычисли f′(3).","pt":"e calcula f′(3)."},
+"q12":{"sr":"Izračunaj","en":"Evaluate","de":"Berechne","fr":"Calcule","es":"Calcula","it":"Calcola","ru":"Вычисли","pt":"Calcula"}
+};var LN=["sr","en","de","fr","es","it","ru","pt"];function ap(l){if(LN.indexOf(l)<0)l="sr";document.documentElement.lang=l;document.querySelectorAll("[data-i18n]").forEach(function(e){var k=e.getAttribute("data-i18n");if(T[k]&&T[k][l])e.textContent=T[k][l]});document.querySelectorAll("[data-i18n-html]").forEach(function(e){var k=e.getAttribute("data-i18n-html");if(T[k]&&T[k][l])e.innerHTML=T[k][l]});var s=document.getElementById("langsel");if(s)s.value=l;try{localStorage.setItem("mathia_lang",l)}catch(e){}}var st="sr";try{st=(localStorage.getItem("mathia_lang")||"sr").toLowerCase()}catch(e){}ap(st);var s=document.getElementById("langsel");if(s)s.addEventListener("change",function(){ap(this.value)});window.addEventListener("mathia:lang",function(){try{ap((localStorage.getItem("mathia_lang")||"sr").toLowerCase())}catch(e){}});})();</script>
+<script>(function(){function R(){if(!window.katex){return setTimeout(R,40);}var n=document.querySelectorAll('.tx[data-tex]');for(var i=0;i<n.length;i++){var el=n[i];if(el.getAttribute('data-done'))continue;try{katex.render(el.getAttribute('data-tex'),el,{throwOnError:false,displayMode:false});el.setAttribute('data-done','1');}catch(e){}}}if(document.readyState!=='loading')R();else document.addEventListener('DOMContentLoaded',R);})();</script>
+<script defer src="gate.js" data-subject="prijemni-matematika" data-skripta="1"></script>
+</body>
+</html>
