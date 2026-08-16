@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#5A1024">
+<title>Mathia — Provera znanja · Web programiranje 🎯</title>
+<meta name="description" content="Proveri znanje — Web programiranje, pitanje po pitanje, sa rešenjem korak po korak uz Profesoricu.">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF6EE;--ink:#5A1024;--ink2:#7A3346;--gold:#C6A05C;--golddk:#A6803C;--goldlt:#F0DCA8;--goldsoft:#F0DCA8;--malina:#B01E48;--malina2:#CC5E7E;--mint:#3FB98C;--muted:#8A7A80;--line:#EFE1DC}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#43303A;min-height:100vh;background:radial-gradient(520px 400px at 104% -6%,#F6E1EC 0,transparent 56%),radial-gradient(500px 380px at -6% 106%,#F7ECD6 0,transparent 58%),var(--cream);overflow-x:hidden}
+h1,h2,h3{font-family:'Spectral',Georgia,serif;font-weight:700;margin:0;color:var(--ink);line-height:1.15}
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:'Spectral',serif;font-style:italic;color:rgba(198,160,92,.20);animation:fl linear infinite;will-change:transform}
+#fall span.m{color:rgba(176,30,72,.15)}
+@keyframes fl{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(24deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#fall{display:none}}
+.wrap{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:14px 18px 40px}
+.top{display:flex;align-items:center;gap:12px;padding:6px 2px 14px}
+.top .back{color:var(--ink2);text-decoration:none;font-weight:800;font-size:1.15rem}
+.top .lang{margin-left:auto;border:1px solid var(--goldlt);border-radius:100px;padding:5px 10px;font-family:inherit;font-weight:800;font-size:.72rem;color:var(--ink);background:#fff;cursor:pointer}
+.bar{flex:1;height:14px;border-radius:100px;background:#EEE1D8;overflow:hidden;box-shadow:inset 0 1px 3px rgba(120,60,70,.12)}
+.bar>i{display:block;height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--malina));transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.hearts{font-size:1rem;white-space:nowrap}.streak{font-weight:900;color:var(--gold);font-size:.95rem;white-space:nowrap}
+.hero{text-align:center;margin:2px 0 14px}
+.hero .free{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(180deg,#FFFBF3,#FBF3E2);border:1px solid var(--goldsoft);border-radius:100px;padding:6px 15px;font-weight:800;font-size:.72rem;color:var(--golddk)}
+.card{background:linear-gradient(180deg,#FFFDF9,#FDF3EA);border:1px solid var(--goldlt);border-radius:30px;padding:24px 22px;box-shadow:0 30px 70px -34px rgba(90,16,36,.5);animation:pop .5s cubic-bezier(.2,.9,.2,1);position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),#FFF6D6,var(--gold),transparent)}
+@keyframes pop{0%{transform:scale(.95) translateY(10px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+.eyebrow{text-align:center;font-weight:900;letter-spacing:.2em;text-transform:uppercase;font-size:.66rem;color:var(--malina)}
+.qnum{display:block;text-align:center;margin:2px 0 4px;color:var(--muted);font-weight:800;font-size:.8rem}
+.mascot{width:70px;height:70px;margin:4px auto 4px;border-radius:50%;display:grid;place-items:center;font-size:2.15rem;background:radial-gradient(circle at 40% 34%,#FFF3F7,#F6E1EC);border:2px solid var(--goldlt);box-shadow:0 12px 26px -12px rgba(176,30,72,.4);animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.qtag{display:block;text-align:center;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--golddk);margin:2px 0 6px}
+.q{font-family:'Spectral',serif;font-weight:700;color:var(--ink);font-size:1.3rem;text-align:center;line-height:1.3;margin:4px 0 6px}
+.opts{display:grid;gap:11px;margin-top:14px}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #EFE0D6;border-radius:18px;padding:13px 15px;font-family:'Spectral','Cambria Math',Georgia,serif;font-weight:600;font-size:1.05rem;color:var(--ink);cursor:pointer;transition:transform .12s,border-color .15s,background .15s;text-align:left}
+.opt .mk{width:26px;height:26px;flex:none;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:800;font-size:.82rem;color:var(--golddk)}
+.opt:hover{transform:translateY(-2px);border-color:var(--gold)}
+.opts.locked .opt{cursor:default}
+.opt.correct{border-color:var(--mint);background:linear-gradient(180deg,#F1FBF6,#E4F6EE);animation:good .5s}
+.opt.correct .mk{border-color:var(--mint);background:var(--mint);color:#fff}
+.opt.wrong{border-color:var(--malina);background:linear-gradient(180deg,#FDEFF3,#FBE3EA);animation:shake .4s}
+.opt.wrong .mk{border-color:var(--malina);background:var(--malina);color:#fff}
+@keyframes good{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{margin-top:12px;text-align:center;font-weight:900;font-size:1.02rem;min-height:22px}
+.fb.ok{color:var(--mint)}.fb.no{color:var(--malina)}
+.sol{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease,margin .4s ease;margin:0}
+.sol.on{max-height:1600px;opacity:1;margin:14px 0 0}
+.sol-in{background:linear-gradient(180deg,#FFF7FA,#FBEEF2);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.sol-h{font-weight:900;letter-spacing:.06em;text-transform:uppercase;font-size:.7rem;color:var(--malina);margin-bottom:6px;text-align:center}
+.step{display:block;font-family:'Spectral','Cambria Math',Georgia,serif;font-size:1.06rem;color:var(--ink);white-space:normal;overflow-wrap:break-word;margin:10px 0;line-height:1.6}
+.res{display:inline-block;margin-top:6px;font-family:'Spectral',serif;font-weight:700;color:var(--malina);border:1.5px solid rgba(176,30,72,.35);border-radius:10px;padding:4px 14px;background:#fff}
+.note{color:#7A3346;font-size:.94rem;margin-top:8px}
+.rt{border-top:2px solid currentColor;padding:.08em .2em 0;margin-left:-.04em}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .18em}
+.frac>span{display:block;line-height:1.12;padding:0 .45em}
+.frac .num{border-bottom:1.5px solid currentColor;padding-bottom:.06em}.frac .den{padding-top:.06em}
+b{color:var(--ink)}
+.cta{display:block;width:100%;margin-top:14px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:900;font-size:1.02rem;padding:14px;border-radius:100px;box-shadow:0 16px 30px -14px rgba(176,30,72,.6);transition:transform .15s;text-decoration:none;text-align:center}
+.cta:hover{transform:translateY(-2px)}
+.cta.ghost{background:linear-gradient(135deg,#EAD196,#C6A05C);color:#3a2410;box-shadow:0 14px 28px -14px rgba(160,120,40,.7)}
+.reveal{display:block;width:100%;margin-top:12px;border:1.5px solid rgba(198,160,92,.5);cursor:pointer;background:#fff;color:var(--golddk);font-weight:800;font-size:.95rem;padding:12px;border-radius:100px;transition:background .15s}
+.reveal:hover{background:#FBF3E2}
+.hidden{display:none}
+.result{text-align:center}.result .big{font-size:3.2rem;margin:4px 0}.result h2{font-size:1.8rem;margin:2px 0}
+.result .score{font-weight:900;color:var(--gold);font-size:1.12rem}.result .msg{color:var(--ink2);margin:8px 0 4px}
+.rbadge{display:inline-flex;align-items:center;gap:8px;margin:12px auto 4px;background:linear-gradient(135deg,#FFF3D6,#F3DFA6);border:1px solid var(--goldlt);border-radius:100px;padding:10px 18px;font-weight:900;color:#8a6a1e;box-shadow:0 10px 22px -12px rgba(160,120,40,.6)}
+.again{margin-top:12px;background:none;border:none;color:var(--ink2);font-weight:800;cursor:pointer;text-decoration:underline}
+#conf{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+#conf i{position:absolute;top:-6%;width:10px;height:14px;border-radius:2px;animation:cf linear forwards}
+@keyframes cf{to{transform:translateY(110vh) rotate(560deg);opacity:.9}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style id="prov-lux">
+.card{background:linear-gradient(180deg,#FFFDF9,#FBEFDA)!important;border:1.5px solid rgba(198,160,92,.4)!important;border-radius:26px!important;box-shadow:0 40px 90px -50px rgba(90,16,36,.5)!important}
+.mascot{width:78px!important;height:78px!important;background:radial-gradient(circle at 40% 30%,#FFF6D6,#EAD3A0)!important;border:2px solid #C6A05C!important;box-shadow:0 16px 30px -14px rgba(198,160,92,.85)!important;font-size:2rem!important}
+.bar{height:14px!important;background:#F1E7D4!important;border:1px solid rgba(198,160,92,.35)}
+.bar>*{background:linear-gradient(90deg,#E7D2A2,#C6A05C)!important;transition:width .45s ease!important}
+.opt{background:linear-gradient(180deg,#fff,#FBF3E4)!important;border:1.5px solid rgba(198,160,92,.42)!important;border-radius:16px!important;padding:14px 15px!important;grid-template-columns:auto 1fr!important;align-items:center;gap:12px;text-align:left;font-weight:700;color:#5A1024;transition:transform .14s,border-color .14s,box-shadow .14s;box-shadow:0 6px 16px -12px rgba(156,120,56,.5)}
+.opt:hover{border-color:#C6A05C!important;transform:translateY(-2px);box-shadow:0 16px 28px -14px rgba(198,160,92,.75)}
+.opt:active{transform:scale(.99)}
+.opt .mk{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 30%,#FFF6D6,#E7D2A2);border:1px solid #C6A05C;font-weight:900;color:#5A1024;flex:none}
+.opt.correct{border-color:#3F9A6A!important;background:linear-gradient(180deg,#F3FBF5,#E7F6EC)!important}
+.opt.wrong{border-color:#CC5E7E!important;background:linear-gradient(180deg,#FFF5F8,#FBEAF0)!important}
+.fb{font-size:1.08rem!important}
+.heart{font-size:1.05rem!important}
+@keyframes pop{0%{opacity:0;transform:translateY(10px) scale(.98)}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){.mascot{animation:mbob 3s ease-in-out infinite}@keyframes mbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}}
+</style>
+<style id="kviz-space">
+main.wrap{min-height:100dvh;display:flex;flex-direction:column;padding-bottom:56px}
+.hero{margin-top:auto}
+#quiz,#report{margin-bottom:auto}
+.opts{gap:14px!important;margin-top:20px!important}
+.opt{padding:16px 18px!important}
+.q{margin:12px 0 4px!important;line-height:1.42!important}
+.mascot{margin:10px auto 12px!important}
+.qtag{margin:4px 0 12px!important}
+.qnum{margin:4px 0 6px!important}
+</style>
+<style id="mathia-polish">
+/* MATHIA quiz polish — nicer fonts, larger owl-side text, vertical centering, top-row spacing.
+   Palette-safe only: cream #FBF6EE, card #FFFDF9, plum #5A1024, ink #43303A, gold #C6A05C/#9C7838, malina #B01E48. No purple/lavender. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{--mp-plum:#5A1024;--mp-ink:#43303A;--mp-gold:#C6A05C;--mp-golddk:#9C7838;--mp-malina:#B01E48;--mp-muted:#8A7A80}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--mp-ink)}
+h1,h2,h3{font-family:'Spectral',Georgia,'Times New Roman',serif}
+
+/* 3 + 4) Vertically center the whole quiz group and lower it — responsive, no clipping (min-height, not fixed height) */
+main.wrap{min-height:100dvh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:26px}
+.hero{margin-top:0!important}
+#quiz,#report{margin-bottom:0!important}
+
+/* 4) Top row (hearts + streak + language) — breathing room, less cramped, lowered */
+.top{padding:18px 2px 22px!important;gap:14px!important}
+.top .back{font-size:1.25rem!important}
+.top .lang{font-size:.8rem!important;padding:7px 13px!important;letter-spacing:.03em}
+.hearts{font-size:1.12rem!important}
+.streak{font-size:1.02rem!important}
+
+/* 2) Text around the owl — enlarge eyebrow, question number and topic tag for readability */
+.eyebrow{font-size:.84rem!important;letter-spacing:.16em!important;color:var(--mp-malina)}
+.qnum{font-size:1rem!important;font-weight:800!important;color:var(--mp-muted)}
+.qtag{font-size:.84rem!important;letter-spacing:.1em!important;color:var(--mp-golddk)}
+
+/* 1) Fonts — elegant serif for the question, clean Inter for options/body/UI */
+.q{font-family:'Spectral',Georgia,serif!important;font-weight:700;color:var(--mp-plum)}
+.opt{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif!important;font-weight:600;color:var(--mp-plum)}
+.opt .mk{font-family:'Inter',system-ui,sans-serif!important}
+.eyebrow,.qnum,.qtag,.fb,.cta,.reveal,.top,.streak{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif!important}
+
+/* cuter, cleaner touch */
+.card{border-radius:28px!important}
+.mascot{margin:8px auto 10px!important}
+
+/* short screens: keep comfortable, never clip */
+@media(max-height:680px){main.wrap{justify-content:flex-start;padding-top:14px;padding-bottom:28px}}
+</style>
+<!-- MATHIA-KATEX -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<style id="mathia-kviz-fix">
+/* Palette: cream #FBF6EE, plum #5A1024, gold #C6A05C/#9C7838, malina #B01E48 */
+/* 3) HEADER STACKING: eyebrow -> subject -> question number, nicely spaced */
+.eyebrow{text-align:center!important;font-family:'Inter',system-ui,sans-serif!important;font-weight:900!important;letter-spacing:.2em!important;text-transform:uppercase;font-size:.72rem!important;color:#B01E48!important;margin:0 0 3px!important}
+.subject{display:block;text-align:center;font-family:'Spectral',Georgia,'Times New Roman',serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#5A1024;font-size:1.16rem;line-height:1.12;margin:2px 0 4px}
+.qnum{display:block!important;text-align:center;font-family:'Inter',system-ui,sans-serif!important;color:#8A7A80!important;font-weight:800!important;font-size:.9rem!important;margin:2px 0 4px!important}
+/* 1) CRITICAL next button: vertical-centering used to push it off-screen. Anchor content to top so it is always visible & scrollable. */
+main.wrap{justify-content:flex-start!important;padding-top:22px}
+#next{margin-top:16px}
+#next:not(.hidden){display:block!important}
+/* 4) SOLUTION: clean, centered, one step per line, highlighted result */
+.sol-in{text-align:center!important}
+.sol-h{text-align:center!important}
+.step{display:block!important;text-align:center!important;margin:10px 0!important;line-height:1.55!important}
+.note{text-align:center!important;margin:10px auto!important;max-width:34em}
+.res{display:inline-block!important;margin:12px auto 2px!important;padding:9px 20px!important;font-weight:800!important;color:#B01E48!important;background:#fff!important;border:1.6px solid rgba(176,30,72,.42)!important;border-radius:12px!important;box-shadow:0 10px 22px -14px rgba(176,30,72,.6)!important}
+/* 2) KaTeX: proper radicals, italic i, consistent phi, real matrices */
+.katex{font-size:1.05em;color:inherit;line-height:1.2}
+.q .katex{font-size:1.12em}
+.opt .katex,.step .katex,.res .katex,.note .katex{font-size:1.02em}
+.katex-display{margin:.3em 0}
+</style>
+</head>
+<body>
+<div id="fall" aria-hidden="true"></div>
+<div id="conf" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="top">
+    <a class="back" id="backlink" href="predmet-web-programiranje.html">←</a>
+    <div class="bar"><i id="prog"></i></div>
+    <span class="hearts" id="hearts">❤️❤️❤️</span>
+    <span class="streak" id="streak">🔥 0</span>
+    <select class="lang" id="lang" aria-label="Jezik"><option value="sr">SR</option><option value="en">EN</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="ru">RU</option><option value="pt">PT</option></select>
+  </div>
+  <div class="hero"><span class="free" id="free"></span></div>
+  <section class="card" id="quiz">
+    <div class="eyebrow" id="eyebrow"></div>
+    <div class="subject" id="subject"></div>
+    <span class="qnum" id="qnum"></span>
+    <div class="mascot" id="mascot">🦉</div>
+    <span class="qtag" id="tag"></span>
+    <h2 class="q" id="q"></h2>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <div class="sol" id="sol"><div class="sol-in"><div class="sol-h" id="solH"></div><div id="solbody"></div></div></div>
+    <button class="reveal" id="reveal"></button>
+    <button class="cta hidden" id="next"></button>
+  </section>
+  <section class="card result hidden" id="report">
+    <div class="big" id="rbig">🎉</div>
+    <h2 id="rtitle"></h2>
+    <div class="score" id="rscore"></div>
+    <p class="msg" id="rmsg"></p>
+    <div class="rbadge" id="rbadge"></div>
+    <a class="cta" id="ask"></a>
+    <a class="cta ghost" id="allsub" style="margin-top:10px"></a>
+    <br><button class="again" id="again"></button>
+  </section>
+</main>
+<script>
+var I18N={"heroP": {"sr": "Idi pitanje po pitanje. Kad si spreman/na, otvori <b>detaljno rešenje</b> — Profesorica ti sve razloži korak po korak.", "en": "Go question by question. When you're ready, open the <b>detailed solution</b> — Profesorica explains everything step by step.", "de": "Geh Frage für Frage. Wenn du bereit bist, öffne die <b>ausführliche Lösung</b> — Profesorica erklärt alles Schritt für Schritt.", "fr": "Avance question par question. Quand tu es prêt·e, ouvre la <b>solution détaillée</b> — Profesorica t'explique tout étape par étape.", "es": "Ve pregunta por pregunta. Cuando estés listo/a, abre la <b>solución detallada</b> — Profesorica te lo explica paso a paso.", "it": "Vai domanda per domanda. Quando sei pronto/a, apri la <b>soluzione dettagliata</b> — Profesorica ti spiega tutto passo dopo passo.", "ru": "Иди вопрос за вопросом. Когда будешь готов(а), открой <b>подробное решение</b> — Profesorica всё объяснит шаг за шагом.", "pt": "Vai pergunta a pergunta. Quando estiveres pronto/a, abre a <b>solução detalhada</b> — a Profesorica explica tudo passo a passo."}, "h1": {"sr": "Koliko ti stvarno leži?", "en": "How well do you really know it?", "de": "Wie gut kannst du es wirklich?", "fr": "Tu maîtrises vraiment ?", "es": "¿Cuánto dominas de verdad?", "it": "Quanto lo padroneggi davvero?", "ru": "Насколько ты и правда владеешь?", "pt": "Até que ponto dominas mesmo?"}, "free": {"sr": "✦ Vežbaj svojim tempom, bez pritiska 💛", "en": "✦ Practise at your own pace, no pressure 💛", "de": "✦ Übe in deinem Tempo, ganz entspannt 💛", "fr": "✦ Entraîne-toi à ton rythme, sans pression 💛", "es": "✦ Practica a tu ritmo, sin presión 💛", "it": "✦ Allenati al tuo ritmo, senza pressione 💛", "ru": "✦ Занимайся в своём темпе, без давления 💛", "pt": "✦ Pratica ao teu ritmo, sem pressão 💛"}, "reveal": {"sr": "Pogledaj rešenje →", "en": "Show the solution →", "de": "Lösung anzeigen →", "fr": "Voir la solution →", "es": "Ver la solución →", "it": "Mostra la soluzione →", "ru": "Показать решение →", "pt": "Ver a solução →"}, "nextMid": {"sr": "Sledeće pitanje →", "en": "Next question →", "de": "Nächste Frage →", "fr": "Question suivante →", "es": "Siguiente pregunta →", "it": "Domanda successiva →", "ru": "Следующий вопрос →", "pt": "Próxima pergunta →"}, "nextEnd": {"sr": "Završi →", "en": "Finish →", "de": "Fertig →", "fr": "Terminer →", "es": "Terminar →", "it": "Fine →", "ru": "Завершить →", "pt": "Terminar →"}, "prev": {"sr": "← Prethodno", "en": "← Previous", "de": "← Zurück", "fr": "← Précédent", "es": "← Anterior", "it": "← Precedente", "ru": "← Назад", "pt": "← Anterior"}, "fbOk": {"sr": "Tačno! Bravo ✨", "en": "Correct! Well done ✨", "de": "Richtig! Bravo ✨", "fr": "Correct ! Bravo ✨", "es": "¡Correcto! Bravo ✨", "it": "Giusto! Bravo ✨", "ru": "Верно! Молодец ✨", "pt": "Certo! Boa ✨"}, "fbNo": {"sr": "Nije tačno — pogledaj rešenje 💛", "en": "Not quite — check the solution 💛", "de": "Nicht ganz — sieh dir die Lösung an 💛", "fr": "Pas tout à fait — regarde la solution 💛", "es": "No exacto — mira la solución 💛", "it": "Non proprio — guarda la soluzione 💛", "ru": "Не совсем — посмотри решение 💛", "pt": "Não bem — vê a solução 💛"}, "solH": {"sr": "Rešenje — korak po korak", "en": "Solution — step by step", "de": "Lösung — Schritt für Schritt", "fr": "Solution — étape par étape", "es": "Solución — paso a paso", "it": "Soluzione — passo dopo passo", "ru": "Решение — шаг за шагом", "pt": "Solução — passo a passo"}, "qnum": {"sr": "Pitanje", "en": "Question", "de": "Frage", "fr": "Question", "es": "Pregunta", "it": "Domanda", "ru": "Вопрос", "pt": "Pergunta"}, "endBadge": {"sr": "🎉 Sve si prošao/la!", "en": "🎉 You made it through!", "de": "🎉 Alles geschafft!", "fr": "🎉 Tu as tout fait !", "es": "🎉 ¡Lo lograste!", "it": "🎉 Ce l'hai fatta!", "ru": "🎉 Ты всё прошёл(ла)!", "pt": "🎉 Conseguiste!"}, "endBig": {"sr": "Bravo!", "en": "Well done!", "de": "Bravo!", "fr": "Bravo !", "es": "¡Bravo!", "it": "Bravo!", "ru": "Молодец!", "pt": "Boa!"}, "endP": {"sr": "Prošao/la si sva pitanja. Ono što ti je bilo mutno — Profesorica ti razjasni do kraja, kad god poželiš.", "en": "You went through all the questions. Whatever was fuzzy — Profesorica clears it up fully, whenever you like.", "de": "Du hast alle Fragen geschafft. Was unklar war — Profesorica klärt es vollständig, wann immer du willst.", "fr": "Tu as parcouru toutes les questions. Ce qui restait flou — Profesorica l'éclaircit à fond, quand tu veux.", "es": "Recorriste todas las preguntas. Lo que quedó confuso — Profesorica te lo aclara del todo, cuando quieras.", "it": "Hai svolto tutte le domande. Ciò che era confuso — Profesorica te lo chiarisce del tutto, quando vuoi.", "ru": "Ты прошёл(ла) все вопросы. Что было непонятно — Profesorica разъяснит до конца, когда захочешь.", "pt": "Passaste por todas as perguntas. O que ficou confuso — a Profesorica esclarece por completo, quando quiseres."}, "mboxH": {"sr": "Zapni negde? Tu sam. 💛", "en": "Stuck somewhere? I'm here. 💛", "de": "Irgendwo hängen geblieben? Ich bin da. 💛", "fr": "Bloqué·e quelque part ? Je suis là. 💛", "es": "¿Te atascas? Estoy aquí. 💛", "it": "Ti blocchi da qualche parte? Ci sono io. 💛", "ru": "Где-то застрял(а)? Я рядом. 💛", "pt": "Emperraste nalgum ponto? Estou aqui. 💛"}, "mboxP": {"sr": "Pitaj Profesoricu bilo šta iz ovog predmeta — objasni ti na tvom primeru, korak po korak, 0–24h.", "en": "Ask Profesorica anything from this subject — she explains it on your own example, step by step, 24/7.", "de": "Frag Profesorica alles aus diesem Fach — sie erklärt es an deinem Beispiel, Schritt für Schritt, rund um die Uhr.", "fr": "Demande à Profesorica tout sur cette matière — elle t'explique sur ton exemple, étape par étape, 24h/24.", "es": "Pregunta a Profesorica lo que sea de esta asignatura — te lo explica con tu ejemplo, paso a paso, 24/7.", "it": "Chiedi a Profesorica qualsiasi cosa di questa materia — te lo spiega sul tuo esempio, passo dopo passo, 24 ore su 24.", "ru": "Спроси Profesorica о чём угодно по этому предмету — объяснит на твоём примере, шаг за шагом, круглосуточно.", "pt": "Pergunta à Profesorica qualquer coisa desta disciplina — explica no teu exemplo, passo a passo, 24h."}, "askBtn": {"sr": "Pitaj Profesoricu →", "en": "Ask Profesorica →", "de": "Frag Profesorica →", "fr": "Demande à Profesorica →", "es": "Pregunta a Profesorica →", "it": "Chiedi a Profesorica →", "ru": "Спроси Profesorica →", "pt": "Pergunta à Profesorica →"}, "allBtn": {"sr": "Svi predmeti →", "en": "All subjects →", "de": "Alle Fächer →", "fr": "Toutes les matières →", "es": "Todas las asignaturas →", "it": "Tutte le materie →", "ru": "Все предметы →", "pt": "Todas as disciplinas →"}, "again": {"sr": "↺ Ponovi kviz", "en": "↺ Retake the quiz", "de": "↺ Quiz wiederholen", "fr": "↺ Refaire le quiz", "es": "↺ Repetir el test", "it": "↺ Rifai il quiz", "ru": "↺ Пройти заново", "pt": "↺ Repetir o quiz"}, "back": {"sr": "← Web", "en": "← Web", "de": "← Web", "fr": "← Web", "es": "← Web", "it": "← Web", "ru": "← Веб", "pt": "← Web"}, "eyebrow": {"sr": "Proveri znanje · Web", "en": "Test yourself · Web", "de": "Wissen prüfen · Web", "fr": "Teste-toi · Web", "es": "Ponte a prueba · Web", "it": "Mettiti alla prova · Web", "ru": "Проверь знания · Веб", "pt": "Testa-te · Web"}};
+var DATA={"sr": [{"tag": "HTTP metode", "q": "Koja HTTP metoda kreira novi resurs na serveru?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST kreira resurs i menja stanje: POST /users.</span>"}, {"tag": "Statusni kod", "q": "Koji statusni kod znači „stranica nije pronađena“?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = greška klijenta (4xx): resurs ne postoji.</span>"}, {"tag": "Statusni kod", "q": "Šta označava statusni kod 500?", "o": ["Internu grešku servera", "Uspešan odgovor", "Preusmerenje", "Zabranjen pristup"], "c": 0, "sol": "<span class=\"res\">5xx = greška servera; 500 je opšta interna greška.</span>"}, {"tag": "DOM", "q": "Šta je DOM?", "o": ["Stablo objekata koje predstavlja HTML dokument", "Protokol za prenos podataka", "Baza podataka u pregledaču", "Format za stilizovanje stranice"], "c": 0, "sol": "<span class=\"res\">DOM = objektni model dokumenta; JS ga koristi da čita i menja HTML.</span>"}, {"tag": "HTTP", "q": "Koja osobina najbolje opisuje HTTP protokol?", "o": ["Bez stanja (stateless)", "Uvek šifrovan", "Čuva stanje između zahteva", "Radi samo lokalno"], "c": 0, "sol": "<span class=\"res\">HTTP je bez stanja; sesije/kolačići pamte korisnika.</span>"}, {"tag": "REST i JSON", "q": "U kom formatu REST API najčešće razmenjuje podatke?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON je lagan tekstualni format ključ–vrednost, idealan za API.</span>"}, {"tag": "Bezbednost", "q": "Kako se najbolje branimo od XSS napada?", "o": ["Sanitizacijom i escape-ovanjem korisničkog unosa", "Povećavanjem veličine fonta", "Korišćenjem samo GET metode", "Onemogućavanjem CSS-a"], "c": 0, "sol": "<span class=\"res\">Nikad ne veruj unosu: escapuj izlaz i sanitizuj sadržaj pre prikaza.</span>"}, {"tag": "Idempotentnost", "q": "Koja metoda je „bezbedna“ i idempotentna (ponavljanje ne menja stanje)?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET samo čita — ponavljanje ne menja stanje na serveru.</span>"}, {"tag": "Kolačići i sesije", "q": "Čemu služe kolačići i sesije u web aplikaciji?", "o": ["Da pamte stanje korisnika (npr. prijavu)", "Da ubrzaju CSS animacije", "Da kompajliraju JavaScript", "Da menjaju statusne kodove"], "c": 0, "sol": "<span class=\"res\">Pošto je HTTP bez stanja, kolačić nosi ID sesije koja čuva stanje na serveru.</span>"}], "en": [{"tag": "HTTP methods", "q": "Which HTTP method creates a new resource on the server?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST creates a resource and changes state: POST /users.</span>"}, {"tag": "Status code", "q": "Which status code means „page not found“?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = client error (4xx): the resource does not exist.</span>"}, {"tag": "Status code", "q": "What does status code 500 indicate?", "o": ["Internal server error", "A successful response", "A redirect", "Forbidden access"], "c": 0, "sol": "<span class=\"res\">5xx = server error; 500 is a generic internal error.</span>"}, {"tag": "DOM", "q": "What is the DOM?", "o": ["A tree of objects representing the HTML document", "A data transfer protocol", "A database in the browser", "A format for styling the page"], "c": 0, "sol": "<span class=\"res\">DOM = Document Object Model; JS uses it to read and change the HTML.</span>"}, {"tag": "HTTP", "q": "Which property best describes the HTTP protocol?", "o": ["Stateless", "Always encrypted", "Keeps state between requests", "Works only locally"], "c": 0, "sol": "<span class=\"res\">HTTP is stateless; sessions/cookies remember the user.</span>"}, {"tag": "REST and JSON", "q": "In which format does a REST API most often exchange data?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON is a lightweight text key–value format, ideal for APIs.</span>"}, {"tag": "Security", "q": "How do we best defend against XSS attacks?", "o": ["By sanitizing and escaping user input", "By increasing the font size", "By using only the GET method", "By disabling CSS"], "c": 0, "sol": "<span class=\"res\">Never trust input: escape output and sanitize content before display.</span>"}, {"tag": "Idempotency", "q": "Which method is „safe“ and idempotent (repeating changes nothing)?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET only reads — repeating does not change server state.</span>"}, {"tag": "Cookies and sessions", "q": "What are cookies and sessions for in a web app?", "o": ["To remember user state (e.g. login)", "To speed up CSS animations", "To compile JavaScript", "To change status codes"], "c": 0, "sol": "<span class=\"res\">Since HTTP is stateless, the cookie carries a session id that holds state on the server.</span>"}], "de": [{"tag": "HTTP-Methoden", "q": "Welche HTTP-Methode erstellt eine neue Ressource?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST erstellt eine Ressource und ändert den Zustand: POST /users.</span>"}, {"tag": "Statuscode", "q": "Welcher Statuscode bedeutet „Seite nicht gefunden“?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = Client-Fehler (4xx): Ressource existiert nicht.</span>"}, {"tag": "Statuscode", "q": "Was bedeutet Statuscode 500?", "o": ["Interner Serverfehler", "Erfolgreiche Antwort", "Weiterleitung", "Zugriff verboten"], "c": 0, "sol": "<span class=\"res\">5xx = Serverfehler; 500 ist ein allgemeiner interner Fehler.</span>"}, {"tag": "DOM", "q": "Was ist das DOM?", "o": ["Ein Objektbaum, der das HTML-Dokument darstellt", "Ein Datenübertragungsprotokoll", "Eine Datenbank im Browser", "Ein Format zum Stylen der Seite"], "c": 0, "sol": "<span class=\"res\">DOM = Document Object Model; JS nutzt es, um das HTML zu lesen und zu ändern.</span>"}, {"tag": "HTTP", "q": "Welche Eigenschaft beschreibt HTTP am besten?", "o": ["Zustandslos", "Immer verschlüsselt", "Hält Zustand zwischen Anfragen", "Funktioniert nur lokal"], "c": 0, "sol": "<span class=\"res\">HTTP ist zustandslos; Sitzungen/Cookies merken den Nutzer.</span>"}, {"tag": "REST und JSON", "q": "In welchem Format tauscht eine REST-API meist Daten aus?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON ist ein leichtes textuelles Schlüssel-Wert-Format, ideal für APIs.</span>"}, {"tag": "Sicherheit", "q": "Wie wehrt man XSS-Angriffe am besten ab?", "o": ["Durch Sanitisieren und Escapen der Eingaben", "Durch Vergrößern der Schrift", "Durch Nutzung nur der GET-Methode", "Durch Deaktivieren von CSS"], "c": 0, "sol": "<span class=\"res\">Traue Eingaben nie: Ausgabe escapen und Inhalt vor der Anzeige bereinigen.</span>"}, {"tag": "Idempotenz", "q": "Welche Methode ist „sicher“ und idempotent (Wiederholen ändert nichts)?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET liest nur — Wiederholen ändert den Serverzustand nicht.</span>"}, {"tag": "Cookies und Sitzungen", "q": "Wozu dienen Cookies und Sitzungen in einer Web-App?", "o": ["Um den Nutzerzustand zu merken (z. B. Anmeldung)", "Um CSS-Animationen zu beschleunigen", "Um JavaScript zu kompilieren", "Um Statuscodes zu ändern"], "c": 0, "sol": "<span class=\"res\">Da HTTP zustandslos ist, trägt das Cookie eine Sitzungs-ID, die den Zustand am Server hält.</span>"}], "fr": [{"tag": "Méthodes HTTP", "q": "Quelle méthode HTTP crée une nouvelle ressource ?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST crée une ressource et modifie l'état : POST /users.</span>"}, {"tag": "Code de statut", "q": "Quel code de statut signifie « page introuvable » ?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = erreur client (4xx) : la ressource n'existe pas.</span>"}, {"tag": "Code de statut", "q": "Que signifie le code 500 ?", "o": ["Erreur interne du serveur", "Réponse réussie", "Redirection", "Accès interdit"], "c": 0, "sol": "<span class=\"res\">5xx = erreur serveur ; 500 est une erreur interne générique.</span>"}, {"tag": "DOM", "q": "Qu'est-ce que le DOM ?", "o": ["Un arbre d'objets représentant le document HTML", "Un protocole de transfert de données", "Une base de données dans le navigateur", "Un format pour styliser la page"], "c": 0, "sol": "<span class=\"res\">DOM = Document Object Model ; JS l'utilise pour lire et modifier le HTML.</span>"}, {"tag": "HTTP", "q": "Quelle propriété décrit le mieux HTTP ?", "o": ["Sans état", "Toujours chiffré", "Garde l'état entre requêtes", "Fonctionne seulement en local"], "c": 0, "sol": "<span class=\"res\">HTTP est sans état ; sessions/cookies mémorisent l'utilisateur.</span>"}, {"tag": "REST et JSON", "q": "Dans quel format une API REST échange-t-elle le plus souvent les données ?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON est un format texte clé–valeur léger, idéal pour les API.</span>"}, {"tag": "Sécurité", "q": "Comment se défendre au mieux contre les attaques XSS ?", "o": ["En assainissant et échappant les entrées", "En augmentant la taille de police", "En n'utilisant que GET", "En désactivant le CSS"], "c": 0, "sol": "<span class=\"res\">Ne fais jamais confiance aux entrées : échappe la sortie et assainis le contenu.</span>"}, {"tag": "Idempotence", "q": "Quelle méthode est « sûre » et idempotente (répéter ne change rien) ?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET ne fait que lire — répéter ne change pas l'état du serveur.</span>"}, {"tag": "Cookies et sessions", "q": "À quoi servent cookies et sessions dans une app web ?", "o": ["Pour mémoriser l'état de l'utilisateur (ex. connexion)", "Pour accélérer les animations CSS", "Pour compiler le JavaScript", "Pour changer les codes de statut"], "c": 0, "sol": "<span class=\"res\">HTTP étant sans état, le cookie porte un id de session qui garde l'état sur le serveur.</span>"}], "es": [{"tag": "Métodos HTTP", "q": "¿Qué método HTTP crea un nuevo recurso?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST crea un recurso y cambia el estado: POST /users.</span>"}, {"tag": "Código de estado", "q": "¿Qué código de estado significa „página no encontrada“?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = error del cliente (4xx): el recurso no existe.</span>"}, {"tag": "Código de estado", "q": "¿Qué indica el código 500?", "o": ["Error interno del servidor", "Respuesta exitosa", "Redirección", "Acceso prohibido"], "c": 0, "sol": "<span class=\"res\">5xx = error del servidor; 500 es un error interno genérico.</span>"}, {"tag": "DOM", "q": "¿Qué es el DOM?", "o": ["Un árbol de objetos que representa el documento HTML", "Un protocolo de transferencia de datos", "Una base de datos en el navegador", "Un formato para estilizar la página"], "c": 0, "sol": "<span class=\"res\">DOM = Document Object Model; JS lo usa para leer y cambiar el HTML.</span>"}, {"tag": "HTTP", "q": "¿Qué propiedad describe mejor a HTTP?", "o": ["Sin estado", "Siempre cifrado", "Mantiene el estado entre peticiones", "Funciona solo localmente"], "c": 0, "sol": "<span class=\"res\">HTTP no tiene estado; sesiones/cookies recuerdan al usuario.</span>"}, {"tag": "REST y JSON", "q": "¿En qué formato intercambia datos con más frecuencia una API REST?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON es un formato de texto clave–valor ligero, ideal para API.</span>"}, {"tag": "Seguridad", "q": "¿Cómo defenderse mejor de los ataques XSS?", "o": ["Saneando y escapando la entrada del usuario", "Aumentando el tamaño de fuente", "Usando solo el método GET", "Deshabilitando el CSS"], "c": 0, "sol": "<span class=\"res\">Nunca confíes en la entrada: escapa la salida y sanea el contenido.</span>"}, {"tag": "Idempotencia", "q": "¿Qué método es „seguro“ e idempotente (repetir no cambia nada)?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET solo lee — repetir no cambia el estado del servidor.</span>"}, {"tag": "Cookies y sesiones", "q": "¿Para qué sirven las cookies y sesiones en una app web?", "o": ["Para recordar el estado del usuario (p. ej. sesión)", "Para acelerar las animaciones CSS", "Para compilar JavaScript", "Para cambiar códigos de estado"], "c": 0, "sol": "<span class=\"res\">Como HTTP no tiene estado, la cookie lleva un id de sesión que guarda el estado en el servidor.</span>"}], "it": [{"tag": "Metodi HTTP", "q": "Quale metodo HTTP crea una nuova risorsa?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST crea una risorsa e cambia lo stato: POST /users.</span>"}, {"tag": "Codice di stato", "q": "Quale codice di stato significa „pagina non trovata“?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = errore client (4xx): la risorsa non esiste.</span>"}, {"tag": "Codice di stato", "q": "Cosa indica il codice 500?", "o": ["Errore interno del server", "Risposta riuscita", "Reindirizzamento", "Accesso vietato"], "c": 0, "sol": "<span class=\"res\">5xx = errore server; 500 è un errore interno generico.</span>"}, {"tag": "DOM", "q": "Cos'è il DOM?", "o": ["Un albero di oggetti che rappresenta il documento HTML", "Un protocollo di trasferimento dati", "Un database nel browser", "Un formato per lo stile della pagina"], "c": 0, "sol": "<span class=\"res\">DOM = Document Object Model; JS lo usa per leggere e modificare l'HTML.</span>"}, {"tag": "HTTP", "q": "Quale proprietà descrive meglio HTTP?", "o": ["Senza stato", "Sempre cifrato", "Mantiene lo stato tra richieste", "Funziona solo in locale"], "c": 0, "sol": "<span class=\"res\">HTTP è senza stato; sessioni/cookie ricordano l'utente.</span>"}, {"tag": "REST e JSON", "q": "In quale formato una API REST scambia di solito i dati?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON è un formato testuale chiave–valore leggero, ideale per le API.</span>"}, {"tag": "Sicurezza", "q": "Come difendersi al meglio dagli attacchi XSS?", "o": ["Sanitizzando e facendo escape dell'input", "Aumentando la dimensione del font", "Usando solo il metodo GET", "Disabilitando il CSS"], "c": 0, "sol": "<span class=\"res\">Non fidarti mai dell'input: fai escape dell'output e sanitizza il contenuto.</span>"}, {"tag": "Idempotenza", "q": "Quale metodo è „sicuro“ e idempotente (ripetere non cambia nulla)?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET solo legge — ripetere non cambia lo stato del server.</span>"}, {"tag": "Cookie e sessioni", "q": "A cosa servono cookie e sessioni in un'app web?", "o": ["Per ricordare lo stato dell'utente (es. login)", "Per velocizzare le animazioni CSS", "Per compilare JavaScript", "Per cambiare i codici di stato"], "c": 0, "sol": "<span class=\"res\">Poiché HTTP è senza stato, il cookie porta un id di sessione che conserva lo stato sul server.</span>"}], "ru": [{"tag": "Методы HTTP", "q": "Какой метод HTTP создаёт новый ресурс на сервере?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST создаёт ресурс и меняет состояние: POST /users.</span>"}, {"tag": "Код состояния", "q": "Какой код состояния означает «страница не найдена»?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = ошибка клиента (4xx): ресурс не существует.</span>"}, {"tag": "Код состояния", "q": "Что означает код 500?", "o": ["Внутреннюю ошибку сервера", "Успешный ответ", "Перенаправление", "Доступ запрещён"], "c": 0, "sol": "<span class=\"res\">5xx = ошибка сервера; 500 — общая внутренняя ошибка.</span>"}, {"tag": "DOM", "q": "Что такое DOM?", "o": ["Дерево объектов, представляющее HTML‑документ", "Протокол передачи данных", "База данных в браузере", "Формат для стилизации страницы"], "c": 0, "sol": "<span class=\"res\">DOM = объектная модель документа; JS через неё читает и меняет HTML.</span>"}, {"tag": "HTTP", "q": "Какое свойство лучше всего описывает HTTP?", "o": ["Без состояния", "Всегда шифрован", "Хранит состояние между запросами", "Работает только локально"], "c": 0, "sol": "<span class=\"res\">HTTP без состояния; сессии/cookie запоминают пользователя.</span>"}, {"tag": "REST и JSON", "q": "В каком формате REST API чаще всего обменивается данными?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON — лёгкий текстовый формат ключ–значение, идеален для API.</span>"}, {"tag": "Безопасность", "q": "Как лучше всего защититься от XSS‑атак?", "o": ["Санитизацией и экранированием пользовательского ввода", "Увеличением размера шрифта", "Использованием только метода GET", "Отключением CSS"], "c": 0, "sol": "<span class=\"res\">Никогда не доверяй вводу: экранируй вывод и санитизируй контент.</span>"}, {"tag": "Идемпотентность", "q": "Какой метод «безопасен» и идемпотентен (повтор ничего не меняет)?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET только читает — повтор не меняет состояние сервера.</span>"}, {"tag": "Cookie и сессии", "q": "Для чего нужны cookie и сессии в веб‑приложении?", "o": ["Чтобы помнить состояние пользователя (например, вход)", "Чтобы ускорить CSS‑анимации", "Чтобы компилировать JavaScript", "Чтобы менять коды состояния"], "c": 0, "sol": "<span class=\"res\">Так как HTTP без состояния, cookie несёт id сессии, хранящей состояние на сервере.</span>"}], "pt": [{"tag": "Métodos HTTP", "q": "Que método HTTP cria um novo recurso no servidor?", "o": ["POST", "GET", "DELETE", "HEAD"], "c": 0, "sol": "<span class=\"res\">POST cria um recurso e altera o estado: POST /users.</span>"}, {"tag": "Código de estado", "q": "Que código de estado significa „página não encontrada“?", "o": ["404", "200", "500", "301"], "c": 0, "sol": "<span class=\"res\">404 = erro do cliente (4xx): o recurso não existe.</span>"}, {"tag": "Código de estado", "q": "O que indica o código 500?", "o": ["Erro interno do servidor", "Resposta com sucesso", "Redirecionamento", "Acesso proibido"], "c": 0, "sol": "<span class=\"res\">5xx = erro do servidor; 500 é um erro interno genérico.</span>"}, {"tag": "DOM", "q": "O que é o DOM?", "o": ["Uma árvore de objetos que representa o documento HTML", "Um protocolo de transferência de dados", "Uma base de dados no navegador", "Um formato para estilizar a página"], "c": 0, "sol": "<span class=\"res\">DOM = Document Object Model; o JS usa-o para ler e alterar o HTML.</span>"}, {"tag": "HTTP", "q": "Que propriedade descreve melhor o HTTP?", "o": ["Sem estado", "Sempre cifrado", "Mantém estado entre pedidos", "Funciona só localmente"], "c": 0, "sol": "<span class=\"res\">O HTTP é sem estado; sessões/cookies lembram o utilizador.</span>"}, {"tag": "REST e JSON", "q": "Em que formato uma API REST troca dados com mais frequência?", "o": ["JSON", "EXE", "MP3", "CSS"], "c": 0, "sol": "<span class=\"res\">JSON é um formato de texto chave–valor leve, ideal para APIs.</span>"}, {"tag": "Segurança", "q": "Como nos defendemos melhor de ataques XSS?", "o": ["Sanitizando e fazendo escape da entrada do utilizador", "Aumentando o tamanho da fonte", "Usando apenas o método GET", "Desativando o CSS"], "c": 0, "sol": "<span class=\"res\">Nunca confies na entrada: faz escape da saída e sanitiza o conteúdo antes de mostrar.</span>"}, {"tag": "Idempotência", "q": "Que método é „seguro“ e idempotente (repetir não muda nada)?", "o": ["GET", "POST", "PATCH", "CONNECT"], "c": 0, "sol": "<span class=\"res\">GET apenas lê — repetir não altera o estado do servidor.</span>"}, {"tag": "Cookies e sessões", "q": "Para que servem cookies e sessões numa app web?", "o": ["Para lembrar o estado do utilizador (ex. login)", "Para acelerar animações CSS", "Para compilar JavaScript", "Para mudar códigos de estado"], "c": 0, "sol": "<span class=\"res\">Como o HTTP é sem estado, o cookie leva um id de sessão que guarda o estado no servidor.</span>"}]};
+var UIX={"score": {"sr": "Tačno", "en": "Correct", "de": "Richtig", "fr": "Correct", "es": "Correcto", "it": "Corretto", "ru": "Верно", "pt": "Correto"}, "rwin": {"sr": "Ja to mogu! 🎉", "en": "I can do this! 🎉", "de": "Ich kann das! 🎉", "fr": "J'y arrive ! 🎉", "es": "¡Yo puedo! 🎉", "it": "Ce la faccio! 🎉", "ru": "У меня получилось! 🎉", "pt": "Eu consigo! 🎉"}, "rmid": {"sr": "Super napredak!", "en": "Great progress!", "de": "Toller Fortschritt!", "fr": "Beau progrès !", "es": "¡Buen progreso!", "it": "Ottimi progressi!", "ru": "Отличный прогресс!", "pt": "Ótimo progresso!"}, "rlow": {"sr": "Odličan početak!", "en": "Great start!", "de": "Toller Anfang!", "fr": "Bon début !", "es": "¡Buen comienzo!", "it": "Ottimo inizio!", "ru": "Отличное начало!", "pt": "Ótimo começo!"}, "mwin": {"sr": "Sjajno ti ide — pravi si as!", "en": "You're doing great — a real star!", "de": "Klasse — ein echter Star!", "fr": "Tu assures — une vraie star !", "es": "¡Lo haces genial — toda una estrella!", "it": "Vai alla grande — una vera stella!", "ru": "Отлично — ты настоящая звезда!", "pt": "Vais muito bem — uma estrela!"}, "mmid": {"sr": "Još malo vežbe i sve je tvoje 💪", "en": "A little more practice and you've got it 💪", "de": "Noch etwas Übung und du hast es 💪", "fr": "Encore un peu et c'est gagné 💪", "es": "Un poco más y lo tienes 💪", "it": "Ancora un po' e ci sei 💪", "ru": "Ещё немного практики — и всё твоё 💪", "pt": "Mais um pouco e é teu 💪"}, "mlow": {"sr": "Hajde da ovo pređemo zajedno 💛", "en": "Let's go through this together 💛", "de": "Gehen wir das zusammen durch 💛", "fr": "Voyons ça ensemble 💛", "es": "Repasémoslo juntos 💛", "it": "Rivediamolo insieme 💛", "ru": "Давай разберём это вместе 💛", "pt": "Vamos ver isto juntos 💛"}, "badge": {"sr": "🏅 Bedž", "en": "🏅 Badge", "de": "🏅 Abzeichen", "fr": "🏅 Badge", "es": "🏅 Insignia", "it": "🏅 Distintivo", "ru": "🏅 Значок", "pt": "🏅 Emblema"}, "fbokv": {"sr": ["Bravo! ✨", "Tako je! 💛", "Sjajno! 🎉", "Baš tako! 🌸"], "en": ["Great! ✨", "That's it! 💛", "Awesome! 🎉", "Exactly! 🌸"], "de": ["Super! ✨", "Richtig! 💛", "Klasse! 🎉", "Genau! 🌸"], "fr": ["Bravo ! ✨", "C'est ça ! 💛", "Super ! 🎉", "Exact ! 🌸"], "es": ["¡Genial! ✨", "¡Eso es! 💛", "¡Increíble! 🎉", "¡Exacto! 🌸"], "it": ["Bravo! ✨", "Esatto! 💛", "Fantastico! 🎉", "Proprio così! 🌸"], "ru": ["Молодец! ✨", "Верно! 💛", "Отлично! 🎉", "Именно! 🌸"], "pt": ["Boa! ✨", "É isso! 💛", "Incrível! 🎉", "Exato! 🌸"]}};
+var SUBJ="Web programiranje";
+var ASKHREF="predmet-web-programiranje.html";
+var $=function(id){return document.getElementById(id)};
+function lng(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2).toLowerCase();if(DATA[s])return s;}}catch(e){}return 'sr'}
+function U(o){var l=lng();return (o&&(o[l]||o.sr))||''}
+var LANG=lng();if(!DATA[LANG])LANG='sr';
+var Q=DATA[LANG];
+var i=0,score=0,hearts=3,streak=0,answered=false;
+var curOrder=[],curCorrect=0,curBtns=[],L=["A","B","C","D","E"];
+function chrome(){
+ (function(){var _eb=U(I18N.eyebrow),_p=_eb.split('\u00B7');$('eyebrow').textContent=(_p[0]||_eb).trim();var _s=$('subject');if(_s)_s.textContent=(_p.slice(1).join('\u00B7')||'').trim();})();
+ $('free').textContent=U(I18N.free);
+ $('solH').textContent=U(I18N.solH);
+ $('reveal').textContent=U(I18N.reveal);
+ $('again').textContent=U(I18N.again);
+ $('ask').textContent=U(I18N.askBtn);$('ask').href=ASKHREF;
+ $('allsub').textContent=U(I18N.allBtn);$('allsub').href='predmeti.html';
+ var s=$('lang');if(s)s.value=LANG;
+ document.documentElement.lang=LANG;
+}
+function render(){
+ answered=false;Q=DATA[LANG];var it=Q[i];
+ $('qnum').textContent=U(I18N.qnum)+' '+(i+1)+' / '+Q.length;
+ $('tag').innerHTML=it.tag||'';
+ $('q').innerHTML=it.q;
+ $('mascot').textContent='🦉';$('fb').textContent='';$('fb').className='fb';
+ $('sol').classList.remove('on');$('solbody').innerHTML=it.sol||'';
+ $('reveal').classList.remove('hidden');
+ $('next').classList.add('hidden');
+ $('prog').style.width=(i/Q.length*100)+'%';
+ if(!it.__ord){var ord=(it.o||[]).map(function(_,x){return x});for(var a=ord.length-1;a>0;a--){var r=Math.floor(Math.random()*(a+1));var t=ord[a];ord[a]=ord[r];ord[r]=t;}it.__ord=ord;}
+ curOrder=it.__ord;curCorrect=curOrder.indexOf(it.c);curBtns=[];
+ var box=$('opts');box.className='opts';box.innerHTML='';
+ curOrder.forEach(function(orig,pos){var b=document.createElement('button');b.className='opt';
+   b.innerHTML='<span class="mk">'+L[pos]+'</span><span>'+(it.o[orig])+'</span>';
+   b.style.animation='pop .35s '+(pos*0.05)+'s both';b.onclick=function(){pick(pos,b)};box.appendChild(b);curBtns.push(b);});
+ chrome();
+}
+function pick(pos,btn){
+ if(answered)return;answered=true;var ok=(pos===curCorrect);
+ $('opts').classList.add('locked');
+ curBtns.forEach(function(o,idx){o.style.pointerEvents='none';if(idx===curCorrect)o.classList.add('correct');});
+ if(ok){btn.classList.add('correct');score++;streak++;$('streak').textContent='🔥 '+streak;
+   $('mascot').textContent=['🥳','😻','🌟','💯','🎈'][Math.floor(Math.random()*5)];
+   var p=UIX.fbokv[LANG]||UIX.fbokv.sr;$('fb').textContent=p[Math.floor(Math.random()*p.length)];$('fb').className='fb ok';miniConf();
+ }else{btn.classList.add('wrong');streak=0;$('streak').textContent='🔥 0';hearts=Math.max(0,hearts-1);
+   $('hearts').textContent='❤️'.repeat(hearts)+'🤍'.repeat(3-hearts);
+   $('mascot').textContent='🫣';$('fb').textContent=U(I18N.fbNo);$('fb').className='fb no';}
+ $('next').classList.remove('hidden');try{$('next').scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}
+ $('next').textContent=(i===Q.length-1)?U(I18N.nextEnd):U(I18N.nextMid);
+}
+$('reveal').onclick=function(){$('sol').classList.add('on');this.classList.add('hidden');};
+$('next').onclick=function(){i++;if(i>=Q.length){finish();return;}render();};
+function finish(){
+ $('prog').style.width='100%';$('quiz').classList.add('hidden');$('report').classList.remove('hidden');
+ $('rscore').textContent=U(UIX.score)+': '+score+' / '+Q.length;
+ var pct=score/Q.length;
+ if(pct>=0.8){$('rbig').textContent='🏆';$('rtitle').textContent=U(UIX.rwin);$('rmsg').textContent=U(UIX.mwin);$('rbadge').style.display='';bigConf();}
+ else if(pct>=0.5){$('rbig').textContent='🌟';$('rtitle').textContent=U(UIX.rmid);$('rmsg').textContent=U(UIX.mmid);$('rbadge').style.display='';bigConf();}
+ else{$('rbig').textContent='🌱';$('rtitle').textContent=U(UIX.rlow);$('rmsg').textContent=U(UIX.mlow);$('rbadge').style.display='none';}
+ $('rbadge').textContent=U(UIX.badge)+': '+SUBJ;
+ chrome();
+}
+$('again').onclick=function(){i=0;score=0;hearts=3;streak=0;$('hearts').textContent='❤️❤️❤️';$('streak').textContent='🔥 0';(DATA[LANG]||[]).forEach(function(it){delete it.__ord;});$('report').classList.add('hidden');$('quiz').classList.remove('hidden');render();};
+function spawnConf(n){var box=$('conf');var cols=['#C6A05C','#B01E48','#CC5E7E','#F0DCA8','#3FB98C','#E7D2A2'];for(var k=0;k<n;k++){var s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[k%cols.length];s.style.animationDuration=(1.6+Math.random()*1.4)+'s';s.style.transform='rotate('+Math.random()*360+'deg)';if(Math.random()<.25)s.style.borderRadius='50%';box.appendChild(s);setTimeout(function(el){return function(){el.remove()}}(s),3200);}}
+function miniConf(){spawnConf(14)}
+function bigConf(){spawnConf(90);var h=['💛','🌸','✨','🎉'];for(var k=0;k<16;k++){(function(k){setTimeout(function(){var s=document.createElement('i');s.textContent=h[k%4];s.style.cssText='position:absolute;top:-6%;font-size:20px;left:'+(Math.random()*100)+'%;animation:cf '+(1.8+Math.random())+'s linear forwards';$('conf').appendChild(s);setTimeout(function(){s.remove()},3200)},k*60)})(k);}}
+(function(){var box=$('fall'),g=['∫','∑','√','π','∞','∂','θ','Δ','≈','½','💛','🌸','✦','⭐'];for(var k=0;k<20;k++){var s=document.createElement('span');s.textContent=g[k%g.length];if(k%3===0)s.className='m';s.style.left=Math.random()*100+'%';s.style.fontSize=(13+Math.random()*20)+'px';s.style.animationDuration=(7+Math.random()*8)+'s';s.style.animationDelay=(-Math.random()*10)+'s';box.appendChild(s);}})();
+$('lang').addEventListener('change',function(){LANG=this.value;if(!DATA[LANG])LANG='sr';try{localStorage.setItem('mathia_lang',this.value);}catch(e){}try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:this.value}));}catch(e){}if(!$('report').classList.contains('hidden'))finish();else render();});
+window.addEventListener('mathia:lang',function(e){var v=(e&&e.detail)?String(e.detail).slice(0,2):LANG;if(DATA[v])LANG=v;if(!$('report').classList.contains('hidden'))finish();else render();});
+function mathTT(x){return x
+ .replace(/<sup>([^<]*)<\/sup>/g,'^{$1}')
+ .replace(/<sub>([^<]*)<\/sub>/g,'_{$1}')
+ .replace(/¹/g,'^{1}').replace(/²/g,'^{2}').replace(/³/g,'^{3}')
+ .replace(/⁰/g,'^{0}').replace(/⁴/g,'^{4}').replace(/⁵/g,'^{5}').replace(/⁶/g,'^{6}').replace(/⁷/g,'^{7}').replace(/⁸/g,'^{8}').replace(/⁹/g,'^{9}').replace(/ⁿ/g,'^{n}')
+ .replace(/₁/g,'_{1}').replace(/₂/g,'_{2}').replace(/₃/g,'_{3}').replace(/ₙ/g,'_{n}').replace(/ᵢ/g,'_{i}')
+ .replace(/−/g,'-').replace(/·/g,' \\cdot ').replace(/×/g,' \\times ').replace(/′/g,"'")
+ .replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();}
+function mathBmat(inner){var rows=inner.split(';').map(function(r){return r.trim().split(/[\s,]+/).filter(Boolean).map(function(c){return mathTT(c);}).join(' & ');});return '\\begin{bmatrix}'+rows.join(' \\\\ ')+'\\end{bmatrix}';}
+function mathLegacy(h){
+ h=h.replace(/ϕ/g,'φ');
+ h=h.replace(/√\s*<span class="rt">([\s\S]*?)<\/span>/g,function(_,g){return '\\(\\sqrt{'+mathTT(g)+'}\\)';});
+ h=h.replace(/<span class="frac"><span class="num">([\s\S]*?)<\/span><span class="den">([\s\S]*?)<\/span><\/span>/g,function(_,a,b){return '\\(\\dfrac{'+mathTT(a)+'}{'+mathTT(b)+'}\\)';});
+ h=h.replace(/\[(\[[^\[\]]*\](?:\s*,\s*\[[^\[\]]*\])*)\]/g,function(_,g){var rows=(g.match(/\[[^\[\]]*\]/g)||[]).map(function(r){return r.replace(/^\[|\]$/g,'');});return '\\('+mathBmat(rows.join(';'))+'\\)';});
+ h=h.replace(/\[([^\[\]]*;[^\[\]]*)\]/g,function(_,g){return '\\('+mathBmat(g)+'\\)';});
+ return h;}
+function mathpass(){
+ if(!(window.katex&&window.renderMathInElement))return;
+ ['q','tag','opts','solbody','qhint'].forEach(function(id){var el=document.getElementById(id);if(!el)return;var h=el.innerHTML,n=mathLegacy(h);if(n!==h)el.innerHTML=n;try{window.renderMathInElement(el,{delimiters:[{left:'\\(',right:'\\)',display:false}],throwOnError:false});}catch(e){}});
+}
+(function(){var _r=render;render=function(){var v=_r.apply(this,arguments);try{mathpass();}catch(e){}return v;};})();
+render();
+</script>
+<style id="kul-safe">body{padding-bottom:calc(24px + env(safe-area-inset-bottom))}@media(max-width:560px){.wrap{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}}</style>
+<script defer src="gate.js" data-subject="kviz" data-anysub="1"></script>
+</body>
+</html>
