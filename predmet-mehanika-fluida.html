@@ -4,132 +4,244 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#5A1024">
+<title>undefined — konačno jasna | Mathia</title>
 <meta name="description" content="MATHIA EDU — Mehanika fluida: uči uz Profesoricu 24/7, korak po korak, sa tačnim oznakama i rešenim primerima.">
-<title>Mehanika fluida — MATHIA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--paper:#FBF6EE;--plum:#5A1024;--plum2:#7A3346;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--muted:#90787E;--bord:#ECDAC5;--card:#fffcf6;--ink:#3E2D34}
-*{box-sizing:border-box}body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:radial-gradient(1100px 600px at 85% -10%,#FCEFD6,transparent 60%),var(--paper);line-height:1.6}
-.wrap{max-width:820px;margin:0 auto;padding:34px 20px 90px}
-h1,h2{font-family:'Spectral',Georgia,serif;font-weight:700;margin:0;color:var(--plum)}
-.eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--golddk);font-weight:800}
-.hero h1{font-size:2.5rem;margin:.15em 0 .1em}
-.hero p{color:var(--muted);margin:0 0 6px}
-.back{display:inline-block;margin-bottom:16px;color:var(--golddk);font-weight:800;text-decoration:none;font-size:.85rem}
-.sect{font-family:'Spectral',serif;font-size:1.5rem;color:var(--plum);margin:26px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--bord)}
-.card{background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:18px 22px;box-shadow:0 12px 30px -24px rgba(90,16,36,.5)}
-ul.teme{list-style:none;margin:0;padding:0}
-.tm{padding:11px 0 11px 30px;border-bottom:1px solid var(--bord);position:relative;color:var(--plum2);font-weight:600}
-.tm:last-child{border-bottom:none}
-.tm:before{content:"";position:absolute;left:4px;top:16px;width:9px;height:9px;border-radius:50%;background:linear-gradient(160deg,var(--goldlt),var(--gold))}
-.note{background:linear-gradient(120deg,#fff,var(--champ));border:1px solid var(--goldlt);border-radius:16px;padding:16px 18px;margin-top:22px;color:var(--plum2)}
-.note b{color:var(--golddk)}
-.mat{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}@media(max-width:560px){.mat{grid-template-columns:1fr}}.matbtn{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--card);border:1px solid var(--bord);border-radius:16px;padding:16px 18px;box-shadow:0 12px 30px -24px rgba(90,16,36,.5);transition:transform .15s,border-color .15s}.matbtn:hover{transform:translateY(-2px);border-color:var(--gold)}.matbtn b{font-family:'Spectral',serif;font-size:1.25rem;color:var(--plum)}.matbtn span{color:var(--muted);font-size:.85rem;font-weight:700}</style>
-<link rel="stylesheet" href="mathia-type.css">
-<style id="px-besplatno-look">
-:root{--plum:#5A1024;--plum2:#7A3346}
-body{background:radial-gradient(820px 380px at 88% -6%,#FBEAEF 0,rgba(251,234,239,0) 60%),radial-gradient(680px 340px at 4% 108%,#F7ECD6 0,rgba(247,236,214,0) 62%),var(--paper,#FBF6EE)!important}
-body::before{content:"\2211";position:fixed;top:12%;left:3%;font-family:'Spectral',serif;font-style:italic;font-size:74px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-body::after{content:"\222B";position:fixed;bottom:8%;right:4%;font-family:'Spectral',serif;font-style:italic;font-size:72px;color:rgba(198,160,92,.08);pointer-events:none;z-index:0}
-header,main,section,article,.wrap,footer{position:relative;z-index:1}
-.eyebrow{color:#B01E48!important}
-.btn-gold{position:relative;overflow:hidden;background:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-image:linear-gradient(110deg,#EAD196,#C6A05C 45%,#F4E3B4 55%,#C6A05C 75%,#EAD196)!important;background-size:240% auto!important;color:#3a2410!important;animation:pxBlShim 7s linear infinite;transition:transform .16s}
-@keyframes pxBlShim{to{background-position:-240% center}}
-.btn-gold:hover{transform:translateY(-2px)}
-footer{background:linear-gradient(180deg,#FBF6EE,#F5EEE1)!important;border-top:1px solid #F0DCA8!important}
-footer,footer p,footer small,footer li,footer .fclaim,footer .mflt-about,footer .mflt-copy{color:#8A7A80!important}
-footer .word,footer .fbrand,footer .mflt-word{color:#5A1024!important;-webkit-text-fill-color:#5A1024!important}
-footer a,footer .mflt-col a{color:#7A3346!important}footer a:hover{color:#A6803C!important}
-footer h4,footer .fh,footer .mflt-h{color:#A6803C!important}footer .mflt-tag{color:#B01E48!important}
-@media(prefers-reduced-motion:reduce){.btn-gold{animation:none}body::before,body::after{display:none}}
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<link rel="icon" href="/icon-192.png">
+<style id="pa-koncept">
+:root{--cream:#FBF6EE;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--ink2:#6A5A62;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--malina2:#CC5E7E;--muted:#8A7A80;--line:rgba(198,160,92,.28);--serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:radial-gradient(680px 420px at 92% -6%,#FBEAEF 0,transparent 56%),radial-gradient(620px 400px at -6% 108%,#F7ECD6 0,transparent 58%),var(--cream)}
+h1,h2,h3{font-family:var(--serif);color:var(--plum);margin:0;line-height:1.08}
+a{text-decoration:none;color:inherit}::selection{background:var(--goldlt);color:var(--plum)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.72rem;color:var(--golddk)}
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:var(--serif);font-style:italic;color:rgba(198,160,92,.16);animation:paFall linear infinite}
+#fall span.m{color:rgba(176,30,72,.13)}
+@keyframes paFall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(20deg);opacity:0}}
+main{position:relative;z-index:1}
+.backlink{display:inline-flex;align-items:center;gap:8px;color:var(--plum2);font-weight:700;font-size:.9rem;padding:20px 0 0}
+.backlink:hover{color:var(--golddk)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:26px 0 12px}
+@media(max-width:880px){.hero{grid-template-columns:1fr;gap:28px}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.01em;margin:10px 0 12px}
+.hero h1 em{font-style:normal;color:var(--malina)}
+.hero .lead{color:var(--plum2);font-size:1.14rem;max-width:520px;margin:0 0 26px;text-wrap:pretty}
+.cta{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:800;font-size:1.05rem;padding:16px 30px;border-radius:100px;box-shadow:0 18px 36px -14px rgba(176,30,72,.55);animation:ctaGlow 2.8s ease-in-out infinite}
+.cta:hover{animation:none;transform:translateY(-2px)}
+@keyframes ctaGlow{0%,100%{box-shadow:0 18px 36px -14px rgba(176,30,72,.55)}50%{box-shadow:0 20px 44px -10px rgba(176,30,72,.8),0 0 0 6px rgba(204,94,126,.12)}}
+.cta2{display:inline-flex;align-items:center;gap:8px;margin-left:12px;color:var(--plum);font-weight:800;padding:16px 22px;border-radius:100px;border:1.5px solid var(--goldlt)}
+.cta2:hover{border-color:var(--gold)}
+.microtrust{margin-top:16px;color:var(--muted);font-size:.9rem}
+.board{position:relative;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:26px;padding:28px 26px;box-shadow:0 34px 74px -44px rgba(90,16,36,.5)}
+.board::before{content:"";position:absolute;inset:10px;border:1px solid rgba(198,160,92,.28);border-radius:18px;pointer-events:none}
+.board .chip{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:800;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:100px;box-shadow:0 12px 24px -8px rgba(176,30,72,.5)}
+.board .frm{display:block;text-align:center;color:var(--plum);padding:12px 4px 18px;border-bottom:1px dashed rgba(198,160,92,.35)}
+.board .frm:last-child{border-bottom:none}.board .frm .katex{font-size:1.08em}
+.board .lbl{display:block;text-align:center;font-size:1.07rem;font-weight:800;letter-spacing:.06em;color:var(--golddk);margin-bottom:9px}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:820px;margin:28px auto 0;padding:22px 24px;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:22px;text-align:center}
+@media(max-width:600px){.trust{grid-template-columns:1fr 1fr}}
+.trust b{display:block;font-family:var(--serif);font-size:1.7rem;font-weight:700;background:linear-gradient(100deg,var(--plum),var(--malina));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.trust span{color:var(--muted);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+section{padding:60px 0}
+.sec-h{text-align:center;max-width:640px;margin:0 auto 32px}
+.sec-h h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:.2em 0 0}
+.rule{width:56px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:14px auto 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.grid3{grid-template-columns:1fr 1fr}}
+.ob{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:18px;padding:20px 20px 18px;box-shadow:0 22px 48px -38px rgba(90,16,36,.42);transition:transform .16s}
+.ob::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.ob:hover{transform:translateY(-4px) rotate(-.5deg)}
+.ob .n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3712;font-family:var(--serif);font-weight:700;display:grid;place-items:center;margin-bottom:10px}
+.ob h3{font-size:1.14rem;margin:0 0 3px}.ob p{color:var(--ink2);font-size:.9rem;margin:0}
+.moreob{text-align:center;color:var(--muted);margin-top:16px;font-style:italic}
+.mats{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.mats{grid-template-columns:1fr}}
+.mat{position:relative;display:flex;gap:18px;align-items:flex-start;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:20px;padding:24px;box-shadow:0 24px 52px -38px rgba(90,16,36,.42);transition:transform .16s,border-color .16s}
+.mat:hover{transform:translateY(-5px);border-color:var(--gold)}
+.mat .mi{width:52px;height:52px;flex:none;border-radius:15px;display:grid;place-items:center;color:#fff}
+.mat .mi svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mat.m1 .mi{background:linear-gradient(160deg,var(--malina2),var(--malina))}
+.mat.m2 .mi{background:linear-gradient(160deg,#E4C578,#C6A05C)}
+.mat.m3 .mi{background:linear-gradient(160deg,#7A3346,#5A1024)}
+.mat.m4 .mi{background:linear-gradient(160deg,#C6A05C,#9C7838)}
+.mat h3{font-size:1.28rem;margin:0 0 4px}.mat p{color:var(--ink2);font-size:.94rem;margin:0 0 8px}.mat p b{color:var(--golddk)}
+.mat .go{font-weight:800;color:var(--malina);font-size:.86rem}
+.mnote{max-width:560px;margin:24px auto 0;text-align:center;color:var(--muted);font-size:.9rem;font-style:italic}.mnote b{color:var(--golddk);font-style:normal}
+.duo{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;align-items:center;max-width:1000px;margin:0 auto}
+@media(max-width:880px){.duo{grid-template-columns:1fr;gap:28px}}
+.duo .tag{display:inline-block;background:#FCF6EA;border:1px solid var(--goldlt);border-radius:100px;padding:5px 13px;font-size:.78rem;font-weight:800;color:#2FA06E;margin-bottom:10px}
+.duo h3{font-size:1.5rem}.duo .lead{color:var(--plum2);font-size:1.06rem;margin:10px 0 20px;text-wrap:pretty}
+.chat{background:linear-gradient(180deg,#fff,#FDF6EC);border:1px solid var(--goldlt);border-radius:24px;padding:20px;box-shadow:0 34px 74px -44px rgba(90,16,36,.5)}
+.chat .top{display:flex;align-items:center;gap:11px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.chat .av{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF3F7,#F6E1EC);border:2px solid var(--goldlt);display:grid;place-items:center;font-size:1.2rem}
+.chat .top b{font-family:var(--serif);color:var(--plum);font-size:1.05rem}
+.chat .top span{display:block;font-size:.75rem;color:#2FA06E;font-weight:700}
+.msg{max-width:84%;padding:11px 15px;border-radius:16px;margin-bottom:10px;font-size:.95rem;line-height:1.5}
+.msg.you{margin-left:auto;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;border-bottom-right-radius:5px}
+.msg.her{background:#FCF6EA;border:1px solid var(--goldlt);color:var(--ink);border-bottom-left-radius:5px}
+.msg.her .step{display:block;margin:8px 0;color:var(--plum);text-align:center}.msg.her>span{display:block;text-align:center;margin:5px 0}.chat .av{overflow:hidden}.chat .av img{width:100%;height:100%;object-fit:cover;display:block}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step-c{background:var(--card);border:1px solid var(--goldlt);border-radius:20px;padding:24px 22px;box-shadow:0 20px 44px -36px rgba(90,16,36,.4)}
+.step-c .sn{width:42px;height:42px;border-radius:50%;background:linear-gradient(160deg,#F0DCA6,#C6A05C);color:#4a3410;font-family:var(--serif);font-weight:700;font-size:1.2rem;display:grid;place-items:center;margin-bottom:12px}
+.step-c h3{font-size:1.2rem;margin:0 0 4px}.step-c p{color:var(--ink2);font-size:.94rem;margin:0}
+.finale{text-align:center;background:linear-gradient(180deg,#FFFDF9,#FBEEDA);border:1px solid var(--goldlt);border-radius:28px;padding:52px 34px;box-shadow:0 30px 70px -44px rgba(120,70,80,.4);position:relative;overflow:hidden}
+.finale::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--malina),var(--goldlt),transparent)}
+.finale .fn{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.4vw,3rem);color:var(--plum)}
+.finale .stamp{display:inline-block;margin-top:.1em;transform:rotate(-5deg);font-family:var(--serif);font-style:italic;font-weight:800;font-size:clamp(1.3rem,3.4vw,2rem);color:#9C7838;border:2.5px solid rgba(156,120,56,.6);border-radius:14px;padding:3px 22px;background:linear-gradient(180deg,rgba(255,251,242,.92),rgba(247,236,214,.72));box-shadow:0 10px 24px -10px rgba(156,120,56,.55)}
+.finale p{color:var(--plum2);max-width:480px;margin:20px auto 22px;text-wrap:pretty}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){#fall{display:none}.cta{animation:none}.rv{opacity:1;transform:none}}
 </style>
 <script src="mathia-header.js" defer></script>
 </head>
 <body>
-<div class="wrap">
-  <a class="back" href="predmeti.html">← Svi predmeti</a>
-  <div class="hero">
-    <div class="eyebrow">Fakultet · mašinstvo / tehnika</div>
-    <h1>Mehanika fluida</h1>
-    <p>Uči uz Profesoricu koja savršeno poznaje ovaj predmet — korak po korak, sa tačnim oznakama i rešenim primerima, 24/7.</p>
-  </div>
-  <style id="mc-koncept-css">
-.mc-koncept{max-width:1100px;margin:6px auto 4px;padding:0 26px}
-.mc-wrap{display:grid;grid-template-columns:1.15fr .9fr;gap:20px;align-items:stretch}
-@media(max-width:820px){.mc-wrap{grid-template-columns:1fr}}
-.mc-board{background:linear-gradient(160deg,#4A0E1E,#5A1024);border:2px solid #C6A05C;border-radius:20px;padding:24px 22px;box-shadow:0 24px 50px -28px rgba(90,16,36,.6);position:relative;overflow:hidden}
-.mc-board::after{content:"";position:absolute;inset:0;background:radial-gradient(380px 150px at 82% -12%,rgba(231,210,162,.18),transparent 60%);pointer-events:none}
-.mc-brow{color:#E7D2A2;font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin-bottom:16px}
-.mc-frms{display:flex;flex-direction:column;gap:16px}
-.mc-f{color:#FBF6EE;font-size:1.12rem;text-align:center}
-.mc-f .katex{color:#FBF6EE!important}
-.mc-chat{background:#FFFDF9;border:1px solid #E7D2A2;border-radius:20px;padding:18px;box-shadow:0 20px 44px -30px rgba(90,16,36,.4);display:flex;flex-direction:column}
-.mc-chead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.mc-av{width:44px;height:44px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 38% 30%,#FFF3F7,#F6E1EC);flex:none}
-.mc-av img{width:100%;height:100%;object-fit:cover;display:block}
-.mc-chead b{color:#5A1024;font-family:'Spectral',Georgia,serif;font-size:1.02rem}
-.mc-on{display:block;color:#B01E48;font-size:.74rem;font-weight:700}
-.mc-bub{border-radius:14px;padding:10px 13px;margin:7px 0;font-size:.95rem;line-height:1.5;text-align:center}
-.mc-q{background:#FBF1E4;color:#43303A;border:1px solid #EFE0C4;border-bottom-left-radius:4px;max-width:92%}
-.mc-a{background:linear-gradient(135deg,#F7E7EC,#F3D9E0);color:#5A1024;border:1px solid #EEC9D5;border-bottom-right-radius:4px;margin-left:auto;max-width:92%}
-</style>
-<section class="mc-koncept"><div class="mc-wrap">
-  <div class="mc-board">
-    <div class="mc-brow">Tvoja tabla</div>
-    <div class="mc-frms">
-      <span class="mc-f" data-tex="p=\rho g h"></span>
-      <span class="mc-f" data-tex="Q=A\,v"></span>
-      <span class="mc-f" data-tex="p+\dfrac{\rho v^{2}}{2}+\rho g h=\text{const}"></span>
+<div id="fall" aria-hidden="true"></div>
+<main class="wrap">
+  <a class="backlink" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow" data-i18n="eyebrow">undefined</div>
+      <h1><span data-i18n="h1">undefined</span> — <em data-i18n="finK">konačno jasna</em></h1>
+      <p class="lead" data-i18n="lead">Uči uz Profesoricu koja savršeno poznaje ovaj predmet — korak po korak, sa tačnim oznakama i rešenim primerima, 24/7.</p>
+      <div><a class="cta" href="pocni.html" data-i18n="ctaBtn">Počni besplatno →</a><a class="cta2" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;" data-i18n="pfBtn">Pitaj Profesoricu</a></div>
+      <div class="microtrust" data-i18n="ctaSub">Prvih 15 minuta je na poklon — bez kartice, bez obaveza.</div>
     </div>
+    <div class="board rv">
+      <span class="chip" data-i18n="bTitle">Tvoja tabla</span>
+      <span class="frm" data-tex="p=\rho g h"></span>
+      <span class="frm" data-tex="Q=A\,v"></span>
+      <span class="frm" data-tex="p+\dfrac{\rho v^{2}}{2}+\rho g h=\text{const}"></span>
+    </div>
+  </section>
+
+  <div class="trust rv">
+    <div><b>5</b><span data-i18n="fL2">Oblasti</span></div>
+    <div><b>4</b><span data-i18n="fL3">Materijala</span></div>
+    <div><b>8</b><span data-i18n="tLang">jezika</span></div>
+    <div><b>0–24h</b><span data-i18n="fL4">Profesorica</span></div>
   </div>
-  <div class="mc-chat">
-    <div class="mc-chead"><span class="mc-av"><img src="marina.jpg" alt="Marina"></span><div><b>Profesorica</b><span class="mc-on">● Uvek dostupna</span></div></div>
-    <div class="mc-bub mc-q">Profesorice, ne razumem ovaj korak…</div>
-    <div class="mc-bub mc-a">Nema frke — idemo ponovo, korak po korak. 💛</div>
-  </div>
-</div></section>
-<script>(function(){
- var T={
-  brow:{sr:"Tvoja tabla",en:"Your board",de:"Deine Tafel",fr:"Ton tableau",es:"Tu pizarra",it:"La tua lavagna",ru:"Твоя доска",pt:"O teu quadro"},
-  on:{sr:"● Uvek dostupna",en:"● Always available",de:"● Immer verfügbar",fr:"● Toujours disponible",es:"● Siempre disponible",it:"● Sempre disponibile",ru:"● Всегда на связи",pt:"● Sempre disponível"},
-  q:{sr:"Profesorice, ne razumem ovaj korak…",en:"Miss, I don't get this step…",de:"Frau Lehrerin, ich verstehe diesen Schritt nicht…",fr:"Madame, je ne comprends pas cette étape…",es:"Profe, no entiendo este paso…",it:"Prof, non capisco questo passaggio…",ru:"Учительница, не понимаю этот шаг…",pt:"Professora, não percebo este passo…"},
-  a:{sr:"Nema frke — idemo ponovo, korak po korak. 💛",en:"No worries — let's go again, step by step. 💛",de:"Kein Problem — noch mal, Schritt für Schritt. 💛",fr:"Pas de souci — on reprend, étape par étape. 💛",es:"Tranqui — lo vemos otra vez, paso a paso. 💛",it:"Tranquillo — rifacciamolo, passo dopo passo. 💛",ru:"Не переживай — давай ещё раз, шаг за шагом. 💛",pt:"Sem stress — vamos outra vez, passo a passo. 💛"}
- };
- function lang(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2).toLowerCase();if(T.q[s])return s;}}catch(e){}return 'sr';}
- function setTxt(sel,key,l){var e=document.querySelector(sel);if(e)e.textContent=T[key][l]||T[key].sr;}
- function apply(){var l=lang();setTxt('.mc-koncept .mc-brow','brow',l);setTxt('.mc-koncept .mc-on','on',l);setTxt('.mc-koncept .mc-q','q',l);setTxt('.mc-koncept .mc-a','a',l);}
- function katexRun(){if(!window.katex)return;document.querySelectorAll('.mc-koncept [data-tex]').forEach(function(e){if(e.__d)return;e.__d=1;try{katex.render(e.getAttribute('data-tex'),e,{throwOnError:false});}catch(_){}});}
- if(!document.getElementById('mc-katex-css')){var l=document.createElement('link');l.id='mc-katex-css';l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css';document.head.appendChild(l);}
- if(window.katex){katexRun();}else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js';s.onload=katexRun;document.head.appendChild(s);}
- apply();
- window.addEventListener('mathia:lang',apply);
- window.addEventListener('storage',function(e){if(e.key==='mathia_lang')apply();});
- function realChild(el){for(var i=0;i<el.children.length;i++){if(el.children[i].tagName!=='BR')return true;}return false;}
- function splitLead(){var ls=document.querySelectorAll('.lead');for(var i=0;i<ls.length;i++){var el=ls[i];if(realChild(el))continue;var t=(el.textContent||'').trim();if(!t)continue;el.innerHTML=t.replace(/([.!?…])\s+(?=[A-ZŠĐČĆŽÀ-ÝА-Я„“«¿¡])/g,'$1<br>');}}
- if(document.readyState!=='loading')splitLead();else document.addEventListener('DOMContentLoaded',splitLead);
- window.addEventListener('mathia:lang',function(){setTimeout(splitLead,70);});
- window.addEventListener('storage',function(e){if(e.key==='mathia_lang')setTimeout(splitLead,70);});
-})();</script>
-  <h2 class="sect">Teme predmeta</h2>
-  <div class="card">
-    <ul class="teme">
-      <li class="tm">Fizička svojstva fluida — gustina, viskoznost, površinski napon, kapilarnost</li>
-      <li class="tm">Statika fluida — pritisak, merenje pritiska, sile na površine, plivanje, relativno mirovanje</li>
-      <li class="tm">Dinamika fluida — jednačina kontinuiteta i Bernulijeva jednačina</li>
-      <li class="tm">Cevovodi — gubici, prost i složen cevovod, isticanje</li>
-      <li class="tm">Režim strujanja — Rejnoldsov broj, laminarno i turbulentno</li>
-    </ul>
-  </div>
-  <h2 class="sect">Materijali</h2><div class="mat"><a class="matbtn" href="skripta-mehanika-fluida.html"><b>Skripta</b><span>Teorija i metode</span></a><a class="matbtn" href="formule-mehanika-fluida.html"><b>Formule</b><span>Sažet pregled</span></a><a class="matbtn" href="zadaci-mehanika-fluida.html"><b>Zadaci</b><span>Rešeni primeri</span></a><a class="matbtn" href="provera-mehanika-fluida.html"><b>Proveri znanje</b><span>Kviz sa rešenjima</span></a></div><div class="note">👩‍🏫 <b>Profesorica</b> objašnjava svaku temu i rešava zadatke — otvori chat u donjem uglu, pošalji zadatak (može i slika) ili pitanje, i rešavate zajedno korak po korak.</div>
-</div>
-<script defer src="gate.js" data-subject="fax-mehanika-fluida"></script>
-<script>(function(){var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();var st=document.createElement("script");st.src="https://project-y23je.vercel.app/widget.js?v=10";st.setAttribute("data-api","https://project-y23je.vercel.app/api/chat");st.setAttribute("data-mode","fax-mehanika-fluida");st.setAttribute("data-name","Profesorica");st.setAttribute("data-sub","Mehanika fluida");st.setAttribute("data-lang",L);st.setAttribute("data-hi","Zdravo! Ja sam Profesorica — vodič kroz predmet Mehanika fluida. Pošalji zadatak ili pitanje (može i slika), pa rešavamo zajedno, korak po korak.");(document.body||document.documentElement).appendChild(st);})();</script>
+
+  <section>
+    <div class="sec-h rv"><div class="eyebrow" data-i18n="secCover">Gradivo</div><h2 data-i18n="celT">Šta ćeš savladati</h2><div class="rule"></div></div>
+    <div class="grid3 rv">
+      <div class="ob"><div class="n">1</div><h3 data-i18n="c1t">Fizička svojstva fluida</h3><p data-i18n="c1d">gustina, viskoznost, površinski napon</p></div>
+      <div class="ob"><div class="n">2</div><h3 data-i18n="c2t">Statika fluida</h3><p data-i18n="c2d">pritisak, sile na površine, plivanje</p></div>
+      <div class="ob"><div class="n">3</div><h3 data-i18n="c3t">Dinamika fluida</h3><p data-i18n="c3d">jednačina kontinuiteta i Bernulijeva jednačina</p></div>
+      <div class="ob"><div class="n">4</div><h3 data-i18n="c4t">Cevovodi</h3><p data-i18n="c4d">gubici, prost i složen cevovod, isticanje</p></div>
+      <div class="ob"><div class="n">5</div><h3 data-i18n="c5t">Režim strujanja</h3><p data-i18n="c5d">Rejnoldsov broj, laminarno i turbulentno</p></div>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="sec-h rv"><div class="eyebrow" data-i18n="mE">Materijali</div><h2 data-i18n="mT">Sve za ovaj predmet</h2><div class="rule"></div></div>
+    <div class="mats rv">
+      <a class="mat m1" href="skripta-mehanika-fluida.html"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M8 3v15"/></svg></span><div><h3 data-i18n="mS">Skripta</h3><p data-i18n="mSd">Teorija <b>korak po korak</b>, sa rešenim primerima za svaku oblast.</p><span class="go" data-i18n="mSg">Otvori skriptu →</span></div></a>
+      <a class="mat m2" href="formule-mehanika-fluida.html"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 8h16M9 8v10M15 8v10"/></svg></span><div><h3 data-i18n="mF">Formule</h3><p data-i18n="mFd">Sve ključne formule na jednom mestu — <b>spremne pred ispit</b>.</p><span class="go" data-i18n="mFg">Otvori formule →</span></div></a>
+      <a class="mat m3" href="zadaci-mehanika-fluida.html"><span class="mi"><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-11"/></svg></span><div><h3 data-i18n="mV">Rešeni primeri</h3><p data-i18n="mVd">Zadaci rešeni korak po korak — vidiš ceo postupak.</p><span class="go" data-i18n="mVg">Otvori rešene primere →</span></div></a>
+      <a class="mat m4" href="provera-mehanika-fluida.html"><span class="mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-4.9"/></svg></span><div><h3 data-i18n="mProv">Test znanja</h3><p data-i18n="mProvd">Pitanje po pitanje, sa opcijama i detaljnim rešenjem.</p><span class="go" data-i18n="mProvg">Uradi test →</span></div></a>
+    </div>
+    <p class="mnote rv" data-i18n="mNote">Prvu stranu vidiš besplatno · <b>ceo sadržaj se otključava pretplatom na ovaj predmet.</b></p>
+  </section>
+
+  <section>
+    <div class="sec-h rv"><div class="eyebrow" data-i18n="pE">Uz tebe</div><h2 data-i18n="pT">Profesorica koja te vodi</h2><div class="rule"></div></div>
+    <div class="duo">
+      <div class="rv">
+        <span class="tag" data-i18n="tavail">Uvek dostupna · 0–24h</span>
+        <h3 data-i18n="chH">Pitaj bilo šta — čak i pred kolokvijum</h3>
+        <p class="lead" data-i18n="chLead">Pošalji zadatak (može i slika), a Profesorica objašnjava korak po korak — ne prepisuje rešenje, već te vodi da sam/a dođeš do njega. Pamti gde ste stali i slavi svaki napredak.</p>
+        <a class="cta" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;" data-i18n="pfBtn">Pitaj Profesoricu →</a>
+      </div>
+      <div class="chat rv">
+        <div class="top"><div class="av"><img src="marina.jpg" alt="Marina"></div><div><b>Profesorica</b><span data-i18n="tavail2">● Uvek dostupna</span></div></div>
+        <div class="msg you" data-i18n="qEx">Objasni mi ovu oblast na primeru.</div>
+        <div class="msg her"><span data-i18n="aEx1">Naravno — kreni od suštine, pa idemo na primer 💛</span><span data-i18n="aEx2">Pošalji konkretan zadatak (može i slika) i rešavamo ga korak po korak.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="sec-h rv"><div class="eyebrow" data-i18n="jE">Kako uči Mathia</div><h2 data-i18n="jT">Jasan put do sigurnosti</h2><div class="rule"></div></div>
+    <div class="steps rv">
+      <div class="step-c"><div class="sn">1</div><h3 data-i18n="s1t">Razumi</h3><p data-i18n="s1d">Profesorica objasni suštinu — zašto, ne samo kako.</p></div>
+      <div class="step-c"><div class="sn">2</div><h3 data-i18n="s3t">Vežbaj</h3><p data-i18n="s3d">Rešavaš zadatke uz vođenje, sopstvenim tempom.</p></div>
+      <div class="step-c"><div class="sn">3</div><h3 data-i18n="s5t">Napreduj</h3><p data-i18n="s5d">Pratiš napredak i uvek znaš svoj sledeći korak.</p></div>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="finale rv">
+      <div class="fn" data-i18n="h1">undefined</div>
+      <span class="stamp" data-i18n="finK">konačno jasna</span>
+      <p data-i18n="finS">Počni s pitanjem koje te muči — Profesorica te vodi ostatak puta.</p>
+      <a class="cta" href="pocni.html" data-i18n="ctaBtn">Započni besplatno →</a>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){function R(){if(!window.katex){return setTimeout(R,40);}document.querySelectorAll('.frm[data-tex],.step[data-tex]').forEach(function(e){try{katex.render(e.getAttribute('data-tex'),e,{throwOnError:false});}catch(_){}});}
+if(document.readyState!=='loading')R();else document.addEventListener('DOMContentLoaded',R);})();
+</script>
+
+<script>
+  (function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  })();
+</script>
+
+<script>
+(function(){
+  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
+  var SRC="https://project-y23je.vercel.app/widget.js?v=10";
+  var ATTR={"data-api":"https://project-y23je.vercel.app/api/chat","data-mode":"fax-mehanika-fluida","data-name":"Profesorica","data-sub":"Mehanika fluida","data-hi-en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “Mehanika fluida”. Send a problem (a photo works too) or a question — I'll explain step by step!"};
+  var HI={"sr":"Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko predmeta „Mehanika fluida“. Pošalji zadatak (može i slika) ili pitanje — objasniću korak po korak!","en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “Mehanika fluida”. Send a problem (a photo works too) or a question — I'll explain step by step!","de":"Hallo! 🌸 Ich bin deine Lehrerin für „Mehanika fluida“. Frag mich, schick ein Foto 📷 oder diktiere 🎙️ die Aufgabe.","fr":"Bonjour ! 🌸 Je suis ta professeure de « Mehanika fluida ». Pose ta question, envoie une photo 📷 ou dicte 🎙️ l'exercice.","es":"¡Hola! 🌸 Soy tu profesora de «Mehanika fluida». Pregúntame, envía una foto 📷 o dicta 🎙️ el ejercicio.","it":"Ciao! 🌸 Sono la tua insegnante di «Mehanika fluida». Chiedimi, invia una foto 📷 o detta 🎙️ il problema.","ru":"Привет! 🌸 Я твоя преподавательница по предмету «Mehanika fluida». Спроси меня, пришли фото 📷 или продиктуй 🎙️ задачу.","pt":"Olá! 🌸 Sou a tua professora de «Mehanika fluida». Pergunta-me, envia uma foto 📷 ou dita 🎙️ o exercício."};
+  var st=document.createElement("script"); st.src=SRC;
+  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
+  st.setAttribute("data-lang",L);
+  st.setAttribute("data-hi",HI[L]||HI.sr);
+  (document.body||document.documentElement).appendChild(st);
+})();
+</script>
+
 <script defer src="napredak.js"></script>
-<script defer src="i18n-mathia.js"></script>
-<script>(function(){var D={"Kviz sa rešenjima":{en:"Quiz with solutions",de:"Quiz mit Lösungen",fr:"Quiz avec corrigés",es:"Test con soluciones",it:"Quiz con soluzioni",ru:"Тест с решениями",pt:"Quiz com soluções"}};function lg(){try{return(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase()}catch(e){return"sr"}}function ap(){var l=lg();var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);var n;while(n=w.nextNode()){var t=n.nodeValue.trim();var d=D[t];if(d){if(n.__o===undefined)n.__o=n.nodeValue;n.nodeValue=(l==="sr"||!d[l])?n.__o:n.__o.replace(t,d[l]);}}}if(document.readyState!=="loading")ap();else document.addEventListener("DOMContentLoaded",ap);window.addEventListener("mathia:lang",ap);})();</script>
+
+<script>
+(function(){var I18N={"bTitle":{"en":"Your board","de":"Deine Tafel","fr":"Ton tableau","es":"Tu pizarra","it":"La tua lavagna","ru":"Твоя доска","pt":"O teu quadro"},"bMat":{"en":"Matrices and determinants","de":"Matrizen und Determinanten","fr":"Matrices et déterminants","es":"Matrices y determinantes","it":"Matrici e determinanti","ru":"Матрицы и определители","pt":"Matrizes e determinantes"},"bEig":{"en":"Eigenvalues","de":"Eigenwerte","fr":"Valeurs propres","es":"Valores propios","it":"Autovalori","ru":"Собственные значения","pt":"Valores próprios"},"tLang":{"en":"languages","de":"Sprachen","fr":"langues","es":"idiomas","it":"lingue","ru":"языков","pt":"línguas"},"moreOb":{"en":"…and 6 more areas — 12 in total.","de":"…und 6 weitere Themen — insgesamt 12.","fr":"…et 6 autres domaines — 12 au total.","es":"…y 6 áreas más — 12 en total.","it":"…e altre 6 aree — 12 in totale.","ru":"…и ещё 6 разделов — всего 12.","pt":"…e mais 6 áreas — 12 no total."},"chH":{"en":"Ask anything — even right before the exam","de":"Frag alles — sogar kurz vor der Klausur","fr":"Demande tout — même juste avant l'examen","es":"Pregunta lo que sea — incluso justo antes del examen","it":"Chiedi qualsiasi cosa — anche poco prima dell'esame","ru":"Спрашивай что угодно — даже перед самым экзаменом","pt":"Pergunta o que quiseres — mesmo antes do exame"},"chLead":{"en":"Send a problem (a photo works too) and Profesorica explains step by step — she doesn't copy the answer, she guides you to it. She remembers where you left off and celebrates every win.","de":"Schick eine Aufgabe (auch als Foto) und Profesorica erklärt Schritt für Schritt — sie schreibt die Lösung nicht ab, sondern führt dich hin. Sie merkt sich, wo du warst, und feiert jeden Fortschritt.","fr":"Envoie un exercice (une photo suffit) et Profesorica explique pas à pas — elle ne recopie pas la solution, elle t'y guide. Elle retient où tu en étais et célèbre chaque progrès.","es":"Envía un ejercicio (también vale una foto) y Profesorica explica paso a paso — no copia la solución, te guía hasta ella. Recuerda dónde lo dejaste y celebra cada logro.","it":"Invia un esercizio (va bene anche una foto) e Profesorica spiega passo dopo passo — non copia la soluzione, ti guida. Ricorda dove eri e festeggia ogni progresso.","ru":"Пришли задачу (можно фото), и Profesorica объясняет шаг за шагом — не переписывает решение, а ведёт тебя к нему. Помнит, где ты остановился, и радуется каждому успеху.","pt":"Envia um exercício (também serve uma foto) e a Profesorica explica passo a passo — não copia a solução, guia-te até ela. Lembra-se de onde ficaste e celebra cada progresso."},"chQ":{"en":"How do you solve x² − 5x + 6 = 0?","de":"Wie löst man x² − 5x + 6 = 0?","fr":"Comment résoudre x² − 5x + 6 = 0 ?","es":"¿Cómo se resuelve x² − 5x + 6 = 0?","it":"Come si risolve x² − 5x + 6 = 0?","ru":"Как решить x² − 5x + 6 = 0?","pt":"Como se resolve x² − 5x + 6 = 0?"},"chA1":{"en":"Vieta's formulas are fastest 💛","de":"Der Satz von Vieta ist am schnellsten 💛","fr":"Les formules de Viète sont les plus rapides 💛","es":"Las fórmulas de Vieta son lo más rápido 💛","it":"Le formule di Viète sono le più rapide 💛","ru":"Формулы Виета — самый быстрый путь 💛","pt":"As fórmulas de Viète são o mais rápido 💛"},"chA2":{"en":"Find two numbers with sum 5 and product 6 → they are 2 and 3.","de":"Finde zwei Zahlen mit Summe 5 und Produkt 6 → das sind 2 und 3.","fr":"Trouve deux nombres de somme 5 et de produit 6 → ce sont 2 et 3.","es":"Busca dos números cuya suma sea 5 y producto 6 → son 2 y 3.","it":"Trova due numeri con somma 5 e prodotto 6 → sono 2 e 3.","ru":"Найди два числа с суммой 5 и произведением 6 → это 2 и 3.","pt":"Encontra dois números com soma 5 e produto 6 → são 2 e 3."},"tavail":{"en":"Always available · 0–24h","de":"Immer verfügbar · 0–24 h","fr":"Toujours disponible · 0–24h","es":"Siempre disponible · 0–24h","it":"Sempre disponibile · 0–24h","ru":"Всегда на связи · 0–24ч","pt":"Sempre disponível · 0–24h"},"tavail2":{"en":"● Always available","de":"● Immer verfügbar","fr":"● Toujours disponible","es":"● Siempre disponible","it":"● Sempre disponibile","ru":"● Всегда на связи","pt":"● Sempre disponível"},"heroP":{"en":"finally clear","de":"endlich klar","fr":"enfin clair","es":"por fin claro","it":"finalmente chiaro","ru":"наконец ясно","pt":"finalmente claro"},"mProv":{"en":"Knowledge test","de":"Wissenstest","fr":"Test de connaissances","es":"Test de conocimientos","it":"Test di conoscenza","ru":"Тест знаний","pt":"Teste de conhecimentos"},"mProvd":{"en":"Question by question, with options and a detailed solution.","de":"Frage für Frage, mit Optionen und ausführlicher Lösung.","fr":"Question par question, avec des options et une solution détaillée.","es":"Pregunta por pregunta, con opciones y solución detallada.","it":"Domanda per domanda, con opzioni e soluzione dettagliata.","ru":"Вопрос за вопросом, с вариантами и подробным решением.","pt":"Pergunta a pergunta, com opções e solução detalhada."},"mProvg":{"en":"Take the test →","de":"Test starten →","fr":"Faire le test →","es":"Hacer el test →","it":"Fai il test →","ru":"Пройти тест →","pt":"Fazer o teste →"},"pfS":{"en":"for Algebra","de":"für Algebra","fr":"pour l'Algèbre","es":"para Álgebra","it":"per l'Algebra","ru":"для алгебры","pt":"para Álgebra"},"mSd":{"en":"Theory explained <b>step by step</b>, with worked examples for every topic.","de":"Theorie <b>Schritt für Schritt</b> erklärt, mit gelösten Beispielen zu jedem Thema.","fr":"Théorie expliquée <b>pas à pas</b>, avec des exemples résolus pour chaque thème.","es":"Teoría explicada <b>paso a paso</b>, con ejemplos resueltos de cada tema.","it":"Teoria spiegata <b>passo dopo passo</b>, con esempi svolti per ogni argomento.","ru":"Теория <b>шаг за шагом</b>, с разобранными примерами по каждой теме.","pt":"Teoria explicada <b>passo a passo</b>, com exemplos resolvidos de cada tema."},"mFd":{"en":"All key formulas in one place — <b>ready before the exam</b>.","de":"Alle wichtigen Formeln an einem Ort — <b>bereit für die Prüfung</b>.","fr":"Toutes les formules clés au même endroit — <b>prêtes pour l'examen</b>.","es":"Todas las fórmulas clave en un solo lugar — <b>listas para el examen</b>.","it":"Tutte le formule chiave in un posto — <b>pronte per l'esame</b>.","ru":"Все ключевые формулы в одном месте — <b>готовы к экзамену</b>.","pt":"Todas as fórmulas-chave num só lugar — <b>prontas para o exame</b>."},"mVd":{"en":"Problems solved step by step — the whole method, not just the answer.","de":"Aufgaben Schritt für Schritt gelöst — der ganze Weg, nicht nur das Ergebnis.","fr":"Exercices résolus pas à pas — toute la méthode, pas juste le résultat.","es":"Problemas resueltos paso a paso — todo el método, no solo el resultado.","it":"Problemi risolti passo dopo passo — tutto il metodo, non solo il risultato.","ru":"Задачи решены шаг за шагом — весь ход решения, а не только ответ.","pt":"Exercícios resolvidos passo a passo — todo o método, não só o resultado."},"mNote":{"en":"See the first page free &#183; <b>the full content unlocks with a subscription to this subject.</b>","de":"Erste Seite gratis &#183; <b>der volle Inhalt wird mit einem Abo für dieses Fach freigeschaltet.</b>","fr":"Première page gratuite &#183; <b>le contenu complet se débloque avec un abonnement à cette matière.</b>","es":"Primera página gratis &#183; <b>el contenido completo se desbloquea con una suscripción a esta asignatura.</b>","it":"Prima pagina gratis &#183; <b>il contenuto completo si sblocca con l'abbonamento a questa materia.</b>","ru":"Первая страница бесплатно &#183; <b>полный доступ открывается с подпиской на этот предмет.</b>","pt":"Primeira página grátis &#183; <b>o conteúdo completo desbloqueia-se com uma subscrição desta disciplina.</b>"},"fbar":{"en":"&#169; 2026 Mathia Edu &#183; All rights reserved","de":"&#169; 2026 Mathia Edu &#183; Alle Rechte vorbehalten","fr":"&#169; 2026 Mathia Edu &#183; Tous droits réservés","es":"&#169; 2026 Mathia Edu &#183; Todos los derechos reservados","it":"&#169; 2026 Mathia Edu &#183; Tutti i diritti riservati","ru":"&#169; 2026 Mathia Edu &#183; Все права защищены","pt":"&#169; 2026 Mathia Edu &#183; Todos os direitos reservados"},"stStreak":{"en":"Streak: <b>9 days</b>","de":"Serie: <b>9 Tage</b>","fr":"Série : <b>9 jours</b>","es":"Racha: <b>9 días</b>","it":"Serie: <b>9 giorni</b>","ru":"Серия: <b>9 дней</b>","pt":"Sequência: <b>9 dias</b>"},"stWeek":{"en":"This week: <b>2h 40min</b>","de":"Diese Woche: <b>2 Std. 40 Min.</b>","fr":"Cette semaine : <b>2h40</b>","es":"Esta semana: <b>2h 40min</b>","it":"Questa settimana: <b>2h 40min</b>","ru":"За неделю: <b>2ч 40м</b>","pt":"Esta semana: <b>2h 40min</b>"},"fL1":{"en":"Level","de":"Niveau","fr":"Niveau","es":"Nivel","it":"Livello","ru":"Уровень","pt":"Nível"},"fV1":{"en":"University","de":"Universität","fr":"Université","es":"Universidad","it":"Università","ru":"Университет","pt":"Universidade"},"fL2":{"en":"Topics","de":"Themen","fr":"Thèmes","es":"Temas","it":"Argomenti","ru":"Разделы","pt":"Tópicos"},"fV2":{"en":"9 units","de":"9 Einheiten","fr":"9 unités","es":"9 unidades","it":"9 unità","ru":"9 разделов","pt":"9 unidades"},"igShare":{"en":"Share","de":"Teilen","fr":"Partager","es":"Compartir","it":"Condividi","ru":"Поделиться","pt":"Partilhar"},"celE":{"en":"Chapters","de":"Kapitel","fr":"Chapitres","es":"Bloques","it":"Moduli","ru":"Разделы","pt":"Módulos"},"celT":{"en":"What you’ll master","de":"Was du meistern wirst","fr":"Ce que tu vas maîtriser","es":"Lo que dominarás","it":"Cosa imparerai","ru":"Что ты освоишь","pt":"O que vais dominar"},"q1":{"en":"Explain this topic with an example.","de":"Erkläre mir dieses Thema an einem Beispiel.","fr":"Explique-moi ce thème avec un exemple.","es":"Explícame este tema con un ejemplo.","it":"Spiegami questo argomento con un esempio.","ru":"Объясни эту тему на примере.","pt":"Explica-me este tema com um exemplo."},"q3":{"en":"Solve this problem step by step.","de":"Löse diese Aufgabe Schritt für Schritt.","fr":"Résous cet exercice étape par étape.","es":"Resuelve este problema paso a paso.","it":"Risolvi questo problema passo dopo passo.","ru":"Реши эту задачу шаг за шагом.","pt":"Resolve este exercício passo a passo."},"q4":{"en":"Where do people most often go wrong here?","de":"Wo macht man hier am häufigsten Fehler?","fr":"Où se trompe-t-on le plus souvent ici ?","es":"¿Dónde nos equivocamos más a menudo aquí?","it":"Dove si sbaglia più spesso qui?","ru":"Где здесь чаще всего ошибаются?","pt":"Onde se erra mais frequentemente aqui?"},"h1":{"en":"Fluid mechanics","de":"Strömungsmechanik","fr":"Mécanique des fluides","es":"Mecánica de fluidos","it":"Meccanica dei fluidi","ru":"Механика жидкостей","pt":"Mecânica dos fluidos"},"lead":{"en":"Learn with Profesorica who knows this subject perfectly — step by step, with correct notation and worked examples, 24/7.","de":"Lerne mit Profesorica, die dieses Fach perfekt kennt — Schritt für Schritt, mit korrekter Notation und gelösten Beispielen, rund um die Uhr.","fr":"Apprends avec Profesorica qui maîtrise parfaitement cette matière — pas à pas, avec une notation correcte et des exemples résolus, 24h/24.","es":"Aprende con Profesorica, que domina esta asignatura — paso a paso, con notación correcta y ejemplos resueltos, 24/7.","it":"Impara con Profesorica che conosce perfettamente questa materia — passo dopo passo, con notazione corretta ed esempi svolti, 24/7.","ru":"Учись с Profesorica, которая отлично знает этот предмет — шаг за шагом, с точными обозначениями и разобранными примерами, 24/7.","pt":"Aprende com a Profesorica, que domina esta disciplina — passo a passo, com notação correta e exemplos resolvidos, 24/7."},"c1t":{"en":"Physical properties of fluids","de":"Physikalische Eigenschaften von Fluiden","fr":"Propriétés physiques des fluides","es":"Propiedades físicas de los fluidos","it":"Proprietà fisiche dei fluidi","ru":"Физические свойства жидкостей","pt":"Propriedades físicas dos fluidos"},"c1d":{"en":"density, viscosity, surface tension","de":"Dichte, Viskosität, Oberflächenspannung","fr":"masse volumique, viscosité, tension superficielle","es":"densidad, viscosidad, tensión superficial","it":"densità, viscosità, tensione superficiale","ru":"плотность, вязкость, поверхностное натяжение","pt":"densidade, viscosidade, tensão superficial"},"c2t":{"en":"Fluid statics","de":"Hydrostatik","fr":"Statique des fluides","es":"Estática de fluidos","it":"Statica dei fluidi","ru":"Гидростатика","pt":"Estática dos fluidos"},"c2d":{"en":"pressure, forces on surfaces, buoyancy","de":"Druck, Kräfte auf Flächen, Auftrieb","fr":"pression, forces sur surfaces, flottabilité","es":"presión, fuerzas sobre superficies, flotación","it":"pressione, forze sulle superfici, galleggiamento","ru":"давление, силы на поверхности, плавучесть","pt":"pressão, forças em superfícies, flutuação"},"c3t":{"en":"Fluid dynamics","de":"Fluiddynamik","fr":"Dynamique des fluides","es":"Dinámica de fluidos","it":"Dinamica dei fluidi","ru":"Динамика жидкостей","pt":"Dinâmica dos fluidos"},"c3d":{"en":"continuity and Bernoulli equations","de":"Kontinuitäts- und Bernoulli-Gleichung","fr":"équations de continuité et de Bernoulli","es":"ecuaciones de continuidad y de Bernoulli","it":"equazioni di continuità e di Bernoulli","ru":"уравнения неразрывности и Бернулли","pt":"equações da continuidade e de Bernoulli"},"c4t":{"en":"Pipe flow","de":"Rohrströmung","fr":"Écoulement en conduites","es":"Flujo en tuberías","it":"Flusso nelle tubazioni","ru":"Течение в трубопроводах","pt":"Escoamento em tubagens"},"c4d":{"en":"losses, simple and complex pipelines, outflow","de":"Verluste, einfache und komplexe Leitungen, Ausfluss","fr":"pertes, conduites simples et complexes, écoulement","es":"pérdidas, tuberías simples y complejas, salida","it":"perdite, condotte semplici e complesse, efflusso","ru":"потери, простые и сложные трубопроводы, истечение","pt":"perdas, tubagens simples e complexas, saída"},"c5t":{"en":"Flow regime","de":"Strömungsregime","fr":"Régime d'écoulement","es":"Régimen de flujo","it":"Regime di flusso","ru":"Режим течения","pt":"Regime de escoamento"},"c5d":{"en":"Reynolds number, laminar and turbulent","de":"Reynolds-Zahl, laminar und turbulent","fr":"nombre de Reynolds, laminaire et turbulent","es":"número de Reynolds, laminar y turbulento","it":"numero di Reynolds, laminare e turbolento","ru":"число Рейнольдса, ламинарное и турбулентное","pt":"número de Reynolds, laminar e turbulento"},"c6t":{"en":"Logarithms","de":"Logarithmen","fr":"Logarithmes","es":"Logaritmos","it":"Logaritmi","ru":"Логарифмы","pt":"Logaritmos"},"c6d":{"en":"Logarithm rules and absolute value","de":"Logarithmengesetze und Betrag","fr":"Règles des logarithmes et valeur absolue","es":"Reglas de logaritmos y valor absoluto","it":"Regole dei logaritmi e valore assoluto","ru":"Правила логарифмов и модуль","pt":"Regras dos logaritmos e valor absoluto"},"fL3":{"en":"Materials","de":"Materialien","fr":"Supports","es":"Materiales","it":"Materiali","ru":"Материалы","pt":"Materiais"},"fV3":{"en":"Notes · Formulas · Practice","de":"Skript · Formeln · Übung","fr":"Cours · Formules · Exos","es":"Apuntes · Fórmulas · Práctica","it":"Dispensa · Formule · Esercizi","ru":"Конспект · Формулы · Практика","pt":"Apontamentos · Fórmulas · Prática"},"fL4":{"en":"Profesorica","de":"Profesorica","fr":"Profesorica","es":"Profesorica","it":"Profesorica","ru":"Profesorica","pt":"Profesorica"},"fV4":{"en":"Available 24/7","de":"Rund um die Uhr","fr":"Disponible 24h/24","es":"Disponible 24/7","it":"Disponibile 24/7","ru":"Доступна 24/7","pt":"Disponível 24/7"},"jE":{"en":"How Mathia teaches","de":"Wie Mathia lehrt","fr":"Comment Mathia enseigne","es":"Cómo enseña Mathia","it":"Come insegna Mathia","ru":"Как учит Mathia","pt":"Como a Mathia ensina"},"jT":{"en":"A clear path from the first question to confidence","de":"Ein klarer Weg von der ersten Frage bis zur Sicherheit","fr":"Un chemin clair, de la première question à la maîtrise","es":"Un camino claro, de la primera pregunta a la seguridad","it":"Un percorso chiaro, dalla prima domanda alla sicurezza","ru":"Ясный путь от первого вопроса до уверенности","pt":"Um caminho claro, da primeira pergunta à confiança"},"s1t":{"en":"Understand","de":"Verstehen","fr":"Comprends","es":"Entiende","it":"Comprendi","ru":"Пойми","pt":"Entende"},"s1d":{"en":"Profesorica explains the essence — the why, not just the how","de":"Profesorica erklärt das Wesentliche — das Warum, nicht nur das Wie","fr":"Profesorica explique l'essentiel — le pourquoi, pas seulement le comment","es":"Profesorica explica la esencia — el porqué, no solo el cómo","it":"Profesorica spiega l'essenza — il perché, non solo il come","ru":"Profesorica объясняет суть — почему, а не только как","pt":"A Profesorica explica a essência — o porquê, não só o como"},"s2t":{"en":"Learn","de":"Lernen","fr":"Apprends","es":"Aprende","it":"Impara","ru":"Учись","pt":"Aprende"},"s2d":{"en":"Notes and formulas laid out clearly, step by step","de":"Skript und Formeln klar aufbereitet, Schritt für Schritt","fr":"Cours et formules présentés clairement, pas à pas","es":"Apuntes y fórmulas presentados con claridad, paso a paso","it":"Dispensa e formule esposte con chiarezza, passo dopo passo","ru":"Конспект и формулы изложены наглядно, шаг за шагом","pt":"Apontamentos e fórmulas apresentados com clareza, passo a passo"},"s3t":{"en":"Practice","de":"Üben","fr":"Entraîne-toi","es":"Practica","it":"Esercitati","ru":"Практикуйся","pt":"Pratica"},"s3d":{"en":"You solve problems with guidance, at your own pace","de":"Du löst Aufgaben mit Anleitung, in deinem Tempo","fr":"Tu résous des exercices guidé, à ton rythme","es":"Resuelves problemas con guía, a tu ritmo","it":"Risolvi problemi con una guida, al tuo ritmo","ru":"Ты решаешь задачи с подсказками, в своём темпе","pt":"Resolves exercícios com orientação, ao teu ritmo"},"s4t":{"en":"Check","de":"Prüfen","fr":"Vérifie","es":"Comprueba","it":"Verifica","ru":"Проверь","pt":"Verifica"},"s4d":{"en":"Short checks show what you know and what's left","de":"Kurze Checks zeigen, was du kannst und was noch fehlt","fr":"De courts tests montrent ce que tu sais et ce qui reste","es":"Comprobaciones breves muestran qué sabes y qué falta","it":"Brevi verifiche mostrano cosa sai e cosa manca","ru":"Короткие проверки показывают, что ты знаешь, а что нет","pt":"Verificações rápidas mostram o que sabes e o que falta"},"s5t":{"en":"Progress","de":"Fortschritt","fr":"Progresse","es":"Avanza","it":"Progredisci","ru":"Расти","pt":"Evolui"},"s5d":{"en":"You track your progress and always know your next step","de":"Du verfolgst deinen Fortschritt und kennst stets den nächsten Schritt","fr":"Tu suis ta progression et connais toujours l'étape suivante","es":"Sigues tu progreso y siempre sabes tu siguiente paso","it":"Segui i tuoi progressi e sai sempre il prossimo passo","ru":"Ты видишь прогресс и всегда знаешь следующий шаг","pt":"Acompanhas o teu progresso e sabes sempre o próximo passo"},"covT":{"en":"What we cover","de":"Was wir behandeln","fr":"Ce que nous couvrons","es":"Qué cubrimos","it":"Cosa copriamo","ru":"Что мы охватываем","pt":"O que cobrimos"},"mE":{"en":"Materials","de":"Materialien","fr":"Supports","es":"Materiales","it":"Materiali","ru":"Материалы","pt":"Materiais"},"mT":{"en":"Everything for this subject, in one place","de":"Alles für dieses Fach an einem Ort","fr":"Tout pour cette matière, au même endroit","es":"Todo para esta asignatura, en un solo lugar","it":"Tutto per questa materia, in un unico posto","ru":"Всё по предмету в одном месте","pt":"Tudo para esta disciplina, num só lugar"},"mS":{"en":"Notes","de":"Skript","fr":"Cours","es":"Apuntes","it":"Dispensa","ru":"Конспект","pt":"Apontamentos"},"mF":{"en":"Formulas","de":"Formeln","fr":"Formules","es":"Fórmulas","it":"Formule","ru":"Формулы","pt":"Fórmulas"},"mV":{"en":"Solved examples","de":"Gelöste Beispiele","fr":"Exemples résolus","es":"Ejemplos resueltos","it":"Esempi svolti","ru":"Решённые примеры","pt":"Exemplos resolvidos"},"mSg":{"en":"Open notes →","de":"Skript öffnen →","fr":"Ouvrir le cours →","es":"Abrir apuntes →","it":"Apri la dispensa →","ru":"Открыть конспект →","pt":"Abrir apontamentos →"},"mFg":{"en":"Open formulas →","de":"Formeln öffnen →","fr":"Ouvrir les formules →","es":"Abrir fórmulas →","it":"Apri le formule →","ru":"Открыть формулы →","pt":"Abrir fórmulas →"},"mVg":{"en":"Open solved examples →","de":"Gelöste Beispiele öffnen →","fr":"Voir les exemples →","es":"Ver ejemplos →","it":"Apri gli esempi →","ru":"Открыть примеры →","pt":"Abrir exemplos →"},"pE":{"en":"With you","de":"An deiner Seite","fr":"À tes côtés","es":"Contigo","it":"Al tuo fianco","ru":"Рядом с тобой","pt":"Contigo"},"pT":{"en":"A tutor who follows and remembers you","de":"Eine Lehrerin, die dich begleitet und sich erinnert","fr":"Une prof qui te suit et se souvient de toi","es":"Una profesora que te sigue y te recuerda","it":"Una docente che ti segue e ti ricorda","ru":"Преподаватель, который помнит и ведёт тебя","pt":"Uma professora que te acompanha e se lembra de ti"},"npL":{"en":"Your progress","de":"Dein Fortschritt","fr":"Ta progression","es":"Tu progreso","it":"I tuoi progressi","ru":"Твой прогресс","pt":"O teu progresso"},"npT":{"en":"Always know how far you've come","de":"Immer wissen, wie weit du bist","fr":"Sache toujours où tu en es","es":"Siempre sabes hasta dónde has llegado","it":"Sai sempre a che punto sei","ru":"Всегда знаешь, где ты","pt":"Sabes sempre até onde chegaste"},"npS":{"en":"Mathia remembers every topic you've covered — you see the percentage mastered and exactly what's next.","de":"Mathia merkt sich jedes behandelte Thema — du siehst den gemeisterten Anteil und genau, was als Nächstes kommt.","fr":"Mathia retient chaque thème vu — tu vois le pourcentage maîtrisé et exactement la suite.","es":"Mathia recuerda cada tema visto — ves el porcentaje dominado y exactamente qué sigue.","it":"Mathia ricorda ogni argomento svolto — vedi la percentuale acquisita e cosa viene dopo.","ru":"Mathia помнит каждую тему — ты видишь процент освоенного и что дальше.","pt":"A Mathia lembra cada tema — vês a percentagem dominada e o que vem a seguir."},"pfA":{"en":"● Available 24/7","de":"● Rund um die Uhr","fr":"● Disponible 24h/24","es":"● Disponible 24/7","it":"● Disponibile 24/7","ru":"● Доступна 24/7","pt":"● Disponível 24/7"},"qL":{"en":"Ask her anything — for example:","de":"Frag sie alles — zum Beispiel:","fr":"Demande-lui n'importe quoi — par exemple :","es":"Pregúntale lo que sea — por ejemplo:","it":"Chiedile qualsiasi cosa — per esempio:","ru":"Спроси что угодно — например:","pt":"Pergunta-lhe o que quiseres — por exemplo:"},"pfBtn":{"en":"Ask Profesorica →","de":"Profesorica fragen →","fr":"Demander à Profesorica →","es":"Preguntar a Profesorica →","it":"Chiedi a Profesorica →","ru":"Спросить Profesorica →","pt":"Perguntar à Profesorica →"},"finS":{"en":"Start with the question that's bugging you — Profesorica guides you the rest of the way.","de":"Beginne mit der Frage, die dich plagt — Profesorica führt dich den Rest des Weges.","fr":"Commence par la question qui te bloque — Profesorica t'accompagne jusqu'au bout.","es":"Empieza por la pregunta que te preocupa — Profesorica te guía el resto del camino.","it":"Parti dalla domanda che ti assilla — Profesorica ti guida per il resto.","ru":"Начни с вопроса, который мучает — Profesorica проведёт тебя дальше.","pt":"Começa pela pergunta que te incomoda — a Profesorica guia-te no resto."},"finK":{"en":"finally clear","de":"endlich klar","fr":"enfin clair","es":"por fin claro","it":"finalmente chiaro","ru":"наконец ясно","pt":"finalmente claro"},"fcl":{"en":"Available anytime, anywhere.","de":"Jederzeit und überall verfügbar.","fr":"Disponible à tout moment, partout.","es":"Disponible en todo momento, en cualquier lugar.","it":"Disponibile sempre, ovunque.","ru":"Доступно в любой момент и в любом месте.","pt":"Disponível a qualquer momento, em qualquer lugar."},"fsl":{"en":"Follow us","de":"Folge uns","fr":"Suivez-nous","es":"Síguenos","it":"Seguici","ru":"Мы в соцсетях","pt":"Segue-nos"},"fcNav":{"en":"Navigation","de":"Navigation","fr":"Navigation","es":"Navegación","it":"Navigazione","ru":"Навигация","pt":"Navegação"},"fcPra":{"en":"Legal","de":"Rechtliches","fr":"Mentions légales","es":"Legal","it":"Note legali","ru":"Правовое","pt":"Legal"},"fcKon":{"en":"Contact","de":"Kontakt","fr":"Contact","es":"Contacto","it":"Contatti","ru":"Контакт","pt":"Contato"},"back":{"en":"All subjects","de":"Alle Fächer","fr":"Toutes les matières","es":"Todas las asignaturas","it":"Tutte le materie","ru":"Все предметы","pt":"Todas as disciplinas"},"eyebrow":{"en":"University · mechanical eng. / technology","de":"Universität · Maschinenbau / Technik","fr":"Université · génie mécanique / technique","es":"Universidad · ing. mecánica / tecnología","it":"Università · ingegneria meccanica / tecnica","ru":"Университет · машиностроение / техника","pt":"Universidade · eng. mecânica / tecnologia"},"btnFree":{"en":"Start free →","de":"Kostenlos starten →","fr":"Commence gratuitement →","es":"Empieza gratis →","it":"Inizia gratis →","ru":"Начать бесплатно →","pt":"Começa grátis →"},"secCover":{"en":"Syllabus","de":"Lehrstoff","fr":"Programme","es":"Temario","it":"Programma","ru":"Программа","pt":"Programa"},"ctaBtn":{"en":"Start free →","de":"Kostenlos starten →","fr":"Commence gratuitement →","es":"Empieza gratis →","it":"Inizia gratis →","ru":"Начать бесплатно →","pt":"Começa grátis →"},"ctaSub":{"en":"The first 15 minutes are free — no card, no commitment.","de":"Die ersten 15 Minuten sind kostenlos — ohne Karte, ohne Verpflichtung.","fr":"Les 15 premières minutes sont gratuites — sans carte, sans engagement.","es":"Los primeros 15 minutos son gratis — sin tarjeta, sin compromiso.","it":"I primi 15 minuti sono gratis — senza carta, senza impegno.","ru":"Первые 15 минут бесплатно — без карты и обязательств.","pt":"Os primeiros 15 minutos são grátis — sem cartão, sem compromisso."},"footTag":{"en":"Maths · Physics · Electrical engineering — with Profesorica, 24/7.","de":"Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.","fr":"Maths · Physique · Génie électrique — avec Profesorica, 24h/24.","es":"Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.","it":"Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.","ru":"Математика · Физика · Электротехника — с Profesorica, 24/7.","pt":"Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."},"fLink1":{"en":"Home","de":"Startseite","fr":"Accueil","es":"Inicio","it":"Home","ru":"Главная","pt":"Início"},"nav2":{"en":"Subjects","de":"Fächer","fr":"Matières","es":"Asignaturas","it":"Materie","ru":"Предметы","pt":"Disciplinas"},"nav3":{"en":"Store","de":"Shop","fr":"Boutique","es":"Tienda","it":"Negozio","ru":"Магазин","pt":"Loja"},"nav4":{"en":"Plans","de":"Pakete","fr":"Forfaits","es":"Planes","it":"Piani","ru":"Тарифы","pt":"Planos"},"nav5":{"en":"About me","de":"Über mich","fr":"À propos","es":"Sobre mí","it":"Chi sono","ru":"Обо мне","pt":"Sobre mim"},"qEx":{"en":"Explain this topic with an example.","de":"Erkläre mir dieses Thema an einem Beispiel.","fr":"Explique-moi ce thème avec un exemple.","es":"Explícame este tema con un ejemplo.","it":"Spiegami questo argomento con un esempio.","ru":"Объясни эту тему на примере.","pt":"Explica-me este tema com um exemplo."},"aEx1":{"en":"Of course — let's start from the essence, then a worked example 💛","de":"Klar — wir beginnen beim Wesentlichen, dann ein Beispiel 💛","fr":"Bien sûr — partons de l'essentiel, puis un exemple 💛","es":"Claro — empecemos por lo esencial y luego un ejemplo 💛","it":"Certo — partiamo dall'essenza, poi un esempio 💛","ru":"Конечно — начнём с сути, потом разберём пример 💛","pt":"Claro — comecemos pela essência e depois um exemplo 💛"},"aEx2":{"en":"Send a specific problem (a photo works too) and we solve it step by step.","de":"Schick eine konkrete Aufgabe (auch als Foto) und wir lösen sie Schritt für Schritt.","fr":"Envoie un exercice précis (une photo suffit) et on le résout pas à pas.","es":"Envía un problema concreto (también vale una foto) y lo resolvemos paso a paso.","it":"Invia un problema concreto (va bene anche una foto) e lo risolviamo passo dopo passo.","ru":"Пришли конкретную задачу (можно фото), и решим её шаг за шагом.","pt":"Envia um exercício concreto (também serve uma foto) e resolvemo-lo passo a passo."}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=(l==='sr'?'sr-Latn':l);}catch(_){}}
+var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+var sel=document.querySelector('select.lang');
+if(sel){sel.value=(['sr','en','de','fr','es','it','ru','pt'].indexOf(sv)>-1?sv:'sr');sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(_){}});}
+if(sv!=='sr')apply(sv);
+window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.detail):'sr').toLowerCase();if(sel)sel.value=(['sr','en','de','fr','es','it','ru','pt'].indexOf(l)>-1?l:'sr');apply(l);});
+})();
+</script>
+<script src="i18n-mathia.js"></script>
+<script defer src="gate.js" data-subject="fax-mehanika-fluida" data-note-only="1"></script>
 <script src="mathia-delight.js" defer></script>
 <script src="footer-mathia.js" defer></script>
+<script>
+(function(){try{
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var b=document.getElementById('fall');if(b){var G=['∫','∑','√','π','α','x²','½','λ','·','∞','≈','💛','✦','θ','det'];var N=innerWidth<640?10:16;for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.26)s.className='m';s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}}}
+ setTimeout(function(){var a=document.querySelectorAll('.rv:not(.in)');for(var i=0;i<a.length;i++)a[i].classList.add('in');},1500);
+}catch(e){}})();
+</script>
+<script id="sentence-lines-helper">(function(){
+ function realChild(el){for(var i=0;i<el.children.length;i++){if(el.children[i].tagName!=='BR')return true;}return false;}
+ function proc(el){ if(realChild(el))return; var t=(el.textContent||'').trim(); if(!t)return; el.innerHTML=t.replace(/([.!?…])\s+(?=[A-ZŠĐČĆŽÀ-ÝА-Я“„«¿¡])/g,'$1<br>'); }
+ function run(){var ls=document.querySelectorAll('.lead');for(var i=0;i<ls.length;i++)proc(ls[i]);}
+ if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+ window.addEventListener('mathia:lang',function(){setTimeout(run,70);});
+ window.addEventListener('storage',function(e){if(e.key==='mathia_lang')setTimeout(run,70);});
+})();</script>
 </body>
 </html>
