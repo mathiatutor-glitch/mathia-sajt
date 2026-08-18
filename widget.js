@@ -580,9 +580,38 @@
     }
     return out.join("\n");
   }
+  /* Ako je odgovor prekinut usred formule (npr. dostignut limit tokena), ostane
+     nezatvoren $ ili $$ pa bi se video SIROV LaTeX (npr. „$g(x)=\dfrac{2+"). Ovde
+     pratimo stanje (tekst / $$ / $), poštujući \$ , i ako se poruka završi u
+     otvorenoj matematici — odsečemo taj nedovršeni deo i dodamo „ …". */
+  function closeDanglingMath(str){
+    str = String(str);
+    var i=0, n=str.length, mode=0, lastOpen=-1; // 0=tekst, 1=$$, 2=$
+    while(i<n){
+      var c=str.charAt(i);
+      if(c==="\\"){ i+=2; continue; }
+      if(c==="$" && str.charAt(i+1)==="$"){
+        if(mode===0){ mode=1; lastOpen=i; i+=2; continue; }
+        if(mode===1){ mode=0; lastOpen=-1; i+=2; continue; }
+        i+=2; continue;
+      }
+      if(c==="$"){
+        if(mode===0){ mode=2; lastOpen=i; i++; continue; }
+        if(mode===2){ mode=0; lastOpen=-1; i++; continue; }
+        i++; continue;
+      }
+      i++;
+    }
+    if(mode!==0 && lastOpen>=0){
+      str = str.slice(0,lastOpen).replace(/\s+$/,"");
+      if(str) str += " …";
+    }
+    return str;
+  }
   function fmt(s) {
     var math = [];
     s = String(s);
+    s = closeDanglingMath(s);
     s = s.replace(/\$\$([\s\S]+?)\$\$/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\$([^\s$][^$\n]*?[^\s$]|[^\s$])\$/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
