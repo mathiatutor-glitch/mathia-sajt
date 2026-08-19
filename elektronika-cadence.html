@@ -3,629 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Cadence — projektovanje integrisanih kola — Mathia</title>
+<meta name="theme-color" content="#5A1024">
+<title>Cadence — projektovanje integrisanih kola | Mathia</title>
+<meta name="description" content="Cadence korak po korak: šema, simulacija, layout, DRC i LVS, ekstrakcija i PDK — uz Profesoricu 0–24h.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Nunito:wght@400;500;600;700;800&family=Pinyon+Script&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#FBF6EE; --paper2:#F5EADB; --blush:#F4E3DD; --rose:#CC8E86; --rose-dk:#B5746C;
-    --plum:#5A1024; --plum2:#7A3346; --plum3:#7E5765;
-    --gold:#C6A05C; --golddk:#9C7838; --goldlt:#E7D2A2; --champ:#F7EAC9;
-    --ink:#3E2D34; --muted:#90787E; --bord:#ECDAC5; --card:#fffcf6;
-    --maxw:1120px;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;margin:0;letter-spacing:.002em}
-  p{margin:0}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .eyebrow{font-size:.7rem;letter-spacing:.36em;text-transform:uppercase;color:var(--golddk);font-weight:800}
-  .gold-underline{position:relative;background-image:linear-gradient(90deg,rgba(231,210,162,.6),rgba(204,142,134,.5));background-repeat:no-repeat;background-position:0 92%;background-size:100% .32em;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-  .gold-underline:after{content:none}
-
-  .script{font-family:'Pinyon Script',cursive;font-weight:400}
-  .goldtext{background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
-  @keyframes foil{to{background-position:-230% center}}
-
-  .orn{display:flex;align-items:center;gap:16px;justify-content:center;margin:0 auto;max-width:300px;color:var(--gold)}
-  .orn:before,.orn:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
-  .orn:after{background:linear-gradient(90deg,var(--gold),transparent)}
-  .orn i{font-style:normal;font-size:14px}
-
-  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:100px;padding:14px 28px;font-family:inherit;font-weight:700;font-size:.92rem;letter-spacing:.02em;cursor:pointer;border:1.5px solid transparent;transition:transform .16s ease,box-shadow .16s ease,background .2s}
-  .btn:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
-  .btn-gold{background:linear-gradient(180deg,#EBD49A,var(--gold));color:#4a3812;box-shadow:0 12px 30px -12px rgba(198,160,92,.85),inset 0 1px 0 rgba(255,255,255,.55)}
-  .btn-gold:hover{transform:translateY(-2px)}
-  .btn-rose{background:linear-gradient(180deg,var(--rose),var(--rose-dk));color:#fff;box-shadow:0 12px 28px -14px rgba(181,116,108,.9)}
-  .btn-rose:hover{transform:translateY(-2px)}
-  .btn-ghost{background:transparent;color:var(--plum);border-color:var(--gold)}
-  .btn-ghost:hover{background:rgba(198,160,92,.12)}
-  .btn-ghost-l{background:transparent;color:#fff;border-color:rgba(231,210,162,.6)}
-  .btn-ghost-l:hover{background:rgba(231,210,162,.14)}
-
-  /* header */
-  .topbar{background:linear-gradient(90deg,var(--plum),var(--plum2),var(--plum))}
-  .topbar .wrap{display:flex;align-items:center;justify-content:center;gap:14px;min-height:36px;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#ecd9dd}
-  .topbar a{color:var(--goldlt);text-decoration:none}
-  .topbar .tb-orn{color:var(--gold)}
-  .topbar .tb-x{display:none}
-  @media(min-width:660px){.topbar .wrap{justify-content:space-between}.topbar .tb-x{display:inline-flex;align-items:center;gap:10px}}
-  header{position:sticky;top:0;z-index:40;background:rgba(251,246,238,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord)}
-  header:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--gold),#FFF6D6,var(--gold),var(--goldlt),transparent);background-size:220% 100%;animation:goldslide 6.5s linear infinite}
-  @keyframes goldslide{to{background-position:-220% 0}}
-  .nav{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:14px}
-  .brand{display:flex;flex-direction:column;line-height:1}
-  .brand .bmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.2rem;letter-spacing:.12em;background:linear-gradient(100deg,#9C7838 0%,#E7D2A2 28%,#FFF7E2 47%,#E7D2A2 66%,#C6A05C 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
-  .brand .bmark b{color:var(--golddk);font-weight:600}
-  .brand .bsig{font-size:1.12rem;line-height:.8;margin-top:0}
-  .nav-r{display:flex;align-items:center;gap:22px}
-  .nav-r a.link{position:relative;color:var(--plum2);font-weight:600;font-size:.82rem;letter-spacing:.05em;text-decoration:none;display:none}
-  .nav-r a.link:after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1px;background:var(--gold);transition:right .28s ease}
-  @media(min-width:780px){.nav-r a.link{display:inline}}
-  .nav-r a.link:hover{color:var(--golddk)}
-  .nav-r a.link:hover:after{right:0}
-  .lang{background:transparent;border:1px solid var(--gold);color:var(--golddk);border-radius:100px;font-family:inherit;font-weight:800;font-size:.72rem;padding:6px 11px;cursor:pointer}
-
-  /* HERO */
-  .hero{position:relative;overflow:hidden;background:
-     radial-gradient(680px 480px at 88% 0%,var(--blush),transparent 70%),
-     radial-gradient(620px 520px at 0% 100%,var(--champ),transparent 65%),
-     var(--paper)}
-  .hero .wrap{position:relative;z-index:2;display:grid;gap:38px;padding:48px 24px 64px}
-  @media(min-width:900px){.hero .wrap{grid-template-columns:1.18fr .92fr;align-items:center;padding:64px 24px 80px}}
-  .hero .slogan{font-family:'Pinyon Script',cursive;font-size:clamp(2.6rem,8vw,4rem);line-height:.9;margin-bottom:6px}
-  .hero h1{color:var(--plum);font-size:clamp(2.3rem,5.8vw,3.7rem);font-weight:500}
-  .hero .lead{margin-top:18px;color:#5a474d;font-size:1.08rem;max-width:46ch}
-  .hero .sign{margin-top:10px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;color:var(--golddk)}
-  .cta-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:13px;align-items:center}
-  .microtrust{margin-top:15px;color:var(--muted);font-size:.84rem;font-weight:700}
-  .microtrust b{color:var(--rose-dk)}
-
-  /* portrait */
-  .portrait{justify-self:center;position:relative}
-  .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:2}
-  .portrait .halo{position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(204,142,134,.25),transparent 68%)}
-  .photo{width:min(384px,86vw);aspect-ratio:4/5;border-radius:28px;position:relative;overflow:hidden;background:linear-gradient(160deg,#fff,var(--blush));box-shadow:0 0 0 2px var(--gold),0 0 0 9px var(--paper),0 0 0 10px rgba(198,160,92,.5),0 40px 78px -30px rgba(120,70,80,.6)}
-  .photo:before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);z-index:3;pointer-events:none}
-  .photo:after{content:none}
-  .photo .slot{text-align:center;color:var(--plum3);font-weight:700;font-size:.82rem;z-index:2;padding:0 30px}
-  .photo .slot b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:3rem;color:var(--golddk);margin-bottom:6px}
-  .portrait .crown{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:152px;height:auto;color:var(--gold);z-index:3}
-  .portrait .plate{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:18px;color:var(--plum);font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.18rem;letter-spacing:.02em}
-  .portrait .plate:before,.portrait .plate:after{content:"";height:1px;width:34px;background:linear-gradient(90deg,transparent,var(--gold))}
-  .portrait .plate:after{background:linear-gradient(90deg,var(--gold),transparent)}
-  .hero .frame{position:absolute;inset:16px;border:1px solid rgba(198,160,92,.4);border-radius:18px;pointer-events:none;z-index:1}
-  .hero .corner{position:absolute;width:52px;height:52px;color:var(--gold);opacity:.65;z-index:1}
-  .hero .corner.tl{top:7px;left:7px}
-  .hero .corner.tr{top:7px;right:7px;transform:rotate(90deg)}
-  .hero .corner.br{bottom:7px;right:7px;transform:rotate(180deg)}
-  .hero .corner.bl{bottom:7px;left:7px;transform:rotate(270deg)}
-  @media(max-width:560px){.hero .frame{inset:9px}.hero .corner{width:38px;height:38px}}
-  .portrait .cap{display:block;text-align:center;color:var(--muted);font-size:.74rem;margin-top:18px;font-weight:600}
-
-  section{padding:74px 0}
-  .sec-head{text-align:center;max-width:680px;margin:0 auto 44px}
-  .sec-head .ksub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--rose-dk);margin-bottom:4px}
-  .sec-head h2{font-size:clamp(1.9rem,5vw,2.8rem);color:var(--plum);font-weight:500;letter-spacing:.005em}
-  .sec-head p{color:var(--muted);margin-top:13px;font-size:1.05rem}
-
-  /* pain */
-  .pain{position:relative;overflow:hidden;text-align:center;color:#fff;background:linear-gradient(160deg,var(--plum2),var(--plum))}
-  .pain:after{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 50% -10%,rgba(231,210,162,.16),transparent)}
-  .pain .wrap{position:relative;z-index:2;max-width:760px}
-  .pain .q{color:#e9d9dd;font-size:1.14rem;margin:0 auto;max-width:44ch;font-family:'Cormorant Garamond',serif;font-style:italic}
-  .pain .q+.q{margin-top:10px}
-  .pain .big{margin-top:24px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.7rem,4.6vw,2.5rem);color:#fff}
-  .pain .big em{font-style:normal;color:var(--goldlt)}
-
-  /* features */
-  .what{background:var(--card)}
-  .feat{display:grid;gap:20px}
-  @media(min-width:760px){.feat{grid-template-columns:repeat(3,1fr)}}
-  .feat .it{position:relative;background:var(--paper);border:1px solid var(--bord);border-radius:22px;padding:30px 24px;transition:transform .18s ease,box-shadow .18s ease}
-  .feat .it:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(120,70,80,.4)}
-  .feat .it .ic{width:52px;height:52px;border-radius:50%;background:linear-gradient(160deg,var(--blush),#fff);border:1px solid var(--bord);color:var(--rose-dk);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:15px}
-  .feat .it h3{font-size:1.4rem;color:var(--plum);margin-bottom:5px;font-weight:600}
-  .feat .it p{color:var(--muted);font-size:.96rem}
-
-  /* how */
-  .how{background:linear-gradient(180deg,var(--paper),var(--blush))}
-  .steps{display:grid;gap:22px;counter-reset:s}
-  @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
-  .step{position:relative;background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:32px 24px 26px}
-  .step .num{counter-increment:s;position:absolute;top:-18px;left:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(180deg,var(--goldlt),var(--gold));color:#4a3812;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 20px -8px rgba(198,160,92,.8)}
-  .step .num:before{content:counter(s)}
-  .step h3{font-size:1.32rem;color:var(--plum);margin:6px 0 6px;font-weight:600}
-  .step p{color:var(--muted);font-size:.95rem}
-
-  /* parent */
-  .parent{background:var(--card)}
-  .pgrid{display:grid;gap:36px;align-items:center}
-  @media(min-width:860px){.pgrid{grid-template-columns:1.05fr .95fr}}
-  .parent .ksub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--rose-dk);margin-bottom:4px}
-  .parent h2{color:var(--plum);font-size:clamp(1.8rem,4.6vw,2.5rem);font-weight:600}
-  .parent p{color:#5a474d;margin-top:13px;font-size:1.05rem}
-  .pchips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-  .pchips span{background:var(--blush);border:1px solid var(--bord);border-radius:100px;padding:8px 16px;font-weight:800;font-size:.85rem;color:var(--plum)}
-  .pchips span b{color:var(--rose-dk)}
-  .phone{justify-self:center;width:250px;max-width:72vw;aspect-ratio:9/18;background:#fff;border-radius:38px;padding:12px;box-shadow:0 40px 80px -34px rgba(120,70,80,.55);border:1px solid var(--bord)}
-  .phone .scr{height:100%;border-radius:28px;background:linear-gradient(170deg,var(--plum2),var(--plum));position:relative;overflow:hidden;display:flex;flex-direction:column;gap:11px;padding:22px 16px;color:#fff}
-  .phone .ttl{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.15rem;color:var(--goldlt)}
-  .phone .lbl{font-size:.76rem;color:#e9d9dd;display:flex;justify-content:space-between}
-  .phone .bar2{height:9px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden}
-  .phone .bar2 i{display:block;height:100%;background:linear-gradient(90deg,var(--goldlt),var(--gold))}
-  .phone .pill{background:rgba(255,255,255,.08);border:1px solid rgba(231,210,162,.25);border-radius:13px;padding:10px 12px;font-size:.78rem;color:#f3e9ea;display:flex;gap:8px;align-items:center}
-
-  /* persona */
-  .persona{background:linear-gradient(180deg,var(--blush),var(--paper))}
-  .persona-card{position:relative;overflow:hidden;background:linear-gradient(155deg,var(--plum2),var(--plum));color:#fff;border-radius:32px;padding:44px 26px;display:grid;gap:30px;align-items:center;box-shadow:0 40px 90px -40px rgba(67,44,55,.7)}
-  .persona-card:after{content:"";position:absolute;width:360px;height:360px;right:-100px;top:-100px;border-radius:50%;background:radial-gradient(circle,rgba(231,210,162,.16),transparent 70%)}
-  @media(min-width:860px){.persona-card{grid-template-columns:.78fr 1.22fr;padding:52px 50px}}
-  .persona-badge{justify-self:center;text-align:center;position:relative;z-index:2}
-  .persona-badge .ring{width:170px;height:170px;border-radius:50%;background:radial-gradient(circle at 50% 32%,#fff,var(--blush) 72%,#e6cdc6);display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto;overflow:hidden}
-  .persona-badge .ring:before{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid var(--gold)}
-  .persona-badge .ring .slot{color:var(--plum3);font-size:.72rem;font-weight:700;z-index:2;text-align:center;padding:0 14px}
-  .persona-badge .ring .slot b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.2rem;color:var(--golddk);margin-bottom:2px}
-  .persona-badge .nm{margin-top:16px;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.5rem;color:#fff}
-  .persona-badge .nm small{display:block;color:var(--goldlt);font-family:'Nunito';font-weight:800;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;margin-top:5px}
-  .persona-body{position:relative;z-index:2}
-  .persona-body h2{color:#fff;font-size:clamp(1.8rem,4.4vw,2.5rem);font-weight:600}
-  .persona-body>p{color:#e9d9dd;margin-top:13px;font-size:1.04rem}
-  .checks{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:11px}
-  @media(min-width:560px){.checks{grid-template-columns:1fr 1fr}}
-  .checks li{display:flex;gap:10px;align-items:flex-start;color:#f6eef0;font-weight:600;font-size:.95rem}
-  .checks li .ck{flex:0 0 auto;width:23px;height:23px;border-radius:50%;background:rgba(231,210,162,.2);color:var(--goldlt);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;margin-top:1px}
-  .one-brand{margin-top:26px;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--goldlt);font-size:1.4rem}
-
-  /* testimonials */
-  .tst{background:var(--card)}
-  .tgrid{display:grid;gap:20px}
-  @media(min-width:760px){.tgrid{grid-template-columns:repeat(3,1fr)}}
-  .quote{background:var(--paper);border:1px solid var(--bord);border-radius:22px;padding:28px 26px;position:relative}
-  .quote .qm{font-family:'Cormorant Garamond',serif;font-size:3.4rem;color:var(--rose);line-height:.5;height:26px}
-  .quote .stars{color:var(--gold);letter-spacing:2px;font-size:.85rem;margin:6px 0 10px}
-  .quote p{color:var(--ink);font-size:1.04rem;font-family:'Cormorant Garamond',serif;font-style:italic}
-  .quote .who{margin-top:14px;color:var(--plum);font-weight:800;font-size:.86rem;font-family:'Nunito'}
-  .quote .who span{color:var(--muted);font-weight:600}
-  .tst .note{text-align:center;color:var(--muted);font-size:.8rem;margin-top:22px;font-style:italic}
-
-  /* packages */
-  .pack{background:linear-gradient(180deg,var(--paper),var(--paper2))}
-  .tiers{display:grid;gap:22px}
-  @media(min-width:880px){.tiers{grid-template-columns:repeat(3,1fr);align-items:stretch}}
-  .tier{position:relative;background:var(--card);border:1px solid var(--bord);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
-  .tier:hover{transform:translateY(-4px);box-shadow:0 26px 54px -30px rgba(120,70,80,.4)}
-  .tier:before{content:"";position:absolute;top:0;left:28px;right:28px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7}
-  .tier h3{font-size:1.7rem;color:var(--plum);letter-spacing:.02em;font-weight:700}
-  .tier .sub{color:var(--rose-dk);font-weight:800;font-size:.86rem;margin-top:3px;font-family:'Nunito'}
-  .tier ul{list-style:none;padding:0;margin:20px 0;display:grid;gap:11px}
-  .tier ul li{position:relative;padding-left:22px;color:var(--ink);font-size:.94rem;line-height:1.55}
-  .tier ul li:before{content:"❀";position:absolute;left:0;top:2px;color:var(--rose);font-size:.8rem}
-  .tier .price{margin-top:auto;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--plum);font-size:2.1rem}
-  .tier .price span{font-family:'Nunito';font-size:.8rem;color:var(--muted);font-weight:700}
-  .tier .btn{width:100%;justify-content:center;margin-top:18px}
-  .tier.feat-tier{background:linear-gradient(170deg,#fffcf6,var(--champ));border:1.6px solid var(--gold);box-shadow:0 30px 64px -32px rgba(198,160,92,.7)}
-  @media(min-width:880px){.tier.feat-tier{transform:scale(1.045)}.tier.feat-tier:hover{transform:scale(1.045) translateY(-4px)}}
-  .badge-top{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,var(--rose),var(--rose-dk));color:#fff;font-weight:800;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:7px 16px;border-radius:100px;white-space:nowrap;box-shadow:0 10px 20px -8px rgba(181,116,108,.7)}
-
-  /* about teaser */
-  .about{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--plum2),var(--plum));color:#fff}
-  .about:after{content:"";position:absolute;width:420px;height:420px;left:-120px;bottom:-150px;border-radius:50%;background:radial-gradient(circle,rgba(204,142,134,.2),transparent 70%)}
-  .about-grid{position:relative;z-index:2;display:grid;gap:34px;align-items:center}
-  @media(min-width:820px){.about-grid{grid-template-columns:.7fr 1.3fr}}
-  .about .seal{justify-self:center}
-  .about .seal .ring{width:176px;height:176px;border-radius:50%;background:radial-gradient(circle at 50% 32%,#fff,var(--blush) 72%,#e6cdc6);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-  .about .seal .ring:before{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid var(--gold)}
-  .about .seal .ring .slot{color:var(--plum3);font-size:.7rem;font-weight:700;text-align:center;z-index:2;padding:0 12px}
-  .about .seal .ring .slot b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.3rem;color:var(--golddk);margin-bottom:2px}
-  .about h2{color:#fff;font-size:clamp(1.8rem,4.4vw,2.5rem);font-weight:600}
-  .about p{color:#e9d9dd;margin-top:14px;font-size:1.04rem}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-  .chip{background:rgba(255,255,255,.07);border:1px solid rgba(231,210,162,.32);border-radius:100px;padding:8px 15px;font-weight:800;font-size:.85rem;color:#fff}
-  .chip b{color:var(--goldlt)}
-  .about .btn{margin-top:26px}
-
-  /* final */
-  .final{background:var(--card);text-align:center}
-  .final h2{color:var(--plum);font-size:clamp(2rem,5vw,2.9rem);max-width:20ch;margin:0 auto;font-weight:600}
-  .final p{color:var(--muted);margin:14px auto 0;max-width:48ch}
-  .final .row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-
-  footer{background:var(--plum);color:#d9c7cd;padding:46px 0;text-align:center}
-  footer .brand{display:flex;justify-content:center;color:#fff;margin-bottom:4px}
-  footer .brand b{color:var(--goldlt)}
-  footer .slogan{font-family:'Pinyon Script',cursive;font-size:2.1rem;margin:2px 0 6px}
-  footer p{font-size:.85rem;color:#c7b3ba}
-  footer a{color:var(--goldlt);font-weight:700}
-
-  .hb{margin-top:12px;color:var(--plum2);font-weight:700;font-size:.82rem}
-  /* student */
-  .student{background:linear-gradient(180deg,var(--blush),var(--paper))}
-  .badges{display:grid;gap:16px;grid-template-columns:1fr 1fr}
-  @media(min-width:760px){.badges{grid-template-columns:repeat(3,1fr)}}
-  .badge{background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:26px 18px;text-align:center;transition:transform .18s ease,box-shadow .18s ease}
-  .badge:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(120,70,80,.4)}
-  .badge .em{font-size:1.95rem;display:block;margin-bottom:9px}
-  .badge h3{font-size:1.28rem;color:var(--plum);font-weight:600;margin-bottom:3px}
-  .badge p{color:var(--muted);font-size:.9rem}
-  /* Marina quote */
-  .mquote{background:linear-gradient(180deg,var(--paper),var(--blush));text-align:center}
-  .mquote .mq{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(1.55rem,3.8vw,2.3rem);color:var(--plum);max-width:30ch;margin:0 auto;line-height:1.42}
-  .mquote .mq-by{margin-top:18px;font-family:'Pinyon Script',cursive;font-size:2rem;color:var(--golddk)}
-  /* wow: calligraphy, flourish, cinematic entrance */
-  .flourish{display:block;margin:16px auto 0;width:min(230px,56vw);height:auto;color:var(--gold)}
-  .namecalli{font-weight:400;line-height:1}
-  .namecalli .pre{display:block;font-family:'Nunito';font-weight:800;font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--golddk);margin-bottom:4px}
-  .namecalli .nm{font-family:'Pinyon Script',cursive;font-size:clamp(3.2rem,12vw,5.6rem);line-height:.85;display:block}
-  .signature{font-family:'Tangerine',cursive;font-weight:700;display:inline-block;letter-spacing:.06em;transform:scaleX(1.12);transform-origin:left center;background:linear-gradient(100deg,#5E461E 0%,#856528 16%,#B58E43 34%,#E7D196 47%,#FFF6D6 51%,#E7D196 55%,#B58E43 64%,#856528 82%,#5E461E 100%);background-size:265% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 4s linear infinite}
-  @keyframes shine{0%{background-position:175% center}100%{background-position:-75% center}}
-  .signature-wrap{line-height:.9}
-  .signature-wrap .signature{font-size:clamp(3.6rem,13vw,6rem);transform:rotate(-1.5deg)}
-  .sigflourish{display:block;height:auto;color:var(--gold)}
-  @keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-  @keyframes fadeScale{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}
-  @keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-7px)}}
-  @keyframes glow{0%,100%{opacity:.45}50%{opacity:.85}}
-  .htxt>*{opacity:0;animation:riseIn .85s cubic-bezier(.2,.7,.2,1) both}
-  .htxt>*:nth-child(1){animation-delay:.06s}
-  .htxt>*:nth-child(2){animation-delay:.16s}
-  .htxt>*:nth-child(3){animation-delay:.27s}
-  .htxt>*:nth-child(4){animation-delay:.38s}
-  .htxt>*:nth-child(5){animation-delay:.49s}
-  .htxt>*:nth-child(6){animation-delay:.59s}
-  .htxt>*:nth-child(7){animation-delay:.69s}
-  .htxt>*:nth-child(8){animation-delay:.79s}
-  .hero .portrait{animation:fadeScale 1.1s ease .25s both}
-  .hero .portrait .halo{animation:glow 5s ease-in-out infinite}
-  .hero .portrait .crown{animation:floaty 4.5s ease-in-out infinite}
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.reveal,.htxt>*{opacity:1;transform:none;transition:none;animation:none}html{scroll-behavior:auto}.goldtext,.signature,.brand .bmark,header:before{animation:none}.hero .portrait,.hero .portrait .halo{animation:none;opacity:1;transform:none}.hero .portrait .crown{animation:none}}
-
-  header .brand{display:flex;flex-direction:row;align-items:center;gap:11px;text-decoration:none}
-  .bav{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 2px 9px rgba(124,58,71,.20);flex:none}
-  .bwrap{display:flex;flex-direction:column;line-height:1.02}
-  .bsub{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--golddk);margin-top:3px}
-  @media(max-width:480px){.bsub{display:none}.bav{width:34px;height:34px}}
-
-  /* — Predmeti i testovi — */
-  .subjects{background:linear-gradient(180deg,var(--paper),var(--paper2))}
-  .levels{display:grid;gap:18px;grid-template-columns:repeat(2,1fr);align-items:start}
-  .lvl{background:var(--card);border:1px solid var(--bord);border-radius:22px;padding:24px 22px;transition:transform .25s,box-shadow .25s}
-  .lvl:hover{transform:translateY(-4px);box-shadow:0 24px 46px -28px rgba(120,70,80,.4)}
-  .lvl .lico{font-size:1.7rem;display:block;margin-bottom:8px}
-  .lvl h3{font-size:1.3rem;color:var(--plum);font-weight:600;margin-bottom:2px}
-  .lvl .cap{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rose);font-size:1.05rem;margin-bottom:14px}
-  .schips{display:flex;flex-wrap:wrap;gap:8px}
-  .schips span{background:var(--paper);border:1px solid var(--bord);border-radius:100px;padding:6px 13px;font-size:.84rem;color:var(--plum2);font-weight:500}
-  .tests-head{text-align:center;margin:54px auto 24px}
-  .tests-head h3{font-size:clamp(1.4rem,4vw,1.9rem);color:var(--plum);font-weight:500}
-  .tests{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
-  .test{background:var(--card);border:1px solid var(--bord);border-radius:20px;padding:22px 18px;text-align:center}
-  .test .lico{font-size:1.55rem;display:block;margin-bottom:8px}
-  .test h4{font-size:1.1rem;color:var(--plum);font-weight:600;margin-bottom:5px}
-  .test p{color:var(--muted);font-size:.9rem;line-height:1.5}
-  .sub-note{max-width:760px;margin:40px auto 0;text-align:center;background:linear-gradient(170deg,#fffcf6,var(--champ));border:1.4px solid var(--goldlt);border-radius:18px;padding:18px 24px;color:var(--plum2);font-size:1rem;line-height:1.6}
-  .sub-note b{color:var(--golddk)}
-  @media(min-width:900px){.levels{grid-template-columns:repeat(3,1fr)}.tests{grid-template-columns:repeat(4,1fr)}}
-  .ksub::first-letter{text-transform:uppercase}
-  footer .foot-last{margin:0}
-  footer .footsig-wrap{margin-top:-8px;line-height:1;text-align:right;padding-right:120px}
-  footer .footsig{font-family:'Tangerine',cursive;font-weight:700;font-size:2.3rem;display:inline-block;transform:rotate(-4deg);margin-left:0;background:linear-gradient(100deg,#5E461E 0%,#8A6A2C 30%,#E7D2A2 50%,#8A6A2C 70%,#5E461E 100%);background-size:230% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:foil 7s linear infinite}
-.lvl{padding:0;cursor:default}
-  .lvl .lico{margin-bottom:0}
-  .lvl .cap{margin-bottom:0}
-  .lvl-head{width:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:14px;padding:20px 22px;text-align:left;font:inherit}
-  .lvl-head .lvl-tx{flex:1}
-  .lvl-head .chev{color:var(--gold);font-size:1.2rem;transition:transform .3s}
-  .lvl.open .lvl-head .chev{transform:rotate(180deg)}
-  .lvl.open{box-shadow:0 24px 46px -28px rgba(120,70,80,.4)}
-  .subj-list{display:none;flex-direction:column;gap:10px;padding:0 22px 22px}
-  .lvl.open .subj-list{display:flex}
-  footer .flove{font-family:'Pinyon Script',cursive;font-size:2.1rem;margin:0 0 6px}
-  h1,h2,h3,h4,.lead,.sub-lead,.sec-head p,.sec-head .ksub,.q,.big,.mquote p,.mquote .lead,.ksub,.titles span,.titles small,.tier .sub,.tier .name,.step h3,.step p,.badge h3,.badge p,.feat .it h3,.feat .it p,.test h4,.test p,.lvl h3,.lvl .cap,.plate,.signoff,.flove{text-wrap:balance}
-  p,.bio p,.tier ul li{text-wrap:pretty}
-  @media(max-width:560px){
-    .hero .sign{padding-right:8px !important;text-align:right}
-    .hero .sign .signature{font-size:1.95rem !important;transform:rotate(-1.5deg) !important}
-    footer .footsig-wrap{padding-right:20px}
-    footer .footsig{font-size:2.05rem}
-    .levels{grid-template-columns:1fr}
-  }
-  @media(max-width:380px){
-    .hero .sign .signature{font-size:1.7rem !important}
-  }
-  .hero-math{position:absolute;inset:0;z-index:0;pointer-events:none;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);overflow:hidden}
-  .hero-math span{position:absolute;font-size:clamp(2rem,5vw,3.4rem);opacity:.07;transform:rotate(-6deg)}
-  @media(max-width:760px){.hero-math span{opacity:.05;font-size:1.7rem}}
-  .eqfrieze{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 40px;padding:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.55rem;color:var(--golddk);opacity:.45;letter-spacing:.01em;background:var(--paper)}
-  .eqfrieze sup{font-size:.65em}
-  @media(max-width:560px){.eqfrieze{font-size:1.12rem;gap:13px 22px;padding:16px 14px}}
-</style>
-<style>
-/* community / social — luxe pills */
-.social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 16px;margin:30px auto 8px;max-width:600px;padding:0 16px}
-.social a{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:#FFFCF6;border:1px solid rgba(198,160,92,.5);color:#5A1024;text-decoration:none;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:600;letter-spacing:.2px;transition:transform .2s,background .2s,color .2s,box-shadow .2s;box-shadow:0 14px 30px -22px rgba(120,70,80,.5)}
-.social a:hover{background:linear-gradient(160deg,#E7D2A2,#C6A05C);color:#3a2530;transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(160,120,60,.6)}
-.social svg{width:20px;height:20px;fill:currentColor;flex:none}
-</style>
-<link rel="icon" type="image/png" href="logo.png">
-<style>.subj-list{display:none}.lvl.open .subj-list{display:flex}.subj-list a{display:block;padding:8px 0;color:var(--plum);text-decoration:none;border-bottom:1px solid rgba(231,219,196,.55);transition:color .15s,padding-left .15s;font-family:'Nunito',sans-serif}.subj-list a:last-child{border-bottom:none}.subj-list a:hover{color:var(--golddk);padding-left:7px}.lvl-head{cursor:pointer}</style>
-<style>
-.subj-sec{padding:62px 0}
-.subjcard{position:relative;width:100%;border-radius:24px;background:linear-gradient(160deg,#FFFDF8,#FBF1E2);border:1px solid rgba(198,160,92,.42);box-shadow:0 40px 80px -50px rgba(120,70,80,.55);padding:34px 30px 30px;text-align:center}
-.subjcard .sc-emblem{display:flex;justify-content:center;gap:.5em;font-size:2rem;color:#9C7838;margin-bottom:16px;line-height:1}
-.subjcard .sc-emblem.sym{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600}
-.subjcard .sc-emblem.code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:1.5rem}
-.subjcard .sc-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.2;color:#5A1024;margin:0 0 8px}
-.subjcard .sc-cat{font-family:'Nunito',sans-serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#9C7838;margin:0 0 22px}
-.subjcard .sc-feats{list-style:none;margin:0;padding:0;text-align:left;display:inline-block}
-.subjcard .sc-feats li{font-family:'Nunito',sans-serif;color:#5a4853;font-size:.97rem;padding:11px 0 11px 28px;position:relative;border-top:1px solid rgba(231,219,196,.7)}
-.subjcard .sc-feats li:first-child{border-top:none}
-.subjcard .sc-feats li::before{content:'✓';position:absolute;left:2px;top:11px;color:#C6A05C;font-weight:800}
-.glyph{position:absolute;font-weight:700;user-select:none;z-index:1}
-.glyph.code{font-family:'JetBrains Mono',ui-monospace,monospace;color:rgba(156,120,56,.26)}
-.glyph.sym{font-family:'Cormorant Garamond','Cormorant Garamond',serif;font-style:italic;font-weight:600;color:rgba(67,44,55,.24)}
-.topics-grid{display:grid;gap:18px;grid-template-columns:1fr;margin-top:26px}
-@media(min-width:760px){.topics-grid{grid-template-columns:1fr 1fr}}
-.topic{background:#FFFCF6;border:1px solid rgba(198,160,92,.32);border-radius:18px;padding:20px 22px;box-shadow:0 22px 46px -34px rgba(120,70,80,.4)}
-.topic h3{font-family:'Cormorant Garamond',serif;color:#5A1024;margin:0 0 6px;font-size:1.14rem}
-.topic p{margin:0;color:#5a4853;font-size:.94rem;line-height:1.55}
-.mat-grid{display:grid;gap:18px;grid-template-columns:1fr;margin-top:26px}
-@media(min-width:680px){.mat-grid{grid-template-columns:1fr 1fr}}
-.mat{display:flex;gap:15px;align-items:flex-start;background:#FFFCF6;border:1px solid rgba(198,160,92,.32);border-radius:18px;padding:20px 22px;text-decoration:none;box-shadow:0 22px 46px -34px rgba(120,70,80,.4);transition:transform .2s,box-shadow .2s}
-.mat:hover{transform:translateY(-3px);box-shadow:0 30px 56px -34px rgba(120,70,80,.5)}
-.mat .ic{font-size:1.7rem;line-height:1}.mat h3{font-family:'Cormorant Garamond',serif;color:#5A1024;margin:0 0 4px;font-size:1.06rem}.mat p{margin:0;color:#5a4853;font-size:.9rem}
-.reveal{opacity:1 !important;transform:none !important}
-
-/* MATHIA fix: formule u okviru + hero bez preklapanja */
-html,body{overflow-x:hidden}
-.page,.box,.bx-b,.task,.step,.intro,.endcard{max-width:100%}
-.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%;padding-bottom:6px}
-.katex{max-width:100%}
-.katex{font-family:KaTeX_Main,"Times New Roman",serif}
-.scroll-h{position:static;bottom:auto;margin-top:22px}
-.foot{position:static;bottom:auto;left:auto;right:auto;margin-top:10px}
-.rule{margin-top:30px}
-</style><style>/* === Heder v2 (MATHIA) === */
-header{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.86);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(176,138,74,.16)}
-.nav-r{align-items:center}
-.nav-r>a:not(.navcta){position:relative;transition:color .15s}
-.nav-r>a:not(.navcta)::after{content:"";position:absolute;left:0;right:0;bottom:-3px;margin:auto;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#c69a52,#e7d4b0);transition:width .22s}
-.nav-r>a:not(.navcta):hover::after{width:100%}
-.navcta{background:linear-gradient(135deg,#c69a52,#a87f36);color:#fff !important;padding:9px 18px !important;border-radius:999px;font-weight:700 !important;box-shadow:0 6px 16px rgba(176,138,74,.30);white-space:nowrap;text-decoration:none;display:inline-block}
-.navcta::after{display:none !important}
-.navcta:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(176,138,74,.40);color:#fff !important}
-@media(max-width:760px){.navcta{padding:8px 14px !important}}
-</style>
-<style>/*fit2*/
-html,body{max-width:100%;overflow-x:hidden}
-*{box-sizing:border-box}
-body{overflow-wrap:break-word}
-img,svg,video,iframe,table{max-width:100%}
-pre{max-width:100%;overflow-x:auto}
-code{overflow-wrap:break-word}
-</style>
-<style>/*navham*/
-@media(max-width:600px){.nav-r a.link{display:none!important}.nav-r select.lang{display:none!important}}
-.navham-btn{display:none;position:relative;width:30px;height:26px;background:none;border:none;cursor:pointer;padding:0;margin-left:8px;vertical-align:middle}
-.navham-btn span{position:absolute;left:3px;right:3px;height:2.5px;background:var(--plum,#5A1024);border-radius:3px;transition:transform .28s,opacity .2s,top .28s}
-.navham-btn span:nth-child(1){top:5px}.navham-btn span:nth-child(2){top:12px}.navham-btn span:nth-child(3){top:19px}
-.navham-btn.open span:nth-child(1){top:12px;transform:rotate(45deg)}
-.navham-btn.open span:nth-child(2){opacity:0}
-.navham-btn.open span:nth-child(3){top:12px;transform:rotate(-45deg)}
-@media(max-width:600px){.navham-btn{display:inline-block}}
-html.navham-lock{overflow:hidden}
-html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
-.navham-scrim{position:fixed;inset:0;background:rgba(45,30,36,.45);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:1400}
-.navham-scrim.open{opacity:1;visibility:visible}
-.navham-draw{position:fixed;top:0;right:0;height:100%;width:min(86vw,340px);background:linear-gradient(180deg,#FFFDF8,#F6ECDC);box-shadow:-18px 0 50px rgba(60,40,48,.30);transform:translateX(100%);transition:transform .34s cubic-bezier(.4,0,.2,1);z-index:1401;display:flex;flex-direction:column;border-left:1px solid var(--bord,#ECDAC5)}
-.navham-draw.open{transform:translateX(0)}
-.navham-top{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 14px;border-bottom:1px solid var(--bord,#ECDAC5)}
-.navham-id{display:flex;align-items:center;gap:11px;min-width:0}
-.navham-logo{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--gold,#C6A05C);flex:none;box-shadow:0 3px 10px rgba(160,120,60,.25)}
-.navham-brand{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.5rem;color:var(--plum,#5A1024);line-height:1.04}
-.navham-brand small{display:block;font-family:'Pinyon Script','Tangerine',cursive;font-size:1.05rem;color:var(--golddk,#9C7838);font-weight:400;margin-top:0}
-.navham-x{background:none;border:none;font-size:22px;color:var(--muted,#90787E);cursor:pointer;line-height:1;padding:4px 6px;flex:none}
-.navham-list{flex:1;overflow-y:auto;padding:12px 12px 4px}
-.navham-list a{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:12px;text-decoration:none;color:var(--plum,#5A1024);font-family:'Nunito',sans-serif;font-weight:700;font-size:1.05rem;transition:background .15s}
-.navham-list a .ic{font-size:1.15rem;width:22px;text-align:center;flex:none}
-.navham-list a:hover,.navham-list a:active{background:var(--paper2,#F5EADB)}
-.navham-list a.acct{color:var(--golddk,#9C7838)}
-.navham-cta{margin:6px 16px 8px;display:block;text-align:center;padding:13px 16px;border-radius:999px;background:linear-gradient(135deg,#C6A05C,#9C7838);color:#fff !important;text-decoration:none;font-family:'Nunito',sans-serif;font-weight:800;box-shadow:0 8px 20px rgba(176,138,74,.32)}
-.navham-langs{padding:14px 16px calc(20px + env(safe-area-inset-bottom));border-top:1px solid var(--bord,#ECDAC5);display:flex;flex-wrap:wrap;gap:7px}
-.navham-langs button{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid var(--bord,#ECDAC5);color:var(--plum,#5A1024);border-radius:999px;padding:6px 11px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s}
-.navham-langs button .fl{font-size:1rem;line-height:1}
-.navham-langs button.on{background:linear-gradient(135deg,#C6A05C,#9C7838);color:#fff;border-color:transparent}
-</style>
-<script>/*navham*/
-(function(){
- var ICON=[];
- var FLAG={SR:'\uD83C\uDDF7\uD83C\uDDF8',EN:'\uD83C\uDDEC\uD83C\uDDE7',DE:'\uD83C\uDDE9\uD83C\uDDEA',FR:'\uD83C\uDDEB\uD83C\uDDF7',ES:'\uD83C\uDDEA\uD83C\uDDF8',IT:'\uD83C\uDDEE\uD83C\uDDF9',RU:'\uD83C\uDDF7\uD83C\uDDFA',PT:'\uD83C\uDDF5\uD83C\uDDF9'};
- function iconFor(h){h=(h||'').toLowerCase();for(var i=0;i<ICON.length;i++){if(ICON[i][0].test(h))return ICON[i][1];}return '\u203A';}
- function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
- function init(){
-  var nav=document.querySelector('.nav-r'); if(!nav||nav.querySelector('.navham-btn'))return;
-  var btn=document.createElement('button'); btn.type='button'; btn.className='navham-btn'; btn.setAttribute('aria-label','Meni'); btn.setAttribute('aria-expanded','false'); btn.innerHTML='<span></span><span></span><span></span>';
-  var scrim=document.createElement('div'); scrim.className='navham-scrim';
-  var draw=document.createElement('div'); draw.className='navham-draw'; draw.setAttribute('role','dialog'); draw.setAttribute('aria-label','Glavni meni');
-  nav.appendChild(btn); document.body.appendChild(scrim); document.body.appendChild(draw);
-  function build(){
-   var logo=document.querySelector('.brand img.bav')||document.querySelector('.brand img')||document.querySelector('img.bav');
-   var logoSrc=logo?logo.getAttribute('src'):'';
-   var html='<div class="navham-top"><div class="navham-id">';
-   if(logoSrc){ html+='<img class="navham-logo" src="'+esc(logoSrc)+'" alt="Mathia">'; }
-   html+='<div class="navham-brand">Mathia<small>s Marinom</small></div></div><button class="navham-x" type="button" aria-label="Zatvori">\u2715</button></div><div class="navham-list">';
-   nav.querySelectorAll('a.link').forEach(function(a){
-     var t=(a.textContent||'').trim(); if(!t)return;
-     var href=a.getAttribute('href')||'#';
-     var cls=a.hasAttribute('data-acctnav')?' acct':'';
-     html+='<a class="'+cls.trim()+'" href="'+esc(href)+'"><span class="ic">'+iconFor(href)+'</span><span>'+esc(t)+'</span></a>';
-   });
-   html+='</div>';
-   var cta=nav.querySelector('a.navcta');
-   if(cta){ html+='<a class="navham-cta" href="'+esc(cta.getAttribute('href')||'#')+'">'+esc((cta.textContent||'').trim())+'</a>'; }
-   var sel=nav.querySelector('select.lang')||document.querySelector('select.lang');
-   if(sel&&sel.options&&sel.options.length){ html+='<div class="navham-langs">';
-     Array.prototype.forEach.call(sel.options,function(o){ var v=o.value||o.textContent; var fl=FLAG[(v||'').toUpperCase()]||''; var on=(v===sel.value)?' class="on"':''; html+='<button type="button" data-l="'+esc(v)+'"'+on+'>'+(fl?'<span class="fl">'+fl+'</span>':'')+'<span>'+esc(o.textContent)+'</span></button>'; });
-     html+='</div>';
-   }
-   draw.innerHTML=html;
-   draw.querySelector('.navham-x').onclick=close;
-   draw.querySelectorAll('.navham-list a, .navham-cta').forEach(function(a){ a.addEventListener('click',close); });
-   draw.querySelectorAll('.navham-langs button').forEach(function(b){ b.onclick=function(){ var sel=document.querySelector('select.lang'); if(sel){ sel.value=b.getAttribute('data-l'); sel.dispatchEvent(new Event('change',{bubbles:true})); } close(); }; });
-  }
-  function open(){ build(); scrim.classList.add('open'); draw.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.documentElement.classList.add('navham-lock'); }
-  function close(){ scrim.classList.remove('open'); draw.classList.remove('open'); btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.documentElement.classList.remove('navham-lock'); }
-  btn.onclick=function(e){ e.stopPropagation(); if(draw.classList.contains('open'))close(); else open(); };
-  scrim.onclick=close;
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape')close(); });
-  window.addEventListener('resize',function(){ if(window.innerWidth>600)close(); });
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
- setTimeout(init,500);
-})();
-</script>
-<script defer src="napredak.js"></script><!--napredaklog-->
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#5A1024">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Mathia">
-<script>/*pwa*/if('serviceWorker'in navigator){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
-<!--pwa-->
-<meta name="description" content="MATHIA EDU — obrazovna platforma i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
-<link rel="canonical" href="https://mathia.rs/elektronika-cadence.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="MATHIA EDU">
-<meta property="og:locale" content="sr_RS">
-<meta property="og:title" content="Cadence — projektovanje integrisanih kola — Mathia">
-<meta property="og:description" content="MATHIA EDU — obrazovna platforma i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
-<meta property="og:url" content="https://mathia.rs/elektronika-cadence.html">
-<meta property="og:image" content="https://mathia.rs/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cadence — projektovanje integrisanih kola — Mathia">
-<meta name="twitter:description" content="MATHIA EDU — obrazovna platforma i AI-asistent: matematika, fizika, programiranje i priprema za fakultet, sa dr Marinom Bulat.">
-<meta name="twitter:image" content="https://mathia.rs/og.png">
-<!--seo-->
-<link rel="stylesheet" href="theme-mathia.css">
-<link rel="stylesheet" href="mathia-type.css">
-<style id="sweet-fall">
-#mathfall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-#mathfall span{position:absolute;top:-8%;font-family:'Spectral',Georgia,serif;font-style:italic;color:rgba(198,160,92,.20);animation:mfall linear infinite;will-change:transform,opacity}
-#mathfall span.m{color:rgba(176,30,72,.14)}
-@keyframes mfall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(18deg);opacity:0}}
-@media(prefers-reduced-motion:reduce){#mathfall{display:none}}
-.topbar,.hero,.band,section,footer,.wrap,.panel{position:relative;z-index:1}
-.mat:hover,.topic:hover{transform:translateY(-4px)}
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<link rel="icon" href="/icon-192.png">
+<style id="pa-koncept">
+:root{--cream:#FBF6EE;--card:#FFFDF9;--plum:#5A1024;--plum2:#7A3346;--ink:#43303A;--ink2:#6A5A62;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--malina2:#CC5E7E;--muted:#8A7A80;--line:rgba(198,160,92,.28);--serif:'Spectral',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:radial-gradient(680px 420px at 92% -6%,#FBEAEF 0,transparent 56%),radial-gradient(620px 400px at -6% 108%,#F7ECD6 0,transparent 58%),var(--cream)}
+h1,h2,h3{font-family:var(--serif);color:var(--plum);margin:0;line-height:1.08}
+a{text-decoration:none;color:inherit}::selection{background:var(--goldlt);color:var(--plum)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.eyebrow{font-weight:800;letter-spacing:.28em;text-transform:uppercase;font-size:.72rem;color:var(--golddk)}
+#fall{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#fall span{position:absolute;top:-8%;font-family:var(--serif);font-style:italic;color:rgba(198,160,92,.16);animation:paFall linear infinite}
+#fall span.m{color:rgba(176,30,72,.13)}
+@keyframes paFall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(112vh) rotate(20deg);opacity:0}}
+main{position:relative;z-index:1}
+.backlink{display:inline-flex;align-items:center;gap:8px;color:var(--plum2);font-weight:700;font-size:.9rem;padding:20px 0 0}
+.backlink:hover{color:var(--golddk)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:26px 0 12px}
+@media(max-width:880px){.hero{grid-template-columns:1fr;gap:28px}}
+.hero h1{font-size:clamp(2.6rem,6vw,4.4rem);letter-spacing:-.01em;margin:10px 0 12px}
+.hero h1 em{font-style:normal;color:var(--malina)}
+.hero .lead{color:var(--plum2);font-size:1.14rem;max-width:520px;margin:0 0 26px;text-wrap:pretty}
+.cta{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:800;font-size:1.05rem;padding:16px 30px;border-radius:100px;box-shadow:0 18px 36px -14px rgba(176,30,72,.55);animation:ctaGlow 2.8s ease-in-out infinite}
+.cta:hover{animation:none;transform:translateY(-2px)}
+@keyframes ctaGlow{0%,100%{box-shadow:0 18px 36px -14px rgba(176,30,72,.55)}50%{box-shadow:0 20px 44px -10px rgba(176,30,72,.8),0 0 0 6px rgba(204,94,126,.12)}}
+.cta2{display:inline-flex;align-items:center;gap:8px;margin-left:12px;color:var(--plum);font-weight:800;padding:16px 22px;border-radius:100px;border:1.5px solid var(--goldlt)}
+.cta2:hover{border-color:var(--gold)}
+.microtrust{margin-top:16px;color:var(--muted);font-size:.9rem}
+.board{position:relative;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:26px;padding:28px 26px;box-shadow:0 34px 74px -44px rgba(90,16,36,.5)}
+.board::before{content:"";position:absolute;inset:10px;border:1px solid rgba(198,160,92,.28);border-radius:18px;pointer-events:none}
+.board .chip{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;font-weight:800;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:100px;box-shadow:0 12px 24px -8px rgba(176,30,72,.5)}
+.board .frm{display:block;text-align:center;color:var(--plum);padding:12px 4px 18px;border-bottom:1px dashed rgba(198,160,92,.35)}
+.board .frm:last-child{border-bottom:none}.board .frm .katex{font-size:1.08em}
+.board .lbl{display:block;text-align:center;font-size:1.07rem;font-weight:800;letter-spacing:.06em;color:var(--golddk);margin-bottom:9px}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:820px;margin:28px auto 0;padding:22px 24px;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:22px;text-align:center}
+@media(max-width:600px){.trust{grid-template-columns:1fr 1fr}}
+.trust b{display:block;font-family:var(--serif);font-size:1.7rem;font-weight:700;background:linear-gradient(100deg,var(--plum),var(--malina));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.trust span{color:var(--muted);font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+section{padding:60px 0}
+.sec-h{text-align:center;max-width:640px;margin:0 auto 32px}
+.sec-h h2{font-size:clamp(1.9rem,4vw,2.6rem);margin:.2em 0 0}
+.rule{width:56px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:14px auto 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.grid3{grid-template-columns:1fr 1fr}}
+.ob{position:relative;overflow:hidden;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:18px;padding:20px 20px 18px;box-shadow:0 22px 48px -38px rgba(90,16,36,.42);transition:transform .16s}
+.ob::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--malina))}
+.ob:hover{transform:translateY(-4px) rotate(-.5deg)}
+.ob .n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3712;font-family:var(--serif);font-weight:700;display:grid;place-items:center;margin-bottom:10px}
+.ob h3{font-size:1.14rem;margin:0 0 3px}.ob p{color:var(--ink2);font-size:.9rem;margin:0}
+.moreob{text-align:center;color:var(--muted);margin-top:16px;font-style:italic}
+.mats{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.mats{grid-template-columns:1fr}}
+.mat{position:relative;display:flex;gap:18px;align-items:flex-start;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:20px;padding:24px;box-shadow:0 24px 52px -38px rgba(90,16,36,.42);transition:transform .16s,border-color .16s}
+.mat:hover{transform:translateY(-5px);border-color:var(--gold)}
+.mat .mi{width:52px;height:52px;flex:none;border-radius:15px;display:grid;place-items:center;color:#fff}
+.mat .mi svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mat.m1 .mi{background:linear-gradient(160deg,var(--malina2),var(--malina))}
+.mat.m2 .mi{background:linear-gradient(160deg,#E4C578,#C6A05C)}
+.mat.m3 .mi{background:linear-gradient(160deg,#7A3346,#5A1024)}
+.mat.m4 .mi{background:linear-gradient(160deg,#C6A05C,#9C7838)}
+.mat h3{font-size:1.28rem;margin:0 0 4px}.mat p{color:var(--ink2);font-size:.94rem;margin:0 0 8px}.mat p b{color:var(--golddk)}
+.mat .go{font-weight:800;color:var(--malina);font-size:.86rem}
+.mnote{max-width:560px;margin:24px auto 0;text-align:center;color:var(--muted);font-size:.9rem;font-style:italic}.mnote b{color:var(--golddk);font-style:normal}
+.duo{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;align-items:center;max-width:1000px;margin:0 auto}
+@media(max-width:880px){.duo{grid-template-columns:1fr;gap:28px}}
+.duo .tag{display:inline-block;background:#FCF6EA;border:1px solid var(--goldlt);border-radius:100px;padding:5px 13px;font-size:.78rem;font-weight:800;color:#2FA06E;margin-bottom:10px}
+.duo h3{font-size:1.5rem}.duo .lead{color:var(--plum2);font-size:1.06rem;margin:10px 0 20px;text-wrap:pretty}
+.chat{background:linear-gradient(180deg,#fff,#FDF6EC);border:1px solid var(--goldlt);border-radius:24px;padding:20px;box-shadow:0 34px 74px -44px rgba(90,16,36,.5)}
+.chat .top{display:flex;align-items:center;gap:11px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.chat .av{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 38% 30%,#FFF3F7,#F6E1EC);border:2px solid var(--goldlt);display:grid;place-items:center;font-size:1.2rem}
+.chat .top b{font-family:var(--serif);color:var(--plum);font-size:1.05rem}
+.chat .top span{display:block;font-size:.75rem;color:#2FA06E;font-weight:700}
+.msg{max-width:84%;padding:11px 15px;border-radius:16px;margin-bottom:10px;font-size:.95rem;line-height:1.5}
+.msg.you{margin-left:auto;background:linear-gradient(135deg,var(--malina2),var(--malina));color:#fff;border-bottom-right-radius:5px}
+.msg.her{background:#FCF6EA;border:1px solid var(--goldlt);color:var(--ink);border-bottom-left-radius:5px}
+.msg.her .step{display:block;margin:8px 0;color:var(--plum);text-align:center}.msg.her>span{display:block;text-align:center;margin:5px 0}.chat .av{overflow:hidden}.chat .av img{width:100%;height:100%;object-fit:cover;display:block}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step-c{background:var(--card);border:1px solid var(--goldlt);border-radius:20px;padding:24px 22px;box-shadow:0 20px 44px -36px rgba(90,16,36,.4)}
+.step-c .sn{width:42px;height:42px;border-radius:50%;background:linear-gradient(160deg,#F0DCA6,#C6A05C);color:#4a3410;font-family:var(--serif);font-weight:700;font-size:1.2rem;display:grid;place-items:center;margin-bottom:12px}
+.step-c h3{font-size:1.2rem;margin:0 0 4px}.step-c p{color:var(--ink2);font-size:.94rem;margin:0}
+.finale{text-align:center;background:linear-gradient(180deg,#FFFDF9,#FBEEDA);border:1px solid var(--goldlt);border-radius:28px;padding:52px 34px;box-shadow:0 30px 70px -44px rgba(120,70,80,.4);position:relative;overflow:hidden}
+.finale::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--goldlt),var(--malina),var(--goldlt),transparent)}
+.finale .fn{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.4vw,3rem);color:var(--plum)}
+.finale .stamp{display:inline-block;margin-top:.1em;transform:rotate(-5deg);font-family:var(--serif);font-style:italic;font-weight:800;font-size:clamp(1.3rem,3.4vw,2rem);color:#9C7838;border:2.5px solid rgba(156,120,56,.6);border-radius:14px;padding:3px 22px;background:linear-gradient(180deg,rgba(255,251,242,.92),rgba(247,236,214,.72));box-shadow:0 10px 24px -10px rgba(156,120,56,.55)}
+.finale p{color:var(--plum2);max-width:480px;margin:20px auto 22px;text-wrap:pretty}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){#fall{display:none}.cta{animation:none}.rv{opacity:1;transform:none}}
 </style>
 <script src="mathia-header.js" defer></script>
 </head>
 <body>
-<div id="mathfall" aria-hidden="true"></div>
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="index.html">
-      <img class="bav" src="logo.png" alt="MathIA logo">
-      <span class="bwrap"><span class="bmark">Mathia</span><span class="bsub">s Marinom</span></span>
-    </a>
-    <div class="nav-r">
-      <a class="link" href="index.html" data-i18n="nav0">Šta je Mathia</a>
-      <a class="link" href="predmeti.html" data-i18n="nav1">Predmeti</a> <a class="link" href="#paketi" data-i18n="nav2">Paketi</a>
-      <a class="link" href="o-marini.html" data-i18n="nav3">O meni</a>
-      <a class="navcta" href="index.html#paketi">Probaj besplatno →</a><select class="lang" aria-label="Jezik / Language">
-        <option>SR</option><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>RU</option><option>PT</option>
-      </select>
-    </div>
-  </div>
-</header>
-<section class="hero" style="padding:0">
-  <div class="frame"></div>
-  <div class="hero-math" aria-hidden="true"><span style="top:9%;left:5%">⏚</span><span style="top:63%;left:8%">Ω</span><span style="top:31%;left:33%">V</span><span style="top:83%;left:28%">▣</span><span style="top:14%;left:43%">→</span><span style="top:52%;left:45%">∿</span></div>
-  <svg class="corner tl" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <svg class="corner tr" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <svg class="corner br" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <svg class="corner bl" viewBox="0 0 90 90" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M8 84 L8 30 C 8 18 18 8 30 8 L84 8"/><path d="M8 30 C 24 30 30 24 30 8"/></g><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
-  <div class="wrap">
-    <div class="htxt">
-      <div class="slogan script goldtext" data-i18n="slog">Uz Marinu spremaš ispit lako</div>
-      <div class="eyebrow" data-i18n="eyb">Elektronika · Cadence</div>
-      <h1 style="margin-top:14px" data-i18n="h1">Cadence — projektovanje integrisanih kola — profesionalni tok do <span class="gold-underline">verifikacije</span></h1>
-      <p class="lead" data-i18n="lead">Uz Marinu spremaš ispit jasno i efikasno — teorija, rešeni zadaci i priprema, korak po korak.</p>
-      <div class="cta-row">
-        <a class="btn btn-gold" href="#paketi" data-i18n="lpcta">Započni besplatno →</a>
-        <a class="btn btn-ghost" href="predmeti.html" data-i18n="navall">Svi predmeti</a>
-      </div>
-      <div class="microtrust"><b>15 minuta besplatno</b data-i18n="lpnocard"> · bez kartice · otkaži kad želiš</div>
-    </div>
-    <div class="portrait"><div class="subjcard"><div class="sc-emblem sym"><span>⏚</span><span>Ω</span><span>V</span></div><div class="sc-name" data-i18n="gname">Cadence — projektovanje integrisanih kola</div><div class="sc-cat" data-i18n="eyb">Elektronika · Cadence</div><ul class="sc-feats"><li data-i18n="feat0">Jasna teorija, korak po korak</li><li data-i18n="feat1">Rešeni zadaci i primeri</li><li data-i18n="feat2">Vežbe, kvizovi i provere</li></ul></div></div></div></section>
-<section class="subj-sec what"><div class="wrap"><div class="sec-head reveal"><style id="mc-koncept-css">
-.mc-koncept{max-width:1100px;margin:6px auto 4px;padding:0 26px}
-.mc-wrap{display:grid;grid-template-columns:1.15fr .9fr;gap:20px;align-items:stretch}
-@media(max-width:820px){.mc-wrap{grid-template-columns:1fr}}
-.mc-board{background:linear-gradient(160deg,#4A0E1E,#5A1024);border:2px solid #C6A05C;border-radius:20px;padding:22px 22px;box-shadow:0 24px 50px -28px rgba(90,16,36,.6);position:relative;overflow:hidden}
-.mc-board::after{content:"";position:absolute;inset:0;background:radial-gradient(380px 150px at 82% -12%,rgba(231,210,162,.18),transparent 60%);pointer-events:none}
-.mc-brow{color:#E7D2A2;font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;margin-bottom:14px}
-.mc-code{margin:0;font-family:'SF Mono',Menlo,Consolas,'Roboto Mono',monospace;color:#FBF6EE;font-size:.92rem;line-height:1.7;white-space:pre;overflow-x:auto;text-align:left}
-.mc-chat{background:#FFFDF9;border:1px solid #E7D2A2;border-radius:20px;padding:18px;box-shadow:0 20px 44px -30px rgba(90,16,36,.4);display:flex;flex-direction:column}
-.mc-chead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.mc-av{width:44px;height:44px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 38% 30%,#FFF3F7,#F6E1EC);flex:none}
-.mc-av img{width:100%;height:100%;object-fit:cover;display:block}
-.mc-chead b{color:#5A1024;font-family:'Spectral',Georgia,serif;font-size:1.02rem}
-.mc-on{display:block;color:#B01E48;font-size:.74rem;font-weight:700}
-.mc-bub{border-radius:14px;padding:10px 13px;margin:7px 0;font-size:.95rem;line-height:1.5;text-align:center}
-.mc-q{background:#FBF1E4;color:#43303A;border:1px solid #EFE0C4;border-bottom-left-radius:4px;max-width:92%}
-.mc-a{background:linear-gradient(135deg,#F7E7EC,#F3D9E0);color:#5A1024;border:1px solid #EEC9D5;border-bottom-right-radius:4px;margin-left:auto;max-width:92%}
-</style>
-<section class="mc-koncept"><div class="mc-wrap">
-  <div class="mc-board">
-    <div class="mc-brow">Tvoja tabla</div>
-    <pre class="mc-code">* SPICE netlist
-R1 in out 1k
-C1 out 0 100n
-.tran 1m 10m</pre>
-  </div>
-  <div class="mc-chat">
-    <div class="mc-chead"><span class="mc-av"><img src="marina.jpg" alt="Marina"></span><div><b>Profesorica</b><span class="mc-on">● Uvek dostupna</span></div></div>
-    <div class="mc-bub mc-q">Profesorice, ne razumem ovaj korak…</div>
-    <div class="mc-bub mc-a">Nema frke — idemo ponovo, korak po korak. 💛</div>
-  </div>
-</div></section>
-<script>(function(){
- var T={
-  brow:{sr:"Tvoja tabla",en:"Your board",de:"Deine Tafel",fr:"Ton tableau",es:"Tu pizarra",it:"La tua lavagna",ru:"Твоя доска",pt:"O teu quadro"},
-  on:{sr:"● Uvek dostupna",en:"● Always available",de:"● Immer verfügbar",fr:"● Toujours disponible",es:"● Siempre disponible",it:"● Sempre disponibile",ru:"● Всегда на связи",pt:"● Sempre disponível"},
-  q:{sr:"Profesorice, ne razumem ovaj korak…",en:"Miss, I don't get this step…",de:"Frau Lehrerin, ich verstehe diesen Schritt nicht…",fr:"Madame, je ne comprends pas cette étape…",es:"Profe, no entiendo este paso…",it:"Prof, non capisco questo passaggio…",ru:"Учительница, не понимаю этот шаг…",pt:"Professora, não percebo este passo…"},
-  a:{sr:"Nema frke — idemo ponovo, korak po korak. 💛",en:"No worries — let's go again, step by step. 💛",de:"Kein Problem — noch mal, Schritt für Schritt. 💛",fr:"Pas de souci — on reprend, étape par étape. 💛",es:"Tranqui — lo vemos otra vez, paso a paso. 💛",it:"Tranquillo — rifacciamolo, passo dopo passo. 💛",ru:"Не переживай — давай ещё раз, шаг за шагом. 💛",pt:"Sem stress — vamos outra vez, passo a passo. 💛"}
- };
- function lang(){try{var s=localStorage.getItem('mathia_lang');if(s){s=s.slice(0,2).toLowerCase();if(T.q[s])return s;}}catch(e){}return 'sr';}
- function setTxt(sel,key,l){var e=document.querySelector(sel);if(e)e.textContent=T[key][l]||T[key].sr;}
- function apply(){var l=lang();setTxt('.mc-koncept .mc-brow','brow',l);setTxt('.mc-koncept .mc-on','on',l);setTxt('.mc-koncept .mc-q','q',l);setTxt('.mc-koncept .mc-a','a',l);}
- apply();
- window.addEventListener('mathia:lang',apply);
- window.addEventListener('storage',function(e){if(e.key==='mathia_lang')apply();});
- function realChild(el){for(var i=0;i<el.children.length;i++){if(el.children[i].tagName!=='BR')return true;}return false;}
- function splitLead(){var ls=document.querySelectorAll('.lead');for(var i=0;i<ls.length;i++){var el=ls[i];if(realChild(el))continue;var t=(el.textContent||'').trim();if(!t)continue;el.innerHTML=t.replace(/([.!?…])\s+(?=[A-ZŠĐČĆŽÀ-ÝА-Я„“«¿¡])/g,'$1<br>');}}
- if(document.readyState!=='loading')splitLead();else document.addEventListener('DOMContentLoaded',splitLead);
- window.addEventListener('mathia:lang',function(){setTimeout(splitLead,70);});
- window.addEventListener('storage',function(e){if(e.key==='mathia_lang')setTimeout(splitLead,70);});
-})();</script>
-  <div class="ksub" data-i18n="lbl_what">šta učimo</div><h2 data-i18n="th2">Gradivo i priprema za ispit</h2><p data-i18n="tp">Teorija, rešeni zadaci i priprema baš za tvoj ispit — korak po korak.</p></div><div class="topics-grid"><div class="topic reveal"><h3 data-i18n="tt0">Uvod u Cadence</h3><p data-i18n="td0">Tok rada.</p></div><div class="topic reveal"><h3 data-i18n="tt1">Schematic capture</h3><p data-i18n="td1">Crtanje šeme.</p></div><div class="topic reveal"><h3 data-i18n="tt2">Simulacija</h3><p data-i18n="td2">Spectre.</p></div><div class="topic reveal"><h3 data-i18n="tt3">Layout</h3><p data-i18n="td3">Fizički dizajn.</p></div><div class="topic reveal"><h3 data-i18n="tt4">DRC/LVS</h3><p data-i18n="td4">Provere.</p></div><div class="topic reveal"><h3 data-i18n="tt5">Parazitni elementi</h3><p data-i18n="td5">Ekstrakcija.</p></div><div class="topic reveal"><h3 data-i18n="tt6">Verifikacija</h3><p data-i18n="td6">Provera dizajna.</p></div><div class="topic reveal"><h3 data-i18n="tt7">Projekat</h3><p data-i18n="td7">IC blok.</p></div></div></div></section>
+<div id="fall" aria-hidden="true"></div>
+<main class="wrap">
+  <a class="backlink" href="predmeti.html" data-i18n="back">← Svi predmeti</a>
 
+  <section class="hero">
+    <div>
+      <div class="eyebrow" data-i18n="eyebrow">Elektronika · Cadence</div>
+      <h1><span data-i18n="h1">Cadence — projektovanje integrisanih kola</span> — <em data-i18n="finK">konačno jasan</em></h1>
+      <p class="lead" data-i18n="lead">Profesionalni tok projektovanja — od šeme i simulacije do layouta i provere, korak po korak. Profesorica ti je uz rame 0–24h.</p>
+      <div><a class="cta" href="pocni.html" data-i18n="ctaBtn">Počni besplatno →</a><a class="cta2" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;" data-i18n="pfBtn">Pitaj Profesoricu</a></div>
+      <div class="microtrust" data-i18n="ctaSub">Prvih 15 minuta je na poklon — bez kartice, bez obaveza.</div>
+    </div>
+    <div class="board rv">
+      <span class="chip" data-i18n="bTitle">Tvoja tabla</span>
+      <span class="lbl" data-i18n="c1t">Uvod u Cadence</span>
+      <span class="frm" data-i18n="c1d">Okruženje, projekat.</span>
+      <span class="lbl" data-i18n="c2t">Šema (Schematic)</span>
+      <span class="frm" data-i18n="c2d">Crtanje šeme kola.</span>
+      <span class="lbl" data-i18n="c3t">Simulacija</span>
+      <span class="frm" data-i18n="c3d">Analize i rezultati.</span>
+    </div>
+  </section>
+
+  <div class="trust rv" style="grid-template-columns:repeat(3,1fr);max-width:640px">
+    <div><b>8</b><span data-i18n="fL2">Oblasti</span></div>
+    <div><b>8</b><span data-i18n="tLang">jezika</span></div>
+    <div><b>0–24h</b><span data-i18n="fL4">Profesorica</span></div>
+  </div>
+
+  <section>
+    <div class="sec-h rv"><div class="eyebrow" data-i18n="secCover">Gradivo</div><h2 data-i18n="celT">Šta ćeš savladati</h2><div class="rule"></div></div>
+    <div class="grid3 rv">
+      <div class="ob"><div class="n">1</div><h3 data-i18n="c1t">Uvod u Cadence</h3><p data-i18n="c1d">Okruženje, projekat.</p></div>
+      <div class="ob"><div class="n">2</div><h3 data-i18n="c2t">Šema (Schematic)</h3><p data-i18n="c2d">Crtanje šeme kola.</p></div>
+      <div class="ob"><div class="n">3</div><h3 data-i18n="c3t">Simulacija</h3><p data-i18n="c3d">Analize i rezultati.</p></div>
+      <div class="ob"><div class="n">4</div><h3 data-i18n="c4t">Layout</h3><p data-i18n="c4d">Fizički raspored.</p></div>
+      <div class="ob"><div class="n">5</div><h3 data-i18n="c5t">DRC i LVS</h3><p data-i18n="c5d">Provera pravila.</p></div>
+      <div class="ob"><div class="n">6</div><h3 data-i18n="c6t">Ekstrakcija</h3><p data-i18n="c6d">Parazitni elementi.</p></div>
+      <div class="ob"><div class="n">7</div><h3 data-i18n="c7t">Biblioteke i PDK</h3><p data-i18n="c7d">Tehnološki podaci.</p></div>
+      <div class="ob"><div class="n">8</div><h3 data-i18n="c8t">Projekat kola</h3><p data-i18n="c8d">Tvoje integrisano kolo.</p></div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <div class="sec-h rv"><div class="eyebrow" data-i18n="pE">Uz tebe</div><h2 data-i18n="pT">Profesorica koja te vodi</h2><div class="rule"></div></div>
+    <div class="duo">
+      <div class="rv">
+        <span class="tag" data-i18n="tavail">Uvek dostupna · 0–24h</span>
+        <h3 data-i18n="chH">Pitaj bilo šta — čak i pred kolokvijum</h3>
+        <p class="lead" data-i18n="chLead">Pošalji zadatak (može i slika), a Profesorica objašnjava korak po korak — ne prepisuje rešenje, već te vodi da sam/a dođeš do njega. Pamti gde ste stali i slavi svaki napredak.</p>
+        <a class="cta" href="#" onclick="var b=document.getElementById('zoi-btn');if(b&amp;&amp;b.click){b.click();}return false;" data-i18n="pfBtn">Pitaj Profesoricu →</a>
+      </div>
+      <div class="chat rv">
+        <div class="top"><div class="av"><img src="marina.jpg" alt="Marina"></div><div><b>Profesorica</b><span data-i18n="tavail2">● Uvek dostupna</span></div></div>
+        <div class="msg you" data-i18n="qEx">Objasni mi ovu oblast na primeru.</div>
+        <div class="msg her"><span data-i18n="aEx1">Naravno — kreni od suštine, pa idemo na primer 💛</span><span data-i18n="aEx2">Pošalji konkretan zadatak (može i slika) i rešavamo ga korak po korak.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="sec-h rv"><div class="eyebrow" data-i18n="jE">Kako uči Mathia</div><h2 data-i18n="jT">Jasan put do sigurnosti</h2><div class="rule"></div></div>
+    <div class="steps rv">
+      <div class="step-c"><div class="sn">1</div><h3 data-i18n="s1t">Razumi</h3><p data-i18n="s1d">Profesorica objasni suštinu — zašto, ne samo kako.</p></div>
+      <div class="step-c"><div class="sn">2</div><h3 data-i18n="s3t">Vežbaj</h3><p data-i18n="s3d">Rešavaš zadatke uz vođenje, sopstvenim tempom.</p></div>
+      <div class="step-c"><div class="sn">3</div><h3 data-i18n="s5t">Napreduj</h3><p data-i18n="s5d">Pratiš napredak i uvek znaš svoj sledeći korak.</p></div>
+    </div>
+  </section>
+
+  <section style="padding-top:8px">
+    <div class="finale rv">
+      <div class="fn" data-i18n="h1">Cadence — projektovanje integrisanih kola</div>
+      <span class="stamp" data-i18n="finK">konačno jasan</span>
+      <p data-i18n="finS">Počni s pitanjem koje te muči — Profesorica te vodi ostatak puta.</p>
+      <a class="cta" href="pocni.html" data-i18n="ctaBtn">Započni besplatno →</a>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){function R(){if(!window.katex){return setTimeout(R,40);}document.querySelectorAll('.frm[data-tex],.step[data-tex]').forEach(function(e){try{katex.render(e.getAttribute('data-tex'),e,{throwOnError:false});}catch(_){}});}
+if(document.readyState!=='loading')R();else document.addEventListener('DOMContentLoaded',R);})();
+</script>
+
+<script>
+  (function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  })();
+</script>
 
 <script>
 (function(){
   var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
   var SRC="https://project-y23je.vercel.app/widget.js?v=10";
-  var ATTR={"data-api": "https://project-y23je.vercel.app/api/chat", "data-mode": "el-cadence", "data-name": "Profesorica", "data-subj": "Cadence \u2014 projektovanje integrisanih kola", "data-avatar": "avatar.jpg", "data-hi-en": "Hi! \u2764\ufe0f I'm Marina, your teacher. Ask me, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f the problem."};
-  var HI={"de": "Hallo! \ud83c\udf38 Ich bin deine Lehrerin. Frag mich, schick ein Foto \ud83d\udcf7 oder diktiere \ud83c\udf99\ufe0f die Aufgabe.", "fr": "Bonjour ! \ud83c\udf38 Je suis ta professeure. Pose ta question, envoie une photo \ud83d\udcf7 ou dicte \ud83c\udf99\ufe0f l'exercice.", "es": "\u00a1Hola! \ud83c\udf38 Soy tu profesora. Preg\u00fantame, env\u00eda una foto \ud83d\udcf7 o dicta \ud83c\udf99\ufe0f el ejercicio.", "it": "Ciao! \ud83c\udf38 Sono la tua insegnante. Chiedimi, invia una foto \ud83d\udcf7 o detta \ud83c\udf99\ufe0f il problema.", "ru": "\u041f\u0440\u0438\u0432\u0435\u0442! \ud83c\udf38 \u042f \u0442\u0432\u043e\u044f \u043f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u0438\u0446\u0430. \u0421\u043f\u0440\u043e\u0441\u0438 \u043c\u0435\u043d\u044f, \u043f\u0440\u0438\u0448\u043b\u0438 \u0444\u043e\u0442\u043e \ud83d\udcf7 \u0438\u043b\u0438 \u043f\u0440\u043e\u0434\u0438\u043a\u0442\u0443\u0439 \ud83c\udf99\ufe0f \u0437\u0430\u0434\u0430\u0447\u0443.", "pt": "Ol\u00e1! \ud83c\udf38 Sou a tua professora. Pergunta-me, envia uma foto \ud83d\udcf7 ou dita \ud83c\udf99\ufe0f o exerc\u00edcio.", "sr": "Zdravo! \u2764\ufe0f Ja sam Marina, profesorica za Cadence. Spremamo ispit \u2014 pitaj, slikaj \ud83d\udcf7 ili izdiktiraj \ud83c\udf99\ufe0f.", "en": "Hi! \u2764\ufe0f I'm Marina, your teacher. Ask me, snap \ud83d\udcf7 or dictate \ud83c\udf99\ufe0f the problem."};
+  var ATTR={"data-api":"https://project-y23je.vercel.app/api/chat","data-mode":"el-cadence","data-name":"Profesorica","data-sub":"Cadence — projektovanje integrisanih kola","data-sub-en":"Cadence — integrated circuit design","data-hi-en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “Cadence — projektovanje integrisanih kola”. Send a problem (a photo works too) or a question — I'll explain step by step!"};
+  var HI={"sr":"Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko predmeta „Cadence — projektovanje integrisanih kola“. Pošalji zadatak (može i slika) ili pitanje — objasniću korak po korak!","en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “Cadence — projektovanje integrisanih kola”. Send a problem (a photo works too) or a question — I'll explain step by step!","de":"Hallo! 🌸 Ich bin deine Lehrerin für „Cadence — projektovanje integrisanih kola“. Frag mich, schick ein Foto 📷 oder diktiere 🎙️ die Aufgabe.","fr":"Bonjour ! 🌸 Je suis ta professeure de « Cadence — projektovanje integrisanih kola ». Pose ta question, envoie une photo 📷 ou dicte 🎙️ l'exercice.","es":"¡Hola! 🌸 Soy tu profesora de «Cadence — projektovanje integrisanih kola». Pregúntame, envía una foto 📷 o dicta 🎙️ el ejercicio.","it":"Ciao! 🌸 Sono la tua insegnante di «Cadence — projektovanje integrisanih kola». Chiedimi, invia una foto 📷 o detta 🎙️ il problema.","ru":"Привет! 🌸 Я твоя преподавательница по предмету «Cadence — projektovanje integrisanih kola». Спроси меня, пришли фото 📷 или продиктуй 🎙️ задачу.","pt":"Olá! 🌸 Sou a tua professora de «Cadence — projektovanje integrisanih kola». Pergunta-me, envia uma foto 📷 ou dita 🎙️ o exercício."};
   var st=document.createElement("script"); st.src=SRC;
   for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
   st.setAttribute("data-lang",L);
@@ -633,80 +208,36 @@ C1 out 0 100n
   (document.body||document.documentElement).appendChild(st);
 })();
 </script>
-<script>(function(){var I18N={"tt1":{"en": "Schematic capture", "de": "Schematic capture", "fr": "Schematic capture", "es": "Schematic capture", "it": "Schematic capture", "ru": "Schematic capture", "pt": "Schematic capture"},"td2":{"en": "Spectre.", "de": "Spectre.", "fr": "Spectre.", "es": "Spectre.", "it": "Spectre.", "ru": "Spectre.", "pt": "Spectre."},"tt4":{"en": "DRC/LVS", "de": "DRC/LVS", "fr": "DRC/LVS", "es": "DRC/LVS", "it": "DRC/LVS", "ru": "DRC/LVS", "pt": "DRC/LVS"},"lpcta": {"en": "Start free →", "de": "Kostenlos starten →", "fr": "Commencer gratuitement →", "es": "Empieza gratis →", "it": "Inizia gratis →", "ru": "Начать бесплатно →", "pt": "Começa grátis →"}, "lpnocard": {"en": "· no card · cancel anytime", "de": "· ohne Karte · jederzeit kündbar", "fr": "· sans carte · annulez quand vous voulez", "es": "· sin tarjeta · cancela cuando quieras", "it": "· senza carta · disdici quando vuoi", "ru": "· без карты · отмена в любой момент", "pt": "· sem cartão · cancela quando quiseres"}, "lpblurb": {"en": "You choose how many subjects your child studies — one, two or three. Access to Marina and the accompanying study notes is unlimited, 24 hours a day.", "de": "Sie wählen, wie viele Fächer Ihr Kind lernt — eines, zwei oder drei. Der Zugang zu Marina und den begleitenden Skripten ist unbegrenzt, rund um die Uhr.", "fr": "Vous choisissez combien de matières votre enfant étudie — une, deux ou trois. L'accès à Marina et aux fiches associées est illimité, 24 h/24.", "es": "Eliges cuántas asignaturas estudia tu hijo — una, dos o tres. El acceso a Marina y a los apuntes asociados es ilimitado, las 24 horas.", "it": "Scegli quante materie studia tuo figlio — una, due o tre. L'accesso a Marina e alle dispense collegate è illimitato, 24 ore su 24.", "ru": "Вы выбираете, сколько предметов изучает ребёнок — один, два или три. Доступ к Марине и сопутствующим материалам неограничен, круглосуточно.", "pt": "Escolhes quantas disciplinas o teu filho estuda — uma, duas ou três. O acesso à Marina e aos materiais associados é ilimitado, 24 horas por dia."}, "lpt1": {"en": "All study notes and handbooks for that subject", "de": "Alle Skripte und Handbücher für dieses Fach", "fr": "Toutes les fiches et tous les manuels pour cette matière", "es": "Todos los apuntes y manuales de esa asignatura", "it": "Tutte le dispense e i manuali per quella materia", "ru": "Все материалы и пособия по этому предмету", "pt": "Todos os materiais e manuais dessa disciplina"}, "lpchat": {"en": "Chat support 24/7", "de": "Chat-Support rund um die Uhr", "fr": "Assistance par chat 24h/24 et 7j/7", "es": "Soporte por chat 24/7", "it": "Supporto in chat 24/7", "ru": "Поддержка в чате 24/7", "pt": "Apoio por chat 24/7"}, "lppar": {"en": "Parent insights · unlimited access", "de": "Eltern-Einblick · unbegrenzter Zugang", "fr": "Suivi parental · accès illimité", "es": "Panel para padres · acceso ilimitado", "it": "Panoramica per i genitori · accesso illimitato", "ru": "Обзор для родителей · неограниченный доступ", "pt": "Acompanhamento para pais · acesso ilimitado"}, "lpt2": {"en": "All study notes and handbooks for both subjects", "de": "Alle Skripte und Handbücher für beide Fächer", "fr": "Toutes les fiches et tous les manuels pour les deux matières", "es": "Todos los apuntes y manuales de ambas asignaturas", "it": "Tutte le dispense e i manuali per entrambe le materie", "ru": "Все материалы и пособия по обоим предметам", "pt": "Todos os materiais e manuais de ambas as disciplinas"}, "lpadv": {"en": "Advanced support 24/7", "de": "Erweiterter Support rund um die Uhr", "fr": "Assistance avancée 24h/24 et 7j/7", "es": "Soporte avanzado 24/7", "it": "Supporto avanzato 24/7", "ru": "Расширенная поддержка 24/7", "pt": "Apoio avançado 24/7"}, "lplib": {"en": "The entire library of study notes and handbooks", "de": "Die gesamte Bibliothek an Skripten und Handbüchern", "fr": "Toute la bibliothèque de fiches et de manuels", "es": "Toda la biblioteca de apuntes y manuales", "it": "L'intera biblioteca di dispense e manuali", "ru": "Вся библиотека материалов и пособий", "pt": "Toda a biblioteca de materiais e manuais"}, "lpperso": {"en": "Personalised study plan · priority support", "de": "Personalisierter Lernplan · Priority-Support", "fr": "Plan d'étude personnalisé · assistance prioritaire", "es": "Plan de estudio personalizado · soporte prioritario", "it": "Piano di studio personalizzato · supporto prioritario", "ru": "Персональный план обучения · приоритетная поддержка", "pt": "Plano de estudo personalizado · apoio prioritário"}, "lpmat": {"en": "Materials are downloaded with an active subject subscription; content may not be reproduced or shared. See the <a href=\"uslovi.html\" style=\"color:#9C7838\">Terms of Use</a>.", "de": "Die Materialien werden mit einem aktiven Fach-Abo heruntergeladen; Inhalte dürfen nicht vervielfältigt oder geteilt werden. Siehe die <a href=\"uslovi.html\" style=\"color:#9C7838\">Nutzungsbedingungen</a>.", "fr": "Les supports se téléchargent avec un abonnement actif à la matière ; le contenu ne peut être ni reproduit ni partagé. Voir les <a href=\"uslovi.html\" style=\"color:#9C7838\">Conditions d'utilisation</a>.", "es": "Los materiales se descargan con una suscripción activa a la asignatura; el contenido no puede reproducirse ni compartirse. Consulta las <a href=\"uslovi.html\" style=\"color:#9C7838\">Condiciones de uso</a>.", "it": "I materiali si scaricano con un abbonamento attivo alla materia; i contenuti non possono essere riprodotti né condivisi. Vedi le <a href=\"uslovi.html\" style=\"color:#9C7838\">Condizioni d'uso</a>.", "ru": "Материалы загружаются при активной подписке на предмет; содержимое нельзя копировать или распространять. См. <a href=\"uslovi.html\" style=\"color:#9C7838\">Условия использования</a>.", "pt": "Os materiais são descarregados com uma subscrição ativa da disciplina; o conteúdo não pode ser reproduzido nem partilhado. Vê os <a href=\"uslovi.html\" style=\"color:#9C7838\">Termos de Utilização</a>."}, "lpcopy": {"en": "© 2026 Mathia Edu · All rights reserved. Copying, reproduction and distribution of the content, design and methodology without written permission is prohibited.", "de": "© 2026 Mathia Edu · Alle Rechte vorbehalten. Das Kopieren, Vervielfältigen und Verbreiten von Inhalten, Design und Methodik ohne schriftliche Genehmigung ist untersagt.", "fr": "© 2026 Mathia Edu · Tous droits réservés. Toute copie, reproduction ou distribution du contenu, du design et de la méthodologie sans autorisation écrite est interdite.", "es": "© 2026 Mathia Edu · Todos los derechos reservados. Queda prohibida la copia, reproducción y distribución del contenido, el diseño y la metodología sin permiso por escrito.", "it": "© 2026 Mathia Edu · Tutti i diritti riservati. È vietata la copia, la riproduzione e la distribuzione di contenuti, design e metodologia senza autorizzazione scritta.", "ru": "© 2026 Mathia Edu · Все права защищены. Копирование, воспроизведение и распространение материалов, дизайна и методики без письменного разрешения запрещено.", "pt": "© 2026 Mathia Edu · Todos os direitos reservados. É proibida a cópia, reprodução e distribuição do conteúdo, design e metodologia sem autorização por escrito."},"nav0": {"en": "What is Mathia", "de": "Was ist Mathia", "fr": "Qu'est-ce que Mathia", "es": "Qué es Mathia", "it": "Cos'è Mathia", "ru": "Что такое Mathia", "pt": "O que é Mathia"}, "nav1": {"en": "Subjects", "de": "Fächer", "fr": "Matières", "es": "Materias", "it": "Materie", "ru": "Предметы", "pt": "Matérias"}, "nav2": {"en": "Plans", "de": "Pakete", "fr": "Forfaits", "es": "Planes", "it": "Pacchetti", "ru": "Тарифы", "pt": "Planos"}, "nav3": {"en": "About me", "de": "Über mich", "fr": "À propos", "es": "Sobre mí", "it": "Chi sono", "ru": "Обо мне", "pt": "Sobre mim"}, "navall": {"en": "All subjects", "de": "Alle Fächer", "fr": "Toutes les matières", "es": "Todas las materias", "it": "Tutte le materie", "ru": "Все предметы", "pt": "Todas as matérias"}, "flove": {"en": "Learn with love", "de": "Lerne mit Liebe", "fr": "Apprends avec amour", "es": "Aprende con amor", "it": "Impara con amore", "ru": "Учись с любовью", "pt": "Aprende com amor"}, "slog": {"en": "Exam prep made easy with Marina", "de": "Mit Marina die Prüfung leicht vorbereiten", "fr": "Avec Marina, prépare ton examen facilement", "es": "Con Marina preparas el examen fácilmente", "it": "Con Marina prepari l'esame facilmente", "ru": "С Мариной легко готовиться к экзамену", "pt": "Com a Marina preparas o exame facilmente"}, "eyb": {"en": "Electronics · Cadence", "de": "Elektronik · Cadence", "fr": "Électronique · Cadence", "es": "Electrónica · Cadence", "it": "Электроника · Cadence", "ru": "Elettronica · Cadence", "pt": "Eletrónica · Cadence"}, "lead": {"en": "With Marina you prepare for the exam clearly and efficiently — theory, solved problems and practice, step by step.", "de": "Mit Marina bereitest du die Prüfung klar und effizient vor — Theorie, gelöste Aufgaben und Übung, Schritt für Schritt.", "fr": "Avec Marina, tu prépares l'examen clairement et efficacement — théorie, exercices corrigés et entraînement, étape par étape.", "es": "Con Marina preparas el examen de forma clara y eficaz — teoría, problemas resueltos y práctica, paso a paso.", "it": "Con Marina prepari l'esame in modo chiaro ed efficace — teoria, esercizi svolti e pratica, passo dopo passo.", "ru": "С Мариной ты готовишься к экзамену чётко и эффективно — теория, разобранные задачи и практика, шаг за шагом.", "pt": "Com a Marina preparas o exame de forma clara e eficaz — teoria, exercícios resolvidos e prática, passo a passo."}, "th2": {"en": "Syllabus and exam preparation", "de": "Stoff und Prüfungsvorbereitung", "fr": "Programme et préparation à l'examen", "es": "Temario y preparación del examen", "it": "Programma e preparazione all'esame", "ru": "Материал и подготовка к экзамену", "pt": "Matéria e preparação para o exame"}, "tp": {"en": "Theory, solved problems and prep tailored to your exam — step by step.", "de": "Theorie, gelöste Aufgaben und Vorbereitung genau für deine Prüfung — Schritt für Schritt.", "fr": "Théorie, exercices corrigés et préparation adaptée à ton examen — étape par étape.", "es": "Teoría, problemas resueltos y preparación para tu examen — paso a paso.", "it": "Teoria, esercizi svolti e preparazione su misura per il tuo esame — passo dopo passo.", "ru": "Теория, разобранные задачи и подготовка именно к твоему экзамену — шаг за шагом.", "pt": "Teoria, exercícios resolvidos e preparação à medida do teu exame — passo a passo."}, "feat0": {"en": "Clear theory, step by step", "de": "Klare Theorie, Schritt für Schritt", "fr": "Théorie claire, pas à pas", "es": "Teoría clara, paso a paso", "it": "Teoria chiara, passo dopo passo", "ru": "Ясная теория, шаг за шагом", "pt": "Teoria clara, passo a passo"}, "feat1": {"en": "Solved problems and examples", "de": "Gelöste Aufgaben und Beispiele", "fr": "Exercices résolus et exemples", "es": "Ejercicios resueltos y ejemplos", "it": "Esercizi svolti ed esempi", "ru": "Решённые задачи и примеры", "pt": "Exercícios resolvidos e exemplos"}, "feat2": {"en": "Exercises, quizzes and checks", "de": "Übungen, Quizze und Tests", "fr": "Exercices, quiz et contrôles", "es": "Ejercicios, cuestionarios y controles", "it": "Esercizi, quiz e verifiche", "ru": "Упражнения, тесты и проверки", "pt": "Exercícios, questionários e verificações"}, "lbl_what": {"en": "what we cover", "de": "Lerninhalte", "fr": "ce qu'on étudie", "es": "qué estudiamos", "it": "cosa studiamo", "ru": "что изучаем", "pt": "o que estudamos"}, "lbl_mat": {"en": "materials", "de": "Materialien", "fr": "supports", "es": "materiales", "it": "materiali", "ru": "материалы", "pt": "materiais"}, "lbl_all": {"en": "Everything in one place", "de": "Alles an einem Ort", "fr": "Tout au même endroit", "es": "Todo en un solo lugar", "it": "Tutto in un unico posto", "ru": "Всё в одном месте", "pt": "Tudo num só lugar"}, "gname": {"en": "Cadence — integrated-circuit design", "de": "Cadence — IC-Design", "fr": "Cadence — conception de circuits intégrés", "es": "Cadence — diseño de circuitos integrados", "it": "Cadence — progettazione di circuiti integrati", "ru": "Cadence — проектирование интегральных схем", "pt": "Cadence — design de circuitos integrados"}, "h1": {"en": "Cadence — integrated-circuit design — a pro workflow to <span class=\"gold-underline\">verification</span>", "de": "Cadence — IC-Design — professioneller Ablauf bis zur <span class=\"gold-underline\">Verifikation</span>", "fr": "Cadence — conception de circuits intégrés — un flux pro jusqu'à la <span class=\"gold-underline\">vérification</span>", "es": "Cadence — diseño de circuitos integrados — un flujo profesional hasta la <span class=\"gold-underline\">verificación</span>", "it": "Cadence — progettazione di circuiti integrati — un flusso pro fino alla <span class=\"gold-underline\">verifica</span>", "ru": "Cadence — проектирование интегральных схем — профессиональный процесс до <span class=\"gold-underline\">верификации</span>", "pt": "Cadence — design de circuitos integrados — um fluxo profissional até à <span class=\"gold-underline\">verificação</span>"}, "m0": {"en": "With Marina you also get written materials — to revise and practise anytime.", "de": "Mit Marina bekommst du auch schriftliche Materialien — zum Wiederholen und Üben, wann du willst.", "fr": "Avec Marina, tu reçois aussi des supports écrits — pour réviser et t'entraîner quand tu veux.", "es": "Con Marina también recibes materiales escritos — para repasar y practicar cuando quieras.", "it": "Con Marina ricevi anche materiali scritti — per ripassare ed esercitarti quando vuoi.", "ru": "С Мариной ты получаешь и письменные материалы — чтобы повторять и практиковаться в любое время.", "pt": "Com a Marina recebes também materiais escritos — para rever e praticar quando quiseres."}, "m1": {"en": "E-handbook", "de": "E-Handbuch", "fr": "Guide numérique", "es": "Manual digital", "it": "Manuale digitale", "ru": "Электронное пособие", "pt": "Manual digital"}, "m2": {"en": "Explanations, examples and tips — clear and tidy.", "de": "Erklärungen, Beispiele und Tipps — klar und übersichtlich.", "fr": "Explications, exemples et conseils — clairs et organisés.", "es": "Explicaciones, ejemplos y consejos — claros y ordenados.", "it": "Spiegazioni, esempi e consigli — chiari e ordinati.", "ru": "Объяснения, примеры и советы — ясно и наглядно.", "pt": "Explicações, exemplos e dicas — claro e organizado."}, "m3": {"en": "Workbook", "de": "Skript", "fr": "Polycopié", "es": "Apuntes", "it": "Dispensa", "ru": "Конспект", "pt": "Sebenta"}, "m4": {"en": "Concise theory and solved problems for quick revision.", "de": "Kompakter Stoff und gelöste Aufgaben zum schnellen Wiederholen.", "fr": "Cours condensé et exercices corrigés pour réviser vite.", "es": "Temario resumido y problemas resueltos para repasar rápido.", "it": "Materiale sintetico ed esercizi svolti per un ripasso veloce.", "ru": "Краткий материал и разобранные задачи для быстрого повторения.", "pt": "Matéria resumida e exercícios resolvidos para rever depressa."}, "tt0": {"en": "Intro to Cadence", "de": "Einführung in Cadence", "fr": "Introduction à Cadence", "es": "Introducción a Cadence", "it": "Introduzione a Cadence", "ru": "Введение в Cadence", "pt": "Introdução ao Cadence"}, "td0": {"en": "Workflow.", "de": "Arbeitsablauf.", "fr": "Flux de travail.", "es": "Flujo de trabajo.", "it": "Flusso di lavoro.", "ru": "Рабочий процесс.", "pt": "Fluxo de trabalho."}, "td1": {"en": "Drawing the schematic.", "de": "Schaltplan zeichnen.", "fr": "Dessin du schéma.", "es": "Dibujo del esquema.", "it": "Disegno dello schema.", "ru": "Черчение схемы.", "pt": "Desenho do esquema."}, "tt2": {"en": "Simulation", "de": "Simulation", "fr": "Simulation", "es": "Simulación", "it": "Simulazione", "ru": "Симуляция", "pt": "Simulação"}, "td3": {"en": "Physical design.", "de": "Physisches Design.", "fr": "Conception physique.", "es": "Diseño físico.", "it": "Progettazione fisica.", "ru": "Физический дизайн.", "pt": "Projeto físico."}, "td4": {"en": "Checks.", "de": "Prüfungen.", "fr": "Vérifications.", "es": "Comprobaciones.", "it": "Verifiche.", "ru": "Проверки.", "pt": "Verificações."}, "tt5": {"en": "Parasitic elements", "de": "Parasitäre Elemente", "fr": "Éléments parasites", "es": "Elementos parásitos", "it": "Elementi parassiti", "ru": "Паразитные элементы", "pt": "Elementos parasitas"}, "td5": {"en": "Extraction.", "de": "Extraktion.", "fr": "Extraction.", "es": "Extracción.", "it": "Estrazione.", "ru": "Извлечение.", "pt": "Extração."}, "tt6": {"en": "Verification", "de": "Verifikation", "fr": "Vérification", "es": "Verificación", "it": "Verifica", "ru": "Верификация", "pt": "Verificação"}, "td6": {"en": "Design check.", "de": "Designprüfung.", "fr": "Vérification du design.", "es": "Comprobación del diseño.", "it": "Verifica del progetto.", "ru": "Проверка проекта.", "pt": "Verificação do design."}, "tt7": {"en": "Project", "de": "Projekt", "fr": "Projet", "es": "Proyecto", "it": "Progetto", "ru": "Проект", "pt": "Projeto"}, "td7": {"en": "IC block.", "de": "IC-Block.", "fr": "Bloc CI.", "es": "Bloque CI.", "it": "Blocco IC.", "ru": "ИС-блок.", "pt": "Bloco CI."}};var els=[].slice.call(document.querySelectorAll('[data-i18n]'));els.forEach(function(e){e.__sr=e.innerHTML;});function setLang(l){els.forEach(function(e){var k=e.getAttribute('data-i18n');var t=I18N[k];e.innerHTML=(l==='sr'||!t||!t[l])?e.__sr:t[l];});document.documentElement.setAttribute('lang',l);try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(_){}}var sel=document.querySelector('.lang');var sv='sr';try{sv=localStorage.getItem('mathia_lang')||'sr';}catch(_){}if(sel){sel.value=sv.toUpperCase();sel.addEventListener('change',function(){var l=sel.value.toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}setLang(l);});}setLang(sv);var __mlast=(sv||"sr").toString().slice(0,2).toLowerCase();window.addEventListener("mathia:lang",function(e){var l=((e&&e.detail)||localStorage.getItem("mathia_lang")||"sr").toString().slice(0,2).toLowerCase();if(l===__mlast)return;__mlast=l;try{setLang(l);}catch(_){}});})();</script>
-<script defer src="gate.js" data-subject="cadence"></script>
-<script>(function(){function fit(){var ds=document.querySelectorAll(".katex-display");if(!ds.length)return;ds.forEach(function(d){d.style.fontSize="";});var g=1;ds.forEach(function(d){var k=d.querySelector(".katex")||d;var a=d.clientWidth,n=k.scrollWidth;if(n>1&&a>1){var r=a/n;if(r<g)g=r;}});g=Math.max(g,0.5);if(g<0.999){var p=(g*100).toFixed(1)+"%";ds.forEach(function(d){d.style.fontSize=p;});}}if(document.readyState!=="loading")fit();else addEventListener("DOMContentLoaded",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);var t;addEventListener("resize",function(){clearTimeout(t);t=setTimeout(fit,150);});})();</script><!--i18nfix--><script>(function(){
-var NAV={en:'Try for free →',de:'Kostenlos testen →',fr:'Essaie gratuitement →',es:'Prueba gratis →',it:'Prova gratis →',ru:'Попробуй бесплатно →',pt:'Experimenta grátis →'};
-var SCR={en:'Open the notes',de:'Skript öffnen',fr:'Ouvrir le polycopié',es:'Abrir los apuntes',it:'Apri la dispensa',ru:'Открыть конспект',pt:'Abrir os apontamentos'};
-var it=[];
-document.querySelectorAll('.navcta').forEach(function(e){if(e.__o===undefined)e.__o=e.textContent;it.push([e,NAV]);});
-document.querySelectorAll('a,button').forEach(function(e){if((e.textContent||'').trim()==='Otvori skriptu'){if(e.__o===undefined)e.__o=e.textContent;it.push([e,SCR]);}});
-function lng(){try{var s=localStorage.getItem('mathia_lang');if(s)return s.slice(0,2).toLowerCase();}catch(e){}return (document.documentElement.lang||'sr').slice(0,2).toLowerCase();}
-function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}it.forEach(function(p){var e=p[0],m=p[1];e.textContent=(l==='sr'||!m[l])?e.__o:m[l];});}
-ap();addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);
-try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}
-[150,500,1200,2500].forEach(function(_d){setTimeout(ap,_d)});})();</script>
-<!--prijnav--><script>(function(){
-var L={
- nalog:{sr:'Moj nalog',en:'My account',de:'Mein Konto',fr:'Mon compte',es:'Mi cuenta',it:'Il mio account',ru:'\u041b\u0438\u0447\u043d\u044b\u0439 \u043a\u0430\u0431\u0438\u043d\u0435\u0442',pt:'Minha conta'},
- home:{sr:'\u2302 Po\u010detna',en:'\u2302 Home',de:'\u2302 Start',fr:'\u2302 Accueil',es:'\u2302 Inicio',it:'\u2302 Home',ru:'\u2302 \u0413\u043b\u0430\u0432\u043d\u0430\u044f',pt:'\u2302 In\u00edcio'},
- pj:{sr:'Prijemni',en:'Admissions',de:'Aufnahme',fr:'Concours',es:'Admisi\u00f3n',it:'Ammissione',ru:'\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435',pt:'Admiss\u00e3o'},
- mm:{sr:'Mala matura',en:'High school',de:'Oberschule',fr:'Lyc\u00e9e',es:'Instituto',it:'Superiori',ru:'\u0421\u0440\u0435\u0434\u043d\u044f\u044f \u0448\u043a\u043e\u043b\u0430',pt:'Ensino m\u00e9dio'},
- pl:{sr:'Planer',en:'Planner',de:'Planer',fr:'Agenda',es:'Agenda',it:'Agenda',ru:'\u041f\u043b\u0430\u043d\u0435\u0440',pt:'Agenda'},
- predmeti:{sr:'Predmeti',en:'Subjects',de:'F\u00e4cher',fr:'Mati\u00e8res',es:'Asignaturas',it:'Materie',ru:'\u041f\u0440\u0435\u0434\u043c\u0435\u0442\u044b',pt:'Disciplinas'},
- prodavnica:{sr:'Prodavnica',en:'Shop',de:'Shop',fr:'Boutique',es:'Tienda',it:'Negozio',ru:'\u041c\u0430\u0433\u0430\u0437\u0438\u043d',pt:'Loja'},
- paketi:{sr:'Paketi',en:'Plans',de:'Pakete',fr:'Forfaits',es:'Planes',it:'Pacchetti',ru:'\u041f\u0430\u043a\u0435\u0442\u044b',pt:'Pacotes'},
- omeni:{sr:'O meni',en:'About',de:'\u00dcber mich',fr:'\u00c0 propos',es:'Sobre m\u00ed',it:'Chi sono',ru:'\u041e\u0431\u043e \u043c\u043d\u0435',pt:'Sobre'},
- mathia:{sr:'\u0160ta je Mathia',en:'What is Mathia',de:'Was ist Mathia',fr:'Qu\u2019est-ce que Mathia',es:'Qu\u00e9 es Mathia',it:'Cos\u2019\u00e8 Mathia',ru:'\u0427\u0442\u043e \u0442\u0430\u043a\u043e\u0435 Mathia',pt:'O que \u00e9 a Mathia'},
- korpa:{sr:'Korpa',en:'Cart',de:'Warenkorb',fr:'Panier',es:'Carrito',it:'Carrello',ru:'\u041a\u043e\u0440\u0437\u0438\u043d\u0430',pt:'Carrinho'}
-};
-var BT={sr:'Prijemni po fakultetu',en:'Entrance exams by faculty',de:'Aufnahmepr\u00fcfung nach Fakult\u00e4t',fr:'Concours par facult\u00e9',es:'Examen por facultad',it:'Esame per facolt\u00e0',ru:'\u0412\u0441\u0442\u0443\u043f\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u043f\u043e \u0444\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u0443',pt:'Exame por faculdade'};
-var BS={sr:'Re\u0161i rokove i otkrij koji ti smer le\u017ei \u2014 tehni\u010dki i matemati\u010dki fakulteti.',en:'Solve past exams and find your track \u2014 technical and mathematical faculties.',de:'L\u00f6se Altklausuren und finde deine Richtung \u2014 technische und mathematische Fakult\u00e4ten.',fr:'Fais les annales et trouve ta fili\u00e8re \u2014 facult\u00e9s techniques et math\u00e9matiques.',es:'Resuelve ex\u00e1menes y encuentra tu rama \u2014 facultades t\u00e9cnicas y matem\u00e1ticas.',it:'Risolvi gli esami e trova il tuo indirizzo \u2014 facolt\u00e0 tecniche e matematiche.',ru:'\u0420\u0435\u0448\u0430\u0439 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u044b \u0438 \u043d\u0430\u0439\u0434\u0438 \u0441\u0432\u043e\u0451 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u2014 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0438 \u043c\u0430\u0442\u0435\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0444\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u044b.',pt:'Resolve provas e encontra a tua \u00e1rea \u2014 faculdades t\u00e9cnicas e matem\u00e1ticas.'};
-var BC={sr:'Pogledaj fakultete \u2192',en:'See faculties \u2192',de:'Fakult\u00e4ten ansehen \u2192',fr:'Voir les facult\u00e9s \u2192',es:'Ver facultades \u2192',it:'Vedi le facolt\u00e0 \u2192',ru:'\u0424\u0430\u043a\u0443\u043b\u044c\u0442\u0435\u0442\u044b \u2192',pt:'Ver faculdades \u2192'};
-var BPT={sr:'Tvoj planer za celu godinu',en:'Your planner for the whole year',de:'Dein Planer f\u00fcr das ganze Jahr',fr:'Ton agenda pour toute l\u2019ann\u00e9e',es:'Tu agenda para todo el a\u00f1o',it:'La tua agenda per tutto l\u2019anno',ru:'\u0422\u0432\u043e\u0439 \u043f\u043b\u0430\u043d\u0435\u0440 \u043d\u0430 \u0432\u0435\u0441\u044c \u0433\u043e\u0434',pt:'A tua agenda para o ano todo'};
-var BPS={sr:'Popunjava\u0161 sve i \u010duva\u0161 — za fakultet, srednju i osnovnu. Skini kad ho\u0107e\u0161.',en:'Fill in everything and keep it — university, high and primary school. Download anytime.',de:'Trage alles ein und behalte es — Uni, Ober- und Grundschule. Jederzeit herunterladen.',fr:'Remplis tout et garde-le — fac, lyc\u00e9e et primaire. T\u00e9l\u00e9charge quand tu veux.',es:'Rellena todo y gu\u00e1rdalo — universidad, instituto y primaria. Desc\u00e1rgalo cuando quieras.',it:'Compila tutto e conservalo — universit\u00e0, superiori ed elementari. Scarica quando vuoi.',ru:'\u0417\u0430\u043f\u043e\u043b\u043d\u044f\u0439 \u0432\u0441\u0451 \u0438 \u0441\u043e\u0445\u0440\u0430\u043d\u044f\u0439 — \u0432\u0443\u0437, \u0441\u0440\u0435\u0434\u043d\u044f\u044f \u0438 \u043d\u0430\u0447\u0430\u043b\u044c\u043d\u0430\u044f \u0448\u043a\u043e\u043b\u0430.',pt:'Preenche tudo e guarda — faculdade, secund\u00e1ria e prim\u00e1ria.'};
-var BPC={sr:'Izaberi planer \u2192',en:'Choose a planner \u2192',de:'Planer w\u00e4hlen \u2192',fr:'Choisir l\u2019agenda \u2192',es:'Elegir agenda \u2192',it:'Scegli l\u2019agenda \u2192',ru:'\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u043f\u043b\u0430\u043d\u0435\u0440 \u2192',pt:'Escolher agenda \u2192'};
-function lng(){try{var s=localStorage.getItem('mathia_lang');if(s&&L.pj[s.slice(0,2)])return s.slice(0,2);}catch(e){}var h=(document.documentElement.lang||'sr').slice(0,2);return L.pj[h]?h:'sr';}
-function mk(href,cls,attr,txt){var a=document.createElement('a');a.href=href;if(cls)a.className=cls;a.setAttribute(attr,'1');a.textContent=txt;return a;}
-function ins(nav,ref,href,attr,txt){var ex=nav.querySelector('a['+attr+']');if(ex)return ex;var cls=ref?ref.className:'';var a=mk(href,cls,attr,txt);if(ref)ref.insertAdjacentElement('afterend',a);else nav.appendChild(a);return a;}
-function ensure(){var nav=document.querySelector('.nav-r');if(!nav)return;
- if(!nav.querySelector('a[data-homenav]')){var cls=(nav.querySelector('a.link')||{}).className||'link';var hb=mk('index.html',cls,'data-homenav',L.home.sr);nav.insertBefore(hb,nav.firstChild);} if(!nav.querySelector('a[data-acctnav]')){var c2=(nav.querySelector('a.link')||{}).className||'link';var ab=mk('nalog.html',c2,'data-acctnav',L.nalog.sr);var cta=nav.querySelector('a.navcta');if(cta){nav.insertBefore(ab,cta);}else{nav.appendChild(ab);}}
- 
- 
- 
- }
-function stdLinks(nav,l){var ls=nav.querySelectorAll('a.link:not([data-i18n])');for(var i=0;i<ls.length;i++){var el=ls[i];if(el.hasAttribute('data-homenav')||el.hasAttribute('data-pjnav')||el.hasAttribute('data-mmnav')||el.hasAttribute('data-plnav'))continue;if(el.className&&el.className.indexOf('navcta')>=0)continue;var hr=el.getAttribute('href')||'',k=null;if(/nalog\.html/.test(hr))k='nalog';else if(/predmeti\.html/.test(hr))k='predmeti';else if(/prodavnica\.html/.test(hr))k='prodavnica';else if(/#paketi$/.test(hr))k='paketi';else if(/o-marini\.html/.test(hr))k='omeni';else if(/#mathia$/.test(hr))k='mathia';if(k)el.textContent=L[k][l]||L[k].sr;}}
-function ap(){var l=lng();if(l!==window.__mLL){window.__mLL=l;try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(e){}}var nav=document.querySelector('.nav-r');
- var hb=document.querySelector('a[data-homenav]');if(hb)hb.textContent=L.home[l]||L.home.sr;
- 
- 
- 
- if(nav){stdLinks(nav,l);
-  var cb=nav.querySelector('.cart-btn');if(cb&&cb.firstChild&&cb.firstChild.nodeType===3&&!cb.hasAttribute('data-i18n'))cb.firstChild.textContent=(L.korpa[l]||L.korpa.sr)+' ';}
- var bn=document.querySelector('[data-prij-banner]');if(bn){var t=bn.querySelector('[data-pt]'),s=bn.querySelector('[data-ps]'),c=bn.querySelector('[data-pc]');if(t)t.textContent=BT[l]||BT.sr;if(s)s.textContent=BS[l]||BS.sr;if(c)c.textContent=BC[l]||BC.sr;}
- var pb=document.querySelector('[data-plan-banner]');if(pb){var t2=pb.querySelector('[data-plt]'),s2=pb.querySelector('[data-pls]'),c2=pb.querySelector('[data-plc]');if(t2)t2.textContent=BPT[l]||BPT.sr;if(s2)s2.textContent=BPS[l]||BPS.sr;if(c2)c2.textContent=BPC[l]||BPC.sr;}}
-ensure();ap();[600,1500,3000].forEach(function(_t){setTimeout(function(){try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:lng()}));}catch(e){}},_t);});addEventListener('storage',function(e){if(e.key==='mathia_lang')ap();});window.addEventListener('mathia:lang',ap);try{new MutationObserver(ap).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});}catch(e){}[150,500,1200,2500].forEach(function(_d){setTimeout(function(){ensure();ap();},_d)});
-})();</script>
-<!--protect--><style>
-body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
-img,svg,picture{-webkit-user-drag:none;user-drag:none}
-</style>
-<script>(function(){
-['contextmenu','copy','cut','dragstart','selectstart'].forEach(function(ev){document.addEventListener(ev,function(e){e.preventDefault();},{capture:true});});
-document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
- if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].indexOf(k)>=0){e.preventDefault();}
- if(k==='f12'){e.preventDefault();}
- if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c'].indexOf(k)>=0){e.preventDefault();}
-},{capture:true});
-})();</script>
-<script src="i18n-mathia.js"></script>
+
+<script defer src="napredak.js"></script>
+
 <script>
-(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var b=document.getElementById('mathfall');if(!b)return;
-var G=['π','√','Σ','∫','α','x²','½','+','·','∞','≈','💛','🌸','✦','θ'];var N=innerWidth<640?9:15;
-for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.24)s.className='m';
-s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}})();
+(function(){var I18N={"bTitle":{"en":"Your board","de":"Deine Tafel","fr":"Ton tableau","es":"Tu pizarra","it":"La tua lavagna","ru":"Твоя доска","pt":"O teu quadro"},"bMat":{"en":"Matrices and determinants","de":"Matrizen und Determinanten","fr":"Matrices et déterminants","es":"Matrices y determinantes","it":"Matrici e determinanti","ru":"Матрицы и определители","pt":"Matrizes e determinantes"},"bEig":{"en":"Eigenvalues","de":"Eigenwerte","fr":"Valeurs propres","es":"Valores propios","it":"Autovalori","ru":"Собственные значения","pt":"Valores próprios"},"tLang":{"en":"languages","de":"Sprachen","fr":"langues","es":"idiomas","it":"lingue","ru":"языков","pt":"línguas"},"moreOb":{"en":"…and 6 more areas — 12 in total.","de":"…und 6 weitere Themen — insgesamt 12.","fr":"…et 6 autres domaines — 12 au total.","es":"…y 6 áreas más — 12 en total.","it":"…e altre 6 aree — 12 in totale.","ru":"…и ещё 6 разделов — всего 12.","pt":"…e mais 6 áreas — 12 no total."},"chH":{"en":"Ask anything — even right before the exam","de":"Frag alles — sogar kurz vor der Klausur","fr":"Demande tout — même juste avant l'examen","es":"Pregunta lo que sea — incluso justo antes del examen","it":"Chiedi qualsiasi cosa — anche poco prima dell'esame","ru":"Спрашивай что угодно — даже перед самым экзаменом","pt":"Pergunta o que quiseres — mesmo antes do exame"},"chLead":{"en":"Send a problem (a photo works too) and Profesorica explains step by step — she doesn't copy the answer, she guides you to it. She remembers where you left off and celebrates every win.","de":"Schick eine Aufgabe (auch als Foto) und Profesorica erklärt Schritt für Schritt — sie schreibt die Lösung nicht ab, sondern führt dich hin. Sie merkt sich, wo du warst, und feiert jeden Fortschritt.","fr":"Envoie un exercice (une photo suffit) et Profesorica explique pas à pas — elle ne recopie pas la solution, elle t'y guide. Elle retient où tu en étais et célèbre chaque progrès.","es":"Envía un ejercicio (también vale una foto) y Profesorica explica paso a paso — no copia la solución, te guía hasta ella. Recuerda dónde lo dejaste y celebra cada logro.","it":"Invia un esercizio (va bene anche una foto) e Profesorica spiega passo dopo passo — non copia la soluzione, ti guida. Ricorda dove eri e festeggia ogni progresso.","ru":"Пришли задачу (можно фото), и Profesorica объясняет шаг за шагом — не переписывает решение, а ведёт тебя к нему. Помнит, где ты остановился, и радуется каждому успеху.","pt":"Envia um exercício (também serve uma foto) e a Profesorica explica passo a passo — não copia a solução, guia-te até ela. Lembra-se de onde ficaste e celebra cada progresso."},"chQ":{"en":"How do you solve x² − 5x + 6 = 0?","de":"Wie löst man x² − 5x + 6 = 0?","fr":"Comment résoudre x² − 5x + 6 = 0 ?","es":"¿Cómo se resuelve x² − 5x + 6 = 0?","it":"Come si risolve x² − 5x + 6 = 0?","ru":"Как решить x² − 5x + 6 = 0?","pt":"Como se resolve x² − 5x + 6 = 0?"},"chA1":{"en":"Vieta's formulas are fastest 💛","de":"Der Satz von Vieta ist am schnellsten 💛","fr":"Les formules de Viète sont les plus rapides 💛","es":"Las fórmulas de Vieta son lo más rápido 💛","it":"Le formule di Viète sono le più rapide 💛","ru":"Формулы Виета — самый быстрый путь 💛","pt":"As fórmulas de Viète são o mais rápido 💛"},"chA2":{"en":"Find two numbers with sum 5 and product 6 → they are 2 and 3.","de":"Finde zwei Zahlen mit Summe 5 und Produkt 6 → das sind 2 und 3.","fr":"Trouve deux nombres de somme 5 et de produit 6 → ce sont 2 et 3.","es":"Busca dos números cuya suma sea 5 y producto 6 → son 2 y 3.","it":"Trova due numeri con somma 5 e prodotto 6 → sono 2 e 3.","ru":"Найди два числа с суммой 5 и произведением 6 → это 2 и 3.","pt":"Encontra dois números com soma 5 e produto 6 → são 2 e 3."},"tavail":{"en":"Always available · 0–24h","de":"Immer verfügbar · 0–24 h","fr":"Toujours disponible · 0–24h","es":"Siempre disponible · 0–24h","it":"Sempre disponibile · 0–24h","ru":"Всегда на связи · 0–24ч","pt":"Sempre disponível · 0–24h"},"tavail2":{"en":"● Always available","de":"● Immer verfügbar","fr":"● Toujours disponible","es":"● Siempre disponible","it":"● Sempre disponibile","ru":"● Всегда на связи","pt":"● Sempre disponível"},"heroP":{"en":"finally clear","de":"endlich klar","fr":"enfin clair","es":"por fin claro","it":"finalmente chiaro","ru":"наконец ясно","pt":"finalmente claro"},"mProv":{"en":"Knowledge test","de":"Wissenstest","fr":"Test de connaissances","es":"Test de conocimientos","it":"Test di conoscenza","ru":"Тест знаний","pt":"Teste de conhecimentos"},"mProvd":{"en":"Question by question, with options and a detailed solution.","de":"Frage für Frage, mit Optionen und ausführlicher Lösung.","fr":"Question par question, avec des options et une solution détaillée.","es":"Pregunta por pregunta, con opciones y solución detallada.","it":"Domanda per domanda, con opzioni e soluzione dettagliata.","ru":"Вопрос за вопросом, с вариантами и подробным решением.","pt":"Pergunta a pergunta, com opções e solução detalhada."},"mProvg":{"en":"Take the test →","de":"Test starten →","fr":"Faire le test →","es":"Hacer el test →","it":"Fai il test →","ru":"Пройти тест →","pt":"Fazer o teste →"},"pfS":{"en":"for Algebra","de":"für Algebra","fr":"pour l'Algèbre","es":"para Álgebra","it":"per l'Algebra","ru":"для алгебры","pt":"para Álgebra"},"mSd":{"en":"Theory explained <b>step by step</b>, with worked examples for every topic.","de":"Theorie <b>Schritt für Schritt</b> erklärt, mit gelösten Beispielen zu jedem Thema.","fr":"Théorie expliquée <b>pas à pas</b>, avec des exemples résolus pour chaque thème.","es":"Teoría explicada <b>paso a paso</b>, con ejemplos resueltos de cada tema.","it":"Teoria spiegata <b>passo dopo passo</b>, con esempi svolti per ogni argomento.","ru":"Теория <b>шаг за шагом</b>, с разобранными примерами по каждой теме.","pt":"Teoria explicada <b>passo a passo</b>, com exemplos resolvidos de cada tema."},"mFd":{"en":"All key formulas in one place — <b>ready before the exam</b>.","de":"Alle wichtigen Formeln an einem Ort — <b>bereit für die Prüfung</b>.","fr":"Toutes les formules clés au même endroit — <b>prêtes pour l'examen</b>.","es":"Todas las fórmulas clave en un solo lugar — <b>listas para el examen</b>.","it":"Tutte le formule chiave in un posto — <b>pronte per l'esame</b>.","ru":"Все ключевые формулы в одном месте — <b>готовы к экзамену</b>.","pt":"Todas as fórmulas-chave num só lugar — <b>prontas para o exame</b>."},"mVd":{"en":"Problems solved step by step — the whole method, not just the answer.","de":"Aufgaben Schritt für Schritt gelöst — der ganze Weg, nicht nur das Ergebnis.","fr":"Exercices résolus pas à pas — toute la méthode, pas juste le résultat.","es":"Problemas resueltos paso a paso — todo el método, no solo el resultado.","it":"Problemi risolti passo dopo passo — tutto il metodo, non solo il risultato.","ru":"Задачи решены шаг за шагом — весь ход решения, а не только ответ.","pt":"Exercícios resolvidos passo a passo — todo o método, não só o resultado."},"mNote":{"en":"See the first page free &#183; <b>the full content unlocks with a subscription to this subject.</b>","de":"Erste Seite gratis &#183; <b>der volle Inhalt wird mit einem Abo für dieses Fach freigeschaltet.</b>","fr":"Première page gratuite &#183; <b>le contenu complet se débloque avec un abonnement à cette matière.</b>","es":"Primera página gratis &#183; <b>el contenido completo se desbloquea con una suscripción a esta asignatura.</b>","it":"Prima pagina gratis &#183; <b>il contenuto completo si sblocca con l'abbonamento a questa materia.</b>","ru":"Первая страница бесплатно &#183; <b>полный доступ открывается с подпиской на этот предмет.</b>","pt":"Primeira página grátis &#183; <b>o conteúdo completo desbloqueia-se com uma subscrição desta disciplina.</b>"},"fbar":{"en":"&#169; 2026 Mathia Edu &#183; All rights reserved","de":"&#169; 2026 Mathia Edu &#183; Alle Rechte vorbehalten","fr":"&#169; 2026 Mathia Edu &#183; Tous droits réservés","es":"&#169; 2026 Mathia Edu &#183; Todos los derechos reservados","it":"&#169; 2026 Mathia Edu &#183; Tutti i diritti riservati","ru":"&#169; 2026 Mathia Edu &#183; Все права защищены","pt":"&#169; 2026 Mathia Edu &#183; Todos os direitos reservados"},"stStreak":{"en":"Streak: <b>9 days</b>","de":"Serie: <b>9 Tage</b>","fr":"Série : <b>9 jours</b>","es":"Racha: <b>9 días</b>","it":"Serie: <b>9 giorni</b>","ru":"Серия: <b>9 дней</b>","pt":"Sequência: <b>9 dias</b>"},"stWeek":{"en":"This week: <b>2h 40min</b>","de":"Diese Woche: <b>2 Std. 40 Min.</b>","fr":"Cette semaine : <b>2h40</b>","es":"Esta semana: <b>2h 40min</b>","it":"Questa settimana: <b>2h 40min</b>","ru":"За неделю: <b>2ч 40м</b>","pt":"Esta semana: <b>2h 40min</b>"},"fL1":{"en":"Level","de":"Niveau","fr":"Niveau","es":"Nivel","it":"Livello","ru":"Уровень","pt":"Nível"},"fV1":{"en":"University","de":"Universität","fr":"Université","es":"Universidad","it":"Università","ru":"Университет","pt":"Universidade"},"fL2":{"en":"Topics","de":"Themen","fr":"Thèmes","es":"Temas","it":"Argomenti","ru":"Разделы","pt":"Tópicos"},"fV2":{"en":"9 units","de":"9 Einheiten","fr":"9 unités","es":"9 unidades","it":"9 unità","ru":"9 разделов","pt":"9 unidades"},"igShare":{"en":"Share","de":"Teilen","fr":"Partager","es":"Compartir","it":"Condividi","ru":"Поделиться","pt":"Partilhar"},"celE":{"en":"Chapters","de":"Kapitel","fr":"Chapitres","es":"Bloques","it":"Moduli","ru":"Разделы","pt":"Módulos"},"celT":{"en":"What you’ll master","de":"Was du meistern wirst","fr":"Ce que tu vas maîtriser","es":"Lo que dominarás","it":"Cosa imparerai","ru":"Что ты освоишь","pt":"O que vais dominar"},"q1":{"en":"Explain this topic with an example.","de":"Erkläre mir dieses Thema an einem Beispiel.","fr":"Explique-moi ce thème avec un exemple.","es":"Explícame este tema con un ejemplo.","it":"Spiegami questo argomento con un esempio.","ru":"Объясни эту тему на примере.","pt":"Explica-me este tema com um exemplo."},"q3":{"en":"Solve this problem step by step.","de":"Löse diese Aufgabe Schritt für Schritt.","fr":"Résous cet exercice étape par étape.","es":"Resuelve este problema paso a paso.","it":"Risolvi questo problema passo dopo passo.","ru":"Реши эту задачу шаг за шагом.","pt":"Resolve este exercício passo a passo."},"q4":{"en":"Where do people most often go wrong here?","de":"Wo macht man hier am häufigsten Fehler?","fr":"Où se trompe-t-on le plus souvent ici ?","es":"¿Dónde nos equivocamos más a menudo aquí?","it":"Dove si sbaglia più spesso qui?","ru":"Где здесь чаще всего ошибаются?","pt":"Onde se erra mais frequentemente aqui?"},"h1":{"en":"Cadence — integrated circuit design","de":"Cadence — Entwurf integrierter Schaltungen","fr":"Cadence — conception de circuits intégrés","es":"Cadence — diseño de circuitos integrados","it":"Cadence — progettazione di circuiti integrati","ru":"Cadence — проектирование интегральных схем","pt":"Cadence — projeto de circuitos integrados"},"lead":{"en":"A professional design flow — from schematic and simulation to layout and verification, step by step. Profesorica is by your side 0–24h.","de":"Ein professioneller Entwurfsablauf — vom Schaltplan und der Simulation bis zu Layout und Verifikation, Schritt für Schritt. Profesorica ist rund um die Uhr an deiner Seite.","fr":"Un flux de conception professionnel — du schéma et de la simulation au layout et à la vérification, pas à pas. Profesorica est à tes côtés 24h/24.","es":"Un flujo de diseño profesional — del esquema y la simulación al layout y la verificación, paso a paso. Profesorica está a tu lado 0–24h.","it":"Un flusso di progettazione professionale — dallo schema e dalla simulazione al layout e alla verifica, passo dopo passo. Profesorica è al tuo fianco 0–24h.","ru":"Профессиональный маршрут проектирования — от схемы и моделирования до топологии и верификации, шаг за шагом. Profesorica рядом 0–24ч.","pt":"Um fluxo de projeto profissional — do esquema e simulação ao layout e verificação, passo a passo. A Profesorica está ao teu lado 0–24h."},"c1t":{"en":"Intro to Cadence","de":"Einführung in Cadence","fr":"Introduction à Cadence","es":"Introducción a Cadence","it":"Introduzione a Cadence","ru":"Введение в Cadence","pt":"Introdução ao Cadence"},"c1d":{"en":"Workflow.","de":"Arbeitsablauf.","fr":"Flux de travail.","es":"Flujo de trabajo.","it":"Flusso di lavoro.","ru":"Рабочий процесс.","pt":"Fluxo de trabalho."},"c2t":{"en":"Schematic capture","de":"Schematic capture","fr":"Schematic capture","es":"Schematic capture","it":"Schematic capture","ru":"Schematic capture","pt":"Schematic capture"},"c2d":{"en":"Drawing the schematic.","de":"Schaltplan zeichnen.","fr":"Dessin du schéma.","es":"Dibujo del esquema.","it":"Disegno dello schema.","ru":"Черчение схемы.","pt":"Desenho do esquema."},"c3t":{"en":"Simulation","de":"Simulation","fr":"Simulation","es":"Simulación","it":"Simulazione","ru":"Симуляция","pt":"Simulação"},"c3d":{"en":"Spectre.","de":"Spectre.","fr":"Spectre.","es":"Spectre.","it":"Spectre.","ru":"Spectre.","pt":"Spectre."},"c4t":{"en":"Layout","de":"Layout","fr":"Layout","es":"Layout","it":"Layout","ru":"Layout","pt":"Layout"},"c4d":{"en":"Physical design.","de":"Physisches Design.","fr":"Conception physique.","es":"Diseño físico.","it":"Progettazione fisica.","ru":"Физический дизайн.","pt":"Projeto físico."},"c5t":{"en":"DRC/LVS","de":"DRC/LVS","fr":"DRC/LVS","es":"DRC/LVS","it":"DRC/LVS","ru":"DRC/LVS","pt":"DRC/LVS"},"c5d":{"en":"Checks.","de":"Prüfungen.","fr":"Vérifications.","es":"Comprobaciones.","it":"Verifiche.","ru":"Проверки.","pt":"Verificações."},"c6t":{"en":"Parasitic elements","de":"Parasitäre Elemente","fr":"Éléments parasites","es":"Elementos parásitos","it":"Elementi parassiti","ru":"Паразитные элементы","pt":"Elementos parasitas"},"c6d":{"en":"Extraction.","de":"Extraktion.","fr":"Extraction.","es":"Extracción.","it":"Estrazione.","ru":"Извлечение.","pt":"Extração."},"fL3":{"en":"Materials","de":"Materialien","fr":"Supports","es":"Materiales","it":"Materiali","ru":"Материалы","pt":"Materiais"},"fV3":{"en":"Notes · Formulas · Practice","de":"Skript · Formeln · Übung","fr":"Cours · Formules · Exos","es":"Apuntes · Fórmulas · Práctica","it":"Dispensa · Formule · Esercizi","ru":"Конспект · Формулы · Практика","pt":"Apontamentos · Fórmulas · Prática"},"fL4":{"en":"Profesorica","de":"Profesorica","fr":"Profesorica","es":"Profesorica","it":"Profesorica","ru":"Profesorica","pt":"Profesorica"},"fV4":{"en":"Available 24/7","de":"Rund um die Uhr","fr":"Disponible 24h/24","es":"Disponible 24/7","it":"Disponibile 24/7","ru":"Доступна 24/7","pt":"Disponível 24/7"},"jE":{"en":"How Mathia teaches","de":"Wie Mathia lehrt","fr":"Comment Mathia enseigne","es":"Cómo enseña Mathia","it":"Come insegna Mathia","ru":"Как учит Mathia","pt":"Como a Mathia ensina"},"jT":{"en":"A clear path from the first question to confidence","de":"Ein klarer Weg von der ersten Frage bis zur Sicherheit","fr":"Un chemin clair, de la première question à la maîtrise","es":"Un camino claro, de la primera pregunta a la seguridad","it":"Un percorso chiaro, dalla prima domanda alla sicurezza","ru":"Ясный путь от первого вопроса до уверенности","pt":"Um caminho claro, da primeira pergunta à confiança"},"s1t":{"en":"Understand","de":"Verstehen","fr":"Comprends","es":"Entiende","it":"Comprendi","ru":"Пойми","pt":"Entende"},"s1d":{"en":"Profesorica explains the essence — the why, not just the how","de":"Profesorica erklärt das Wesentliche — das Warum, nicht nur das Wie","fr":"Profesorica explique l'essentiel — le pourquoi, pas seulement le comment","es":"Profesorica explica la esencia — el porqué, no solo el cómo","it":"Profesorica spiega l'essenza — il perché, non solo il come","ru":"Profesorica объясняет суть — почему, а не только как","pt":"A Profesorica explica a essência — o porquê, não só o como"},"s2t":{"en":"Learn","de":"Lernen","fr":"Apprends","es":"Aprende","it":"Impara","ru":"Учись","pt":"Aprende"},"s2d":{"en":"Notes and formulas laid out clearly, step by step","de":"Skript und Formeln klar aufbereitet, Schritt für Schritt","fr":"Cours et formules présentés clairement, pas à pas","es":"Apuntes y fórmulas presentados con claridad, paso a paso","it":"Dispensa e formule esposte con chiarezza, passo dopo passo","ru":"Конспект и формулы изложены наглядно, шаг за шагом","pt":"Apontamentos e fórmulas apresentados com clareza, passo a passo"},"s3t":{"en":"Practice","de":"Üben","fr":"Entraîne-toi","es":"Practica","it":"Esercitati","ru":"Практикуйся","pt":"Pratica"},"s3d":{"en":"You solve problems with guidance, at your own pace","de":"Du löst Aufgaben mit Anleitung, in deinem Tempo","fr":"Tu résous des exercices guidé, à ton rythme","es":"Resuelves problemas con guía, a tu ritmo","it":"Risolvi problemi con una guida, al tuo ritmo","ru":"Ты решаешь задачи с подсказками, в своём темпе","pt":"Resolves exercícios com orientação, ao teu ritmo"},"s4t":{"en":"Check","de":"Prüfen","fr":"Vérifie","es":"Comprueba","it":"Verifica","ru":"Проверь","pt":"Verifica"},"s4d":{"en":"Short checks show what you know and what's left","de":"Kurze Checks zeigen, was du kannst und was noch fehlt","fr":"De courts tests montrent ce que tu sais et ce qui reste","es":"Comprobaciones breves muestran qué sabes y qué falta","it":"Brevi verifiche mostrano cosa sai e cosa manca","ru":"Короткие проверки показывают, что ты знаешь, а что нет","pt":"Verificações rápidas mostram o que sabes e o que falta"},"s5t":{"en":"Progress","de":"Fortschritt","fr":"Progresse","es":"Avanza","it":"Progredisci","ru":"Расти","pt":"Evolui"},"s5d":{"en":"You track your progress and always know your next step","de":"Du verfolgst deinen Fortschritt und kennst stets den nächsten Schritt","fr":"Tu suis ta progression et connais toujours l'étape suivante","es":"Sigues tu progreso y siempre sabes tu siguiente paso","it":"Segui i tuoi progressi e sai sempre il prossimo passo","ru":"Ты видишь прогресс и всегда знаешь следующий шаг","pt":"Acompanhas o teu progresso e sabes sempre o próximo passo"},"covT":{"en":"What we cover","de":"Was wir behandeln","fr":"Ce que nous couvrons","es":"Qué cubrimos","it":"Cosa copriamo","ru":"Что мы охватываем","pt":"O que cobrimos"},"mE":{"en":"Materials","de":"Materialien","fr":"Supports","es":"Materiales","it":"Materiali","ru":"Материалы","pt":"Materiais"},"mT":{"en":"Everything for this subject, in one place","de":"Alles für dieses Fach an einem Ort","fr":"Tout pour cette matière, au même endroit","es":"Todo para esta asignatura, en un solo lugar","it":"Tutto per questa materia, in un unico posto","ru":"Всё по предмету в одном месте","pt":"Tudo para esta disciplina, num só lugar"},"mS":{"en":"Notes","de":"Skript","fr":"Cours","es":"Apuntes","it":"Dispensa","ru":"Конспект","pt":"Apontamentos"},"mF":{"en":"Formulas","de":"Formeln","fr":"Formules","es":"Fórmulas","it":"Formule","ru":"Формулы","pt":"Fórmulas"},"mV":{"en":"Solved examples","de":"Gelöste Beispiele","fr":"Exemples résolus","es":"Ejemplos resueltos","it":"Esempi svolti","ru":"Решённые примеры","pt":"Exemplos resolvidos"},"mSg":{"en":"Open notes →","de":"Skript öffnen →","fr":"Ouvrir le cours →","es":"Abrir apuntes →","it":"Apri la dispensa →","ru":"Открыть конспект →","pt":"Abrir apontamentos →"},"mFg":{"en":"Open formulas →","de":"Formeln öffnen →","fr":"Ouvrir les formules →","es":"Abrir fórmulas →","it":"Apri le formule →","ru":"Открыть формулы →","pt":"Abrir fórmulas →"},"mVg":{"en":"Open solved examples →","de":"Gelöste Beispiele öffnen →","fr":"Voir les exemples →","es":"Ver ejemplos →","it":"Apri gli esempi →","ru":"Открыть примеры →","pt":"Abrir exemplos →"},"pE":{"en":"With you","de":"An deiner Seite","fr":"À tes côtés","es":"Contigo","it":"Al tuo fianco","ru":"Рядом с тобой","pt":"Contigo"},"pT":{"en":"A tutor who follows and remembers you","de":"Eine Lehrerin, die dich begleitet und sich erinnert","fr":"Une prof qui te suit et se souvient de toi","es":"Una profesora que te sigue y te recuerda","it":"Una docente che ti segue e ti ricorda","ru":"Преподаватель, который помнит и ведёт тебя","pt":"Uma professora que te acompanha e se lembra de ti"},"npL":{"en":"Your progress","de":"Dein Fortschritt","fr":"Ta progression","es":"Tu progreso","it":"I tuoi progressi","ru":"Твой прогресс","pt":"O teu progresso"},"npT":{"en":"Always know how far you've come","de":"Immer wissen, wie weit du bist","fr":"Sache toujours où tu en es","es":"Siempre sabes hasta dónde has llegado","it":"Sai sempre a che punto sei","ru":"Всегда знаешь, где ты","pt":"Sabes sempre até onde chegaste"},"npS":{"en":"Mathia remembers every topic you've covered — you see the percentage mastered and exactly what's next.","de":"Mathia merkt sich jedes behandelte Thema — du siehst den gemeisterten Anteil und genau, was als Nächstes kommt.","fr":"Mathia retient chaque thème vu — tu vois le pourcentage maîtrisé et exactement la suite.","es":"Mathia recuerda cada tema visto — ves el porcentaje dominado y exactamente qué sigue.","it":"Mathia ricorda ogni argomento svolto — vedi la percentuale acquisita e cosa viene dopo.","ru":"Mathia помнит каждую тему — ты видишь процент освоенного и что дальше.","pt":"A Mathia lembra cada tema — vês a percentagem dominada e o que vem a seguir."},"pfA":{"en":"● Available 24/7","de":"● Rund um die Uhr","fr":"● Disponible 24h/24","es":"● Disponible 24/7","it":"● Disponibile 24/7","ru":"● Доступна 24/7","pt":"● Disponível 24/7"},"qL":{"en":"Ask her anything — for example:","de":"Frag sie alles — zum Beispiel:","fr":"Demande-lui n'importe quoi — par exemple :","es":"Pregúntale lo que sea — por ejemplo:","it":"Chiedile qualsiasi cosa — per esempio:","ru":"Спроси что угодно — например:","pt":"Pergunta-lhe o que quiseres — por exemplo:"},"pfBtn":{"en":"Ask Profesorica →","de":"Profesorica fragen →","fr":"Demander à Profesorica →","es":"Preguntar a Profesorica →","it":"Chiedi a Profesorica →","ru":"Спросить Profesorica →","pt":"Perguntar à Profesorica →"},"finS":{"en":"Start with the question that's bugging you — Profesorica guides you the rest of the way.","de":"Beginne mit der Frage, die dich plagt — Profesorica führt dich den Rest des Weges.","fr":"Commence par la question qui te bloque — Profesorica t'accompagne jusqu'au bout.","es":"Empieza por la pregunta que te preocupa — Profesorica te guía el resto del camino.","it":"Parti dalla domanda che ti assilla — Profesorica ti guida per il resto.","ru":"Начни с вопроса, который мучает — Profesorica проведёт тебя дальше.","pt":"Começa pela pergunta que te incomoda — a Profesorica guia-te no resto."},"finK":{"en":"finally clear","de":"endlich klar","fr":"enfin clair","es":"por fin claro","it":"finalmente chiaro","ru":"наконец ясно","pt":"finalmente claro"},"fcl":{"en":"Available anytime, anywhere.","de":"Jederzeit und überall verfügbar.","fr":"Disponible à tout moment, partout.","es":"Disponible en todo momento, en cualquier lugar.","it":"Disponibile sempre, ovunque.","ru":"Доступно в любой момент и в любом месте.","pt":"Disponível a qualquer momento, em qualquer lugar."},"fsl":{"en":"Follow us","de":"Folge uns","fr":"Suivez-nous","es":"Síguenos","it":"Seguici","ru":"Мы в соцсетях","pt":"Segue-nos"},"fcNav":{"en":"Navigation","de":"Navigation","fr":"Navigation","es":"Navegación","it":"Navigazione","ru":"Навигация","pt":"Navegação"},"fcPra":{"en":"Legal","de":"Rechtliches","fr":"Mentions légales","es":"Legal","it":"Note legali","ru":"Правовое","pt":"Legal"},"fcKon":{"en":"Contact","de":"Kontakt","fr":"Contact","es":"Contacto","it":"Contatti","ru":"Контакт","pt":"Contato"},"back":{"en":"All subjects","de":"Alle Fächer","fr":"Toutes les matières","es":"Todas las asignaturas","it":"Tutte le materie","ru":"Все предметы","pt":"Todas as disciplinas"},"eyebrow":{"en":"Electronics · Cadence","de":"Elektronik · Cadence","fr":"Électronique · Cadence","es":"Electrónica · Cadence","it":"Elettronica · Cadence","ru":"Электроника · Cadence","pt":"Eletrónica · Cadence"},"btnFree":{"en":"Start free →","de":"Kostenlos starten →","fr":"Commence gratuitement →","es":"Empieza gratis →","it":"Inizia gratis →","ru":"Начать бесплатно →","pt":"Começa grátis →"},"secCover":{"en":"Syllabus","de":"Lehrstoff","fr":"Programme","es":"Temario","it":"Programma","ru":"Программа","pt":"Programa"},"ctaBtn":{"en":"Start free →","de":"Kostenlos starten →","fr":"Commence gratuitement →","es":"Empieza gratis →","it":"Inizia gratis →","ru":"Начать бесплатно →","pt":"Começa grátis →"},"ctaSub":{"en":"The first 15 minutes are free — no card, no commitment.","de":"Die ersten 15 Minuten sind kostenlos — ohne Karte, ohne Verpflichtung.","fr":"Les 15 premières minutes sont gratuites — sans carte, sans engagement.","es":"Los primeros 15 minutos son gratis — sin tarjeta, sin compromiso.","it":"I primi 15 minuti sono gratis — senza carta, senza impegno.","ru":"Первые 15 минут бесплатно — без карты и обязательств.","pt":"Os primeiros 15 minutos são grátis — sem cartão, sem compromisso."},"footTag":{"en":"Maths · Physics · Electrical engineering — with Profesorica, 24/7.","de":"Mathematik · Physik · Elektrotechnik — mit Profesorica, rund um die Uhr.","fr":"Maths · Physique · Génie électrique — avec Profesorica, 24h/24.","es":"Matemáticas · Física · Electrotecnia — con Profesorica, 24/7.","it":"Matematica · Fisica · Elettrotecnica — con Profesorica, 24/7.","ru":"Математика · Физика · Электротехника — с Profesorica, 24/7.","pt":"Matemática · Física · Eletrotecnia — com a Profesorica, 24/7."},"fLink1":{"en":"Home","de":"Startseite","fr":"Accueil","es":"Inicio","it":"Home","ru":"Главная","pt":"Início"},"nav2":{"en":"Subjects","de":"Fächer","fr":"Matières","es":"Asignaturas","it":"Materie","ru":"Предметы","pt":"Disciplinas"},"nav3":{"en":"Store","de":"Shop","fr":"Boutique","es":"Tienda","it":"Negozio","ru":"Магазин","pt":"Loja"},"nav4":{"en":"Plans","de":"Pakete","fr":"Forfaits","es":"Planes","it":"Piani","ru":"Тарифы","pt":"Planos"},"nav5":{"en":"About me","de":"Über mich","fr":"À propos","es":"Sobre mí","it":"Chi sono","ru":"Обо мне","pt":"Sobre mim"},"qEx":{"en":"Explain this topic with an example.","de":"Erkläre mir dieses Thema an einem Beispiel.","fr":"Explique-moi ce thème avec un exemple.","es":"Explícame este tema con un ejemplo.","it":"Spiegami questo argomento con un esempio.","ru":"Объясни эту тему на примере.","pt":"Explica-me este tema com um exemplo."},"aEx1":{"en":"Of course — let's start from the essence, then a worked example 💛","de":"Klar — wir beginnen beim Wesentlichen, dann ein Beispiel 💛","fr":"Bien sûr — partons de l'essentiel, puis un exemple 💛","es":"Claro — empecemos por lo esencial y luego un ejemplo 💛","it":"Certo — partiamo dall'essenza, poi un esempio 💛","ru":"Конечно — начнём с сути, потом разберём пример 💛","pt":"Claro — comecemos pela essência e depois um exemplo 💛"},"aEx2":{"en":"Send a specific problem (a photo works too) and we solve it step by step.","de":"Schick eine konkrete Aufgabe (auch als Foto) und wir lösen sie Schritt für Schritt.","fr":"Envoie un exercice précis (une photo suffit) et on le résout pas à pas.","es":"Envía un problema concreto (también vale una foto) y lo resolvemos paso a paso.","it":"Invia un problema concreto (va bene anche una foto) e lo risolviamo passo dopo passo.","ru":"Пришли конкретную задачу (можно фото), и решим её шаг за шагом.","pt":"Envia um exercício concreto (também serve uma foto) e resolvemo-lo passo a passo."},"c7t":{"en":"Verification","de":"Verifikation","fr":"Vérification","es":"Verificación","it":"Verifica","ru":"Верификация","pt":"Verificação"},"c7d":{"en":"Design check.","de":"Designprüfung.","fr":"Vérification du design.","es":"Comprobación del diseño.","it":"Verifica del progetto.","ru":"Проверка проекта.","pt":"Verificação do design."},"c8t":{"en":"Project","de":"Projekt","fr":"Projet","es":"Proyecto","it":"Progetto","ru":"Проект","pt":"Projeto"},"c8d":{"en":"IC block.","de":"IC-Block.","fr":"Bloc CI.","es":"Bloque CI.","it":"Blocco IC.","ru":"ИС-блок.","pt":"Bloco CI."}};
+function apply(l){document.querySelectorAll('[data-i18n]').forEach(function(e){if(e.__sr===undefined)e.__sr=e.innerHTML;var k=e.getAttribute('data-i18n'),t=I18N[k];e.innerHTML=(!l||l==='sr'||!t||!t[l])?e.__sr:t[l];});try{document.documentElement.lang=(l==='sr'?'sr-Latn':l);}catch(_){}}
+var sv='sr';try{sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase();}catch(_){}
+var sel=document.querySelector('select.lang');
+if(sel){sel.value=(['sr','en','de','fr','es','it','ru','pt'].indexOf(sv)>-1?sv:'sr');sel.addEventListener('change',function(){var l=(this.value||'sr').toLowerCase();try{localStorage.setItem('mathia_lang',l);}catch(_){}apply(l);try{window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l}));}catch(_){}});}
+if(sv!=='sr')apply(sv);
+window.addEventListener('mathia:lang',function(e){var l=(e&&e.detail?String(e.detail):'sr').toLowerCase();if(sel)sel.value=(['sr','en','de','fr','es','it','ru','pt'].indexOf(l)>-1?l:'sr');apply(l);});
+})();
 </script>
+<script src="i18n-mathia.js"></script>
+<script defer src="gate.js" data-subject="cadence" data-note-only="1"></script>
 <script src="mathia-delight.js" defer></script>
 <script src="footer-mathia.js" defer></script>
-</body></html>
+<script>
+(function(){try{
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var b=document.getElementById('fall');if(b){var G=['∫','∑','√','π','α','x²','½','λ','·','∞','≈','💛','✦','θ','det'];var N=innerWidth<640?10:16;for(var i=0;i<N;i++){var s=document.createElement('span');s.textContent=G[(Math.random()*G.length)|0];if(Math.random()<0.26)s.className='m';s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFixed(0)+'px';s.style.animationDuration=(13+Math.random()*12).toFixed(1)+'s';s.style.animationDelay=(-Math.random()*22).toFixed(1)+'s';b.appendChild(s);}}}
+ setTimeout(function(){var a=document.querySelectorAll('.rv:not(.in)');for(var i=0;i<a.length;i++)a[i].classList.add('in');},1500);
+}catch(e){}})();
+</script>
+<script id="sentence-lines-helper">(function(){
+ function realChild(el){for(var i=0;i<el.children.length;i++){if(el.children[i].tagName!=='BR')return true;}return false;}
+ function proc(el){ if(realChild(el))return; var t=(el.textContent||'').trim(); if(!t)return; el.innerHTML=t.replace(/([.!?…])\s+(?=[A-ZŠĐČĆŽÀ-ÝА-Я“„«¿¡])/g,'$1<br>'); }
+ function run(){var ls=document.querySelectorAll('.lead');for(var i=0;i<ls.length;i++)proc(ls[i]);}
+ if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);
+ window.addEventListener('mathia:lang',function(){setTimeout(run,70);});
+ window.addEventListener('storage',function(e){if(e.key==='mathia_lang')setTimeout(run,70);});
+})();</script>
+</body>
+</html>
