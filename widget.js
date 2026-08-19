@@ -41,7 +41,17 @@
   var NAME = (script && script.getAttribute("data-name")) || "Profesorica"; // ime asistenta (default: "Profesorica")
   var HI = (script && script.getAttribute("data-hi")) || ""; // pozdrav po stranici (opciono)
   var SUB = (script && script.getAttribute("data-sub")) || ""; // podnaslov po stranici (opciono)
-  var SUBJ = (script && (script.getAttribute("data-subj") || script.getAttribute("data-sub") || script.getAttribute("data-sub-en"))) || "";
+  /* Naziv predmeta MORA da bude na jeziku razgovora — inace se u engleskoj (ili
+     nemackoj…) recenici pojavi srpski naziv („your Matematika 5. razred teacher").
+     Strana moze da posalje data-sub-en, data-sub-de, … ; ako za taj jezik nema,
+     padamo na engleski, pa tek onda na srpski data-sub. */
+  function subjFor(lang){
+    if(!script) return "";
+    var l = String(lang||"").slice(0,2).toLowerCase();
+    var v = l && l !== "sr" ? (script.getAttribute("data-sub-" + l) || script.getAttribute("data-sub-en")) : null;
+    return v || script.getAttribute("data-subj") || script.getAttribute("data-sub") || script.getAttribute("data-sub-en") || "";
+  }
+  var SUBJ = subjFor(typeof LANG !== "undefined" ? LANG : (script && script.getAttribute("data-lang")));
   // naziv predmeta za osmjezicni pozdrav. Strane salju data-sub (bez „j") — zato je ranije
   // SUBJ bio prazan, pa je pozdrav na svim jezicima padao na srpski.
   var ALIASES = { matura: "mala-matura", ftn: "prijemni-matematika", prijemni: "prijemni-matematika" };
@@ -1452,11 +1462,11 @@
   taEl.addEventListener("input", function () {
     taEl.style.height = "auto"; taEl.style.height = Math.min(taEl.scrollHeight, 96) + "px";
   });
-  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; try{localStorage.setItem("mathia_lang",LANG);window.dispatchEvent(new CustomEvent("mathia:lang",{detail:LANG}));}catch(e){} applyLang(); greet(); history = []; };
+  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; SUBJ = subjFor(LANG); try{localStorage.setItem("mathia_lang",LANG);window.dispatchEvent(new CustomEvent("mathia:lang",{detail:LANG}));}catch(e){} applyLang(); greet(); history = []; };
   window.addEventListener("mathia:lang", function (e) {
     var l = e && e.detail; if (!l) return; l = String(l).toLowerCase();
     if (l === LANG) return;
-    LANG = l; stopSpeak();
+    LANG = l; SUBJ = subjFor(LANG); stopSpeak();
     try{ localStorage.setItem("mathia_lang", l); }catch(e){}
     try { if (langEl) langEl.value = l.toUpperCase(); } catch (_) {}
     applyLang(); greet(); history = [];
