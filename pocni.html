@@ -6,11 +6,11 @@
 <title>Počni besplatno — Mathia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,600&family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,600&family=Cormorant+Garamond:ital,wght@1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{--cream:#FBF6EE;--card:#FCF9F3;--plum:#5A1024;--plum2:#6B4A57;--gold:#C6A05C;--goldlt:#E7D2A2;--rasp:#B01E48;--rasp-d:#8E1338}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Nunito',system-ui,sans-serif;color:var(--plum);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--plum);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px;
     background:radial-gradient(120% 90% at 18% 0%,#F3E7F4 0,transparent 55%),radial-gradient(120% 90% at 92% 8%,#FBE7DE 0,transparent 50%),linear-gradient(180deg,#FBF3EC 0,#F6ECE6 60%,#FBF3EC 100%);overflow-x:hidden;position:relative}
   .bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
   .floater{position:fixed;top:-30px;pointer-events:none;font-family:'Spectral',Georgia,serif;font-weight:600;animation:fall linear infinite;z-index:0}
@@ -46,12 +46,12 @@
   .field label{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:7px}
   .selwrap{position:relative}
   .selwrap::after{content:"▾";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--rasp);font-size:14px;pointer-events:none}
-  select.sel{width:100%;appearance:none;-webkit-appearance:none;background:#fff;border:1.5px solid #EFE4D4;border-radius:16px;padding:15px 42px 15px 15px;font-family:'Nunito';font-weight:700;font-size:15px;color:var(--plum);cursor:pointer}
+  select.sel{width:100%;appearance:none;-webkit-appearance:none;background:#fff;border:1.5px solid #EFE4D4;border-radius:16px;padding:15px 42px 15px 15px;font-family:'Inter';font-weight:700;font-size:15px;color:var(--plum);cursor:pointer}
   select.sel:focus{outline:none;border-color:var(--goldlt);box-shadow:0 0 0 3px rgba(231,210,162,.5)}
   .row{display:flex;align-items:center;gap:12px;margin-top:22px}
   .ghost{background:transparent;border:1.5px solid #E4D6C4;color:var(--plum2);border-radius:100px;padding:15px 20px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
   .ghost[disabled]{display:none}
-  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Nunito';font-weight:800;font-size:16px;color:#3A2530;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#F0DCA8,#C6A05C);box-shadow:0 18px 34px -14px rgba(198,160,92,.8);transition:transform .12s}
+  .cta{flex:1;border:none;border-radius:100px;padding:16px 20px;font-family:'Inter';font-weight:800;font-size:16px;color:#3A2530;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#F0DCA8,#C6A05C);box-shadow:0 18px 34px -14px rgba(198,160,92,.8);transition:transform .12s}
   .cta:active{transform:scale(.98)}.cta.off{opacity:.5;pointer-events:none;filter:grayscale(.2)}
   .mini{margin-top:15px;font-size:12px;color:var(--plum2);opacity:.85}.mini b{color:var(--rasp)}
   .plan{display:flex;flex-direction:column;gap:9px;margin:16px 0 4px;text-align:left}
