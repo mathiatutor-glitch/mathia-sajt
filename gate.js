@@ -14,6 +14,21 @@
                                  Materijal se ne može skinuti.
    ================================================================ */
 (function () {
+/* ——— PREVODI (gate vide i posetioci na drugim jezicima) ——— */
+var GT = {
+  noprint:{sr:"Štampanje i čuvanje materijala nije dozvoljeno — MathIA",en:"Printing and saving the material is not allowed — MathIA",de:"Drucken und Speichern des Materials ist nicht erlaubt — MathIA",fr:"L'impression et l'enregistrement du support ne sont pas autorisés — MathIA",es:"No se permite imprimir ni guardar el material — MathIA",it:"Non è consentito stampare o salvare il materiale — MathIA",ru:"Печать и сохранение материала запрещены — MathIA",pt:"Não é permitido imprimir nem guardar o material — MathIA"},
+  free:{sr:"Besplatno još ",en:"Free for another ",de:"Noch kostenlos ",fr:"Encore gratuit ",es:"Gratis aún ",it:"Ancora gratis ",ru:"Бесплатно ещё ",pt:"Ainda grátis "},
+  haveSub:{sr:"Već imaš pretplatu?",en:"Already subscribed?",de:"Schon ein Abo?",fr:"Déjà abonné ?",es:"¿Ya tienes suscripción?",it:"Hai già l'abbonamento?",ru:"Уже есть подписка?",pt:"Já tens subscrição?"},
+  unlockT:{sr:"Otključaj ceo materijal",en:"Unlock the full material",de:"Das ganze Material freischalten",fr:"Débloque tout le support",es:"Desbloquea todo el material",it:"Sblocca tutto il materiale",ru:"Открой весь материал",pt:"Desbloqueia todo o material"},
+  unlockS:{sr:"Pretplati se da otvoriš celu skriptu, formule i zadatke — uz Profesoricu.",en:"Subscribe to open the whole notes, formulas and problems — with Profesorica.",de:"Abonniere, um das ganze Skript, die Formeln und Aufgaben zu öffnen — mit Profesorica.",fr:"Abonne-toi pour ouvrir tout le cours, les formules et les exercices — avec Profesorica.",es:"Suscríbete para abrir todos los apuntes, fórmulas y ejercicios — con Profesorica.",it:"Abbonati per aprire tutta la dispensa, le formule e gli esercizi — con Profesorica.",ru:"Оформи подписку, чтобы открыть весь конспект, формулы и задачи — с Profesorica.",pt:"Subscreve para abrir todos os apontamentos, fórmulas e exercícios — com a Profesorica."},
+  previewT:{sr:"Ovo je pogled na skriptu",en:"This is a preview of the notes",de:"Das ist eine Vorschau des Skripts",fr:"Ceci est un aperçu du cours",es:"Esta es una vista previa de los apuntes",it:"Questa è un'anteprima della dispensa",ru:"Это предварительный просмотр конспекта",pt:"Esta é uma pré-visualização dos apontamentos"},
+  previewS:{sr:"Prvu lekciju vidiš besplatno. Pretplati se da otključaš ceo materijal — sve formule, primere i Marinu.",en:"The first lesson is free. Subscribe to unlock the whole material — all formulas, examples and Marina.",de:"Die erste Lektion ist kostenlos. Abonniere, um das ganze Material freizuschalten — alle Formeln, Beispiele und Marina.",fr:"La première leçon est gratuite. Abonne-toi pour débloquer tout le support — toutes les formules, les exemples et Marina.",es:"La primera lección es gratis. Suscríbete para desbloquear todo el material — todas las fórmulas, ejemplos y Marina.",it:"La prima lezione è gratis. Abbonati per sbloccare tutto il materiale — tutte le formule, gli esempi e Marina.",ru:"Первый урок бесплатно. Оформи подписку, чтобы открыть весь материал — все формулы, примеры и Марину.",pt:"A primeira lição é grátis. Subscreve para desbloquear todo o material — todas as fórmulas, exemplos e a Marina."},
+  overT:{sr:"Besplatnih 15 minuta je isteklo",en:"Your free 15 minutes are over",de:"Deine kostenlosen 15 Minuten sind vorbei",fr:"Tes 15 minutes gratuites sont écoulées",es:"Tus 15 minutos gratis han terminado",it:"I tuoi 15 minuti gratis sono finiti",ru:"Бесплатные 15 минут закончились",pt:"Os teus 15 minutos grátis terminaram"},
+  overS:{sr:"Izaberi paket da nastaviš s ovim predmetom — knjige, skripte, Marina i test sklonosti.",en:"Choose a plan to continue with this subject — books, notes, Marina and the aptitude test.",de:"Wähle ein Paket, um mit diesem Fach weiterzumachen — Bücher, Skripte, Marina und der Eignungstest.",fr:"Choisis une formule pour continuer cette matière — livres, cours, Marina et le test d'orientation.",es:"Elige un plan para continuar con esta asignatura — libros, apuntes, Marina y el test de aptitudes.",it:"Scegli un piano per continuare con questa materia — libri, dispense, Marina e il test attitudinale.",ru:"Выбери тариф, чтобы продолжить этот предмет — книги, конспекты, Марина и тест склонностей.",pt:"Escolhe um plano para continuares com esta disciplina — livros, apontamentos, Marina e o teste de aptidão."}
+};
+function GLANG(){ try{ var l=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase(); return GT.free[l]?l:"sr"; }catch(e){ return "sr"; } }
+function T(k){ var l=GLANG(); return (GT[k] && (GT[k][l]||GT[k].sr)) || ""; }
+
   "use strict";
 
   /* ====== CONFIG ====== */
@@ -150,7 +165,7 @@
 
     var np = document.createElement("div");
     np.id = "mathia-noprint";
-    np.textContent = "Štampanje i čuvanje materijala nije dozvoljeno — MathIA";
+    np.textContent = T("noprint");
     if (document.body) document.body.appendChild(np);
 
     var stop = function (e) { e.preventDefault(); e.stopPropagation(); return false; };
@@ -174,7 +189,7 @@
       '<h2 style="font-family:\'Cormorant Garamond\',Georgia,serif;font-weight:700;font-size:25px;margin:6px 0 6px;color:#5A1024">' + title + '</h2>' +
       '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">' + sub + '</p>' +
       plansHTML() +
-      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">Već imaš pretplatu? <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>' +
+      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">' + T("haveSub") + ' <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>' +
       '</div>';
   }
 
@@ -184,7 +199,7 @@
     var o = document.createElement("div");
     o.id = "mathia-gate";
     o.style.cssText = "position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(90,16,36,.34);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-family:Inter,system-ui,Arial,sans-serif";
-    o.innerHTML = gateCard("Otključaj ceo materijal","Pretplati se da otvoriš celu skriptu, formule i zadatke — uz Profesoricu.");
+    o.innerHTML = gateCard(T("unlockT"), T("unlockS"));
     document.body.appendChild(o);
     document.documentElement.style.overflow = "hidden";
   }
@@ -209,10 +224,10 @@
     cta.style.cssText = "margin:22px auto;max-width:460px;background:linear-gradient(180deg,#FFFDF9,#FBEFDA);border:1.5px solid #E7D2A2;border-radius:24px;box-shadow:0 26px 64px -26px rgba(90,16,36,.35);padding:26px 22px;text-align:center;font-family:Inter,system-ui,Arial,sans-serif";
     cta.innerHTML =
       '<div style="width:54px;height:54px;margin:0 auto 10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:25px;background:radial-gradient(circle at 38% 30%,#FFF6D6,#E7D2A2);border:1px solid #C6A05C;box-shadow:0 12px 26px -12px rgba(198,160,92,.7)">\uD83D\uDD12</div><div style="font-size:12px;letter-spacing:.3em;color:#9C7838;font-weight:700">MATHIA</div>' +
-      '<h2 style="font-family:Cormorant Garamond,serif;font-weight:700;font-size:24px;margin:8px 0 6px;color:#5A1024">Ovo je pogled na skriptu</h2>' +
-      '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">Prvu lekciju vidiš besplatno. Pretplati se da otključaš ceo materijal — sve formule, primere i Marinu.</p>' +
+      '<h2 style="font-family:Cormorant Garamond,serif;font-weight:700;font-size:24px;margin:8px 0 6px;color:#5A1024">' + T("previewT") + '</h2>' +
+      '<p style="color:#7a6b66;margin:0 0 14px;font-size:15px">' + T("previewS") + '</p>' +
       plansHTML() +
-      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">Već imaš pretplatu? <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>';
+      '<p style="margin:14px 0 0;font-size:13px;color:#8a7a74">' + T("haveSub") + ' <a href="' + LOGIN_URL + '" style="color:#9C7838;font-weight:600">Prijavi se</a></p>';
 
     if (topics[1] && topics[1].parentNode) topics[1].parentNode.insertBefore(cta, topics[1]);
     else if (topics[0] && topics[0].parentNode) topics[0].parentNode.appendChild(cta);
@@ -228,7 +243,7 @@
       var left = freeMsLeft();
       if (left <= 0) { b.remove(); lock(); return; }
       var m = Math.floor(left / 60000), s = Math.floor((left % 60000) / 1000);
-      b.textContent = "Besplatno još " + m + ":" + (s < 10 ? "0" : "") + s;
+      b.textContent = T("free") + m + ":" + (s < 10 ? "0" : "") + s;
       setTimeout(tick, 1000);
     }
     tick();
@@ -240,7 +255,7 @@
     var o = document.createElement("div");
     o.id = "mathia-gate";
     o.style.cssText = "position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(90,16,36,.34);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);font-family:Inter,system-ui,Arial,sans-serif";
-    o.innerHTML = gateCard("Besplatnih 15 minuta je isteklo","Izaberi paket da nastaviš s ovim predmetom — knjige, skripte, Marina i test sklonosti.");
+    o.innerHTML = gateCard(T("overT"), T("overS"));
     document.body.appendChild(o);
     document.documentElement.style.overflow = "hidden";
   }
