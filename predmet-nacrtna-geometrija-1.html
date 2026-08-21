@@ -74,8 +74,8 @@ section{padding:60px 0}
 .ob .n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#F0DCA6,#C6A05C);color:#4a3712;font-family:var(--serif);font-weight:700;display:grid;place-items:center;margin-bottom:10px}
 .ob h3{font-size:1.14rem;margin:0 0 3px}.ob p{color:var(--ink2);font-size:.9rem;margin:0}
 .moreob{text-align:center;color:var(--muted);margin-top:16px;font-style:italic}
-.mats{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:0 auto}
-@media(max-width:760px){.mats{grid-template-columns:1fr}}
+.mats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto}
+@media(max-width:900px){.mats{grid-template-columns:1fr 1fr}}@media(max-width:620px){.mats{grid-template-columns:1fr}}
 .mat{position:relative;display:flex;gap:18px;align-items:flex-start;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid var(--goldlt);border-radius:20px;padding:24px;box-shadow:0 24px 52px -38px rgba(90,16,36,.42);transition:transform .16s,border-color .16s}
 .mat:hover{transform:translateY(-5px);border-color:var(--gold)}
 .mat .mi{width:52px;height:52px;flex:none;border-radius:15px;display:grid;place-items:center;color:#fff}
@@ -138,7 +138,7 @@ section{padding:60px 0}
 
   <div class="trust rv">
     <div><b>6</b><span data-i18n="fL2">Oblasti</span></div>
-    <div><b>4</b><span data-i18n="fL3">Materijala</span></div>
+    <div><b>3</b><span data-i18n="fL3">Materijala</span></div>
     <div><b>8</b><span data-i18n="tLang">jezika</span></div>
     <div><b>0–24h</b><span data-i18n="fL4">Profesorica</span></div>
   </div>
@@ -160,8 +160,7 @@ section{padding:60px 0}
     <div class="mats rv">
       <a class="mat m1" href="Nacrtna-Geometrija-1-Skripta.html"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5V5.5Z"/><path d="M8 3v15"/></svg></span><div><h3 data-i18n="mS">Skripta</h3><p data-i18n="mSd">Teorija <b>korak po korak</b>, sa rešenim primerima za svaku oblast.</p><span class="go" data-i18n="mSg">Otvori skriptu →</span></div></a>
       <a class="mat m2" href="Nacrtna-Geometrija-1-Formule.html"><span class="mi"><svg viewBox="0 0 24 24"><path d="M4 8h16M9 8v10M15 8v10"/></svg></span><div><h3 data-i18n="mF">Formule</h3><p data-i18n="mFd">Sve ključne formule na jednom mestu — <b>spremne pred ispit</b>.</p><span class="go" data-i18n="mFg">Otvori formule →</span></div></a>
-      <a class="mat m3" href="Nacrtna-Geometrija-1-Zadaci.html"><span class="mi"><svg viewBox="0 0 24 24"><path d="M5 12l4 4 10-11"/></svg></span><div><h3 data-i18n="mV">Rešeni primeri</h3><p data-i18n="mVd">Zadaci rešeni korak po korak — vidiš ceo postupak.</p><span class="go" data-i18n="mVg">Otvori rešene primere →</span></div></a>
-      <a class="mat m4" href="provera-nacrtna-geometrija-1.html"><span class="mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-4.9"/></svg></span><div><h3 data-i18n="mProv">Test znanja</h3><p data-i18n="mProvd">Pitanje po pitanje, sa opcijama i detaljnim rešenjem.</p><span class="go" data-i18n="mProvg">Uradi test →</span></div></a>
+      <a class="mat m3" href="provera-nacrtna-geometrija-1.html"><span class="mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-4.9"/></svg></span><div><h3 data-i18n="mProv">Test znanja</h3><p data-i18n="mProvd">Pitanje po pitanje, sa opcijama i detaljnim rešenjem.</p><span class="go" data-i18n="mProvg">Uradi test →</span></div></a>
     </div>
     <p class="mnote rv" data-i18n="mNote">Prvu stranu vidiš besplatno · <b>ceo sadržaj se otključava pretplatom na ovaj predmet.</b></p>
   </section>

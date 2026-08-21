@@ -527,6 +527,20 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
 .mat:hover,.topic:hover{transform:translateY(-4px)}
 </style>
 <script src="mathia-header.js" defer></script>
+<style id="pa-koncept-tabla">
+.pt-wrap{max-width:1120px;margin:22px auto 0;padding:0 26px}
+.pt-board{position:relative;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid #E7D2A2;border-radius:26px;padding:30px 26px 24px;box-shadow:0 34px 74px -44px rgba(90,16,36,.5);max-width:640px;margin:0 auto}
+.pt-board::before{content:"";position:absolute;inset:10px;border:1px solid rgba(198,160,92,.28);border-radius:18px;pointer-events:none}
+.pt-chip{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#CC5E7E,#B01E48);color:#fff;font-family:'Inter',system-ui,sans-serif;font-weight:800;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:100px;box-shadow:0 12px 24px -8px rgba(176,30,72,.5)}
+.pt-board .frm{display:block;text-align:center;color:#5A1024;padding:14px 4px 16px;border-bottom:1px dashed rgba(198,160,92,.35)}
+.pt-board .frm:last-child{border-bottom:none}
+.pt-board .frm .katex{font-size:1.1em}
+
+.pt-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:820px;margin:22px auto 0;padding:22px 24px;background:linear-gradient(180deg,#FFFDF9,#FBF1E4);border:1px solid #E7D2A2;border-radius:22px;text-align:center}
+@media(max-width:600px){.pt-facts{grid-template-columns:1fr 1fr}}
+.pt-facts b{display:block;font-family:'Spectral',Georgia,serif;font-size:1.7rem;font-weight:700;color:#5A1024}
+.pt-facts span{color:#8A7A80;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-family:'Inter',system-ui,sans-serif}
+</style>
 </head>
 <body>
 <div id="mathfall" aria-hidden="true"></div>
@@ -566,6 +580,21 @@ html.navham-lock #zoi-btn,html.navham-lock #zoi-cta{display:none!important}
       <div class="microtrust"><b>15 minuta besplatno</b data-i18n="lpnocard"> · bez kartice · otkaži kad želiš</div>
     </div>
     <div class="portrait"><div class="subjcard"><div class="sc-emblem sym"><span>x²</span><span>√</span><span>%</span></div><div class="sc-name" data-i18n="gname">Mala matura iz matematike</div><div class="sc-cat" data-i18n="eyb">Priprema · Mala matura</div><ul class="sc-feats"><li data-i18n="feat0">Jasna teorija, korak po korak</li><li data-i18n="feat1">Rešeni zadaci i primeri</li><li data-i18n="feat2">Vežbe, kvizovi i provere</li></ul></div></div></div></section>
+<div class="pt-wrap">
+  <div class="pt-board">
+    <span class="pt-chip" data-i18n="bTitle">Tvoja tabla</span>
+    <span class="frm" data-tex="\dfrac{a}{b}+\dfrac{c}{d}=\dfrac{ad+bc}{bd}"></span>
+    <span class="frm" data-tex="p\%\ \text{od}\ x=\dfrac{p}{100}\cdot x"></span>
+    <span class="frm" data-tex="P_{\triangle}=\dfrac{a\cdot h}{2}"></span>
+  </div>
+</div>
+<div class="pt-wrap"><div class="pt-facts">
+  <div><b>5</b><span data-i18n="mmL1">Oblasti</span></div>
+  <div><b>3</b><span data-i18n="mmL2">Materijala</span></div>
+  <div><b>8</b><span data-i18n="mmL3">jezika</span></div>
+  <div><b>0–24h</b><span data-i18n="mmL4">Profesorica</span></div>
+</div></div>
+
 <section class="subj-sec what"><div class="wrap"><div class="sec-head reveal"><div class="ksub" data-i18n="lbl_what">šta učimo</div><h2 data-i18n="th2">Gradivo, korak po korak</h2><p data-i18n="tp">Od osnova do ocene koju želiš — tvojim tempom, uz Marinu koja objašnjava dok ne klikne.</p></div><div class="topics-grid"><div class="topic reveal"><h3 data-i18n="tt0">Brojevi i operacije</h3><p data-i18n="td0">Sve operacije.</p></div><div class="topic reveal"><h3 data-i18n="tt1">Razlomci i procenti</h3><p data-i18n="td1">Tipski zadaci.</p></div><div class="topic reveal"><h3 data-i18n="tt2">Algebra</h3><p data-i18n="td2">Izrazi, jednačine.</p></div><div class="topic reveal"><h3 data-i18n="tt3">Jednačine</h3><p data-i18n="td3">Linearne, sistemi.</p></div><div class="topic reveal"><h3 data-i18n="tt4">Geometrija ravni</h3><p data-i18n="td4">Uglovi, trougao, krug.</p></div><div class="topic reveal"><h3 data-i18n="tt5">Površine i zapremine</h3><p data-i18n="td5">Tela.</p></div><div class="topic reveal"><h3 data-i18n="tt6">Funkcije</h3><p data-i18n="td6">Linearna funkcija.</p></div><div class="topic reveal"><h3 data-i18n="tt7">Probni testovi</h3><p data-i18n="td7">Po formatu male mature.</p></div></div></div></section>
 <style>
 .mc-koncept{padding:18px 0 6px}
@@ -697,4 +726,5 @@ s.style.left=(Math.random()*100)+'%';s.style.fontSize=(13+Math.random()*22).toFi
 </script>
 <script src="mathia-delight.js" defer></script>
 <script src="footer-mathia.js" defer></script>
+<script id="pt-katex-render">(function(){function R(){if(!window.katex){return setTimeout(R,60);}document.querySelectorAll('.pt-board .frm[data-tex]').forEach(function(e){if(e.__d)return;e.__d=1;try{katex.render(e.getAttribute('data-tex'),e,{throwOnError:false});}catch(_){}});}if(document.readyState!=='loading')R();else document.addEventListener('DOMContentLoaded',R);})();</script>
 </body></html>
