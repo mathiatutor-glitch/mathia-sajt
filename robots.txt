@@ -1,3 +1,43 @@
+# MATHIA EDU — robots.txt
+# Javne strane su otvorene za pretragu; plaćeni materijali, kvizovi i
+# administracija se NE indeksiraju.
+
 User-agent: *
 Allow: /
+Disallow: /admin-
+Disallow: /tabla.html
+Disallow: /posete.html
+Disallow: /nalog.html
+Disallow: /prijava.html
+Disallow: /placanje.html
+Disallow: /hvala.html
+Disallow: /dopuna.html
+Disallow: /*-Skripta.html
+Disallow: /*-Formule.html
+Disallow: /*-Zadaci.html
+Disallow: /skripta-
+Disallow: /formule-
+Disallow: /zadaci-
+Disallow: /provera-
+Disallow: /kviz
+Disallow: /api/
+
+# Alati za masovno preuzimanje sadržaja — zabranjeni
+User-agent: HTTrack
+Disallow: /
+User-agent: Wget
+Disallow: /
+User-agent: WebZIP
+Disallow: /
+User-agent: WebCopier
+Disallow: /
+User-agent: Offline Explorer
+Disallow: /
+User-agent: SiteSnagger
+Disallow: /
+User-agent: Teleport
+Disallow: /
+User-agent: TeleportPro
+Disallow: /
+
 Sitemap: https://mathia.rs/sitemap.xml
