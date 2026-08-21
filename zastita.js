@@ -1,115 +1,133 @@
-/* ============================================================
-   MathIA — zastita.js  (vodeni žig + deterrent + ©)
-   Ubaci JEDNOM linijom pred </body> u e-knjige i priručnike:
-     <script src="/zastita.js"></script>
+/* ================================================================
+   MATHIA — zastita.js
+   Zaštita plaćenih materijala (skripte, formule, zadaci, testovi).
 
-   ISKRENO: ovo je sloj ODVRAĆANJA, ne neprobojna brava.
-   - Vodeni žig sa brojem korisnika čini deljenje SLEDLJIVIM (najjače na webu).
-   - Blokada kopiranja/desnog klika otežava, ali se može zaobići.
-   - Screenshot se na webu NE može sprečiti.
-   Prava zaštita = posluživanje iza prijave (server proverava nalog) + ovaj žig.
+   Šta radi:
+   • Blokira desni klik, označavanje teksta, kopiranje, sečenje i prevlačenje.
+   • Blokira prečice za čuvanje/štampu/izvorni kod (Ctrl+S, Ctrl+P, Ctrl+U,
+     Ctrl+Shift+I/J/C, F12) — koliko pregledač dozvoljava.
+   • Onemogućava štampanje (i „Sačuvaj kao PDF") preko @media print.
+   • Preko sadržaja stavlja BLEDI VODENI ŽIG sa identitetom korisnika
+     (mejl ili telefon + datum). Ako neko slika ekran i podeli materijal,
+     iz žiga se vidi čiji je nalog.
+   • Ne dira klon (Profesoricu) niti polja za unos — tamo kopiranje radi.
 
-   Identitet (broj telefona) postavi sajt/backend posle prijave, npr:
-     <script>window.MATHIA_USER = "+38160••••123";</script>   (pre ovog skripta)
-   Ako ga nema, žig pokazuje "mathia.rs" + datum.
-   ============================================================ */
+   VAŽNO (iskreno): ovo je ODVRAĆANJE, ne apsolutna brava. Ko zna da otvori
+   alatke za programere, može da vidi HTML. Prava zaštita je server-side
+   (middleware.js pušta materijale samo pretplatnicima) — ovo je drugi sloj
+   koji sprečava slučajno i masovno preuzimanje.
+   ================================================================ */
 (function () {
   "use strict";
 
-  // --- identitet korisnika (backend ga ubaci posle prijave) ---
-  function userTag() {
-    var u = window.MATHIA_USER || "";
-    if (!u) {
-      try { var m = document.cookie.match(/(?:^|;\s*)mphone=([^;]+)/); if (m) u = decodeURIComponent(m[1]); } catch (e) {}
-    }
-    var d = new Date();
-    var dt = ("0"+d.getDate()).slice(-2)+"."+("0"+(d.getMonth()+1)).slice(-2)+"."+d.getFullYear()+".";
-    return (u ? u : "mathia.rs") + "  ·  " + dt;
-  }
+  /* —— radi samo na zaštićenim stranama —— */
+  var p = (location.pathname || "").toLowerCase();
+  var ZASTICENO = /(-skripta|-formule|-zadaci|-zbirka|skripta-|formule-|zadaci-|provera-|kviz)/.test(p);
+  if (!ZASTICENO) return;
 
-  // --- vodeni žig (tiled, preko cele strane, ne smeta čitanju, ne hvata klik) ---
-  function buildWatermark() {
-    var txt = "MathIA · " + userTag();
-    var svg =
-      "<svg xmlns='http://www.w3.org/2000/svg' width='340' height='200'>" +
-      "<text x='0' y='100' transform='rotate(-24 170 100)' " +
-      "font-family='Arial, sans-serif' font-size='15' fill='rgba(31,51,87,0.10)' " +
-      "font-weight='700'>" + txt.replace(/&/g,"&amp;").replace(/</g,"&lt;") + "</text></svg>";
-    var url = "data:image/svg+xml;utf8," + encodeURIComponent(svg);
-
-    var wm = document.getElementById("mathia-wm");
-    if (!wm) { wm = document.createElement("div"); wm.id = "mathia-wm"; document.body.appendChild(wm); }
-    wm.setAttribute("aria-hidden", "true");
-    wm.style.cssText =
-      "position:fixed;inset:0;z-index:2147482000;pointer-events:none;" +
-      "background-image:url(\"" + url + "\");background-repeat:repeat;opacity:1;" +
-      "mix-blend-mode:multiply;user-select:none;-webkit-user-select:none;";
-    return wm;
-  }
-
-  // --- ponovo nacrtaj žig ako ga neko ukloni (lagana otpornost) ---
-  function guardWatermark() {
-    buildWatermark();
+  /* —— ko gleda (za vodeni žig) —— */
+  function ident() {
+    var v = "";
     try {
-      var mo = new MutationObserver(function () {
-        if (!document.getElementById("mathia-wm")) buildWatermark();
-      });
-      mo.observe(document.body, { childList: true });
+      v = localStorage.getItem("mathia_email") ||
+          localStorage.getItem("mathia_user") ||
+          localStorage.getItem("mathia_phone") || "";
+      if (!v) {
+        var raw = localStorage.getItem("mathia_profil") || localStorage.getItem("mathia_nalog") || "";
+        if (raw) { try { var o = JSON.parse(raw); v = o.email || o.mejl || o.telefon || o.phone || ""; } catch (e) {} }
+      }
     } catch (e) {}
-    // periodična provera (ako neko ukloni preko konzole)
-    setInterval(function () { var w = document.getElementById("mathia-wm"); if (!w || w.style.display === "none" || w.style.opacity === "0") buildWatermark(); }, 1500);
+    if (!v) {
+      try {
+        var k = "mathia_dev", d = localStorage.getItem(k);
+        if (!d) { d = Date.now().toString(36) + Math.random().toString(36).slice(2, 8); localStorage.setItem(k, d); }
+        v = "ID " + d.slice(-6).toUpperCase();
+      } catch (e) { v = "MATHIA"; }
+    }
+    return String(v).slice(0, 42);
   }
 
-  // --- deterrent: blokada selekcije / kopiranja / desnog klika / čuvanja / alatki ---
-  function deterrents() {
+  function datum() {
+    var d = new Date();
+    function p2(n) { return (n < 10 ? "0" : "") + n; }
+    return p2(d.getDate()) + "." + p2(d.getMonth() + 1) + "." + d.getFullYear();
+  }
+
+  /* —— 1) vodeni žig preko sadržaja —— */
+  function zig() {
+    if (document.getElementById("mathia-zig")) return;
+    var tekst = "MATHIA · " + ident() + " · " + datum();
+    var svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="340" height="200">' +
+      '<text x="0" y="120" transform="rotate(-24 0 120)" ' +
+      'font-family="Inter,system-ui,sans-serif" font-size="13" fill="rgba(90,16,36,0.055)">' +
+      tekst.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</text></svg>";
+    var d = document.createElement("div");
+    d.id = "mathia-zig";
+    d.setAttribute("aria-hidden", "true");
+    d.style.cssText =
+      "position:fixed;inset:0;z-index:2147483000;pointer-events:none;" +
+      "background-image:url('data:image/svg+xml;utf8," + encodeURIComponent(svg) + "');" +
+      "background-repeat:repeat";
+    (document.body || document.documentElement).appendChild(d);
+  }
+
+  /* —— 2) blokada štampe i čuvanja kao PDF —— */
+  function stilovi() {
+    if (document.getElementById("mathia-zastita-css")) return;
     var st = document.createElement("style");
+    st.id = "mathia-zastita-css";
     st.textContent =
-      "html,body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}" +
-      "input,textarea{user-select:text!important}" +
-      "@media print{html{display:none!important}}";   // sprečava print/„Save as PDF" preko štampe
-    document.head.appendChild(st);
-
-    var stop = function (e) { e.preventDefault(); e.stopPropagation(); return false; };
-    ["contextmenu", "copy", "cut", "dragstart", "selectstart"].forEach(function (ev) {
-      document.addEventListener(ev, stop, { capture: true });
-    });
-
-    document.addEventListener("keydown", function (e) {
-      var k = (e.key || "").toLowerCase();
-      var mod = e.ctrlKey || e.metaKey;
-      // Ctrl/Cmd + S/P/U/C/X/A  i  F12, DevTools kombinacije
-      if (mod && ["s", "p", "u", "c", "x", "a"].indexOf(k) !== -1) return stop(e);
-      if (k === "f12") return stop(e);
-      if (mod && e.shiftKey && ["i", "j", "c"].indexOf(k) !== -1) return stop(e); // DevTools
-    }, { capture: true });
+      "@media print{body *{display:none!important}" +
+      "body::after{content:'Štampanje i čuvanje materijala nije dozvoljeno — MATHIA';" +
+      "display:block!important;font:600 16px Inter,system-ui,sans-serif;color:#5A1024;padding:40px;text-align:center}}" +
+      /* nema označavanja teksta na sadržaju — ali polja za unos i klon rade */
+      "body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;" +
+      "-webkit-touch-callout:none}" +
+      "input,textarea,[contenteditable],#zoi-panel,#zoi-panel *,.zoi-code,.zoi-code *{" +
+      "-webkit-user-select:text!important;user-select:text!important;-webkit-touch-callout:default}" +
+      "img,svg{-webkit-user-drag:none;user-drag:none}";
+    (document.head || document.documentElement).appendChild(st);
   }
 
-  // --- © napomena (diskretno, pri dnu) ---
-  function copyrightNote() {
-    if (document.getElementById("mathia-cc")) return;
-    var c = document.createElement("div");
-    c.id = "mathia-cc";
-    var yr = new Date().getFullYear();
-    c.textContent = "© " + yr + " MathIA · mathia.rs — Sav sadržaj je zaštićen. Umnožavanje i deljenje nisu dozvoljeni.";
-    c.style.cssText =
-      "position:relative;z-index:2147482001;text-align:center;font:600 12px/1.5 'Plus Jakarta Sans',Arial,sans-serif;" +
-      "color:#9b7420;background:#fff8ef;border-top:1px solid #eadfca;padding:14px 16px;margin-top:30px";
-    document.body.appendChild(c);
+  /* —— 3) blokade događaja —— */
+  function unutarKlona(t) {
+    return !!(t && t.closest && t.closest("#zoi-panel,#zoi-btn,input,textarea,[contenteditable],.zoi-code"));
   }
-
-  function maskPhone(p){ var s=String(p||""); return s.length<7?s:s.slice(0,6)+"••••"+s.slice(-3); }
-  // ako je korisnik prijavljen, uzmi njegov (maskirani) broj sa /api/me za vodeni žig
-  function upgradeIdentity(){
-    if (window.MATHIA_USER) return;
-    try {
-      fetch("/api/me",{credentials:"include"})
-        .then(function(r){ return r.ok ? r.json() : null; })
-        .then(function(d){ if (d && d.authenticated && d.phone){ window.MATHIA_USER = maskPhone(d.phone); buildWatermark(); } })
-        .catch(function(){});
-    } catch(e){}
+  function stop(e) {
+    if (unutarKlona(e.target)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
   }
+  ["contextmenu", "copy", "cut", "dragstart", "selectstart"].forEach(function (ev) {
+    document.addEventListener(ev, stop, { capture: true });
+  });
 
-  function init() { deterrents(); guardWatermark(); copyrightNote(); upgradeIdentity(); }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-  else init();
+  document.addEventListener("keydown", function (e) {
+    var k = (e.key || "").toLowerCase();
+    var ctrl = e.ctrlKey || e.metaKey;
+    if (unutarKlona(e.target)) return;
+    if (k === "f12") return stop(e);
+    if (ctrl && ["s", "p", "u"].indexOf(k) > -1) return stop(e);            // sačuvaj / štampaj / izvorni kod
+    if (ctrl && e.shiftKey && ["i", "j", "c"].indexOf(k) > -1) return stop(e); // alatke za programere
+    if (ctrl && k === "a") return stop(e);                                   // označi sve
+  }, { capture: true });
+
+  /* —— 4) ako korisnik ipak pokrene štampu, zamuti sadržaj —— */
+  try {
+    window.addEventListener("beforeprint", function () { document.documentElement.style.filter = "blur(9px)"; });
+    window.addEventListener("afterprint", function () { document.documentElement.style.filter = ""; });
+  } catch (e) {}
+
+  /* —— pokreni —— */
+  function start() { stilovi(); zig(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
+  /* žig ponovo ako ga neko ukloni iz DOM-a */
+  try {
+    new MutationObserver(function () {
+      if (!document.getElementById("mathia-zig")) zig();
+    }).observe(document.documentElement, { childList: true, subtree: true });
+  } catch (e) {}
 })();
