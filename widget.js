@@ -745,7 +745,7 @@
   function plotSvg(spec){
     try{
       var lines = String(spec).split(/[\n;]+/).map(function(l){return l.trim();}).filter(Boolean);
-      var a=-10,b=10,fns=[],fill=null;
+      var a=-10,b=10,fns=[],fill=null,paramSpec=null,polarSpec=null,tmin=0,tmax=2*Math.PI,marks=[],vlines=[],hlines=[];
       function compile(expr){
         var s=expr.replace(/\s+/g,"").replace(/\u03C0/g,"pi").replace(/\|([^|]+)\|/g,"abs($1)").replace(/[{}]/g,"");
         s=s.replace(/(\d)\s*([a-zA-Z(])/g,"$1*$2").replace(/(\))\s*([0-9a-zA-Z(])/g,"$1*$2");
@@ -772,9 +772,54 @@
         if(am){ var rest=am[1], between=/between|izme[d\u0111\u0111]u/i.test(rest); var rr=rest.match(/\[\s*(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)\s*\]/); if(rr){ fill={a:parseFloat(rr[1].replace(",",".")),b:parseFloat(rr[2].replace(",",".")),between:between}; } continue; }
         var rm=ln.match(/x\s*(?:in|\u2208|:)?\s*\[\s*(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)\s*\]/i)||ln.match(/^\[\s*(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)\s*\]$/);
         if(rm){ a=parseFloat(rm[1].replace(",",".")); b=parseFloat(rm[2].replace(",",".")); continue; }
+        var pm = ln.match(/^(?:param|parametarski)\s*:?\s*x\s*=\s*([^,;]+)[,;]\s*y\s*=\s*(.+)$/i);
+        if(pm){ paramSpec={x:pm[1].trim(), y:pm[2].trim()}; continue; }
+        var po = ln.match(/^(?:polar|polarno)\s*:?\s*r\s*=\s*(.+)$/i);
+        if(po){ polarSpec=po[1].trim(); continue; }
+        var tr = ln.match(/(?:t|theta|\u03b8)\s*(?:in|\u2208|:)?\s*\[\s*(-?[\d.,]*\s*\*?\s*pi|-?[\d.,]+)\s*,\s*(-?[\d.,]*\s*\*?\s*pi|-?[\d.,]+)\s*\]/i);
+        if(tr){ var pv=function(z){ z=String(z).replace(",",".").replace(/\s+/g,""); if(/pi$/i.test(z)){ var c=parseFloat(z.replace(/\*?pi$/i,"")); if(isNaN(c))c=1; return c*Math.PI; } return parseFloat(z); };
+                tmin=pv(tr[1]); tmax=pv(tr[2]); continue; }
+        var pt = ln.match(/^(?:tacka|ta\u010dka|point)\s*:?\s*\(?\s*(-?[\d.,]+)\s*[,;]\s*(-?[\d.,]+)\s*\)?\s*(.*)$/i);
+        if(pt){ marks.push({x:parseFloat(String(pt[1]).replace(",",".")), y:parseFloat(String(pt[2]).replace(",",".")), lab:(pt[3]||"").trim()}); continue; }
+        var vl = ln.match(/^(?:vline|asimptota|vertikala)\s*:?\s*x\s*=\s*(-?[\d.,]+)/i);
+        if(vl){ vlines.push(parseFloat(String(vl[1]).replace(",","."))); continue; }
+        var hl = ln.match(/^(?:hline|horizontala)\s*:?\s*y\s*=\s*(-?[\d.,]+)/i);
+        if(hl){ hlines.push(parseFloat(String(hl[1]).replace(",","."))); continue; }
         var ex=ln.replace(/^y\s*=\s*/i,"").replace(/^f\s*\(\s*x\s*\)\s*=\s*/i,"");
         if(!ex)continue;
         try{ fns.push({label:ln,f:compile(ex)}); }catch(e){}
+      }
+      var pSeries=null;
+      if(paramSpec||polarSpec){
+        try{
+          var N0=400, ptsP=[];
+          if(paramSpec){ var fxx=compile(paramSpec.x.replace(/\bt\b/g,"x")), fyy=compile(paramSpec.y.replace(/\bt\b/g,"x"));
+            for(var q=0;q<=N0;q++){ var tt=tmin+(tmax-tmin)*q/N0; ptsP.push([fxx(tt),fyy(tt)]); } }
+          else { var frr=compile(polarSpec.replace(/theta|\u03b8/gi,"x").replace(/\bt\b/g,"x"));
+            for(var q2=0;q2<=N0;q2++){ var th=tmin+(tmax-tmin)*q2/N0, rr=frr(th); ptsP.push([rr*Math.cos(th), rr*Math.sin(th)]); } }
+          ptsP=ptsP.filter(function(pp){return isFinite(pp[0])&&isFinite(pp[1]);});
+          if(ptsP.length>3) pSeries=ptsP;
+        }catch(e){}
+      }
+      if(pSeries){
+        var W2=320,H2=240,pad2=26;
+        var xs2=pSeries.map(function(p){return p[0];}), ys2=pSeries.map(function(p){return p[1];});
+        var ax=Math.min.apply(null,xs2), bx=Math.max.apply(null,xs2), ay=Math.min.apply(null,ys2), by=Math.max.apply(null,ys2);
+        if(bx===ax){bx=ax+1;} if(by===ay){by=ay+1;}
+        var mrg=Math.max(bx-ax,by-ay)*0.10; ax-=mrg;bx+=mrg;ay-=mrg;by+=mrg;
+        var X2=function(v){return pad2+(v-ax)/(bx-ax)*(W2-2*pad2);};
+        var Y2=function(v){return H2-pad2-(v-ay)/(by-ay)*(H2-2*pad2);};
+        var g=_svgHead(W2,H2);
+        if(0>=ax&&0<=bx)g+='<line x1="'+X2(0).toFixed(1)+'" y1="'+pad2+'" x2="'+X2(0).toFixed(1)+'" y2="'+(H2-pad2)+'" stroke="#b9a98f"/>';
+        if(0>=ay&&0<=by)g+='<line x1="'+pad2+'" y1="'+Y2(0).toFixed(1)+'" x2="'+(W2-pad2)+'" y2="'+Y2(0).toFixed(1)+'" stroke="#b9a98f"/>';
+        var dP="";
+        pSeries.forEach(function(pp,ix){ dP+=(ix?"L":"M")+X2(pp[0]).toFixed(1)+" "+Y2(pp[1]).toFixed(1); });
+        g+='<path d="'+dP+'" fill="none" stroke="#9C7838" stroke-width="2"/>';
+        marks.forEach(function(mk){ if(!isFinite(mk.x)||!isFinite(mk.y))return;
+          g+='<circle cx="'+X2(mk.x).toFixed(1)+'" cy="'+Y2(mk.y).toFixed(1)+'" r="3.4" fill="#B01E48"/>';
+          if(mk.lab)g+='<text x="'+(X2(mk.x)+5).toFixed(1)+'" y="'+(Y2(mk.y)-5).toFixed(1)+'" font-size="8.5" fill="#B01E48">'+esc(mk.lab)+'</text>'; });
+        g+='<text x="'+(pad2+2)+'" y="12" font-size="8.5" fill="#5a4a50">'+esc(paramSpec?("x="+paramSpec.x+", y="+paramSpec.y):("r="+polarSpec))+'</text>';
+        return g+'</svg>';
       }
       if(!fns.length||!(b>a)) return null;
       var W=320,H=220,N=300,pad=26,xmin=a,xmax=b,ymin=Infinity,ymax=-Infinity,series=[];
@@ -811,6 +856,11 @@
             if(!pen){ d+="M"+Px+" "+Py; pen=true; } else { d+=(prev!==null&&Math.abs(yy-prev)>span*4?"M":"L")+Px+" "+Py; } prev=yy;
           } else { pen=false; prev=null; } }
         svg+='<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="2"/>'; }
+      vlines.forEach(function(v){ if(v>=xmin&&v<=xmax) svg+='<line x1="'+X(v).toFixed(1)+'" y1="'+pad+'" x2="'+X(v).toFixed(1)+'" y2="'+(H-pad)+'" stroke="#B01E48" stroke-width="1.2" stroke-dasharray="4 3"/>'; });
+      hlines.forEach(function(v){ if(v>=ymin&&v<=ymax) svg+='<line x1="'+pad+'" y1="'+Y(v).toFixed(1)+'" x2="'+(W-pad)+'" y2="'+Y(v).toFixed(1)+'" stroke="#B01E48" stroke-width="1.2" stroke-dasharray="4 3"/>'; });
+      marks.forEach(function(mk){ if(!isFinite(mk.x)||!isFinite(mk.y))return; if(mk.x<xmin||mk.x>xmax||mk.y<ymin||mk.y>ymax)return;
+        svg+='<circle cx="'+X(mk.x).toFixed(1)+'" cy="'+Y(mk.y).toFixed(1)+'" r="3.6" fill="#B01E48"/>';
+        if(mk.lab)svg+='<text x="'+(X(mk.x)+5).toFixed(1)+'" y="'+(Y(mk.y)-5).toFixed(1)+'" font-size="8.5" fill="#B01E48">'+esc(mk.lab)+'</text>'; });
       for(var lg=0;lg<fns.length;lg++){ var c3=COL[lg%COL.length],ty=12+lg*12; svg+='<rect x="'+(pad+2)+'" y="'+(ty-6)+'" width="11" height="3" fill="'+c3+'"/><text x="'+(pad+16)+'" y="'+ty+'" font-size="8.5" fill="#5a4a50">'+esc(fns[lg].label)+'</text>'; }
       return svg+'</svg>';
     }catch(e){ return null; }
@@ -826,6 +876,186 @@
     var c=document.createElement("code"); c.textContent=clean;
     pre.appendChild(c); wrap.appendChild(btn); wrap.appendChild(pre); bub.appendChild(wrap);
   }
+
+  /* ═══════ DODATNI ALATI ZA PROFESORICU ═══════
+     bar / histogram · scatter (sa regresijom) · brojevna prava · tablica istinitosti
+     (parametarski i polarni grafik + tačke/asimptote rešeni su u plotSvg) */
+  function _num(v){ v=parseFloat(String(v).replace(",",".")); return isFinite(v)?v:null; }
+  function _svgHead(W,H){ return '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif"><rect width="'+W+'" height="'+H+'" fill="#fffdf8"/>'; }
+
+  /* ```bar   Naziv: vrednost  (po redu);  opcionalno "naslov: ..."  */
+  function barSvg(spec){
+    try{
+      var lines=String(spec).split(/\n+/).map(function(l){return l.trim();}).filter(Boolean);
+      var title="", items=[];
+      lines.forEach(function(l){
+        var t=l.match(/^(?:naslov|title)\s*:\s*(.+)$/i); if(t){title=t[1];return;}
+        var m=l.match(/^(.+?)[\s:|,]+(-?\d+(?:[.,]\d+)?)$/); if(m){ var v=_num(m[2]); if(v!==null)items.push([m[1].trim(),v]); }
+      });
+      if(items.length<2) return null;
+      var W=320,H=210,pad=30,bw=(W-2*pad)/items.length;
+      var mx=Math.max.apply(null,items.map(function(i){return i[1];}));
+      var mn=Math.min(0,Math.min.apply(null,items.map(function(i){return i[1];})));
+      if(mx===mn)mx=mn+1;
+      var svg=_svgHead(W,H);
+      if(title) svg+='<text x="'+(W/2)+'" y="14" font-size="10" font-weight="700" fill="#5A1024" text-anchor="middle">'+esc(title)+'</text>';
+      var y0=H-pad-((0-mn)/(mx-mn))*(H-2*pad-10);
+      svg+='<line x1="'+pad+'" y1="'+y0.toFixed(1)+'" x2="'+(W-pad)+'" y2="'+y0.toFixed(1)+'" stroke="#b9a98f"/>';
+      items.forEach(function(it,i){
+        var hh=Math.abs(it[1]-0)/(mx-mn)*(H-2*pad-10);
+        var x=pad+i*bw+bw*0.16, w=bw*0.68;
+        var y=(it[1]>=0)? y0-hh : y0;
+        svg+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+Math.max(1,hh).toFixed(1)+'" rx="3" fill="#C6A05C" fill-opacity="0.85"/>';
+        svg+='<text x="'+(x+w/2).toFixed(1)+'" y="'+((it[1]>=0?y-3:y+hh+9)).toFixed(1)+'" font-size="8" fill="#5A1024" text-anchor="middle">'+esc(String(it[1]))+'</text>';
+        svg+='<text x="'+(x+w/2).toFixed(1)+'" y="'+(H-pad+11)+'" font-size="8" fill="#8A7A80" text-anchor="middle">'+esc(it[0].slice(0,10))+'</text>';
+      });
+      return svg+'</svg>';
+    }catch(e){ return null; }
+  }
+
+  /* ```scatter   x,y po redu; opcionalno "regresija" za pravu najboljeg poklapanja */
+  function scatterSvg(spec){
+    try{
+      var lines=String(spec).split(/\n+/).map(function(l){return l.trim();}).filter(Boolean);
+      var pts=[], reg=false, title="";
+      lines.forEach(function(l){
+        if(/^(regresija|regression|trend|prava)$/i.test(l)){reg=true;return;}
+        var t=l.match(/^(?:naslov|title)\s*:\s*(.+)$/i); if(t){title=t[1];return;}
+        var m=l.match(/^\(?\s*(-?\d+(?:[.,]\d+)?)\s*[,;]\s*(-?\d+(?:[.,]\d+)?)\s*\)?$/);
+        if(m){var a=_num(m[1]),b=_num(m[2]); if(a!==null&&b!==null)pts.push([a,b]);}
+      });
+      if(pts.length<3) return null;
+      var W=320,H=220,pad=30;
+      var xs=pts.map(function(p){return p[0];}), ys=pts.map(function(p){return p[1];});
+      var x0=Math.min.apply(null,xs),x1=Math.max.apply(null,xs),y0=Math.min.apply(null,ys),y1=Math.max.apply(null,ys);
+      if(x1===x0){x1=x0+1;} if(y1===y0){y1=y0+1;}
+      var px=(x1-x0)*0.08, py=(y1-y0)*0.10; x0-=px;x1+=px;y0-=py;y1+=py;
+      function X(v){return pad+(v-x0)/(x1-x0)*(W-2*pad);}
+      function Y(v){return H-pad-(v-y0)/(y1-y0)*(H-2*pad);}
+      var svg=_svgHead(W,H);
+      if(title) svg+='<text x="'+(W/2)+'" y="13" font-size="10" font-weight="700" fill="#5A1024" text-anchor="middle">'+esc(title)+'</text>';
+      svg+='<line x1="'+pad+'" y1="'+(H-pad)+'" x2="'+(W-pad)+'" y2="'+(H-pad)+'" stroke="#b9a98f"/>';
+      svg+='<line x1="'+pad+'" y1="'+pad+'" x2="'+pad+'" y2="'+(H-pad)+'" stroke="#b9a98f"/>';
+      if(reg){
+        var n=pts.length,sx=0,sy=0,sxy=0,sxx=0;
+        pts.forEach(function(p){sx+=p[0];sy+=p[1];sxy+=p[0]*p[1];sxx+=p[0]*p[0];});
+        var den=n*sxx-sx*sx;
+        if(Math.abs(den)>1e-12){
+          var k=(n*sxy-sx*sy)/den, m0=(sy-k*sx)/n;
+          svg+='<line x1="'+X(x0).toFixed(1)+'" y1="'+Y(k*x0+m0).toFixed(1)+'" x2="'+X(x1).toFixed(1)+'" y2="'+Y(k*x1+m0).toFixed(1)+'" stroke="#B01E48" stroke-width="1.6" stroke-dasharray="5 3"/>';
+          svg+='<text x="'+(W-pad-3)+'" y="'+(pad+10)+'" font-size="8.5" fill="#B01E48" text-anchor="end">y = '+(Math.round(k*100)/100)+'x + '+(Math.round(m0*100)/100)+'</text>';
+        }
+      }
+      pts.forEach(function(p){ svg+='<circle cx="'+X(p[0]).toFixed(1)+'" cy="'+Y(p[1]).toFixed(1)+'" r="3.2" fill="#9C7838" fill-opacity="0.85"/>'; });
+      return svg+'</svg>';
+    }catch(e){ return null; }
+  }
+
+  /* ```brojevna   npr:  x >= 2 ;  interval [-1, 3) ;  tacka 4 */
+  function numberLineSvg(spec){
+    try{
+      var lines=String(spec).split(/[\n;]+/).map(function(l){return l.trim();}).filter(Boolean);
+      var marks=[], ivs=[];
+      lines.forEach(function(l){
+        var m=l.match(/^(?:tacka|ta\u010dka|point)\s+(-?\d+(?:[.,]\d+)?)/i);
+        if(m){ marks.push(_num(m[1])); return; }
+        var iv=l.match(/([\[\(])\s*(-?\d+(?:[.,]\d+)?|-?inf\w*)\s*,\s*(-?\d+(?:[.,]\d+)?|\+?inf\w*)\s*([\]\)])/i);
+        if(iv){ ivs.push({a:/inf/i.test(iv[2])?null:_num(iv[2]), b:/inf/i.test(iv[3])?null:_num(iv[3]), oa:iv[1]==="(", ob:iv[4]===")"}); return; }
+        var ineq=l.match(/x\s*(>=|<=|>|<|\u2265|\u2264)\s*(-?\d+(?:[.,]\d+)?)/i);
+        if(ineq){ var v=_num(ineq[2]), op=ineq[1];
+          if(op===">"||op===">="||op==="\u2265") ivs.push({a:v,b:null,oa:(op===">"),ob:true});
+          else ivs.push({a:null,b:v,oa:true,ob:(op==="<")}); }
+      });
+      if(!ivs.length&&!marks.length) return null;
+      var vals=[]; ivs.forEach(function(i){ if(i.a!==null)vals.push(i.a); if(i.b!==null)vals.push(i.b); }); marks.forEach(function(v){vals.push(v);});
+      var lo=Math.min.apply(null,vals), hi=Math.max.apply(null,vals);
+      if(!isFinite(lo)||!isFinite(hi)){lo=-5;hi=5;}
+      if(hi===lo){lo-=3;hi+=3;} var padv=Math.max(1,(hi-lo)*0.35); lo-=padv; hi+=padv;
+      lo=Math.floor(lo); hi=Math.ceil(hi);
+      var W=320,H=88,pad=26,yy=52;
+      function X(v){ return pad+(v-lo)/(hi-lo)*(W-2*pad); }
+      var svg=_svgHead(W,H);
+      svg+='<line x1="'+pad+'" y1="'+yy+'" x2="'+(W-pad)+'" y2="'+yy+'" stroke="#b9a98f" stroke-width="1.4" marker-end=""/>';
+      svg+='<path d="M'+(W-pad)+' '+yy+' l-7 -4 l0 8 Z" fill="#b9a98f"/>';
+      var step=Math.max(1,Math.round((hi-lo)/10));
+      for(var v=Math.ceil(lo);v<=hi;v+=step){
+        var x=X(v); svg+='<line x1="'+x.toFixed(1)+'" y1="'+(yy-4)+'" x2="'+x.toFixed(1)+'" y2="'+(yy+4)+'" stroke="#b9a98f"/>';
+        svg+='<text x="'+x.toFixed(1)+'" y="'+(yy+17)+'" font-size="8.5" fill="#8A7A80" text-anchor="middle">'+v+'</text>';
+      }
+      ivs.forEach(function(i){
+        var xa=(i.a===null)?pad:X(i.a), xb=(i.b===null)?(W-pad):X(i.b);
+        svg+='<line x1="'+xa.toFixed(1)+'" y1="'+(yy-11)+'" x2="'+xb.toFixed(1)+'" y2="'+(yy-11)+'" stroke="#B01E48" stroke-width="4" stroke-opacity="0.55" stroke-linecap="round"/>';
+        if(i.a!==null) svg+='<circle cx="'+xa.toFixed(1)+'" cy="'+(yy-11)+'" r="4.2" fill="'+(i.oa?"#fffdf8":"#B01E48")+'" stroke="#B01E48" stroke-width="1.6"/>';
+        if(i.b!==null) svg+='<circle cx="'+xb.toFixed(1)+'" cy="'+(yy-11)+'" r="4.2" fill="'+(i.ob?"#fffdf8":"#B01E48")+'" stroke="#B01E48" stroke-width="1.6"/>';
+      });
+      marks.forEach(function(v){ svg+='<circle cx="'+X(v).toFixed(1)+'" cy="'+yy+'" r="4" fill="#9C7838"/>'; });
+      return svg+'</svg>';
+    }catch(e){ return null; }
+  }
+
+  /* ```istina   promenljive u prvom redu, pa izrazi:  p q ; p and q ; p or q ; not p ; p -> q ; p <-> q ; p xor q */
+  function truthTable(spec){
+    try{
+      var lines=String(spec).split(/\n+/).map(function(l){return l.trim();}).filter(Boolean);
+      if(lines.length<2) return null;
+      var vars=lines[0].split(/[\s,;]+/).filter(Boolean).map(function(v){return v.toLowerCase();});
+      if(!vars.length||vars.length>4) return null;
+      var exprs=lines.slice(1);
+      function ev(expr,env){
+        /* BEZ eval-a: sopstveni parser (CSP ne mora da dozvoli unsafe-eval) */
+        var t=String(expr).toLowerCase()
+          .replace(/\u2227|\u2022/g," and ").replace(/\u2228/g," or ").replace(/\u00ac|~/g," not ")
+          .replace(/<->|\u2194|\u21d4/g," eqv ").replace(/->|\u2192|\u21d2/g," imp ")
+          .replace(/&&/g," and ").replace(/\|\|/g," or ").replace(/!/g," not ").replace(/\^/g," xor ");
+        var toks=t.match(/\(|\)|[a-z_][a-z0-9_]*/g);
+        if(!toks) return null;
+        var pos=0;
+        function peek(){ return toks[pos]; }
+        function eat(v){ if(toks[pos]===v){pos++;return true;} return false; }
+        function primary(){
+          if(eat("(")){ var v=eqv(); if(!eat(")")) throw 0; return v; }
+          if(eat("not")) return !primary();
+          var id=toks[pos++];
+          if(id===undefined) throw 0;
+          if(id==="true"||id==="1") return true;
+          if(id==="false"||id==="0") return false;
+          if(!(id in env)) throw 0;
+          return !!env[id];
+        }
+        function and_(){ var v=primary(); while(peek()==="and"){ pos++; var r=primary(); v=v&&r; } return v; }
+        function xor_(){ var v=and_(); while(peek()==="xor"){ pos++; var r=and_(); v=(v!==r); } return v; }
+        function or_(){ var v=xor_(); while(peek()==="or"){ pos++; var r=xor_(); v=v||r; } return v; }
+        function imp_(){ var v=or_(); while(peek()==="imp"){ pos++; var r=or_(); v=(!v)||r; } return v; }
+        function eqv(){ var v=imp_(); while(peek()==="eqv"){ pos++; var r=imp_(); v=(v===r); } return v; }
+        try{ var out=eqv(); if(pos!==toks.length) return null; return !!out; }catch(e){ return null; }
+      }
+      var rows=[], n=vars.length, total=Math.pow(2,n), okAll=true;
+      for(var i=0;i<total;i++){
+        var env={},vals=[];
+        for(var j=0;j<n;j++){ var bit=!!(i&(1<<(n-1-j))); env[vars[j]]=bit; vals.push(bit); }
+        var outs=exprs.map(function(e){ var r=ev(e,env); if(r===null)okAll=false; return r; });
+        rows.push([vals,outs]);
+      }
+      if(!okAll) return null;
+      var h='<table class="zoi-tbl"><thead><tr>';
+      vars.forEach(function(v){ h+="<th>"+esc(v)+"</th>"; });
+      exprs.forEach(function(e){ h+="<th>"+esc(e)+"</th>"; });
+      h+="</tr></thead><tbody>";
+      rows.forEach(function(r){
+        h+="<tr>";
+        r[0].forEach(function(b){ h+="<td>"+(b?"T":"\u22A5")+"</td>"; });
+        r[1].forEach(function(b){ h+="<td><b>"+(b?"T":"\u22A5")+"</b></td>"; });
+        h+="</tr>";
+      });
+      return h+"</tbody></table>";
+    }catch(e){ return null; }
+  }
+
+  function addBar(bub,spec){ var v=barSvg(spec); if(v){var f=document.createElement("div");f.className="zoi-fig";f.innerHTML=safeSvg(v);bub.appendChild(f);} else addCode(bub,spec,"bar"); }
+  function addScatter(bub,spec){ var v=scatterSvg(spec); if(v){var f=document.createElement("div");f.className="zoi-fig";f.innerHTML=safeSvg(v);bub.appendChild(f);} else addCode(bub,spec,"scatter"); }
+  function addNumLine(bub,spec){ var v=numberLineSvg(spec); if(v){var f=document.createElement("div");f.className="zoi-fig";f.innerHTML=safeSvg(v);bub.appendChild(f);} else addCode(bub,spec,"brojevna"); }
+  function addTruth(bub,spec){ var h=truthTable(spec); if(h){var d=document.createElement("div");d.className="zoi-p";d.innerHTML=h;bub.appendChild(d);} else addCode(bub,spec,"istina"); }
+
   function renderZoi(bub, text){
     var str = String(text);
     var re = /```([A-Za-z0-9+#_-]*)[ \t]*\n?([\s\S]*?)```|(<svg[\s\S]*?<\/svg>)/gi;
@@ -833,7 +1063,11 @@
     while ((m = re.exec(str))) {
       addText(bub, str.slice(last, m.index));
       if (m[3]) { addSvg(bub, m[3]); }
-      else { var lang = (m[1]||"").toLowerCase(); if (lang === "svg") addSvg(bub, m[2]||""); else if (lang==="plot"||lang==="graf"||lang==="graph"||lang==="funkcija"||lang==="crtaj") addPlot(bub, m[2]||""); else addCode(bub, m[2]||"", lang); }
+      else { var lang = (m[1]||"").toLowerCase(); if (lang === "svg") addSvg(bub, m[2]||""); else if (lang==="plot"||lang==="graf"||lang==="graph"||lang==="funkcija"||lang==="crtaj") addPlot(bub, m[2]||"");
+        else if (lang==="bar"||lang==="stubic"||lang==="histogram"||lang==="stubi\u0107i") addBar(bub, m[2]||"");
+        else if (lang==="scatter"||lang==="raspr\u0161eni"||lang==="rasprseni"||lang==="tacke"||lang==="ta\u010dke") addScatter(bub, m[2]||"");
+        else if (lang==="brojevna"||lang==="numberline"||lang==="brojevnaprava") addNumLine(bub, m[2]||"");
+        else if (lang==="istina"||lang==="truth"||lang==="tablicaistine"||lang==="istinitost") addTruth(bub, m[2]||""); else addCode(bub, m[2]||"", lang); }
       last = re.lastIndex;
     }
     var rest = str.slice(last);
