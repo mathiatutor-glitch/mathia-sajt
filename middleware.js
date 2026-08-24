@@ -29,7 +29,7 @@ const PUBLIC = new Set([
   "trigonometrija.html", "trigonometrija-krug.html",
   "test-sklonosti.html", "test-sklonosti-srednja.html", "test-sklonosti-fakultet.html",
   "prodavnica.html", "cenovnik.html",
-  "o-marini.html", "predmeti.html",
+  "o-marini.html", "predmeti.html", "za-roditelje.html", "biblioteka.html", "materijali.html", "planeri.html", "Planeri.html",
   "nalog.html", "registracija.html",
   "hvala.html", "greska.html", "dopuna.html",
   "uslovi.html", "reklamacije.html", "povracaj.html", "privatnost.html",
