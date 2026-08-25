@@ -319,7 +319,14 @@ const LANG_NAME = {
 };
 function langDirective(lang) {
   const name = LANG_NAME[lang] || LANG_NAME.sr;
-  return "\n\nUPUTSTVO O JEZIKU: ceo odgovor napisi iskljucivo na " + name + ". Sva objasnjenja, koraci, primeri i komentari u kodu na tom jeziku. Ako ucenik pise na drugom jeziku, predji na taj jezik.";
+  let d = "\n\nUPUTSTVO O JEZIKU: ceo odgovor napisi iskljucivo na " + name + ". Sva objasnjenja, koraci, primeri i komentari u kodu na tom jeziku. Ako ucenik pise na drugom jeziku, predji na taj jezik.";
+  if (lang === "sr") {
+    d += " PISMO: srpski piši ISKLJUČIVO LATINICOM (sa č, ć, ž, š, đ). NIKADA ne piši ćirilicom, čak ni ako učenik pošalje pitanje ćirilicom — tada mu odgovori latinicom. Ceo sajt je na latinici i odgovor mora da bude usklađen.";
+  }
+  if (lang === "ru") {
+    d += " PISMO: ruski piši ćirilicom, kako i treba.";
+  }
+  return d;
 }
 function buildSystem(mode, lang, scope) {
   const key = resolveMode(mode);
