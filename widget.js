@@ -618,9 +618,26 @@
     }
     return str;
   }
+  /* —— srpski je uvek latinica: ako model sklizne u cirilicu, preslovi ga —— */
+  var CIR = {
+    "Љ":"Lj","Њ":"Nj","Џ":"Dž","Ђ":"Đ","Ј":"J",
+    "а":"a","б":"b","в":"v","г":"g","д":"d","ђ":"đ","е":"e",
+    "ж":"ž","з":"z","и":"i","ј":"j","к":"k","л":"l","љ":"lj",
+    "м":"m","н":"n","њ":"nj","о":"o","п":"p","р":"r","с":"s",
+    "т":"t","ћ":"ć","у":"u","ф":"f","х":"h","ц":"c","ч":"č",
+    "џ":"dž","ш":"š",
+    "А":"A","Б":"B","В":"V","Г":"G","Д":"D","Е":"E","Ж":"Ž",
+    "З":"Z","И":"I","К":"K","Л":"L","М":"M","Н":"N","О":"O",
+    "П":"P","Р":"R","С":"S","Т":"T","У":"U","Ф":"F","Х":"H",
+    "Ц":"C","Ч":"Č","Ш":"Š"
+  };
+  function uLatinicu(str){
+    return String(str).replace(/[Ѐ-џ]/g, function(z){ return CIR[z] != null ? CIR[z] : z; });
+  }
   function fmt(s) {
     var math = [];
     s = String(s);
+    if (LANG === "sr" && /[Ѐ-џ]/.test(s)) s = uLatinicu(s);
     s = closeDanglingMath(s);
     s = s.replace(/\$\$([\s\S]+?)\$\$/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
