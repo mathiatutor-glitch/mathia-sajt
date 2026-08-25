@@ -10,5 +10,19 @@
 </head>
 <body>
 <p style="font-family:system-ui;padding:24px">Skripta je premeštena — <a href="Arhitektura-Racunara-Skripta.html">otvori Arhitektura računara — Skripta</a>.</p>
+
+<script>
+(function(){
+  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
+  var SRC="https://project-y23je.vercel.app/widget.js?v=10";
+  var ATTR={"data-api":"https://project-y23je.vercel.app/api/chat","data-mode":"arhitektura-racunara","data-name":"Profesorica","data-sub":"Arhitektura računara","data-sub-en":"Computer architecture","data-sub-de":"Rechnerarchitektur","data-sub-fr":"Architecture des ordinateurs","data-sub-es":"Arquitectura de computadores","data-sub-it":"Architettura dei calcolatori","data-sub-ru":"Архитектура компьютеров","data-sub-pt":"Arquitetura de computadores","data-hi-en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “Computer architecture”. Send a problem (a photo works too) or a question — I'll explain step by step!"};
+  var HI={"de":"Hallo! 🌸 Ich bin deine Lehrerin. Frag mich, schick ein Foto 📷 oder diktiere 🎙️ die Aufgabe.","fr":"Bonjour ! 🌸 Je suis ta professeure. Pose ta question, envoie une photo 📷 ou dicte 🎙️ l'exercice.","es":"¡Hola! 🌸 Soy tu profesora. Pregúntame, envía una foto 📷 o dicta 🎙️ el ejercicio.","it":"Ciao! 🌸 Sono la tua insegnante. Chiedimi, invia una foto 📷 o detta 🎙️ il problema.","ru":"Привет! 🌸 Я твоя преподавательница. Спроси меня, пришли фото 📷 или продиктуй 🎙️ задачу.","pt":"Olá! 🌸 Sou a tua professora. Pergunta-me, envia uma foto 📷 ou dita 🎙️ o exercício.","sr":"Zdravo! Ja sam Profesorica — tvoj vodič kroz predmet Arhitektura računara. Pošalji mi zadatak ili pitanje i rešavamo ga zajedno, korak po korak.","en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “Computer architecture”. Send a problem (a photo works too) or a question — I'll explain step by step!"};
+  var st=document.createElement("script"); st.src=SRC;
+  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
+  st.setAttribute("data-lang",L);
+  st.setAttribute("data-hi",HI[L]||HI.sr);
+  (document.body||document.documentElement).appendChild(st);
+})();
+</script>
 </body>
 </html>
