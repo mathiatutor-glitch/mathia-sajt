@@ -504,7 +504,10 @@ export default async function handler(req, res) {
       } // kraj else (nije admin)
     }
 
-    const system = buildSystem(mode, lang, scopeFor(body.sub));
+    // Gradivo biramo po nazivu predmeta (body.sub). Ako ga klijent ne pošalje
+    // (stariji widget ili strana bez data-sub), padamo na naziv moda — u mapi
+    // gradiva postoje i ključevi po modu, pa klon i tada dobije svoje gradivo.
+    const system = buildSystem(mode, lang, scopeFor(body.sub) || scopeFor(mode));
     const userName = body.userName || null;
     const userPredmeti = body.userPredmeti || [];
     let personalCtx = "";
