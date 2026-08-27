@@ -52,6 +52,9 @@
     return v || script.getAttribute("data-subj") || script.getAttribute("data-sub") || script.getAttribute("data-sub-en") || "";
   }
   var SUBJ = subjFor(typeof LANG !== "undefined" ? LANG : (script && script.getAttribute("data-lang")));
+  /* SUBJ je preveden naziv (za prikaz). Serveru MORA da ide srpski naziv, jer se
+     po njemu bira mapa gradiva — inace bi „Descriptive geometry 1" promasilo mapu. */
+  var SUBJ_SR = (script && (script.getAttribute("data-sub") || script.getAttribute("data-subj"))) || "";
   // naziv predmeta za osmjezicni pozdrav. Strane salju data-sub (bez „j") — zato je ranije
   // SUBJ bio prazan, pa je pozdrav na svim jezicima padao na srpski.
   var ALIASES = { matura: "mala-matura", ftn: "prijemni-matematika", prijemni: "prijemni-matematika" };
@@ -1609,7 +1612,7 @@
     fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ mode: MODE, lang: LANG, deviceId: devId(), messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
+      body: JSON.stringify({ mode: MODE, sub: SUBJ_SR, lang: LANG, deviceId: devId(), messages: history, token: sbToken(), userName: MEM_IME, userPredmeti: MEM_PREDMETI }),
     })
       .then(function (r) { return r.json(); })
       .then(function (data) {

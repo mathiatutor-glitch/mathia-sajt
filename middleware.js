@@ -27,7 +27,7 @@ const PUBLIC = new Set([
   "", "index.html",
   "pocni.html", "prijava.html", "dobrodosli.html", "besplatno.html", "besplatno-en.html",
   "trigonometrija.html", "trigonometrija-krug.html",
-  "test-sklonosti.html", "test-sklonosti-srednja.html", "test-sklonosti-fakultet.html",
+  "test-sklonosti.html", "test-sklonosti-srednja.html", "test-sklonosti-fakultet.html", "testiraj-se.html",
   "prodavnica.html", "cenovnik.html",
   "o-marini.html", "predmeti.html", "za-roditelje.html", "biblioteka.html", "materijali.html", "planeri.html", "Planeri.html",
   "nalog.html", "registracija.html",
