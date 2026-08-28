@@ -55,6 +55,44 @@
   /* SUBJ je preveden naziv (za prikaz). Serveru MORA da ide srpski naziv, jer se
      po njemu bira mapa gradiva — inace bi „Descriptive geometry 1" promasilo mapu. */
   var SUBJ_SR = (script && (script.getAttribute("data-sub") || script.getAttribute("data-subj"))) || "";
+
+  /* —— naslov strane na jeziku posetioca ——
+     Telo strane se prevodi, ali <title> je ostajao srpski: u kartici pregledaca,
+     u Google rezultatu i u deljenom linku pisalo je „uci uz Profesoricu" i kada
+     je ceo sajt na nemackom. Ovde ga sastavljamo od prevedenog naziva predmeta
+     i tipa strane. Radi samo van srpskog i samo ako imamo prevedeno ime. */
+  var NASLOV_TIP = {
+    skripta:   {en:"Notes",          de:"Skript",       fr:"Cours",       es:"Apuntes",       it:"Dispensa",          ru:"Конспект",    pt:"Apontamentos"},
+    formule:   {en:"Formulas",       de:"Formeln",      fr:"Formules",    es:"Fórmulas",      it:"Formule",           ru:"Формулы",     pt:"Fórmulas"},
+    zadaci:    {en:"Problems",       de:"Aufgaben",     fr:"Exercices",   es:"Ejercicios",    it:"Esercizi",          ru:"Задачи",      pt:"Exercícios"},
+    prirucnik: {en:"Handbook",       de:"Handbuch",     fr:"Manuel",      es:"Manual",        it:"Manuale",           ru:"Справочник",  pt:"Manual"},
+    provera:   {en:"Knowledge test", de:"Wissenstest",  fr:"Test",        es:"Test",          it:"Test",              ru:"Тест знаний", pt:"Teste"},
+    predmet:   {en:"finally clear",  de:"endlich klar", fr:"enfin clair", es:"por fin claro", it:"finalmente chiaro", ru:"наконец ясно",pt:"finalmente claro"}
+  };
+  function tipStrane(){
+    var p = (location.pathname || "").toLowerCase();
+    if (/-skripta\.html|\/skripta-/.test(p)) return "skripta";
+    if (/-formule\.html|\/formule-/.test(p)) return "formule";
+    if (/-zadaci\.html|\/zadaci-|-kombinovani/.test(p)) return "zadaci";
+    if (/-prirucnik\.html/.test(p)) return "prirucnik";
+    if (/\/provera-|\/kviz/.test(p)) return "provera";
+    return "predmet";
+  }
+  function prevediNaslov(){
+    try{
+      if (!LANG || LANG === "sr") return;
+      var ime = subjFor(LANG);
+      if (!ime || ime === SUBJ_SR) return;        // nemamo prevedeno ime — ne diraj naslov
+      var rec = NASLOV_TIP[tipStrane()];
+      var rep = rec && rec[LANG];
+      if (!rep) return;
+      document.title = ime + " — " + rep + " | Mathia";
+      var og = document.querySelector('meta[property="og:title"]');
+      if (og) og.setAttribute("content", document.title);
+      var hl = document.documentElement.lang;
+      if (hl === "sr-Latn" || hl === "sr") document.documentElement.lang = LANG;
+    }catch(e){}
+  }
   // naziv predmeta za osmjezicni pozdrav. Strane salju data-sub (bez „j") — zato je ranije
   // SUBJ bio prazan, pa je pozdrav na svim jezicima padao na srpski.
   var ALIASES = { matura: "mala-matura", ftn: "prijemni-matematika", prijemni: "prijemni-matematika" };
@@ -1716,11 +1754,11 @@
   taEl.addEventListener("input", function () {
     taEl.style.height = "auto"; taEl.style.height = Math.min(taEl.scrollHeight, 96) + "px";
   });
-  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; SUBJ = subjFor(LANG); try{localStorage.setItem("mathia_lang",LANG);window.dispatchEvent(new CustomEvent("mathia:lang",{detail:LANG}));}catch(e){} applyLang(); greet(); history = []; };
+  langEl.onchange = function () { stopSpeak(); LANG = langEl.value; SUBJ = subjFor(LANG); prevediNaslov(); try{localStorage.setItem("mathia_lang",LANG);window.dispatchEvent(new CustomEvent("mathia:lang",{detail:LANG}));}catch(e){} applyLang(); greet(); history = []; };
   window.addEventListener("mathia:lang", function (e) {
     var l = e && e.detail; if (!l) return; l = String(l).toLowerCase();
     if (l === LANG) return;
-    LANG = l; SUBJ = subjFor(LANG); stopSpeak();
+    LANG = l; SUBJ = subjFor(LANG); stopSpeak(); prevediNaslov();
     try{ localStorage.setItem("mathia_lang", l); }catch(e){}
     try { if (langEl) langEl.value = l.toUpperCase(); } catch (_) {}
     applyLang(); greet(); history = [];
@@ -1774,4 +1812,5 @@
       }
     } catch (e) {}
   })();
+  try{ prevediNaslov(); }catch(e){}
 })();

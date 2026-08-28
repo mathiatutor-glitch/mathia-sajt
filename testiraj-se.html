@@ -135,5 +135,40 @@
  try{var mo=new MutationObserver(function(){clearTimeout(window.__sowl);window.__sowl=setTimeout(ensureOwl,160);});mo.observe(document.body,{childList:true,subtree:true});}catch(e){}
  }catch(e){}
 })();</script>
+
+<script>
+/* Naslov strane, oznaka jezika i bedz "Besplatno · bez prijave" ostajali su na
+   srpskom i kada je ceo sajt na drugom jeziku. Ovde se prevode. */
+(function __naslovTestiraj(){
+  try{
+    var L=(localStorage.getItem("mathia_lang")||"sr").slice(0,2).toLowerCase();
+    if(L==="sr") return;
+    var NASLOV={en:"Find your direction — Mathia",de:"Finde deine Richtung — Mathia",
+      fr:"Trouve ta voie — Mathia",es:"Encuentra tu camino — Mathia",
+      it:"Trova la tua strada — Mathia",ru:"Найди своё направление — Mathia",
+      pt:"Encontra o teu caminho — Mathia"};
+    var OPIS={en:"A free aptitude test that shows which school or faculty suits the way you think.",
+      de:"Ein kostenloser Neigungstest, der zeigt, welche Schule oder Fakultät zu deinem Denken passt.",
+      fr:"Un test d'orientation gratuit qui montre quelle école ou faculté te convient.",
+      es:"Un test de aptitudes gratuito que muestra qué escuela o facultad encaja contigo.",
+      it:"Un test attitudinale gratuito che mostra quale scuola o facoltà fa per te.",
+      ru:"Бесплатный тест склонностей: покажет, какая школа или факультет вам подходит.",
+      pt:"Um teste de aptidão gratuito que mostra que escola ou faculdade combina contigo."};
+    var BEDZ={en:"Free · no sign-up",de:"Kostenlos · ohne Anmeldung",fr:"Gratuit · sans inscription",
+      es:"Gratis · sin registro",it:"Gratis · senza registrazione",ru:"Бесплатно · без регистрации",
+      pt:"Grátis · sem registo"};
+    if(NASLOV[L]) document.title=NASLOV[L];
+    var md=document.querySelector('meta[name="description"]');
+    if(md&&OPIS[L]) md.setAttribute("content",OPIS[L]);
+    document.documentElement.lang=L;
+    if(BEDZ[L]){
+      var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;
+      while(n=w.nextNode()){
+        if((n.nodeValue||"").trim()==="Besplatno \u00b7 bez prijave"){ n.nodeValue=BEDZ[L]; break; }
+      }
+    }
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
