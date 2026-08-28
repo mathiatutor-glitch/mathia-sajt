@@ -22,7 +22,7 @@
 
   /* —— radi samo na zaštićenim stranama —— */
   var p = (location.pathname || "").toLowerCase();
-  var ZASTICENO = /(-skripta|-formule|-zadaci|-zbirka|skripta-|formule-|zadaci-|provera-|kviz)/.test(p);
+  var ZASTICENO = /(-skripta|-formule|-zadaci|-zbirka|-prirucnik|-kombinovani|skripta-|formule-|zadaci-|prirucnik-|provera-|kviz)/.test(p);
   if (!ZASTICENO) return;
 
   /* —— ko gleda (za vodeni žig) —— */

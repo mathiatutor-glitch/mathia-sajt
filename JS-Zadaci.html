@@ -292,5 +292,20 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 .foot2 a,body>footer a{color:#9C7838!important}
 @keyframes uz2foil{to{background-position:230% center}}
 </style>
+
+<script>
+(function(){
+  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
+  var SRC="https://project-y23je.vercel.app/widget.js?v=10";
+  var ATTR={"data-api":"https://project-y23je.vercel.app/api/chat","data-mode":"fax-js","data-name":"Profesorica","data-sub":"JavaScript","data-sub-en":"JavaScript","data-hi-en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “JavaScript”. Send a problem (a photo works too) or a question — I'll explain step by step!","data-sub-de":"JavaScript","data-sub-fr":"JavaScript","data-sub-es":"JavaScript","data-sub-it":"JavaScript","data-sub-ru":"JavaScript","data-sub-pt":"JavaScript"};
+  var HI={"de":"Hallo! 🌸 Ich bin deine Lehrerin. Frag mich, schick ein Foto 📷 oder diktiere 🎙️ die Aufgabe.","fr":"Bonjour ! 🌸 Je suis ta professeure. Pose ta question, envoie une photo 📷 ou dicte 🎙️ l'exercice.","es":"¡Hola! 🌸 Soy tu profesora. Pregúntame, envía una foto 📷 o dicta 🎙️ el ejercicio.","it":"Ciao! 🌸 Sono la tua insegnante. Chiedimi, invia una foto 📷 o detta 🎙️ il problema.","ru":"Привет! 🌸 Я твоя преподавательница. Спроси меня, пришли фото 📷 или продиктуй 🎙️ задачу.","pt":"Olá! 🌸 Sou a tua professora. Pergunta-me, envia uma foto 📷 ou dita 🎙️ o exercício.","sr":"Zdravo! Ja sam Profesorica — tvoj vodič kroz Matematičku analizu 1. Pošalji mi zadatak ili pitanje i rešavamo ga zajedno, korak po korak.","en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “JavaScript”. Send a problem (a photo works too) or a question — I'll explain step by step!"};
+  var st=document.createElement("script"); st.src=SRC;
+  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
+  st.setAttribute("data-lang",L);
+  st.setAttribute("data-hi",HI[L]||HI.sr);
+  (document.body||document.documentElement).appendChild(st);
+})();
+</script>
+<script defer src="zastita.js"></script>
 </body>
 </html>

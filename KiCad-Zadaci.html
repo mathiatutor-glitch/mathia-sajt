@@ -292,5 +292,20 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 .foot2 a,body>footer a{color:#9C7838!important}
 @keyframes uz2foil{to{background-position:230% center}}
 </style>
+
+<script>
+(function(){
+  var L=(localStorage.getItem("mathia_lang")||"sr").toLowerCase();
+  var SRC="https://project-y23je.vercel.app/widget.js?v=10";
+  var ATTR={"data-api":"https://project-y23je.vercel.app/api/chat","data-mode":"el-kicad","data-name":"Profesorica","data-sub":"KiCad — projektovanje štampanih ploča (PCB)","data-sub-en":"KiCad — PCB design","data-hi-en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “KiCad — projektovanje štampanih ploča (PCB)”. Send a problem (a photo works too) or a question — I'll explain step by step!","data-sub-de":"KiCad — Leiterplattendesign (PCB)","data-sub-fr":"KiCad — conception de circuits imprimés","data-sub-es":"KiCad — diseño de placas (PCB)","data-sub-it":"KiCad — progettazione PCB","data-sub-ru":"KiCad — проектирование печатных плат","data-sub-pt":"KiCad — design de placas (PCB)"};
+  var HI={"sr":"Zdravo! Ja sam Profesorica 👩‍🏫 Ovde ti pomažem oko predmeta „KiCad — projektovanje štampanih ploča (PCB)“. Pošalji zadatak (može i slika) ili pitanje — objasniću korak po korak!","en":"Hi! I'm Profesorica 👩‍🏫 Here I help you with “KiCad — projektovanje štampanih ploča (PCB)”. Send a problem (a photo works too) or a question — I'll explain step by step!","de":"Hallo! 🌸 Ich bin deine Lehrerin für „KiCad — projektovanje štampanih ploča (PCB)“. Frag mich, schick ein Foto 📷 oder diktiere 🎙️ die Aufgabe.","fr":"Bonjour ! 🌸 Je suis ta professeure de « KiCad — projektovanje štampanih ploča (PCB) ». Pose ta question, envoie une photo 📷 ou dicte 🎙️ l'exercice.","es":"¡Hola! 🌸 Soy tu profesora de «KiCad — projektovanje štampanih ploča (PCB)». Pregúntame, envía una foto 📷 o dicta 🎙️ el ejercicio.","it":"Ciao! 🌸 Sono la tua insegnante di «KiCad — projektovanje štampanih ploča (PCB)». Chiedimi, invia una foto 📷 o detta 🎙️ il problema.","ru":"Привет! 🌸 Я твоя преподавательница по предмету «KiCad — projektovanje štampanih ploča (PCB)». Спроси меня, пришли фото 📷 или продиктуй 🎙️ задачу.","pt":"Olá! 🌸 Sou a tua professora de «KiCad — projektovanje štampanih ploča (PCB)». Pergunta-me, envia uma foto 📷 ou dita 🎙️ o exercício."};
+  var st=document.createElement("script"); st.src=SRC;
+  for(var k in ATTR){st.setAttribute(k,ATTR[k]);}
+  st.setAttribute("data-lang",L);
+  st.setAttribute("data-hi",HI[L]||HI.sr);
+  (document.body||document.documentElement).appendChild(st);
+})();
+</script>
+<script defer src="zastita.js"></script>
 </body>
 </html>
