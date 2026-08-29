@@ -170,5 +170,39 @@ body{margin:0;font-family:'Inter',system-ui,sans-serif;color:#3E2D34;line-height
 var HI={sr:"Zdravo! Ja sam Profesorica. Pošalji zadatak ili pitanje (može i slika), pa rešavamo zajedno, korak po korak.",en:"Hi! I'm your teacher. Send a problem or question (a photo works too) and we'll solve it together, step by step.",de:"Hallo! Ich bin deine Lehrerin. Schick eine Aufgabe oder Frage (auch als Foto) und wir lösen sie Schritt für Schritt.",fr:"Bonjour ! Je suis ta professeure. Envoie un exercice ou une question (photo possible) et on le résout ensemble, étape par étape.",es:"¡Hola! Soy tu profesora. Envía un ejercicio o pregunta (también una foto) y lo resolvemos paso a paso.",it:"Ciao! Sono la tua insegnante. Invia un esercizio o una domanda (anche una foto) e lo risolviamo insieme, passo dopo passo.",ru:"Привет! Я — твоя преподавательница. Пришли задачу или вопрос (можно фото), и решим вместе, шаг за шагом.",pt:"Olá! Sou a tua professora. Envia um exercício ou pergunta (também uma foto) e resolvemos passo a passo."};
 var st=document.createElement("script");st.src="https://project-y23je.vercel.app/widget.js?v=10";st.setAttribute("data-api","https://project-y23je.vercel.app/api/chat");st.setAttribute("data-mode","fax-analiza1");st.setAttribute("data-name","Profesorica");st.setAttribute("data-sub","Matemati\u010dka analiza 1");st.setAttribute("data-avatar","avatar.jpg");st.setAttribute("data-lang",L);st.setAttribute("data-hi",HI[L]||HI.sr);(document.body||document.documentElement).appendChild(st);})();</script>
 <script defer src="zastita.js"></script>
+
+<script>
+/* Prevod naziva na strani. Formule se ne prevode — samo oznake i naslovi. */
+(function(){
+  var I18N={"back": {"en": "← Analysis 1", "de": "← Analysis 1", "fr": "← Analyse 1", "es": "← Análisis 1", "it": "← Analisi 1", "ru": "← Анализ 1", "pt": "← Análise 1"}, "eyebrow": {"en": "Formulas · Reminder", "de": "Formeln · Merkblatt", "fr": "Formules · Aide-mémoire", "es": "Fórmulas · Recordatorio", "it": "Formule · Promemoria", "ru": "Формулы · Памятка", "pt": "Fórmulas · Resumo"}, "title": {"en": "Analysis 1 — formulas", "de": "Analysis 1 — Formeln", "fr": "Analyse 1 — formules", "es": "Análisis 1 — fórmulas", "it": "Analisi 1 — formule", "ru": "Анализ 1 — формулы", "pt": "Análise 1 — fórmulas"}, "sub": {"en": "Known limits, derivatives, integrals and rules.", "de": "Bekannte Grenzwerte, Ableitungen, Integrale und Regeln.", "fr": "Limites usuelles, dérivées, intégrales et règles.", "es": "Límites conocidos, derivadas, integrales y reglas.", "it": "Limiti notevoli, derivate, integrali e regole.", "ru": "Известные пределы, производные, интегралы и правила.", "pt": "Limites conhecidos, derivadas, integrais e regras."}, "g_lim": {"en": "Known limits", "de": "Bekannte Grenzwerte", "fr": "Limites usuelles", "es": "Límites conocidos", "it": "Limiti notevoli", "ru": "Известные пределы", "pt": "Limites conhecidos"}, "g_der": {"en": "Derivatives (table)", "de": "Ableitungen (Tabelle)", "fr": "Dérivées (tableau)", "es": "Derivadas (tabla)", "it": "Derivate (tabella)", "ru": "Производные (таблица)", "pt": "Derivadas (tabela)"}, "g_int": {"en": "Integrals (table)", "de": "Integrale (Tabelle)", "fr": "Intégrales (tableau)", "es": "Integrales (tabla)", "it": "Integrali (tabella)", "ru": "Интегралы (таблица)", "pt": "Integrais (tabela)"}, "l_sin": {"en": "Sine", "de": "Sinus", "fr": "Sinus", "es": "Seno", "it": "Seno", "ru": "Синус", "pt": "Seno"}, "l_e": {"en": "The number e", "de": "Die Zahl e", "fr": "Le nombre e", "es": "El número e", "it": "Il numero e", "ru": "Число e", "pt": "O número e"}, "l_log": {"en": "Logarithm", "de": "Logarithmus", "fr": "Logarithme", "es": "Logaritmo", "it": "Logaritmo", "ru": "Логарифм", "pt": "Logaritmo"}, "l_exp": {"en": "Exponential", "de": "Exponentialfunktion", "fr": "Exponentielle", "es": "Exponencial", "it": "Esponenziale", "ru": "Экспонента", "pt": "Exponencial"}, "l_lop": {"en": "L'Hôpital's rule", "de": "Regel von L'Hospital", "fr": "Règle de L'Hôpital", "es": "Regla de L'Hôpital", "it": "Regola di L'Hôpital", "ru": "Правило Лопиталя", "pt": "Regra de L'Hôpital"}, "l_pow": {"en": "Power", "de": "Potenz", "fr": "Puissance", "es": "Potencia", "it": "Potenza", "ru": "Степень", "pt": "Potência"}, "l_root": {"en": "Square root", "de": "Wurzel", "fr": "Racine", "es": "Raíz", "it": "Radice", "ru": "Корень", "pt": "Raiz"}, "l_sincos": {"en": "Sine and cosine", "de": "Sinus und Kosinus", "fr": "Sinus et cosinus", "es": "Seno y coseno", "it": "Seno e coseno", "ru": "Синус и косинус", "pt": "Seno e cosseno"}, "l_tan": {"en": "Tangent", "de": "Tangens", "fr": "Tangente", "es": "Tangente", "it": "Tangente", "ru": "Тангенс", "pt": "Tangente"}, "l_prod": {"en": "Product", "de": "Produkt", "fr": "Produit", "es": "Producto", "it": "Prodotto", "ru": "Произведение", "pt": "Produto"}, "l_quot": {"en": "Quotient", "de": "Quotient", "fr": "Quotient", "es": "Cociente", "it": "Quoziente", "ru": "Частное", "pt": "Quociente"}, "l_comp": {"en": "Composite function", "de": "Verkettete Funktion", "fr": "Fonction composée", "es": "Función compuesta", "it": "Funzione composta", "ru": "Сложная функция", "pt": "Função composta"}, "l_recip": {"en": "Reciprocal", "de": "Kehrwert", "fr": "Inverse", "es": "Recíproca", "it": "Reciproca", "ru": "Обратная величина", "pt": "Recíproca"}, "l_parts": {"en": "Integration by parts", "de": "Partielle Integration", "fr": "Intégration par parties", "es": "Integración por partes", "it": "Integrazione per parti", "ru": "Интегрирование по частям", "pt": "Integração por partes"}, "l_nl": {"en": "Newton–Leibniz", "de": "Newton–Leibniz", "fr": "Newton–Leibniz", "es": "Newton–Leibniz", "it": "Newton–Leibniz", "ru": "Ньютон–Лейбниц", "pt": "Newton–Leibniz"}};
+  var NASLOV={"en": "Mathia — Analysis 1 · Formulas", "de": "Mathia — Analysis 1 · Formeln", "fr": "Mathia — Analyse 1 · Formules", "es": "Mathia — Análisis 1 · Fórmulas", "it": "Mathia — Analisi 1 · Formule", "ru": "Mathia — Анализ 1 · Формулы", "pt": "Mathia — Análise 1 · Fórmulas"};
+  function apply(l){
+    document.querySelectorAll('[data-i18n]').forEach(function(e){
+      if(e.__sr===undefined) e.__sr=e.innerHTML;
+      var k=e.getAttribute('data-i18n'), t=I18N[k];
+      e.innerHTML=(!l||l==='sr'||!t||!t[l]) ? e.__sr : t[l];
+    });
+    try{ document.documentElement.lang=(l==='sr'?'sr-Latn':l); }catch(_){}
+    if(l&&l!=='sr'&&NASLOV[l]) document.title=NASLOV[l];
+  }
+  var sv='sr'; try{ sv=(localStorage.getItem('mathia_lang')||'sr').toLowerCase(); }catch(_){}
+  var sel=document.querySelector('select.lang')||document.querySelector('select[class*=lang]');
+  if(sel){
+    sel.value=(['sr','en','de','fr','es','it','ru','pt'].indexOf(sv)>-1?sv:'sr');
+    sel.addEventListener('change',function(){
+      var l=(this.value||'sr').toLowerCase();
+      try{ localStorage.setItem('mathia_lang',l); }catch(_){}
+      apply(l);
+      try{ window.dispatchEvent(new CustomEvent('mathia:lang',{detail:l})); }catch(_){}
+    });
+  }
+  if(sv!=='sr') apply(sv);
+  window.addEventListener('mathia:lang',function(e){
+    var l=(e&&e.detail?String(e.detail):'sr').toLowerCase();
+    if(sel) sel.value=(['sr','en','de','fr','es','it','ru','pt'].indexOf(l)>-1?l:'sr');
+    apply(l);
+  });
+})();
+</script>
 </body>
 </html>
