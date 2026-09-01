@@ -679,6 +679,12 @@
     var math = [];
     s = String(s);
     if (LANG === "sr" && /[Ѐ-џ]/.test(s)) s = uLatinicu(s);
+    // INLINE KOD SE VADI PRVI — pre svake obrade matematike.
+    // Inace `$ime` i `$godine` (PHP, shell, jQuery...) budu shvaceni kao
+    // jedna formula od prvog do drugog dolara, tekst izmedju se pojede,
+    // a uceniku ostane kontrolni znak umesto promenljive.
+    var codes = [];
+    s = s.replace(/`([^`\n]+)`/g, function(_m,c){ codes.push(c); return "\u0002C"+(codes.length-1)+"\u0002"; });
     s = closeDanglingMath(s);
     s = s.replace(/\$\$([\s\S]+?)\$\$/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
     s = s.replace(/\\\[([\s\S]+?)\\\]/g, function(_m,x){ math.push([x,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
@@ -686,8 +692,7 @@
     s = s.replace(/\\\(([\s\S]+?)\\\)/g, function(_m,x){ math.push([x,0]); return "\u0001K"+(math.length-1)+"\u0001"; });
     // sigurnosna mreza: goli \begin{...}...\end{...} bez $$ — iscrtaj ga kao display formulu
     s = s.replace(/\\begin\{(aligned|align\*?|cases|dcases|pmatrix|bmatrix|Bmatrix|vmatrix|Vmatrix|matrix|smallmatrix|array|gathered|gather\*?|split|equation\*?)\}([\s\S]*?)\\end\{\1\}/g, function(_m,env,bodyx){ var mp={"align":"aligned","align*":"aligned","gather":"gathered","gather*":"gathered","equation":"","equation*":""}; var e=mp.hasOwnProperty(env)?mp[env]:env; var tex=e?("\\begin{"+e+"}"+bodyx+"\\end{"+e+"}"):bodyx; math.push([tex,1]); return "\u0001K"+(math.length-1)+"\u0001"; });
-    var codes = [];
-    s = s.replace(/`([^`\n]+)`/g, function(_m,c){ codes.push(c); return "\u0002C"+(codes.length-1)+"\u0002"; });
+    // (inline kod je izvucen ranije, pre obrade matematike)
     // sigurnosna mreza: tekstualni limes -> pravi LaTeX (granica ispod znaka)
     function _lim(v,t){ t=(t==="\u221E"||t==="+\u221E")?"\\infty":(t==="-\u221E"?"-\\infty":t); math.push(["\\lim_{"+v+" \\to "+t+"}",0]); return "\u0001K"+(math.length-1)+"\u0001"; }
     s = s.replace(/\blim\s*\(\s*([A-Za-z])\s*(?:\u2192|->)\s*(\+?\u221E|-\u221E|[A-Za-z0-9]+)\s*\)/g, function(_m,v,t){ return _lim(v,t); });
