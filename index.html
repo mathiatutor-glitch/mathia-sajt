@@ -154,6 +154,13 @@ footer{text-align:center;padding:40px 0 30px;color:var(--muted);font-size:.82rem
 <style id="mkt-annual">
 .billtoggle{display:inline-flex;gap:4px;background:#F3E9D6;border:1px solid var(--goldlt);border-radius:100px;padding:4px;margin:0 auto 24px;justify-self:center}
 .billtoggle{display:flex;width:max-content;margin-left:auto;margin-right:auto}
+/* Na uskim telefonima (320px) prekidac je bio siri od ekrana (341px) jer
+   width:max-content ne mari za sirinu ekrana — pa se cela strana pomerala
+   u stranu, a znacka "2 MESECA GRATIS" bila je odsecena. Sada se prelomi. */
+@media(max-width:400px){
+  .billtoggle{width:auto;max-width:100%;flex-wrap:wrap;justify-content:center;border-radius:22px}
+  .billtoggle .bt{padding:9px 14px;font-size:.86rem}
+}
 .bt{border:none;background:transparent;font-family:var(--sans);font-weight:800;font-size:.9rem;color:var(--plum2);padding:9px 18px;border-radius:100px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
 .bt.on{background:#fff;color:var(--plum);box-shadow:0 8px 18px -10px rgba(120,70,80,.5)}
 .bt b{font-size:.66rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--malina2),var(--malina));padding:3px 8px;border-radius:100px}
