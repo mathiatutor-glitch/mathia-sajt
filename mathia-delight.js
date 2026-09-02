@@ -133,6 +133,47 @@
       var r = face.getBoundingClientRect(); hearts(r.left + r.width / 2, r.top + r.height / 2);
       fi++; face.textContent = faces[fi % faces.length]; speak();
     });
+    izbegniDonjuTraku(m);
+  }
+
+  // — maskota se sklanja iznad lepljive trake na dnu —
+  // Na telefonu naslovna ima dugme "Probaj besplatno" prikovano za dno.
+  // Maskota je stajala PREKO njega (z-index 9997 prema 70), pa klik na
+  // sredinu dugmeta nije stizao do dugmeta nego do oblacica maskote.
+  function izbegniDonjuTraku(m) {
+    function postavi() {
+      m.style.bottom = '';
+      var vh = window.innerHeight || 0;
+      if (!vh) return;
+      var mb = m.getBoundingClientRect(), dizanje = 0;
+      // oblacic menja sirinu zavisno od duzine poruke, pa racunamo
+      // najsiri moguci slucaj (lice + razmak + najsiri oblacic)
+      var desnaIvica = Math.max(mb.right, mb.left + 250);
+      var svi = document.body.getElementsByTagName('*');
+      for (var i = 0; i < svi.length; i++) {
+        var e = svi[i];
+        if (e === m || m.contains(e) || e.contains(m)) continue;
+        var s;
+        try { s = getComputedStyle(e); } catch (err) { continue; }
+        if (s.position !== 'fixed') continue;
+        if (s.display === 'none' || s.visibility === 'hidden') continue;
+        if (s.pointerEvents === 'none') continue;   // ukrasni slojevi (npr. padajuci simboli)
+        var r = e.getBoundingClientRect();
+        if (r.width < 40 || r.height < 20) continue;
+        if (r.height > vh * 0.4) continue;          // traka je niska; ovo je nesto drugo
+        if (vh - r.bottom > 24) continue;           // nije prikovano za dno
+        if (r.right < mb.left || r.left > desnaIvica) continue; // ne preklapa se vodoravno
+        var d = vh - r.top + 10;
+        if (d > dizanje) dizanje = d;
+      }
+      if (dizanje > 0 && dizanje < vh * 0.5) m.style.bottom = dizanje + 'px';
+    }
+    postavi();
+    setTimeout(postavi, 900);
+    var t = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(t); t = setTimeout(postavi, 150);
+    }, { passive: true });
   }
 
   // — blagi parallax na padajuće simbole —
