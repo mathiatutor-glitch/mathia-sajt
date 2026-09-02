@@ -78,19 +78,36 @@
     if (/\/provera-|\/kviz/.test(p)) return "provera";
     return "predmet";
   }
+  // Pamtimo POCETNO (srpsko) stanje strane da bismo mogli da ga VRATIMO.
+  // Ranije se naslov prevodio u jednom smeru: kad bi se vratio na srpski,
+  // ostajao bi nemacki/engleski naslov, a oznaka jezika strane se zaglavila
+  // na prvom stranom jeziku (jer se menjala samo ako je zatecena bila "sr").
+  var NASLOV0 = null, OG0 = null, LANG0 = null;
+  function zapamtiPocetno(){
+    if (NASLOV0 !== null) return;
+    NASLOV0 = document.title;
+    var og = document.querySelector('meta[property="og:title"]');
+    OG0 = og ? og.getAttribute("content") : null;
+    LANG0 = document.documentElement.lang || "sr-Latn";
+  }
   function prevediNaslov(){
     try{
-      if (!LANG || LANG === "sr") return;
+      zapamtiPocetno();
+      var og = document.querySelector('meta[property="og:title"]');
+      if (!LANG || LANG === "sr") {               // POVRATAK na pocetno stanje
+        document.title = NASLOV0;
+        if (og && OG0 != null) og.setAttribute("content", OG0);
+        document.documentElement.lang = LANG0;
+        return;
+      }
+      document.documentElement.lang = LANG;       // jezik strane uvek prati izbor
       var ime = subjFor(LANG);
       if (!ime || ime === SUBJ_SR) return;        // nemamo prevedeno ime — ne diraj naslov
       var rec = NASLOV_TIP[tipStrane()];
       var rep = rec && rec[LANG];
       if (!rep) return;
       document.title = ime + " — " + rep + " | Mathia";
-      var og = document.querySelector('meta[property="og:title"]');
       if (og) og.setAttribute("content", document.title);
-      var hl = document.documentElement.lang;
-      if (hl === "sr-Latn" || hl === "sr") document.documentElement.lang = LANG;
     }catch(e){}
   }
   // naziv predmeta za osmjezicni pozdrav. Strane salju data-sub (bez „j") — zato je ranije
