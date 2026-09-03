@@ -229,5 +229,6 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
 /* Klik na nivo odmah pokreće test (kao besplatno tok) — rešava „dugme ne radi". */
 (function(){try{var lvls=document.querySelectorAll('.lvl');var sb=document.getElementById('startBtn');lvls.forEach(function(b){b.addEventListener('click',function(){setTimeout(function(){if(sb)sb.click();},140);});});}catch(e){}})();
 </script>
+<script src="footer-mathia.js" defer></script>
 </body>
 </html>
