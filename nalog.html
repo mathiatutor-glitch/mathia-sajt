@@ -1570,7 +1570,7 @@ document.addEventListener('keydown',function(e){var k=(e.key||'').toLowerCase();
       if(t && TH[t]) return t;
       var kor=(localStorage.getItem("mathia_korica")||"").toLowerCase();
       if(/plum|šljiva|sljiva/.test(kor)) return "plum";
-      if(/blush|roze|roza/.test(kor)) return "blush";
+      if(/blush|roze|roza|rumen/.test(kor)) return "blush";
     }catch(e){}
     return "champ";
   }
