@@ -4,6 +4,35 @@
 // POST { text, lang } -> MP3.  GET ?lang=sr -> probni MP3 (otvori u browseru da čuješ).
 // Ako neki provajder zakaže, widget se sam vraća na glas uređaja.
 
+// ——— ZAŠTITA (dodato): ova tačka troši novac (ElevenLabs/Azure se plaćaju po znaku),
+// a bila je potpuno otvorena: Access-Control-Allow-Origin "*", bez prijave i bez
+// ograničenja. Zaštita sajta je ne pokriva jer middleware izričito izuzima /api/.
+// Sada: dozvoljeni su samo naši domeni + ograničenje broja poziva po IP-u.
+import { kvIncrTtl, kvConfigured } from "../lib/kv.js";
+
+const DOZVOLJENI = [
+  "https://mathia.rs",
+  "https://www.mathia.rs",
+  "https://project-y23je.vercel.app",
+];
+function izvor(req) {
+  const o = (req.headers && (req.headers.origin || req.headers.referer)) || "";
+  if (!o) return "";
+  try { const u = new URL(o); return u.origin; } catch (e) { return ""; }
+}
+function klijentIp(req) {
+  const xf = (req.headers && (req.headers["x-forwarded-for"] || req.headers["x-real-ip"])) || "";
+  return String(xf).split(",")[0].trim() || "noip";
+}
+async function prekoracio(id, poMinuti, poSatu) {
+  if (!kvConfigured()) return false;
+  try {
+    if ((await kvIncrTtl("ttsm:" + id, 60)) > poMinuti) return true;
+    if ((await kvIncrTtl("ttsh:" + id, 3600)) > poSatu) return true;
+  } catch (e) {}
+  return false;
+}
+
 // ——— ElevenLabs (samo srpski) ———
 const EL_VOICE_SR = "sK1CZxinAv6CB3NL3fNq"; // tvoj klon — isti glas za Zoi i Milu (raniji "Ida": d3l4f3HgkE3P6Fo91lYA)
 const EL_MODEL = "eleven_multilingual_v2";
@@ -116,10 +145,22 @@ async function speak(text, lang, voice, speed) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const o = izvor(req);
+  res.setHeader("Access-Control-Allow-Origin", DOZVOLJENI.indexOf(o) >= 0 ? o : DOZVOLJENI[0]);
+  res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   if (req.method === "OPTIONS") return res.status(200).end();
+
+  // sa tudjeg sajta ne posluzujemo (o je prazno kad se otvori direktno u pregledacu)
+  if (o && DOZVOLJENI.indexOf(o) < 0) {
+    return res.status(403).json({ error: "Nedozvoljen izvor." });
+  }
+  // ogranicenje po IP-u: dovoljno za stvarno slusanje, staje botu
+  const ip = klijentIp(req);
+  if (await prekoracio(ip, 30, 300)) {
+    return res.status(429).json({ error: "Previše zahteva. Sačekaj malo." });
+  }
 
   try {
     // --- GET: brzi test u browseru -> /api/tts ili /api/tts?lang=en ---
