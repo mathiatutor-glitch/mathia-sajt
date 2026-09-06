@@ -36,7 +36,11 @@ const PUBLIC = new Set([
 ]);
 
 function isAsset(p) {
-  return /\.(?:js|mjs|css|png|jpe?g|svg|gif|webp|avif|ico|woff2?|ttf|otf|json|xml|txt|webmanifest|map|pdf|mp4|webm|zip|crt|pem|pub)$/i.test(p);
+  // PDF i ZIP su IZBACENI sa spiska slobodnih fajlova.
+  // Bili su tu, pa se svaka e-skripta, planer i zbirka mogla skinuti
+  // BEZ PRIJAVE ako se pogodi ime — proverila sam i zaista se skidalo.
+  // (robots.txt i sitemap.xml MORAJU ostati slobodni, zato txt/xml ostaju.)
+  return /\.(?:js|mjs|css|png|jpe?g|svg|gif|webp|avif|ico|woff2?|ttf|otf|json|xml|txt|webmanifest|map|mp4|webm|crt|pem|pub)$/i.test(p);
 }
 
 export default async function middleware(req) {
