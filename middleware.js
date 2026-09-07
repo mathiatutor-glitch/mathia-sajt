@@ -19,7 +19,10 @@ import { computeTrial } from "./lib/user.js";
 
 export const config = {
   // Pokreni za sve rute OSIM: api, _next i statičkih fajlova (asseti se ne diraju).
-  matcher: ["/((?!api/|_next/|favicon.ico|.*\\.(?:js|mjs|css|png|jpg|jpeg|svg|gif|webp|avif|ico|woff|woff2|ttf|otf|json|xml|txt|webmanifest|map|pdf|mp4|webm|zip|crt|pem|pub)$).*)"],
+  // PAZI: ovaj spisak odlucuje DA LI se zastita uopste pokrece. Ako je nastavak
+  // ovde, funkcija ispod se nikada ne pozove. Zato su pdf i zip morali da se
+  // izbace i ODAVDE, ne samo iz isAsset() — inace se placeni PDF-ovi i dalje skidaju.
+  matcher: ["/((?!api/|_next/|favicon.ico|.*\\.(?:js|mjs|css|png|jpg|jpeg|svg|gif|webp|avif|ico|woff|woff2|ttf|otf|json|xml|txt|webmanifest|map|mp4|webm|crt|pem|pub)$).*)"],
 };
 
 // —— JAVNE STRANE: uvek otvorene (bez prijave). Sve van ove liste je zaključano. ——
