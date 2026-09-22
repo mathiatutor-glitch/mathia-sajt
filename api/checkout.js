@@ -33,6 +33,16 @@ export default async function handler(req, res) {
     return res.status(200).json({ paymentUrl, orderId, iznos: ukupno });
   } catch (e) {
     console.error('checkout', e);
-    return res.status(500).json({ greska: e.message });
+    // Kupcu NIKADA ne vracamo tehnicku poruku. Ranije je ovde isao e.message,
+    // pa je kupac u iskacucem prozoru video "TypeError: fetch failed".
+    // Tehnicki detalj ostaje u Vercel logovima (console.error iznad).
+    const teh = String((e && e.message) || e);
+    const bazaNeradi = /fetch failed|ENOTFOUND|ECONNREFUSED|ETIMEDOUT|EAI_AGAIN|socket hang up|network/i.test(teh);
+    return res.status(bazaNeradi ? 503 : 500).json({
+      kod: bazaNeradi ? 'baza_nedostupna' : 'greska',
+      greska: bazaNeradi
+        ? 'Trenutno ne možemo da otvorimo plaćanje. Pokušaj za minut — ili nam piši na kontakt@mathia.rs i rešavamo odmah.'
+        : 'Nešto je zapelo pri otvaranju plaćanja. Pokušaj ponovo — ili nam piši na kontakt@mathia.rs.'
+    });
   }
 }
