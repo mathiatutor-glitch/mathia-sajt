@@ -618,8 +618,8 @@ async function plati(){
     });
     const data = await r.json();
     if(r.ok && data.paymentUrl){ location.href = data.paymentUrl; }
-    else { msg.textContent = data.greska || 'Naplata još nije aktivna. Pokušaj ubrzo.'; }
-  }catch(e){ msg.textContent = 'Naplata još nije povezana (čekamo ključeve banke).'; }
+    else { msg.textContent = (data.greska || 'Naplata trenutno nije dostupna.') + ' Piši nam na kontakt@mathia.rs i rešavamo odmah.'; }
+  }catch(e){ msg.textContent = 'Trenutno ne možemo da otvorimo plaćanje. Pokušaj za minut, ili nam piši na kontakt@mathia.rs.'; }
 }
 
 try{ osveziKorpu(); }catch(e){} markKorica(); if(location.search.indexOf('korpa=1')>=0){try{otvori();}catch(e){}}
