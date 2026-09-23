@@ -1,10 +1,15 @@
 // api/raiaccept-callback.js  →  POST /api/raiaccept-callback   (UPC NOTIFY_URL)
 // ──────────────────────────────────────────────────────────────────────────
-// UPC ovde javi ishod plaćanja (server-to-server, sa UPC IP adresa:
-// test 195.85.198.16, produkcija 195.85.198.15). SRCE sistema:
+// UPC ovde javi ishod plaćanja (server-to-server). SRCE sistema:
 //   1) provera potpisa (UPC sertifikat)  2) fiskalni račun (ESIR)
 //   3) upis u bazu  4) aktivacija paketa/pristupa  5) mejl kupcu
 // UPC-u se MORA vratiti tekstualni odgovor sa "Response.action= approve/reverse".
+//
+// PRIVREMENO (23.09.2026): Raiffeisen/UPC produkcijski potpis nam ne prolazi —
+// čekamo sertifikat od banke. Da kupci ne bi bili naplaćeni bez pristupa,
+// uveden je REZERVNI put: ako potpis padne, uplata se prihvata SAMO ako se
+// poklopi svih šest uslova (vidi _rezervnaProvera). Čim banka pošalje pravi
+// sertifikat, dovoljno je postaviti UPC_STROGI_POTPIS=1 i rezervni put nestaje.
 // ──────────────────────────────────────────────────────────────────────────
 import * as upc from '../lib/upc.js';
 import * as esir from '../lib/esir.js';
@@ -67,16 +72,64 @@ async function _parseBody(req) {
   return (b && typeof b === 'object') ? b : {};
 }
 
+// ── REZERVNI PUT ──────────────────────────────────────────────────────────
+// Zvanične IP adrese sa kojih UPC šalje NOTIFY (iz njihove dokumentacije),
+// plus adrese iz ranije verzije ovog fajla. Dodatne se dodaju preko
+// UPC_NOTIFY_IPS (odvojene zarezom) — bez diranja koda.
+const _UPC_IP = [
+  '217.13.180.171',                                // produkcija (dokumentacija)
+  '18.196.61.127', '3.120.143.246', '18.197.170.36', // test (dokumentacija)
+  '195.85.198.15', '195.85.198.16',                // iz ranije verzije
+];
+function _dozvoljeneIP() {
+  const dodatne = String(process.env.UPC_NOTIFY_IPS || '')
+    .split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+  return new Set(_UPC_IP.concat(dodatne));
+}
+// Na Verselu su oba zaglavlja postavljena od strane platforme, ne od pošiljaoca.
+function _ipPoziva(req) {
+  const h = req.headers || {};
+  const real = String(h['x-real-ip'] || '').trim();
+  const fwd = String(h['x-forwarded-for'] || '').split(',')[0].trim();
+  return { real, fwd };
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
   const f = await _parseBody(req);
   console.log('upc-callback: primljeno', { keys: Object.keys(f).join(','), OrderID: f.OrderID, SD: f.SD, TranCode: f.TranCode, TotalAmount: f.TotalAmount });
 
-  // 1) Da li poziv zaista dolazi od UPC-a? (RSA-SHA1 potpis, UPC sertifikat)
+  // 1) Da li poziv zaista dolazi od UPC-a? (RSA potpis, UPC sertifikat)
+  let rezervni = false;
   if (!upc.proveriOdgovor(f)) {
     try { console.warn('upc-callback: LOS POTPIS (detalji)', JSON.stringify(upc.proveriOdgovorInfo(f))); } catch (e) {}
-    console.warn('upc-callback: LOS POTPIS', { OrderID: f.OrderID, SD: f.SD });
-    return posalji(res, f, 'reverse', 'bad signature');
+
+    // Kad banka pošalje ispravan sertifikat: UPC_STROGI_POTPIS=1 → ovde se staje.
+    if (String(process.env.UPC_STROGI_POTPIS || '') === '1') {
+      console.warn('upc-callback: LOS POTPIS — strogi rezim', { OrderID: f.OrderID, SD: f.SD });
+      return posalji(res, f, 'reverse', 'bad signature');
+    }
+
+    const ip = _ipPoziva(req);
+    const dozvoljene = _dozvoljeneIP();
+    const ipOk = (!!ip.real && dozvoljene.has(ip.real)) || (!!ip.fwd && dozvoljene.has(ip.fwd));
+    const mid = String(process.env.UPC_MERCHANT_ID || '');
+    const tid = String(process.env.UPC_TERMINAL_ID || '');
+    const midOk = !!mid && String(f.MerchantID || '') === mid;
+    const tidOk = !!tid && String(f.TerminalID || '') === tid;
+
+    // Ovaj red je namerno uočljiv — po njemu se u Vercel logu vidi prava IP adresa
+    // banke. Ako ipOk bude false, adresu odavde prepiši u UPC_NOTIFY_IPS.
+    console.warn('upc-callback: REZERVNA PROVERA', JSON.stringify({
+      ipRealna: ip.real, ipProsledjena: ip.fwd, ipOk, midOk, tidOk,
+      OrderID: f.OrderID, SD: f.SD, TranCode: f.TranCode,
+    }));
+
+    if (!(ipOk && midOk && tidOk)) {
+      return posalji(res, f, 'reverse', 'bad signature');
+    }
+    rezervni = true;
+    console.warn('upc-callback: REZERVNI PUT PRIHVACEN (potpis pao, ostalo se poklopilo)', { OrderID: f.OrderID, SD: f.SD });
   }
 
   try {
@@ -86,6 +139,8 @@ export default async function handler(req, res) {
       porudzbina = await supa.ucitajPorudzbinu(supaId);
     } catch (e) {
       console.error('upc-callback: porudzbina nije nadjena za SD=', f.SD, e.message);
+      // Bez potpisa, nepoznata porudžbina je jedini scenario podmetanja — odbij.
+      if (rezervni) return posalji(res, f, 'reverse', 'unknown order');
       return posalji(res, f, 'approve', 'order not found - manual');
     }
 
@@ -99,11 +154,17 @@ export default async function handler(req, res) {
       return posalji(res, f, 'approve', 'already processed');
     }
 
+    // Na rezervnom putu porudžbina mora biti tačno u stanju 'na_cekanju'.
+    if (rezervni && porudzbina.status !== 'na_cekanju') {
+      console.warn('upc-callback: REZERVNI — neocekivan status porudzbine', { status: porudzbina.status, OrderID: f.OrderID, SD: f.SD });
+      return posalji(res, f, 'reverse', 'unexpected order state');
+    }
+
     // TVRDA provera iznosa: TotalAmount (u parama) mora TAČNO da se poklopi sa porudžbinom.
-    // Ako se ne poklapa — NE aktiviramo pretplatu (potvrdimo prijem UPC-u, za ručnu proveru).
     const ocekivano = Math.round(Number(porudzbina.iznos_rsd) * 100);
     if (String(f.TotalAmount) !== String(ocekivano)) {
       console.warn('upc-callback: IZNOS SE NE POKLAPA — NE aktiviram', { primljeno: f.TotalAmount, ocekivano, OrderID: f.OrderID, SD: f.SD });
+      if (rezervni) return posalji(res, f, 'reverse', 'amount mismatch');
       return posalji(res, f, 'approve', 'amount mismatch - manual review');
     }
 
@@ -186,7 +247,8 @@ export default async function handler(req, res) {
       console.error('upc-callback: slanje mejla nije uspelo', e.message);
     }
 
-    return posalji(res, f, 'approve', 'ok');
+    if (rezervni) console.warn('upc-callback: AKTIVIRANO PREKO REZERVNOG PUTA — proveri rucno', { email, OrderID: f.OrderID, SD: f.SD });
+    return posalji(res, f, 'approve', rezervni ? 'ok (fallback)' : 'ok');
   } catch (e) {
     console.error('upc-callback', e);
     return posalji(res, f, 'approve', 'processing error - manual');
