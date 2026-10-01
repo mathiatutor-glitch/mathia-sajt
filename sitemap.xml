@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://mathia.rs/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>2026-08-21</lastmod></url>
-  <url><loc>https://mathia.rs/Planer-Fakultet.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
-  <url><loc>https://mathia.rs/Planer-Osnovna.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
-  <url><loc>https://mathia.rs/Planer-Srednja.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/Planeri.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/biblioteka.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/elektronika-cadence.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
@@ -71,7 +68,6 @@
   <url><loc>https://mathia.rs/prijemni-visa.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/privatnost.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/prodavnica.html</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-08-21</lastmod></url>
-  <url><loc>https://mathia.rs/profil.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/programiranje-algoritmi.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/programiranje-arduino.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/programiranje-c.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
@@ -104,6 +100,5 @@
   <url><loc>https://mathia.rs/trigonometrija-krug.html</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/trigonometrija.html</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/uslovi.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
-  <url><loc>https://mathia.rs/utisci-posalji.html</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>2026-08-21</lastmod></url>
   <url><loc>https://mathia.rs/za-roditelje.html</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>2026-08-21</lastmod></url>
 </urlset>
