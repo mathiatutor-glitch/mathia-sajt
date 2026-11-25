@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF6EE">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Moji časovi">
+<title>Moji časovi — MathIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FBF6EE;--plum:#432C37;--plum2:#5B3A4A;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--roze:#FCE8EE;--roze2:#F6D3DD;--muted:#86707B;--line:#F0E4D0;--zelena:#2E7D5B;--zelenalt:#E2F3EA}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Nunito,system-ui,sans-serif;color:var(--plum);background:var(--paper);min-height:100vh;padding-bottom:110px;overflow-x:hidden}
+button{font:inherit;color:inherit}
+.pozadina{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.mrlja{position:absolute;border-radius:50%;filter:blur(40px);opacity:.7}
+.m1{width:420px;height:420px;background:#F7EAC9;top:-170px;left:-150px}
+.m2{width:360px;height:360px;background:#F6D3DD;top:-60px;right:-180px}
+.wrap{max-width:640px;margin:0 auto;padding:18px 14px 0}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.logo{display:flex;align-items:center;gap:9px}
+.logo-znak{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--plum),#6B2340);display:grid;place-items:center;color:var(--goldlt);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:20px}
+.logo b{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:21px}
+.logo b i{color:var(--malina);font-style:normal}
+.odjava{font-size:12px;font-weight:800;color:var(--muted);background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.ulaz{animation:ulaz .35s ease both}
+@keyframes ulaz{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;line-height:1.05}
+h1 em{color:var(--malina)}
+.pozdrav{margin:0 4px 16px}
+.pozdrav p{color:var(--muted);font-size:14.5px;margin-top:4px}
+
+.kartica{background:rgba(255,255,255,.93);border:1px solid var(--line);border-radius:24px;padding:18px 16px;box-shadow:0 16px 36px -24px rgba(67,44,55,.35);margin-bottom:12px}
+.danas-k{background:linear-gradient(140deg,var(--plum),#6B2340);color:#fff;border:0;position:relative;overflow:hidden}
+.danas-k::after{content:"∑";position:absolute;right:14px;bottom:-26px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:120px;color:rgba(231,210,162,.13)}
+.danas-k small{font-size:11px;font-weight:900;letter-spacing:.14em;color:var(--goldlt)}
+.danas-k .broj{display:flex;gap:18px;margin-top:8px}
+.danas-k .broj div b{display:block;font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1}
+.danas-k .broj div span{font-size:12px;color:#E9D9E0;font-weight:700}
+.danas-k .sledeci{margin-top:14px;background:rgba(255,255,255,.1);border-radius:14px;padding:10px 12px;font-size:13.5px}
+.danas-k .sledeci b{color:var(--goldlt)}
+
+.nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 2px 6px}
+.nav b{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;text-align:center}
+.nav b span{display:block;font-family:Nunito;font-size:11.5px;color:var(--muted);font-weight:700}
+.strel{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:#fff;cursor:pointer;font-size:18px;font-weight:900;transition:.15s;flex:0 0 40px}
+.strel:hover{border-color:var(--malina);color:var(--malina)}
+.ovanedelja{display:block;margin:0 auto 6px;font-size:12px;font-weight:800;color:var(--malina);background:none;border:0;cursor:pointer}
+
+.dan-n{display:flex;align-items:center;gap:8px;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--golddk);margin:18px 6px 8px}
+.dan-n::after{content:"";flex:1;height:1px;background:var(--line)}
+.dan-n .dbadge{background:var(--malina);color:#fff;border-radius:999px;padding:2px 8px;font-size:10px;letter-spacing:.06em}
+.cas{display:flex;gap:12px;background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:13px 13px 12px;margin-bottom:9px;transition:.2s}
+.cas.otkazan{opacity:.5;background:transparent;border-style:dashed}
+.cas.placen{border-color:#CDE8D9}
+.vreme{flex:0 0 54px;text-align:center}
+.vreme b{display:block;font-size:17px;font-weight:900}
+.vreme small{font-size:11px;color:var(--muted);font-weight:700}
+.avatar{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:13px;margin:6px auto 0}
+.info{flex:1;min-width:0}
+.info .ime{font-weight:900;font-size:15.5px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.oznake{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0 4px}
+.oz{font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;background:var(--champ);color:var(--golddk)}
+.oz.r{background:var(--roze);color:var(--malina)}
+.oz.z{background:var(--zelenalt);color:var(--zelena)}
+.oz.s{background:#F1ECF0;color:var(--muted)}
+.napom{font-size:13px;color:var(--plum2);background:var(--paper);border-radius:12px;padding:7px 10px;margin-top:6px;line-height:1.45}
+.kontakt{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.kb{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;border-radius:999px;padding:6px 11px;border:1.5px solid var(--line);background:#fff;color:var(--plum);text-decoration:none;cursor:pointer;transition:.15s}
+.kb:hover{border-color:var(--goldlt)}
+.kb.plati{border-color:#BFE0CE;color:var(--zelena)}
+.kb.plati.on{background:var(--zelena);border-color:var(--zelena);color:#fff}
+.kb.r{color:var(--malina)}
+.blok{display:flex;gap:12px;align-items:center;background:repeating-linear-gradient(-45deg,#fff,#fff 8px,#FBF3F5 8px,#FBF3F5 16px);border:1.5px dashed var(--roze2);border-radius:18px;padding:11px 13px;margin-bottom:9px;font-size:13.5px}
+.prazno{text-align:center;color:var(--muted);font-size:14px;padding:28px 14px;line-height:1.6}
+.prazno div{font-size:34px;margin-bottom:6px}
+
+/* forme */
+.naslov{display:flex;gap:12px;align-items:center;margin-bottom:4px}
+.ikchip{flex:0 0 44px;height:44px;border-radius:15px;display:grid;place-items:center;font-size:21px;background:linear-gradient(135deg,var(--roze),var(--champ))}
+.naslov h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;line-height:1.05}
+.naslov h2 em{color:var(--malina)}
+.pod{color:var(--muted);font-size:13.5px;line-height:1.5;margin:6px 2px 6px}
+label{display:block;font-size:12.5px;font-weight:800;margin:13px 4px 6px;color:var(--plum2)}
+input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--plum);border:2px solid var(--line);background:#fff;border-radius:14px;padding:11px 13px;outline:none;transition:.15s;-webkit-appearance:none;appearance:none}
+select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239C7838' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center}
+input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(198,160,92,.14)}
+.red{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.segment{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--paper);border-radius:14px;padding:4px}
+.segment button{border:0;background:transparent;border-radius:11px;padding:9px 6px;font-weight:800;font-size:13.5px;cursor:pointer;color:var(--muted)}
+.segment button.on{background:#fff;color:var(--plum);box-shadow:0 4px 10px -6px rgba(67,44,55,.5)}
+.chk{display:flex;gap:10px;align-items:center;font-size:14px;margin:16px 4px 0;font-weight:700;cursor:pointer}
+.chk input{width:20px;height:20px;accent-color:var(--malina);-webkit-appearance:auto;appearance:auto}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;cursor:pointer;font-weight:900;font-size:15px;border-radius:16px;padding:14px 18px;margin-top:16px;color:#fff;background:linear-gradient(135deg,#6B2340,var(--malina));box-shadow:0 10px 22px -12px rgba(176,30,72,.85);transition:.15s}
+.btn:disabled{opacity:.6}
+.btn.sek{background:#fff;color:var(--plum);border:2px solid var(--goldlt);box-shadow:none}
+.poruka{display:none;gap:8px;border-radius:14px;padding:11px 14px;font-size:14px;font-weight:700;margin-top:12px;animation:ulaz .3s}
+.poruka.ok{background:var(--zelenalt);color:var(--zelena)}.poruka.err{background:var(--roze);color:var(--malina)}
+
+/* zarada */
+.stat{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat div{border-radius:18px;padding:13px 14px;background:var(--paper)}
+.stat div.glavna{grid-column:1/-1;background:linear-gradient(140deg,var(--plum),#6B2340);color:#fff}
+.stat small{display:block;font-size:11.5px;font-weight:800;color:var(--muted)}
+.stat .glavna small{color:var(--goldlt)}
+.stat b{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:700;color:var(--malina)}
+.stat .glavna b{color:#fff;font-size:36px}
+.stat .zel b{color:var(--zelena)}
+.traka-n{height:10px;border-radius:10px;background:var(--roze);overflow:hidden;margin-top:10px}
+.traka-n i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--zelena));border-radius:10px;transition:width .6s}
+.kod{font-size:12px;word-break:break-all;background:var(--paper);border-radius:12px;padding:10px 12px;margin-top:10px;color:var(--plum2)}
+.koraci-g{counter-reset:k;margin-top:8px}
+.koraci-g div{counter-increment:k;display:flex;gap:10px;font-size:13.5px;line-height:1.5;padding:4px 0;color:var(--plum2)}
+.koraci-g div::before{content:counter(k);flex:0 0 22px;height:22px;border-radius:50%;background:var(--champ);color:var(--golddk);font-weight:900;font-size:12px;display:grid;place-items:center}
+
+/* donji meni */
+.meni{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 12px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(251,246,238,0),rgba(251,246,238,.97) 35%)}
+.meni .unutra{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:22px;padding:6px;box-shadow:0 14px 34px -18px rgba(67,44,55,.55)}
+.meni button{border:0;background:transparent;border-radius:16px;padding:7px 2px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:800;color:var(--muted);transition:.15s}
+.meni button span{font-size:20px;line-height:1.1;filter:grayscale(.6);transition:.15s}
+.meni button.on{background:var(--roze);color:var(--malina)}
+.meni button.on span{filter:none;transform:scale(1.1)}
+
+/* prijava */
+.prijava{max-width:400px;margin:40px auto 0;text-align:center}
+.prijava .srce{width:76px;height:76px;margin:0 auto 14px;border-radius:26px;display:grid;place-items:center;font-size:36px;background:linear-gradient(135deg,var(--roze),var(--champ))}
+.prijava .kartica{text-align:left;margin-top:20px}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--plum);color:#fff;font-weight:800;font-size:14px;border-radius:999px;padding:10px 18px;transition:.25s;z-index:40;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.skeleton i{display:block;height:92px;border-radius:20px;margin-bottom:9px;background:linear-gradient(90deg,#F6EEE2,#fff,#F6EEE2);background-size:200% 100%;animation:sj 1.1s infinite}
+@keyframes sj{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="pozadina" aria-hidden="true"><div class="mrlja m1"></div><div class="mrlja m2"></div></div>
+<div class="wrap">
+  <div class="top"><div class="logo"><span class="logo-znak">M</span><b>Math<i>IA</i></b></div><button class="odjava" id="odjava" style="display:none" onclick="odjava()">Odjava</button></div>
+  <div id="app"></div>
+</div>
+<nav class="meni" id="meni" style="display:none"><div class="unutra">
+  <button data-t="raspored" onclick="naTab('raspored')"><span>🗓</span>Raspored</button>
+  <button data-t="dodaj" onclick="naTab('dodaj')"><span>➕</span>Dodaj čas</button>
+  <button data-t="blokade" onclick="naTab('blokade')"><span>🌴</span>Slobodno</button>
+  <button data-t="zarada" onclick="naTab('zarada')"><span>💰</span>Zarada</button>
+</div></nav>
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'https://project-y23je.vercel.app/api/zakazivanje';
+const DANI = ['','Ponedeljak','Utorak','Sreda','Četvrtak','Petak','Subota','Nedelja'];
+const MESECI = ['januar','februar','mart','april','maj','jun','jul','avgust','septembar','oktobar','novembar','decembar'];
+const MESECI_G = ['januara','februara','marta','aprila','maja','juna','jula','avgusta','septembra','oktobra','novembra','decembra'];
+const OBLASTI = ['Matematika','Elektrotehnika','Mehanika','Fizika','Prijemni ispit','Nešto drugo'];
+const BOJE = [['#FCE8EE','#B01E48'],['#F7EAC9','#9C7838'],['#E2F3EA','#2E7D5B'],['#EDE6F3','#6B4C8A'],['#E4EEF6','#3D6A8F']];
+let kljuc = ''; try { kljuc = sessionStorage.getItem('mathia_cas_k') || localStorage.getItem('mathia_cas_k') || ''; } catch(e){}
+let tab = 'raspored', od = null, kalLink = '', mesec = null;
+const novi = {nacin:'uzivo', tip:'individualni', predmet:'Matematika'};
+const app = document.getElementById('app');
+const esc = (t) => String(t ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const din = (n) => (n||0).toLocaleString('sr-RS').replace(/,/g,'.') + ' din';
+const sat2 = (h) => String(h).padStart(2,'0') + ':00';
+function dodaj(d,n){ const [y,m,dd]=d.split('-').map(Number); return new Date(Date.UTC(y,m-1,dd+n)).toISOString().slice(0,10); }
+function dow(d){ const [y,m,dd]=d.split('-').map(Number); const w=new Date(Date.UTC(y,m-1,dd)).getUTCDay(); return w===0?7:w; }
+function bg(){ const p={}; new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Belgrade',hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit'}).formatToParts(new Date()).forEach(x=>p[x.type]=x.value); return {d:`${p.year}-${p.month}-${p.day}`, h:+p.hour}; }
+const danas = () => bg().d;
+function lep(d){ const [,m,dd]=d.split('-').map(Number); return `${DANI[dow(d)]}, ${dd}. ${MESECI_G[m-1]}`; }
+function kr(d){ const [,m,dd]=d.split('-').map(Number); return `${dd}. ${MESECI_G[m-1]}`; }
+const ponOd = (d) => dodaj(d, -(dow(d)-1));
+function inicijali(ime){ const p=String(ime).trim().split(/\s+/); return ((p[0]||'')[0]||'' ) + ((p[1]||'')[0]||''); }
+function boja(ime){ let h=0; for(const c of String(ime)) h=(h*31+c.charCodeAt(0))>>>0; return BOJE[h%BOJE.length]; }
+function toast(t){ const el=document.getElementById('toast'); el.textContent=t; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('on'),1800); }
+function tel(t){ return String(t||'').replace(/[^\d+]/g,'').replace(/^0/,'+381'); }
+
+async function poziv(akcija, params={}, telo=null){
+  const url = telo ? API : `${API}?akcija=${akcija}&` + new URLSearchParams(params);
+  const r = await fetch(url, { method: telo?'POST':'GET', headers: {'Content-Type':'application/json','x-kljuc':kljuc}, body: telo?JSON.stringify({akcija,...telo}):undefined });
+  const j = await r.json().catch(()=>({greska:'Greška servera'}));
+  if (r.status===401){ odjava(); throw new Error(j.greska); }
+  if (!r.ok) throw new Error(j.greska || 'Greška');
+  return j;
+}
+
+/* ───── prijava ───── */
+function prijava(poruka){
+  document.getElementById('odjava').style.display='none'; document.getElementById('meni').style.display='none';
+  app.innerHTML = `<div class="prijava ulaz"><div class="srce">🔐</div><h1>Dobro došla <em>nazad!</em></h1>
+    <div class="kartica"><form onsubmit="uloguj(event)">
+    <label for="k">Lozinka</label><input id="k" type="password" autocomplete="current-password" autofocus>
+    <label class="chk"><input type="checkbox" id="zapamti" checked> Zapamti me na ovom uređaju</label>
+    <button class="btn" id="ub">Uđi</button><div class="poruka err" id="p" ${poruka?'style="display:flex"':''}>${poruka?'🙈 '+esc(poruka):''}</div></form></div></div>`;
+}
+async function uloguj(e){
+  e.preventDefault(); kljuc = document.getElementById('k').value.trim();
+  const zap = document.getElementById('zapamti').checked;
+  document.getElementById('ub').disabled = true;
+  try { await poziv('admin_lista',{od:danas(),do:danas()});
+    try{ sessionStorage.setItem('mathia_cas_k',kljuc); if(zap) localStorage.setItem('mathia_cas_k',kljuc); }catch(x){}
+    glavno(); }
+  catch(err){ prijava(err.message); }
+}
+function odjava(){ kljuc=''; try{sessionStorage.removeItem('mathia_cas_k');localStorage.removeItem('mathia_cas_k');}catch(e){} prijava(); }
+
+function naTab(t){ tab=t; glavno(); window.scrollTo({top:0,behavior:'smooth'}); }
+function glavno(){
+  document.getElementById('odjava').style.display=''; document.getElementById('meni').style.display='';
+  document.querySelectorAll('.meni button').forEach(b=>b.classList.toggle('on', b.dataset.t===tab));
+  app.innerHTML = '<div id="sadrzaj" class="ulaz"></div>';
+  ({raspored, dodaj:dodajCas, blokade, zarada})[tab]();
+}
+
+/* ───── raspored ───── */
+async function raspored(){
+  const D = danas();
+  if (!od) od = ponOd(D);
+  const doD = dodaj(od, 6);
+  const S = document.getElementById('sadrzaj');
+  const sat = bg().h;
+  const pozdrav = sat<12?'Dobro jutro':sat<18?'Dobar dan':'Dobro veče';
+  S.innerHTML = `<div class="pozdrav"><h1>${pozdrav}, <em>Marina</em> 💖</h1><p>${lep(D)}</p></div>
+    <div id="danas"></div>
+    <div class="nav"><button class="strel" onclick="od=dodaj(od,-7);raspored()" aria-label="Prethodna nedelja">‹</button>
+      <b>${od===ponOd(D)?'Ova nedelja':od===dodaj(ponOd(D),7)?'Sledeća nedelja':'Nedelja'}<span>${kr(od)} – ${kr(doD)}</span></b>
+      <button class="strel" onclick="od=dodaj(od,7);raspored()" aria-label="Sledeća nedelja">›</button></div>
+    ${od!==ponOd(D)?`<button class="ovanedelja" onclick="od=ponOd(danas());raspored()">↩ Nazad na ovu nedelju</button>`:''}
+    <div id="lista"><div class="skeleton"><i></i><i></i><i></i></div></div>`;
+  try {
+    const [j, jd] = await Promise.all([poziv('admin_lista',{od,do:doD}), poziv('admin_lista',{od:D,do:D})]);
+    kalLink = j.kalendar;
+    const dn = jd.casovi.filter(c=>c.status==='zakazan');
+    const sledeci = dn.find(c=>c.vreme>=sat);
+    const zarDanas = dn.reduce((s,c)=>s+c.cena,0);
+    document.getElementById('danas').innerHTML = `<div class="kartica danas-k"><small>DANAS</small>
+      <div class="broj"><div><b>${dn.length}</b><span>${dn.length===1?'čas':dn.length>=2&&dn.length<=4?'časa':'časova'}</span></div><div><b>${din(zarDanas).replace(' din','')}</b><span>dinara</span></div></div>
+      <div class="sledeci">${sledeci?`Sledeći: <b>${sat2(sledeci.vreme)}</b> · ${esc(sledeci.ime)} · ${sledeci.nacin==='online'?'💻 online':'🏡 uživo'}`:dn.length?'Za danas si završila, bravo! ✨':'Danas nemaš zakazanih časova 🌸'}</div></div>`;
+
+    let h = '';
+    for (let d = od; d <= doD; d = dodaj(d,1)) {
+      const c = j.casovi.filter(x=>x.datum===d), bl = j.blokade.filter(x=>x.datum===d);
+      if (!c.length && !bl.length) continue;
+      const akt = c.filter(x=>x.status==='zakazan').length;
+      h += `<div class="dan-n">${d===D?'<span class="dbadge">DANAS</span>':''}${lep(d)}${akt?` · ${akt}`:''}</div>`;
+      bl.forEach(b=> h += `<div class="blok"><span style="font-size:20px">🌴</span><div><b>Ne radim</b> · ${b.vreme===null?'ceo dan':sat2(b.vreme)}${b.razlog?`<br><span style="color:var(--muted)">${esc(b.razlog)}</span>`:''}</div></div>`);
+      c.forEach(x=> h += kartaCasa(x));
+    }
+    document.getElementById('lista').innerHTML = (h || `<div class="prazno"><div>🌸</div>Nema časova ove nedelje.<br>Pošalji učenicima link <b>mathia.rs/zakazivanje.html</b></div>`) +
+      `<div class="kartica" style="margin-top:20px"><div class="naslov"><div class="ikchip">📅</div><h2>Google <em>kalendar</em></h2></div>
+       <p class="pod">Jednom podesiš i časovi se sami pojavljuju u tvom kalendaru.</p>
+       <div class="koraci-g"><div><span>Kopiraj link ispod</span></div><div><span>Na računaru otvori Google kalendar → <b>Ostali kalendari</b> → <b>+</b> → <b>Sa URL-a</b></span></div><div><span>Nalepi link i klikni „Dodaj kalendar”</span></div></div>
+       <div class="kod">${esc(kalLink)}</div>
+       <button class="btn sek" onclick="navigator.clipboard.writeText(kalLink).then(()=>toast('Link je kopiran ✓'))">📋 Kopiraj link</button></div>`;
+  } catch(e){ document.getElementById('lista').innerHTML = `<div class="prazno"><div>📡</div>${esc(e.message)}</div>`; }
+}
+function kartaCasa(x){
+  const [bp, bt] = boja(x.ime);
+  const otk = x.status==='otkazan';
+  return `<div class="cas ${otk?'otkazan':''} ${x.placeno&&!otk?'placen':''}" id="c-${x.id}">
+    <div class="vreme"><b>${sat2(x.vreme)}</b><small>${sat2(x.vreme+1)}</small><div class="avatar" style="background:${bp};color:${bt}">${esc(inicijali(x.ime).toUpperCase())}</div></div>
+    <div class="info">
+      <div class="ime">${esc(x.ime)}</div>
+      <div class="oznake">
+        <span class="oz ${x.nacin==='online'?'r':''}">${x.nacin==='online'?'💻 online':'🏡 uživo'}</span>
+        <span class="oz">${x.tip==='grupni'?'👯 grupni':'🎯 individualni'}</span>
+        ${x.predmet?`<span class="oz s">${esc(x.predmet)}</span>`:''}
+        <span class="oz ${x.placeno?'z':'s'}">${din(x.cena)}${x.placeno?' ✓':''}</span>
+        ${otk?'<span class="oz r">otkazan</span>':''}
+        ${x.izvor&&x.izvor!=='sajt'?`<span class="oz s">${x.izvor==='visibook'?'iz Visibooka':'ručno'}</span>`:''}
+      </div>
+      ${x.napomena?`<div class="napom">💬 ${esc(x.napomena)}</div>`:''}
+      <div class="kontakt">
+        ${otk
+          ? `<button class="kb" onclick="izmeni('${x.id}',{status:'zakazan'},'Čas je vraćen')">↩ Vrati čas</button>`
+          : `<button class="kb plati ${x.placeno?'on':''}" onclick="izmeni('${x.id}',{placeno:${!x.placeno}},'${x.placeno?'Označeno kao neplaćeno':'Plaćeno ✓'}')">${x.placeno?'✓ Plaćeno':'💳 Plaćeno?'}</button>
+             ${x.telefon?`<a class="kb" href="tel:${esc(tel(x.telefon))}">📞 Pozovi</a><a class="kb" href="viber://chat?number=${encodeURIComponent(tel(x.telefon))}">💜 Viber</a>`:''}
+             ${x.email?`<a class="kb" href="mailto:${esc(x.email)}">✉️</a>`:''}
+             <button class="kb r" onclick="if(confirm('Otkazati čas za ${esc(x.ime).replace(/'/g,'')}?'))izmeni('${x.id}',{status:'otkazan'},'Čas je otkazan')">Otkaži</button>`}
+      </div>
+    </div></div>`;
+}
+async function izmeni(id, izm, poruka){
+  try { await poziv('admin_izmeni',{}, {id,...izm}); toast(poruka||'Sačuvano'); raspored(); }
+  catch(e){ alert(e.message); }
+}
+
+/* ───── dodaj čas ───── */
+function opcijeSati(sel=12){ return Array.from({length:14},(_,i)=>i+8).map(h=>`<option value="${h}" ${h===sel?'selected':''}>${sat2(h)}</option>`).join(''); }
+function seg(polje, a, b){ return `<div class="segment">${[a,b].map(([v,n])=>`<button type="button" class="${novi[polje]===v?'on':''}" onclick="novi.${polje}='${v}';this.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===this))">${n}</button>`).join('')}</div>`; }
+function dodajCas(){
+  document.getElementById('sadrzaj').innerHTML = `<div class="kartica">
+    <div class="naslov"><div class="ikchip">➕</div><h2>Dodaj <em>čas</em></h2></div>
+    <p class="pod">Za učenike iz Visibooka i časove dogovorene telefonom ili porukom. Ovde ne važe ograničenja radnog vremena.</p>
+    <form onsubmit="sacuvajCas(event)">
+      <div class="red"><div><label>Datum</label><input id="d" type="date" value="${danas()}" required></div><div><label>Vreme</label><select id="s">${opcijeSati()}</select></div></div>
+      <label>Način</label>${seg('nacin',['uzivo','🏡 Uživo'],['online','💻 Online'])}
+      <label>Vrsta</label>${seg('tip',['individualni','🎯 Individualni'],['grupni','👯 Grupni'])}
+      <label for="i">Ime i prezime</label><input id="i" required placeholder="Npr. Ana Petrović">
+      <div class="red"><div><label for="tel">Telefon</label><input id="tel" type="tel" inputmode="tel" placeholder="06x…"></div><div><label for="e">Mejl</label><input id="e" type="email" inputmode="email" placeholder="nije obavezno"></div></div>
+      <div class="red"><div><label for="pr">Oblast</label><select id="pr">${OBLASTI.map(p=>`<option>${p}</option>`).join('')}</select></div>
+      <div><label for="iz">Izvor</label><select id="iz"><option value="visibook">Visibook</option><option value="rucno">Telefon / poruka</option></select></div></div>
+      <label for="na">Napomena</label><input id="na" placeholder="razred, tema…">
+      <label class="chk"><input type="checkbox" id="pm"> Pošalji učeniku potvrdu na mejl</label>
+      <button class="btn" id="dd">Sačuvaj čas 💖</button><div class="poruka" id="p"></div>
+    </form></div>`;
+}
+async function sacuvajCas(e){
+  e.preventDefault(); const v = (id)=>document.getElementById(id).value; const p = document.getElementById('p'), b=document.getElementById('dd');
+  if (!v('i').trim()){ p.className='poruka err'; p.innerHTML='🙈 Upiši ime učenika.'; p.style.display='flex'; return; }
+  b.disabled = true;
+  try {
+    await poziv('admin_dodaj',{}, {datum:v('d'), sat:+v('s'), nacin:novi.nacin, tip:novi.tip, ime:v('i'), telefon:v('tel'), email:v('e'), predmet:v('pr'), napomena:v('na'), izvor:v('iz'), posaljiMejl:document.getElementById('pm').checked});
+    p.className='poruka ok'; p.innerHTML=`✓ Sačuvano: <b>${esc(v('i'))}</b>, ${lep(v('d'))} u ${sat2(+v('s'))}`; p.style.display='flex';
+    ['i','tel','e','na'].forEach(id=>document.getElementById(id).value=''); document.getElementById('i').focus();
+    toast('Čas je dodat 💖');
+  } catch(err){ p.className='poruka err'; p.innerHTML='🙈 '+esc(err.message); p.style.display='flex'; }
+  b.disabled = false;
+}
+
+/* ───── slobodni dani ───── */
+async function blokade(){
+  const S = document.getElementById('sadrzaj');
+  S.innerHTML = `<div class="kartica">
+    <div class="naslov"><div class="ikchip">🌴</div><h2>Slobodni <em>dani</em></h2></div>
+    <p class="pod">Odmor, praznik, kolokvijum na fakultetu… Učenici te dane ili sate neće moći da zakažu.</p>
+    <form onsubmit="blokiraj(event)">
+      <div class="red"><div><label>Od</label><input id="bd" type="date" value="${danas()}" required></div><div><label>Do <span style="font-weight:600;color:var(--muted)">(nije obavezno)</span></label><input id="bdo" type="date"></div></div>
+      <label>Koji deo dana</label><select id="bs"><option value="">🌴 Ceo dan</option>${opcijeSati(-1)}</select>
+      <label>Razlog <span style="font-weight:600;color:var(--muted)">(vidiš samo ti)</span></label><input id="br" placeholder="npr. odmor, ispit na FTN-u">
+      <button class="btn">Zatvori termin</button><div class="poruka" id="p"></div>
+    </form></div>
+    <div class="dan-n">Narednih 60 dana</div><div id="bl"><div class="skeleton"><i></i></div></div>`;
+  try {
+    const j = await poziv('admin_lista',{od:danas(), do:dodaj(danas(),60)});
+    document.getElementById('bl').innerHTML = j.blokade.length ? j.blokade.map(b=>`<div class="blok"><span style="font-size:20px">🌴</span><div style="flex:1"><b>${lep(b.datum)}</b> · ${b.vreme===null?'ceo dan':sat2(b.vreme)}${b.razlog?`<br><span style="color:var(--muted)">${esc(b.razlog)}</span>`:''}</div><button class="kb" onclick="odblokiraj('${b.id}')">Otvori</button></div>`).join('')
+      : '<div class="prazno"><div>☀️</div>Nema zatvorenih termina. Radiš po redovnom rasporedu.</div>';
+  } catch(e){ document.getElementById('bl').innerHTML = `<div class="prazno">${esc(e.message)}</div>`; }
+}
+async function blokiraj(e){
+  e.preventDefault(); const v=(id)=>document.getElementById(id).value;
+  try { await poziv('admin_blokiraj',{}, {datum:v('bd'), doDatum:v('bdo'), sat:v('bs'), razlog:v('br')}); toast('Termin je zatvoren 🌴'); blokade(); }
+  catch(err){ const p=document.getElementById('p'); p.className='poruka err'; p.innerHTML='🙈 '+esc(err.message); p.style.display='flex'; }
+}
+async function odblokiraj(id){ try { await poziv('admin_odblokiraj',{}, {id}); toast('Termin je ponovo otvoren'); blokade(); } catch(e){ alert(e.message); } }
+
+/* ───── zarada ───── */
+async function zarada(){
+  if (!mesec) mesec = danas().slice(0,7);
+  const [y,m] = mesec.split('-').map(Number);
+  window._pom = (n)=>{ const d=new Date(Date.UTC(y,m-1+n,1)); mesec=d.toISOString().slice(0,7); zarada(); };
+  const S = document.getElementById('sadrzaj');
+  S.innerHTML = `<div class="pozdrav"><h1>Tvoja <em>zarada</em> 💰</h1></div>
+    <div class="nav"><button class="strel" onclick="_pom(-1)">‹</button><b>${MESECI[m-1][0].toUpperCase()+MESECI[m-1].slice(1)}<span>${y}.</span></b><button class="strel" onclick="_pom(1)">›</button></div>
+    <div id="z"><div class="skeleton"><i></i><i></i></div></div>`;
+  try {
+    const j = await poziv('admin_zarada',{mesec});
+    const proc = j.ocekivano ? Math.round(j.naplaceno/j.ocekivano*100) : 0;
+    document.getElementById('z').innerHTML = `<div class="kartica" style="margin-top:10px"><div class="stat">
+      <div class="glavna"><small>UKUPNO ZA MESEC</small><b>${din(j.ocekivano)}</b><div class="traka-n" style="background:rgba(255,255,255,.15)"><i style="width:${proc}%"></i></div><small style="margin-top:6px;color:#E9D9E0">${proc}% naplaćeno</small></div>
+      <div class="zel"><small>✓ Naplaćeno</small><b>${din(j.naplaceno)}</b></div>
+      <div><small>⏳ Čeka naplatu</small><b>${din(j.zaNaplatu)}</b></div>
+      <div><small>📚 Časova</small><b>${j.ukupnoCasova}</b></div>
+      <div><small>✔️ Održano</small><b>${j.odrzano}</b></div></div></div>
+      ${j.nenaplaceni.length?`<div class="dan-n">Čeka naplatu</div>`+j.nenaplaceni.map(c=>{const [bp,bt]=boja(c.ime);return `<div class="cas"><div class="vreme"><div class="avatar" style="margin:0 auto;background:${bp};color:${bt}">${esc(inicijali(c.ime).toUpperCase())}</div></div><div class="info"><div class="ime">${esc(c.ime)}</div><div style="font-size:12.5px;color:var(--muted);margin-top:2px">${lep(c.datum)} · ${sat2(c.vreme)} · ${c.nacin==='online'?'online':'uživo'}</div><div class="kontakt"><button class="kb plati" onclick="platiZ('${c.id}')">💳 Označi plaćeno · ${din(c.cena)}</button></div></div></div>`;}).join('')
+      : j.odrzano ? '<div class="prazno"><div>🎉</div>Svi održani časovi su naplaćeni!</div>' : ''}`;
+  } catch(e){ document.getElementById('z').innerHTML = `<div class="prazno">${esc(e.message)}</div>`; }
+}
+async function platiZ(id){ try { await poziv('admin_izmeni',{}, {id, placeno:true}); toast('Plaćeno ✓'); zarada(); } catch(e){ alert(e.message); } }
+
+kljuc ? glavno() : prijava();
+</script>
+</body>
+</html>

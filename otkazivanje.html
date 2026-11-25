@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FBF6EE">
+<title>Otkazivanje časa — MathIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FBF6EE;--plum:#432C37;--plum2:#5B3A4A;--gold:#C6A05C;--golddk:#9C7838;--goldlt:#E7D2A2;--champ:#F7EAC9;--malina:#B01E48;--roze:#FCE8EE;--muted:#86707B;--line:#F0E4D0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,system-ui,sans-serif;color:var(--plum);min-height:100vh;background:var(--paper);overflow-x:hidden}
+.pozadina{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.mrlja{position:absolute;border-radius:50%;filter:blur(40px);opacity:.75}
+.m1{width:420px;height:420px;background:#F7EAC9;top:-160px;left:-140px}
+.m2{width:360px;height:360px;background:#F6D3DD;top:40px;right:-170px}
+.znak{position:absolute;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);opacity:.18}
+.wrap{max-width:500px;margin:0 auto;padding:18px 16px 50px}
+.logo{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--plum);margin-bottom:26px}
+.logo-znak{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--plum),#6B2340);display:grid;place-items:center;color:var(--goldlt);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:20px}
+.logo b{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:21px}
+.logo b i{color:var(--malina);font-style:normal}
+.kartica{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:28px;padding:28px 20px 24px;box-shadow:0 18px 40px -24px rgba(67,44,55,.35);text-align:center;animation:ulaz .4s ease both}
+@keyframes ulaz{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.emo{width:72px;height:72px;margin:0 auto 14px;border-radius:24px;display:grid;place-items:center;font-size:34px;background:linear-gradient(135deg,var(--roze),var(--champ))}
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;line-height:1.1;margin-bottom:10px}
+h1 em{color:var(--malina)}
+p{color:var(--muted);line-height:1.6;font-size:15px}
+.karta{background:linear-gradient(135deg,#fff,var(--paper));border:2px solid var(--line);border-radius:20px;padding:14px 16px;margin:18px 0 6px;text-align:left}
+.karta div{display:flex;gap:10px;padding:3px 0;font-size:14.5px}
+.karta div span:first-child{width:22px;text-align:center}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font:inherit;font-weight:900;font-size:15px;border-radius:16px;padding:14px;cursor:pointer;border:0;text-decoration:none;margin-top:10px;transition:.15s}
+.prim{color:#fff;background:linear-gradient(135deg,#6B2340,var(--malina));box-shadow:0 10px 22px -12px rgba(176,30,72,.85)}
+.sek{background:#fff;color:var(--plum);border:2px solid var(--goldlt)}
+.btn:disabled{opacity:.6}
+.vrti{width:16px;height:16px;border-radius:50%;border:2.5px solid rgba(255,255,255,.45);border-top-color:#fff;animation:vrt .7s linear infinite}
+@keyframes vrt{to{transform:rotate(360deg)}}
+.ucitava{height:140px;border-radius:20px;background:linear-gradient(90deg,#F6EEE2,#fff,#F6EEE2);background-size:200% 100%;animation:sj 1.1s infinite}
+@keyframes sj{to{background-position:-200% 0}}
+</style>
+</head>
+<body>
+<div class="pozadina" aria-hidden="true"><div class="mrlja m1"></div><div class="mrlja m2"></div>
+  <span class="znak" style="top:16%;left:6%;font-size:46px">π</span><span class="znak" style="top:70%;right:8%;font-size:44px">∫</span></div>
+<div class="wrap">
+  <a class="logo" href="/"><span class="logo-znak">M</span><b>Math<i>IA</i></b></a>
+  <div class="kartica" id="k"><div class="ucitava"></div></div>
+</div>
+<script>
+const API = 'https://project-y23je.vercel.app/api/zakazivanje';
+const t = new URLSearchParams(location.search).get('t') || '';
+const DANI = ['','ponedeljak','utorak','sreda','četvrtak','petak','subota','nedelja'];
+const MESECI_G = ['januara','februara','marta','aprila','maja','juna','jula','avgusta','septembra','oktobra','novembra','decembra'];
+const k = document.getElementById('k');
+const esc = (x) => String(x ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function lep(d){ const [y,m,dd]=d.split('-').map(Number); let w=new Date(Date.UTC(y,m-1,dd)).getUTCDay(); w=w===0?7:w; return `${DANI[w]}, ${dd}. ${MESECI_G[m-1]}`; }
+const sat2 = (h) => String(h).padStart(2,'0') + ':00';
+const zakazi = '<a class="btn sek" href="zakazivanje.html">🗓 Zakaži novi termin</a>';
+const ekran = (emo, h, telo) => { k.style.animation='none'; k.offsetHeight; k.style.animation=''; k.innerHTML = `<div class="emo">${emo}</div><h1>${h}</h1>${telo}`; };
+
+async function start(){
+  try{
+    const r = await fetch(`${API}?akcija=cas&t=${encodeURIComponent(t)}`); const j = await r.json();
+    if(!r.ok) return ekran('🔍','Link <em>nije važeći</em>', `<p>${esc(j.greska)}</p>${zakazi}`);
+    const c = j.cas;
+    const karta = `<div class="karta"><div><span>${c.nacin==='online'?'💻':'🏡'}</span><span><b>${c.tip==='grupni'?'Grupni':'Individualni'} čas</b> · ${c.nacin==='online'?'online':'uživo'}</span></div>
+      <div><span>🗓</span><span>${lep(c.datum)}</span></div><div><span>⏰</span><span>${sat2(c.vreme)} – ${sat2(c.vreme+1)}</span></div></div>`;
+    if(c.status==='otkazan') return ekran('🌙','Čas je <em>već otkazan</em>', karta + zakazi);
+    if(j.proslo) return ekran('📚','Ovaj čas je <em>prošao</em>', karta + zakazi);
+    if(!j.mozeOtkaz) return ekran('⏳',`Ostalo je <em>manje od ${j.otkazSati} h</em>`, `${karta}<p>Otkazivanje preko sajta više nije moguće. Ako ipak ne možete da dođete, javite se direktno što pre.</p>`);
+    ekran('🤔',`Otkazujete <em>čas?</em>`, `<p>Zdravo ${esc(c.ime)}! Da li sigurno želite da otkažete ovaj termin?</p>${karta}
+      <button class="btn prim" id="da">Da, otkaži čas</button><a class="btn sek" href="/">Ne, ipak dolazim 💖</a>`);
+    document.getElementById('da').onclick = otkazi;
+  }catch(e){ ekran('📡','Greška u <em>vezi</em>','<p>Pokušajte ponovo za minut.</p>'); }
+}
+async function otkazi(){
+  const b = document.getElementById('da'); b.disabled = true; b.innerHTML = '<span class="vrti"></span> Otkazujem…';
+  try{
+    const r = await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({akcija:'otkazi',t})});
+    const j = await r.json();
+    if(!r.ok){ b.disabled=false; b.textContent='Da, otkaži čas'; alert(j.greska); return; }
+    ekran('💌','Čas je <em>otkazan</em>', `<p>Hvala što ste javili na vreme! Kad god poželite, izaberite novi termin.</p>${zakazi}`);
+  }catch(e){ b.disabled=false; b.textContent='Da, otkaži čas'; alert('Nema veze sa serverom.'); }
+}
+start();
+</script>
+</body>
+</html>
